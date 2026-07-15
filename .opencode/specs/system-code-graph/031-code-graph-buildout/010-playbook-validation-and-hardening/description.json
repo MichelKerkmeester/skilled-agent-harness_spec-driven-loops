@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening",
+  "description": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manualtestingplaybook/`) that validates the `mk-code-index` MCP runtime:",
+  "keywords": [
+    "system-code-graph",
+    "skill",
+    "ships",
+    "22-scenario",
+    "manual",
+    "testing",
+    "playbook",
+    "manualtestingplaybook",
+    "validates",
+    "mk-code-index",
+    "mcp",
+    "runtime"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.852Z",
+  "specId": "010",
+  "folderSlug": "playbook-validation-and-hardening",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

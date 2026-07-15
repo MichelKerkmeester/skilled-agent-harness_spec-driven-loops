@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/001-touchpoint-research",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/001-touchpoint-research",
+  "parent_id": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cocoindex deprecation touchpoint research",
+      "rerank sidecar consumers map",
+      "code-graph cocoindex decouple research",
+      "deprecation resource map",
+      "ccc bridge touchpoints",
+      "touchpoint research plan",
+      "deep-research dispatch strategy",
+      "cocoindex deprecation research plan",
+      "touchpoint research tasks",
+      "deprecation research iterations",
+      "cocoindex research task list",
+      "touchpoint research summary"
+    ],
+    "key_topics": [
+      "cocoindex",
+      "deprecation",
+      "touchpoint",
+      "research",
+      "rerank",
+      "sidecar",
+      "consumers",
+      "map",
+      "code-graph",
+      "decouple",
+      "resource",
+      "ccc"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/resource-map.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Touchpoint Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sidecar Deprecation Discovery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deprecating",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Iterations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deprecating mcp-coco-index + system-rerank-sidecar and decoupling system-code-graph touches a large, dispersed surface (skills, commands, agents, hooks, 4-runtime configs, READMEs) with two dangerous couplings (sidecar to mk-spec-memory; code-graph to coco via the ccc bridge)",
+    "created_at": "2026-05-25T06:48:03.563Z",
+    "last_save_at": "2026-07-15T18:49:20.797Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:181271ca76215bb25da5ec414718b565996cce8fab44d07d0f3821c3e53aa536",
+    "source_doc_hashes": {
+      "spec.md": "737d4bc1023dc36b5bfc0a58e5944297ccf40e9a4e3675f5334677c13df77a94",
+      "plan.md": "169719790f114ca79da2dab0bf88e598ddbd36ef44dcc1f6e8b3bc838e3faea8",
+      "tasks.md": "e1205a2fcb87033d875c6ed07a384154fd8cd9f678eb5dfa17f86ef9321ba0d0",
+      "implementation-summary.md": "f2cb131246e5181275c4c8627d239a641540b238cfb13031611bc991485e652e",
+      "research/research.md": "dda198678e3f1339844e3e213754e8006c33faf8445e790aff9ae3f0dcfb7348"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

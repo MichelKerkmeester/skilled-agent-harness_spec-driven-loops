@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/035-rust-backend-rewrite-research/002-research",
+  "spec_folder": "system-code-graph/035-rust-backend-rewrite-research/002-research",
+  "parent_id": "system-code-graph/035-rust-backend-rewrite-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph query serving rust research",
+      "rust graph traversal rewrite",
+      "011 phase 002 research",
+      "code graph context rust feasibility",
+      "rust vs typescript query engine",
+      "query serving rust research plan",
+      "code graph 16 round allocation",
+      "011 phase 002 plan",
+      "rust traversal research plan",
+      "query serving rust research tasks",
+      "011 phase 002 tasks",
+      "code graph rust research checklist"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "query",
+      "serving",
+      "rust",
+      "research",
+      "traversal",
+      "rewrite",
+      "phase",
+      "context",
+      "feasibility",
+      "typescript"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-fanout-config.json",
+      "lib/graph/bfs-traversal.ts",
+      "scripts/doctor.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-fanout-config.json",
+        "kind": "config",
+        "path": "research/deep-research-fanout-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "bfs-traversal.ts",
+        "kind": "code",
+        "path": "lib/graph/bfs-traversal.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Serving Rust Backend Rewrite Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Boundary",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "positive",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The serving backend mixes thin native-database calls with genuine JS compute",
+    "created_at": "2026-07-11T06:42:40.657Z",
+    "last_save_at": "2026-07-15T18:49:21.090Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:9665a3a6fc03f764d113eb24468dce941b41b89d57e58d327b452c0eaf224f8d",
+    "source_doc_hashes": {
+      "spec.md": "219ba81ec7fe2f44f75236f38fabec735d4326fa4c5d34e7f889c6ed36b6e4fd",
+      "plan.md": "00644671518db8f09d1b3829c657dc553517742ba1c21c1412cc7e3056965d22",
+      "tasks.md": "6c06c05cd70d3dff4fba8adc8c3bd9c03dd92d9568e2ba89a569767e363d7e8a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

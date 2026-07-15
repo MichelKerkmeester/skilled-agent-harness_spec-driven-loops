@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/034-code-graph-scatter-from-027",
+  "spec_folder": "system-code-graph/034-code-graph-scatter-from-027",
+  "parent_id": "system-code-graph",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-code-graph/034-code-graph-scatter-from-027/001-code-graph-code-only-indexing",
+    "system-code-graph/034-code-graph-scatter-from-027/002-code-graph-robustness",
+    "system-code-graph/034-code-graph-scatter-from-027/003-codegraph-apply-safety",
+    "system-code-graph/034-code-graph-scatter-from-027/004-system-code-graph-frontmatter-alignment"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph scatter 027",
+      "027 code graph migrated packets",
+      "code graph phase parent"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "scatter",
+      "migrated",
+      "packets",
+      "phase",
+      "parent",
+      "lean",
+      "collecting",
+      "four",
+      "code-graph",
+      "spec"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Scatter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Lean phase parent collecting four code-graph spec packets moved out of the 027 refinement tree.",
+    "created_at": "2026-07-07T00:00:00Z",
+    "last_save_at": "2026-07-09T10:02:47.280Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:3d9320ec6ff7fbe34eea0f87af4065f4447f8b8b577d23ca0b77b22b5a9e9ff2",
+    "source_doc_hashes": {
+      "spec.md": "ec10c409b31918477f22506317b7df2c7a439e9526282e2bd31c4e3eeb48e16d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

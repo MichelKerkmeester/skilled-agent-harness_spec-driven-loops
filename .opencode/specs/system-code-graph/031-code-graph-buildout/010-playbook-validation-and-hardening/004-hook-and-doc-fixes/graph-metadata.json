@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/004-hook-and-doc-fixes",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/004-hook-and-doc-fixes",
+  "parent_id": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin hook registration fix",
+      "code graph playbook doc sync",
+      "029 phase 004 hook and doc fixes",
+      "devin hook fix plan",
+      "playbook doc sync plan",
+      "029 phase 004 plan",
+      "devin hook fix tasks",
+      "playbook doc sync tasks",
+      "029 phase 004 tasks",
+      "devin hook fix checklist",
+      "playbook doc sync checklist",
+      "029 phase 004 checklist"
+    ],
+    "key_topics": [
+      "devin",
+      "hook",
+      "registration",
+      "code",
+      "graph",
+      "playbook",
+      "doc",
+      "sync",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Registration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Doc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sync Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 029 validation run surfaced (a) F-025-1: the Devin SessionStart hook in `.devin/hooks.v1.json` registers a non-existent path, so the hook never fires; and (b) several stale playbook scenario docs (F-011-1 verify-`rating`, F-020-1 tool count 11→8, F-021-1 label/content mismatch, 009/010 line drift)",
+    "created_at": "2026-05-27T03:30:26.441Z",
+    "last_save_at": "2026-07-15T18:49:07.199Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:efc9bd5349a6fc4beb8c4f38a9e2cce393c66af20491ec5ffdcb2dcaf94ed821",
+    "source_doc_hashes": {
+      "spec.md": "d9cbf10a49747e87c391000369b8cd8e2df8829652c915537a0775cf73a4bf2a",
+      "plan.md": "2ac1e86959951f659531a6ce4280ee2fc67b86af81d46544b645a0222dac374d",
+      "tasks.md": "dcd4fbfe2ef1a9118a3a186156dcc3a5a3881ecf650d3d8e8dfe1d97eaf19f25",
+      "checklist.md": "f4368e59e5db1d191997e1c33aaf2165ea20f175f29c277674005d96457054de",
+      "implementation-summary.md": "cfdd20df35cec5d5c23510c6b44243d19cfa0636f0c1e8799e244d03cf635297"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
+  "parent_id": "system-code-graph/031-code-graph-buildout/011-source-bug-and-misalignment-audit",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph remediation applied-source-and-doc-fixes",
+      "system-code-graph fix applied source & doc fixes"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "remediation",
+      "applied-source-and-doc-fixes",
+      "system-code-graph",
+      "applied",
+      "source",
+      "doc",
+      "audit",
+      "recorded",
+      "findings",
+      "mcp"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Applied Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "RM-8",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 011 audit recorded 37+1 findings in the system-code-graph MCP server",
+    "created_at": "2026-05-29T08:30:00.000Z",
+    "last_save_at": "2026-07-15T18:49:05.589Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d09ea11ecb1c88c6c7a55c688a72c184b66ec886ff2c97da735c8a8c3520bec0",
+    "source_doc_hashes": {
+      "spec.md": "fbe8ed9b26ad37e677b2f5d1bedd842b14a76e73aeb1235e51bbc45851a66725",
+      "plan.md": "eed206e0dbe7f21ccfe529b622144041f87f2745b765504552464dc339ae0e22",
+      "tasks.md": "032e3788fcb9c4e64a213e3e543e23e75bde5db8a0848007f8553d5a38901962",
+      "implementation-summary.md": "f04e511ed7382dc8c6d0683f719cc2bb824e1803498d4c1d7fce7d1299dde7b5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

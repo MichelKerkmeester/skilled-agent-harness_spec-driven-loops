@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/032-code-graph-scatter/014-code-graph-suite-triage",
+  "spec_folder": "system-code-graph/032-code-graph-scatter/014-code-graph-suite-triage",
+  "parent_id": "system-code-graph/032-code-graph-scatter",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph-suite-triage",
+      "009 phase 011",
+      "code-graph 31 failures triage"
+    ],
+    "key_topics": [
+      "system-code-graph-suite-triage",
+      "phase",
+      "code-graph",
+      "failures",
+      "triage",
+      "arc",
+      "shipped",
+      "launcher",
+      "single-owner",
+      "closedb",
+      "lifecycle",
+      "work"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/baseline-failures.md",
+      "mcp_server/tests/runtime-detection.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/runtime-detection.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/graph-payload-validator.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/tree-sitter-parser.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/edge-metadata-sanitize.test.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/auto-rescan-policy.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-siblings-readiness.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/symlink-realpath-hardening.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-failures.md",
+        "kind": "doc",
+        "path": "scratch/baseline-failures.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-detection.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/runtime-detection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-payload-validator.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/graph-payload-validator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tree-sitter-parser.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/tree-sitter-parser.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-context-handler.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "edge-metadata-sanitize.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/edge-metadata-sanitize.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-query-handler.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-brief.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/startup-brief.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-rescan-policy.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/auto-rescan-policy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-siblings-readiness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-siblings-readiness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-realpath-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/symlink-realpath-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Vitest Suite Triage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Arc 009 phase 007 shipped the code-graph launcher single-owner + closeDb lifecycle work but used a targeted-gate (lib/owner-lease + launcher-lease) for verification",
+    "created_at": "2026-05-22T18:30:00Z",
+    "last_save_at": "2026-07-15T18:49:24.342Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:df1bc4a4cd2b012e390740905d9d7c32c8e84e2d33c2269a47441fcd154a9a73",
+    "source_doc_hashes": {
+      "spec.md": "b90f8f2e864a7d2cbbf136f2e99e5098da8997b68be09c1d6028c2cd13457a0c",
+      "plan.md": "beb99e068c1fbd64d96fc14555ec74a8c444ba74e81fb61a51dbe5d6ca741138",
+      "tasks.md": "6df52f7730e03a00ebd9b7d9bee07ef9cdfbef031fc6546e483b7bf228fb598f",
+      "implementation-summary.md": "c2128ffa386b83aa933a815315de74b76438b6406fbbb8e1815a71f6cd9e6a34"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-code-graph/031-code-graph-buildout/003-code-graph-workspace-root-fix",
+  "description": "`/mcp` reported `Failed to reconnect to mkcodeindex: -32000`",
+  "keywords": [
+    "mcp",
+    "reported",
+    "failed",
+    "reconnect",
+    "mkcodeindex"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.788Z",
+  "specId": "003",
+  "folderSlug": "code-graph-workspace-root-fix",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

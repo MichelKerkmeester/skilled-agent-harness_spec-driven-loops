@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/031-code-graph-buildout/002-deprecate-coco-index/002-decouple-code-graph",
+  "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
+  "keywords": [
+    "part",
+    "cocoindex",
+    "rerank-sidecar",
+    "deprecation",
+    "arc"
+  ],
+  "lastUpdated": "2026-07-15T18:35:45.689Z",
+  "specId": "002",
+  "folderSlug": "decouple-code-graph",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "002-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

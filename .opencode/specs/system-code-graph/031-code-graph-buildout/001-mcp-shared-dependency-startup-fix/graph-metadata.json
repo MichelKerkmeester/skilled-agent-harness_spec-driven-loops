@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/001-mcp-shared-dependency-startup-fix",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/001-mcp-shared-dependency-startup-fix",
+  "parent_id": "system-code-graph/031-code-graph-buildout",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp startup shared dependency",
+      "ERR_MODULE_NOT_FOUND @spec-kit/shared",
+      "mk_skill_advisor failed to start",
+      "mk_code_index failed to start",
+      "mcp startup shared dependency plan",
+      "system-skill-advisor @spec-kit/shared",
+      "system-code-graph @spec-kit/shared",
+      "mcp startup tasks",
+      "shared dependency task list",
+      "mcp startup verification",
+      "shared dependency checklist",
+      "mcp shared dependency implementation summary"
+    ],
+    "key_topics": [
+      "mcp",
+      "startup",
+      "shared",
+      "dependency",
+      "spec-kit",
+      "failed",
+      "start",
+      "plan",
+      "system-skill-advisor",
+      "system-code-graph",
+      "tasks",
+      "task"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-code-graph/031-code-graph-buildout/001-mcp-shared-dependency-startup-fix/spec.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/package-lock.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/tsconfig.build.json",
+      ".opencode/skills/system-code-graph/package-lock.json",
+      ".opencode/skills/system-code-graph/tsconfig.json",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+      ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-code-graph/031-code-graph-buildout/001-mcp-shared-dependency-startup-fix/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.build.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tsconfig.build.json",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-code-graph/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_mcp_install.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_mcp_debug.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Dependency Startup Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Context Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Codex startup logs show `mkskilladvisor` and `mkcodeindex` failing during MCP initialization with `ERRMODULENOTFOUND: Cannot find package '@spec-kit/shared'`",
+    "created_at": "2026-05-16T10:03:53Z",
+    "last_save_at": "2026-07-15T18:49:32.372Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6255bd58d05ce4f26c74e36ac312ca59b6a1487c8cbe8e271f959ca243def148",
+    "source_doc_hashes": {
+      "spec.md": "45d726a3402623723c1db0e681bcfb819b2eb0e0cdaa7a51e41f6cb3f5d6c8b4",
+      "plan.md": "76da8def217db4e56aec7ee300643d26fc659205fe94b20ac60c2d1694dd6926",
+      "tasks.md": "86e7e3a424fac2c73ddd349c5da2cfe7398c244eb637a0a972a5cd5f6bba9f46",
+      "checklist.md": "815750d5657c5954913b6387fe3f2ddee476d479dc284d16e9727c4c0e0e9441",
+      "implementation-summary.md": "8357281b9c5c0950bd9a2f35bc54e38cd7e2267bff86ad50365a118a05f97712"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

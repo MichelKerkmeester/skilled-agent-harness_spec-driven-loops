@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/031-code-graph-buildout/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
+  "description": "The current `.opencode/skills/system-code-graph/README.md` opens with implementation prose (\"Structural code indexing, SQLite-backed graph",
+  "keywords": [
+    "current",
+    "opencode",
+    "skills",
+    "system-code-graph",
+    "readme",
+    "opens",
+    "implementation",
+    "prose",
+    "structural",
+    "code",
+    "indexing",
+    "sqlite-backed",
+    "graph"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.840Z",
+  "specId": "002",
+  "folderSlug": "readme-problem-first-rewrite",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "009-system-code-graph-uplift-phase-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

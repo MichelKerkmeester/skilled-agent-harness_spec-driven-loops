@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/025-code-graph-core/004-code-edge-bitemporal",
+  "spec_folder": "system-code-graph/025-code-graph-core/004-code-edge-bitemporal",
+  "parent_id": "system-code-graph/025-code-graph-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 code edge bitemporal",
+      "code_edges valid_at invalid_at",
+      "code graph live view chokepoint",
+      "edge bitemporal lifecycle",
+      "symbol timeline as-of query",
+      "code edge bitemporal plan",
+      "q1-c1 views atomic migration",
+      "code graph schema migration sequencing",
+      "code edge bitemporal tasks",
+      "q1-c1 cluster tasks",
+      "code graph migration deferred tasks",
+      "code edge bitemporal checklist"
+    ],
+    "key_topics": [
+      "code",
+      "edge",
+      "bitemporal",
+      "graph",
+      "live",
+      "view",
+      "chokepoint",
+      "lifecycle",
+      "symbol",
+      "timeline",
+      "as-of",
+      "query"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-bitemporal-schema.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/edge-staleness-correctness.vitest.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-edge-bitemporal-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-bitemporal-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "edge-staleness-correctness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/edge-staleness-correctness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Bi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup The Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph reindex mutates edges destructively",
+    "created_at": "2026-06-19T05:52:29.581Z",
+    "last_save_at": "2026-07-15T18:49:34.507Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:46eccf1ddec3b6794eedfb4d3a8bce85cd97f85a97df763a1bebc89ae34a4629",
+    "source_doc_hashes": {
+      "spec.md": "1890d1d36a0096869431af8da154b81933fef532399d5e4b2831d9c486b43713",
+      "plan.md": "ca26f39232f3660fac4723144038b73296a16417cfd83e68969a5505ff70acdb",
+      "tasks.md": "fb5e5eb911ca096dca10bf09f2097d2fa2c193a75cf452f95e0cd2c0c988e5f4",
+      "checklist.md": "fef4358bb150ce666263f58c47df18a2b0cb159cedcecb89a0b2418fc0a34f66",
+      "decision-record.md": "9ca1f7e4df977a534d530255a3a9c4c11b556f69c43b8419cc26f61c73b21fa0",
+      "implementation-summary.md": "bc36bb359a0cbdcb7f899d2625067d61d5597708a3545da09c170e199cb58259"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

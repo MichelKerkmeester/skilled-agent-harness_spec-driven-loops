@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/025-code-graph-core/010-edge-confidence-and-ppr-revisit",
+  "spec_folder": "system-code-graph/025-code-graph-core/010-edge-confidence-and-ppr-revisit",
+  "parent_id": "system-code-graph/025-code-graph-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "edge confidence differentiation",
+      "seeded ppr revisit",
+      "code graph confidence gradient",
+      "edge confidence differentiation plan",
+      "seeded ppr revisit plan",
+      "edge confidence ppr revisit tasks",
+      "edge confidence ppr revisit checklist",
+      "edge confidence ppr revisit decisions",
+      "edge confidence differentiation summary",
+      "seeded ppr revisit result",
+      "ppr cut confirmed again"
+    ],
+    "key_topics": [
+      "edge",
+      "confidence",
+      "differentiation",
+      "seeded",
+      "ppr",
+      "revisit",
+      "code",
+      "graph",
+      "gradient",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/cross-file-edge-resolver.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "structural-indexer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cross-file-edge-resolver.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/cross-file-edge-resolver.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "indexer-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confidence Differentiation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Seeded",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Give",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Seeded-PPR ranking was cut because uniform CALLS-edge confidence (all edges: INFERRED, 0.8, 0.8) gave it nothing to differentiate on",
+    "created_at": "2026-07-01T00:00:00.000Z",
+    "last_save_at": "2026-07-15T18:49:32.882Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b74b1957315c27f36b388d5acb89a2cfbfe4e1db2a591594352b36ae8a9db161",
+    "source_doc_hashes": {
+      "spec.md": "f05107ae132f54ea50707a215127f64c3e150d9bf9f23e8a7e5a268a1670fe9f",
+      "plan.md": "38c1d8bbd1567ad97f98f3e6a382a5179b8a3177fb13d20550953c57e5f0123c",
+      "tasks.md": "df4c8df98f4f5fe760c64b607ed7d8cd9d60e5170c79fc0916d7a0ec42f7d417",
+      "checklist.md": "8bfa32c50e517ef25c4a3f1921fffe05f3ac91ce24621b614bc6a6735b3dbec2",
+      "decision-record.md": "b1c8061ed155c9efd3a43304bc13079a26ab40ccb450db853e45bb329b5b63ef",
+      "implementation-summary.md": "d8e818ea853c5120706192f88a8099f737cddc3c3c1bd97d62c7fb348265fab2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-01T00:00:00.000Z"
+  }
+}

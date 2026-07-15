@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish",
+  "parent_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/007/012/006",
+      "cluster a to e",
+      "code graph advisor hooks polish",
+      "F-007 F-018 F-019",
+      "F-014 F-015 F-016 F-017",
+      "026/007/012/006 plan",
+      "clusters A-E plan",
+      "read-path auto-rescan plan",
+      "026/007/012/006 tasks",
+      "cluster a to e tasks",
+      "026/007/012/006 checklist",
+      "cluster a to e verification"
+    ],
+    "key_topics": [
+      "cluster",
+      "code",
+      "graph",
+      "advisor",
+      "hooks",
+      "polish",
+      "f-007",
+      "f-018",
+      "f-019",
+      "f-014",
+      "f-015",
+      "f-016"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "tests/context-server.vitest.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hooks Polish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Phase 012 deep research identified 12 remaining P1 findings after the P0 remediation packets",
+    "created_at": "2026-05-18T08:15:53.451Z",
+    "last_save_at": "2026-07-15T18:49:09.409Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:69bb5f81968304ac0503e89cbff2016742ea9092175ce421332e77e6037373f3",
+    "source_doc_hashes": {
+      "spec.md": "c1f5c5d4c9d6f0aaa809e649b9ede3b62df759bec9b306e252d6841fe778c92e",
+      "plan.md": "8563422cbb9102693c379e15a63c16efa1a3fd21071830cb7f0441093d3cff13",
+      "tasks.md": "33ffb2377703adf36c20fd689fb1560fec2aa7e2b79a77855f33e72a50076979",
+      "checklist.md": "3f594e7a0703762279623f7457d76332333b95568f4b5dcdddf5407311bfb402",
+      "decision-record.md": "1674114fbf43ad0b23c18d7d282cbf91360bc29f57d2b4d654af2d686bd1023b",
+      "implementation-summary.md": "14d33a40c6fe75978ff1c9b1f78553c7789e8f2ba559be0fcbd355d85cf18db7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

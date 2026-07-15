@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/032-code-graph-scatter/007-code-graph-catalog-and-playbook",
+  "spec_folder": "system-code-graph/032-code-graph-scatter/007-code-graph-catalog-and-playbook",
+  "parent_id": "system-code-graph/032-code-graph-scatter",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "012-code-graph-catalog-and-playbook",
+      "code_graph feature catalog",
+      "code_graph manual testing playbook",
+      "code_graph runtime catalog",
+      "012-code-graph-catalog-and-playbook resource map",
+      "code graph catalog playbook file ledger"
+    ],
+    "key_topics": [
+      "012-code-graph-catalog-and-playbook",
+      "feature",
+      "catalog",
+      "manual",
+      "testing",
+      "playbook",
+      "runtime",
+      "resource",
+      "map",
+      "code",
+      "graph",
+      "file"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The codegraph runtime package had README coverage and root skill catalog/playbook entries, but it lacked package-local `featurecatalog/` and `manualtestingplaybook/` directories at the source-of-truth runtime path",
+    "created_at": "2026-04-29T17:26:00.000Z",
+    "last_save_at": "2026-07-15T18:49:26.349Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:a7f86bf224881613aabfa76cbe1aeacafa10a26dd339eda4c33c7fcaa94c0da0",
+    "source_doc_hashes": {
+      "spec.md": "18d2c78e233ace5c943e6b74d1bbbe98122a03d582593f056b539cc48860717c",
+      "plan.md": "1c5495c3faf2d4547d43764e707cf4a206eda91fb6b721c6fb48f390755620fd",
+      "tasks.md": "83eda7c50194a0b66ad0b899bcde243c633bb848011fe2036f4cf3feea239402",
+      "checklist.md": "96dd4083a5b84396a9cd4144ee230e71774e10fe4b8a5333f4e7dfa0a773db60",
+      "implementation-summary.md": "573215efa9927193b8c7590944d80279c3147342f84a77805009e402f7462749",
+      "resource-map.md": "c26356ba949ec68dd35a13d8708a72531fe18fffc72644caf1ac08693f678fc4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

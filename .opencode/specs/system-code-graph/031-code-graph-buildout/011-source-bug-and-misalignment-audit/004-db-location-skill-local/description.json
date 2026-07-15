@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-code-graph/031-code-graph-buildout/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
+  "description": "The code-graph SQLite DB + sidecars + lease + readiness marker were created at the workspace-root `.opencode/.spec-kit/code-graph/database/`",
+  "keywords": [
+    "code-graph",
+    "sqlite",
+    "sidecars",
+    "lease",
+    "readiness",
+    "marker",
+    "workspace-root",
+    "opencode",
+    "spec-kit",
+    "database"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.856Z",
+  "specId": "004",
+  "folderSlug": "db-location-skill-local",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "011-source-bug-and-misalignment-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/014-gold-query-battery-repair",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/014-gold-query-battery-repair",
+  "parent_id": "system-code-graph/031-code-graph-buildout",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph gold query battery repair",
+      "verificationGate fail",
+      "system-code-graph extraction battery",
+      "026 004 014 gold query",
+      "gold query battery plan",
+      "code graph verify repair plan",
+      "verificationGate fail plan",
+      "gold query battery tasks",
+      "code graph verify repair tasks",
+      "gold query battery checklist",
+      "code graph verify checklist",
+      "gold query battery implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "gold",
+      "query",
+      "battery",
+      "repair",
+      "verificationgate",
+      "fail",
+      "system-code-graph",
+      "extraction",
+      "plan",
+      "verify"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/gold-query-verifier.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/gold-battery-runner.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
+      "implementation-summary.md",
+      ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "query.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gold-query-verifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/gold-query-verifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gold-battery-runner.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/gold-battery-runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-verify.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Gold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Battery Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Code Graph MCP read path reports a fresh index, but `codegraphquery` still blocks because the verification gate fails",
+    "created_at": "2026-06-07T09:30:00Z",
+    "last_save_at": "2026-07-15T18:49:28.478Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:c19ae529ba909848c709992048e5cc2e1126224bb31084c1111aac812b2a2a23",
+    "source_doc_hashes": {
+      "spec.md": "fd8a0956081fe268ea019353f3352d20f8d11975778c974c4c32ec92966993aa",
+      "plan.md": "8d048ce438185bbc428cd8a58ae42e60e000d1c398afe3151a71d7c665161109",
+      "tasks.md": "61d1481948d08da2a18c65488f07b06f82b8dac80f334277174049c92fce94fa",
+      "checklist.md": "48c3f7e9c33dee3b466dd7ebd7fb7f8cda54ea16d7e9094633ac30e97dbdd120",
+      "implementation-summary.md": "dd818bb51514a10fdcb47d5b126ba2ec781d05da950fa3ae2dc98c7c9652a18c",
+      "handover.md": "6488a20e772304b2a4056dad03210a15affbf9789d4e0b48825a7a05f19061d4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

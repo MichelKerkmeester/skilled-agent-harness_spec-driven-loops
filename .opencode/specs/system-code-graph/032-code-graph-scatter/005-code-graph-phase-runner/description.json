@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-code-graph/032-code-graph-scatter/005-code-graph-phase-runner",
+  "description": "`codegraph/lib/structural-indexer.ts:1369` `indexFiles()` runs scan stages inlined with no phase abstraction",
+  "keywords": [
+    "codegraph",
+    "lib",
+    "structural-indexer",
+    "indexfiles",
+    "runs",
+    "scan",
+    "stages",
+    "inlined",
+    "phase",
+    "abstraction"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.863Z",
+  "specId": "005",
+  "folderSlug": "code-graph-phase-runner",
+  "parentChain": [
+    "system-code-graph",
+    "032-code-graph-scatter"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-04-26_11-48__scaffold-initialization-for-012-sub-phase-002.md"
+  ]
+}

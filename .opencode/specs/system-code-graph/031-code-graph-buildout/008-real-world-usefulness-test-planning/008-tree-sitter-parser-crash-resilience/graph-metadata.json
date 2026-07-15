@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
+  "parent_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "tree-sitter parser crash",
+      "memory access out of bounds",
+      "code graph scope expansion",
+      "parser resilience",
+      "broad scope scan",
+      "wasm grammar",
+      "skip-list policy",
+      "tree-sitter resilience plan",
+      "skip-list MVP",
+      "parser root cause",
+      "broad scope investigation",
+      "parser resilience tasks"
+    ],
+    "key_topics": [
+      "tree-sitter",
+      "parser",
+      "crash",
+      "memory",
+      "access",
+      "bounds",
+      "code",
+      "graph",
+      "scope",
+      "expansion",
+      "resilience",
+      "broad"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-004.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "scratch/fixtures/iter-003-isolation-test.mjs",
+      "scratch/fixtures/iter-004-cohort-replay.mjs",
+      "scratch/fixtures/iter-004-026-probe-output.txt",
+      "scratch/fixtures/iter-004-oob-cohort.txt",
+      "scratch/fixtures/iter-005-stress-loop.mjs",
+      "scratch/fixtures/iter-006-r1-reset-on-throw.mjs",
+      "scratch/fixtures/iter-006-bash-isolation.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-003-isolation-test.mjs",
+        "kind": "file",
+        "path": "scratch/fixtures/iter-003-isolation-test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "iter-004-cohort-replay.mjs",
+        "kind": "file",
+        "path": "scratch/fixtures/iter-004-cohort-replay.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "iter-004-026-probe-output.txt",
+        "kind": "file",
+        "path": "scratch/fixtures/iter-004-026-probe-output.txt",
+        "source": "derived"
+      },
+      {
+        "name": "iter-004-oob-cohort.txt",
+        "kind": "file",
+        "path": "scratch/fixtures/iter-004-oob-cohort.txt",
+        "source": "derived"
+      },
+      {
+        "name": "iter-005-stress-loop.mjs",
+        "kind": "file",
+        "path": "scratch/fixtures/iter-005-stress-loop.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "iter-006-r1-reset-on-throw.mjs",
+        "kind": "file",
+        "path": "scratch/fixtures/iter-006-r1-reset-on-throw.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "iter-006-bash-isolation.mjs",
+        "kind": "file",
+        "path": "scratch/fixtures/iter-006-bash-isolation.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Live",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Live testing of the code-graph (after F-002/F-003/F-018/F-019 remediation landed) showed that broad-scope scans (`agents+commands+specs+plugins=all`) crash the tree-sitter parser with `memory access out of bounds` on roughly 1,640 of 9,349 candidate files (~17.5%)",
+    "created_at": "2026-05-06T13:34:53Z",
+    "last_save_at": "2026-07-15T18:49:09.114Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:2f1b8784cbc25133ca80b6f5c87cdd83fc238cccbb4ddff13021ad3cbe721889",
+    "source_doc_hashes": {
+      "spec.md": "eed3006ad4cd9b8c1d43f3317440c22bf901171223a9e17b48939aaf35393163",
+      "plan.md": "68b038baaaf3724a8793989953a263e2847f6a03748c1e664980e4d456963b70",
+      "tasks.md": "de846cb0b2ad40f83f5cca759a936b2257ca7857bc1d0a5e6fc70edbca1b631b",
+      "checklist.md": "99574598249c525f4126faada51e61a19c0e3c864d8c8ed96270214075fcbc3e",
+      "implementation-summary.md": "4b52cb094778df6db413fdc3df8c890b2aa89ff337bd5c358597eea954a917d1",
+      "research/research.md": "2568f57183b6440205214a20f066d5dd80da2157ea876b207e2bd752b1b65dfe"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

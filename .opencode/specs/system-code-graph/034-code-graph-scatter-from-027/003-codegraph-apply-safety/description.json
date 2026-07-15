@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-code-graph/034-code-graph-scatter-from-027/003-codegraph-apply-safety",
+  "description": "Spec wrapper for the code-graph apply-safety disposition packet moved under system-code-graph.",
+  "keywords": [
+    "spec",
+    "wrapper",
+    "code-graph",
+    "apply-safety",
+    "disposition",
+    "packet",
+    "moved",
+    "system-code-graph"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.894Z",
+  "specId": "003",
+  "folderSlug": "codegraph-apply-safety",
+  "parentChain": [
+    "system-code-graph",
+    "034-code-graph-scatter-from-027"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

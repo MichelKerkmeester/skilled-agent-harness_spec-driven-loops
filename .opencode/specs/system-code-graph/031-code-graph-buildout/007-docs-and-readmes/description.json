@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes",
+  "description": "The code-graph documentation track: doctor diagnostic command phase-a, system-code-graph READMEs, code-folder READMEs, doc-drift alignment,",
+  "keywords": [
+    "code-graph",
+    "documentation",
+    "track",
+    "doctor",
+    "diagnostic",
+    "command",
+    "phase-a",
+    "system-code-graph",
+    "readmes",
+    "code-folder",
+    "doc-drift",
+    "alignment"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.827Z",
+  "specId": "007",
+  "folderSlug": "docs-and-readmes",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

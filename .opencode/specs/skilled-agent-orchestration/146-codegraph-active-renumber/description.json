@@ -1,0 +1,25 @@
+{
+  "specFolder": "skilled-agent-orchestration/146-codegraph-active-renumber",
+  "description": "The `system-code-graph` track archived its history under `zarchive/` numbered `001-024`, but the active (root-level) packets ALSO started at `001`",
+  "keywords": [
+    "system-code-graph",
+    "track",
+    "archived",
+    "history",
+    "zarchive",
+    "numbered",
+    "active",
+    "root-level",
+    "packets",
+    "also",
+    "started"
+  ],
+  "lastUpdated": "2026-07-15T19:06:44.328Z",
+  "specId": "146",
+  "folderSlug": "codegraph-active-renumber",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

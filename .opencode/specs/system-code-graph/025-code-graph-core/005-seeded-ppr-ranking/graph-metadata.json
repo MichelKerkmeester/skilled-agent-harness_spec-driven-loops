@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/025-code-graph-core/005-seeded-ppr-ranking",
+  "spec_folder": "system-code-graph/025-code-graph-core/005-seeded-ppr-ranking",
+  "parent_id": "system-code-graph/025-code-graph-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph seeded ppr impact ranking",
+      "personalized pagerank class gated expansion",
+      "code graph multi hop ranking 027 causal bfs",
+      "undirected projection associative reach",
+      "028 code-graph ppr impl phase",
+      "seeded ppr impact ranking plan",
+      "code graph personalized pagerank sequencing",
+      "class gated expansion taxonomy plan",
+      "027 weighted walk reuse plan",
+      "code graph multi hop decay plan",
+      "seeded ppr impact ranking tasks",
+      "q3-c1 cluster tasks"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "seeded",
+      "ppr",
+      "impact",
+      "ranking",
+      "personalized",
+      "pagerank",
+      "class",
+      "gated",
+      "expansion",
+      "multi"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "lib/graph/bfs-traversal.ts",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "bfs-traversal.ts",
+        "kind": "code",
+        "path": "lib/graph/bfs-traversal.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Seeded",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Impact Ranking",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Structural Retrieval Intelligence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Related Documents",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Give",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph `codegraphcontext` impact mode ranks callers/callees by a flat single-hop reverse-edge enumeration in DB iteration order, with no centrality, no recursive spread, no mass propagation [CONFIRMED: `research.md` Internal Baseline, iter-2 finding 12]",
+    "created_at": "2026-06-19T06:06:27.142Z",
+    "last_save_at": "2026-07-15T18:49:34.235Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:60db675d78eb67558363bf17b55c7c4d064817219d50341fd8a6aab1b53ad425",
+    "source_doc_hashes": {
+      "spec.md": "85ed220c23c706ec10338d2034a20894f1b0e230d3ef542401c4bafbb3d180f9",
+      "plan.md": "cd5b82653fb039c3f029310ed0868d2e36e8b1960959e802e14cc55e9eb5bef0",
+      "tasks.md": "ed8c1d59d56ac29bfbbedfe3fd61e8189426409efde6c124a57d974c3e8ba5a3",
+      "checklist.md": "32c63442d443adb55f76226324a36fd67ed9225569544562c589b8a0a8464ca5",
+      "decision-record.md": "bdd3c4b9b340b8ffe6d623d659b006d39d42a05a646c8bdda0e1c84e83df5ad6",
+      "implementation-summary.md": "ee3b2ffbc677145f6f95d6c2ae918c9950c5e0ae3d49615859659eae4f2264b0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

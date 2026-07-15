@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun",
+  "parent_id": "system-code-graph/031-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "native rerun usefulness",
+      "026/007/012/002",
+      "code graph scope policy failure",
+      "native synthesis update"
+    ],
+    "key_topics": [
+      "native",
+      "rerun",
+      "usefulness",
+      "code",
+      "graph",
+      "scope",
+      "policy",
+      "failure",
+      "synthesis",
+      "sandbox",
+      "campaign",
+      "deferred"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "trials/trial-log.jsonl",
+      "mcp_server/hooks/codex/session-start.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trial-log.jsonl",
+        "kind": "file",
+        "path": "trials/trial-log.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/codex/session-start.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Rerun",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Usefulness Cells",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prior Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Log Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sandbox campaign deferred native cells because it could not access MCP tools, authenticated state, network, or real compaction context",
+    "created_at": "2026-05-06T00:00:00.000Z",
+    "last_save_at": "2026-07-15T18:49:10.641Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cb474335531bb2f76566002770e11db2018359bb75b1cdb1a42623f0fcd66a2e",
+    "source_doc_hashes": {
+      "spec.md": "745e343ed55badb641c1dd9be8da0c72252a95fcfae99232b7e42215e93e5669",
+      "plan.md": "a710d0bd737ac0ec462db76dbd9a29da825d440c86ae6b86ade4dda67ce1c314",
+      "tasks.md": "395c8a1bd52aca9161390b14fd4415a56557e302a63333a0da2c116b68fda88d",
+      "checklist.md": "2964c57585d693dcd43b185e5cae71fa7b793e4a8cfd7d3570a44669136e2a32",
+      "decision-record.md": "7fb97678952de566b0ac4aed0f5fe1c283754df0933745f64d5dcc1e35970df2",
+      "implementation-summary.md": "fea747fa88bd4219d65876299e93b33bd74af7b88565ee4ce8ed1c2ec876cb42"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

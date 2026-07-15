@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "parent_id": "system-code-graph/034-code-graph-scatter-from-027",
+  "specFolder": "system-code-graph/034-code-graph-scatter-from-027/004-system-code-graph-frontmatter-alignment",
+  "description": "system-code-graph reference/asset frontmatter is inconsistent with the repo-wide contract: 6 of 7 references and 0 of 0 assets carry the detailed",
+  "keywords": [
+    "system-code-graph",
+    "reference",
+    "asset",
+    "frontmatter",
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.895Z",
+  "specId": "004",
+  "folderSlug": "system-code-graph-frontmatter-alignment",
+  "parentChain": [
+    "system-code-graph",
+    "034-code-graph-scatter-from-027"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

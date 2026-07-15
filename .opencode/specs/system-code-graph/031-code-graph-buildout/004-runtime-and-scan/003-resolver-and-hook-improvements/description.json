@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-code-graph/031-code-graph-buildout/004-runtime-and-scan/003-resolver-and-hook-improvements",
+  "description": "The code-graph system has been delivered and partially remediated across 026 phases 003 (code-graph-package) and 009 (hook-package)",
+  "keywords": [
+    "code-graph",
+    "system",
+    "delivered",
+    "partially",
+    "remediated",
+    "across",
+    "phases",
+    "code-graph-package",
+    "hook-package"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.795Z",
+  "specId": "003",
+  "folderSlug": "resolver-and-hook-improvements",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "004-runtime-and-scan"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

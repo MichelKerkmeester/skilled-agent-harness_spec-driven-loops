@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/034-code-graph-scatter-from-027/001-code-graph-code-only-indexing",
+  "spec_folder": "system-code-graph/034-code-graph-scatter-from-027/001-code-graph-code-only-indexing",
+  "parent_id": "system-code-graph/034-code-graph-scatter-from-027",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph code only indexing",
+      "code graph exclude markdown",
+      "maintainer mode selectable categories",
+      "code only indexing plan",
+      "exclude markdown code graph plan",
+      "selectable maintainer mode plan",
+      "code only indexing tasks",
+      "exclude markdown tasks",
+      "selectable maintainer mode tasks",
+      "code only indexing summary",
+      "exclude markdown shipped",
+      "selectable maintainer mode summary"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "only",
+      "indexing",
+      "exclude",
+      "markdown",
+      "maintainer",
+      "mode",
+      "selectable",
+      "categories",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "lib/README.md",
+      "review/review-report.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      "scripts/setup-maintainer-filters.sh",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/launcher-maintainer-mode.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "indexer-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "setup-maintainer-filters.sh",
+        "kind": "script",
+        "path": "scripts/setup-maintainer-filters.sh",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-indexer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-maintainer-mode.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/launcher-maintainer-mode.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Indexing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Selectable Maintainer Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code graph (`mkcodeindex`) is meant to model code structure, but its default include globs pulled in `/.md`, registering markdown/prose docs as `language='doc'` rows alongside real code",
+    "created_at": "2026-06-14T08:55:44.858Z",
+    "last_save_at": "2026-07-15T18:49:22.402Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b8a1a82a09bc64417e5eb4fb632c51ced06ae38d2ab2d96b9a7f4daa16dc3621",
+    "source_doc_hashes": {
+      "spec.md": "3767a1251ed786d7815e23c9c16631576761a57aaffc0208341490ca96521fd6",
+      "plan.md": "6681664a4e9ee3fe6a8bceae878d8700df105bfd5660150b04c33f4deaf46dac",
+      "tasks.md": "6aab1c2ce7d2cb56564620c71b0652a5bc4fe856cddb3fb2fbf216ab86554e78",
+      "implementation-summary.md": "560f99c575b3abfea294c6ea9d2310ec904fa5a4aba195502369978f59ba8684"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

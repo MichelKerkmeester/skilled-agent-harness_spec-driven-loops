@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/006-reference-template-alignment",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes/006-reference-template-alignment",
+  "parent_id": "system-code-graph/031-code-graph-buildout/007-docs-and-readmes",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph references",
+      "reference template alignment",
+      "code graph router",
+      "sk-doc reference template",
+      "system-code-graph reference alignment",
+      "code graph docs cleanup",
+      "smart router resource map",
+      "system-code-graph reference tasks",
+      "code graph router tasks",
+      "reference template alignment tasks",
+      "system-code-graph verification",
+      "reference template alignment checklist"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "references",
+      "reference",
+      "template",
+      "alignment",
+      "code",
+      "graph",
+      "router",
+      "sk-doc",
+      "docs",
+      "cleanup",
+      "smart"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+      ".opencode/skills/system-code-graph/references/config/database_path_policy.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "database_path_policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/config/database_path_policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph Reference Template Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph reference set did not follow sk-doc reference-template naming and structure 1:1",
+    "created_at": "2026-05-24T07:58:55Z",
+    "last_save_at": "2026-07-15T18:49:11.501Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70f6cf47f7f11c040b9823ed518bd741b575970a2690086aecb86a1502ffaced",
+    "source_doc_hashes": {
+      "spec.md": "de652fcf06dc10f1f02e0c04814401c4ded3dff686b2b21679efdded323e8110",
+      "plan.md": "3e752dec9949e7156e4b34dc479262805cc8e9455149fed3ec01b3590f7c5fc2",
+      "tasks.md": "8ddc64490b848d09b0a8942f94de4ec2959f0e1f7b8da1bca9191c4ecbd52219",
+      "checklist.md": "c4f72d6b92e27f1993f030dc378241e18b9964771ed795de7e5a7648e18bc3d0",
+      "decision-record.md": "fb363ace5d95188984621ccd50e995ae4afdf5d898435186c932af23046f9778",
+      "implementation-summary.md": "4b53d97de81a3211620c91d526780a27b0c8025711f2d411db8b20d5d62a3775"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/032-code-graph-scatter/002-deep-review-shutdown-and-codegraph",
+  "spec_folder": "system-code-graph/032-code-graph-scatter/002-deep-review-shutdown-and-codegraph",
+  "parent_id": "system-code-graph/032-code-graph-scatter",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opus deep review shutdown codegraph",
+      "026 007 011 deep review",
+      "workflow deep review opus 4.8",
+      "daemon shutdown deep review",
+      "deep review shutdown durability codegraph",
+      "opus deep review 011",
+      "deep review shutdown codegraph"
+    ],
+    "key_topics": [
+      "opus",
+      "deep",
+      "review",
+      "shutdown",
+      "codegraph",
+      "workflow",
+      "daemon",
+      "durability",
+      "recent",
+      "daemon-shutdown",
+      "memory-db-lifecycle",
+      "work"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "review/review-report.md",
+      "review/deep-review-config.json",
+      "review/deep-review-state.jsonl",
+      "review/deep-review-findings-registry.json",
+      "review/deep-review-strategy.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": "review/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-findings-registry.json",
+        "kind": "config",
+        "path": "review/deep-review-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": "review/deep-review-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ten",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Workflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The recent daemon-shutdown / memory-DB-lifecycle work (packets 008 checkpoint-on-close, 009 shutdown-durability, 010 at-rest-wal) and the code-graph fixes (012 empty-graph auto-establish + the 15-bug audit remediation) were shipped rapidly, partly by parallel sessions, into a safety-critical subsystem that just suffered a real data-integrity incident (026/004/012 FTS5 corruption)",
+    "created_at": "2026-05-29T13:33:41.028Z",
+    "last_save_at": "2026-07-15T18:49:27.850Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:64f6148ef1cee6a8dcc1785bf9ead7546d2022172ca7ec7c880a67a71e893b1b",
+    "source_doc_hashes": {
+      "spec.md": "2d63d8cf2c2e0d1476930f63a60a6348fd0ae0f9420883a8820e02cc3fbafc16",
+      "plan.md": "ff54c0df6b0db19c0be44626fab0a2b0c0cc8b7aacec3c99e6c3dee44aa6902d",
+      "tasks.md": "44f36e88ba24b9824e927c0dc34c7bef3419d0dcfc55a82e63408a5cfdd0a0f3",
+      "checklist.md": "1c1575f39498e9026aafe7ef6767d943921d3a390e6daeb53eace18eb6ce09ae",
+      "implementation-summary.md": "8b841195d88971416e3defd7d24f06aceb69b62223f87e000a0b85ced0a3f924"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

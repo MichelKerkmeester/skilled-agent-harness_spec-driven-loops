@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
+  "parent_id": "system-code-graph/031-code-graph-buildout/006-extraction-and-isolation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp topology pivot",
+      "system code graph standalone mcp",
+      "ADR-002 code graph topology"
+    ],
+    "key_topics": [
+      "mcp",
+      "topology",
+      "pivot",
+      "system",
+      "code",
+      "graph",
+      "standalone",
+      "adr-002",
+      "reality",
+      "diverged",
+      "adr-001",
+      "two"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-code-graph/mcp_server/index.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Topology Pivot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Reality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smoke Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-reorg",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Reality diverged from ADR-001 in two ways",
+    "created_at": "2026-05-14T09:13:21Z",
+    "last_save_at": "2026-07-15T18:49:13.585Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T09:24:15Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:884191b125af1c840b0c11c072d9b8866c2bccee674c96c184965e061e4e3e17",
+    "source_doc_hashes": {
+      "spec.md": "ac02dfe1f476dd28c9953d6fb01c5db44de4f769f779028212a8fd5cda0ecf7f",
+      "plan.md": "48558eedb5b23081e19973a003f9cdd645e0338c1bc329c1feeb572fa65a4a71",
+      "tasks.md": "5b5444001d8ebbd04249c4fdb9d60bc3726e35f0b187dd05a3aaf039a3b77229",
+      "checklist.md": "a8ebb98f29e03e036ff2b8cd3e9c3dbf8bb6f7d68228d21d2019c31998e3a96c",
+      "decision-record.md": "69684f470cd4d989ff73e8233747b07fac037e37786e83e3ceaf4ba742674243",
+      "implementation-summary.md": "08335fef9c26f0a201213e5a884b2a496a3d1823d95d7a7bae567350a8449ff6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

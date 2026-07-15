@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-code-graph/031-code-graph-buildout/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
+  "description": "Finding F-022-1 (phase 007): `codegraphquery` blastradius ignores the `includeTransitive` flag",
+  "keywords": [
+    "finding",
+    "f-022-1",
+    "phase",
+    "codegraphquery",
+    "blastradius",
+    "ignores",
+    "includetransitive",
+    "flag"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.852Z",
+  "specId": "008",
+  "folderSlug": "blast-radius-transitive-flag",
+  "parentChain": [
+    "system-code-graph",
+    "031-code-graph-buildout",
+    "010-playbook-validation-and-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

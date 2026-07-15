@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/031-code-graph-buildout/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope",
+  "spec_folder": "system-code-graph/031-code-graph-buildout/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope",
+  "parent_id": "system-code-graph/031-code-graph-buildout/004-runtime-and-scan",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph context surface",
+      "code graph scan scope",
+      "highlights in opencode session",
+      "session-snapshot stale highlights",
+      "scan scope gitignore",
+      "compact code graph minimal",
+      "026/003/003",
+      "026/003/003 plan",
+      "code graph context plan",
+      "026/003/003 tasks",
+      "code graph context tasks",
+      "026/003/003 checklist"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "context",
+      "surface",
+      "scan",
+      "scope",
+      "highlights",
+      "opencode",
+      "session",
+      "session-snapshot",
+      "stale",
+      "gitignore"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts",
+      "lib/session/session-snapshot.ts",
+      "implementation-summary.md",
+      "tests/structural-contract.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-snapshot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "structural-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scan Scope Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Investigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pass Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Layer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Investigation 2026-04-23 (read-only Codex pass) surfaced three findings:",
+    "created_at": "2026-04-23T11:55:00.000Z",
+    "last_save_at": "2026-07-15T18:49:16.805Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:89c12e50e121fc726b7b87fd646d5c815f9f17a76f1654703ca122d0ef7dc377",
+    "source_doc_hashes": {
+      "spec.md": "7cf5bcc4dd07269150c2fa78f07e6a91753255ea4af1f39445633acbc26eb1b4",
+      "plan.md": "bb6c880131789ffeb0acbba84c0eb9ff478b902a9a5a0302243882d32e06c4d7",
+      "tasks.md": "307c7ae99bfdef9bc162c91dc006ef434e4e1def13c5bba40228eab284c6d33f",
+      "checklist.md": "21d743c81f375b32b52cc9deb51e86e58b8ce9be80ea9bb81cfab4e2fb382ec0",
+      "implementation-summary.md": "bb338758e0e85d226f4695f83d74a60bde1a5b78a0552dd75c1e9106c3da734f",
+      "research/research.md": "843ee1628d910d37ea609dcebe9b04a8ac32b32ded50dcac28956391d7bffbd5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

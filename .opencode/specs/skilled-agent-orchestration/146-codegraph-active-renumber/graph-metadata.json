@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/146-codegraph-active-renumber",
+  "spec_folder": "skilled-agent-orchestration/146-codegraph-active-renumber",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph active renumber",
+      "code-graph packet renumber 025-035",
+      "codegraph slug normalization",
+      "system-code-graph track root",
+      "system-code-graph renumber plan",
+      "code-graph active renumber",
+      "system-code-graph renumber tasks",
+      "system-code-graph renumber checklist",
+      "system-code-graph renumber summary",
+      "code-graph active renumber result"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "active",
+      "renumber",
+      "code-graph",
+      "packet",
+      "codegraph",
+      "slug",
+      "normalization",
+      "track",
+      "root",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Renumber",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Renumber",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fast-forward",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "single-phase",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "unique",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "aligned",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-code-graph` track archived its history under `zarchive/` numbered `001-024`, but the active (root-level) packets ALSO started at `001` (`001-011`)",
+    "created_at": "2026-07-15T19:03:33.615Z",
+    "last_save_at": "2026-07-15T19:06:53.890Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7637facbf353310d6f48a541608b35deca454e72fcf2f0eb94c1e39ad72a4c28",
+    "source_doc_hashes": {
+      "spec.md": "4d604516369dd2137844f053dba8512ec423f27b9be6a23ed2616528bd2f4d5c",
+      "plan.md": "1dcbce7aa5f94e45ffab228fc792697f6aac7b19d973ced19ec6ec3c834526b9",
+      "tasks.md": "af013f2b52641c648e307ddbb3234db1204d1257c409f249bf223cf38b9c6491",
+      "checklist.md": "e7e4095c3f3e49516a654b72f6e17e8c801789ad4019b0b5605c4f284131d36a",
+      "implementation-summary.md": "3e0af7793d6a1d4cbc0f191ccf98821b5bbfe186347c518be089e14f433ee79b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

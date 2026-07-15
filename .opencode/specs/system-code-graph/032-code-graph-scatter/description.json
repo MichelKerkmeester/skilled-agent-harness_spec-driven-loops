@@ -1,0 +1,28 @@
+{
+  "level": "phase-parent",
+  "specFolder": "system-code-graph/032-code-graph-scatter",
+  "description": "Lean phase parent collecting sixteen previously-scattered single-purpose code-graph fix and audit packets moved out of the 026 optimization tree.",
+  "keywords": [
+    "lean",
+    "phase",
+    "parent",
+    "collecting",
+    "sixteen",
+    "previously-scattered",
+    "single-purpose",
+    "code-graph",
+    "audit",
+    "packets",
+    "moved",
+    "optimization",
+    "tree"
+  ],
+  "lastUpdated": "2026-07-15T18:35:46.165Z",
+  "specId": "032",
+  "folderSlug": "code-graph-scatter",
+  "parentChain": [
+    "system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

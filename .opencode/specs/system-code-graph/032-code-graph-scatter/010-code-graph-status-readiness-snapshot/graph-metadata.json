@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/032-code-graph-scatter/010-code-graph-status-readiness-snapshot",
+  "spec_folder": "system-code-graph/032-code-graph-scatter/010-code-graph-status-readiness-snapshot",
+  "parent_id": "system-code-graph/032-code-graph-scatter",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "014-code-graph-status-readiness-snapshot",
+      "code_graph_status readiness action",
+      "graph readiness snapshot",
+      "getGraphReadinessSnapshot helper",
+      "read-only readiness probe",
+      "graph status readiness snapshot plan",
+      "014 plan",
+      "graph status readiness snapshot tasks",
+      "014 tasks",
+      "graph status readiness snapshot checklist",
+      "014 checklist",
+      "verification 014"
+    ],
+    "key_topics": [
+      "014-code-graph-status-readiness-snapshot",
+      "readiness",
+      "action",
+      "graph",
+      "snapshot",
+      "getgraphreadinesssnapshot",
+      "helper",
+      "read-only",
+      "probe",
+      "status",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tests/file-watcher.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "file-watcher.vitest.ts",
+        "kind": "test",
+        "path": "tests/file-watcher.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "criteria A",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "v1.0.2 stress test pre-flight detected a 4-hour staleness drift on the live code graph (`010 findings.md` lines 123-126)",
+    "created_at": "2026-04-27T19:54:00.000Z",
+    "last_save_at": "2026-07-15T18:49:25.462Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9d46dd197b0882942f7644d62926642bcea546477b228bed01d019a39585a715",
+    "source_doc_hashes": {
+      "spec.md": "36506cdeacf5d598a76e2dcc19b91ec82aff2b63d53fe5736b6fa91e9d6efb16",
+      "plan.md": "788e0acf3e47f88afa5e94bf0ffbaf046be9ed368238eb35caae920725614a9f",
+      "tasks.md": "6152f0605a211903a0918c93fb69bd8b11d70d503503a0d9c66058dd838f35ee",
+      "checklist.md": "134cf72af6d155482d23563a7dab4d30936bef3959893edea629ada80525c6be",
+      "implementation-summary.md": "db2af707c1239dd35be29d67aeee459efd4a4cb03da6717d1ace1ff44e37aa19"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

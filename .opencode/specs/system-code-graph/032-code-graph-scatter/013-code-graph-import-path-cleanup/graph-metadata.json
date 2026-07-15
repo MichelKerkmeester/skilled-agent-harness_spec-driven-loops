@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/032-code-graph-scatter/013-code-graph-import-path-cleanup",
+  "spec_folder": "system-code-graph/032-code-graph-scatter/013-code-graph-import-path-cleanup",
+  "parent_id": "system-code-graph/032-code-graph-scatter",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "033 system code graph import path cleanup",
+      "mcp_server orphan shared dist",
+      "system-spec-kit shared duplicate emit",
+      "tsconfig rootDir shared cleanup",
+      "033 import path cleanup plan",
+      "mcp_server tsconfig shared plan",
+      "orphan shared dist cleanup plan",
+      "033 import path cleanup tasks",
+      "mcp_server orphan shared tasks",
+      "system-code-graph dist cleanup tasks",
+      "033 import path cleanup checklist",
+      "mcp_server orphan shared verification"
+    ],
+    "key_topics": [
+      "system",
+      "code",
+      "graph",
+      "import",
+      "path",
+      "cleanup",
+      "orphan",
+      "shared",
+      "dist",
+      "system-spec-kit",
+      "duplicate",
+      "emit"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+      "mcp_server/tsconfig.json",
+      "scripts/finalize-dist.mjs",
+      "spec.md",
+      "mcp_server/package.json",
+      "mcp_server/scripts/finalize-dist.mjs",
+      ".opencode/skills/system-spec-kit/tsconfig.json",
+      ".opencode/skills/system-spec-kit/shared/tsconfig.json",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "finalize-dist.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph Import Path Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Composite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcpserver` build emitted stale shared-package files under `.opencode/skills/system-spec-kit/mcpserver/dist/system-spec-kit/shared/`",
+    "created_at": "2026-05-14T15:33:29Z",
+    "last_save_at": "2026-07-15T18:49:24.635Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3e20dfa00c6c33dfccc3d2c386eac1a55ce371b52fb173e16deb7184fbedbcb8",
+    "source_doc_hashes": {
+      "spec.md": "5337eebdffbf62da280ba517fb95081cda403164d3d2891033f2736e39c2d7aa",
+      "plan.md": "b6d1bddb748491582fcec3fcaee898837ab04ac05669c4e304923a0a11d8614d",
+      "tasks.md": "0b9cd38256c4b0ccf1400c2c046bc2f48451f8fe321ff8d847b8a800a526c893",
+      "checklist.md": "67a0f66b97a0d401a433fbadd9a863b8ac88c99844ebc11bcf579267d59c40fd",
+      "implementation-summary.md": "e1597c1c43616a48d385a0c2a3c7addc4b88dac9a75db53dc7670181eba9c403"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

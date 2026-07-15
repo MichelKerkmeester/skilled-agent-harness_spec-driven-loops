@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-code-graph/025-code-graph-core/003-generation-watermark",
+  "description": "The code-graph readiness signal has no generation counter: `code-graph-context.ts:320` `computeFreshness()` reports only a wall-clock staleness bucket",
+  "keywords": [
+    "code-graph",
+    "readiness",
+    "signal",
+    "generation",
+    "counter",
+    "code-graph-context",
+    "computefreshness",
+    "reports",
+    "only",
+    "wall-clock",
+    "staleness",
+    "bucket"
+  ],
+  "lastUpdated": "2026-07-15T18:44:11.741Z",
+  "specId": "003",
+  "folderSlug": "generation-watermark",
+  "parentChain": [
+    "system-code-graph",
+    "025-code-graph-core"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
