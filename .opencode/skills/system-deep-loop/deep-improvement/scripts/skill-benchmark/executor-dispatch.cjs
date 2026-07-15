@@ -10,9 +10,10 @@
  * result the scorer consumes, so the orchestrator never branches on executor
  * internals.
  *
- *   classKind routing/advisor + trace-mode router → routeSkillResources (deterministic)
- *   classKind routing/advisor + trace-mode live   → live-executor.cjs (cli-opencode)
- *   classKind browser                             → browser-executor.cjs (bdg)
+ *   classKind routing/advisor + trace-mode router          → routeSkillResources (deterministic)
+ *   classKind routing/advisor + trace-mode live            → live-executor.cjs (cli-opencode)
+ *   classKind routing/advisor + trace-mode live + codex    → codex-executor.cjs (cli-codex via runtime)
+ *   classKind browser                                      → browser-executor.cjs (bdg)
  *
  * The live/browser executors are lazy-required so router mode stays
  * dependency-free and CI-safe even before those siblings ship.
@@ -71,6 +72,12 @@ function dispatchScenario({ scenario, skillRoot, traceMode, executor } = {}) {
   }
 
   if (traceMode === 'live') {
+    // The codex transport dispatches through the runtime-owned helper (cli-codex
+    // single-adapter rule); the opencode transport spawns opencode directly.
+    if (executor === 'codex') {
+      return runOptionalExecutor('./codex-executor.cjs', 'runCodexScenario',
+        { scenario, skillRoot }, { mode: 'live', classKind, executor: 'codex-executor' });
+    }
     return runOptionalExecutor('./live-executor.cjs', 'runLiveScenario',
       { scenario, skillRoot, executor }, { mode: 'live', classKind });
   }
