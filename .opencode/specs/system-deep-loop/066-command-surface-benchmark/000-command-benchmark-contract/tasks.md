@@ -26,28 +26,28 @@ _memory:
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-`[ ]` open · `[x]` complete. Each task lists its verification evidence. This child is Planned; all tasks are open.
+`[ ]` open · `[x]` complete. Each task lists its verification evidence. All phase-000 contract tasks are closed; packet status metadata is reconciled by the orchestrator.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 — Regenerate the canonical census and record exact source and mirror counts. Evidence: sync-prompts check exit 0 plus a frozen census snapshot.
-- [ ] T002 — Assign every command to one of the four topologies. Evidence: taxonomy table covering the full census with zero unclassified.
+- [x] T001 — Regenerate the canonical census and record exact source and mirror counts. Evidence: `census-snapshot.md`; `sync-prompts.cjs --check` exit `0`; source count `37`; mirror count `37`.
+- [x] T002 — Assign every command to one of the four topologies. Evidence: `topology-taxonomy.md`; 37 classification rows; zero unclassified.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 — Author the topology taxonomy reference with a fail-closed rule for unclassified shapes. Evidence: taxonomy doc plus rule statement.
-- [ ] T004 — Document the two non-averaged verdict axes and the ownership boundary. Evidence: verdict-axis and ownership reference.
-- [ ] T005 — Define per-phase handoff gates with evidence and exit codes. Evidence: handoff-gate table referenced by downstream phase specs.
+- [x] T003 — Author the topology taxonomy reference with a fail-closed rule for unclassified shapes. Evidence: `topology-taxonomy.md` Sections 2 and 3 define the four shapes, precedence, and instrument-invalid stop rule.
+- [x] T004 — Document the two non-averaged verdict axes and the ownership boundary. Evidence: `verdict-and-ownership.md` separates P-level conformance, D1-D5 behavior, instrument validity, and generic document validation.
+- [x] T005 — Define per-phase handoff gates with evidence and exit codes. Evidence: `handoff-gates.md` freezes G000 through G010; downstream children already identify this contract phase as predecessor or dependency.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 — Confirm the census reproduces and the taxonomy assigns every command exactly once. Evidence: sync-prompts check exit 0 and taxonomy count equals census count.
+- [x] T006 — Confirm the census reproduces and the taxonomy assigns every command exactly once. Evidence: prompt sync exit `0`; taxonomy verifier exit `0` with `workflow=28 subaction=2 direct=5 monolithic=2 total=37 unclassified=0`.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

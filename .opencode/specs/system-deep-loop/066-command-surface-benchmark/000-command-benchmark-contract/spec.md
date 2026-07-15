@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: command-benchmark contract — census, topology taxonomy, two-axis verdict semantics, ownership boundaries"
 description: "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against."
-status: planned
+status: complete
 trigger_phrases:
   - "command benchmark contract"
   - "command census freeze"
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-14 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->

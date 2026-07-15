@@ -14,7 +14,10 @@
       "command benchmark contract",
       "command census freeze",
       "command topology taxonomy",
-      "two-axis verdict semantics"
+      "two-axis verdict semantics",
+      "command benchmark contract implementation",
+      "command benchmark phase 000 summary",
+      "command census taxonomy evidence"
     ],
     "key_topics": [
       "command",
@@ -27,8 +30,8 @@
       "two-axis",
       "verdict",
       "semantics",
-      "freezes",
-      "canonical"
+      "implementation",
+      "phase"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -36,9 +39,10 @@
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/commands/scripts/validate-command-references.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      "implementation-summary.md",
+      "tasks.md",
       "spec.md",
-      "plan.md",
-      "tasks.md"
+      "plan.md"
     ],
     "entities": [
       {
@@ -60,6 +64,18 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -69,12 +85,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -162,27 +172,41 @@
         "source": "derived"
       },
       {
-        "name": "zero",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
     "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-07-15T04:53:47.786Z",
+    "last_save_at": "2026-07-15T06:10:22.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aaead354f21dde212bd4c6f0f67d4a31919b5b205258a346ea85f428772e3ffb",
+    "source_fingerprint": "sha256:2ba99fc5f30e0655f6ad44cc1912db22bb4595439f033bc504817e52ee225eb1",
     "source_doc_hashes": {
-      "spec.md": "0666d91c0059ecc58d412429be8b71254bff1d5b54fc6f3d94256fe0e79f34ca",
+      "spec.md": "451d4e3b289519053c3b1f25536a760fdf639407634781d22b12237aaecd3fc4",
       "plan.md": "622f9ae1e41c6587b2743cd47f8f5ff76fa9216ab4d590b79ee99c2e97d8497c",
-      "tasks.md": "2cac5953360b89e0ab3b1f4e682033c82823926780af48885bd50a1a37005de2"
+      "tasks.md": "5d7a4bfa52f19abb90809a5e1aeb9aab69c596b5b64fd1197dd3034029248c46",
+      "implementation-summary.md": "e02c1e6066d1c8c3a1ffd4d87e9b320d6243211d61963358a47d8991ed158512"
     },
     "last_active_child_id": null,
     "last_active_at": null
