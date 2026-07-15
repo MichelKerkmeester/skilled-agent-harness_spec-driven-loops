@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
+  "description": "Two playbook scenarios (`SP-023` CLI card fast path, `SP-024` escalation thresholds) tested the CLI",
+  "keywords": [
+    "two",
+    "playbook",
+    "scenarios",
+    "sp-023",
+    "cli",
+    "card",
+    "fast",
+    "path",
+    "sp-024",
+    "escalation",
+    "thresholds",
+    "tested"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.640Z",
+  "specId": "016",
+  "folderSlug": "sk-prompt-playbook-forkability-decouple",
+  "parentChain": [
+    "sk-prompt",
+    "005-sk-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

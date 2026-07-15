@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "sk-prompt/006-sk-prompt-models-rename",
+  "description": "The skill `sk-prompt-small-model` is the per-model prompt-craft hub for the non-frontier models dispatched out via the cli- executors",
+  "keywords": [
+    "skill",
+    "sk-prompt-small-model",
+    "per-model",
+    "prompt-craft",
+    "hub",
+    "non-frontier",
+    "models",
+    "dispatched",
+    "via",
+    "cli",
+    "executors"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.268Z",
+  "specId": "005",
+  "folderSlug": "sk-prompt-models-rename",
+  "parentChain": [
+    "sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

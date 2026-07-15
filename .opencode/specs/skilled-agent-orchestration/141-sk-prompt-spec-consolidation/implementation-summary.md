@@ -122,3 +122,15 @@ The `sk-prompt` track consolidated into a single contiguous sequence:
 
 <!-- /ANCHOR:deviations -->
 ---
+
+<!-- ANCHOR:addendum-093 -->
+## Addendum — 093 insertion + chronological renumber (follow-up)
+
+A later pass folded one more advisor/prompt packet into the track and normalized a slug:
+
+- **`skilled-agent-orchestration/093-small-ai-model-optimization` → `sk-prompt/004-sk-prompt-small-model-optimization`** — inserted at its chronological position (created 2026-05-18, between 003-testing-playbook @ 05-06 and knowledge-layering @ 06-03). Slug normalized to the track's `sk-prompt-` convention.
+- **Interleave renumber:** knowledge-layering `004 → 005` (also adopting the `sk-prompt-` prefix), models-rename `005 → 006`, parent `006 → 007`. Track is now 001–007, contiguous and chronological.
+- **Mechanics:** operator staged the move + slug rename in the working tree; formalized in place — tracked content moved as git renames (history preserved), the gitignored `external/smallcode-master` clone and untracked deep-research scratch stayed untracked (0 cruft committed). Scoped reference repair (qualified-before-bare), per-folder `backfill-graph-metadata` (global DB mtime unchanged), track-root `children_ids` updated to 001–007, and the dangling `093` entry pruned from the SAO root.
+
+<!-- /ANCHOR:addendum-093 -->
+---

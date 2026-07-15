@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-prompt/004-sk-prompt-small-model-optimization/004-budget-and-output-verification",
+  "description": "SWE-1.6 dispatches today have NO context-budget awareness — every iter sends prompts up to the model's window with no truncation hints, no eviction",
+  "keywords": [
+    "swe-1",
+    "dispatches",
+    "today",
+    "context-budget",
+    "awareness",
+    "every",
+    "iter",
+    "sends",
+    "prompts",
+    "model",
+    "window",
+    "truncation",
+    "hints",
+    "eviction"
+  ],
+  "lastUpdated": "2026-07-09T10:02:45.969Z",
+  "specId": "004",
+  "folderSlug": "budget-and-output-verification",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "004-sk-prompt-small-model-optimization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_13-36__004-l3-packet-authored-budget-engine-verification.md"
+  ]
+}

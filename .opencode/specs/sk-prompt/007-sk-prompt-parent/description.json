@@ -1,0 +1,28 @@
+{
+  "level": "phase",
+  "specFolder": "sk-prompt/007-sk-prompt-parent",
+  "description": "`sk-prompt` (active prompt-improvement engine: 7 frameworks, DEPTH thinking, CLEAR scoring) and `sk-prompt-models` (read-only small-model prompt-craft",
+  "keywords": [
+    "sk-prompt",
+    "active",
+    "prompt-improvement",
+    "engine",
+    "frameworks",
+    "depth",
+    "thinking",
+    "clear",
+    "scoring",
+    "sk-prompt-models",
+    "read-only",
+    "small-model",
+    "prompt-craft"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.249Z",
+  "specId": "006",
+  "folderSlug": "sk-prompt-parent",
+  "parentChain": [
+    "sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

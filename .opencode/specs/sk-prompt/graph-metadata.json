@@ -7,9 +7,10 @@
     "sk-prompt/001-sk-prompt-initial-creation",
     "sk-prompt/002-sk-improve-prompt-rename",
     "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename",
-    "sk-prompt/004-prompt-knowledge-layering",
-    "sk-prompt/005-sk-prompt-models-rename",
-    "sk-prompt/006-sk-prompt-parent"
+    "sk-prompt/004-sk-prompt-small-model-optimization",
+    "sk-prompt/005-sk-prompt-knowledge-layering",
+    "sk-prompt/006-sk-prompt-models-rename",
+    "sk-prompt/007-sk-prompt-parent"
   ],
   "manual": {
     "depends_on": [],
@@ -33,7 +34,7 @@
     "status": "in_progress",
     "key_files": [],
     "entities": [],
-    "causal_summary": "Track folder consolidating every sk-prompt skill spec (initial creation, the sk-improve-prompt rename, testing playbook + agent rename, prompt-knowledge layering, the sk-prompt-models sub-hub, and the parent-hub merge) into one sequential category.",
+    "causal_summary": "Track folder consolidating every sk-prompt skill spec (initial creation, the sk-improve-prompt rename, testing playbook + agent rename, small-model optimization, prompt-knowledge layering, the sk-prompt-models sub-hub, and the parent-hub merge) into one sequential category.",
     "created_at": "2026-07-15T00:00:00.000Z",
     "last_save_at": "2026-07-15T00:00:00.000Z",
     "save_lineage": "graph_only",
@@ -41,7 +42,7 @@
     "source_docs": [],
     "source_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
     "source_doc_hashes": {},
-    "last_active_child_id": "sk-prompt/006-sk-prompt-parent",
+    "last_active_child_id": "sk-prompt/007-sk-prompt-parent",
     "last_active_at": "2026-07-15T00:00:00.000Z"
   }
 }

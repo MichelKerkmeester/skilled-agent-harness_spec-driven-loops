@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/009-refine-hub-cli-connections",
+  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/009-refine-hub-cli-connections",
+  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "refine hub cli connections",
+      "precedence drift fix",
+      "star phantom",
+      "sync guard ci",
+      "cluster treatment default-unverified",
+      "refine hub cli plan",
+      "c1 c10 remediation",
+      "keystone pointer-ize guard cluster",
+      "refine hub cli tasks",
+      "c1 c10 tasks",
+      "refine hub cli summary",
+      "c1 c10 implementation"
+    ],
+    "key_topics": [
+      "refine",
+      "hub",
+      "cli",
+      "connections",
+      "precedence",
+      "drift",
+      "star",
+      "phantom",
+      "sync",
+      "guard",
+      "cluster",
+      "treatment"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+      ".github/workflows/prompt-card-sync.yml",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rule",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped 3-layer architecture drifted at its seams: the Tier-3 escalation rule was hand-copied",
+    "created_at": "2026-07-15T08:09:49.533Z",
+    "last_save_at": "2026-07-15T10:52:31.385Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0c2c49c24c3ef45d19e5b81ed46d6ffd10b85e84d15e8b704298575bf8b0082f",
+    "source_doc_hashes": {
+      "spec.md": "ad87fb44a93dba5509ed8e4d1c4d8c715b7d1bcfee333e470e3784afe69e65f8",
+      "plan.md": "c504ab13600ec801a6384be45db0ad79d2d9f5b873538eeb2799a6938a238e36",
+      "tasks.md": "c7442d67355d2dcc1f3922f247e5fddd62208a8ede7ac692d6e0aac5ef0577cd",
+      "implementation-summary.md": "fb415e7fa428e936fe433728b420792d0557006249c3b22d7091405c99b47c0a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

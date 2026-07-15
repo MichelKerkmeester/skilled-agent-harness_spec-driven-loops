@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+  "description": "The sk-doc template requires a standalone `---` thematic break before every H2 section except the",
+  "keywords": [
+    "sk-doc",
+    "template",
+    "requires",
+    "standalone",
+    "thematic",
+    "break",
+    "every",
+    "section",
+    "except"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.709Z",
+  "specId": "014",
+  "folderSlug": "doc-divider-sweep-and-sk-prompt-cleanup",
+  "parentChain": [
+    "sk-prompt",
+    "005-sk-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

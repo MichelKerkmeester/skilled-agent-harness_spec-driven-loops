@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
+  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
+  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub doc alignment",
+      "model-keyed router",
+      "readme spec-ref scrub",
+      "hub doc alignment plan",
+      "hub doc alignment tasks",
+      "hub doc alignment summary"
+    ],
+    "key_topics": [
+      "hub",
+      "doc",
+      "alignment",
+      "model-keyed",
+      "router",
+      "readme",
+      "spec-ref",
+      "scrub",
+      "plan",
+      "tasks",
+      "summary",
+      "skill"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Conform",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub's `SKILL.md` §2 declared \"this skill has no runtime router of its own\" — a no-op that",
+    "created_at": "2026-07-15T08:09:49.926Z",
+    "last_save_at": "2026-07-15T10:52:31.584Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4405a010e503f497caf10bfd1ae1948f17828483fe8b0d3dcb23fb79ae262c80",
+    "source_doc_hashes": {
+      "spec.md": "fde64e2fd837dfe0c93471cea475d345c174ac275195284b8ff0ac6d739d49da",
+      "plan.md": "c0d5696b6dc464e4ad0d5f725a78247fe058c1cbad524bd30f449f901c9d3fb3",
+      "tasks.md": "7d4b220852f419f43245600dea0ea5d633cb417fe5d0e168380b5a99740fe39a",
+      "implementation-summary.md": "dba85afb301f4819ef634ec3afaa361cf09912e70e7bb8dbc32f0125f0b9a716"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

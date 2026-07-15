@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout",
+  "spec_folder": "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout",
+  "parent_id": "sk-prompt/007-sk-prompt-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt cutover",
+      "parent skill strict check",
+      "recursive spec validation",
+      "stale reference sweep",
+      "phase 008 rollout",
+      "sk-prompt rollout plan",
+      "parent skill strict validation",
+      "stale reference grep",
+      "metadata rollup",
+      "sk-prompt cutover tasks",
+      "parent skill strict tasks",
+      "recursive validation tasks"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "cutover",
+      "parent",
+      "skill",
+      "strict",
+      "check",
+      "recursive",
+      "spec",
+      "validation",
+      "stale",
+      "reference",
+      "sweep"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/spec.md",
+      ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/tasks.md",
+      ".opencode/specs/sk-prompt/007-sk-prompt-parent/graph-metadata.json",
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/specs/sk-prompt/007-sk-prompt-parent/spec.md",
+      ".opencode/specs/sk-prompt/007-sk-prompt-parent/description.json",
+      "plan.md",
+      "tasks.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Final",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-prompt parent-hub merge is not provably done until it clears the same strict enforcement bar that the canonical parent hubs already clear",
+    "created_at": "2026-07-09T13:34:37Z",
+    "last_save_at": "2026-07-15T10:52:35.934Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9433b9a595d7d50ea1bee0e7a0b5b097d3b0325a671014fc79ff00071e154634",
+    "source_doc_hashes": {
+      "spec.md": "5a4f5216461b4f1ef5d671445094850da4874aee253429d0a5e3af60cfc4a964",
+      "plan.md": "1c62464c9e163c1b22f8771ac8aa6bc46a9898759a27ef023d8ea49a92d1f419",
+      "tasks.md": "5dadc7287b81b09efad08cb0e0fcab67c5dc727186f055d705994dcd7f734274",
+      "implementation-summary.md": "81399a1ef498678571e6ade548b9ee7d449c58d351893f78fd7db9a4d7e2ad3a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

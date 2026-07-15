@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/007-sk-prompt-parent/004-onboard-prompt-improve",
+  "spec_folder": "sk-prompt/007-sk-prompt-parent/004-onboard-prompt-improve",
+  "parent_id": "sk-prompt/007-sk-prompt-parent",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "prompt-improve",
+      "sk-prompt parent",
+      "prompt command rename",
+      "prompt-improver agent",
+      "phase 004",
+      "prompt-improve implementation plan",
+      "sk-prompt git mv",
+      "prompt-improver agent repoint",
+      "prompt-improve tasks",
+      "prompt-improve onboarding summary",
+      "phase 004 implementation summary"
+    ],
+    "key_topics": [
+      "prompt-improve",
+      "sk-prompt",
+      "parent",
+      "prompt",
+      "command",
+      "rename",
+      "prompt-improver",
+      "agent",
+      "phase",
+      "implementation",
+      "plan",
+      "git"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+      ".opencode/commands/prompt-improve.md",
+      ".opencode/agents/prompt-improver.md",
+      ".claude/agents/prompt-improver.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improve.md",
+        "kind": "doc",
+        "path": ".opencode/commands/prompt-improve.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Users",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Findings",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 created the parent-hub skeleton, but the `prompt-improve/` packet has no relocated implementation yet",
+    "created_at": "2026-06-03T06:13:44Z",
+    "last_save_at": "2026-07-15T10:52:35.289Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:51f15dcd1362b7d1447b238fe2a589aa7e342de35cb78e037753eae1d89359c5",
+    "source_doc_hashes": {
+      "spec.md": "4e7d6e1db01b7c12ec59e9ba8dff94beba5d1a2178c9e3c313a59df5c373b030",
+      "plan.md": "0377b0ed350fc01885762a61461ad96ba4dd642f3db536b27c6106e6b55b3a5b",
+      "tasks.md": "a09e11e5ca3d0404175bf5659ef5469bcb375a997e3c82eb7bbe1bd9873ea3e4",
+      "implementation-summary.md": "a15bde170ad349c5504dcc14dc020587ba441dd1c4bae2050fc4463c710ed74e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

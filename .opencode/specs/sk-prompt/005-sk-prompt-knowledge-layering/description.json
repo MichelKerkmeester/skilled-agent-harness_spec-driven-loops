@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "is_phase_parent": true,
+  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "description": "Prompt-engineering knowledge across the skills system is duplicated, structurally inconsistent, and poorly connected",
+  "keywords": [
+    "prompt-engineering",
+    "knowledge",
+    "across",
+    "skills",
+    "system",
+    "duplicated",
+    "structurally",
+    "inconsistent",
+    "poorly",
+    "connected"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.625Z",
+  "specId": "004",
+  "folderSlug": "prompt-knowledge-layering",
+  "parentChain": [
+    "sk-prompt"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "02-06-26_20-11__next-steps.md",
+    "02-06-26_21-34__next-steps.md",
+    "03-06-26_07-07__ran-5-sequential-deep-research-iterations-via.md"
+  ]
+}

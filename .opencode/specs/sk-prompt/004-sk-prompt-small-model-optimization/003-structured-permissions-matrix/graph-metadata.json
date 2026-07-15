@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/004-sk-prompt-small-model-optimization/003-structured-permissions-matrix",
+  "spec_folder": "sk-prompt/004-sk-prompt-small-model-optimization/003-structured-permissions-matrix",
+  "parent_id": "sk-prompt/004-sk-prompt-small-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "permissions matrix cli-opencode",
+      "RM-8 structured replacement",
+      "pre-tool-call gate",
+      "structured permissions schema",
+      "permissions-matrix plan",
+      "permissions-matrix tasks",
+      "permissions-matrix checklist",
+      "permissions-matrix ADRs",
+      "permissions-matrix summary"
+    ],
+    "key_topics": [
+      "permissions",
+      "matrix",
+      "cli-opencode",
+      "rm-8",
+      "structured",
+      "replacement",
+      "pre-tool-call",
+      "gate",
+      "schema",
+      "permissions-matrix",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ship",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Schema",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Enforcer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "version",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-opencode v1.3.3.0 ALWAYS rule #13 ships a four-layer prose mitigation for destructive scope violations (RM-8 follow-on): (L1) prompt contains literal `BANNED OPERATIONS` + `ALLOWED WRITE PATHS` strings, (L2) `--dir` points at fresh worktree, (L3) main git status clean, (L4) prefer cli-copilot + gpt-5.5 for multi-phase targets",
+    "created_at": "2026-05-18T12:32:47.354Z",
+    "last_save_at": "2026-07-15T10:52:28.801Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ccbc6835819e816f7ce1afffb2f77db353d3a76b93aab7161bdd1dea29ef831d",
+    "source_doc_hashes": {
+      "spec.md": "28b23cce0c19bd781dbc8eb1a04755c9085289e0ce7380a0cde2c0e8871a7d29",
+      "plan.md": "8d6e4ccbf7776f03aadee56341c0a25246daba13223ddffa55c276da262e2243",
+      "tasks.md": "d8cf2d196878ea529cfe53b48b4c4ec2448f96843640856edc0ff2d2f237c068",
+      "checklist.md": "ead7bf7361ab8759e021af3949fa28dc95b954cf58ebe5793c0699ba326354d6",
+      "decision-record.md": "018143bf93433a6e0015bceca8109fe125b6d78536702ad59370ab790a89cbc7",
+      "implementation-summary.md": "3c52ab6ebc1d1ac688843cd06e64d2857b779322834fde3e86716fa10a7ed6aa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

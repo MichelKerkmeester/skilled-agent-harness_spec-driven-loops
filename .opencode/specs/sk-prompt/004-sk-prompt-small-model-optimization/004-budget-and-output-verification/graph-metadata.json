@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/004-sk-prompt-small-model-optimization/004-budget-and-output-verification",
+  "spec_folder": "sk-prompt/004-sk-prompt-small-model-optimization/004-budget-and-output-verification",
+  "parent_id": "sk-prompt/004-sk-prompt-small-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin context budget",
+      "cli-devin output verification",
+      "swe-1.6 budget engine",
+      "verification pipeline cli-devin",
+      "cli-devin quality plan",
+      "cli-devin quality tasks",
+      "cli-devin quality checklist",
+      "cli-devin quality ADRs",
+      "cli-devin quality summary",
+      "phase 004 implementation"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "context",
+      "budget",
+      "output",
+      "verification",
+      "swe-1",
+      "engine",
+      "pipeline",
+      "quality",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Adopt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Haiku",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ship",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Configurable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Budget Engine",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Selection",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "truncation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "context",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "SWE-1.6 dispatches today have NO context-budget awareness — every iter sends prompts up to the model's window with no truncation hints, no eviction priority",
+    "created_at": "2026-05-18T12:36:32.578Z",
+    "last_save_at": "2026-07-15T10:52:28.951Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ed249c4415dcce91f210b60c3db2f882dd05948bf8fe40c752e401358ff1ccaf",
+    "source_doc_hashes": {
+      "spec.md": "21f52a2ceac23fe04b0709bd92c21e8617b6639f29d29aa29e0cdd500a821a09",
+      "plan.md": "007ac002edb2d04aa60b77e2ef85c991803ee265651d3e8d71db72acc8bcc7ff",
+      "tasks.md": "bd4fa7a1519c0989272e722e1103bb3332e9a98e77ae451125fd0956d728a502",
+      "checklist.md": "1768981713f12594a93297bab2006423c2659b2c9223f3bab5849c5238f78a6e",
+      "decision-record.md": "de7ba28013fe9c7af20eca6a77bce10bba127b46d6a07371948a123a86fdd9d5",
+      "implementation-summary.md": "371429dfedef956fb1e7aefb379cfe7694071101708264bcdf0b9475658b7d1a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

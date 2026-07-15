@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/004-sk-prompt-small-model-optimization/008-sk-prompt-small-model-rename",
+  "spec_folder": "sk-prompt/004-sk-prompt-small-model-optimization/008-sk-prompt-small-model-rename",
+  "parent_id": "sk-prompt/004-sk-prompt-small-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rename sk-ai-small-model",
+      "sk-prompt-small-model",
+      "small-model sentinel rename 008",
+      "skill rename phase 008",
+      "rewrite-all historical doc policy",
+      "rename sk-ai-small-model plan",
+      "sk-prompt-small-model plan",
+      "phase 8 rename plan",
+      "phase 8 tasks",
+      "sk-prompt-models tasks",
+      "rename verification 008",
+      "sk-prompt-models checklist"
+    ],
+    "key_topics": [
+      "rename",
+      "sk-ai-small-model",
+      "sk-prompt-small-model",
+      "small-model",
+      "sentinel",
+      "skill",
+      "phase",
+      "rewrite-all",
+      "historical",
+      "doc",
+      "policy",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enhanced Rollback",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-ai-small-model` over-claims its scope",
+    "created_at": "2026-07-15T10:52:29.617Z",
+    "last_save_at": "2026-07-15T10:52:29.617Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:acc1cb73765bab325b388ea3d66a18404c81385995769b9de1a7b8c12b3202ec",
+    "source_doc_hashes": {
+      "spec.md": "ba8357e97a8d10abe90fa0c544f9fa35b4b2dc50c1ac4db6d56ac2fe8de68383",
+      "plan.md": "dd03c7fd4a84cf163c4a1de01e5e2deb0fb7ee41b410bf1dfc8261fafbea3290",
+      "tasks.md": "b08baa15fd0acf8bb9a7df235c3177a5d7bf803cbda4d1824be70237963fda4d",
+      "checklist.md": "ffd98e53c0a459ea7578c82baf82c3b57039cbe82b10ad06fb8befc390913174",
+      "decision-record.md": "bb33917218ddc02c6263a9c546c1a25b7c3c3ca23eba8bcd6cc4560899291768",
+      "implementation-summary.md": "08939943c7c91d9f330c031c2b2a3463d5abab53f3aeb511a000a343d7c9d880"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

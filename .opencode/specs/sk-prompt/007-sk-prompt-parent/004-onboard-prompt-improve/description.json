@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/007-sk-prompt-parent/004-onboard-prompt-improve",
+  "description": "Phase 003 created the parent-hub skeleton, but the `prompt-improve/` packet has no relocated implementation yet",
+  "keywords": [
+    "phase",
+    "parent-hub",
+    "skeleton",
+    "prompt-improve",
+    "packet",
+    "relocated",
+    "implementation"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.311Z",
+  "specId": "004",
+  "folderSlug": "onboard-prompt-improve",
+  "parentChain": [
+    "sk-prompt",
+    "007-sk-prompt-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

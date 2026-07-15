@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
+  "description": "`sk-prompt-models` was a thin router with no per-model prompt-craft content",
+  "keywords": [
+    "sk-prompt-models",
+    "thin",
+    "router",
+    "per-model",
+    "prompt-craft",
+    "content"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.668Z",
+  "specId": "004",
+  "folderSlug": "model-hub-and-priority-profiles",
+  "parentChain": [
+    "sk-prompt",
+    "005-sk-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

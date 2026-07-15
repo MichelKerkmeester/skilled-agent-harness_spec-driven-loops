@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/007-wire-precedence-and-crosslinks",
+  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/007-wire-precedence-and-crosslinks",
+  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "wire precedence",
+      "crosslinks cli skills",
+      "3-tier prompt composition",
+      "sk-prompt-models hub reference",
+      "cli-* precedence block",
+      "wire precedence plan",
+      "crosslinks plan",
+      "3-tier precedence implementation plan",
+      "wire precedence tasks",
+      "crosslinks tasks",
+      "cli-* precedence tasks",
+      "crosslinks"
+    ],
+    "key_topics": [
+      "wire",
+      "precedence",
+      "crosslinks",
+      "cli",
+      "skills",
+      "3-tier",
+      "prompt",
+      "composition",
+      "sk-prompt-models",
+      "hub",
+      "reference",
+      "block"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mirror Sync",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "duplication-guard",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Precedence Block",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each cli- skill defined prompt-composition guidance independently, so a caller could not predict which rule prevailed when two constraints matched the same dispatch",
+    "created_at": "2026-06-05T12:47:32.516Z",
+    "last_save_at": "2026-07-15T10:52:31.019Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fe36800b0339ece75bffbda4c4ecf4bebeb86e5bd5fd655d431f288f9c852b61",
+    "source_doc_hashes": {
+      "spec.md": "4cdfca211c3d69f5cccb794778447d508af92cec3acf02fd86664ba172446238",
+      "plan.md": "df25869a369f5c71df20b5e8e9ded6d1b3b24f906dd7395a66b4175252c4c202",
+      "tasks.md": "fa0a4e79f4e5ceadb15184e14e33abcf1f4da7be652d63c32ba5ee51b64d8b8b",
+      "implementation-summary.md": "8775a66bfb51ea99515e4be8caec9a6bc1ec8505f80f5386f1cc1cbba68ed678"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation",
+  "spec_folder": "sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation",
+  "parent_id": "sk-prompt/004-sk-prompt-small-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-skill propagation",
+      "cli-opencode eviction",
+      "sk-prompt budget awareness",
+      "cross-skill propagation plan",
+      "cross-skill propagation tasks",
+      "cross-skill propagation checklist",
+      "cross-skill propagation summary"
+    ],
+    "key_topics": [
+      "cross-skill",
+      "propagation",
+      "cli-opencode",
+      "eviction",
+      "sk-prompt",
+      "budget",
+      "awareness",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation/spec.md",
+      ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation/tasks.md",
+      ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation/checklist.md",
+      ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation/implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Mirror",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Budget Awareness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mirror Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "sample",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "built",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase C lands the budget engine in cli-devin only",
+    "created_at": "2026-05-18T12:42:58.569Z",
+    "last_save_at": "2026-07-15T10:52:29.261Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0f7a4c55a0c7d72880536ff9e0163ea4b8ddfc016db428878c8413e813b5a470",
+    "source_doc_hashes": {
+      "spec.md": "e9086263e0c0fe320ca2f8bcb107b5284ba310cf54e97931931925862df1e7b9",
+      "plan.md": "797f9237294e7959b8dc90bc559f35e831ccca304850ad734e737512dc96b2ce",
+      "tasks.md": "361a27590e3d9bd7b78d238273e4f7289052f0546777603a6c484c05c977ad58",
+      "checklist.md": "7c6bc28f8cbb341ad914dd54908f70b8aa420db0d761c8ab14e374079e9c353f",
+      "implementation-summary.md": "0fca3a38d5dc1c00ee370eb465b2db40945734f42e0824d8992b90a8015024a7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

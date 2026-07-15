@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+  "description": "The 4 CLI prompt-quality cards (cli-opencode, cli-gemini, cli-codex, cli-claude-code) each inlined the complete framework table from the canonical",
+  "keywords": [
+    "cli",
+    "prompt-quality",
+    "cards",
+    "cli-opencode",
+    "cli-gemini",
+    "cli-codex",
+    "cli-claude-code",
+    "inlined",
+    "complete",
+    "framework",
+    "table",
+    "canonical"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.698Z",
+  "specId": "006",
+  "folderSlug": "thin-and-standardize-cli-cards",
+  "parentChain": [
+    "sk-prompt",
+    "005-sk-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

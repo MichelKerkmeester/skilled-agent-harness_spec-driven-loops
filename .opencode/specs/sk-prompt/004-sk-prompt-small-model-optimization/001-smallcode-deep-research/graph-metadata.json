@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/004-sk-prompt-small-model-optimization/001-smallcode-deep-research",
+  "spec_folder": "sk-prompt/004-sk-prompt-small-model-optimization/001-smallcode-deep-research",
+  "parent_id": "sk-prompt/004-sk-prompt-small-model-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "smallcode-master deep research",
+      "small-model patterns research",
+      "swe-1.6 dogfood loop",
+      "budget engine adoption research",
+      "skill architecture research smallcode",
+      "smallcode research plan",
+      "deep-research workflow plan",
+      "RQ tracking grid",
+      "swe-1.6 dogfood plan",
+      "smallcode research tasks",
+      "deep-research task list",
+      "swe-1.6 dogfood tasks"
+    ],
+    "key_topics": [
+      "smallcode-master",
+      "deep",
+      "research",
+      "small-model",
+      "patterns",
+      "swe-1",
+      "dogfood",
+      "loop",
+      "budget",
+      "engine",
+      "adoption",
+      "skill"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      "research/deep-research-config.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dogfood",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Autonomous",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Routing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 113 arc shipped cli-devin v1.0.6.3 with cross-model-validated prompt composition rules (RCAF default, medium pre-plan, standard bundle-gate, anti-hallucination secondary, sequentialthinking 2-layer)",
+    "created_at": "2026-05-18T09:01:17.095Z",
+    "last_save_at": "2026-07-15T10:52:28.491Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:5ba73cac5685f8925323193789f09814f77ac59f29181a4c5cd60c39c234a8c1",
+    "source_doc_hashes": {
+      "spec.md": "6a9502d39f71f53ceba4fff967557052e44dc1c9ebc2009b52669385b79df2d4",
+      "plan.md": "66b4d0c7870fb720826608b49c18d435c74ca9c145237b4dc47a239951e2e631",
+      "tasks.md": "ef3a2b93da627cbad7fcea1b0fd9753138566c31e55dd6765b5a92c3e5aedacc",
+      "checklist.md": "e5c8019893e6a9dd48106d03eaa9d8998bced62339ba43c33816b6af51d70a47",
+      "decision-record.md": "ccf45ae1a3c63d618d6312fd9ad3ce146ad6dc89015cc171bb6ef58920dc4e7b",
+      "implementation-summary.md": "0b6ea1137df0101691b374c3e8ab5af429713ed8952d6e1fa0110d0a82470bd5",
+      "research/research.md": "e2b00eebd2fdec36274ef71ed7385e6fb0391322e26cabe2f1668a89d2afe877"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+I’ll inspect the approved packet context and the target script, then make the smallest scoped patch to the one allowed file and run a focused verification.
+Skill routing: `system-spec-kit` is active for the approved spec-folder workflow; because the target is under `.opencode/skills/`, I’m also applying the OpenCode customization/code-authoring constraints while keeping edits to the single allowed script.
+I’ve confirmed the edit is a shell script under the OpenCode surface. I’m reading the target and shell checklist before patching so the change stays scoped and style-compatible.
+The current guard only checks exact fixed header strings. I’m checking the canonical card content now so the replacement patterns match durable table semantics instead of a single formatting variant.
+I’m replacing the brittle fixed-string checks with regex-based semantic checks: one for the framework header/RCAF row and one that requires all five CLEAR dimensions to appear as table rows.
+The patch is applied to the single allowed file. I’m verifying syntax, guard behavior, comment hygiene, OpenCode alignment, and the approved spec packet validation now.
+The approved folder is a phase parent under `.opencode/specs/...`; I’ll validate that parent while also running focused shell/script checks for the changed file.
+One verification command exposed that `check-comment-hygiene.sh` is actually a Python script despite its `.sh` name, so I’m rerunning it with `python3` and treating the earlier shell invocation as a command-selection error, not a code failure.
+Focused verification is complete after rerunning comment hygiene with the correct interpreter. I’m checking the final diff so I can report only the edits made to the scoped file.
+The scoped diff also contains earlier uncommitted changes in the same file from before my patch; my edits are limited to the exit-code note and the duplicate-table detection block. I’m running one final whitespace diff check on the scoped file.
+Implemented only `.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh`.
+
+Specific edits:
+- Updated exit-code docs: exit `1` now means a cli card is missing or inlines a canonical table.
+- Replaced exact `grep -qF` header checks with tolerant regex detection.
+- Added framework-table detection via tolerant header or `RCAF` row containing `Role, Context, Action, Format`.
+- Added CLEAR matrix detection requiring all five table-row dimensions: `Correctness`, `Logic`, `Expression`, `Arrangement`, `Reusability`.
+
+Verification:
+- `bash -n ...` passed.
+- Guard script passed with all five cli cards reporting `PASS`.
+- Comment hygiene passed via `python3`.
+- OpenCode alignment drift passed.
+- Spec validation passed for `.opencode/specs/skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering`.
+- `git diff --check` passed.
+
+Note: the first comment-hygiene attempt with `bash` failed because that checker is Python despite its `.sh` suffix; rerun with `python3` passed.

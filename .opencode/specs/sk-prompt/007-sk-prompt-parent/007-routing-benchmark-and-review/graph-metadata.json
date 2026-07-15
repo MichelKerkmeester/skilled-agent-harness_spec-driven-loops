@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review",
+  "spec_folder": "sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review",
+  "parent_id": "sk-prompt/007-sk-prompt-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt parent benchmark",
+      "routing benchmark",
+      "prompt-models routingClass",
+      "deep-review sign-off",
+      "router-final report",
+      "sk-prompt benchmark plan",
+      "router-mode Lane-C",
+      "prompt-models routingClass decision",
+      "deep-review triage",
+      "phase 007 tasks",
+      "sk-prompt benchmark tasks",
+      "deep-review triage tasks"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "parent",
+      "benchmark",
+      "routing",
+      "prompt-models",
+      "routingclass",
+      "deep-review",
+      "sign-off",
+      "router-final",
+      "report",
+      "plan",
+      "router-mode"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      "spec.md",
+      ".opencode/skills/sk-prompt/hub-router.json",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "loop-host.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The merged `sk-prompt` hub will serve two modes that were previously independent skills, so routing, discovery, and efficiency cannot be treated as safe by inspection alone",
+    "created_at": "2026-07-09T13:34:36Z",
+    "last_save_at": "2026-07-15T10:52:35.756Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:671721f3b227e19f7b93ee6ac3b551062b66e084c20992da1e1ced1e4b5c0fea",
+    "source_doc_hashes": {
+      "spec.md": "52427933cfdf63c4ce6e8e32f930936bc340e0344b137b2ce8834ebaf8d14b12",
+      "plan.md": "99c6b72954aea33b15299183fa48c95d1a87b9f60de9894d2de8a35b658665d0",
+      "tasks.md": "f7d5d2d87b057f3a429690f1263b345d9a4138abcbf80dc182d4a043aa7a6649",
+      "implementation-summary.md": "6cb22ead82ff5a5387d97ca54a8d2cd730675389cb2ec37f02a925a395490c40"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

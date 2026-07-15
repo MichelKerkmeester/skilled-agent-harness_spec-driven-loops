@@ -1,0 +1,19 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/005-sk-prompt-knowledge-layering/012-cli-doc-alignment",
+  "description": "The cli- cards opened with `## 1",
+  "keywords": [
+    "cli",
+    "cards",
+    "opened"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.744Z",
+  "specId": "012",
+  "folderSlug": "cli-doc-alignment",
+  "parentChain": [
+    "sk-prompt",
+    "005-sk-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

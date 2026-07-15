@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout",
+  "description": "The sk-prompt parent-hub merge is not provably done until it clears the same strict enforcement bar that the canonical parent hubs already clear",
+  "keywords": [
+    "sk-prompt",
+    "parent-hub",
+    "merge",
+    "provably",
+    "done",
+    "until",
+    "clears",
+    "same",
+    "strict",
+    "enforcement",
+    "bar",
+    "canonical",
+    "parent",
+    "hubs",
+    "already",
+    "clear"
+  ],
+  "lastUpdated": "2026-07-15T08:09:15.405Z",
+  "specId": "008",
+  "folderSlug": "cutover-and-rollout",
+  "parentChain": [
+    "sk-prompt",
+    "007-sk-prompt-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
