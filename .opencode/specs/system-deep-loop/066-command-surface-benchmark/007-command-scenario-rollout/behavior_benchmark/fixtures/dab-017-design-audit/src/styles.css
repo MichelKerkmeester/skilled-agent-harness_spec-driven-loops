@@ -1,0 +1,13 @@
+:root {
+  color: #999;
+  background: #aaa;
+}
+
+.panel {
+  width: 920px;
+  margin: 24px auto;
+}
+
+button:focus {
+  outline: none;
+}

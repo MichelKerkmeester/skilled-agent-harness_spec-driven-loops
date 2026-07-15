@@ -14,7 +14,10 @@
       "command scenario rollout",
       "DAB command suite",
       "behavioral baseline",
-      "sixteen command scenarios"
+      "sixteen command scenarios",
+      "command scenario rollout implementation",
+      "DAB-016 to 027 authoring",
+      "command benchmark baseline deferred"
     ],
     "key_topics": [
       "command",
@@ -26,18 +29,19 @@
       "baseline",
       "sixteen",
       "scenarios",
-      "expands",
-      "pilot",
-      "full"
+      "implementation",
+      "dab-016",
+      "authoring"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
       ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,7 +75,25 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -83,25 +105,13 @@
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "DAB-016",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "hash",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
+        "name": "fixture-local",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -119,20 +129,20 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
+        "name": "quotable",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -161,33 +171,41 @@
         "source": "derived"
       },
       {
-        "name": "matching",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Expands the pilot into the full sixteen-scenario suite DAB-012 to 027, reconciles the index and baseline rows, and captures a complete pinned Claude baseline across all command topologies.",
+    "causal_summary": "Completes the authored sixteen-scenario suite with DAB-016 to 027, reconciles contracts and pending baseline rows, and defers operator-gated Claude capture.",
     "created_at": "2026-07-14T20:37:00.206Z",
-    "last_save_at": "2026-07-15T04:48:23.735Z",
+    "last_save_at": "2026-07-15T11:38:06.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82553bbf6d38c0e6b8e4bac070b8446908cc01002669bbe594cea21f7bacfecc",
+    "source_fingerprint": "sha256:c502e4559e3e4c751a3851a6097987fcd1ad6c17895ba394cb7c593e9416e20d",
     "source_doc_hashes": {
-      "spec.md": "a7eb9c79e5bcf5258702c14655351e04851291285f08270b5c1b141d5a878c20",
-      "plan.md": "6d4f33666680454b6b450bb2553847d3c5dcbf58d63ace7bebedfc01a1df98b4",
-      "tasks.md": "d8541674aa6f30a3b85fc4fc25b187acfe4da0b15dadcc96e8435c4a1a7214c2"
+      "spec.md": "504b39780d5d3498fa76171c8b14f4b803a01e5679143acffc0b3a23d60470b0",
+      "plan.md": "2920bb3b69a17a4d1fd312b7a8eb60d648338b30e5e86451d0626b77a44dc913",
+      "tasks.md": "27186a0d6db69bda803291c16ebe8adc44d0c2c43eabaa04cc47ab45470988ce",
+      "implementation-summary.md": "85f0731957e58e9895fb8b2514f6e4e04fffb3626c69b76c52d3983fb58c1f1e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,2 @@
+list constitutional rules
+MEMORY_LEARN_LIST_SENTINEL

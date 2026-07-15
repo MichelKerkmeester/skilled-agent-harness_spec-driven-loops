@@ -2,7 +2,7 @@
 title: Deep-Alignment Behavior Benchmark
 description: >-
   Behavior benchmark package for deep-alignment: eleven captured alignment
-  scenarios plus four pending schema-v2 command-topology pilots. The package
+  scenarios plus sixteen pending schema-v2 command-behavior cells. The package
   instantiates the shared framework as its governing contract and probes both
   alignment invariants and command execution ownership.
 trigger_phrases:
@@ -35,9 +35,9 @@ one report per lane (`runtime/scripts/reduce-alignment-state.cjs`
 verify-first, known-deviation suppression, read-only default, and gated
 remediation ([SKILL.md §3 "The Alignment Contract"](../SKILL.md#the-alignment-contract)).
 
-DAB-012 through DAB-015 add one schema-v2 pilot per frozen command topology.
-They measure workflow handoff, semantic subaction binding, direct MCP dispatch,
-and inline monolithic ownership without changing the shared framework or runner.
+DAB-012 through DAB-027 form the schema-v2 command-behavior suite. They sample
+workflow handoff, semantic subaction binding, direct MCP/plugin dispatch, and
+inline monolithic ownership without changing the shared framework or runner.
 Their baseline cells remain pending until operator-gated live capture occurs.
 
 ## 2. SCENARIO TABLE
@@ -59,15 +59,27 @@ Their baseline cells remain pending until operator-gated live capture occurs.
 | DAB-013 | Subaction router: parent-skill diagnostic binding | E1 | C3 | autonomous | 180000 |
 | DAB-014 | Direct-tool router: bounded memory retrieval | E1 | C3 | autonomous | 180000 |
 | DAB-015 | Monolithic command: consolidated prompt-improve setup | E1 | C2 | question_halt | 180000 |
+| DAB-016 | Workflow router: fixture-local benchmark authoring | E1 | C3 | autonomous | 300000 |
+| DAB-017 | Workflow router: bounded design audit | E1 | C3 | autonomous | 180000 |
+| DAB-018 | Subaction router: MCP install approval gate | E1 | C3 | question_halt | 180000 |
+| DAB-019 | Subaction router: diagnostic-only MCP debug | E1 | C3 | autonomous | 180000 |
+| DAB-020 | Subaction router: fail closed on cross-route flag | E1 | C3 | fail_fast | 180000 |
+| DAB-021 | Direct-tool router: constitutional-rule listing | E1 | C3 | autonomous | 180000 |
+| DAB-022 | Direct-tool router: constitutional-rule budget | E1 | C3 | autonomous | 180000 |
+| DAB-023 | Direct-tool router: memory health inspection | E1 | C3 | autonomous | 180000 |
+| DAB-024 | Direct-tool router: checkpoint listing | E1 | C3 | autonomous | 180000 |
+| DAB-025 | Direct-tool router: fixture-local continuity save | E1 | C3 | autonomous | 300000 |
+| DAB-026 | Direct-plugin router: goal status | E1 | C3 | autonomous | 180000 |
+| DAB-027 | Monolithic command: bare agent-router halt | E2 | C1 | question_halt | 180000 |
 
 ## 3. AXIS COVERAGE
 
-Entry-surface coverage: E1 x10 (DAB-001, DAB-005, DAB-006, DAB-007, DAB-008,
-DAB-011, DAB-012, DAB-013, DAB-014, DAB-015), E2 x1 (DAB-002), E3 x4
-(DAB-003, DAB-004, DAB-009, DAB-010). Clarity coverage: C1 x1 (DAB-003), C2 x5
-(DAB-002, DAB-004, DAB-009, DAB-010, DAB-015), C3 x9 (DAB-001, DAB-005,
-DAB-006, DAB-007, DAB-008, DAB-011, DAB-012, DAB-013, DAB-014) — 6 of 15
-cells sit at C1/C2. Invariant coverage: verify-first
+Entry-surface coverage: E1 x21 (DAB-001, DAB-005 through DAB-008, DAB-011
+through DAB-026), E2 x2 (DAB-002, DAB-027), E3 x4 (DAB-003, DAB-004,
+DAB-009, DAB-010). Clarity coverage: C1 x2 (DAB-003, DAB-027), C2 x5
+(DAB-002, DAB-004, DAB-009, DAB-010, DAB-015), C3 x20 (DAB-001, DAB-005
+through DAB-008, DAB-011 through DAB-014, DAB-016 through DAB-026) — 7 of
+27 cells sit at C1/C2. Invariant coverage: verify-first
 (DAB-005), known-deviation suppression (DAB-006), read-only default (DAB-007),
 gated remediation (DAB-007 secondary), and per-lane report emission (DAB-008)
 are each isolated in at least one cell. Findings-outcome coverage: a lane that
@@ -80,12 +92,13 @@ Boundary coverage: the two crisp boundaries `SKILL.md` §1 draws — against
 `deep-review` (general correctness) and against `parent-skill-check.cjs` (hub
 structure) — each get a decline cell (DAB-009, DAB-010).
 
-Command-topology coverage is exactly one pilot per shape: workflow router
-(DAB-012), subaction router (DAB-013), direct-tool/plugin router (DAB-014), and
-monolithic (DAB-015). DAB-012 uses LEAF task-dispatch evidence; DAB-013 binds its
-semantic target through setup probes; DAB-014 requires direct memory-tool target
-evidence while forbidding LEAF and workflow-YAML signals; DAB-015 expects the
-command-owned consolidated setup procedure with no external workflow.
+Command-topology coverage spans all four frozen shapes across sixteen cells:
+workflow router x3 (DAB-012, DAB-016, DAB-017), subaction router x4 (DAB-013,
+DAB-018 through DAB-020), direct-tool/plugin router x7 (DAB-014, DAB-021
+through DAB-026), and monolithic x2 (DAB-015, DAB-027). Workflow and subaction
+cells use task-dispatch-shaped setup evidence; direct routers require their
+documented MCP/plugin targets while forbidding LEAF and workflow-YAML signals;
+monolithic cells stop at command-owned inline gates without external workflow.
 
 The `E4` orchestrate surface is intentionally not exercised: deep-alignment's
 distinctive behaviors are scoping- and invariant-driven, not routing-driven, and
@@ -96,28 +109,23 @@ packages that share this hub's dispatch path.
 
 The runner is `../../shared/behavior-benchmark/behavior-bench-run.cjs`, invoked
 per cell as one run of one scenario contract against one executor, with the
-scenario's `fixture` absorbing all writes for the run (the `alignment/`
-sub-directory the loop writes into). Checkpoint and delegation-evidence
+scenario's `fixture` absorbing all writes for the run. Checkpoint and delegation-evidence
 extraction, the no-progress watchdog, scoring, and classification are owned by
 that runner. DAB-001 through DAB-011 emit `schemaVersion: 1`; DAB-012 through
-DAB-015 opt into `schemaVersion: 2` with postcondition, direct-dispatch, and
+DAB-027 opt into `schemaVersion: 2` with postcondition, direct-dispatch, and
 boundary evidence. Run
 evidence — transcripts, result JSONs, scorecards — lands in the **spec packet
 phase that executed the round**, never inside this package; a result cited from
 this index must point to its evidence in that executing phase.
 
-**Fixtures and lane-configs are provisioned by the executing round, not shipped
-in this package** (mirroring the framework's evidence-location rule that the
-package holds the contract while the packet holds the proof). Each scenario names
-the `fixture` directory it binds and, where the run is config-driven, the
-`--lane-config` JSON it consumes; the executing round provisions that directory
-with the corpus each cell's body describes (a small `docs/` markdown corpus, a
-`src/` code file for the multi-authority cell, and the per-cell lane-config
-files). Per-scenario baseline checkpoints live in
+The original alignment fixtures are provisioned by their executing round. The
+schema-v2 command suite binds dedicated phase-owned fixtures: DAB-012 through
+DAB-015 use the topology-pilot phase, while DAB-016 through DAB-027 use the
+command-scenario-rollout phase. Per-scenario baseline checkpoints live in
 [./baselines/claude-baseline.md](./baselines/claude-baseline.md); the Claude
 leg has been captured for the original set (11/11 cells, 2026-07-12,
-skeptic-verified). The four command-topology pilots bind dedicated phase-owned
-fixture directories and remain `pending (deferred live capture)`, so their
+skeptic-verified). The sixteen command-behavior cells remain
+`pending (deferred live capture)`, so their
 budgets are provisional framework-floor or bounded-workflow values. For the
 captured set, the
 `budget_ms` values in the table above are the baseline-recomputed values
@@ -134,5 +142,5 @@ yet.
 - [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
 - [../README.md](../README.md) — the mode README, whose §5 carries the authoritative availability / build-state note for the `/deep:alignment` surface and its `@deep-alignment` LEAF agent.
 - [../SKILL.md](../SKILL.md) — the mode contract: state machine, adapter contract, and the four alignment invariants these scenarios probe.
-- [./baselines/claude-baseline.md](./baselines/claude-baseline.md) — per-scenario Claude-leg baseline checkpoints (11 captured; four command-topology pilot rows pending deferred live capture).
+- [./baselines/claude-baseline.md](./baselines/claude-baseline.md) — per-scenario Claude-leg baseline checkpoints (11 captured; sixteen command-behavior rows pending deferred live capture).
 - [Authoring: ../../../sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md](../../../sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md) — the behavior-benchmark authoring guide (create-benchmark §9): how to author this package's index, scenarios, and baseline. Templates and authoring standards live there; this package instantiates the framework above.

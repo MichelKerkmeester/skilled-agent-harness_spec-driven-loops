@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: command scenario rollout — the full DAB-012 to 027 behavioral suite"
-description: "Expands the pilot into the full sixteen-scenario suite DAB-012 to 027, reconciles the index and baseline rows, and captures a complete pinned Claude baseline across all command topologies."
-status: planned
+description: "Completes the authored sixteen-scenario suite with DAB-016 to 027, reconciles contracts and pending baseline rows, and defers operator-gated Claude capture."
+status: in_progress
 trigger_phrases:
   - "command scenario rollout"
   - "DAB command suite"
@@ -12,11 +12,12 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout"
-    last_updated_at: "2026-07-14T20:45:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded the rollout child for the full command behavioral suite"
-    next_safe_action: "Author DAB-012 through DAB-027 extending the existing package"
-    blockers: []
+    last_updated_at: "2026-07-15T10:49:30Z"
+    last_updated_by: "codex"
+    recent_action: "Authored DAB-016 through DAB-027 and reconciled the sixteen-cell command suite"
+    next_safe_action: "Capture the sixteen live Claude baseline cells after operator green-light"
+    blockers:
+      - "Live Claude baseline capture is deferred pending operator green-light"
     key_files:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
@@ -36,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress — live baseline deferred |
 | **Created** | 2026-07-14 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
@@ -44,20 +45,23 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The pilot proves the evaluator; the benchmark needs a stable behavioral corpus. This phase authors DAB-012 to 027 extending the existing behavior_benchmark package, reconciles the index and baseline rows, and captures a complete pinned Claude baseline, keeping every scenario a scored contract rather than prose.
+The pilot established DAB-012 to 015 and the schema-v2 evaluator. This phase adds DAB-016 to 027, completing the sixteen-cell command-behavior corpus, reconciling the package index and pending baseline ledger, and pinning every new presentation marker to its command source. Live Claude capture remains operator-gated and is not part of the completed authoring work.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 **In scope:**
-- Author sixteen scenarios DAB-012 to 027 extending the existing DAB package with no new package or prefix.
-- Cover create, design, speckit, one non-alignment deep command, doctor, memory, goal, prompt-improve, and the agent router across topologies.
-- Reconcile scenario ids, index, and baseline rows.
-- Capture a complete pinned Claude baseline where every cell is quotable.
-- Record that DAB-012 to 027 are the sampled subject-command suite (not a new package) and that `/deep:command-benchmark` is excluded as instrument infrastructure with an explicit recursion rationale, smoke-tested separately in the launcher phase.
+- Preserve the established DAB-012 to 015 pilots and author twelve schema-v2 scenarios DAB-016 to 027 in the same package.
+- Cover workflow routing through create and design, doctor/mcp positional subactions including fail-closed conflict handling, direct memory and goal dispatch, and monolithic agent-router setup.
+- Add one dedicated fixture root per new scenario with fixture-local boundary probes.
+- Reconcile scenario ids, index rows, source-pinned marker hashes, and sixteen pending Claude baseline rows.
+- Prove DAB-001 to 011 scoring stability with the frozen golden and shared hermetic test.
+- Retain live Claude capture as the only open task, pending operator green-light.
 
 **Out of scope:**
+- Any live executor invocation or evidence capture.
+- Changes to the shared behavior framework, runner, or shared runner test.
 - The bounded model matrix (next phase).
 - The deterministic adapter axis.
 <!-- /ANCHOR:scope -->
@@ -65,26 +69,26 @@ The pilot proves the evaluator; the benchmark needs a stable behavioral corpus. 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **REQ-001 (P0):** Author exactly sixteen scenarios DAB-012 to 027 extending the existing package with no new package or prefix.
-- **REQ-002 (P0):** Every scenario pins command path, topology, targets, probes, markers with hash, and a baseline budget row.
-- **REQ-003 (P1):** Reconcile scenario ids, index, and baseline rows with the existing DAB package.
-- **REQ-004 (P1):** Capture a complete pinned Claude baseline where every cell is quotable.
+- **REQ-001 (P0):** Maintain exactly the sixteen-scenario DAB-012 to 027 command suite, adding DAB-016 to 027 without a new package or prefix.
+- **REQ-002 (P0):** Every new scenario pins command path, topology, targets, probes, markers with hash, and a baseline budget row.
+- **REQ-003 (P1):** Reconcile scenario ids, index, marker hashes, and pending baseline rows with the existing DAB package.
+- **REQ-004 (P1):** Capture a complete pinned Claude baseline where every cell is quotable after operator authorization.
 - **REQ-005 (P2):** Keep run transcripts and result JSON in the executing spec phase, not the benchmark package.
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- Exactly sixteen command-suite scenarios exist.
-- Ids, index, hashes, and Claude baseline rows reconcile.
-- All baseline cells are quotable.
-- DAB-001 to 011 remain unchanged.
+- Exactly sixteen schema-v2 command-suite scenarios exist from DAB-012 through DAB-027 with no gaps or later ids.
+- Ids, index rows, marker hashes, fixtures, and pending baseline rows reconcile 16/16.
+- The DAB-001 to 011 golden regression and shared hermetic runner test pass.
+- All sixteen baseline cells become quotable after the deferred live capture; until then the phase remains in progress.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- Baseline non-determinism producing unquotable cells, mitigated by reruns and provenance capture.
+- Baseline non-determinism may produce unquotable cells once live capture is authorized; provenance and controlled reruns remain required.
 - Marker drift redefining the oracle, mitigated by authoring-time hashes.
 - Dependencies: the pilot calibration and the schema v2 evaluator.
 <!-- /ANCHOR:risks -->
@@ -92,7 +96,7 @@ The pilot proves the evaluator; the benchmark needs a stable behavioral corpus. 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether sixteen scenarios adequately stratify the corpus or a small extension is warranted after the matrix.
+- Live Claude baseline capture awaits operator green-light.
 <!-- /ANCHOR:questions -->
 
 ## PHASE SEQUENCE

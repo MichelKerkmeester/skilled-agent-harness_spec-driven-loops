@@ -1,0 +1,2 @@
+No routed request is bound for this cell.
+AGENT_ROUTER_BARE_SENTINEL

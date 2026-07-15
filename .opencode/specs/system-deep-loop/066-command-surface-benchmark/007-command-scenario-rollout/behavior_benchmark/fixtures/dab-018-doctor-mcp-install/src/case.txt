@@ -1,0 +1,1 @@
+install --server sequential_thinking --runtime opencode

@@ -1,0 +1,1 @@
+install --fix --server mk-spec-memory

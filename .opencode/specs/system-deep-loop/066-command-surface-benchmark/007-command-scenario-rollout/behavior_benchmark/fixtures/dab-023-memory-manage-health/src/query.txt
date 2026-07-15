@@ -1,0 +1,2 @@
+memory health
+MEMORY_MANAGE_HEALTH_SENTINEL

@@ -1,0 +1,2 @@
+show passive session goal
+GOAL_SHOW_SENTINEL
