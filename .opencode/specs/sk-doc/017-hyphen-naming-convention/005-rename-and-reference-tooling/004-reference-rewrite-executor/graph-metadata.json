@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
-  "spec_folder": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
+  "packet_id": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
+  "spec_folder": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
   "parent_id": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "fixture corpus dry-run harness",
-      "rename tooling fixtures",
-      "pre-migration dry run",
-      "rename checker harness",
-      "fixture corpus implementation plan",
-      "rename dry-run harness plan",
-      "pre-migration fixture testing",
-      "fixture corpus tasks",
-      "dry-run harness tasks",
-      "rename tooling scenario tasks",
-      "fixture corpus checklist",
-      "dry-run harness verifier"
+      "static reference-rewrite executor",
+      "compare-and-swap reference rewrite",
+      "preimage blob hash rewrite",
+      "deterministic reference rewrite",
+      "reference-rewrite executor implementation plan",
+      "compare-and-swap rewrite plan",
+      "preimage blob rewrite plan",
+      "reference-rewrite executor tasks",
+      "compare-and-swap rewrite tasks",
+      "preimage blob rewrite tasks",
+      "reference-rewrite executor checklist",
+      "compare-and-swap rewrite verifier"
     ],
     "key_topics": [
-      "fixture",
-      "corpus",
-      "dry-run",
-      "harness",
-      "rename",
-      "tooling",
-      "fixtures",
-      "pre-migration",
-      "dry",
-      "run",
-      "checker",
-      "implementation"
+      "static",
+      "reference-rewrite",
+      "executor",
+      "compare-and-swap",
+      "reference",
+      "rewrite",
+      "preimage",
+      "blob",
+      "hash",
+      "deterministic",
+      "implementation",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -78,13 +78,13 @@
         "source": "derived"
       },
       {
-        "name": "Fixture Corpus",
+        "name": "Static Reference",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Run Harness",
+        "name": "Rewrite Executor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -102,7 +102,7 @@
         "source": "derived"
       },
       {
-        "name": "an",
+        "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -114,19 +114,19 @@
         "source": "derived"
       },
       {
-        "name": "Disposable Git",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Scenario",
+        "name": "Pattern Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -144,13 +144,7 @@
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
+        "name": "phases",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -180,9 +174,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The rename engine and reference checker need representative, repeatable evidence before a real migration run. This phase builds disposable fixtures and a dry-run harness for semantic names, exemptions, collisions, references, idempotency, rollback, and empty scans.",
-    "created_at": "2026-07-14T15:16:49Z",
-    "last_save_at": "2026-07-15T09:36:16.504Z",
+    "causal_summary": "The checker only records reference sites read-only and the engine only moves files, so nothing deterministically rewrites in-file references to renamed paths. This phase defines a compare-and-swap-protected static reference-rewrite executor that consumes the disposition ledger and semantic map, verifies each site's preimage blob before writing, and regenerates rather than force-applies a rewrite plan whose base moved.",
+    "created_at": "2026-07-15T09:35:26.640Z",
+    "last_save_at": "2026-07-15T09:35:26.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +185,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:bf444b6df3db0800aadfc41f297170c50dbd815fe35d24b54074bc738d88333f",
+    "source_fingerprint": "sha256:c521a49854920e01b2d5d85a99b08f4243f4fcd9afeb87f6fff5049a1428687b",
     "source_doc_hashes": {
-      "spec.md": "7f58c3fe17a052b14b57e71e88c63478aa30b1e33d64718dcab1dcdcd0c547ed",
-      "plan.md": "21394dba3a0babda9dcb1080da502cc39488f0d9a8403df9de211255d8207061",
-      "tasks.md": "256098f544ab6d6bab1cfaf4eff20dc2e48ae68d9d3fc1f8ed80df442609c487",
-      "checklist.md": "196c567a36eb1c70bc357f7a6a55c324cec7389f30866ba40cf496262b6d7668"
+      "spec.md": "27919abdfe942629cac8522b8ef44645adb6b666abb5107578128dc1bfaadd82",
+      "plan.md": "3e694eaf3779a4ba33245c38dca05b6a7f90996856279435b294b088ed8e54b1",
+      "tasks.md": "acd0532fc620f0f5d7a4c0c24dee130e664ae2273c9bc0ff3777217a4d591aeb",
+      "checklist.md": "57fdfaab049f20ad88e024a8a1f0a7ad61f29007be729a8d71e81f06823ae211"
     },
     "last_active_child_id": null,
     "last_active_at": null

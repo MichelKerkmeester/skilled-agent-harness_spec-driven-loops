@@ -56,6 +56,8 @@ hash, records commands + exit codes + discovery counts, and fails on zero tests/
 - [ ] CHK-002 [P0] Assert every candidate has exactly one classification (no unknowns), rename entries carry a pending/already-applied disposition, and `.codex/prompts/*` is classified `generated`
 - [ ] CHK-003 [P0] Assert batches are dependency-closed and exclude already-applied surfaces; hash the map together with the current-tip BASE
 - [ ] CHK-012 [P1] Assert the 2 `.codex/prompts/` snake regressions (`agent_router.md`, `goal_opencode.md`) are flagged for a `sync-prompts.cjs` producer fix, not enqueued for a manual rename
+- [ ] CHK-013 [P0] Assert every batch carries a complete executable touch-set (source/target, static reference sites, dynamic-reference dispositions, symlink endpoints, producer manifests, read/write sets, dependency + batch hashes) sufficient for compare-and-swap replay
+- [ ] CHK-014 [P1] Assert the pin is an immutable epoch record (epoch id, map-base SHA, parent-epoch hash, candidate-set hash, graph hash) and that a post-pin candidate reissues only its affected subgraph without escaping classification
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

@@ -8,14 +8,14 @@
     "recursive_validate_is_one_level": true
   },
   "totals": {
-    "all_nodes": 175,
-    "leaves": 156,
+    "all_nodes": 176,
+    "leaves": 157,
     "parents": 19,
-    "leaf_docs_estimate": 652,
+    "leaf_docs_estimate": 656,
     "max_depth": 4,
     "leaves_by_level": {
       "1": 25,
-      "2": 103,
+      "2": 104,
       "3": 28
     }
   },
@@ -108,7 +108,7 @@
       "level": "phase",
       "depth": 1,
       "origin": "005-rename-and-reference-tooling (was leaf -> parent)",
-      "childrenCount": 3
+      "childrenCount": 4
     },
     {
       "id": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
@@ -133,6 +133,15 @@
       "kind": "leaf",
       "level": 2,
       "depth": 2
+    },
+    {
+      "id": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
+      "slug": "004-reference-rewrite-executor",
+      "parent": "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling",
+      "kind": "leaf",
+      "level": 2,
+      "depth": 2,
+      "origin": "added for execution readiness (CAS reference-rewrite executor)"
     },
     {
       "id": "sk-doc/017-hyphen-naming-convention/006-inventory-and-frozen-map",

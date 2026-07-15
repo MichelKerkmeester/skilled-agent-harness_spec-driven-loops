@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
     last_updated_at: "2026-07-14T17:28:50Z"
     last_updated_by: "codex"
-    recent_action: "Authored the fixture corpus and dry-run harness phase contract"
-    next_safe_action: "Implement disposable fixtures for the engine and checker contracts"
+    recent_action: "Extended harness coverage to the reference-rewrite executor drift and CAS cases"
+    next_safe_action: "Implement disposable fixtures for the engine, checker, and executor contracts"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -31,7 +31,7 @@ _memory:
 
 # Feature Specification: Fixture Corpus and Dry-Run Harness
 
-> Phase adjacency under the 017 parent (grouping order, not a runtime dependency): predecessor `002-reference-checker-and-disposition-ledger`; successor `006-inventory-and-frozen-map`.
+> Phase adjacency under the 005 parent (grouping order, not a runtime dependency): predecessor `002-reference-checker-and-disposition-ledger`; successor `004-reference-rewrite-executor`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -50,13 +50,14 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The rename engine and reference checker operate at a high blast radius, but a real repository run is not an acceptable first
-test. Without fixtures, the toolchain can miss leading or double underscores, case-fold/NFC collisions, symlink and executable
-semantics, policy exemptions, dynamic references, or rollback behavior while still appearing to pass a happy-path dry-run.
+The rename engine, reference checker, and reference-rewrite executor operate at a high blast radius, but a real repository run is
+not an acceptable first test. Without fixtures, the toolchain can miss leading or double underscores, case-fold/NFC collisions,
+symlink and executable semantics, policy exemptions, dynamic references, a stale rewrite over a drifted blob, or rollback
+behavior while still appearing to pass a happy-path dry-run.
 
-This phase builds a representative fixture corpus and a disposable harness that runs the engine and checker in a fresh Git
-repository, asserts dry-run non-mutation, exercises explicit apply and rollback, verifies idempotency and ledger completeness,
-and fails on empty scans before phase 006 freezes the repository map.
+This phase builds a representative fixture corpus and a disposable harness that runs the engine, checker, and executor in a fresh
+Git repository, asserts dry-run non-mutation, exercises explicit apply and rollback, verifies idempotency, ledger completeness,
+and compare-and-swap drift regeneration, and fails on empty scans before phase 006 freezes the repository map.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -69,8 +70,10 @@ and fails on empty scans before phase 006 freezes the repository map.
   tool-mandated names, test-runner magic, and frozen surfaces.
 - Reference fixtures for JS/TS modules, Markdown links, JSON/YAML/TOML path values, shell sourcing, registries, symlink targets, and
   dynamic `require`, `source`, and glob expressions.
-- A dry-run harness that creates disposable Git repositories, invokes the engine and checker, records exit codes and manifests, and
-  asserts no real migration path was touched.
+- Executor fixtures for compare-and-swap rewriting: a preimage-matched static site, a mutated-blob drift case that must regenerate
+  rather than force-apply, cross-batch isolation, and a routed/flagged dynamic site.
+- A dry-run harness that creates disposable Git repositories, invokes the engine, checker, and executor, records exit codes and
+  manifests, and asserts no real migration path was touched.
 
 ### Out of Scope
 - Running the harness against the real repo with an apply action or performing any repo-wide rename.
@@ -89,6 +92,7 @@ and fails on empty scans before phase 006 freezes the repository map.
 | REQ-004 | The corpus exercises the checker reference matrix. | JS/TS, Markdown, JSON/YAML/TOML path values, shell, registries, symlinks, and dynamic sites are observed and dispositioned. |
 | REQ-005 | The harness proves fail-closed behavior. | Collision, missing target, ambiguous reference, undispositioned dynamic site, and zero-scan cases exit non-zero with evidence. |
 | REQ-006 | The harness is deterministic and disposable. | Repeated runs from the same fixture seed produce the same plan, ledger statuses, counts, and exit results without touching the real repository. |
+| REQ-007 | The corpus exercises the executor's compare-and-swap and drift behavior. | A preimage-matched site rewrites, a mutated-blob site regenerates rather than force-applies, cross-batch isolation holds, and a dynamic site is routed or flagged. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

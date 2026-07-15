@@ -6,7 +6,8 @@
   "children_ids": [
     "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
     "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
-    "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
+    "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
+    "sk-doc/017-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
   ],
   "manual": {
     "depends_on": [],
@@ -83,17 +84,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The tooling phase defines a deterministic, exemption-aware rename engine and a whole-repository reference checker with a disposition ledger, then proves both against disposable fixtures before any migration run.",
+    "causal_summary": "The tooling phase defines a deterministic, exemption-aware rename engine, a read-only whole-repository reference checker with a disposition ledger, and a compare-and-swap static reference-rewrite executor, then proves them against disposable fixtures before any migration run.",
     "created_at": "2026-07-13T14:34:05.527Z",
-    "last_save_at": "2026-07-14T17:41:14.806Z",
+    "last_save_at": "2026-07-15T09:36:16.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8865fdc0d47bcf8cc358577e255734e5fc1c647408be4d303bb7702ae668ae06",
+    "source_fingerprint": "sha256:24fc1354093826d731fcd2743efee85a4ec6a837442f1046d8044a5cfa65e9c6",
     "source_doc_hashes": {
-      "spec.md": "6f88a791dfcd4be4c8dad53b34a55a4a58fc68e20c36ede6042f95ef944dd480"
+      "spec.md": "8854fb6d8d4d36af4b9f7ca323aabfcbbf91d61ac324f26129bd1cde14a6635b"
     },
     "last_active_child_id": null,
     "last_active_at": null

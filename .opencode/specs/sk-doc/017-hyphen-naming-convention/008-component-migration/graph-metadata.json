@@ -26,25 +26,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "008-component-migration",
-      "phase parent"
+      "component migration fan-out",
+      "hyphen naming phase 008",
+      "per-skill kebab-case migration"
     ],
     "key_topics": [
-      "008-component-migration",
-      "phase",
-      "parent",
-      "phased",
-      "decomposition",
-      "tracks",
       "component",
       "migration",
-      "across",
-      "independently",
-      "executable",
-      "child"
+      "fan-out",
+      "hyphen",
+      "naming",
+      "phase",
+      "per-skill",
+      "kebab-case",
+      "14-way",
+      "per-component",
+      "renames",
+      "skill"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -62,47 +63,47 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Packet",
+        "name": "Change Summary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement This",
+        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Keep",
+        "name": "Phase Transition Rules",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This phased decomposition tracks component migration (017 parent) across independently executable child phase folders",
+    "causal_summary": "The 14-way per-component fan-out that renames each skill subtree's snake_case filesystem names to kebab-case as a self-contained, dependency-closed closure. Lanes are scheduled from the phase 006 executable SCC condensation DAG under exclusive skill leases and one serial integration steward; phase number is grouping order, not a runtime sequence.",
     "created_at": "2026-07-14T15:16:54Z",
-    "last_save_at": "2026-07-14T15:23:42.750Z",
+    "last_save_at": "2026-07-15T09:36:16.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b861ea5e7108bf64cda0b716900a3b49fe88603de9ddc0b2e518faa8eeebb223",
+    "source_fingerprint": "sha256:12b523525361821d0dc9b4048e3bf856bba6eb112b461a89a3f2f5425f4a2714",
     "source_doc_hashes": {
-      "spec.md": "22a156bed3157978a7eaf6df397ddb99bd24fe7ec566735cc6dd538bf75252e3"
+      "spec.md": "6fe471c4bf96a8d4108baeed4702cbd074a286cce757d32b60738221ff5e0273"
     },
     "last_active_child_id": null,
     "last_active_at": null

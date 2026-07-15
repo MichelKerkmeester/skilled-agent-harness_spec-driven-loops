@@ -62,7 +62,7 @@ The catalog/playbook root + index names are consumed by a network of runtime pat
 
 ### Out of Scope
 - Renaming the directories (phase 007).
-- Removing the tolerance alias (phase 008).
+- Removing the tolerance alias (phase 009-remove-transition-aliases; transition compatibility is removed exactly once, there).
 - Generator emission (003).
 <!-- /ANCHOR:scope -->
 
@@ -119,5 +119,7 @@ over-broad sweep, exemption leakage, concurrent sessions). Phase-specific risks 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking; resolved during this phase's execution against the pinned baseline.
+None blocking; resolved during this phase's execution against the pinned baseline. Ownership boundary (recorded in the packet's
+execution-parallelization-strategy.md): dual-name tolerance is ADDED here in 002, the physical root directories are MOVED in 007,
+and the transition compatibility is REMOVED exactly once in 009 — no phase removes an alias that another phase still relies on.
 <!-- /ANCHOR:questions -->
