@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All",
     "created_at": "2026-07-13T14:34:05.520Z",
-    "last_save_at": "2026-07-15T09:36:17.091Z",
+    "last_save_at": "2026-07-15T12:03:51.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:c3cff20f1bc02adaee56d924c2a5c0c4eaf2b96ac0e7e23de840b46f45d6df1d",
+    "source_fingerprint": "sha256:de3cdb1a1ec9123adc57d6c695485e792ddd931d5dfeb102b10ce4c5dff2c1b3",
     "source_doc_hashes": {
-      "spec.md": "e4c3d67d389a4849fb30b06d81d3914d52c48dfe3e52402a898bd0b693fb55bf",
+      "spec.md": "98fe980fdea45ec8974b717dc69717c5f0d746446bc023c40b0bda08e4fe1df3",
       "plan.md": "d2dddcf0325541c92728dae37427bc0f7a23597db3bd74e42ebb7a1bcc0e0d60",
       "tasks.md": "b1cd5b80fb6902b9dc19dc55411334a6a9572f35dbc5636fd0db470136d29e6d",
       "checklist.md": "7159cb248264dffb20032bfce6b1f39015d3a70d0f2f0b02b4579e6a587eecf3"
