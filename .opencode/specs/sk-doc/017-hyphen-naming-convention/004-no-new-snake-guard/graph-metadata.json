@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Nothing prevents snake_case from re-entering in-scope filesystem names. The program needs an exemption-aware guard with a debt-tolerant changed-only mode during migration and a whole-tree mode after, so intermediate commits stay green while the end state is enforced.",
     "created_at": "2026-07-13T14:34:05.525Z",
-    "last_save_at": "2026-07-13T14:34:05.525Z",
+    "last_save_at": "2026-07-15T03:47:06.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +200,11 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e8690e98cdba0c301a11227cbaaf68fc2e5f99184de553db36ee773892b41965",
+    "source_fingerprint": "sha256:7e821872ec585b6271ca12471a39cd747f9dfba6583217cb3e56af546657d648",
     "source_doc_hashes": {
-      "spec.md": "7a7698cf975b81f398156bd274e6859b217c5f613a2c99f6717a2418f54a81cf",
-      "plan.md": "1490ba555e392ddc4dfd9151c48e1a79342d5b5783c03ba3f93e4ea0c864925f",
-      "tasks.md": "1cd15edb0c7bae5f567bec1c58efbc12e3d0237e5dc012a758f5382594af5437",
+      "spec.md": "ef67acb0a0f8f521c8c9ed52696f016084c84142730ae92b2a148651765f41bc",
+      "plan.md": "005369e58ee5131f55774f2c34af82399ed9c8c07e5ca01dd5d2e29551f043ef",
+      "tasks.md": "b7fb8ca8bb3988421d828978ff81e8f28da3541727b73a240cabc3b43eb55f3d",
       "checklist.md": "419f1705e2b5c187d534cd858199e42cd30d72e326a0d97ca6e7a28089599d11"
     },
     "last_active_child_id": null,

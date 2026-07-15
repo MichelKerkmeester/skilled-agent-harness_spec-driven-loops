@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/001-convention-policy-and-scope"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase spec authored from the 16-phase decomposition"
+    recent_action: "Phase spec authored for the 017 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []

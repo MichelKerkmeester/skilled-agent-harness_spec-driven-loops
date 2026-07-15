@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Before any rename, the in-scope surface must be frozen into a bijective, fully-classified rename map partitioned by dependency closure. Every candidate must be classified exactly once (rename/exempt/frozen/generated/tool-mandated) with no 'unknown' bucket, and the map hashed with BASE so execution is reproducible.",
     "created_at": "2026-07-13T14:34:05.529Z",
-    "last_save_at": "2026-07-13T14:34:05.529Z",
+    "last_save_at": "2026-07-15T03:47:06.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,11 +188,11 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f41e5d40fefeaa02e0cbce83a3a482ef446f205026b5b7ab7be3fb938bfd7678",
+    "source_fingerprint": "sha256:4dd63e1964bf05adb4c7f17a23c0f6c61de875842f449d43ecb147be4aa5495f",
     "source_doc_hashes": {
-      "spec.md": "de300fad6909765850522a423852dbfa37d320b001d1b486c63ac8a38ae04a9c",
-      "plan.md": "6499454ac06c4133a3323b99ce7dde473b6582028c574577838a1895904bf9d5",
-      "tasks.md": "ffe56a03fe11ca5b9c704be7f9c3dc2dbdae7dbd81676ea5a37edf9afa2022dc",
+      "spec.md": "e9d51761ca45f6d332c0a136041ec7571ab1944a9406b509420e7815eab52588",
+      "plan.md": "b5ac764a60ffcc24968884ea52a37f1ee286cbb4590aae06a17031b5cef31d12",
+      "tasks.md": "d0f71fd942ed26855f5bad0ee9f489f303dc9e2911e86494457829957b63cd53",
       "checklist.md": "453340abaaa50578b45368d980d9ccff7f895d341caff48e9df06c9e26df8930"
     },
     "last_active_child_id": null,

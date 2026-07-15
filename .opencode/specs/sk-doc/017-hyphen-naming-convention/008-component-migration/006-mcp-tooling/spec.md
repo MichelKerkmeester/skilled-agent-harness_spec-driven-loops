@@ -45,8 +45,8 @@ _memory:
 | **Branch** | sk-doc/0042-017-authoring |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | sk-doc/017-hyphen-naming-convention/008-component-migration/006-mcp-tooling |
-| **Predecessor** | 005-rename-and-reference-tooling |
-| **Successor** | 009-runtime-and-package-layout |
+| **Predecessor** | 005-cli-external-orchestration |
+| **Successor** | 007-system-deep-loop |
 | **Handoff Criteria** | All eight child phase contracts pass their blocking checks and the mcp-tooling surface is ready for the whole-repo gate |
 <!-- /ANCHOR:metadata -->
 

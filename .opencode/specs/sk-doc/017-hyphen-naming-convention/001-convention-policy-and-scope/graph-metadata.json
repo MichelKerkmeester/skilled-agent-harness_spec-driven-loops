@@ -195,7 +195,7 @@
     ],
     "causal_summary": "There is no single authoritative statement that kebab-case (hyphens) is the canonical filesystem-naming form, nor a written exemption boundary, nor a record of the program decisions from the GPT design review. Packet 027 currently mandates the opposite for catalog/playbook content. This phase publishes the canonical co",
     "created_at": "2026-07-13T14:34:05.517Z",
-    "last_save_at": "2026-07-13T14:34:05.517Z",
+    "last_save_at": "2026-07-15T03:47:06.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:7a127631bdea426f1f8755eab0005730a875843c0c1960e87259bbd19bbc24a1",
+    "source_fingerprint": "sha256:899636d55f9cfee1dd3f17ad50265e729427246b6c98c000d6ae8fd8c49d3b2c",
     "source_doc_hashes": {
-      "spec.md": "18ccde81ab902ac42a8eb3bba66c4e773c999e77f67539f4ae591c33d373be2e",
-      "plan.md": "5f122deb75c17758af70e57b91cc6feaaa5f5ff984da7b7348c6227c2fbe9d4f",
-      "tasks.md": "c27180be999ca446f73933298c4f05449bcfeed41c6937f862d2ef7963996a4f",
+      "spec.md": "6b1530ed8745775ee8fa98aea78562a379f11a2bd81ec87a499ca6b48aefc2c0",
+      "plan.md": "89905934f1acfc1d1494415000e45af4ebc37a932db07c4ebec3573811a600b0",
+      "tasks.md": "4a8d4a574ccdd2a030d2a0ad069baeb4fec103b9b64cbc008efc573563fd5fb6",
       "checklist.md": "2be87aa77a4bcea719ef63e378bcb48a3c5055594518a65ceb36093f9e2c02b3",
-      "decision-record.md": "0328e51a9f85ed9d0c2d062b756d1460eabfea0e57af4840ad3a7a6edba10900"
+      "decision-record.md": "89a2aa330ceec6132bae6641c2f026dcb25d7f071ac5986c2891accead48fbb6"
     },
     "last_active_child_id": null,
     "last_active_at": null

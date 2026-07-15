@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: repo-wide kebab-case (hyphen) filesystem-naming convention"
-description: "Ban snake_case in filesystem names repo-wide and make kebab-case (hyphens) the sole canonical form for folder names, file names, and script filenames — with a hard exemption for Python (.py, PEP-8 snake_case) plus vendored/third-party trees, generated/lockfile output, tool-mandated filenames, and Python import-package directories. Code identifiers, JSON/YAML/TOML keys, frontmatter fields, and DB columns are OUT of scope (idiomatic case, hyphens illegal there). Reverses and supersedes the 027 underscore migration, including the sk-doc validator/loader logic keyed on feature_catalog / manual_testing_playbook. Phase parent for a 16-phase program (000-015): worktree + immutable-baseline + census first, then policy + all-consumer logic + generators + guard/rename-and-reference tooling, then a frozen bijective rename map, then dependency-closure surface migration (catalog, alias-removal, runtime/package-layout, references, scripts+imports, docs, config/data), then the whole-repo gate, then integrate-latest + closeout. Migration runs on a dedicated worktree pinned to an immutable BASE SHA."
+description: "Ban snake_case in filesystem names repo-wide and make kebab-case (hyphens) the sole canonical form for folder names, file names, and script filenames — with a hard exemption for Python (.py, PEP-8 snake_case) plus vendored/third-party trees, generated/lockfile output, tool-mandated filenames, and Python import-package directories. Code identifiers, JSON/YAML/TOML keys, frontmatter fields, and DB columns are OUT of scope (idiomatic case, hyphens illegal there). Reverses and supersedes the 027 underscore migration, including the sk-doc validator/loader logic keyed on feature_catalog / manual_testing_playbook. Phase parent for a 12-phase program (000-011): worktree + immutable-baseline + census first, then policy + all-consumer logic + create-generators + no-new-snake guard + rename-and-reference tooling + a frozen bijective rename map + shared cross-cutting closures, then a per-component migration fan-out, then alias-removal, the whole-repo gate, and integrate-latest + closeout. Migration runs on a dedicated worktree pinned to an immutable BASE SHA."
 trigger_phrases:
   - "hyphen naming convention"
   - "kebab-case filesystem names"
@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Replanned to 16 phases after the GPT-5.6-SOL-max design review (REQUESTED_CHANGES)"
+    recent_action: "Restructured into the 000-011 phased tree"
     next_safe_action: "Execute phase 000 (worktree + baseline + census) on the pinned BASE SHA"
     blockers: []
     key_files: []
@@ -50,7 +50,7 @@ _memory:
 | **Created** | 2026-07-13 |
 | **Owner skill** | sk-doc (owns the naming conventions, the `validate_document.py` classifier, the create-* generators, and the templates) |
 | **Origin** | Operator: "reverse the naming convention and ban snake_case EVERYWHERE except python scripts … folder names, file names, script file names should all use hyphens … change logic in sk-doc and its create skills, then retroactively fix across the repo … definitely needs a worktree" |
-| **Review** | GPT-5.6-sol (max) design review returned REQUESTED_CHANGES; this 16-phase decomposition folds in every P0/P1. See `001-convention-policy-and-scope/decision-record.md`. |
+| **Review** | GPT-5.6-sol (max) design review returned REQUESTED_CHANGES; this phased decomposition folds in every P0/P1. See `001-convention-policy-and-scope/decision-record.md`. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -123,34 +123,30 @@ batches — without regressing validation, builds, tests, imports, or the Lane C
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:phases -->
-## PHASE DOCUMENTATION MAP
+## PHASE MAP & OUTCOMES
 
 Ordered so the repo stays internally consistent at every commit and the execution is reproducible: an isolated worktree
-+ immutable baseline + raw census come FIRST; then policy + all-consumer logic + generators + guard/rename tooling (the
-toolchain speaks hyphens before any rename); then the frozen bijective rename map; then dependency-closure surface
-migration; then the whole-repo gate; then integrate-latest + closeout. Every phase carries a blocking SOL verifier
-contract in its `checklist.md`.
++ immutable baseline + raw census come FIRST; then policy + all-consumer logic + create-generators + the no-new-snake
+guard + rename/reference tooling + the frozen bijective map + shared cross-cutting closures (the toolchain speaks
+hyphens before any rename); then the per-component migration fan-out; then alias-removal, the whole-repo gate, and
+integrate-latest + closeout. Every phase carries a blocking SOL verifier contract in its `checklist.md`.
 
-| Phase | Child | Outcome |
-|-------|-------|---------|
-| **000** | `000-worktree-baseline-and-census` | Establish the isolated worktree off an immutable BASE SHA; a fresh deterministic dependency install (never a symlink to the raced main tree); capture the full baseline — naming census, symlink + mode manifest, test-discovery counts, strict-validate output, Lane C scenario IDs/scores, casefold/NFC collision report — against which every later phase is proven. |
-| **001** | `001-convention-policy-and-scope` | The authoritative kebab-case convention doc + the program decision record (dual-name tolerance, dependency-closure batching, fresh-install, numbering, GPT review). The full exemption/deny-list boundary, the identifier/key + frontmatter-value line, the frozen-history exception, Python import-package handling, and formal supersession of the 027 underscore ADR. |
-| **002** | `002-root-name-consumer-migration` | Update **every** runtime consumer of the catalog/playbook root + index names to accept the hyphenated roots: the classifier (symlink-aware, both surfaces), the Lane C loader + generator, `parent-skill-check.cjs`, `post-edit-router.cjs`, `package_skill.py`, the inverse guard + its tests. Ship a bounded dual-name tolerance (accept both, emit only hyphens, fail closed if both physical roots coexist); test POSIX + Windows paths. |
-| **003** | `003-create-generators-and-templates` | Update every create-* generator (incl. `package_skill.py`) + templates to emit hyphenated folder/file names; reverse the 027 generator changes. Verify by generating into a temp dir and comparing the whole emitted tree against the policy. |
-| **004** | `004-no-new-snake-guard` | The exemption-aware no-new-snake_case guard with a debt-tolerant `--changed-since $BASE` mode and an `--all` mode enabled after migration; positive + negative fixtures. |
-| **005** | `005-rename-and-reference-tooling` | The deterministic, dry-run-default rename engine (semantic source→target map — NOT a character substitution; collision hard-abort on exact/casefold/NFC; symlink mode-120000 + exec-bit preservation) AND the rename-map-driven whole-repo reference checker (JS/TS module resolution, JSON/YAML/TOML path values, shell sourcing, registries; a disposition ledger for every dynamic `require`/`source`/glob site; fail on zero scan). |
-| **006** | `006-inventory-and-frozen-map` | The full repo inventory (every exemption applied) frozen into a **bijective, fully-classified** rename map — every candidate is exactly one of rename / exempt / frozen / generated / tool-mandated, no "unknown" bucket — partitioned into dependency-closed batches (reference-graph SCCs). Hash the map together with BASE. |
-| **007** | `007-migrate-catalog-and-playbook` | Reverse 027: rename `feature_catalog`→`feature-catalog`, `manual_testing_playbook`→`manual-testing-playbook`, and all underscore catalog/playbook content back to hyphens, across all skills; rewrite index tables + `category:` frontmatter VALUES + cross-refs; validated against the 002 logic with **zero silent `readme` downgrade**. |
-| **008** | `008-remove-transition-aliases` | Drop the underscore aliases from the 002 logic; prove the old live root names are now rejected and only scoped frozen/exempt references remain. |
-| **009** | `009-runtime-and-package-layout` | Migrate runtime/package-layout directories (`mcp_server`, `install_scripts`, `plugin_bridges`, `matrix_runners`, `behavior_benchmark`, `stress_test`, `level_1/2/3` templates, `__fixtures__`/`__tests__`/`_support` where safe) WITH their manifests, lockfiles, tsconfigs, launchers, imports, tests, and registries — each moved in one dependency-closed batch; fresh-install + `realpath` proof that deps resolve inside the worktree. |
-| **010** | `010-migrate-references-and-assets` | Hyphenate snake_case folders/files under `references/`, `assets/`, and `benchmark/` across all skills (non-catalog), in dependency-closed batches; rewrite their cross-references. |
-| **011** | `011-migrate-scripts-and-imports` | Rename snake_case script filenames (`.ts`/`.js`/`.cjs`/`.mjs`/`.sh`) AND fix every `import`/`require`/`source`/registry reference in lockstep — dependency-closed per-skill/package batches, with shared dispatch/runtime scripts as their own cross-cutting batch; `node --check`, `bash -n`, build/typecheck/tests; every dynamic site dispositioned; test-discovery-count parity. The highest-risk phase. |
-| **012** | `012-migrate-specs-and-docs` | Hyphenate remaining in-scope snake_case `.md` filesystem names across specs and docs (honoring frozen surfaces + the identifier/key exemption); resolve markdown links across all active specs/docs; strict-validate every touched packet/skill. |
-| **013** | `013-migrate-config-and-data` | Remaining in-scope `.json`/`.yaml`/`.yml`/`.toml` DATA/CONFIG filenames (not keys); classify the tracked SQLite DB (active → schema-aware migration, never raw byte replace); symlink + magic-name preservation; final exemption reconciliation. |
-| **014** | `014-validate-build-test-rebenchmark` | The whole-repo gate: the `--all` naming guard, every affected build/typecheck/test suite with discovery-count parity, whole-repo import + path + markdown-link resolution (0 broken), recursive `validate.sh --strict`, and a fixed-seed Lane C re-baseline (semantic + score, not count only) vs the 000 snapshot. Verification mutates no tracked file. |
-| **015** | `015-integrate-and-closeout` | Integrate the latest origin in a clean integration worktree and rerun the ENTIRE 014 gate on the exact final commit; mark 027 superseded (append-only), update changelogs, finalize the convention as canonical, parent rollup, reconcile completion metadata, and merge. |
+| Phase | Child | Kind | Outcome |
+|-------|-------|------|---------|
+| **000** | `000-worktree-baseline-and-census` | leaf | Establish the isolated worktree off an immutable BASE SHA; a fresh deterministic dependency install (never a symlink to the raced main tree); capture the full baseline — naming census, symlink + mode manifest, test-discovery counts, strict-validate output, Lane C scenario IDs/scores, casefold/NFC collision report — against which every later phase is proven. |
+| **001** | `001-convention-policy-and-scope` | leaf (+decision-record) | The authoritative kebab-case convention doc + the program decision record (dual-name tolerance, dependency-closure batching, fresh-install, numbering, GPT review). The full exemption/deny-list boundary, the identifier/key + frontmatter-value line, the frozen-history exception, Python import-package handling, and formal supersession of the 027 underscore ADR. |
+| **002** | `002-root-name-consumer-migration` | leaf | Update **every** runtime consumer of the catalog/playbook root + index names to accept the hyphenated roots: the classifier (symlink-aware, both surfaces), the Lane C loader + generator, `parent-skill-check.cjs`, `post-edit-router.cjs`, `package_skill.py`, the inverse guard + its tests. Ship a bounded dual-name tolerance (accept both, emit only hyphens, fail closed if both physical roots coexist); test POSIX + Windows paths. |
+| **003** | `003-create-generators-and-templates` | parent (×4) | Update every create-* generator + templates to emit hyphenated folder/file names; reverse the 027 generator changes. Children split the surface: create-skill-and-packaging, catalog/playbook generators, the readme/agent/command/changelog/flowchart/diff/benchmark emitters, and command-asset emitters. |
+| **004** | `004-no-new-snake-guard` | leaf | The exemption-aware no-new-snake_case guard with a debt-tolerant `--changed-since $BASE` mode and an `--all` mode enabled after migration; positive + negative fixtures. |
+| **005** | `005-rename-and-reference-tooling` | parent (×3) | The deterministic, dry-run-default rename engine (semantic source→target map; collision hard-abort on exact/casefold/NFC; symlink mode-120000 + exec-bit preservation), the rename-map-driven whole-repo reference checker (module resolution, path-value config, shell sourcing, registries; a disposition ledger for every dynamic `require`/`source`/glob site), and a fixture corpus + dry-run harness. |
+| **006** | `006-inventory-and-frozen-map` | leaf | The full repo inventory (every exemption applied) frozen into a **bijective, fully-classified** rename map — every candidate is exactly one of rename / exempt / frozen / generated / tool-mandated, no "unknown" bucket — partitioned into dependency-closed batches (reference-graph SCCs); the closure↔component map, hoist list, and parallel go-list. Hash the map together with BASE. |
+| **007** | `007-shared-and-cross-cutting-closures` | parent (×4) | The dependency backbone: closures that span ≥2 component subtrees, hoisted so component phases depend on them — root/opencode infra strays, the cross-skill symlink closure, hoisted shared-script closures, and active (non-frozen) specs/docs. |
+| **008** | `008-component-migration` | parent (×14) | The per-component migration fan-out: one child subtree per skill / command-area / agent-set (`001-sk-code` … `014-agents`), each ending in a rollup `…-gate`. Component phases declare `depends_on` 007; the catalog/playbook reversal lands coupled with the 002 logic (zero silent `readme` downgrade). |
+| **009** | `009-remove-transition-aliases` | leaf | Drop the underscore aliases from the 002 logic; prove the old live root names are now rejected and only scoped frozen/exempt references remain. |
+| **010** | `010-whole-repo-gate` | leaf | The whole-repo gate: the `--all` naming guard, every affected build/typecheck/test suite with discovery-count parity, whole-repo import + path + markdown-link resolution (0 broken), recursive `validate.sh --strict`, and a fixed-seed Lane C re-baseline (semantic + score, not count only) vs the 000 snapshot. Verification mutates no tracked file. |
+| **011** | `011-integrate-and-closeout` | leaf | Integrate the latest origin in a clean integration worktree and rerun the ENTIRE 010 gate on the exact final commit; mark 027 superseded (append-only), update changelogs, finalize the convention as canonical, parent rollup, reconcile completion metadata, and merge. |
 
-**Sequencing invariants:** 000 pins BASE + baseline before anything. 001-005 make the toolchain speak hyphens (and build the guard + rename/reference tooling) before any rename. 002 ships a bounded dual-name tolerance so it precedes 007; 008 removes the alias only after 007 lands. 006's map is frozen + hashed with BASE; batches are dependency-closed (a batch may mix JS/shell/JSON/YAML/MD — surface labels 009-013 are organizational, not atomicity boundaries). 014 is the whole-repo gate; 015 integrates the latest origin and reruns 014 before closeout. Because a runtime path (the classifier) keys on the catalog root names, 007 must land coupled with the 002 logic + tolerance — the 007 checklist proves zero silent downgrade.
+**Sequencing invariants:** 000 pins BASE + baseline before anything. 001-007 make the toolchain speak hyphens — policy, all-consumer logic, generators, the guard, the rename/reference engine, the frozen map, and the shared cross-cutting closures — before any component rename. 002 ships a bounded dual-name tolerance so it precedes the catalog/playbook reversal inside 008; 009 removes the alias only after 008 lands. 006's map is frozen + hashed with BASE; batches are dependency-closed (a batch may mix JS/shell/JSON/YAML/MD). 007 hoists every closure spanning ≥2 component subtrees, and 008's component phases declare `depends_on` it. 010 is the whole-repo gate; 011 integrates the latest origin and reruns 010 before closeout. Because a runtime path (the classifier) keys on the catalog root names, the catalog/playbook reversal in 008 must land coupled with the 002 logic + tolerance.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:success-criteria -->
@@ -218,9 +214,18 @@ contract in its `checklist.md`.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 9 | 009-remove-transition-aliases/ | [Phase 9 scope] | Pending |
-| 10 | 010-whole-repo-gate/ | [Phase 10 scope] | Pending |
-| 11 | 011-integrate-and-closeout/ | [Phase 11 scope] | Pending |
+| 000 | 000-worktree-baseline-and-census/ | Isolated worktree, immutable BASE, full baseline census | Planned |
+| 001 | 001-convention-policy-and-scope/ | Convention doc + decision record + exemption boundary | Planned |
+| 002 | 002-root-name-consumer-migration/ | All catalog/playbook root-name consumers accept hyphens | Planned |
+| 003 | 003-create-generators-and-templates/ | create-* generators + templates emit hyphens (parent ×4) | Planned |
+| 004 | 004-no-new-snake-guard/ | Exemption-aware no-new-snake_case guard | Planned |
+| 005 | 005-rename-and-reference-tooling/ | Rename engine + reference checker + harness (parent ×3) | Planned |
+| 006 | 006-inventory-and-frozen-map/ | Bijective frozen rename map + batch graph | Planned |
+| 007 | 007-shared-and-cross-cutting-closures/ | Hoisted cross-subtree closures (parent ×4) | Planned |
+| 008 | 008-component-migration/ | Per-component migration fan-out (parent ×14) | Planned |
+| 009 | 009-remove-transition-aliases/ | Drop underscore aliases; prove old roots rejected | Planned |
+| 010 | 010-whole-repo-gate/ | Whole-repo naming/build/test/link/benchmark gate | Planned |
+| 011 | 011-integrate-and-closeout/ | Integrate latest origin, rerun 010, supersede 027, close out | Planned |
 
 ### Phase Transition Rules
 
@@ -233,7 +238,9 @@ contract in its `checklist.md`.
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 008-component-migration | 009-remove-transition-aliases | [Criteria TBD] | [Verification TBD] |
-| 009-remove-transition-aliases | 010-whole-repo-gate | [Criteria TBD] | [Verification TBD] |
-| 010-whole-repo-gate | 011-integrate-and-closeout | [Criteria TBD] | [Verification TBD] |
+| 000 | 001 | BASE pinned; baseline census + collision report captured | Baseline artifacts exist, keyed by BASE |
+| 001-007 | 008 | Toolchain speaks hyphens; guard, rename/reference tooling, frozen map, and shared closures landed | 003/004/005 fixtures pass; 006 map hashed with BASE; 007 closures resolved |
+| 008 | 009 | Every component subtree gate green; catalog/playbook reversal coupled with 002 logic | Per-skill `…-gate` checklists pass; zero silent `readme` downgrade |
+| 009 | 010 | Underscore aliases removed; old live roots rejected | 002 logic rejects legacy roots; only frozen/exempt refs remain |
+| 010 | 011 | Whole-repo gate green on the pre-integration commit | `--all` guard + build/test/link/benchmark parity vs 000 |
 <!-- /ANCHOR:phase-map -->

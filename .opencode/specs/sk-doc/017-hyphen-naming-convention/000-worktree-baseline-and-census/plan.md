@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/000-worktree-baseline-and-census"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Plan authored from the 16-phase decomposition"
+    recent_action: "Plan authored for the 017 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []
@@ -58,7 +58,7 @@ The migration must be reproducible and isolated from the actively-raced main che
 ## 3. ARCHITECTURE
 
 - Pin an immutable BASE SHA (`git rev-parse origin/skilled/v4.0.0.0^{commit}`) and record it.
-- Create the isolated worktree `.worktrees/0037-017-hyphen-naming` on branch `wt/0037-017-hyphen-naming` off BASE, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
+- Create the isolated migration worktree off BASE by allocating an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 017-hyphen-naming` (never hand-number the counter) — branch `sk-doc/{NNNN}-017-hyphen-naming`, dir `.worktrees/{NNNN}-sk-doc-017-hyphen-naming`, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
 - A fresh, deterministic dependency install + build in the worktree (never symlink `node_modules` or `dist`).
 - Capture the baseline: naming census, symlink + file-mode manifest, test-discovery counts, recursive strict-validate output, Lane C scenario IDs + scores, and an exact/casefold/NFC collision report.
 <!-- /ANCHOR:architecture -->
@@ -71,7 +71,7 @@ The migration must be reproducible and isolated from the actively-raced main che
 
 ### Phase 2: Implementation
 - Pin an immutable BASE SHA (`git rev-parse origin/skilled/v4.0.0.0^{commit}`) and record it.
-- Create the isolated worktree `.worktrees/0037-017-hyphen-naming` on branch `wt/0037-017-hyphen-naming` off BASE, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
+- Create the isolated migration worktree off BASE by allocating an owner-first branch via `.opencode/skills/sk-git/scripts/worktree-naming.sh create sk-doc 017-hyphen-naming` (never hand-number the counter) — branch `sk-doc/{NNNN}-017-hyphen-naming`, dir `.worktrees/{NNNN}-sk-doc-017-hyphen-naming`, with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`.
 - A fresh, deterministic dependency install + build in the worktree (never symlink `node_modules` or `dist`).
 - Capture the baseline: naming census, symlink + file-mode manifest, test-discovery counts, recursive strict-validate output, Lane C scenario IDs + scores, and an exact/casefold/NFC collision report.
 

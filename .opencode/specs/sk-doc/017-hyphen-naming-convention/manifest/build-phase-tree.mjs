@@ -151,7 +151,7 @@ const TOP = [
     leaf('reference-checker-and-disposition-ledger', 3),
     leaf('fixture-corpus-and-dry-run-harness', 2),
   ], { origin: '005-rename-and-reference-tooling (was leaf -> parent)' }),
-  leaf('006-inventory-frozen-map-and-batch-graph', 3, { origin: '006-inventory-and-frozen-map (git mv rename)', note: 'emit closure<->component map, hoist list, parallel go-list' }),
+  leaf('006-inventory-and-frozen-map', 3, { origin: '006-inventory-and-frozen-map (kept; scope expanded in content)', note: 'inventory + frozen bijective map + closure<->component map, hoist list, parallel go-list' }),
   parent('007-shared-and-cross-cutting-closures', [
     leaf('root-and-opencode-infra-strays', 2, { note: 'install_guides, install_scripts, root docs; .utcp_config.json exempt' }),
     leaf('cross-skill-symlink-closure', 3, { note: '53-symlink manifest; advisor->spec-kit shared/embeddings link; standing merge-gate check' }),
@@ -193,6 +193,18 @@ function walk(node, parentPath, depth) {
   if (node.children) for (const c of node.children) walk(c, path, depth + 1);
 }
 
+// The scaffold (create.sh --phase) assigns each child folder a NNN- prefix in
+// sibling order. Reproduce that here so the manifest ids match the on-disk tree.
+// Pre-numbered slugs (top level, 008's skill dirs) are preserved as-is.
+function numberChildren(node) {
+  if (!node.children) return;
+  node.children.forEach((child, i) => {
+    if (!/^\d{3}-/.test(child.slug)) child.slug = `${String(i + 1).padStart(3, '0')}-${child.slug}`;
+    numberChildren(child);
+  });
+}
+for (const n of TOP) numberChildren(n);
+
 for (const n of TOP) walk(n, ROOT, 1);
 
 const leaves = nodes.filter((n) => n.kind === 'leaf');
@@ -215,7 +227,10 @@ const manifest = {
   nodes,
 };
 
-const outPath = process.argv[2] || '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/9a186d53-e156-46cb-a043-bf3daca1e607/scratchpad/phase-tree.json';
+// Default to the authoritative manifest beside this script so a bare
+// `node build-phase-tree.mjs` refreshes the checked-in tree (pass an explicit
+// path as argv[2] to write elsewhere, e.g. a scratch diff target).
+const outPath = process.argv[2] || new URL('./phase-tree.json', import.meta.url).pathname;
 writeFileSync(outPath, JSON.stringify(manifest, null, 2));
 
 // ---- summary -----------------------------------------------------------------

@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/017-hyphen-naming-convention/006-inventory-and-frozen-map"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase spec authored from the 16-phase decomposition"
+    recent_action: "Phase spec authored for the 017 phased tree"
     next_safe_action: "Execute this phase on the pinned worktree when picked up"
     blockers: []
     key_files: []
@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Inventory and frozen rename map
 
-> Phase adjacency under the 017 parent (grouping order, not a runtime dependency): predecessor `005-rename-and-reference-tooling`; successor `007-migrate-catalog-and-playbook`.
+> Phase adjacency under the 017 parent (grouping order, not a runtime dependency): predecessor `005-rename-and-reference-tooling`; successor `007-shared-and-cross-cutting-closures`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

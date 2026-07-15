@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: kebab-case filesystem-naming program (017 phase 001)"
-description: "Program-level decision record for the 017 kebab-case filesystem-naming migration: the GPT-5.6-sol design-review outcome and the locked decisions (dual-name tolerance, dependency-closure batching, fresh-install worktree, packet numbering, exemption boundary) that shape the 16-phase plan."
+description: "Program-level decision record for the 017 kebab-case filesystem-naming migration: the GPT-5.6-sol design-review outcome and the locked decisions (dual-name tolerance, dependency-closure batching, fresh-install worktree, packet numbering, exemption boundary) that shape the 017 phased plan."
 trigger_phrases:
   - "hyphen naming decision record"
   - "kebab-case migration decisions"
@@ -33,7 +33,7 @@ _memory:
 This program reverses the 027 underscore migration and makes kebab-case (hyphens) the sole canonical form for in-scope
 filesystem names repo-wide. Before execution, the 12-phase draft plan was reviewed by a GPT-5.6-sol (max reasoning)
 design review against the pinned origin tree. The review returned **REQUESTED_CHANGES** ("not safe to execute as
-written") with verified P0/P1 findings. Every accepted finding is folded into the current 16-phase (000-015) plan; the
+written") with verified P0/P1 findings. Every accepted finding is folded into the current phased plan (000-011); the
 raw review is archived with the packet working notes. This record captures the decisions that shape the plan so later
 phases inherit the "why", not just the "what".
 <!-- /ANCHOR:context -->
@@ -76,12 +76,13 @@ engine driven by a semantic, explicitly-classified map with collision hard-abort
 + exec-bit preservation, plus a rename-map-driven whole-repo reference checker that resolves modules, config path-values,
 and shell sourcing, dispositions every dynamic `require`/`source`/glob site, and fails on a zero-file scan.
 
-### DR-006 — A dedicated runtime/package-layout phase before general script renames
+### DR-006 — A dedicated runtime/package-layout closure before general script renames
 Directories such as `mcp_server` (a declared `package-lock.json` workspace), `install_scripts`, `plugin_bridges`,
 `matrix_runners`, `behavior_benchmark`, and the `level_1/2/3` template dirs interact with manifests, lockfiles,
-tsconfigs, test discovery, and launchers, and cannot be deferred to "stragglers". **Decision:** phase 009 moves each with
-its full dependency closure (manifests, lockfiles, launchers, imports, tests, registries) and re-proves a reproducible
-install/build via `realpath`.
+tsconfigs, test discovery, and launchers, and cannot be deferred to "stragglers". **Decision:** each moves in a
+dedicated dependency-closed step — the per-skill `mcp-server-dir-and-manifest-closure` leaf within the 008 component
+fan-out — carrying its full closure (manifests, lockfiles, launchers, imports, tests, registries) and re-proving a
+reproducible install/build via `realpath`.
 
 ### DR-007 — Every candidate classified exactly once; no "unknown" bucket
 **Decision:** phase 006 freezes a bijective rename map in which every in-scope candidate is exactly one of
@@ -111,10 +112,13 @@ suggested `019` only because it read the origin state before that fold; that con
 <!-- ANCHOR:consequences -->
 ## Consequences
 
-- The plan grows from 12 to 16 phases (000-015): a baseline phase (000), an all-consumer logic phase (002), a split of
-  guard vs rename/reference tooling (004/005), an alias-removal phase (008), and a runtime/package-layout phase (009).
+- The review's accepted findings grew the draft, and the program was then restructured into the literal-maximal nested
+  tree — 12 top-level phases (000-011) over 175 nodes: baseline (000), policy (001), all-consumer logic (002),
+  create-generators (003), the no-new-snake guard (004), rename/reference tooling (005), the frozen map (006), shared
+  cross-cutting closures (007), the per-component migration fan-out (008), alias-removal (009), the whole-repo gate (010),
+  and integrate/closeout (011). The old flat surface-migration phases fold into the 008 component fan-out.
 - Every intermediate commit stays green (dual-name tolerance + changed-only guard + dependency-closed batches), and the
-  whole-repo gate (014) reruns after integrating the latest origin (015).
+  whole-repo gate (010) reruns after integrating the latest origin (011).
 - The verification burden is explicit and front-loaded: no rename batch lands without its SOL contract passing against
   the pinned baseline.
 <!-- /ANCHOR:consequences -->
@@ -122,6 +126,6 @@ suggested `019` only because it read the origin state before that fold; that con
 <!-- ANCHOR:references -->
 ## References
 
-- Parent spec: `../spec.md` (16-phase map + sequencing invariants).
+- Parent spec: `../spec.md` (000-011 phase map + sequencing invariants).
 - The GPT-5.6-sol review verdict and ranked findings shaped every decision above.
 <!-- /ANCHOR:references -->
