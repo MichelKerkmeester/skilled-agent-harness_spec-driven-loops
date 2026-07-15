@@ -1,0 +1,340 @@
+{
+  "mergedFrom": [
+    "document-diff-1",
+    "document-diff-2",
+    "document-diff-3"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "state-finding-10-1-3d4702eb26ab",
+      "title": "Architecture consolidation and risk validation",
+      "summary": "Architecture consolidation and risk validation",
+      "text": "Architecture consolidation and risk validation",
+      "addedAtIteration": 10,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1"
+      ]
+    },
+    {
+      "id": "state-finding-8-1-deebc57ba12a",
+      "title": "Architecture shape comparison and eliminated alternatives",
+      "summary": "Architecture shape comparison and eliminated alternatives",
+      "text": "Architecture shape comparison and eliminated alternatives",
+      "addedAtIteration": 8,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-9-1-fb84338f743f",
+      "title": "Architecture synthesis",
+      "summary": "Architecture synthesis",
+      "text": "Architecture synthesis",
+      "addedAtIteration": 9,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-83b5e77ed4fa",
+      "title": "Broad survey of existing document diff tools, libraries, and products",
+      "summary": "Broad survey of existing document diff tools, libraries, and products",
+      "text": "Broad survey of existing document diff tools, libraries, and products",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-f9ee7a7dbe78",
+      "title": "Canonical representation and extraction pipelines per format",
+      "summary": "Canonical representation and extraction pipelines per format",
+      "text": "Canonical representation and extraction pipelines per format",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-28cea66b86b4",
+      "title": "Canonical representation and format parsers landscape",
+      "summary": "Canonical representation and format parsers landscape",
+      "text": "Canonical representation and format parsers landscape",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-b987d69628a2",
+      "title": "Canonical representations and format adapters survey",
+      "summary": "Canonical representations and format adapters survey",
+      "text": "Canonical representations and format adapters survey",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    },
+    {
+      "id": "state-finding-9-1-4365aa10c421",
+      "title": "Cross-format comparison and edge cases",
+      "summary": "Cross-format comparison and edge cases",
+      "text": "Cross-format comparison and edge cases",
+      "addedAtIteration": 9,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-088a2fe3af9d",
+      "title": "Diff algorithm comparison for structural document comparison",
+      "summary": "Diff algorithm comparison for structural document comparison",
+      "text": "Diff algorithm comparison for structural document comparison",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-5b3073692208",
+      "title": "Diff algorithms and format adapter libraries deep dive",
+      "summary": "Diff algorithms and format adapter libraries deep dive",
+      "text": "Diff algorithms and format adapter libraries deep dive",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-76fa0660fe51",
+      "title": "Diff algorithms and noise suppression",
+      "summary": "Diff algorithms and noise suppression",
+      "text": "Diff algorithms and noise suppression",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1"
+      ]
+    },
+    {
+      "id": "state-finding-9-1-532ac461425b",
+      "title": "Fixture corpus, acceptance criteria, and performance benchmarks",
+      "summary": "Fixture corpus, acceptance criteria, and performance benchmarks",
+      "text": "Fixture corpus, acceptance criteria, and performance benchmarks",
+      "addedAtIteration": 9,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-e1fd262d5acb",
+      "title": "Format adapter chain architecture",
+      "summary": "Format adapter chain architecture",
+      "text": "Format adapter chain architecture",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1"
+      ]
+    },
+    {
+      "id": "state-finding-10-1-838e8754b823",
+      "title": "Gap analysis and remaining open questions",
+      "summary": "Gap analysis and remaining open questions",
+      "text": "Gap analysis and remaining open questions",
+      "addedAtIteration": 10,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-7a500132441e",
+      "title": "HTML report architecture and security boundary",
+      "summary": "HTML report architecture and security boundary",
+      "text": "HTML report architecture and security boundary",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-cdfbf56c2da6",
+      "title": "HTML report design",
+      "summary": "HTML report design",
+      "text": "HTML report design",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-cdfbf56c2da6",
+      "title": "HTML report design",
+      "summary": "HTML report design",
+      "text": "HTML report design",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1"
+      ]
+    },
+    {
+      "id": "state-finding-10-1-41afdd760553",
+      "title": "Integration synthesis, risks, and later-phase recommendations",
+      "summary": "Integration synthesis, risks, and later-phase recommendations",
+      "text": "Integration synthesis, risks, and later-phase recommendations",
+      "addedAtIteration": 10,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-8-1-738c3cfb122a",
+      "title": "OpenCode skill interface design",
+      "summary": "OpenCode skill interface design",
+      "text": "OpenCode skill interface design",
+      "addedAtIteration": 8,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1"
+      ]
+    },
+    {
+      "id": "state-finding-6-1-f77d6b71a7e7",
+      "title": "PDF and edge format deep-dive",
+      "summary": "PDF and edge format deep-dive",
+      "text": "PDF and edge format deep-dive",
+      "addedAtIteration": 6,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-9c90e6c601b9",
+      "title": "Portable core and skill interface design",
+      "summary": "Portable core and skill interface design",
+      "text": "Portable core and skill interface design",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    },
+    {
+      "id": "state-finding-6-1-65ac22691b6c",
+      "title": "Runtime and language selection",
+      "summary": "Runtime and language selection",
+      "text": "Runtime and language selection",
+      "addedAtIteration": 6,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1"
+      ]
+    },
+    {
+      "id": "state-finding-6-1-949f822b365a",
+      "title": "Runtime selection and dependency analysis",
+      "summary": "Runtime selection and dependency analysis",
+      "text": "Runtime selection and dependency analysis",
+      "addedAtIteration": 6,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-7-1-30fe67655f53",
+      "title": "Security boundary analysis",
+      "summary": "Security boundary analysis",
+      "text": "Security boundary analysis",
+      "addedAtIteration": 7,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    },
+    {
+      "id": "state-finding-7-1-f5f32725b9a5",
+      "title": "Security considerations",
+      "summary": "Security considerations",
+      "text": "Security considerations",
+      "addedAtIteration": 7,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1"
+      ]
+    },
+    {
+      "id": "state-finding-7-1-d0476b041301",
+      "title": "Security constraints for untrusted document input",
+      "summary": "Security constraints for untrusted document input",
+      "text": "Security constraints for untrusted document input",
+      "addedAtIteration": 7,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-7b47ffb05c60",
+      "title": "Snapshot lifecycle design",
+      "summary": "Snapshot lifecycle design",
+      "text": "Snapshot lifecycle design",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-7b47ffb05c60",
+      "title": "Snapshot lifecycle design",
+      "summary": "Snapshot lifecycle design",
+      "text": "Snapshot lifecycle design",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-1",
+        "document-diff-2"
+      ]
+    },
+    {
+      "id": "state-finding-8-1-9d98008bcab8",
+      "title": "Validation corpus and acceptance metrics",
+      "summary": "Validation corpus and acceptance metrics",
+      "text": "Validation corpus and acceptance metrics",
+      "addedAtIteration": 8,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "document-diff-3"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 30,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 29,
+    "convergenceScore": 0.35,
+    "coverageBySources": {}
+  }
+}

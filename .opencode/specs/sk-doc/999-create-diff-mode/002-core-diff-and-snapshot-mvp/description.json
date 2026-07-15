@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/999-create-diff-mode/002-core-diff-and-snapshot-mvp",
+  "description": "The research has selected an architecture, but no reusable comparison engine exists",
+  "keywords": [
+    "research",
+    "selected",
+    "architecture",
+    "reusable",
+    "comparison",
+    "engine",
+    "exists"
+  ],
+  "lastUpdated": "2026-07-15T09:46:57.925Z",
+  "specId": "002",
+  "folderSlug": "core-diff-and-snapshot-mvp",
+  "parentChain": [
+    "sk-doc",
+    "999-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

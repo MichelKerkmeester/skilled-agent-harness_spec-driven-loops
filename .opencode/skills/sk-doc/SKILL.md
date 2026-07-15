@@ -31,7 +31,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **create-benchmark** | Author MCP-promotion, behavior, conformance, skill-benchmark, and model-benchmark packages or inputs | `create-benchmark/` | `/create:benchmark` |
 | **create-flowchart** | Generate and validate an ASCII flowchart | `create-flowchart/` | `/create:flowchart` |
 | **create-changelog** | Author a global or packet-local changelog entry (version bump + topology-aware placement) | `create-changelog/` | `/create:changelog` |
-| **create-diff** | Produce a local, Git-free before/after review of an AI-edited document (preview; engine pending packet 136) | `create-diff/` | — (preview) |
+| **create-diff** | Produce a local, Git-free before/after review of an edited document (text/Markdown/HTML/DOCX/text-PDF) as a self-contained HTML report | `create-diff/` | — (routes via aliases) |
 | **create-quality-control** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `create-quality-control/` | `/doc:quality` |
 
 ### When NOT to Use

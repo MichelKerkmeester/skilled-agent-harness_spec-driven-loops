@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/999-create-diff-mode",
+  "spec_folder": "sk-doc/999-create-diff-mode",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/999-create-diff-mode/001-research-and-requirements",
+    "sk-doc/999-create-diff-mode/002-core-diff-and-snapshot-mvp",
+    "sk-doc/999-create-diff-mode/003-validation-security-and-quality-gates",
+    "sk-doc/999-create-diff-mode/004-html-docx-and-move-detection",
+    "sk-doc/999-create-diff-mode/005-pdf-cli-and-cross-platform-state",
+    "sk-doc/999-create-diff-mode/006-opencode-skill-and-accessibility",
+    "sk-doc/999-create-diff-mode/007-optional-ocr-adapter"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "standalone document diff skill",
+      "AI document before and after",
+      "document diff without git",
+      "local HTML diff report"
+    ],
+    "key_topics": [
+      "standalone",
+      "document",
+      "diff",
+      "skill",
+      "without",
+      "git",
+      "local",
+      "html",
+      "report",
+      "ai-assisted",
+      "edits",
+      "often"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-research-and-requirements/research/research.md",
+      "002-core-diff-and-snapshot-mvp/spec.md",
+      "003-validation-security-and-quality-gates/spec.md",
+      "001-research-and-requirements/decision-record.md",
+      "004-html-docx-and-move-detection/spec.md",
+      "005-pdf-cli-and-cross-platform-state/spec.md",
+      "006-opencode-skill-and-accessibility/spec.md",
+      "007-optional-ocr-adapter/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Document Diff Engine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diff Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "AI-assisted document edits often happen outside a Git repository",
+    "created_at": "2026-07-15T09:48:17.080Z",
+    "last_save_at": "2026-07-15T09:48:17.080Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f2509fe0c169357e2ca91d6d94a30f6047457f7f9b87377256de3d08862da46c",
+    "source_doc_hashes": {
+      "spec.md": "2f0c6bb6341c97212c80b22c1ac01500cb57dbac1d8ab550ecb8677cc8ea0a05"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

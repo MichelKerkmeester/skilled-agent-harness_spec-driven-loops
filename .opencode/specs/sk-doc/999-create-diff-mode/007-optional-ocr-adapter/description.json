@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/999-create-diff-mode/007-optional-ocr-adapter",
+  "description": "Scanned documents contain no reliable text layer, but OCR is expensive, error-prone, language-dependent, and easy to misrepresent",
+  "keywords": [
+    "scanned",
+    "documents",
+    "contain",
+    "reliable",
+    "text",
+    "layer",
+    "ocr",
+    "expensive",
+    "error-prone",
+    "language-dependent",
+    "easy",
+    "misrepresent"
+  ],
+  "lastUpdated": "2026-07-15T09:46:58.075Z",
+  "specId": "007",
+  "folderSlug": "optional-ocr-adapter",
+  "parentChain": [
+    "sk-doc",
+    "999-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

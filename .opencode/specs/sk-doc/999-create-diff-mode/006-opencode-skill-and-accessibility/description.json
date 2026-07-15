@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-doc/999-create-diff-mode/006-opencode-skill-and-accessibility",
+  "description": "A portable CLI alone does not capture the moment before an AI edit or guide users through review inside OpenCode",
+  "keywords": [
+    "portable",
+    "cli",
+    "alone",
+    "capture",
+    "moment",
+    "edit",
+    "guide",
+    "users",
+    "review",
+    "inside",
+    "opencode"
+  ],
+  "lastUpdated": "2026-07-15T10:55:47.812Z",
+  "specId": "006",
+  "folderSlug": "opencode-skill-and-accessibility",
+  "parentChain": [
+    "sk-doc",
+    "999-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

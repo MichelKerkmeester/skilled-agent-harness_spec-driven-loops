@@ -1,0 +1,34 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "Q1", "text": "Which canonical representation and adapters should v1 use?", "answer": "Structured token model with sections[], fidelity scoring, format-specific adapters", "evidence": "iteration-001.md, iteration-009.md"},
+    {"id": "Q2", "text": "Which diff algorithms best suppress conversion noise?", "answer": "jsdiff Myers algorithm for v1 core; histogram as v2 upgrade path for move detection", "evidence": "iteration-001.md, iteration-002.md"},
+    {"id": "Q3", "text": "Which snapshot lifecycle is safe and predictable?", "answer": "SHA-256 content-addressed, 30-day LRU retention, atomic write+rename, explicit-pair fallback", "evidence": "iteration-003.md"},
+    {"id": "Q4", "text": "How should the HTML report expose fidelity and risk?", "answer": "Self-contained dual-mode HTML, CSP script-src none, fidelity dashboard, keyboard navigation, ARIA labels", "evidence": "iteration-004.md"},
+    {"id": "Q5", "text": "Which portable core and skill interface should be implemented?", "answer": "Two-layer: npm doc-diff-core (TypeScript API) + OpenCode skill wrapper; full CLI contract", "evidence": "iteration-005.md"},
+    {"id": "Q6", "text": "What format support matrix is realistic for v1?", "answer": "4 tiers: Full (txt, md), Limited (html), Adapter (docx, text-pdf), Unsupported (scanned-pdf, binary)", "evidence": "iteration-001.md, iteration-006.md"},
+    {"id": "Q7", "text": "Which existing libraries provide authoritative evidence?", "answer": "diff+mammoth+cheerio+remark+pdf-parse; all BSD/MIT licensed, actively maintained", "evidence": "iteration-002.md, iteration-007.md"}
+  ],
+  "keyFindings": [
+    {"id": "F-libraries", "text": "Complete v1 technology stack: diff (95M/wk), mammoth (5.2M/wk), cheerio (1.8M dependents), remark (3.7M/wk)", "iterations": [1,2]},
+    {"id": "F-canonical", "text": "Canonical document model: sections[] with headings, paragraphs, lists, tables, links; per-construct fidelity scoring", "iterations": [1,9]},
+    {"id": "F-snapshot", "text": "Snapshot system: SHA-256 content-addressed, 30-day LRU, atomic writes, 0600 permissions, explicit-pair fallback", "iterations": [3]},
+    {"id": "F-report", "text": "HTML report: self-contained, CSP-hardened, side-by-side+unified modes, fidelity dashboard, keyboard-accessible", "iterations": [4]},
+    {"id": "F-architecture", "text": "Two-layer architecture: portable npm core (deterministic) + OpenCode skill wrapper (orchestration)", "iterations": [5,9]},
+    {"id": "F-format-matrix", "text": "7 formats across 4 tiers: Full (txt 100%, md 95%), Limited (html 80%), Adapter (docx 60%, pdf 50%), Unsupported (scanned, binary)", "iterations": [1,6]},
+    {"id": "F-security", "text": "15 threat vectors catalogued with severity ratings and mitigations; all 5 core deps permissively licensed", "iterations": [7]},
+    {"id": "F-testing", "text": "~33 fixture pairs, 6 quantitative metrics (95% detection, ≤5% false positive, ≤5s for 100KB), cross-platform CI", "iterations": [8]},
+    {"id": "F-gaps", "text": "8 identified gaps with confidence ratings; 6 carried-forward questions for v2", "iterations": [10]}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Character-only diff as primary approach", "reason": "Loses document structure", "iteration": 1},
+    {"approach": "Custom markdown parser instead of remark/mdast", "reason": "Established ecosystem standard exists", "iteration": 2},
+    {"approach": "jsdom for HTML extraction", "reason": "cheerio is lighter and sufficient", "iteration": 2},
+    {"approach": "SQLite for snapshot metadata", "reason": "Overkill for v1", "iteration": 3},
+    {"approach": "In-memory snapshot cache", "reason": "Loses data on crash", "iteration": 3},
+    {"approach": "Server-rendered HTML report", "reason": "Violates local-only constraint", "iteration": 4},
+    {"approach": "Monolithic skill-only architecture", "reason": "Loses portability", "iteration": 5}
+  ],
+  "rejectedPatterns": [],
+  "promotedIdeas": []
+}

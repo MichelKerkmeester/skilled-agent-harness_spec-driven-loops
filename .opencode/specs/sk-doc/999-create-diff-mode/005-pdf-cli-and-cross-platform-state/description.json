@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/999-create-diff-mode/005-pdf-cli-and-cross-platform-state",
+  "description": "PDF text extraction and automatic snapshots both fail in subtle ways when their limitations are hidden",
+  "keywords": [
+    "pdf",
+    "text",
+    "extraction",
+    "automatic",
+    "snapshots",
+    "fail",
+    "subtle",
+    "ways",
+    "limitations",
+    "hidden"
+  ],
+  "lastUpdated": "2026-07-15T09:46:57.962Z",
+  "specId": "005",
+  "folderSlug": "pdf-cli-and-cross-platform-state",
+  "parentChain": [
+    "sk-doc",
+    "999-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

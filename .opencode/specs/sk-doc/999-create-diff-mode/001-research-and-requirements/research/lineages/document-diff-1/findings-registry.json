@@ -1,0 +1,49 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "q1", "text": "Which canonical representation and adapters should v1 use?", "resolution": "Adapter pattern with format-specific parsers (MDAST/Markdown, HAST/HTML, mammoth/DOCX) normalizing to canonical text representation. Format tiers: Full (Text/Markdown/HTML), Limited (DOCX), Unsupported (PDF).", "iterationResolved": 3},
+    {"id": "q2", "text": "Which diff algorithms best suppress conversion noise?", "resolution": "jsdiff (Myers O(ND)) with format-specific normalizers. Key noise-suppression tactics: token-level granularity, whitespace normalization, canonical re-serialization via AST, metadata exclusion.", "iterationResolved": 2},
+    {"id": "q3", "text": "Which snapshot lifecycle is safe and predictable?", "resolution": "Four-phase model (Detect->Capture->Compare->Cleanup). Filesystem storage under ~/.document-snapshots/. SHA-256 hash detection. TTL-based expiration (7d) + pair-based retention (10 per file). Explicit API primary; optional chokidar watcher.", "iterationResolved": 4},
+    {"id": "q4", "text": "How should the HTML report expose fidelity and risk?", "resolution": "diff2html with fidelity header (format match, conversion fidelity, change severity, risk level). Self-contained single HTML file. No external dependencies or network requests.", "iterationResolved": 5},
+    {"id": "q5", "text": "Which portable core and skill interface should v1 implement?", "resolution": "TypeScript/Node.js core (document-diff-core) with 5 CLI commands + programmatic API. OpenCode skill wraps core with workspace-aware path resolution. npm packaging with optional DOCX dependency.", "iterationResolved": 8}
+  ],
+  "keyFindings": [
+    {"id": "f1", "text": "jsdiff v9.0.0 is the dominant JS diff library (95M weekly downloads, BSD-3-Clause)", "sourceIteration": 1},
+    {"id": "f2", "text": "diff2html provides production-grade HTML diff rendering with side-by-side, syntax highlighting, and self-contained output", "sourceIteration": 1},
+    {"id": "f3", "text": "MDAST/HAST (syntax-tree ecosystem) provides standardized AST representations for Markdown and HTML", "sourceIteration": 1},
+    {"id": "f4", "text": "diff-match-patch is archived (Aug 2024) and not viable as a v1 dependency", "sourceIteration": 2},
+    {"id": "f5", "text": "Format-specific normalization before diffing is key to suppressing conversion noise", "sourceIteration": 2},
+    {"id": "f6", "text": "mammoth v1.12.0 converts DOCX to HTML with semantic style mapping (5.2M weekly downloads)", "sourceIteration": 3},
+    {"id": "f7", "text": "PDF structural comparison is infeasible in v1 — correctly deferred", "sourceIteration": 3, 10},
+    {"id": "f8", "text": "Filesystem-based snapshots with SHA-256 hashes are the simplest v1 storage approach", "sourceIteration": 4},
+    {"id": "f9", "text": "Node.js/TypeScript is the clear runtime choice — all dependencies are npm-native", "sourceIteration": 6},
+    {"id": "f10", "text": "Mammoth output must be sanitized (HAST pipeline) due to XSS risk from DOCX sources", "sourceIteration": 7},
+    {"id": "f11", "text": "CLI-first design with 5 commands provides both human and AI agent accessibility", "sourceIteration": 8},
+    {"id": "f12", "text": "All 5 research charter questions answered with evidence-backed recommendations", "sourceIteration": 10}
+  ],
+  "ruledOutDirections": [
+    {"approach": "diff-match-patch library", "reason": "Repository archived Aug 2024; no maintenance", "iteration": 2},
+    {"approach": "Python runtime", "reason": "No diff2html equivalent; HTML rendering gap", "iteration": 6},
+    {"approach": "Rust/WASM runtime", "reason": "Ecosystem mismatch for jsdiff/diff2html", "iteration": 6},
+    {"approach": "Deno runtime", "reason": "Smaller ecosystem; compatibility gaps", "iteration": 6},
+    {"approach": "SQLite snapshot storage", "reason": "Unnecessary dependency for v1", "iteration": 4},
+    {"approach": "In-memory-only snapshots", "reason": "Not persistent across sessions", "iteration": 4},
+    {"approach": "PDF diff support in v1", "reason": "No layout-preserving parser available", "iteration": 3},
+    {"approach": "Server-side rendering", "reason": "Violates local-first constraint", "iteration": 5},
+    {"approach": "External CDN dependencies", "reason": "Violates self-contained requirement", "iteration": 5},
+    {"approach": "Custom diff algorithm", "reason": "jsdiff extensible enough; unnecessary complexity", "iteration": 2},
+    {"approach": "GUI-only interface", "reason": "Violates AI agent integration requirement", "iteration": 8},
+    {"approach": "REST API", "reason": "Violates local-only constraint", "iteration": 8}
+  ],
+  "promotedIdeas": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": [],
+  "suppressedCandidates": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "keyFindings": 12,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "coverageBySources": 0.95
+  }
+}
