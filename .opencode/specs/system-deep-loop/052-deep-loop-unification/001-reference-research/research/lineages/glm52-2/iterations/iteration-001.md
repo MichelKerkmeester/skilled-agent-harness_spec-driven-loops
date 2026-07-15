@@ -13,7 +13,7 @@ The proposed shape nests the entire `deep-loop-runtime/` tree as `system-deep-lo
 [SOURCE: 002/spec.md:156-167; live reads of deep-loop-runtime/ + deep-loop-workflows/ dirs]
 
 ### F1.2 — runtime/ as infrastructure (not a workflowMode) is the right call [CONFIRM]
-`mode-registry.json` exposes exactly `runtimeLoopType` ∈ {research, review, council} for graph-backed modes plus the four improvement lanes; runtime owns no command, no agent, no `artifactRoot`. Adding `runtime` as an 8th mode-registry entry would be a category error (it has no convergence loopType — explicitly `null`-forbidden territory). Correct to delete runtime's `graph-metadata.json` and demote `SKILL.md`→`README.md`.
+`mode-registry.json` exposes exactly `runtimeLoopType` ∈ {research, review, council} for graph-backed modes plus the three remaining improvement lanes; runtime owns no command, no agent, no `artifactRoot`. Adding `runtime` as a seventh mode-registry entry would be a category error (it has no convergence loopType — explicitly `null`-forbidden territory). Correct to delete runtime's `graph-metadata.json` and demote `SKILL.md`→`README.md`.
 [SOURCE: deep-loop-workflows/mode-registry.json:7-20; 002/spec.md:169]
 
 ### F1.3 — Runtime-owned doc families move as a unit [CLARIFICATION, minor]

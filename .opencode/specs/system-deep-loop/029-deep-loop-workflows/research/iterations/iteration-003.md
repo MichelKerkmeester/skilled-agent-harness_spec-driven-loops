@@ -4,12 +4,12 @@
 
 SKILL ROUTING: Advisor surfaced deep-context and deep-loop-runtime; for this read-only command/orchestration analysis I will use the deep-context-style research path and keep deep-loop-runtime as a boundary constraint, without running any workflow that writes state.
 I will first anchor on the verified context report, then inspect the command docs, representative YAML phase graphs, and the existing improvement loop host to decide whether this is a routing-only merge or an orchestration merge.
-The command Markdown confirms all four non-improvement commands are thin routers: they bind inputs and suffix mode, then hand off to YAML assets. I’m checking the four improvement-backed commands and YAML shapes next because they determine whether `loop-host.cjs` can become the common entrypoint.
-Two improvement commands (`skill-benchmark`, `non-dev-ai-system`) are direct `loop-host.cjs` invocations, while the agent/model improvement commands still route through YAML. I’m now comparing representative auto YAMLs and searching the council alias references.
+The command Markdown confirms all four non-improvement commands are thin routers: they bind inputs and suffix mode, then hand off to YAML assets. I’m checking the three improvement-backed commands and YAML shapes next because they determine whether `loop-host.cjs` can become the common entrypoint.
+The `skill-benchmark` improvement command is a direct `loop-host.cjs` invocation, while the agent/model improvement commands still route through YAML. I’m now comparing representative auto YAMLs and searching the council alias references.
 Current live council command files appear to have already normalized to `/deep:ask-ai-council`; the `/speckit:deep-council` evidence is in older spec/review artifacts, not the live command entrypoint. I’ll read the live presentation slice to cite the current canonical examples.
 **Recommendation**
 
-Keep the 8 `/deep:*` commands as the public surface. Do not collapse them. Merge the five skill folders into `deep-loop-workflows` by repointing skill paths and metadata, but keep the command names, command files, setup contracts, YAML assets, and per-mode orchestration shapes stable. Use `/deep:ask-ai-council` as the canonical council command and do not carry `/speckit:deep-council` forward into live docs.
+Keep the 7 `/deep:*` commands as the public surface. Do not collapse them. Merge the five skill folders into `deep-loop-workflows` by repointing skill paths and metadata, but keep the command names, command files, setup contracts, YAML assets, and per-mode orchestration shapes stable. Use `/deep:ask-ai-council` as the canonical council command and do not carry `/speckit:deep-council` forward into live docs.
 
 For orchestration, do not extend `deep-improvement/scripts/shared/loop-host.cjs` into the universal host for context/research/review/council. Keep per-mode YAML workflows, with an optional thin `deep-loop-workflows` mode/asset manifest above them. `loop-host.cjs` should remain the improvement-lane runner after relocation/repointing, not become a YAML replacement.
 
@@ -28,7 +28,6 @@ The existing commands are not interchangeable:
 | `/deep:start-agent-improvement-loop` | `.opencode/commands/deep/start-agent-improvement-loop.md:67-75`, `.opencode/commands/deep/start-agent-improvement-loop.md:115-126` | Lane A setup, target agent profile, scoring mode, and guarded promotion path. |
 | `/deep:start-model-benchmark-loop` | `.opencode/commands/deep/start-model-benchmark-loop.md:68-77`, `.opencode/commands/deep/start-model-benchmark-loop.md:131-141` | Lane B fixed benchmark setup and foreign benchmark output contract. |
 | `/deep:start-skill-benchmark-loop` | `.opencode/commands/deep/start-skill-benchmark-loop.md:61-83` | Lane C direct `loop-host.cjs --mode=skill-benchmark` diagnostic command. |
-| `/deep:start-non-dev-ai-system-loop` | `.opencode/commands/deep/start-non-dev-ai-system-loop.md:61-86` | Lane D external packaging adapter with dry-run/live guardrails. |
 
 Collapsing these into fewer commands would force one entrypoint to multiplex incompatible required inputs, tool permissions, artifact roots, state names, and safety text. That violates the byte-identical artifact bar because setup and execution paths become new behavior, not a path reorg.
 
@@ -64,7 +63,7 @@ The YAML phase graphs are materially different:
 
 `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:11-18` is an iterative evaluation loop, and `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:161-218` runs propose/score/benchmark/reduce/journal steps without runtime `convergence.cjs`.
 
-`loop-host.cjs` is not a general loop interpreter. It is a pure planner/spawner for four improvement lanes: `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `non-dev-ai-system-refine` at `.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:44-45`. Its planning API maps `mode,args` to direct script invocations at `.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:180-258`. It does not understand YAML phases, branch labels, host-written state, memory save steps, runtime graph convergence, council session hierarchy, or context’s shared-scope sweep.
+`loop-host.cjs` is not a general loop interpreter. It is a pure planner/spawner for three improvement lanes: `agent-improvement`, `model-benchmark`, and `skill-benchmark` at `.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:44-45`. Its planning API maps `mode,args` to direct script invocations at `.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:180-258`. It does not understand YAML phases, branch labels, host-written state, memory save steps, runtime graph convergence, council session hierarchy, or context’s shared-scope sweep.
 
 **Mode Routing Layers**
 
@@ -104,8 +103,6 @@ Keep these command files and invocation names unchanged:
 
 `.opencode/commands/deep/start-skill-benchmark-loop.md`
 
-`.opencode/commands/deep/start-non-dev-ai-system-loop.md`
-
 Repoint skill references inside these assets:
 
 `.opencode/commands/deep/assets/deep_start-context-loop_{auto,confirm}.yaml`
@@ -126,13 +123,9 @@ Repoint direct improvement command snippets:
 
 `.opencode/commands/deep/start-skill-benchmark-loop.md:75-83`
 
-`.opencode/commands/deep/start-non-dev-ai-system-loop.md:78-86`
-
 Change metadata frontmatter where present:
 
 `.opencode/commands/deep/start-skill-benchmark-loop.md:1-4`
-
-`.opencode/commands/deep/start-non-dev-ai-system-loop.md:1-4`
 
 Keep runtime paths unchanged:
 
@@ -158,7 +151,7 @@ Path repointing is mechanically broad but lower risk than semantic orchestration
 
 A broad rename can accidentally rewrite `.opencode/skills/deep-loop-runtime/**` references; those must stay frozen.
 
-A broad rename can miss inline command snippets in `start-skill-benchmark-loop.md` and `start-non-dev-ai-system-loop.md` because those two do not use YAML.
+A broad rename can miss inline command snippets in `start-skill-benchmark-loop.md` because that command does not use YAML.
 
 If `/speckit:deep-council` is reintroduced as an alias without a compatibility requirement, it will resurrect a resolved naming inconsistency.
 
@@ -180,4 +173,4 @@ Q-BACKEND must decide whether generic helpers like loop locks and capability pro
 
 I am uncertain whether external users or docs outside the repo still invoke `/speckit:deep-council`. The live repo command surface does not, but telemetry or external docs would be needed to justify an alias.
 
-I am uncertain whether the final internal layout will be old subtree preservation or `modes/<mode>/`. This changes the exact path strings, not the decision to keep 8 commands and per-mode YAML.
+I am uncertain whether the final internal layout will be old subtree preservation or `modes/<mode>/`. This changes the exact path strings, not the decision to keep 7 commands and per-mode YAML.

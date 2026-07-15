@@ -111,7 +111,6 @@ Exact command returned `137` files. I inspected all returned files read-only. No
 | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` | UNCLASSIFIED | Doctor asset YAML references old runtime DB paths outside named stages. |
 | `.opencode/commands/deep/assets/legacy/deep_research.body.md` | Stage E | Legacy deep command body references old research protocol path. |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Stage E | Deep command YAML contract references old review/runtime paths. |
-| `.opencode/commands/deep/ai-system-improvement.md` | Stage E | Deep command router/frontmatter uses old skill id and paths. |
 | `.opencode/commands/deep/assets/legacy/deep_ai-council.body.md` | Stage E | Legacy deep command body references old runtime name. |
 | `.opencode/commands/create/assets/create_skill_parent_auto.yaml` | Stage H | Asset YAML mirrors parent-skill grandfather example. |
 | `.opencode/commands/create/assets/create_skill_parent_confirm.yaml` | Stage H | Asset YAML mirrors parent-skill grandfather example. |

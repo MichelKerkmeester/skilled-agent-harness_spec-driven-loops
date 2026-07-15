@@ -32,8 +32,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 — Regenerate the canonical census and record exact source and mirror counts. Evidence: `census-snapshot.md`; `sync-prompts.cjs --check` exit `0`; source count `37`; mirror count `37`.
-- [x] T002 — Assign every command to one of the four topologies. Evidence: `topology-taxonomy.md`; 37 classification rows; zero unclassified.
+- [x] T001 — Regenerate the canonical census and record exact source and mirror counts. Evidence: `census-snapshot.md`; `sync-prompts.cjs --check` exit `0`; source count `36`; mirror count `36`.
+- [x] T002 — Assign every command to one of the four topologies. Evidence: `topology-taxonomy.md`; 36 classification rows; zero unclassified.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T006 — Confirm the census reproduces and the taxonomy assigns every command exactly once. Evidence: prompt sync exit `0`; taxonomy verifier exit `0` with `workflow=28 subaction=2 direct=5 monolithic=2 total=37 unclassified=0`.
+- [x] T006 — Confirm the census reproduces and the taxonomy assigns every command exactly once. Evidence: prompt sync exit `0`; taxonomy verifier exit `0` with `workflow=27 subaction=2 direct=5 monolithic=2 total=36 unclassified=0`.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

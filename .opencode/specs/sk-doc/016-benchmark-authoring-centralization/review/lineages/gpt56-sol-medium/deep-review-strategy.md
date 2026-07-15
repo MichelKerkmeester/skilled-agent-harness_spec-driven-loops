@@ -22,7 +22,7 @@ Benchmark authoring centralization packet and its delivered create-benchmark aut
 
 ## Files Under Review
 - Packet: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md.
-- Deliverables: create-benchmark SKILL.md, two guides, four templates, and consumer pointers.
+- Deliverables: create-benchmark SKILL.md, the Lane A guide, four templates, and consumer pointers.
 - Authorities: profile-validator.cjs, MODES.md, reviewer_schema.md, reviewer_regression.json, reviewer fixture seeds.
 
 ## Cross-Reference Status

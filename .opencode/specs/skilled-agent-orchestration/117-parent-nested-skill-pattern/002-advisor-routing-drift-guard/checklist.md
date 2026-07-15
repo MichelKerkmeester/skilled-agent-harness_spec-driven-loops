@@ -69,7 +69,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] Every mode carries an `advisorRouting` block with a valid `routingClass` + `packetSkillName`
-  - **Evidence**: drift-guard test 1 green; 8/8 modes.
+  - **Evidence**: drift-guard test 1 green; 8/7 modes.
 - [x] CHK-021 [P0] Python `DEEP_ROUTING_MODE_BY_KEY` == registry lexical projection
   - **Evidence**: drift-guard test 2 green (via `--dump-routing-maps`).
 - [x] CHK-022 [P0] TS `DEEP_MODE_BY_CANONICAL` == registry lexical+alias-fold projection

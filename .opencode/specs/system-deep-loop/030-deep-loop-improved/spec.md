@@ -99,7 +99,7 @@ Audit-trail summary only; per-phase detail lives in each child's plan.md.
 |-------|--------|-------|--------|
 | 001 | `001-reference-research` | 50-iteration mining of loop-cli-main + kasper → 40 recommendations | Complete |
 | 002 | `002-deep-loop-runtime` | 18 runtime recs: atomic-state, loop-lock, sleep, jsonl, executor/fallback, coverage-graph, fanout, lifecycle | Complete |
-| 003 | `003-deep-loop-workflows` | 12 workflow recs: anti-convergence + ADRs, injection-inbox, ideas/rejected caches, benchmark, push-wave | Complete |
+| 003 | `003-deep-loop-workflows` | 11 active workflow recs: anti-convergence + ADRs, injection-inbox, ideas/rejected caches, benchmark, push-wave | Complete |
 | 004 | `004-system-spec-kit` | Speckit autopilot lifecycle | Complete |
 | 005 | `005-skill-interconnection` | Advisor routing projection | Complete |
 | 006 | `006-ux-observability-automation` | Dashboards, telemetry heartbeat, run-now, dry-run, observability envelope, memory-upsert | Complete |

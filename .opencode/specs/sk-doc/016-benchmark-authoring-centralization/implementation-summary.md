@@ -61,7 +61,7 @@ Ran in an isolated worktree (see Known Limitations). A staged workflow authored 
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-Recorded as ADR-001..004 in `./decision-record.md`: templates+standards centralize here while lanes keep run/scoring logic (001); the Lane C report `.md` stays renderer-owned and is never templated (002); Lane A/D are named code-owned non-goals (003); measurement contracts stay lane-local and are linked, not copied (004).
+Recorded as ADR-001..004 in `./decision-record.md`: templates+standards centralize here while lanes keep run/scoring logic (001); the Lane C report `.md` stays renderer-owned and is never templated (002); Lane A is a named code-owned non-goal (003); measurement contracts stay lane-local and are linked, not copied (004).
 
 **Documented deviation:** to land the SKILL under the 5000-word hard cap after adding three sections, the integration agent compacted two of its own additions and lightly tightened two pre-existing WHEN-TO-USE prose blocks (Trigger Signals 5→3 bullets; de-duplicated Activation Triggers against the new router). No MCP-promotion contract rule, REPORT CONTRACT, or ALWAYS/NEVER content was removed — verified: 22 contract markers intact. Final SKILL is 4983 words.
 <!-- /ANCHOR:decisions -->

@@ -43,7 +43,7 @@ _memory:
 
 ### Overview
 
-Apply the 28 maintained source-to-target rows as one dependency-closed closure. Update path-valued references, then use the deep-loop compiler's supported regeneration path so compiled contracts keep their exact generated filenames while recording the new source paths and digests.
+Apply the 25 maintained source-to-target rows as one dependency-closed closure. Update path-valued references, then use the deep-loop compiler's supported regeneration path so compiled contracts keep their exact generated filenames while recording the new source paths and digests.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -51,7 +51,7 @@ Apply the 28 maintained source-to-target rows as one dependency-closed closure. 
 
 ### Definition of Ready
 
-- [ ] The frozen map separates 24 maintained workflow/presentation assets, four legacy bodies, and four generated contracts.
+- [ ] The frozen map separates 21 maintained workflow/presentation assets, four legacy bodies, and four generated contracts.
 - [ ] The compiler command and BASE contract manifest are available.
 - [ ] All deep command IDs, workflow keys, generated-output rules, and external consumers are inventoried.
 
@@ -98,7 +98,7 @@ Apply the 28 maintained source-to-target rows as one dependency-closed closure. 
 
 | Requirement | Verification |
 |-------------|--------------|
-| Candidate coverage | Map scan reports 28 maintained rows, four generated exemptions, and zero unknowns. |
+| Candidate coverage | Map scan reports 25 maintained rows, four generated exemptions, and zero unknowns. |
 | Reference integrity | Command-reference scan finds no active old maintained path or missing maintained target. |
 | Generated contract integrity | Compiler validation passes; compiled filenames remain exact and source digests point at the new maintained paths. |
 | Route parity | Deep command mode, fallback, injection, and contract-loading outcomes match BASE scenarios. |

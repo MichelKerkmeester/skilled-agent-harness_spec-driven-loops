@@ -61,7 +61,7 @@ Build deep-loop-workflows/ as a COPY (not git mv — old dirs stay live until ph
 - [ ] deep-loop-workflows/ exists; hub SKILL.md routes by mode with no per-mode logic (grep-verified)
 - [ ] hub graph-metadata.json skill_id==name==folder==deep-loop-workflows, family=deep-loop
 - [ ] exactly one graph-metadata.json under deep-loop-workflows/ (keystone)
-- [ ] mode-registry.json: 8 workflowModes each with workflowMode + runtimeLoopType(value\|explicit null) + backendKind + aliases + packetPath + permissions + commandNames + artifactRoot
+- [ ] mode-registry.json: 7 workflowModes each with workflowMode + runtimeLoopType(value\|explicit null) + backendKind + aliases + packetPath + permissions + commandNames + artifactRoot
 - [ ] registry completeness test (R4) green incl explicit-null negative test and backendKind<->nullability consistency
 - [ ] 5 packets copied verbatim; per-packet source-verbatim diff clean except dropped graph-metadata.json
 
@@ -100,10 +100,10 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 - [ ] T4 Build review/ packet (copy deep-review, drop graph-metadata, anchored rewrite, depth fix) (`.opencode/skills/deep-loop-workflows/review/`) — _verify:_ no graph-metadata.json; residual grep empty; reverse-rewrite diff -r clean; scripts load
 - [ ] T5 Build ai-council/ packet (opus): copy deep-ai-council, drop graph-metadata, anchored rewrite, and +1 '..' on the 8 relative require('../../deep-loop-runtime/...') that throw on load (`.opencode/skills/deep-loop-workflows/ai-council/`) — _verify:_ no graph-metadata.json; residual grep empty; node -e require() each rewritten orchestrate*.cjs loads; reverse-rewrite diff -r clean
 - [ ] T6 Build improvement/ packet (opus, heaviest): copy deep-improvement, drop graph-metadata, anchored rewrite (~408 self + 43 exec refs), +1 '..' on escaping walks (check-agent-mirror-sync 4->5, skill-benchmark 3->4, shared/reduce-state runtime reach) leaving packet-internal scorer walks unchanged (`.opencode/skills/deep-loop-workflows/improvement/`) — _verify:_ no graph-metadata.json; residual grep empty; PACKET_ROOT/internal walks unchanged; escaping walks load; reverse-rewrite diff -r clean
-- [ ] T7 Author mode-registry.json: 8 workflowModes each with runtimeLoopType (value or explicit null), backendKind, aliases, packetPath, permissions, commandNames, artifactRoot; ai-council->council mapping explicit (`.opencode/skills/deep-loop-workflows/mode-registry.json`) — _verify:_ JSON parses; every packetPath exists post-G2; 8 modes present
+- [ ] T7 Author mode-registry.json: 7 workflowModes each with runtimeLoopType (value or explicit null), backendKind, aliases, packetPath, permissions, commandNames, artifactRoot; ai-council->council mapping explicit (`.opencode/skills/deep-loop-workflows/mode-registry.json`) — _verify:_ JSON parses; every packetPath exists post-G2; 7 modes present
 - [ ] T8 Author+run registry completeness test (R4): every mode has the unambiguous triple; improvement modes runtimeLoopType===null EXPLICIT (negative test on omission); backendKind<->nullability consistency (`.opencode/skills/deep-loop-workflows/tests/registry-completeness.vitest.ts`) — _verify:_ test green
 - [ ] T9 Keystone+rewrite gate: exactly one graph-metadata.json under hub; nested-SKILL.md discovery test (read-only, not advisor_rebuild) shows zero extra packet nodes; full-tree residual self-path grep empty; ~15 cross-mode refs resolve (`.opencode/skills/deep-loop-workflows/`) — _verify:_ find returns only hub graph-metadata.json; discovery test 0 extra nodes; residual grep empty; cross-mode refs resolve
-- [ ] T10 Per-mode single-executor artifact byte-parity vs phase-001 baseline (Lane D dry-run basis); doubles as depth-fix verifier since a missed +1 throws or diffs (`.opencode/skills/deep-loop-workflows/`) — _verify:_ byte-identical artifacts for all 5 modes; all scripts load
+- [ ] T10 Per-mode single-executor artifact byte-parity vs phase-001 baseline; doubles as depth-fix verifier since a missed +1 throws or diffs (`.opencode/skills/deep-loop-workflows/`) — _verify:_ byte-identical artifacts for all 5 modes; all scripts load
 - [ ] T11 Strict validate + frozen-boundary check (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/003-merged-hub-and-mode-packets`) — _verify:_ validate exit 0; git diff empty on deep-loop-runtime (MCP-free preserved) and on all 5 old deep-<name>/ dirs (still live)
 
 ### Phase 3: Verification
@@ -118,7 +118,7 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 
 | Test Type | Scope | Method |
 |-----------|-------|--------|
-| Parity | This phase's affected modes/surfaces | Two required proofs vs phase-001 baseline: (1) per-packet source-verbatim — inverse-apply the path rewrite to each new packet and diff -r vs the source deep-<name>/, only allowed delta is the dropped graph-metadata.json; (2) artifact byte-parity — run each mode single-executor from the new path on phase-001's exact fixture and diff emitted artifacts byte-for-byte vs baseline (byte-identical only if no absolute skill path leaks into output AND every escaping __dirname walk/require was depth-corrected, so this test also verifies the depth fix). Registry correctness via the R4 completeness test incl explicit-null negative test. Lane D compared on dry-run basis (B8). |
+| Parity | This phase's affected modes/surfaces | Two required proofs vs phase-001 baseline: (1) per-packet source-verbatim — inverse-apply the path rewrite to each new packet and diff -r vs the source deep-<name>/, only allowed delta is the dropped graph-metadata.json; (2) artifact byte-parity — run each mode single-executor from the new path on phase-001's exact fixture and diff emitted artifacts byte-for-byte vs baseline (byte-identical only if no absolute skill path leaks into output AND every escaping __dirname walk/require was depth-corrected, so this test also verifies the depth fix). Registry correctness via the R4 completeness test incl explicit-null negative test. |
 | Structural | Spec docs | `validate.sh --strict` |
 
 <!-- /ANCHOR:testing -->

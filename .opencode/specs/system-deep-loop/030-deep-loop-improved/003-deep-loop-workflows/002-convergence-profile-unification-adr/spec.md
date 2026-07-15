@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 12 |
+| **Phase** | 2 of 11 active phases |
 | **Predecessor** | 001-anti-convergence-floor |
 | **Successor** | 003-cross-mode-anti-convergence-adr |
 | **Handoff Criteria** | ADR document present and passes validate.sh; shared parity test runs green on current (pre-migration) code; profile schema fields named and typed |

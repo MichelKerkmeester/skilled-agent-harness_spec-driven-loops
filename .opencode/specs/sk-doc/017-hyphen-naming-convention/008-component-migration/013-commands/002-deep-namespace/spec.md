@@ -67,7 +67,7 @@ Rename the maintained deep workflow, presentation, and legacy fallback files to 
 
 ### In Scope
 
-- The 24 maintained files under `.opencode/commands/deep/assets/`: `deep_agent-improvement_auto.yaml`, `deep_agent-improvement_confirm.yaml`, `deep_agent-improvement_presentation.txt`; `deep_ai-council_auto.yaml`, `deep_ai-council_confirm.yaml`, `deep_ai-council_presentation.txt`; `deep_ai-system-improvement_auto.yaml`, `deep_ai-system-improvement_confirm.yaml`, `deep_ai-system-improvement_presentation.txt`; `deep_alignment_auto.yaml`, `deep_alignment_confirm.yaml`, `deep_alignment_presentation.txt`; `deep_model-benchmark_auto.yaml`, `deep_model-benchmark_confirm.yaml`, `deep_model-benchmark_presentation.txt`; `deep_research_auto.yaml`, `deep_research_confirm.yaml`, `deep_research_presentation.txt`; `deep_review_auto.yaml`, `deep_review_confirm.yaml`, `deep_review_presentation.txt`; and `deep_skill-benchmark_auto.yaml`, `deep_skill-benchmark_confirm.yaml`, `deep_skill-benchmark_presentation.txt`.
+- The 21 maintained files under `.opencode/commands/deep/assets/`: `deep_agent-improvement_auto.yaml`, `deep_agent-improvement_confirm.yaml`, `deep_agent-improvement_presentation.txt`; `deep_ai-council_auto.yaml`, `deep_ai-council_confirm.yaml`, `deep_ai-council_presentation.txt`; `deep_alignment_auto.yaml`, `deep_alignment_confirm.yaml`, `deep_alignment_presentation.txt`; `deep_model-benchmark_auto.yaml`, `deep_model-benchmark_confirm.yaml`, `deep_model-benchmark_presentation.txt`; `deep_research_auto.yaml`, `deep_research_confirm.yaml`, `deep_research_presentation.txt`; `deep_review_auto.yaml`, `deep_review_confirm.yaml`, `deep_review_presentation.txt`; and `deep_skill-benchmark_auto.yaml`, `deep_skill-benchmark_confirm.yaml`, `deep_skill-benchmark_presentation.txt`.
 - The four maintained fallback bodies in `assets/legacy/`: `deep_ai-council.body.md`, `deep_alignment.body.md`, `deep_research.body.md`, and `deep_review.body.md`.
 - Deep command, README, asset, compiler, test, and external path references; generated source-digest inputs must be updated through the supported compiler path.
 
@@ -84,7 +84,7 @@ Rename the maintained deep workflow, presentation, and legacy fallback files to 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Every maintained deep asset and legacy body has one semantic target | The map lists 28 maintained source files, 28 distinct kebab-case targets, and no unknown disposition. |
+| REQ-001 | Every maintained deep asset and legacy body has one semantic target | The map lists 25 maintained source files, 25 distinct kebab-case targets, and no unknown disposition. |
 | REQ-002 | Deep workflow and fallback references remain resolvable | Auto, confirm, presentation, legacy, compiler source-path, and README pointers resolve with no active old maintained path. |
 | REQ-003 | Generated contract exemption is honored | The four compiled contract filenames remain exact, and regenerated source-digest paths identify the new maintained asset paths. |
 | REQ-004 | Deep command behavior and IDs remain stable | Deep research, review, alignment, AI council, agent improvement, model benchmark, and skill benchmark routes retain their BASE outcomes. |
@@ -94,7 +94,7 @@ Rename the maintained deep workflow, presentation, and legacy fallback files to 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All 28 maintained deep asset/body names are kebab-case and all active references resolve.
+- **SC-001**: All 25 maintained deep asset/body names are kebab-case and all active references resolve.
 - **SC-002**: Generated compiled contract filenames remain exempt while their maintained source paths and digests are current.
 - **SC-003**: Deep command IDs, workflow selection, fallback injection, and contract validation retain BASE semantics.
 <!-- /ANCHOR:success-criteria -->

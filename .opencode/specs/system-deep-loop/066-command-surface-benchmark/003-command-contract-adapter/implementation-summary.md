@@ -99,8 +99,8 @@ The adapter was implemented as an unregistered peer, tested through its public A
 | Reference-checker baseline before modification | PASS, exit 0 with three broken-fixture findings and zero live unresolved references |
 | Reference-checker self-test after modification | PASS, exit 0 across all four topologies with existing checks preserved |
 | Adapter and test syntax | PASS, both `node --check` commands exited 0 |
-| Adapter fixture test | PASS, 13 exact matches with clean control at zero and discovery at 37 |
-| Prompt-sync inventory | PASS, 37 prompts in sync |
+| Adapter fixture test | PASS, 13 exact matches with clean control at zero and discovery at 36 |
+| Prompt-sync inventory | PASS, 36 prompts in sync |
 | Generic finding scan | PASS, 14 command findings and zero generic findings |
 | Independent boundary verifier | PASS, all 13 fixtures with clean 0, public 8 and held-out 4 |
 | Reference document validators | PASS, zero issues in both adapter references |

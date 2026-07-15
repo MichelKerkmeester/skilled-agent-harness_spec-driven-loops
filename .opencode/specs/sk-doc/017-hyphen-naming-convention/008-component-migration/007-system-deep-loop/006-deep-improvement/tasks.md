@@ -1,6 +1,6 @@
 ---
 title: "Tasks: deep-improvement filesystem names (017 phase 007/006)"
-description: "Execution tasks for renaming the deep-improvement four-lane surface and repairing loop-host, fixture/profile, benchmark, script, import, and test path consumers."
+description: "Execution tasks for renaming the deep-improvement three-lane surface and repairing loop-host, fixture/profile, benchmark, script, import, and test path consumers."
 trigger_phrases:
   - "deep-improvement tasks"
   - "improvement lane kebab-case naming tasks"
@@ -40,7 +40,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Load the deep-improvement map, BASE lane/benchmark manifests, Python/package list, and generated-output list.
-- [ ] T002 [P] Inventory the 23 underscore-bearing directory families and 263 files across assets, references, catalogs, playbooks, scripts, and component benchmark storage.
+- [ ] T002 [P] Inventory the 22 underscore-bearing directory families and 250 files across assets, references, catalogs, playbooks, scripts, and component benchmark storage.
 - [ ] T003 Trace shared loop-host, lane registry, imports, fixtures/profiles, benchmark, and dynamic path consumers.
 <!-- /ANCHOR:phase-1 -->
 

@@ -14,7 +14,7 @@ The lineage ran ten evidence passes against specs, command YAMLs, agents, adviso
 
 ## 4. Structural Layout
 
-The target layout should proceed: `system-deep-loop/` contains the public hub and mode packets, while `runtime/` contains the former backend without its own `graph-metadata.json` [SOURCE: .opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:157]. `runtime/` must not be added as an eighth `workflowMode`; the spec calls that a category error [SOURCE: .opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:169].
+The target layout should proceed: `system-deep-loop/` contains the public hub and mode packets, while `runtime/` contains the former backend without its own `graph-metadata.json` [SOURCE: .opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:157]. `runtime/` must not be added as a seventh `workflowMode`; the spec calls that a category error [SOURCE: .opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:169].
 
 ## 5. Path Coupling
 

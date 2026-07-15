@@ -61,7 +61,7 @@ Repoint only the /deep command surface after phase 003 has produced the deep-loo
 - [ ] Phase-003 deep-loop-workflows hub, mode packets, and mode-registry.json exist before edits.
 - [ ] Per-mode graph-metadata.json files are absent; only hub graph-metadata survives.
 - [ ] The finalized {skill,mode} command contract is applied consistently.
-- [ ] All 8 command markdown routers are repointed where they reference old skill IDs or old skill paths.
+- [ ] All 7 command markdown routers are repointed where they reference old skill IDs or old skill paths.
 - [ ] All 12 YAML workflow assets use deep-loop-workflows plus registry-backed mode discrimination.
 - [ ] All 6 presentation contracts remove stale old skill package paths without changing rendered behavior.
 
@@ -105,10 +105,10 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 - [ ] T3 Repoint research command files. (`.opencode/commands/deep/start-research-loop.md`, `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`) — _verify:_ rg for skill:\s*deep-research and .opencode/skills/deep-research returns empty on these files; required-input schema unchanged.
 - [ ] T4 Repoint review command files. (`.opencode/commands/deep/start-review-loop.md`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`) — _verify:_ rg for skill:\s*deep-review and .opencode/skills/deep-review returns empty on these files; legacy migration strings reviewed manually.
 - [ ] T5 Repoint AI Council command files. (`.opencode/commands/deep/ask-ai-council.md`, `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml`, `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml`) — _verify:_ rg for skill:\s*deep-ai-council and .opencode/skills/deep-ai-council returns empty on these files; --loop-type council runtime refs preserved.
-- [ ] T6 Repoint improvement Lane A/B YAML-backed command files. (`.opencode/commands/deep/start-agent-improvement-loop.md`, `.opencode/commands/deep/start-model-benchmark-loop.md`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`) — _verify:_ rg for skill:\s*deep-improvement and .opencode/skills/deep-improvement returns empty on these eight files; --mode and sk-prompt-models benchmark paths preserved.
-- [ ] T7 Repoint improvement Lane C/D markdown-only commands. (`.opencode/commands/deep/start-skill-benchmark-loop.md`, `.opencode/commands/deep/start-non-dev-ai-system-loop.md`) — _verify:_ rg for skill:\s*deep-improvement and .opencode/skills/deep-improvement returns empty on these two files; no new Lane C/D YAML files exist.
+- [ ] T6 Repoint improvement Lane A/B YAML-backed command files. (`.opencode/commands/deep/start-agent-improvement-loop.md`, `.opencode/commands/deep/start-model-benchmark-loop.md`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`) — _verify:_ rg for skill:\s*deep-improvement and .opencode/skills/deep-improvement returns empty on these command assets; --mode and sk-prompt-models benchmark paths preserved.
+- [ ] T7 Repoint the improvement Lane C markdown-only command. (`.opencode/commands/deep/start-skill-benchmark-loop.md`) — _verify:_ rg for skill:\s*deep-improvement and .opencode/skills/deep-improvement returns empty on this file; no new Lane C YAML file exists.
 - [ ] T8 Run integration grep and scope guard over the command surface. (`.opencode/commands/deep/**`) — _verify:_ rg stale old skill paths/keys under .opencode/commands/deep returns empty; git diff names only the 26 command-surface files; deep-loop-runtime inventory unchanged.
-- [ ] T9 Run phase-001 parity harness for all eight commands. (`phase-001 command baseline artifacts`, `temporary parity output outside repo or phase-owned scratch`) — _verify:_ cmp or SHA-256 manifest comparison passes for every command artifact with no normalization unless phase 001 recorded it.
+- [ ] T9 Run phase-001 parity harness for all seven commands. (`phase-001 command baseline artifacts`, `temporary parity output outside repo or phase-owned scratch`) — _verify:_ cmp or SHA-256 manifest comparison passes for every command artifact with no normalization unless phase 001 recorded it.
 - [ ] T10 Run final phase validation. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/004-command-surface-repoint`) — _verify:_ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/029-deep-loop-workflows/004-command-surface-repoint --strict exits 0.
 
 ### Phase 3: Verification
@@ -123,7 +123,7 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 
 | Test Type | Scope | Method |
 |-----------|-------|--------|
-| Parity | This phase's affected modes/surfaces | Use the phase-001 baseline harness and artifacts for the same eight command scenarios, including Lane D dry-run-only. After repointing, run the identical harness with the same inputs and environment, then byte-compare stdout, stderr, generated config/state/report artifacts, and manifests via cmp or SHA-256; separately require rg to prove stale old skill package paths and old skill keys are gone while deep-loop-runtime references are unchanged. |
+| Parity | This phase's affected modes/surfaces | Use the phase-001 baseline harness and artifacts for the same seven command scenarios, including the Lane C diagnostic wrapper. After repointing, run the identical harness with the same inputs and environment, then byte-compare stdout, stderr, generated config/state/report artifacts, and manifests via cmp or SHA-256; separately require rg to prove stale old skill package paths and old skill keys are gone while deep-loop-runtime references are unchanged. |
 | Structural | Spec docs | `validate.sh --strict` |
 
 <!-- /ANCHOR:testing -->

@@ -120,7 +120,7 @@ Fix all 18 findings by moving each toward ONE canonical definition, in priority 
 **WU9 — Metadata dialect convergence · P2 · [PS-15, PS-16]**
 - Guard-or-drop the description.json `modes[]`/`backend_kinds` duplicate (add a vitest asserting it equals the registry projection, or remove it).
 - Add a `design` (or generic `sk-hub`) family to `ALLOWED_FAMILIES` in all three mirrors (`skill_graph_compiler.py:38`, `skill-graph-db.ts:141`, `parent-skill-check.cjs:43`) and migrate sk-design off the `sk-code` shoehorn — **DECISION D6**; standardize `metadata.family` to the graph family.
-- Strip `packet_id` from deep-loop's skill graph-metadata; delete the orphan `mutating` (or set it on all four lanes); standardize `deprecated`/`importance_tier` via the graph-metadata template.
+- Strip `packet_id` from deep-loop's skill graph-metadata; delete the orphan `mutating` (or set it on all three lanes); standardize `deprecated`/`importance_tier` via the graph-metadata template.
 - Register `command-metadata.json` in the doctrine as a declared surface with a registry-sync rule (and feed it into WU5's guard); add the doctrine "optional per-mode fields" table (PS-15).
 - **Gate:** family reasoning treats sk-design as a design hub; description.json guarded or dropped; checker/doctrine know `command-metadata.json`.
 

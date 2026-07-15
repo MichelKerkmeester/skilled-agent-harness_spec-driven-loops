@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 12 |
+| **Phase** | 7 of 11 active phases |
 | **Predecessor** | 006-rejected-pattern-cache |
 | **Successor** | 008-code-graph-coverage-bridge |
 | **Handoff Criteria** | `idea_observed`/`idea_promoted`/`idea_rejected` events in JSONL; `minIdeaObservations` config field; reducer owns ranking of promoted ideas; leaf agents emit observations only |

@@ -51,7 +51,7 @@ Add `/deep:alignment` into the compiled-contract render pipeline its siblings al
 ### Definition of Done
 - [x] alignment contract generated + drift-clean.
 - [x] alignment + ai-council in `fix` mode, rendering with the contract injected.
-- [x] All 8 deep commands pass create-command conformance.
+- [x] All 7 deep commands pass create-command conformance.
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -99,7 +99,7 @@ The compiler reads the presentation + authority chain, emits a hashed contract; 
 |-----------|-------|-------|
 | Contract drift | All 4 registered commands | `node check-contract-drift.cjs` |
 | Render smoke | alignment + ai-council in `fix` | `renderCommandContract` with `writeManifest:false` |
-| Command conformance | All 8 deep commands | `validate_document.py --type command` |
+| Command conformance | All 7 deep commands | `validate_document.py --type command` |
 | Spec validation | This child | `validate.sh --strict` |
 
 <!-- /ANCHOR:testing -->

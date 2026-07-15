@@ -38,16 +38,15 @@ Quality guards: source diversity passed (10 source families), focus alignment pa
 | Rank | Severity | Finding |
 |---:|---|---|
 | 1 | P0 | Fan-out detached lineage boundary conflicts with YAML `spec.md` mutation (not gated on `fanout_lineage_artifact_dir`). |
-| 2 | P1 | Convergence-floor test (REQ-002 enforcer) hardcodes old skill name; test-file count understated (7→10). |
+| 2 | P1 | Convergence-floor test (REQ-002 enforcer) hardcodes old skill name; test-file count understated (7→9). |
 | 3 | P1 | NEW third path-repair class: `replay-graph-from-artifacts.cjs` repo-root absolute existence-probe breaks silently. |
 | 4 | P1 | `classifyLineageFailure` routes quota/auth to FATAL, making fallback wiring unreachable for GLM quota-out. |
 | 5 | P1 | Class B reverse-coupling inventory incomplete (4+ seams + `orchestrate-session.cjs` omitted). |
 | 6 | P1 | `test:council` include glob can silently shrink the test set. |
-| 7 | P1 | Named benchmark profile `deep-loop-runtime.json` has ambiguous rename target. |
-| 8 | P1 | Divergence-ledger `reason` prose embeds old name; must update with structured fields. |
-| 9 | P1 | Registry id vs provider slug mismatch needs a normalizer before `resolveFallback`. |
-| 10 | P1 | Council test fixtures are semantic data, not path refs; add to residual-grep allowlist. |
-| 11 | P1 | External-prose surface broad: 10 agent files + README + 5 sibling graphs needing edge-collapse. |
+| 7 | P1 | Divergence-ledger `reason` prose embeds old name; must update with structured fields. |
+| 8 | P1 | Registry id vs provider slug mismatch needs a normalizer before `resolveFallback`. |
+| 9 | P1 | Council test fixtures are semantic data, not path refs; add to residual-grep allowlist. |
+| 10 | P1 | External-prose surface broad: 10 agent files + README + 5 sibling graphs needing edge-collapse. |
 
 ## Boundary Notes
 

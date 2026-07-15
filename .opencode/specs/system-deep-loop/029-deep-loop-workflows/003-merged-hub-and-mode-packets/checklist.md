@@ -74,7 +74,7 @@ _memory:
   - **Evidence**: verified during phase 003 execution.
 - [ ] CHK-022 [P0] exactly one graph-metadata.json under deep-loop-workflows/ (keystone)
   - **Evidence**: verified during phase 003 execution.
-- [ ] CHK-023 [P0] mode-registry.json: 8 workflowModes each with workflowMode + runtimeLoopType(value\|explicit null) + backendKind + aliases + packetPath + permissions + commandNames + artifactRoot
+- [ ] CHK-023 [P0] mode-registry.json: 7 workflowModes each with workflowMode + runtimeLoopType(value\|explicit null) + backendKind + aliases + packetPath + permissions + commandNames + artifactRoot
   - **Evidence**: verified during phase 003 execution.
 - [ ] CHK-024 [P0] registry completeness test (R4) green incl explicit-null negative test and backendKind<->nullability consistency
   - **Evidence**: verified during phase 003 execution.
@@ -95,7 +95,7 @@ _memory:
   - **Evidence**: verified during phase 003 execution.
 - [ ] CHK-062 [P0] nested-SKILL.md discovery test shows zero extra rankable packet nodes
   - **Evidence**: verified during phase 003 execution.
-- [ ] CHK-063 [P0] per-mode single-executor artifact byte-parity vs phase-001 baseline (Lane D dry-run)
+- [ ] CHK-063 [P0] per-mode single-executor artifact byte-parity vs phase-001 baseline
   - **Evidence**: verified during phase 003 execution.
 - [ ] CHK-064 [P0] validate.sh --strict exit 0 on phase folder
   - **Evidence**: verified during phase 003 execution.

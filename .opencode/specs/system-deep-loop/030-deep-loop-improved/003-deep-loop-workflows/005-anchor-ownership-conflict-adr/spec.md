@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 12 |
+| **Phase** | 5 of 11 active phases |
 | **Predecessor** | 004-injection-inbox-provenance |
 | **Successor** | 006-rejected-pattern-cache |
 | **Handoff Criteria** | `resolveQuestionConflicts()` implemented; `question_conflict` event emitted on disagreement; no silent markdown overwrite; `key-questions` section regenerated from registry on each reduce step |

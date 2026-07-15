@@ -55,7 +55,7 @@ The benchmark produces two independent verdicts and a matrix; it needs a single 
 - Publish a remediation backlog for failing commands as downstream planning input.
 - Reconcile all packet status metadata across spec, graph, and description surfaces.
 - Run recursive strict validation over the whole packet.
-- Gate the new `conformance_benchmark` family, the `/deep:command-benchmark` command and its generated Codex mirror, the final 38-command census equality, command-reference validation, and adapter/reducer agreement at closeout.
+- Gate the new `conformance_benchmark` family, the `/deep:command-benchmark` command and its generated Codex mirror, the final 37-command census equality, command-reference validation, and adapter/reducer agreement at closeout.
 
 **Out of scope:**
 - Remediating any command the benchmark measures as failing.
@@ -70,7 +70,7 @@ The benchmark produces two independent verdicts and a matrix; it needs a single 
 - **REQ-003 (P1):** Publish a remediation backlog and keep instrument validity separate from command conformance.
 - **REQ-004 (P1):** Reconcile packet status metadata across map, graph, checklist, summaries, and scorecard.
 - **REQ-005 (P2):** Keep existing command-reference and prompt-sync gates green at closeout.
-- **REQ-006 (P1):** Closeout gates pass for the new family, the command and generated mirror, the final 38-command census equality, command-reference validation, adapter/reducer agreement, and separate deterministic and behavioral scorecard sections.
+- **REQ-006 (P1):** Closeout gates pass for the new family, the command and generated mirror, the final 37-command census equality, command-reference validation, adapter/reducer agreement, and separate deterministic and behavioral scorecard sections.
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -80,7 +80,7 @@ The benchmark produces two independent verdicts and a matrix; it needs a single 
 - Recursive strict validation exits 0.
 - Existing reference and sync gates remain green.
 - Map, graph, checklist, summaries, and scorecard agree.
-- The final 38-command census reconciles, and the new family, command, and generated mirror pass their closeout gates.
+- The final 37-command census reconciles, and the new family, command, and generated mirror pass their closeout gates.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->

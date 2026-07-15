@@ -54,7 +54,7 @@ _memory:
 
 This foundation phase produced the artifacts every later phase verifies against, with no change to any live skill:
 
-- **Pristine parity baseline** — `baseline/file-hashes.txt`: SHA-256 of 924 files across the five source skills, `deep-loop-runtime`, and the eight `/deep:*` commands + assets. Manifest digest `6bbdfa273d422bb3f5bd77d14fac0e89dbe0f51f85a405766335e86d59052d9b`. This is the "before" reference for byte-identical per-mode parity.
+- **Pristine parity baseline** — `baseline/file-hashes.txt`: SHA-256 of 924 files across the five source skills, `deep-loop-runtime`, and the seven `/deep:*` commands + assets. Manifest digest `6bbdfa273d422bb3f5bd77d14fac0e89dbe0f51f85a405766335e86d59052d9b`. This is the "before" reference for byte-identical per-mode parity.
 - **Advisor routing baseline** — `baseline/advisor-routing.txt`: the standalone advisor's winning skill for one representative prompt per mode (deep-research MED, deep-review HIGH, deep-context, deep-ai-council HIGH, deep-improvement). Phase 006 must reproduce these as `deep-loop-workflows` + the concrete mode.
 - **Runtime-ownership ADR** — `decision-record.md` (ADR-001): authorizes the phase-002 promotions and names `deep-loop-workflows` the single runtime consumer, per the runtime's ESCALATE rule.
 - **B5 keystone resolution** — recorded in the ADR: the advisor scanner recursively discovers every `graph-metadata.json` and throws on `skill_id ≠ folder`; the mode packets must drop their per-mode `graph-metadata.json`. The whole single-skill-multi-mode layout is now de-risked.
@@ -75,7 +75,6 @@ The baseline was captured directly by the orchestrator (`find` + `shasum` for th
 
 - Promote only generic plumbing into the runtime; keep the four reduce-state reducer bodies per-mode; add no `improvement` `loopType` (ADR-001).
 - Drop per-mode `graph-metadata.json` in the merged packets; keep only the hub's (B5).
-- Capture Lane D parity dry-run-only (blocker B8), so phase-009 acceptance compares on the same basis.
 
 <!-- /ANCHOR:decisions -->
 ---

@@ -17,20 +17,20 @@
 `.opencode/plugins/mk-deep-loop-guard.js:80` — **Status: both models agree**
 
 **Opus 4.8** — risk: low · confidence: high
-- Root cause: Confirmed. loadRegistryAgents (mk-deep-loop-guard.js:80-81) does `map.set(mode.agent, mode)` keyed by agent. In mode-registry.json four modes (agent-improvement:117, model-benchmark:143, skill-benchmark:166, ai-system-improvement:189) all set `agent:'deep-improvement'`, so the Map collapses to only the last entry (ai-system-improvement). Check 1 (line 388-391) then treats any Deep Route declaring mode=agent-improvement/model-benchmark/skill-benchmark against target deep-improvement as a mismatch — a false positive that warns (or rejects under REJECT=1).
+- Root cause: Confirmed. loadRegistryAgents (mk-deep-loop-guard.js:80-81) does `map.set(mode.agent, mode)` keyed by agent. In mode-registry.json three modes (agent-improvement:117, model-benchmark:143, skill-benchmark:166) all set `agent:'deep-improvement'`, so the Map collapses to only the last entry (skill-benchmark). Check 1 (line 388-391) then treats any Deep Route declaring mode=agent-improvement/model-benchmark against target deep-improvement as a mismatch — a false positive that warns (or rejects under REJECT=1).
 - Fix approach: Map each agent to the SET of its permitted workflowModes instead of a single mode object. Mismatch only when a declared mode is absent from that agent's permitted set.
-- Exact change: In loadRegistryAgents, build `Map<agent, {workflowModes:Set<string>, sample:mode}>` (or `Map<agent, Set<string>>`) by adding each mode.workflowMode into the agent's set rather than overwriting. In the Check 1 block (line 388-391), replace `declaredMode !== entry.workflowMode` with `!entry.workflowModes.has(declaredMode)`. Update mismatchDetail (line 94-101) to render the allowed-mode set (e.g. `registry modes="agent-improvement|model-benchmark|skill-benchmark|ai-system-improvement"`) instead of a single `registryMode`.
+- Exact change: In loadRegistryAgents, build `Map<agent, {workflowModes:Set<string>, sample:mode}>` (or `Map<agent, Set<string>>`) by adding each mode.workflowMode into the agent's set rather than overwriting. In the Check 1 block (line 388-391), replace `declaredMode !== entry.workflowMode` with `!entry.workflowModes.has(declaredMode)`. Update mismatchDetail (line 94-101) to render the allowed-mode set (e.g. `registry modes="agent-improvement|model-benchmark|skill-benchmark"`) instead of a single `registryMode`.
 - Acceptance: With a registry where deep-improvement carries ≥2 modes: a Deep Route declaring any one of its real modes produces NO warn/reject; a declared mode not in the set still warns/rejects. Existing single-mode agents (deep-research→research) behave unchanged.
 - Side effects / parity: declaredModeFromPrompt output must be lowercased first (see F8/O1) so set membership matches lowercase registry values. F9 fixture must add the multiplexed shape or this fix is untested. No Claude-hook code exists yet (F7); the shared module must adopt the set-based comparison so both runtimes agree.
 - Test: Add a fixture registry entry mapping deep-improvement to two workflowModes and assert: target deep-improvement + mode=agent-improvement → no log; + mode=model-benchmark → no log; + mode=nonsense → mismatch log. (Part of F9.)
 
 **GPT-5.6-Sol** — risk: low · confidence: high
-- Root cause: confirmed: `loadRegistryAgents()` stores a single registry row per agent with `map.set(mode.agent, mode)` at `.opencode/plugins/mk-deep-loop-guard.js:75-85`. The production registry assigns `deep-improvement` to four valid modes at `.opencode/skills/system-deep-loop/mode-registry.json:103-189`, so later rows overwrite earlier ones.
+- Root cause: confirmed: `loadRegistryAgents()` stores a single registry row per agent with `map.set(mode.agent, mode)` at `.opencode/plugins/mk-deep-loop-guard.js:75-85`. The production registry assigns `deep-improvement` to three valid modes at `.opencode/skills/system-deep-loop/mode-registry.json:103-166`, so later rows overwrite earlier ones.
 - Fix approach: Index every canonical agent to the complete set of permitted workflow modes, then define mismatch as the declared mode not belonging to that set.
 - Exact change: In the shared guard-policy module extracted from the plugin, replace the agent-to-row map with an agent-to-record map containing `workflowModes: Set<string>` and any needed registry metadata. Canonicalize agent and mode keys while loading. Change the mismatch check at the current lines 386-395 to use set membership, and make the diagnostic list the sorted permitted modes instead of one overwritten mode.
-- Acceptance: All four production modes `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `ai-system-improvement` are accepted for `deep-improvement`; an unrelated mode warns or blocks according to the reject setting.
+- Acceptance: All three production modes `agent-improvement`, `model-benchmark`, and `skill-benchmark` are accepted for `deep-improvement`; an unrelated mode warns or blocks according to the reject setting.
 - Side effects / parity: Use the same registry index in the new Claude PreToolUse adapter. Update diagnostics and documentation that currently describe one registry mode per agent.
-- Test: Make the fixture reproduce the four production rows sharing `deep-improvement`; table-test all four valid modes in warning and reject configurations, plus one invalid mode that warns and rejects.
+- Test: Make the fixture reproduce the three production rows sharing `deep-improvement`; table-test all three valid modes in warning and reject configurations, plus one invalid mode that warns and rejects.
 
 ---
 
@@ -285,4 +285,3 @@
 - Test: Create stale and fresh matching temp files plus similarly named nonmatching files, run maintenance, and assert only the stale exact match is deleted. Add a child process holding the session lock to prove an apparently stale live temp is not removed.
 
 ---
-

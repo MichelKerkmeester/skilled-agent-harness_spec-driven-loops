@@ -47,7 +47,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-An independent two-model audit (GPT-5.6 SOL max + LUNA max) of `sk-doc/create-benchmark` confirmed the packet's benchmark-family coverage is intentionally complete, but the code and docs around it carry real staleness and drift: three broken `_shared` references in `SKILL.md`, a semantically stale `README.md`, a confirmed hyphen/underscore Lane B path defect where 70 committed references point at `benchmark-profiles`/`benchmark-fixtures` while the on-disk dirs are underscore, a `deep-alignment` behavior-benchmark index that contradicts its own captured baseline, and hub routing metadata that omits the two Lane A/D families the packet now documents.
+An independent two-model audit (GPT-5.6 SOL max + LUNA max) of `sk-doc/create-benchmark` confirmed the packet's benchmark-family coverage is intentionally complete, but the code and docs around it carry real staleness and drift: three broken `_shared` references in `SKILL.md`, a semantically stale `README.md`, a confirmed hyphen/underscore Lane B path defect where 70 committed references point at `benchmark-profiles`/`benchmark-fixtures` while the on-disk dirs are underscore, a `deep-alignment` behavior-benchmark index that contradicts its own captured baseline, and hub routing metadata that omits the Lane A family the packet now documents.
 
 ### Purpose
 Every audit finding (P0/P1/P2) is fixed so create-benchmark, its deep-loop consumers, and the sk-doc hub agree with each other and with the create-skill canon, with no broken reference, stale claim, or dangling path.
@@ -62,7 +62,7 @@ Every audit finding (P0/P1/P2) is fixed so create-benchmark, its deep-loop consu
 - Repair the 3 stale `_shared` references and README staleness in create-benchmark; add missing canon sections and concrete Smart Routing data.
 - Resolve the Lane B hyphen/underscore defect by renaming the two directories to hyphens (operator-chosen direction) and aligning all live references.
 - Reconcile the deep-alignment behavior-benchmark index to its captured baseline.
-- Add Lane A/Lane D routing keyword coverage to the sk-doc hub metadata.
+- Add Lane A routing keyword coverage to the sk-doc hub metadata.
 - Reconcile the Lane B output-contract discrepancy to the runtime's real behavior.
 
 ### Out of Scope
@@ -75,9 +75,9 @@ Every audit finding (P0/P1/P2) is fixed so create-benchmark, its deep-loop consu
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/sk-doc/create-benchmark/SKILL.md` | Modify | `_shared`→`shared`; concrete Smart Router; add sections; hyphenate Lane B dir refs |
-| `.opencode/skills/sk-doc/create-benchmark/README.md` | Modify | De-stale family count + Lane A/D ownership; fix inventory |
+| `.opencode/skills/sk-doc/create-benchmark/README.md` | Modify | De-stale family count + Lane A ownership; fix inventory |
 | `.opencode/skills/sk-doc/create-benchmark/references/**`, `assets/**` | Modify | Prose section numbers; version-field reconciliation |
-| `.opencode/skills/sk-doc/{hub-router.json,mode-registry.json}` | Modify | Add Lane A/D routing keywords |
+| `.opencode/skills/sk-doc/{hub-router.json,mode-registry.json}` | Modify | Add Lane A routing keywords |
 | `.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_{profiles,fixtures}` | Rename | → hyphenated dir names |
 | `.opencode/skills/system-deep-loop/deep-improvement/**`, `.opencode/commands/deep/**` | Modify | Align refs to hyphen; reconcile output contract |
 | `.opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/**` | Modify | Reconcile index to captured baseline |
@@ -99,7 +99,7 @@ Every audit finding (P0/P1/P2) is fixed so create-benchmark, its deep-loop consu
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-002 | Fix the 3 `_shared` refs in SKILL.md | `grep -rn '_shared'` in create-benchmark returns 0 |
-| REQ-003 | De-stale README.md | README states the real family taxonomy and Lane A/D guide ownership; inventory lists both guides; no phantom `changelog/.gitkeep` |
+| REQ-003 | De-stale README.md | README states the real five-family taxonomy and Lane A guide ownership; inventory lists the guide; no phantom `changelog/.gitkeep` |
 | REQ-004 | Reconcile deep-alignment index to baseline | No stale `300000` provisional budget or `null` D5 remains for a baseline-measured scenario |
 | REQ-005 | Reconcile the Lane B output contract | Docs/commands agree with the runtime's real output path, or the discrepancy is escalated with evidence |
 <!-- /ANCHOR:requirements -->

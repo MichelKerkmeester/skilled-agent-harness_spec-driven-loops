@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Benchmark Authoring Completion and Cross-Links"
-description: "Task breakdown and completion evidence for authoring the Lane A/D guides, completing bidirectional benchmark cross-links, and landing the metadata/sibling/fixtureDir corrections."
+description: "Task breakdown and completion evidence for authoring the Lane A guide, completing bidirectional benchmark cross-links, and landing the metadata/sibling/fixtureDir corrections."
 trigger_phrases:
   - "benchmark authoring completion tasks"
 importance_tier: "important"
@@ -44,12 +44,11 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T6 — Author Lane A guide `create-benchmark/references/agent_improvement/agent_improvement_authoring_guide.md`. Evidence: `validate_document.py` 0 issues; 241 lines; 22/22 links resolve; contracts linked, not restated.
-- [x] T7 — Author Lane D guide `create-benchmark/references/non_dev_ai_system/non_dev_ai_system_authoring_guide.md`. Evidence: `validate_document.py` 0 issues; 261 lines; code-coupled artifacts linked as in-lane.
-- [x] T8 — SKILL §2 family table: Lane A/D rows name their guide (six families); non-goal paragraph reworded. Evidence: `create-benchmark/SKILL.md` §2 table has 6 family rows; word count `4996` <= cap.
-- [x] T9 — SKILL §1 framing + §12 REFERENCES rows; `version` 1.2.0.0->1.3.0.0; changelog v1.3.0.0. Evidence: `package_skill.py create-benchmark --check` PASS.
-- [x] T10 — Add create-benchmark back-pointer to `deep-alignment/behavior_benchmark/behavior_benchmark.md`. Evidence: `rg create-benchmark deep-alignment` >= 1.
-- [x] T11 — Add Lane A README + Lane D operator-guide pointers to the two new guides. Evidence: each back-pointer path resolves (`ls`).
-- [x] T12 — Verify create-benchmark->lane relative links for A/D resolve. Evidence: guides report 22/22 and 13/13 resolved; `check-markdown-links.cjs` clean of new breaks.
+- [x] T7 — SKILL §2 family table: the Lane A row names its guide (five families); non-goal paragraph reworded. Evidence: `create-benchmark/SKILL.md` §2 table has 5 family rows; word count `4996` <= cap.
+- [x] T8 — SKILL §1 framing + §12 REFERENCES rows; `version` 1.2.0.0->1.3.0.0; changelog v1.3.0.0. Evidence: `package_skill.py create-benchmark --check` PASS.
+- [x] T9 — Add create-benchmark back-pointer to `deep-alignment/behavior_benchmark/behavior_benchmark.md`. Evidence: `rg create-benchmark deep-alignment` >= 1.
+- [x] T10 — Add Lane A README pointer to the new guide. Evidence: the back-pointer path resolves (`ls`).
+- [x] T11 — Verify create-benchmark->lane relative links for Lane A resolve. Evidence: the guide reports 22/22 resolved; `check-markdown-links.cjs` clean of new breaks.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -57,8 +56,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T13 — `validate.sh --strict` on this child reports Errors:0; parent recursive introduces no new errors. Evidence: see the close-out validation run.
-- [x] T14 — Generated child `description.json` + `graph-metadata.json` (`generate-description.js` + `backfill-graph-metadata.js`); wrote `implementation-summary.md`; added the child 002 row to the parent `spec.md` phase map. Evidence: both JSON files present; parent map has 2 rows.
+- [x] T12 — `validate.sh --strict` on this child reports Errors:0; parent recursive introduces no new errors. Evidence: see the close-out validation run.
+- [x] T13 — Generated child `description.json` + `graph-metadata.json` (`generate-description.js` + `backfill-graph-metadata.js`); wrote `implementation-summary.md`; added the child 002 row to the parent `spec.md` phase map. Evidence: both JSON files present; parent map has 2 rows.
 <!-- /ANCHOR:phase-3 -->
 
 ---

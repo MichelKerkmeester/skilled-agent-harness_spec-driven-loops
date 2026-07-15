@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 12 |
+| **Phase** | 8 of 11 active phases |
 | **Predecessor** | 007-ideas-backlog-lifecycle |
 | **Successor** | 009-loop-quality-benchmark |
 | **Handoff Criteria** | Seeding step runs before first convergence check in both context and review modes; seeded nodes have `seed_source`/`seed_confidence` fields; empty-graph warning logged when seeding yields zero nodes |

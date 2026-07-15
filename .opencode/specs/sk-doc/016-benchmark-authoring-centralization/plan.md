@@ -43,7 +43,7 @@ New templates/guides validate 0 issues; create-benchmark `--check` PASS (10/10 o
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 ### Pattern
-One packet, multiple benchmark families. Authored families (MCP promotion, behavior, skill-benchmark, model-benchmark) own their templates + standards here; code-owned families (Lane A agent-improvement, Lane D non-dev-ai-system) are named for router disambiguation but keep artifacts in-lane. The measurement contracts (framework.md, scoring_contract.md, reviewer_schema.md) stay in the deep-loop lanes; create-benchmark links them.
+One packet, multiple benchmark families. Authored families (MCP promotion, behavior, skill-benchmark, model-benchmark) own their templates + standards here; the code-owned Lane A agent-improvement family is named for router disambiguation but keeps artifacts in-lane. The measurement contracts (framework.md, scoring_contract.md, reviewer_schema.md) stay in the deep-loop lanes; create-benchmark links them.
 <!-- /ANCHOR:architecture -->
 
 ---

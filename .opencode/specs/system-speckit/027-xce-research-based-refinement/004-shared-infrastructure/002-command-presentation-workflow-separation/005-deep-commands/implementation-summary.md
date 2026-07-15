@@ -58,7 +58,7 @@ The 011 presentation/router split now covers the deep command family. Each of th
 
 Each router carries the speckit-pattern sections (Router Contract, Owned Assets, Mode Routing, Execution Targets, Presentation Boundary, Workflow Summary) and retains its frontmatter, Phase 0 @general verification gate, and mandatory-input gate. Each presentation asset carries the startup prompts, auto pre-bound-setup schema and resolution tables, dashboards and checkpoints, result templates, and next-step wording.
 
-The two non-mode deep commands (`start-non-dev-ai-system-loop`, `start-skill-benchmark-loop`, ~95 lines each, no `_auto`/`_confirm` assets) were verified as already thin and are out of split scope.
+The non-mode deep command (`start-skill-benchmark-loop`, ~95 lines, no `_auto`/`_confirm` assets) was verified as already thin and is out of split scope.
 
 sk-doc alignment: `command_template.md` now documents the presentation/router split as the canonical pattern for mode-based workflow command families (asset table, router section order, reference shape), and a new `command_presentation_template.md` skeleton scaffolds the presentation contract.
 

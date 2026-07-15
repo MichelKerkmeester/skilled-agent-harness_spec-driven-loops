@@ -57,9 +57,9 @@ None new. Existing DR-014-P1-001 and DR-015-P1-001 were carried forward as conte
 
 ## Traceability Checks
 
-- Post-trim organization: PARTIAL. `references/` is lane-organized (`agent_improvement/`, `model_benchmark/`, `skill_benchmark/`, `non_dev_ai_system/`, `shared/`) and the three new files avoid bulky SKILL.md duplication by holding full runtime, Lane A stress-test, and Lane B mechanics detail. The routing map gap above weakens machine discoverability.
+- Post-trim organization: PARTIAL. `references/` is lane-organized (`agent_improvement/`, `model_benchmark/`, `skill_benchmark/`, `shared/`) and the three new files avoid bulky SKILL.md duplication by holding full runtime, Lane A stress-test, and Lane B mechanics detail. The routing map gap above weakens machine discoverability.
 - Scale/navigation: PASS with advisory. The 458-file packet has a usable top-level path through README, SKILL.md, feature catalog, manual testing playbook, and lane-organized references/assets. Future maintainers are more likely to get lost in router/resource-map drift than in the directory layout itself.
-- Four-lane design: PASS. SKILL.md, README, feature catalog, and manual playbook all explain why Lane A/B/C/D share one packet: common candidate, dispatcher, scorer, loop-host, and guard seams, with Lane D explicitly adapted rather than owned by this packet's loop.
+- Three-lane design: PASS. SKILL.md, README, feature catalog, and manual playbook all explain why Lane A/B/C share one packet: common candidate, dispatcher, scorer, loop-host, and guard seams.
 - Prior findings: Existing DR-014-P1-001, DR-015-P1-001, and DR-016-P2-001 remain active for the deep-improvement packet but were not re-counted as new.
 
 ## Verdict

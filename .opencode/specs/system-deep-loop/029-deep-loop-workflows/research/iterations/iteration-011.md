@@ -41,21 +41,21 @@ First new release should be `v1.0.0.md` under the new active root, with a “mig
 **README Narrative**
 Use one public story:
 
-`deep-loop-runtime` is the backend. `deep-loop-workflows` is the user-facing workflow skill. It contains internal modes for context, research, review, council and improvement. The eight `/deep:*` commands stay stable. Each mode keeps its own convergence math, state shape, artifacts and permissions.
+`deep-loop-runtime` is the backend. `deep-loop-workflows` is the user-facing workflow skill. It contains internal modes for context, research, review, council and improvement. The seven `/deep:*` commands stay stable. Each mode keeps its own convergence math, state shape, artifacts and permissions.
 
 House voice should be plain and operator-facing, matching the current root README style at `README.md:786-871`: explain what the user gets, then list mode outcomes. Avoid “five skills” language. Say “five workflow modes” or “five loop families inside one skill.”
 
 Suggested conceptual replacement:
 - `deep-loop-runtime`: shared engine, not invoked directly.
 - `deep-loop-workflows`: one skill containing the context, research, review, council and improvement modes.
-- Improvement remains a mode group with four lanes.
+- Improvement remains a mode group with three lanes.
 
 **Exact Doc Sweep**
 | Path | Lines read | Required change |
 |---|---:|---|
 | `README.md` | `784-871` | Rewrite Deep Loop section from “five loop families on one shared runtime” to “one runtime plus one workflow skill with internal modes.” Keep per-mode subsections, but label them modes, not skills. Replace line `871` so it links to `deep-loop-workflows/README.md` and `deep-loop-runtime/README.md`, not “each loop’s own README under .opencode/skills/”. |
 | `README.md` | `917-937` | Collapse six deep-loop skill entries to two: `deep-loop-runtime` and `deep-loop-workflows`. Move research/review/context/council/improvement descriptions under the workflow skill entry. |
-| `README.md` | `1172-1198` | Keep the eight command entries, but change the intro from “five autonomous loop families” to “one workflow skill with mode-specific command surfaces.” |
+| `README.md` | `1172-1198` | Keep the seven command entries, but change the intro from “five autonomous loop families” to “one workflow skill with mode-specific command surfaces.” |
 | `README.md` | `1322-1323` | Replace the brittle slash-enumeration with `deep-loop-runtime` / `deep-loop-workflows`. Move `deep-improvement` out of the `sk-prompt` row because it no longer exists as a skill. |
 | `README.md` | `877` | Current file says `24 skills`; after five-to-one merge the correct delta is `20 skills`, unless another angle removes a non-deep skill. |
 | `.opencode/skills/README.md` | `3`, `24`, `33`, `53-63` | Collapse deep catalog from six rows to two. The prompt expected `23 -> 19`, but the live directory has 24 skill dirs and this README also lists five `mcp-*` rows while saying `(4)`. I recommend using filesystem truth: `24 -> 20`, `deep-* (6) -> (2)`, and fix `mcp-* (4) -> (5)`. |
@@ -78,6 +78,6 @@ Suggested conceptual replacement:
 **Dependencies**
 This recommendation assumes:
 - Agent names stay stable, as the Context Report recommends resolving first (`context-report.md:179-181`) and as the current mirror topology supports.
-- The command surface stays eight `/deep:*` commands (`context-report.md:183-185`).
+- The command surface stays seven `/deep:*` commands (`context-report.md:183-185`).
 - The merged skill preserves per-mode subtrees or otherwise provides stable replacement paths for protocol links before old paths are deleted.
 - Advisor metadata/aliases will route old mode names to `deep-loop-workflows`, because `skill_id` is folder-bound (`context-report.md:100-105`).

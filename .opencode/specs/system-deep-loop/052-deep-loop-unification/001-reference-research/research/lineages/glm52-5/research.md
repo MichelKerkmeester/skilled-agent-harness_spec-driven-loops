@@ -2,16 +2,16 @@
 
 ## 1. Executive Summary
 
-This GLM-5.2 lineage validates the `system-deep-loop/` merge direction as sound, and independently confirms the core of the three Sonnet-5 Plan agents' design. It surfaces eleven ranked, evidence-backed revisions (R1-R11) plus two genuinely new risks the plan does not cover:
+This GLM-5.2 lineage validates the `system-deep-loop/` merge direction as sound, and independently confirms the core of the three Sonnet-5 Plan agents' design. It surfaces ten ranked, evidence-backed revisions (R1-R10) plus two genuinely new risks the plan does not cover:
 
 1. **NEW — a third path-repair class**: `replay-graph-from-artifacts.cjs` builds repo-root absolute paths via an existence probe, which neither Class A (same-hop delete segment) nor Class B (minus-one-hop rename) models. It breaks silently (repo-root detection fails, returned path points nowhere) rather than crashing.
 2. **NEW — the fallback-router wiring is unreachable for the exact failure it targets**: `classifyLineageFailure` routes quota/auth failures to FATAL before retry exhaustion, so a naive single-call-site `resolveFallback()` never fires for GLM quota-out.
 
-The structural concept is correct: `deep-loop-workflows` becomes `system-deep-loop`, `deep-loop-runtime` becomes nested `runtime/`, public `/deep:*` command and agent names stay stable, and `runtime/` stays infrastructure (not an eighth mode).
+The structural concept is correct: `deep-loop-workflows` becomes `system-deep-loop`, `deep-loop-runtime` becomes nested `runtime/`, public `/deep:*` command and agent names stay stable, and `runtime/` stays infrastructure (not a seventh mode).
 
 ## 2. Research Scope
 
-Scope covered: structural layout, bidirectional path coupling, the `system-spec-kit` tooling-borrow, external reference migration (commands/agents/READMEs/advisor-corpus/sibling-graphs/test-fixtures/named-profiles), and fallback-router wiring feasibility for GLM-5.2 → MiMo-v2.5-Pro.
+Scope covered: structural layout, bidirectional path coupling, the `system-spec-kit` tooling-borrow, external reference migration (commands/agents/READMEs/advisor-corpus/sibling-graphs/test-fixtures), and fallback-router wiring feasibility for GLM-5.2 → MiMo-v2.5-Pro.
 
 Out of scope: executing any part of the merge, editing any source path, or writing outside this lineage directory. `{spec_folder}/spec.md` mutation and memory save were deferred (detached fan-out boundary).
 
@@ -26,7 +26,7 @@ Five evidence iterations using direct source reads and scoped `rg` inventories. 
 | Q1 Structural layout | Answered | Sound if `runtime/` remains infrastructure, not a workflow mode. |
 | Q2 Path coupling | Answered | Directional rule correct, but inventory misses 4+ relative-hop seams AND a distinct third repair class. |
 | Q3 Tooling-borrow | Answered | Four Stage 3b edits necessary and correctly scoped; add artifact-root depth + a non-empty-glob assertion. |
-| Q4 Reference migration | Answered | Category-scoped rewrite is right; add divergence-reason prose, named-profile decision, and test-fixture allowlist. |
+| Q4 Reference migration | Answered | Category-scoped rewrite is right; add divergence-reason prose and test-fixture allowlist. |
 | Q5 Fallback wiring | Answered | Worth wiring only as a three-part change; a single call site is unreachable for quota/auth. |
 
 ## 5. Ranked Findings
@@ -39,7 +39,7 @@ Recommendation: when `config.fanout_lineage_artifact_dir` is present, emit `spec
 
 ### F-P1-001 - Convergence-Floor Test Hardcodes Old Skill Name (Enforces REQ-002)
 
-`deep-research-convergence-floor.vitest.ts:20-28` resolves `repoRoot/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json` — this is the test that enforces the `minIterations: 3` floor this phase's spec.md REQ-002 relies on. After rename it reads a non-existent path and fails. Child 002's Class A list says "7 test files"; the real count is 10, and this load-bearing test is un-enumerated. [SOURCE: .opencode/skills/deep-loop-runtime/tests/unit/deep-research-convergence-floor.vitest.ts:19-29] [SOURCE: 002-hub-rename-and-runtime-nesting/plan.md:76]
+`deep-research-convergence-floor.vitest.ts:20-28` resolves `repoRoot/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json` — this is the test that enforces the `minIterations: 3` floor this phase's spec.md REQ-002 relies on. After rename it reads a non-existent path and fails. Child 002's Class A list says "7 test files"; the real count is 9, and this load-bearing test is un-enumerated. [SOURCE: .opencode/skills/deep-loop-runtime/tests/unit/deep-research-convergence-floor.vitest.ts:19-29] [SOURCE: 002-hub-rename-and-runtime-nesting/plan.md:76]
 
 ### F-P1-002 - Class B Reverse-Coupling Inventory Is Incomplete
 
@@ -61,10 +61,6 @@ The table omits `deep-review/scripts/reduce-state.cjs:14`, both `runtime-capabil
 
 `local-native-approved-divergences.json:30-31` pairs `nativeTop:"deep-loop-workflows"` with a free-text `reason` that names the old skill. Stage I must update `nativeTop`/`localTop`/`reason`/`approvedAt` TOGETHER per entry; updating only the structured field leaves the rationale contradicting the value. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json:30-31]
 
-### F-P1-007 - Named Benchmark Profile File Has Ambiguous Rename Target
-
-`deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json` (filename = old skill) carries `packaging_root:".opencode/skills/deep-loop-runtime"` and `system_name_short:"deep-loop-runtime"`, and `meta-loop-lane-d-packaging.vitest.ts:15` asserts on the filename. Blind grep-update renames internal fields but leaves the filename stale, and the lane-d test passes on the old filename while pointing at a renamed path. Requires an EXPLICIT naming decision (filename + fields + test together). [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json:3-5] [SOURCE: .opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts:15]
-
 ### F-P1-008 - `classifyLineageFailure` Makes Fallback Unreachable For Quota/Auth
 
 `cli-guards.cjs:169-200` marks only `timeout`/`salvage_miss`/`artifact_miss` retryable; quota/auth/429 exits are `EXIT`→`FATAL`→not retried, so they never reach the retry-exhaustion point where child 004 proposes to call `resolveFallback`. The GLM-quota failure mode — the exact case the fallback is meant to heal — is therefore unreachable. [SOURCE: .opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs:169-200]
@@ -79,7 +75,7 @@ The table omits `deep-review/scripts/reduce-state.cjs:14`, both `runtime-capabil
 
 ## 6. Structural Layout Assessment
 
-Sound. `system-deep-loop/` owns public routing and mode packets; `runtime/` is nested infrastructure with no `graph-metadata.json` of its own. The mode registry's three-tier discriminator (`workflowMode`/`runtimeLoopType`/`backendKind`) already models the runtime as backend-only — only research/review/council carry a non-null `runtimeLoopType`; the four improvement lanes stay host/external-adapter backed. No eighth runtime mode should be added. [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:5-27] [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:29-197]
+Sound. `system-deep-loop/` owns public routing and mode packets; `runtime/` is nested infrastructure with no `graph-metadata.json` of its own. The mode registry's three-tier discriminator (`workflowMode`/`runtimeLoopType`/`backendKind`) already models the runtime as backend-only — only research/review/council carry a non-null `runtimeLoopType`; the three remaining improvement lanes stay host/external-adapter backed. No seventh runtime mode should be added. [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:5-27] [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:29-197]
 
 ## 7. Path-Coupling Assessment
 
@@ -106,13 +102,13 @@ High risk, correctly guarded. The advisor hot path does NOT read `mode-registry.
 
 ## 11. Recommendations
 
-Eleven ranked revisions (R1-R11), grouped by child:
+Ten ranked revisions (R1-R10), grouped by child:
 
-**Child 002 (structural):** R1 expand Class B inventory · R2 add third repair class (replay-graph) · R3 add artifact-root to Stage 3b · R4 non-empty-glob assertion · R5 correct test-file count to 10, flag the convergence-floor test.
+**Child 002 (structural):** R1 expand Class B inventory · R2 add third repair class (replay-graph) · R3 add artifact-root to Stage 3b · R4 non-empty-glob assertion · R5 correct test-file count to 9, flag the convergence-floor test.
 
-**Child 003 (references):** R6 update divergence `reason` prose with fields · R7 explicit named-profile rename decision · R8 council test-fixture residual-grep allowlist.
+**Child 003 (references):** R6 update divergence `reason` prose with fields · R7 council test-fixture residual-grep allowlist.
 
-**Child 004 (fallback):** R9 extend `classifyLineageFailure` for quota/auth · R10 slug→bare-id normalizer · R11 quota-exhaustion forced-failure integration test.
+**Child 004 (fallback):** R8 extend `classifyLineageFailure` for quota/auth · R9 slug→bare-id normalizer · R10 quota-exhaustion forced-failure integration test.
 
 ## 12. Eliminated Alternatives
 
@@ -133,7 +129,6 @@ Eleven ranked revisions (R1-R11), grouped by child:
 No blocking open questions remain for this lineage. Two operator decisions remain downstream:
 
 1. Resolve F-P0-001 (gate YAML `spec.md` mutation on `fanout_lineage_artifact_dir`) before rerunning this kind of research fan-out, or accept operator-mediated deferral per-replica.
-2. Decide the named-profile rename target for `deep-loop-runtime.json` (F-P1-007): `system-deep-loop.json` vs `runtime.json`.
 
 ## 14. Validation Recommendations
 

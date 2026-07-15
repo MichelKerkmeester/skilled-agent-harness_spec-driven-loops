@@ -72,7 +72,7 @@ _memory:
 
 - [x] T015 Content-parity diff per command (every inline presentation block present in the asset)
 - [x] T016 Verify each router references all three owned assets and carries no inline presentation contract
-- [x] T017 Verify + document the two thin commands (`start-non-dev-ai-system-loop`, `start-skill-benchmark-loop`) as out of split scope
+- [x] T017 Verify + document the thin `start-skill-benchmark-loop` command as out of split scope
 - [x] T018 `validate.sh --strict`, Fable parity pass, deep review, remediate
 - [x] T019 Scoped commit
 

@@ -1,6 +1,6 @@
 # Angle Bank — 50-iteration deep-research run (loop-cli-main + kasper → our loop systems)
 
-72 primary angles across 6 segments + 12 wildcard reserve. Each `Q` is paste-ready for injection as `- [ ] <Q>` into the `<!-- ANCHOR:key-questions -->` block of `deep-research-strategy.md`.
+72 primary angles across 6 segments + 10 wildcard reserve. Each `Q` is paste-ready for injection as `- [ ] <Q>` into the `<!-- ANCHOR:key-questions -->` block of `deep-research-strategy.md`.
 
 Dimensions: **D1** source-mining · **D2** target-mapping · **D3** cross-cutting · **D4** synthesis.
 
@@ -99,18 +99,16 @@ Dimensions: **D1** source-mining · **D2** target-mapping · **D3** cross-cuttin
 
 ---
 
-## Broaden-reserve — 12 wildcard high-novelty angles (inject on convergence/stuck)
+## Broaden-reserve — 10 wildcard high-novelty angles (inject on convergence/stuck)
 
 - **W-01** · D3 · → `fanout-run.cjs` ← council multi-seat dispatch — Q: Could the council's parallel multi-seat dispatcher power a research wave (currently sequential/reference-only) so independent key-questions run concurrently with median-pruning?
 - **W-02** · D4 · → `lib/council/cost-guards.cjs` (generalize) — Q: What would a per-iteration cost/budget governor look like (generalizing council saturation/max-rounds) tied to `executor-config.timeoutSeconds` so a 50-iteration run has a hard spend ceiling?
 - **W-03** · D3 · → `permissions-gate.ts` — Q: Since the angle inbox is operator/agent-authored, should injected questions themselves pass kasper's prompt-injection sanitizer before entering the strategy file — securing the loop's own input supply chain?
 - **W-04** · D3 · → `deep_research_auto.yaml` human-in-the-loop — Q: What mid-run steering protocol (loop-cli pause → operator edits key-questions → resume) lets a human reprioritize between iterations without restarting or corrupting reducer state?
-- **W-05** · D4 · → `mode-registry.json` external-adapter contract — Q: How does the `ai-system-improvement` external-adapter loop differ from our runtime-loop-type loops, and what shared telemetry/lock contract should both honor?
 - **W-06** · D3 · → deep-loop-runtime tests (record-replay) — Q: Could we build a record-replay harness capturing each iteration's dispatch inputs/outputs (loop-cli fixture style) so a full run is deterministically replayable for convergence-change regression?
 - **W-07** · D4 · → `coverage-graph-db.ts` — Q: What schema-versioning + migration strategy does the coverage-graph need so a backward-incompatible node/edge change is safe under concurrent fan-out lineages?
 - **W-08** · D3 · → cli-codex/claude-code/opencode dispatch parity — Q: Should a fan-out lineage matrix dispatch the same iteration across codex/claude/opencode to measure cross-AI agreement as a convergence signal (extending context-loop `agreementRate` to research)?
 - **W-09** · D4 · → `lifecycle-taxonomy.cjs` — Q: Can we unify the three failure vocabularies — `lifecycle-taxonomy.cjs`, fan-out `failure_classes`, kasper weakness categories — into one taxonomy so recovery routing is consistent?
-- **W-10** · D4 · → deep:ai-system-improvement on deep-loop itself — Q: What would a meta-loop look like that points `deep:ai-system-improvement` at the deep-loop runtime's own technique docs, and what guardrails prevent it degrading the harness it runs on?
 - **W-11** · D3 · → deep-loop-workflows onboarding/UX — Q: How does loop-cli's README + demo.gif + single-command onboarding inform a deep-loop quick-start so a first-time operator launches a research loop without reading `loop_protocol.md`?
 - **W-12** · D3 · → `deep_research_auto.yaml` Step 4b (checkpoint commit, reference-only) — Q: Should the reference-only per-iteration checkpoint-commit become live (targeted `git add` of research artifacts + non-blocking commit) so `git log -- research/` is the rollback ledger?
 

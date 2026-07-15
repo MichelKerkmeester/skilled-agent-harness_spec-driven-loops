@@ -51,7 +51,7 @@ Bring the four render-pipeline stubs into the same self-describing router-triad 
 ### Definition of Done
 - [ ] All 4 commands carry a full inline `## 1..## 6` router body with the folded directive and no bang.
 - [ ] The 4 contracts recompiled + drift-clean; render smoke COMPARE OK in `mode=fix`.
-- [ ] All 8 commands pass `--type command`; four vitest suites green; live `:auto` smoke of research/review preserved; `validate.sh --strict` clean.
+- [ ] All 7 commands pass `--type command`; four vitest suites green; live `:auto` smoke of research/review preserved; `validate.sh --strict` clean.
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -90,7 +90,7 @@ Promotion copies the legacy body into the committed `command.md` and removes the
 
 ### Phase 3: Verification
 - [ ] Drift sweep (`check-contract-drift.cjs` → OK), render smoke (`--compare` → COMPARE OK) + `mode=fix` freshness.
-- [ ] `validate_document.py --type command` on all 8 → exit 0; run all four vitest suites.
+- [ ] `validate_document.py --type command` on all 7 → exit 0; run all four vitest suites.
 - [ ] Live `:auto` smoke of research/review; `validate.sh --strict`; roll up the 064 parent map.
 
 <!-- /ANCHOR:phases -->
@@ -103,7 +103,7 @@ Promotion copies the legacy body into the committed `command.md` and removes the
 |-----------|-------|-------|
 | Contract drift | All registered commands after recompile | `node check-contract-drift.cjs` |
 | Render smoke | The 4 promoted commands in `mode=fix` | `render-command-contract.cjs --compare` (`writeManifest:false`) |
-| Command conformance | All 8 deep commands | `validate_document.py --type command` |
+| Command conformance | All 7 deep commands | `validate_document.py --type command` |
 | Unit / regression | Pipeline behaviour | vitest: `render-command-contract`, `check-contract-drift`, `compile-command-contracts`, `resolve-injection-mode` |
 | Behaviour smoke | `research` + `review` `:auto` | Live dispatch before any merge |
 | Spec validation | This child + parent rollup | `validate.sh --strict` / `--recursive` |

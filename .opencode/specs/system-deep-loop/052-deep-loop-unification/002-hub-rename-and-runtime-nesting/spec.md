@@ -90,7 +90,6 @@ Execute the irreversible physical merge: rename `deep-loop-workflows` → `syste
 | `system-spec-kit/mcp_server/package.json`, `system-spec-kit/mcp_server/vitest.config.ts` | Edit | Reverse half of the tooling-borrow, expand target path |
 | `runtime/lib/deep-loop/artifact-root.cjs`, `runtime/tests/unit/artifact-root.vitest.ts` | Edit | Missed tooling-borrow sites, found by 001's research |
 | `system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts` | Edit | `system-spec-kit`-owned but must fix in this phase — `test:council`'s own exit gate crashes on it otherwise |
-| `deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json` | Edit | Lane-D self-target profile; conflicts with the SKILL.md/README.md decision if unaddressed |
 | `.opencode/commands/deep/{research,review,ai-council}.md` | Edit (3 lines) | Pulled forward from child 003 to close the B.2 sequencing gap — needed for this phase's own live-verification step |
 | `system-deep-loop/graph-metadata.json` | Create (fresh-author) | The one unified identity |
 | `system-deep-loop/changelog/v2.0.0.0.md` | Create | Reunification changelog entry |
@@ -169,7 +168,7 @@ system-deep-loop/
     feature_catalog/  references/  changelog/ (frozen at v1.5.0.1)  manual_testing_playbook/
 ```
 
-`runtime/` is infrastructure, not a `workflowMode` — it has no command, no agent, no `artifactRoot`. Adding it as an 8th `mode-registry.json` entry would be a category error.
+`runtime/` is infrastructure, not a `workflowMode` — it has no command, no agent, no `artifactRoot`. Adding it as a seventh `mode-registry.json` entry would be a category error.
 
 ### Path-repair rule (the one insight that governs everything)
 

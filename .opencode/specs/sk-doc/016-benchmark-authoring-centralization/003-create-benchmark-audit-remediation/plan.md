@@ -84,7 +84,7 @@ create-benchmark owns authoring templates → deep-improvement/deep-alignment co
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `create-benchmark/SKILL.md`, `README.md`, refs/assets | Authoring canon for benchmark families | update | `package_skill.py --check`; `grep _shared`==0 |
-| `sk-doc/hub-router.json`, `mode-registry.json` | Routing keyword projection | update | JSON valid; Lane A/D keywords present |
+| `sk-doc/hub-router.json`, `mode-registry.json` | Routing keyword projection | update | JSON valid; Lane A keyword present |
 | `deep-improvement` Lane B dirs + resolver/tests/allowlist | Consumes fixtures/profiles | rename + update refs | vitest suites pass; resolver path exists |
 | `deep-alignment/behavior_benchmark` index | Captured-run index | reconcile to baseline | no stale `300000`/`null` for measured scenarios |
 | `deep-improvement/benchmark/*/skill-benchmark-report.json` | Frozen run history | unchanged | byte-identical |

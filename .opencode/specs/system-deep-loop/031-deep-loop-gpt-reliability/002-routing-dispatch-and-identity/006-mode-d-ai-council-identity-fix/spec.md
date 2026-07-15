@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Mode-D Gate Fix + ai-council Route-Identity Fix"
-description: "Replace the Phase-0 self-classification gate in all 8 /deep:* command files with a deterministic dispatch-context check, and reconcile the ai-council route-proof identity (orchestrate-topic.cjs + deep_ai-council_auto.yaml) toward mode-registry.json. Two low-risk, independently-landable fixes bundled as the first phase per research/research.md."
+description: "Replace the Phase-0 self-classification gate in all 7 /deep:* command files with a deterministic dispatch-context check, and reconcile the ai-council route-proof identity (orchestrate-topic.cjs + deep_ai-council_auto.yaml) toward mode-registry.json. Two low-risk, independently-landable fixes bundled as the first phase per research/research.md."
 trigger_phrases:
   - "mode d gate fix"
   - "ai-council route identity fix"
@@ -29,7 +29,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Dispatch-context signal: no runtime API exists to check this from a markdown contract, so the check is evidence-based prose (direct /deep:* invocation vs. content pasted inline into another agent's dispatch prompt), defaulting to PROCEED on ambiguity -- see implementation-summary.md."
-      - "Are the 8 command files' Phase-0 blocks byte-identical? No -- structurally identical, each substitutes its own loop description/command name (4 of 8 add file-specific extras, preserved verbatim)."
+      - "Are the 7 command files' Phase-0 blocks byte-identical? No -- structurally identical, each substitutes its own loop description/command name (3 of 7 add file-specific extras, preserved verbatim)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Mode-D Gate Fix + ai-council Route-Identity Fix
@@ -61,12 +61,12 @@ _memory:
 
 Two independent, confirmed-by-code-trace defects, both cross-validated across research/research.md's 6 lineages:
 
-1. **Mode D (self-classification gate misread as hard block).** All 8 `/deep:*` command files (`ai-system-improvement.md`, `skill-benchmark.md`, `context.md`, `review.md`, `ai-council.md`, `research.md`, `agent-improvement.md`, `model-benchmark.md` under `.opencode/commands/deep/`) open with an identical "PHASE 0: @GENERAL AGENT VERIFICATION" block: advisory prose asking the model to self-classify as "@general agent," with a hard block on "NO or UNCERTAIN." Phase 005's own research-mode smoke already fired this exact mechanism (`STATUS=FAIL ERROR="General agent required"`) — GPT read the advisory self-check as a mandatory gate it had to resolve before proceeding, and halted. This is a distinct root cause from mis-routing or latency, and FIX-5 (hard identity) would not fix it — hard identity prevents wrong-agent dispatch; it does nothing about a model halting on a step it misreads as a gate.
+1. **Mode D (self-classification gate misread as hard block).** All 7 `/deep:*` command files (`skill-benchmark.md`, `context.md`, `review.md`, `ai-council.md`, `research.md`, `agent-improvement.md`, `model-benchmark.md` under `.opencode/commands/deep/`) open with an identical "PHASE 0: @GENERAL AGENT VERIFICATION" block: advisory prose asking the model to self-classify as "@general agent," with a hard block on "NO or UNCERTAIN." Phase 005's own research-mode smoke already fired this exact mechanism (`STATUS=FAIL ERROR="General agent required"`) — GPT read the advisory self-check as a mandatory gate it had to resolve before proceeding, and halted. This is a distinct root cause from mis-routing or latency, and FIX-5 (hard identity) would not fix it — hard identity prevents wrong-agent dispatch; it does nothing about a model halting on a step it misreads as a gate.
 2. **ai-council route-proof identity mismatch.** `orchestrate-topic.cjs:310-313` (the record emitter) and `deep_ai-council_auto.yaml:132-136` (the validator's `route_proof` block) agree with each other on `mode: council` / `target_agent: deep-ai-council` — so route-proof validation currently **passes**. But both agreeing values are wrong relative to `mode-registry.json`'s `ai-council` entry (`workflowMode: "ai-council"`, `agent: "ai-council"`) and the council's own emitted header. `target_agent: deep-ai-council` names the packet, not an agent — no agent by that name exists. Route-proof currently certifies an artifact naming a non-existent agent as valid: a false negative of the exact class phase 002's route-proof mechanism was built to catch, one layer removed (validator and record agree with each other, both disagree with the actual source of truth).
 
 ### Purpose
 
-Land both fixes together as the lowest-risk, first-landed phase from research/research.md §4 item 1: remove the Mode-D advisory-gate misread across all 8 command files, and reconcile the ai-council identity so route-proof validates against the registry instead of a self-consistent-but-wrong pair of values.
+Land both fixes together as the lowest-risk, first-landed phase from research/research.md §4 item 1: remove the Mode-D advisory-gate misread across all 7 command files, and reconcile the ai-council identity so route-proof validates against the registry instead of a self-consistent-but-wrong pair of values.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -76,7 +76,7 @@ Land both fixes together as the lowest-risk, first-landed phase from research/re
 
 ### In Scope
 
-- Replace the "PHASE 0: @GENERAL AGENT VERIFICATION" self-classification block in all 8 `/deep:*` command files with a deterministic dispatch-context check (was this file invoked directly by the user, or handed off via Task delegation from another agent?) that does not ask the model to self-classify from prose.
+- Replace the "PHASE 0: @GENERAL AGENT VERIFICATION" self-classification block in all 7 `/deep:*` command files with a deterministic dispatch-context check (was this file invoked directly by the user, or handed off via Task delegation from another agent?) that does not ask the model to self-classify from prose.
 - Edit `orchestrate-topic.cjs:310-313` (`mode: 'council'` → `mode: 'ai-council'`, `target_agent: 'deep-ai-council'` → `target_agent: 'ai-council'`, `resolved_route` string updated to match).
 - Edit `deep_ai-council_auto.yaml:132-136` (`route_proof.mode: council` → `ai-council`, `route_proof.target_agent: deep-ai-council` → `ai-council`, `resolved_route` string updated to match) in the **same change** as the `.cjs` edit — landing one side alone converts a currently-passing-but-wrong state into a real, blocking FAIL.
 - Re-run the ai-council round-completion smoke (or equivalent existing test) to confirm route-proof still passes post-fix, now validating against the registry-correct identity.
@@ -93,7 +93,6 @@ Land both fixes together as the lowest-risk, first-landed phase from research/re
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
-| `.opencode/commands/deep/ai-system-improvement.md` | Modify | Replace Phase-0 self-check block |
 | `.opencode/commands/deep/skill-benchmark.md` | Modify | Replace Phase-0 self-check block |
 | `.opencode/commands/deep/context.md` | Modify | Replace Phase-0 self-check block |
 | `.opencode/commands/deep/review.md` | Modify | Replace Phase-0 self-check block |
@@ -114,7 +113,7 @@ Land both fixes together as the lowest-risk, first-landed phase from research/re
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Mode-D gate replaced, not just reworded | All 8 command files' Phase-0 block resolves from dispatch context (direct invocation vs. Task delegation), not from model self-classification prose; no wording remains that a model could read as "ask yourself if you are @general and halt if unsure." |
+| REQ-001 | Mode-D gate replaced, not just reworded | All 7 command files' Phase-0 block resolves from dispatch context (direct invocation vs. Task delegation), not from model self-classification prose; no wording remains that a model could read as "ask yourself if you are @general and halt if unsure." |
 | REQ-002 | ai-council identity is registry-aligned | `orchestrate-topic.cjs` and `deep_ai-council_auto.yaml` both use `mode: ai-council` / `target_agent: ai-council`, matching `mode-registry.json`'s `ai-council` entry (`workflowMode`, `agent`). |
 | REQ-003 | Both ai-council files land together | No intermediate commit/state exists where only one of the two files has changed (would create a real route-proof FAIL). |
 | REQ-004 | No regression to the other 3 deep modes | `context`/`research`/`review` command files' Phase-0 replacement follows the identical deterministic pattern; their own route-proof records are untouched by this phase (they don't share the ai-council mismatch). |
@@ -125,7 +124,7 @@ Land both fixes together as the lowest-risk, first-landed phase from research/re
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All 8 command files pass a grep-based check confirming zero remaining instances of self-classification prose ("SELF-CHECK: Are you operating as the @general agent?" or equivalent).
+- **SC-001**: All 7 command files pass a grep-based check confirming zero remaining instances of self-classification prose ("SELF-CHECK: Are you operating as the @general agent?" or equivalent).
 - **SC-002**: `orchestrate-topic.cjs` and `deep_ai-council_auto.yaml` both reference `ai-council` (not `council`/`deep-ai-council`) for `mode`/`target_agent`, verified by direct grep of both files.
 - **SC-003**: An ai-council round-completion smoke (existing test harness or a minimal repro) shows route-proof still passes post-fix.
 - **SC-004**: `validate.sh --strict` passes for this phase folder.
@@ -162,7 +161,7 @@ Land both fixes together as the lowest-risk, first-landed phase from research/re
 - **NFR-R02**: Route-proof validation must remain meaningful (i.e., still capable of failing on a genuine mismatch) after the ai-council identity fix — the fix must not weaken the validator into an always-pass check.
 
 ### Maintainability
-- **NFR-M01**: The 8 command files' replacement block must stay textually identical across all 8 files so future edits don't need to be applied 8 separate times with drift risk.
+- **NFR-M01**: The 7 command files' replacement block must stay textually identical across all 7 files so future edits don't need to be applied 7 separate times with drift risk.
 - **NFR-M02**: `orchestrate-topic.cjs` and `deep_ai-council_auto.yaml` must reference `mode-registry.json`'s values directly in review/comments where practical, not fork them into independent prose.
 
 ### Compatibility

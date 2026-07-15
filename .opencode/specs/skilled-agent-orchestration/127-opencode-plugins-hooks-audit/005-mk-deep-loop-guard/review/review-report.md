@@ -36,7 +36,7 @@ The default-export shape is correct, but both guard checks have correctness gaps
 ### F1 - Duplicate agent entries overwrite valid workflow modes
 - **Severity / Category / Confidence:** P1 / bug / high
 - **Location:** `.opencode/plugins/mk-deep-loop-guard.js:80`
-- **Evidence:** loadRegistryAgents() stores one mode per agent with map.set(mode.agent, mode). mode-registry.json:117,143,166,189 maps four workflow modes to deep-improvement, so each entry overwrites the previous one and only ai-system-improvement remains.
+- **Evidence:** loadRegistryAgents() stores one mode per agent with map.set(mode.agent, mode). mode-registry.json:117,143,166 maps three workflow modes to deep-improvement, so each entry overwrites the previous one and only skill-benchmark remains.
 - **Impact:** Valid deep-improvement dispatches declaring agent-improvement, model-benchmark, or skill-benchmark are falsely reported or rejected as mode mismatches.
 - **Proposed fix:** Map each agent to a Set or array of permitted workflowMode values and reject only when the declared mode is absent from that set.
 
@@ -92,7 +92,7 @@ The default-export shape is correct, but both guard checks have correctness gaps
 ### F9 - Fixture registry omits the production registry's multiplexed-agent shape
 - **Severity / Category / Confidence:** refinement / refinement / high
 - **Location:** `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs:24`
-- **Evidence:** writeFixtureRegistry() gives each fixture mode a unique agent, so it cannot expose the production registry's four workflow modes sharing deep-improvement. Tests also omit active-log growth, session-created warning-log rotation, marker near-misses, and multi-process sweep contention.
+- **Evidence:** writeFixtureRegistry() gives each fixture mode a unique agent, so it cannot expose the production registry.s three workflow modes sharing deep-improvement. Tests also omit active-log growth, session-created warning-log rotation, marker near-misses, and multi-process sweep contention.
 - **Impact:** The most important production-shape bug passes the regression suite, while retention and marker tests validate only idealized cases.
 - **Proposed fix:** Add duplicate-agent fixture entries and table-driven assertions for every valid deep-improvement mode, near-miss iteration text, bounded warning-log rotation, and cross-process or lock-simulation sweep behavior.
 

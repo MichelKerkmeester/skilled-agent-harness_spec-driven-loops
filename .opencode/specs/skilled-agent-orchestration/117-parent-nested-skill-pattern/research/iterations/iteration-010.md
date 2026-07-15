@@ -87,7 +87,6 @@ Seed one positive scenario per registry mode and one adversarial negative per si
 | `agent-improvement` | “Evaluate and improve a bounded agent candidate with scoring and promotion gates.” |
 | `model-benchmark` | “Benchmark a model or prompt framework against repeatable fixtures.” |
 | `skill-benchmark` | “Benchmark whether a skill routes, discovers references, and is useful.” |
-| `ai-system-improvement` | “Benchmark and refine non-dev AI-system packaging behind guardrails.” |
 
 **Registry-Driven Fix**
 Keep this minimal.

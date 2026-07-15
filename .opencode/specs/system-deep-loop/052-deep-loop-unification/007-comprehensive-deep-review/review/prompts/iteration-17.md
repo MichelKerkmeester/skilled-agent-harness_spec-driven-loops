@@ -20,7 +20,7 @@ This is the LAST deep-improvement iteration (14-17 done after this). Recap in th
 
 1. **Post-trim organization**: after this session's SKILL.md trim (4586→2844 words), is `references/` well-organized (the new files: `references/shared/runtime_truth_contracts.md`, `references/agent_improvement/stress_test_protocol.md`, `references/model_benchmark/lane_b_mechanics.md`), discoverable, and not duplicating SKILL.md content?
 2. **Given the packet's scale (458 files)**: is there a clear map/index for a future maintainer to find their way around, or is it likely someone would get lost?
-3. **The 4 improvement lanes sharing one packet**: is this design decision documented clearly enough that a maintainer understands why `agent-improvement`/`model-benchmark`/`skill-benchmark`/`ai-system-improvement` are one packet rather than 4?
+3. **The 3 improvement lanes sharing one packet**: is this design decision documented clearly enough that a maintainer understands why `agent-improvement`/`model-benchmark`/`skill-benchmark` are one packet rather than 3?
 
 ## SHARED DOCTRINE
 

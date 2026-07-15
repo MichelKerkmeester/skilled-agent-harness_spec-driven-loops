@@ -11,7 +11,7 @@ The context report confirms the requested Q-GOV 18/19 scope and prior open facts
 Disk evidence confirms `executor-config.ts` and `executor-audit.ts` are present, and both runtime SQLite DBs exist. I’m checking the doctor route details because the first grep only shows `deep-loop-graph.sqlite`, not `council-graph.sqlite`.
 The doctor route is currently scoped to research/review coverage only; I found no `council-graph.sqlite` reference under `.opencode/commands/doctor`. This is the one confirmed gap I’ll fold into the acceptance strategy.
 I’m checking the live `/deep:*` command inventory and current Phase-0 markers so the proposed checklist names the exact command set rather than relying only on prior specs.
-The live command inventory is 8 markdown commands but only 12 YAML assets. `skill-benchmark` and `non-dev-ai-system` appear thin command wrappers, so their acceptance gates need to cover both markdown wrappers and the underlying improvement lane assets they dispatch.
+The live command inventory is 7 markdown commands but only 12 YAML assets. `skill-benchmark` is a thin command wrapper, so its acceptance gates need to cover both the markdown wrapper and the underlying improvement lane assets it dispatches.
 I’m verifying the native agent mirror surface so the acceptance checklist can specify exact parity inputs and the known whitelist.
 I have the precedent-level evidence. I’m doing one targeted search for existing parity-normalization wording/scripts so the recommendation can reuse local practice rather than inventing a new artifact diff convention.
 There are existing manual parity playbook entries for research/review single-executor fanout. I’m reading them to mirror their artifact expectations and extend them mode-by-mode.
@@ -32,7 +32,7 @@ Make acceptance validation a release-blocking, mode-discriminated parity suite, 
 | `/doctor deep-loop` covers both DBs | No | Route permits `--scope=research|review|both` only and calls runtime scripts with `loop_type`; no council scope in `.opencode/commands/doctor/_routes.yaml:101-111`. |
 | `/doctor deep-loop` storage target | Only `deep-loop-graph.sqlite` | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml:78-80`. |
 | Doctor docs scope | Research/review only | `.opencode/commands/doctor/assets/doctor_update_presentation.txt:193-198`. |
-| Current deep command inventory | 8 markdown commands, 12 YAML assets | `start-skill-benchmark-loop.md` and `start-non-dev-ai-system-loop.md` call `loop-host.cjs` directly at `.opencode/commands/deep/start-skill-benchmark-loop.md:75-81` and `.opencode/commands/deep/start-non-dev-ai-system-loop.md:78-84`. |
+| Current deep command inventory | 7 markdown commands, 12 YAML assets | `start-skill-benchmark-loop.md` calls `loop-host.cjs` directly at `.opencode/commands/deep/start-skill-benchmark-loop.md:75-81`. |
 | `skill_id` folder-name binding | Hard-bound | `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:654-658`. |
 | `UNKNOWN-TARGET` scan diagnostic | Real rejected-edge warning | `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:992-1030`. |
 | `deep-loop` family allowed | Yes | `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:39`. |
@@ -66,14 +66,13 @@ Use this as the `checklist.md` acceptance set.
 | CHK-010 | Agent-improvement parity | `/deep:start-agent-improvement-loop` Lane A fixture produces byte-identical `improvement/agent-improvement-config.json`, `improvement/agent-improvement-state.jsonl`, `improvement/improvement-journal.jsonl`, `improvement/experiment-registry.json`, `improvement/agent-improvement-dashboard.md`, `improvement/candidates/**`, and no canonical target mutation unless the fixture explicitly tests approved promotion. |
 | CHK-011 | Model-benchmark parity | `/deep:start-model-benchmark-loop` Lane B fixture produces byte-identical packet-local improvement state plus foreign benchmark hub outputs under `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`; the foreign output path must remain unchanged. |
 | CHK-012 | Skill-benchmark parity | `/deep:start-skill-benchmark-loop` Lane C fixture produces byte-identical `skill-benchmark-report.json` and `skill-benchmark-report.md`; markdown re-render from JSON is byte-identical. |
-| CHK-013 | Non-dev AI-system parity | `/deep:start-non-dev-ai-system-loop` Lane D dry-run fixture produces byte-identical adapter outputs and packaging-owned `_loop/state/loop-journal.jsonl`; live refine remains separately gated by the external packaging contract. |
 | CHK-014 | Old skill folders removed from live graph | The five old workflow skill folders no longer expose live `graph-metadata.json`; one live `.opencode/skills/deep-loop-workflows/graph-metadata.json` has `skill_id: "deep-loop-workflows"`. |
 | CHK-015 | Runtime remains peer backend | `.opencode/skills/deep-loop-runtime` remains a separate skill; no workflow mode is moved into runtime, and runtime DB paths are not collapsed. |
 | CHK-016 | Runtime disk invariant | `deep-loop-runtime/lib/deep-loop/executor-config.ts`, `executor-audit.ts`, and `database/{deep-loop-graph.sqlite,council-graph.sqlite}` are present after migration. |
 | CHK-017 | Doctor graph coverage | `/doctor deep-loop` either covers both `deep-loop-graph.sqlite` and `council-graph.sqlite` with explicit scope options, or the spec documents a separate council-graph diagnostic and excludes council from `/doctor deep-loop` status claims. |
 | CHK-018 | Doctor false-confidence guard | No release note or checklist claims “deep-loop graph doctor covers runtime graphs” unless council graph coverage is implemented and verified. |
 | CHK-019 | Advisor public identity | `advisor_recommend` returns only `deep-loop-workflows` as the public skill for deep-loop prompts; old five IDs are not rankable public skills. |
-| CHK-020 | Advisor mode discriminator | Every deep-loop recommendation includes a mode discriminator such as `context`, `research`, `review`, `council`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, or `non-dev-ai-system-refine`. |
+| CHK-020 | Advisor mode discriminator | Every deep-loop recommendation includes a mode discriminator such as `context`, `research`, `review`, `council`, `agent-improvement`, `model-benchmark`, or `skill-benchmark`. |
 | CHK-021 | Router replay variants | Add at least three prompt variants per workflow mode; expected public `skillId` is always `deep-loop-workflows`, and expected `workflowMode` remains distinct per mode. |
 | CHK-022 | Router replay context variants | Context prompts include “map existing code reuse points before planning,” “run a deep context sweep over integration points,” and “produce a reuse-first Context Report.” |
 | CHK-023 | Router replay research variants | Research prompts include “deep research external API options until novelty converges,” “investigate architecture tradeoffs over multiple iterations,” and “continue the research loop and synthesize negative knowledge.” |
@@ -82,19 +81,18 @@ Use this as the `checklist.md` acceptance set.
 | CHK-026 | Router replay Lane A variants | Agent-improvement prompts include “improve this agent with packet-local candidates,” “run agent improvement lane A,” and “generate guarded promotion evidence.” |
 | CHK-027 | Router replay Lane B variants | Model-benchmark prompts include “benchmark this prompt framework,” “run lane B model benchmark with pattern scorer,” and “sweep a model profile and write report.json.” |
 | CHK-028 | Router replay Lane C variants | Skill-benchmark prompts include “benchmark a skill’s routing,” “run skill-benchmark lane C,” and “validate D5 connectivity and skill-benchmark report.” |
-| CHK-029 | Router replay Lane D variants | Non-dev prompts include “benchmark a non-dev AI-system packaging,” “packaging refine lane D with independent grader,” and “validate packaging loop kill switches.” |
 | CHK-030 | Skill graph scan | Run `skill_graph_scan` after migration; response must report `rejectedEdges: 0`. |
 | CHK-031 | UNKNOWN-TARGET audit | Capture skill graph scan output and grep it for `UNKNOWN-TARGET`; zero matches required. |
 | CHK-032 | Skill graph validation | Run `skill_graph_validate`; validation categories and pass/warn/error state must be present, and no broken-edge errors may remain. |
 | CHK-033 | Advisor rebuild | Run `advisor_rebuild({force:true})` after graph migration; freshness must return live. |
 | CHK-034 | Advisor validation | Run `advisor_validate({"confirmHeavyRun":true,"skillSlug":null})` and a focused `skillSlug:"deep-loop-workflows"` slice once supported; no Python-correct prompt regressions. |
-| CHK-035 | Phase-0 command inventory | The eight command markdown files are exactly `ask-ai-council.md`, `start-agent-improvement-loop.md`, `start-context-loop.md`, `start-model-benchmark-loop.md`, `start-non-dev-ai-system-loop.md`, `start-research-loop.md`, `start-review-loop.md`, and `start-skill-benchmark-loop.md`. |
-| CHK-036 | Phase-0 marker grep | `rg "PHASE 0: @GENERAL AGENT VERIFICATION" .opencode/commands/deep/*.md` matches all eight command files. |
+| CHK-035 | Phase-0 command inventory | The seven command markdown files are exactly `ask-ai-council.md`, `start-agent-improvement-loop.md`, `start-context-loop.md`, `start-model-benchmark-loop.md`, `start-research-loop.md`, `start-review-loop.md`, and `start-skill-benchmark-loop.md`. |
+| CHK-036 | Phase-0 marker grep | `rg "PHASE 0: @GENERAL AGENT VERIFICATION" .opencode/commands/deep/*.md` matches all seven command files. |
 | CHK-037 | First-action order grep | Each command’s execution protocol lists “Run Phase 0” before setup and run/YAML execution. |
 | CHK-038 | BLOCKED setup grep | Each command has a Phase-0 `STATUS: ☐ BLOCKED` and a setup/input `STATUS: ☐ BLOCKED`, either in the command markdown or in the command-owned presentation asset named by that markdown. |
 | CHK-039 | Restart-line grep | Each Phase-0 failure box names its own restart command, not a sibling command. |
 | CHK-040 | Skill reference rewrite | Command markdown/YAML/presentation assets reference `deep-loop-workflows` for workflow skill paths and preserve `.opencode/skills/deep-loop-runtime/**` paths unchanged. |
-| CHK-041 | Lane C/D direct-wrapper parity | Because Lane C/D currently use direct markdown `loop-host.cjs` invocations, acceptance must preserve those wrapper contracts byte-identically or prove any new YAML wrapper emits identical commands and artifacts. |
+| CHK-041 | Lane C direct-wrapper parity | Because Lane C currently uses a direct markdown `loop-host.cjs` invocation, acceptance must preserve that wrapper contract byte-identically or prove any new YAML wrapper emits identical commands and artifacts. |
 | CHK-042 | Native agent names preserved | The five native agent names remain `deep-context`, `deep-research`, `deep-review`, `deep-improvement`, and `ai-council`. |
 | CHK-043 | Three-way agent mirror parity | For each native agent, compare `.opencode/agents/*.md`, `.claude/agents/*.md`, and `.codex/agents/*.toml` after normalizing TOML wrapper/frontmatter and whitelisting only the `Path Convention` line. |
 | CHK-044 | Agent skill refs repointed | Agent bodies refer to `deep-loop-workflows` mode resources where they previously loaded old workflow skill paths; agent names and artifact names are not mechanically renamed. |
@@ -116,6 +114,6 @@ Use this as the `checklist.md` acceptance set.
 **Pass-1 Amendments**
 I would not change the core two-skill architecture. I would amend the validation interpretation in two places.
 
-Amend Iter-3 slightly: “keep per-mode YAML workflows” should not force new YAML assets for Lane C/D. The current live `skill-benchmark` and `non-dev-ai-system` commands are direct markdown wrappers around `loop-host.cjs`, so parity should preserve or prove the direct wrapper behavior rather than inventing YAML solely for symmetry.
+Amend Iter-3 slightly: “keep per-mode YAML workflows” should not force a new YAML asset for Lane C. The current live `skill-benchmark` command is a direct markdown wrapper around `loop-host.cjs`, so parity should preserve or prove the direct wrapper behavior rather than inventing YAML solely for symmetry.
 
 Add a Q-GOV acceptance blocker: `/doctor deep-loop` currently covers research/review `deep-loop-graph.sqlite` only, while the runtime also has `council-graph.sqlite`. Completion must not claim doctor coverage for all deep-loop runtime graphs until council coverage is added or explicitly split into a separate diagnostic.

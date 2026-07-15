@@ -6,7 +6,7 @@ Validate the target `system-deep-loop/` layout and the detached fan-out write bo
 
 ## Findings
 
-1. The target layout should keep `runtime/` as infrastructure, not as a mode. The current mode registry distinguishes public `workflowMode`, graph-backed `runtimeLoopType`, and `backendKind`, and only research/review/council use the runtime loop key. Improvement lanes stay host/external-adapter backed, which supports the child 002 decision not to add an eighth runtime mode. [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:1-27] [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:29-101]
+1. The target layout should keep `runtime/` as infrastructure, not as a mode. The current mode registry distinguishes public `workflowMode`, graph-backed `runtimeLoopType`, and `backendKind`, and only research/review/council use the runtime loop key. Improvement lanes stay host/external-adapter backed, which supports the child 002 decision not to add a seventh runtime mode. [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:1-27] [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:29-101]
 
 2. The graph-metadata consolidation design is sound: the current workflow hub depends on `deep-loop-runtime`, while the runtime graph repeats workflow edges. A fresh `system-deep-loop/graph-metadata.json` with no nested runtime graph is cleaner than a merge. [SOURCE: .opencode/skills/deep-loop-workflows/graph-metadata.json:7-45] [SOURCE: .opencode/skills/deep-loop-runtime/graph-metadata.json:8-69]
 

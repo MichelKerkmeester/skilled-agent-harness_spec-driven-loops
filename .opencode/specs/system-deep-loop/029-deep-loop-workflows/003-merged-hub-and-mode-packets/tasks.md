@@ -64,10 +64,10 @@ _memory:
 - [ ] T004 Build review/ packet (copy deep-review, drop graph-metadata, anchored rewrite, depth fix) (`.opencode/skills/deep-loop-workflows/review/`)
 - [ ] T005 Build ai-council/ packet (opus): copy deep-ai-council, drop graph-metadata, anchored rewrite, and +1 '..' on the 8 relative require('../../deep-loop-runtime/...') that throw on load (`.opencode/skills/deep-loop-workflows/ai-council/`)
 - [ ] T006 Build improvement/ packet (opus, heaviest): copy deep-improvement, drop graph-metadata, anchored rewrite (~408 self + 43 exec refs), +1 '..' on escaping walks (check-agent-mirror-sync 4->5, skill-benchmark 3->4, shared/reduce-state runtime reach) leaving packet-internal scorer walks unchanged (`.opencode/skills/deep-loop-workflows/improvement/`)
-- [ ] T007 Author mode-registry.json: 8 workflowModes each with runtimeLoopType (value or explicit null), backendKind, aliases, packetPath, permissions, commandNames, artifactRoot; ai-council->council mapping explicit (`.opencode/skills/deep-loop-workflows/mode-registry.json`)
+- [ ] T007 Author mode-registry.json: 7 workflowModes each with runtimeLoopType (value or explicit null), backendKind, aliases, packetPath, permissions, commandNames, artifactRoot; ai-council->council mapping explicit (`.opencode/skills/deep-loop-workflows/mode-registry.json`)
 - [ ] T008 Author+run registry completeness test (R4): every mode has the unambiguous triple; improvement modes runtimeLoopType===null EXPLICIT (negative test on omission); backendKind<->nullability consistency (`.opencode/skills/deep-loop-workflows/tests/registry-completeness.vitest.ts`)
 - [ ] T009 Keystone+rewrite gate: exactly one graph-metadata.json under hub; nested-SKILL.md discovery test (read-only, not advisor_rebuild) shows zero extra packet nodes; full-tree residual self-path grep empty; ~15 cross-mode refs resolve (`.opencode/skills/deep-loop-workflows/`)
-- [ ] T010 Per-mode single-executor artifact byte-parity vs phase-001 baseline (Lane D dry-run basis); doubles as depth-fix verifier since a missed +1 throws or diffs (`.opencode/skills/deep-loop-workflows/`)
+- [ ] T010 Per-mode single-executor artifact byte-parity vs phase-001 baseline; doubles as depth-fix verifier since a missed +1 throws or diffs (`.opencode/skills/deep-loop-workflows/`)
 - [ ] T011 Strict validate + frozen-boundary check (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/003-merged-hub-and-mode-packets`)
 
 <!-- /ANCHOR:phase-2 -->
@@ -76,7 +76,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T014 Run the parity check: Two required proofs vs phase-001 baseline: (1) per-packet source-verbatim — inverse-apply the path rewrite to each new packet and diff -r vs the source deep-<name>/, only allowed delta is the dropped graph-metadata.json; (2) artifact byte-parity — run each mode single-executor from the new path on phase-001's exact fixture and diff emitted artifacts byte-for-byte vs baseline (byte-identical only if no absolute skill path leaks into output AND every escaping __dirname walk/require was depth-corrected, so this test also verifies the depth fix). Registry correctness via the R4 completeness test incl explicit-null negative test. Lane D compared on dry-run basis (B8).
+- [ ] T014 Run the parity check: Two required proofs vs phase-001 baseline: (1) per-packet source-verbatim — inverse-apply the path rewrite to each new packet and diff -r vs the source deep-<name>/, only allowed delta is the dropped graph-metadata.json; (2) artifact byte-parity — run each mode single-executor from the new path on phase-001's exact fixture and diff emitted artifacts byte-for-byte vs baseline (byte-identical only if no absolute skill path leaks into output AND every escaping __dirname walk/require was depth-corrected, so this test also verifies the depth fix). Registry correctness via the R4 completeness test incl explicit-null negative test.
 - [ ] T015 `validate.sh --strict` on this phase folder
 - [ ] T016 Confirm the phase success criteria in `spec.md` are met
 

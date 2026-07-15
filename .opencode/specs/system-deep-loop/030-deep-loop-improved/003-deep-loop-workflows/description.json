@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows",
-  "description": "The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration",
+  "description": "The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 11 distinct gaps identified in the 51-iteration",
   "keywords": [
     "deep-loop-workflows",
     "layer",
@@ -17,7 +17,7 @@
     "identified",
     "51-iteration"
   ],
-  "lastUpdated": "2026-07-05T13:38:01.235Z",
+  "lastUpdated": "2026-07-15T11:22:57.849Z",
   "specId": "003",
   "folderSlug": "deep-loop-workflows",
   "parentChain": [

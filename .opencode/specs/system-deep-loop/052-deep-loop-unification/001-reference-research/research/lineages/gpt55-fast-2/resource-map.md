@@ -46,7 +46,6 @@
 - `.opencode/skills/deep-loop-workflows/deep-review/scripts/runtime-capabilities.cjs`
 - `.opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs`
 - `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs`
-- `.opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json`
 
 ## Evidence-Derived File Set For Child 003
 

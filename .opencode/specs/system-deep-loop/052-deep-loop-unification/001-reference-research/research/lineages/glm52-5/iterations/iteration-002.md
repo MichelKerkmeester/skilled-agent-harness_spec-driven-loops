@@ -21,4 +21,4 @@ Validate child 002's Class A (forward) + Class B (reverse) path-repair tables ag
 
 ## Next Focus
 
-Stress the `system-spec-kit` tooling-borrow (Stage 3b) and the `artifact-root.cjs` re-export depth, plus the named-profile-file provenance (`deep-loop-runtime.json`) that the migration surface implicitly carries.
+Stress the `system-spec-kit` tooling-borrow (Stage 3b), the `artifact-root.cjs` re-export depth, and the remaining advisor-corpus/test-fixture migration edges.

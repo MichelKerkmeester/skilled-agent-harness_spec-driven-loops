@@ -76,7 +76,7 @@ _memory:
 - [x] T012 Prove the peer-contract refresh is body-identical [3m] [Evidence: `BODY UNCHANGED` sha256 match for `ai-council`, `review`, `research`]
 
 ### Documentation
-- [x] T013 Command conformance across all 8 deep commands [3m] [Evidence: `validate_document.py --type command` reported `8 pass / 0 fail`]
+- [x] T013 Command conformance across all 7 deep commands [3m] [Evidence: `validate_document.py --type command` reported `7 pass / 0 fail`]
 
 <!-- /ANCHOR:phase-3 -->
 ---

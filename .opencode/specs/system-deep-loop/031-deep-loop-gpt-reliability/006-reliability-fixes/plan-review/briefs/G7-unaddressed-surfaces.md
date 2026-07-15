@@ -6,7 +6,7 @@ READ-ONLY CRITIQUE TASK. No file writes are requested. Do not ask about spec fol
 Reviewing implementation plan packet 035 (fixes GPT-executor reliability issues measured in packet 033, diagnosed in packet 034). Read: .opencode/specs/deep-loops/035-gpt-reliability-fixes/spec.md (phase map) + the relevant child spec under 035/00N-*/spec.md + .opencode/specs/deep-loops/034-gpt-reliability-research/research/{synthesis.md,findings-registry.md}. 033 measured 5 modes x 3 executors; 034 examined a sample of files per angle.
 
 ## Find
-- Command surfaces or modes NOT touched by any phase but likely to share the same defects (e.g. the deep:ai-council :confirm path, deep:model-benchmark / skill-benchmark / ai-system-improvement lanes of deep-improvement, /doctor and other router commands, the deep:context confirm mode).
+- Command surfaces or modes NOT touched by any phase but likely to share the same defects (e.g. the deep:ai-council :confirm path, deep:model-benchmark / skill-benchmark lanes of deep-improvement, /doctor and other router commands, the deep:context confirm mode).
 - Executors beyond gpt-5.5-fast: the fixes are validated only on that model — do any assume behavior that other opencode providers (deepseek, kimi, minimax, xiaomi) won't share? Is "GPT-safe" actually "executor-safe"?
 - Files 034 sampled but did not exhaustively audit: it read 3 of N agent files, 1 prompt-pack, etc. Which un-audited files of the same class likely carry the same defect and are unaddressed?
 - MCP tools, hooks, or plugins that inject executor context but weren't in scope.

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Command surface repoint"
-description: "Phase 004: repointed the eight /deep:* commands plus their YAML workflow assets and presentation contracts to the merged deep-loop-workflows packet paths and skill keys, keeping command/agent names stable and leaving every deep-loop-runtime path frozen. Shipped as part of the deep-loop merge; per-phase checklist was not independently gate-run."
+description: "Phase 004: repointed the seven /deep:* commands plus their YAML workflow assets and presentation contracts to the merged deep-loop-workflows packet paths and skill keys, keeping command/agent names stable and leaving every deep-loop-runtime path frozen. Shipped as part of the deep-loop merge; per-phase checklist was not independently gate-run."
 trigger_phrases:
   - "deep-loop-workflows phase 004 summary"
   - "command surface repoint shipped"
@@ -53,10 +53,10 @@ _memory:
 
 The `/deep` command surface repointed off the five old skill paths onto the merged `deep-loop-workflows` packet — command and agent names stayed stable, only skill references moved:
 
-- **Eight `/deep:*` command routers** repointed where they referenced old skill IDs or old skill paths: context, research, review, ai-council, plus the improvement Lane A/B YAML-backed commands (agent-improvement, model-benchmark) and the Lane C/D markdown-only commands (skill-benchmark, non-dev-ai-system).
+- **Seven `/deep:*` command routers** repointed where they referenced old skill IDs or old skill paths: context, research, review, ai-council, plus the improvement Lane A/B YAML-backed commands (agent-improvement, model-benchmark) and the Lane C markdown-only command (skill-benchmark).
 - **Twelve YAML workflow assets** moved to `deep-loop-workflows` plus registry-backed mode discrimination — `skill:`/`skill_md:` keys and the nested `references`/`scripts`/`assets` path blocks rewritten to the new packet paths, with mode-specific paths landing under `deep-loop-workflows/{mode}/`.
 - **Six presentation contracts** had their stale old skill package paths removed without changing rendered behavior.
-- The **five per-mode required-input setup schemas** and the **do-not-transfer-sibling-defaults guardrails** were carried verbatim, and **Lane C/D stayed markdown-only** — no YAML was added for symmetry.
+- The **five per-mode required-input setup schemas** and the **do-not-transfer-sibling-defaults guardrails** were carried verbatim, and **Lane C stayed markdown-only** — no YAML was added for symmetry.
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -72,8 +72,8 @@ The repoint ran as a gated phase in the deep-loop merge pipeline, against a sing
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- **Command surface stays stable** — only skill package references change; the eight command names and the agent names they dispatch are untouched, so the repoint is a structure/docs reorg rather than a behavior change.
-- **Lane C/D keep their markdown wrapper contracts** — no YAML is added for symmetry, because those two commands invoke the loop-host directly.
+- **Command surface stays stable** — only skill package references change; the seven command names and the agent names they dispatch are untouched, so the repoint is a structure/docs reorg rather than a behavior change.
+- **Lane C keeps its markdown wrapper contract** — no YAML is added for symmetry, because the command invokes the loop-host directly.
 - **`deep-loop-runtime` is frozen** — the rewrite rule leaves every `deep-loop-runtime/` path untouched (including the ai-council body-level `--loop-type council` reference), and the backend stays MCP-free.
 - The rewrite is driven by a single deterministic, registry-backed manifest rather than ad-hoc edits, so the ~270 skill-path occurrences are bounded by one rule.
 

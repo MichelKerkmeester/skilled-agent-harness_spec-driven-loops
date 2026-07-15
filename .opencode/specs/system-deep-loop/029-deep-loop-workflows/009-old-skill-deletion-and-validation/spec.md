@@ -93,7 +93,7 @@ Delete the five old skill directories and pass the full release-blocking Accepta
 
 This phase is complete when (parity gate):
 - All Acceptance Gates pass; the five old directories are gone.
-- Full byte-identical parity across all 5 modes + 8 commands; /doctor covers both graph DBs.
+- Full byte-identical parity across all 5 modes + 7 commands; /doctor covers both graph DBs.
 <!-- /ANCHOR:success-criteria -->
 
 ---

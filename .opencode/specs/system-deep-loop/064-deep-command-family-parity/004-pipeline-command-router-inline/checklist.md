@@ -70,7 +70,7 @@ _memory:
   - **Evidence**: `check-contract-drift.cjs` → `[CONTRACT DRIFT] OK commands=4` (exit 0).
 - [x] CHK-021 [P0] Render smoke COMPARE OK in `mode=fix` for all 4 [EVIDENCE: render-command-contract.cjs --compare]
   - **Evidence**: `render-command-contract.cjs --compare` → COMPARE OK for all 4 (research 11036B, review 8283B, ai-council 7641B, alignment 8575B); the dormant compiled+legacy path is still byte-consistent.
-- [x] CHK-022 [P0] All 8 deep commands pass `validate_document.py --type command` [EVIDENCE: validate_document.py]
+- [x] CHK-022 [P0] All 7 deep commands pass `validate_document.py --type command` [EVIDENCE: validate_document.py]
   - **Evidence**: `validate_document.py --type command` → exit 0 each; the 4 promoted commands now pass full section checks (no more `render-command-contract` marker early-return).
 - [x] CHK-023 [P1] All four vitest suites green [EVIDENCE: vitest + node --test]
   - **Evidence**: vitest (runtime/vitest.config.ts) render-command-contract + check-contract-drift + compile-command-contracts = 3 files / 30 tests PASSED; `resolve-injection-mode.test.cjs` (node --test) → 1/1 PASS.

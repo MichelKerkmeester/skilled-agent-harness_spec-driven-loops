@@ -30,9 +30,9 @@ Pick model A: keep one advisor identity and make only the mode projection/alias 
 - Hub `graph-metadata.json.skill_id` equals the parent folder basename, or `parseSkillMetadata` throws (`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:654`).
 - `mode-registry.json.skill` equals hub `skill_id`.
 - Every mode has a unique `workflowMode`, existing `packet` directory, explicit `runtimeLoopType` including null, valid `backendKind`, and unique command.
-- `backendKind=runtime-loop-type` requires non-null `runtimeLoopType`; improvement-host or external-adapter requires null.
+- `backendKind=runtime-loop-type` requires non-null `runtimeLoopType`; improvement-host requires null.
 - Hub `SKILL.md` stays a routing hub only; per-mode convergence, state, artifacts, and tool guards stay in packet `SKILL.md` files (`.opencode/skills/deep-loop-workflows/SKILL.md:52`).
-- Generated packet skeletons preserve per-mode contract separation. Current packets prove the need: research allows WebFetch and has research-specific threshold semantics (`.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:4`, `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:33`), review is code-only and forbids direct invocation patterns (`.opencode/skills/deep-loop-workflows/deep-review/SKILL.md:8`, `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md:46`), and improvement has four lanes behind one packet (`.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md:30`).
+- Generated packet skeletons preserve per-mode contract separation. Current packets prove the need: research allows WebFetch and has research-specific threshold semantics (`.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:4`, `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:33`), review is code-only and forbids direct invocation patterns (`.opencode/skills/deep-loop-workflows/deep-review/SKILL.md:8`, `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md:46`), and improvement has three lanes behind one packet (`.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md:30`).
 
 **Standardization**
 - Add a sk-doc “parent skill” definition: a skill package with one discoverable hub identity, a registry of mode packets, packet-local contracts, and non-discoverable shared helpers.

@@ -50,7 +50,7 @@ This checklist is the blocking SOL verifier contract for the deep child. The rep
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-005 [P0] All 28 maintained sources have one kebab-case target, all four compiled contract filenames remain exact, and collision checks pass.
+- [ ] CHK-005 [P0] All 25 maintained sources have one kebab-case target, all four compiled contract filenames remain exact, and collision checks pass.
 - [ ] CHK-006 [P0] Auto, confirm, presentation, legacy, compiler source paths, and active README links resolve with no old maintained path or missing target.
 - [ ] CHK-007 [P0] Compiler validation or regeneration records current source paths/digests, and deep route, fallback, injection, and command-ID outcomes match BASE.
 <!-- /ANCHOR:testing -->

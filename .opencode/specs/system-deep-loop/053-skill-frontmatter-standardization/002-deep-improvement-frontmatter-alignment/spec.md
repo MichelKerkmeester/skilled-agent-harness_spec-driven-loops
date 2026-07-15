@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 7: deep-improvement Frontmatter Alignment"
-description: "Apply the canonical reference/asset frontmatter contract to deep-improvement (17/23 references and 8/11 assets carry the detailed block today)."
+description: "Apply the canonical reference/asset frontmatter contract to deep-improvement (17/18 references and 8/11 assets carry the detailed block today)."
 trigger_phrases:
   - "deep-improvement frontmatter alignment"
   - "deep-improvement reference frontmatter"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-deep-loop/053-skill-frontmatter-standardization/002-deep-improvement-frontmatter-alignment"
     last_updated_at: "2026-06-11T09:54:32Z"
     last_updated_by: "claude-fable"
-    recent_action: "Phase complete: 27 docs normalized and verified"
+    recent_action: "Phase complete: 22 docs normalized and verified"
     next_safe_action: "Campaign continues in sibling phases"
     blockers: []
     key_files: []
@@ -81,10 +81,10 @@ This is **Phase 7** of the Skill reference and asset frontmatter alignment acros
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-deep-improvement reference/asset frontmatter is inconsistent with the repo-wide contract: 17 of 23 references and 8 of 11 assets carry the detailed memory-style block (trigger_phrases, importance_tier, contextType), while the rest carry title+description only. The investigation phase (001) showed no runtime consumes the detailed block on these doc types, so the variance is pure drift.
+deep-improvement reference/asset frontmatter is inconsistent with the repo-wide contract: 17 of 18 references and 8 of 11 assets carry the detailed memory-style block (trigger_phrases, importance_tier, contextType), while the rest carry title+description only. The investigation phase (001) showed no runtime consumes the detailed block on these doc types, so the variance is pure drift.
 
 ### Purpose
-All 23 reference and 11 asset docs in deep-improvement carry exactly the canonical frontmatter contract decided after 001, with no leftover unconsumed fields.
+All 18 reference and 11 asset docs in deep-improvement carry exactly the canonical frontmatter contract decided after 001, with no leftover unconsumed fields.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -93,7 +93,7 @@ All 23 reference and 11 asset docs in deep-improvement carry exactly the canonic
 ## 3. SCOPE
 
 ### In Scope
-- Frontmatter normalization for `.opencode/skills/deep-improvement/references/**/*.md` (23 docs, 17 with detailed block)
+- Frontmatter normalization for `.opencode/skills/deep-improvement/references/**/*.md` (18 docs, 17 with detailed block)
 - Frontmatter normalization for `.opencode/skills/deep-improvement/assets/**/*.md` (11 docs, 8 with detailed block)
 - Adding the minimal contract to any doc missing frontmatter entirely
 
@@ -133,7 +133,7 @@ All 23 reference and 11 asset docs in deep-improvement carry exactly the canonic
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: 0 of 34 deep-improvement reference/asset docs deviate from the canonical contract
+- **SC-001**: 0 of 29 deep-improvement reference/asset docs deviate from the canonical contract
 - **SC-002**: Frontmatter sweep for deep-improvement matches the repo-wide inventory expectations recorded in 001
 <!-- /ANCHOR:success-criteria -->
 

@@ -18,7 +18,7 @@ Read `review/deep-review-strategy.md` section 12 (Next Focus) and the LATEST ite
 
 1. **sk-doc template alignment — fresh, not cached**: run `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/system-deep-loop/deep-improvement --check` yourself right now and report the EXACT output. Confirm it still shows `Result: PASS` with only the single accepted `.gitkeep` snake_case warning (this session fixed 131 files earlier — confirm that fix is durable, not regressed).
 2. **Cross-reference the earlier asset rename's completeness**: `rg` the packet for any remaining hyphenated reference to a fixture stem that should now be snake_case (a genuinely live reference, not historical/changelog prose) — this is a real re-verification, not a rubber stamp.
-3. **Command/agent cross-reference**: does `.opencode/commands/deep/model-benchmark.md`, `skill-benchmark.md`, `agent-improvement.md`, `ai-system-improvement.md` (the 4 improvement-lane commands) correctly reference this packet's current file layout?
+3. **Command/agent cross-reference**: do `.opencode/commands/deep/model-benchmark.md`, `skill-benchmark.md`, and `agent-improvement.md` (the 3 improvement-lane commands) correctly reference this packet's current file layout?
 4. **feature_catalog/ + manual_testing_playbook/ currency**: spot-check 2-3 entries — do they describe current, real behavior?
 
 ## SHARED DOCTRINE

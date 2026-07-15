@@ -71,7 +71,7 @@ Each router's `allowed-tools` line was edited in place to prefix `memory_*`/`cod
 | Qualify to `mcp__<server>__<tool>` (not strip to bare) | Matches the `opencode.json` namespace, the #44 decision, and the already-qualified majority of routers; works under both runtimes |
 | Frontmatter-only; leave body prose bare IDs | Body bare IDs are intentional, stable call-syntax; changing them risks behavior and is unnecessary |
 | Fix the template to describe two variants, not re-section routers | The families' adapted shapes are valid; documenting reality is the minimal correct fix, re-sectioning 26 routers is out of scope |
-| Defer the deep Lane-command frontmatter nit | `skill:`-vs-`allowed-tools` on the 2 `deep-improvement` commands is a separate P3; out of this scope |
+| Defer the `start-skill-benchmark-loop` frontmatter nit | Its `skill:`-vs-`allowed-tools` issue is a separate P3; out of this scope |
 
 <!-- /ANCHOR:decisions -->
 ---
@@ -93,6 +93,6 @@ Each router's `allowed-tools` line was edited in place to prefix `memory_*`/`cod
 ## Known Limitations
 
 1. Section-header style still varies across families (numbered vs un-numbered, Title Case vs ALL-CAPS). This is now documented as acceptable variation in §11 rather than normalized; full re-sectioning is deliberately out of scope.
-2. The two `deep-improvement` Lane commands (`start-non-dev-ai-system-loop`, `start-skill-benchmark-loop`) still declare `skill:` with no `allowed-tools`; left as a deferred P3 consistency nit.
+2. The `start-skill-benchmark-loop` command still declares `skill:` with no `allowed-tools`; left as a deferred P3 consistency nit.
 
 <!-- /ANCHOR:limitations -->

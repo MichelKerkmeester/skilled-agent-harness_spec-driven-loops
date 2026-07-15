@@ -88,7 +88,6 @@ Mine loop-cli-main + kasper (read-only) → ranked, actionable backlog of improv
 - [ ] [S6-11] What migration introduces kasper-style layered config (defaults→file→session, zod-clamp, hot-reload) across `deep_research_config.json`, `runtime_capabilities.json`, `optimizer-manifest.json` without breaking the `_optimizerManaged` locked/tunable contract? (build on S4-13) -> layered config migration
 - [ ] [S6-12] Should kasper's LLM-judge hardening become a shared runtime primitive used by `post-dispatch-validate.ts` and any future LLM-judged loop, and what is the extraction boundary? (build on S2-02) -> post-dispatch-validate.ts + bayesian-scorer.ts
 - [ ] [W-06] Could we build a record-replay harness capturing each iteration's dispatch inputs/outputs (loop-cli fixture style) so a full run is deterministically replayable for convergence-change regression? -> deep-loop-runtime tests (record-replay)
-- [ ] [W-10] What would a meta-loop look like that points `deep:ai-system-improvement` at the deep-loop runtime's own technique docs, and what guardrails prevent it degrading the harness it runs on? -> deep:ai-system-improvement on deep-loop itself
 
 <!-- /ANCHOR:key-questions -->
 
@@ -274,9 +273,7 @@ Mine loop-cli-main + kasper (read-only) → ranked, actionable backlog of improv
 - Decide whether fanout cassette capture is always enabled under `NODE_ENV=test` or gated behind an explicit CLI flag such as `--record-cassette`. (iteration 50)
 - Decide whether cassette files should live under `tests/fixtures/record-replay/` or beside each consuming suite. The former is better for shared full-run regression; the latter keeps suite-specific fixtures easier to review. (iteration 50)
 - Decide the redaction contract before storing prompts and tool results. Kasper truncates tool results for scoring; OUR replay cassettes should probably store full test fixture data but redact real run data by default. (iteration 50)
-- Should the deep-loop self-packaging live inside `.opencode/skills/deep-loop-runtime/benchmark/` or as a generated packet-local packaging under the spec folder? (iteration 51)
-- Should `allowed_diff_relpaths` be added as a generic Lane D schema field, or only generated for the deep-loop-runtime profile? (iteration 51)
-- Which exact deep-loop runtime docs should be classified as editable technique docs versus frozen harness/scorer docs? Candidate editable areas are `feature_catalog/`, `manual_testing_playbook/`, and selected reference docs; candidate frozen areas are `tests/`, scorer prompts, Lane D templates, command routers, and runtime scripts. (iteration 51)
+- Which exact deep-loop runtime docs should be classified as editable technique docs versus frozen harness/scorer docs? Candidate editable areas are `feature_catalog/`, `manual_testing_playbook/`, and selected reference docs; candidate frozen areas are `tests/`, scorer prompts, packaging templates, command routers, and runtime scripts. (iteration 51)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -284,7 +281,7 @@ Mine loop-cli-main + kasper (read-only) → ranked, actionable backlog of improv
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Which exact deep-loop runtime docs should be classified as editable technique docs versus frozen harness/scorer docs? Candidate editable areas are `feature_catalog/`, `manual_testing_playbook/`, and selected reference docs; candidate frozen areas are `tests/`, scorer prompts, Lane D templates, command routers, and runtime scripts.
+Which exact deep-loop runtime docs should be classified as editable technique docs versus frozen harness/scorer docs? Candidate editable areas are `feature_catalog/`, `manual_testing_playbook/`, and selected reference docs; candidate frozen areas are `tests/`, scorer prompts, packaging templates, command routers, and runtime scripts.
 
 <!-- /ANCHOR:next-focus -->
 
@@ -307,7 +304,7 @@ Which exact deep-loop runtime docs should be classified as editable technique do
 - loop-cli-main: TS daemon+CLI cadence runner — pause/resume/stop state machine w/ persisted remaining-delay, abortable chunked sleep, force-trigger, byte-offset log slicing, fixed-rate overrun catch-up, code-signature restart, socket single-flight, typed IPC, confirm-gated UX; plus /ob-autopilot pipeline + AGENTS.md WAVE MODEL.
 - kasper: opencode observe→evaluate→improve→measure loop — score-delta, LLM-judge hardening, observation-threshold/decay/rejected-cache convergence, fuzzy finding-merge, atomic state (lock+merge+integrity), stuck-watchdog, provenance-stamped reversible mutation, layered config + sparkline UX, prompt-injection sanitizer.
 
-**Angle bank:** `research/monitor/angle-bank.md` (6 segments S1–S6, 72 angles + 12 wildcards). Sequencing: S1→S6 in order, ~8–10 iters/segment, rotate dimension each iteration, inject next segment at ~70% checked.
+**Angle bank:** `research/monitor/angle-bank.md` (6 segments S1–S6, 72 angles + 10 wildcards). Sequencing: S1→S6 in order, ~8–10 iters/segment, rotate dimension each iteration, inject next segment at ~70% checked.
 
 ---
 

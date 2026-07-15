@@ -21,7 +21,7 @@ Validate and stress-test the merge design for folding `deep-loop-runtime` into `
 
 ## Answered Questions
 
-- Structural layout is sound if `runtime/` remains infrastructure, not an eighth workflow mode.
+- Structural layout is sound if `runtime/` remains infrastructure, not a seventh workflow mode.
 - Bidirectional path repair is asymmetric: forward references keep hop count and delete the old segment; reverse references move one hop nearer and rename to `runtime`.
 - The tooling-borrow is load-bearing and correctly belongs in 002, not 003.
 - External reference migration is broader than docs: commands, doctor routes, agent mirrors, graph metadata, advisor codegen, lexical boosts, corpus, and divergence fixtures are all in scope.

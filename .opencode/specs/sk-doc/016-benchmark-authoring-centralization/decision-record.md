@@ -49,15 +49,15 @@ _memory:
 ---
 
 <!-- ANCHOR:adr-003 -->
-## ADR-003: Lane A (agent-improvement) and Lane D (non-dev-ai-system) are code-owned non-goals
+## ADR-003: Lane A (agent-improvement) is a code-owned non-goal
 
 **Status:** Accepted
 
-**Context:** Lane A emits spec-folder-local 5-dimension JSON scored by the lane; Lane D renders executable packaging templates (`.py`/`.sh`) via `init_packaging.py`. Their artifacts are code-driven and live in-lane, not authored as standalone documents.
+**Context:** Lane A emits spec-folder-local 5-dimension JSON scored by the lane. Its artifacts are code-driven and live in-lane, not authored as standalone documents.
 
-**Decision:** create-benchmark's family table NAMES Lane A and Lane D so the router can disambiguate "which benchmark family," but marks them code-owned with in-lane artifacts — documented non-goals for create-benchmark authoring. No templates are authored for them here.
+**Decision:** create-benchmark's family table NAMES Lane A so the router can disambiguate "which benchmark family," but marks it code-owned with in-lane artifacts — a documented non-goal for create-benchmark authoring. No templates are authored for it here.
 
-**Consequences:** The family router is complete (a reader is never silently missing a family), while create-benchmark avoids owning artifacts that are really code outputs.
+**Consequences:** The family router names the code-owned family without claiming authoring ownership, while create-benchmark avoids owning artifacts that are really code outputs.
 <!-- /ANCHOR:adr-003 -->
 
 ---

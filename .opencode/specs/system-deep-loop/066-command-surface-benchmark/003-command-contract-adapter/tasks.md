@@ -34,7 +34,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 — Implement discover to equal the canonical source inventory. [evidence: `sync-prompts.cjs --check` and the adapter test each reported 37 canonical commands]
+- [x] T001 — Implement discover to equal the canonical source inventory. [evidence: `sync-prompts.cjs --check` and the adapter test each reported 36 canonical commands]
 - [x] T002 — Implement check for dimensions S1 to S5 with P0 to P2 severities. [evidence: the adapter test matched the exact code, severity, dimension and location sets for 13/13 fixtures]
 <!-- /ANCHOR:phase-1 -->
 

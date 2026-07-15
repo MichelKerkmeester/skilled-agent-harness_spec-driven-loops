@@ -53,7 +53,7 @@ _memory:
 
 Implemented the phase-2 recommendation (Model A via C-plus) as a purely additive change across four files:
 
-- **`mode-registry.json`** — a per-mode `advisorRouting` block on all 8 modes: `routingClass` (lexical | alias-fold | metadata | command-bridge), `legacyAdvisorId`, `advisorDefaultMode` (agent-improvement only), `legacyAliases`, `packetSkillName`; plus a top-level `advisorRoutingContract` legend. Registry version bumped 1.0.0 → 1.1.0. The description now states the C-plus reality (the advisor does not read this at runtime; a drift-guard keeps the maps in sync).
+- **`mode-registry.json`** — a per-mode `advisorRouting` block on all 7 modes: `routingClass` (lexical | alias-fold | metadata | command-bridge), `legacyAdvisorId`, `advisorDefaultMode` (agent-improvement only), `legacyAliases`, `packetSkillName`; plus a top-level `advisorRoutingContract` legend. Registry version bumped 1.0.0 → 1.1.0. The description now states the C-plus reality (the advisor does not read this at runtime; a drift-guard keeps the maps in sync).
 - **`skill_advisor.py`** — a read-only `--dump-routing-maps` flag that emits `DEEP_ROUTING_SKILLS` + `DEEP_ROUTING_MODE_BY_KEY` as JSON for the test.
 - **`aliases.ts`** — exported the previously module-private `DEEP_MODE_BY_CANONICAL`.
 - **`tests/routing-registry-drift-guard.vitest.ts`** — the new guard: registry projection equals the Python and TS maps, alias sets equal `SKILL_ALIAS_GROUPS`, coverage of all modes, exactly one `advisorDefaultMode`.

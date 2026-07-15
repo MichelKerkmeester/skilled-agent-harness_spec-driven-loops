@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:context -->
 ## Context
 
-The deep-improvement surface spans 23 underscore-bearing directory families and 263 underscore-bearing files across multiple improvement, benchmark, workflow, scanning, and runtime-truth lanes. Python imports, package directories, generated outputs, and shared loop hosts create distinct boundaries that a single mechanical substitution would not preserve.
+The deep-improvement surface spans 22 underscore-bearing directory families and 250 underscore-bearing files across multiple improvement, benchmark, workflow, scanning, and runtime-truth lanes. Python imports, package directories, generated outputs, and shared loop hosts create distinct boundaries that a single mechanical substitution would not preserve.
 <!-- /ANCHOR:context -->
 
 <!-- ANCHOR:decisions -->

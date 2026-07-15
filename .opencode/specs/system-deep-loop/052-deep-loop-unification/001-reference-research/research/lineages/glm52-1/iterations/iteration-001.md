@@ -46,7 +46,7 @@ The runtime carries its own `node_modules/`, `package.json`, `package-lock.json`
 
 ### F1.5 — mode-registry.json is the merge keystone
 
-`deep-loop-workflows/mode-registry.json` declares 7 workflowModes across 3 `backendKind` values. After the rename to `system-deep-loop`, this registry's prose (`"consumed by deep-loop-runtime/scripts/convergence.cjs"` at line 7, 20) and the hub `SKILL.md` references all need the new skill name. The registry's `backendKind: runtime-loop-type` discriminator points at the runtime by *role*, not by path, so the routing logic itself is name-agnostic — but every prose reference and the 3 command entry points (`deep/{research,review,ai-council}.md`) shell out to `node .opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs`, which is a HARDCODED path that MUST change.
+`deep-loop-workflows/mode-registry.json` declares 6 workflowModes across 3 `backendKind` values. After the rename to `system-deep-loop`, this registry's prose (`"consumed by deep-loop-runtime/scripts/convergence.cjs"` at line 7, 20) and the hub `SKILL.md` references all need the new skill name. The registry's `backendKind: runtime-loop-type` discriminator points at the runtime by *role*, not by path, so the routing logic itself is name-agnostic — but every prose reference and the 3 command entry points (`deep/{research,review,ai-council}.md`) shell out to `node .opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs`, which is a HARDCODED path that MUST change.
 
 [SOURCE: mode-registry.json:7,20; .opencode/commands/deep/research.md:9]
 

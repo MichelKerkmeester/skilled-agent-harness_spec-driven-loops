@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-Replaced the self-classification "Mode D" gate in all 8 `/deep:*` command files with an evidence-based dispatch-context check (defaults to proceed, not block), and corrected the ai-council route-proof identity so `orchestrate-topic.cjs`/`deep_ai-council_auto.yaml` agree with `mode-registry.json` (`mode: ai-council` / `target_agent: ai-council`, not `council`/`deep-ai-council`).
+Replaced the self-classification "Mode D" gate in all 7 surviving `/deep:*` command files with an evidence-based dispatch-context check (defaults to proceed, not block), and corrected the ai-council route-proof identity so `orchestrate-topic.cjs`/`deep_ai-council_auto.yaml` agree with `mode-registry.json` (`mode: ai-council` / `target_agent: ai-council`, not `council`/`deep-ai-council`).
 
 ### Added
 
@@ -27,7 +27,7 @@ Replaced the self-classification "Mode D" gate in all 8 `/deep:*` command files 
 
 ### Changed
 
-- 8 `/deep:*` command files (`ai-system-improvement.md`, `skill-benchmark.md`, `context.md`, `review.md`, `ai-council.md`, `research.md`, `agent-improvement.md`, `model-benchmark.md`) — self-check gate replaced with a dispatch-context check.
+- 7 `/deep:*` command files (`skill-benchmark.md`, `context.md`, `review.md`, `ai-council.md`, `research.md`, `agent-improvement.md`, `model-benchmark.md`) — self-check gate replaced with a dispatch-context check.
 - `orchestrate-topic.cjs` and `deep_ai-council_auto.yaml` — corrected route-identity literals.
 
 ### Fixed
@@ -37,7 +37,7 @@ Replaced the self-classification "Mode D" gate in all 8 `/deep:*` command files 
 
 ### Verification
 
-- Grep confirms zero remaining self-classification prose across all 8 files — PASS.
+- Grep confirms zero remaining self-classification prose across all 7 surviving files — PASS.
 - Grep confirms zero remaining `mode: council`/`deep-ai-council` — PASS.
 - `deep-ai-council` vitest suite — 9 files, 76/76 PASS.
 - Targeted `orchestrate-topic`/`orchestrate-session`/e2e vitest — 11/11 PASS.

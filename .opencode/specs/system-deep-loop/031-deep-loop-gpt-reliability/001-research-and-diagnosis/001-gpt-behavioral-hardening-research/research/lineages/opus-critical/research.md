@@ -52,7 +52,7 @@ The validator expects (`deep_ai-council_auto.yaml:132-136`): `mode: council`, `t
 ## 5. Implementation-Ready Deliverables
 
 1. **ai-council route-proof reconcile (CORRECTED rationale).** In BOTH `orchestrate-topic.cjs:310-313` and `deep_ai-council_auto.yaml:132-136`: `mode: council → ai-council`, `target_agent: deep-ai-council → ai-council` (or `@ai-council`), `resolved_route` → match the emitted header. Edit both sides together. Rationale: stop route-proof certifying a non-existent target agent (NOT "unblock a FAIL" — it already passes). Sequence before the phase-010 benchmark.
-2. **Mode D deterministic gate.** Replace the Phase-0 self-classification block in all 8 `/deep:*` command files with a deterministic dispatch-context check; gate acceptance on the 4 runtime modes.
+2. **Mode D deterministic gate.** Replace the Phase-0 self-classification block in all 7 `/deep:*` command files with a deterministic dispatch-context check; gate acceptance on the 4 runtime modes.
 3. **orchestrate deep-routing (NDP-safe, minimal).** Add `@deep-context`/`@deep-review` rows to `orchestrate.md:97-105`; convert the Deep Route field (`:207`) to registry-resolved; dispatch the resolved LEAF at Depth 1; never dispatch `@deep`.
 4. **KQ5 plugin build constraints.** Default-export-only entrypoint under `.opencode/plugins/` (reference `mk-goal.js`, `.__test` surface); `tool.execute.before` inspecting/rewriting Task `args`; smoke-test throw-to-block on the installed OpenCode version; detection-only.
 5. **Sequencing.** D1 (zero-risk) + D2 (confirmed-fired failure) first → D3 → D4 plugin → phase-010 external smoke + benchmark → KQ9 negative-gate decision.

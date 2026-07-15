@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 12 |
+| **Phase** | 9 of 11 active phases |
 | **Predecessor** | 008-code-graph-coverage-bridge |
 | **Successor** | 010-deep-improvement-accepted-vs-shipped |
 | **Handoff Criteria** | `outcomeScoreDelta` and `fixtureDeltas[]` emitted per benchmark run; reducer summarizes helped/hurt counts; promotion gate checks `outcomeScoreDelta >= 0` before approving |

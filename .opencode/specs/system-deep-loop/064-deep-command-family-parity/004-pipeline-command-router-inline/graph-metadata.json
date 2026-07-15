@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 064 already converted `skill-benchmark` and `ai-system-improvement` to yaml-backed triads and gave `alignment`/`ai-council` render-pipeline parity, but the family still ships in three different shapes",
+    "causal_summary": "Packet 064 already converted `skill-benchmark` to a yaml-backed triad and gave `alignment`/`ai-council` render-pipeline parity, but the family still ships in three different shapes",
     "created_at": "2026-07-13T19:00:49.829Z",
-    "last_save_at": "2026-07-13T19:50:01.061Z",
+    "last_save_at": "2026-07-15T11:55:20.262Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74c494c4f4a52926ca506ed5c0e22e2ab87049b7d35e8a10cdd12a95a09806ee",
+    "source_fingerprint": "sha256:b47947a0cd7685fbbee081a2d3a351256fe8cd69d0b379191461a070576e8dd2",
     "source_doc_hashes": {
-      "spec.md": "51fe58764f93718ba47590dca1dc9442be5b3d26bc436eeacd1b4155f8913dd9",
-      "plan.md": "5666f200c130a4d58a2c9572bb58727d2c71ff542ef58db5648aca071d20614b",
-      "tasks.md": "933d1e09df3fbb68148aff97d1c31507d0e69dff1d3211c4df6b24037e241243",
-      "checklist.md": "75191431e5bb2184232d454cbf5d0c6d116b6165148c611d713d5b4e877f1078",
-      "decision-record.md": "716b66d392fc974d788cde5e2daebf4f6619dae7c1accc1abca1cd8850a91b92",
-      "implementation-summary.md": "8cc0796e144aea0df36e6705a769abd40a3e9fc7639e76b0a3c15e28c5e4fb6c"
+      "spec.md": "25a7a1f9968197a12658757ec380c1bea7406deb942c5fad5a17b1597a21db04",
+      "plan.md": "99b32abc07f455e82081a7ec5aaf04fd939296d010294367ca82a1613171c3e5",
+      "tasks.md": "6e8fd1c02e19e350632971214567ffbc784141f68fea4f3c87c8461cddffc2ec",
+      "checklist.md": "d337679589e6338d1540769b38e1a7ba8ecf1ce4e7a8d0f5e00f719175a8e56b",
+      "decision-record.md": "d9deddad365b167f3b1031dd17559d87ac22279abaa68f8f91f69d5a0f05837f",
+      "implementation-summary.md": "99ba61d8b5d2c5afadb02cc8cefb65c248b25d5082e5470c097dc281e1349380"
     },
     "last_active_child_id": null,
     "last_active_at": null

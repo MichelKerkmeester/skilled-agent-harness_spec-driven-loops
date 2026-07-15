@@ -77,7 +77,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T015 Run the parity check: After deletion, consume the phase-001 baseline manifest and rerun the same single-executor normalized capture for all five modes and eight /deep:* commands. Require byte-identical normalized artifact hashes for modes and commands; advisor parity is behavior-preservation with skill=deep-loop-workflows plus concrete mode, rejectedEdges=0, and no old skill winners.
+- [ ] T015 Run the parity check: After deletion, consume the phase-001 baseline manifest and rerun the same single-executor normalized capture for all five modes and seven /deep:* commands. Require byte-identical normalized artifact hashes for modes and commands; advisor parity is behavior-preservation with skill=deep-loop-workflows plus concrete mode, rejectedEdges=0, and no old skill winners.
 - [ ] T016 `validate.sh --strict` on this phase folder
 - [ ] T017 Confirm the phase success criteria in `spec.md` are met
 

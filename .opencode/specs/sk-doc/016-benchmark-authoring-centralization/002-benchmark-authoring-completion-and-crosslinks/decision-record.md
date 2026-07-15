@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Benchmark Authoring Completion and Cross-Links"
-description: "ADRs for completing benchmark-authoring centralization: create-benchmark hosts the authoring GUIDE for every family (amending the Lane A/D non-goal decision); code-coupled artifacts and measurement contracts stay lane-owned and cross-linked (reaffirming the contracts ruling); the fixtureDir break is a systemic correctness fix."
+description: "ADRs for completing benchmark-authoring centralization: create-benchmark hosts the authoring GUIDE for every family (amending the Lane A non-goal decision); code-coupled artifacts and measurement contracts stay lane-owned and cross-linked (reaffirming the contracts ruling); the fixtureDir break is a systemic correctness fix."
 trigger_phrases:
   - "benchmark authoring completion decisions"
 importance_tier: "important"
@@ -21,15 +21,15 @@ _memory:
 ---
 
 <!-- ANCHOR:adr-001 -->
-## ADR-001: create-benchmark hosts an authoring GUIDE for every family; Lane A and Lane D are no longer pure non-goals (amends parent ADR-003)
+## ADR-001: create-benchmark hosts an authoring GUIDE for every family; Lane A is no longer a pure non-goal (amends parent ADR-003)
 
 **Status:** Accepted
 
-**Context:** Parent ADR-003 declared Lane A (agent-improvement) and Lane D (non-dev-ai-system) code-owned non-goals, so create-benchmark carried no authoring content for them. But both own real doc-only authoring surfaces, and a create-benchmark reader was silently missing two of six families. The operator asked to make create-benchmark the single home for benchmark document-creation guidelines.
+**Context:** Parent ADR-003 declared Lane A (agent-improvement) a code-owned non-goal, so create-benchmark carried no authoring content for it. Lane A owns a real doc-only authoring surface, and a create-benchmark reader was silently missing one of five families. The operator asked to make create-benchmark the single home for benchmark document-creation guidelines.
 
-**Decision:** create-benchmark hosts an authoring GUIDE for every family, including new Lane A and Lane D guides. The guides teach how to author the doc-only inputs and cross-link the lane-owned artifacts. This amends ADR-003: Lane A/D are now "authoring-guided here," not non-goals. Their executable/code-coupled artifacts remain in-lane (see ADR-002).
+**Decision:** create-benchmark hosts an authoring GUIDE for every family, including the new Lane A guide. The guide teaches how to author the doc-only inputs and cross-link the lane-owned artifacts. This amends ADR-003: Lane A is now "authoring-guided here," not a non-goal. Its executable/code-coupled artifacts remain in-lane (see ADR-002).
 
-**Consequences:** The family router in create-benchmark §2 is complete at the guidance layer — six families, one home for "how do I author this." Cost: two families are guide-only here (their fillable templates/configs stay in-lane), an intentional asymmetry recorded in ADR-002.
+**Consequences:** The family router in create-benchmark §2 is complete at the guidance layer — five families, one home for "how do I author this." Cost: one family is guide-only here (its fillable templates/configs stay in-lane), an intentional asymmetry recorded in ADR-002.
 <!-- /ANCHOR:adr-001 -->
 
 ---

@@ -64,9 +64,9 @@ _memory:
 - [ ] T004 Repoint review command files. (`.opencode/commands/deep/start-review-loop.md`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`)
 - [ ] T005 Repoint AI Council command files. (`.opencode/commands/deep/ask-ai-council.md`, `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml`)
 - [ ] T006 Repoint improvement Lane A/B YAML-backed command files. (`.opencode/commands/deep/start-agent-improvement-loop.md`, `.opencode/commands/deep/start-model-benchmark-loop.md`)
-- [ ] T007 Repoint improvement Lane C/D markdown-only commands. (`.opencode/commands/deep/start-skill-benchmark-loop.md`, `.opencode/commands/deep/start-non-dev-ai-system-loop.md`)
+- [ ] T007 Repoint the improvement Lane C markdown-only command. (`.opencode/commands/deep/start-skill-benchmark-loop.md`)
 - [ ] T008 Run integration grep and scope guard over the command surface. (`.opencode/commands/deep/**`)
-- [ ] T009 Run phase-001 parity harness for all eight commands. (`phase-001 command baseline artifacts`, `temporary parity output outside repo or phase-owned scratch`)
+- [ ] T009 Run phase-001 parity harness for all seven commands. (`phase-001 command baseline artifacts`, `temporary parity output outside repo or phase-owned scratch`)
 - [ ] T010 Run final phase validation. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/004-command-surface-repoint`)
 
 <!-- /ANCHOR:phase-2 -->
@@ -75,7 +75,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T013 Run the parity check: Use the phase-001 baseline harness and artifacts for the same eight command scenarios, including Lane D dry-run-only. After repointing, run the identical harness with the same inputs and environment, then byte-compare stdout, stderr, generated config/state/report artifacts, and manifests via cmp or SHA-256; separately require rg to prove stale old skill package paths and old skill keys are gone while deep-loop-runtime references are unchanged.
+- [ ] T013 Run the parity check: Use the phase-001 baseline harness and artifacts for the same seven command scenarios, including the Lane C diagnostic wrapper. After repointing, run the identical harness with the same inputs and environment, then byte-compare stdout, stderr, generated config/state/report artifacts, and manifests via cmp or SHA-256; separately require rg to prove stale old skill package paths and old skill keys are gone while deep-loop-runtime references are unchanged.
 - [ ] T014 `validate.sh --strict` on this phase folder
 - [ ] T015 Confirm the phase success criteria in `spec.md` are met
 

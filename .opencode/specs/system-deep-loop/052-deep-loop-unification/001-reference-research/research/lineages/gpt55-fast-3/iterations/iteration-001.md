@@ -39,7 +39,7 @@ Validate the proposed physical layout and internal bidirectional path-coupling r
 ## Reflection
 - What worked: Checking actual executable imports before broader reference migration quickly separated code-depth risks from prose rename work.
 - What failed: Broad grep results were noisy; targeted reads of executable files produced the useful correction.
-- Ruled out: Treating `runtime/` as an eighth workflow mode is eliminated because the live registry models it as backend infrastructure, not a public mode.
+- Ruled out: Treating `runtime/` as a seventh workflow mode is eliminated because the live registry models it as backend infrastructure, not a public mode.
 
 ## Recommended Next Focus
 Inventory external reference migration categories and stress-test whether child 003 covers all executable, generated, advisor, agent, README, hook, and graph surfaces without over-rewriting historical specs.

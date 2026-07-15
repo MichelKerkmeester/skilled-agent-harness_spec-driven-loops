@@ -78,6 +78,6 @@ CONDITIONAL. The recent skill-benchmark fixture rename appears correct in the sa
 
 ## Next Dimension
 
-Iteration 15 should continue with `deep-improvement` security. Focus on command/YAML shell boundaries, benchmark output/write paths under `.opencode/skills/sk-prompt-models/benchmarks/{run_label}`, profile/fixture path containment, reviewer-scorer flag gating, and whether Lane A/B/C/D helper scripts can write outside their intended packet or benchmark output roots. Do not re-count DR-014-P1-001 unless a security pass proves path escape or broader write-boundary impact.
+Iteration 15 should continue with `deep-improvement` security. Focus on command/YAML shell boundaries, benchmark output/write paths under `.opencode/skills/sk-prompt-models/benchmarks/{run_label}`, profile/fixture path containment, reviewer-scorer flag gating, and whether Lane A/B/C helper scripts can write outside their intended packet or benchmark output roots. Do not re-count DR-014-P1-001 unless a security pass proves path escape or broader write-boundary impact.
 
 Review verdict: CONDITIONAL

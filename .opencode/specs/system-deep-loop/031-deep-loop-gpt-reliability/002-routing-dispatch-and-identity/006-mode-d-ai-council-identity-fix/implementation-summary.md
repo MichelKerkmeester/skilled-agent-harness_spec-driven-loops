@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Mode-D Gate Fix + ai-council Route-Identity Fix"
-description: "Replaced the self-classification gate in all 8 /deep:* command files with an evidence-based dispatch-context check, and reconciled the ai-council route-proof identity across orchestrate-topic.cjs and deep_ai-council_auto.yaml -- completing live in-flight work rather than duplicating it."
+description: "Replaced the self-classification gate in all 7 surviving /deep:* command files with an evidence-based dispatch-context check, and reconciled the ai-council route-proof identity across orchestrate-topic.cjs and deep_ai-council_auto.yaml -- completing live in-flight work rather than duplicating it."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -51,7 +51,7 @@ GPT-backed OpenCode was hitting two confirmed, code-traced defects from research
 
 ### Mode-D Gate Fix
 
-All 8 `/deep:*` command files (`ai-system-improvement.md`, `skill-benchmark.md`, `context.md`, `review.md`, `ai-council.md`, `research.md`, `agent-improvement.md`, `model-benchmark.md`) previously opened with a "SELF-CHECK: Are you operating as the @general agent?" block — an abstract capability question ("can you orchestrate a workflow," "can you load skill references") that a model can't reliably answer about itself, and which defaulted to a hard block on "NO or UNCERTAIN." That default is exactly what fired incorrectly during phase 005's smoke test. Each file now opens with a "DISPATCH-CONTEXT CHECK" instead: a concrete question (was this content reached via a direct `/deep:*` invocation, or pasted inline into another agent's dispatch prompt as ad hoc instructions?) that defaults to PROCEED when there's no concrete evidence of the latter. The blocking case still exists, but it now requires actual evidence rather than an unanswerable self-assessment.
+All 7 surviving `/deep:*` command files (`skill-benchmark.md`, `context.md`, `review.md`, `ai-council.md`, `research.md`, `agent-improvement.md`, `model-benchmark.md`) previously opened with a "SELF-CHECK: Are you operating as the @general agent?" block — an abstract capability question ("can you orchestrate a workflow," "can you load skill references") that a model can't reliably answer about itself, and which defaulted to a hard block on "NO or UNCERTAIN." That default is exactly what fired incorrectly during phase 005's smoke test. Each file now opens with a "DISPATCH-CONTEXT CHECK" instead: a concrete question (was this content reached via a direct `/deep:*` invocation, or pasted inline into another agent's dispatch prompt as ad hoc instructions?) that defaults to PROCEED when there's no concrete evidence of the latter. The blocking case still exists, but it now requires actual evidence rather than an unanswerable self-assessment.
 
 ### ai-council Route-Identity Fix
 
@@ -61,7 +61,6 @@ All 8 `/deep:*` command files (`ai-system-improvement.md`, `skill-benchmark.md`,
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/commands/deep/ai-system-improvement.md` | Modified | Phase-0 gate replaced |
 | `.opencode/commands/deep/skill-benchmark.md` | Modified | Phase-0 gate replaced |
 | `.opencode/commands/deep/context.md` | Modified | Phase-0 gate replaced |
 | `.opencode/commands/deep/review.md` | Modified | Phase-0 gate replaced |
@@ -78,7 +77,7 @@ All 8 `/deep:*` command files (`ai-system-improvement.md`, `skill-benchmark.md`,
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Read all 8 command files' Phase-0 blocks first and checksummed the extracted blocks — they turned out structurally identical but not byte-identical (each substitutes its own loop description and slash-command name; 4 of the 8, all under the `deep-improvement` skill, also carry an extra per-file action in the "YES" branch, like reading a specific operator guide). Preserved every per-file extra verbatim while replacing the shared self-classification structure with the evidence-based dispatch-context check, keeping the `general_agent_verified` output-variable name unchanged so the two presentation `.txt` assets that already reference it (`deep_model-benchmark_presentation.txt`, `deep_agent-improvement_presentation.txt`) needed no changes.
+Read all 7 surviving command files' Phase-0 blocks first and checksummed the extracted blocks — they turned out structurally identical but not byte-identical (each substitutes its own loop description and slash-command name; 3 of the 7, all under the `deep-improvement` skill, also carry an extra per-file action in the "YES" branch, like reading a specific operator guide). Preserved every per-file extra verbatim while replacing the shared self-classification structure with the evidence-based dispatch-context check, keeping the `general_agent_verified` output-variable name unchanged so the two presentation `.txt` assets that already reference it (`deep_model-benchmark_presentation.txt`, `deep_agent-improvement_presentation.txt`) needed no changes.
 
 Before touching the ai-council files, ran `git status`/`git diff` on both and found live, uncommitted, unrelated in-flight work: new `COUNCIL_RESOLVED_ROUTE_HEADER`/`COUNCIL_ROUTE_FIELDS` constants in `orchestrate-topic.cjs` and matching new YAML outputs, both already using the *correct* `ai-council`/`@ai-council` values — but wired into a different code path (seat-dispatch context injection for prompt display), sitting right alongside the still-stale round-completion record emitter and validator block. Read `post-dispatch-validate.ts:619-665`'s `validateRouteProofRecord` directly to confirm the comparator does an exact per-field match (including `resolved_route` as an exact string), which settled the format question: rather than adopting the new long-form semicolon-delimited header (built for a different purpose), the round-completion record keeps the original short `"Resolved route: mode=X target_agent=Y"` format, just with corrected values — consistent with how `context`/`research`/`review`'s own `route_proof` blocks are already formatted.
 
@@ -105,7 +104,7 @@ Ran the actual `deep-ai-council` vitest suite rather than constructing a synthet
 
 | Check | Result |
 |-------|--------|
-| grep: zero remaining self-classification prose across 8 command files | PASS |
+| grep: zero remaining self-classification prose across 7 surviving command files | PASS |
 | grep: zero remaining `mode: council`/`target_agent: deep-ai-council` values | PASS |
 | `deep-ai-council/scripts/tests/` vitest suite (9 files) | PASS, 76/76 tests |
 | `orchestrate-topic.vitest.ts` + `orchestrate-session.vitest.ts` + `integration-deep-mode-e2e.vitest.ts` (targeted) | PASS, 11/11 tests |

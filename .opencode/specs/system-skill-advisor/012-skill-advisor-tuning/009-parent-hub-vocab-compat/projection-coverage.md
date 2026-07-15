@@ -75,7 +75,7 @@ Per hub: `|I|`=projected `intent_signals`, `|T|`=`derived.trigger_phrases`, `|K|
 | md-generator | 16 | 2 | `render design preview`, `source of truth` | — |
 | design-mcp-open-design | 8 | 2 | `open-design` (hyphenated; spaced `open design` IS projected) | `od mcp` (TOKEN `mcp`) |
 
-**deep-loop-workflows** — `|I|=9 |T|=23 |K|=27 |kw|=28 |V|=42`
+**deep-loop-workflows** — `|I|=9 |T|=23 |K|=27 |kw|=28 |V|=39`
 
 | Mode | Aliases | Unprojected | Dark | Boost-only |
 |------|---------|-------------|------|------------|
@@ -85,9 +85,8 @@ Per hub: `|I|`=projected `intent_signals`, `|T|`=`derived.trigger_phrases`, `|K|
 | agent-improvement | 6 | 2 | `agent scoring`, `promote or rollback agent change` | — |
 | model-benchmark | 4 | 2 | — | `benchmark a model` (PHRASE), `prompt framework benchmark` (PHRASE) |
 | skill-benchmark | 3 | 2 | `benchmark a skill` | `skill routing benchmark` (TOKEN `routing`) |
-| ai-system-improvement | 3 | 1 | `package ai system benchmark` | — |
 
-**Totals:** 155 aliases; 117 have a projection-derived phrase anchor; **38 have none**, of which **10 are rescued only by a hardcoded `explicit.ts` boost table** and **28 are genuinely dark** (rely only on soft token-overlap `derived.ts:86` / BM25 / embedding, or the hub's broad identity signals). The guard checks **0** of the 38 against the scorer surface.
+**Totals:** 152 aliases; 115 have a projection-derived phrase anchor; **37 have none**, of which **10 are rescued only by a hardcoded `explicit.ts` boost table** and **27 are genuinely dark** (rely only on soft token-overlap `derived.ts:86` / BM25 / embedding, or the hub's broad identity signals). The guard checks **0** of the 37 against the scorer surface.
 
 ---
 
@@ -106,9 +105,9 @@ The coverage guard must apply different strictness per vocabulary surface — un
 
 ## 5. Findings & recommended assertions (recommendations only — no edits)
 
-**F1 — 28 genuinely-dark aliases pass the guard but have no scorer phrase anchor.** Concrete list (hub/mode: alias): sk-code/quality: `comment hygiene check`, `p0 p1 p2 author check`; sk-design/interface: `landing page direction`, `hero redesign`, `bolder`, `quieter`, `distill`, `clarify`, `delight`; sk-design/foundations: `theme tokens`, `container queries`, `data visualization`, `chart type`, `data tables`, `token starter`; sk-design/motion: `interaction states`, `hover state`, `focus state`, `loading state`; sk-design/audit: `ai tell`; sk-design/md-generator: `render design preview`, `source of truth`; sk-design/design-mcp-open-design: `open-design`; deep-loop/review: `release-readiness`; deep-loop/agent-improvement: `agent scoring`, `promote or rollback agent change`; deep-loop/skill-benchmark: `benchmark a skill`; deep-loop/ai-system-improvement: `package ai system benchmark`.
+**F1 — 27 genuinely-dark aliases pass the guard but have no scorer phrase anchor.** Concrete list (hub/mode: alias): sk-code/quality: `comment hygiene check`, `p0 p1 p2 author check`; sk-design/interface: `landing page direction`, `hero redesign`, `bolder`, `quieter`, `distill`, `clarify`, `delight`; sk-design/foundations: `theme tokens`, `container queries`, `data visualization`, `chart type`, `data tables`, `token starter`; sk-design/motion: `interaction states`, `hover state`, `focus state`, `loading state`; sk-design/audit: `ai tell`; sk-design/md-generator: `render design preview`, `source of truth`; sk-design/design-mcp-open-design: `open-design`; deep-loop/review: `release-readiness`; deep-loop/agent-improvement: `agent scoring`, `promote or rollback agent change`; deep-loop/skill-benchmark: `benchmark a skill`.
 
-**F2 — Of these, the transform verbs (`bolder/quieter/distill/clarify/delight`) are correct-by-design exemptions**, not defects (§4). A guard that flags them without honoring `transformVerbRouting.aliasOnly` would emit false positives. Net *defect* candidates ≈ 23.
+**F2 — Of these, the transform verbs (`bolder/quieter/distill/clarify/delight`) are correct-by-design exemptions**, not defects (§4). A guard that flags them without honoring `transformVerbRouting.aliasOnly` would emit false positives. Net *defect* candidates ≈ 22.
 
 **F3 — 10 aliases route only via a hand-maintained static boost table** (`explicit.ts` `PHRASE_BOOSTS`/`TOKEN_BOOSTS`), not the projection: e.g. `benchmark a model`/`prompt framework benchmark`/`planning council` (PHRASE), `surface checklist`/`reviewer`/`pr-state gates`/`od mcp`/`motion budget`/`context adaptation`/`skill routing benchmark` (TOKEN). These are reachable but brittle — the projection does not cover them, so a projection-only coverage guard would still flag them; treat boost-coverage as a mitigating annotation, not a pass.
 

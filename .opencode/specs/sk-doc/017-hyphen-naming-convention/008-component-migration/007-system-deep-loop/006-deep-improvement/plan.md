@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: deep-improvement filesystem names (017 phase 007/006)"
-description: "Plan for renaming the deep-improvement four-lane surface, benchmark assets, playbooks, references, and scripts through a classified semantic map, then repairing the shared loop-host closure while preserving Python/package and generated-output boundaries."
+description: "Plan for renaming the deep-improvement three-lane surface, benchmark assets, playbooks, references, and scripts through a classified semantic map, then repairing the shared loop-host closure while preserving Python/package and generated-output boundaries."
 trigger_phrases:
   - "deep-improvement implementation plan"
   - "improvement lane kebab-case rename plan"
@@ -45,21 +45,21 @@ Handle the largest child as dependency-closed lane batches. Rename authored reso
 
 ### Definition of Ready
 
-- [ ] The frozen map covers all 23 directory families and 263 underscore-bearing files with one disposition each.
+- [ ] The frozen map covers all 22 directory families and 250 underscore-bearing files with one disposition each.
 - [ ] Python/package, generated-output, lockfile, tool-name, and lane-data manifests are attached.
 - [ ] BASE lane-routing, fixture/profile, benchmark, import, and test-discovery evidence is captured.
 
 ### Definition of Done
 
 - [ ] Authored deep-improvement paths and active consumers are kebab-clean and resolvable.
-- [ ] All four lanes retain their shared loop-host behavior and benchmark/test parity.
+- [ ] All three lanes retain their shared loop-host behavior and benchmark/test parity.
 - [ ] Python/package, generated, key/identifier, tool, and frozen exemptions are evidenced explicitly.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Lane resource layer**: rename the four lane directory families, asset/reference/catalog/playbook categories, and authored fixture/profile paths through the semantic map.
+- **Lane resource layer**: rename the three lane directory families, asset/reference/catalog/playbook categories, and authored fixture/profile paths through the semantic map.
 - **Host/consumer layer**: update shared loop-host, command bridges, registries, tests, imports, and path-valued configs in the same reference closure.
 - **Benchmark layer**: distinguish authored fixture/profile/storage names from generated report output; root `benchmark/` remains phase 009 ownership.
 - **Python/data boundary**: preserve `.py` scripts, Python import-package directories, lane keys, JSON/YAML/TOML keys, and generated schemas.
@@ -92,7 +92,7 @@ Handle the largest child as dependency-closed lane batches. Rename authored reso
 | Requirement | Verification |
 |-------------|--------------|
 | Candidate coverage | Map scan reports 23 directory families and 263 files once, with target collision checks. |
-| Lane closure | Resolve shared loop-host, command/registry, import, and path-valued config consumers for all four lanes. |
+| Lane closure | Resolve shared loop-host, command/registry, import, and path-valued config consumers for all three lanes. |
 | Fixture/profile integrity | Compare authored fixtures/profiles and benchmark scenario IDs; report generated output separately. |
 | Runtime parity | Run lane routing, script syntax/import, unit/integration, and benchmark checks with non-zero discovery. |
 | Exemption safety | Compare Python/package, generated/lockfile, tool-name, key/identifier, and frozen manifests. |

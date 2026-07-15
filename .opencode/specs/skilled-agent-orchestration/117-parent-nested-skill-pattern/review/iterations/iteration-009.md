@@ -15,7 +15,7 @@ I audited the parent `spec.md`, all three child phase folders (`001`/`002`/`003`
 
 ### What I verified as TRUE (not over-claimed)
 - **19/19 tests (5 + 9 + 5)** — ran `vitest`: drift-guard=5, deep-skills=9, deep-council=5 = 19 passed. Per-file breakdown is exactly right (my first grep undercounted; `.each` expands). ✓
-- **8 modes carry `advisorRouting`** + `advisorRoutingContract` legend; registry **1.0.0→1.1.0**. ✓
+- **7 modes carry `advisorRouting`** + `advisorRoutingContract` legend; registry **1.0.0→1.1.0**. ✓
 - **Exactly one `graph-metadata.json`** under `deep-loop-workflows`. ✓
 - **`--dump-routing-maps`** flag (skill_advisor.py:3729/3780); **`DEEP_MODE_BY_CANONICAL` exported** (aliases.ts:96). ✓
 - **§10 at line 1018**, §11 RELATED RESOURCES at 1119. ✓

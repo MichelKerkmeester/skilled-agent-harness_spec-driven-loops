@@ -83,7 +83,7 @@ The old `001-…` through `010-…` folders are removed; their committed content
 | GAP-38 no stall-rate delta | 001 | Pre/post per-mode stall-rate recorded |
 | GAP-39 D-007 host confound | 001 (+parent) | Latency compared GPT-leg-vs-itself; D-007 restated on latency phases |
 | GAP-40 coverage overclaim | parent | Success scoped to the 32-scenario suite explicitly |
-| GAP-41 sibling improvement lanes unphased | 005 | model/skill/ai-system lanes retrofit or deferral recorded |
+| GAP-41 sibling improvement lanes unphased | 005 | model/skill lanes retrofit or deferral recorded |
 | GAP-42 :confirm render unaddressed | 003 | Contract render block covers :auto and :confirm |
 | GAP-43 11/14 agent files unaudited | 003 | All 14 converted to contract pointers |
 | GAP-44 non-deep-loop surfaces | 005 | Named + retrofit or written exclusion boundary |

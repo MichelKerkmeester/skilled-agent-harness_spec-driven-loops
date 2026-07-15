@@ -81,7 +81,7 @@ The registry already gives us the tool to absorb the *genuinely* higher-churn su
 - **`command:"/deep:ai-council"` and `artifactRoot:"ai-council/"` STAY** — they follow the bare-suffix sibling convention and are registry-recorded surface names, not folder-derived.
 - **`agent:"ai-council"`** is the one remaining judgment call: renaming `@ai-council` → `@deep-ai-council` ripples across three runtime agent dirs (`.claude/.opencode/.codex/agents`) and CLAUDE.md §5. Because the registry records `agent` explicitly, the standard can permit it to **remain `ai-council` as a recorded surface alias** if the churn isn't worth it — *without* the folder/name pair ever diverging. The load-bearing pair gets standardized; the cosmetic surface stays a documented, registry-pinned exception rather than an implicit one.
 
-This also closes **CORRECTION #2** in the same sweep: the hub still says e.g. *"the 4 improvement modes all share the improvement/ packet"* (`SKILL.md:47`) where the packet dir is `deep-improvement/`. The prior rename sweep was applied incompletely — exactly why the standard must be enforced (folder==name fixture), not just asserted.
+This also closes **CORRECTION #2** in the same sweep: the hub still says e.g. *"the 3 improvement modes all share the improvement/ packet"* (`SKILL.md:47`) where the packet dir is `deep-improvement/`. The prior rename sweep was applied incompletely — exactly why the standard must be enforced (folder==name fixture), not just asserted.
 
 ---
 

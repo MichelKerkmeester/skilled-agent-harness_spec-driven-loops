@@ -45,9 +45,9 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 12 |
+| **Phase** | 10 of 11 active phases |
 | **Predecessor** | 009-loop-quality-benchmark |
-| **Successor** | 011-meta-loop-lane-d-packaging |
+| **Successor** | 012-push-wave-fanout |
 | **Handoff Criteria** | `promote-candidate.cjs` has two separately callable phases (accept, ship); gate failure emits `promotion_blocked_branch_preserved`; `rollback-candidate.cjs` restores canonical tree to pre-acceptance state |
 <!-- /ANCHOR:metadata -->
 

@@ -48,4 +48,3 @@ iter 47 | ratio 0.37 | easy/quick-win | loop-cli-main's portable liveness mechan
 iter 48 | ratio 0.43 | hard/deep-rewrite | Adopt a merge ADR: reducer owns conflict resolution, inbox and strategy are inputs/projections, and no raw wri | ?
 iter 49 | ratio 0.57 | med/quick-win | Add a canonical deep-loop observability envelope helper around producer-native payloads. | ?
 iter 50 | ratio 0.62 | easy/quick-win | Add reusable record/replay helpers beside spawnCjs so runtime tests can capture normalized argv, stdin, stdout | ?
-iter 51 | ratio 0.66 | med/quick-win | Add a checked-in Lane D packaging profile for deep-loop runtime technique docs, with frozen scorer/harness sur | ?

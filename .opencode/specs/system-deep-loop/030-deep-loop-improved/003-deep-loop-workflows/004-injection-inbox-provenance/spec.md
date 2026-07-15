@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 12 |
+| **Phase** | 4 of 11 active phases |
 | **Predecessor** | 003-cross-mode-anti-convergence-adr |
 | **Successor** | 005-anchor-ownership-conflict-adr |
 | **Handoff Criteria** | `research/inbox.jsonl` schema defined; reducer reads inbox on each reduce step; `origin` field carried through `openQuestions`; legacy markdown import path is non-breaking |

@@ -25,7 +25,7 @@ The important line is what did not change. Routing behavior stayed fixed, and th
 
 ### Added
 
-- Added the per-mode `advisorRouting` block for 8 modes and the top-level `advisorRoutingContract` legend, and bumped registry version to `1.1.0` in `.opencode/skills/deep-loop-workflows/mode-registry.json`.
+- Added the per-mode `advisorRouting` block for 7 modes and the top-level `advisorRoutingContract` legend, and bumped registry version to `1.1.0` in `.opencode/skills/deep-loop-workflows/mode-registry.json`.
 - Added the `--dump-routing-maps` flag, including argument registration and handler, in `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 - Marked implementation and verification tasks `[x]`, closing `T008` and `T009` in this turn.
 - `CHK-010` recorded the change as additive with no routing behavior altered.

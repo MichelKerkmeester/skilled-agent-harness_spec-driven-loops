@@ -35,7 +35,7 @@ The packet stayed faithful to the parent purpose: define and optimize the patter
 
 - Four phase-local changelog surfaces for the shipped child phases.
 - A packet-level changelog index and root rollup.
-- Registry-level `advisorRouting` for eight modes and an `advisorRoutingContract` legend in `.opencode/skills/deep-loop-workflows/mode-registry.json`.
+- Registry-level `advisorRouting` for seven modes and an `advisorRoutingContract` legend in `.opencode/skills/deep-loop-workflows/mode-registry.json`.
 - `--dump-routing-maps` support in `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 - `/create:parent-skill` with assets and README plus agent mirror registration.
 - `/doctor:parent-skill` with `parent-skill-check.cjs`, workflow wiring and meaningful positive and negative checks.

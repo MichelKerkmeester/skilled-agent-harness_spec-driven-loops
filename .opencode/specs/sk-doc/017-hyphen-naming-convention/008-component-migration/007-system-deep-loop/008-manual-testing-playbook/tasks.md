@@ -40,7 +40,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Load the root-playbook map, BASE scenario manifest, and benchmark/router consumer inventory.
-- [ ] T002 [P] Inventory the root directory, five categories, index, and 20 scenario files.
+- [ ] T002 [P] Inventory the root directory, five categories, index, and 19 scenario files.
 - [ ] T003 Confirm nested workflow-packet playbooks are excluded and record all root corpus references.
 <!-- /ANCHOR:phase-1 -->
 
@@ -48,7 +48,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T004 Classify every root playbook path as rename, exempt, frozen, generated, or tool-mandated.
-- [ ] T005 Rename the root, five categories, index, and 20 scenario files through the semantic map.
+- [ ] T005 Rename the root, five categories, index, and 19 scenario files through the semantic map.
 - [ ] T006 Update benchmark README/runner paths, hub resource references, indexes, and Markdown links.
 - [ ] T007 Preserve scenario IDs, prompts, frontmatter fields, category vocabulary, generated output, and nested ownership.
 - [ ] T008 Record scenario map, path-reference, and ownership evidence.

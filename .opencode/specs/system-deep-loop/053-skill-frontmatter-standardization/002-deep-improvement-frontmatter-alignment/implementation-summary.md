@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 7: deep-improvement Frontmatter Alignment"
-description: "All 27 deep-improvement reference/asset docs now conform to the canonical contract, the largest single-skill normalization in the campaign so far."
+description: "All 22 deep-improvement reference/asset docs now conform to the canonical contract, the largest single-skill normalization in the campaign so far."
 trigger_phrases:
   - "deep-improvement frontmatter summary"
   - "frontmatter alignment complete"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-deep-loop/053-skill-frontmatter-standardization/002-deep-improvement-frontmatter-alignment"
     last_updated_at: "2026-06-11T09:54:32Z"
     last_updated_by: "claude-fable"
-    recent_action: "Phase complete: 27 docs conform and smoke passed"
+    recent_action: "Phase complete: 22 docs conform and smoke passed"
     next_safe_action: "Campaign continues in sibling phases"
     blockers: []
     key_files:
@@ -48,11 +48,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-All 27 deep-improvement reference and asset docs (23 references + 4 non-README assets) now carry exactly the canonical frontmatter contract. This is the largest phase of the campaign so far and the first to exercise every drift state at once: enum fixes, partial-block completion, net-new phrase authoring, and a doc with no frontmatter at all.
+All 22 deep-improvement reference and asset docs (18 references + 4 non-README assets) now carry exactly the canonical frontmatter contract. This is the largest phase of the campaign so far and the first to exercise every drift state at once: enum fixes, partial-block completion, net-new phrase authoring, and a doc with no frontmatter at all.
 
 ### Contract normalization
 
-Baseline had four distinct states. 5 fully-detailed docs used `contextType: reference`, a natural-but-wrong value outside the canonical enum. 12 docs carried trigger_phrases but no tier or contextType. 8 docs (the 3 agent_improvement asset templates and the 5 non_dev_ai_system Lane D references) had title+description only. `references/shared/heldout_and_gold_sets.md` had no frontmatter fence at all and received the full block. Every doc now declares the 5-field contract with no leftover keys.
+Baseline had four distinct states. 5 fully-detailed docs used `contextType: reference`, a natural-but-wrong value outside the canonical enum. 12 docs carried trigger_phrases but no tier or contextType. 3 docs (the agent_improvement asset templates) had title+description only. `references/shared/heldout_and_gold_sets.md` had no frontmatter fence at all and received the full block. Every doc now declares the 5-field contract with no leftover keys.
 
 ### Phrase repair
 
@@ -60,7 +60,7 @@ Four docs had phrase sets that violated the multi-word policy and were rebuilt f
 
 ### Tier and contextType judgment
 
-`important` is reserved for formal contract/invariant docs: kept on `candidate_proposal_format.md`, `score_dimensions.md`, `promotion_gate_contract.md`, and `scoring_contract.md`; added to `evaluator_contract.md`, `promotion_rules.md`, `non_dev_ai_system/loop_contract.md`, and `heldout_and_gold_sets.md` (a binding cross-lane evaluation convention). The two Lane C how-to guides (`operator_guide.md`, `scenario_authoring.md`) were demoted from `important` to `normal` since they are guidance, not contracts. contextType is `implementation` for most docs, `planning` for the charter and strategy run-templates, `research` for the pilot-derived `guardrails_teachings.md` and the `mixed_executor_methodology.md` evaluation methodology, and `general` for `quick_reference.md` and `heldout_and_gold_sets.md`.
+`important` is reserved for formal contract/invariant docs: kept on `candidate_proposal_format.md`, `score_dimensions.md`, `promotion_gate_contract.md`, and `scoring_contract.md`; added to `evaluator_contract.md`, `promotion_rules.md`, and `heldout_and_gold_sets.md` (a binding cross-lane evaluation convention). The two Lane C how-to guides (`operator_guide.md`, `scenario_authoring.md`) were demoted from `important` to `normal` since they are guidance, not contracts. contextType is `implementation` for most docs, `planning` for the charter and strategy run-templates, `research` for the pilot-derived `guardrails_teachings.md` and the `mixed_executor_methodology.md` evaluation methodology, and `general` for `quick_reference.md` and `heldout_and_gold_sets.md`.
 
 ### Files Changed
 
@@ -68,7 +68,6 @@ Four docs had phrase sets that violated the multi-word policy and were rebuilt f
 |------|--------|---------|
 | `.opencode/skills/deep-improvement/references/agent_improvement/*.md` (6) | Modified | Enum fix x2 (`important` kept); tier+contextType added x4; phrase repair x2 |
 | `.opencode/skills/deep-improvement/references/model_benchmark/*.md` (3) | Modified | Tier+contextType added; `evaluator_contract.md` to `important`; phrase rebuild for mixed_executor_methodology |
-| `.opencode/skills/deep-improvement/references/non_dev_ai_system/*.md` (5) | Modified | Full phrase sets + tier + contextType authored; `loop_contract.md` to `important` |
 | `.opencode/skills/deep-improvement/references/shared/*.md` (6) | Modified | Tier+contextType added; full block authored for `heldout_and_gold_sets.md`; `promotion_rules.md` to `important` |
 | `.opencode/skills/deep-improvement/references/skill_benchmark/*.md` (3) | Modified | Enum fix; 2 guides demoted to `normal`; command-token phrase replaced |
 | `.opencode/skills/deep-improvement/assets/**/*.md` (4 non-README) | Modified | Full blocks for 3 templates (`planning`/`implementation`); reviewer-schema completed |
@@ -79,7 +78,7 @@ Four docs had phrase sets that violated the multi-word policy and were rebuilt f
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-One assertion-guarded Python pass rewrote all 27 leading fences in place (per-file title guard before replacement, body bytes untouched), then the contract checker in coverage mode and a daemon-independent Python advisor smoke verified the result. The guard discipline mattered here: several deep-improvement files carry pre-existing uncommitted body modifications from another session, and spot-checked diffs confirm this phase added only frontmatter hunks.
+One assertion-guarded Python pass rewrote all 22 leading fences in place (per-file title guard before replacement, body bytes untouched), then the contract checker in coverage mode and a daemon-independent Python advisor smoke verified the result. The guard discipline mattered here: several deep-improvement files carry pre-existing uncommitted body modifications from another session, and spot-checked diffs confirm this phase added only frontmatter hunks.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -89,7 +88,7 @@ One assertion-guarded Python pass rewrote all 27 leading fences in place (per-fi
 
 | Decision | Why |
 |----------|-----|
-| `important` on 8 contract docs, including 4 newly promoted | The tier policy reserves `important` for formal contract/invariant docs; evaluator_contract, promotion_rules, Lane D loop_contract, and the held-out/gold convention all gate promotion evidence, so they meet the bar. |
+| `important` on 7 contract docs, including 3 newly promoted | The tier policy reserves `important` for formal contract/invariant docs; evaluator_contract, promotion_rules, and the held-out/gold convention all gate promotion evidence, so they meet the bar. |
 | Demote both Lane C guides from `important` to `normal` | operator_guide and scenario_authoring are how-to guidance; only `scoring_contract.md` is the authoritative Lane C computation, so it alone keeps the elevated tier. |
 | `planning` contextType for charter and strategy templates | Both are run-planning artifacts (policy boundary, goal/hypothesis), not behavior documentation, so `implementation` would misfile them. |
 | `research` contextType for guardrails_teachings and mixed_executor_methodology | One distills pilot evidence (T1-T12), the other is evaluation-sweep methodology; neither documents a runnable surface. |
@@ -104,7 +103,7 @@ One assertion-guarded Python pass rewrote all 27 leading fences in place (per-fi
 
 | Check | Result |
 |-------|--------|
-| `check-skill-doc-frontmatter.sh --skill deep-improvement --coverage` | PASS — docs=27, carrying-detailed-block=27, violations=0 |
+| `check-skill-doc-frontmatter.sh --skill deep-improvement --coverage` | PASS — docs=22, carrying-detailed-block=22, violations=0 |
 | Python local-mode smoke ("legal-stop gate bundles", flag on) | PASS — deep-improvement at 0.77, passes_threshold true, reason `Matched: !legal-stop gate bundles(signal)` |
 | Diff hygiene | PASS — spot-checked git diff shows only frontmatter hunks from this phase; pre-existing body hunks from another session untouched |
 | Live daemon `matchedDocs` smoke | DEFERRED — rides packet 145 T025 (session-cycle daemon adoption) |

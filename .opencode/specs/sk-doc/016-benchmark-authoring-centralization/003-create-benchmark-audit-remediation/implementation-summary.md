@@ -47,8 +47,8 @@ Every finding from the two-model (GPT-5.6 SOL + LUNA) create-benchmark audit was
 
 ### Fixes by surface
 
-- **create-benchmark docs**: the three `_shared` references became `shared` (grep now returns 0); README was corrected from "two families" to the real six-family taxonomy with Lane A/D guide ownership; the Smart Router got concrete routing data; `INTEGRATION POINTS` and `REFERENCES AND RELATED RESOURCES` sections were added; stale internal section-number prose was corrected; the version-field guidance was reconciled with a justifying comment.
-- **sk-doc hub metadata**: `hub-router.json` and `mode-registry.json` gained `agent-improvement` and `non-dev-ai-system` routing keywords, carrying 24 keyword entries each.
+- **create-benchmark docs**: the three `_shared` references became `shared` (grep now returns 0); README was corrected from "two families" to the real five-family taxonomy with Lane A guide ownership; the Smart Router got concrete routing data; `INTEGRATION POINTS` and `REFERENCES AND RELATED RESOURCES` sections were added; stale internal section-number prose was corrected; the version-field guidance was reconciled with a justifying comment.
+- **sk-doc hub metadata**: `hub-router.json` and `mode-registry.json` gained `agent-improvement` routing keywords, carrying the recorded keyword set.
 - **deep-improvement (Lane B)**: the two directories were renamed to hyphens so the ~70 committed hyphen references resolve; the default-profile resolver path now exists on disk; the Lane B output contract was reconciled to the runtime's real two-convention behavior.
 - **deep-alignment**: the behavior-benchmark index and five scenario files were reconciled to the captured baseline (provisional `300000` budgets replaced with measured values).
 
@@ -63,7 +63,7 @@ Every finding from the two-model (GPT-5.6 SOL + LUNA) create-benchmark audit was
 | Area | Action | Purpose |
 |------|--------|---------|
 | `create-benchmark/**` (SKILL.md, README.md, 5 templates/guides) | Modify | `_shared`, README, sections, Smart Router, prose, version, dir-ref hyphenation |
-| `sk-doc/{hub-router,mode-registry}.json` | Modify | Lane A/D routing keywords |
+| `sk-doc/{hub-router,mode-registry}.json` | Modify | Lane A routing keywords |
 | `deep-improvement/assets/model_benchmark/benchmark-{profiles,fixtures}/` | Rename | Underscore → hyphen |
 | `deep-improvement/**`, `commands/deep/**` | Modify | Align refs to hyphen; reconcile output contract; fix registry path |
 | `deep-alignment/behavior_benchmark/**` | Modify | Reconcile index to captured baseline |
@@ -103,7 +103,7 @@ Four fresh Sonnet-5 leaf agents ran in parallel, each owning one directory surfa
 | `_shared` residue in create-benchmark | 0 |
 | Markdown links (create-benchmark / deep-improvement / deep-alignment) | 204 / 249 / 221 OK, 0 broken |
 | Lane B vitest (optin-scorer + sweep-acceptance) | 14/14 pass |
-| Hub routing JSON validity + Lane A/D keywords | valid; both keywords present |
+| Hub routing JSON validity + Lane A keywords | valid; keyword present |
 | deep-alignment index vs baseline | 0 stale `300000`; measured budgets propagated |
 
 <!-- /ANCHOR:verification -->

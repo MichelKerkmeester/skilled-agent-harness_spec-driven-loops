@@ -60,7 +60,7 @@ _memory:
 - [x] CHK-010 [P0] No lint/format regressions; evidence: vitest suite (76/76) ran clean, no transform errors.
 - [x] CHK-011 [P0] No console errors/warnings; evidence: vitest run output showed only expected CLI usage/advisory stdout from the test fixtures themselves, no errors.
 - [x] CHK-012 [P1] Error handling unchanged where not in scope; evidence: `stopReasonFor`/route-mismatch logic in `orchestrate-topic.cjs` untouched — only the round-completion record's `mode`/`target_agent`/`resolved_route` literals changed.
-- [x] CHK-013 [P1] Command-file replacement text follows a single consistent pattern; evidence: all 8 files use the same "DISPATCH-CONTEXT CHECK" structure, each substituting only its own loop description/slash-command name (plus 4 files' pre-existing per-file extras, preserved verbatim).
+- [x] CHK-013 [P1] Command-file replacement text follows a single consistent pattern; evidence: all 7 files use the same "DISPATCH-CONTEXT CHECK" structure, each substituting only its own loop description/slash-command name (plus 3 files' pre-existing per-file extras, preserved verbatim).
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -69,7 +69,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] Acceptance criteria met (REQ-001 through REQ-004 in `spec.md`); evidence: grep sweeps (CHK-021/022) plus vitest pass.
-- [x] CHK-021 [P0] grep confirms zero remaining self-classification prose across all 8 command files; evidence: `grep -rln "SELF-CHECK: Are you operating\|@general agent\?"` returned empty.
+- [x] CHK-021 [P0] grep confirms zero remaining self-classification prose across all 7 command files; evidence: `grep -rln "SELF-CHECK: Are you operating\|@general agent\?"` returned empty.
 - [x] CHK-022 [P1] grep confirms `ai-council` (not `council`/`deep-ai-council`) in both touched line ranges; evidence: targeted grep for stale values returned empty; `mode: 'ai-council'`/`target_agent: 'ai-council'` confirmed in `orchestrate-topic.cjs`, `mode: ai-council`/`target_agent: ai-council` confirmed in `deep_ai-council_auto.yaml`.
 - [x] CHK-023 [P1] ai-council round-completion smoke confirms route-proof still passes post-fix; evidence: `orchestrate-topic.vitest.ts`, `orchestrate-session.vitest.ts`, `integration-deep-mode-e2e.vitest.ts` (11/11 pass), plus the full `deep-ai-council/scripts/tests/` suite (9 files, 76/76 pass) via a scratch vitest config (removed after use).
 <!-- /ANCHOR:testing -->

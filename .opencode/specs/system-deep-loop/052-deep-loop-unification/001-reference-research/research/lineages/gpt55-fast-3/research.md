@@ -17,7 +17,7 @@ Four iterations inspected source files, tests, command assets, advisor corpus su
 - Verification: `verify-iteration.cjs` passed for iterations 1, 2, and 3 before synthesis; iteration 4 verification is expected as the final pre-close gate.
 
 ## 5. Structural Layout Finding
-`system-deep-loop/runtime/` should remain infrastructure, not become an eighth workflow mode. The existing workflow hub routes modes through `mode-registry.json`, while runtime modules are backend support for research/review/council/improvement. Adding runtime as a mode would blur workflow and infrastructure boundaries.
+`system-deep-loop/runtime/` should remain infrastructure, not become a seventh workflow mode. The existing workflow hub routes modes through `mode-registry.json`, while runtime modules are backend support for research/review/council/improvement. Adding runtime as a mode would blur workflow and infrastructure boundaries.
 
 Evidence: `.opencode/skills/deep-loop-workflows/SKILL.md:12`, `.opencode/skills/deep-loop-workflows/mode-registry.json:19`.
 

@@ -43,7 +43,7 @@ _memory:
 - [x] T006 Author `assets/model_benchmark_code_task_fixture_template.md` (t-tier fixture) — validate 0 issues; fields mirror real t3 fixture
 - [x] T007 Author `assets/model_benchmark_pattern_fixture_template.md` (pattern/capability fixture) — validate 0 issues
 - [x] T008 Author `assets/model_benchmark_profile_template.md` (profile) — validate 0 issues
-- [x] T009 Integrate create-benchmark SKILL: split merged header (§1 WHEN TO USE / §2 SMART ROUTING) + add §12 REFERENCES; expand family table to 6 families (owns-vs-routes; Lane A/D code-owned non-goals); add §10 skill-benchmark + §11 model-benchmark sections; v1.1.0.0 → v1.2.0.0 + changelog
+- [x] T009 Integrate create-benchmark SKILL: split merged header (§1 WHEN TO USE / §2 SMART ROUTING) + add §12 REFERENCES; expand family table to 5 families (owns-vs-routes; Lane A code-owned non-goal); add §10 skill-benchmark + §11 model-benchmark sections; v1.1.0.0 → v1.2.0.0 + changelog
 - [x] T010 Update README.md + references/README.md (family overview, template rows); fix 2 renumber-stale cross-refs (behavior guide, report template)
 - [x] T011 Rewire 8 deep-improvement/hub consumer docs to pointer-only references
 <!-- /ANCHOR:phase-2 -->

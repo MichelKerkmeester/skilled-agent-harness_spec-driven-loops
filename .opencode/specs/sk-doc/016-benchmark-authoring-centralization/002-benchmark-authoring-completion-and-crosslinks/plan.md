@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Benchmark Authoring Completion and Cross-Links"
-description: "Phased plan to author the Lane A and Lane D authoring guides, complete the create-benchmark <-> deep-loop bidirectional links, and land the 016->015 metadata, sibling, and fixtureDir corrections, without relocating any lane-owned contract."
+description: "Phased plan to author the Lane A authoring guide, complete the create-benchmark <-> deep-loop bidirectional links, and land the 016->015 metadata, sibling, and fixtureDir corrections, without relocating any lane-owned contract."
 trigger_phrases:
   - "benchmark authoring completion plan"
 importance_tier: "important"
@@ -25,10 +25,10 @@ _memory:
 ## 1. SUMMARY
 
 ### Technical Context
-Two read-only audits established the move map. The four already-authored families keep their templates/guides in create-benchmark; nothing migrates from deep-alignment (its `behavior_benchmark/` is all filled instances). The shared `framework.md` and the four measurement contracts have no code readers but are run/scoring authorities; per operator ruling they stay lane-owned and are cross-linked. Lane D has hard code-reader coupling on `packaging_config.schema.json`, the 9 `templates/*.template`, and `loop_contract.md`; Lane A on `improvement_config.json`. create-benchmark SKILL.md is at the 5000-word cap, so new detail lands in reference guides.
+Two read-only audits established the move map. The four already-authored families keep their templates/guides in create-benchmark; nothing migrates from deep-alignment (its `behavior_benchmark/` is all filled instances). The shared `framework.md` and the four measurement contracts have no code readers but are run/scoring authorities; per operator ruling they stay lane-owned and are cross-linked. Lane A has code-reader coupling on `improvement_config.json`. create-benchmark SKILL.md is at the 5000-word cap, so new detail lands in the reference guide.
 
 ### Overview
-Author two family guides, integrate them into the SKILL word-neutrally, complete the bidirectional links, and land the three carried-over corrections — all without moving a lane-owned artifact.
+Author the family guide, integrate it into the SKILL word-neutrally, complete the bidirectional links, and land the three carried-over corrections — all without moving a lane-owned artifact.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -67,9 +67,9 @@ An author enters at create-benchmark §2, routes to a family guide, and follows 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-- `sk-doc/create-benchmark/**` — two new guides, SKILL §1/§2/§12, changelog, version.
+- `sk-doc/create-benchmark/**` — one new guide, SKILL §1/§2/§12, changelog, version.
 - `system-deep-loop/deep-alignment/behavior_benchmark/behavior_benchmark.md` — one back-pointer bullet.
-- `system-deep-loop/deep-improvement/assets/agent_improvement/README.md` and `references/non_dev_ai_system/operator_guide.md` — one back-pointer each.
+- `system-deep-loop/deep-improvement/assets/agent_improvement/README.md` — one back-pointer.
 - `system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/*.json` — fixtureDir repoint (data only).
 - `specs/sk-doc/016-benchmark-authoring-centralization/**` (excl. `review/**`) — identity + sibling corrections.
 <!-- /ANCHOR:affected-surfaces -->
@@ -83,7 +83,7 @@ An author enters at create-benchmark §2, routes to a family guide, and follows 
 Land the carried-over corrections (fixtureDir, packet identity, sibling) — independent and low-risk.
 
 ### Phase 2: Core Implementation
-Author the two family guides; integrate them into the SKILL word-neutrally (family table, §1, §12, version, changelog); complete the three lane->hub back-pointers.
+Author the family guide; integrate it into the SKILL word-neutrally (family table, §1, §12, version, changelog); complete the two lane->hub back-pointers.
 
 ### Phase 3: Verification
 Run `validate_document.py`, `package_skill.py --check`, link check, and `validate.sh --strict`; generate child metadata; write the implementation summary; reconcile the parent phase map.
@@ -124,7 +124,7 @@ All edits are additive docs, one-line back-pointers, a mechanical config path fi
 ## L2: PHASE DEPENDENCIES
 
 - Phase 1 is independent of Phases 2-3.
-- The two guides (Phase 2) precede the SKILL §12 links and the lane->hub back-pointers (targets must exist first).
+- The guide (Phase 2) precedes the SKILL §12 links and the lane->hub back-pointer (the target must exist first).
 - Metadata generation and the parent phase-map update (Phase 3) run last.
 <!-- /ANCHOR:phase-deps -->
 
@@ -135,7 +135,7 @@ All edits are additive docs, one-line back-pointers, a mechanical config path fi
 
 | Workstream | Estimate | Notes |
 |-----------|----------|-------|
-| Two family guides | Moderate | Parallel authoring against a proven exemplar; validate each. |
+| One family guide | Moderate | Author against a proven exemplar; validate it. |
 | SKILL integration | Small | Word-neutral edits under a hard cap. |
 | Links + three fixes | Small | Mechanical; verified by grep/resolution. |
 | Gates + close-out | Small | Validators + metadata + summary. |

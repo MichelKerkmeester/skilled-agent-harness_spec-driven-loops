@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: command-surface benchmark — a two-axis deep-alignment benchmark measuring command-family effectiveness and adherence"
-description: "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (37 baseline, 38 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself. Evaluator-first: create-benchmark authors inputs and reports; scoring stays lane-local."
+description: "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (36 baseline, 37 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself. Evaluator-first: create-benchmark authors inputs and reports; scoring stays lane-local."
 status: planned
 trigger_phrases:
   - "command surface benchmark"
@@ -181,7 +181,7 @@ load-bearing claims were verified against the repository.
 
 | Child | Purpose |
 |-------|---------|
-| `000-command-benchmark-contract` | Freeze the command census (37 baseline, 38 after the launcher ships), topology taxonomy, two-axis verdict semantics, baseline counts, conformance-package shape, evidence-path layout, ownership boundaries, and phase handoff gates. |
+| `000-command-benchmark-contract` | Freeze the command census (36 baseline, 37 after the launcher ships), topology taxonomy, two-axis verdict semantics, baseline counts, conformance-package shape, evidence-path layout, ownership boundaries, and phase handoff gates. |
 | `001-create-benchmark-conformance-family` | Add the canonical `create-benchmark` `conformance_benchmark` family — four templates, an authoring guide, routing projections, a `/create:benchmark` authoring branch, and a family-parity test — so conformance benchmarks are authored canonically. |
 | `002-deterministic-fixtures-oracle` | Build and verify the independent public and held-out fixture corpus plus the reference oracle, instantiating the fixture manifest from the new family template, before any adapter code. |
 | `003-command-contract-adapter` | Implement `sk-doc-command.cjs`, extend the reusable reference checks, and prove exact fixture outcomes without duplicating generic doc validation. |
@@ -191,4 +191,4 @@ load-bearing claims were verified against the repository.
 | `007-command-scenario-rollout` | Expand to DAB-012–027, reconcile index and baseline rows, and capture a complete pinned Claude baseline. |
 | `008-bounded-command-matrix` | Run both GPT drivers across all scenarios plus eligible leaf sentinels, with explicit skips and contested-cell reruns. |
 | `009-command-benchmark-command` | Ship the `/deep:command-benchmark` launcher composing the conformance and behavioral axes behind one workflow-YAML router, generate the Codex mirror, and pass hermetic smoke verification. |
-| `010-scorecard-and-closeout` | Run the final 38-command census, publish the two-axis scorecard and remediation backlog, add closeout gates for the new family and launcher, reconcile packet status metadata, and run recursive strict validation. |
+| `010-scorecard-and-closeout` | Run the final 37-command census, publish the two-axis scorecard and remediation backlog, add closeout gates for the new family and launcher, reconcile packet status metadata, and run recursive strict validation. |

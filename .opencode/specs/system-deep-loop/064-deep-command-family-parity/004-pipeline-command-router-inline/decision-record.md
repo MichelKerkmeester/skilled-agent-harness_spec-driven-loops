@@ -38,7 +38,7 @@ _memory:
 
 ### Context
 
-The operator wants all 8 `/deep:*` commands to share one self-describing router-triad shape. Four commands — `research`, `review`, `ai-council`, `alignment` — are still opaque ~10-line compiled-contract render stubs: frontmatter + an `# H1` + a single `!node render-command-contract.cjs --command deep/<name>` bang line that injects a compiled contract plus the legacy body at runtime. The committed file the operator opens is therefore not self-describing. We had to choose how to make each `command.md` a full inline `## 1..## 6` router while keeping the compile/render/drift pipeline in-repo.
+The operator wants all 7 `/deep:*` commands to share one self-describing router-triad shape. Four commands — `research`, `review`, `ai-council`, `alignment` — are still opaque ~10-line compiled-contract render stubs: frontmatter + an `# H1` + a single `!node render-command-contract.cjs --command deep/<name>` bang line that injects a compiled contract plus the legacy body at runtime. The committed file the operator opens is therefore not self-describing. We had to choose how to make each `command.md` a full inline `## 1..## 6` router while keeping the compile/render/drift pipeline in-repo.
 
 ### Constraints
 - The pipeline must stay maintained in-repo (scripts, `compiled/*.contract.md`, `legacy/*.body.md`, `manifest.jsonl`, `command-injection-rollout.json`) — nothing deleted.
@@ -72,7 +72,7 @@ The operator wants all 8 `/deep:*` commands to share one self-describing router-
 ### Consequences
 
 **What improves**:
-- All 8 deep commands become self-describing router triads; the family reaches one uniform shape.
+- All 7 deep commands become self-describing router triads; the family reaches one uniform shape.
 - `validate_document.py --type command` performs real section checks on the four (no `render-command-contract` early-return).
 - The render/compile/drift safety net stays intact and reversible.
 
@@ -140,7 +140,7 @@ Earlier in packet 064, the compiled-stub shape (frontmatter + H1 + a single rend
 
 ### Decision
 
-**We chose**: Supersede 064's "compiled-stub is a blessed conformant variant" stance for these four commands. The self-describing inline router triad is now the single conformant shape for all 8 deep commands.
+**We chose**: Supersede 064's "compiled-stub is a blessed conformant variant" stance for these four commands. The self-describing inline router triad is now the single conformant shape for all 7 deep commands.
 
 **How it works**: The compiled-stub shape is no longer accepted as conformant for the four commands. The pipeline stays present and maintained, but the committed `command.md` must be a full inline router. This is recorded as a deliberate, accepted reversal so future audits do not read it as accidental drift from 064.
 
@@ -153,7 +153,7 @@ Earlier in packet 064, the compiled-stub shape (frontmatter + H1 + a single rend
 | **Accept + record the reversal** | Honest audit trail; one conformant shape family-wide | Requires explicitly documenting a change of stance | 9/10 |
 | Preserve the blessed-stub exception | No stated reversal | Leaves two conformant shapes; defeats the operator's uniform-shape goal | 3/10 |
 
-**Why this one**: The operator's goal is one uniform, self-describing triad shape across all 8 commands. Keeping the blessed-stub exception would preserve exactly the inconsistency this phase removes. Recording the reversal keeps the audit trail honest.
+**Why this one**: The operator's goal is one uniform, self-describing triad shape across all 7 commands. Keeping the blessed-stub exception would preserve exactly the inconsistency this phase removes. Recording the reversal keeps the audit trail honest.
 
 ---
 

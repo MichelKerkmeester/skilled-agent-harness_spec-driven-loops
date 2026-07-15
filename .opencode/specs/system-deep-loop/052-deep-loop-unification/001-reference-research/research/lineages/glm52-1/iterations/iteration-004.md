@@ -10,7 +10,7 @@ Enumerate the full reference-migration surface across commands, agents, READMEs,
 
 | Tier | Surface | Count | Breakage | Risk |
 |---|---|---|---|---|
-| 1 | Command entry points (`.opencode/commands/deep/*.md`) | 7 files (3 shell to runtime scripts) | LOUD (command fails on invoke) | Low — caught immediately |
+| 1 | Command entry points (`.opencode/commands/deep/*.md`) | 6 files (3 shell to runtime scripts) | LOUD (command fails on invoke) | Low — caught immediately |
 | 2 | Agents (`.opencode/agents/` + `.claude/agents/` mirror) | 10 files (5 × 2 runtimes) | SILENT (stale path in prose) | MED — `.claude/agents/` easy to miss |
 | 3 | Advisor corpus (scorer maps + graph-metadata) | `aliases.ts`, `explicit.ts` (~40 entries), `lexical.ts`, `fusion.ts`, 2× graph-metadata.json | SILENT then LOUD (drift-guard) | HIGH — routing identity, drift-guard gates |
 | 4 | Hub/packet docs (SKILL.md, README.md ×N) | deep-loop-workflows/SKILL.md (8 refs), runtime README/SKILL | SILENT (prose) | Low — cosmetic |
@@ -50,7 +50,7 @@ The residual ungated risk is **prose in `.claude/agents/` mirror + cross-skill d
 
 ## Sources Consulted
 
-- `.opencode/commands/deep/*.md` (7 files), `.opencode/agents/` + `.claude/agents/` (10 files)
+- `.opencode/commands/deep/*.md` (6 files), `.opencode/agents/` + `.claude/agents/` (10 files)
 - `system-skill-advisor/mcp_server/lib/scorer/{aliases,explicit,lexical,fusion}.ts`
 - `mode-registry.json:2,16` (drift-guard declaration)
 - rg counts across `.opencode` (excluding specs + this lineage)

@@ -68,6 +68,6 @@ CONDITIONAL. Two new P1 correctness findings affect default execution paths. No 
 
 ## Next Dimension
 
-Correctness stabilization on the remaining unreviewed deep-improvement Lane C/Lane D dispatch adapters, without re-entering Council convergence or Lane B promotion.
+Correctness stabilization on the remaining unreviewed deep-improvement Lane C dispatch adapters, without re-entering Council convergence or Lane B promotion.
 
 Review verdict: CONDITIONAL

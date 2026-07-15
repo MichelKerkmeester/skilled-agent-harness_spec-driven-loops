@@ -11,8 +11,6 @@
 | deep-ai-council | assets/prompt_pack_round.md | ROUTABLE | AI council seat-round prompting | Seat prompt template with role/context/action/output contract required when running a council round. |
 | deep-improvement | references/shared/heldout_and_gold_sets.md | ROUTABLE | evaluation fixture tiering and anti-overfit evidence | Shared visible/held-out/gold convention is live promotion evidence guidance across improvement lanes. |
 | deep-improvement | references/shared/promotion_gate_contract.md | ROUTABLE | guarded candidate promotion | Formal accept/ship gate contract and rollback/promotion script pointers needed before mutating canonical targets. |
-| deep-improvement | references/non_dev_ai_system/fixture_authoring.md | ROUTABLE | Lane D fixture authoring | Direct instructions for authoring/validating visible, held-out, and gold fixtures for Lane D packagings. |
-| deep-improvement | references/non_dev_ai_system/grader_calibration.md | ROUTABLE | Lane D grader calibration | Task-time protocol for selecting/calibrating independent graders and diagnosing phantom-gap drift. |
 | deep-improvement | references/model_benchmark/mixed_executor_methodology.md | ROUTABLE | model-benchmark multi-iteration sweep methodology | Provides operator guidance for mixed-executor 8+2 sweeps and adjudication false-positive filtering. |
 | deep-improvement | references/agent_improvement/candidate_proposal_format.md | ROUTABLE | agent-improvement candidate proposal authoring | Defines candidate file structure, metadata, lineage, and mutation representation for proposal generation. |
 | deep-improvement | references/agent_improvement/profiling_audit_log.md | ROUTABLE | dynamic profiling auditability | Documents profile-selection audit log location, entry shape, and retention for debugging profile choice. |
@@ -28,4 +26,4 @@
 | deep-improvement | assets/agent_improvement/improvement_config_reference.md | ROUTABLE | improvement config tuning | Field-level reference explicitly used when adjusting dimension weights, stop thresholds, and runtime config switches. |
 | deep-improvement | assets/agent_improvement/target-profiles/README.md | EXEMPT |  | Intentional empty-directory/path-consistency README for dynamic-only profiles; structural placeholder should stay unrouted. |
 
-Summary: ROUTABLE 18; EXEMPT 9; PRUNE 0; NEEDS-HUMAN 0.
+Summary: ROUTABLE 16; EXEMPT 9; PRUNE 0; NEEDS-HUMAN 0.

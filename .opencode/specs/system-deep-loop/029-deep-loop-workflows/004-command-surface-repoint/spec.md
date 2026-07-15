@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Command surface repoint"
-description: "Repoint the eight /deep:* commands and their YAML assets to the new packet paths and skill keys (command YAML only), after the Python↔TypeScript {skill,mode} routing contract is finalized."
+description: "Repoint the seven /deep:* commands and their YAML assets to the new packet paths and skill keys (command YAML only), after the routing contract is finalized."
 trigger_phrases:
   - "deep command surface repoint"
   - "deep command yaml skill path rewrite"
@@ -51,10 +51,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Eight /deep:* commands plus roughly twelve YAML assets reference the five old skill paths and skill: keys (the heaviest YAML carry dozens of path occurrences each). The command surface is independent of the skill folder and should stay stable, but every literal skill-path needs repointing. The repoint depends on the Python↔TypeScript {skill,mode} routing contract being finalized first (blocker B2) so fixtures and command bindings can be planned concretely. The per-mode required-input setup schemas and the "do not transfer sibling defaults" guardrails must survive verbatim.
+Seven /deep:* commands plus roughly twelve YAML assets reference the five old skill paths and skill: keys (the heaviest YAML carry dozens of path occurrences each). The command surface is independent of the skill folder and should stay stable, but every literal skill-path needs repointing. The repoint depends on the routing contract being finalized first (blocker B2) so fixtures and command bindings can be planned concretely. The per-mode required-input setup schemas and the "do not transfer sibling defaults" guardrails must survive verbatim.
 
 ### Purpose
-Repoint all eight commands and their YAML/presentation assets to the new packet paths and skill keys, touching command YAML only (agent bodies are phase 005).
+Repoint all seven commands and their YAML/presentation assets to the new packet paths and skill keys, touching command YAML only (agent bodies are phase 005).
 
 > **Scaffold note.** This child is a scoped scaffold derived from `../research/research.md`. Its `plan.md`, `tasks.md`, and `checklist.md` are authored when the phase is picked up via `/speckit:plan system-deep-loop/029-deep-loop-workflows/004-command-surface-repoint`.
 <!-- /ANCHOR:problem -->
@@ -65,7 +65,7 @@ Repoint all eight commands and their YAML/presentation assets to the new packet 
 ## 3. SCOPE
 
 ### In Scope
-- The 8 command markdown skill-path references and skill: frontmatter values.
+- The 7 command markdown skill-path references and skill: frontmatter values.
 - YAML skill:/skill_md: keys and nested references/scripts/assets path blocks.
 - Finalizing the {skill,mode} routing contract before fixture/command edits.
 - Preserving the 5 per-mode required-input setup schemas and the do-not-transfer-sibling-defaults guardrails.
@@ -81,7 +81,7 @@ Repoint all eight commands and their YAML/presentation assets to the new packet 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **R1 (MUST):** The 8 command markdown skill-path references and skill: frontmatter values.
+- **R1 (MUST):** The 7 command markdown skill-path references and skill: frontmatter values.
 - **R2 (MUST):** YAML skill:/skill_md: keys and nested references/scripts/assets path blocks.
 - **R3 (MUST):** Finalizing the {skill,mode} routing contract before fixture/command edits.
 - **R4 (MUST):** Preserving the 5 per-mode required-input setup schemas and the do-not-transfer-sibling-defaults guardrails.
@@ -93,7 +93,7 @@ Repoint all eight commands and their YAML/presentation assets to the new packet 
 ## 5. SUCCESS CRITERIA
 
 This phase is complete when (parity gate):
-- All 8 commands resolve to new packet paths; YAML skill: keys updated.
+- All 7 commands resolve to new packet paths; YAML skill: keys updated.
 - Byte-identical command output vs the phase-001 baseline.
 - Every deep-loop-runtime path left unchanged.
 <!-- /ANCHOR:success-criteria -->

@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-All 8 `/deep:*` commands now share one self-describing router-triad shape. The four render-pipeline commands — `research`, `review`, `ai-council`, `alignment` — are no longer opaque ~10-line render stubs: each committed `command.md` now holds its full `## 1..## 6` router body inline, the runtime `!render-command-contract.cjs` bang is gone, and the compile/render/drift pipeline stays present and maintained but off the live path. What the operator opens is now the router itself.
+All 7 `/deep:*` commands now share one self-describing router-triad shape. The four render-pipeline commands — `research`, `review`, `ai-council`, `alignment` — are no longer opaque ~10-line render stubs: each committed `command.md` now holds its full `## 1..## 6` router body inline, the runtime `!render-command-contract.cjs` bang is gone, and the compile/render/drift pipeline stays present and maintained but off the live path. What the operator opens is now the router itself.
 
 ### The four promoted routers
 
@@ -68,7 +68,7 @@ Nothing was deleted. The four compiled contracts were recompiled from the promot
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The base was set up with three clean cherry-picks of packet 064's content commits onto the local branch (`c04c36c13e` alignment parity + ai-council flip, `957fcbb945` skill-benchmark + ai-system-improvement yaml-backed, `60897ff9e2` bless-the-dialect), behind a rollback anchor tag `pre-064-cherrypick` at `0ef70cfbc5`; a full merge was avoided because it collided with the live sk-doc 016/019 renumbering. All three cherry-picks were conflict-free and left the concurrent 017/benchmark dirty files untouched. Then each of the four routers was promoted by lifting its legacy body verbatim and folding in the directive, the four contracts were recompiled, the create-command example docs were corrected, and every gate was run green before writing these docs. The live `:auto` smoke of research/review is intentionally deferred to a pre-merge operator/runtime pass.
+The base was set up with three clean cherry-picks of packet 064's content commits onto the local branch (`c04c36c13e` alignment parity + ai-council flip, `957fcbb945` skill-benchmark yaml-backed, `60897ff9e2` bless-the-dialect), behind a rollback anchor tag `pre-064-cherrypick` at `0ef70cfbc5`; a full merge was avoided because it collided with the live sk-doc 016/019 renumbering. All three cherry-picks were conflict-free and left the concurrent 017/benchmark dirty files untouched. Then each of the four routers was promoted by lifting its legacy body verbatim and folding in the directive, the four contracts were recompiled, the create-command example docs were corrected, and every gate was run green before writing these docs. The live `:auto` smoke of research/review is intentionally deferred to a pre-merge operator/runtime pass.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -94,7 +94,7 @@ The base was set up with three clean cherry-picks of packet 064's content commit
 |-----------|--------|----------|-------|
 | Contract drift | Pass | All 4 registered commands | `check-contract-drift.cjs` → `[CONTRACT DRIFT] OK commands=4` |
 | Render smoke (`--compare`) | Pass | All 4 in `mode=fix` | COMPARE OK: research 11036B, review 8283B, ai-council 7641B, alignment 8575B |
-| Command conformance | Pass | All 8 deep commands | `validate_document.py --type command` → exit 0 each; the 4 promoted now pass full section checks (no marker early-return) |
+| Command conformance | Pass | All 7 deep commands | `validate_document.py --type command` → exit 0 each; the 4 promoted now pass full section checks (no marker early-return) |
 | Vitest suites | Pass | render-command-contract + check-contract-drift + compile-command-contracts | 3 files / 30 tests PASSED (runtime/vitest.config.ts) |
 | resolve-injection-mode | Pass | injection-mode resolver | `resolve-injection-mode.test.cjs` (node --test) → 1/1 PASS |
 | create-command package check | Pass | create-command packet | `package_skill.py --check create-command` → PASS (4 warnings, all pre-existing/unrelated) |

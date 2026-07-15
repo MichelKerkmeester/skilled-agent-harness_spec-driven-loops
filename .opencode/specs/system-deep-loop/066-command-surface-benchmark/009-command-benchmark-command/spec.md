@@ -92,7 +92,7 @@ The two-axis command benchmark has no single entry point. Its conformance axis r
 ## 6. RISKS & DEPENDENCIES
 
 - Behavioral recursion — mitigated by excluding the launcher from the DAB suite and smoke-testing it separately.
-- Self-census growth — the command adds one command, moving the deterministic corpus from 37 to 38 and requiring a discovery rerun at closeout.
+- Self-census growth — the command adds one command, moving the deterministic corpus from 36 to 37 and requiring a discovery rerun at closeout.
 - Nested-shell temptation — mitigated by binding alignment inputs directly rather than invoking /deep:alignment as a subcommand.
 - Dependencies: the authored contract and lane-config, the registered adapter and lane, the DAB scenarios, and the matrix manifest and scheduler.
 <!-- /ANCHOR:risks -->

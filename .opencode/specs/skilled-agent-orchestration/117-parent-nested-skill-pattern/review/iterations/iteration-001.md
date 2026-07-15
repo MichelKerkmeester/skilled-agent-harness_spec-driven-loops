@@ -16,14 +16,14 @@ The stricter old-packet-path sweep did not find live `deep-loop-workflows/contex
 The changelog `deep-agent-improvement` hit is historical provenance and not one of the four renamed bare packet paths; I’m not treating it as a defect unless it appears in active routing docs. The active hub `SKILL.md` mismatch is confirmed in all three runtime mirrors.
 The additional wording sweep only confirms the same active stale reference: `improvement/ packet` in the hub skill docs. Other `context/`, `research/`, `review/`, and `improvement/` hits are packet artifact roots or historical changelog wording, not old skill directories.
 Now I’m cross-checking the stale doc line against the registry source of truth and confirming `ai-council/` stayed bare while the four renamed folders exist only under `deep-*`.
-Registry evidence confirms `packet: "deep-improvement"` for all four improvement lanes, while the hub prose says `improvement/ packet`; `improvement/` is only an `artifactRoot`, not a skill packet folder. The directory listings also confirm `ai-council/` remains bare and the four renamed mode folders are `deep-*`.
+Registry evidence confirms `packet: "deep-improvement"` for all three improvement lanes, while the hub prose says `improvement/ packet`; `improvement/` is only an `artifactRoot`, not a skill packet folder. The directory listings also confirm `ai-council/` remains bare and the three renamed mode folders are `deep-*`.
 One ad hoc grep failed because the shell interpreted an unmatched quote in the pattern; I’m rerunning the same check with a simpler quoted PCRE pattern.
 The exact hub wording check isolates the stale `improvement/ packet` line to the three skill mirrors. Directory reads show no old bare mode directories and show `ai-council/` present; I’m doing one final file-list confirmation for graph metadata and stale anchored paths.
 **Findings**
 
 P1: `.opencode/skills/deep-loop-workflows/SKILL.md:47`, `.agents/skills/deep-loop-workflows/SKILL.md:47`, `.claude/skills/deep-loop-workflows/SKILL.md:47`
 
-The hub routing prose still says “the 4 improvement modes all share the `improvement/` packet.” That is a stale bare packet-path reference. The live registry maps those modes to `packet: "deep-improvement"` and uses `artifactRoot: "improvement/"` only for spec output dirs. This can mislead agents/humans into looking for a non-existent `deep-loop-workflows/improvement/` skill packet.
+The hub routing prose still says “the 3 improvement modes all share the `improvement/` packet.” That is a stale bare packet-path reference. The live registry maps those modes to `packet: "deep-improvement"` and uses `artifactRoot: "improvement/"` only for spec output dirs. This can mislead agents/humans into looking for a non-existent `deep-loop-workflows/improvement/` skill packet.
 
 Fix: change the parenthetical to “share the `deep-improvement/` packet” or “share the `deep-improvement` packet; artifact output remains `improvement/`.”
 

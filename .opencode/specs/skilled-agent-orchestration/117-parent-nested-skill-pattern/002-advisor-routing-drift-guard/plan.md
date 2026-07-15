@@ -57,7 +57,7 @@ Purely additive C-plus implementation. The registry gains a declarative `advisor
 - [x] Ground truth verified (the real maps, alias groups, test harness).
 
 ### Definition of Done
-- [x] All 8 modes carry a valid `advisorRouting` block.
+- [x] All 7 modes carry a valid `advisorRouting` block.
 - [x] Registry projection equals the Python + TS maps (drift-guard green).
 - [x] Existing parity fixtures stay green.
 - [x] One `graph-metadata.json` under `deep-loop-workflows`.

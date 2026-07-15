@@ -55,7 +55,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T004 [P] Fix `_shared` refs, README, sections, Smart Router, prose, version-field (create-benchmark)
-- [x] T005 [P] Add Lane A/D routing keywords (`hub-router.json`, `mode-registry.json`)
+- [x] T005 [P] Add Lane A routing keywords (`hub-router.json`, `mode-registry.json`)
 - [x] T006 [P] Rename Lane B dirs via `git mv` → hyphen; align live refs; reconcile output contract (deep-improvement)
 - [x] T007 [P] Reconcile behavior-benchmark index to captured baseline (`claude-baseline.md`, deep-alignment)
 <!-- /ANCHOR:phase-2 -->

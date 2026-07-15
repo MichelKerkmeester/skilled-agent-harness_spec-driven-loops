@@ -80,7 +80,6 @@ _memory:
 - [x] CHK-P0-001 [P0] Every Class A/B site repaired; final sweep confirmed zero remaining `deep-loop-workflows`/`deep-loop-runtime` code-path hits outside documented historical/fixture-data mentions (verified)
 - [x] CHK-P0-002 [P0] All `system-spec-kit` tooling-borrow sites repaired, including the newly-discovered `council-playbook-anchor-integrity.vitest.ts` (verified)
 - [x] CHK-P0-003 [P0] `SKILL.md` content folded into the pre-existing `README.md` (new §9A "Operating Rules" + agent-mirror section); `README.md`'s original content confirmed intact before and after via direct read (verified)
-- [x] CHK-P0-004 [P0] Lane-D profile updated: `packaging_root`, ~20 path fields, `frozen_surface.live_relpath` repointed to `README.md` with a confirmed-present `## 4. HOW IT WORKS` anchor (verified)
 - [x] CHK-P1-005 [P1] Stage 3c's 3 router `.md` files updated; live-verified end-to-end via direct script invocation (verified)
 <!-- /ANCHOR:fix-completeness -->
 

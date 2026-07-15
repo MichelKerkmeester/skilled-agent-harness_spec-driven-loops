@@ -39,8 +39,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T003 — Run all canonical commands through the deterministic lane. Evidence: the run checked 37 of 37 discovered artifacts (8 slices at batch size 5: 5×7 + 2), `artifactsChecked` ratio 1.0.
-- [x] T004 — Prove convergence over the full corpus. Evidence: `check-convergence.cjs` returned `CONVERGED` at iteration 8 — coverage 37/37 = 1.0 ≥ threshold AND the last two iterations both reported `newFindingsRatio` 0.
+- [x] T003 — Run all canonical commands through the deterministic lane. Evidence: the run checked 36 of 36 discovered artifacts (8 slices at batch size 5: 5×7 + 1), `artifactsChecked` ratio 1.0.
+- [x] T004 — Prove convergence over the full corpus. Evidence: `check-convergence.cjs` returned `CONVERGED` at iteration 8 — coverage 36/36 = 1.0 ≥ threshold AND the last two iterations both reported `newFindingsRatio` 0.
 - [x] T005 — Hard-gate raw-delta and reduced-report agreement. Evidence: the delta finding lines (3, three distinct dedup keys over the reducer's own fallback key) equal the reduced registry's open findings (3, P0:3/P1:0/P2:0) exactly — proven on the adapter's verbatim `check()` output after its finding shape was made reducer-compatible.
 
 Convergence run driven through the deep-alignment workflow (its plan-workflow lock forbids a hand-rolled dispatcher), writing state only under `alignment/`.

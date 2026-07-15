@@ -55,7 +55,7 @@ _memory:
 
 - **Five verbatim mode packets** (719 files): `context/`, `research/`, `review/`, `ai-council/`, `improvement/` copied from the source skills (excluding `node_modules`), each with its per-mode `graph-metadata.json` **dropped** (the B5 fix).
 - **Hub `SKILL.md`** — routing-only, registry-driven; documents the three-tier discriminator and the per-mode no-flatten rule.
-- **`mode-registry.json`** — the single source of truth: 8 modes, each with `workflowMode` / `runtimeLoopType` (explicit `null` for the 4 improvement lanes; `ai-council`→`council`) / `backendKind` (4 runtime-loop-type, 3 improvement-host, 1 external-adapter) + packet, command, agent, aliases, artifactRoot.
+- **`mode-registry.json`** — the single source of truth: 7 modes, each with `workflowMode` / `runtimeLoopType` (explicit `null` for the 3 improvement lanes; `ai-council`→`council`) / `backendKind` (4 runtime-loop-type, 3 improvement-host) + packet, command, agent, aliases, artifactRoot.
 - **Hub `graph-metadata.json`** — `skill_id=deep-loop-workflows`, `family=deep-loop`, the unioned trigger phrases (including the 5 old skill names) + edges to the runtime.
 - **Hub `README.md`** — house-voice narrative.
 

@@ -38,7 +38,7 @@ Every item carries evidence: a command + result. Deterministic checkers + a git-
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 - [x] New templates carry 5-field frontmatter + 4-part version + usage headers; guides open with an OVERVIEW H2
-- [x] Family table has an owns-vs-routes column; Lane A/D marked code-owned non-goals
+- [x] Family table has an owns-vs-routes column; Lane A marked code-owned non-goal
 - [x] MCP-promotion contract preserved (REQUIRED PACKAGE SHAPE / REPORT CONTRACT / ten-section / ALWAYS-NEVER intact)
 - [x] Comment hygiene: no spec-folder paths / packet ids in doc prose
 <!-- /ANCHOR:code-quality -->

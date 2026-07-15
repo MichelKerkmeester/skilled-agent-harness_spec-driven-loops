@@ -54,7 +54,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`mode-registry.json` claimed to be the single source of truth for how each deep-loop-workflows mode routes, but the advisor never read it — the mode projection was hardcoded in two places with three different cardinalities (Python `DEEP_ROUTING_MODE_BY_KEY` = 3, TS `DEEP_MODE_BY_CANONICAL` = 4, registry = 8 modes). The copies can silently drift, and the registry's `aliases[]` are natural-language phrases that do **not** contain the system-ID aliases the advisor actually keys on, so a naive "make the advisor read the registry" would regress routing.
+`mode-registry.json` claimed to be the single source of truth for how each deep-loop-workflows mode routes, but the advisor never read it — the mode projection was hardcoded in two places with three different cardinalities (Python `DEEP_ROUTING_MODE_BY_KEY` = 3, TS `DEEP_MODE_BY_CANONICAL` = 4, registry = 7 modes). The copies can silently drift, and the registry's `aliases[]` are natural-language phrases that do **not** contain the system-ID aliases the advisor actually keys on, so a naive "make the advisor read the registry" would regress routing.
 
 ### Purpose
 Make the registry the authoritative declarative description of routing (a per-mode `advisorRouting` block), and close the drift gap with a **CI drift-guard test** rather than runtime coupling. The phase-2 research (15 iterations, adversarial pass) chose this **C-plus** mechanism over runtime-derive: the advisor's only existing import-time `json.load` is advisor-local, so reaching into a skill's registry on the hot path would be novel cross-skill coupling for no gain over a test. This phase is additive — it changes no routing behavior; the existing parity fixtures stay green.
@@ -66,7 +66,7 @@ Make the registry the authoritative declarative description of routing (a per-mo
 ## 3. SCOPE
 
 ### In Scope
-- A per-mode `advisorRouting` block in `mode-registry.json` (all 8 modes): `routingClass` (lexical | alias-fold | metadata | command-bridge), `legacyAdvisorId`, `advisorDefaultMode` (agent-improvement only), `legacyAliases`, `packetSkillName`. Plus a top-level `advisorRoutingContract` legend.
+- A per-mode `advisorRouting` block in `mode-registry.json` (all 7 modes): `routingClass` (lexical | alias-fold | metadata | command-bridge), `legacyAdvisorId`, `advisorDefaultMode` (agent-improvement only), `legacyAliases`, `packetSkillName`. Plus a top-level `advisorRoutingContract` legend.
 - A `--dump-routing-maps` flag on `skill_advisor.py` that emits `DEEP_ROUTING_SKILLS` + `DEEP_ROUTING_MODE_BY_KEY` as JSON (consumed by the test).
 - Exporting `DEEP_MODE_BY_CANONICAL` from `aliases.ts` (was module-private) so the test can compare it.
 - A new drift-guard vitest (`tests/routing-registry-drift-guard.vitest.ts`).

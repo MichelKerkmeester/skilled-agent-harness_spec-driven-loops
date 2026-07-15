@@ -18,7 +18,6 @@ All live hits found are **OLD references**, not new symlink-created dependencies
 - `.opencode/commands/doctor/assets/doctor_update.yaml:106-107` points at `deep-loop-runtime` DB paths. OLD.
 - `.opencode/commands/doctor/assets/doctor_parent-skill.yaml:60,75` defaults/reference-implementation to `deep-loop-workflows`. OLD.
 - `.opencode/commands/doctor/scripts/parent-skill-check.cjs:97` defaults target to `.opencode/skills/deep-loop-workflows`. OLD.
-- `.opencode/commands/deep/ai-system-improvement.md:37,74,102` includes executable/readable `deep-loop-workflows` paths. OLD.
 - `.opencode/commands/deep/skill-benchmark.md:37,83` includes executable/readable `deep-loop-workflows` paths. OLD.
 - `.opencode/commands/deep/assets/deep_ai-council_auto.yaml:41,43-52,82,88,91,94,121,134,177`. OLD.
 - `.opencode/commands/deep/assets/deep_ai-council_confirm.yaml:41,43-52,89,95,98,101,133,188`. OLD.

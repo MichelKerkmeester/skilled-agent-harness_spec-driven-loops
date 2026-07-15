@@ -6,7 +6,7 @@ Validate and stress-test the merge design for folding `deep-loop-runtime` into `
 
 ## Known Context
 
-- **Two skills today:** `deep-loop-workflows` (hub, advisor-routable, 7 workflow modes; 3 graph-backed: research/review/council, plus 4 improvement/benchmark lanes) consumes `deep-loop-runtime` (frozen backend, MCP-free, owns the convergence/council/state reducers). [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:29-197]
+- **Two skills today:** `deep-loop-workflows` (hub, advisor-routable, 6 workflow modes; 3 graph-backed: research/review/council, plus 3 improvement/benchmark lanes) consumes `deep-loop-runtime` (frozen backend, MCP-free, owns the convergence/council/state reducers). [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:29-197]
 - **Merge target (child 002):** fold `deep-loop-runtime` INTO `deep-loop-workflows`, rename the result to `system-deep-loop`, nest runtime as `system-deep-loop/runtime/`. [SOURCE: 002-hub-rename-and-runtime-nesting/plan.md:118-122]
 - **This phase is strictly read-only** — no merge execution; this research independently stress-tests the design produced by 3 parallel Sonnet-5 Plan agents. [SOURCE: spec.md:69-75]
 - **Detached fan-out boundary:** this lineage writes ONLY inside `research/lineages/glm52-5/`; `{spec_folder}/spec.md` mutation and memory save are deferred to the parent fan-out merge. [SOURCE: task invocation; gpt55-fast-2 precedent emitted `spec_synthesis_deferred`]
@@ -21,15 +21,15 @@ Validate and stress-test the merge design for folding `deep-loop-runtime` into `
 - Q1: Is the structural layout (fold runtime into workflows as system-deep-loop) mechanically safe, and where does each component land?
 - Q2: How many bidirectional path-couplings exist, and what breaks silently if not fully repaired?
 - Q3: How does the system-spec-kit tooling-borrow behave post-merge — net simplification or net risk transfer?
-- Q4: What is the full reference-migration surface, and what is the risk of incomplete migration (advisor corpus, test literals, named profile files)?
+- Q4: What is the full reference-migration surface, and what is the risk of incomplete migration (advisor corpus, test literals, test-fixture allowlists)?
 - Q5: Should fallback-router.ts be wired for real GLM-5.2 -> MiMo-v2.5-Pro fallback?
 
 ## Answered Questions
 
-- Q1 (iter 1): Layout sound; `runtime/` stays infrastructure, not an eighth mode.
+- Q1 (iter 1): Layout sound; `runtime/` stays infrastructure, not a seventh mode.
 - Q2 (iter 2): Directional rule correct; inventory incomplete + a third repair class exists.
 - Q3 (iter 3): Four Stage 3b edits necessary; add artifact-root depth + non-empty-glob assertion.
-- Q4 (iter 3): Category-scoped rewrite right; add reason-prose, named-profile decision, test-fixture allowlist.
+- Q4 (iter 3): Category-scoped rewrite right; add reason-prose and test-fixture allowlist.
 - Q5 (iter 4): Worth wiring only as a three-part change; single call site unreachable for quota/auth.
 
 ## What Worked

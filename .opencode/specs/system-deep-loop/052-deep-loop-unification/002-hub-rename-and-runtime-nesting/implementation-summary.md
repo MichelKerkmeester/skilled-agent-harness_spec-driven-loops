@@ -63,7 +63,6 @@ Executed the irreversible structural merge that 001-reference-research validated
 | `.opencode/skills/deep-loop-runtime/**` → `system-deep-loop/runtime/**` | Move (git mv) | Stage 2 |
 | `runtime/graph-metadata.json` | Delete | No longer independently advisor-routable |
 | `runtime/SKILL.md` | Delete (content folded into `README.md` §9A first) | Corrected from the original plan's flawed "demote" instruction |
-| `deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json` | Edit | Lane-D self-target profile, `frozen_surface.live_relpath` repointed |
 | ~45 `.cjs`/`.ts` files across `runtime/scripts/`, `runtime/tests/`, `runtime/lib/`, and the 4 mode packets' `scripts/` | Edit | Bidirectional path-coupling repair (Class A forward, Class B reverse, 2 special insert-segment/added-hop shapes) |
 | ~29 additional self-referencing files inside `deep-improvement/`'s own test suite | Edit | Simple workspace-root-anchored renames, discovered via a broad post-hoc sweep |
 | `runtime/package.json`, `runtime/tsconfig.json`, `system-spec-kit/mcp_server/{package.json,vitest.config.ts}` | Edit | The `system-spec-kit` tooling-borrow, both directions |

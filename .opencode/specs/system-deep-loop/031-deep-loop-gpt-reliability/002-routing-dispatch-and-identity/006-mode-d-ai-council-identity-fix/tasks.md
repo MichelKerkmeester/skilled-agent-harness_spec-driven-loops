@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read all 8 `/deep:*` command files' Phase-0 blocks. Structurally identical template, not byte-identical -- each substitutes its own loop description/slash-command name (and 4 of the 8 add an extra file-read step or extra indicator line); `spec.md` corrected to say "structurally identical" rather than literal byte-identity.
+- [x] T001 Read all 7 `/deep:*` command files' Phase-0 blocks. Structurally identical template, not byte-identical -- each substitutes its own loop description/slash-command name (and 3 of the 7 add an extra file-read step or extra indicator line); `spec.md` corrected to say "structurally identical" rather than literal byte-identity.
 - [x] T002 Read `orchestrate-topic.cjs:295-325` and `deep_ai-council_auto.yaml:115-140` in full context.
 - [x] T003 Dispatch-context signal: since this is a markdown prompt contract (not executable code), ground the check in the model's own evidence -- was this content reached via a direct `/deep:*` invocation (or a Task delegation naming that exact command), vs. pasted inline into another agent's dispatch prompt as ad hoc instructions. Default the ambiguous case to PROCEED (fail-open), since the original mechanism's fail-closed-on-uncertainty default is exactly what caused phase 005's confirmed false-positive block.
 - [x] T004 `git status`/`git diff` both ai-council target files: found live, uncommitted, unrelated in-flight work (new `route_fields`/`resolved_route_header` additions using the already-correct `ai-council`/`@ai-council` values, wired into seat-dispatch context) sitting alongside the still-stale round-completion record emitter and YAML validator. Completed the wiring rather than duplicating it -- see T013/T014.
@@ -60,7 +60,6 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 [P] Replace Phase-0 block in `ai-system-improvement.md`.
 - [x] T006 [P] Replace Phase-0 block in `skill-benchmark.md`.
 - [x] T007 [P] Replace Phase-0 block in `context.md`.
 - [x] T008 [P] Replace Phase-0 block in `review.md`.
@@ -77,7 +76,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T015 grep all 8 command files: zero remaining self-classification prose confirmed.
+- [x] T015 grep all 7 command files: zero remaining self-classification prose confirmed.
 - [x] T016 grep both ai-council files: zero remaining `council`/`deep-ai-council` values in the touched blocks confirmed.
 - [x] T017 Ran the actual vitest suite (not a constructed repro): `orchestrate-topic.vitest.ts`, `orchestrate-session.vitest.ts`, `integration-deep-mode-e2e.vitest.ts` (11/11 pass), plus the full `deep-ai-council/scripts/tests/` suite (9 files, 76/76 pass). No test asserted the old `council`/`deep-ai-council` literals.
 - [x] T018 Ran `validate.sh --strict` for this phase folder: see `implementation-summary.md` Verification.

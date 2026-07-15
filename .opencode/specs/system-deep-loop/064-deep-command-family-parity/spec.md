@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: deep command-family parity — uniform workflow-YAML + presentation + create-command conformance across every /deep:* command, plus deep-* agent reconciliation"
-description: "Phase parent for bringing the whole /deep:* command family to one uniform shape: every deep command owns a workflow YAML and a separate presentation asset, every command.md stays create-command (sk-doc) conformant, alignment reaches full render-pipeline parity, ai-council ships in fix mode, the two direct-dispatch commands convert to yaml-backed, and the three deep-* agents reconcile to the create-agent standard."
+description: "Phase parent for bringing the whole /deep:* command family to one uniform shape: every deep command owns a workflow YAML and a separate presentation asset, every command.md stays create-command (sk-doc) conformant, alignment reaches full render-pipeline parity, ai-council ships in fix mode, the remaining direct-dispatch command converts to yaml-backed, and the three deep-* agents reconcile to the create-agent standard."
 status: in_progress
 trigger_phrases:
   - "deep command family parity"
@@ -64,7 +64,7 @@ _memory:
 | **Parent Packet** | system-deep-loop/064-deep-command-family-parity |
 | **Predecessor** | None (new workstream; 059-deep-alignment-mode built the mode, this packet gives the command family render-pipeline + create-command parity) |
 | **Successor** | None pre-scoped (CI wiring of `package_skill.py`/drift checks is a plausible follow-on tail) |
-| **Handoff Criteria** | All child phases pass `validate.sh --strict`; `validate_document.py --type command` exit 0 on all 8 deep commands; `validate_document.py --type agent` exit 0 on all 6 deep-* agents; `check-contract-drift.cjs` clean for every registered command; the two converted commands' effective `loop-host.cjs` invocation is byte-identical in effect to their prior direct dispatch |
+| **Handoff Criteria** | All child phases pass `validate.sh --strict`; `validate_document.py --type command` exit 0 on all 7 deep commands; `validate_document.py --type agent` exit 0 on all 6 deep-* agents; `check-contract-drift.cjs` clean for every registered command; the converted command's effective `loop-host.cjs` invocation is byte-identical in effect to its prior direct dispatch |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -73,10 +73,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `/deep:*` command family is uniform in intent but uneven in shape. All 8 deep `command.md` files already pass `validate_document.py --type command`, but three inconsistencies remain. First, `alignment` runs in `fallback` injection mode with a hand-written placeholder contract, no separate presentation asset, and no registration in `compile-command-contracts.cjs` — so it never exercises the compiled-contract render pipeline its siblings `research`/`review`/`ai-council` do. Second, `ai-council` has a freshly generated contract but is pinned to `fallback`, so its compiled contract is never injected at render time. Third, two commands (`skill-benchmark`, `ai-system-improvement`) are intentionally direct-dispatch: no workflow YAML, presentation inline. The operator has chosen to force literal uniformity across the family rather than preserve those two as a sanctioned exception. Separately, the three deep-* agent files (`deep-alignment`, `deep-review`, `deep-research`, each in `.opencode/agents/` and `.claude/agents/`) pass `validate_document.py --type agent` but carry a shared family dialect that create-agent does not yet formally recognize.
+The `/deep:*` command family is uniform in intent but uneven in shape. All 7 deep `command.md` files already pass `validate_document.py --type command`, but two inconsistencies remain. First, `alignment` runs in `fallback` injection mode with a hand-written placeholder contract, no separate presentation asset, and no registration in `compile-command-contracts.cjs` — so it never exercises the compiled-contract render pipeline its siblings `research`/`review`/`ai-council` do. Second, `ai-council` has a freshly generated contract but is pinned to `fallback`, so its compiled contract is never injected at render time. Separately, the three deep-* agent files (`deep-alignment`, `deep-review`, `deep-research`, each in `.opencode/agents/` and `.claude/agents/`) pass `validate_document.py --type agent` but carry a shared family dialect that create-agent does not yet formally recognize.
 
 ### Purpose
-Bring the whole family to one uniform shape: every deep command owns a workflow YAML and a separate presentation asset; every `command.md` stays create-command conformant; `alignment` reaches full render-pipeline parity (real generated contract, `fix` mode, compiler + drift registration); `ai-council` ships in `fix` mode; the two direct-dispatch commands convert to yaml-backed while preserving their HARD-BLOCK dispatch gates and the `ai-system-improvement` self-target fork byte-for-byte in effect; and the deep-* agents reconcile to the create-agent standard. The behavioral surface of the two converted commands must not change — the top risk this packet manages.
+Bring the whole family to one uniform shape: every deep command owns a workflow YAML and a separate presentation asset; every `command.md` stays create-command conformant; `alignment` reaches full render-pipeline parity (real generated contract, `fix` mode, compiler + drift registration); `ai-council` ships in `fix` mode; the remaining direct-dispatch command converts to yaml-backed while preserving its HARD-BLOCK dispatch gates; and the deep-* agents reconcile to the create-agent standard.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
@@ -89,9 +89,8 @@ Bring the whole family to one uniform shape: every deep command owns a workflow 
 ### In Scope
 - Full render-pipeline parity for `/deep:alignment`: author `deep_alignment_presentation.txt`, register `deep/alignment` in `compile-command-contracts.cjs` and `check-contract-drift.cjs`, generate the real compiled contract, flip rollout to `fix`, update the legacy body and `command.md` owned-assets to reference the new presentation.
 - `/deep:ai-council` rollout flip `fallback` → `fix` with a verified-fresh compiled contract.
-- Conversion of `/deep:skill-benchmark` and `/deep:ai-system-improvement` from direct-dispatch to yaml-backed (author `_auto.yaml` + `_confirm.yaml` wrapping the exact current `loop-host.cjs` invocation, extract a presentation asset, rewire the command.md), preserving every HARD-BLOCK gate and the self-target fork.
 - Reconciliation of the six deep-* agent files to the create-agent standard.
-- Continued create-command conformance (`validate_document.py --type command` exit 0) on all 8 commands throughout.
+- Continued create-command conformance (`validate_document.py --type command` exit 0) on all 7 commands throughout.
 
 ### Out of Scope
 - Changing any deep command's runtime BEHAVIOR beyond the injection-mode flips — the two conversions must be behavior-preserving (invocation-diff verified), not feature changes.
@@ -111,9 +110,6 @@ Aggregate file scope across all 3 phases; per-phase detail lives in each child's
 | `.opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json` | Modify | 001 | `deep/alignment`: `fix`; `deep/ai-council`: `fallback` → `fix` |
 | `.opencode/commands/deep/assets/legacy/deep_alignment.body.md` | Modify | 001 | Owned-assets row references the new presentation; drop the fallback note |
 | `.opencode/commands/deep/alignment.md` | Modify | 001 | §2 Owned Assets references the new presentation |
-| `.opencode/commands/deep/assets/deep_{skill-benchmark,ai-system-improvement}_{auto,confirm}.yaml` | Create | 002 | Yaml wrappers of the exact `loop-host.cjs` dispatch |
-| `.opencode/commands/deep/assets/deep_{skill-benchmark,ai-system-improvement}_presentation.txt` | Create | 002 | Extracted 4-section presentations |
-| `.opencode/commands/deep/{skill-benchmark,ai-system-improvement}.md` | Modify | 002 | Rewire to yaml-backed; preserve HARD-BLOCK gates + self-target fork |
 | `.opencode/agents/{deep-alignment,deep-review,deep-research}.md` + `.claude/agents/*` | Modify | 003 | Reconcile to create-agent (default: bless-the-dialect) |
 | `.opencode/skills/sk-doc/create-agent/*` | Modify | 003 | Recognize the deep-loop section dialect (bless-the-dialect path) |
 <!-- /ANCHOR:scope -->
@@ -128,7 +124,7 @@ Aggregate file scope across all 3 phases; per-phase detail lives in each child's
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-pipeline-command-parity/ | `alignment` full render-pipeline parity (presentation + compiler/drift registration + real contract + `fix` flip + legacy/command owned-assets), and the `ai-council` `fallback` → `fix` flip | Complete |
-| 2 | 002-direct-dispatch-to-yaml/ | Convert `skill-benchmark` + `ai-system-improvement` to yaml-backed with extracted presentations, preserving HARD-BLOCK gates and the self-target fork; behavior-preserving | Complete |
+| 2 | 002-direct-dispatch-to-yaml/ | Convert `skill-benchmark` to yaml-backed with an extracted presentation, preserving its HARD-BLOCK gates; behavior-preserving | Complete |
 | 3 | 003-deep-agent-family-reconciliation/ | Reconcile the six deep-* agent files to create-agent (bless-the-dialect: sanction the deep-loop section dialect + MCP permission keys in create-agent; agents unchanged) | Complete |
 
 ### Phase Transition Rules
@@ -142,8 +138,8 @@ Aggregate file scope across all 3 phases; per-phase detail lives in each child's
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-pipeline-command-parity | 002-direct-dispatch-to-yaml | alignment contract generated + fresh; ai-council fresh in `fix`; all 4 registered commands drift-clean; all 8 commands `--type command` exit 0 | `check-contract-drift.cjs`, `validate_document.py`, `validate.sh --strict` |
-| 002-direct-dispatch-to-yaml | 003-deep-agent-family-reconciliation | both conversions behavior-identical (invocation-diff); HARD-BLOCK gates + self-target fork intact; all 8 commands `--type command` exit 0 | invocation-diff, gate-presence grep, `validate.sh --strict` |
+| 001-pipeline-command-parity | 002-direct-dispatch-to-yaml | alignment contract generated + fresh; ai-council fresh in `fix`; all 4 registered commands drift-clean; all 7 commands `--type command` exit 0 | `check-contract-drift.cjs`, `validate_document.py`, `validate.sh --strict` |
+| 002-direct-dispatch-to-yaml | 003-deep-agent-family-reconciliation | the conversion behavior-identical (invocation-diff); HARD-BLOCK gates intact; all 7 commands `--type command` exit 0 | invocation-diff, gate-presence grep, `validate.sh --strict` |
 <!-- /ANCHOR:phase-map -->
 
 ---

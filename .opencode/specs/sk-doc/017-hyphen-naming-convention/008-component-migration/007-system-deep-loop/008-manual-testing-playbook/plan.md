@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: system-deep-loop manual-testing-playbook names (017 phase 007/008)"
-description: "Plan for renaming the root manual-testing-playbook directory, five category directories, and 20 scenario files through the frozen semantic map, then repairing benchmark and routing references while preserving scenario IDs and content."
+description: "Plan for renaming the root manual-testing-playbook directory, five category directories, and 19 scenario files through the frozen semantic map, then repairing benchmark and routing references while preserving scenario IDs and content."
 trigger_phrases:
   - "system-deep-loop manual playbook implementation plan"
   - "deep loop scenario rename plan"
@@ -37,7 +37,7 @@ _memory:
 
 ### Overview
 
-Rename the root playbook directory, five categories, index, and 20 scenario files as one scenario-corpus closure. Update the benchmark README and active path consumers while leaving prompts, IDs, frontmatter fields, and category semantics unchanged.
+Rename the root playbook directory, five categories, index, and 19 scenario files as one scenario-corpus closure. Update the benchmark README and active path consumers while leaving prompts, IDs, frontmatter fields, and category semantics unchanged.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -45,14 +45,14 @@ Rename the root playbook directory, five categories, index, and 20 scenario file
 
 ### Definition of Ready
 
-- [ ] The frozen map lists the root, five categories, index, and 20 scenario files.
+- [ ] The frozen map lists the root, five categories, index, and 19 scenario files.
 - [ ] BASE scenario IDs, category counts, links, and benchmark connectivity evidence are captured.
 - [ ] Nested workflow-packet playbooks are excluded and their ownership is recorded.
 
 ### Definition of Done
 
 - [ ] Root playbook names and active consumers are kebab-clean and resolvable.
-- [ ] All 20 scenario IDs and categories remain discoverable with non-zero coverage.
+- [ ] All 19 scenario IDs and categories remain discoverable with non-zero coverage.
 - [ ] Benchmark/router behavior and playbook content contracts match BASE.
 <!-- /ANCHOR:quality-gates -->
 
@@ -75,7 +75,7 @@ Rename the root playbook directory, five categories, index, and 20 scenario file
 
 ### Phase 2: Core Implementation
 
-- [ ] Rename the root directory, five category directories, index, and 20 scenario files.
+- [ ] Rename the root directory, five category directories, index, and 19 scenario files.
 - [ ] Update benchmark README/runner paths, hub resource references, Markdown links, and scenario indexes.
 - [ ] Preserve scenario content, IDs, category meaning, tool names, keys, generated output, and nested ownership.
 
@@ -91,7 +91,7 @@ Rename the root playbook directory, five categories, index, and 20 scenario file
 
 | Requirement | Verification |
 |-------------|--------------|
-| Candidate coverage | Map scan reports root, five categories, index, and 20 scenarios once. |
+| Candidate coverage | Map scan reports root, five categories, index, and 19 scenarios once. |
 | Scenario parity | Compare scenario IDs, categories, expected routes, and count with BASE. |
 | Reference integrity | Resolve benchmark README/runner, hub resource, index, and Markdown path references. |
 | Connectivity | Run root benchmark D5/path checks and ensure the corpus is non-zero. |

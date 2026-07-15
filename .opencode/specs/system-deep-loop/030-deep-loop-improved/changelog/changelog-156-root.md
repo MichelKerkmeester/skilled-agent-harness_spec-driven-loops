@@ -40,7 +40,7 @@ The loop stack is now more durable under interruption, more explicit about conve
 |---|---|---|
 | `001-reference-research` | Complete | 50-iteration mining of loop-cli-main and kasper into 40 ranked recommendations. |
 | `002-deep-loop-runtime` | Complete | 18 runtime recommendations: atomic-state, loop-lock, sleep, jsonl, executor and fallback, coverage-graph, fanout and lifecycle. |
-| `003-deep-loop-workflows` | Complete | 12 workflow recommendations: anti-convergence and ADRs, injection-inbox, ideas and rejected caches, benchmark, push-wave. |
+| `003-deep-loop-workflows` | Complete | 11 active workflow recommendations: anti-convergence and ADRs, injection-inbox, ideas and rejected caches, benchmark, push-wave. |
 | `004-system-spec-kit` | Complete | Speckit autopilot lifecycle. |
 | `005-skill-interconnection` | Complete | Advisor routing projection. |
 | `006-ux-observability-automation` | Complete | Dashboards, telemetry heartbeat, run-now, dry-run, observability envelope, memory-upsert. |

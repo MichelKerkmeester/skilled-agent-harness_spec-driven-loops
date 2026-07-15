@@ -71,7 +71,7 @@ _memory:
   - **Evidence**: alignment + ai-council returned `mode=fix` with the contract injected, no throw.
 - [x] CHK-022 [P1] Placeholder-free slices verified [EVIDENCE: PLACEHOLDER_PATTERN]
   - **Evidence**: the drift regex reported `CLEAN` (0 hits) in both lifted slices.
-- [x] CHK-023 [P1] Command conformance across all 8 commands [EVIDENCE: validate_document.py]
+- [x] CHK-023 [P1] Command conformance across all 7 commands [EVIDENCE: validate_document.py]
   - **Evidence**: `validate_document.py --type command` reported `8 pass / 0 fail`.
 
 <!-- /ANCHOR:testing -->

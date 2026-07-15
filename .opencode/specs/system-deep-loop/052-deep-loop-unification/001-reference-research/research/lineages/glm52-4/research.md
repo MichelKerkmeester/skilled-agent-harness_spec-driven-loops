@@ -92,7 +92,7 @@ The registry description states explicitly that the advisor keeps hardcoded proj
 
 ## 6. Structural Layout Assessment (Q1)
 
-Sound. `mode-registry.json`'s three-tier discriminator (`workflowMode` / `runtimeLoopType` / `backendKind`) already models runtime as infrastructure (`runtimeLoopType` for research/review/council; explicit null for improvement/external-adapter). Folding runtime in as nested `runtime/` — NOT as an eighth workflow mode — is the correct categorization. `graph-metadata.json` fresh-authoring (not N-way merge) is strictly simpler because the runtime graph repeats the hub's `depends_on`/`enhances`/`siblings` edges. [SOURCE: mode-registry.json:10-45] [SOURCE: 002/plan.md graph-metadata consolidation]
+Sound. `mode-registry.json`'s three-tier discriminator (`workflowMode` / `runtimeLoopType` / `backendKind`) already models runtime as infrastructure (`runtimeLoopType` for research/review/council; explicit null for improvement/external-adapter). Folding runtime in as nested `runtime/` — NOT as a seventh workflow mode — is the correct categorization. `graph-metadata.json` fresh-authoring (not N-way merge) is strictly simpler because the runtime graph repeats the hub's `depends_on`/`enhances`/`siblings` edges. [SOURCE: mode-registry.json:10-45] [SOURCE: 002/plan.md graph-metadata consolidation]
 
 ## 7. Path-Coupling Assessment (Q2)
 

@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 12 |
+| **Phase** | 1 of 11 active phases |
 | **Predecessor** | None |
 | **Successor** | 002-convergence-profile-unification-adr |
 | **Handoff Criteria** | `minIterations` guard + `convergenceMode:"off"` both accepted by config schema; `min_iterations_guard_pass` event present in JSONL output; YAML guard does not halt on missing field |

@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-13T14:15:00Z"
     last_updated_by: "claude"
     recent_action: "WS1 + WS2 implemented and verified; all P0 gates green"
-    next_safe_action: "Proceed to child 002 (convert skill-benchmark + ai-system-improvement to yaml-backed)"
+    next_safe_action: "Proceed to child 002 (convert skill-benchmark to yaml-backed)"
     completion_pct: 100
 ---
 # Implementation Summary: alignment render-pipeline parity + ai-council fix flip
@@ -85,7 +85,7 @@ Read the compile/drift/render scripts directly to derive the three hard constrai
 | Contract drift | Pass | All 4 registered commands | `node check-contract-drift.cjs` → `OK commands=4` |
 | Render smoke | Pass | alignment + ai-council in `fix` | `renderCommandContract` `mode=fix`, contract injected, `manifest clean` |
 | Placeholder-free slices | Pass | Both lifted slices | `PLACEHOLDER_PATTERN` → `CLEAN` |
-| Command conformance | Pass | All 8 deep commands | `validate_document.py --type command` → `8 pass / 0 fail` |
+| Command conformance | Pass | All 7 deep commands | `validate_document.py --type command` → `7 pass / 0 fail` |
 | Body-identical refresh | Pass | ai-council, review, research | `BODY UNCHANGED` sha256 match |
 
 ### Test Coverage Summary
@@ -112,7 +112,7 @@ Read the compile/drift/render scripts directly to derive the three hard constrai
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. The two direct-dispatch commands (`skill-benchmark`, `ai-system-improvement`) are not yet yaml-backed — that is child 002.
+1. The remaining direct-dispatch command (`skill-benchmark`) is not yet yaml-backed — that is child 002.
 2. The deep-* agent reconciliation is child 003.
 3. `alignment.md`, the presentation, and the two YAMLs are compiler sources: any future edit requires `compile-command-contracts.cjs --command deep/alignment --write` to keep the contract fresh.
 

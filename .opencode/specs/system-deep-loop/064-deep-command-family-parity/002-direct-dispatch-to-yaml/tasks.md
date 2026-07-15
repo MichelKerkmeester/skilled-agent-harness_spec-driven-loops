@@ -1,9 +1,9 @@
 ---
-title: "Tasks: convert the two direct-dispatch deep commands to yaml-backed"
-description: "Task list for converting skill-benchmark and ai-system-improvement to the yaml-backed family shape."
+title: "Tasks: convert the direct-dispatch deep command to yaml-backed"
+description: "Task list for converting skill-benchmark to the yaml-backed family shape."
 trigger_phrases:
   - "deep direct dispatch to yaml"
-  - "skill-benchmark ai-system-improvement yaml-backed"
+  - "skill-benchmark yaml-backed"
   - "deep command workflow yaml conversion"
 importance_tier: "important"
 contextType: "planning"
@@ -53,12 +53,9 @@ _memory:
 ### Core Documents
 - [x] T004 Author the skill-benchmark auto + confirm YAML (`deep_skill-benchmark_auto.yaml`) [25m]
 - [x] T005 Author the skill-benchmark 4-section presentation (`deep_skill-benchmark_presentation.txt`) [20m]
-- [x] T006 Author the ai-system-improvement auto + confirm YAML (`deep_ai-system-improvement_auto.yaml`) [30m]
-- [x] T007 Author the ai-system-improvement 4-section presentation (`deep_ai-system-improvement_presentation.txt`) [20m]
 
 ### Integration
 - [x] T008 Rewire skill-benchmark to yaml-backed (`skill-benchmark.md`) [15m]
-- [x] T009 Rewire ai-system-improvement to yaml-backed, self-target fork preserved (`ai-system-improvement.md`) [20m]
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -71,13 +68,12 @@ _memory:
 
 ### Integration Tests
 - [x] T011 Prove adapter argv byte-identical across flag combos, both commands [8m] [Evidence: `planInvocation` harness `ALL_ADAPTER_ARGV_IDENTICAL=true` over 8 combos]
-- [x] T012 Confirm `--self-target` / `--parallel` never reach the loop host [3m] [Evidence: `NON_DEV_AI_SYSTEM_RUN_OPTIONS` excludes both; dispatch omits them]
 
 ### Manual Verification
-- [x] T013 Confirm both HARD-BLOCK gates + self-target fork + kill-switches preserved [5m] [Evidence: Phase 0 + input gate + `§3` fork + `§5` kill-switches present verbatim]
+- [x] T013 Confirm both HARD-BLOCK gates preserved [5m] [Evidence: Phase 0 + input gate present verbatim]
 
 ### Documentation
-- [x] T014 Command conformance across all 8 deep commands [3m] [Evidence: `validate_document.py --type command` reported `8 pass / 0 fail`]
+- [x] T014 Command conformance across all 7 deep commands [3m] [Evidence: `validate_document.py --type command` reported `7 pass / 0 fail`]
 
 <!-- /ANCHOR:phase-3 -->
 ---

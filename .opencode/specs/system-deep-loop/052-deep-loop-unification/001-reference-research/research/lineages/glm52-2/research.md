@@ -46,7 +46,7 @@ One file embeds ~36 absolute `deep-loop-workflows/…` paths across three mode c
 ### Tier 3 — Confirms the design as-is
 
 **[R6] Structural layout correct and complete (CONFIRM — F1.1/F1.2)**
-`system-deep-loop/runtime/` nesting maps 1:1 onto the live runtime tree. runtime-as-infrastructure (no workflowMode, no graph-metadata.json, SKILL.md→README.md) is the right call — adding it as an 8th mode-registry entry would be a category error. One minor clarification (F1.3): runtime-owned doc families (`feature_catalog/`, `references/`, `changelog/`, `manual_testing_playbook/`) move as a unit via the whole-tree `git mv`; execution should verify no tool assumes they live at hub level. One low new risk (F1.4): two `package.json` files under one skill (hub + runtime) — sanity-check `package_skill.py --check` (002 REQ-007).
+`system-deep-loop/runtime/` nesting maps 1:1 onto the live runtime tree. runtime-as-infrastructure (no workflowMode, no graph-metadata.json, SKILL.md→README.md) is the right call — adding it as a seventh mode-registry entry would be a category error. One minor clarification (F1.3): runtime-owned doc families (`feature_catalog/`, `references/`, `changelog/`, `manual_testing_playbook/`) move as a unit via the whole-tree `git mv`; execution should verify no tool assumes they live at hub level. One low new risk (F1.4): two `package.json` files under one skill (hub + runtime) — sanity-check `package_skill.py --check` (002 REQ-007).
 - Evidence: `002/spec.md:156-167,169`; `deep-loop-runtime/feature_catalog/feature_catalog.md:23`.
 
 **[R7] Tooling-borrow surface is ~6–8 sites, not "4" (CORRECTION — F3.3)**

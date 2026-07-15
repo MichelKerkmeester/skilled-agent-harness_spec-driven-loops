@@ -97,7 +97,7 @@ Register `deep/alignment` in the contract compiler with a `renderMarkers`-anchor
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-009 | Legacy body §2 references the presentation; fallback note removed | OWNED ASSETS row present |
-| REQ-010 | All 8 deep commands pass `validate_document.py --type command` | exit 0 each |
+| REQ-010 | All 7 deep commands pass `validate_document.py --type command` | exit 0 each |
 
 <!-- /ANCHOR:requirements -->
 ---
@@ -107,7 +107,7 @@ Register `deep/alignment` in the contract compiler with a `renderMarkers`-anchor
 
 - **SC-001**: `node check-contract-drift.cjs` reports `OK commands=4` (exit 0).
 - **SC-002**: `renderCommandContract` for alignment and ai-council returns `mode=fix` with the compiled contract injected, no throw.
-- **SC-003**: `validate_document.py --type command` passes on all 8 deep commands.
+- **SC-003**: `validate_document.py --type command` passes on all 7 deep commands.
 
 ### Acceptance Scenarios
 

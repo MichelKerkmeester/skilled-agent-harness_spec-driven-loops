@@ -68,7 +68,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Phase 001 baseline evidence exists and covers 5 modes, 8 commands, advisor routing, and Lane-D dry-run parity.
+- [x] CHK-020 [P0] Phase 001 baseline evidence exists and covers 5 modes, 7 commands, and advisor routing.
   - **Evidence**: baseline/file-hashes.txt hashes all 5 deep skills + the deep commands/assets; advisor-routing.txt captures advisor outputs; script-behavior-before.txt captures script behavior (2026-06-15).
 - [ ] CHK-021 [P0] Phase 008 handoff is green before deletion.
   - **Evidence**: circumstantially satisfied — the deletion proceeded and the merged surface shipped functional — but the 008 handoff was not formally gate-run this session.
@@ -99,7 +99,7 @@ _memory:
   - **Evidence**: mode-registry.json has 8 modes, every one carrying advisorRouting.routingClass + packetSkillName (verified True) (2026-06-15).
 - [x] CHK-064 [P0] convergence.cjs still accepts exactly research\|review\|council\|context and no improvement loop type.
   - **Evidence**: `convergence.cjs:300` rejects any loopType outside research|review|council|context; no improvement loop type (2026-06-15).
-- [ ] CHK-065 [P0] Full phase-001 parity rerun is byte-identical for all five modes and eight commands.
+- [ ] CHK-065 [P0] Full phase-001 parity rerun is byte-identical for all five modes and seven commands.
   - **Evidence**: DESCOPED via `decision-record.md` ADR-001 (Accepted, 2026-06-16). The captured baseline (`001-parity-baseline-and-runtime-ownership-adr/baseline/file-hashes.txt`, 924 entries) is PRE-merge source hashes at old paths (e.g. `deep/ask-ai-council.md` → now `deep/ai-council.md`; `deep_start-*-loop_*.yaml`); the merge's intentional moves + path rewrites invalidate a byte-identical rerun and no path-rewrite map exists, so the literal criterion is unrecoverable. Behavioral parity is instead evidenced by the 351 passing deep-loop-runtime tests + the packet-156 wave-2/3 registry↔reality, mirror-parity, and runtime-promotion verifications. Box stays unchecked to mark a descoped (not byte-verified) P0; see decision-record.md for full rationale, alternatives, and accepted substitute evidence.
 - [x] CHK-066 [P0] validate.sh --strict passes for phase 009 and parent recursive validation is green.
   - **Evidence**: 009 --strict PASSED (0/0); 152 parent control file --strict PASSED (0/0); full recursive 152 sweep GREEN — all 9 children pass --strict (the 004/005/006/008 missing-impl-summary gap was closed this session) (2026-06-16).

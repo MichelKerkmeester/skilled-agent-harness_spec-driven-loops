@@ -13,11 +13,10 @@ Consolidate the four prior iterations into ranked revisions for children 002-004
    - **R2 (Stage 3a, blocker)**: Add a THIRD repair class for `replay-graph-from-artifacts.cjs:51-66` — repo-root absolute existence-probe path construction, rewritten to probe `system-deep-loop/runtime/scripts/upsert.cjs`. Not a Class A/B relative-hop.
    - **R3 (Stage 3b, blocker)**: Add `artifact-root.cjs:18`, `artifact-root.vitest.ts`, `dependency-seams.vitest.ts` to Stage 3b (one extra `..` for the runtime→system-spec-kit reach).
    - **R4 (Stage 3b, quality)**: Add a non-empty-match assertion on the `vitest.config.ts:20` include glob after the move, to catch silent `test:council` test-set shrink.
-   - **R5 (Class A, completeness)**: Correct the "7 test files" count to 10, and explicitly flag `deep-research-convergence-floor.vitest.ts:20-28` (hardcodes the old skill path AND is the REQ-002 floor enforcer). [SOURCE: 002-hub-rename-and-runtime-nesting/plan.md:76,80-99]
+   - **R5 (Class A, completeness)**: Correct the "7 test files" count to 9, and explicitly flag `deep-research-convergence-floor.vitest.ts:20-28` (hardcodes the old skill path AND is the REQ-002 floor enforcer). [SOURCE: 002-hub-rename-and-runtime-nesting/plan.md:76,80-99]
 
 3. **Ranked revisions for child 003 (reference migration):**
    - **R6 (Stage I, blocker)**: Update divergence-ledger `reason` PROSE together with `nativeTop`/`localTop` fields per entry — `local-native-approved-divergences.json:31` embeds the old name in the rationale text.
-   - **R7 (Stage F/J, decision)**: Make an EXPLICIT naming decision for `deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json` (filename + `packaging_root` + `system_name_short` + `meta-loop-lane-d-packaging.vitest.ts:15` assertion together). Blind grep-update leaves the filename stale while internal fields rename.
    - **R8 (Stage J, allowlist)**: Add council test fixtures (`persist-artifacts.vitest.ts`, `findings-registry.vitest.ts`, `orchestrate-topic.vitest.ts`) to the residual-grep allowlist — their `deep-loop-runtime` hits are semantic test data, not skill-location references. [SOURCE: 003-external-reference-migration/plan.md:66-67,101-106]
 
 4. **Ranked revisions for child 004 (fallback wiring):**

@@ -94,7 +94,7 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] `spec.md`/`plan.md`/`tasks.md` synchronized with the delivered work.
-- [x] CHK-041 [P1] `README.md` de-staled to the real six-family taxonomy and Lane A/D guide ownership.
+- [x] CHK-041 [P1] `README.md` de-staled to the real five-family taxonomy and Lane A guide ownership.
 - [x] CHK-042 [P2] deep-alignment index reconciled to its captured baseline — 0 stale `300000`.
 <!-- /ANCHOR:docs -->
 

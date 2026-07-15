@@ -29,7 +29,7 @@ Packet-156 deep review found the missing guard in phase 009. The headline B1 gat
 ### Changed
 
 - CHK-002 Phase-001 parity baseline available.
-- CHK-020 Phase 001 baseline evidence exists and covers 5 modes, 8 commands, advisor routing and Lane-D dry-run parity.
+- CHK-020 Phase 001 baseline evidence exists and covers 5 modes, 7 commands, and advisor routing.
 - CHK-022 `deep-loop-workflows` has exactly one hub `graph-metadata.json` and no per-mode graph metadata.
 - CHK-023 `/doctor deep-loop` covers both `deep-loop-graph.sqlite` and `council-graph.sqlite`.
 - CHK-024 Route validation passes.
@@ -67,5 +67,5 @@ Packet-156 deep review found the missing guard in phase 009. The headline B1 gat
 - CHK-010 Edits stay in this phase's frozen scope, with no adjacent cleanup.
 - CHK-011 Changes follow existing project conventions.
 - CHK-021 Phase 008 handoff is green before deletion.
-- CHK-065 Full phase-001 parity rerun is byte-identical for all five modes and eight commands.
+- CHK-065 Full phase-001 parity rerun is byte-identical for all five modes and seven commands.
 - CHK-030 No secrets introduced.

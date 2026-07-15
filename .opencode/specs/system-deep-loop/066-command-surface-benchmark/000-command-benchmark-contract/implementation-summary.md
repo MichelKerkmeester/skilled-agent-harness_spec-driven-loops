@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: command-benchmark contract"
-description: "Phase 000 now gives every downstream command-benchmark phase one reproducible 37-command census, a complete four-topology classification, separate verdict axes, stable package and evidence layouts, and explicit handoff gates."
+description: "Phase 000 now gives every downstream command-benchmark phase one reproducible 36-command census, a complete four-topology classification, separate verdict axes, stable package and evidence layouts, and explicit handoff gates."
 trigger_phrases:
   - "command benchmark contract implementation"
   - "command benchmark phase 000 summary"
@@ -24,7 +24,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The live baseline is 37 canonical sources and 37 generated mirrors"
+      - "The live baseline is 36 canonical sources and 36 generated mirrors"
       - "The taxonomy is 28 workflow, 2 subaction, 5 direct-tool/plugin, and 2 monolithic commands"
 ---
 # Implementation Summary
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Every downstream phase now has one frozen contract surface instead of re-deriving the command corpus, topology, result vocabulary, or output paths. The live baseline is `37` canonical command sources and `37` generated Codex mirrors, and every source has exactly one topology assignment.
+Every downstream phase now has one frozen contract surface instead of re-deriving the command corpus, topology, result vocabulary, or output paths. The live baseline is `36` canonical command sources and `36` generated Codex mirrors, and every source has exactly one topology assignment.
 
 ### Frozen Contract Set
 
@@ -61,10 +61,10 @@ The layout contract reuses the live `create-benchmark` `conformance_benchmark` t
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `census-snapshot.md` | Created | Freeze the exact 37-source and 37-mirror baseline plus reproduction commands. |
-| `topology-taxonomy.md` | Created | Assign all 37 commands to one topology with a fail-closed unclassified rule. |
+| `census-snapshot.md` | Created | Freeze the exact 36-source and 36-mirror baseline plus reproduction commands. |
+| `topology-taxonomy.md` | Created | Assign all 36 commands to one topology with a fail-closed unclassified rule. |
 | `verdict-and-ownership.md` | Created | Freeze non-averaged axes, instrument validity, and generic-validator ownership. |
-| `contract-layout.md` | Created | Freeze the conformance package, run-evidence tree, ownership, and 37-to-38 transition. |
+| `contract-layout.md` | Created | Freeze the conformance package, run-evidence tree, ownership, and 36-to-37 transition. |
 | `handoff-gates.md` | Created | Define G000 through G010 commands, evidence, and exit contracts. |
 | `implementation-summary.md` | Created | Record phase-000 delivery and verification evidence. |
 | `tasks.md` | Modified | Mark T001 through T006 complete with concrete evidence links. |
@@ -75,7 +75,7 @@ The layout contract reuses the live `create-benchmark` `conformance_benchmark` t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The contract was derived from the live prompt-sync inventory, all 37 command sources, the parent and child phase contracts, the shared behavior-benchmark framework, deep-alignment verdict semantics, and the existing conformance-benchmark templates. No adapter, fixture, scenario, runner, command, workflow, or metadata generator was changed or executed as an authoring action.
+The contract was derived from the live prompt-sync inventory, all 36 command sources, the parent and child phase contracts, the shared behavior-benchmark framework, deep-alignment verdict semantics, and the existing conformance-benchmark templates. No adapter, fixture, scenario, runner, command, workflow, or metadata generator was changed or executed as an authoring action.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -89,7 +89,7 @@ The contract was derived from the live prompt-sync inventory, all 37 command sou
 | Apply topology precedence before classification | Direct-tool commands can parse many actions and workflow commands can contain branches, so execution ownership must decide the one topology. |
 | Freeze `command-surface` as the benchmark ID | The existing conformance authoring guide already maps packet 066 to that stable ID and exact package tree. |
 | Keep instrument validity outside both subject axes | A valid instrument can publish a real failing subject, while an invalid instrument must publish no subject verdict. |
-| Reserve the sole census delta for phase 009 | The launcher source and generated mirror move the corpus from `37 / 37` to `38 / 38`; any other delta is drift. |
+| Reserve the sole census delta for phase 009 | The launcher source and generated mirror move the corpus from `36 / 36` to `37 / 37`; any other delta is drift. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -99,10 +99,10 @@ The contract was derived from the live prompt-sync inventory, all 37 command sou
 
 | Check | Result |
 |-------|--------|
-| Prompt mirror sync | PASS, exit `0`: `[codex-prompt-sync] PASS: 37 prompts are in sync.` |
-| Canonical source count | PASS, `37` files under the sync script's inclusion and exclusion rules. |
-| Generated mirror count | PASS, `37` Markdown files under `.codex/prompts/`. |
-| Taxonomy reconciliation | PASS, exit `0`: `workflow=28 subaction=2 direct=5 monolithic=2 total=37 unclassified=0`. |
+| Prompt mirror sync | PASS, exit `0`: `[codex-prompt-sync] PASS: 36 prompts are in sync.` |
+| Canonical source count | PASS, `36` files under the sync script's inclusion and exclusion rules. |
+| Generated mirror count | PASS, `36` Markdown files under `.codex/prompts/`. |
+| Taxonomy reconciliation | PASS, exit `0`: `workflow=27 subaction=2 direct=5 monolithic=2 total=36 unclassified=0`. |
 | Contract document validation | PASS after correction: all five reference documents pass `validate_document.py --type reference` with `Total issues: 0`. The first run correctly rejected the missing `OVERVIEW` section in each document; the canonical sections were added and the full gate was rerun. |
 | Scope boundary | PASS, final diff inspection is limited to Markdown inside this phase folder; no runtime code or metadata file was authored or regenerated. |
 <!-- /ANCHOR:verification -->
@@ -112,7 +112,7 @@ The contract was derived from the live prompt-sync inventory, all 37 command sou
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Final census is future evidence.** The `38 / 38` count cannot be observed until phase 009 adds `/deep:command-benchmark`; phase 010 owns the final reproduction.
+1. **Final census is future evidence.** The `37 / 37` count cannot be observed until phase 009 adds `/deep:command-benchmark`; phase 010 owns the final reproduction.
 2. **Downstream gate executables are forward contracts.** G001 through G010 name paths and interfaces that their owning phases must provide; phase 000 does not implement or run them.
 3. **Completion metadata and strict packet validation are orchestrator-owned.** This phase did not run `generate-context.js`, regenerate `description.json` or `graph-metadata.json`, or perform the orchestrator's recursive strict closeout.
 <!-- /ANCHOR:limitations -->

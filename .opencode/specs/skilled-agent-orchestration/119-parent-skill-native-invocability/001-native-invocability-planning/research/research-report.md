@@ -39,7 +39,7 @@ Generated 2026-06-28T09:17:36.393Z · 10 iterations · executor gpt-5.5 xhigh fa
 - **[confirmed]** deep-review feature_catalog is EARNED; recommend keep.
   - evidence: SKILL.md:27-33 covers multi-round review dimensions and spec/code alignment; feature_catalog/feature_catalog.md:17-22 covers lifecycle/state/dimensions/severity; feature_catalog/severity-system/quality-gates.md:49-67 maps gates to implementation and validation scenarios. _(i2)_
 - **[confirmed]** deep-improvement feature_catalog is EARNED; recommend keep.
-  - evidence: SKILL.md:30-41 defines four co-equal lanes; feature_catalog/feature_catalog.md:21-36 maps lanes A-D and shared scoring; feature_catalog/skill-benchmark/mode-wiring.md:31-46 anchors mode wiring to scripts and tests. _(i2)_
+  - evidence: SKILL.md:30-41 defines three co-equal lanes; feature_catalog/feature_catalog.md:21-36 maps lanes A-C and shared scoring; feature_catalog/skill-benchmark/mode-wiring.md:31-46 anchors mode wiring to scripts and tests. _(i2)_
 - **[confirmed]** deep-context feature_catalog is EARNED; recommend keep.
   - evidence: SKILL.md:12-14 defines a convergence-gated multi-model context loop; feature_catalog/feature_catalog.md:24-32 covers seven capability categories; feature_catalog/04--convergence-detection/context-coverage-signals.md:48-63 anchors runtime signal code and validation. _(i2)_
 - **[confirmed]** deep-ai-council feature_catalog is EARNED; recommend keep.

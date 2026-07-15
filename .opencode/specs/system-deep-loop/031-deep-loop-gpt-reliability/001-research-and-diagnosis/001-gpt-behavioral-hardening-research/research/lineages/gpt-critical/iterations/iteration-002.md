@@ -7,7 +7,7 @@ Determine whether "GPT gets stuck on predefined flows" has a concrete file-level
 ## Findings
 
 1. The `/deep:research` command begins with a fuzzy self-assessment: "Are you operating as the @general agent?" and a hard-block branch that returns `STATUS=FAIL ERROR="General agent required"`. [SOURCE: .opencode/commands/deep/research.md:39-72]
-2. The same Phase 0 pattern appears across the deep command family: research, context, ai-council, agent-improvement, model-benchmark, skill-benchmark, ai-system-improvement, and review all contain the `GENERAL AGENT REQUIRED` gate. [SOURCE: grep:.opencode/commands/deep/*:GENERAL AGENT REQUIRED]
+2. The same Phase 0 pattern appears across the seven surviving deep command files: research, context, ai-council, agent-improvement, model-benchmark, skill-benchmark, and review all contain the `GENERAL AGENT REQUIRED` gate. [SOURCE: grep:.opencode/commands/deep/*:GENERAL AGENT REQUIRED]
 3. Phase 005's research smoke halted exactly at this gate: `FAIL: GENERAL AGENT REQUIRED failure`; no research artifacts were created and YAML was not reached. [SOURCE: 005-gpt-verification-smoke/verification-smoke.md:117-124]
 4. This is not merely latency. It is an advisory identity prompt converted into a model-administered hard gate. That is exactly the mechanism the prior research called Mode D.
 

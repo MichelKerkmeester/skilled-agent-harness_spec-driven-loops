@@ -111,7 +111,6 @@ review.REVIEW_CONVERGENCE
 council.CONVERGENCE_CHECK
 improvement.MODEL_BENCHMARK
 improvement.SKILL_BENCHMARK
-improvement.NON_DEV_AI_SYSTEM
 ```
 
 Resolve `benchmark` this way:
@@ -120,7 +119,6 @@ Resolve `benchmark` this way:
 |---|---|
 | `benchmark a model`, `prompt framework`, `model-benchmark` | `improvement`, lane `model-benchmark` |
 | `benchmark a skill`, `skill routing`, `unprompted discovery`, `skill-benchmark` | `improvement`, lane `skill-benchmark` |
-| `packaging`, `non-dev-ai-system`, `guarded refine` | `improvement`, lane `non-dev-ai-system` |
 | `agent candidate`, `promotion`, `rollback`, `score candidate` | `improvement`, lane `agent-improvement` |
 | Bare `benchmark` | Disambiguate instead of loading three lanes |
 
@@ -138,7 +136,7 @@ Preserve old subtree shapes under direct mode directories:
 | `.opencode/skills/deep-ai-council/` | `.opencode/skills/deep-loop-workflows/ai-council/` |
 | `.opencode/skills/deep-improvement/` | `.opencode/skills/deep-loop-workflows/improvement/` |
 
-This keeps the existing `references/`, `assets/`, `scripts/`, `feature_catalog/`, and `manual_testing_playbook/` shapes intact. Directory listings confirmed the mode trees are not uniform: context/research/review have loop-style reference families, council has `integration/patterns/scoring/structure`, and improvement has lane subtrees for `agent_improvement`, `model_benchmark`, `skill_benchmark`, and `non_dev_ai_system`.
+This keeps the existing `references/`, `assets/`, `scripts/`, `feature_catalog/`, and `manual_testing_playbook/` shapes intact. Directory listings confirmed the mode trees are not uniform: context/research/review have loop-style reference families, council has `integration/patterns/scoring/structure`, and improvement has lane subtrees for `agent_improvement`, `model_benchmark`, and `skill_benchmark`.
 
 This also keeps path edits mechanical:
 
@@ -156,7 +154,7 @@ For command YAMLs, set `skill: deep-loop-workflows` and `skill_md: .opencode/ski
 
 Rejected: one giant multi-mode `SKILL.md`.
 
-Reason: it would combine at least five routers plus four improvement lanes into one high-collision text surface. The current `deep-improvement` router works because its four lanes share one improvement host and scoring family (`.opencode/skills/deep-improvement/SKILL.md:298-306`). The merged skill would span inward code context, outward research, code review, planning council, and mutation loops, which the baseline explicitly marks as non-flattenable (`context-report.md:120-138`).
+Reason: it would combine at least five routers plus three improvement lanes into one high-collision text surface. The current `deep-improvement` router works because its three lanes share one improvement host and scoring family (`.opencode/skills/deep-improvement/SKILL.md:298-306`). The merged skill would span inward code context, outward research, code review, planning council, and mutation loops, which the baseline explicitly marks as non-flattenable (`context-report.md:120-138`).
 
 Rejected: `deep-loop-workflows/modes/<mode>/`.
 
@@ -172,9 +170,9 @@ The root skill files change or are created at `.opencode/skills/deep-loop-workfl
 
 The five old skill roots move into mode packets: `.opencode/skills/deep-context/**`, `.opencode/skills/deep-research/**`, `.opencode/skills/deep-review/**`, `.opencode/skills/deep-ai-council/**`, and `.opencode/skills/deep-improvement/**`.
 
-The command YAMLs need mode-path rewrites under `.opencode/commands/deep/assets/deep_start-context-loop_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_ask-ai-council_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_start-skill-benchmark-loop_{auto,confirm}.yaml`, and `.opencode/commands/deep/assets/deep_start-non-dev-ai-system-loop_{auto,confirm}.yaml`.
+The command YAMLs need mode-path rewrites under `.opencode/commands/deep/assets/deep_start-context-loop_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_start-research-loop_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_ask-ai-council_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_{auto,confirm}.yaml`, `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_{auto,confirm}.yaml`, and `.opencode/commands/deep/assets/deep_start-skill-benchmark-loop_{auto,confirm}.yaml`.
 
-The command markdown/presentation layer needs the existing limited skill-id edits identified by the baseline: `.opencode/commands/deep/start-research-loop.md`, `.opencode/commands/deep/start-skill-benchmark-loop.md`, `.opencode/commands/deep/start-non-dev-ai-system-loop.md`, plus the presentation `.txt` assets (`context-report.md:68-75`).
+The command markdown/presentation layer needs the existing limited skill-id edits identified by the baseline: `.opencode/commands/deep/start-research-loop.md` and `.opencode/commands/deep/start-skill-benchmark-loop.md`, plus the presentation `.txt` assets (`context-report.md:68-75`).
 
 Feature catalogs and manual testing playbooks under each moved mode packet need SOURCE-FILES root rewrites, but should keep their mode-local category structures. The baseline says there is no common category schema and recommends per-mode top-level sections rather than a unified category list (`context-report.md:107-116`).
 
@@ -194,7 +192,7 @@ The main path risk is missing executable script references in command YAMLs. Rev
 
 This decision depends on Q-AGENT for whether the five native agent names stay stable. My recommendation assumes they stay stable.
 
-This decision depends on Q-CMD for whether the eight `/deep:*` commands stay stable. My recommendation assumes they stay stable and only repoint their skill references.
+This decision depends on Q-CMD for whether the seven `/deep:*` commands stay stable. My recommendation assumes they stay stable and only repoint their skill references.
 
 This decision depends on Q-ADVISOR for alias and routing-fixture updates. The root `deep-loop-workflows` metadata must preserve old entry points as aliases without resurrecting old skill ids.
 

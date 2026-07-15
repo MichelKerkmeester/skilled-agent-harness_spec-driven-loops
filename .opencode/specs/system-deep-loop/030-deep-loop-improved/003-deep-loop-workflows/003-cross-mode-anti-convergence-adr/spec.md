@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 12 |
+| **Phase** | 3 of 11 active phases |
 | **Predecessor** | 002-convergence-profile-unification-adr |
 | **Successor** | 004-injection-inbox-provenance |
 | **Handoff Criteria** | All four mode configs have an `antiConvergence` block; `stopPolicy` in runtime_capabilities.json is fail-closed; optimizer invariant group test proves constraint violations are rejected |

@@ -172,7 +172,7 @@ This packet authors documentation only. No source, runtime, or configuration fil
 
 ### Data Boundaries
 - Legacy public surfaces can diverge from packet folder/name identity. Phase 003 resolves the packet folder to `deep-ai-council` while preserving `/deep:ai-council` and the `ai-council` agent surface.
-- A packet that hosts several modes (the canonical `deep-improvement` hosts four) keeps one packet skill name. An invocation mechanism keyed per mode must not assume one mode per packet.
+- A packet that hosts several modes (the canonical `deep-improvement` hosts three) keeps one packet skill name. An invocation mechanism keyed per mode must not assume one mode per packet.
 
 ### Error Scenarios
 - Adding a `graph-metadata.json` to a packet to force discovery either throws at build when `skill_id` does not equal the folder, or registers a second skill identity. Both outcomes break the single-identity contract and are out of scope as solutions.

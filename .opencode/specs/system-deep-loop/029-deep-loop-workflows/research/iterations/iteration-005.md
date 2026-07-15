@@ -110,7 +110,7 @@ Conclusion: move it to `deep-loop-workflows/scripts/shared/resource-map.cjs`, no
 **Dependencies**
 
 - Q-ARCH must decide whether merged mode trees preserve old subtree shapes or move under `modes/<mode>/`; that determines exact relative import paths.
-- Q-CMD must decide whether all 8 commands stay stable; that determines the final YAML verifier coverage.
+- Q-CMD must decide whether all 7 commands stay stable; that determines the final YAML verifier coverage.
 - Q-AGENT affects capability manifest agent paths if agent names are consolidated instead of retained.
 - Q-ADVISOR affects whether capability resolver paths are indexed as workflow metadata, runtime metadata, or both.
 - Legacy resume policy must decide whether old generated configs are migrated or allowed to become archival.

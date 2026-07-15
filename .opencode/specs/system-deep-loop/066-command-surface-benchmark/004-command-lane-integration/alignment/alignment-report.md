@@ -15,7 +15,7 @@ description: Auto-generated reducer view over the alignment packet. Never manual
 
 - Verdict: FAIL
 - Iterations run: 8
-- Artifacts checked: 37
+- Artifacts checked: 36
 - Findings: P0 3 / P1 0 / P2 0
 - Composite score: 30
 

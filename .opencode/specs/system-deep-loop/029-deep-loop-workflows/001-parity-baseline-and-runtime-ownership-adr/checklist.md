@@ -74,7 +74,7 @@ _memory:
   - **Evidence**: verified during phase 001 execution.
 - [ ] CHK-022 [P0] Per-mode baselines exist for context, research, review, ai-council, and improvement.
   - **Evidence**: verified during phase 001 execution.
-- [ ] CHK-023 [P0] All eight /deep:* command baselines exist.
+- [ ] CHK-023 [P0] All seven /deep:* command baselines exist.
   - **Evidence**: verified during phase 001 execution.
 - [ ] CHK-024 [P0] Advisor routing baseline records current winners and future concrete mode expectations.
   - **Evidence**: verified during phase 001 execution.
@@ -89,7 +89,6 @@ _memory:
   - **Evidence**: verified during phase 001 execution.
 - [ ] CHK-061 [P0] Runtime-ownership ADR preserves MCP-free runtime and authorizes only named phase-002 promotions.
   - **Evidence**: verified during phase 001 execution.
-- [ ] CHK-062 [P0] Lane D baseline is recorded as dry-run-only.
   - **Evidence**: verified during phase 001 execution.
 - [ ] CHK-063 [P0] Final diff is restricted to the phase-001 spec folder.
   - **Evidence**: verified during phase 001 execution.

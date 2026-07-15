@@ -44,7 +44,7 @@ The concrete fixes are clearer after this critical pass:
 
 The Phase 0 self-check asks a model to decide whether it is operating as `@general`, then hard-blocks on uncertainty. [SOURCE: .opencode/commands/deep/research.md:39-72] The research smoke failed at exactly this gate. [SOURCE: 005-gpt-verification-smoke/verification-smoke.md:117-124]
 
-Fix: replace self-assessment with deterministic invocation context. If the registered command file is executing, the general-agent command router condition is satisfied by construction; otherwise fail with a non-model-inferred command-invocation error. Apply to all 8 deep command files found by the `GENERAL AGENT REQUIRED` pattern.
+Fix: replace self-assessment with deterministic invocation context. If the registered command file is executing, the general-agent command router condition is satisfied by construction; otherwise fail with a non-model-inferred command-invocation error. Apply to all 7 deep command files found by the `GENERAL AGENT REQUIRED` pattern.
 
 ### 4.2 ai-council Route-Proof Canonicalization
 

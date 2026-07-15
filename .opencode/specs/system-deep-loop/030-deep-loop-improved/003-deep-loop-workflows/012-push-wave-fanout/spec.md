@@ -46,8 +46,8 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 12 of 12 |
-| **Predecessor** | 011-meta-loop-lane-d-packaging |
+| **Phase** | 11 of 11 active phases |
+| **Predecessor** | 010-deep-improvement-accepted-vs-shipped |
 | **Successor** | None |
 | **Handoff Criteria** | `depends_on`/`touches` schema in `executor-config.ts`; `assignment_model:"flat_pool"` guard in `fanout-run.cjs` rejects wave fields; wave-planner interface defined but not activated; rejection is logged, not silent |
 <!-- /ANCHOR:metadata -->

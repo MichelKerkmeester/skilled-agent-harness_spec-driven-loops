@@ -2,7 +2,7 @@
 
 ## Focus
 
-Validate child 002's Stage 3b tooling-borrow edits, the `artifact-root.cjs` re-export depth, and the advisor-corpus + named-profile migration surface in child 003.
+Validate child 002's Stage 3b tooling-borrow edits, the `artifact-root.cjs` re-export depth, and the advisor-corpus + test-fixture migration surface in child 003.
 
 ## Findings
 
@@ -16,7 +16,6 @@ Validate child 002's Stage 3b tooling-borrow edits, the `artifact-root.cjs` re-e
 
 5. **NEW — divergence-ledger `reason` prose embeds the old skill name and must update WITH the structured fields, not be left as a stale narrative.** `local-native-approved-divergences.json:30-31` pairs `nativeTop:"deep-loop-workflows"` with a free-text `reason` ("deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1..."). Stage I correctly says update `nativeTop`/`localTop`/`reason`/`approvedAt` together per entry — but this coupling is easy to miss because the divergence ratchet test compares structured fields, while the reason is human-readable. If only the structured field is updated, the reason text contradicts the field. Keep Stage I's "together per entry" as a hard rule. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json:30-31] [SOURCE: 003-external-reference-migration/plan.md:101-104]
 
-6. **NEW P1 — a named benchmark PROFILE FILE is named after the old skill and carries stale internal identity fields.** `deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json` (filename = old skill name) contains `packaging_root:".opencode/skills/deep-loop-runtime"` and `system_name_short:"deep-loop-runtime"` (lines 3,5), and `meta-loop-lane-d-packaging.vitest.ts:15` asserts on this exact filename. This is NOT a code-path reference; it is a benchmark profile FOR the runtime system, so the rename target is semantically ambiguous (`system-deep-loop.json`? `runtime.json`?). A blind residual-grep would update `packaging_root` but leave the filename `deep-loop-runtime.json`, creating a name/field inconsistency, and the lane-d test would still pass on the old filename while pointing at a renamed path. Child 002/003 must make an EXPLICIT naming decision and update filename + internal fields + the test assertion together. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json:3-5] [SOURCE: .opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts:15]
 
 ## Ruled Out
 

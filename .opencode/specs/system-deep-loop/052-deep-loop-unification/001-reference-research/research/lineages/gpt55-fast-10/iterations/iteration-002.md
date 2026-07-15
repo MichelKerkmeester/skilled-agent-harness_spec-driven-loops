@@ -25,7 +25,7 @@ Check whether the proposed folder topology can preserve the public workflow hub 
 
 ## Reflection
 
-The structural merge is viable, but only if implementation does not let convenience turn the backend into an eighth workflow mode.
+The structural merge is viable, but only if implementation does not let convenience turn the backend into a seventh workflow mode.
 
 ## Recommended Next Focus
 

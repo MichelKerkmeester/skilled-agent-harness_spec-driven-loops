@@ -10,7 +10,7 @@
 
 ## Verdict: the architecture is SOUND — the work is making C-plus *real* + low-regret hardening
 
-The meta-analysis (i05) validates the design: keep the parent-nested-skill pattern, keep the 2-skill (`workflows` + `runtime`) split, keep `deep-improvement` as one 4-lane packet, keep the `ai-council` grandfather (machine-guard it, don't rename). **No rearchitecture is recommended.** Every one of the 23 improvements preserves the invariants. The single biggest theme: the C-plus design's *guarantees are aspirational, not yet enforced* — and the pattern doesn't yet generalize to a second parent skill.
+The meta-analysis (i05) validates the design: keep the parent-nested-skill pattern, keep the 2-skill (`workflows` + `runtime`) split, keep `deep-improvement` as one 3-lane packet, keep the `ai-council` grandfather (machine-guard it, don't rename). **No rearchitecture is recommended.** Every one of the 23 improvements preserves the invariants. The single biggest theme: the C-plus design's *guarantees are aspirational, not yet enforced* — and the pattern doesn't yet generalize to a second parent skill.
 
 ---
 
@@ -43,7 +43,7 @@ Together these turn C-plus from "a test that exists" into "drift is structurally
 ## Meta-validation (deliberately NOT recommended)
 
 - **Don't rearchitect** — the 2-skill split + parent-nested pattern earn their keep.
-- **Don't split `deep-improvement`** — its 4 lanes share candidate/dispatcher/scorer + loop-host/reduce-state seams; a split forks shared scripts and raises coupling.
+- **Don't split `deep-improvement`** — its 3 lanes share candidate/dispatcher/scorer + loop-host/reduce-state seams; a split forks shared scripts and raises coupling.
 - **Don't rename `ai-council`** — high-regret; keep the grandfather, machine-guard the folder≠packetSkillName allowlist, and fix the stale `@deep-ai-council` doc claim (the real agent is `@ai-council`).
 - **Don't codegen the lexical regex weights** — they're tuning, not derivable data.
 

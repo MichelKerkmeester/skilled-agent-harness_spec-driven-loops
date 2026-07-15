@@ -44,7 +44,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 064 already converted `skill-benchmark` and `ai-system-improvement` to yaml-backed triads and gave `alignment`/`ai-council` render-pipeline parity, but the family still ships in three different shapes. Four commands — `research`, `review`, `ai-council`, `alignment` — remain opaque ~10-line "compiled-contract render stubs": frontmatter + an `# H1` + a single `!node render-command-contract.cjs --command deep/<name>` bang line that injects a compiled contract plus the legacy body at runtime. The file the operator opens is therefore not self-describing: its routing behaviour lives in a compiled artifact and a legacy body that are stitched in only at render time. The operator wants all 8 deep commands to share ONE self-describing router-triad shape (a full `## 1 ROUTER CONTRACT` → `## 6 WORKFLOW SUMMARY` router `.md` paired with `_presentation.txt` + `_auto.yaml` + `_confirm.yaml`) while KEEPING the compile/render/drift pipeline maintained in-repo.
+Packet 064 already converted `skill-benchmark` to a yaml-backed triad and gave `alignment`/`ai-council` render-pipeline parity, but the family still ships in three different shapes. Four commands — `research`, `review`, `ai-council`, `alignment` — remain opaque ~10-line "compiled-contract render stubs": frontmatter + an `# H1` + a single `!node render-command-contract.cjs --command deep/<name>` bang line that injects a compiled contract plus the legacy body at runtime. The file the operator opens is therefore not self-describing: its routing behaviour lives in a compiled artifact and a legacy body that are stitched in only at render time. The operator wants all 7 deep commands to share ONE self-describing router-triad shape (a full `## 1 ROUTER CONTRACT` → `## 6 WORKFLOW SUMMARY` router `.md` paired with `_presentation.txt` + `_auto.yaml` + `_confirm.yaml`) while KEEPING the compile/render/drift pipeline maintained in-repo.
 
 ### Purpose
 Promote each of the four stubs to a full inline router body and drop the runtime bang, so the committed `command.md` is the self-describing router the family standard expects — without deleting the render pipeline. For each command the promoted body is lifted from its already-complete `assets/legacy/deep_<name>.body.md` (which is itself a full `## 1..## 6` router) under the existing frontmatter and `# H1`; the command's own compiled `autonomousExecutionDirective` prose is folded in as a short subsection so `:auto` behaviour is preserved without the bang; and the pipeline (`render-command-contract.cjs`, `compile-command-contracts.cjs`, `check-contract-drift.cjs`, `compiled/*.contract.md`, `legacy/*.body.md`, `manifest.jsonl`, `command-injection-rollout.json`) stays present, recompiled, drift-clean, and test-green. The four commands stay `fix` in the rollout so the render vitest `mode==='fix'` assertions keep passing; removing the bang is what decouples the LIVE runtime path, and nothing is deleted.
@@ -65,8 +65,8 @@ Promote each of the four stubs to a full inline router body and drop the runtime
 
 ### Out of Scope
 - Deleting or redesigning any pipeline script, compiled contract, legacy body, manifest, or rollout entry — the pipeline stays maintained, only the runtime bang is dropped.
-- Changing any deep command's runtime BEHAVIOR (routing, dispatch, gates, self-target forks). Promotion + directive-fold must be behaviour-preserving.
-- The other four deep commands (`agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement`) — already bang-less yaml-backed triads.
+- Changing any deep command's runtime BEHAVIOR (routing, dispatch, or gates). Promotion + directive-fold must be behaviour-preserving.
+- The other three deep commands (`agent-improvement`, `model-benchmark`, `skill-benchmark`) — already bang-less yaml-backed triads.
 - CI wiring of the drift/render/validate checks — a plausible follow-on, not built here.
 - The create-agent dialect documentation (predecessor phase `003-deep-agent-family-reconciliation`) and the earlier parity/dispatch phases (`001-pipeline-command-parity`, `002-direct-dispatch-to-yaml`) — this phase builds on that 064 lineage but does not revisit it.
 
@@ -101,7 +101,7 @@ Command and pipeline files below are the phase's IMPLEMENTATION targets, owned a
 | REQ-002 | Each promoted body folds in the command's `autonomousExecutionDirective` prose | A dedicated autonomous-execution subsection is present in each body |
 | REQ-003 | Frontmatter `allowed-tools` preserved byte-for-byte on all 4 | `checkToolAllowlist` reports no change; no `TOOL_ALLOWLIST_OVERFLOW` |
 | REQ-004 | The 4 compiled contracts recompiled and fresh | `compile-command-contracts.cjs --write` clean; `check-contract-drift.cjs` exit 0 |
-| REQ-005 | All 8 deep commands pass `validate_document.py --type command` | exit 0 each |
+| REQ-005 | All 7 deep commands pass `validate_document.py --type command` | exit 0 each |
 | REQ-006 | Render smoke passes for all 4 in `mode=fix` | `render-command-contract.cjs --command deep/<name> --compare` → COMPARE OK, no throw |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -119,9 +119,9 @@ Command and pipeline files below are the phase's IMPLEMENTATION targets, owned a
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All 8 deep commands are self-describing router triads; the 4 promoted commands carry a full inline `## 1..## 6` body with no bang line.
+- **SC-001**: All 7 deep commands are self-describing router triads; the 4 promoted commands carry a full inline `## 1..## 6` body with no bang line.
 - **SC-002**: `check-contract-drift.cjs` reports clean (exit 0) for every registered command after recompile; render smoke returns COMPARE OK in `mode=fix` for all 4.
-- **SC-003**: `validate_document.py --type command` passes on all 8 commands, all four vitest suites are green, and the live `:auto` smoke of research/review preserves the prior autonomous behaviour.
+- **SC-003**: `validate_document.py --type command` passes on all 7 commands, all four vitest suites are green, and the live `:auto` smoke of research/review preserves the prior autonomous behaviour.
 
 ### Acceptance Scenarios
 

@@ -18,7 +18,7 @@ A critical correction to prior 117-improvement-research: the runtime's "node_mod
 
 The runtime is a self-contained unit: `package.json`, `package-lock.json`, `tsconfig.json`, `vitest.config.ts`, `node_modules/`, `database/` (SQLite), `lib/{council,coverage-graph,deep-loop}/`, `scripts/`, `tests/`, `references/`, `feature_catalog/`, `manual_testing_playbook/`, `graph-metadata.json`, `SKILL.md`, `README.md`. All of these move together. There are **no orphaned entry points** — every `scripts/*.cjs` is invoked from a `deep/*` command (3 files) or a `*_auto.yaml` workflow (4 coverage-graph scripts).
 
-`mode-registry.json` is the merge keystone: it declares 7 workflowModes across 3 `backendKind` values, and its `backendKind: runtime-loop-type` discriminator points at the runtime by *role* not path, so routing logic is name-agnostic — but the 3 command entry points (`deep/{research,review,ai-council}.md`) shell out to a **hardcoded** `node .opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs` that MUST change.
+`mode-registry.json` is the merge keystone: it declares 6 workflowModes across 3 `backendKind` values, and its `backendKind: runtime-loop-type` discriminator points at the runtime by *role* not path, so routing logic is name-agnostic — but the 3 command entry points (`deep/{research,review,ai-council}.md`) shell out to a **hardcoded** `node .opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs` that MUST change.
 
 **Confidence:** high · [SOURCE: directory listings; mode-registry.json; .opencode/commands/deep/*.md]
 
@@ -73,7 +73,7 @@ The merge is **net simplification on the workflows↔runtime axis** (15 cross-sk
 
 | Tier | Surface | Breakage | Risk |
 |---|---|---|---|
-| Commands (3 shell-to-runtime) | 7 files | LOUD | Low |
+| Commands (3 shell-to-runtime) | 6 files | LOUD | Low |
 | Agents (`.opencode` + `.claude` mirror) | 10 files | SILENT | **MED** (`.claude` easy to miss) |
 | **Advisor corpus** | `aliases.ts` (`MERGED_DEEP_SKILL_ID`), `explicit.ts` (~40 entries), `lexical.ts`, `fusion.ts`, 2× graph-metadata | SILENT→LOUD (drift-guard) | **HIGH** |
 | Hub/packet docs (SKILL.md, README) | several | SILENT (prose) | Low |

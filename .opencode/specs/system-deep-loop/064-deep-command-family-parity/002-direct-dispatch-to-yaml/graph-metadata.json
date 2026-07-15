@@ -12,7 +12,7 @@
   "derived": {
     "trigger_phrases": [
       "deep direct dispatch to yaml",
-      "skill-benchmark ai-system-improvement yaml-backed",
+      "skill-benchmark yaml-backed",
       "deep command workflow yaml conversion",
       "byte identical loop-host dispatch"
     ],
@@ -22,13 +22,13 @@
       "dispatch",
       "yaml",
       "skill-benchmark",
-      "ai-system-improvement",
       "yaml-backed",
       "command",
       "workflow",
       "conversion",
       "byte",
-      "identical"
+      "identical",
+      "loop-host"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -37,10 +37,6 @@
       ".opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml",
       ".opencode/commands/deep/assets/deep_skill-benchmark_presentation.txt",
       ".opencode/commands/deep/skill-benchmark.md",
-      ".opencode/commands/deep/assets/deep_ai-system-improvement_auto.yaml",
-      ".opencode/commands/deep/assets/deep_ai-system-improvement_confirm.yaml",
-      ".opencode/commands/deep/assets/deep_ai-system-improvement_presentation.txt",
-      ".opencode/commands/deep/ai-system-improvement.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -70,30 +66,6 @@
         "name": "skill-benchmark.md",
         "kind": "doc",
         "path": ".opencode/commands/deep/skill-benchmark.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_ai-system-improvement_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_ai-system-improvement_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_ai-system-improvement_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_ai-system-improvement_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_ai-system-improvement_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/deep/assets/deep_ai-system-improvement_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "ai-system-improvement.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/ai-system-improvement.md",
         "source": "derived"
       },
       {
@@ -191,11 +163,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Startup Presentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Documents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "`/deep:skill-benchmark` (Lane C) and `/deep:ai-system-improvement` (Lane D) were the only two deep commands that dispatched their loop host inline: their `command.md` declared \"direct-router family — no workflow YAML\" with an inline `§5 PRESENTATION BOUNDARY` instead of a presentation asset",
+    "causal_summary": "`/deep:skill-benchmark` (Lane C) was the remaining deep command that dispatched its loop host inline: its `command.md` declared \"direct-router family — no workflow YAML\" with an inline `§5 PRESENTATION BOUNDARY` instead of a presentation asset",
     "created_at": "2026-07-13T14:07:04.711Z",
-    "last_save_at": "2026-07-13T14:17:21.688Z",
+    "last_save_at": "2026-07-15T11:55:20.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a229e33661cac9f746745b88d24cd613fe32fb1070f45076748bc24a4c18cb9",
+    "source_fingerprint": "sha256:737d4d58c415af346e59c0367107253d1e4333b6ee7c622b5230383c0a6f0e97",
     "source_doc_hashes": {
-      "spec.md": "2f18f6f0f69a0657d0ea179c346c3ce71ae3d7aaa26e6a80495be31f93d81c18",
-      "plan.md": "d6bf17e5ce5c30a9f71805bf0758ded6a249c149cff895d036c45deebf17f198",
-      "tasks.md": "be16a9fbee16bc59bcb7833d1ef8255881ffa74a70e6bb9f49d5d81cd4b85b3f",
-      "checklist.md": "4c62e2bc4299e35f9300efc1215db8cb89a676da6887c6f5a5b4342c238c206d",
-      "implementation-summary.md": "a2b1f3426816f9426221cd46fe09f9af8089a3c9e5b8aae24aed922bae4d37c6"
+      "spec.md": "ed6539d8caedfc296357cd50cd381ad811afdade9587471827e8bc7b81990dca",
+      "plan.md": "93462f2bbe3fd87c30dc785df5bfbfa6d21d26eff89c50f6a76285533dbcb906",
+      "tasks.md": "0ad94fcc61fee0b4f1351e45ee299ff9f0daf94db1bb4188f5f7d513b2daa1d0",
+      "checklist.md": "c786f2c37f2da533dd6f6d0da50e62a83861b98e919aa36d6f5c90ded8e4ab28",
+      "implementation-summary.md": "9067cd9740aec4ccdbc0aeda25dc710eae40ec03ad5212b163d07816b1ab77b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

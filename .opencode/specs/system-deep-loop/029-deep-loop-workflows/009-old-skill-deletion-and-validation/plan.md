@@ -58,7 +58,7 @@ Run phase 009 as a gated finalizer: prove prior phases and the phase-001 baselin
 - [ ] Scope limited to this phase per `spec.md`.
 
 ### Definition of Done
-- [ ] Phase 001 baseline evidence exists and covers 5 modes, 8 commands, advisor routing, and Lane-D dry-run parity.
+- [ ] Phase 001 baseline evidence exists and covers 5 modes, 7 commands, and advisor routing.
 - [ ] Phase 008 handoff is green before deletion.
 - [ ] deep-loop-workflows has exactly one hub graph-metadata.json and no per-mode graph metadata.
 - [ ] /doctor deep-loop covers both deep-loop-graph.sqlite and council-graph.sqlite.
@@ -97,7 +97,7 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 - [ ] Load the phase-001 parity baseline for the affected modes/surfaces.
 
 ### Phase 2: Core Implementation
-- [ ] T1 Confirm phase 001 baseline evidence and phase 008 green handoff before starting finalization. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/**`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/008-framework-docs-sweep/**`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/spec.md`) — _verify:_ Baseline covers five modes, eight commands, advisor routing, and Lane-D dry-run parity; phase 008 stale-reference gate is green.
+- [ ] T1 Confirm phase 001 baseline evidence and phase 008 green handoff before starting finalization. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/**`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/008-framework-docs-sweep/**`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/spec.md`) — _verify:_ Baseline covers five modes, seven commands, and advisor routing; phase 008 stale-reference gate is green.
 - [ ] T2 Verify merged hub shape and recursive graph-metadata invariant. (`.opencode/skills/deep-loop-workflows/SKILL.md`, `.opencode/skills/deep-loop-workflows/mode-registry.json`, `.opencode/skills/deep-loop-workflows/graph-metadata.json`) — _verify:_ Glob for .opencode/skills/deep-loop-workflows/*/graph-metadata.json returns empty; registry has workflowMode, runtimeLoopType or null, and backendKind for every mode.
 - [ ] T3 Run pre-delete stale old-skill reference scan. (`**/*`) — _verify:_ No unapproved stale references remain and UNKNOWN-TARGET scan is empty.
 - [ ] T4 Extend /doctor deep-loop to cover council-graph.sqlite as well as deep-loop-graph.sqlite. (`.opencode/commands/doctor/assets/doctor_deep-loop.yaml`, `.opencode/commands/doctor/_routes.yaml`, `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`) — _verify:_ bash .opencode/commands/doctor/scripts/route-validate.sh plus council status smoke via .opencode/skills/deep-loop-runtime/scripts/status.cjs --loop-type council.
@@ -106,7 +106,7 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 - [ ] T7 Rebuild advisor skill graph after deletion. (`.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`, `.opencode/skills/deep-loop-workflows/graph-metadata.json`) — _verify:_ rejectedEdges=0 and old skill IDs are absent from skill_graph_status.
 - [ ] T8 Run advisor routing validation for skill plus mode output. (`.opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts`, `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`, `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/**`) — _verify:_ Recommendations assert deep-loop-workflows plus concrete mode; no deleted old skill wins.
 - [ ] T9 Verify native agent mirror parity after deletion. (`.opencode/agents/{deep-context,deep-research,deep-review,deep-improvement,deep-ai-council}.md`, `.claude/agents/{deep-context,deep-research,deep-review,deep-improvement,deep-ai-council}.md`, `.codex/agents/{deep-context,deep-research,deep-review,deep-improvement,deep-ai-council}.md`) — _verify:_ Three-way mirror parity passes except documented runtime-specific path-convention lines.
-- [ ] T10 Rerun phase-001 parity harness after deletion. (`.opencode/commands/deep*.md`, `.opencode/commands/deep*/**`, `.opencode/commands/doctor/**`) — _verify:_ Normalized hashes are byte-identical to phase-001 baseline; Lane D uses dry-run baseline.
+- [ ] T10 Rerun phase-001 parity harness after deletion. (`.opencode/commands/deep*.md`, `.opencode/commands/deep*/**`, `.opencode/commands/doctor/**`) — _verify:_ Normalized hashes are byte-identical to phase-001 baseline.
 - [ ] T11 Verify discriminator and frozen backend invariants. (`.opencode/skills/deep-loop-workflows/mode-registry.json`, `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, `.opencode/skills/deep-loop-runtime/scripts/status.cjs`) — _verify:_ Improvement modes have runtimeLoopType null; graph-backed modes map to context/research/review/council; no MCP tool is added to deep-loop-runtime.
 - [ ] T12 Record final evidence and run strict spec validation. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation/checklist.md`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation/implementation-summary.md`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/spec.md`) — _verify:_ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation --strict and parent recursive validation are green.
 
@@ -122,7 +122,7 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 
 | Test Type | Scope | Method |
 |-----------|-------|--------|
-| Parity | This phase's affected modes/surfaces | After deletion, consume the phase-001 baseline manifest and rerun the same single-executor normalized capture for all five modes and eight /deep:* commands. Require byte-identical normalized artifact hashes for modes and commands; advisor parity is behavior-preservation with skill=deep-loop-workflows plus concrete mode, rejectedEdges=0, and no old skill winners. |
+| Parity | This phase's affected modes/surfaces | After deletion, consume the phase-001 baseline manifest and rerun the same single-executor normalized capture for all five modes and seven /deep:* commands. Require byte-identical normalized artifact hashes for modes and commands; advisor parity is behavior-preservation with skill=deep-loop-workflows plus concrete mode, rejectedEdges=0, and no old skill winners. |
 | Structural | Spec docs | `validate.sh --strict` |
 
 <!-- /ANCHOR:testing -->

@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Capture frontmatter state for all 27 in-scope docs: 5 full-with-`contextType: reference`, 12 partial (phrases but no tier/contextType), 8 title+description only, 1 bare (`references/shared/heldout_and_gold_sets.md`)
+- [x] T001 Capture frontmatter state for all 22 in-scope docs: 5 full-with-`contextType: reference`, 12 partial (phrases but no tier/contextType), 3 title+description only, 1 bare (`references/shared/heldout_and_gold_sets.md`)
 - [x] T002 Confirm contract enums against the checker and scan headings of the 12 docs needing new or repaired phrases (`check-skill-doc-frontmatter.mjs`, `grep -n "^#"`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -61,9 +61,9 @@ _memory:
 
 - [x] T003 Fix enum drift: 5 fully-detailed docs move `contextType: reference` to `implementation` (`candidate_proposal_format.md`, `score_dimensions.md`, `promotion_gate_contract.md`, `skill_benchmark/{operator_guide,scenario_authoring,scoring_contract}.md`)
 - [x] T004 Complete 12 partial docs with `importance_tier` + `contextType`; replace weak phrases — single tokens and a finding id in `profiling_audit_log.md`, 4 single hyphenated tokens in `mixed_executor_methodology.md`, command-name tokens in `integration_scanning.md` and `skill_benchmark/operator_guide.md`
-- [x] T005 Author full phrase sets for 8 title-only docs (3 agent_improvement asset templates, 5 non_dev_ai_system references) and the full block for `heldout_and_gold_sets.md`
-- [x] T006 Apply tier policy: `important` on 8 formal contract/invariant docs (kept 4, added `evaluator_contract.md`, `promotion_rules.md`, `non_dev_ai_system/loop_contract.md`, `heldout_and_gold_sets.md`); demoted `skill_benchmark/{operator_guide,scenario_authoring}.md` to `normal`
-- [x] T007 Apply all 27 patches via one assertion-guarded Python pass (per-file title guard; body bytes untouched)
+- [x] T005 Author full phrase sets for 3 title-only docs (the agent_improvement asset templates) and the full block for `heldout_and_gold_sets.md`
+- [x] T006 Apply tier policy: `important` on 7 formal contract/invariant docs (kept 4, added `evaluator_contract.md`, `promotion_rules.md`, and `heldout_and_gold_sets.md`); demoted `skill_benchmark/{operator_guide,scenario_authoring}.md` to `normal`
+- [x] T007 Apply all 22 patches via one assertion-guarded Python pass (per-file title guard; body bytes untouched)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,7 +71,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Coverage check green: `PASS mode=coverage scope=deep-improvement docs=27 carrying-detailed-block=27 violations=0`
+- [x] T008 Coverage check green: `PASS mode=coverage scope=deep-improvement docs=22 carrying-detailed-block=22 violations=0`
 - [x] T009 Python local-mode smoke with `SPECKIT_ADVISOR_DOC_TRIGGERS=true`: "legal-stop gate bundles" routes deep-improvement (0.77, passes_threshold) with `!legal-stop gate bundles(signal)`; live-daemon `matchedDocs` smoke rides packet 145 T025
 - [x] T010 Diff hygiene: this phase's hunks are frontmatter-only; pre-existing uncommitted body changes from another session left untouched
 <!-- /ANCHOR:phase-3 -->

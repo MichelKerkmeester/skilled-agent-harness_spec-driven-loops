@@ -18,9 +18,9 @@ The registry encodes the three-tier discriminator directly:
 | --- | --- | --- |
 | `workflowMode` | Public command/advisor/mode key carried by every mode | `.opencode/skills/deep-loop-workflows/mode-registry.json:5-7` |
 | `runtimeLoopType` | Runtime convergence key, valid only for graph-backed modes, explicit `null` for improvement/external modes | `.opencode/skills/deep-loop-workflows/mode-registry.json:7` |
-| `backendKind` | Backend selector: runtime convergence, improvement host, or external adapter | `.opencode/skills/deep-loop-workflows/mode-registry.json:8` |
+| `backendKind` | Backend selector: runtime convergence or improvement host | `.opencode/skills/deep-loop-workflows/mode-registry.json:8` |
 
-A consumer should resolve: alias/command text -> `workflowMode` -> registry mode row -> `packet` -> backend. For graph-backed rows, call `deep-loop-runtime/scripts/convergence.cjs --loop-type <runtimeLoopType>`; for improvement rows, call the improvement loop host or external adapter using `loopHostMode`. The hub’s routing pseudocode states exactly that (`.opencode/skills/deep-loop-workflows/SKILL.md:43-50`).
+A consumer should resolve: alias/command text -> `workflowMode` -> registry mode row -> `packet` -> backend. For graph-backed rows, call `deep-loop-runtime/scripts/convergence.cjs --loop-type <runtimeLoopType>`; for improvement rows, call the improvement loop host using `loopHostMode`. The hub’s routing pseudocode states exactly that (`.opencode/skills/deep-loop-workflows/SKILL.md:43-50`).
 
 The four graph-backed modes are explicit:
 
@@ -31,18 +31,17 @@ The four graph-backed modes are explicit:
 | `review` | `review` | `runtime-loop-type` | `deep-review` | `.opencode/skills/deep-loop-workflows/mode-registry.json:32-39` |
 | `ai-council` | `council` | `runtime-loop-type` | `ai-council` | `.opencode/skills/deep-loop-workflows/mode-registry.json:42-49` |
 
-The four improvement lanes all have `runtimeLoopType: null`; this is explicit and should remain non-inferable:
+The three improvement lanes all have `runtimeLoopType: null`; this is explicit and should remain non-inferable:
 
 | `workflowMode` | `runtimeLoopType` | `backendKind` | `loopHostMode` | Evidence |
 | --- | --- | --- | --- | --- |
 | `agent-improvement` | `null` | `improvement-host` | `agent-improvement` | `.opencode/skills/deep-loop-workflows/mode-registry.json:52-61` |
 | `model-benchmark` | `null` | `improvement-host` | `model-benchmark` | `.opencode/skills/deep-loop-workflows/mode-registry.json:64-72` |
 | `skill-benchmark` | `null` | `improvement-host` | `skill-benchmark` | `.opencode/skills/deep-loop-workflows/mode-registry.json:75-83` |
-| `ai-system-improvement` | `null` | `external-adapter` | `non-dev-ai-system-refine` | `.opencode/skills/deep-loop-workflows/mode-registry.json:86-95` |
 
 The runtime enforces the graph-backed loop types independently: `convergence.cjs` accepts only `research`, `review`, `council`, or `context` and rejects anything else (`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs:307-312`). Council gets its own council graph path while non-council modes use the coverage graph modules (`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs:318-321`). Research/context/review then branch into different signal evaluation paths (`.opencode/skills/deep-loop-runtime/scripts/convergence.cjs:366-386`).
 
-The improvement host is a separate backend, not a runtime loop type. Its valid `--mode` set is `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `non-dev-ai-system-refine` (`.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs:45`). It plans different script invocations per mode (`.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs:190-258`).
+The improvement host is a separate backend, not a runtime loop type. Its valid `--mode` set is `agent-improvement`, `model-benchmark`, and `skill-benchmark` (`.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs:45`). It plans different script invocations per mode (`.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs:190-258`).
 
 **Per-Mode Behavior Is Preserved**
 The packets still carry distinct mode contracts:
@@ -53,7 +52,7 @@ The packets still carry distinct mode contracts:
 | `deep-research` | Own `name: deep-research`, includes `WebFetch`, has research-specific `newInfoRatio` threshold semantics and warns thresholds are not interchangeable with siblings (`.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:1-37`) |
 | `deep-review` | Own `name: deep-review`, no WebFetch comment, code-review/P0-P1-P2 contract, command-owned state machine rules (`.opencode/skills/deep-loop-workflows/deep-review/SKILL.md:1-63`) |
 | `ai-council` | Folder is `ai-council` but packet name is `deep-ai-council`; planning-only council, multi-seat artifact persistence, no direct implementation (`.opencode/skills/deep-loop-workflows/ai-council/SKILL.md:1-14`, `.opencode/skills/deep-loop-workflows/ai-council/SKILL.md:64-72`) |
-| `deep-improvement` | Own four co-equal lanes and guarded promotion/evaluation contract (`.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md:1-41`) |
+| `deep-improvement` | Own three co-equal lanes and guarded promotion/evaluation contract (`.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md:1-41`) |
 
 The hub correctly says per-mode behavior is not flattened: packets keep convergence math, state shape, artifacts, and tool-permission guards (`.opencode/skills/deep-loop-workflows/SKILL.md:52`). That is the key parent-skill invariant.
 
@@ -101,8 +100,7 @@ Required per mode:
 | `artifactRoot` | Packet-local output/state namespace |
 | `backendKind` | Backend selector |
 | `runtimeLoopType` | Required string for `runtime-loop-type`, explicit `null` otherwise |
-| `loopHostMode` | Required for `improvement-host` and external adapter modes |
-| `externalLoopOwner` | Required for `external-adapter` |
+| `loopHostMode` | Required for `improvement-host` |
 | `mutationClass` | Required explicit guard, better than optional `mutating`; examples: `read-only`, `add-only`, `mutates`, `external-dry-run-default` |
 | `permissionProfile` or `allowedTools` | Machine-checkable summary of the mode’s tool boundary, validated against packet `SKILL.md` frontmatter |
 
@@ -127,7 +125,7 @@ One important guard: `loop-host.cjs` currently falls back unknown modes to `agen
 - `sk-doc` parent-skill definition: one discoverable hub, non-discoverable packets, mandatory registry, no per-mode logic in hub, no nested graph metadata, packet behavior stays local.
 - `/create:parent-skill` scaffolder: generate hub `SKILL.md`, `README.md`, `mode-registry.json`, root `graph-metadata.json`, packet folders, packet `SKILL.md` stubs, `shared/`, parity fixture skeletons, and validator config.
 - `/doctor:parent-skill` validator: check registry JSON, packet dirs, packet `SKILL.md name`, no nested `graph-metadata.json`, runtimeLoopType rules, backendKind required fields, alias uniqueness, command/agent paths, stale bare-path docs, advisor Python/TS parity against registry, and loop-host mode validity.
-- Routing/discovery benchmark: dogfood through `deep-improvement` skill-benchmark; fixtures should cover all 8 workflow modes, ambiguous research/review/council prompts, `ai-council` folder/name mismatch, improvement lane aliases, and assertion of `{skill: deep-loop-workflows, mode}`.
+- Routing/discovery benchmark: dogfood through `deep-improvement` skill-benchmark; fixtures should cover all 7 workflow modes, ambiguous research/review/council prompts, `ai-council` folder/name mismatch, improvement lane aliases, and assertion of `{skill: deep-loop-workflows, mode}`.
 - Shared boundary rule: parent-skill `shared/` is valid for packet-shared workflow-layer helpers; `shared/synthesis/resource-map.cjs` is explicitly workflow rendering, not runtime backend plumbing (`.opencode/skills/deep-loop-workflows/shared/synthesis/resource-map.cjs:4-9`).
 
 **Could Not Verify / Contradictions**
@@ -136,7 +134,7 @@ I could verify MCP-free runtime direction, but I could not verify the claim that
 I did not run tests, by design; this was read-only file research.
 
 ===RESEARCH-JSON===
-{"angle":"per-mode-contract","recommendation":"Pick model A: keep one advisor identity and make the advisor derive mode projections from mode-registry.json while leaving per-mode behavior inside packets.","model_pick":"A","key_findings":[{"claim":"The registry already encodes the three-tier discriminator workflowMode/runtimeLoopType/backendKind.","evidence":".opencode/skills/deep-loop-workflows/mode-registry.json:5-9","confidence":"high"},{"claim":"All four improvement lanes explicitly set runtimeLoopType to null; runtime-backed modes use context/research/review/council.","evidence":".opencode/skills/deep-loop-workflows/mode-registry.json:52-95","confidence":"high"},{"claim":"Advisor routing still hardcodes mode projection in Python instead of reading the registry.","evidence":".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2319-2324","confidence":"high"},{"claim":"TypeScript also has a hardcoded deep mode map that can drift from the registry.","evidence":".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:90-101","confidence":"high"},{"claim":"The one-identity model is protected by recursive graph-metadata discovery plus skill_id==folder validation, which makes nested discoverable packets the wrong default.","evidence":".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:601-658","confidence":"high"},{"claim":"Parity fixtures assert both merged skill and concrete mode, so registry-driven routing can preserve the existing observable contract.","evidence":".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts:5-10","confidence":"high"}],"risks":["Hub SKILL.md and README still contain stale bare packet paths while the registry uses deep-prefixed packet folders.","loop-host.cjs silently falls back unknown modes to agent-improvement; registry-driven callers should fail closed before invoking it.","The literal claim that deep-loop-runtime has no system-spec-kit dependency is contradicted by current graph metadata and loader paths; clarify the intended boundary."],"standardize":["sk-doc parent-skill definition: one hub identity, mandatory registry, non-discoverable packets, no hub per-mode logic.","/create:parent-skill scaffolder for hub, registry, root graph metadata, packet stubs, shared/, and parity tests.","/doctor:parent-skill validator for registry completeness, nested graph-metadata absence, packet name/path checks, backendKind/runtimeLoopType rules, alias uniqueness, advisor parity, and stale-path lint.","Routing/discovery benchmark covering all workflow modes and asserting {skill: deep-loop-workflows, mode}."],"open_questions":["Should registry add packetSkillName so accepted folder/name mismatches like ai-council/deep-ai-council are explicit?","Should mutation/tool boundaries be registry fields or derived from packet SKILL.md frontmatter?","Does runtime dependency policy mean no system-spec-kit MCP internals, or literally no system-spec-kit dependency?"]}
+{"angle":"per-mode-contract","recommendation":"Pick model A: keep one advisor identity and make the advisor derive mode projections from mode-registry.json while leaving per-mode behavior inside packets.","model_pick":"A","key_findings":[{"claim":"The registry already encodes the three-tier discriminator workflowMode/runtimeLoopType/backendKind.","evidence":".opencode/skills/deep-loop-workflows/mode-registry.json:5-9","confidence":"high"},{"claim":"All three improvement lanes explicitly set runtimeLoopType to null; runtime-backed modes use context/research/review/council.","evidence":".opencode/skills/deep-loop-workflows/mode-registry.json:52-95","confidence":"high"},{"claim":"Advisor routing still hardcodes mode projection in Python instead of reading the registry.","evidence":".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2319-2324","confidence":"high"},{"claim":"TypeScript also has a hardcoded deep mode map that can drift from the registry.","evidence":".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:90-101","confidence":"high"},{"claim":"The one-identity model is protected by recursive graph-metadata discovery plus skill_id==folder validation, which makes nested discoverable packets the wrong default.","evidence":".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:601-658","confidence":"high"},{"claim":"Parity fixtures assert both merged skill and concrete mode, so registry-driven routing can preserve the existing observable contract.","evidence":".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts:5-10","confidence":"high"}],"risks":["Hub SKILL.md and README still contain stale bare packet paths while the registry uses deep-prefixed packet folders.","loop-host.cjs silently falls back unknown modes to agent-improvement; registry-driven callers should fail closed before invoking it.","The literal claim that deep-loop-runtime has no system-spec-kit dependency is contradicted by current graph metadata and loader paths; clarify the intended boundary."],"standardize":["sk-doc parent-skill definition: one hub identity, mandatory registry, non-discoverable packets, no hub per-mode logic.","/create:parent-skill scaffolder for hub, registry, root graph metadata, packet stubs, shared/, and parity tests.","/doctor:parent-skill validator for registry completeness, nested graph-metadata absence, packet name/path checks, backendKind/runtimeLoopType rules, alias uniqueness, advisor parity, and stale-path lint.","Routing/discovery benchmark covering all workflow modes and asserting {skill: deep-loop-workflows, mode}."],"open_questions":["Should registry add packetSkillName so accepted folder/name mismatches like ai-council/deep-ai-council are explicit?","Should mutation/tool boundaries be registry fields or derived from packet SKILL.md frontmatter?","Does runtime dependency policy mean no system-spec-kit MCP internals, or literally no system-spec-kit dependency?"]}
 ===END===
 
 ## Structured output
@@ -153,7 +151,7 @@ I did not run tests, by design; this was read-only file research.
       "confidence": "high"
     },
     {
-      "claim": "All four improvement lanes explicitly set runtimeLoopType to null; runtime-backed modes use context/research/review/council.",
+      "claim": "All three improvement lanes explicitly set runtimeLoopType to null; runtime-backed modes use context/research/review/council.",
       "evidence": ".opencode/skills/deep-loop-workflows/mode-registry.json:52-95",
       "confidence": "high"
     },

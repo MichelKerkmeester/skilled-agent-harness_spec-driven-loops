@@ -58,8 +58,8 @@ The outcome is a consistent kebab-case benchmark resource taxonomy with updated 
 - Rename asset directories `behavior_benchmark/`, `model_benchmark/`, and `skill_benchmark/` to kebab-case.
 - Rename their fixture/template files, including `behavior_benchmark_baseline_template.md`, `behavior_benchmark_index_template.md`, `behavior_benchmark_scenario_template.md`, `model_benchmark_code_task_fixture_template.md`, `model_benchmark_pattern_fixture_template.md`, `model_benchmark_profile_template.md`, and `skill_benchmark_readme_template.md`.
 - Rename `assets/shared/benchmark_report_template.md` and `source_template.md` to kebab-case as packet-owned non-exempt assets.
-- Rename reference directories `agent_improvement/`, `behavior_benchmark/`, `model_benchmark/`, `non_dev_ai_system/`, and `skill_benchmark/` plus their underscore-bearing guide files.
-- Rename `agent_improvement_authoring_guide.md`, `behavior_benchmark_guide.md`, `model_benchmark_fixture_guide.md`, `non_dev_ai_system_authoring_guide.md`, and `skill_benchmark_storage_guide.md` to kebab-case.
+- Rename reference directories `agent_improvement/`, `behavior_benchmark/`, `model_benchmark/`, and `skill_benchmark/` plus their underscore-bearing guide files.
+- Rename `agent_improvement_authoring_guide.md`, `behavior_benchmark_guide.md`, `model_benchmark_fixture_guide.md`, and `skill_benchmark_storage_guide.md` to kebab-case.
 - Rename `references/shared/case_studies.md` and `worked_example.md`.
 - Update links and path values throughout the create-benchmark packet.
 
@@ -74,7 +74,7 @@ The outcome is a consistent kebab-case benchmark resource taxonomy with updated 
 |-----------|-------------|-------------|
 | `create-benchmark/assets/{behavior_benchmark,model_benchmark,skill_benchmark}/` | Rename/reference update | Convert three taxonomy directories and seven fixture/profile/template names |
 | `create-benchmark/assets/shared/{benchmark_report,source}_template.md` | Rename/reference update | Convert two packet-owned shared asset filenames |
-| `create-benchmark/references/{agent_improvement,behavior_benchmark,model_benchmark,non_dev_ai_system,skill_benchmark}/` | Rename/reference update | Convert taxonomy directories and guide filenames |
+| `create-benchmark/references/{agent_improvement,behavior_benchmark,model_benchmark,skill_benchmark}/` | Rename/reference update | Convert taxonomy directories and guide filenames |
 | `create-benchmark/references/shared/{case_studies,worked_example}.md` | Rename/reference update | Convert two shared reference filenames |
 | `create-benchmark/SKILL.md`, `README.md`, and docs | Modify | Repoint benchmark resource paths |
 <!-- /ANCHOR:scope -->

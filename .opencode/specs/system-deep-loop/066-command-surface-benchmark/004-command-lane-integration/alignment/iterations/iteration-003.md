@@ -16,10 +16,9 @@
 - `.opencode/commands/create/skill.md`
 - `.opencode/commands/deep/agent-improvement.md`
 - `.opencode/commands/deep/ai-council.md`
-- `.opencode/commands/deep/ai-system-improvement.md`
 - `.opencode/commands/deep/alignment.md`
 
-Remaining after this slice: 22
+Remaining after this slice: 21
 
 ## Findings - New
 
@@ -56,7 +55,6 @@ None.
 - `.opencode/commands/create/skill.md`
 - `.opencode/commands/deep/agent-improvement.md`
 - `.opencode/commands/deep/ai-council.md`
-- `.opencode/commands/deep/ai-system-improvement.md`
 - `.opencode/commands/deep/alignment.md`
 
 ## Ruled Out
@@ -66,4 +64,3 @@ None.
 ## Next Focus
 
 - Echo of partition-corpus.cjs: next unaudited slice for lane sk-doc::docs::.opencode/commands (batch 5); 22 remaining after this slice.
-

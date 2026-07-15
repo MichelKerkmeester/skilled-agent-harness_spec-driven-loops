@@ -4,7 +4,7 @@
 
 [S6-06] How should loop-cli's "clean failure with branch preserved beats merging unverified code" reshape the deep-improvement promote/rollback gate, and does that conflict with Kasper's auto-apply plus backup-rollback model?
 
-This iteration intentionally does not re-open the prior SpecKit closeout finding. Earlier registry entries already mapped loop-cli autopilot to `/speckit:complete` archive/merge behavior. The new target here is the deep-improvement promotion boundary: shared `promote-candidate.cjs`, rollback, promotion gate docs, and the cross-lane policy gap between Lane A/B direct canonical copy and Lane D kept-worktree promotion.
+This iteration intentionally does not re-open the prior SpecKit closeout finding. Earlier registry entries already mapped loop-cli autopilot to `/speckit:complete` archive/merge behavior. The new target here is the deep-improvement promotion boundary: shared `promote-candidate.cjs`, rollback, promotion gate docs, and the cross-lane policy gap between direct canonical copy and kept-worktree promotion.
 
 ## Actions Taken
 
@@ -12,7 +12,7 @@ This iteration intentionally does not re-open the prior SpecKit closeout finding
 2. Mined loop-cli autopilot for branch creation, verification-gated merge, merge-conflict abort, and failure policy.
 3. Mined Kasper for auto-update toggles, queued improvement generation, backup-before-mutation, rollback, inline markers, and restore messaging.
 4. Compared those reference mechanisms to deep-improvement's current shared promotion and rollback scripts plus promotion policy docs.
-5. Checked Lane D's existing deep-improvement worktree-isolation contract as an internal target precedent.
+5. Checked the existing deep-improvement worktree-isolation contract as an internal target precedent.
 
 ## Findings
 
@@ -56,13 +56,13 @@ Why it helps: deep-improvement should not import Kasper's default-on auto-apply 
 
 Port difficulty: easy. Tag: quick-win.
 
-### Rank 5 - Promote the Lane D kept-worktree precedent into the shared gate
+### Rank 5 - Promote the kept-worktree precedent into the shared gate
 
 Reference mechanism: loop-cli preserves the feature branch on failure and refuses unverified merge [SOURCE: `.opencode/specs/deep-loops/030-agent-loops-improved/external/loop-cli-main/.opencode/commands/ob-autopilot.md:74`]. Kasper proves local backup/rollback can still be useful for reversible edits [SOURCE: `.opencode/specs/deep-loops/030-agent-loops-improved/external/kasper/src/improvements.ts:49`; SOURCE: `.opencode/specs/deep-loops/030-agent-loops-improved/external/kasper/src/improvements.ts:90`; SOURCE: `.opencode/specs/deep-loops/030-agent-loops-improved/external/kasper/src/improvements.ts:101`].
 
 Exact OUR target file: `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md`.
 
-Why it helps: deep-improvement Lane D already says accepted candidates stay in a kept worktree for deliberate operator merge, rejected candidates are cleaned, and the first accepted promotion stops the session. The shared promotion rules should generalize that posture across lanes: accepted means "verified and preserved for merge," rejected means "cleaned or rolled back," and canonical overwrite is a separate, evidence-backed shipping operation.
+Why it helps: deep-improvement's kept-worktree precedent says accepted candidates stay isolated for deliberate operator merge, rejected candidates are cleaned, and the first accepted promotion stops the session. The shared promotion rules should generalize that posture across lanes: accepted means "verified and preserved for merge," rejected means "cleaned or rolled back," and canonical overwrite is a separate, evidence-backed shipping operation.
 
 Port difficulty: med. Tag: deep-rewrite.
 
@@ -74,7 +74,7 @@ Port difficulty: med. Tag: deep-rewrite.
 
 ## Questions Remaining
 
-- Should Lane A/B use real `git worktree` isolation, a feature branch in the main worktree, or the existing archive directory plus a separate finalizer?
+- Should the direct-copy lanes use real `git worktree` isolation, a feature branch in the main worktree, or the existing archive directory plus a separate finalizer?
 - Which state schema should record `candidate_kept_unmerged`, `promotion_blocked_branch_preserved`, and `rolled_back_local_candidate` so reducers and dashboards can render them without ambiguity?
 - How should mirror-sync rollback interact with a preserved branch/worktree when one runtime mirror lands and another fails?
 

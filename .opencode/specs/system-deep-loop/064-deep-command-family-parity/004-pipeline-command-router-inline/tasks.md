@@ -75,7 +75,7 @@ _memory:
 - [ ] T011 Live `:auto` smoke test of `research` + `review` before any merge (setup-resolved, no Gate-3 halt, route-proof) [Evidence: pending]
 
 ### Documentation
-- [ ] T012 Command conformance across all 8 deep commands (`validate_document.py --type command` → exit 0 each) [Evidence: pending]
+- [ ] T012 Command conformance across all 7 deep commands (`validate_document.py --type command` → exit 0 each) [Evidence: pending]
 - [ ] T013 `validate.sh --strict` on this child + roll up the 064 parent Phase Documentation Map [Evidence: pending]
 
 <!-- /ANCHOR:phase-3 -->

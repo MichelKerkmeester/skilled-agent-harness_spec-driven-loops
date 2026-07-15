@@ -73,7 +73,7 @@ Validate and stress-test the merge design for folding `deep-loop-runtime` into `
 
 <!-- ANCHOR:ruled-out-directions -->
 ## 9. RULED OUT DIRECTIONS
-- Add `runtime/` as an eighth workflow mode: ruled out because runtime is backend infrastructure and the public mode registry already models workflow modes separately (iteration 1, evidence: `.opencode/skills/deep-loop-workflows/mode-registry.json:19`).
+- Add `runtime/` as a seventh workflow mode: ruled out because runtime is backend infrastructure and the public mode registry already models workflow modes separately (iteration 1, evidence: `.opencode/skills/deep-loop-workflows/mode-registry.json:19`).
 - Blind repo-wide find/replace of old skill names: ruled out because generated contracts, advisor fields, graph edges, and historical eval fixtures need different handling (iteration 2, evidence: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:795`).
 - Make child 004 mandatory inside the structural merge without operator scope expansion: ruled out because it is behavior expansion requiring registry/schema, caller approval, model-id normalization, and attribution changes (iteration 3, evidence: `.opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:42`).
 - Continue to a fifth iteration: ruled out because all key questions are answered, the minimum floor is met, and the convergence pass produced no new contradictions (iteration 4, evidence: `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md:49`).

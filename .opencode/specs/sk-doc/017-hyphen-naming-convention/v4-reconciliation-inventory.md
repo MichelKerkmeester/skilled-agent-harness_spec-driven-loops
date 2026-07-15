@@ -93,7 +93,7 @@ Commit `65620f2fe6` added a 5th benchmark taxonomy under `sk-doc/create-benchmar
 
 The 017 phase `008/003-sk-doc/003-create-packets/007-create-benchmark` (authored 2026-07-14) enumerates
 taxonomies **by name** — `behavior_benchmark`, `model_benchmark`, `skill_benchmark`, `agent_improvement`,
-`non_dev_ai_system`, `shared` — and **does not list `conformance_benchmark`**. Its rename map therefore
+`shared` — and **does not list `conformance_benchmark`**. Its rename map therefore
 misses these 5 paths. **Action:** extend that phase's In-Scope + Files-to-Change to add the
 `conformance_benchmark/` directory, its 4 asset templates, and its 1 reference guide (kebab targets:
 `conformance-benchmark/conformance-benchmark-{contract,fixture-manifest,lane-config,readme}-template.md`,

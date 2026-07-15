@@ -36,13 +36,13 @@ This bias operates on **framing and emphasis of accurate evidence**, not on evid
 
 ## 4. Mode D — From Hypothesis to Confirmed Instance
 
-Every one of the 8 `/deep:*` command entrypoint files (`research`, `review`, `context`, `ai-council`, `skill-benchmark`, `agent-improvement`, `model-benchmark`, `ai-system-improvement`) opens with an identical-shaped "Phase 0: @GENERAL AGENT VERIFICATION" self-check: "Are you operating as the @general agent?" with fuzzy multi-bullet indicators, and "IF NO or UNCERTAIN: HARD BLOCK." [SOURCE: .opencode/commands/deep/research.md:39-72; .opencode/commands/deep/review.md:25-58] This is exactly glm-max's Mode D definition — soft advisory command-prose functioning as a hard, model-administered gate.
+Every one of the 7 surviving `/deep:*` command entrypoint files (`research`, `review`, `context`, `ai-council`, `skill-benchmark`, `agent-improvement`, `model-benchmark`) opens with an identical-shaped "Phase 0: @GENERAL AGENT VERIFICATION" self-check: "Are you operating as the @general agent?" with fuzzy multi-bullet indicators, and "IF NO or UNCERTAIN: HARD BLOCK." [SOURCE: .opencode/commands/deep/research.md:39-72; .opencode/commands/deep/review.md:25-58] This is exactly glm-max's Mode D definition — soft advisory command-prose functioning as a hard, model-administered gate.
 
 Phase 005's own results table records the `research` mode's failure as: "Halted at Phase 0... FAIL: `GENERAL AGENT REQUIRED failure`" [SOURCE: 005-gpt-verification-smoke/verification-smoke.md:119] — the literal `STATUS=FAIL ERROR="General agent required"` string this exact Phase 0 block returns [research.md:71]. **One of phase 005's four already-observed GPT dispatch failures is a directly-confirmed, already-fired instance of Mode D**, not an inferred mechanism awaiting future measurement. Causation is very likely (the error string is specific and appears nowhere else as a failure label; no transcript is available to prove the model's actual reasoning at that step, so this is stated as "very likely," not "certain").
 
 glm-max's own citation for Mode D (`loop_protocol.md:166-180`) is, on direct re-read, about convergence/quality-guard/pause-sentinel logic — a different, more abstract mechanism, not the Phase-0 self-check. glm-max's intuition was correct; its evidence citation pointed at the wrong section.
 
-**Concrete fix** (see §7, Deliverable 1): replace the self-assessment question with a deterministic dispatch-context signal, applied identically across all 8 command files — a new, concrete KQ8 propagation target neither prior lineage named.
+**Concrete fix** (see §7, Deliverable 1): replace the self-assessment question with a deterministic dispatch-context signal, applied identically across all 7 command files — a new, concrete KQ8 propagation target neither prior lineage named.
 
 ## 5. The ai-council Route-Proof Bug Is Code-Traced, Not a Registry Drift
 
@@ -59,7 +59,7 @@ Both prior lineages' KQ6 answer (4 modes x 2 models, route-proof + latency) is s
 
 ## 7. Implementation-Ready Deliverables
 
-**Deliverable 1 — Mode D fix.** Replace the Phase 0 self-assessment gate in all 8 `/deep:*` command files with a deterministic dispatch-context check (was this file invoked directly as a command, or handed to a sub-agent via Task delegation?) rather than a fuzzy self-classification question. Full proposed replacement text: `iterations/iteration-007.md` Deliverable 1.
+**Deliverable 1 — Mode D fix.** Replace the Phase 0 self-assessment gate in all 7 `/deep:*` command files with a deterministic dispatch-context check (was this file invoked directly as a command, or handed to a sub-agent via Task delegation?) rather than a fuzzy self-classification question. Full proposed replacement text: `iterations/iteration-007.md` Deliverable 1.
 
 **Deliverable 2 — ai-council validator fix.** In `deep_ai-council_auto.yaml:132-136`, change `route_proof.mode`/`target_agent`/`resolved_route` to mirror the emitter block at `:117-118` exactly (`mode: ai-council`, `target_agent: "@ai-council"`). A 4-line value change, zero structural risk. Sequence before the KQ1/KQ6 benchmark.
 

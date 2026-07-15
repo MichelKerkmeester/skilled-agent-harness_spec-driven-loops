@@ -19,13 +19,13 @@
 
 ## 1. Severe finding: Stage 2's `SKILL.md → README.md` demotion will destroy real content
 
-`deep-loop-runtime/README.md` **already exists** (18,543 bytes, real distinct content — "the pre-existing operator-facing overview") alongside `SKILL.md` (22,320 bytes, the routable-skill identity file). Confirmed via direct `ls`/`head`. Phase 002's plan says, verbatim: *"demote `runtime/SKILL.md` → `runtime/README.md` (strip routable-skill frontmatter, keep content)"* — written as if `README.md` doesn't already exist. As literally written this either silently overwrites real content or fails outright on `git mv` to an existing target. Compounding: `deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json` (a live, consumed Lane-D self-benchmark config, reached via `/deep:ai-system-improvement --self-target deep-loop-runtime`) has `"frozen_surface": [{"live_relpath": "SKILL.md", "section_anchor": "## 3. HOW IT WORKS", ...}]` — already treating SKILL.md and README.md as two distinct, differently-roled artifacts. Neither phase 002 nor 003's plan names this file anywhere; grep-based verification (REQ-002's `.cjs`/`.ts`-only pattern) is structurally blind to it since the breakage is a *rename decision*, not a *skill-name string*.
+`deep-loop-runtime/README.md` **already exists** (18,543 bytes, real distinct content — "the pre-existing operator-facing overview") alongside `SKILL.md` (22,320 bytes, the routable-skill identity file). Confirmed via direct `ls`/`head`. Phase 002's plan says, verbatim: *"demote `runtime/SKILL.md` → `runtime/README.md` (strip routable-skill frontmatter, keep content)"* — written as if `README.md` doesn't already exist. As literally written this either silently overwrites real content or fails outright on `git mv` to an existing target.
 
-**Required fix**: rewrite Stage 2 to explicitly reconcile the two files (merge content, or keep README.md as-is and give SKILL.md's content a different destination) before any `git mv` runs. Add the Lane-D profile as an explicit Stage 3b/003 fix target.
+**Required fix**: rewrite Stage 2 to explicitly reconcile the two files (merge content, or keep README.md as-is and give SKILL.md's content a different destination) before any `git mv` runs.
 
 ## 2. Both structural-move site inventories undercount
 
-**Forward coupling (Class A)**: `compile-command-contracts.cjs` has 44 literals per direct count (confirmed both by my own agent and independently by the raw fanout registry, which counted ~50 — the discrepancy is likely inclusive/exclusive counting of 2 additional self-referencing literals at lines 22-23 pointing at `executor-audit.ts`/`post-dispatch-validate.ts`, rendered into contract markdown, not `sha256File`-checked, so non-crashing but leaves dead paths in every compiled `/deep:*` contract). `runtime/tests/unit/` has **10** files referencing the old name, not 7 — 3 extra (`meta-loop-lane-d-packaging.vitest.ts`, `check-contract-drift.vitest.ts`, `prompt-pack.vitest.ts` — the last also hardcodes a machine-specific absolute path, a pre-existing portability issue). `render-command-contract.cjs` needs a **second** edit beyond its one documented `require()` fix — its own `WORKSPACE_ROOT` constant.
+**Forward coupling (Class A)**: `compile-command-contracts.cjs` has 44 literals per direct count (confirmed both by my own agent and independently by the raw fanout registry, which counted ~50 — the discrepancy is likely inclusive/exclusive counting of 2 additional self-referencing literals at lines 22-23 pointing at `executor-audit.ts`/`post-dispatch-validate.ts`, rendered into contract markdown, not `sha256File`-checked, so non-crashing but leaves dead paths in every compiled `/deep:*` contract). `runtime/tests/unit/` has **9** files referencing the old name, not 7 — 2 extra (`check-contract-drift.vitest.ts`, `prompt-pack.vitest.ts`; the last also hardcodes a machine-specific absolute path, a pre-existing portability issue). `render-command-contract.cjs` needs a **second** edit beyond its one documented `require()` fix — its own `WORKSPACE_ROOT` constant.
 
 **Reverse coupling (Class B)**: 16 code files reference `deep-loop-runtime`, not 12 — missing: `deep-ai-council/scripts/orchestrate-session.cjs` (3 requires), `deep-research/scripts/runtime-capabilities.cjs`, `deep-review/scripts/{reduce-state,runtime-capabilities}.cjs`. One file (`deep-ai-council/scripts/replay-graph-from-artifacts.cjs`) needs a **different fix shape entirely** — a repo-root-detection walk that needs a segment *inserted*, not hop-decremented; the plan's binary Class A/B framework has no bucket for it. None of `orchestrate-session.cjs`, `replay-graph-from-artifacts.cjs`, or 7 `deep-ai-council/scripts/tests/*.vitest.ts` files are covered by any wired `npm test` — if a fix here is subtly wrong, no automated gate catches it.
 
@@ -59,7 +59,7 @@ Two more sibling-graph bugs found, distinct from Stage G's described "collapse d
 
 Independent re-count: 923 hits / 142 files vs. the plan's "~948" — within 2.7%, confirmed accurate. CI/CD category confirmed exhaustive (exactly 1 GitHub Actions workflow, correctly paired with the pre-commit hook). Agent duplicate (`.opencode/agents` vs `.claude/agents`) confirmed byte-identical filename sets, both real. `parent-skill-check.cjs`'s "highest priority, silent-degradation" framing substantiated by code read (a missed edit there doesn't throw — it silently falls back to a weaker generic-hub branch). The prefix-derivation exception (`skill-parent.md`'s "deep- for deep-loop-workflows" teaching example) is concretely real and needs the caveat as planned.
 
-**Unowned by any stage**: 2 command files (`skill-benchmark.md`, `ai-system-improvement.md`) carry their own `skill: deep-loop-workflows` frontmatter, structurally identical to what Stage D/E track elsewhere, but named nowhere. 2 more source YAMLs (`deep_model-benchmark_{auto,confirm}.yaml`) undercounted from Stage E's "8 files" (should be 10). The Lane-D self-target profile from §1 is also unowned here.
+**Unowned by any stage**: 1 command file (`skill-benchmark.md`) carries its own `skill: deep-loop-workflows` frontmatter, structurally identical to what Stage D/E track elsewhere, but named nowhere. 2 more source YAMLs (`deep_model-benchmark_{auto,confirm}.yaml`) undercounted from Stage E's "8 files" (should be 10).
 
 ## 7. `fallback-router.ts` (phase 004) — recommend staying deferred, and the "one call site" framing undersells the real work
 
@@ -74,12 +74,11 @@ Confirmed zero real callers (only its own test files). Confirmed real design gap
 ## Revision checklist before executing phase 002
 
 1. Rewrite Stage 2's SKILL.md/README.md handling (§1) — highest priority, prevents real content loss on the irreversible step.
-2. Add the Lane-D self-target profile (`non_dev_ai_system/profiles/deep-loop-runtime.json`) as an explicit fix target.
-3. Expand Stage 3a/3b's file tables per §2; special-case `dependency-seams.vitest.ts`.
-4. Add `council-playbook-anchor-integrity.vitest.ts` as a fifth Stage 3b row, or explicitly scope 002's `test:council` gate to tolerate it until 003 lands.
-5. Rebaseline 002's Definition of Done against the real, currently-red test states (§3) — do not compare against the stale 47/379 figure.
-6. Fix the B.2 sequencing gap (§4): pull the command-router fix forward, or bypass `/deep:*` for live-verification; specify `cli-opencode` (not `cli-claude-code`) for that step.
-7. Add `gold`/`expectedSkill` fields and the 2 extra regression gates to Stage I's file list (§5); note `score-routing-corpus.py`'s pre-existing broken import.
+2. Expand Stage 3a/3b's file tables per §2; special-case `dependency-seams.vitest.ts`.
+3. Add `council-playbook-anchor-integrity.vitest.ts` as a fifth Stage 3b row, or explicitly scope 002's `test:council` gate to tolerate it until 003 lands.
+4. Rebaseline 002's Definition of Done against the real, currently-red test states (§3) — do not compare against the stale 47/379 figure.
+5. Fix the B.2 sequencing gap (§4): pull the command-router fix forward, or bypass `/deep:*` for live-verification; specify `cli-opencode` (not `cli-claude-code`) for that step.
+6. Add `gold`/`expectedSkill` fields and the 2 extra regression gates to Stage I's file list (§5); note `score-routing-corpus.py`'s pre-existing broken import.
 8. Add Stage G's dedup-vs-preserve nuance (§5) and the `skill-graph.json` self-loop deletion.
 9. Add the 4 unowned files from §6 to Stage D/E/F's lists.
 10. Leave phase 004 deferred as currently scoped; do not execute it without rewriting its plan first (§7).

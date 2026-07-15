@@ -66,7 +66,6 @@ _memory:
 - [ ] T006 Update constitutional deep workflow rule to name the merged workflow skill and preserved commands. (`.opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md`)
 - [ ] T007 Update sibling related-skill and protocol-link docs for system-spec-kit and cli-opencode. (`.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/README.md`)
 - [ ] T008 Stamp the merged hub v1.0.0 and preserve mode changelog history. (`.opencode/skills/deep-loop-workflows/SKILL.md`, `.opencode/skills/deep-loop-workflows/graph-metadata.json`)
-- [ ] T009 Handle Lane-D SYNC.md and optional loop.py doc/comment surfaces if present. (`SYNC.md`, `loop.py`)
 - [ ] T010 Run final stale-reference, validation, and parity gates. (`README.md`, `.opencode/skills/README.md`)
 
 <!-- /ANCHOR:phase-2 -->
@@ -75,7 +74,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T013 Run the parity check: Use the phase-001 baseline manifest and harness to rerun all five mode artifact checks and eight /deep:* command-output checks before and after phase-008 edits; hashes must match byte-for-byte. Also prove the diff is documentation-only by restricting changed files to the phase-008 doc list and excluding command YAML, agents, runtime scripts/lib, advisor code, Barter contracts, description.json, and nested mode graph-metadata.json. Finally run stale skill-path grep for .opencode/skills/deep-{research,review,context,ai-council,improvement}/ across the phase-008 target docs, excluding approved changelog history.
+- [ ] T013 Run the parity check: Use the phase-001 baseline manifest and harness to rerun all five mode artifact checks and seven /deep:* command-output checks before and after phase-008 edits; hashes must match byte-for-byte. Also prove the diff is documentation-only by restricting changed files to the phase-008 doc list and excluding command YAML, agents, runtime scripts/lib, advisor code, Barter contracts, description.json, and nested mode graph-metadata.json. Finally run stale skill-path grep for .opencode/skills/deep-{research,review,context,ai-council,improvement}/ across the phase-008 target docs, excluding approved changelog history.
 - [ ] T014 `validate.sh --strict` on this phase folder
 - [ ] T015 Confirm the phase success criteria in `spec.md` are met
 

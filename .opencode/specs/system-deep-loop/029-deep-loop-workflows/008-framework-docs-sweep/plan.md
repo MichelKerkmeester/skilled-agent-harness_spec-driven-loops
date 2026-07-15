@@ -79,7 +79,7 @@ Gated phase in the deep-loop-workflows merge pipeline. Additive/reversible (old 
 - **G1** (gpt seats): Root-facing public catalog docs that can be drafted independently.
 - **G2** (opus seats): Mirrored policy docs edited as a single unit to avoid drift.
 - **G3** (gpt seats): Frozen runtime documentation rewrite.
-- **G4** (mixed seats): Constitutional, sibling related-skill, protocol-link, and optional external Lane-D doc surfaces.
+- **G4** (mixed seats): Constitutional, sibling related-skill, and protocol-link doc surfaces.
 - **G5** (opus seats): Hub version/changelog stamp plus final validation and parity integration.
 
 ### Read/Write Split
@@ -104,7 +104,7 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 - [ ] T6 Update constitutional deep workflow rule to name the merged workflow skill and preserved commands. (`.opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md`) — _verify:_ Trigger/rule text includes deep-loop-workflows and preserved commands; old folder names are not presented as loadable skills.
 - [ ] T7 Update sibling related-skill and protocol-link docs for system-spec-kit and cli-opencode. (`.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/README.md`, `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`) — _verify:_ rg for .opencode/skills/deep-{research,review,context,ai-council,improvement}/ over these files returns empty while artifact filename references remain intact.
 - [ ] T8 Stamp the merged hub v1.0.0 and preserve mode changelog history. (`.opencode/skills/deep-loop-workflows/SKILL.md`, `.opencode/skills/deep-loop-workflows/graph-metadata.json`, `.opencode/skills/deep-loop-workflows/changelog/v1.0.0.md`) — _verify:_ Hub version is 1.0.0, only hub graph metadata exists, and per-mode changelog file hashes are unchanged from baseline snapshots.
-- [ ] T9 Handle Lane-D SYNC.md and optional loop.py doc/comment surfaces if present. (`SYNC.md`, `loop.py`) — _verify:_ rg --files -g SYNC.md -g loop.py evidence captured and git diff shows no contract-version bump.
+- [ ] T9 Handle external packaging documentation surfaces only if present. (`SYNC.md`, `loop.py`) — _verify:_ rg --files -g SYNC.md -g loop.py evidence captured and git diff shows no contract-version bump.
 - [ ] T10 Run final stale-reference, validation, and parity gates. (`README.md`, `.opencode/skills/README.md`, `CLAUDE.md`) — _verify:_ Phase-001 parity harness is byte-identical, stale path grep is clean with approved excludes, no Barter contract bump, and phase 008 validate.sh --strict exits 0.
 
 ### Phase 3: Verification
@@ -119,7 +119,7 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 
 | Test Type | Scope | Method |
 |-----------|-------|--------|
-| Parity | This phase's affected modes/surfaces | Use the phase-001 baseline manifest and harness to rerun all five mode artifact checks and eight /deep:* command-output checks before and after phase-008 edits; hashes must match byte-for-byte. Also prove the diff is documentation-only by restricting changed files to the phase-008 doc list and excluding command YAML, agents, runtime scripts/lib, advisor code, Barter contracts, description.json, and nested mode graph-metadata.json. Finally run stale skill-path grep for .opencode/skills/deep-{research,review,context,ai-council,improvement}/ across the phase-008 target docs, excluding approved changelog history. |
+| Parity | This phase's affected modes/surfaces | Use the phase-001 baseline manifest and harness to rerun all five mode artifact checks and seven /deep:* command-output checks before and after phase-008 edits; hashes must match byte-for-byte. Also prove the diff is documentation-only by restricting changed files to the phase-008 doc list and excluding command YAML, agents, runtime scripts/lib, advisor code, Barter contracts, description.json, and nested mode graph-metadata.json. Finally run stale skill-path grep for .opencode/skills/deep-{research,review,context,ai-council,improvement}/ across the phase-008 target docs, excluding approved changelog history. |
 | Structural | Spec docs | `validate.sh --strict` |
 
 <!-- /ANCHOR:testing -->

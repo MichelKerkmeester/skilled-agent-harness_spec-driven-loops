@@ -28,7 +28,7 @@ The workflows did not have a shared convergence-profile schema, a cross-mode ant
 
 **After**
 
-Deep research now has a gated minimum-iteration STOP guard and convergence mode, while the workflow stack has a shared convergence-profile schema and explicit anti-convergence blocks across modes. Runtime capabilities enforce fail-closed stop policy where configured. The reducer now carries question origin provenance, resolves generated-question conflicts and records rejected ideas with exact plus fuzzy suppression and reversal events. Ideas now start as observed and promote only after enough observations. Coverage graphs can seed from code graph with source and confidence fields. Deep improvement now emits outcome score deltas and fixture deltas, gates promotion on deltas, separates accept from ship, preserves branches on failure and has rollback support. Lane-D packaging, a self-target guard and dormant wave-fanout schema landed with flat-pool behavior preserved by default.
+Deep research now has a gated minimum-iteration STOP guard and convergence mode, while the workflow stack has a shared convergence-profile schema and explicit anti-convergence blocks across modes. Runtime capabilities enforce fail-closed stop policy where configured. The reducer now carries question origin provenance, resolves generated-question conflicts and records rejected ideas with exact plus fuzzy suppression and reversal events. Ideas now start as observed and promote only after enough observations. Coverage graphs can seed from code graph with source and confidence fields. Deep improvement now emits outcome score deltas and fixture deltas, gates promotion on deltas, separates accept from ship, preserves branches on failure and has rollback support. The dormant wave-fanout schema landed with flat-pool behavior preserved by default.
 
 **Impact**
 
@@ -48,7 +48,6 @@ The workflows now converge with more explicit policy and better evidence. A loop
 | `008-code-graph-coverage-bridge` | Complete | Seed coverage-graph from code-graph at loop init: seed_source/seed_confidence DB schema in coverage-graph-db.ts + --seed-source/--seed-confidence on upsert.cjs + init seed steps in deep_context_auto.yaml/deep_review_auto.yaml. Tests pass; typecheck/hygiene/drift green. |
 | `009-loop-quality-benchmark` | Complete | Emit outcomeScoreDelta + fixtureDeltas[] helped/hurt plus a delta promotion gate across run-benchmark.cjs / shared reduce-state.cjs / promote-candidate.cjs. 388 deep-improvement tests pass; hygiene/drift clean. |
 | `010-deep-improvement-accepted-vs-shipped` | Complete | Two-phase promotion (accept vs ship) with branch-preserved failure + a new rollback-candidate.cjs, in promote-candidate.cjs (+ promotion gate/rules docs + config). 388 deep-improvement tests pass; hygiene/drift clean. |
-| `011-meta-loop-lane-d-packaging` | Complete | Lane-D packaging: deep-loop-runtime profile JSON + packaging schema + loop_contract refresh + --self-target guard in ai-system-improvement. Contract test passes; strict validate + hygiene/drift clean. |
 | `012-push-wave-fanout` | Complete | depends_on/touches/assignment_model schema in executor-config.ts + flat_pool guard + dormant wave-planner interface stub in fanout-pool/fanout-run. Default flat_pool keeps existing behavior; typecheck + fanout tests 97/97; drift clean. |
 
 ### Added

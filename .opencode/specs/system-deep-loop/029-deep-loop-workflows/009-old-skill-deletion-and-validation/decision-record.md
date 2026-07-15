@@ -34,7 +34,7 @@ contextType: "implementation"
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-CHK-065 required a full phase-001 parity rerun that is byte-identical for all five deep-loop modes and eight deep commands. The phase-001 baseline at `001-parity-baseline-and-runtime-ownership-adr/baseline/file-hashes.txt` holds 924 SHA-256 hashes, but those hashes are PRE-merge source-file hashes captured at the OLD paths (for instance `deep/ask-ai-council.md`, which the merge renamed to `deep/ai-council.md`, and the `deep_start-*-loop_*.yaml` command assets). The 152 merge intentionally moved, renamed, and path-rewrote the entire deep-loop surface into `deep-loop-runtime` plus `deep-loop-workflows`. Re-hashing the current tree against that baseline therefore reports roughly 924 expected mismatches, none of which signal a regression.
+CHK-065 required a full phase-001 parity rerun that is byte-identical for all five deep-loop modes and seven deep commands. The phase-001 baseline at `001-parity-baseline-and-runtime-ownership-adr/baseline/file-hashes.txt` holds 924 SHA-256 hashes, but those hashes are PRE-merge source-file hashes captured at the OLD paths (for instance `deep/ask-ai-council.md`, which the merge renamed to `deep/ai-council.md`, and the `deep_start-*-loop_*.yaml` command assets). The 152 merge intentionally moved, renamed, and path-rewrote the entire deep-loop surface into `deep-loop-runtime` plus `deep-loop-workflows`. Re-hashing the current tree against that baseline therefore reports roughly 924 expected mismatches, none of which signal a regression.
 
 ### Constraints
 

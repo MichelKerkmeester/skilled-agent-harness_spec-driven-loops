@@ -1,6 +1,6 @@
 ---
 title: "Implementation: Deep-Loop-Workflows Improvements"
-description: "Phased implementation of the 12 deep-loop-workflows recommendations mined from loop-cli-main and kasper: anti-convergence floors, convergence ADRs, injection inbox, conflict resolution, rejected-pattern cache, ideas lifecycle, code-graph seed bridge, benchmark quality, accepted-vs-shipped split, Lane D packaging, and push-wave guard."
+description: "Phased implementation of the 11 active deep-loop-workflows recommendations mined from loop-cli-main and kasper: anti-convergence floors, convergence ADRs, injection inbox, conflict resolution, rejected-pattern cache, ideas lifecycle, code-graph seed bridge, benchmark quality, accepted-vs-shipped split, and push-wave guard."
 trigger_phrases:
   - "deep loop workflows improvements"
   - "003 deep loop workflows"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-sonnet"
-    recent_action: "Authored parent spec.md and all 12 leaf spec.md files from research.md §5.2"
+    recent_action: "Authored parent spec.md and all 11 active leaf spec.md files from research.md §5.2"
     next_safe_action: "Phase complete; all sub-phases shipped"
     blockers: []
     key_files:
@@ -49,7 +49,7 @@ _memory:
 | **Parent Packet** | system-deep-loop/030-deep-loop-improved |
 | **Predecessor** | 002-deep-loop-runtime (sibling subsystem) |
 | **Successor** | 004-system-spec-kit (sibling subsystem) |
-| **Handoff Criteria** | Each of the 12 child phases passes `validate.sh` independently; the subsystem passes `validate.sh --recursive` |
+| **Handoff Criteria** | Each of the 11 active child phases passes `validate.sh` independently; the subsystem passes `validate.sh --recursive` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -58,12 +58,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration reference-research run: no anti-convergence floor, no unified convergence contract, no injection inbox with provenance, an unresolved anchor-ownership overwrite race, no rejected-pattern cache, no idea lifecycle, an empty coverage-graph initialization, a benchmark that gates on pass/fail rather than improvement-over-baseline, merged accept/ship promotion steps with no separate gate, no Lane D self-improvement packaging, and a FIFO fan-out with no dependency or write-domain awareness.
+The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 11 distinct gaps identified in the 51-iteration reference-research run: no anti-convergence floor, no unified convergence contract, no injection inbox with provenance, an unresolved anchor-ownership overwrite race, no rejected-pattern cache, no idea lifecycle, an empty coverage-graph initialization, a benchmark that gates on pass/fail rather than improvement-over-baseline, merged accept/ship promotion steps with no separate gate, and a FIFO fan-out with no dependency or write-domain awareness.
 
 ### Purpose
-Apply all 12 deep-loop-workflows improvements as independently executable phases, each with its own spec, plan, tasks, and implementation-summary, sequenced by dependency order from the reference research.
+Apply all 11 active deep-loop-workflows improvements as independently executable phases, each with its own spec, plan, tasks, and implementation-summary, sequenced by dependency order from the reference research.
 
-> **Phase-parent note:** This spec.md is the ONLY authored document at the subsystem level. All detailed planning, task breakdowns, checklists, and decisions live in the 12 child phase folders listed in the Phase Documentation Map below.
+> **Phase-parent note:** This spec.md is the ONLY authored document at the subsystem level. All detailed planning, task breakdowns, checklists, and decisions live in the 11 active child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -72,8 +72,8 @@ Apply all 12 deep-loop-workflows improvements as independently executable phases
 ## 3. SCOPE
 
 ### In Scope
-- All 12 deep-loop-workflows improvements from research.md §5.2, each as an independently executable child phase
-- Dependency ordering: quick-win/ADR phases (001–008, 011) precede deep-rewrite phases (005, 010, 012); push-wave (012) sequences last
+- All 11 active deep-loop-workflows improvements from research.md §5.2, each as an independently executable child phase; one retired child remains archived
+- Dependency ordering: quick-win/ADR phases (001–009) precede deep-rewrite phase 010; push-wave (012) sequences last
 
 ### Out of Scope
 - Deep-loop-runtime improvements — handled in sibling subsystem 002-deep-loop-runtime
@@ -112,7 +112,6 @@ Per-phase detail lives in each child's plan.md. Subsystem-level audit trail:
 | 008 | `008-code-graph-coverage-bridge/` | Code-graph → coverage-graph seeding before first convergence check; `seed_source`/`seed_confidence` | Complete |
 | 009 | `009-loop-quality-benchmark/` | `outcomeScoreDelta` + `fixtureDeltas[]` in benchmark; promotion gate on improvement-over-baseline | Complete |
 | 010 | `010-deep-improvement-accepted-vs-shipped/` | Split accept (preserve) from ship (merge); `promotion_blocked_branch_preserved`; `rollback-candidate.cjs` | Complete |
-| 011 | `011-meta-loop-lane-d-packaging/` | Lane D packaging profile for `deep-loop-runtime` + `--self-target` guard | Complete |
 | 012 | `012-push-wave-fanout/` | `depends_on`/`touches` schema + `flat_pool` guard; wave planner interface stub (not activated) | Complete |
 
 ### Phase Transition Rules
@@ -135,8 +134,7 @@ Per-phase detail lives in each child's plan.md. Subsystem-level audit trail:
 | 007 | 008 | Three-part idea lifecycle events in JSONL; reducer owns promotion | validate.sh on 007 |
 | 008 | 009 | Coverage graph seeded before first convergence check; seeded nodes carry metadata | validate.sh on 008 |
 | 009 | 010 | `outcomeScoreDelta` gate in promotion; helped/hurt in benchmark report | validate.sh on 009 |
-| 010 | 011 | Two-phase promotion; `rollback-candidate.cjs` present | validate.sh on 010 |
-| 011 | 012 | `deep-loop-runtime.json` profile validates; `--self-target` guard in command | validate.sh on 011 |
+| 010 | 012 | Two-phase promotion; `rollback-candidate.cjs` present | validate.sh on 010 |
 <!-- /ANCHOR:phase-map -->
 
 ---

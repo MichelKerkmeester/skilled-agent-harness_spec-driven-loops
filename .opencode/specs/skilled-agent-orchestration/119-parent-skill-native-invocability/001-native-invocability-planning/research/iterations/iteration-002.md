@@ -37,7 +37,7 @@ R3’s review finding is valid as a documentation/evidence failure, not as proof
     {
       "claim": "deep-improvement feature_catalog is EARNED; recommend keep.",
       "status": "confirmed",
-      "evidence": "SKILL.md:30-41 defines four co-equal lanes; feature_catalog/feature_catalog.md:21-36 maps lanes A-D and shared scoring; feature_catalog/skill-benchmark/mode-wiring.md:31-46 anchors mode wiring to scripts and tests."
+      "evidence": "SKILL.md:30-41 defines three co-equal lanes; feature_catalog/feature_catalog.md:21-36 maps lanes A-C and shared scoring; feature_catalog/skill-benchmark/mode-wiring.md:31-46 anchors mode wiring to scripts and tests."
     },
     {
       "claim": "deep-context feature_catalog is EARNED; recommend keep.",

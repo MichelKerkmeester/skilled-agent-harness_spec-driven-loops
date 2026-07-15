@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for the root manual-testing-playbook child. The report pins the candidate SHA, BASE SHA, frozen-map hash, commands, exit codes, the root plus five category directories, the 21 underscore-bearing files, and the 20-scenario corpus. Verification must leave no unexpected tracked mutation.
+This checklist is the blocking SOL verifier contract for the root manual-testing-playbook child. The report pins the candidate SHA, BASE SHA, frozen-map hash, commands, exit codes, the root plus five category directories, the 20 underscore-bearing files, and the 19-scenario corpus. Verification must leave no unexpected tracked mutation.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
@@ -48,9 +48,9 @@ This checklist is the blocking SOL verifier contract for the root manual-testing
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-005 [P0] Every one of the 21 candidate files and all five category directories has exactly one rename, exempt, frozen, or tool-mandated disposition with no unknown row or collision.
+- [ ] CHK-005 [P0] Every one of the 20 candidate files and all five category directories has exactly one rename, exempt, frozen, or tool-mandated disposition with no unknown row or collision.
 - [ ] CHK-006 [P0] The playbook index, every scenario path, category link, root benchmark reference, and router reference resolves after the rename.
-- [ ] CHK-007 [P0] The scenario corpus remains complete at 20 scenarios, scenario IDs/categories remain stable, and manual checks execute non-trivially with D5 coverage where applicable.
+- [ ] CHK-007 [P0] The scenario corpus remains complete at 19 scenarios, scenario IDs/categories remain stable, and manual checks execute non-trivially with D5 coverage where applicable.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -80,7 +80,7 @@ This checklist is the blocking SOL verifier contract for the root manual-testing
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-Accept this child only when every P0 item passes, all 20 scenarios remain reachable and stable, the five-category tree is complete, and the final diff is scope-clean.
+Accept this child only when every P0 item passes, all 19 scenarios remain reachable and stable, the five-category tree is complete, and the final diff is scope-clean.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

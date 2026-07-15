@@ -1,21 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/064-deep-command-family-parity/004-pipeline-command-router-inline",
-  "description": "Packet 064 already converted `skill-benchmark` and `ai-system-improvement` to yaml-backed triads and gave `alignment`/`ai-council` render-pipeline",
+  "description": "Packet 064 already converted `skill-benchmark` to a yaml-backed triad and gave `alignment`/`ai-council` render-pipeline parity, but the family still",
   "keywords": [
     "packet",
     "already",
     "converted",
     "skill-benchmark",
-    "ai-system-improvement",
     "yaml-backed",
-    "triads",
+    "triad",
     "gave",
     "alignment",
     "ai-council",
-    "render-pipeline"
+    "render-pipeline",
+    "parity",
+    "family",
+    "still"
   ],
-  "lastUpdated": "2026-07-13T19:50:01.061Z",
+  "lastUpdated": "2026-07-15T11:04:43.949Z",
   "specId": "004",
   "folderSlug": "pipeline-command-router-inline",
   "parentChain": [

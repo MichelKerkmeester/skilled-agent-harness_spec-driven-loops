@@ -59,7 +59,6 @@ _memory:
 - [x] T004 Stage 1: `git mv deep-loop-workflows system-deep-loop`; edit identity fields inside that tree.
 - [x] T005 Stage 2: `git mv deep-loop-runtime system-deep-loop/runtime`; delete its `graph-metadata.json`.
 - [x] T005a Stage 2 (corrected): reconcile `SKILL.md` into the ALREADY-EXISTING `README.md` — fold content, strip routable-skill frontmatter, delete `SKILL.md` only after confirmed folded. Do NOT `git mv`/overwrite.
-- [x] T005b Stage 2: fix the Lane-D self-target profile (`deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json`) — path fields + `frozen_surface.live_relpath`.
 - [x] T006 [P] Stage 3a: repair the expanded Class-A (forward) coupling sites — 5 scripts + 10 test files + 2 special-shape files (see plan.md).
 - [x] T007 [P] Stage 3a: repair the expanded Class-B (reverse) coupling sites — 16 files incl. `orchestrate-session.cjs`, both `runtime-capabilities.cjs` copies, `deep-review/reduce-state.cjs`, plus `replay-graph-from-artifacts.cjs`'s different insert-segment shape.
 - [x] T008 Stage 3b: repair the expanded `system-spec-kit` tooling-borrow — config pair + `artifact-root.cjs`/test companion + `council-playbook-anchor-integrity.vitest.ts`; re-derive `dependency-seams.vitest.ts`'s `skillsRoot`.

@@ -24,10 +24,9 @@
 - `.opencode/skills/system-deep-loop/mode-registry.json:23` - advisor projection extension description.
 - `.opencode/skills/system-deep-loop/mode-registry.json:31` - first concrete mode entry shape.
 - `.opencode/skills/system-deep-loop/mode-registry.json:103` - improvement-host mode entry shape.
-- `.opencode/skills/system-deep-loop/mode-registry.json:175` - external-adapter mode entry shape.
 - `.opencode/skills/system-deep-loop/hub-router.json:7` - tie-break list that must change when public modes change.
 - `.opencode/skills/system-deep-loop/hub-router.json:15` - router signal map that must change when public modes change.
-- `.opencode/skills/system-deep-loop/description.json:3` - public hub summary naming seven modes.
+- `.opencode/skills/system-deep-loop/description.json:3` - public hub summary naming six modes.
 - `.opencode/skills/system-deep-loop/graph-metadata.json:109` - derived key file list for advisor-facing graph context.
 
 ## Findings by Severity
@@ -42,9 +41,9 @@ None.
 
 ### P2 Findings
 
-1. **Adding another workflow lacks a single maintainer checklist** -- `.opencode/skills/system-deep-loop/SKILL.md:104`, `.opencode/skills/system-deep-loop/hub-router.json:7`, `.opencode/skills/system-deep-loop/hub-router.json:15`, `.opencode/skills/system-deep-loop/mode-registry.json:10`, `.opencode/skills/system-deep-loop/README.md:59` -- The hub correctly says to extend `mode-registry.json` and open a packet when a new mode is needed, and it documents that advisor projection maps and command routers must stay equal to the registry. What is missing is one concrete maintainer checklist tying those facts together. A future maintainer adding a fifth workflow family or eighth public mode must update the registry entry, router signals and tie-break order, README and metadata summaries, command/agent surfaces where applicable, and advisor projection drift guards, but those steps are split across prose and JSON without a single checklist.
+1. **Adding another workflow lacks a single maintainer checklist** -- `.opencode/skills/system-deep-loop/SKILL.md:104`, `.opencode/skills/system-deep-loop/hub-router.json:7`, `.opencode/skills/system-deep-loop/hub-router.json:15`, `.opencode/skills/system-deep-loop/mode-registry.json:10`, `.opencode/skills/system-deep-loop/README.md:59` -- The hub correctly says to extend `mode-registry.json` and open a packet when a new mode is needed, and it documents that advisor projection maps and command routers must stay equal to the registry. What is missing is one concrete maintainer checklist tying those facts together. A future maintainer adding a fifth workflow family or seventh public mode must update the registry entry, router signals and tie-break order, README and metadata summaries, command/agent surfaces where applicable, and advisor projection drift guards, but those steps are split across prose and JSON without a single checklist.
    - Finding class: matrix/evidence
-   - Scope proof: Checked hub `SKILL.md`, README, `mode-registry.json`, `hub-router.json`, `description.json`, and `graph-metadata.json`. The current seven-mode routing remains coherent; the issue is maintainability of future additions, not current behavior.
+   - Scope proof: Checked hub `SKILL.md`, README, `mode-registry.json`, `hub-router.json`, `description.json`, and `graph-metadata.json`. The current six-mode routing remains coherent; the issue is maintainability of future additions, not current behavior.
    - Affected surface hints: [`SKILL.md maintainer rules`, `mode-registry.json`, `hub-router.json`, `README.md`, `advisor projection drift guard`]
    - Recommendation: Add a short "Adding a workflow mode" checklist to the hub docs that names every required surface and points to the drift-guard test before maintainers edit the registry.
 

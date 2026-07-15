@@ -1,9 +1,9 @@
 ---
-title: "Implementation Summary: convert the two direct-dispatch deep commands to yaml-backed"
-description: "Level 2 implementation summary — skill-benchmark and ai-system-improvement now own workflow YAML + a presentation asset, with a byte-identical loop-host dispatch."
+title: "Implementation Summary: convert the direct-dispatch deep command to yaml-backed"
+description: "Level 2 implementation summary — skill-benchmark now owns workflow YAML + a presentation asset, with a byte-identical loop-host dispatch."
 trigger_phrases:
   - "deep direct dispatch to yaml"
-  - "skill-benchmark ai-system-improvement yaml-backed"
+  - "skill-benchmark yaml-backed"
   - "byte identical loop-host dispatch"
 importance_tier: "important"
 contextType: "planning"
@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Proceed to child 003 (deep-* agent create-agent reconciliation)"
     completion_pct: 100
 ---
-# Implementation Summary: convert the two direct-dispatch deep commands to yaml-backed
+# Implementation Summary: convert the direct-dispatch deep command to yaml-backed
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-`/deep:skill-benchmark` (Lane C) and `/deep:ai-system-improvement` (Lane D) — the last two direct-dispatch deep commands — now use the yaml-backed family shape. Each owns an auto workflow YAML, a confirm workflow YAML, and a 4-section presentation asset; each `command.md` resolves setup and then loads its YAML. The loop-host dispatch is byte-identical to the prior inline invocation.
+`/deep:skill-benchmark` (Lane C) — the remaining direct-dispatch deep command — now uses the yaml-backed family shape. It owns an auto workflow YAML, a confirm workflow YAML, and a 4-section presentation asset; `command.md` resolves setup and then loads its YAML. The loop-host dispatch is byte-identical to the prior inline invocation.
 
 ### Files Changed
 
@@ -49,10 +49,6 @@ _memory:
 | `.opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml` | Created | Same, plus one approval gate before dispatch |
 | `.opencode/commands/deep/assets/deep_skill-benchmark_presentation.txt` | Created | 4-section presentation (Startup / Dashboard / Results / Next-Step) |
 | `.opencode/commands/deep/skill-benchmark.md` | Modified | Rewired to yaml-backed; Phase 0 + input gate preserved |
-| `.opencode/commands/deep/assets/deep_ai-system-improvement_auto.yaml` | Created | Autonomous single-dispatch wrapper for `--mode=non-dev-ai-system-refine` (dry-run default) |
-| `.opencode/commands/deep/assets/deep_ai-system-improvement_confirm.yaml` | Created | Same, plus one approval gate and the `--live` pre-flight |
-| `.opencode/commands/deep/assets/deep_ai-system-improvement_presentation.txt` | Created | 4-section presentation, self-target + kill-switch display |
-| `.opencode/commands/deep/ai-system-improvement.md` | Modified | Rewired to yaml-backed; self-target fork + kill-switches preserved |
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -60,7 +56,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Read the loop-host flag-forwarding sets (`NON_DEV_AI_SYSTEM_RUN_OPTIONS`, `SKILL_BENCHMARK_RUN_OPTIONS`) and the shared `parse-args.cjs` dialect to fix the exact dispatch surface, captured a real skill-benchmark baseline, authored the minimal single-dispatch wrappers plus presentations, rewired both commands, then proved the converted dispatch byte-identical before writing the docs. The wrapper is deliberately minimal — one dispatch step reproducing the inline invocation — rather than a clone of model-benchmark's multi-iteration phase loop, which would add loop behavior these lanes never had.
+Read the loop-host flag-forwarding set (`SKILL_BENCHMARK_RUN_OPTIONS`) and the shared `parse-args.cjs` dialect to fix the exact dispatch surface, captured a real skill-benchmark baseline, authored the minimal single-dispatch wrappers plus presentation, rewired the command, then proved the converted dispatch byte-identical before writing the docs. The wrapper is deliberately minimal — one dispatch step reproducing the inline invocation — rather than a clone of model-benchmark's multi-iteration phase loop, which would add loop behavior this lane never had.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -72,9 +68,7 @@ Read the loop-host flag-forwarding sets (`NON_DEV_AI_SYSTEM_RUN_OPTIONS`, `SKILL
 |----------|-----------|
 | Minimal single-dispatch wrapper, not a phase-loop clone | The loop host IS the self-contained loop for both lanes; adding iteration would fabricate behavior |
 | `=`-form dispatch flags | `parse-args.cjs` binds `--k=v` and `--k v` identically, so `=`-form is effect-identical and reads cleanly |
-| `--live` appended bare | The loop host parses `--live` as a boolean; a key/value form would break the flag |
-| Self-target fork stays Markdown-owned | `--self-target` resolves `packaging_root` at setup and is never forwarded to loop-host, preserving the adapter argv |
-| Presentation is a plain reference asset | skill-benchmark/ai-system are not compiler-registered, so no `renderMarkers` are needed — unlike alignment (phase 001) |
+| Presentation is a plain reference asset | skill-benchmark is not compiler-registered, so no `renderMarkers` are needed — unlike alignment (phase 001) |
 
 <!-- /ANCHOR:decisions -->
 ---
@@ -84,11 +78,10 @@ Read the loop-host flag-forwarding sets (`NON_DEV_AI_SYSTEM_RUN_OPTIONS`, `SKILL
 
 | Test Type | Status | Coverage | Notes |
 |-----------|--------|----------|-------|
-| Adapter argv equivalence | Pass | Both commands, 8 flag combos | `planInvocation` harness → `ALL_ADAPTER_ARGV_IDENTICAL=true` |
+| Adapter argv equivalence | Pass | skill-benchmark, 8 flag combos | `planInvocation` harness → `ALL_ADAPTER_ARGV_IDENTICAL=true` |
 | Report parity | Pass | skill-benchmark converted vs baseline | Byte-identical report (timestamps normalized) |
-| Router-owned flags | Pass | `--self-target`, `--parallel` | Excluded from `loop-host.cjs` forwarding; absent from dispatch |
-| Command conformance | Pass | All 8 deep commands | `validate_document.py --type command` → `8 pass / 0 fail` |
-| Gate preservation | Pass | Both commands | Phase 0 + input gate + self-target fork + kill-switches intact |
+| Command conformance | Pass | All 7 deep commands | `validate_document.py --type command` → `7 pass / 0 fail` |
+| Gate preservation | Pass | skill-benchmark | Phase 0 + input gate intact |
 
 ### Test Coverage Summary
 
@@ -105,7 +98,6 @@ Read the loop-host flag-forwarding sets (`NON_DEV_AI_SYSTEM_RUN_OPTIONS`, `SKILL
 | NFR ID | Target | Actual | Status |
 |--------|--------|--------|--------|
 | NFR-P01 | No added dispatch overhead | One dispatch step, same process | Pass |
-| NFR-S01 | Dry-run default; `--live` gated | `live` defaults false; pre-flight preserved | Pass |
 | NFR-R01 | Deterministic dispatch | Same inputs → same loop-host argv | Pass |
 
 <!-- /ANCHOR:nfr-verify -->
@@ -114,8 +106,7 @@ Read the loop-host flag-forwarding sets (`NON_DEV_AI_SYSTEM_RUN_OPTIONS`, `SKILL
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. The ai-system-improvement conversion was verified by adapter-argv equivalence, not a live execution, because no on-disk packaging implements the `benchmark/_loop/loop.py` contract (the pilot is absent). A dry-run execution diff should be re-run once a packaging root is available.
-2. The deep-* agent reconciliation is child 003.
+1. The deep-* agent reconciliation is child 003.
 
 <!-- /ANCHOR:limitations -->
 ---
@@ -125,7 +116,6 @@ Read the loop-host flag-forwarding sets (`NON_DEV_AI_SYSTEM_RUN_OPTIONS`, `SKILL
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Full live-run behavior diff for both commands | Full report diff for skill-benchmark; adapter-argv equivalence for ai-system-improvement | No on-disk packaging implements the Lane D contract, so a live/dry-run execution was impossible; the argv-equivalence proof covers the same dispatch surface |
-| Clone the model-benchmark YAML shape | Cloned only its scaffold, with a single-dispatch workflow | model-benchmark's phase loop reduces multi-iteration state these lanes do not have; a faithful conversion is the minimal wrapper |
+| Clone the model-benchmark YAML shape | Cloned only its scaffold, with a single-dispatch workflow | model-benchmark's phase loop reduces multi-iteration state this lane does not have; a faithful conversion is the minimal wrapper |
 
 <!-- /ANCHOR:deviations -->

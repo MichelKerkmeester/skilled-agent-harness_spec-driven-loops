@@ -1,6 +1,6 @@
 ---
 title: "Command Topology Taxonomy"
-description: "Fail-closed classification of every command in the frozen 37-command census into one and only one of four execution topologies."
+description: "Fail-closed classification of every command in the frozen 36-command census into one and only one of four execution topologies."
 trigger_phrases:
   - "command topology taxonomy"
   - "workflow router classification"
@@ -51,7 +51,6 @@ Any `UNCLASSIFIED` row makes the taxonomy gate exit nonzero, marks the benchmark
 | `.opencode/commands/create/skill.md` | `.codex/prompts/create-skill.md` | `workflow router` | Presentation contract plus auto/confirm workflow YAML. |
 | `.opencode/commands/deep/agent-improvement.md` | `.codex/prompts/deep-agent-improvement.md` | `workflow router` | Setup binds the lane and loads owned deep-improvement workflow YAML. |
 | `.opencode/commands/deep/ai-council.md` | `.codex/prompts/deep-ai-council.md` | `workflow router` | Setup and mode resolution hand the session loop to owned workflow YAML. |
-| `.opencode/commands/deep/ai-system-improvement.md` | `.codex/prompts/deep-ai-system-improvement.md` | `workflow router` | Setup binds the lane and loads owned guarded-loop workflow YAML. |
 | `.opencode/commands/deep/alignment.md` | `.codex/prompts/deep-alignment.md` | `workflow router` | Setup and mode resolution hand orchestration to owned alignment workflow YAML. |
 | `.opencode/commands/deep/model-benchmark.md` | `.codex/prompts/deep-model-benchmark.md` | `workflow router` | Setup binds model-benchmark mode and loads owned workflow YAML. |
 | `.opencode/commands/deep/research.md` | `.codex/prompts/deep-research.md` | `workflow router` | Setup and mode resolution hand the loop to owned research workflow YAML. |
@@ -80,11 +79,11 @@ Any `UNCLASSIFIED` row makes the taxonomy gate exit nonzero, marks the benchmark
 
 | Topology | Count |
 | --- | ---: |
-| `workflow router` | 28 |
+| `workflow router` | 27 |
 | `subaction router` | 2 |
 | `direct-tool/plugin router` | 5 |
 | `monolithic` | 2 |
-| **Total classified** | **37** |
+| **Total classified** | **36** |
 | **Unclassified** | **0** |
 
-The total equals the frozen source census in `census-snapshot.md`. The post-launcher 38th command is not preclassified here: phase 009 must add it as a `workflow router` only after its live source and generated mirror exist, then phase 010 must reconcile the final `38 / 38` census.
+The total equals the frozen source census in `census-snapshot.md`. The post-launcher 37th command is not preclassified here: phase 009 must add it as a `workflow router` only after its live source and generated mirror exist, then phase 010 must reconcile the final `37 / 37` census.

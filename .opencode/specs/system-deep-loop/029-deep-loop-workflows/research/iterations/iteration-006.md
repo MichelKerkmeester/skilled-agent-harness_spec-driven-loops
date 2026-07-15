@@ -103,9 +103,9 @@ Porting this to `coverage-graph-signals.ts` would require inventing candidate/mu
 
 **Dependencies**
 - Q-ARCH 1/2 must decide the internal merged tree layout before final path rewrites.
-- Q-CMD 5/6 must decide whether the existing 8 commands and YAML workflows stay stable or move behind a common host.
+- Q-CMD 5/6 must decide whether the existing 7 commands and YAML workflows stay stable or move behind a common host.
 - Q-BACKEND 7 must decide reducer plumbing boundaries, because journal summaries are reducer-consumed.
-- Q-IMPROVE 12 must decide Lane C and Lane D mode boundaries, because Lane D has its own external loop and stop taxonomy.
+- Q-IMPROVE 12 must decide the improvement mode boundaries and preserve their distinct loop-host contracts.
 - Q-ADVISOR 13 must preserve per-mode routing after the skill-id collapse, because journal/convergence names will otherwise blur user intent.
 
 **Uncertainty**

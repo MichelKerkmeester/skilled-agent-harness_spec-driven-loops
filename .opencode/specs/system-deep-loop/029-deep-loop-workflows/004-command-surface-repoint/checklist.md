@@ -74,7 +74,7 @@ _memory:
   - **Evidence**: verified during phase 004 execution.
 - [ ] CHK-022 [P0] The finalized {skill,mode} command contract is applied consistently.
   - **Evidence**: verified during phase 004 execution.
-- [ ] CHK-023 [P0] All 8 command markdown routers are repointed where they reference old skill IDs or old skill paths.
+- [ ] CHK-023 [P0] All 7 command markdown routers are repointed where they reference old skill IDs or old skill paths.
   - **Evidence**: verified during phase 004 execution.
 - [ ] CHK-024 [P0] All 12 YAML workflow assets use deep-loop-workflows plus registry-backed mode discrimination.
   - **Evidence**: verified during phase 004 execution.
@@ -87,7 +87,7 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-060 [P0] Lane C and Lane D remain markdown-only; no YAML is added for symmetry.
+- [ ] CHK-060 [P0] Lane C remains markdown-only; no YAML is added for symmetry.
   - **Evidence**: verified during phase 004 execution.
 - [ ] CHK-061 [P0] All deep-loop-runtime references remain unchanged.
   - **Evidence**: verified during phase 004 execution.
@@ -95,7 +95,7 @@ _memory:
   - **Evidence**: verified during phase 004 execution.
 - [ ] CHK-063 [P0] rg finds no stale .opencode/skills/deep-{research,review,context,ai-council,improvement} paths or skill: deep-* keys under .opencode/commands/deep.
   - **Evidence**: verified during phase 004 execution.
-- [ ] CHK-064 [P0] Phase-001 command parity harness passes byte-for-byte for all 8 commands.
+- [ ] CHK-064 [P0] Phase-001 command parity harness passes byte-for-byte for all 7 commands.
   - **Evidence**: verified during phase 004 execution.
 - [ ] CHK-065 [P0] validate.sh --strict passes for phase 004.
   - **Evidence**: verified during phase 004 execution.

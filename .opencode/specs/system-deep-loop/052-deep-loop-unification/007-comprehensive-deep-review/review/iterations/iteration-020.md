@@ -82,7 +82,7 @@ PASS: 1b: hub skill_id "system-deep-loop" matches directory name
 PASS: 1c: hub family "deep-loop" is in the allowed set
 PASS: 2a: no nested graph-metadata.json inside any packet or shared/
 PASS: 3a: mode-registry.json exists and parses as JSON
-PASS: 3b: mode-registry.json declares 7 modes
+PASS: 3b: mode-registry.json declares 6 modes
 PASS: 3c: every mode packet resolves to an existing sub-directory
 PASS: 3d: every mode carries the hard discriminator (workflowMode + backendKind)
 PASS: 3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch

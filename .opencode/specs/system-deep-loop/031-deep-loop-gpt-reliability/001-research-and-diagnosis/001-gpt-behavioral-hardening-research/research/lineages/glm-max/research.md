@@ -110,7 +110,7 @@ This lineage builds on the predecessor research (`../001-deep-agent-router-and-o
 
 - **Cross-runtime:** .claude/agents/{orchestrate,deep,ai-council}.md MUST receive the same edits (bundled per phase, not separate); Codex parity BLOCKED (TOML contradiction) — deferred. [SOURCE: ../001/research.md §8; iter 28]
 - **Must-NOT-harden:** leaf execution agents, ai-council depth-0 path, the bounded clarification gate. [SOURCE: iter 22]
-- **Deferred same-pattern follow-up:** improvement-family deep modes (agent/model/skill-benchmark, ai-system-improvement) — lower priority; symptoms name only the 4 runtime modes. [SOURCE: mode-registry.json:81-145; iter 21]
+- **Deferred same-pattern follow-up:** improvement-family deep modes (agent/model/skill-benchmark) — lower priority; symptoms name only the 4 runtime modes. [SOURCE: mode-registry.json:81-145; iter 21]
 
 ---
 

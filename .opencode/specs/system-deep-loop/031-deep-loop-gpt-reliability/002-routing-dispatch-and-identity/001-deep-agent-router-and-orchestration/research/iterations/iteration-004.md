@@ -69,7 +69,7 @@ Authoritative data lives in `.opencode/skills/deep-loop-workflows/mode-registry.
 
 `ai-council` remains directly invocable because `.opencode/agents/ai-council.md` is `mode: all`; this router references it as a deep target without converting it to subagent-only.
 
-Improvement-family modes in the registry (`agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement`) are out of scope for this router draft unless the implementation phase explicitly expands DEEP beyond the four runtime-loop modes above.
+Improvement-family modes in the registry (`agent-improvement`, `model-benchmark`, `skill-benchmark`) are out of scope for this router draft unless the implementation phase explicitly expands DEEP beyond the four runtime-loop modes above.
 
 ---
 

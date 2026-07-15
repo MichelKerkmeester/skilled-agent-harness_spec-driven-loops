@@ -82,7 +82,7 @@ const system_deep_loop = parent('007-system-deep-loop', [
   leaf('deep-research', 2),
   leaf('deep-review', 2),
   leaf('deep-ai-council', 2),
-  leaf('deep-improvement', 2, { note: 'incl. agent/model/skill/ai-system-improvement sub-modes + assets (158 files)' }),
+  leaf('deep-improvement', 2, { note: 'incl. agent/model/skill sub-modes + assets (158 files)' }),
   leaf('deep-alignment', 2),
   leaf('manual-testing-playbook', 2),
   leaf('benchmark', 2),

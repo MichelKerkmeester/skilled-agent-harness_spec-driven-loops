@@ -57,7 +57,7 @@ A proven adapter still needs to run as a lane over the whole command corpus and 
 - Hard-gate raw-delta and reduced-report count and code agreement.
 - Keep the peer lane and the generic sk-doc lane off the same scope in one run.
 - Register `sk-doc-command` in `AUTHORITY_ADAPTERS['sk-doc']`, finalize and validate `lane-config.json`, and make prompt-pack and LEAF known-deviation suppression resolve by the selected adapter rather than by authority.
-- Prove full 37-command convergence at this phase; the 38-command rerun after the launcher ships is owned by closeout.
+- Prove full 36-command convergence at this phase; the 37-command rerun after the launcher ships is owned by closeout.
 
 **Out of scope:**
 - Behavioral scenarios, the evaluator, or the model matrix.

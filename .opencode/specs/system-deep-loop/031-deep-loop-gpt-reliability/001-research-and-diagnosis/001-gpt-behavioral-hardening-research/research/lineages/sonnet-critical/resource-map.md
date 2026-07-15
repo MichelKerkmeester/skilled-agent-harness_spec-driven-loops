@@ -18,7 +18,7 @@
 ## Commands
 - `.opencode/commands/deep/research.md:1-90` — Phase 0 `GENERAL AGENT REQUIRED` self-check, full read (iter 3) — new evidence for Mode D
 - `.opencode/commands/deep/review.md:25-60` — same self-check pattern, confirmed near-identical (iter 3)
-- `.opencode/commands/deep/{context,ai-council,skill-benchmark,agent-improvement,model-benchmark,ai-system-improvement}.md` — grepped for the same pattern, confirmed present in all 8 (iter 3)
+- `.opencode/commands/deep/{context,ai-council,skill-benchmark,agent-improvement,model-benchmark}.md` — grepped for the same pattern across the seven surviving command files (iter 3)
 - `.opencode/commands/deep/assets/deep_ai-council_auto.yaml:95-140` — full read of `step_build_session_state` + `step_orchestrate_session`, emitter/validator split (iter 4)
 
 ## Skills / Runtime

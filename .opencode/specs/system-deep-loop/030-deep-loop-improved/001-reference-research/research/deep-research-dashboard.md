@@ -81,17 +81,16 @@ Reducer-generated observability surface for the active research packet.
 | undefined | S6-09 | - | 0.43 | 0 | insight |
 | undefined | S6-10 | - | 0.57 | 0 | insight |
 | undefined | W-06 | - | 0.62 | 0 | complete |
-| undefined | W-10 | - | 0.66 | 0 | insight |
 
 - iterationsCompleted: 51
 - keyFindings: 476
-- openQuestions: 75
+- openQuestions: 74
 - resolvedQuestions: 0
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:questions -->
 ## 4. QUESTIONS
-- Answered: 0/75
+- Answered: 0/74
 - [ ] [S1-01] How does loop-cli-main persist `remainingDelayMs` (loop-controller.ts:waitForDelay) and reconstruct a partially-elapsed wait after a crash without restarting the interval? → our deep-loop-runtime/scripts/fanout-run.cjs
 - [ ] [S1-02] How does loop-cli-main compose abortable chunked sleep (shared/sleep.ts + SLEEP_CHUNK_MS + AbortSignal.any) so a long wait is promptly cancellable and pause-interruptible? → deep-loop-runtime sleep primitive
 - [ ] [S1-03] How does loop-cli-main's triggerNow() save/restore the schedule around a forced run and guard against double-run? → deep_research_auto.yaml run-now control
@@ -166,12 +165,11 @@ Reducer-generated observability surface for the active research packet.
 - [ ] [S6-11] What migration introduces kasper-style layered config (defaults→file→session, zod-clamp, hot-reload) across `deep_research_config.json`, `runtime_capabilities.json`, `optimizer-manifest.json` without breaking the `_optimizerManaged` locked/tunable contract? (build on S4-13) -> layered config migration
 - [ ] [S6-12] Should kasper's LLM-judge hardening become a shared runtime primitive used by `post-dispatch-validate.ts` and any future LLM-judged loop, and what is the extraction boundary? (build on S2-02) -> post-dispatch-validate.ts + bayesian-scorer.ts
 - [ ] [W-06] Could we build a record-replay harness capturing each iteration's dispatch inputs/outputs (loop-cli fixture style) so a full run is deterministically replayable for convergence-change regression? -> deep-loop-runtime tests (record-replay)
-- [ ] [W-10] What would a meta-loop look like that points `deep:ai-system-improvement` at the deep-loop runtime's own technique docs, and what guardrails prevent it degrading the harness it runs on? -> deep:ai-system-improvement on deep-loop itself
 
 <!-- /ANCHOR:questions -->
 <!-- ANCHOR:uncovered-questions -->
 ## Uncovered Questions
-- Count: 75
+- Count: 74
 - [ ] [S1-01] How does loop-cli-main persist `remainingDelayMs` (loop-controller.ts:waitForDelay) and reconstruct a partially-elapsed wait after a crash without restarting the interval? → our deep-loop-runtime/scripts/fanout-run.cjs
 - [ ] [S1-02] How does loop-cli-main compose abortable chunked sleep (shared/sleep.ts + SLEEP_CHUNK_MS + AbortSignal.any) so a long wait is promptly cancellable and pause-interruptible? → deep-loop-runtime sleep primitive
 - [ ] [S1-03] How does loop-cli-main's triggerNow() save/restore the schedule around a forced run and guard against double-run? → deep_research_auto.yaml run-now control
@@ -246,7 +244,6 @@ Reducer-generated observability surface for the active research packet.
 - [ ] [S6-11] What migration introduces kasper-style layered config (defaults→file→session, zod-clamp, hot-reload) across `deep_research_config.json`, `runtime_capabilities.json`, `optimizer-manifest.json` without breaking the `_optimizerManaged` locked/tunable contract? (build on S4-13) -> layered config migration
 - [ ] [S6-12] Should kasper's LLM-judge hardening become a shared runtime primitive used by `post-dispatch-validate.ts` and any future LLM-judged loop, and what is the extraction boundary? (build on S2-02) -> post-dispatch-validate.ts + bayesian-scorer.ts
 - [ ] [W-06] Could we build a record-replay harness capturing each iteration's dispatch inputs/outputs (loop-cli fixture style) so a full run is deterministically replayable for convergence-change regression? -> deep-loop-runtime tests (record-replay)
-- [ ] [W-10] What would a meta-loop look like that points `deep:ai-system-improvement` at the deep-loop runtime's own technique docs, and what guardrails prevent it degrading the harness it runs on? -> deep:ai-system-improvement on deep-loop itself
 
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
@@ -265,7 +262,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Which exact deep-loop runtime docs should be classified as editable technique docs versus frozen harness/scorer docs? Candidate editable areas are `feature_catalog/`, `manual_testing_playbook/`, and selected reference docs; candidate frozen areas are `tests/`, scorer prompts, Lane D templates, command routers, and runtime scripts.
+Which exact deep-loop runtime docs should be classified as editable technique docs versus frozen harness/scorer docs? Candidate editable areas are `feature_catalog/`, `manual_testing_playbook/`, and selected reference docs; candidate frozen areas are `tests/`, scorer prompts, packaging templates, command routers, and runtime scripts.
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

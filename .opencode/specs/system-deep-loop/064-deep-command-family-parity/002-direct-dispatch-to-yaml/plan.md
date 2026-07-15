@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: convert the two direct-dispatch deep commands to yaml-backed"
-description: "Apply the proven Lane A/B yaml-backed shape to skill-benchmark and ai-system-improvement, preserving the loop-host dispatch byte-for-byte."
+title: "Implementation Plan: convert the direct-dispatch deep command to yaml-backed"
+description: "Apply the proven Lane A/B yaml-backed shape to skill-benchmark, preserving the loop-host dispatch byte-for-byte."
 trigger_phrases:
   - "deep direct dispatch to yaml"
-  - "skill-benchmark ai-system-improvement yaml-backed"
+  - "skill-benchmark yaml-backed"
   - "deep command workflow yaml conversion"
 importance_tier: "important"
 contextType: "planning"
@@ -35,7 +35,7 @@ _memory:
 | **Testing** | `loop-host.cjs planInvocation`, a real skill-benchmark run, `validate_document.py`, `validate.sh --strict` |
 
 ### Overview
-Clone the yaml-backed shape the Lane A/B siblings already prove (`agent-improvement`, `model-benchmark` both wrap `loop-host.cjs` in their workflow YAML). Each of the two direct-dispatch commands gains an auto YAML, a confirm YAML, and a presentation asset; the `command.md` is rewired to resolve setup and then load the YAML. The wrapper is intentionally minimal — one dispatch step reproducing the exact inline invocation — not a clone of model-benchmark's multi-iteration phase loop.
+Clone the yaml-backed shape the Lane A/B siblings already prove (`agent-improvement`, `model-benchmark` both wrap `loop-host.cjs` in their workflow YAML). The remaining direct-dispatch command gains an auto YAML, a confirm YAML, and a presentation asset; `command.md` is rewired to resolve setup and then load the YAML. The wrapper is intentionally minimal — one dispatch step reproducing the exact inline invocation — not a clone of model-benchmark's multi-iteration phase loop.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -49,9 +49,9 @@ Clone the yaml-backed shape the Lane A/B siblings already prove (`agent-improvem
 - [x] The model-benchmark yaml-backed command read as the structural template.
 
 ### Definition of Done
-- [x] Both commands own auto + confirm YAML + a presentation asset.
+- [x] The command owns auto + confirm YAML + a presentation asset.
 - [x] The converted dispatch is proven byte-identical to the inline dispatch.
-- [x] All 8 deep commands pass create-command conformance.
+- [x] All 7 deep commands pass create-command conformance.
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -83,7 +83,6 @@ The command resolves inputs and binds YAML placeholders; the YAML dispatch step 
 
 ### Phase 2: Core Implementation
 - [x] Author the skill-benchmark auto + confirm YAML + presentation; rewire the command.
-- [x] Author the ai-system-improvement auto + confirm YAML + presentation; rewire the command.
 
 ### Phase 3: Verification
 - [x] Prove adapter argv byte-identical across flag combos; run command conformance + strict validation.
@@ -98,7 +97,7 @@ The command resolves inputs and binds YAML placeholders; the YAML dispatch step 
 |-----------|-------|-------|
 | Adapter argv equivalence | Both commands, representative flag combos | `loop-host.cjs planInvocation` via a shell-expansion harness |
 | Report equivalence | skill-benchmark converted vs baseline | Real `loop-host.cjs --mode=skill-benchmark` run |
-| Command conformance | All 8 deep commands | `validate_document.py --type command` |
+| Command conformance | All 7 deep commands | `validate_document.py --type command` |
 | Spec validation | This child | `validate.sh --strict` |
 
 <!-- /ANCHOR:testing -->
@@ -111,7 +110,6 @@ The command resolves inputs and binds YAML placeholders; the YAML dispatch step 
 |------------|------|--------|-------------------|
 | `loop-host.cjs` flag-forwarding sets | Internal | Green | A changed set would re-break the byte-identical diff |
 | `parse-args.cjs` shared dialect | Internal | Green | The `=`-form dispatch relies on it normalizing to the same map |
-| A dry-runnable packaging root | External | Absent | No live ai-system-improvement execution diff (argv equivalence used instead) |
 
 <!-- /ANCHOR:dependencies -->
 ---
@@ -119,8 +117,8 @@ The command resolves inputs and binds YAML placeholders; the YAML dispatch step 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: A converted command changes Lane C/D behavior, or fails conformance.
-- **Procedure**: Restore the two `command.md` files from git and delete the six new assets; the conversion is additive and fully reversible.
+- **Trigger**: The converted command changes Lane C behavior, or fails conformance.
+- **Procedure**: Restore the `command.md` file from git and delete the three new assets; the conversion is additive and fully reversible.
 
 <!-- /ANCHOR:rollback -->
 ---

@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-06-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 12 |
+| **Phase** | 6 of 11 active phases |
 | **Predecessor** | 005-anchor-ownership-conflict-adr |
 | **Successor** | 007-ideas-backlog-lifecycle |
 | **Handoff Criteria** | `ideaRejected` event in JSONL; bounded rejected index (max 100) derived by reducer; exact + fuzzy/category-guarded check before next-focus candidates; reversible via remove/reset event |

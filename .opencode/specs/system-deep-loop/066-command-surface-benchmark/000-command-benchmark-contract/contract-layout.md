@@ -1,6 +1,6 @@
 ---
 title: "Command Benchmark Contract and Evidence Layout"
-description: "Frozen stable-package and run-evidence paths for the command-surface conformance benchmark, including the 37-to-38 census transition and authoring-versus-running boundary."
+description: "Frozen stable-package and run-evidence paths for the command-surface conformance benchmark, including the 36-to-37 census transition and authoring-versus-running boundary."
 trigger_phrases:
   - "command benchmark contract layout"
   - "conformance benchmark command-surface package"
@@ -102,9 +102,9 @@ The manifest records identity and pointers. It does not duplicate the scorer, ad
 
 | Checkpoint | Canonical sources | Generated mirrors | Required state |
 | --- | ---: | ---: | --- |
-| Phase-000 baseline | 37 | 37 | Current snapshot in `census-snapshot.md`; `/deep:command-benchmark` does not yet exist. |
-| Phase-009 launcher addition | 38 | 38 | Add `.opencode/commands/deep/command-benchmark.md` and generate `.codex/prompts/deep-command-benchmark.md`. No other census delta is allowed in this packet. |
-| Phase-010 final closeout | 38 | 38 | Re-run prompt sync and census equality against the live tree before publishing the final scorecard. |
+| Phase-000 baseline | 36 | 36 | Current snapshot in `census-snapshot.md`; `/deep:command-benchmark` does not yet exist. |
+| Phase-009 launcher addition | 37 | 37 | Add `.opencode/commands/deep/command-benchmark.md` and generate `.codex/prompts/deep-command-benchmark.md`. No other census delta is allowed in this packet. |
+| Phase-010 final closeout | 37 | 37 | Re-run prompt sync and census equality against the live tree before publishing the final scorecard. |
 
 The launcher is instrument infrastructure. It joins the deterministic full corpus after it exists, but it is excluded from DAB-012 through DAB-027 to avoid behavioral self-measurement recursion; phase 009 smoke-tests it separately.
 

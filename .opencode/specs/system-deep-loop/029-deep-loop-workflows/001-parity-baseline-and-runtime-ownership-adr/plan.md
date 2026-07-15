@@ -61,7 +61,7 @@ Implement this as a baseline-and-decision phase only. Worker seats read source s
 - [ ] Phase plan, tasks, checklist, and implementation summary exist and validate with no placeholders.
 - [ ] Source-surface manifest covers all five old skills, deep-loop-runtime, command surfaces, and current OpenCode agent files.
 - [ ] Per-mode baselines exist for context, research, review, ai-council, and improvement.
-- [ ] All eight /deep:* command baselines exist.
+- [ ] All seven /deep:* command baselines exist.
 - [ ] Advisor routing baseline records current winners and future concrete mode expectations.
 - [ ] Nested discovery gate proves only hub graph-metadata.json survives and per-mode graph-metadata.json files are dropped.
 
@@ -77,9 +77,9 @@ Gated phase in the deep-loop-workflows merge pipeline. Additive/reversible (old 
 ### Parallel Groups (worker fleet)
 - **S0** (mixed seats): Lead serial setup: create phase docs, baseline contract, output paths, and source-surface manifest scope.
 - **G1** (mixed seats): Five independent mode baseline captures, one worker per existing mode packet.
-- **G2** (gpt seats): Eight independent command baseline captures, one worker per /deep:* command.
+- **G2** (gpt seats): Seven independent command baseline captures, one worker per /deep:* command.
 - **G3** (opus seats): Advisor routing baseline plus nested graph-metadata discovery proof.
-- **G4** (opus seats): Runtime-ownership ADR and Lane-D dry-run decision.
+- **G4** (opus seats): Runtime-ownership ADR.
 - **S1** (mixed seats): Lead serial consolidation, metadata refresh, validation, and final source-surface no-change proof.
 
 ### Read/Write Split
@@ -99,10 +99,10 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 - [ ] T1 Author phase plan, tasks, and checklist from templates. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/plan.md`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/tasks.md`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/checklist.md`) — _verify:_ Strict validation later reports no placeholders and checklist covers all phase requirements.
 - [ ] T2 Capture pre-phase source-surface manifest. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/source-surface-manifest.json`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/source-surface-manifest.sha256`) — _verify:_ Recompute at final gate and require byte-identical pre/post manifest for non-phase paths.
 - [ ] T3 Capture per-mode artifact baselines. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/modes/context.json`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/modes/research.json`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/modes/review.json`) — _verify:_ Two consecutive normalized captures per mode are byte-identical.
-- [ ] T4 Capture all eight /deep:* command baselines. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/commands/ask-ai-council.json`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/commands/start-context-loop.json`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/commands/start-research-loop.json`) — _verify:_ All eight command records exist and state dry-run/live classification.
+- [ ] T4 Capture all seven /deep:* command baselines. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/commands/ask-ai-council.json`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/commands/start-context-loop.json`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/commands/start-research-loop.json`) — _verify:_ All seven command records exist and state their execution classification.
 - [ ] T5 Capture advisor routing baseline. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/advisor-routing.jsonl`) — _verify:_ Each fixture records current winner and future expected skill+mode assertion.
 - [ ] T6 Prove nested SKILL.md discovery safety and nested graph-metadata prohibition. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/nested-skill-discovery/scanner-proof.md`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/nested-skill-discovery/fixture-summary.json`) — _verify:_ Discovery proof reports exactly one hub graph-metadata.json and zero per-mode graph-metadata.json files.
-- [ ] T7 Author runtime-ownership ADR and Lane-D dry-run decision. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/decision-record.md`) — _verify:_ ADR explicitly covers runtime ownership, backend-vs-mode line, nested metadata rule, and Lane-D parity basis.
+- [ ] T7 Author runtime-ownership ADR. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/decision-record.md`) — _verify:_ ADR explicitly covers runtime ownership, backend-vs-mode line, and nested metadata rule.
 - [ ] T8 Consolidate checklist evidence and implementation summary. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/checklist.md`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/implementation-summary.md`) — _verify:_ Checklist items are checked only with evidence links; summary states no behavior source was edited.
 - [ ] T9 Refresh phase metadata and run strict validation. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/description.json`, `.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/graph-metadata.json`) — _verify:_ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr --strict exits 0.
 - [ ] T10 Prove phase-001 did not modify behavior surfaces. (`.opencode/specs/system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr/evidence/baseline/source-surface-manifest.json`) — _verify:_ Only phase-001 spec-folder paths changed and pre/post source-surface hashes match byte-for-byte.
@@ -119,7 +119,7 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 
 | Test Type | Scope | Method |
 |-----------|-------|--------|
-| Parity | This phase's affected modes/surfaces | Phase 001 creates the baseline and proves its own behavior preservation by comparing pre/post SHA-256 manifests for all non-phase behavior surfaces. Mode and command baselines require two consecutive single-executor normalized captures with byte-identical bytes; Lane D is dry-run-only. Later phases compare against these stored normalized bytes and hashes. |
+| Parity | This phase's affected modes/surfaces | Phase 001 creates the baseline and proves its own behavior preservation by comparing pre/post SHA-256 manifests for all non-phase behavior surfaces. Mode and command baselines require two consecutive single-executor normalized captures with byte-identical bytes. Later phases compare against these stored normalized bytes and hashes. |
 | Structural | Spec docs | `validate.sh --strict` |
 
 <!-- /ANCHOR:testing -->
@@ -181,7 +181,6 @@ Read-only analysis + parity capture run on `gpt-5.5-fast --variant high` (cli-op
 1. **Nested discovery proof targets SKILL.md scanning instead of graph-metadata scanning.** -> Revert nested-discovery evidence and ADR paragraph; block phase 002 until proof cites skill-graph-db.ts recursive graph-metadata discovery and folder-name throw.
 1. **A worker mutates the live advisor DB during discovery testing.** -> Do not use live skill_graph_scan; if accidental, rebuild advisor state from unchanged .opencode/skills and discard worker output.
 1. **Baseline captures secrets or oversized volatile blobs.** -> Revert affected evidence file, store hashes plus redacted normalized bytes, and document the redaction rule.
-1. **Lane D dry-run baseline is later treated as live parity.** -> Correct ADR/checklist wording so phase 009 compares dry-run to dry-run and does not bump the Barter contract.
 1. **Concurrent work changes source surfaces during phase 001.** -> Stop at final manifest check, report mismatched paths, and rerun baseline only after user confirms the new source state is intended.
 
 ### Data Reversal

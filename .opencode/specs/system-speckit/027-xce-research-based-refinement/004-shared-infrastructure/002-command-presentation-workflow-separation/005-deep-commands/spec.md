@@ -84,12 +84,12 @@ Extract the inline presentation contract from each mode-based deep command into 
 ### In Scope
 - Six mode-based deep commands: `ask-ai-council`, `start-agent-improvement-loop`, `start-context-loop`, `start-model-benchmark-loop`, `start-research-loop`, `start-review-loop`.
 - For each: author `deep_<command>_presentation.md` (startup presentation, dashboard layout, results display, next-step suggestions) and rewrite `<command>.md` as a thin router.
-- Verify the two non-mode-based deep commands (`start-non-dev-ai-system-loop`, `start-skill-benchmark-loop`, ~95 lines) are already thin and document them as out of split scope.
+- Verify the non-mode-based deep command (`start-skill-benchmark-loop`, ~95 lines) is already thin and document it as out of split scope.
 - Align the sk-doc command-creation standard (`command_template.md`) to document the presentation/router split as the canonical pattern for mode-based workflow command families, and add a presentation-contract template asset.
 
 ### Out of Scope
 - Changing workflow behavior, routing semantics, agent dispatch, or the existing `_auto.yaml` / `_confirm.yaml` workflow assets (beyond confirming they own the workflow).
-- The two thin non-mode deep commands beyond verification.
+- The thin non-mode `start-skill-benchmark-loop` command beyond verification.
 - Other command families (already split in 011).
 
 ### Files to Change

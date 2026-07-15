@@ -55,7 +55,7 @@ Delivered in two parts because of a plan-workflow lock (see How It Was Delivered
 
 **Reducer-compatibility fix.** The converged run surfaced a real integration gap: the adapter's findings carried only `{code, severity, dimension, location}`, but the deep-alignment reducer's fallback dedup key reads `severity|type|artifactPath|message`. Distinct same-severity findings therefore collapsed to one open finding, which would have broken raw-delta/reducer agreement in any real run. Following the five peer adapters' convention, `makeFinding` was extended to also emit `type` (= code), `artifactPath` (= the location's file), and `message` (embedding the code and full location), preserving the four original fields the oracle and fixtures compare. The adapter test now projects to the core fields for the frozen-oracle comparison and separately asserts the reducer-compatible fields and three distinct dedup keys.
 
-**Part B — the converged run.** The command adapter ran as a lane over all 37 canonical commands and converged, with the reducer's deduped registry matching the raw deltas exactly on the adapter's verbatim output.
+**Part B — the converged run.** The command adapter ran as a lane over all 36 canonical commands and converged, with the reducer's deduped registry matching the raw deltas exactly on the adapter's verbatim output.
 
 ### Files Changed
 
@@ -104,11 +104,11 @@ Part B was driven through the deep-alignment workflow rather than the packet's i
 |-------|--------|
 | Full deep-alignment suite | PASS: all 5 test files, including the 13 command-adapter fixtures with the reducer-field and distinct-dedup-key assertions. |
 | Phase-002 oracle non-circularity | PASS: `--verify` exits 0 with the adapter present; the adapter references no oracle path or id. |
-| Lane config parse and scoping | PASS: scoping exits 0 with `adapter: sk-doc-command`; discovery resolves 37 canonical commands. |
-| Convergence (REQ-001) | PASS: `CONVERGED` at iteration 8 — coverage 37/37 = 1.0 AND the last two iterations reported `newFindingsRatio` 0. |
+| Lane config parse and scoping | PASS: scoping exits 0 with `adapter: sk-doc-command`; discovery resolves 36 canonical commands. |
+| Convergence (REQ-001) | PASS: `CONVERGED` at iteration 8 — coverage 36/36 = 1.0 AND the last two iterations reported `newFindingsRatio` 0. |
 | Raw-delta = reducer (REQ-002) | PASS: 3 delta finding lines → 3 distinct dedup keys = the registry's 3 open findings (P0:3/P1:0/P2:0), on the adapter's verbatim output. |
 | Peer/generic isolation (REQ-003) | PASS: the run resolved a single `sk-doc-command` lane; the generic `sk-doc` adapter never audited the command scope. |
-| Full coverage (REQ-004) | PASS: 37 of 37 discovered artifacts checked. |
+| Full coverage (REQ-004) | PASS: 36 of 36 discovered artifacts checked. |
 | Adapter-error accounting (REQ-005) | PASS: 0 adapter-error records; all iterations `status: complete`; 0 corrupt deltas. |
 | Registration + suppression + tests (REQ-006) | PASS: `sk-doc-command` allowlisted in `AUTHORITY_ADAPTERS['sk-doc']`; suppression resolves by selected adapter; scoping and partition tests cover the peer path. |
 

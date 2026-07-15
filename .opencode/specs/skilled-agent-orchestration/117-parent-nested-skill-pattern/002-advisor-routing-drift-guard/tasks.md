@@ -58,7 +58,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T001 Add the per-mode `advisorRouting` block (8 modes) + top-level `advisorRoutingContract` legend; bump registry version to 1.1.0. (`.opencode/skills/deep-loop-workflows/mode-registry.json`)
+- [x] T001 Add the per-mode `advisorRouting` block (7 modes) + top-level `advisorRoutingContract` legend; bump registry version to 1.1.0. (`.opencode/skills/deep-loop-workflows/mode-registry.json`)
 - [x] T002 Add the `--dump-routing-maps` flag (arg registration + handler). (`.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`)
 - [x] T003 Export `DEEP_MODE_BY_CANONICAL`. (`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts`)
 - [x] T004 Write the drift-guard vitest. (`.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts`)

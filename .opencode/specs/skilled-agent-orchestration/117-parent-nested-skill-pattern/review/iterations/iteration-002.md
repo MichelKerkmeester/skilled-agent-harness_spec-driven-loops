@@ -22,7 +22,7 @@ The focused routing guard tests passed: 3 files, 19 tests. I’m checking whethe
 Findings: none.
 
 Reviewed evidence:
-- Registry has `advisorRouting` for all 8 modes with valid classes and `packetSkillName`: `.opencode/skills/deep-loop-workflows/mode-registry.json:28`, `:42`, `:58`, `:74`, `:92`, `:110`, `:125`, `:141`.
+- Registry has `advisorRouting` for all 7 modes with valid classes and `packetSkillName`: `.opencode/skills/deep-loop-workflows/mode-registry.json:28`, `:42`, `:58`, `:74`, `:92`, `:110`, `:125`, `:141`.
 - Registry lexical projection matches Python `DEEP_ROUTING_MODE_BY_KEY`: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2320`.
 - Registry lexical+alias-fold projection matches TS `DEEP_MODE_BY_CANONICAL`: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:96`.
 - Registry `legacyAliases` match `RAW_ALIAS_GROUPS` for routed modes: aliases source at `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:13`, `:20`, `:27`, `:39`; registry counterparts at `.opencode/skills/deep-loop-workflows/mode-registry.json:45`, `:61`, `:77`, `:96`.

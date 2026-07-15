@@ -1,21 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/064-deep-command-family-parity/002-direct-dispatch-to-yaml",
-  "description": "`/deep:skill-benchmark` (Lane C) and `/deep:ai-system-improvement` (Lane D) were the only two deep commands that dispatched their loop host inline:",
+  "description": "`/deep:skill-benchmark` (Lane C) was the remaining deep command that dispatched its loop host inline: its `command.md` declared \"direct-router family",
   "keywords": [
     "deep",
     "skill-benchmark",
     "lane",
-    "ai-system-improvement",
-    "only",
-    "two",
-    "commands",
+    "remaining",
+    "command",
     "dispatched",
     "loop",
     "host",
-    "inline"
+    "inline",
+    "declared",
+    "direct-router",
+    "family"
   ],
-  "lastUpdated": "2026-07-13T14:17:20.925Z",
+  "lastUpdated": "2026-07-15T11:04:43.265Z",
   "specId": "002",
   "folderSlug": "direct-dispatch-to-yaml",
   "parentChain": [

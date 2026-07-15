@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Parity baseline and runtime-ownership ADR"
-description: "Capture a byte-level baseline of all five modes’ artifacts, eight commands, and advisor outputs; author the runtime-ownership ADR; run the nested-SKILL.md advisor-discovery gate; decide the Lane-D dry-run baseline. The phase-0 gate before any file moves."
+description: "Capture a byte-level baseline of all five modes’ artifacts, seven commands, and advisor outputs; author the runtime-ownership ADR; run the nested-SKILL.md advisor-discovery gate. The phase-0 gate before any file moves."
 trigger_phrases:
   - "deep-loop-workflows parity baseline"
   - "runtime ownership adr"
@@ -51,7 +51,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A structure-only merge can silently change behavior. Without a captured byte-level baseline of every mode’s artifacts, commands, and advisor outputs, "no regression" is unprovable (the acceptance bar is byte-identical per mode). Two open risks gate the whole epic: nested-SKILL.md advisor discovery (blocker B5 / risk R1 — if the advisor scanner globs **/SKILL.md, the verbatim mode packets become separate rankable skills and defeat consolidation) and the Lane-D baseline asymmetry (B8). The runtime also gains new ownership in phase 002, which the runtime’s own ESCALATE rule says requires an ownership ADR before extension.
+A structure-only merge can silently change behavior. Without a captured byte-level baseline of every mode’s artifacts, commands, and advisor outputs, "no regression" is unprovable (the acceptance bar is byte-identical per mode). The main open risk is nested-SKILL.md advisor discovery (blocker B5 / risk R1 — if the advisor scanner globs **/SKILL.md, the verbatim mode packets become separate rankable skills and defeat consolidation). The runtime also gains new ownership in phase 002, which the runtime’s own ESCALATE rule says requires an ownership ADR before extension.
 
 ### Purpose
 Establish the parity baseline, author the runtime-ownership ADR, and resolve the two phase-0 gates, before any directory is moved or renamed.
@@ -65,10 +65,9 @@ Establish the parity baseline, author the runtime-ownership ADR, and resolve the
 ## 3. SCOPE
 
 ### In Scope
-- Byte-level baseline capture of the five modes’ artifacts, the eight /deep:* command outputs, and advisor routing outputs (single-executor, normalized modulo timestamps).
+- Byte-level baseline capture of the five modes’ artifacts, the seven /deep:* command outputs, and advisor routing outputs (single-executor, normalized modulo timestamps).
 - The nested-SKILL.md advisor-discovery test: prove the planned packet layout yields no extra rankable advisor nodes (blocker B5).
 - The runtime-ownership ADR (decision-record.md) authorizing the phase-002 promotions per the deep-loop-runtime ESCALATE contract.
-- The Lane-D baseline decision: capture parity dry-run-only (blocker B8), so phase-009 acceptance compares on the same basis.
 
 ### Out of Scope
 - Any directory move, rename, or path rewrite (phases 003+).
@@ -81,10 +80,9 @@ Establish the parity baseline, author the runtime-ownership ADR, and resolve the
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **R1 (MUST):** Byte-level baseline capture of the five modes’ artifacts, the eight /deep:* command outputs, and advisor routing outputs (single-executor, normalized modulo timestamps).
+- **R1 (MUST):** Byte-level baseline capture of the five modes’ artifacts, the seven /deep:* command outputs, and advisor routing outputs (single-executor, normalized modulo timestamps).
 - **R2 (MUST):** The nested-SKILL.md advisor-discovery test: prove the planned packet layout yields no extra rankable advisor nodes (blocker B5).
 - **R3 (MUST):** The runtime-ownership ADR (decision-record.md) authorizing the phase-002 promotions per the deep-loop-runtime ESCALATE contract.
-- **R4 (MUST):** The Lane-D baseline decision: capture parity dry-run-only (blocker B8), so phase-009 acceptance compares on the same basis.
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -93,7 +91,7 @@ Establish the parity baseline, author the runtime-ownership ADR, and resolve the
 ## 5. SUCCESS CRITERIA
 
 This phase is complete when (parity gate):
-- Baseline snapshot recorded and reproducible for all 8 commands + 5 modes.
+- Baseline snapshot recorded and reproducible for all 7 commands + 5 modes.
 - Nested-SKILL.md discovery test proves exactly the intended one rankable node per packet plan.
 - Runtime-ownership ADR authored; validate.sh --strict green.
 <!-- /ANCHOR:success-criteria -->
@@ -127,7 +125,6 @@ Rollback is per-strata: this phase child is independently revertible because the
 ## 8. EDGE CASES
 
 - A mode whose artifact embeds a non-timestamp nondeterministic field (run id, temp path) — the normalizer must mask it or the baseline is unusable.
-- Lane D cannot run live in this environment — baseline is captured dry-run-only.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -144,7 +141,6 @@ Low blast-radius (read-only baseline + one ADR + one discovery test), but it is 
 ## 10. OPEN QUESTIONS
 
 - Does the advisor skill-graph scanner glob **/SKILL.md (blocker B5)?
-- Is the Lane-D dry-run baseline sufficient for phase-009 acceptance (blocker B8)?
 
 Full blocker list (B1–B8) is in `../research/research.md` §Open Items / Blockers.
 <!-- /ANCHOR:questions -->

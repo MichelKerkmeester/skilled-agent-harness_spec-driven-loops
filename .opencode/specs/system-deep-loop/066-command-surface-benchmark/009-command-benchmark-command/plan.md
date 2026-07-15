@@ -67,7 +67,7 @@ Command and structure validation, command-reference resolution, prompt-sync chec
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Depends on the family phase for the authored contract and lane-config, the lane-integration phase for the registered adapter and finalized lane, the scenario-rollout phase for the DAB scenarios, and the matrix phase for the manifest and scheduler. Feeds the closeout phase, which reruns the 38-command census after the command and mirror exist.
+Depends on the family phase for the authored contract and lane-config, the lane-integration phase for the registered adapter and finalized lane, the scenario-rollout phase for the DAB scenarios, and the matrix phase for the manifest and scheduler. Feeds the closeout phase, which reruns the 37-command census after the command and mirror exist.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

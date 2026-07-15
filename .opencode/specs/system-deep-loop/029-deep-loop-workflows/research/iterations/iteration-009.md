@@ -143,7 +143,7 @@ These are code/command references, not graph metadata edges, so deleting nodes a
 | TypeScript explicit/lexical scorer lanes | `explicit.ts:96-99`, `explicit.ts:116-138`, `explicit.ts:163-174`, `lexical.ts:31-33` |
 | Python fallback advisor aliases/routing | `skill_advisor.py:228-262`, `skill_advisor.py:1639-1730`, `skill_advisor.py:1821-1852`, `skill_advisor.py:2301-2508` |
 | Command YAML skill references | context `deep_start-context-loop_auto.yaml:77-85`; research `deep_start-research-loop_auto.yaml:66-76`; review `deep_start-review-loop_auto.yaml:55-64`; improvement `deep_start-agent-improvement-loop_auto.yaml:79-95`; council `deep_ask-ai-council_auto.yaml:40-52` |
-| Command markdown routers | research self-path at `start-research-loop.md:88-90`; skill benchmark `skill: deep-improvement` at `start-skill-benchmark-loop.md:1-4` and script path at lines 75-83; non-dev AI system `skill: deep-improvement` at `start-non-dev-ai-system-loop.md:1-4` and script path at lines 76-86 |
+| Command markdown routers | research self-path at `start-research-loop.md:88-90`; skill benchmark `skill: deep-improvement` at `start-skill-benchmark-loop.md:1-4` and script path at lines 75-83 |
 | Runtime fanout scripts | `fanout-run.cjs:130-137`, `fanout-merge.cjs:317-320`, `fanout-salvage.cjs:13-16` |
 | Council replay/orchestration paths | `replay-graph-from-artifacts.cjs:21-27`, `replay-graph-from-artifacts.cjs:51-66`; deep-ai-council scripts import runtime council primitives in grep hits from `orchestrate-session.cjs` and `orchestrate-topic.cjs` |
 | Generated/static advisor graph JSON | `mcp_server/scripts/skill-graph.json` and `mcp_server/database/skill-graph.json` showed old IDs in `rg`; regenerate instead of hand-editing if they are generated artifacts |
@@ -176,6 +176,6 @@ The highest pre-existing asymmetry is `deep-context`: metadata routes it today, 
 
 **Dependencies**
 
-This recommendation assumes the command surface stays stable and commands continue to choose mode. It depends on Q-ARCH layout decisions for new paths, Q-AGENT for whether agent names stay stable, Q-CMD for whether the 8 command surfaces stay separate, Q-IMPROVE for how improvement lanes become modes/submodes, and Q-GOV for whether feature catalog/playbook trees stay mode-scoped.
+This recommendation assumes the command surface stays stable and commands continue to choose mode. It depends on Q-ARCH layout decisions for new paths, Q-AGENT for whether agent names stay stable, Q-CMD for whether the 7 command surfaces stay separate, Q-IMPROVE for how improvement lanes become modes/submodes, and Q-GOV for whether feature catalog/playbook trees stay mode-scoped.
 
 I'M UNCERTAIN ABOUT THIS: whether the final advisor response schema is allowed to add an explicit `mode` field. If not, mode must be surfaced in attribution/trace first, but parity fixtures should still model `{skill, mode}` internally to avoid flattening behavior.
