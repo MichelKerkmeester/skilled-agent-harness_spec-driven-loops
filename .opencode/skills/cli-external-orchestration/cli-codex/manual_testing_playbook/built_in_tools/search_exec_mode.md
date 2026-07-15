@@ -26,9 +26,9 @@ Operators run the exact prompt and command sequence for `CX-024` and confirm the
 
 - Objective: Verify `--search` works in non-interactive `codex exec` mode against a current-information question.
 - Real user request: `Confirm Codex's --search flag works in exec mode (not just the interactive TUI).`
-- Prompt: `Confirm codex exec --search returns web-access evidence for a March 2026 JavaScript runtime release.`
-- Expected execution process: Operator dispatches `codex exec --search` with a current-information prompt -> captures stdout -> verifies the response indicates web access (URL citation, "according to" phrasing or a recent date-stamp).
-- Expected signals: `codex exec --search` exits 0. Response contains a date-stamped fact, an "according to" phrasing or a URL citation. Dispatched command line includes `--search`. The answer is plausibly current rather than purely from training data.
+- Prompt: `Confirm codex --search exec returns web-access evidence for a March 2026 JavaScript runtime release.`
+- Expected execution process: Operator dispatches `codex --search exec` with a current-information prompt -> captures stdout -> verifies the response indicates web access (URL citation, "according to" phrasing or a recent date-stamp).
+- Expected signals: `codex --search exec` exits 0. Response contains a date-stamped fact, an "according to" phrasing or a URL citation. Dispatched command line includes `--search`. The answer is plausibly current rather than purely from training data.
 - Desired user-visible outcome: Operator-visible proof that `--search` is wired into `exec` mode and not just the interactive TUI.
 - Pass/fail: PASS if exit 0 AND response contains at least one signal of web access (URL, "according to" or recent date) AND `--search` is in the dispatched command line. FAIL if exit non-zero, no web-access signal or `--search` missing from command.
 
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `CX-024` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Dispatch `codex exec --search` with a current-information prompt that requires recent web data.
+1. Dispatch `codex --search exec` with a current-information prompt that requires recent web data.
 2. Capture stdout to a temp file.
 3. Grep for web-access signals (URL, "according to", recent date).
 4. Confirm at least one signal is present.
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `CX-024` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CX-024 | --search live browsing in exec | Verify --search works in exec mode and the response indicates web access | `Confirm codex exec --search returns web-access evidence for a March 2026 JavaScript runtime release.` | 1. `codex exec --search --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="high" -c service_tier="fast" "What was the headline release of any major JavaScript runtime announced in March 2026? Cite one source URL or quote phrasing like 'according to <source>'." > /tmp/cli-codex-cx024.txt 2>&1` -> 2. `bash: cat /tmp/cli-codex-cx024.txt` -> 3. `bash: grep -ciE "https?://\|according to\|reported by\|2026-03\|march 2026" /tmp/cli-codex-cx024.txt > /tmp/cli-codex-cx024-signal-count.txt` -> 4. `bash: SIGNALS=$(cat /tmp/cli-codex-cx024-signal-count.txt); printf 'Web-access signals detected: %s\n' "$SIGNALS"` | Step 1: exit 0; Step 2: stdout contains a release-related answer; Step 3: signal count >= 1 (URL/citation/recent date); Step 4: signal-count line printed | Captured stdout, signal-count file, dispatched command line, exit code | PASS if exit 0, signal count >= 1, AND `--search` is in the dispatched command line; FAIL if exit non-zero, signal count is 0, or `--search` missing | (1) Re-run with `2>&1 \| tee` for stderr inline; (2) inspect stdout for "search not available" or rate-limit messages; (3) confirm operator's account tier supports --search; (4) try a less time-sensitive query if rate-limited |
+| CX-024 | --search live browsing in exec | Verify --search works in exec mode and the response indicates web access | `Confirm codex --search exec returns web-access evidence for a March 2026 JavaScript runtime release.` | 1. `codex --search exec --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="high" -c service_tier="fast" "What was the headline release of any major JavaScript runtime announced in March 2026? Cite one source URL or quote phrasing like 'according to <source>'." > /tmp/cli-codex-cx024.txt 2>&1` -> 2. `bash: cat /tmp/cli-codex-cx024.txt` -> 3. `bash: grep -ciE "https?://\|according to\|reported by\|2026-03\|march 2026" /tmp/cli-codex-cx024.txt > /tmp/cli-codex-cx024-signal-count.txt` -> 4. `bash: SIGNALS=$(cat /tmp/cli-codex-cx024-signal-count.txt); printf 'Web-access signals detected: %s\n' "$SIGNALS"` | Step 1: exit 0; Step 2: stdout contains a release-related answer; Step 3: signal count >= 1 (URL/citation/recent date); Step 4: signal-count line printed | Captured stdout, signal-count file, dispatched command line, exit code | PASS if exit 0, signal count >= 1, AND `--search` is in the dispatched command line; FAIL if exit non-zero, signal count is 0, or `--search` missing | (1) Re-run with `2>&1 \| tee` for stderr inline; (2) inspect stdout for "search not available" or rate-limit messages; (3) confirm operator's account tier supports --search; (4) try a less time-sensitive query if rate-limited |
 
 ### Optional Supplemental Checks
 

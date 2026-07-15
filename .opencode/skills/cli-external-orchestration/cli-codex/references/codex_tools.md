@@ -81,7 +81,7 @@ codex
 
 ### Web Search (--search)
 
-**Live web browsing during task execution.** The `--search` flag enables Codex to browse the web during an `exec` session, retrieving current documentation, advisories, and community resources.
+**Live web browsing during task execution.** The `--search` flag enables Codex to browse the web during an `exec` session, retrieving current documentation, advisories, and community resources (pass it as a top-level flag before `exec`: `codex --search exec …`).
 
 **Capabilities:**
 - Searches the live web using OpenAI's browsing capability
@@ -94,16 +94,16 @@ codex
 
 ```bash
 # Research current library security advisories
-codex exec "What are the latest security advisories for Express.js? Search the web." \
-  --model gpt-5.5 --search --sandbox read-only
+codex --search exec "What are the latest security advisories for Express.js? Search the web." \
+  --model gpt-5.5 --sandbox read-only
 
 # Find migration guide
-codex exec "Find the official Prisma 5 to 6 migration guide and summarize the breaking changes." \
-  --model gpt-5.5 --search --sandbox read-only
+codex --search exec "Find the official Prisma 5 to 6 migration guide and summarize the breaking changes." \
+  --model gpt-5.5 --sandbox read-only
 
 # Compare packages with current data
-codex exec "Compare zod vs yup for TypeScript validation as of 2026. Search for benchmarks." \
-  --model gpt-5.5 --search --sandbox read-only
+codex --search exec "Compare zod vs yup for TypeScript validation as of 2026. Search for benchmarks." \
+  --model gpt-5.5 --sandbox read-only
 ```
 
 **Output Format:**
@@ -392,8 +392,8 @@ You can explicitly request specific Codex capabilities:
 
 ```bash
 # Request web search explicitly
-codex exec "Use web search to find the latest CVEs for lodash" \
-  --model gpt-5.5 --search --sandbox read-only
+codex --search exec "Use web search to find the latest CVEs for lodash" \
+  --model gpt-5.5 --sandbox read-only
 
 # Request diff-aware review (interactive)
 codex  # then type: /review
@@ -477,8 +477,8 @@ When calling Codex CLI from any AI assistant, choose capabilities strategically:
 
 ```bash
 # Use --search for current information
-codex exec "Find the latest Prisma migration guide" \
-  --model gpt-5.5 --search --sandbox read-only 2>&1
+codex --search exec "Find the latest Prisma migration guide" \
+  --model gpt-5.5 --sandbox read-only 2>&1
 
 # Use read-only for safe analysis
 codex exec "Review src/auth/ for security issues" \

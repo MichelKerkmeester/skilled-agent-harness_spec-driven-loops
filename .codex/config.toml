@@ -2,13 +2,41 @@
 hooks = true
 
 [mcp_servers."mk-spec-memory"]
-command = "node"
+command = "/Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin/node"
 args = [".opencode/bin/mk-spec-memory-launcher.cjs"]
 
+[mcp_servers."mk-spec-memory".env]
+EMBEDDINGS_PROVIDER = "auto"
+HF_EMBED_SERVER_URL = "unix:///tmp/mk-hf-embed/hf-embed.sock"
+SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-spec-memory"
+SPECKIT_MAX_SECONDARY_CLIENTS = "64"
+SPECKIT_RETRY_BATCH_SIZE = "100"
+SPECKIT_RETRY_INTERVAL_MS = "5000"
+SPECKIT_RETRY_QUEUE_MAX_AGE_MS = "3153600000000"
+SPECKIT_RETRY_QUEUE_MAX_PENDING = "300000"
+
 [mcp_servers.mk_skill_advisor]
-command = "node"
+command = "/Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin/node"
 args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]
 
+[mcp_servers.mk_skill_advisor.env]
+HF_EMBED_SERVER_URL = "unix:///tmp/mk-hf-embed/hf-embed.sock"
+MK_SKILL_ADVISOR_DB_DIR = ".opencode/skills/system-skill-advisor/mcp_server/database"
+MK_SKILL_ADVISOR_HOOK_DISABLED = "0"
+MK_SKILL_ADVISOR_TRUST_DEFAULT = "trusted"
+SPECKIT_ADVISOR_DOC_TRIGGERS = "true"
+SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-skill-advisor"
+SPECKIT_MAX_SECONDARY_CLIENTS = "64"
+
 [mcp_servers.mk_code_index]
-command = "node"
+command = "/Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin/node"
 args = [".opencode/bin/mk-code-index-launcher.cjs"]
+
+[mcp_servers.mk_code_index.env]
+SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
+SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
+SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
+SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
+SPECKIT_CODE_GRAPH_INDEX_SPECS = "false"
+SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-code-index"
+SPECKIT_MAX_SECONDARY_CLIENTS = "64"

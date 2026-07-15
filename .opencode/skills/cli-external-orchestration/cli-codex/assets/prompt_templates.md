@@ -352,8 +352,8 @@ Framework: CRISPE
 Fetch up-to-date information using web search.
 
 ```bash
-codex exec "Search the web for current information about [topic] as of [date]. Provide: 1) Latest version or status, 2) Recent changes or announcements, 3) Links to official sources. Cite your sources." \
-  --model gpt-5.5 --search --sandbox read-only
+codex --search exec "Search the web for current information about [topic] as of [date]. Provide: 1) Latest version or status, 2) Recent changes or announcements, 3) Links to official sources. Cite your sources." \
+  --model gpt-5.5 --sandbox read-only
 ```
 
 ### Library / API Research
@@ -363,8 +363,8 @@ Framework: CRISPE
 Research a specific library, API, or technology.
 
 ```bash
-codex exec "Search the web to research [topic]. Find: 1) Current stable version and release date, 2) Installation instructions, 3) Key API changes in recent versions, 4) Known issues or deprecations, 5) Community adoption and alternatives. Cite official documentation." \
-  --model gpt-5.5 --search --sandbox read-only
+codex --search exec "Search the web to research [topic]. Find: 1) Current stable version and release date, 2) Installation instructions, 3) Key API changes in recent versions, 4) Known issues or deprecations, 5) Community adoption and alternatives. Cite official documentation." \
+  --model gpt-5.5 --sandbox read-only
 ```
 
 ### Comparison Research
@@ -374,8 +374,8 @@ Framework: CRISPE
 Compare technologies, libraries, or approaches with current data.
 
 ```bash
-codex exec "Search the web to compare [topic] vs [topic] as of [date]. Compare on: 1) Performance benchmarks, 2) Bundle size and dependencies, 3) Community support and maintenance activity, 4) Feature set differences, 5) Migration effort from one to the other. Cite sources for all claims." \
-  --model gpt-5.5 --search --sandbox read-only
+codex --search exec "Search the web to compare [topic] vs [topic] as of [date]. Compare on: 1) Performance benchmarks, 2) Bundle size and dependencies, 3) Community support and maintenance activity, 4) Feature set differences, 5) Migration effort from one to the other. Cite sources for all claims." \
+  --model gpt-5.5 --sandbox read-only
 ```
 
 ### Security Advisory Research
@@ -385,8 +385,8 @@ Framework: CRISPE
 Research security vulnerabilities for a specific package or technology.
 
 ```bash
-codex exec "Search the web for security advisories and CVEs for [package]@[version] as of [date]. Provide: 1) Known CVE IDs and severity ratings, 2) Affected versions, 3) Patched versions, 4) Recommended mitigation steps. Cross-reference with NVD, GitHub Security Advisories, and official package changelogs." \
-  --model gpt-5.5 --search --sandbox read-only
+codex --search exec "Search the web for security advisories and CVEs for [package]@[version] as of [date]. Provide: 1) Known CVE IDs and severity ratings, 2) Affected versions, 3) Patched versions, 4) Recommended mitigation steps. Cross-reference with NVD, GitHub Security Advisories, and official package changelogs." \
+  --model gpt-5.5 --sandbox read-only
 ```
 
 ---
@@ -490,8 +490,8 @@ Research best practices, then apply them to the codebase.
 
 ```bash
 # Phase 1: Research
-codex exec "Search the web for current best practices for [topic] in [language/framework] as of [date]. Summarize the top 3 recommended approaches with pros and cons." \
-  --model gpt-5.5 --search --sandbox read-only
+codex --search exec "Search the web for current best practices for [topic] in [language/framework] as of [date]. Summarize the top 3 recommended approaches with pros and cons." \
+  --model gpt-5.5 --sandbox read-only
 
 # Phase 2: Implement (use session resume or new exec with research context)
 codex exec "Based on best practices for [topic], implement [description] in @./[file]. Use the [approach] pattern. Preserve all existing behavior." \

@@ -433,7 +433,7 @@ codex exec \
 
 ```bash
 # Enable live web browsing with --search
-codex exec --search \
+codex --search exec \
   "Research the current best practices for refresh token rotation in Express.js. Implement the recommended pattern in src/auth/tokens.ts" \
   --sandbox workspace-write --model gpt-5.5
 ```

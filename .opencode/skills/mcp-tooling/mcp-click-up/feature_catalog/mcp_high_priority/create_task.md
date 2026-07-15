@@ -24,13 +24,17 @@ Create a single ClickUp task with name, description, priority, assignees, tags, 
 
 ## 1. OVERVIEW
 
-Creates a new task in the specified list. Required field: `list_id`, `name`. Optional: `description`, `priority` (1=urgent, 2=high, 3=normal, 4=low), `assignees` (array of user IDs), `tags` (array of tag names), `due_date` (Unix ms timestamp), `status`.
+Creates a new task in the specified list. Required field: `list_id`, `name`. Optional: `description` (plain text ONLY), `markdown_description` (markdown content), `priority` (1=urgent, 2=high, 3=normal, 4=low), `assignees` (array of user IDs), `tags` (array of tag names), `due_date` (Unix ms timestamp), `status`.
 
 ---
 
 ## 2. HOW IT WORKS
 
 Returns the created task object including the generated `task_id`. Priority values are integers 1-4. The task is immediately visible in ClickUp. Use `clickup_create_bulk_tasks` for 5+ tasks.
+
+### Markdown Transport (REQUIRED for markdown content)
+
+The plain `description` field stores text literally: markdown submitted there shows up in ClickUp as raw `### Heading`, `**bold**`, and `- [ ]` strings. Any description containing markdown syntax MUST go through `markdown_description`, which ClickUp converts to rendered rich text (headings, bold, checkboxes). Read the markdown form back with `include_markdown_description=true` on the get call. Live-verified against the ClickUp v2 REST API on 2026-07-15 (`POST /list/{list_id}/task` with `markdown_description`). Confirm the registered MCP parameter name via `tool_info()` on first use; the native claude.ai ClickUp connector exposes the same `markdown_description` parameter.
 
 ---
 

@@ -473,13 +473,13 @@ Desired user-visible outcome: A planning brief the operator can hand to an archi
 
 #### Description
 
-Verify `codex exec -p research --search` returns a citation-backed comparative analysis covering at least 2 candidates across at least 3 trade-off dimensions with a recommendation, and the response cites at least one HTTPS URL as evidence.
+Verify `codex --search exec -p research` returns a citation-backed comparative analysis covering at least 2 candidates across at least 3 trade-off dimensions with a recommendation, and the response cites at least one HTTPS URL as evidence.
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator delegating an evidence-backed investigation, dispatch codex exec -p research --search --model gpt-5.5 -c model_reasoning_effort="high" -c service_tier="fast" --sandbox read-only "Compare current Bun and Deno major releases across runtime performance, package ecosystem, and operational stability. Cite at least one HTTPS source URL per candidate. End with a recommendation plus rationale." Verify the dispatch routes via -p research, cites at least 2 HTTPS URLs, names both candidates with explicit pros and cons, and ends with a recommendation. Return a verdict naming the cited URLs, the trade-off dimensions covered, and the recommendation.`
+Prompt: `As a cross-AI orchestrator delegating an evidence-backed investigation, dispatch codex --search exec -p research --model gpt-5.5 -c model_reasoning_effort="high" -c service_tier="fast" --sandbox read-only "Compare current Bun and Deno major releases across runtime performance, package ecosystem, and operational stability. Cite at least one HTTPS source URL per candidate. End with a recommendation plus rationale." Verify the dispatch routes via -p research, cites at least 2 HTTPS URLs, names both candidates with explicit pros and cons, and ends with a recommendation. Return a verdict naming the cited URLs, the trade-off dimensions covered, and the recommendation.`
 
-Expected signals: `codex exec -p research --search` exits 0. Stdout names both candidates explicitly. >= 3 trade-off dimensions covered. >= 2 distinct HTTPS URLs cited. Explicit recommendation surfaces. Dispatch line includes both `-p research` and `--search`.
+Expected signals: `codex --search exec -p research` exits 0. Stdout names both candidates explicitly. >= 3 trade-off dimensions covered. >= 2 distinct HTTPS URLs cited. Explicit recommendation surfaces. Dispatch line includes both `-p research` and `--search`.
 
 Desired user-visible outcome: A citation-backed comparison brief the operator can paste into an architecture-decision-record entry.
 
@@ -559,9 +559,9 @@ Verify `--search` enables live web browsing during `codex exec` and that the res
 
 #### Scenario Contract
 
-Prompt: `Use codex exec --search to find the latest stable Express.js minor release as of April 2026 and cite official URLs.`
+Prompt: `Use codex --search exec to find the latest stable Express.js minor release as of April 2026 and cite official URLs.`
 
-Expected signals: `codex exec --search` exits 0. Stdout contains at least one URL with `https://` scheme. URL points at a plausible source (expressjs.com, github.com/expressjs, npmjs.com, etc.). Dispatched command line includes `--search`.
+Expected signals: `codex --search exec` exits 0. Stdout contains at least one URL with `https://` scheme. URL points at a plausible source (expressjs.com, github.com/expressjs, npmjs.com, etc.). Dispatched command line includes `--search`.
 
 Desired user-visible outcome: A version-and-source summary the operator can paste into a research note, with provable evidence that the live web tier was actually engaged.
 
@@ -661,9 +661,9 @@ Verify `--search` works in non-interactive `codex exec` mode (distinct from CX-0
 
 #### Scenario Contract
 
-Prompt: `Confirm codex exec --search returns web-access evidence for a March 2026 JavaScript runtime release.`
+Prompt: `Confirm codex --search exec returns web-access evidence for a March 2026 JavaScript runtime release.`
 
-Expected signals: `codex exec --search` exits 0. Response contains a date-stamped fact, an "according to" phrasing or a URL citation. Dispatched command line includes `--search`. The answer is plausibly current rather than purely from training data.
+Expected signals: `codex --search exec` exits 0. Response contains a date-stamped fact, an "according to" phrasing or a URL citation. Dispatched command line includes `--search`. The answer is plausibly current rather than purely from training data.
 
 Desired user-visible outcome: Operator-visible proof that `--search` is wired into `exec` mode and not just the interactive TUI.
 

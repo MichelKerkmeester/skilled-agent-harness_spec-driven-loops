@@ -122,7 +122,25 @@ Note: no top-level `get_document`/`update_document` tool was found in the last i
 
 ---
 
-## 6. INVOCATION PATTERN (CODE MODE)
+## 6. MARKDOWN TRANSPORT CONTRACT (READ BEFORE THE EXAMPLES)
+
+The plain `description` field stores text literally — markdown submitted there renders in ClickUp as raw `### Heading` / `**bold**` / `- [ ]` strings. Whenever the content contains markdown syntax:
+
+- Task create: use `markdown_description` (never plain `description`)
+- Task update via raw v2 API or the Code Mode server: use `markdown_content` (`markdown_description` is also accepted)
+- Task update via the claude.ai ClickUp connector: use `markdown_description`
+- Documents and pages: use `content` + `content_format: "markdown"` (connector pages use `"text/md"`)
+- Read-back: add `include_markdown_description=true` to get calls
+
+Live-verified against the ClickUp v2 REST API on 2026-07-15: content submitted through these parameters converts to rendered rich text; a scratch-task round trip confirmed headings, bold, and checkbox rendering on create and on both update parameter names, and a full Product Owner task export pushed the same day rendered end-to-end with headings, bold, dividers, and checkboxes intact.
+
+Push shape for markdown artifacts: the document's H1 becomes the task `name` (drop it from the body) and internal HTML comments (processing metadata) are stripped before submission; everything else travels verbatim.
+
+This contract exists because tickets written through plain `description` landed in the Barter workspace as unreadable raw markdown.
+
+---
+
+## 7. INVOCATION PATTERN (CODE MODE)
 
 `call_tool_chain` takes a single `code` string (TypeScript), not an array of `{tool, input}` records. It has direct access to every registered tool as a hierarchical function:
 
@@ -143,7 +161,7 @@ const result = await call_tool_chain({
     const task = await clickup_official.clickup_official_clickup_create_task({
       list_id: "LIST_ID",
       name: "New Feature Implementation",
-      description: "Implement the new feature per spec",
+      markdown_description: "### About\\n\\nImplement the new feature per spec.\\n\\n**Checklist**\\n- [ ] Ship it",
       priority: 2,
       tags: ["sprint", "backend"],
     });
@@ -156,11 +174,11 @@ const result = await call_tool_chain({
 });
 ```
 
-Confirm every callable name with `tool_info()`/`list_tools()` before hardcoding it — the names above are last-captured, not live-verified this pass.
+Confirm every callable name with `tool_info()`/`list_tools()` before hardcoding it — the names above are last-captured, not live-verified this pass. The same parameter names exist on the native claude.ai ClickUp connector (`mcp__claude_ai_ClickUp__clickup_create_task` exposes `markdown_description`). This contract exists because tickets written through plain `description` landed in the Barter workspace as unreadable raw markdown.
 
 ---
 
-## 7. DOCUMENT OPERATIONS
+## 8. DOCUMENT OPERATIONS
 
 ```typescript
 // Create a ClickUp document, then list its pages
@@ -196,7 +214,7 @@ There is no top-level `get_document`/`update_document` tool in the last inventor
 
 ---
 
-## 8. ERROR HANDLING
+## 9. ERROR HANDLING
 
 Common error patterns and recovery:
 
@@ -229,7 +247,7 @@ try {
 
 ---
 
-## 9. MCP VS CUPT: QUICK DECISION
+## 10. MCP VS CUPT: QUICK DECISION
 
 | Need | Use | Reason |
 |------|-----|--------|

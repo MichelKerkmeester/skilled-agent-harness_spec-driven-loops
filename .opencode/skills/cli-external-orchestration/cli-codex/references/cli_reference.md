@@ -103,7 +103,7 @@ codex logout
 | `--image` | `-i` | file-path | Attach an image (PNG or JPEG) to the prompt |
 | `--full-auto` | | (none) | Low-friction mode with relaxed approvals (use sparingly) |
 | `--oss` | | (none) | Use local open-source models via Ollama instead of OpenAI |
-| `--search` | | (none) | Enable live web browsing during the session |
+| `--search` | | (none) | Enable live web browsing during the session (top-level flag; precede `exec`: `codex --search exec …`) |
 
 ### Profile & Review Flags
 
@@ -165,7 +165,7 @@ codex exec "Run the test suite and fix failures" --full-auto --model gpt-5.5
 codex exec "Implement this UI component" --image wireframe.png --model gpt-5.5
 
 # Enable web search
-codex exec "Research and implement OAuth2 PKCE flow" --search --model gpt-5.5
+codex --search exec "Research and implement OAuth2 PKCE flow" --model gpt-5.5
 
 # Load a named profile
 codex exec "Review this PR" --profile review --model gpt-5.5
@@ -572,7 +572,7 @@ codex exec --session-id "$FORK_ID" "Attempt the migration" \
 | Slow response | Large context or complex task | Break task into smaller steps; use `--sandbox read-only` for analysis |
 | Unexpected file changes | Sandbox too permissive | Use `--ask-for-approval untrusted` with elevated sandbox modes |
 | `--oss` model not responding | Ollama not running or no model loaded | Start Ollama: `ollama serve`; pull a model: `ollama pull codellama` |
-| Web search not working | `--search` flag not specified | Add `--search` flag to enable live browsing |
+| Web search not working | `--search` flag not specified | Add the top-level `--search` flag before `exec` (`codex --search exec …`) to enable live browsing |
 | Windows compatibility | WSL not configured | Use WSL 2; native Windows support is experimental |
 | Image not accepted | Unsupported format | Use PNG or JPEG only; convert other formats first |
 

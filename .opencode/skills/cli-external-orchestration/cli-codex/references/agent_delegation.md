@@ -83,7 +83,7 @@ codex exec -p review "@src/utils.ts @src/auth.ts Review these files for bugs" \
   --model gpt-5.5
 
 # With web search enabled
-codex exec -p research --search \
+codex --search exec -p research \
   "Research and document the best OAuth2 PKCE patterns" --model gpt-5.5
 
 # Capture output to file
@@ -235,7 +235,7 @@ codex exec -p orchestrate \
 **Unique capability:** `--search` flag enables real-time web browsing.
 
 ```bash
-codex exec -p research --search -s workspace-write \
+codex --search exec -p research -s workspace-write \
   "Research the latest Next.js 15 App Router migration patterns. Compare with current Remix approach in this codebase." \
   --model gpt-5.5
 ```

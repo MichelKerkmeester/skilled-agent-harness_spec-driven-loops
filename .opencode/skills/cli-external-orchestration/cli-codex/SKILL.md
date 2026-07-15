@@ -39,7 +39,7 @@ Orchestrate OpenAI's Codex CLI for tasks that benefit from a second AI perspecti
 ### Activation Triggers
 
 - **Cross-AI Validation** — code review second perspective, security audit alternative analysis, bug detection, `/review` diff-aware workflow.
-- **Web Research** — current internet info via `--search` flag, latest library versions, API changes, community solutions.
+- **Web Research** — current internet info via the top-level `--search` flag (`codex --search exec …`), latest library versions, API changes, community solutions.
 - **Codebase Architecture Analysis** — onboarding to unfamiliar codebases, cross-file dependency mapping, architecture docs from code.
 - **Parallel Task Processing** — offloading generation, simultaneous code generations, background docs/test generation.
 - **Agent-Delegated Tasks** — specialized profile matches (`.codex/agents/*.toml`), session management (resume, fork), multi-strategy planning.
@@ -251,7 +251,7 @@ The calling AI is the conductor; Codex profiles in `.codex/config.toml` `[profil
 |-----------|---------|
 | Code review / security audit | `review` |
 | Architecture exploration | `context` |
-| Technical research | `research` (add `--search`) |
+| Technical research | `research` (+ top-level `--search`) |
 | Documentation generation | `write` |
 | Fresh-perspective debugging | `debug` |
 | Multi-strategy planning | `ai-council` |
@@ -260,9 +260,10 @@ Git diff review uses the built-in subcommand (no `-p`): `codex exec review "..."
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md). Three gotchas that silently break a dispatch and must be honored at routing time:
+The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli_reference.md](./references/cli_reference.md). Four gotchas that silently break a dispatch and must be honored at routing time:
 
 - **`codex exec` defaults to `--sandbox read-only`** — file-modification tasks silently no-op (the agent plans changes but cannot write them). Pass `--sandbox workspace-write` (or `--full-auto`) whenever the task requires edits.
+- **`--search` is a top-level flag, not an `exec` flag** — enable live web search as `codex --search exec …` (it precedes the subcommand). On codex ≥ 0.144 `codex exec --search` hard-fails with `unexpected argument '--search'` (older 0.125 builds accepted it), so treat any `exec … --search` example as stale. Without it, `codex exec` has no web access and answers from training data only — every dispatch needing live data (latest versions, repo facts, advisories) MUST use `codex --search exec …`.
 - **Always pass `-c service_tier="fast"` explicitly** — this routes through the fast tier instead of whatever the caller's `~/.codex/config.toml` defaults to. Explicit means reproducible regardless of who runs it.
 - **No `--reasoning-effort`, `--reasoning`, or `--quiet` flag exists** — set effort with `-c model_reasoning_effort="<level>"`; capture the last message with `-o file.txt`; capture stderr with `2>&1`.
 

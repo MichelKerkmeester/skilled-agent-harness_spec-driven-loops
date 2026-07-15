@@ -22,13 +22,17 @@ Update task fields: status, priority, assignees, due date, name, description.
 
 ## 1. OVERVIEW
 
-Modifies one or more fields of an existing task. Required: `task_id`. Optional update fields: `name`, `description`, `status` (must be valid status name for the list), `priority`, `assignees`, `due_date`.
+Modifies one or more fields of an existing task. Required: `task_id`. Optional update fields: `name`, `description` (plain text ONLY), `markdown_content` (markdown replacement body), `status` (must be valid status name for the list), `priority`, `assignees`, `due_date`.
 
 ---
 
 ## 2. HOW IT WORKS
 
 The ONLY MCP tool that changes task status. Unlike cupt done, status names must be specified explicitly — use `cupt statuses <task_id>` to discover valid names first. Partial updates: only specified fields are changed.
+
+### Markdown Transport (REQUIRED for markdown content)
+
+Updating the plain `description` field with markdown produces literal `###`/`**`/`- [ ]` text in ClickUp. Markdown bodies MUST go through `markdown_content` (the documented v2 update field; `markdown_description` is also accepted) so ClickUp converts them to rendered rich text. Live-verified against the ClickUp v2 REST API on 2026-07-15 (`PUT /task/{task_id}` — both parameter names accepted and rendered correctly). Confirm the registered MCP parameter name via `tool_info()` on first use.
 
 ---
 

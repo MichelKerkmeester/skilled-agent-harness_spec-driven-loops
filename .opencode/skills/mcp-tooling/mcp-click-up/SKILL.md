@@ -13,6 +13,28 @@ ClickUp task management via **cupt CLI** (primary) and **official ClickUp MCP** 
 
 ---
 
+## MARKDOWN FORMATTING CONTRACT — READ BEFORE ANY CLICKUP WRITE
+
+ClickUp stores the plain `description` field literally. Markdown submitted there shows up in the ClickUp UI as raw `### Heading`, `**bold**`, and `- [ ]` text. Whenever the content contains ANY markdown syntax, use the markdown-aware parameter for the operation:
+
+| Operation | Required parameter |
+| --- | --- |
+| Task create | `markdown_description` |
+| Task update (raw v2 API / Code Mode server) | `markdown_content` (`markdown_description` also accepted) |
+| Task update (claude.ai ClickUp connector) | `markdown_description` |
+| Document or page create | `content` plus `content_format: "markdown"` (connector pages: `"text/md"`) |
+| Task read-back | `include_markdown_description=true` |
+
+This contract applies identically on every surface: Code Mode (`clickup_official.clickup_official_*`), the claude.ai ClickUp connector (`clickup_create_task` and friends), and the raw ClickUp v2 REST API. Live-verified 2026-07-15 (scratch-task round trips plus a full Product Owner task export, all rendering headings, bold, dividers, and checkboxes correctly).
+
+**Push shape for a markdown artifact:** the document's H1 becomes the task `name` (drop it from the body); strip internal HTML comments and processing metadata; everything else travels verbatim.
+
+**Failure symptom:** literal `###` or `**` visible in a ClickUp task means someone used the plain `description` field. That is the defect, not a rendering bug.
+
+Worked examples: `references/mcp_tools.md` (Markdown Transport Contract + invocation patterns).
+
+---
+
 ## 1. WHEN TO USE
 
 ### Activation Triggers (explicit user phrases)
@@ -299,19 +321,20 @@ This is ClickUp's official MCP server package, launched over stdio by the regist
 
 Reference: `references/mcp_tools.md` and `mcp-servers/clickup-mcp/README.md`
 
-**Invocation via Code Mode:**
+**Invocation via Code Mode** (`call_tool_chain` takes a single `code` string, NOT an array of `{tool, input}` records):
 ```typescript
 // Tool naming: clickup_official.clickup_official_{tool_name}
-const result = await call_tool_chain([
-  {
-    tool: "clickup_official.clickup_official_create_document",
-    input: {
+const result = await call_tool_chain({
+  code: `
+    const doc = await clickup_official.clickup_official_clickup_create_document({
       name: "Sprint Notes",
       parent: { type: 4, id: "LIST_ID" },
-      content: "# Sprint Notes\n\n..."
-    }
-  }
-]);
+      content: "# Sprint Notes\\n\\n...",
+      content_format: "markdown",
+    });
+    return doc;
+  `,
+});
 ```
 
 **When to prefer MCP:**
@@ -338,6 +361,7 @@ const result = await call_tool_chain([
 4. **Run `cupt --version && cupt status` as preflight** before starting a ClickUp workflow session.
 5. **Treat empty `cupt list` results as valid** — an empty queue is not an error. Before escalating: check tag spelling, try `--all` flag, verify team name via `cupt teams`.
 6. **Use `cupt context <id>`** before acting on a task to understand its parent and sibling relationships.
+7. **Route markdown through markdown-aware parameters** per the MARKDOWN FORMATTING CONTRACT section at the top of this skill — task create: `markdown_description`; task update: `markdown_content` (connector: `markdown_description`); documents and pages: `content` + `content_format: "markdown"`; read-back: `include_markdown_description=true`.
 
 ### ⛔ NEVER
 
@@ -347,6 +371,7 @@ const result = await call_tool_chain([
 4. **Never auto-modify `opencode.json`** — print MCP config snippets for user to apply; never write to config files programmatically.
 5. **Never fabricate tasks** — if `cupt list` returns empty, the queue is genuinely empty. Report this clearly.
 6. **Never use the MCP for daily task ops** — cupt handles these more efficiently and with dry-run safety.
+7. **Never put markdown into the plain `description` field** — it renders as literal `### Heading` / `**bold**` / `- [ ]` text in ClickUp. Any content containing markdown syntax must use the markdown-aware parameters from ALWAYS rule 7. This is exactly the defect that produced raw-markdown tickets in the Barter workspace.
 
 ### ⚠️ ESCALATE IF
 

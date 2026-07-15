@@ -71,10 +71,9 @@ You get the file edited in place inside your workspace, ending with a cost summa
 **Step 3: Reach for web research when the task needs live data.**
 
 ```bash
-codex exec \
+codex --search exec \
   --model gpt-5.5 \
   -c service_tier="fast" \
-  --search \
   --sandbox read-only \
   "What changed in the Express.js 5.x release? Search the web for current details." \
   2>&1

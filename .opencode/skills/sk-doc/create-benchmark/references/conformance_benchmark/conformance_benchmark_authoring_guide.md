@@ -215,13 +215,13 @@ Its conformance package maps as follows:
 | Peer adapter | `sk-doc-command` |
 | Canonical corpus | The sync-prompts canonical OpenCode command source inventory, checked rather than hand-listed |
 | Scope | The repo-relative OpenCode command source surface selected by the command adapter |
-| Dimension / severity source | The planned `sk_doc_command_adapter.md` definitions for S1-S5 and P0/P1/P2; cross-link only |
+| Dimension / severity source | The shipped `sk_doc_command_adapter.md` definitions for S1-S5 and P0/P1/P2; cross-link only |
 | Fixture policy | Public clean/control and calibration fixtures plus held-out command defects, expected by an independent oracle |
 | Source packet | `.opencode/specs/system-deep-loop/066-command-surface-benchmark/` |
 | Run evidence | `<executing-spec-phase>/alignment/` and `<executing-spec-phase>/evidence/command-benchmark/<run-id>/`, as bound by the launcher |
 
 The lane remains `sk-doc` / `docs`; `sk-doc-command` is selected by `adapter` and
-must be added to `AUTHORITY_ADAPTERS['sk-doc']`. No `command` authority or
+is registered in `AUTHORITY_ADAPTERS['sk-doc']`. No `command` authority or
 command-specific artifact-class value is introduced. The adapter owns mirror,
 reachability, route, capability/safety, and presentation definitions; this guide
 does not restate them.

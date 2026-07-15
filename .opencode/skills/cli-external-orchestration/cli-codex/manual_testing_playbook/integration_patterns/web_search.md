@@ -26,9 +26,9 @@ Operators run the exact prompt and command sequence for `CX-019` and confirm the
 
 - Objective: Verify `--search` enables live web browsing and that the response cites at least one URL.
 - Real user request: `Use Codex with web search to find the latest stable Express.js version and cite the source.`
-- Prompt: `Use codex exec --search to find the latest stable Express.js minor release as of April 2026 and cite official URLs.`
+- Prompt: `Use codex --search exec to find the latest stable Express.js minor release as of April 2026 and cite official URLs.`
 - Expected execution process: Operator dispatches `--search` with a current-information prompt -> captures stdout -> verifies at least one https URL appears -> validates the URL points at a plausible source domain.
-- Expected signals: `codex exec --search` exits 0. Stdout contains at least one URL with `https://` scheme. URL points at a plausible source (expressjs.com, github.com/expressjs, npmjs.com, etc.). Dispatched command line includes `--search`.
+- Expected signals: `codex --search exec` exits 0. Stdout contains at least one URL with `https://` scheme. URL points at a plausible source (expressjs.com, github.com/expressjs, npmjs.com, etc.). Dispatched command line includes `--search`.
 - Desired user-visible outcome: A version-and-source summary the operator can paste into a research note, with provable evidence that the live web tier was actually engaged.
 - Pass/fail: PASS if exit 0 AND at least one https URL is in the response AND the URL is from a plausible express-related source domain AND `--search` is in the dispatched command. FAIL if exit non-zero, no URL or the URL is from an implausible domain.
 
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `CX-019` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Dispatch `codex exec --search` with a current-information prompt.
+1. Dispatch `codex --search exec` with a current-information prompt.
 2. Capture stdout to a temp file.
 3. Extract URLs from the response.
 4. Validate at least one URL points at a plausible express-related source domain.
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `CX-019` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CX-019 | Web search via --search | Verify --search enables live web browsing and the response cites at least one URL | `Use codex exec --search to find the latest stable Express.js minor release as of April 2026 and cite official URLs.` | 1. `codex exec --search --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="high" -c service_tier="fast" "Search the web for the latest stable Express.js minor release as of April 2026 and cite at least one official source URL. Return a one-paragraph summary plus the cited URL(s) at the bottom of the response." > /tmp/cli-codex-cx019.txt 2>&1` -> 2. `bash: cat /tmp/cli-codex-cx019.txt` -> 3. `bash: grep -oE 'https://[a-zA-Z0-9./_-]+' /tmp/cli-codex-cx019.txt > /tmp/cli-codex-cx019-urls.txt` -> 4. `bash: grep -E "expressjs.com\|github.com/expressjs\|npmjs.com/package/express\|nodejs.org" /tmp/cli-codex-cx019-urls.txt` | Step 1: exit 0; Step 2: stdout contains a one-paragraph version summary; Step 3: at least one https URL extracted; Step 4: at least one URL is from a plausible express-related domain | Captured stdout, URL extraction file, plausible-source grep, dispatched command line, exit code | PASS if exit 0, at least one https URL is extracted, AND at least one URL is from a plausible express domain AND `--search` is in the dispatched command; FAIL if exit non-zero, no URL, or no plausible source domain | (1) Re-run with `2>&1 \| tee` for stderr inline; (2) check that the operator's account has web-search entitlement (some Codex tiers gate it); (3) inspect stdout for "search not available" errors |
+| CX-019 | Web search via --search | Verify --search enables live web browsing and the response cites at least one URL | `Use codex --search exec to find the latest stable Express.js minor release as of April 2026 and cite official URLs.` | 1. `codex --search exec --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="high" -c service_tier="fast" "Search the web for the latest stable Express.js minor release as of April 2026 and cite at least one official source URL. Return a one-paragraph summary plus the cited URL(s) at the bottom of the response." > /tmp/cli-codex-cx019.txt 2>&1` -> 2. `bash: cat /tmp/cli-codex-cx019.txt` -> 3. `bash: grep -oE 'https://[a-zA-Z0-9./_-]+' /tmp/cli-codex-cx019.txt > /tmp/cli-codex-cx019-urls.txt` -> 4. `bash: grep -E "expressjs.com\|github.com/expressjs\|npmjs.com/package/express\|nodejs.org" /tmp/cli-codex-cx019-urls.txt` | Step 1: exit 0; Step 2: stdout contains a one-paragraph version summary; Step 3: at least one https URL extracted; Step 4: at least one URL is from a plausible express-related domain | Captured stdout, URL extraction file, plausible-source grep, dispatched command line, exit code | PASS if exit 0, at least one https URL is extracted, AND at least one URL is from a plausible express domain AND `--search` is in the dispatched command; FAIL if exit non-zero, no URL, or no plausible source domain | (1) Re-run with `2>&1 \| tee` for stderr inline; (2) check that the operator's account has web-search entitlement (some Codex tiers gate it); (3) inspect stdout for "search not available" errors |
 
 ### Optional Supplemental Checks
 
