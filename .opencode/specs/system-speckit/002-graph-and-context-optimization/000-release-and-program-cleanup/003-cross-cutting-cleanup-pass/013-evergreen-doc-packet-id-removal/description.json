@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/013-evergreen-doc-packet-id-removal",
+  "description": "Evergreen docs were carrying mutable packet and phase references",
+  "keywords": [
+    "evergreen",
+    "docs",
+    "carrying",
+    "mutable",
+    "packet",
+    "phase",
+    "references"
+  ],
+  "lastUpdated": "2026-07-10T06:24:36.431Z",
+  "specId": "013",
+  "folderSlug": "evergreen-doc-packet-id-removal",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "29-04-26_19-40__resource-map-authored-and-memory-finalization.md"
+  ]
+}

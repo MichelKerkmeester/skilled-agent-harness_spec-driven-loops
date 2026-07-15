@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/000-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents.md alignment",
+      "027 release cleanup 008-agents-md-alignment",
+      "shipped 027 alignment",
+      "agents.md alignment plan",
+      "027 release cleanup plan",
+      "agents.md alignment tasks",
+      "027 release cleanup tasks",
+      "agents.md alignment implementation summary",
+      "planned release cleanup scaffold"
+    ],
+    "key_topics": [
+      "agents",
+      "alignment",
+      "release",
+      "cleanup",
+      "008-agents-md-alignment",
+      "shipped",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "planned",
+      "scaffold"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Four Laws",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Inventory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reconcile",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Recovery",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Required Tools",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Routing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Root",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delivered Scope",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Reconcile root AGENTS.md governance so Four Laws and Gates stay byte-stable while completion-freshness, Logic-Sync, and constitutional-rule references stay coherent",
+    "created_at": "2026-06-10T00:00:00Z",
+    "last_save_at": "2026-07-10T06:23:01.496Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8521e0c783fbbcb01d5e4d4e2bf8fb659b0de9e360395a31a43396f54ea594e8",
+    "source_doc_hashes": {
+      "spec.md": "641cefa4a38558910af4273d8a3689d088ea27ed520445714ed541bedaa78fdd",
+      "plan.md": "a117703f218d7a3d319cff77e1fc82245e390b8aa1f1171d7e6dea6ae77ce657",
+      "tasks.md": "f83b6298a0af4f59bc9b4bd11c34d4933a38b8163f11989818876831ad182a7f",
+      "implementation-summary.md": "52c60d3fedaaed43d905745c9737f5449c28dd4c0ca67cbb6308d1bd0547c458"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

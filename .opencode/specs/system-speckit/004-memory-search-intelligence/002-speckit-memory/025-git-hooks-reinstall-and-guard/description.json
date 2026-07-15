@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/025-git-hooks-reinstall-and-guard",
+  "description": "Direct inspection of this checkout's `.git/hooks/` confirms the gap",
+  "keywords": [
+    "direct",
+    "inspection",
+    "checkout",
+    "git",
+    "hooks",
+    "confirms",
+    "gap"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.554Z",
+  "specId": "025",
+  "folderSlug": "git-hooks-reinstall-and-guard",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

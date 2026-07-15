@@ -1,0 +1,42 @@
+{
+  "topic": "Build-ready implementation of the keystone data-quality automations (A1 quality-loop extension, B1 scheduled DQ sweep, B2 /doctor auto-remediation, B3 retrieval-learning feedback edge, C2 prod-mode completeRecall@3 benchmark) — exact files, seams, timing, rollback, risks, rollout order. Beyond what-to-do to how-to-build.",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 14,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": true,
+  "specFolder": "system-speckit/004-memory-search-intelligence/002-spec-data-quality",
+  "createdAt": "2026-06-21T00:00:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fanoutLineage": "dq-automation-impl",
+  "artifactDir": ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/research/lineages/dq-automation-impl",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "opus",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-dq-automation-impl-1782031858987-uxzj3m",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "resourceMapPresent": false
+}

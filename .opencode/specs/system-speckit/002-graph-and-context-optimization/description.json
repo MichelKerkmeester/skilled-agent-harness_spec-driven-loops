@@ -1,0 +1,60 @@
+{
+  "migration": {
+    "consolidated_at": "2026-04-21T12:00:00Z",
+    "old_top_level_phase_count": 29,
+    "active_top_level_phase_count": 10,
+    "map_doc": "system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md",
+    "flattened_at": "2026-04-21T13:00:00Z",
+    "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization",
+    "new_spec_folder": "system-spec-kit/026-graph-and-context-optimization/",
+    "layout": "phase-root-children",
+    "second_consolidation_at": "2026-04-25T14:45:00.000Z",
+    "second_consolidation_pass": "topical wrappers: 005-code-graph, 006-skill-advisor, 007-hook-parity (010-hook-parity renamed; 009-memory-causal-graph removed by user)"
+  },
+  "childTopology": [
+    "000-release-and-program-cleanup",
+    "001-research-and-baseline",
+    "002-spec-kit-internals",
+    "003-memory-and-causal-runtime",
+    "004-code-graph",
+    "005-graph-impact-and-affordance",
+    "006-operator-tooling",
+    "007-mcp-daemon-reliability"
+  ],
+  "specFolder": "system-speckit/002-graph-and-context-optimization",
+  "description": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off",
+  "keywords": [
+    "spec-kit",
+    "graph",
+    "context",
+    "memory",
+    "operator-tooling",
+    "subsystems",
+    "needed",
+    "coordinated",
+    "improvement",
+    "program",
+    "rather",
+    "scattered",
+    "one-off"
+  ],
+  "lastUpdated": "2026-07-15T16:49:01.253Z",
+  "specId": "002",
+  "folderSlug": "graph-and-context-optimization",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 10,
+  "memoryNameHistory": [
+    "09-04-26_07-37__ran-15-deep-review-iterations-on-the-full-026.md",
+    "09-04-26_20-18__post-compaction-continuation-session-that-landed.md",
+    "09-04-26_21-41__verified-the-026-graph-and-context-optimization.md",
+    "09-04-26_21-41__verified-the-026-graph-and-context-optimization-1.md",
+    "18-04-26_17-45__refresh-description-json-graph-metadata-json.md",
+    "25-04-26_11-30__metadata-refresh-rewrite-children-ids-in-graph.md",
+    "25-04-26_11-48__refresh-026-root-graph-metadata-json-children-ids.md",
+    "28-04-26_18-20__multi-hour-autonomous-deep-review-release.md",
+    "19-05-26_18-43__m-005-worker-probe-test-outsourced-agent-memory.md",
+    "19-05-26_18-44__m-005-worker-probe-test-outsourced-agent-memory.md"
+  ]
+}

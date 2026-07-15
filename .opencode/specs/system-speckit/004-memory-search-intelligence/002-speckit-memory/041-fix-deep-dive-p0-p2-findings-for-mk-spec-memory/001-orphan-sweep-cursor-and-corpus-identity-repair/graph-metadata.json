@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair",
+  "parent_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "orphan sweep cursor",
+      "dead path rows",
+      "corpus identity repair",
+      "track prefix identity heal",
+      "duplicate hash collapse",
+      "active memory projection repoint",
+      "orphan sweep cursor plan",
+      "dead path row drain",
+      "identity heal migration",
+      "dup hash collapse migration",
+      "restore by count verification",
+      "orphan sweep cursor tasks"
+    ],
+    "key_topics": [
+      "orphan",
+      "sweep",
+      "cursor",
+      "dead",
+      "path",
+      "rows",
+      "corpus",
+      "identity",
+      "repair",
+      "track",
+      "prefix",
+      "heal"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/lib/storage/incremental-index.ts",
+      "mcp_server/lib/storage/near-duplicate.ts",
+      "mcp_server/scripts/migrations/drain-file-absent-dead-path-rows.mjs",
+      "mcp_server/scripts/migrations/heal-system-speckit-track-identity.mjs",
+      "mcp_server/scripts/migrations/collapse-duplicate-content-rows.mjs",
+      "mcp_server/tests/orphan-sweep-corpus-repair.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "tests/orphan-sweep-corpus-repair.vitest.ts",
+      "scripts/migrations/heal-system-speckit-track-identity.mjs",
+      "scripts/migrations/collapse-duplicate-content-rows.mjs"
+    ],
+    "entities": [
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "near-duplicate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "drain-file-absent-dead-path-rows.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/migrations/drain-file-absent-dead-path-rows.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "heal-system-speckit-track-identity.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/migrations/heal-system-speckit-track-identity.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "collapse-duplicate-content-rows.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/migrations/collapse-duplicate-content-rows.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-sweep-corpus-repair.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/orphan-sweep-corpus-repair.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orphan Sweep Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Identity Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`, which is echoed in scan results but never persisted or fed back, so every scan re-checks the same ~200 lowest-id rows forever (report §2 Chain B; ledger L2, live-verified 🟢)",
+    "created_at": "2026-07-03T09:44:17Z",
+    "last_save_at": "2026-07-11T18:40:36.002Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:64c12cc17397e985804510492e38b94a4c9074daf36a38bd6cd7341262e1290a",
+    "source_doc_hashes": {
+      "spec.md": "de7090e9aaf2f286b2688a94dca45ed9cf4ecaf428354816f1a26db744e83719",
+      "plan.md": "b8a32d10ce5dc939145d47da3adf544a1d7b4d3fcddfbbe01c66cecac3f8421d",
+      "tasks.md": "64a440693501e357e2a4d94a0141ace94b5ec8c2e0a44807f7c7a989e365c0f0",
+      "checklist.md": "06744174c8cd5cc20eeba47ca6fc5fa6c68e9fac927a4fce814410fadbc4db39",
+      "decision-record.md": "79570294b383195e215a6d7849d58edb1910c17c7e7c402010391c2c5e02adaf",
+      "implementation-summary.md": "01422bcf48bdca23f48d48df06a5fd82d328c866121c2157d60b62da0c8770ad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

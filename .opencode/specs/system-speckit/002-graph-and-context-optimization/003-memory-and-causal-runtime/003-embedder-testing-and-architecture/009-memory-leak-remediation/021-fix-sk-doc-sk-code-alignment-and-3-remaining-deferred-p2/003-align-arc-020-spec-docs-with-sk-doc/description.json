@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "status": "complete",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/003-align-arc-020-spec-docs-with-sk-doc",
+  "description": "Arc 020 closed the deferred-P2 behavior and API changes, but its child packet docs need a final sk-doc structure sweep before arc 021 can close",
+  "keywords": [
+    "arc",
+    "closed",
+    "deferred-p2",
+    "behavior",
+    "api",
+    "changes",
+    "child",
+    "packet",
+    "docs",
+    "need",
+    "final",
+    "sk-doc",
+    "structure",
+    "sweep",
+    "close"
+  ],
+  "lastUpdated": "2026-07-10T06:23:40.972Z",
+  "specId": "003",
+  "folderSlug": "align-arc-020-spec-docs-with-sk-doc",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "analytics and learning remediation",
+      "consumption-log pii redaction query_hash",
+      "model-pricing single source of truth",
+      "batch-learning boost math normalization",
+      "tier-2 backlog remediation",
+      "analytics and learning remediation plan",
+      "tier-2 remediation workflow",
+      "analytics and learning remediation tasks",
+      "analytics and learning remediation checklist",
+      "analytics and learning remediation summary",
+      "tier-2 backlog remediation shipped",
+      "consumption-log pii redaction shipped"
+    ],
+    "key_topics": [
+      "analytics",
+      "learning",
+      "remediation",
+      "consumption-log",
+      "pii",
+      "redaction",
+      "model-pricing",
+      "single",
+      "source",
+      "truth",
+      "batch-learning",
+      "boost"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "consumption-logger.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-analytics-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-learning.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Learning Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remediate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three deliberate Tier-2 backlog items in the analytics + learning subsystems each carried a distinct defect class",
+    "created_at": "2026-06-03T11:00:00Z",
+    "last_save_at": "2026-07-10T06:22:11.993Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:af5b09ad32def922102383b404a14b2bd4fbae6352e67936353c33ce1a466b81",
+    "source_doc_hashes": {
+      "spec.md": "84ac6cf0de133be9424697cffd32c4ad385eb29a6d4954f2b66a4cb527f94568",
+      "plan.md": "432d3fdb1dfda137200849d57fb3609ed4d1343dc0d1b06c93e8f3844bbe6414",
+      "tasks.md": "0a125ac9a353ed2c3448280e3de0f7b0ff1ae4151cc66e0671090df1d3fddefa",
+      "checklist.md": "494ad570105971bc720b21c3b727dae97561ac54210addacf3bcc22eab1d95a8",
+      "implementation-summary.md": "e2f165b4e8aac9940a4d8ec8dc3b0c6d8eb95f5eebfbbcbc5ff60fa0a7bf727a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

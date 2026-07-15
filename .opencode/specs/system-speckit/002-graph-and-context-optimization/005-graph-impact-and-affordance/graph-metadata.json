@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/005-graph-impact-and-affordance",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/005-graph-impact-and-affordance",
+  "parent_id": "system-speckit/002-graph-and-context-optimization",
+  "children_ids": [
+    "system-speckit/002-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
+    "system-speckit/002-graph-and-context-optimization/005-graph-impact-and-affordance/003-memory-causal-trust-display",
+    "system-speckit/002-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings",
+    "system-speckit/002-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-research-review"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026 graph impact and affordance",
+      "external project adoption uplift",
+      "affordance evidence display"
+    ],
+    "key_topics": [
+      "graph",
+      "impact",
+      "affordance",
+      "external",
+      "project",
+      "adoption",
+      "uplift",
+      "evidence",
+      "display",
+      "deliver",
+      "external-project",
+      "code-graph"
+    ],
+    "importance_tier": "important",
+    "status": "deferred",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Impact",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Own",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deliver the external-project adoption uplift: a code-graph phase runner, edge-explanation and impact display, skill-advisor affordance evidence, and memory causal-trust display",
+    "created_at": "2026-05-26T16:51:06.240Z",
+    "last_save_at": "2026-07-10T06:22:14.997Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b0cfc91f7fb70137969872392203a3beec5c768831a07ec47ab9d4603690c026",
+    "source_doc_hashes": {
+      "spec.md": "822df09da585cd941c393206bf8734cabad8625ace3f09eee341541b6a0b7f84"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

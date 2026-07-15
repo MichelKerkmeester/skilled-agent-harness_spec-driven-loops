@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/006-cocoindex-p1-dedup",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/006-cocoindex-p1-dedup",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "packet_id\": \"system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "reason\": \"closes 2 P1 from f-iter006-006/007\"}",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/006 cocoindex dedup",
+      "chunk-size consolidation",
+      "022/006 plan",
+      "022/006 tasks",
+      "022/006 checklist",
+      "022/006 shipped"
+    ],
+    "key_topics": [
+      "cocoindex",
+      "dedup",
+      "chunk-size",
+      "consolidation",
+      "plan",
+      "tasks",
+      "checklist",
+      "shipped",
+      "dedups",
+      "constants",
+      "values",
+      "consolidated"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Python Dedup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explanatory",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "lazy",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Consolidate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "lazy-imported",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "correct",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. VERIFICATION PROTOCOL",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PRE-IMPLEMENTATION",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "2 dedups: chunk-size constants (3 values) consolidated from indexer.py + config.py to single source in config.py; COCOINDEX_RERANK_VIA_SIDECAR default consolidated to module-level _DEFAULT_RERANK_VIA_SIDECAR constant. Closes 2 P1 audit findings.",
+    "created_at": "2026-05-23T17:30:00.000000Z",
+    "last_save_at": "2026-07-10T06:21:53.411Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4d346eca6776c07a023043c169a7bb8d1685e857a694dc873285cc266d620d6e",
+    "source_doc_hashes": {
+      "spec.md": "37f0d03d1b714619152dd605d92486551e994d98e569a9cd6bf5c9ed3afb4dd3",
+      "plan.md": "3f71dbd96a6b0b40125e6ec7b17f7c6ecbad6e4b8113628d2a2733b22bb581d9",
+      "tasks.md": "ee68f0d063860d676d42d39692e555d9459a756be5efc0242333f267ef7beaa7",
+      "checklist.md": "16ce9322788ed42b0513d1a6cd3a961955269d5e61ede2d0d2fd76590892a5f2",
+      "implementation-summary.md": "9847c6260977c61d821888181067df0e5c63020cc2ad7c90c989a82fdfc72bf2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

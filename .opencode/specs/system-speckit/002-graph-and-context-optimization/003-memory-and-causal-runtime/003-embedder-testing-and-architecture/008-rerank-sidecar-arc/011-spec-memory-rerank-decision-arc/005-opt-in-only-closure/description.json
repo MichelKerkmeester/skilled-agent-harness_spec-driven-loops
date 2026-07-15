@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure",
+  "description": "After four HOLD verdicts (Phase 004 CPU-Qwen, Phase 005 CPU-ms-marco, Phase 007 MPS-Qwen, Phase 011/002 bge-v2-m3) plus an AI Council deliberation,",
+  "keywords": [
+    "four",
+    "hold",
+    "verdicts",
+    "phase",
+    "cpu-qwen",
+    "cpu-ms-marco",
+    "mps-qwen",
+    "bge-v2-m3",
+    "plus",
+    "council",
+    "deliberation"
+  ],
+  "lastUpdated": "2026-07-10T06:23:23.851Z",
+  "specId": "005",
+  "folderSlug": "opt-in-only-closure",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc",
+    "011-spec-memory-rerank-decision-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

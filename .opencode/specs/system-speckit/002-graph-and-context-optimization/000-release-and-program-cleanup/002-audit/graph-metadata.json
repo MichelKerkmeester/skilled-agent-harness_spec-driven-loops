@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/003-documentation-truth-validation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/005-memory-retention-policy-sweep",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/003-documentation-truth-validation",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/005-memory-retention-policy-sweep",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "000-release-cleanup/002-audit",
+      "audit-and-remediation",
+      "system-audits-validation"
+    ],
+    "key_topics": [
+      "000-release-cleanup",
+      "002-audit",
+      "audit-and-remediation",
+      "system-audits-validation",
+      "phase",
+      "parent",
+      "system",
+      "audits",
+      "validation",
+      "sweeps",
+      "compliance",
+      "checks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Audits",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Global Security Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chain Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Truth Pass",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for system audits, validation sweeps, and compliance checks across runtime wiring, security, memory retention, and agent alignment. Coordinates 8 children covering runtime wiring audits, security sweeps, doc truth validation, code graph retraction, memory retention cleanup, execution validation, and drift fixes.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-07-02T05:31:10.504Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b5c9002635ac97b840665f6b8ea278739dd7ab6d3c8a209be1e5d68ebdda942f",
+    "source_doc_hashes": {
+      "spec.md": "d774d3fbcfb73d2bf9e4ee9ff45f175b6e68f11565700a690943ab16932c22c3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/013 ollama and bge promotion",
+      "ollama adapter cocoindex",
+      "superseded BGE promotion arc",
+      "newer text embedders survey",
+      "indexer surface investigation"
+    ],
+    "key_topics": [
+      "ollama",
+      "bge",
+      "promotion",
+      "adapter",
+      "cocoindex",
+      "superseded",
+      "arc",
+      "newer",
+      "text",
+      "embedders",
+      "survey",
+      "indexer"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Nomic",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent. 4 sub-phases: (001) investigate what each retrieval system actually indexes, (002) add Ollama adapter to CocoIndex via LiteLLM, (003) 3-run-confirm + promote bge-code-v1 as the CocoIndex default, (004) survey newer text embedders released after May 2026 — only bench if a clearly stronger candidate emerges (mk-spec-memory bake-off already shipped jina-embeddings-v3 + rescue per ADR-012). Outcome: clear embedder routing + Ollama support + validated defaults across CocoIndex and mk-spec-memory.",
+    "created_at": "2026-05-18T16:52:17.347Z",
+    "last_save_at": "2026-07-10T06:23:27.454Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ee96d3eebc5222e357c13bfa45c2467b1fbbca31f07c3440a95cd558c35a4f70",
+    "source_doc_hashes": {
+      "spec.md": "752562c0af69fcd12c026b0938caa60d659c5d5d77b9afa2ef96e741ac265c3e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

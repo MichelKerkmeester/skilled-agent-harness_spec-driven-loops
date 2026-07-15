@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/017-graph-metadata-child-drift-audit-and-harden",
+  "description": "A phase parent's `graph-metadata.json` `childrenids` array is populated only when `backfill-graph-metadata.js` is explicitly re-run against that",
+  "keywords": [
+    "phase",
+    "parent",
+    "graph-metadata",
+    "json",
+    "childrenids",
+    "array",
+    "populated",
+    "only",
+    "backfill-graph-metadata",
+    "explicitly",
+    "re-run",
+    "against"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.680Z",
+  "specId": "017",
+  "folderSlug": "graph-metadata-child-drift-audit-and-harden",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "003-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

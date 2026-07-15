@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
+  "description": "`memoryindexscan` currently reconsiders all discovered files every run, then uses file-level categorization to decide index, update, skip, or delete",
+  "keywords": [
+    "memoryindexscan",
+    "currently",
+    "reconsiders",
+    "discovered",
+    "files",
+    "every",
+    "run",
+    "file-level",
+    "categorization",
+    "decide",
+    "index",
+    "skip",
+    "delete"
+  ],
+  "lastUpdated": "2026-07-10T06:22:13.698Z",
+  "specId": "001",
+  "folderSlug": "incremental-index-foundation",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "002-memory-index-causal-lifecycle"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

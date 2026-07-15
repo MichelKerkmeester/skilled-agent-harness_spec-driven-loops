@@ -1,0 +1,32 @@
+{
+  "level": "feature",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
+  "description": "`ccc` from a normal shell resolves to `/Users/michelkerkmeester/.local/bin/ccc`, which points into the pipx venv at",
+  "keywords": [
+    "ccc",
+    "normal",
+    "shell",
+    "resolves",
+    "users",
+    "michelkerkmeester",
+    "local",
+    "bin",
+    "points",
+    "pipx",
+    "venv"
+  ],
+  "lastUpdated": "2026-07-10T06:23:49.566Z",
+  "specId": "005",
+  "folderSlug": "cocoindex-install-hygiene",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "005-cross-cutting-quality"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-05-26_20-05__root-cause-of-instrumentation-failed-for-good.md"
+  ]
+}

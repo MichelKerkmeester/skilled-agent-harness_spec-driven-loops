@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/004-memory-search-intelligence/004-review-remediation/005-env-documentation-audit",
+  "description": "The root README points readers to ENVREFERENCE.md as the complete flag reference, and a code-graph changelog claimed specific flags were documented",
+  "keywords": [
+    "root",
+    "readme",
+    "points",
+    "readers",
+    "envreference",
+    "complete",
+    "flag",
+    "reference",
+    "code-graph",
+    "changelog",
+    "claimed",
+    "specific",
+    "flags",
+    "documented"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.558Z",
+  "specId": "005",
+  "folderSlug": "env-documentation-audit",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "004-review-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

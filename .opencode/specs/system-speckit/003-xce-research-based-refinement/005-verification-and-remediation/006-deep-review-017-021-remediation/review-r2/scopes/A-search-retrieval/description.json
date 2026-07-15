@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/003-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval",
+  "description": "Independent gpt-5.5 deep-review audit of the search/retrieval code of the system-spec-kit MCP server",
+  "keywords": [
+    "independent",
+    "gpt-5",
+    "deep-review",
+    "audit",
+    "search",
+    "retrieval",
+    "code",
+    "system-spec-kit",
+    "mcp",
+    "server"
+  ],
+  "lastUpdated": "2026-07-09T10:02:55.902Z",
+  "specId": "",
+  "folderSlug": "a-search-retrieval",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "006-deep-review-017-021-remediation",
+    "review-r2",
+    "scopes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

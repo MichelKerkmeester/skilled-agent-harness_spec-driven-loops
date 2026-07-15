@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/006-stale-documentation-readme-fixes",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/006-stale-documentation-readme-fixes",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-stale-documentation-readme-fixes",
+      "tier 1 stale doc fixes",
+      "readme staleness remediation",
+      "006-stale-documentation-readme-fixes plan",
+      "stale doc readme remediation plan",
+      "006-stale-documentation-readme-fixes tasks",
+      "stale doc readme remediation tasks",
+      "readme staleness audit tasks",
+      "006-stale-documentation-readme-fixes complete",
+      "readme staleness remediation complete",
+      "F-001 F-002 F-004 F-006 closed"
+    ],
+    "key_topics": [
+      "006-stale-documentation-readme-fixes",
+      "tier",
+      "stale",
+      "doc",
+      "readme",
+      "staleness",
+      "remediation",
+      "plan",
+      "tasks",
+      "audit",
+      "complete",
+      "f-001"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
+      ".opencode/skills/system-spec-kit/mcp_server/core/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/README.md",
+      ".opencode/skills/sk-doc/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "folder_structure.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/core/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stale Doc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Today",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "See Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Today's 022-028 batch shipped runtime + skill-contract changes faster than packet continuity and adjacent READMEs caught up",
+    "created_at": "2026-04-29T11:05:00.000Z",
+    "last_save_at": "2026-07-10T06:23:04.852Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:57e98d28facba8292487bf1e8f4d0465fda69214b86a2e515342482858819677",
+    "source_doc_hashes": {
+      "spec.md": "1dfe7f9143e19611d60991798c73aa178378a4ede9cf3bf46f6933478d7ddbd9",
+      "plan.md": "7d9c265000eda55f3e3287a85970fa919b9f661ae1ec629c8a3f7ef38ca38455",
+      "tasks.md": "369797f12e23bcb7e75d9e05317268831a74b790c917050d2aaefe7d820a32b5",
+      "implementation-summary.md": "3994406e6262e92ecdd3ad34d9ca6f218db7aa14c74905fc203c7d7cedb45947"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

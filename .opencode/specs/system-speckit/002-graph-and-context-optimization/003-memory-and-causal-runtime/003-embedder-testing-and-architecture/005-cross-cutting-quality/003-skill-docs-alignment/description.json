@@ -1,0 +1,33 @@
+{
+  "level": "phase",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment",
+  "description": "Sweep all skill SKILL.md / README / references / assets for stale embedder defaults + claims that drifted across 016-019 work. Refresh root README.",
+  "keywords": [
+    "sweep",
+    "skill",
+    "readme",
+    "references",
+    "assets",
+    "stale",
+    "embedder",
+    "defaults",
+    "claims",
+    "drifted",
+    "across",
+    "work",
+    "refresh",
+    "root"
+  ],
+  "lastUpdated": "2026-07-10T06:21:48.640Z",
+  "specId": "003",
+  "folderSlug": "skill-docs-alignment",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "005-cross-cutting-quality"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

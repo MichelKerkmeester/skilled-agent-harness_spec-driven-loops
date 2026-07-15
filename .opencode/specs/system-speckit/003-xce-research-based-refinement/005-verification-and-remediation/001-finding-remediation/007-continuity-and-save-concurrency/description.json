@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/003-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency",
+  "description": "The epic deep-review sweep left this lane with 9 unverified P1 claims and 15 P2 clusters",
+  "keywords": [
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
+    "lane",
+    "unverified",
+    "claims",
+    "clusters"
+  ],
+  "lastUpdated": "2026-07-10T06:22:10.483Z",
+  "specId": "007",
+  "folderSlug": "continuity-and-save-concurrency",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "001-finding-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

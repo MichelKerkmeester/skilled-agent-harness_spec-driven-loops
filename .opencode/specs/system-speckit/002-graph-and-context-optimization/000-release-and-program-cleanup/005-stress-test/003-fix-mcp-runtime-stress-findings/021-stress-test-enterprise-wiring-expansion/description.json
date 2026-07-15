@@ -1,0 +1,36 @@
+{
+  "trigger_phrases": [
+    "021-stress-test-enterprise-wiring-expansion",
+    "v1.0.3 stress test",
+    "W3-W13 wiring active",
+    "SearchDecisionEnvelope stress run",
+    "decision audit stress run",
+    "shadow sink stress run"
+  ],
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion",
+  "description": "Phase G wired W8-W13 telemetry and runtime consumers after the earlier W3-W7 measurement work",
+  "keywords": [
+    "phase",
+    "wired",
+    "w8-w13",
+    "telemetry",
+    "runtime",
+    "consumers",
+    "earlier",
+    "w3-w7",
+    "measurement",
+    "work"
+  ],
+  "lastUpdated": "2026-07-10T06:23:34.073Z",
+  "specId": "021",
+  "folderSlug": "stress-test-enterprise-wiring-expansion",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "005-stress-test",
+    "003-fix-mcp-runtime-stress-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/002-model-installation-and-compat",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/002-model-installation-and-compat",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "002 model installation",
+      "EmbeddingGemma-300m download",
+      "EmbeddingGemma download",
+      "transformers.js gemma",
+      "onnx-community/embeddinggemma-300m-ONNX",
+      "huggingface gated repo",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks"
+    ],
+    "key_topics": [
+      "model",
+      "installation",
+      "embeddinggemma-300m",
+      "download",
+      "embeddinggemma",
+      "transformers",
+      "gemma",
+      "onnx-community",
+      "embeddinggemma-300m-onnx",
+      "huggingface",
+      "gated",
+      "repo"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "scratch/test-embeddinggemma.mjs",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-embeddinggemma.mjs",
+        "kind": "file",
+        "path": "scratch/test-embeddinggemma.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Installation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "HF cache was empty (48KB) post-reboot",
+    "created_at": "2026-05-12T16:27:48Z",
+    "last_save_at": "2026-07-10T06:24:41.451Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8c22f312ece0d2857eff7c05ceb0847fad2d2fdece18ce4b45806a0625319ac4",
+    "source_doc_hashes": {
+      "spec.md": "60e30b66b5351bf67c7f9ae50ec7577d13ab87761753810637fb5e02f8352daa",
+      "plan.md": "22736d435cdd931e0bf4ef0b5c1dd6849068be2863276d6650aa72e8fc113893",
+      "tasks.md": "7e5737f95d1d7d0938d734485a591c06d0b4ff5605679c38170a9bea40601924",
+      "implementation-summary.md": "45d735badc5bc4ebcf7668b13f43338d4fad08c7523687350fde6bc7cf6868d1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/032-boot-integrity-rebuild-maintenance-marker",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/032-boot-integrity-rebuild-maintenance-marker",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "boot fts integrity rebuild maintenance marker",
+      "shouldAdoptDespiteProbe boot rebuild",
+      "unclean shutdown marker sigkill loop",
+      "runBootFtsIntegrityCheck reap",
+      "maintenance marker boot integrity gap",
+      "boot fts integrity rebuild maintenance marker plan",
+      "beginMaintenance boot rebuild plan",
+      "unclean shutdown sigkill loop fix plan",
+      "boot fts integrity rebuild maintenance marker tasks",
+      "beginMaintenance boot rebuild tasks",
+      "boot fts integrity rebuild maintenance marker checklist",
+      "beginMaintenance boot rebuild verification"
+    ],
+    "key_topics": [
+      "boot",
+      "fts",
+      "integrity",
+      "rebuild",
+      "maintenance",
+      "marker",
+      "shouldadoptdespiteprobe",
+      "unclean",
+      "shutdown",
+      "sigkill",
+      "loop",
+      "runbootftsintegritycheck"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/maintenance-marker.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-maintenance-guard.vitest.ts",
+      "dist/context-server.js",
+      "spec.md",
+      "lib/storage/maintenance-marker.ts",
+      "tasks.md",
+      "plan.md",
+      "mcp_server/tests/maintenance-marker.vitest.ts",
+      "mcp_server/tests/launcher-maintenance-guard.vitest.ts",
+      "handlers/memory-index.ts",
+      "mcp_server/context-server.ts",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/maintenance-marker.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-maintenance-guard.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-maintenance-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Boot Integrity Rebuild Maintenance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Marker Gap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`scheduleBootFtsIntegrityCheck()` fires (`context-server.ts:2467`, right before the daemon",
+    "created_at": "2026-07-08T08:42:38.915Z",
+    "last_save_at": "2026-07-08T10:57:18.373Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e533f110efc911985d2cb6448fc083ed2f26dd20902ac671cb74b54f5c3582ad",
+    "source_doc_hashes": {
+      "spec.md": "4f12ba15598a7a19e90390e29b52ca5a99afbcea85d738835f78ff5404c4e3e8",
+      "plan.md": "72b3deb4710aed38c3a3917d534676d7b89403b81ca7e5139acd04d900bf0167",
+      "tasks.md": "970b6b42f5659c80bb56559f1181b0fa2f774c6f6fe73f3e355b55ea1bb7dc7d",
+      "checklist.md": "67a9afa2856f32c9809f52b8dbad448508106d341af313c946aa03e81df61070",
+      "implementation-summary.md": "e6730bfcb5b9ecb8465a2b6339187b6f2bb3524d33da4327de4a1b5e502bf9d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

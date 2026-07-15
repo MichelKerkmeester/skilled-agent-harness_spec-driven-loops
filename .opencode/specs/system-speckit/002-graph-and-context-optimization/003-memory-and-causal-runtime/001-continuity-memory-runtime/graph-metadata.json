@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/005-memory-search-runtime-bugs",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/008-sk-deep-cli-runtime-execution",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/005-memory-search-runtime-bugs",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/008-sk-deep-cli-runtime-execution",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "002-continuity-memory-runtime",
+      "cache hooks, memory quality, continuity refactor, and memory-save rewrite",
+      "001-cache-warning-hooks",
+      "002-fix-memory-quality",
+      "003-continuity-refactor-gates",
+      "004-memory-save-rewrite",
+      "resource map",
+      "003-continuity-memory-runtime resource map",
+      "path catalog 003-continuity-memory-runtime"
+    ],
+    "key_topics": [
+      "002-continuity-memory-runtime",
+      "cache",
+      "hooks",
+      "memory",
+      "quality",
+      "continuity",
+      "refactor",
+      "memory-save",
+      "rewrite",
+      "001-cache-warning-hooks",
+      "002-fix-memory-quality",
+      "003-continuity-refactor-gates"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Continuity Memory Runtime",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. READMEs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The first consolidation preserved old packets behind an extra archive layer, which made the active phase surface harder to browse",
+    "created_at": "2026-04-21T13:00:00Z",
+    "last_save_at": "2026-07-02T05:31:11.445Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:b7d0a66be3e4361202d0d1dac521e61af536cf3b5775add087482c60fcc1a0c0",
+    "source_doc_hashes": {
+      "spec.md": "ab39c82ecd1a6f138cfff6e0f7ab4f2030f5d3cfbec92d704f748c439e5adc7e",
+      "resource-map.md": "8f44673b0459a535e228434301b251b27d43687523cbb4b39ac50053da6fe987"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

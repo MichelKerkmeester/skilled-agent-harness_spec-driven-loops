@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context",
+  "description": "deep-context reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 10 references and 0 of 1 assets carry the detailed",
+  "keywords": [
+    "deep-context",
+    "reference",
+    "asset",
+    "frontmatter",
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed"
+  ],
+  "lastUpdated": "2026-07-10T06:22:03.266Z",
+  "specId": "006",
+  "folderSlug": "deep-context",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "000-release-cleanup",
+    "009-skill-frontmatter-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

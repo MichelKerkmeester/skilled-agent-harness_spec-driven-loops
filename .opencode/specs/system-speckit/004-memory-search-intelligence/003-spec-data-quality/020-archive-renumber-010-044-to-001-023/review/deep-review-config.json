@@ -1,0 +1,110 @@
+{
+  "topic": "Review: .opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023",
+  "sessionId": "2026-07-08T14:06:02.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023",
+  "createdAt": "2026-07-08T14:06:02.000Z",
+  "status": "complete",
+  "releaseReadinessState": "converged",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023/spec.md",
+    ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023/plan.md",
+    ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023/tasks.md",
+    ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023/checklist.md",
+    ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023/implementation-summary.md",
+    ".opencode/specs/system-deep-loop/z_archive/graph-metadata.json",
+    ".opencode/specs/system-deep-loop/z_archive/description.json",
+    ".opencode/specs/system-deep-loop/z_archive/ (all 23 top-level packets, 001-023, 234 nested spec-folders)",
+    ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/ (children 001-008)",
+    ".opencode/commands/deep/assets/deep_ai-council_presentation.txt",
+    ".opencode/commands/deep/assets/deep_research_presentation.txt",
+    ".opencode/commands/deep/assets/deep_review_presentation.txt",
+    ".opencode/skills/system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

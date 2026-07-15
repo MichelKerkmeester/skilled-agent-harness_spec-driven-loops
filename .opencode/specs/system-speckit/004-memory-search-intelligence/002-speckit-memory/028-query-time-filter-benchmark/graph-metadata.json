@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory/028-query-time-filter-benchmark",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/028-query-time-filter-benchmark",
+  "parent_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "query-time existence filter benchmark",
+      "REQ-008 latency benchmark",
+      "query-time filter concurrency soak test",
+      "transient-miss suspect queue end-to-end test",
+      "existence filter exclusion telemetry"
+    ],
+    "key_topics": [
+      "query-time",
+      "existence",
+      "filter",
+      "benchmark",
+      "req-008",
+      "latency",
+      "concurrency",
+      "soak",
+      "test",
+      "transient-miss",
+      "suspect",
+      "queue"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "scripts/query-time-filter-latency-benchmark.mjs",
+      "results/query-time-filter-latency.json",
+      "mcp_server/stress_test/durability/query-time-existence-filter-concurrency-stress.vitest.ts",
+      "mcp_server/tests/memory-search-transient-miss-e2e.vitest.ts",
+      "mcp_server/handlers/memory-search.ts",
+      "mcp_server/ENV_REFERENCE.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/query-time-existence-filter-concurrency-stress.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-transient-miss-e2e.vitest.ts",
+      "plan.md",
+      "stress_test/durability/index-scan-coalescing-stress.vitest.ts",
+      "stress_test/durability/README.md",
+      "spec.md",
+      "stress_test/durability/query-time-existence-filter-concurrency-stress.vitest.ts",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-healing.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "query-time-filter-latency-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/query-time-filter-latency-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "query-time-filter-latency.json",
+        "kind": "config",
+        "path": "results/query-time-filter-latency.json",
+        "source": "derived"
+      },
+      {
+        "name": "query-time-existence-filter-concurrency-stress.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/durability/query-time-existence-filter-concurrency-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search-transient-miss-e2e.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/memory-search-transient-miss-e2e.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "index-scan-coalescing-stress.vitest.ts",
+        "kind": "test",
+        "path": "stress_test/durability/index-scan-coalescing-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "stress_test/durability/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Existence Filter Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four narrow, evidence-backed gaps remain open around an otherwise-complete, already-tested feature:",
+    "created_at": "2026-07-09T20:30:03.148Z",
+    "last_save_at": "2026-07-11T18:40:35.955Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a7cb57ff7cc91af221ad59c2dfac4f5b04642d7e70f2362c04c9708f66dbc3b",
+    "source_doc_hashes": {
+      "spec.md": "98a03b8b592f35ea1efa10c8cb5ef5fec7e6f4e0214feeb710c23c60d8b2f2f8",
+      "plan.md": "0e31dfa08c2fee06af8b08a23c0928f46dfc3a04bf6ee9d4c9dedcdd5f59c63a",
+      "tasks.md": "5164a5b22910e878ffff659667eec65d37dddff795b0c9ffc790818f3b52084f",
+      "checklist.md": "c1466bed7a7292a04723a0c354c5370855d9ea061933ca1847019b30051c3834",
+      "implementation-summary.md": "8fcf55402bbb3735770fa136ed108158bb0ddf5b92509dd61c8ecf28b687c21a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

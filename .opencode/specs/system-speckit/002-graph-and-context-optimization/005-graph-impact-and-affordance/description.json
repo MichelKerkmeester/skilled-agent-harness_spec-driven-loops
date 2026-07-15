@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/002-graph-and-context-optimization/005-graph-impact-and-affordance",
+  "description": "Deliver the external-project adoption uplift: a code-graph phase runner, edge-explanation and impact display, skill-advisor affordance evidence, and",
+  "keywords": [
+    "deliver",
+    "external-project",
+    "adoption",
+    "uplift",
+    "code-graph",
+    "phase",
+    "runner",
+    "edge-explanation",
+    "impact",
+    "display",
+    "skill-advisor",
+    "affordance",
+    "evidence"
+  ],
+  "lastUpdated": "2026-07-10T06:22:16.156Z",
+  "specId": "005",
+  "folderSlug": "graph-impact-and-affordance",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

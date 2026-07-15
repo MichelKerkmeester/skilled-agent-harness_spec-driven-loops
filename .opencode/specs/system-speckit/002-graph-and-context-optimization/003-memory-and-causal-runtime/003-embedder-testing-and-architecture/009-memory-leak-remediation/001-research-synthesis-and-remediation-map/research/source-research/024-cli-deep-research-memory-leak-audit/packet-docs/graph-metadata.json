@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/019-deep-review-arc-013-to-018",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "024 CLI memory leak audit",
+      "deep research process spam",
+      "mcp-coco-index memory leak",
+      "system-code-graph memory leak",
+      "CLI orchestration RAM overload",
+      "024 CLI memory leak plan",
+      "deep research memory plan",
+      "process cleanup audit plan",
+      "024 CLI memory leak tasks",
+      "memory leak deep research tasks",
+      "024 CLI memory leak checklist",
+      "memory leak research verification"
+    ],
+    "key_topics": [
+      "cli",
+      "memory",
+      "leak",
+      "audit",
+      "deep",
+      "research",
+      "process",
+      "spam",
+      "mcp-coco-index",
+      "system-code-graph",
+      "orchestration",
+      "ram"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Memory Leak Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Successful Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Risk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Focus",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Claude Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Prior sessions observed CLI-orchestrated agent workflows building up many processes and consuming enough memory to threaten a 64 GB Apple Silicon workstation",
+    "created_at": "2026-05-22T05:55:00Z",
+    "last_save_at": "2026-07-09T10:02:53.477Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:acdcc3fc27f722eb4a43a550d030252ce5c1dcc60460de743e162386ea259540",
+    "source_doc_hashes": {
+      "spec.md": "be820c21888e67743a0cb53181d049f0ca764be1cb03b242260395c2aae8867c",
+      "plan.md": "91e9615d35a7838c6da81d33fcd30ee87b3f16e0fdb6f571df38e18213840edf",
+      "tasks.md": "e3a33dffeccf68fef7f3b020eea5d4ed6265804c2cd584eb6074fd834eb30814",
+      "checklist.md": "9de75912445a021fbff6613e00be41fde9b67bd7c52bd21a9f2231dcd6fb7c64",
+      "decision-record.md": "b01913da6d3be482744ab62018a9e5e3848ad7606b939b90e3a847ae3188ba6d",
+      "implementation-summary.md": "5413fa5c868a4090fed4277a7b8aa4494eb51851946136100a18cd5bac4151ff",
+      "resource-map.md": "96d28a7a930a05607341bdea31ee0d9a375739fa18b9df45ad37114539215127"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

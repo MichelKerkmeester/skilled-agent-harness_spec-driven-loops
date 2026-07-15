@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/006-spec-gate-enforce-readiness/001-advise-telemetry",
+  "spec_folder": "system-speckit/006-spec-gate-enforce-readiness/001-advise-telemetry",
+  "parent_id": "system-speckit/006-spec-gate-enforce-readiness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec gate telemetry",
+      "would-deny rate",
+      "advise telemetry",
+      "enforce readiness measurement",
+      "gate-3 mutation log",
+      "spec gate telemetry plan",
+      "would-deny signal",
+      "structured advise log",
+      "runtime adapter logging",
+      "formatSpecGateEvent",
+      "spec gate telemetry tasks",
+      "wouldDeny discriminator"
+    ],
+    "key_topics": [
+      "spec",
+      "gate",
+      "telemetry",
+      "would-deny",
+      "rate",
+      "advise",
+      "enforce",
+      "readiness",
+      "measurement",
+      "gate-3",
+      "mutation",
+      "log"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+      ".opencode/plugins/mk-spec-gate.js",
+      ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-gate.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Mutation Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec Mutation Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec Mutation Gate ships advise-only, and the operator wants to stage a flip to ENFORCE mode (`MKSPECGATEENFORCE=1`)",
+    "created_at": "2026-07-11T10:44:11Z",
+    "last_save_at": "2026-07-11T11:05:58.756Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ef1a7798ef5e5c4df4623ce43df3af623222ab14b6f10e568c607319cdacea8",
+    "source_doc_hashes": {
+      "spec.md": "6aef4f5a2ca9b6ab7f0bc5d8b473020e69993227b2b98ffcf89e3ecd33e95ebe",
+      "plan.md": "31e4d8c198bfd96e4bdfdca461ee4cb735f2a58d4f95fd3b7fd37fa9ae236356",
+      "tasks.md": "c05fec96849b9330692c8b09fce7322f66c0ce62f0431906406716069587438e",
+      "checklist.md": "89449410f30c464ef0a1562100ca1be959296fda7d9a2a8bbf7914bb55116132",
+      "implementation-summary.md": "8dbbadf39ad1d8b71f6b550e16aeb30caee56933d95fd8b075137b8906a14e8c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

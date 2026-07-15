@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/005-rust-backend-rewrite-research",
+  "spec_folder": "system-speckit/005-rust-backend-rewrite-research",
+  "parent_id": "null",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-speckit/005-rust-backend-rewrite-research/001-research"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "030 rust backend rewrite",
+      "rust rewrite spec kit",
+      "speckit rust backend research",
+      "rust vs typescript backend",
+      "rust rewrite deep research"
+    ],
+    "key_topics": [
+      "rust",
+      "backend",
+      "rewrite",
+      "spec",
+      "kit",
+      "speckit",
+      "research",
+      "typescript",
+      "deep",
+      "system-spec-kit",
+      "244k",
+      "loc"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-research/spec.md",
+      "001-research/plan.md",
+      "001-research/research/deep-research-strategy.md",
+      "mcp_server/context-server.ts",
+      "shared/algorithms/rrf-fusion.ts",
+      "shared/ranking/learned-combiner.ts",
+      "shared/trigger-extractor.ts",
+      "shared/chunking.ts",
+      "001-research/tasks.md",
+      "001-research/research/deep-research-fanout-config.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "001-research/research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "learned-combiner.ts",
+        "kind": "code",
+        "path": "shared/ranking/learned-combiner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-extractor.ts",
+        "kind": "code",
+        "path": "shared/trigger-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "chunking.ts",
+        "kind": "code",
+        "path": "shared/chunking.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-fanout-config.json",
+        "kind": "config",
+        "path": "001-research/research/deep-research-fanout-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust Backend Rewrite Research Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-spec-kit` backend is ~244K LOC of authored TypeScript across ~1,487 files (`mcpserver/`, `scripts/`, `shared/`), run as a long-lived MCP server over `StdioServerTransport` (`mcpserver/context-server.ts`)",
+    "created_at": "2026-07-11T00:00:00.000Z",
+    "last_save_at": "2026-07-15T16:51:23.285Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:898d15e29709c6edeb43c06fe7cbeb9c285aa8a041dd9160d5fc1147c024d366",
+    "source_doc_hashes": {
+      "spec.md": "7ab434ad6141bebfbaba36717af80c8253ce21bbc11f4ff011c99fd2371f2055"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

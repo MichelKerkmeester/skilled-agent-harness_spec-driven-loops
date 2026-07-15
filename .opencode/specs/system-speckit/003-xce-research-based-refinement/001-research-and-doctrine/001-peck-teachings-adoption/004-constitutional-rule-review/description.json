@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review",
+  "description": "The constitutional tier (the always-surface rules) never decays and is never reviewed: each rule is a static file that is exempt from forgetting and",
+  "keywords": [
+    "constitutional",
+    "tier",
+    "always-surface",
+    "rules",
+    "never",
+    "decays",
+    "reviewed",
+    "rule",
+    "static",
+    "file",
+    "exempt",
+    "forgetting"
+  ],
+  "lastUpdated": "2026-07-10T06:22:24.716Z",
+  "specId": "004",
+  "folderSlug": "constitutional-rule-review",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "001-research-and-doctrine",
+    "001-peck-teachings-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

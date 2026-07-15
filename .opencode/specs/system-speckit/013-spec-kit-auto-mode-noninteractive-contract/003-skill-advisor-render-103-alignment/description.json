@@ -1,0 +1,58 @@
+{
+  "title": "Phase 103/003 — Skill Advisor Render-Layer 103-Alignment (absorbs cancelled 027/005)",
+  "trigger_phrases": [
+    "103 phase 003",
+    "skill advisor render 103 alignment",
+    "render.ts MUST invoke FIRST",
+    "advisor first-action under 103 contract"
+  ],
+  "level": 1,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-11T00:00:00Z",
+  "branch": "main",
+  "parent_track": "103-spec-kit-auto-mode-noninteractive-contract",
+  "parent_id": "103-spec-kit-auto-mode-noninteractive-contract",
+  "manual": {
+    "depends_on": [
+      "system-deep-loop/z_archive/033-deep-review-three-tier-setup",
+      "skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands"
+    ]
+  },
+  "derived": {
+    "status": "planned",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment",
+  "description": "The skill advisor renderer still emits soft wording around the top recommendation: `render.ts:155-157` says to use a label rather than requiring the",
+  "keywords": [
+    "skill",
+    "advisor",
+    "renderer",
+    "still",
+    "emits",
+    "soft",
+    "wording",
+    "around",
+    "top",
+    "recommendation",
+    "render",
+    "says",
+    "label",
+    "rather",
+    "requiring"
+  ],
+  "lastUpdated": "2026-07-09T10:02:45.784Z",
+  "specId": "003",
+  "folderSlug": "skill-advisor-render-103-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "013-spec-kit-auto-mode-noninteractive-contract"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

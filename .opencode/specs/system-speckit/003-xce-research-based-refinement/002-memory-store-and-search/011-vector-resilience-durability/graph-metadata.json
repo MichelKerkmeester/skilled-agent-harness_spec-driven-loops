@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vector shard repair sentinel",
+      "repair intent durability",
+      "degraded vector health",
+      "quarantine rebuild",
+      "shard completeness oracle",
+      "orphan quarantine backstop",
+      "boot attach repair resume",
+      "clear degraded vector state",
+      "reindex completion",
+      "vector repair sentinel tasks",
+      "restart durability tests",
+      "restart durability"
+    ],
+    "key_topics": [
+      "vector",
+      "shard",
+      "repair",
+      "sentinel",
+      "intent",
+      "durability",
+      "degraded",
+      "health",
+      "quarantine",
+      "rebuild",
+      "completeness",
+      "oracle"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts",
+      "tests/vector-shard-read-path-resilience.vitest.ts",
+      "lib/search/vector-index-store.ts",
+      "lib/embedders/reindex.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "lib/observability/retrieval-observability.ts"
+    ],
+    "entities": [
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-observability.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-shard-read-path-resilience.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Vector Resilience Durability",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Vector-shard quarantine previously relied on process memory plus a per-shard sentinel",
+    "created_at": "2026-06-11T06:25:38Z",
+    "last_save_at": "2026-07-02T05:31:13.700Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:956201b1b1c1f0083260feb30c48e6a13852ec21e42367d4c36661edbaf3bff2",
+    "source_doc_hashes": {
+      "spec.md": "345ea940a64e02cc5803add264904f1518a4c7b4887e7bf83586946a2b90dfe7",
+      "plan.md": "1e08fc6c17158fae60e19ec3072a9f9dec7c68e9d4f5c61812c0857f12112c9b",
+      "tasks.md": "8575a0101a1b91bd6bcd7262f9755673a770bd4e6e0ee6669a6e329327eb2981",
+      "implementation-summary.md": "15c522d70d205564a773f6d4aec07b7cc982681d7fa8249d02ed80eb43453de8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

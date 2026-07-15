@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/001-release-cleanup/008-agents-md",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/001-release-cleanup/008-agents-md",
+  "parent_id": "system-speckit/004-memory-search-intelligence/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 release cleanup agents md",
+      "agents md routing cleanup phase",
+      "028 release cleanup agents md plan",
+      "agents-md cleanup plan",
+      "028 release cleanup agents md tasks",
+      "agents-md cleanup tasks",
+      "028 release cleanup agents md checklist",
+      "agents-md cleanup checklist",
+      "008-agents-md implementation summary",
+      "028 release cleanup 008-agents-md"
+    ],
+    "key_topics": [
+      "release",
+      "cleanup",
+      "agents",
+      "routing",
+      "phase",
+      "plan",
+      "agents-md",
+      "tasks",
+      "checklist",
+      "008-agents-md",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".claude/CLAUDE.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": ".claude/CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "And Runtime Routing Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract before any document edits begin",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-07-11T18:40:35.755Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3ff3a992f91d02c369cdf0d214e2b3ff69e975c510f6bb963bdb160e3e48d480",
+    "source_doc_hashes": {
+      "spec.md": "8fad92dbf8621e8b564c639e96cd31eb53b9ebb2d71b04b99f961e3930f6e395",
+      "plan.md": "4384147afc38e231c664671f2a585533ddbeefe3687597565b29f41572f569da",
+      "tasks.md": "3492a9c422b0fba899b5444a53ceda966e7f49e5c5ac1a76edcf149be12ad66b",
+      "checklist.md": "e599d003a24fd096f71522acd6a11b1e3124c94392b203bb23bd30c27a0773ba",
+      "implementation-summary.md": "3171ad2717468b7166f540a16287aa9601a3479048bc8a5701c62e576921ffd8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

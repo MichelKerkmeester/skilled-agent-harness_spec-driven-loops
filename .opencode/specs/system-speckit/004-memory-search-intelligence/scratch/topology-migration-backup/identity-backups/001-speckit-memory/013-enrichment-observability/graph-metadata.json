@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
+  "parent_id": "system-speckit/004-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "enrichment observability gauges",
+      "gauge pending failed lag",
+      "background enrichment backlog gauge",
+      "oldest pending enrichment age",
+      "memory health enrichment gauge",
+      "enrichment observability plan",
+      "gauge lag implementation plan",
+      "backlog age gauge approach",
+      "memory health gauge sequencing",
+      "decoupled enrichment gauge",
+      "enrichment observability tasks",
+      "gauge lag tasks"
+    ],
+    "key_topics": [
+      "enrichment",
+      "observability",
+      "gauges",
+      "gauge",
+      "pending",
+      "failed",
+      "lag",
+      "background",
+      "backlog",
+      "oldest",
+      "age",
+      "memory"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts",
+      "handlers/memory-crud-health.ts",
+      "handlers/memory-save.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-health-edge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enrichment Observability",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Expose",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async, concurrency-capped scheduler runs the actual entity/graph enrichment later [CONFIRMED: `handlers/memory-save.ts:2934-2987`, `lib/search/vector-index-schema.ts:1884-1885`, `postinsertenrichmentstatus TEXT NOT NULL DEFAULT 'complete'`]",
+    "created_at": "2026-06-19T05:40:37.448Z",
+    "last_save_at": "2026-07-09T10:02:56.141Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:314d7736a9c392c226758832e6bdcaaa002b3324c878d66d2d2498653070ff98",
+    "source_doc_hashes": {
+      "spec.md": "39e23ff5c8c9911ee130a3f87910294cbdc2728ee0dfa22d9d364319fb0d1d09",
+      "plan.md": "02b8f9bae0f81955df96930c2948fb4403d46dac1a468988fc49547c26f9a942",
+      "tasks.md": "dcf48ea8dc0ab195d472196bcb51eb321a30876d7853746e019cad6f769ce6d9",
+      "implementation-summary.md": "29a2ad1be26ff9377aef2e08319e6cd7b64c353c5bf786f04e55302a30aae04f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

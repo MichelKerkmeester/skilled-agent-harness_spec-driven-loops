@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/014-resource-map-memory-finalization",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/014-resource-map-memory-finalization",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "014-resource-map-memory-finalization",
+      "resource maps cycle",
+      "memory finalization",
+      "session packet indexing",
+      "resource map",
+      "014-resource-map-memory-finalization resource map",
+      "path catalog 014-resource-map-memory-finalization"
+    ],
+    "key_topics": [
+      "014-resource-map-memory-finalization",
+      "resource",
+      "maps",
+      "cycle",
+      "memory",
+      "finalization",
+      "session",
+      "packet",
+      "indexing",
+      "map",
+      "path",
+      "catalog"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Maps",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Finalization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Seventeen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Generate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Seventeen session-touched spec folders lacked final resource maps and fresh memory indexing",
+    "created_at": "2026-04-29T18:41:25.655Z",
+    "last_save_at": "2026-07-10T06:24:49.990Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:f9c9e7c7f12cbebeb605a70ee34bceff5f6218c26d10ffb57ca92fefa928574f",
+    "source_doc_hashes": {
+      "spec.md": "da148b27f27267b1ed0c4da12a8fed25a28c37d4e16cc7ffd6e7ea207dde0e74",
+      "plan.md": "3c83e83382336e4d86c97f9d75e649a2830803956dd9b726ee5e70f3f2bc4244",
+      "tasks.md": "090811bc3cd258bf4c07fe8c2917dcc895f95da6db7ada63163195e0ed95f688",
+      "checklist.md": "0b74bb5164fe207f1f774c1b01649e1a2a27579248e8f253a0b47429bd8f8275",
+      "implementation-summary.md": "499e23a05e1ad999e85dacc54cffc26df0b81acbc79b61f707c3487f5f3955f7",
+      "resource-map.md": "263102aae9ae3a45edc9ace82fc4d2bb8d37d0b07805e510f24fb6e2cc9758a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

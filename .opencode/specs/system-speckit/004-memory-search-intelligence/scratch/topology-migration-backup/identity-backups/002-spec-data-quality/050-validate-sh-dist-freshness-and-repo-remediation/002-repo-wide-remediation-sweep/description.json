@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/004-memory-search-intelligence/002-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/002-repo-wide-remediation-sweep",
+  "description": "`validate.sh --strict --recursive` currently fails on all 43 packet roots repo-wide (257 folders, 0 passing), spanning `ai-systems` (9), `anobel.com`",
+  "keywords": [
+    "validate",
+    "strict",
+    "recursive",
+    "currently",
+    "fails",
+    "packet",
+    "roots",
+    "repo-wide",
+    "folders",
+    "passing",
+    "spanning",
+    "ai-systems",
+    "anobel",
+    "com"
+  ],
+  "lastUpdated": "2026-07-09T10:02:56.587Z",
+  "specId": "002",
+  "folderSlug": "repo-wide-remediation-sweep",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "002-spec-data-quality",
+    "050-validate-sh-dist-freshness-and-repo-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

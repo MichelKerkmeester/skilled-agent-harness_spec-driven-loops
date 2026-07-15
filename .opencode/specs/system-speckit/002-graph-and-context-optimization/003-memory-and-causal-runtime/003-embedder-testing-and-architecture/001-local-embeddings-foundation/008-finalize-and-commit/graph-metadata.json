@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 finalize commit",
+      "014 bundled commit",
+      "local embeddings final PR",
+      "008 plan finalize commit",
+      "014 bundled commit plan",
+      "008 tasks finalize commit",
+      "014/008 finalize done",
+      "014 commit message ready"
+    ],
+    "key_topics": [
+      "finalize",
+      "commit",
+      "bundled",
+      "local",
+      "embeddings",
+      "final",
+      "plan",
+      "tasks",
+      "done",
+      "message",
+      "ready",
+      "touched"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "scratch/commit-message.txt",
+      "scratch/post-merge-checks.md",
+      "scripts/spec/validate.sh",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-message.txt",
+        "kind": "file",
+        "path": "scratch/commit-message.txt",
+        "source": "derived"
+      },
+      {
+        "name": "post-merge-checks.md",
+        "kind": "doc",
+        "path": "scratch/post-merge-checks.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Does Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Validation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Validation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Validate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "files-changed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "014 touched ~12 source files (TS + Python) plus ~50 spec-doc files plus 4 sqlite deletes plus user-local config (`~/.cocoindexcode/globalsettings.yml`)",
+    "created_at": "2026-05-12T16:27:52Z",
+    "last_save_at": "2026-07-10T06:24:17.969Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e6f3ddd3e4d13ef9b13a35c9551aeada42f6769f8c2f26a50aa25894d6be525d",
+    "source_doc_hashes": {
+      "spec.md": "d56673f57921ff0379b2d1d612ca52cb33eac268d79faa36848b30c315e54eb5",
+      "plan.md": "4876208a40cd91638df51d5d3a91fcb7637564e22d85011d321efe15b6ca57bb",
+      "tasks.md": "83998326587cf73d136663f6abaa270dfd26cb912afd7f146cf7b3de1e51516d",
+      "implementation-summary.md": "5b088de9a381c8d268bb82960ea27d5770b0e4305f26c4581990a88ea5c15861"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

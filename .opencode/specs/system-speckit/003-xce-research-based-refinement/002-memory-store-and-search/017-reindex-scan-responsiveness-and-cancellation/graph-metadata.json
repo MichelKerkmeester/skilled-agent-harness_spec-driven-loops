@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reindex scan responsiveness cancellation",
+      "memory_index_scan event loop starvation",
+      "background scan uncancellable wedge",
+      "027 002/018",
+      "reindex scan responsiveness plan",
+      "memory_index_scan yield cancel plan",
+      "027 002/018 plan",
+      "reindex scan responsiveness tasks",
+      "027 002/018 tasks",
+      "reindex scan responsiveness summary",
+      "memory_index_scan tail loop yield cancel",
+      "027 002/018 shipped"
+    ],
+    "key_topics": [
+      "reindex",
+      "scan",
+      "responsiveness",
+      "cancellation",
+      "event",
+      "loop",
+      "starvation",
+      "background",
+      "uncancellable",
+      "wedge",
+      "plan",
+      "yield"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts",
+      "handlers/memory-index.ts",
+      "utils/batch-processor.ts",
+      "lib/ops/job-store.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/utils/batch-processor.ts",
+      "mcp_server/lib/ops/job-store.ts",
+      "mcp_server/tests/handler-memory-index-scan-jobs.vitest.ts",
+      "lib/embedders/reindex.ts",
+      "tests/handler-memory-index-scan-jobs.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-processor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "job-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-index-scan-jobs.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/handler-memory-index-scan-jobs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX ADDENDUM: AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A background `memoryindexscan` ran the entire scan on the daemon's single event-loop thread",
+    "created_at": "2026-06-17T12:03:13.967Z",
+    "last_save_at": "2026-07-10T06:23:55.331Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:97e6fcc18ee45f2a52e38e3a6213d81dcc075f7993d9d5087b2f738b678dc0d3",
+    "source_doc_hashes": {
+      "spec.md": "24dfca3e0589d94bd8e358c28d2ba87693eed5e46471cd58f88240d14e4e8df1",
+      "plan.md": "6afad4126a420fc1301727dcc9e08dd24eff9d0e0a573147fbb04e9e2dc7e41d",
+      "tasks.md": "f77b5848a9ad3f9d37970d72e769a8a7509390dde4eaafdbcf12af886d63c3c6",
+      "implementation-summary.md": "4613f639b2024534f5e3819652e152439d65b8955ef9bd6219d0e8d56fa10d4e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

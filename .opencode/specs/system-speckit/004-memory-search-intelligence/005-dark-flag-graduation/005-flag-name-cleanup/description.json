@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup",
+  "description": "Twelve live SPECKIT feature flags carry a `V1` version suffix in their environment-variable name",
+  "keywords": [
+    "twelve",
+    "live",
+    "speckit",
+    "feature",
+    "flags",
+    "carry",
+    "version",
+    "suffix",
+    "environment-variable",
+    "name"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.599Z",
+  "specId": "005",
+  "folderSlug": "flag-name-cleanup",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "005-dark-flag-graduation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

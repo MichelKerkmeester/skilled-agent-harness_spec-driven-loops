@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter",
+    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
+    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint",
+    "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter",
+    "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
+    "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 006",
+      "gem team adoption",
+      "agent io contract program",
+      "typed agent io adapter",
+      "scoped preexec handoff gates"
+    ],
+    "key_topics": [
+      "phase",
+      "gem",
+      "team",
+      "adoption",
+      "agent",
+      "contract",
+      "program",
+      "typed",
+      "adapter",
+      "scoped",
+      "preexec",
+      "handoff"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-typed-agent-io-adapter/spec.md",
+      "002-scoped-preexec-and-handoff-gates/spec.md",
+      "003-planner-review-focus-and-drift-hint/spec.md",
+      ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+      ".opencode/skills/sk-code/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-io-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gem Team Adoption",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Coordinate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The gem-team adoption research (007) recommended three small, additive refinements to the spec-kit agent runtime, and the integration research (009) showed they collapse onto a single shared advisory contract (`agent-io-contract.md`) emitted/consumed centrally by `@orchestrate`",
+    "created_at": "2026-06-06T10:11:02.043Z",
+    "last_save_at": "2026-07-10T06:23:24.989Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a6a5e1efa7e1674c5c25835036d17e1f751f21c7a1025a2f7c9e3dd421c0c4fe",
+    "source_doc_hashes": {
+      "spec.md": "0137d7ef6f246d64e381b8071cb3ef3fa795ee7ce648bc8cdbf384480c676cb8"
+    },
+    "last_active_child_id": "003-planner-review-focus-and-drift-hint",
+    "last_active_at": "2026-06-10T19:22:14.952Z"
+  }
+}

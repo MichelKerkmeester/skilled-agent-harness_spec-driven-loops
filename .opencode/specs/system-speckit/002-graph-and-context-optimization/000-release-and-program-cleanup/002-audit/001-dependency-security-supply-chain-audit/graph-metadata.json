@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 global security sweep",
+      "Mini Shai-Hulud audit",
+      "TanStack supply-chain check",
+      "Public repo security audit",
+      "dead-man switch IOC scan",
+      "post-2026-05-15 security review",
+      "015 global security sweep plan",
+      "Mini Shai-Hulud audit plan",
+      "security sweep iteration plan",
+      "015 global security sweep tasks",
+      "Mini Shai-Hulud audit tasks",
+      "security sweep dispatch tasks"
+    ],
+    "key_topics": [
+      "global",
+      "security",
+      "sweep",
+      "mini",
+      "shai-hulud",
+      "audit",
+      "tanstack",
+      "supply-chain",
+      "check",
+      "public",
+      "repo",
+      "dead-man"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/deep-research-state.jsonl",
+      "research/review-report.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      "research/prompts/iteration-001.md",
+      "research/prompts/iteration-002.md",
+      "research/prompts/iteration-003.md",
+      "research/prompts/iteration-004.md",
+      "research/prompts/iteration-005.md",
+      "research/prompts/iteration-006.md",
+      "research/prompts/iteration-007.md",
+      "research/prompts/iteration-008.md",
+      "research/prompts/iteration-009.md",
+      "research/prompts/iteration-010.md",
+      "research/prompts/iteration-011.md",
+      "research/prompts/iteration-012.md",
+      "research/prompts/iteration-013.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "research/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-011.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-011.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-012.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-012.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-013.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-013.md",
+        "source": "derived"
+      },
+      {
+        "name": "Global Security Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chain Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mini Shai",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-05-15 TanStack Mini Shai-Hulud disclosure is a watershed npm supply-chain event: first documented npm worm shipping with valid SLSA provenance signatures",
+    "created_at": "2026-05-15T18:27:58.266Z",
+    "last_save_at": "2026-07-10T06:24:14.659Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d3417ad30d8a706905e0a47e1c17e0080b3686e1e3401125ed78695db7a4b8f4",
+    "source_doc_hashes": {
+      "spec.md": "ac47f817665260fb86aca19b8103d8dcaee5e3a0016a7243d6f005c0e6c7f795",
+      "plan.md": "b4fb78b65bf78468752bd8934164d80990e036c142c6bf7bb96f92559d5102b6",
+      "tasks.md": "1fc591922e629fdcd5149a6cda1c19b3997e350ba302c9b2e4f8022ff7064523",
+      "implementation-summary.md": "67f144c6cb69b7ac12d35180b33efffcf415c5780d66587b49467bbda98a0b1d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

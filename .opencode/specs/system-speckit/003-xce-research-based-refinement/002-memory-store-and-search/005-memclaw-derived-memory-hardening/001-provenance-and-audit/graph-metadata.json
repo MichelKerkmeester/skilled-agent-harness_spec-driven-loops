@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory source_kind provenance",
+      "auto overwrite manual constitutional guard",
+      "mutation_ledger automated audit",
+      "write ingress provenance derivation",
+      "constitutional immunity memory writers",
+      "three-phase write split memory",
+      "memory source_kind provenance tasks",
+      "provenance audit phase tasks",
+      "provenance audit checklist",
+      "source_kind verification items",
+      "overwrite guard acceptance",
+      "mutation_ledger audit checklist"
+    ],
+    "key_topics": [
+      "memory",
+      "provenance",
+      "auto",
+      "overwrite",
+      "manual",
+      "constitutional",
+      "guard",
+      "automated",
+      "audit",
+      "write",
+      "ingress",
+      "derivation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "constitutional/automated-writers-never-overwrite-manual.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      ".opencode/skills/system-spec-kit/constitutional/automated-writers-never-overwrite-manual.md",
+      "handlers/memory-save.ts",
+      "handlers/mutation-hooks.ts",
+      "lib/search/vector-index-schema.ts",
+      "handlers/save/create-record.ts",
+      "handlers/memory-crud-update.ts",
+      "lib/storage/mutation-ledger.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-update-constitutional-guard.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "automated-writers-never-overwrite-manual.md",
+        "kind": "doc",
+        "path": "constitutional/automated-writers-never-overwrite-manual.md",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-record.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-update.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-hooks.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-ledger.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-update-constitutional-guard.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-update-constitutional-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-ledger.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Automated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Automated writers (enrichment, promoters, reducers) can overwrite human-authored and constitutional memory fields because the write path enforces no provenance-based protection",
+    "created_at": "2026-06-06T10:10:44Z",
+    "last_save_at": "2026-07-02T05:31:13.659Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:325e19a6cfe8707a5dd39350c6c3e872d139a47414c331144ce8a80663e8eddb",
+    "source_doc_hashes": {
+      "spec.md": "4420f08123591f889ffadf907a4e3e7eb24c22df0f546d3c6bde3d0d676f1efc",
+      "plan.md": "c0628be330ddad1ab419b10f33806fc8f7cee821c1b7ddc10b2a61fb7a166dfb",
+      "tasks.md": "f97f6e5fb2815b59b83b042534eca98d3013ea77ec33fa26f7686027bba82b00",
+      "checklist.md": "914b908b4da053b2224ff17ce055fc17317310257b02ce7bc7e50aebdd1ed271",
+      "implementation-summary.md": "f6ea3eb6f24beb8715a48525af7de09d6fca50921ea27e039a96002fd63fa16b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

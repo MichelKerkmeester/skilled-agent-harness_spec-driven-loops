@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "speckit_cross_encoder routing",
+      "reranker_local shim shadow",
+      "stage3-rerank flag gate",
+      "cross-encoder http local provider",
+      "001 flag routing fix",
+      "001 plan flag routing",
+      "001 tasks flag routing",
+      "001 implementation summary"
+    ],
+    "key_topics": [
+      "routing",
+      "shim",
+      "shadow",
+      "stage3-rerank",
+      "flag",
+      "gate",
+      "cross-encoder",
+      "http",
+      "local",
+      "provider",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      "tasks.md",
+      "tests/stage3-rerank-regression.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "tests/search-flags.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "stage3-rerank.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank-regression.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage3-rerank-regression.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.vitest.ts",
+        "kind": "test",
+        "path": "tests/search-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "typescript",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "trace",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "spec-memory has two reranker entry points and the flag contract between them shadows the path we actually want to use:",
+    "created_at": "2026-05-23T11:55:15.601Z",
+    "last_save_at": "2026-07-10T06:24:17.948Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eec5569160e7959d794d071f3131c107a9e1c9cd782a17eaabc83ac893b5ecd6",
+    "source_doc_hashes": {
+      "spec.md": "d23fb3d0ea2cea78d4641ba2c0459c5eccca3d3f1fa5a460173be9be3f6bafea",
+      "plan.md": "34a22376ce6cf7273247aad4d67892dbb573a2f2a8294ec69c3374ef0575c322",
+      "tasks.md": "0728fdfb2712139c9bbdf192e590e507bb5b633f35a5a4842ba66c2dc5e847fc",
+      "implementation-summary.md": "425e852c2df99fcb4b6abfbe1a5a8803892ad499f5f175270575cad515734889"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

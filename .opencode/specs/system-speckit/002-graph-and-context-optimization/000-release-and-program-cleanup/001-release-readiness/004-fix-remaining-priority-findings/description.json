@@ -1,0 +1,33 @@
+{
+  "title": "048 Remaining P1/P2 Remediation",
+  "trigger_phrases": [
+    "005-fix-remaining-priority-findings",
+    "P1 P2 backlog",
+    "release polish",
+    "conservative defaults pass"
+  ],
+  "contextType": "implementation",
+  "importance_tier": "important",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings",
+  "description": "Packet 046 fixed the release-blocking P0s and a small Tier beta set, but 24 P1",
+  "keywords": [
+    "packet",
+    "release-blocking",
+    "p0s",
+    "small",
+    "tier",
+    "beta",
+    "set"
+  ],
+  "lastUpdated": "2026-07-10T06:21:52.990Z",
+  "specId": "004",
+  "folderSlug": "fix-remaining-priority-findings",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "001-release-readiness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

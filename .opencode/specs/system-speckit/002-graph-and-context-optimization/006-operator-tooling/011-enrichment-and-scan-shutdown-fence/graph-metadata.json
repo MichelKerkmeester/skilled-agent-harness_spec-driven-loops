@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/006-operator-tooling/011-enrichment-and-scan-shutdown-fence",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/006-operator-tooling/011-enrichment-and-scan-shutdown-fence",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/006-operator-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "enrichment shutdown fence",
+      "startup scan shutdown fence",
+      "fatalShutdown reopen DB wal",
+      "shutdownBackgroundEnrichment",
+      "F-008 F-012 shutdown durability",
+      "enrichment scan shutdown fence plan",
+      "fatalShutdown fence sequence",
+      "enrichment scan shutdown fence tasks",
+      "enrichment scan shutdown fence checklist",
+      "enrichment scan shutdown fence decision",
+      "enrichment scan shutdown fence summary"
+    ],
+    "key_topics": [
+      "enrichment",
+      "shutdown",
+      "fence",
+      "startup",
+      "scan",
+      "fatalshutdown",
+      "reopen",
+      "wal",
+      "shutdownbackgroundenrichment",
+      "f-008",
+      "f-012",
+      "durability"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "handlers/memory-save.ts",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Neither",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shutdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`fatalShutdown` (`context-server.ts`) fences `fileWatcher` and `ingestWorker` before `closeDb()` because both write through `requireDb()`, which reopens a closed DB",
+    "created_at": "2026-06-15T05:48:42Z",
+    "last_save_at": "2026-07-02T05:31:12.839Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:81771700cb2fddc22c365e43f24bf47ae10ccac76dc2da947777c407d46f6dd9",
+    "source_doc_hashes": {
+      "spec.md": "d604cf8f8502824246bc381c6549e4dc9a39e6018cd2d695def363671e5e886a",
+      "plan.md": "0f6b38a5f75d48b5e50ec251fcee6bf084912d42e37a727266074e3318ed92f0",
+      "tasks.md": "ddbd5e1896a3297e8ddcac8119124f6106aaac9844955ee41b1ce9157c3fd2d3",
+      "checklist.md": "43a3930e04b29f658a409e39ad33f5ed1726ef6f86a2657e591281db664c8f07",
+      "decision-record.md": "64c62ac7d3823a88d837ff16b1021670d4a2b1e5d2728e02c9d5543f33c99f98",
+      "implementation-summary.md": "3379855689286b3c7a3850c004e81ec497c1059945e07d5c11f7ad9ea8e849e1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

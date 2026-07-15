@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-023-tsconfig-references-restructure",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-023-tsconfig-references-restructure",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009 tsconfig references restructure",
+      "system code graph shared dist emit gap",
+      "unicode normalization missing from fresh dist",
+      "drop system code graph tsconfig references",
+      "009 tsconfig references restructure plan",
+      "system code graph tsconfig emit plan",
+      "009 tsconfig references restructure tasks",
+      "system code graph shared emit tasks",
+      "009 tsconfig references restructure summary",
+      "system code graph shared dist emit complete"
+    ],
+    "key_topics": [
+      "tsconfig",
+      "references",
+      "restructure",
+      "system",
+      "code",
+      "graph",
+      "shared",
+      "dist",
+      "emit",
+      "gap",
+      "unicode",
+      "normalization"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/tsconfig.json",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/tsconfig.json",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-code-graph/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Restructure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Option",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Build Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 014 extracted code-graph ownership into `.opencode/skills/system-code-graph/`, but its TypeScript config kept both an `include` for `../system-spec-kit/shared//.ts` and a project `references` entry for `../system-spec-kit/shared`",
+    "created_at": "2026-05-14T16:26:51Z",
+    "last_save_at": "2026-07-10T06:23:34.977Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:53fade8e22175cd539fe87da83dd7bec3f48beae3b875b23adb5fcf44876e9d3",
+    "source_doc_hashes": {
+      "spec.md": "7cf75bcbaafadc3f13af8a6aecb1ea744efd6d69beeb81959e885a1acb3d4c40",
+      "plan.md": "2e56cd187806d4a626f4fd4f388f3159d65d67643c568c2cfeccb4a203910ac4",
+      "tasks.md": "7c41844825f3727109ef57911f9276eb572aefb9deb2ec7276ececdc03c63390",
+      "implementation-summary.md": "47fc7f16d4cdc54ec040f3ad57a1ad5a060106bc11a810ea0af6803230280c28"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

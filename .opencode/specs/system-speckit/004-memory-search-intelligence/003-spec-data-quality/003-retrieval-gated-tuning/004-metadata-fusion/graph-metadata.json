@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/004-metadata-fusion",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/004-metadata-fusion",
+  "parent_id": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "metadata fusion alpha",
+      "c4 retrieval fusion",
+      "alpha text meta blend",
+      "metadata signal vector",
+      "fusion alpha calibration"
+    ],
+    "key_topics": [
+      "metadata",
+      "fusion",
+      "alpha",
+      "retrieval",
+      "text",
+      "meta",
+      "blend",
+      "signal",
+      "vector",
+      "calibration",
+      "stage",
+      "scores"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-eval-v2.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Fusion Alpha",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Flag",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "alpha",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-289`, clamped by `clampMultiplier` at `stage2-fusion.ts:157`)",
+    "created_at": "2026-06-27T17:15:37.106Z",
+    "last_save_at": "2026-07-11T18:40:36.132Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ce35b702f4089f011773f272469d1f2085d438f0e68afc4d4177061362d06e3",
+    "source_doc_hashes": {
+      "spec.md": "c09f1dca7d15ac16af742c59607ccddfd34184074f7f8f5c0cfab1f42bf05f6d",
+      "plan.md": "689bf90db2049a1a7e47cb9742c17463dd6de64d81ee2ad141bd6c6d1c1dabec",
+      "tasks.md": "579926026eb47a67ec4e5f8714055f38a38b3d5ff78b7e6937f070371a5e7a69",
+      "checklist.md": "3e5269b1a52405b2bc76f496f136b9b75325c1b03478dd2fdc41d51741de6e57",
+      "implementation-summary.md": "e7a2eaf957aa81401de2bb7571ff7a5358b496b34cdf8641440f27704e443973"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

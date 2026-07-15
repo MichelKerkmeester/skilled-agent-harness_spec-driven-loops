@@ -1,0 +1,46 @@
+{
+  "topic": "Review of reindex-scan responsiveness and cancellation (027/002/018)",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "sessionId": "fanout-p018-opus-2-1781718236450-bbehhf",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "003-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation",
+  "createdAt": "2026-06-17T20:00:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": { "kind": "cli-claude-code", "model": "claude-opus-4-8" },
+  "fanoutLineage": "p018-opus-2",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  }
+}

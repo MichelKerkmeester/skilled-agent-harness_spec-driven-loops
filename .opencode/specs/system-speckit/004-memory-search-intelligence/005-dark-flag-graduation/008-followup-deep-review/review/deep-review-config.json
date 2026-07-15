@@ -1,0 +1,24 @@
+{
+  "sessionId": "deep-review-011-followup",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "releaseReadinessState": "in-progress",
+  "reviewTarget": {
+    "commit": "420c4734f3",
+    "subPhases": ["001", "002", "003", "004"],
+    "parentSpec": "004-memory-search-intelligence/005-dark-flag-graduation/007-graduation-follow-ups",
+    "scope": "Production-readiness follow-ups: code-graph bitemporal + degree-cap, deep-loop gauges + dedup scale, search append-exempt + citation probe, advisor penalty contract"
+  },
+  "dimensions": ["Correctness", "Regression Risk", "Byte Identity", "Test Coverage", "Edge Cases"],
+  "maxIterations": 10,
+  "convergence": {
+    "compositeStopScore": 0.9,
+    "minStabilizationPasses": 2,
+    "minIterations": 3
+  },
+  "resource_map_present": false,
+  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/008-followup-deep-review",
+  "createdAt": "2026-06-24T10:00:00Z"
+}

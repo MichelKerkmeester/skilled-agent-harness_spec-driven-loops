@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter",
+  "description": "The spec-kit agents pass work to each other through loose prose",
+  "keywords": [
+    "spec-kit",
+    "agents",
+    "pass",
+    "work",
+    "loose",
+    "prose"
+  ],
+  "lastUpdated": "2026-07-10T06:24:48.410Z",
+  "specId": "001",
+  "folderSlug": "typed-agent-io-adapter",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "001-research-and-doctrine",
+    "002-gem-team-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

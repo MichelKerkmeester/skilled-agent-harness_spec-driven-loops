@@ -1,0 +1,46 @@
+{
+  "level": "2",
+  "status": "completed",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-deep-research-drift-and-simplification",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/002-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity"
+    ],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks"
+    ]
+  },
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
+  "description": "`sidecar-client.ts` retained several P1 issues from arc 010/001 deep research: production constructor options still blurred into test-only knobs",
+  "keywords": [
+    "sidecar-client",
+    "retained",
+    "several",
+    "issues",
+    "arc",
+    "deep",
+    "research",
+    "production",
+    "constructor",
+    "options",
+    "still",
+    "blurred",
+    "test-only",
+    "knobs"
+  ],
+  "lastUpdated": "2026-07-10T06:21:11.893Z",
+  "specId": "003",
+  "folderSlug": "fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

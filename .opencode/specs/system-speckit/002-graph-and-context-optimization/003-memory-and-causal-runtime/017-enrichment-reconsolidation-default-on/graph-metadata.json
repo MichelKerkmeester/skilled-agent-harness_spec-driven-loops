@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post-insert enrichment default on",
+      "enrichment enabled by default",
+      "causal graph coverage low",
+      "async deferred enrichment",
+      "reconsolidation quality-auto-fix default",
+      "enrichment default on plan",
+      "async enrichment implementation",
+      "enrichment default on tasks",
+      "async enrichment task breakdown",
+      "enrichment default on checklist",
+      "async enrichment verification"
+    ],
+    "key_topics": [
+      "post-insert",
+      "enrichment",
+      "default",
+      "enabled",
+      "causal",
+      "graph",
+      "coverage",
+      "low",
+      "async",
+      "deferred",
+      "reconsolidation",
+      "quality-auto-fix"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts",
+      "lib/search/search-flags.ts",
+      "handlers/save/post-insert.ts",
+      "handlers/memory-save.ts",
+      "tests/search-flags.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-insert.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.vitest.ts",
+        "kind": "test",
+        "path": "tests/search-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconsolidation Default",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Flip",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "opt-out",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three save-time \"planner-first\" features ship behind opt-in flags that default to OFF",
+    "created_at": "2026-06-04T04:55:00Z",
+    "last_save_at": "2026-07-02T05:31:12.467Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:85c77878ce53dce5aa55638ed17834875655885f2366d8397507498b80721708",
+    "source_doc_hashes": {
+      "spec.md": "d909b4c9cf38fbc1dddb5327297d63f68db06e34bf338e286fe2c919b239e63f",
+      "plan.md": "862e7ebe9c05fa8858aa895b02805298a2e87c5d509cabcdeefcd95e49b2eeca",
+      "tasks.md": "26dc81dce28438f089df2afbd192a6ee19c62997f5e8df1b2c1d1f8b2e0af510",
+      "checklist.md": "358447d334990bdd26dbb724a79bc057221ae001ce14090c565b437283e7df3c",
+      "implementation-summary.md": "5979e9e9df22f1e1cd4339ec98835fb65e82942819b1aabd98339cf93dac8ed6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

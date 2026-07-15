@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/004-memory-search-intelligence/006-presentation-layer-fixes",
+  "description": "P1 — breadcrumb suppression is a deliberate rule, not a data gap",
+  "keywords": [
+    "breadcrumb",
+    "suppression",
+    "deliberate",
+    "rule",
+    "data",
+    "gap"
+  ],
+  "lastUpdated": "2026-07-10T18:46:53.114Z",
+  "specId": "006",
+  "folderSlug": "presentation-layer-fixes",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

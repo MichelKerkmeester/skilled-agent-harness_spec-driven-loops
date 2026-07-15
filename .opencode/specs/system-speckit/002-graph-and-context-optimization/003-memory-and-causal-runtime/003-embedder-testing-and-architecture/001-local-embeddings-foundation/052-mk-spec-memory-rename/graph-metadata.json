@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rename spec kit memory mcp namespace",
+      "mk-spec-memory",
+      "spec_kit_memory alias",
+      "Gemini MCP policy underscores",
+      "MCP server naming convention",
+      "017 rename plan",
+      "mk-spec-memory implementation plan",
+      "spec kit memory mcp rename",
+      "017 tasks",
+      "mk-spec-memory tasks",
+      "017 implementation summary",
+      "mk-spec-memory rename complete"
+    ],
+    "key_topics": [
+      "rename",
+      "spec",
+      "kit",
+      "memory",
+      "mcp",
+      "namespace",
+      "mk-spec-memory",
+      "alias",
+      "gemini",
+      "policy",
+      "underscores",
+      "server"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".claude/mcp.json",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
+      "mcp_server/handlers/save/spec-folder-mutex.ts",
+      "mcp_server/tests/handler-memory-save.vitest.ts",
+      "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+      "mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
+      "dist/context-server.js",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "spec.md",
+      "plan.md",
+      "resource-map.md",
+      "implementation-summary.md",
+      ".opencode/commands/doctor/_routes.yaml",
+      "mcp_server/context-server.ts",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-mutex.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/save/spec-folder-mutex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-save.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/handler-memory-save.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-substrate-stress-harness.mjs",
+        "kind": "file",
+        "path": "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "shared-daemon-runner-helpers.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Basis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Context Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current configured server alias forces a 22-character fully qualified prefix, `mcpmkspecmemory`, into every Claude-style tool reference",
+    "created_at": "2026-05-13T09:00:44Z",
+    "last_save_at": "2026-07-10T06:24:17.894Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:2ad2be7370720ff453081ce00acf177d891d5a0dc4830378fbbf4eb01184890c",
+    "source_doc_hashes": {
+      "spec.md": "1cff8ff7a9abf21c70c375e8c568b61b6103dffd76e59485eeeed0b8295e2994",
+      "plan.md": "09cd983b48f53d3e1d1321d89a1a735ee2d189b7a1e06117eaaf6858fcf8af25",
+      "tasks.md": "b07be163f2ef421e2c4ba13d51536833731c25a4611a9778ae69ad55860e060b",
+      "implementation-summary.md": "a1388bee4951f7702e651ae367310517037624d72a4049b9b61b33e9dda4b884",
+      "resource-map.md": "da36a8df869007b96d09257d6ca7b3ec1ab7d078baad04752b4c0eb58449fff8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

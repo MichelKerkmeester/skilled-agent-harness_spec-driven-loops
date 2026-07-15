@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-opencode frontmatter alignment",
+      "cli-opencode reference frontmatter",
+      "skill frontmatter standardization",
+      "cli-opencode frontmatter plan",
+      "frontmatter authoring phase",
+      "cli skill doc contract",
+      "cli-opencode frontmatter tasks",
+      "frontmatter authoring tasks",
+      "doc contract authoring tasks",
+      "cli-opencode frontmatter summary",
+      "cli-opencode authoring complete",
+      "cli doc contract evidence"
+    ],
+    "key_topics": [
+      "cli-opencode",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "authoring",
+      "phase",
+      "cli",
+      "doc",
+      "contract"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-opencode/references/agent_delegation.md",
+      ".opencode/skills/cli-opencode/references/cli_reference.md",
+      ".opencode/skills/cli-opencode/references/context-budget.md",
+      ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+      ".opencode/skills/cli-opencode/references/integration_patterns.md",
+      ".opencode/skills/cli-opencode/references/opencode_tools.md",
+      ".opencode/skills/cli-opencode/references/permissions-matrix.md",
+      ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "agent_delegation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/agent_delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-budget.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/context-budget.md",
+        "source": "derived"
+      },
+      {
+        "name": "destructive_scope_violations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/integration_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode_tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/opencode_tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/permissions-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-opencode reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 7 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
+    "created_at": "2026-06-11T05:47:24Z",
+    "last_save_at": "2026-07-02T05:31:13.473Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eec530efb1d78d45f8158a4dfbf305ffda9f5189994124ce215d46510c190489",
+    "source_doc_hashes": {
+      "spec.md": "543b9cca9b5798c0e933b455b272c09b8b4030390dc074d8e36e073f7c5e2d8f",
+      "plan.md": "6239934fb24a7fc646b677c54e63a70375b922c41f79196e5970581407fd35e5",
+      "tasks.md": "3e63cfb76533e4f0c8684ccaf5c12d6ead7827ea96e7130f4e4266dbe7c2ecbd",
+      "implementation-summary.md": "ae0a5af7f39a3c3d7cd1aca8547dd502c6f610b1cdd59783539f4d47552306e4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

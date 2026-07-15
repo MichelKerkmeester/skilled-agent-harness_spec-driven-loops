@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review correctness edges",
+      "retention toctou adapter-cache provider-precedence fixes",
+      "C2 isolated correctness fixes re-validation",
+      "deep review correctness edges plan",
+      "deep review correctness edges tasks",
+      "deep review correctness edges summary"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "correctness",
+      "edges",
+      "retention",
+      "toctou",
+      "adapter-cache",
+      "provider-precedence",
+      "isolated",
+      "re-validation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      "mcp_server/lib/governance/memory-retention-sweep.ts",
+      "mcp_server/lib/embedders/execution-router.ts",
+      "shared/embeddings/auto-select.ts",
+      "mcp_server/tests/memory-retention-sweep.vitest.ts",
+      "mcp_server/tests/embedders/execution-router.vitest.ts",
+      "mcp_server/tests/embedder-auto-selection.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/execution-router.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-auto-selection.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedder-auto-selection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Point",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 20-iteration deep review flagged seven correctness findings as \"isolated.\" The handover mandates re-validating each against HEAD before fixing",
+    "created_at": "2026-05-29T21:04:05.407Z",
+    "last_save_at": "2026-07-10T06:23:07.657Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e0f2a7b020845b31ef1460abbeecdb4370b5795ef41e25a21f89ced38fe1bb30",
+    "source_doc_hashes": {
+      "spec.md": "c1f964f8fe4cee489db33f190af659bfa55f5991bf32326b7d0904440fcd179b",
+      "plan.md": "353898c8f04b3132b4d2a1cd3c4b82b4ad4f607b3c174e818c2a00e5067c611f",
+      "tasks.md": "bc3b71d79cdb7a86b983c1bb56cd18d585e5a8e79282c71eb7c4eba66b924045",
+      "implementation-summary.md": "367f86894451c67a03ed53d6f0fc46adff390f3b9a16caab9e199931c07f7d48"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

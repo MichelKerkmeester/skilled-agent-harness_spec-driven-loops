@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+    "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "013 embedder testing and architecture",
+      "embedder umbrella program",
+      "embedder adapter interface",
+      "any embedder zero migration",
+      "nomic CodeRankEmbed and Qwen reranker defaults"
+    ],
+    "key_topics": [
+      "embedder",
+      "testing",
+      "architecture",
+      "umbrella",
+      "program",
+      "adapter",
+      "interface",
+      "zero",
+      "migration",
+      "nomic",
+      "coderankembed",
+      "qwen"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Status",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "former",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deferred",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Arc Patterns Metadata",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Priority",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Umbrella phase parent for embedder and reranker architecture across mk-spec-memory, mcp-coco-index, skill-advisor, launcher support, cross-cutting QA, Ollama/BGE historical promotion work, the shared rerank sidecar arc, and memory-leak remediation (absorbed sidecar investigation as phases 015-019 in 009). Current defaults: nomic-ai/CodeRankEmbed bi-encoder; Qwen/Qwen3-Reranker-0.6B for CocoIndex rerank via sidecar; cross-encoder/ms-marco-MiniLM-L-6-v2 for mk-spec-memory rerank when opt-in.",
+    "created_at": "2026-05-17T06:35:11.664Z",
+    "last_save_at": "2026-07-10T06:23:02.808Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:544ac366e9776adc7bcf130341ab730060fbfe773b0910648358a015d68a9834",
+    "source_doc_hashes": {
+      "spec.md": "5bfdd9bdc66cf13f16faa392d0e3b25e057a5a29ff56a1478d3c6feb287570c3",
+      "research/research.md": "56f7a68a6ec39950dec3c2c2c26b26e111aff62feb997b192f0db963a388e6ae"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

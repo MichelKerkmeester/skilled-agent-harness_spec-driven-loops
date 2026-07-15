@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sessionstart worktree guard",
+      "worktree-guard hook wiring",
+      "035 backstop sessionstart",
+      "sessionstart worktree guard plan",
+      "sessionstart worktree guard tasks",
+      "sessionstart worktree guard checklist",
+      "sessionstart worktree guard summary"
+    ],
+    "key_topics": [
+      "sessionstart",
+      "worktree",
+      "guard",
+      "worktree-guard",
+      "hook",
+      "wiring",
+      "backstop",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/worktree-guard.sh",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      ".opencode/bin/README.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Wire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Append",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Hook",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 035 created `worktree-guard.sh` — a detect-and-warn SessionStart guard that warns when a top-level session is running directly on the shared `main` checkout instead of an isolated worktree",
+    "created_at": "2026-05-30T21:50:43.392Z",
+    "last_save_at": "2026-07-10T06:23:43.861Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5ae930a1e17019eb2c5555cb2de5947a2039a30ceec83536c0500485cc5bd61d",
+    "source_doc_hashes": {
+      "spec.md": "fd253fcb2a843b3ac2503e699a83a09c375664c08c22ab3278949e2704a4638d",
+      "plan.md": "7b8300af19125d04488b5a3932a9590ad3ec138420e79570651d7a3c8ca787de",
+      "tasks.md": "3c9372be693ee7adc82d01c5cec555e0a9f3b7eccca6cfa503c693857465dd01",
+      "checklist.md": "217914c1906ed03215e94b15e2380e710960018c274425b0faa84c6084b09443",
+      "implementation-summary.md": "8a4b4f3ac97817c1c300930d0aae845bb60f1b01d46bab6ad2ab16b657141c18"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

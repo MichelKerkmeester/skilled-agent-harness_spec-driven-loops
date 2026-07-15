@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation",
+  "parent_id": "system-speckit/004-memory-search-intelligence/005-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dark flag validation",
+      "dark-flag-graduation winner scenario coverage",
+      "benchmark coverage gaps",
+      "conditional graduation",
+      "production readiness of graduated flags"
+    ],
+    "key_topics": [
+      "dark",
+      "flag",
+      "validation",
+      "dark-flag-graduation",
+      "winner",
+      "scenario",
+      "coverage",
+      "benchmark",
+      "gaps",
+      "conditional",
+      "graduation",
+      "production"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "research/deep-research-findings-registry.json",
+      "review/review-report.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dark Flag Graduation Production Coverage Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dark Flag Validation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Steps",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 007 Dark Flag Graduation Suite returned GRADUATE verdicts for 4 clusters (9 flags) across multihop tail-appends, code-graph staleness repair and bitemporal reads, advisor RRF fusion and conflict-rerank, and deep-loop finding dedup and gauges",
+    "created_at": "2026-06-24T15:37:46.751Z",
+    "last_save_at": "2026-07-11T18:40:36.339Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:678a5728d4acfcaf50c41998d60e38205ec76e2418afed2693222825aa042316",
+    "source_doc_hashes": {
+      "spec.md": "3d9e0af8f2f013b0260f8c61d480bbded328477302d6c09fa6d7b5c05d880cb1",
+      "plan.md": "c7ac1353e67d950ba094f91e1e7645000a186d7fc4b205d2257f48d0434fdf99",
+      "tasks.md": "7b6392e17c0869b19d0286c097f4e9686b13c3de6e4717c891d14636818fc80c",
+      "implementation-summary.md": "1ab5961cdacb5b42beafb65703767f9e03001f9ac9abafa61b273b1e162da03f",
+      "research/research.md": "b404b92f232860ed5a81165d1d4ceaad79e5e7895cfaa894dc9570f7010b7eaf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

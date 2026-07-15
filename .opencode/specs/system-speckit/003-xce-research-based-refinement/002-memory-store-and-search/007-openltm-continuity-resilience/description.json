@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/007-openltm-continuity-resilience",
+  "description": "Our continuity ladder is richer than OpenLTM's, but it lacks a few low-tech resilience surfaces",
+  "keywords": [
+    "continuity",
+    "ladder",
+    "richer",
+    "openltm",
+    "lacks",
+    "low-tech",
+    "resilience",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-07-10T06:22:01.731Z",
+  "specId": "007",
+  "folderSlug": "openltm-continuity-resilience",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

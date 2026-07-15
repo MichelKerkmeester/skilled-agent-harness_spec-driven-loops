@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/003-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests",
+  "description": "The research verdict is conditional on a set of acceptance-test deltas that do not exist yet: the spawn-race and coexistence guarantees are",
+  "keywords": [
+    "research",
+    "verdict",
+    "conditional",
+    "set",
+    "acceptance-test",
+    "deltas",
+    "exist",
+    "spawn-race",
+    "coexistence",
+    "guarantees"
+  ],
+  "lastUpdated": "2026-07-10T06:22:05.694Z",
+  "specId": "002",
+  "folderSlug": "hardening-and-tests",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "001-mcp-to-cli-tool-transition",
+    "001-spec-memory-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

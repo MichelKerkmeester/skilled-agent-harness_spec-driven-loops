@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/005-spec-memory-p1-registry-consolidation",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/005-spec-memory-p1-registry-consolidation",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/005 spec-memory registry",
+      "RERANKER_CANONICAL",
+      "getRerankerFallback",
+      "022/005 plan",
+      "022/005 tasks",
+      "022/005 checklist",
+      "022/005 shipped"
+    ],
+    "key_topics": [
+      "spec-memory",
+      "registry",
+      "getrerankerfallback",
+      "plan",
+      "tasks",
+      "checklist",
+      "shipped",
+      "cli-opencode",
+      "deepseek-v4-pro",
+      "variant",
+      "high",
+      "dispatched"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "voyage.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts",
+        "source": "derived"
+      },
+      {
+        "name": "openai.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Registry Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "RerankerProvider",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "local",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "reranker",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched: extended registry.ts with RerankerProvider type + RERANKER_CANONICAL frozen object + getRerankerFallback helper; consolidated providers/voyage.ts + providers/openai.ts + auto-select.ts + cross-encoder.ts to import from registry. Closes 7 P1 cleanup findings.",
+    "created_at": "2026-05-23T18:10:00.000000Z",
+    "last_save_at": "2026-07-10T06:24:42.607Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bc6e4d87ea9dd7bae83fcb2de6aa8004e08fd30fad32c9b1bf70fd3a98ea8305",
+    "source_doc_hashes": {
+      "spec.md": "b794ebf04bd64348de04b6f223c7dd3f585b0dbd730633e98b899cc2fca1ef72",
+      "plan.md": "8981b592f30cf29871ec0f92b152f0476a6183f3ba803e81f4791c66e9e2948a",
+      "tasks.md": "7cb2008ca7ecd891416a546be49066510f07adbfa9a82e5ec5952d8153413ca4",
+      "checklist.md": "7b6108665f5b26e65b4bd0541fae4ccfe076660ad57770e2baf78b66bf1ac5ea",
+      "implementation-summary.md": "e5ab13597a6426a6c567c5741de26fe0658ae0d0cf198eedc1bb697b71636c7a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

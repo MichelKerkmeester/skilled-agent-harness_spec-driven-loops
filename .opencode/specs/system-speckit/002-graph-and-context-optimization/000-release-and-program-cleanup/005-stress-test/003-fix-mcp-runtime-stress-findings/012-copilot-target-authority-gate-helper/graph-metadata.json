@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "012-copilot-target-authority-gate-helper",
+      "copilot target authority helper",
+      "cli-copilot Gate 3 bypass fix",
+      "buildCopilotPromptArg",
+      "target authority preamble",
+      "P0 cli-copilot remediation",
+      "012 plan",
+      "copilot authority helper plan",
+      "buildCopilotPromptArg plan",
+      "012 tasks",
+      "copilot authority helper tasks",
+      "012 checklist"
+    ],
+    "key_topics": [
+      "012-copilot-target-authority-gate-helper",
+      "copilot",
+      "target",
+      "authority",
+      "helper",
+      "cli-copilot",
+      "gate",
+      "bypass",
+      "buildcopilotpromptarg",
+      "preamble",
+      "remediation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Copilot Target",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authority Helper",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Steps",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated `009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/graph-metadata.json` without operator authorization",
+    "created_at": "2026-04-27T20:00:00Z",
+    "last_save_at": "2026-07-10T06:24:06.578Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:508c68bbbf42a3195d8bac6f169cc8a65f5c076d798ad767ad8c1d223d4934a6",
+    "source_doc_hashes": {
+      "spec.md": "27633f3f15a6cace1f9ffb9f17498d606f0bd8649dc2b2d3582e753b4a748954",
+      "plan.md": "98fa311510ab7d6a2c1af925ace419de23dbd1d99a83b3eb6761b9b3ecea45f9",
+      "tasks.md": "28f2d24d5f74ec458755d926819dd3293a55f3b3ea199b4508803b5d1e643193",
+      "checklist.md": "2b9ca83e701b6dcfb47bfd3b82f684f881cd274acfbe75a8f58d9fc0712a8519",
+      "implementation-summary.md": "b6cb2740eaea6538b2fbbe540e6e78b557ecc0c32ce063323c0dc89a3ef45058"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

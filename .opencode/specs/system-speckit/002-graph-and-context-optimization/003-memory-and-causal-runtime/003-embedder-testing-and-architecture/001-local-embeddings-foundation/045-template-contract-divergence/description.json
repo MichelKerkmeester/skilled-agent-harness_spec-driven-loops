@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence",
+  "description": "During the 2026-05-14 substrate repair wave, several Codex-authored spec packets passed `validate.sh --strict` but `memorysave` dry-runs rejected the",
+  "keywords": [
+    "substrate",
+    "repair",
+    "wave",
+    "several",
+    "codex-authored",
+    "spec",
+    "packets",
+    "passed",
+    "validate",
+    "strict",
+    "memorysave",
+    "dry-runs",
+    "rejected"
+  ],
+  "lastUpdated": "2026-07-10T06:24:47.493Z",
+  "specId": "045",
+  "folderSlug": "template-contract-divergence",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 44,
+  "memoryNameHistory": []
+}

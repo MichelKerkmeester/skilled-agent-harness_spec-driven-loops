@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "status": "phase-parent",
+  "is_phase_parent": true,
+  "children": [
+    "001-typed-agent-io-adapter",
+    "002-scoped-preexec-and-handoff-gates",
+    "003-planner-review-focus-and-drift-hint"
+  ],
+  "specFolder": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
+  "description": "The gem-team adoption research (007) recommended three small, additive refinements to the spec-kit agent runtime, and the integration research (009)",
+  "keywords": [
+    "gem-team",
+    "adoption",
+    "research",
+    "recommended",
+    "three",
+    "small",
+    "additive",
+    "refinements",
+    "spec-kit",
+    "agent",
+    "runtime",
+    "integration"
+  ],
+  "lastUpdated": "2026-07-10T06:23:26.129Z",
+  "specId": "002",
+  "folderSlug": "gem-team-adoption",
+  "parentChain": [
+    "system-speckit",
+    "003-xce-research-based-refinement",
+    "001-research-and-doctrine"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

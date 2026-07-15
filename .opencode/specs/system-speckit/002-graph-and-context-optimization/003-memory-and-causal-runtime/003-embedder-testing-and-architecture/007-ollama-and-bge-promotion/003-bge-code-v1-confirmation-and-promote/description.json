@@ -1,0 +1,29 @@
+{
+  "level": "feature",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote",
+  "description": "Scope changed 2026-05-18 evening. Original plan: corrected single-run or later 018 bge-code-v1-only confirmation.",
+  "keywords": [
+    "scope",
+    "changed",
+    "evening",
+    "original",
+    "plan",
+    "corrected",
+    "single-run",
+    "later",
+    "bge-code-v1-only",
+    "confirmation"
+  ],
+  "lastUpdated": "2026-07-10T06:22:30.163Z",
+  "specId": "003",
+  "folderSlug": "bge-code-v1-confirmation-and-promote",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "007-ollama-and-bge-promotion"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket",
+  "description": "The zero-install fallback is silently broken: `probeHfLocal` (`auto-select.ts:435-449`) still gates hf-local selection on a Python `import",
+  "keywords": [
+    "zero-install",
+    "fallback",
+    "silently",
+    "broken",
+    "probehflocal",
+    "auto-select",
+    "still",
+    "gates",
+    "hf-local",
+    "selection",
+    "python",
+    "import"
+  ],
+  "lastUpdated": "2026-07-10T06:22:05.678Z",
+  "specId": "001",
+  "folderSlug": "selector-and-shared-socket",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "011-embedding-stack-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

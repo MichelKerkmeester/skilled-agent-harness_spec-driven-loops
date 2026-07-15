@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/016-cmd-speckit-family-rename",
+  "description": "The SpecKit slash-command directory was named `speckit/` (snakecase with underscore), inconsistent with the recent rename convention shipping",
+  "keywords": [
+    "speckit",
+    "slash-command",
+    "directory",
+    "named",
+    "snakecase",
+    "underscore",
+    "inconsistent",
+    "recent",
+    "rename",
+    "convention",
+    "shipping"
+  ],
+  "lastUpdated": "2026-07-15T16:40:27.360Z",
+  "specId": "016",
+  "folderSlug": "cmd-speckit-family-rename",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "23-05-26_15-01__renamed-the-speckit-slash-command-directory-from.md",
+    "23-05-26_15-05__renamed-the-speckit-slash-command-directory-from.md",
+    "23-05-26_15-11__renamed-packet-folder-to-cmd-speckit-family.md"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/001-post-program-doc-and-state-cleanup",
+  "description": "The 026 deep-review remediation program landed most runtime and documentation fixes, but left post-program status and validator surfaces stale",
+  "keywords": [
+    "deep-review",
+    "remediation",
+    "program",
+    "landed",
+    "runtime",
+    "documentation",
+    "left",
+    "post-program",
+    "status",
+    "validator",
+    "surfaces",
+    "stale"
+  ],
+  "lastUpdated": "2026-07-10T06:24:17.117Z",
+  "specId": "001",
+  "folderSlug": "post-program-doc-and-state-cleanup",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "004-followup-post-program"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

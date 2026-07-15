@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference",
+  "description": "Packet 021's backfill only promotes two structural signals (spec-document chains + lineage predecessor links) into typed edges",
+  "keywords": [
+    "packet",
+    "backfill",
+    "only",
+    "promotes",
+    "two",
+    "structural",
+    "signals",
+    "spec-document",
+    "chains",
+    "lineage",
+    "predecessor",
+    "links",
+    "typed",
+    "edges"
+  ],
+  "lastUpdated": "2026-07-10T06:24:04.697Z",
+  "specId": "023",
+  "folderSlug": "semantic-relation-inference",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

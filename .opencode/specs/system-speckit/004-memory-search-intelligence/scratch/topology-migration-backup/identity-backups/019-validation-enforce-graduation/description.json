@@ -1,0 +1,33 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/004-memory-search-intelligence/019-validation-enforce-graduation",
+  "description": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail",
+  "keywords": [
+    "three",
+    "validation",
+    "rules",
+    "exist",
+    "run",
+    "every",
+    "validate",
+    "strict",
+    "invocation",
+    "correctly",
+    "detect",
+    "real",
+    "drift",
+    "none",
+    "them",
+    "actually",
+    "fail"
+  ],
+  "lastUpdated": "2026-07-09T20:32:05.065Z",
+  "specId": "019",
+  "folderSlug": "validation-enforce-graduation",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

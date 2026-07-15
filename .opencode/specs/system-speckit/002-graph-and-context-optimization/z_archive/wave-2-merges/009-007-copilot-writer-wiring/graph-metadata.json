@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/z_archive/wave-2-merges/009-007-copilot-writer-wiring",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/z_archive/wave-2-merges/009-007-copilot-writer-wiring",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "copilot writer wiring",
+      "copilot refreshed timestamp",
+      "026/009/011",
+      "implementatio",
+      "plan",
+      "011",
+      "copilot",
+      "tasks",
+      "copil",
+      "spec",
+      "kit",
+      "026"
+    ],
+    "key_topics": [
+      "copilot",
+      "writer",
+      "wiring",
+      "refreshed",
+      "timestamp",
+      "implementatio",
+      "plan",
+      "tasks",
+      "copil",
+      "spec",
+      "kit",
+      "route"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".github/hooks/superset-notify.json",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "superset-notify.json",
+        "kind": "config",
+        "path": ".github/hooks/superset-notify.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Route Copilot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Copilot Writer Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Wrapper",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Needs Reapply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "description: 'title:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "' trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "-",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Copilot",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current State Commit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in .claude/settings.local.json with the actual writer commands. Bypasses the Superset-wrapper clobber of .github/hooks/superset-notify.json and makes the $HOME/.copilot/copilot-instructions.md Refreshed: timestamp advance per-prompt under Copilot.",
+    "created_at": "2026-04-22T16:05:25.902Z",
+    "last_save_at": "2026-07-10T06:23:08.633Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6b937c8ca1714dca1bfec4a4b40019807ef30faf965ffa8692106eb03c82ac7e",
+    "source_doc_hashes": {
+      "spec.md": "1dbf56af19d259eb91ab77b547e2e578a1135dce22eb1be55c9c65d96039f5ea",
+      "plan.md": "122ad5093081c758263a1ac1d7fa68b9752b532040b08a5e42a728cf639bfd78",
+      "tasks.md": "d50025cc5a90a4661d88e421b714915af9e14b5550455823c5970352b28e2dbe",
+      "implementation-summary.md": "60a660aa47b0b8efafcc989015ca70f5f8822b8ee651e86725bca9067a612ea1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

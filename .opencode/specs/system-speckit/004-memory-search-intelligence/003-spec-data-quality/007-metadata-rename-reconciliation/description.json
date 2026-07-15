@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/007-metadata-rename-reconciliation",
+  "description": "Two narrow generator bugs sit on top of the already-shipped identity resolver, unreconciled",
+  "keywords": [
+    "two",
+    "narrow",
+    "generator",
+    "bugs",
+    "sit",
+    "top",
+    "already-shipped",
+    "identity",
+    "resolver",
+    "unreconciled"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.679Z",
+  "specId": "007",
+  "folderSlug": "metadata-rename-reconciliation",
+  "parentChain": [
+    "system-speckit",
+    "004-memory-search-intelligence",
+    "003-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

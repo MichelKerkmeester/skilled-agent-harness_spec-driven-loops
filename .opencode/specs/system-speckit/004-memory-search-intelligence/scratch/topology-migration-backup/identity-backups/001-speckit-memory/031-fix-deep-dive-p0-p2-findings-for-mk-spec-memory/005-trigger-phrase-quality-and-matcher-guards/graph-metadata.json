@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards",
+  "parent_id": "system-speckit/004-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger phrase quality",
+      "trigger phrase regeneration",
+      "single word trigger junk",
+      "match triggers latency",
+      "matcher stopword guard",
+      "trigger phrase quality plan",
+      "trigger cache mtime caching",
+      "merge not replace auto-fix",
+      "specfolder prefix matching",
+      "trigger matcher guards",
+      "trigger phrase quality tasks",
+      "trigger regeneration migration"
+    ],
+    "key_topics": [
+      "trigger",
+      "phrase",
+      "quality",
+      "regeneration",
+      "single",
+      "word",
+      "junk",
+      "match",
+      "triggers",
+      "latency",
+      "matcher",
+      "stopword"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+      "mcp_server/lib/parsing/trigger-matcher.ts",
+      "mcp_server/handlers/memory-triggers.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/lib/parsing/memory-parser.ts",
+      "mcp_server/lib/search/trigger-embedding-backfill.ts",
+      "mcp_server/scripts/migrations/regenerate-legacy-trigger-phrases.mjs",
+      "mcp_server/scripts/migrations/dedup-constitutional-trigger-rows.mjs",
+      "handlers/quality-loop.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "trigger-matcher.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-embedding-backfill.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/trigger-embedding-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "regenerate-legacy-trigger-phrases.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/migrations/regenerate-legacy-trigger-phrases.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dedup-constitutional-trigger-rows.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/migrations/dedup-constitutional-trigger-rows.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-loop.ts",
+        "kind": "code",
+        "path": "handlers/quality-loop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Existing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The trigger-phrase corpus is dominated by junk: 45% of 165,979 phrase occurrences are single words (\"feature\" x2,072, \"specification\" x2,034, \"system-spec-kit\" x1,922, even \"zarchive\" x848), and a live resume-style prompt returned 5/5 zarchive hits via single-word matches at weight 0.8 (deep-dive report §1; findings ledger L4)",
+    "created_at": "2026-07-03T09:44:20Z",
+    "last_save_at": "2026-07-09T10:02:56.275Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a8be3fb01bc5762824ddc192c3d4e31c2656bc78c2c493b00103964a5b778f50",
+    "source_doc_hashes": {
+      "spec.md": "0ff43c79f9f80cdd484518219e00e483b1b571356a13dddcce449de49e8b0297",
+      "plan.md": "1c93eadeda1a0780db7e952cf4dcd832465653d2efdc5ffe927a2f535ea4eea0",
+      "tasks.md": "e0536dc8154f858702ed3fd9195dc73a5fb9fa44fb5b9fad8b9e1480a32623bb",
+      "checklist.md": "113d3fc5346609139d0ec7b3914f273e2593c938b431b0268ccd762ea3332486",
+      "decision-record.md": "166962f99f7878dbdfdc802dd3f2589f003e945d29da3a41aadea6952987da48",
+      "implementation-summary.md": "9fc14db0d2b71baaab6348838c7775a335584a00d07c58ec471dc4cf81b40a5e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

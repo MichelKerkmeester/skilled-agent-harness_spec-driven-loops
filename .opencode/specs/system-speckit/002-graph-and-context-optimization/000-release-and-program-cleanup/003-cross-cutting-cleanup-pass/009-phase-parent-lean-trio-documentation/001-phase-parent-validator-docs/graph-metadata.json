@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase parent documentation",
+      "phase parent lean trio",
+      "phased spec documentation",
+      "parent doc staleness",
+      "phase parent plan",
+      "phase parent rollout",
+      "phase parent validator",
+      "phase parent tasks",
+      "phase parent task list",
+      "phase parent checklist",
+      "phase parent verification",
+      "phase parent implementation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "parent",
+      "documentation",
+      "lean",
+      "trio",
+      "phased",
+      "spec",
+      "doc",
+      "staleness",
+      "plan",
+      "rollout",
+      "validator"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "lib/shell-common.sh",
+      "mcp_server/lib/spec/is-phase-parent.ts",
+      "scripts/dist/spec/is-phase-parent.js",
+      ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js",
+      ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.d.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "scripts/package.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "scripts/lib/shell-common.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "shell-common.sh",
+        "kind": "script",
+        "path": "lib/shell-common.sh",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/spec/is-phase-parent.ts",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.js",
+        "kind": "code",
+        "path": "scripts/dist/spec/is-phase-parent.js",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.d.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-files.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-level-match.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "scripts/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent Documentation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement When",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When a spec folder has phase children (e.g",
+    "created_at": "2026-04-27T08:55:00Z",
+    "last_save_at": "2026-07-02T05:31:10.569Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3c624dc901fc315fe456499383a0512ccb059057e08e91692be2d9c6dc3cada3",
+    "source_doc_hashes": {
+      "spec.md": "539aee5a670f5e001f5a78b7799038ff9d4d3d691cad4040e16f8da7c64e1a95",
+      "plan.md": "8af45ce398896273edfafb89abf80ab415aed37fd75bbe95ded9d71fe74ac052",
+      "tasks.md": "36446007962e84702c3ef66cc3491eef2465da6a7bc8399635ae200703d26051",
+      "checklist.md": "c3b9f273598c81908d4c056bc2b59650e0724289fffe52686fd095703be67e6b",
+      "implementation-summary.md": "9a32a34ff288fb4cf419ee4a17a7d5616986fa7460b88f08fc513c0601086367"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

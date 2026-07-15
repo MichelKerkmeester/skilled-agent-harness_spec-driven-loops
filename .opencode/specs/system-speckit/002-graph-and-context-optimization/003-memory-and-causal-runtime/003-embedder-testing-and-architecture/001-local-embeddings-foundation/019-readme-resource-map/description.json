@@ -1,0 +1,37 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map",
+  "description": "Inventory every README in the repo, identify staleness against the 014 line, and apply the edits to align canonical READMEs with current code state.",
+  "keywords": [
+    "inventory",
+    "every",
+    "readme",
+    "repo",
+    "identify",
+    "staleness",
+    "against",
+    "line",
+    "apply",
+    "edits",
+    "align",
+    "canonical",
+    "readmes",
+    "current",
+    "code",
+    "state"
+  ],
+  "lastUpdated": "2026-07-10T06:24:04.183Z",
+  "specId": "019",
+  "folderSlug": "readme-resource-map",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 20,
+  "memoryNameHistory": [
+    "13-05-26_15-49__aligned-4-runtime-markdown-agent-docs-to-scope.md"
+  ]
+}

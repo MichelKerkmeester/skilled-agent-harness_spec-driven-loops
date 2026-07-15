@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan",
+      "tasks",
+      "summary",
+      "impl",
+      "user"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/utils/template-structure.js",
+      "scripts/rules/check-template-headers.sh",
+      "references/validation/template_compliance_contract.md",
+      "scripts/rules/check-phase-parent-content.sh",
+      "scripts/lib/validator-registry.json",
+      "references/validation/validation_rules.md",
+      "constitutional/README.md",
+      "references/memory/memory_system.md",
+      "mcp_server/lib/cognitive/fsrs-scheduler.ts",
+      "scripts/spec/validate.sh",
+      "mcp_server/lib/validation/save-quality-gate.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "references/config/environment_variables.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-headers.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-template-headers.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template_compliance_contract.md",
+        "kind": "doc",
+        "path": "references/validation/template_compliance_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-phase-parent-content.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-phase-parent-content.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation_rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "constitutional/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory_system.md",
+        "kind": "doc",
+        "path": "references/memory/memory_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "fsrs-scheduler.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/cognitive/fsrs-scheduler.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "save-quality-gate.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/validation/save-quality-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "environment_variables.md",
+        "kind": "doc",
+        "path": "references/config/environment_variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The user asked whether the external repo `gytis-ivaskevicius/peck` contains any teachings that could",
+    "created_at": "2026-06-02T08:38:07Z",
+    "last_save_at": "2026-07-02T05:31:13.541Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ffdb20f947f9a067e47f4ba07a872277c7a81d2ecc3a2f6610f3a9d2b09d7493",
+    "source_doc_hashes": {
+      "spec.md": "e6f68b2f4734bc0f504ffe1c74d4980020cd78ed9717947c64b495b74ccad990",
+      "plan.md": "0a8d703339b7059ea9271f0fb15e0346f6fa754898bc5ceaab140485c4147d9a",
+      "tasks.md": "556739d25b3fcde0deace5cf3df592dbe45f745cd0475b29e4f2fe2f567e9197",
+      "implementation-summary.md": "99ac66828ad5db076f83056dbfc96d153e3d4263fd082188ddc51fb76a22e6e5",
+      "research/research.md": "4b0c9d217310644a0bbf8f89d605d7d434c31aaeb554a2783bdd467da28aec78"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

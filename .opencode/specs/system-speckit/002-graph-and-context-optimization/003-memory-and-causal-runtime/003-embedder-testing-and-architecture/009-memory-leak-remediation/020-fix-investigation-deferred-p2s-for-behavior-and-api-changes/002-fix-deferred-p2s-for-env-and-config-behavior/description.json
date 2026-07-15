@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/002-fix-deferred-p2s-for-env-and-config-behavior",
+  "description": "Four deferred P2 findings remain in the rerank sidecar env/config surface",
+  "keywords": [
+    "four",
+    "deferred",
+    "findings",
+    "remain",
+    "rerank",
+    "sidecar",
+    "env",
+    "config",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-10T06:23:12.039Z",
+  "specId": "002",
+  "folderSlug": "fix-deferred-p2s-for-env-and-config-behavior",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/006-spec-gate-enforce-readiness/002-trigger-turn-self-binding",
+  "spec_folder": "system-speckit/006-spec-gate-enforce-readiness/002-trigger-turn-self-binding",
+  "parent_id": "system-speckit/006-spec-gate-enforce-readiness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec gate trigger turn",
+      "trigger turn self binding",
+      "classifyIntent self binding",
+      "gate-3 classification options",
+      "same-turn spec folder binding",
+      "spec gate self binding plan",
+      "classifyIntent options threading",
+      "trigger turn binding approach",
+      "gate-3 satisfiedBy resolution",
+      "spec-gate-core plan",
+      "spec gate self binding tasks",
+      "classifyIntent tasks"
+    ],
+    "key_topics": [
+      "spec",
+      "gate",
+      "trigger",
+      "turn",
+      "self",
+      "binding",
+      "classifyintent",
+      "gate-3",
+      "classification",
+      "options",
+      "same-turn",
+      "folder"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
+      ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      ".opencode/skills/system-spec-kit/shared/dist/gate-3-classifier.js",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/dist/gate-3-classifier.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "module-mock",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`answerParse()` runs only when the persisted gate status is already `'open'` (`spec-gate-core.mjs:496`, gated by `state.status === 'open'`), so a prompt that BOTH triggers Gate-3 AND names a valid folder in one breath (\"fix the login bug, use `.opencode/specs/999-valid`\") opens the gate and the NEXT Write is denied under enforce",
+    "created_at": "2026-07-11T10:44:12Z",
+    "last_save_at": "2026-07-11T11:05:59.058Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75ac5a49eb4435cde4919c726390a48dbca824b53a5628eb5ef797f3b223982b",
+    "source_doc_hashes": {
+      "spec.md": "a4d307995a760ccb0a5d330c79b9b8669a69c96f470af97a02ffd04d297e06c7",
+      "plan.md": "172f40fde2ede5cbbb4b19269cf682753e9f7d374847b4ffdd2fe82288ee00e0",
+      "tasks.md": "2eaad56daa3436da8f482cf97f1dcad6861a0436173eda171805b271fcdfba82",
+      "checklist.md": "7672141dce38e913b48d916cacef7c214cfbad4b439fa30c2a8876cf82a3f367",
+      "implementation-summary.md": "75b6bbff0c08ef1dd446be90714ff5767f67e087a16f99cdf73a67391d259b32"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/004/014 mirror dedup",
+      "canonical mirror preference",
+      "cocoindex mirror collapse",
+      "rerank window mirror pollution",
+      "COCOINDEX_CANONICAL_MIRROR",
+      "016/004/014 plan",
+      "mirror dedup plan",
+      "canonical mirror preference plan",
+      "016/004/014 tasks",
+      "mirror dedup tasks",
+      "canonical mirror tasks",
+      "016/004/014 checklist"
+    ],
+    "key_topics": [
+      "mirror",
+      "dedup",
+      "canonical",
+      "preference",
+      "cocoindex",
+      "collapse",
+      "rerank",
+      "window",
+      "pollution",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "evidence/phase2-comparison-014-dedup.md",
+      "evidence/phase2-comparison-013-vs-014-delta.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-014-dedup.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-014-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-013-vs-014-delta.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-013-vs-014-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mirror Dedup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Preference",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "COCOINDEX_CANONICAL_MIRROR",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "same",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Config And Helpers",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Integration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bench Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Docs And Validation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preserve Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "defaults",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Hardens CocoIndex's _dedup_and_rank_hybrid_rows() so the 4 runtime mirrors (.opencode/.codex/.gemini/.claude) collapse to ONE canonical representative before the rerank window is selected. Operator-configurable canonical mirror via COCOINDEX_CANONICAL_MIRROR (default .opencode). Eliminates redundant rerank slots, gives every embedder + reranker a cleaner candidate set, addresses the mirror-pollution failure mode documented in 011/research iter 2 + iter 5. Embedder-agnostic, reranker-agnostic, future-proof for any new mirror that gets added.",
+    "created_at": "2026-05-19T13:10:00.000Z",
+    "last_save_at": "2026-07-10T06:23:05.654Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b34fac896493c2f04543f7664f64c2a78c19f905e7e6420f05ddbc81116d3659",
+    "source_doc_hashes": {
+      "spec.md": "e4f89f2fe4c8a385466dbfacd105809ce6bf74e4b99ae1aa9152f9ec457c4a50",
+      "plan.md": "6342135859bd8ba797dc4b09166989710860eb98951ffb3322494ab85fc15d3f",
+      "tasks.md": "5f038d4ca252e60151aa8d4bded6f1b82c370ff0f3a342aa7f58fb4160523a7d",
+      "checklist.md": "74a4fc3df93a4eacc69b15035ea0ff9f64f077fd449d81f7c58b18c6c48155bd",
+      "implementation-summary.md": "74dbc11ada9f856c2613349007a05063a7628a63c11ac1eeec4a6d96b5984643"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

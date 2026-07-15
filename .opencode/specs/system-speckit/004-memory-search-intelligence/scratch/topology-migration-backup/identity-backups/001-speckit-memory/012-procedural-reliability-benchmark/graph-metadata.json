@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark",
+  "parent_id": "system-speckit/004-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "procedural reliability memory",
+      "beta posterior reliability recall",
+      "bad pattern negative memory",
+      "skill induction from repetition",
+      "procedural version reset",
+      "procedural reliability plan",
+      "outcome emitter prerequisite",
+      "beta posterior procedural adapter",
+      "procedural micro benchmark gate",
+      "procedural reliability tasks",
+      "outcome emitter task",
+      "procedural benchmark gate task"
+    ],
+    "key_topics": [
+      "procedural",
+      "reliability",
+      "memory",
+      "beta",
+      "posterior",
+      "recall",
+      "bad",
+      "pattern",
+      "negative",
+      "skill",
+      "induction",
+      "repetition"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "lib/feedback/feedback-ledger.ts",
+      "lib/cognitive/adaptive-ranking.ts",
+      "mcp_server/lib/feedback/feedback-ledger.ts",
+      "mcp_server/lib/cognitive/adaptive-ranking.ts",
+      "handlers/checkpoints.ts",
+      "tests/feedback-ledger.vitest.ts",
+      "tests/adaptive-ranking.vitest.ts",
+      "tests/search-flags.vitest.ts",
+      "tests/flag-ceiling.vitest.ts",
+      "handlers/memory-save.ts",
+      "lib/storage/causal-edges.ts",
+      "lib/search/vector-index-schema.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-ledger.ts",
+        "kind": "code",
+        "path": "lib/feedback/feedback-ledger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adaptive-ranking.ts",
+        "kind": "code",
+        "path": "lib/cognitive/adaptive-ranking.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "handlers/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-ledger.vitest.ts",
+        "kind": "test",
+        "path": "tests/feedback-ledger.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adaptive-ranking.vitest.ts",
+        "kind": "test",
+        "path": "tests/adaptive-ranking.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.vitest.ts",
+        "kind": "test",
+        "path": "tests/search-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Procedural Reliability Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
+    "created_at": "2026-06-19T05:40:37.447Z",
+    "last_save_at": "2026-07-09T10:02:56.138Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f2db5bae1df55cd09c0ed66eaaef35a428ef00ae0f586d6d4fa0a92ae3bb6182",
+    "source_doc_hashes": {
+      "spec.md": "ed44e2418f117f72742541216e8b3e52394e11d84038cca0d68874a1843d73e5",
+      "plan.md": "58bb9d41be42e5f3057ff56bdb25b5f538314bf7405d8e239f0427b321f56af8",
+      "tasks.md": "66ed33cc0b563c65bf4607f607eed895d70c79fd24ca4d751c6f04940cd388c3",
+      "checklist.md": "0d32d3c6129ed96db12f9fd275e7f5f920edc8831e6aa26ee1c87c559c0e6cd2",
+      "decision-record.md": "883c5101928e66834cc11a3902269ecabd64261f18211cd6a7b02eb2c1765159",
+      "implementation-summary.md": "6916b9e583a6b05c7ace0fada58671fca4aae6236c24cd4674b100657abd61c5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

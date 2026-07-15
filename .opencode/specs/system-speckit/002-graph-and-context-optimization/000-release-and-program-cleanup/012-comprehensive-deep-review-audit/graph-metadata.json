@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
+    "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review audit",
+      "026 audit",
+      "system-spec-kit audit",
+      "drift",
+      "feature catalog verification",
+      "comprehensive review",
+      "deep review audit plan",
+      "026 audit plan",
+      "fan-out review campaign",
+      "deep review audit tasks",
+      "026 audit tasks",
+      "deep review audit results"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "audit",
+      "system-spec-kit",
+      "drift",
+      "feature",
+      "catalog",
+      "verification",
+      "comprehensive",
+      "plan",
+      "fan-out",
+      "campaign"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "lib/storage/causal-edges.ts",
+      "handlers/mutation-hooks.ts",
+      "lib/search/entity-density.ts",
+      "001-mcp-core/probe-report.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-hooks.ts",
+        "kind": "code",
+        "path": "handlers/mutation-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density.ts",
+        "kind": "code",
+        "path": "lib/search/entity-density.ts",
+        "source": "derived"
+      },
+      {
+        "name": "probe-report.md",
+        "kind": "doc",
+        "path": "001-mcp-core/probe-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Comprehensive Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequenced",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 026 program (`graph-and-context-optimization`) is large and mostly complete (8 tracks, ~711 spec.md, ~634 sub-packets) and touched the spec-kit MCP core, the memory/causal runtime, code-graph, the feature catalog + testing playbook, and governance",
+    "created_at": "2026-06-04T18:53:35.311Z",
+    "last_save_at": "2026-07-10T06:22:31.200Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9b2e4c9e6d08773f2ac1dc6e8b0fa7710486ab5c653b3b407df45c236ad63fbf",
+    "source_doc_hashes": {
+      "spec.md": "a3ab2bc986e45a8db0bafef105d26df24eded9c6efd8092003b7236a9ece6478",
+      "plan.md": "a5054010755f3f36ec76de6ac1582dd0b7f8d8eceeb648cd11472c857de821c6",
+      "tasks.md": "203d54f1156107f8551a73a83b9436d79fd5a1257d2bbd01cab8d446bdafffad",
+      "implementation-summary.md": "abfc206cd929d1c56ae8f72a335269150325cb562cc74ba63047c0015c2fae89"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-04T18:56:27.549Z"
+  }
+}

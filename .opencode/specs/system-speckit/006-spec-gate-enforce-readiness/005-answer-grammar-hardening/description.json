@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/006-spec-gate-enforce-readiness/005-answer-grammar-hardening",
+  "description": "The spec-gate core's answer parser (`answerParse` plus `SKIPWORDREGEX`, `spec-gate-core.mjs:329-380`) mis-reads three answer classes",
+  "keywords": [
+    "spec-gate",
+    "core",
+    "answer",
+    "parser",
+    "answerparse",
+    "plus",
+    "skipwordregex",
+    "spec-gate-core",
+    "mjs",
+    "mis-reads",
+    "three",
+    "classes"
+  ],
+  "lastUpdated": "2026-07-11T11:05:59.885Z",
+  "specId": "005",
+  "folderSlug": "answer-grammar-hardening",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "006-spec-gate-enforce-readiness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

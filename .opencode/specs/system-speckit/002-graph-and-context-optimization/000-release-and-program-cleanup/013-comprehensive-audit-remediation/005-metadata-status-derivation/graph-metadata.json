@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "metadata status derivation",
+      "derived status complete",
+      "graph metadata parser table status",
+      "027 placeholder child",
+      "026 last active child pointer",
+      "metadata status derivation plan",
+      "table status fallback plan",
+      "026 027 metadata reconciliation",
+      "deriveStatus precedence",
+      "graph metadata parser plan",
+      "metadata status derivation tasks",
+      "table status fallback tasks"
+    ],
+    "key_topics": [
+      "metadata",
+      "status",
+      "derivation",
+      "derived",
+      "complete",
+      "graph",
+      "parser",
+      "table",
+      "placeholder",
+      "child",
+      "last",
+      "active"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
+      "mcp_server/lib/graph/graph-metadata-parser.ts",
+      "mcp_server/tests/graph-metadata-schema.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Spec",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Draft",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "project",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deriveStatus()` in `graph-metadata-parser.ts` populates spec status only from YAML frontmatter, but many 026/027 specs declare status only in the markdown metadata table row `| Status | Draft |`",
+    "created_at": "2026-06-04T20:45:43Z",
+    "last_save_at": "2026-07-10T06:22:23.683Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:42484e6a785decc2b6b6e4028f56046de4c8a24e1a56b134884d38096edb2fe2",
+    "source_doc_hashes": {
+      "spec.md": "1900bbdb4768eed3ac5452278b792c0a035ecd52efc53d1a3767f3ee6a063e33",
+      "plan.md": "91144d100d523d905bd3b3b54b7fafb5fb374ffa589efa4ffca4878bc8b3a8fc",
+      "tasks.md": "82f21ff05cba0e6bb7d83e2322935292ab2b1c21ce827f3f7d4f4549db1285a4",
+      "implementation-summary.md": "ccdbc72eed2eec9bf7fd846ce64c47d42279f571ed0e4aa8a8f83fafd267d6b7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

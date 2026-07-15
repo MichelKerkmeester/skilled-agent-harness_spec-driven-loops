@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "arc 010 003 002 execution-router p1",
+      "F6 F31 F52 F53 F58 F61 F74 remediation",
+      "arc 010 003 002 plan",
+      "execution-router p1 policy shutdown fallback plan",
+      "arc 010 003 002 tasks",
+      "execution-router p1 task ledger",
+      "arc 010 003 002 checklist",
+      "execution-router p1 checklist",
+      "arc 010 003 002 decisions",
+      "execution-router p1 adr",
+      "arc 010 003 002 implementation summary",
+      "execution-router p1 completion"
+    ],
+    "key_topics": [
+      "arc",
+      "execution-router",
+      "f31",
+      "f52",
+      "f53",
+      "f58",
+      "f61",
+      "f74",
+      "remediation",
+      "plan",
+      "policy",
+      "shutdown"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.testables.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/execution-router.vitest.ts",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.testables.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.testables.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/execution-router.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Policy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shutdown Hooks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Invariants Enforced",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`execution-router.ts` has 7 P1 findings from arc 010/001 deep-research",
+    "created_at": "2026-05-23T06:21:18Z",
+    "last_save_at": "2026-07-10T06:24:47.162Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3fafb2409344a8e466708fe71a4e349a3dc266f96d5764c0deb87b453d1423ca",
+    "source_doc_hashes": {
+      "spec.md": "a89d4a79d43604b8338576b14ed21b7dd7cdb702e3872e16c486b407c8585e6a",
+      "plan.md": "627c473b91914beed34f4801dd74343e6f526c885a41272a19acd0b6398ea57d",
+      "tasks.md": "ae9123c96b7c69e68b043c2b14d259aee3dac8e3634d1effb5bfee2f37979047",
+      "checklist.md": "b6d8009967dfc1b329bf07f129aa22a3b121fbcfe8a28d3c9c3edb4783fe2317",
+      "decision-record.md": "ad02fd9b62b3e45a95cc6506d4bd70f9644d5cc199e494f36fd23a39299f5602",
+      "implementation-summary.md": "cbf6a8f4a4792efeca61d6675e9870675c36ce55440ba993b84e4f8eb3e538d5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

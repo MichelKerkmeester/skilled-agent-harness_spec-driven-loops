@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "description": "`deriveStatus()` in `graph-metadata-parser.ts` populates spec status only from YAML frontmatter, but many 026/027 specs declare status only in the",
+  "keywords": [
+    "derivestatus",
+    "graph-metadata-parser",
+    "populates",
+    "spec",
+    "status",
+    "only",
+    "yaml",
+    "frontmatter",
+    "many",
+    "specs",
+    "declare"
+  ],
+  "lastUpdated": "2026-07-10T06:22:24.720Z",
+  "specId": "005",
+  "folderSlug": "metadata-status-derivation",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "013-comprehensive-audit-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

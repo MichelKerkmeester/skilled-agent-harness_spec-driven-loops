@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "017 llama cpp default flip",
+      "Memory MCP llama-cpp migration",
+      "hf-local fallback",
+      "llama-cpp 1k retrieval probe",
+      "017 default flip plan",
+      "017 llama cpp tasks",
+      "017 llama cpp checklist",
+      "017 llama cpp implementation summary"
+    ],
+    "key_topics": [
+      "llama",
+      "cpp",
+      "default",
+      "flip",
+      "memory",
+      "mcp",
+      "llama-cpp",
+      "migration",
+      "hf-local",
+      "fallback",
+      "retrieval",
+      "probe"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "scratch/migration-run-results.json",
+      "scratch/probe-1k-results.json",
+      "scratch/bench-final-results.json",
+      "scratch/end-to-end-smoke.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      "scratch/probe-1k-results.md",
+      "scratch/migration-runbook.md",
+      "scratch/rollback.md",
+      "shared/embeddings/factory.ts",
+      "scratch/pre-flight-notes.md",
+      "scratch/migration-targets.md",
+      ".claude/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-run-results.json",
+        "kind": "config",
+        "path": "scratch/migration-run-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "probe-1k-results.json",
+        "kind": "config",
+        "path": "scratch/probe-1k-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "bench-final-results.json",
+        "kind": "config",
+        "path": "scratch/bench-final-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "end-to-end-smoke.md",
+        "kind": "doc",
+        "path": "scratch/end-to-end-smoke.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-1k-results.md",
+        "kind": "doc",
+        "path": "scratch/probe-1k-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-runbook.md",
+        "kind": "doc",
+        "path": "scratch/migration-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "rollback.md",
+        "kind": "doc",
+        "path": "scratch/rollback.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-flight-notes.md",
+        "kind": "doc",
+        "path": "scratch/pre-flight-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-targets.md",
+        "kind": "doc",
+        "path": "scratch/migration-targets.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Perform",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packets 015 and 016 showed that `llama-cpp` is much faster than the current `hf-local` Memory MCP embedding backend and that the smaller 200-row retrieval probe was rank-equivalent",
+    "created_at": "2026-05-13T11:10:00Z",
+    "last_save_at": "2026-07-10T06:21:44.288Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-13T11:10:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c9960b25006c228edaacbfb29eee0c76d3a04717635cfac2208574824434ebe3",
+    "source_doc_hashes": {
+      "spec.md": "46db4789e2e40cf1e7c73aa5d2206157702855d9f5f1537c57f1135297b94346",
+      "plan.md": "29d3b6a14fe17a0baee2b57cf965650c6944e1bb67a5c7eaf536e74459b9cced",
+      "tasks.md": "f140d071bca3e9307bb6c5554f9587c8647d5f3f62fe0471035adc54d2e5ff18",
+      "checklist.md": "c77e5ee0880bce92c585d6b5c8dcd3e17e83dd7eaa2f0910c98ac6c716dd751b",
+      "implementation-summary.md": "ea2f18569db1ee3583f767aceed013bc1adc62f534b7fa0eec3c418e56ef95d2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

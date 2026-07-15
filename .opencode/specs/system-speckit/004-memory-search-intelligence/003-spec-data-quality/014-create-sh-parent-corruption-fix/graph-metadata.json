@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/014-create-sh-parent-corruption-fix",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/003-spec-data-quality/014-create-sh-parent-corruption-fix",
+  "parent_id": "system-speckit/004-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create.sh parent packet corruption fix",
+      "append to existing parent description.json",
+      "phase scaffolding overwrites parent metadata",
+      "create.sh parent corruption fix plan",
+      "create.sh parent corruption fix tasks",
+      "create.sh parent corruption fix summary"
+    ],
+    "key_topics": [
+      "parent",
+      "packet",
+      "corruption",
+      "append",
+      "existing",
+      "description",
+      "json",
+      "phase",
+      "scaffolding",
+      "overwrites",
+      "metadata",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-system.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`create.sh --phase --phase-parent <existing-packet> --phase-names <name> ...` rebinds `FEATUREDIR` to the existing parent (`create.sh:1046-1062`) but still calls the parent description generator with the append request's own feature description (`create.sh:1310-1317`)",
+    "created_at": "2026-07-02T15:04:28.155Z",
+    "last_save_at": "2026-07-11T18:40:36.260Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a6890fd1771825f43e8c57cfdacf60b971eaa6bac5d1055fcf72ba45ca233ab4",
+    "source_doc_hashes": {
+      "spec.md": "738eb7a8b71844daf7b37fbddec2fa38bc5c0b39b251ffb4251633ab4dec5625",
+      "plan.md": "7f4fce06f8b650c885f58d8fbb0edfc21a802b8df6075e796502bfdf6ce3a01d",
+      "tasks.md": "7b68813d735866c0d1971de4aad799683d21cb8baf0b19bfd7b472464db6ae53",
+      "implementation-summary.md": "92ed27ab5efae8c4a3b55b06f40885f20e1f43e902bae06f3be922dc52bcc91e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence",
+  "spec_folder": "system-speckit/004-memory-search-intelligence",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/004-memory-search-intelligence/001-release-cleanup",
+    "system-speckit/004-memory-search-intelligence/002-speckit-memory",
+    "system-speckit/004-memory-search-intelligence/003-spec-data-quality",
+    "system-speckit/004-memory-search-intelligence/004-review-remediation",
+    "system-speckit/004-memory-search-intelligence/005-dark-flag-graduation",
+    "system-speckit/004-memory-search-intelligence/006-speckit-surface-alignment"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 memory search intelligence",
+      "028 phase parent topology",
+      "memory retrieval improvements",
+      "028 topology aliases",
+      "028 continuation state",
+      "028 topology handover",
+      "028 six parent topology",
+      "resume 028 root governance",
+      "028 alias recovery"
+    ],
+    "key_topics": [
+      "memory",
+      "search",
+      "intelligence",
+      "phase",
+      "parent",
+      "topology",
+      "retrieval",
+      "improvements",
+      "aliases",
+      "continuation",
+      "state",
+      "handover"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "handover.md",
+      "scratch/topology-migration-manifest.json",
+      "001-release-cleanup/spec.md",
+      "002-speckit-memory/spec.md",
+      "003-spec-data-quality/spec.md",
+      "004-review-remediation/spec.md",
+      "005-dark-flag-graduation/spec.md",
+      "006-speckit-surface-alignment/spec.md",
+      "scratch/topology-migration-log.md",
+      "mcp_server/benchmarks/README.md",
+      "formatters/search-results.ts",
+      "lib/eval/README.md",
+      "003-spec-data-quality/implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "topology-migration-manifest.json",
+        "kind": "config",
+        "path": "scratch/topology-migration-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "topology-migration-log.md",
+        "kind": "doc",
+        "path": "scratch/topology-migration-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/benchmarks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Search Intelligence Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Speckit Alignment Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Status Converged",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Added",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Threads",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Applied Six",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Topology",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Transfer",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 028 accumulated memory-search, data-quality, release, review, flag-governance and surface-alignment work at the root",
+    "created_at": "2026-06-16T14:27:21.650Z",
+    "last_save_at": "2026-07-15T16:51:22.945Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:2e055e2e4196a977fe1ee1e1482ed49952c80441c9724ec04fc42bdc88aa038c",
+    "source_doc_hashes": {
+      "spec.md": "8f31260e064f557405e9082ed63f095f6a81ca3134ae37bf2d1bf8c4bf7d8ae0",
+      "research/research.md": "1c348c9c6e15969f39d0b4fc7846857c48cf6eec7e6518b41c46859405629007",
+      "handover.md": "d2ff731f41c8810700f23719ac90840b6bd8b5b71e473cc7d46293f3ba003a2c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-12T12:17:45.676Z"
+  }
+}

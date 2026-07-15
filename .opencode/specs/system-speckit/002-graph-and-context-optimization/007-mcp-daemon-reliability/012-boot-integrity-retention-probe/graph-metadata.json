@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "boot integrity check",
+      "unclean shutdown crash marker",
+      "retention sweep durability",
+      "liveness probe deepProbe reap",
+      "026 007 012 boot integrity retention probe",
+      "boot integrity check plan",
+      "retention durability plan",
+      "probe deepProbe reap plan",
+      "boot integrity retention probe tasks",
+      "deepProbe reap retention durability tasks",
+      "boot integrity retention probe checklist",
+      "deepProbe reap retention durability verification"
+    ],
+    "key_topics": [
+      "boot",
+      "integrity",
+      "check",
+      "unclean",
+      "shutdown",
+      "crash",
+      "marker",
+      "retention",
+      "sweep",
+      "durability",
+      "liveness",
+      "probe"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge-probe.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Boot Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retention Durability",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Probe Liveness Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Detect",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Probe Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three gaps remained after packet 010 made the at-rest WAL durable",
+    "created_at": "2026-05-29T13:49:32.618Z",
+    "last_save_at": "2026-07-02T05:31:12.878Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7ebd9497eefce87487e8d1823c2cb61e97b1db22de6e05289c0bcaaa5cca1f01",
+    "source_doc_hashes": {
+      "spec.md": "d367984e94a1ed8f4779a2d787ad4655f34e1355f2f054defcd3423571a8fa35",
+      "plan.md": "5e087d782991930a37d1b926a2a5b3d741166d5e5e3271f454cdd749aa912847",
+      "tasks.md": "66cf2c83f694a150099cbc34a1cc2cb5eed98381b23284004b53b4ea8f7e4e90",
+      "checklist.md": "9c31ad5193fa0b69f2caac282d45ff1ab1f1cd4d31dc199e9c3440fa52bd8014",
+      "implementation-summary.md": "c2ec10e7b3c1be8e8f8293d34e0caff5558bbcb1b141e1f53683f8b8e3e4a27e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

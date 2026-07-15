@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/009-cmd-merge-spec-kit-phase",
+  "description": "The `/speckit:phase` command is a standalone 7-step workflow that only creates folder structure (parent + N children) without doing any planning or",
+  "keywords": [
+    "speckit",
+    "phase",
+    "command",
+    "standalone",
+    "7-step",
+    "workflow",
+    "only",
+    "folder",
+    "structure",
+    "parent",
+    "children",
+    "without",
+    "doing",
+    "planning"
+  ],
+  "lastUpdated": "2026-07-15T16:40:26.905Z",
+  "specId": "009",
+  "folderSlug": "cmd-merge-spec-kit-phase",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "29-03-26_10-05__planning-phase-for-merging-spec-kit-phase-into.md"
+  ]
+}

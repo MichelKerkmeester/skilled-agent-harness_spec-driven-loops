@@ -1,0 +1,62 @@
+{
+  "topic": "Deep-dive data quality for the SKILL DOCUMENTS, COMMANDS, and CONTEXT-ENGINEERING surfaces: granular out-of-the-box automated on-write and retroactive features to perfect DQ per surface, going deeper and more specific than prior lineages.",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality",
+  "createdAt": "2026-06-21T08:34:51Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "opus",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-dq-skilldoc-cmd-ctx-1782030808820-w8p65l",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanoutLineageLabel": "dq-skilldoc-cmd-ctx",
+    "fanoutLineageArtifactDir": ".opencode/specs/system-speckit/004-memory-search-intelligence/002-spec-data-quality/research/lineages/dq-skilldoc-cmd-ctx"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "resource_map_present": false,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/002-runtime-wiring-enterprise-readiness-audit",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 w3 w7 runtime wiring and audit",
+      "search decision envelope",
+      "telemetry first runtime wiring",
+      "w3 w7 audit",
+      "008 implementation plan",
+      "search decision envelope plan",
+      "w8 w13 runtime wiring",
+      "008 tasks",
+      "w3 w7 runtime wiring tasks",
+      "search decision envelope tasks",
+      "008 verification checklist",
+      "w3 w7 runtime wiring checklist"
+    ],
+    "key_topics": [
+      "runtime",
+      "wiring",
+      "audit",
+      "search",
+      "decision",
+      "envelope",
+      "telemetry",
+      "first",
+      "implementation",
+      "plan",
+      "w13",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "mcp_server/lib/search/search-decision-envelope.ts",
+      "mcp_server/lib/search/decision-audit.ts",
+      "mcp_server/handlers/memory-search.ts",
+      "mcp_server/handlers/memory-context.ts",
+      "mcp_server/lib/search/pipeline/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      "lib/search/search-decision-envelope.ts",
+      "mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-decision-envelope.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-decision-envelope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-audit.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/decision-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/pipeline/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
+        "source": "derived"
+      },
+      {
+        "name": "w8-search-decision-envelope.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase F found that W3-W7 exist as useful local artifacts, but runtime decisions remain fragmented: W3 and W6 are test-only, W5 is response-only, W7 is fixture-only, and W4 is underfed by an unknown empty QueryPlan",
+    "created_at": "2026-04-29T04:45:00Z",
+    "last_save_at": "2026-07-10T06:24:20.776Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5d9232d692852e4dc5836b863475b6145b5cdbbc8a29c06b9a2e747ed0f70a3c",
+    "source_doc_hashes": {
+      "spec.md": "407157f16568df0127606d30f50a2fd2928be3dc4390283cf8a379d4b2e339a1",
+      "plan.md": "b09586eb16d09df81c4052257b82bb54a31d6272d9e1b2d60e8a185ad677d5e2",
+      "tasks.md": "bb19d03cecca71b8d7e06c8c1d9b3ec9da76c5fe57bcd9d1bc3c6c20b5c84b07",
+      "checklist.md": "84e2eea180d3dd25e91914622adaabb6f0bf8369bad4f6dc62d1b15cbbb9b658",
+      "implementation-summary.md": "5015fe42fe0549b4ea48c38b78b269d006057adb1d6ae722aa80b83868d4cc58"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

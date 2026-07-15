@@ -1,0 +1,46 @@
+{
+  "title": "Documentation Truth Deep Review",
+  "trigger_phrases": [
+    "045-009-documentation-truth-audit",
+    "docs truth audit",
+    "stale claims review",
+    "evergreen rule self-check"
+  ],
+  "level": 2,
+  "status": "complete",
+  "importance": "important",
+  "contextType": "review",
+  "key_files": [
+    "review-report.md",
+    "spec.md",
+    "plan.md",
+    "tasks.md",
+    "checklist.md",
+    "implementation-summary.md"
+  ],
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/008-documentation-truth-audit",
+  "description": "The documentation surface needs a release-readiness truth audit after recent refresh work",
+  "keywords": [
+    "documentation",
+    "surface",
+    "needs",
+    "release-readiness",
+    "truth",
+    "audit",
+    "recent",
+    "refresh",
+    "work"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.205Z",
+  "specId": "008",
+  "folderSlug": "documentation-truth-audit",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "001-release-readiness",
+    "002-release-readiness-deep-review-audits"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

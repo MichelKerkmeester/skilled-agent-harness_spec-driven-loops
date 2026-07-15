@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/007-openltm-continuity-resilience",
+  "spec_folder": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search/007-openltm-continuity-resilience",
+  "parent_id": "system-speckit/003-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 009",
+      "openltm continuity resilience",
+      "bounded startup restore panel",
+      "precompact authored continuity snapshot",
+      "goal decision progress gotcha taxonomy"
+    ],
+    "key_topics": [
+      "phase",
+      "openltm",
+      "continuity",
+      "resilience",
+      "bounded",
+      "startup",
+      "restore",
+      "panel",
+      "precompact",
+      "authored",
+      "snapshot",
+      "goal"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "mcp_server/tests/openltm-continuity-resilience.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/openltm-continuity-resilience.vitest.ts",
+      "mcp_server/lib/resume/resume-ladder.ts",
+      "mcp_server/handlers/session-bootstrap.ts",
+      "mcp_server/lib/continuity/thin-continuity-record.ts",
+      "mcp_server/lib/continuity/authored-continuity-snapshot.ts",
+      "mcp_server/hooks/claude/compact-inject.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "openltm-continuity-resilience.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/openltm-continuity-resilience.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-bootstrap.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "source": "derived"
+      },
+      {
+        "name": "thin-continuity-record.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "authored-continuity-snapshot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Session Resilience",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Continuity Resilience",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Our continuity ladder is richer than OpenLTM's, but it lacks a few low-tech resilience surfaces",
+    "created_at": "2026-06-08T15:11:22Z",
+    "last_save_at": "2026-07-10T06:22:00.752Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:454df54450c4f0bcd04ee7a22cfedf67db72cf994f713412355d4e6090177223",
+    "source_doc_hashes": {
+      "spec.md": "0a75a8dbde469bdf72690f63dc1e7999679d288824fd8a869026bbcaaefccc25",
+      "plan.md": "bc87c3cd678b4645a1822edee2c5860cc166dc517cadf00e85194bb52458dd46",
+      "tasks.md": "f251d14f0986b06fd57a3c9f13e9dea142b972c34bc66f422512f9c2ac762f92",
+      "implementation-summary.md": "bd82eed55739a58b11aa1216483580b6795d1aa8b0f06ba9a2ae5229572b8720"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

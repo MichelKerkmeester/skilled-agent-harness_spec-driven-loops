@@ -1,0 +1,37 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
+  "description": "The memory index must stay correct without operator intervention: new and changed spec docs need indexing, orphaned rows need sweeping, and packet",
+  "keywords": [
+    "memory",
+    "index",
+    "must",
+    "stay",
+    "correct",
+    "without",
+    "operator",
+    "intervention",
+    "new",
+    "changed",
+    "spec",
+    "docs",
+    "need",
+    "indexing",
+    "orphaned",
+    "rows",
+    "sweeping",
+    "packet"
+  ],
+  "lastUpdated": "2026-07-10T06:21:57.696Z",
+  "specId": "013",
+  "folderSlug": "memory-index-scan-implementation",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-06-26_09-33__shipped-and-deployed-to-main-the-deferred-follow.md"
+  ]
+}

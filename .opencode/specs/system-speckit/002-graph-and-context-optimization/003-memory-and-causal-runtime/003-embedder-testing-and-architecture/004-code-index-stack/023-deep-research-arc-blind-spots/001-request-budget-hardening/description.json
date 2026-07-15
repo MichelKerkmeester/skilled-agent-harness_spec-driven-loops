@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening",
+  "description": "mcp-coco-index search cost scaled unexpectedly with `offset`, `limit`, path filters, and multi-language requests",
+  "keywords": [
+    "mcp-coco-index",
+    "search",
+    "cost",
+    "scaled",
+    "unexpectedly",
+    "offset",
+    "limit",
+    "path",
+    "filters",
+    "multi-language",
+    "requests"
+  ],
+  "lastUpdated": "2026-07-10T06:22:45.891Z",
+  "specId": "001",
+  "folderSlug": "request-budget-hardening",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "004-code-index-stack",
+    "023-deep-research-arc-blind-spots"
+  ],
+  "memorySequence": 23,
+  "memoryNameHistory": []
+}

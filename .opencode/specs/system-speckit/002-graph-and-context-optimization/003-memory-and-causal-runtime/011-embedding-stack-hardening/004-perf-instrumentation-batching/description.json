@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching",
+  "description": "The perf items are guesses without instrumentation",
+  "keywords": [
+    "perf",
+    "items",
+    "guesses",
+    "without",
+    "instrumentation"
+  ],
+  "lastUpdated": "2026-07-10T06:22:21.537Z",
+  "specId": "004",
+  "folderSlug": "perf-instrumentation-batching",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "011-embedding-stack-hardening"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "29-05-26_16-06__waiter-b6hk2n2ud-is-set-it-completes-when-codex.md"
+  ]
+}

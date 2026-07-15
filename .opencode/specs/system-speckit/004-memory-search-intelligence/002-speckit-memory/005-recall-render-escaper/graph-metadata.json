@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper",
+  "parent_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 recall render escaper",
+      "C8 untrusted recall wrapper",
+      "write time injection filter",
+      "constitutional CAS guard",
+      "system kind recall exclusion",
+      "028 recall render escaper plan",
+      "C8 implementation plan",
+      "recall trust spine sequencing",
+      "028 recall render escaper tasks",
+      "C8 tasks",
+      "recall trust spine tasks",
+      "028 recall render escaper checklist"
+    ],
+    "key_topics": [
+      "recall",
+      "render",
+      "escaper",
+      "untrusted",
+      "wrapper",
+      "write",
+      "time",
+      "injection",
+      "filter",
+      "constitutional",
+      "cas",
+      "guard"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "formatters/search-results.ts",
+      "tests/injection-marker-capture.vitest.ts",
+      "mcp_server/lib/context/shared-payload.ts",
+      "mcp_server/formatters/search-results.ts",
+      "mcp_server/lib/extraction/redaction-gate.ts",
+      "mcp_server/context-server.ts",
+      "mcp_server/handlers/memory-crud-update.ts",
+      "mcp_server/lib/storage/write-provenance.ts",
+      "mcp_server/handlers/memory-retention-sweep.ts",
+      "lib/governance/memory-retention-sweep.ts",
+      "tests/search-results-format.vitest.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "tests/redaction-gate.vitest.ts",
+      "tests/memory-crud-update-constitutional-guard.vitest.ts",
+      "mcp_server/lib/governance/memory-retention-sweep.ts",
+      "tests/memory-retention-sweep.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "injection-marker-capture.vitest.ts",
+        "kind": "test",
+        "path": "tests/injection-marker-capture.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shared-payload.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/context/shared-payload.ts",
+        "source": "derived"
+      },
+      {
+        "name": "redaction-gate.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/extraction/redaction-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-update.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-update.ts",
+        "source": "derived"
+      },
+      {
+        "name": "write-provenance.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/write-provenance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results-format.vitest.ts",
+        "kind": "test",
+        "path": "tests/search-results-format.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "redaction-gate.vitest.ts",
+        "kind": "test",
+        "path": "tests/redaction-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-update-constitutional-guard.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-crud-update-constitutional-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Render Trust Escaper",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kind Recall Correctness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Constitutional",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Memory MCP captures arbitrary content via `memorysave` and later renders recalled bodies directly into the consuming agent's prompt loop, with no untrusted-content boundary at either end",
+    "created_at": "2026-06-19T05:40:47.073Z",
+    "last_save_at": "2026-07-11T18:40:35.817Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5ad22e066a4beaf29d915a516bbc833c8c4c2dd1d73b3021d2553e09d028d6dc",
+    "source_doc_hashes": {
+      "spec.md": "d3f75eb15bfc5965b40842c3ebf33fdd2a54c2077f48dee9c03230134b88d63a",
+      "plan.md": "3a7a9f7724b861f95ad554246795c5a2b7fad270ae5f1ebbffca47505e8b79d8",
+      "tasks.md": "2be5756dc6e2bc38cfa7bd0ae3f4b70b6aabab8db257899af37f6800077a75d7",
+      "checklist.md": "f4df8bac8bb9a32b496be6febaa70eac8758e89a4e822735df2fe538286ac4f0",
+      "implementation-summary.md": "be5a90583b2452f21a87da95823c36441e7aeb05381ff8f71bfee5518a402bc5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

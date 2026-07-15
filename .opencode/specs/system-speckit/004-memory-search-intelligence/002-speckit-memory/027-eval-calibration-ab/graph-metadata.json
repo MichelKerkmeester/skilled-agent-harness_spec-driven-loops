@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory/027-eval-calibration-ab",
+  "spec_folder": "system-speckit/004-memory-search-intelligence/002-speckit-memory/027-eval-calibration-ab",
+  "parent_id": "system-speckit/004-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "isotonic confidence calibration graduation",
+      "ece calibration metric memory",
+      "ab shipped search levers",
+      "cosine reorder generic escalation verdict ab",
+      "eval gated calibration promotion",
+      "isotonic calibration graduation plan",
+      "ece calibration lane sequencing",
+      "ab shipped levers plan",
+      "eval gated calibration promotion plan",
+      "isotonic calibration graduation tasks",
+      "ece calibration lane tasks",
+      "ab shipped levers tasks"
+    ],
+    "key_topics": [
+      "isotonic",
+      "confidence",
+      "calibration",
+      "graduation",
+      "ece",
+      "metric",
+      "memory",
+      "shipped",
+      "search",
+      "levers",
+      "cosine",
+      "reorder"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
+      "lib/eval/ablation-framework.ts",
+      "lib/eval/eval-metrics.ts",
+      "lib/eval/shadow-scoring.ts",
+      "lib/search/confidence-calibration.ts",
+      "lib/search/confidence-scoring.ts",
+      "tests/eval-calibration-ab.vitest.ts",
+      "tests/confidence-calibration.vitest.ts",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "confidence-calibration.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ablation-framework.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-scoring.ts",
+        "kind": "code",
+        "path": "lib/eval/shadow-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-calibration-ab.vitest.ts",
+        "kind": "test",
+        "path": "tests/eval-calibration-ab.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-calibration.vitest.ts",
+        "kind": "test",
+        "path": "tests/confidence-calibration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth-feedback.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gated Confidence Calibration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Memory MCP ships two classes of unvalidated retrieval intelligence, dormant calibration machinery that cannot be promoted and default-on levers that were never measured:",
+    "created_at": "2026-06-19T05:52:29.576Z",
+    "last_save_at": "2026-07-11T18:40:35.950Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3571040255ad530c250ea0a91487bbd2eb79b373cfa241d55d2cf74391a851fb",
+    "source_doc_hashes": {
+      "spec.md": "c892bfb9d8f83da7039516c60e2f0011adcda3844b71323abe6d3993143948eb",
+      "plan.md": "f1e75cff83368786f4e8a551ed48a3e0d7262af014897b4bcb7cac44c5917b80",
+      "tasks.md": "221c29b140a2318fce7ed0c520e5e6c0953a99fe1b03c87336fe698a7a214539",
+      "checklist.md": "7e5e8c781ff4f3bb59208296c83fe7abf07041f2cd71e948daf8ab5b42796dc6",
+      "implementation-summary.md": "8d0b790c50f79ff525b466b4d7d231d13a414ee42bac6f53232cd1c2fffa1735"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

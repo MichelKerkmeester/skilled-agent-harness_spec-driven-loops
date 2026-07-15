@@ -1,0 +1,44 @@
+{
+  "title": "003 mcp-server-build-fix",
+  "schema_version": 1,
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
+  "summary": "Resolve 3 @modelcontextprotocol/sdk Cannot-find-module errors blocking mcp_server npm run build. Likely missing dep or stale import path post-system-code-graph extraction.",
+  "tags": [
+    "build-fix",
+    "mcp-sdk",
+    "package-deps",
+    "system-code-graph-extraction"
+  ],
+  "created_at": "2026-05-14T11:10:00Z",
+  "updated_at": "2026-05-14T11:10:00Z",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
+  "description": "Fix the 3 `Cannot find module '@modelcontextprotocol/sdk/*'` errors blocking `mcp_server/npm run build` by repairing the post-extraction dependency",
+  "keywords": [
+    "cannot",
+    "find",
+    "module",
+    "modelcontextprotocol",
+    "sdk",
+    "errors",
+    "blocking",
+    "npm",
+    "run",
+    "repairing",
+    "post-extraction",
+    "dependency"
+  ],
+  "lastUpdated": "2026-07-10T06:24:30.541Z",
+  "specId": "003",
+  "folderSlug": "mcp-server-build-fix",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation",
+    "032-substrate-repair-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

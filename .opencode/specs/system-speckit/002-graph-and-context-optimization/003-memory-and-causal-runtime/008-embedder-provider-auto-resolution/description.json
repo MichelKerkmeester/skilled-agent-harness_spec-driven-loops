@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/002-graph-and-context-optimization/003-memory-and-causal-runtime/008-embedder-provider-auto-resolution",
+  "description": "With `EMBEDDINGSPROVIDER=auto` (the committed MCP-config default, documented as a local-first cascade `ollama → hf-local → openai → voyage`), the",
+  "keywords": [
+    "embeddingsprovider",
+    "auto",
+    "committed",
+    "mcp-config",
+    "default",
+    "documented",
+    "local-first",
+    "cascade",
+    "ollama",
+    "hf-local",
+    "openai",
+    "voyage"
+  ],
+  "lastUpdated": "2026-07-10T06:22:08.266Z",
+  "specId": "008",
+  "folderSlug": "embedder-provider-auto-resolution",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

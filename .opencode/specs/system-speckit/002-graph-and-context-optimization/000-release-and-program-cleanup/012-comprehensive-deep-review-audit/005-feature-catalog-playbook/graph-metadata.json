@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+  "spec_folder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+  "parent_id": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature catalog verification",
+      "playbook coverage audit",
+      "catalog code traceability"
+    ],
+    "key_topics": [
+      "feature",
+      "catalog",
+      "verification",
+      "playbook",
+      "coverage",
+      "audit",
+      "code",
+      "traceability",
+      "system-spec-kit",
+      "412kb",
+      "themes",
+      "manual"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-code-references.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Playbook Verification Slice",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-spec-kit feature catalog (~412KB, 24 themes) and manual testing playbook (~293KB) claim a large set of features and verification procedures",
+    "created_at": "2026-06-04T18:53:35.320Z",
+    "last_save_at": "2026-07-02T05:31:10.970Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b4a0b644dbd2ee1d9083f8b566b5367ff7ab7205c9b0f3bac023cec04b4df909",
+    "source_doc_hashes": {
+      "spec.md": "49db62a85fd8d9771018c52d096e112ac0d0611b33af4ba221394331c4c1c298"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

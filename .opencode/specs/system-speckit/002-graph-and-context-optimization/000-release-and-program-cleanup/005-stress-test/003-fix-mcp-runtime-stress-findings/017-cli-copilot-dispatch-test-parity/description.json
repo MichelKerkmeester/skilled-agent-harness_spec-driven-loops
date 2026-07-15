@@ -1,0 +1,33 @@
+{
+  "trigger_phrases": [
+    "017-cli-copilot-dispatch-test-parity",
+    "cli-copilot dispatch test parity",
+    "F-004 cli-matrix test fix",
+    "cli-matrix.vitest.ts buildCopilotPromptArg parity",
+    "Packet B cli-copilot test hardening",
+    "promptFileBody dispatch test"
+  ],
+  "specFolder": "system-speckit/002-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity",
+  "description": "The 011 deep-review report (`../011-research-post-stress-finding-followups/review/review-report.md`) §4 surfaced F-004 [P2]:",
+  "keywords": [
+    "deep-review",
+    "report",
+    "011-research-post-stress-finding-followups",
+    "review",
+    "review-report",
+    "surfaced",
+    "f-004"
+  ],
+  "lastUpdated": "2026-07-10T06:23:39.180Z",
+  "specId": "017",
+  "folderSlug": "cli-copilot-dispatch-test-parity",
+  "parentChain": [
+    "system-speckit",
+    "002-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "005-stress-test",
+    "003-fix-mcp-runtime-stress-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
