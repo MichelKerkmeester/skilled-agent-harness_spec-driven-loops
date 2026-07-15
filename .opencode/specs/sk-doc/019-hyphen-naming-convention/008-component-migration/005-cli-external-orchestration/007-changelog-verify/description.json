@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify",
+  "description": "Phase 7: changelog-verify",
+  "keywords": [
+    "phase",
+    "changelog-verify"
+  ],
+  "lastUpdated": "2026-07-14T15:17:40.631Z",
+  "specId": "007",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "008-component-migration",
+    "005-cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

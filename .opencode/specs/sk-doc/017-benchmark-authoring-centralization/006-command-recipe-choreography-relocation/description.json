@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/017-benchmark-authoring-centralization/006-command-recipe-choreography-relocation",
+  "description": "Packet 005 removed a false-positive from the Lane C scorer's `validateRecipeChoreography()`: the \"wrapper `## CHOREOGRAPHY` section is missing\"",
+  "keywords": [
+    "packet",
+    "removed",
+    "false-positive",
+    "lane",
+    "scorer",
+    "validaterecipechoreography",
+    "wrapper",
+    "choreography",
+    "section",
+    "missing"
+  ],
+  "lastUpdated": "2026-07-14T19:20:23.978Z",
+  "specId": "006",
+  "folderSlug": "command-recipe-choreography-relocation",
+  "parentChain": [
+    "sk-doc",
+    "017-benchmark-authoring-centralization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

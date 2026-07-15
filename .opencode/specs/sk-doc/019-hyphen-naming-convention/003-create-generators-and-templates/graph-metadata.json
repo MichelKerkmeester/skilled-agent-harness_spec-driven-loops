@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-hyphen-naming-convention/003-create-generators-and-templates",
+  "spec_folder": "sk-doc/019-hyphen-naming-convention/003-create-generators-and-templates",
+  "parent_id": "sk-doc/019-hyphen-naming-convention",
+  "children_ids": [
+    "sk-doc/019-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging",
+    "sk-doc/019-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators",
+    "sk-doc/019-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark",
+    "sk-doc/019-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create generators and templates naming",
+      "hyphen naming phase 003",
+      "kebab-case generator output"
+    ],
+    "key_topics": [
+      "generators",
+      "templates",
+      "naming",
+      "hyphen",
+      "phase",
+      "kebab-case",
+      "generator",
+      "output",
+      "families",
+      "still",
+      "emit",
+      "underscore"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create-* generator families and their templates can still emit underscore filesystem names. This phase defines four parallel child contracts that make generated output kebab-case while preserving Python, package-directory, and tool-mandated-name exemptions.",
+    "created_at": "2026-07-13T14:34:05.523Z",
+    "last_save_at": "2026-07-15T14:02:13.400Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:627ae71f5affccce4b491016488690d0e7ada1c7a661bdd05921ecf018e50453",
+    "source_doc_hashes": {
+      "spec.md": "32241c4b5bc4b22a45b5340e009c52bd99867475dcd289415b9961e8e1a7f23f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-hyphen-naming-convention/011-integrate-and-closeout",
+  "spec_folder": "sk-doc/019-hyphen-naming-convention/011-integrate-and-closeout",
+  "parent_id": "sk-doc/019-hyphen-naming-convention",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "integrate and close out migration",
+      "hyphen naming phase 011",
+      "rebase rerun fast forward closeout",
+      "integrate and close out implementation plan",
+      "hyphen naming phase 011 implementation plan",
+      "integrate and close out tasks",
+      "hyphen naming phase 011 tasks",
+      "integrate and close out checklist",
+      "hyphen naming phase 011 checklist"
+    ],
+    "key_topics": [
+      "integrate",
+      "close",
+      "migration",
+      "hyphen",
+      "naming",
+      "phase",
+      "rebase",
+      "rerun",
+      "fast",
+      "forward",
+      "closeout",
+      "implementation"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/sk-doc/019-hyphen-naming-convention/010-whole-repo-gate/checklist.md",
+      ".opencode/specs/sk-doc/019-hyphen-naming-convention/010-whole-repo-gate/decision-record.md",
+      ".opencode/specs/sk-doc/019-hyphen-naming-convention/spec.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "conflicts",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fast-forward-only",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The migration candidate may have passed the whole-repo gate against an earlier base while the integration target continues to move. This phase rebases the migration branch onto the latest base, reruns the exact phase 010 gate on the resulting commit, fast-forwards the integration target only after a green result, and closes the packet with a consistent parent rollup.",
+    "created_at": "2026-07-14T15:22:43Z",
+    "last_save_at": "2026-07-15T14:02:13.914Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:861d458a3c2330e03d6f2d71dbd514fc43248c9641bac6b0ace917f7443f505a",
+    "source_doc_hashes": {
+      "spec.md": "f208d88bec7dc6cfa6bae189a58191618053783c8bb265b8d923a0d28f38e0fd",
+      "plan.md": "cac6e22df675d6b2f522197b0edfdcc7eb56959ee883c2aa17e65d845773ba66",
+      "tasks.md": "a4efc7768e13fcc55d7f84b64b2052e0fe30ddf3d5135ed587090117931fcf6f",
+      "checklist.md": "4a2dd8080bcf7679c83b6785239a4ca589eb4210747dd76e521d36bcaaa040f8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

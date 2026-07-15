@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/014-skill-readme-standardization/004-cli-devin-readme",
+  "description": "The cli-devin README is a tabular reference card with no problem-first entry point, and it carries two stale facts: a version of 1.0.2.0 (the skill is",
+  "keywords": [
+    "cli-devin",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "carries",
+    "two",
+    "stale",
+    "facts",
+    "version",
+    "skill"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.314Z",
+  "specId": "004",
+  "folderSlug": "cli-devin-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "014-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

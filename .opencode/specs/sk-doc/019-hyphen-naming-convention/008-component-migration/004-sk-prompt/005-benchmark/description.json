@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark",
+  "description": "Sk-prompt benchmark artifact paths: authored kebab-case map, generated-output disposition, and semantic parity.",
+  "keywords": [
+    "sk-prompt",
+    "benchmark",
+    "authored",
+    "generated-output",
+    "semantic-parity"
+  ],
+  "lastUpdated": "2026-07-14T18:04:33.000Z",
+  "specId": "005",
+  "folderSlug": "benchmark",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "008-component-migration",
+    "004-sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

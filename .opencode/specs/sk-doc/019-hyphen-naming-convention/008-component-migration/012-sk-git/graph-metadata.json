@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "spec_folder": "sk-doc/019-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "parent_id": "sk-doc/019-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/019-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
+    "sk-doc/019-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets",
+    "sk-doc/019-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook",
+    "sk-doc/019-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
+    "sk-doc/019-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify",
+    "sk-doc/019-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git kebab-case migration",
+      "sk-git component naming phases",
+      "017 sk-git phase map"
+    ],
+    "key_topics": [
+      "sk-git",
+      "kebab-case",
+      "migration",
+      "component",
+      "naming",
+      "phases",
+      "phase",
+      "map",
+      "surface",
+      "needs",
+      "scoped",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-git/SKILL.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog evidence, and final naming gate without expanding into code or other skills.",
+    "created_at": "2026-07-14T15:17:03Z",
+    "last_save_at": "2026-07-15T14:02:13.807Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:371ba606bf8050be5f57cf4655832903327f819cbe904153c1b64cac7f04195b",
+    "source_doc_hashes": {
+      "spec.md": "d67040217d6a0ffba49b0bd64ae645e3b7dac8671241ebe455919a3659621980"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

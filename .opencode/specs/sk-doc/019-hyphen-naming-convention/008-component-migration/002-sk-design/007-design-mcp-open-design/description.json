@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design",
+  "description": "Phase 7: design-mcp-open-design",
+  "keywords": [
+    "phase",
+    "design-mcp-open-design"
+  ],
+  "lastUpdated": "2026-07-14T15:17:19.773Z",
+  "specId": "007",
+  "folderSlug": "design-mcp-open-design",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

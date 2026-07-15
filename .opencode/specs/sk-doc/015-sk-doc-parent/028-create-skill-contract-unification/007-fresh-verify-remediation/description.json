@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation",
+  "description": "A fresh Sonnet-5 xhigh review of all 46 SKILL.md surfaced 11 pre-existing content defects (none from the prior conformance sweep); this phase",
+  "keywords": [
+    "fresh",
+    "sonnet-5",
+    "xhigh",
+    "review",
+    "skill",
+    "surfaced",
+    "pre-existing",
+    "content",
+    "defects",
+    "none",
+    "prior",
+    "conformance",
+    "sweep",
+    "phase"
+  ],
+  "lastUpdated": "2026-07-14T07:12:19.653Z",
+  "specId": "007",
+  "folderSlug": "fresh-verify-remediation",
+  "parentChain": [
+    "sk-doc",
+    "015-sk-doc-parent",
+    "028-create-skill-contract-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

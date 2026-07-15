@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/014-skill-readme-standardization/002-cli-claude-code-readme",
+  "description": "The cli-claude-code README is a tabular reference card with no problem-first entry point, and it carries a stale fact: it lists 11 delegatable agents",
+  "keywords": [
+    "cli-claude-code",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "carries",
+    "stale",
+    "fact",
+    "lists",
+    "delegatable",
+    "agents"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.304Z",
+  "specId": "002",
+  "folderSlug": "cli-claude-code-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "014-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/015-sk-doc-parent/006-create-readme",
+  "spec_folder": "sk-doc/015-sk-doc-parent/006-create-readme",
+  "parent_id": "sk-doc/015-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc create readme",
+      "125 create readme",
+      "sk-doc parent phase 006"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "readme",
+      "parent",
+      "phase",
+      "monolith",
+      "parent-hub",
+      "conversion",
+      "feature",
+      "specification",
+      "create-readme",
+      "packet",
+      "install-guide"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 006 of the sk-doc monolith to parent-hub conversion",
+    "created_at": "2026-07-06T06:30:34.837Z",
+    "last_save_at": "2026-07-09T10:02:44.700Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5eabcfe00d7b6cb182a680484b169bda81930f3f0bf1521b00530ba37105fa62",
+    "source_doc_hashes": {
+      "spec.md": "632c750bfb492ea0aa23b07a0292181d30b1cf6085e3162b7d06507f38efe790"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

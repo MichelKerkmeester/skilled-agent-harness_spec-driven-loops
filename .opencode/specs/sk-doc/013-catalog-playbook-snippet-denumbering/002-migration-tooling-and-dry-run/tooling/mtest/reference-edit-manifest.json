@@ -1,0 +1,77 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/feature_catalog.md",
+    "edits": [
+      {
+        "old": "01--alpha/002-foo-bar.md",
+        "new": "01--alpha/foo-bar.md",
+        "count": 1
+      },
+      {
+        "old": "01--alpha/001-foo.md",
+        "new": "01--alpha/foo.md",
+        "count": 2
+      },
+      {
+        "old": "02--beta/003-baz.md",
+        "new": "02--beta/baz.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/external-referrer.md",
+    "edits": [
+      {
+        "old": "01--alpha/001-foo.md",
+        "new": "01--alpha/foo.md",
+        "count": 1
+      },
+      {
+        "old": "02--beta/003-baz.md",
+        "new": "02--beta/baz.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/01--alpha/001-foo.md",
+    "edits": [
+      {
+        "old": "01--alpha/001-foo.md",
+        "new": "01--alpha/foo.md",
+        "count": 1
+      },
+      {
+        "old": "002-foo-bar.md",
+        "new": "foo-bar.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/01--alpha/002-foo-bar.md",
+    "edits": [
+      {
+        "old": "01--alpha/002-foo-bar.md",
+        "new": "01--alpha/foo-bar.md",
+        "count": 1
+      },
+      {
+        "old": "001-foo.md",
+        "new": "foo.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/02--beta/003-baz.md",
+    "edits": [
+      {
+        "old": "02--beta/003-baz.md",
+        "new": "02--beta/baz.md",
+        "count": 1
+      }
+    ]
+  }
+]

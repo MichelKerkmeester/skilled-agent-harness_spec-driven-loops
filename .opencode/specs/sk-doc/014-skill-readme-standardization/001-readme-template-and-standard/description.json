@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/014-skill-readme-standardization/001-readme-template-and-standard",
+  "description": "The sk-doc skill-README template encodes a tabular reference-card layout: a feature inventory, a structure tree and a settings table, with no human",
+  "keywords": [
+    "sk-doc",
+    "skill-readme",
+    "template",
+    "encodes",
+    "tabular",
+    "reference-card",
+    "layout",
+    "feature",
+    "inventory",
+    "structure",
+    "tree",
+    "settings",
+    "table",
+    "human"
+  ],
+  "lastUpdated": "2026-07-09T10:02:46.464Z",
+  "specId": "001",
+  "folderSlug": "readme-template-and-standard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "014-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/015-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
+  "spec_folder": "sk-doc/015-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
+  "parent_id": "sk-doc/015-sk-doc-parent/027-catalog-naming-convention",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "underscore content folders",
+      "hyphen to underscore catalog",
+      "restyle feature_catalog folders",
+      "underscore per-feature filenames",
+      "content folder underscore migration",
+      "underscore migration plan",
+      "catalog content rename plan",
+      "hyphen to underscore plan",
+      "underscore migration tasks",
+      "catalog content rename tasks",
+      "hyphen to underscore tasks",
+      "underscore migration checklist"
+    ],
+    "key_topics": [
+      "underscore",
+      "content",
+      "folders",
+      "hyphen",
+      "catalog",
+      "restyle",
+      "per-feature",
+      "filenames",
+      "folder",
+      "migration",
+      "plan",
+      "rename"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Underscore Restyle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Content",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Catalog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migration Approach",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Catalog/playbook content was named in hyphen-case: category folders (`featurecatalog/mcp-tool-surface/`),",
+    "created_at": "2026-07-12T00:00:00.000Z",
+    "last_save_at": "2026-07-15T14:02:13.268Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3e504cebef0a2ee2ee77d84ed8fb172974095405186bec4b21181c94df69b3b6",
+    "source_doc_hashes": {
+      "spec.md": "7d4584047b5f96cbca5d5e85c061c2b011a9f1ad864af4e19b8a841304081ca2",
+      "plan.md": "8efa0e3aed4d65f4a72e2321a3155b5d7dd3baa99d410fefd339e4ef1c56b0f5",
+      "tasks.md": "d971fb702b4cea24a4134882edc6a75df665354d2059bc72b5cbe124721e3e01",
+      "checklist.md": "b70a718f649128dd21cb3b7e88e5841fd91c33ff9cda7904e33fabce56c72870",
+      "implementation-summary.md": "2983f2f887f24813e8892358262d904de44b8c0ad8801bce06908f4132b1f355"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

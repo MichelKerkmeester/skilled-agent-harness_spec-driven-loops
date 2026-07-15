@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate",
+  "description": "Phase 11: skill-gate",
+  "keywords": [
+    "phase",
+    "skill-gate"
+  ],
+  "lastUpdated": "2026-07-14T15:17:57.546Z",
+  "specId": "011",
+  "folderSlug": "skill-gate",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "008-component-migration",
+    "007-system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

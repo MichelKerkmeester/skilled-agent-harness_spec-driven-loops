@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/011-integrate-and-closeout",
+  "description": "Phase 3: integrate-and-closeout",
+  "keywords": [
+    "phase",
+    "integrate-and-closeout"
+  ],
+  "lastUpdated": "2026-07-14T15:22:44.066Z",
+  "specId": "011",
+  "folderSlug": "integrate-and-closeout",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Clean up agent files (063a) AND align the template to current production reality (063b)",
     "created_at": "2026-05-18T07:49:27.115Z",
-    "last_save_at": "2026-07-09T10:02:44.880Z",
+    "last_save_at": "2026-07-15T14:02:13.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,9 +201,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b71e08cf6e508c87f197c464e98f9ef82996f4c49882f513ec9697de0242c8de",
+    "source_fingerprint": "sha256:75ca41687346bb6d68471c1e9c7d2994818a66f71b70caac2663ea169b2bed38",
     "source_doc_hashes": {
-      "spec.md": "c2cc0b316128d53c96bfaf49e8e7d324b6455629c6f1b1022607a8e8d5cdb37d",
+      "spec.md": "c4be69e5987988391509911987fc45f7d4af0c6a4de5cf91346020c9a661dd66",
       "plan.md": "3209fe82fd4b0bba5c9bc372611dfc03a9bc013ee8d87e2620d992c9ee75f8d0",
       "tasks.md": "003a165e8b04647753aba4e4a1011631c017071fc00a785ad5dafc1e38107afb",
       "implementation-summary.md": "c8a04012f53fc951eae7608748665e693df12af095f317b8e55650b8986be3a4"

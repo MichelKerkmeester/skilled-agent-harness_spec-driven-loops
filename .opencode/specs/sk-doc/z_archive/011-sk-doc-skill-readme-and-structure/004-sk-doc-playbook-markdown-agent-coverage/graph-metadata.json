@@ -31,6 +31,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".codex/config.toml",
       ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
       "implementation-summary.md",
       "evidence/SD-018-cli-claude-code.txt",
@@ -42,6 +43,12 @@
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
@@ -179,17 +186,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Scenario Index",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 introduced the `@markdown` agent as the dedicated sk-doc documentation executor, but the sk-doc manual testing playbook was not updated",
     "created_at": "2026-05-11T05:27:26Z",
-    "last_save_at": "2026-07-09T10:02:44.957Z",
+    "last_save_at": "2026-07-15T14:02:14.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

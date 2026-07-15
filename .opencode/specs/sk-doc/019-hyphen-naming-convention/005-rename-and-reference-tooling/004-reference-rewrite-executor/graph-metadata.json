@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
+  "spec_folder": "sk-doc/019-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
+  "parent_id": "sk-doc/019-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "static reference-rewrite executor",
+      "compare-and-swap reference rewrite",
+      "preimage blob hash rewrite",
+      "deterministic reference rewrite",
+      "reference-rewrite executor implementation plan",
+      "compare-and-swap rewrite plan",
+      "preimage blob rewrite plan",
+      "reference-rewrite executor tasks",
+      "compare-and-swap rewrite tasks",
+      "preimage blob rewrite tasks",
+      "reference-rewrite executor checklist",
+      "compare-and-swap rewrite verifier"
+    ],
+    "key_topics": [
+      "static",
+      "reference-rewrite",
+      "executor",
+      "compare-and-swap",
+      "reference",
+      "rewrite",
+      "preimage",
+      "blob",
+      "hash",
+      "deterministic",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Static Reference",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rewrite Executor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "phases",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The checker only records reference sites read-only and the engine only moves files, so nothing deterministically rewrites in-file references to renamed paths. This phase defines a compare-and-swap-protected static reference-rewrite executor that consumes the disposition ledger and semantic map, verifies each site's preimage blob before writing, and regenerates rather than force-applies a rewrite plan whose base moved.",
+    "created_at": "2026-07-15T09:35:26.640Z",
+    "last_save_at": "2026-07-15T14:02:13.426Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:3b4d80e3c447f86c70a66a4d9a240ee087181a17662864f3bf7ea02e8c2b7fd7",
+    "source_doc_hashes": {
+      "spec.md": "3ddaef7f30791224884e3530f9151aa6995e64a84bc1d924258f0264db93afec",
+      "plan.md": "a0088fc7c7876821634d12a4369c397213eea80884b529ee8f4f1e66e0741475",
+      "tasks.md": "620d4144f8597e635d70b5518be7920e994bd4c5bc9f54d618f980b3401f0a37",
+      "checklist.md": "676498b357e007a61ffdc131027732aee7a096f7647ed4a5acef7f345a199275"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

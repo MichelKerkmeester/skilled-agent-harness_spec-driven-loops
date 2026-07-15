@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/008-skill-command-readme-rewrite",
+  "description": "Skill READMEs and command READMEs vary in quality, structure and voice",
+  "keywords": [
+    "skill",
+    "readmes",
+    "command",
+    "vary",
+    "quality",
+    "structure",
+    "voice"
+  ],
+  "lastUpdated": "2026-06-30T11:59:23.287Z",
+  "specId": "027",
+  "folderSlug": "skill-command-readme-rewrite",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "26-03-26_11-02__created-spec-folder-033-for-rewriting-23-readmes.md",
+    "26-03-26_12-47__implemented-spec-033-rewrote-all-23-skill-and.md",
+    "26-03-26_13-24__reviewed-all-23-spec-033-readmes-using-5-parallel.md"
+  ]
+}

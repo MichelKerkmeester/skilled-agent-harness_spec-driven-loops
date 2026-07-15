@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/016-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes",
+  "description": "The `cli-external` and `mcp-tooling` hub docs (feature catalogs, testing playbooks, references, vendored server READMEs, SKILL.md prose) have drifted",
+  "keywords": [
+    "cli-external",
+    "mcp-tooling",
+    "hub",
+    "docs",
+    "feature",
+    "catalogs",
+    "testing",
+    "playbooks",
+    "references",
+    "vendored",
+    "server",
+    "readmes",
+    "skill",
+    "prose",
+    "drifted"
+  ],
+  "lastUpdated": "2026-07-11T09:07:53.419Z",
+  "specId": "002",
+  "folderSlug": "hub-doc-conformance-fixes",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "016-hub-doc-conformance-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

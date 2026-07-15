@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
+  "description": "Phase 4: command-asset-emitters",
+  "keywords": [
+    "phase",
+    "command-asset-emitters"
+  ],
+  "lastUpdated": "2026-07-14T15:16:47.706Z",
+  "specId": "004",
+  "folderSlug": "command-asset-emitters",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "003-create-generators-and-templates"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

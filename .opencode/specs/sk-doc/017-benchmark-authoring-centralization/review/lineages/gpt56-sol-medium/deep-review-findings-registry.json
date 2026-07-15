@@ -1,0 +1,19 @@
+{
+  "sessionId": "fanout-gpt56-sol-medium-1783855605907-lg6gxs",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"Reviewer authoring profile is rejected by lane validator","file":".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs","line":22,"firstSeen":1,"lastSeen":10},
+    {"findingId":"F002","severity":"P1","category":"traceability","status":"active","dimension":"traceability","title":"Shipped reviewer profile points at a nonexistent fixture directory","file":".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark_profiles/reviewer_regression.json","line":7,"firstSeen":3,"lastSeen":10},
+    {"findingId":"F003","severity":"P1","category":"traceability","status":"active","dimension":"traceability","title":"Checked eight-consumer rewire claim has only six discoverable pointers","file":".opencode/specs/sk-doc/017-benchmark-authoring-centralization/tasks.md","line":48,"firstSeen":5,"lastSeen":10},
+    {"findingId":"F004","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"Scaffold contradicts its minimum visible-case instruction","file":".opencode/skills/sk-doc/create-benchmark/assets/model_benchmark_code_task_fixture_template.md","line":75,"firstSeen":4,"lastSeen":10}
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {"correctness":true,"security":true,"traceability":true,"maintainability":true},
+  "findingsBySeverity": {"P0":0,"P1":3,"P2":1},
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "corruptionWarnings": []
+}

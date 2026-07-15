@@ -71,12 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -96,6 +90,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "After Phase 1-3, raw deliverables exist (15 scenarios, 45 cells, matrix.csv, review-report.md) but packet metadata isn't refreshed and validate.sh hasn't been run on the final state",
     "created_at": "2026-05-05T10:27:22Z",
-    "last_save_at": "2026-07-09T10:02:44.918Z",
+    "last_save_at": "2026-07-15T14:02:13.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -196,9 +196,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5e6f0b6b18dd7de8e664f8968450f5a22e461a632bd08c836b6e3919e437a32",
+    "source_fingerprint": "sha256:211592562ab0a8418fa273545f145d9bcb75983543ffe289f2f57b6ede5ab83b",
     "source_doc_hashes": {
-      "spec.md": "b0895d290e072a25021ed98d9257657641bf595859cc9a4e21b02087e275a96c",
+      "spec.md": "f9475c4e49b6aeac42ce4af978b1e68beb7bcb49bd4fa9653d0e0653a05b2943",
       "plan.md": "dfe55d6df11b8948a37119cb405c391689940ed11b60ecfd957d49e4d464689f",
       "tasks.md": "eaf0d8517ca964e2a4f639567e4761234dc0854448395dc041f4be5969224b19",
       "implementation-summary.md": "76493030ed2e874c172ddbc2d17635d853034b42aa7f18cbde72bdf2a92508fd"

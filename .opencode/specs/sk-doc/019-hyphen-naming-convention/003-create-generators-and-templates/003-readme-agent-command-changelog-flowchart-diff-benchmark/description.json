@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark",
+  "description": "Phase 3: readme-agent-command-changelog-flowchart-diff-benchmark",
+  "keywords": [
+    "phase",
+    "readme-agent-command-changelog-flowchart-diff-benchmark"
+  ],
+  "lastUpdated": "2026-07-14T15:16:46.813Z",
+  "specId": "003",
+  "folderSlug": "readme-agent-command-changelog-flowchart-diff-benchmark",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "003-create-generators-and-templates"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

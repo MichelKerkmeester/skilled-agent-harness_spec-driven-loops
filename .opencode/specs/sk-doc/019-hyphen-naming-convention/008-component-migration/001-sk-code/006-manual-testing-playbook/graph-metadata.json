@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook",
+  "spec_folder": "sk-doc/019-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook",
+  "parent_id": "sk-doc/019-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code manual testing playbook naming",
+      "manual-testing-playbook kebab-case",
+      "scenario file rename",
+      "sk-code playbook path migration",
+      "manual playbook naming implementation plan",
+      "sk-code scenario rename plan",
+      "manual-testing-playbook reference repair",
+      "manual playbook naming tasks",
+      "sk-code scenario rename tasks",
+      "playbook link repair tasks",
+      "manual playbook naming checklist",
+      "sk-code scenario rename verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "manual",
+      "testing",
+      "playbook",
+      "naming",
+      "manual-testing-playbook",
+      "kebab-case",
+      "scenario",
+      "file",
+      "rename",
+      "path",
+      "migration"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-code/benchmark/README.md",
+      ".opencode/skills/sk-code/code-webflow/assets/animation/playbook_entries.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook_entries.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-webflow/assets/animation/playbook_entries.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub-level playbook is a routable evidence corpus with the root manualtestingplaybook/ and categories crossbrowserandperformancegates, crossstackrouting, designrestraint, languagesubdetection, motiondevandanimationregression, pluginsandhooks, routingdisambiguation, skilladvisorintegration, surfacedetection, and toolingandhooks",
+    "created_at": "2026-07-14T15:17:10Z",
+    "last_save_at": "2026-07-15T14:02:13.462Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:159542c275011be288c93088cfd5bb3f93fa2bca199ba724270bbca1cbf2e94c",
+    "source_doc_hashes": {
+      "spec.md": "000dbc098c5ad0671a9994fcd32d68976124793fd98c9e8b7b9737c32ac6d84e",
+      "plan.md": "3381ebf1ab7a71dba1d78be9c9fc344410f7583a22d4442cbbe8051e00744dd4",
+      "tasks.md": "d8993b276d112be55d7314fec7580d143f2b3ef47bcc853024646059f6e3a2f4",
+      "checklist.md": "08b2b6a54632dfee87393f35728399591c278e0dbd1db803456f6d709567037f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

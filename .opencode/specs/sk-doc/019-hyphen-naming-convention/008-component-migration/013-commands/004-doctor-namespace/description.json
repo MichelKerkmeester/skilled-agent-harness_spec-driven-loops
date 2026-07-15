@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace",
+  "description": "Phase 4: doctor-namespace",
+  "keywords": [
+    "phase",
+    "doctor-namespace"
+  ],
+  "lastUpdated": "2026-07-14T15:18:34.599Z",
+  "specId": "004",
+  "folderSlug": "doctor-namespace",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "008-component-migration",
+    "013-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

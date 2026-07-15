@@ -1,0 +1,30 @@
+{
+  "title": "Master Catalog Enrichment — All Skills",
+  "level": 1,
+  "id": "008-master-catalog-enrichment",
+  "status": "planned",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "sk-doc/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
+  "description": "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits.",
+  "keywords": [
+    "master",
+    "files",
+    "remaining",
+    "stale",
+    "references",
+    "small",
+    "scope",
+    "edits"
+  ],
+  "lastUpdated": "2026-07-09T10:02:46.153Z",
+  "specId": "008",
+  "folderSlug": "master-catalog-enrichment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "012-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

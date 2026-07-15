@@ -45,6 +45,8 @@
       "004-sk-doc-playbook-markdown-agent-coverage/spec.md",
       "005-deep-review-p1-p2-remediation/spec.md",
       "review/deep-review-dashboard.md",
+      ".codex/config.toml",
+      ".codex/agents/markdown.toml",
       "spec.md"
     ],
     "entities": [
@@ -52,6 +54,18 @@
         "name": "deep-review-dashboard.md",
         "kind": "doc",
         "path": "review/deep-review-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.toml",
+        "kind": "file",
+        "path": ".codex/agents/markdown.toml",
         "source": "derived"
       },
       {
@@ -99,7 +113,7 @@
     ],
     "causal_summary": "Phase parent for sk-doc reference relocation, sk-doc skill README asset creation, and markdown-agent rename planning.",
     "created_at": "2026-05-10T10:33:22Z",
-    "last_save_at": "2026-07-07T17:13:15.059Z",
+    "last_save_at": "2026-07-15T14:02:13.996Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

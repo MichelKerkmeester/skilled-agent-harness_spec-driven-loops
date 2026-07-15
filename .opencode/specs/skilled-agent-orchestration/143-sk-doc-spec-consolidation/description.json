@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/143-sk-doc-spec-consolidation",
+  "description": "The `sk-doc` documentation-authoring skill owns a long lineage of spec folders — the `create-` authoring generators, the command/skill description",
+  "keywords": [
+    "sk-doc",
+    "documentation-authoring",
+    "skill",
+    "owns",
+    "long",
+    "lineage",
+    "spec",
+    "folders",
+    "authoring",
+    "generators",
+    "command",
+    "description"
+  ],
+  "lastUpdated": "2026-07-15T14:42:17.171Z",
+  "specId": "143",
+  "folderSlug": "sk-doc-spec-consolidation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

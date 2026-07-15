@@ -51,6 +51,8 @@
       "research/orchestration-summary.json",
       "research/lineages/document-diff-1/iterations/iteration-010.md",
       "implementation-summary.md",
+      ".opencode/specs/skilled-agent-orchestration/136-standalone-document-diff-skill/001-research-and-requirements/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/136-standalone-document-diff-skill/001-research-and-requirements/resource-map.md",
       ".opencode/commands/deep/research.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
@@ -58,9 +60,7 @@
       ".opencode/skills/system-spec-kit/references/workflows/spec_folder_write_recipe.md",
       ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
       ".opencode/skills/system-spec-kit/references/validation/phase_checklists.md",
-      ".opencode/skills/system-deep-loop/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-research/references/guides/quick_reference.md"
+      ".opencode/skills/system-deep-loop/SKILL.md"
     ],
     "entities": [
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "People use AI to edit documents outside Git repositories and cannot reliably inspect the exact before-and-after change",
     "created_at": "2026-07-15T09:53:39.812Z",
-    "last_save_at": "2026-07-15T09:53:39.812Z",
+    "last_save_at": "2026-07-15T14:02:13.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

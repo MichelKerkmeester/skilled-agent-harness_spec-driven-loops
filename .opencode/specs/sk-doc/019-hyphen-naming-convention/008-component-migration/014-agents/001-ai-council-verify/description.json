@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/008-component-migration/014-agents/001-ai-council-verify",
+  "description": "Phase 1: ai-council-verify",
+  "keywords": [
+    "phase",
+    "ai-council-verify"
+  ],
+  "lastUpdated": "2026-07-14T15:18:40.174Z",
+  "specId": "001",
+  "folderSlug": "ai-council-verify",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "008-component-migration",
+    "014-agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

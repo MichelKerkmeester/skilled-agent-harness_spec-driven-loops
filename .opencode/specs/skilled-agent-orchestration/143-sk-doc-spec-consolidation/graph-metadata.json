@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/143-sk-doc-spec-consolidation",
+  "spec_folder": "skilled-agent-orchestration/143-sk-doc-spec-consolidation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc spec consolidation",
+      "sk-doc track",
+      "sk-doc spec folder renumber",
+      "consolidate sk-doc specs",
+      "sk-doc consolidation plan",
+      "sk-doc migration",
+      "sk-doc consolidation tasks",
+      "sk-doc consolidation checklist",
+      "sk-doc consolidation summary",
+      "sk-doc track result"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "spec",
+      "consolidation",
+      "track",
+      "folder",
+      "renumber",
+      "consolidate",
+      "specs",
+      "plan",
+      "migration",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fast-forward",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "two-phase",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "live",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-doc` documentation-authoring skill owns a long lineage of spec folders — the `create-` authoring generators, the command/skill description trims, the README/anchor standardization passes, hub-doc conformance, benchmark-authoring centralization, router alignment, and the hyphen-naming convention",
+    "created_at": "2026-07-15T08:20:13.200Z",
+    "last_save_at": "2026-07-15T14:57:20.539Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa48a05d363743616cfaf9986e5337a73f4fe8d402fc0a0e9da174d14784bac1",
+    "source_doc_hashes": {
+      "spec.md": "29c867c6edabd52781254cc6df627f77265aaf972b1fc52fc68a821bf8f3d2b4",
+      "plan.md": "75d1942bf0a2cb69e95a0cb853cbd57d78852d69cf60eb03fcc420815bec8779",
+      "tasks.md": "97f3e063b5898bcb3bb6be53e154a37a3e58aa92819cfb16ded2561273b6d25e",
+      "checklist.md": "baea22c5a4316918a254657c850b95f98033efc84a14369b423ea123bc0190bb",
+      "implementation-summary.md": "271197870d7d5aa99ab83cb4ea266a744f5e3e1a3a9bcc3198d25d9fe8a916c5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

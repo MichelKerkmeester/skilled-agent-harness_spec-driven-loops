@@ -1,0 +1,23 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/015-sk-doc-parent/020-command-agent-template-conformance",
+  "description": "The sk-doc `/create` command routers and the `markdown` agents all fail `validatedocument.py`",
+  "keywords": [
+    "sk-doc",
+    "command",
+    "routers",
+    "markdown",
+    "agents",
+    "fail",
+    "validatedocument"
+  ],
+  "lastUpdated": "2026-07-09T10:02:44.840Z",
+  "specId": "020",
+  "folderSlug": "command-agent-template-conformance",
+  "parentChain": [
+    "sk-doc",
+    "015-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

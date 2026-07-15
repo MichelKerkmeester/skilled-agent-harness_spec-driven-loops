@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/017-benchmark-authoring-centralization/001-create-benchmark-reorg-and-routing",
+  "description": "Group create-benchmark templates and guides into per-family subfolders and add family routing vocabulary so behavior, skill, model, and fixture author",
+  "keywords": [
+    "group",
+    "create-benchmark",
+    "templates",
+    "guides",
+    "per-family",
+    "subfolders",
+    "family",
+    "routing",
+    "vocabulary",
+    "behavior",
+    "skill",
+    "model",
+    "fixture",
+    "authoring",
+    "routes"
+  ],
+  "lastUpdated": "2026-07-13T04:10:18.278Z",
+  "specId": "001",
+  "folderSlug": "create-benchmark-reorg-and-routing",
+  "parentChain": [
+    "sk-doc",
+    "017-benchmark-authoring-centralization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

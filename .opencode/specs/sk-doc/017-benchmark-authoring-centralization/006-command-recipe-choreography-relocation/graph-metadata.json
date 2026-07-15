@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/017-benchmark-authoring-centralization/006-command-recipe-choreography-relocation",
+  "spec_folder": "sk-doc/017-benchmark-authoring-centralization/006-command-recipe-choreography-relocation",
+  "parent_id": "sk-doc/017-benchmark-authoring-centralization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command recipe choreography relocation",
+      "design command surface validator repair",
+      "lane c dead branch cleanup",
+      "choreography relocation plan",
+      "validator repair swarm plan",
+      "choreography relocation tasks",
+      "choreography relocation checklist",
+      "choreography relocation decisions",
+      "command recipe choreography relocation summary",
+      "design command surface validator repair summary"
+    ],
+    "key_topics": [
+      "command",
+      "recipe",
+      "choreography",
+      "relocation",
+      "design",
+      "surface",
+      "validator",
+      "repair",
+      "lane",
+      "dead",
+      "branch",
+      "cleanup"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Act",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequenced",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 005 removed a false-positive from the Lane C scorer's `validateRecipeChoreography()`: the \"wrapper `## CHOREOGRAPHY` section is missing\" penalty, which became unsatisfiable once the `/design:` commands became thin routers (choreography moved to asset YAML step keys)",
+    "created_at": "2026-07-14T19:20:48.890Z",
+    "last_save_at": "2026-07-15T14:02:13.353Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2bd7709225d8dca693813257d74734f20e43fb76586dda71dbc6ad71187dae44",
+    "source_doc_hashes": {
+      "spec.md": "3dab5006c80a30d543ffe35a28b2857652a6150422cc21ef2c7912afe0f105b1",
+      "plan.md": "f922565418bcb723775a0bc0bd742ada667e8dc0e509879dd81d7decb45ce0ef",
+      "tasks.md": "b78124df00afff52c5ecd68927d6e94b205f749e2bc7b7a81258126cc7b17170",
+      "checklist.md": "5bfba8e78e7a72b6c5b0f7b5969040b2e46831cbb7b2a3aabf9f2e6603623c9b",
+      "decision-record.md": "83db6b1b23223ba4fdc879eecee37f6cfce34804cd2070e168ed93c560437ecc",
+      "implementation-summary.md": "1729a48845b3ae1c39ba0ca681331d5d74fa8d6e6b62ca16abbbd98e416489a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

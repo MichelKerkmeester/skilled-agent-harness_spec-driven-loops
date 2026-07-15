@@ -1,0 +1,26 @@
+{
+  "level": "phase",
+  "specFolder": "sk-doc/015-sk-doc-parent",
+  "description": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management,",
+  "keywords": [
+    "sk-doc",
+    "6-mode",
+    "monolith",
+    "one",
+    "overloaded",
+    "skill",
+    "carries",
+    "document-quality",
+    "management"
+  ],
+  "lastUpdated": "2026-07-09T10:01:48.819Z",
+  "specId": "014",
+  "folderSlug": "sk-doc-parent",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "07-07-26_08-00__sk-doc-parent-hub-program-finalized-all-six.md"
+  ]
+}

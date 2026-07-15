@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
+  "description": "The mcp-chrome-devtools component contains snake_case directories and scenario/reference files that need semantic kebab-case targets and closed path references.",
+  "keywords": [
+    "mcp-chrome-devtools",
+    "snake_case",
+    "kebab-case",
+    "manual-testing",
+    "references",
+    "paths",
+    "exemptions"
+  ],
+  "lastUpdated": "2026-07-14T15:17:43.089Z",
+  "specId": "002",
+  "folderSlug": "mcp-chrome-devtools",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "008-component-migration",
+    "006-mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

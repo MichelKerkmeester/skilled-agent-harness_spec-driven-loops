@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime",
+  "spec_folder": "sk-doc/019-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime",
+  "parent_id": "sk-doc/019-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph runtime naming",
+      "code graph runtime path audit",
+      "runtime kebab-case verification",
+      "freshness hook filename audit",
+      "system-code-graph runtime implementation plan",
+      "code graph runtime path plan",
+      "freshness runtime naming audit",
+      "system-code-graph runtime tasks",
+      "code graph runtime rename tasks",
+      "freshness runtime audit tasks",
+      "system-code-graph runtime checklist",
+      "code graph runtime path verification"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "runtime",
+      "naming",
+      "code",
+      "graph",
+      "path",
+      "audit",
+      "kebab-case",
+      "verification",
+      "freshness",
+      "hook",
+      "filename"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-code-graph/runtime/hooks/claude/code-graph-freshness.cjs",
+      ".opencode/skills/system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs",
+      ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.cjs",
+      ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "code-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/runtime/hooks/claude/code-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "freshness-core.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "freshness-core.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Prove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE-equivalent",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-code-graph runtime tree is a named migration surface even though its current four files and directory",
+    "created_at": "2026-07-14T15:18:15Z",
+    "last_save_at": "2026-07-15T14:02:13.773Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:044937ffce462ce7fd0975df9815cae0a0e93427267ab3993ada7055b6e1392e",
+    "source_doc_hashes": {
+      "spec.md": "061340725b030a781d043601d477cfeeb8bef64ded0a1255b9389995007efa08",
+      "plan.md": "e79c62bd7d3292bd35b55a80d5c47f2e0843fcea0ddbf2db1af6c56d0cc1c9b8",
+      "tasks.md": "cf03da3e3df565d764201e350e474701544069cd4c70a7ef43ff67f86d900e46",
+      "checklist.md": "69e233f3ebbdd2f264881c3f21872c5d3d57df51343a1183571513ae237f694a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

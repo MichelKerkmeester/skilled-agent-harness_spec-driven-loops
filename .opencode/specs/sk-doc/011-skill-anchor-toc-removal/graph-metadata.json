@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/011-skill-anchor-toc-removal",
+  "spec_folder": "sk-doc/011-skill-anchor-toc-removal",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/011-skill-anchor-toc-removal/001-standards-templates-config",
+    "sk-doc/011-skill-anchor-toc-removal/002-toc-removal",
+    "sk-doc/011-skill-anchor-toc-removal/003-anchor-comment-removal",
+    "sk-doc/011-skill-anchor-toc-removal/004-verification-reconciliation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill anchor toc removal",
+      "remove table of contents from skills",
+      "remove anchors from skill docs"
+    ],
+    "key_topics": [
+      "skill",
+      "anchor",
+      "toc",
+      "removal",
+      "remove",
+      "table",
+      "contents",
+      "skills",
+      "anchors",
+      "docs",
+      "documentation",
+      "opencode"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/create/feature-catalog.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Anchor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remove Table",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill documentation under `.opencode/skills/` has accumulated navigational scaffolding the user",
+    "created_at": "2026-05-26T09:40:16.330Z",
+    "last_save_at": "2026-07-15T14:02:13.063Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:615ac3c7f0f9e5395560da191a9b745ba4062cfc367bcd1db1775a2284fc4dbf",
+    "source_doc_hashes": {
+      "spec.md": "8480d4a4f3535d8744ee13dad07876c500fd58bfc70c647f69eb48bd9d8c75a2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

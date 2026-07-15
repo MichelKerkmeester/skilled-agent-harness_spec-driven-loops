@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
+  "description": "Phase 6: scripts-namespace",
+  "keywords": [
+    "phase",
+    "scripts-namespace"
+  ],
+  "lastUpdated": "2026-07-14T15:18:36.193Z",
+  "specId": "006",
+  "folderSlug": "scripts-namespace",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "008-component-migration",
+    "013-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

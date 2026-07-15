@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/012-feature-catalog-template-improvements",
+  "spec_folder": "sk-doc/012-feature-catalog-template-improvements",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/012-feature-catalog-template-improvements/001-template-improvements",
+    "sk-doc/012-feature-catalog-template-improvements/002-mechanical-sweep",
+    "sk-doc/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
+    "sk-doc/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
+    "sk-doc/012-feature-catalog-template-improvements/005-subheadings-spec-kit",
+    "sk-doc/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
+    "sk-doc/012-feature-catalog-template-improvements/007-related-references",
+    "sk-doc/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
+    "sk-doc/012-feature-catalog-template-improvements/009-validation-sweep"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature catalog rework",
+      "catalog retroactive update",
+      "feature catalog standards",
+      "feature catalog trigger phrases",
+      "catalog snippet subheadings"
+    ],
+    "key_topics": [
+      "feature",
+      "catalog",
+      "rework",
+      "retroactive",
+      "standards",
+      "trigger",
+      "phrases",
+      "snippet",
+      "subheadings",
+      "cross-analysis",
+      "files",
+      "across"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog Standards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retroactive Rework",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 categories; system-code-graph: 15 files, 7 categories) reveals pervasive drift from the desired standard:",
+    "created_at": "2026-05-31T00:00:00.000Z",
+    "last_save_at": "2026-07-15T14:02:13.077Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:42dab505727e31ae8de6cbe63b6e76ebd036b381e078f4d1c110c8f9fe2fefe6",
+    "source_doc_hashes": {
+      "spec.md": "8757e162b7a4ecf276e95f4a31bd87bcf4244b9dc8698a527ce27a0a95dcb975"
+    },
+    "last_active_child_id": "sk-doc/012-feature-catalog-template-improvements/001-template-improvements",
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": 1,
+  "specFolder": "sk-doc/015-sk-doc-parent/012-quality-control-rename",
+  "description": "The sk-doc `doc-quality` workflow packet (built in the original phase map's `012-doc-quality/`) is named as if it were a mode or feature flag rather",
+  "keywords": [
+    "sk-doc",
+    "doc-quality",
+    "workflow",
+    "packet",
+    "original",
+    "phase",
+    "map",
+    "012-doc-quality",
+    "named",
+    "mode",
+    "feature",
+    "flag",
+    "rather"
+  ],
+  "lastUpdated": "2026-07-09T10:02:44.761Z",
+  "specId": "012",
+  "folderSlug": "quality-control-rename",
+  "parentChain": [
+    "sk-doc",
+    "015-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

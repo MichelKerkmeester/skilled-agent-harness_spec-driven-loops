@@ -1,0 +1,24 @@
+{
+  "level": "phase",
+  "specFolder": "sk-doc/011-skill-anchor-toc-removal",
+  "description": "Skill documentation under `.opencode/skills/` has accumulated navigational scaffolding the user",
+  "keywords": [
+    "skill",
+    "documentation",
+    "opencode",
+    "skills",
+    "accumulated",
+    "navigational",
+    "scaffolding",
+    "user"
+  ],
+  "lastUpdated": "2026-06-30T11:59:28.694Z",
+  "specId": "095",
+  "folderSlug": "skill-anchor-toc-removal",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/004-cmd-create-skill-merger",
+  "spec_folder": "sk-doc/004-cmd-create-skill-merger",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create:sk-skill",
+      "skill merger",
+      "command consolidation",
+      "unified workflow",
+      "implementation plan",
+      "create skill merger",
+      "tasks",
+      "retroactive implementation",
+      "verification checklist",
+      "migration validation",
+      "implementation summary",
+      "canonical command"
+    ],
+    "key_topics": [
+      "sk-skill",
+      "skill",
+      "merger",
+      "command",
+      "consolidation",
+      "unified",
+      "workflow",
+      "implementation",
+      "plan",
+      "tasks",
+      "retroactive",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/install_guides/README.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      ".opencode/commands/create/assets/create_skill_auto.yaml",
+      ".opencode/commands/create/assets/create_skill_confirm.yaml",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_skill_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_skill_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_skill_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_skill_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Skill Merger",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create command surface for skills was fragmented across separate command files and YAML workflows (`/create:skill`, `/create:skillreference`, `/create:skillasset`)",
+    "created_at": "2026-04-12T09:02:50.220Z",
+    "last_save_at": "2026-07-15T14:02:13.029Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:53b49a897cbc38557aea7221a8cdae046470178bd53c59d148ede4d4915e549e",
+    "source_doc_hashes": {
+      "spec.md": "94832f5db14972d06936397a570bee149f2802e65b21ac9b67bced19aba6d982",
+      "plan.md": "620a00f651b17876f40919f20d96e05e754e7cf62147bb01bf91b962093665c7",
+      "tasks.md": "29bde77a0ad04b24c636270be21f6c504511df8a4fb1d79970de271e1d1b7c85",
+      "checklist.md": "1171b35c75563ff052540f212ce4801f09a251b3f27dfd8004a48e20f6a1ba8b",
+      "implementation-summary.md": "800bd561032a0a8c0722be4c58cacb5229a7f09aba30db7fd377e552ce81d8a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

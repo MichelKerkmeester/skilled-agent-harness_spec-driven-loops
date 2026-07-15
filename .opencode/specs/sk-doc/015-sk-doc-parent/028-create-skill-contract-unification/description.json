@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification",
+  "description": "The repo has 46 SKILL.md files — 7 parent hubs, 34 hub-mode children, 5 standalones",
+  "keywords": [
+    "repo",
+    "skill",
+    "files",
+    "parent",
+    "hubs",
+    "hub-mode",
+    "children",
+    "standalones"
+  ],
+  "lastUpdated": "2026-07-14T06:59:10.356Z",
+  "specId": "028",
+  "folderSlug": "create-skill-contract-unification",
+  "parentChain": [
+    "sk-doc",
+    "015-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/013-catalog-playbook-snippet-denumbering",
+  "description": "Per-feature snippet files in feature catalogs and manual testing playbooks carry a globally sequential numeric prefix (`001-feature-name.md`,",
+  "keywords": [
+    "per-feature",
+    "snippet",
+    "files",
+    "feature",
+    "catalogs",
+    "manual",
+    "testing",
+    "playbooks",
+    "carry",
+    "globally",
+    "sequential",
+    "numeric",
+    "prefix",
+    "001-feature-name"
+  ],
+  "lastUpdated": "2026-07-01T12:31:47.772Z",
+  "specId": "108",
+  "folderSlug": "catalog-playbook-snippet-denumbering",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-06-26_11-40__complete-6-phase-program-de-numbered-1-562-per.md",
+    "06-06-26_14-04__path-reference-deep-review-of-skills-commands.md"
+  ]
+}

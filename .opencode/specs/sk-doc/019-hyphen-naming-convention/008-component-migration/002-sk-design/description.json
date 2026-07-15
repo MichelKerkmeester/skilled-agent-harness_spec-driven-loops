@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "description": "Phase 2: sk-design",
+  "keywords": [
+    "phase",
+    "sk-design"
+  ],
+  "lastUpdated": "2026-07-14T15:16:56.604Z",
+  "specId": "002",
+  "folderSlug": "sk-design",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

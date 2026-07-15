@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure",
+  "description": "Phase 2: cross-skill-symlink-closure",
+  "keywords": [
+    "phase",
+    "cross-skill-symlink-closure"
+  ],
+  "lastUpdated": "2026-07-14T15:16:52.697Z",
+  "specId": "002",
+  "folderSlug": "cross-skill-symlink-closure",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention",
+    "007-shared-and-cross-cutting-closures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

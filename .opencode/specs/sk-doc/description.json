@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc",
+  "description": "Track folder for sk-doc packets — the documentation-authoring skill family: create-* command/skill/readme/changelog/feature-catalog/manual-testing-playbook authoring, command/skill description trims, README/anchor standardization, hub-doc conformance, benchmark-authoring centralization, router alignment, the hyphen-naming convention, and the create-diff preview. Hosts spec folders 001-019 plus 999.",
+  "keywords": [
+    "sk-doc",
+    "documentation",
+    "authoring",
+    "create-skill",
+    "create-readme",
+    "create-command",
+    "create-changelog",
+    "feature-catalog",
+    "manual-testing-playbook",
+    "doc-quality",
+    "track"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00.000Z",
+  "specId": "sk-doc",
+  "folderSlug": "sk-doc",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

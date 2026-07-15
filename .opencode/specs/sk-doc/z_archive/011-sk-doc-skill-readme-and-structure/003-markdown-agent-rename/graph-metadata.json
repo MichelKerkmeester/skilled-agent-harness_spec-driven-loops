@@ -32,10 +32,14 @@
     "key_files": [
       ".opencode/agents/markdown.md",
       ".claude/agents/markdown.md",
+      ".codex/agents/markdown.toml",
       ".opencode/agents/orchestrate.md",
       ".claude/agents/orchestrate.md",
       ".opencode/agents/code.md",
       ".claude/agents/code.md",
+      ".codex/agents/orchestrate.toml",
+      ".codex/agents/code.toml",
+      ".codex/config.toml",
       ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
       "resource-map.md",
       "spec.md",
@@ -52,6 +56,12 @@
         "source": "derived"
       },
       {
+        "name": "markdown.toml",
+        "kind": "file",
+        "path": ".codex/agents/markdown.toml",
+        "source": "derived"
+      },
+      {
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".opencode/agents/orchestrate.md",
@@ -61,6 +71,24 @@
         "name": "code.md",
         "kind": "doc",
         "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -164,35 +192,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Implementation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The documentation authoring agent is currently named create, but the desired long-term identity is markdown",
     "created_at": "2026-05-10T10:33:24Z",
-    "last_save_at": "2026-07-09T10:02:44.948Z",
+    "last_save_at": "2026-07-15T14:02:14.011Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

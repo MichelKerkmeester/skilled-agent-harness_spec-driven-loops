@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification",
+  "spec_folder": "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification",
+  "parent_id": "sk-doc/015-sk-doc-parent",
+  "children_ids": [
+    "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
+    "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
+    "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification/002-sk-doc-children",
+    "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification/003-sk-design-children",
+    "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification/004-deep-loop-children",
+    "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification/005-code-cli-mcp-prompt-children",
+    "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification/006-standalones",
+    "sk-doc/015-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-skill contract conformance",
+      "repo-wide SKILL.md conformance sweep",
+      "parent hub canon"
+    ],
+    "key_topics": [
+      "create-skill",
+      "contract",
+      "conformance",
+      "repo-wide",
+      "skill",
+      "sweep",
+      "parent",
+      "hub",
+      "canon",
+      "repo",
+      "files",
+      "hubs"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Enforce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo has 46 SKILL.md files — 7 parent hubs, 34 hub-mode children, 5 standalones",
+    "created_at": "2026-07-13T15:40:27.936Z",
+    "last_save_at": "2026-07-15T14:02:13.276Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:373588407053486ad5bf7c922117c0fe50fc30073edfac56423ac0fe183ceea0",
+    "source_doc_hashes": {
+      "spec.md": "3363c5d3879a549cbc532998e59bfe0ff2f7fc9d2fc3763b292465bcad2f6e8c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

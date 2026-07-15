@@ -1,0 +1,22 @@
+{
+  "specFolder": "sk-doc/019-hyphen-naming-convention/004-no-new-snake-guard",
+  "description": "Nothing prevents snake_case from re-entering in-scope filesystem names.",
+  "keywords": [
+    "nothing",
+    "prevents",
+    "re-entering",
+    "in-scope",
+    "filesystem",
+    "names"
+  ],
+  "lastUpdated": "2026-07-13T14:31:53.808Z",
+  "specId": "004",
+  "folderSlug": "no-new-snake-guard",
+  "parentChain": [
+    "sk-doc",
+    "019-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

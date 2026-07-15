@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/014-skill-readme-standardization/023-system-spec-kit-readme",
+  "description": "The system-spec-kit README is a 1084-line reference manual with functional headers, no AT A GLANCE table, a stale version footer and pervasive",
+  "keywords": [
+    "system-spec-kit",
+    "readme",
+    "1084-line",
+    "reference",
+    "manual",
+    "functional",
+    "headers",
+    "glance",
+    "table",
+    "stale",
+    "version",
+    "footer",
+    "pervasive"
+  ],
+  "lastUpdated": "2026-07-09T10:02:46.507Z",
+  "specId": "023",
+  "folderSlug": "system-spec-kit-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "014-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

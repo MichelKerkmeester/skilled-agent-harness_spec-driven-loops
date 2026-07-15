@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc",
+  "spec_folder": "sk-doc",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/001-cmd-create-emoji-enforcement",
+    "sk-doc/002-cmd-create-codex-compatibility",
+    "sk-doc/003-cmd-create-changelog",
+    "sk-doc/004-cmd-create-skill-merger",
+    "sk-doc/005-cmd-create-readme-install-merger",
+    "sk-doc/006-cmd-create-feature-catalog",
+    "sk-doc/007-cmd-create-manual-testing-playbook",
+    "sk-doc/008-skill-command-readme-rewrite",
+    "sk-doc/009-cmd-create-changelog-and-releases",
+    "sk-doc/010-command-description-trim",
+    "sk-doc/011-skill-anchor-toc-removal",
+    "sk-doc/012-feature-catalog-template-improvements",
+    "sk-doc/013-catalog-playbook-snippet-denumbering",
+    "sk-doc/014-skill-readme-standardization",
+    "sk-doc/015-sk-doc-parent",
+    "sk-doc/016-hub-doc-conformance-fixes",
+    "sk-doc/017-benchmark-authoring-centralization",
+    "sk-doc/018-sk-doc-router-alignment",
+    "sk-doc/019-hyphen-naming-convention",
+    "sk-doc/999-create-diff-mode",
+    "sk-doc/z_archive"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "skilled-agent-orchestration",
+        "reason": "Source track the sk-doc documentation-authoring packets were consolidated out of",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "sk-doc",
+      "documentation-authoring",
+      "create-skill",
+      "create-readme",
+      "create-command",
+      "create-changelog",
+      "feature-catalog",
+      "manual-testing-playbook",
+      "doc-quality"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [],
+    "causal_summary": "Track folder consolidating every sk-doc documentation-authoring spec (create-* command/skill/readme/changelog/feature-catalog/manual-testing-playbook authoring, description trims, README/anchor standardization, benchmark-authoring centralization, router alignment, and the hyphen-naming convention) into one chronological category.",
+    "created_at": "2026-02-17T00:00:00.000Z",
+    "last_save_at": "2026-07-15T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1505cb8a04df892957aee7b707781911dc2e15f8afa4aa586df6126ff254fa2b",
+    "source_doc_hashes": {
+      "spec.md": "b9985bd3dad00992e93327d6ce711bdbb53ef0080114052cd3772a01ba5ee111"
+    },
+    "last_active_child_id": "sk-doc/019-hyphen-naming-convention",
+    "last_active_at": "2026-07-15T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "title": "Mechanical Sweep — All Skills",
+  "level": 1,
+  "id": "002-mechanical-sweep",
+  "status": "planned",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "sk-doc/012-feature-catalog-template-improvements/002-mechanical-sweep",
+  "description": "Script-driven bulk fixes across all 370 catalog files: rename CURRENT REALITY heading, insert template marker, fix validation table columns.",
+  "keywords": [
+    "script-driven",
+    "bulk",
+    "across",
+    "catalog",
+    "files",
+    "rename",
+    "current",
+    "reality",
+    "heading",
+    "insert",
+    "template",
+    "marker",
+    "validation",
+    "table",
+    "columns"
+  ],
+  "lastUpdated": "2026-07-09T10:02:46.117Z",
+  "specId": "002",
+  "folderSlug": "mechanical-sweep",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "012-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
