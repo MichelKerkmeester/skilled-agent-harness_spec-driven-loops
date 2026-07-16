@@ -17,11 +17,11 @@ Route /create:changelog to its presentation contract and workflow YAML for creat
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_changelog_presentation.txt` | Startup questions, setup dashboard, release prompt layout, and completion display |
-| Auto workflow | `.opencode/commands/create/assets/create_changelog_auto.yaml` | Autonomous changelog workflow execution |
-| Confirm workflow | `.opencode/commands/create/assets/create_changelog_confirm.yaml` | Interactive checkpointed changelog workflow execution |
+| Purpose | Asset |
+|---------|-------|
+| Presentation contract | `.opencode/commands/create/assets/create_changelog_presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create_changelog_auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create_changelog_confirm.yaml` |
 
 ## 3. MODE ROUTING
 

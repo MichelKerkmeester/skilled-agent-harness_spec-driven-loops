@@ -17,11 +17,11 @@ Route /create:diff to its presentation contract and workflow YAML for producing 
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_diff_presentation.txt` | Startup questions, setup dashboard, and completion display |
-| Auto workflow | `.opencode/commands/create/assets/create_diff_auto.yaml` | Autonomous workflow execution |
-| Confirm workflow | `.opencode/commands/create/assets/create_diff_confirm.yaml` | Interactive checkpointed workflow execution |
+| Purpose | Asset |
+|---------|-------|
+| Presentation contract | `.opencode/commands/create/assets/create_diff_presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create_diff_auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create_diff_confirm.yaml` |
 
 ## 3. MODE ROUTING
 

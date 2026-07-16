@@ -17,11 +17,11 @@ Route /create:skill to its presentation contract and workflow YAML for creating 
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_skill_presentation.txt` | Startup questions, setup dashboard, operation/status display, and completion template |
-| Auto workflow | `.opencode/commands/create/assets/create_skill_auto.yaml` | Autonomous unified skill workflow execution |
-| Confirm workflow | `.opencode/commands/create/assets/create_skill_confirm.yaml` | Interactive checkpointed unified skill workflow execution |
+| Purpose | Asset |
+|---------|-------|
+| Presentation contract | `.opencode/commands/create/assets/create_skill_presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create_skill_auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create_skill_confirm.yaml` |
 
 ## 3. MODE ROUTING
 

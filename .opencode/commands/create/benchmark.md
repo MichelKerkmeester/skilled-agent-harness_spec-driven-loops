@@ -17,11 +17,11 @@ Route /create:benchmark to its presentation contract and workflow YAML for famil
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_benchmark_presentation.txt` | Startup questions, setup dashboard, operation/status display, and completion template |
-| Auto workflow | `.opencode/commands/create/assets/create_benchmark_auto.yaml` | Autonomous family-keyed benchmark authoring |
-| Confirm workflow | `.opencode/commands/create/assets/create_benchmark_confirm.yaml` | Interactive checkpointed family-keyed benchmark authoring |
+| Purpose | Asset |
+|---------|-------|
+| Presentation contract | `.opencode/commands/create/assets/create_benchmark_presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create_benchmark_auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create_benchmark_confirm.yaml` |
 
 ## 3. MODE ROUTING
 

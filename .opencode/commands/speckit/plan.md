@@ -41,7 +41,7 @@ No workflow-asset gap exists for this command.
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto` | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` |
 | `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` with unattended task metadata required |

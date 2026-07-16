@@ -158,7 +158,7 @@ When `dry_run=true`, the confirm YAML emits `dry_run_halt` JSONL preview lines t
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_research_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_research_confirm.yaml` |

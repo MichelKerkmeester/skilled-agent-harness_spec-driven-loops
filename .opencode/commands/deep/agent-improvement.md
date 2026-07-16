@@ -144,7 +144,7 @@ No workflow-asset gap exists for this command.
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml` |

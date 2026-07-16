@@ -288,13 +288,108 @@ function runCheck(families) {
   return drift + shape === 0 ? 0 : 1;
 }
 
+function splitRow(line) {
+  return line
+    .trim()
+    .replace(/^\|/, '')
+    .replace(/\|$/, '')
+    .split('|')
+    .map((c) => c.trim());
+}
+
+const SEP_RE = /^\s*\|[\s:|-]+\|\s*$/;
+
+// Locate an H2 section by header keyword, hand its lines to `transform`, and
+// splice the result back. `transform` returns null to decline (leave the file
+// untouched), keeping the write conservative.
+function rewriteSection(text, keyword, transform) {
+  const lines = text.split('\n');
+  let start = -1;
+  for (let i = 0; i < lines.length; i++) {
+    if (/^##\s/.test(lines[i]) && lines[i].toUpperCase().includes(keyword)) {
+      start = i;
+      break;
+    }
+  }
+  if (start < 0) return text;
+  let end = lines.length;
+  for (let i = start + 1; i < lines.length; i++) {
+    if (/^##\s/.test(lines[i])) {
+      end = i;
+      break;
+    }
+  }
+  const out = transform(lines.slice(start, end));
+  if (!out) return text;
+  return [...lines.slice(0, start), ...out, ...lines.slice(end)].join('\n');
+}
+
+// Collapse a 3-column `| Asset | Path | Purpose |` OWNED ASSETS table into the
+// canonical 2-column `| Purpose | Asset |`: the label (old Asset column) becomes
+// Purpose, the path (old Path column) becomes Asset. The descriptive third
+// column has no home in the 2-column template and is dropped. Declines any table
+// that is not exactly the 3-column shape, so already-canonical files are left as
+// they are.
+function reshapeOwnedTable(section) {
+  const idx = section.findIndex((l) => /^\s*\|/.test(l));
+  if (idx < 0) return null;
+  const header = splitRow(section[idx]);
+  if (header.length !== 3) return null;
+  if (!/^asset$/i.test(header[0]) || !/^path$/i.test(header[1]) || !/^purpose$/i.test(header[2])) {
+    return null;
+  }
+  if (!(idx + 1 < section.length && SEP_RE.test(section[idx + 1]))) return null;
+  const out = section.slice(0, idx);
+  out.push('| Purpose | Asset |');
+  out.push('|---------|-------|');
+  let j = idx + 2;
+  for (; j < section.length; j++) {
+    if (!/^\s*\|/.test(section[j])) break;
+    const cells = splitRow(section[j]);
+    if (cells.length < 2) break;
+    out.push(`| ${cells[0]} | ${cells[1]} |`);
+  }
+  out.push(...section.slice(j));
+  return out;
+}
+
+// Flip the EXECUTION TARGETS table header word from `Workflow` to the canonical
+// `Target`. Only the header line carries both `Mode` and `Workflow`; mode and
+// target cells (including any command-specific extra rows) are left untouched.
+function flipExecHeader(section) {
+  const idx = section.findIndex((l) => /^\s*\|.*\bMode\b.*\bWorkflow\b/i.test(l));
+  if (idx < 0) return null;
+  const out = section.slice();
+  out[idx] = out[idx].replace(/Workflow/, 'Target');
+  return out;
+}
+
+function runWrite(families) {
+  const changed = [];
+  for (const [family, fc] of Object.entries(families)) {
+    for (const routerAbs of routerFiles(family, fc)) {
+      const before = fs.readFileSync(routerAbs, 'utf8');
+      let after = rewriteSection(before, 'OWNED ASSET', reshapeOwnedTable);
+      if (fc.topology === 'mode-pair') {
+        after = rewriteSection(after, 'EXECUTION TARGET', flipExecHeader);
+      }
+      if (after !== before) {
+        fs.writeFileSync(routerAbs, after);
+        changed.push(path.relative(REPO_ROOT, routerAbs));
+      }
+    }
+  }
+  console.log(`command-router normalize: ${changed.length} file(s) rewritten`);
+  for (const f of changed) console.log(`  wrote ${f}`);
+  return 0;
+}
+
 function main() {
   const args = process.argv.slice(2);
   const write = args.includes('--write');
   const families = loadContract();
   if (write) {
-    console.error('--write is not implemented in this milestone; use --check.');
-    process.exit(2);
+    process.exit(runWrite(families));
   }
   process.exit(runCheck(families));
 }

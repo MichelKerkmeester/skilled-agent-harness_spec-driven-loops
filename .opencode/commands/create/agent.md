@@ -17,11 +17,11 @@ Route /create:agent to its presentation contract and workflow YAML for creating 
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_agent_presentation.txt` | Startup questions, setup dashboard, and completion display |
-| Auto workflow | `.opencode/commands/create/assets/create_agent_auto.yaml` | Autonomous workflow execution |
-| Confirm workflow | `.opencode/commands/create/assets/create_agent_confirm.yaml` | Interactive checkpointed workflow execution |
+| Purpose | Asset |
+|---------|-------|
+| Presentation contract | `.opencode/commands/create/assets/create_agent_presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create_agent_auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create_agent_confirm.yaml` |
 
 ## 3. MODE ROUTING
 

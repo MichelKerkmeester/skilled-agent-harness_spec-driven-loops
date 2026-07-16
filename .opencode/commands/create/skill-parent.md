@@ -24,11 +24,11 @@ Route /create:skill-parent to its presentation contract and workflow YAML for sc
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_skill_parent_presentation.txt` | Startup questions, setup dashboard, operation/status display, and completion template |
-| Auto workflow | `.opencode/commands/create/assets/create_skill_parent_auto.yaml` | Autonomous parent-skill scaffolding workflow execution |
-| Confirm workflow | `.opencode/commands/create/assets/create_skill_parent_confirm.yaml` | Interactive checkpointed parent-skill scaffolding workflow execution |
+| Purpose | Asset |
+|---------|-------|
+| Presentation contract | `.opencode/commands/create/assets/create_skill_parent_presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create_skill_parent_auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create_skill_parent_confirm.yaml` |
 
 ## 3. MODE ROUTING
 

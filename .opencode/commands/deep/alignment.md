@@ -126,7 +126,7 @@ The per-iteration LEAF defaults to the native `@deep-alignment` agent on `opus` 
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_alignment_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_alignment_confirm.yaml` |

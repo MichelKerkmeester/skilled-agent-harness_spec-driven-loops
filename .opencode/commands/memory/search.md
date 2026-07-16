@@ -31,9 +31,9 @@ Guardrails:
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation | `.opencode/commands/memory/assets/search_presentation.txt` | Startup question policy, analysis overview, result tables, empty-result fallback, and clean GPT-via-opencode display rules. |
+| Purpose | Asset |
+|---------|-------|
+| Presentation | `.opencode/commands/memory/assets/search_presentation.txt` |
 
 This is a direct-dispatch command: it routes straight to the memory and code-graph MCP tools and owns no workflow YAML by design. There is no `_auto`/`_confirm` workflow YAML for the memory family and none is missing.
 

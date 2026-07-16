@@ -62,7 +62,7 @@ The launcher is instrument infrastructure. It is intentionally absent from the b
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |---|---|
 | `:auto` | `.opencode/commands/deep/assets/deep_command-benchmark_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml` |

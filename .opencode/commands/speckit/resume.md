@@ -40,7 +40,7 @@ No workflow-asset gap exists for this command.
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto` | `.opencode/commands/speckit/assets/speckit_resume_auto.yaml` |
 | `:confirm` or default interactive choice | `.opencode/commands/speckit/assets/speckit_resume_confirm.yaml` |
