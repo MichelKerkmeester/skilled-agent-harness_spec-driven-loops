@@ -166,6 +166,83 @@ function buildRegistryIndex(skillRoot) {
   return byMode;
 }
 
+// The cross-skill leaf-resource-identity contract library. Only sk-doc ships a
+// leaf-manifest.json today; buildResourceContract() below is a pure no-op for
+// every skill that lacks one, so requiring this fixed path never touches a
+// benchmark run for any other skill.
+const CONTRACT_LIB_PATH = path.resolve(__dirname, '..', '..', '..', '..', 'sk-doc', 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
+let cachedContractLib;
+function loadContractLib() {
+  if (cachedContractLib !== undefined) return cachedContractLib;
+  try {
+    // eslint-disable-next-line global-require
+    cachedContractLib = require(CONTRACT_LIB_PATH);
+  } catch {
+    cachedContractLib = null;
+  }
+  return cachedContractLib;
+}
+
+function hasLeafManifest(skillRoot) {
+  return !!skillRoot && fs.existsSync(path.join(skillRoot, 'leaf-manifest.json'));
+}
+
+function loadManifestLeavesByMode(skillRoot) {
+  const manifest = readJsonObject(path.join(skillRoot, 'leaf-manifest.json'));
+  const byMode = new Map();
+  for (const mode of manifest && Array.isArray(manifest.modes) ? manifest.modes : []) {
+    if (mode && mode.workflowMode) byMode.set(mode.workflowMode, new Set(Array.isArray(mode.leaves) ? mode.leaves : []));
+  }
+  return byMode;
+}
+
+/**
+ * Convert a router's raw resource strings into the canonical typed-pair
+ * identity, but only for a skill that ships a leaf-manifest.json — every
+ * other skill's replay carries no new field at all, which is the
+ * byte-for-byte no-regression guarantee for the rest of the benchmark fleet.
+ *
+ * Each raw string is dual-read (already-canonical, packet-qualified, or a
+ * declared shared alias) through the contract library, then cross-checked
+ * against the committed manifest so a resolvable-but-unregistered leaf still
+ * counts as unresolved rather than a silently invented pair (no unmapped
+ * leaves). Pairs are deduped by their composite (workflowMode, leafResourceId)
+ * key so the same leaf reached through two raw shapes counts once.
+ *
+ * @param {Object} args - Conversion inputs.
+ * @param {string} args.skillRoot - Skill root dir.
+ * @param {string[]} args.resources - Raw resource strings the router selected.
+ * @returns {{resourceContractVersion:number,pairs:Array<{workflowMode:string,leafResourceId:string}>,unresolved:string[]}|null} Typed-pair bundle, or null when not applicable.
+ */
+function buildResourceContract({ skillRoot, resources }) {
+  if (!hasLeafManifest(skillRoot)) return null;
+  const contract = loadContractLib();
+  if (!contract) return null;
+
+  const declaredModes = Object.values(buildRegistryIndex(skillRoot))
+    .filter((mode) => mode && mode.workflowMode && mode.packet)
+    .map((mode) => ({ workflowMode: String(mode.workflowMode), packet: String(mode.packet) }));
+  const aliasEntries = readJsonObject(path.join(skillRoot, 'leaf-aliases.json')) || [];
+  const manifestLeavesByMode = loadManifestLeavesByMode(skillRoot);
+
+  const pairs = [];
+  const unresolved = [];
+  const seen = new Set();
+  for (const raw of resources || []) {
+    const result = contract.dualReadLegacyResource({ raw, declaredModes, aliasEntries });
+    const leaves = result.ok ? manifestLeavesByMode.get(result.pair.workflowMode) : null;
+    if (!result.ok || !leaves || !leaves.has(result.pair.leafResourceId)) {
+      unresolved.push(raw);
+      continue;
+    }
+    const key = contract.compositeKey(result.pair);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    pairs.push(result.pair);
+  }
+  return { resourceContractVersion: contract.CONTRACT_VERSION, pairs, unresolved };
+}
+
 function buildHubRouteTelemetry({ skillRoot, intents, router, taskLower }) {
   if (!router || router.routerSource !== 'hub-router.json') {
     return { observed: false, reason: 'no-hub-router' };
@@ -513,6 +590,7 @@ function routeSkillResources({ skillRoot, taskText }) {
         router: surfaceRouter,
         extraRoots: registryPacketRoots(skillRoot),
       });
+      const resourceContract = buildResourceContract({ skillRoot, resources: asm.resources });
       return {
         parseable: true,
         intents,
@@ -521,11 +599,13 @@ function routeSkillResources({ skillRoot, taskText }) {
         scores,
         ...(asm.surface ? { surface: asm.surface } : {}),
         routeTelemetry,
+        ...(resourceContract ? { resourceContract } : {}),
       };
     }
   }
 
   const asm = assembleResources({ skillRoot, taskLower, intents, router });
+  const resourceContract = buildResourceContract({ skillRoot, resources: asm.resources });
   return {
     parseable: true,
     intents,
@@ -534,6 +614,7 @@ function routeSkillResources({ skillRoot, taskText }) {
     scores,
     ...(asm.surface ? { surface: asm.surface } : {}),
     routeTelemetry,
+    ...(resourceContract ? { resourceContract } : {}),
   };
 }
 
@@ -541,7 +622,10 @@ function routeSkillResources({ skillRoot, taskText }) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { routeSkillResources, parseRouter, scoreIntents, selectIntents, buildHubRouteTelemetry, loadSurfaceRouter, registryPacketRoots };
+module.exports = {
+  routeSkillResources, parseRouter, scoreIntents, selectIntents, buildHubRouteTelemetry, loadSurfaceRouter, registryPacketRoots,
+  hasLeafManifest, buildResourceContract,
+};
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));

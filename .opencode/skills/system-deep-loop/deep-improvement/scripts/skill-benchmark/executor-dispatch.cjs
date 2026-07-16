@@ -27,7 +27,64 @@ const path = require('path');
 const { routeSkillResources } = require('./router-replay.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. CORE LOGIC
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Selected-map union bundle cap: a normal query stays inside the top two
+// selected workflow modes, mirroring validate-playbook-topology.cjs's own
+// simultaneous-mode cap. A fixed numeric cap on resource COUNT would break a
+// legitimate wide-bundle scenario (a mode can legitimately carry many leaves),
+// so the cap is structural (mode count) and bypassed only by the named
+// `fullInventoryIntent` flag below, never inferred from the resource count.
+const MAX_WORKFLOW_MODES = 2;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. RESOURCE-CONTRACT HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Cap the router's selected workflow modes to the union bundle limit, in the
+ * router's own scored order, unless the scenario explicitly opts into the
+ * full-inventory intent.
+ *
+ * @param {Object} args - Cap inputs.
+ * @param {string[]} args.intents - Router-selected intents (workflowModes for a manifest-bearing skill).
+ * @param {boolean} args.fullInventoryIntent - Explicit bypass flag; never inferred.
+ * @returns {string[]} The capped (or full, when bypassed) workflow-mode selection.
+ */
+function cappedWorkflowModes({ intents, fullInventoryIntent }) {
+  const modes = Array.isArray(intents) ? intents : [];
+  return fullInventoryIntent ? modes : modes.slice(0, MAX_WORKFLOW_MODES);
+}
+
+/**
+ * Re-key the router's uncapped typed-pair bundle onto the capped workflow-mode
+ * selection. A no-op (returns null) unless the target skill produced a
+ * resourceContract at all, i.e. it ships a leaf-manifest.json — every other
+ * skill's dispatch stays exactly as it was before this contract existed.
+ *
+ * @param {Object} args - Bundle inputs.
+ * @param {Object} args.router - The routeSkillResources() result.
+ * @param {Object} args.scenario - The scenario being dispatched.
+ * @returns {{resourceContractVersion:number,workflowModes:string[],fullInventoryIntent:boolean,pairs:Array,unresolved:string[]}|null} Capped bundle, or null when not applicable.
+ */
+function buildTypedResourceContract({ router, scenario }) {
+  const uncapped = router && router.resourceContract;
+  if (!uncapped) return null;
+  const fullInventoryIntent = !!(scenario && scenario.fullInventoryIntent === true);
+  const workflowModes = cappedWorkflowModes({ intents: router.intents, fullInventoryIntent });
+  const selected = new Set(workflowModes);
+  return {
+    resourceContractVersion: uncapped.resourceContractVersion,
+    workflowModes,
+    fullInventoryIntent,
+    pairs: uncapped.pairs.filter((pair) => selected.has(pair.workflowMode)),
+    unresolved: uncapped.unresolved,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -84,6 +141,7 @@ function dispatchScenario({ scenario, skillRoot, traceMode, executor } = {}) {
 
   // Default: deterministic router-replay (the CI gate path).
   const router = routeSkillResources({ skillRoot, taskText: scenario.prompt || '' });
+  const resourceContract = buildTypedResourceContract({ router, scenario });
   return {
     mode: 'router',
     executor: 'router-replay',
@@ -96,6 +154,7 @@ function dispatchScenario({ scenario, skillRoot, traceMode, executor } = {}) {
     activation: null,
     missingResources: router.missingResources || [],
     raw: router,
+    ...(resourceContract ? { resourceContract } : {}),
   };
 }
 
@@ -124,7 +183,7 @@ function runOptionalExecutor(moduleRel, fnName, callArgs, base) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. EXPORTS
+// 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { dispatchScenario };
+module.exports = { dispatchScenario, cappedWorkflowModes, buildTypedResourceContract, MAX_WORKFLOW_MODES };
