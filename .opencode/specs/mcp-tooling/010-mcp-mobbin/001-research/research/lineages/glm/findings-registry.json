@@ -1,0 +1,31 @@
+{
+  "openQuestions": [
+    {"id": "kq2", "text": "Credential requirement and provisioning for Code Mode", "status": "partial", "note": "url-only configs imply no static client key; inferred, needs live round-trip to confirm"},
+    {"id": "kq4", "text": "Pro-plan gating and free-tier behavior", "status": "unknown", "note": "undocumented in all fetched sources; open install-guide caveat"}
+  ],
+  "resolvedQuestions": [
+    {"id": "kq1", "answer": "Design MCP exposes search_screens (query, platform ios|web, limit default 5 ~15 max, deep mode); returns {screens:[{index,id,app_name,mobbin_url,image_url,platform}],failed:[]} + inline image blocks. Docs MCP (search_mobbin_docs, query_docs_filesystem_mobbin_docs, submit_feedback) is a SEPARATE server.", "resolvedInRun": 2, "source": "mobbin-search SKILL.md; docs.mobbin.com/mcp"},
+    {"id": "kq3", "answer": "Remote Streamable HTTP at https://api.mobbin.com/mcp; no local process; url-only client config.", "resolvedInRun": 1, "source": "server.json remotes; mcp.json"},
+    {"id": "kq5", "answer": "One official skill mobbin-search driving search_screens; 6-step workflow (plan/announce/call/respond-or-board/build-board/more).", "resolvedInRun": 1, "source": "mobbin/skills; mobbin-search SKILL.md"},
+    {"id": "kq6", "answer": "Packet = remote streamable-http, Code Mode only, read-only (mutatesWorkspace:false), tool search_screens, sk-design pairing; UTCP manual name 'mobbin', exposed tool mobbin_search_screens. Exact .utcp_config.json schema deferred to phase 003.", "resolvedInRun": 2, "source": "derived from server.json + SKILL.md + hub pattern"}
+  ],
+  "keyFindings": [
+    {"id": "f-remote-http", "text": "Mobbin design MCP is remote Streamable HTTP at https://api.mobbin.com/mcp; no local process; mutatesWorkspace:false holds.", "run": 1, "source": "server.json; mcp.json"},
+    {"id": "f-server-repo-thin", "text": "mobbin-mcp-server repo is metadata-only (README, mcp.json, server.json, rules/, .cursor-plugin/).", "run": 1, "source": "github.com/mobbin/mobbin-mcp-server"},
+    {"id": "f-two-servers", "text": "TWO distinct Mobbin MCPs: api.mobbin.com/mcp (design refs, com.mobbin/mobbin) vs docs.mobbin.com/mcp (Mintlify docs, 'Mobbin Docs'). Do NOT conflate.", "run": 2, "source": "server.json; docs.mobbin.com/mcp"},
+    {"id": "f-search-screens", "text": "Design MCP tool = search_screens (query/platform/limit/deep) returns inline image content blocks + metadata.", "run": 2, "source": "mobbin-search SKILL.md"},
+    {"id": "f-no-client-key", "text": "All documented client configs are url-only; no static API key/headers/OAuth field present.", "run": 2, "source": "mcp.json; skills README", "confidence": "inferred"},
+    {"id": "f-images-inline", "text": "MCP returns images inline; mobbin-search visually inspects them; natural sk-design pairing surface.", "run": 1, "source": "mobbin/skills"},
+    {"id": "f-gating-unknown", "text": "Free-vs-Pro plan gating is undocumented in all fetched sources.", "run": 2, "source": "absence-of-evidence", "confidence": "unknown"},
+    {"id": "f-docs-mcp-secondary", "text": "docs.mobbin.com/mcp is a clean read-only docs-search surface (secondary candidate, out of primary mcp-mobbin scope).", "run": 2, "source": "docs.mobbin.com/mcp"}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Read auth/plan-gating/tool-list from server repo README", "reason": "READMEs omit them", "evidence": "github.com/mobbin/mobbin-mcp-server", "run": 1},
+    {"approach": "Local stdio process install (npx/node command)", "reason": "Server is remote streamable-http; url-only config", "evidence": "mcp.json", "run": 1},
+    {"approach": "Target docs.mobbin.com/mcp as the design server", "reason": "It is a separate Mintlify docs-search server; design refs at api.mobbin.com/mcp", "evidence": "server.json; docs.mobbin.com/mcp", "run": 2}
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": [],
+  "suppressedCandidates": [],
+  "promotedIdeas": []
+}

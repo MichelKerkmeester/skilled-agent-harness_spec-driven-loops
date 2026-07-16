@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":3,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.62,"status":"complete","focus":"read-only Code Mode transport packet, UTCP manual, and sk-design pairing gaps","findingsCount":7}
+{"type":"finding","id":"f-iter003-manual","label":"Register mobbin as an mcp manual with a mcp-remote stdio adapter","iteration":3,"source":"file:.opencode/skills/mcp-code-mode/references/configuration.md"}
+{"type":"finding","id":"f-iter003-no-key","label":"The manual has no Mobbin API-key environment variable","iteration":3,"source":"https://docs.mobbin.com/mcp/build-an-integration"}
+{"type":"finding","id":"f-iter003-read-only","label":"Transport allows Code Mode retrieval only and forbids workspace writes","iteration":3,"source":"file:.opencode/skills/mcp-tooling/mode-registry.json"}
+{"type":"finding","id":"f-iter003-pairing","label":"sk-design owns design judgment; Mobbin transport supplies evidence","iteration":3,"source":"file:.opencode/skills/mcp-tooling/SKILL.md"}
+{"type":"finding","id":"f-iter003-live-gate","label":"Authenticated tools/list and search_screens smoke test remain required","iteration":3,"source":"https://github.com/mobbin/skills/blob/main/skills/mobbin-search/SKILL.md"}
+{"type":"ruled_out","direction":"direct SSE declaration for Streamable HTTP-only endpoint","reason":"External server metadata says streamable-http; use the documented remote adapter until direct support is verified","iteration":3}
+{"type":"ruled_out","direction":"hardcoded full tool inventory","reason":"The public repository does not expose authenticated tools/list schemas","iteration":3}
+{"type":"edge","id":"e-iter003-config","relation":"SUPPORTS","source":"s-code-mode-config","target":"f-iter003-manual","iteration":3}
+{"type":"edge","id":"e-iter003-pairing","relation":"SUPPORTS","source":"s-mcp-tooling-contract","target":"f-iter003-pairing","iteration":3}
+

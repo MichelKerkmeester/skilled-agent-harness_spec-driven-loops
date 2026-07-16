@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/008-mcp-aside/001-research",
+  "spec_folder": "mcp-tooling/008-mcp-aside/001-research",
+  "parent_id": "mcp-tooling/008-mcp-aside",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-aside research",
+      "aside deep research",
+      "aside browser surface",
+      "aside cli verification",
+      "phase 001 research",
+      "mcp-aside research plan",
+      "aside deep research plan",
+      "aside fan-out schedule",
+      "phase 001 plan",
+      "mcp-aside research tasks",
+      "aside deep research tasks",
+      "aside fan-out tasks"
+    ],
+    "key_topics": [
+      "mcp-aside",
+      "research",
+      "aside",
+      "deep",
+      "browser",
+      "surface",
+      "cli",
+      "verification",
+      "phase",
+      "plan",
+      "fan-out",
+      "schedule"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/spec.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/plan.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/tasks.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/context/website-link.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/deep-research-findings-registry.json",
+      "research/fanout-attribution.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "context/website-link.md",
+      "research/orchestration-status.log",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      "scripts/doctor.sh",
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+      ".opencode/skills/mcp-code-mode/SKILL.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "website-link.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/context/website-link.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-status.log",
+        "kind": "file",
+        "path": "research/orchestration-status.log",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Does Aside",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Aside browser's developer surface is unverified: the program assumes an Aside CLI (primary) plus an Aside MCP server (fallback through Code Mode), but no one has confirmed the CLI exists as a real standalone binary, what tools the MCP server exposes, or how auth works",
+    "created_at": "2026-07-16T09:39:14Z",
+    "last_save_at": "2026-07-16T12:00:32.932Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:b882e829b3256097e356842551a68dbcd39ecf204e78a939ecb68ea23c4988db",
+    "source_doc_hashes": {
+      "spec.md": "324c06201afc546ad036a7c331d34f548fa29614d70ec15881312c42cb00ee5a",
+      "plan.md": "cba8744c11eab19a1212c3d2b785772b7010a095f2f86ff84b3f88a15e0dfe02",
+      "tasks.md": "4b16d1a3047cbd4dec035a0d8f505e419185f4498cc0bdc676a42645261b851d",
+      "implementation-summary.md": "360a84ffa3dafb2909922b1e980ee02e20de8bd44076fb8ab8ead284d2e537d7",
+      "research/research.md": "c6df6441de290ac6eec6d5c88b1def6fb605ea25c8b38d6785d305e789a7467b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

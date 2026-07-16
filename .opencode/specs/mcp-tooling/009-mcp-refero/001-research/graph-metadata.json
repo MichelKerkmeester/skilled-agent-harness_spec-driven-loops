@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/009-mcp-refero/001-research",
+  "spec_folder": "mcp-tooling/009-mcp-refero/001-research",
+  "parent_id": "mcp-tooling/009-mcp-refero",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-refero research",
+      "refero deep research",
+      "refero mcp tool surface",
+      "refero fan-out",
+      "phase 001 research",
+      "mcp-refero research plan",
+      "refero fan-out plan",
+      "refero deep research plan",
+      "phase 001 plan",
+      "mcp-refero research tasks",
+      "refero fan-out tasks",
+      "refero deep research tasks"
+    ],
+    "key_topics": [
+      "mcp-refero",
+      "research",
+      "refero",
+      "deep",
+      "mcp",
+      "tool",
+      "surface",
+      "fan-out",
+      "phase",
+      "plan",
+      "tasks",
+      "unverified"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/spec.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/plan.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/tasks.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/context/website-link.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/deep-research-findings-registry.json",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "context/website-link.md",
+      "research/orchestration-status.log",
+      "research/fanout-attribution.md",
+      "research/lineages/sol/research.md",
+      "research/lineages/sol/resource-map.md",
+      "research/lineages/sol/findings-registry.json",
+      "research/lineages/glm/research.md",
+      "research/lineages/glm/convergence-report.md",
+      "research/lineages/glm/findings-registry.json",
+      "research/lineages/luna/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "website-link.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/context/website-link.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-status.log",
+        "kind": "file",
+        "path": "research/orchestration-status.log",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/lineages/sol/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-report.md",
+        "kind": "doc",
+        "path": "research/lineages/glm/convergence-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Refero",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Workflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Pinned",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Refero MCP is an unverified external surface: this repo has never documented its tool names, parameters, auth expectations, rate limits, or free-vs-paid gating, and the official `referoskill` repo's conventions have not been reviewed",
+    "created_at": "2026-07-16T09:39:27Z",
+    "last_save_at": "2026-07-16T12:00:34.602Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:45da214180915b8b43dfaefa2f680100a35db0c3c538692b3919b719ff2df525",
+    "source_doc_hashes": {
+      "spec.md": "e177c18461c4d2497da0b627b262cc94dcb7bbad1b3272997a120d855a9a7a4f",
+      "plan.md": "b34f9e812607ccd586903652419aaa738776b974b6f9406a3d481a8bd67e478d",
+      "tasks.md": "4129c3e09a1652d67755c03a815b8c167c424cd596de5bbc40c882bdb44d451a",
+      "implementation-summary.md": "87568bd144ed1d80011d74541a22f84ceef1ec582eb53a93b0929f3105a7de4f",
+      "research/research.md": "2f8d39eb82604acce2aa69edb870e17e0c44b22c50624e5b5978d4fe9aff2774"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

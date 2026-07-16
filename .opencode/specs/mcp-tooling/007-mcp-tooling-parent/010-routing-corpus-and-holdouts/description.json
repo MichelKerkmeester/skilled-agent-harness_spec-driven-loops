@@ -1,0 +1,18 @@
+{
+  "specFolder": "mcp-tooling/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
+  "description": "Phase 2: routing-corpus-and-holdouts",
+  "keywords": [
+    "phase",
+    "routing-corpus-and-holdouts"
+  ],
+  "lastUpdated": "2026-07-16T12:58:37.323Z",
+  "specId": "010",
+  "folderSlug": "routing-corpus-and-holdouts",
+  "parentChain": [
+    "mcp-tooling",
+    "007-mcp-tooling-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

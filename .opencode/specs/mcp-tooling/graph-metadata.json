@@ -10,7 +10,10 @@
     "mcp-tooling/004-mcp-click-up-task-management",
     "mcp-tooling/005-nested-mcp-readme-sync",
     "mcp-tooling/006-mcp-skill-install-doctor-standardization",
-    "mcp-tooling/007-mcp-tooling-parent"
+    "mcp-tooling/007-mcp-tooling-parent",
+    "mcp-tooling/008-mcp-aside",
+    "mcp-tooling/009-mcp-refero",
+    "mcp-tooling/010-mcp-mobbin"
   ],
   "manual": {
     "depends_on": [],

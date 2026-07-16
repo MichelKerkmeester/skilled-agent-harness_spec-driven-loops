@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/010-mcp-mobbin/003-hub-integration",
+  "description": "After phase 002 the `mcp-mobbin` packet exists but is invisible: the hub's mode registry, router, parent SKILL.md, and graph metadata do not mention",
+  "keywords": [
+    "phase",
+    "mcp-mobbin",
+    "packet",
+    "exists",
+    "invisible",
+    "hub",
+    "mode",
+    "registry",
+    "router",
+    "parent",
+    "skill",
+    "graph",
+    "metadata",
+    "mention"
+  ],
+  "lastUpdated": "2026-07-16T12:00:08.200Z",
+  "specId": "003",
+  "folderSlug": "hub-integration",
+  "parentChain": [
+    "mcp-tooling",
+    "010-mcp-mobbin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

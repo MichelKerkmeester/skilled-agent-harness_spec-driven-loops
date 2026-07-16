@@ -118,6 +118,8 @@ Summary of aggregate file scope. Per-phase detail lives in each child's `plan.md
 | 7 | 007-routing-benchmark-and-review/ | Lane-C routing benchmark plus an independent deep-review; resolve the figma-transport routing question empirically | Deferred — Lane-C benchmark not run; review substituted via cross-check |
 | 8 | 008-cutover-and-rollout/ | Terminal gates (parent-skill-check STRICT, recursive strict validation, final sweep) and parent rollup | Partial — core gate passed (STRICT 0, validate 0/0); rollout items from phase 6 remain |
 
+| 9 | 009-incumbent-inventory-parity/ | [Phase 9 scope] | Pending |
+| 10 | 010-routing-corpus-and-holdouts/ | [Phase 10 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -136,6 +138,8 @@ Summary of aggregate file scope. Per-phase detail lives in each child's `plan.md
 | 005-foldin-clickup-and-figma | 006-advisor-and-integration | click-up and figma resolve under the hub; figma's transport surface preserved | figma `allowed-tools` byte-unchanged; self-path greps clean |
 | 006-advisor-and-integration | 007-routing-benchmark-and-review | One hub graph identity; three child graph files deleted; functional referrers repointed | Grep for the old flat paths returns zero live hits outside historical text |
 | 007-routing-benchmark-and-review | 008-cutover-and-rollout | Benchmark report generated; deep-review findings resolved or explicitly deferred | Benchmark report + review sign-off |
+| 008-cutover-and-rollout | 009-incumbent-inventory-parity | [Criteria TBD] | [Verification TBD] |
+| 009-incumbent-inventory-parity | 010-routing-corpus-and-holdouts | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/008-mcp-aside/001-research",
+  "description": "The Aside browser's developer surface is unverified: the program assumes an Aside CLI (primary) plus an Aside MCP server (fallback through Code Mode),",
+  "keywords": [
+    "aside",
+    "browser",
+    "developer",
+    "surface",
+    "unverified",
+    "program",
+    "assumes",
+    "cli",
+    "primary",
+    "plus",
+    "mcp",
+    "server",
+    "fallback",
+    "code",
+    "mode"
+  ],
+  "lastUpdated": "2026-07-16T12:00:08.127Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "mcp-tooling",
+    "008-mcp-aside"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

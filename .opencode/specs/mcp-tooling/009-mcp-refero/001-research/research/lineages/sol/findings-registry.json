@@ -1,0 +1,1098 @@
+{
+  "sessionId": "fanout-sol-1784198125985-iw9229",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-tools-does-the-live-refero-mcp-expose-for-apps-screens-flows-and-elements-w",
+      "inboxId": null,
+      "text": "What tools does the live Refero MCP expose for apps, screens, flows, and elements, with which parameters, defaults, and response shapes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-authentication-session-transport-and-error-behavior-applies-when-the-existi",
+      "inboxId": null,
+      "text": "What authentication, session, transport, and error behavior applies when the existing `.utcp_config.json` manual launches `mcp-remote` against `https://api.refero.design/mcp`?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-rate-pagination-result-image-and-free-versus-paid-limits-are-documented-or-",
+      "inboxId": null,
+      "text": "What rate, pagination, result, image, and free-versus-paid limits are documented or observable, and which claims remain unknown?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-does-the-official-referodesign-refero-skill-repository-structure-ui-referenc",
+      "inboxId": null,
+      "text": "How does the official `referodesign/refero_skill` repository structure UI-reference search workflows, prompts, output handling, and failure guidance?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-exact-read-only-code-mode-surface-sk-design-judgment-pairing-safety-boundar",
+      "inboxId": null,
+      "text": "What exact read-only Code Mode surface, `sk-design` judgment pairing, safety boundary, and verification plan should the downstream `mcp-refero` packet adopt?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-tools-does-the-live-refero-mcp-expose-for-apps-screens-flows-and-elements-w",
+      "inboxId": null,
+      "text": "What tools does the live Refero MCP expose for apps, screens, flows, and elements, with which parameters, defaults, and response shapes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-what-authentication-session-transport-and-error-behavior-applies-when-the-existi",
+      "inboxId": null,
+      "text": "What authentication, session, transport, and error behavior applies when the existing `.utcp_config.json` manual launches `mcp-remote` against `https://api.refero.design/mcp`?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-what-rate-pagination-result-image-and-free-versus-paid-limits-are-documented-or-",
+      "inboxId": null,
+      "text": "What rate, pagination, result, image, and free-versus-paid limits are documented or observable, and which claims remain unknown?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-how-does-the-official-referodesign-refero-skill-repository-structure-ui-referenc",
+      "inboxId": null,
+      "text": "How does the official `referodesign/refero_skill` repository structure UI-reference search workflows, prompts, output handling, and failure guidance?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-what-exact-read-only-code-mode-surface-sk-design-judgment-pairing-safety-boundar",
+      "inboxId": null,
+      "text": "What exact read-only Code Mode surface, `sk-design` judgment pairing, safety boundary, and verification plan should the downstream `mcp-refero` packet adopt?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Map current tools into a minimal Code Mode API and error contract.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Determine how `mcp-remote` handles Refero OAuth in the existing stdio manual and how bearer-token setups should be represented without secrets.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Inventory the repository's reference files and translate its methodology into a non-overlapping `sk-design` pairing.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm all parameter constraints and detailed response fields against Data Model and Examples pages.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Separate documented monthly call quota from undocumented burst/rate limits and batch/image constraints.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Identify exact packet verification cases for auth-required, free/no-access, stale tool names, pagination, batch reduction, images, and evolving response fields.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Define Code Mode function signatures without duplicating the eight remote tools or exposing arbitrary generic MCP calls.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Specify the handoff between retrieval evidence and `sk-design` taste/mode decisions.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Verify `mcp-remote` OAuth/browser behavior, token persistence implications, and failure presentation for the existing manual.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Define verification fixtures that do not require committing credentials or invoking destructive auth cleanup.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Determine the downstream packet’s exact Code Mode allowlist and argument validation.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Verify whether existing sibling transport packets already provide reusable error/Code Mode patterns.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Determine how the packet delegates design intent, register, workflow mode, and reference synthesis to `sk-design` without making Refero the taste authority.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Preserve open operational unknowns: authenticated live schemas, actual page size, burst/concurrency policy, and end-to-end OAuth behavior.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Cross-check the complete blueprint against the official Refero workflow references and local packet test conventions; resolve any contradictions and produce the final authoring checklist.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No authoring-blocking research question remains. Operational unknowns require a paid, operator-authorized authenticated session or future published documentation and must remain explicit in the packet.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-f-001-current-official-documentation-exposes-eight-tools-across-three-layers-ref",
+      "text": "F-001: Current official documentation exposes eight tools across three layers: `refero_search_styles`, `refero_get_style`, `refero_search_screens`, `refero_get_screen`, `refero_get_similar_screens`, `refero_get_screen_image`, `refero_search_flows`, and `refero_get_flow`. The current docs explicitly reject old `_tool` names, numeric screen IDs, `get_design_guidance`, and old search arguments such as `limit`, `offset`, `image_size`, and `include_similar`. [SOURCE: https://doc.refero.design/mcp/tools]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://github.com/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/blob/master/SKILL.md",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-1-2-f-002-styles-are-the-visual-direction-layer-screens-are-the-concrete-interface-p",
+      "text": "F-002: Styles are the visual-direction layer; screens are the concrete interface-pattern layer; flows are the journey-sequencing layer. Official guidance says visual work should begin with styles, then use screens and flows for product-specific decisions. [SOURCE: https://doc.refero.design/mcp/getting-started] [SOURCE: https://doc.refero.design/mcp/tools]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://github.com/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/blob/master/SKILL.md",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-1-3-f-003-the-documented-remote-transport-is-http-at-https-api-refero-design-mcp-aut",
+      "text": "F-003: The documented remote transport is HTTP at `https://api.refero.design/mcp`. Authentication can use OAuth or `Authorization: Bearer <token>`. Refero Pro is required, and Pro includes 8,000 MCP tool calls per month; Business offers higher limits and usage-based/custom arrangements. [SOURCE: https://doc.refero.design/mcp/getting-started]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://github.com/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/blob/master/SKILL.md",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-1-4-f-004-both-unauthenticated-get-and-json-rpc-initialize-returned-http-401-with-ww",
+      "text": "F-004: Both unauthenticated GET and JSON-RPC `initialize` returned HTTP 401 with `WWW-Authenticate: Bearer`, required scope `files:read`, and a protected-resource metadata URL. That advertised protected-resource URL returned 404, while `/.well-known/oauth-authorization-server` returned usable metadata: issuer `https://refero.design`, authorization-code and client-credentials grants, dynamic client registration, token and revocation endpoints, and scopes `read` and `files:read`. This confirms authentication is mandatory and identifies a discovery inconsistency that the transport must surface rather than hide. [SOURCE: https://api.refero.design/mcp] [SOURCE: https://api.refero.design/.well-known/oauth-authorization-server]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://github.com/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/blob/master/SKILL.md",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-1-5-f-005-the-official-skill-s-methodology-is-research-first-and-reference-locked-do",
+      "text": "F-005: The official skill's methodology is research-first and reference-locked: do not copy one reference, do not average conflicting references into a safe middle, preserve token/component roles, synthesize before implementation, and validate the rendered result against the locked direction. This is design judgment, not transport behavior. [SOURCE: https://github.com/referodesign/refero_skill/blob/master/SKILL.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://github.com/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/blob/master/SKILL.md",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-1-6-f-006-the-existing-manual-s-stdio-command-npx-y-mcp-remote-https-api-refero-desi",
+      "text": "F-006: The existing manual's stdio command (`npx -y mcp-remote https://api.refero.design/mcp`) is a bridge to the documented remote HTTP endpoint. The downstream packet should preserve that existing manual and call through Code Mode; it should not invent a second server URL or silently inject credentials. [SOURCE: file:.utcp_config.json:148] [SOURCE: https://doc.refero.design/mcp/getting-started]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://github.com/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/blob/master/SKILL.md",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-2-1-f-007-free-accounts-have-limited-website-search-results-but-no-mcp-refero-skill-",
+      "text": "F-007: Free accounts have limited website search results but no MCP, Refero Skill, or Figma plugin access. Pro is the first tier with MCP and Skill access; therefore there is no reduced free MCP tool surface to model—free is access-denied, not a smaller tools list. Team inherits Pro, and Business/volume access is separately negotiated. [SOURCE: https://doc.refero.design/help/plans]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://doc.refero.design/mcp/examples",
+        "https://doc.refero.design/mcp/business",
+        "https://doc.refero.design/help/plans",
+        "https://github.com/referodesign/refero_skill/blob/master/README.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/mcp-tools.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/example-workflow.md"
+      ]
+    },
+    {
+      "id": "finding-2-2-f-008-the-only-published-individual-mcp-quota-found-is-8-000-tool-calls-per-mont",
+      "text": "F-008: The only published individual MCP quota found is 8,000 tool calls per month for Pro. No official page reviewed publishes per-second, per-minute, concurrency, retry-after, or burst limits. The transport packet must call the monthly figure a quota and keep runtime rate-limit behavior `UNKNOWN` until an authenticated 429 can be observed or Refero documents it. [SOURCE: https://doc.refero.design/mcp/getting-started]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://doc.refero.design/mcp/examples",
+        "https://doc.refero.design/mcp/business",
+        "https://doc.refero.design/help/plans",
+        "https://github.com/referodesign/refero_skill/blob/master/README.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/mcp-tools.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/example-workflow.md"
+      ]
+    },
+    {
+      "id": "finding-2-3-f-009-business-documents-volume-pricing-scaled-to-usage-and-an-example-of-0-001-",
+      "text": "F-009: Business documents volume pricing scaled to usage and an example of $0.001/request with a $2,000 minimum commitment (2,000,000 initial requests), plus weekly screen/flow updates. This is a commercial integration example, not a generic MCP rate-limit contract. [SOURCE: https://doc.refero.design/mcp/business]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://doc.refero.design/mcp/examples",
+        "https://doc.refero.design/mcp/business",
+        "https://doc.refero.design/help/plans",
+        "https://github.com/referodesign/refero_skill/blob/master/README.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/mcp-tools.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/example-workflow.md"
+      ]
+    },
+    {
+      "id": "finding-2-4-f-010-search-pagination-is-page-based-style-search-takes-query-optional-page-opt",
+      "text": "F-010: Search pagination is page-based. Style search takes `query`, optional `page`, optional schema-dependent `response_format`; screen and flow searches require `query` plus platform `web|ios`, optional `page`, and schema-dependent `response_format`. Search responses expose `count`, `page`, `next_page`, `total_count`, and `total_pages`. [SOURCE: https://doc.refero.design/mcp/tools]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://doc.refero.design/mcp/examples",
+        "https://doc.refero.design/mcp/business",
+        "https://doc.refero.design/help/plans",
+        "https://github.com/referodesign/refero_skill/blob/master/README.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/mcp-tools.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/example-workflow.md"
+      ]
+    },
+    {
+      "id": "finding-2-5-f-011-detail-tools-support-exclusive-single-or-batch-identifiers-styles-and-scre",
+      "text": "F-011: Detail tools support exclusive single-or-batch identifiers: styles and screens use UUID strings; flows use numeric IDs. Official examples say keep batches modest; full style guidance suggests 3–4 styles per batch, while screen batches should be retried with fewer IDs on failure. No hard maximum is documented for screen/flow batch arrays. [SOURCE: https://doc.refero.design/mcp/tools] [SOURCE: https://doc.refero.design/mcp/examples] [SOURCE: https://github.com/referodesign/refero_skill/blob/master/references/mcp-tools.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://doc.refero.design/mcp/examples",
+        "https://doc.refero.design/mcp/business",
+        "https://doc.refero.design/help/plans",
+        "https://github.com/referodesign/refero_skill/blob/master/README.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/mcp-tools.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/example-workflow.md"
+      ]
+    },
+    {
+      "id": "finding-2-6-f-012-images-are-deliberately-split-from-screen-metadata-refero-get-screen-image",
+      "text": "F-012: Images are deliberately split from screen metadata. `refero_get_screen_image` accepts one screen UUID and `image_size: thumbnail|full`, defaulting to thumbnail; metadata-first is the recommended path to control context, with full images reserved for fine visual inspection. Similar screens are also split into `refero_get_similar_screens`, whose `limit` is 1–20 and defaults to 10. [SOURCE: https://doc.refero.design/mcp/tools] [SOURCE: https://doc.refero.design/mcp/data-model]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://doc.refero.design/mcp/examples",
+        "https://doc.refero.design/mcp/business",
+        "https://doc.refero.design/help/plans",
+        "https://github.com/referodesign/refero_skill/blob/master/README.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/mcp-tools.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/example-workflow.md"
+      ]
+    },
+    {
+      "id": "finding-2-7-f-013-response-shapes-are-intentionally-evolvable-the-data-model-says-exact-fiel",
+      "text": "F-013: Response shapes are intentionally evolvable: the Data Model says exact fields can grow. A transport wrapper should preserve returned structured content and avoid closed-world decoding that drops future fields. Core discriminators remain stable: screen UUIDs vs numeric flow IDs, `site` metadata, screen `content`, and flow steps with goal/action/system response. [SOURCE: https://doc.refero.design/mcp/data-model]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://doc.refero.design/mcp/examples",
+        "https://doc.refero.design/mcp/business",
+        "https://doc.refero.design/help/plans",
+        "https://github.com/referodesign/refero_skill/blob/master/README.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/mcp-tools.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/example-workflow.md"
+      ]
+    },
+    {
+      "id": "finding-2-8-f-014-the-official-repository-is-a-methodology-plus-conditional-references-not-a",
+      "text": "F-014: The official repository is a methodology plus conditional references, not a transport implementation. Its tree has one `SKILL.md`, ten focused reference guides, and an image asset. It explicitly says the craft methodology works without an account, whereas live MCP research requires a configured paid Refero connection. [SOURCE: https://github.com/referodesign/refero_skill] [SOURCE: https://github.com/referodesign/refero_skill/blob/master/README.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://doc.refero.design/mcp/getting-started",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://doc.refero.design/mcp/examples",
+        "https://doc.refero.design/mcp/business",
+        "https://doc.refero.design/help/plans",
+        "https://github.com/referodesign/refero_skill/blob/master/README.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/mcp-tools.md",
+        "https://github.com/referodesign/refero_skill/blob/master/references/example-workflow.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-f-015-mcp-remote-is-an-experimental-local-bridge-it-presents-a-stdio-mcp-server-",
+      "text": "F-015: `mcp-remote` is an experimental local bridge: it presents a stdio MCP server to the host and proxies bidirectionally to a remote MCP endpoint with auth. The existing manual is therefore structurally correct for a Code Mode runtime that consumes stdio manuals while Refero itself speaks remote HTTP. [SOURCE: https://github.com/geelen/mcp-remote] [SOURCE: file:.utcp_config.json:148]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/geelen/mcp-remote",
+        "https://github.com/geelen/mcp-remote/blob/main/package.json",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/mcp-auth-config.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/node-oauth-client-provider.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/protected-resource-metadata.ts",
+        "https://www.npmjs.com/package/mcp-remote",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-3-2-f-016-the-default-remote-strategy-is-http-first-falling-back-to-sse-only-if-http",
+      "text": "F-016: The default remote strategy is `http-first`, falling back to SSE only if HTTP returns 404. Refero documents MCP over HTTP, so the existing command needs no transport flag; forcing `sse-only` would contradict the official Refero setup. [SOURCE: https://github.com/geelen/mcp-remote#transport-strategies] [SOURCE: https://doc.refero.design/mcp/getting-started]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/geelen/mcp-remote",
+        "https://github.com/geelen/mcp-remote/blob/main/package.json",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/mcp-auth-config.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/node-oauth-client-provider.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/protected-resource-metadata.ts",
+        "https://www.npmjs.com/package/mcp-remote",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-3-3-f-017-with-no-custom-authorization-header-in-utcp-config-json-mcp-remote-perform",
+      "text": "F-017: With no custom `Authorization` header in `.utcp_config.json`, `mcp-remote` performs OAuth discovery, opens the system browser, listens on localhost port 3334 by default (choosing another free port if needed), and uses a 30-second callback timeout by default. Refero’s docs explicitly support OAuth when a bearer token is not supplied. [SOURCE: https://github.com/geelen/mcp-remote] [SOURCE: https://doc.refero.design/mcp/getting-started]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/geelen/mcp-remote",
+        "https://github.com/geelen/mcp-remote/blob/main/package.json",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/mcp-auth-config.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/node-oauth-client-provider.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/protected-resource-metadata.ts",
+        "https://www.npmjs.com/package/mcp-remote",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-3-4-f-018-oauth-material-is-persistent-local-state-mcp-remote-stores-client-informat",
+      "text": "F-018: OAuth material is persistent local state. `mcp-remote` stores client information, tokens, and the PKCE verifier beneath `MCP_REMOTE_CONFIG_DIR` or `~/.mcp-auth`, further namespaced by package version and a hash of server URL/resource/headers. Debug mode also writes detailed auth logs there. The transport packet must never read, return, log, or manage these credential files; it should only report actionable bridge errors. [SOURCE: https://github.com/geelen/mcp-remote/blob/main/src/lib/mcp-auth-config.ts] [SOURCE: https://github.com/geelen/mcp-remote/blob/main/src/lib/node-oauth-client-provider.ts]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/geelen/mcp-remote",
+        "https://github.com/geelen/mcp-remote/blob/main/package.json",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/mcp-auth-config.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/node-oauth-client-provider.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/protected-resource-metadata.ts",
+        "https://www.npmjs.com/package/mcp-remote",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-3-5-f-019-refero-s-www-authenticate-advertises-a-protected-resource-metadata-url-tha",
+      "text": "F-019: Refero’s `WWW-Authenticate` advertises a protected-resource metadata URL that currently returns 404. Current `mcp-remote` source treats 404 as a discovery miss and falls through to path/root well-known discovery. Because Refero’s authorization-server metadata is available at the API origin and advertises dynamic registration plus authorization-code flow, the existing OAuth bridge is plausibly recoverable, but this remains an inference until an authenticated browser flow is completed. [SOURCE: https://github.com/geelen/mcp-remote/blob/main/src/lib/protected-resource-metadata.ts] [SOURCE: https://api.refero.design/.well-known/oauth-authorization-server]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/geelen/mcp-remote",
+        "https://github.com/geelen/mcp-remote/blob/main/package.json",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/mcp-auth-config.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/node-oauth-client-provider.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/protected-resource-metadata.ts",
+        "https://www.npmjs.com/package/mcp-remote",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-3-6-f-020-static-bearer-mode-is-possible-through-header-with-an-environment-placehol",
+      "text": "F-020: Static bearer mode is possible through `--header` with an environment placeholder, but the existing manual intentionally has no credential field. A downstream skill should not add secrets, ask the model to handle tokens, or duplicate auth configuration. If operators choose bearer auth later, it belongs in manual/environment configuration, not Code Mode arguments or skill prose. [SOURCE: https://github.com/geelen/mcp-remote#custom-headers] [SOURCE: file:.utcp_config.json:152]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/geelen/mcp-remote",
+        "https://github.com/geelen/mcp-remote/blob/main/package.json",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/mcp-auth-config.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/node-oauth-client-provider.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/protected-resource-metadata.ts",
+        "https://www.npmjs.com/package/mcp-remote",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-3-7-f-021-the-manual-s-unpinned-mcp-remote-package-name-means-runtime-behavior-can-m",
+      "text": "F-021: The manual’s unpinned `mcp-remote` package name means runtime behavior can move with the npm latest/cache resolution. The current package is 0.1.38 and calls itself experimental. Research can document this dependency and test behavior, but this phase must not rewrite the pre-existing manual or claim a stable package-level API. [SOURCE: https://www.npmjs.com/package/mcp-remote] [SOURCE: https://github.com/geelen/mcp-remote/blob/main/package.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/geelen/mcp-remote",
+        "https://github.com/geelen/mcp-remote/blob/main/package.json",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/mcp-auth-config.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/node-oauth-client-provider.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/protected-resource-metadata.ts",
+        "https://www.npmjs.com/package/mcp-remote",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-3-8-f-022-useful-error-classes-for-the-packet-are-auth-required-browser-action-callb",
+      "text": "F-022: Useful error classes for the packet are: auth required/browser action; callback timeout; token exchange/refresh failure; invalid/stale local auth state; remote transport mismatch/unavailable; unknown or gated tool; Refero quota/rate response; and invalid tool arguments. Remediation should point to operator-owned auth/configuration, never execute destructive token clearing automatically. [SOURCE: https://github.com/geelen/mcp-remote#troubleshooting] [SOURCE: https://doc.refero.design/mcp/tools]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/geelen/mcp-remote",
+        "https://github.com/geelen/mcp-remote/blob/main/package.json",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/mcp-auth-config.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/node-oauth-client-provider.ts",
+        "https://github.com/geelen/mcp-remote/blob/main/src/lib/protected-resource-metadata.ts",
+        "https://www.npmjs.com/package/mcp-remote",
+        "https://api.refero.design/mcp",
+        "https://api.refero.design/.well-known/oauth-authorization-server",
+        "file:.utcp_config.json:148"
+      ]
+    },
+    {
+      "id": "finding-4-1-f-023-mcp-refero-should-be-a-fourth-mcp-tooling-mode-with-workflowmode-mcp-refer",
+      "text": "F-023: `mcp-refero` should be a fourth `mcp-tooling` mode with `workflowMode:\"mcp-refero\"`, `packetKind:\"transport\"`, a distinct backend such as `refero-code-mode-transport`, `routingClass:\"metadata\"`, `command:null`, `mutatesWorkspace:false`, and a `transport-axis.crossHubPairing` entry to `sk-design`. It is not a new hub and `mcp-code-mode` remains external infrastructure. [SOURCE: file:.opencode/skills/mcp-tooling/mode-registry.json] [SOURCE: file:.opencode/skills/mcp-tooling/SKILL.md]",
+      "addedAtIteration": 4,
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/graph-metadata.json",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "file:.opencode/skills/mcp-code-mode/SKILL.md",
+        "file:.opencode/skills/sk-design/SKILL.md",
+        "file:.opencode/skills/sk-design/shared/context_loading_contract.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-4-2-f-024-the-minimal-packet-tool-surface-is-read-glob-grep-and-the-four-code-mode-c",
+      "text": "F-024: The minimal packet tool surface is `Read`, `Glob`, `Grep`, and the four Code Mode capabilities `mcp__code_mode__search_tools`, `mcp__code_mode__list_tools`, `mcp__code_mode__tool_info`, and `mcp__code_mode__call_tool_chain`; forbid `Write`, `Edit`, `Bash`, and `Task`. Unlike Figma's CLI-first packet, Refero has no local CLI role: every external call must be Code Mode only and every result is evidence, not a workspace mutation. [SOURCE: file:.opencode/skills/mcp-code-mode/SKILL.md:4] [SOURCE: file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md:333]",
+      "addedAtIteration": 4,
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/graph-metadata.json",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "file:.opencode/skills/mcp-code-mode/SKILL.md",
+        "file:.opencode/skills/sk-design/SKILL.md",
+        "file:.opencode/skills/sk-design/shared/context_loading_contract.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-4-3-f-025-the-existing-manual-name-is-refero-so-the-downstream-callable-namespace-is",
+      "text": "F-025: The existing manual name is `refero`, so the downstream callable namespace is `refero.refero_<tool>` after progressive discovery: search/list, inspect exact syntax with `tool_info`, then execute inside `call_tool_chain`. The packet must not claim availability merely because `.utcp_config.json` contains the manual. [SOURCE: file:.utcp_config.json:148] [SOURCE: file:.opencode/skills/mcp-code-mode/SKILL.md:213] [SOURCE: file:.opencode/skills/mcp-code-mode/SKILL.md:285]",
+      "addedAtIteration": 4,
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/graph-metadata.json",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "file:.opencode/skills/mcp-code-mode/SKILL.md",
+        "file:.opencode/skills/sk-design/SKILL.md",
+        "file:.opencode/skills/sk-design/shared/context_loading_contract.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-4-4-f-026-the-packet-should-allowlist-exactly-the-eight-current-official-operations-",
+      "text": "F-026: The packet should allowlist exactly the eight current official operations—search/get styles, search/get/similar/image screens, and search/get flows—and reject stale names (`*_tool`, `get_design_guidance`), fabricated element/app endpoints, direct MCP calls, and guessed arguments. “Apps” and “elements” are discovery facets represented in returned style/screen/flow data, not separately documented MCP tool families. [SOURCE: https://doc.refero.design/mcp/tools] [SOURCE: https://doc.refero.design/mcp/data-model]",
+      "addedAtIteration": 4,
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/graph-metadata.json",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "file:.opencode/skills/mcp-code-mode/SKILL.md",
+        "file:.opencode/skills/sk-design/SKILL.md",
+        "file:.opencode/skills/sk-design/shared/context_loading_contract.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-4-5-f-027-a-transport-level-validator-should-enforce-documented-discriminated-unions",
+      "text": "F-027: A transport-level validator should enforce documented discriminated unions and bounds before execution: exactly one singular-or-batch ID field for detail tools, UUID screen/style identifiers, numeric flow identifiers, `web|ios` platform on screen/flow search, pages starting at 1, similar-screen limit 1–20, image size `thumbnail|full`, and only documented response formats. It should preserve unknown response fields and avoid silently rewriting rejected input. [SOURCE: https://doc.refero.design/mcp/tools] [SOURCE: https://doc.refero.design/mcp/data-model]",
+      "addedAtIteration": 4,
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/graph-metadata.json",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "file:.opencode/skills/mcp-code-mode/SKILL.md",
+        "file:.opencode/skills/sk-design/SKILL.md",
+        "file:.opencode/skills/sk-design/shared/context_loading_contract.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-4-6-f-028-sk-design-must-run-its-manager-intake-before-the-refero-transport-is-selec",
+      "text": "F-028: `sk-design` must run its manager intake before the Refero transport is selected for design-affecting work: establish goal, surface, inputs, constraints, and proof; resolve the smallest judgment mode; set Brand/Product before design decisions; show the visible plan; then fetch Refero evidence. Search phrases and selections are derived from that judgment context, while the selected mode—or `audit`—accepts, rejects, or synthesizes results. [SOURCE: file:.opencode/skills/sk-design/SKILL.md:44] [SOURCE: file:.opencode/skills/sk-design/shared/context_loading_contract.md:22]",
+      "addedAtIteration": 4,
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/graph-metadata.json",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "file:.opencode/skills/mcp-code-mode/SKILL.md",
+        "file:.opencode/skills/sk-design/SKILL.md",
+        "file:.opencode/skills/sk-design/shared/context_loading_contract.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-4-7-f-029-workflow-pairing-should-be-intent-specific-interface-owns-visual-direction",
+      "text": "F-029: Workflow pairing should be intent-specific: `interface` owns visual direction and screen composition; `foundations` owns style-system evidence such as typography, color, spacing, and hierarchy; `motion` may use flow sequences only as reference evidence; `audit` evaluates supplied/implemented surfaces against evidence; `md-generator` is not a default partner because it extracts measured live-site CSS rather than choosing references. UI build/redesign retains the hub's ordered interface+foundations bundle. [SOURCE: file:.opencode/skills/sk-design/SKILL.md:144] [SOURCE: file:.opencode/skills/sk-design/SKILL.md:166]",
+      "addedAtIteration": 4,
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/graph-metadata.json",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "file:.opencode/skills/mcp-code-mode/SKILL.md",
+        "file:.opencode/skills/sk-design/SKILL.md",
+        "file:.opencode/skills/sk-design/shared/context_loading_contract.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-4-8-f-030-the-official-refero-skill-s-reference-lock-belongs-at-the-judgment-boundar",
+      "text": "F-030: The official Refero Skill's reference lock belongs at the judgment boundary: declare one primary structural reference, optional secondary references for isolated traits, record borrowed versus rejected traits, and never average results into a generic mood board. The transport returns candidates, identifiers, metadata, and explicitly requested images; it does not decide what to copy, declare readiness, or bypass accessibility/responsive proof. [SOURCE: https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md] [SOURCE: file:.opencode/skills/sk-design/SKILL.md:174]",
+      "addedAtIteration": 4,
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/graph-metadata.json",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "file:.opencode/skills/mcp-code-mode/SKILL.md",
+        "file:.opencode/skills/sk-design/SKILL.md",
+        "file:.opencode/skills/sk-design/shared/context_loading_contract.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-4-9-f-031-non-credentialed-verification-should-cover-registry-router-parity-tool-per",
+      "text": "F-031: Non-credentialed verification should cover registry/router parity, tool-permission denial, namespace construction, discovery-before-call, exact eight-tool allowlisting, all argument bounds/unions, response pass-through, structured errors/timeouts, and mandatory `sk-design` ordering. Credentialed smoke tests are separate operator tests: successful OAuth, tool discovery, one metadata search, and one explicit image fetch, with no token/log capture and no automatic auth-state deletion. [SOURCE: file:.opencode/skills/mcp-code-mode/SKILL.md:365] [SOURCE: file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md:271] [SOURCE: https://github.com/geelen/mcp-remote#troubleshooting]",
+      "addedAtIteration": 4,
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/graph-metadata.json",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "file:.opencode/skills/mcp-code-mode/SKILL.md",
+        "file:.opencode/skills/sk-design/SKILL.md",
+        "file:.opencode/skills/sk-design/shared/context_loading_contract.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/data-model",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/main/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-5-1-f-032-the-official-repository-s-default-branch-is-master-not-main-current-head-i",
+      "text": "F-032: The official repository’s default branch is `master`, not `main`; current head is `f78b4eccf112d7a179b92afeafdd7e8684560ac2`, root skill version 1.1, with ten Markdown references plus one banner asset. Downstream citations and provenance should use `master` or the immutable commit, and earlier `main` URLs should be treated as branch-name mistakes rather than evidence. [SOURCE: https://api.github.com/repos/referodesign/refero_skill] [SOURCE: https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://api.github.com/repos/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/example-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/anti-ai-slop.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/examples",
+        "file:.utcp_config.json:148",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/sk-design/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-5-2-f-033-adopt-the-upstream-research-mechanics-not-its-authority-model-brief-first-",
+      "text": "F-033: Adopt the upstream research mechanics, not its authority model: brief first; styles for visual language; screens for concrete patterns/elements/app context; flows for journeys; search 3–5 angles; retrieve a modest shortlist; select one primary reference; borrow only 1–2 bounded traits; preserve token/media roles; create a reference lock and decision ledger before implementation. These mechanics become evidence supplied to `sk-design`. [SOURCE: https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md] [SOURCE: https://doc.refero.design/mcp/examples]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://api.github.com/repos/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/example-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/anti-ai-slop.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/examples",
+        "file:.utcp_config.json:148",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/sk-design/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-5-3-f-034-the-upstream-root-skill-explicitly-presents-itself-as-the-primary-default-",
+      "text": "F-034: The upstream root skill explicitly presents itself as the primary/default design methodology and includes direction selection, optional image generation, implementation, and visual QA. That conflicts with this packet’s requested transport role and the local contract that `sk-design` owns taste, mode selection, proof, and ready claims. `mcp-refero` must not copy upstream activation priority, implementation permissions, three-direction user chooser, image-generation behavior, or design acceptance language. [SOURCE: https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md] [SOURCE: https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md] [SOURCE: file:.opencode/skills/sk-design/SKILL.md:263]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://api.github.com/repos/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/example-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/anti-ai-slop.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/examples",
+        "file:.utcp_config.json:148",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/sk-design/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-5-4-f-035-the-upstream-setup-example-uses-a-direct-http-client-with-a-bearer-header-",
+      "text": "F-035: The upstream setup example uses a direct HTTP client with a bearer header, whereas this repository already has a stdio `refero` manual launching `npx -y mcp-remote https://api.refero.design/mcp` with empty env. The packet must describe the existing manual as authoritative, avoid an install/config snippet, and route auth failures to operator-owned OAuth/manual setup without accepting credentials in prompts or calls. [SOURCE: https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md] [SOURCE: file:.utcp_config.json:148]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://api.github.com/repos/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/example-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/anti-ai-slop.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/examples",
+        "file:.utcp_config.json:148",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/sk-design/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-5-5-f-036-the-official-skill-reference-says-response-format-is-client-schema-depende",
+      "text": "F-036: The official skill reference says `response_format` is client/schema dependent even though the current docs enumerate it on seven text-returning tools; `refero_get_screen_image` has no response format. Therefore runtime `tool_info` is the final callable schema, while the packet documents the current expected schema and fails closed on drift. This reconciles docs/repository variation without guessing. [SOURCE: https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md] [SOURCE: https://doc.refero.design/mcp/tools]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://api.github.com/repos/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/example-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/anti-ai-slop.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/examples",
+        "file:.utcp_config.json:148",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/sk-design/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-5-6-f-037-router-integration-is-mechanical-and-testable-append-mcp-refero-to-tiebrea",
+      "text": "F-037: Router integration is mechanical and testable: append `mcp-refero` to `tieBreak`; add a `routerSignals` entry with narrow classes such as `refero-aliases` and `design-reference-search`; add exact vocabulary like `refero`, `refero mcp`, `search Refero styles/screens/flows`, and `UI reference research`; map the resource to `mcp-refero/SKILL.md`; and add a routing fixture proving Refero wins without letting generic “design” steal Figma or browser intents. [SOURCE: file:.opencode/skills/mcp-tooling/hub-router.json] [SOURCE: file:.opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/figma_transport.md]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://api.github.com/repos/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/example-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/anti-ai-slop.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/examples",
+        "file:.utcp_config.json:148",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/sk-design/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-5-7-f-038-the-downstream-change-set-must-keep-projections-synchronized-packet-folder",
+      "text": "F-038: The downstream change set must keep projections synchronized: packet folder (`SKILL.md`, `README.md`, targeted references, manual playbook, changelog), hub `SKILL.md`/`README.md`/`description.json`, `mode-registry.json`, `hub-router.json`, hub playbook, and `graph-metadata.json`. Counts and prose describing “three modes” or “one transport” must become four modes/two transports; `mcp-code-mode` stays an external dependency and `.utcp_config.json` remains unchanged. [SOURCE: file:.opencode/skills/mcp-tooling/SKILL.md] [SOURCE: file:.opencode/skills/mcp-tooling/graph-metadata.json]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://api.github.com/repos/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/example-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/anti-ai-slop.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/examples",
+        "file:.utcp_config.json:148",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/sk-design/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-5-8-f-039-local-manual-test-convention-supports-four-fixture-groups-hub-routing-refe",
+      "text": "F-039: Local manual-test convention supports four fixture groups: hub routing (Refero-specific positive plus Figma/generic-design holdouts), Code Mode discovery (manual prefix, `tool_info`, eight expected tools, fail-closed drift), read-only workflows (style→screen, flow, similar, explicit image, pagination/batch), and recovery/negative controls (401/browser action, quota/429, invalid UUID/flow ID, stale names/args, unavailable tool, timeout, no secret logging). Each needs exact prompt, command sequence, signals, evidence, verdict, and triage; live paid/OAuth scenarios must be marked operator-dependent. [SOURCE: file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md:340] [SOURCE: file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://api.github.com/repos/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/example-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/anti-ai-slop.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/examples",
+        "file:.utcp_config.json:148",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/sk-design/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-5-9-f-040-final-unknowns-are-operational-rather-than-packet-design-blockers-authenti",
+      "text": "F-040: Final unknowns are operational rather than packet-design blockers: authenticated live tool schemas and response drift, actual search page size, unpublished per-second/concurrency/burst policy, `Retry-After` behavior, and successful end-to-end OAuth/refresh through the currently broken advertised protected-resource metadata URL. The packet should report these as unknown or runtime-observed, never hardcode guarantees. [SOURCE: https://doc.refero.design/mcp/tools] [SOURCE: https://github.com/geelen/mcp-remote] [SOURCE: https://api.refero.design/.well-known/oauth-authorization-server]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://api.github.com/repos/referodesign/refero_skill",
+        "https://github.com/referodesign/refero_skill/tree/f78b4eccf112d7a179b92afeafdd7e8684560ac2",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/visual-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/example-workflow.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/mcp-tools.md",
+        "https://raw.githubusercontent.com/referodesign/refero_skill/master/references/anti-ai-slop.md",
+        "https://doc.refero.design/mcp/tools",
+        "https://doc.refero.design/mcp/examples",
+        "file:.utcp_config.json:148",
+        "file:.opencode/skills/mcp-tooling/hub-router.json",
+        "file:.opencode/skills/mcp-tooling/mode-registry.json",
+        "file:.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md",
+        "file:.opencode/skills/sk-design/SKILL.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-3b78fde89744",
+      "text": "Treat Refero MCP as anonymously usable: the live endpoint rejects both GET and `initialize` without Bearer authorization. [SOURCE: https://api.refero.design/mcp]",
+      "contentHash": "3b78fde89744",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-63746d94a388",
+      "text": "Treat the cached four-tool, numeric-ID, `limit`/`offset` documentation as current: the current official Tools page explicitly defines an eight-tool UUID/page-based surface and lists the older patterns as mistakes. [SOURCE: https://doc.refero.design/mcp/tools]",
+      "contentHash": "63746d94a388",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-7e345f4684c2",
+      "text": "Unauthenticated `tools/list`: authentication blocks live tool enumeration, so official schemas are the authoritative source until a credentialed verification is available. [SOURCE: https://api.refero.design/mcp]",
+      "contentHash": "7e345f4684c2",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-26005bef0a37",
+      "text": "Derive per-minute or concurrency limits from unauthenticated responses: the 401 responses expose no rate headers and cannot establish authenticated runtime limits. [SOURCE: https://api.refero.design/mcp]",
+      "contentHash": "26005bef0a37",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-40ace65b4657",
+      "text": "Encode 8,000 calls/month as a request-rate limit: it is a monthly quota; no burst/window rate is published. [SOURCE: https://doc.refero.design/mcp/getting-started]",
+      "contentHash": "40ace65b4657",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d3c4e3c7e689",
+      "text": "Model Free as a smaller MCP plan: official Plans documentation states that Free has no MCP access. [SOURCE: https://doc.refero.design/help/plans]",
+      "contentHash": "d3c4e3c7e689",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-2f603c1ace6f",
+      "text": "Strip unknown response fields into a rigid local model: official Data Model documentation says exact fields can grow over time. [SOURCE: https://doc.refero.design/mcp/data-model]",
+      "contentHash": "2f603c1ace6f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1fc2fb113036",
+      "text": "Automatically delete `~/.mcp-auth` on failures: it is credential state and destructive cleanup requires operator intent. [SOURCE: https://github.com/geelen/mcp-remote#troubleshooting]",
+      "contentHash": "1fc2fb113036",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5241df2d0dbd",
+      "text": "Credential-free confirmation of Refero OAuth success: browser authorization and token exchange require a Refero account and would write local auth state outside the lineage. [SOURCE: https://doc.refero.design/mcp/getting-started]",
+      "contentHash": "5241df2d0dbd",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-4eec6af7b706",
+      "text": "Force SSE for Refero: official Refero docs specify HTTP and `mcp-remote` already defaults to HTTP-first. [SOURCE: https://doc.refero.design/mcp/getting-started]",
+      "contentHash": "4eec6af7b706",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-d76381e4ce60",
+      "text": "Put bearer tokens in Code Mode calls or skill files: secrets belong in operator-controlled environment/manual configuration. [SOURCE: https://github.com/geelen/mcp-remote#custom-headers]",
+      "contentHash": "d76381e4ce60",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-2a2a4315f5ca",
+      "text": "Allow Bash because `mcp-remote` is launched with `npx`: Code Mode owns launching the existing stdio manual; the packet itself has no shell responsibility. [SOURCE: file:.opencode/skills/mcp-code-mode/SKILL.md:269]",
+      "contentHash": "2a2a4315f5ca",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-d8c0e41887dc",
+      "text": "Create a standalone Refero hub or embed Refero in `sk-design`: it is an MCP bridge and belongs as a transport mode under `mcp-tooling`; design judgment remains in `sk-design`. [SOURCE: file:.opencode/skills/mcp-tooling/SKILL.md]",
+      "contentHash": "d8c0e41887dc",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3b1db10c98ba",
+      "text": "Live Code Mode tool discovery was intentionally not invoked: it can launch `mcp-remote`, trigger browser OAuth, and write credential state outside the bound artifact directory. [SOURCE: https://github.com/geelen/mcp-remote]",
+      "contentHash": "3b1db10c98ba",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-b63fba1a61c0",
+      "text": "Treat search rank or image similarity as a design verdict: Refero supplies reference evidence and `sk-design` owns acceptance. [SOURCE: file:.opencode/skills/sk-design/SKILL.md:263]",
+      "contentHash": "b63fba1a61c0",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ef66e670c005",
+      "text": "Add generic “design” as a strong Refero router keyword: it would collide with Figma and the design hub; narrow Refero/reference-research phrases are safer. [SOURCE: file:.opencode/skills/mcp-tooling/hub-router.json]",
+      "contentHash": "ef66e670c005",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a02f17aeb25a",
+      "text": "Credential-free tests cannot validate paid tool execution or OAuth refresh without violating the lineage’s no-outside-write boundary. [SOURCE: https://github.com/geelen/mcp-remote]",
+      "contentHash": "a02f17aeb25a",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-0e864d98505f",
+      "text": "Hardcode a single authenticated schema snapshot: Code Mode discovery and `tool_info` are the runtime authority, with the official docs as expected baseline. [SOURCE: file:.opencode/skills/mcp-code-mode/SKILL.md:285]",
+      "contentHash": "0e864d98505f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-fd3bcf525cde",
+      "text": "Public documentation does not disclose per-second, burst, concurrency, or retry-header behavior. [SOURCE: https://doc.refero.design/mcp/tools]",
+      "contentHash": "fd3bcf525cde",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-70e0247e1350",
+      "text": "Replace the existing manual with the upstream bearer-header example: the operator explicitly scoped the packet atop the existing `mcp-remote` manual. [SOURCE: file:.utcp_config.json:148]",
+      "contentHash": "70e0247e1350",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c8289884fcf3",
+      "text": "Vendor or install the upstream Refero Skill wholesale: its authority, implementation, image-generation, and QA scope conflicts with the local transport/taste separation. [SOURCE: https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md]",
+      "contentHash": "c8289884fcf3",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 16,
+    "keyFindings": 40,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.44,
+    "coverageBySources": {
+      "api.github.com": 1,
+      "api.refero.design": 2,
+      "code": 11,
+      "doc.refero.design": 6,
+      "github.com": 11,
+      "raw.githubusercontent.com": 6,
+      "www.npmjs.com": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/009-mcp-refero/001-research/research/lineages/sol/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

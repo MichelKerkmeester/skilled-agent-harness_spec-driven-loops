@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/008-mcp-aside",
+  "spec_folder": "mcp-tooling/008-mcp-aside",
+  "parent_id": null,
+  "children_ids": [
+    "mcp-tooling/008-mcp-aside/001-research",
+    "mcp-tooling/008-mcp-aside/002-skill-authoring",
+    "mcp-tooling/008-mcp-aside/003-hub-integration",
+    "mcp-tooling/008-mcp-aside/004-validation-and-handoff"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008-mcp-aside",
+      "phase parent",
+      "mcp-aside-devtools",
+      "aside browser bridge",
+      "aside cli mcp mode"
+    ],
+    "key_topics": [
+      "008-mcp-aside",
+      "phase",
+      "parent",
+      "mcp-aside-devtools",
+      "aside",
+      "browser",
+      "bridge",
+      "cli",
+      "mcp",
+      "mode",
+      "mcp-tooling",
+      "hub"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Does Aside",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-tooling` parent hub bridges Chrome DevTools debugging (`mcp-chrome-devtools`), ClickUp orchestration (`mcp-click-up`), and a Figma Desktop transport (`mcp-figma`) — but it has no AI-browser-automation bridge",
+    "created_at": "2026-07-16T09:39:13Z",
+    "last_save_at": "2026-07-16T12:06:57.221Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:94a46d309e46a26c50962d5858e09ebe8cb00d01aa42e29873d29b7f1f4c9491",
+    "source_doc_hashes": {
+      "spec.md": "ef22eefd1312d3f6a97f120ef19944b19035dc6c6de11c3f446766bc0e615f3b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-16T12:06:57.221Z"
+  }
+}

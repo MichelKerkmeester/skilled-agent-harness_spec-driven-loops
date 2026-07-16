@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/008-mcp-aside/003-hub-integration",
+  "spec_folder": "mcp-tooling/008-mcp-aside/003-hub-integration",
+  "parent_id": "mcp-tooling/008-mcp-aside",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-aside hub integration",
+      "aside mode registry entry",
+      "aside utcp manual",
+      "phase 003 hub-integration",
+      "mcp-aside hub integration plan",
+      "aside mode registry plan",
+      "aside utcp manual plan",
+      "phase 003 plan",
+      "mcp-aside hub integration tasks",
+      "aside mode registry tasks",
+      "aside utcp manual tasks",
+      "phase 003 tasks"
+    ],
+    "key_topics": [
+      "mcp-aside",
+      "hub",
+      "integration",
+      "aside",
+      "mode",
+      "registry",
+      "entry",
+      "utcp",
+      "manual",
+      "phase",
+      "hub-integration",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/008-mcp-aside/003-hub-integration/spec.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/003-hub-integration/plan.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/003-hub-integration/tasks.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/003-hub-integration/checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/003-hub-integration/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/003-hub-integration/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/003-hub-integration/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/003-hub-integration/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Additively",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 002 the `mcp-aside-devtools` packet exists but is invisible: the hub's mode-registry and router do not know it, the parent SKILL.md does not document it, Code Mode has no `aside` manual to reach the Aside MCP server, and the advisor skill-graph still reflects a three-mode hub",
+    "created_at": "2026-07-16T09:39:16Z",
+    "last_save_at": "2026-07-16T12:00:33.595Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:986cc7ca3830273c6bf42cc96dce57cd17ad017357adf8d3982ce26e84f04e05",
+    "source_doc_hashes": {
+      "spec.md": "f62ecae2a64388dcb4834ce8d3d70a294263dfc70e20a5c87538003444221da6",
+      "plan.md": "6eea65ab49f5cb2bb334bc099f9b3fbc328ea3587d0ecc32461eaf2468c012f5",
+      "tasks.md": "bc5d8bee2d0cb5dfaa64a46f9e6923f1edb8fdab2a52206f0977f894c1909a7e",
+      "checklist.md": "16208a97a15cfe28da671072a65dda4ad2f3e28ac34b9608c92f0abe64401bd9",
+      "implementation-summary.md": "059502937f0587dda4cafdf2ed70f7a4f9c94f82927d5f7ed4a8177c9778490a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

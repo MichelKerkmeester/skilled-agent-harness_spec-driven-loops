@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/008-mcp-aside/004-validation-and-handoff",
+  "spec_folder": "mcp-tooling/008-mcp-aside/004-validation-and-handoff",
+  "parent_id": "mcp-tooling/008-mcp-aside",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-aside validation",
+      "aside mode terminal gates",
+      "aside handoff",
+      "phase 004 validation-and-handoff",
+      "mcp-aside validation plan",
+      "aside terminal gates plan",
+      "aside handoff plan",
+      "phase 004 plan",
+      "mcp-aside validation tasks",
+      "aside terminal gate tasks",
+      "aside handoff tasks",
+      "phase 004 tasks"
+    ],
+    "key_topics": [
+      "mcp-aside",
+      "validation",
+      "aside",
+      "mode",
+      "terminal",
+      "gates",
+      "handoff",
+      "phase",
+      "validation-and-handoff",
+      "plan",
+      "tasks",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/008-mcp-aside/004-validation-and-handoff/spec.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/004-validation-and-handoff/plan.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/004-validation-and-handoff/tasks.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/004-validation-and-handoff/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/004-validation-and-handoff/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/004-validation-and-handoff/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-item",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 001-003 the mode is authored and registered, but nothing yet proves the whole program holds together under strict gates: the packet has only passed non-strict `--check`, the hub has not been re-validated as a four-mode unit, and this spec packet's own docs carry no completion evidence",
+    "created_at": "2026-07-16T09:39:17Z",
+    "last_save_at": "2026-07-16T12:04:31.777Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4e842338e8d7c7d28ce57b6d41b6c54866957e8f2dc9f090197cc3e2f65ba876",
+    "source_doc_hashes": {
+      "spec.md": "f66ca287d9a10984bd44c525bc40ae8b3ab548fd95d117308cafc0b1aa3dbad4",
+      "plan.md": "51d3a2acbf5c5fbf77057d086ce71266fc1764b5e72135634b3126a3af91854d",
+      "tasks.md": "94b0e0c18226b336aa71beb73b25c65d9243a12ef532717192de7eeff197f648",
+      "implementation-summary.md": "446737803672cb6a51b739b6c317f0722e65438300c42579f44a278e3814d03c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

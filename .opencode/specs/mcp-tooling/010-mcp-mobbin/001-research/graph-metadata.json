@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/010-mcp-mobbin/001-research",
+  "spec_folder": "mcp-tooling/010-mcp-mobbin/001-research",
+  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-mobbin research",
+      "mobbin deep research",
+      "mobbin mcp tool surface",
+      "mobbin transport eligibility",
+      "phase 001 research",
+      "mcp-mobbin research plan",
+      "mobbin fan-out plan",
+      "mobbin deep research iterations",
+      "phase 001 plan",
+      "mcp-mobbin research tasks",
+      "mobbin fan-out tasks",
+      "mobbin synthesis verification"
+    ],
+    "key_topics": [
+      "mcp-mobbin",
+      "research",
+      "mobbin",
+      "deep",
+      "mcp",
+      "tool",
+      "surface",
+      "transport",
+      "eligibility",
+      "phase",
+      "plan",
+      "fan-out"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/spec.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/plan.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/tasks.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/context/website-link.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "context/website-link.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "website-link.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/context/website-link.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Which Mobbin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 002 and 003 must author a transport packet and a `.utcpconfig.json` manual for an MCP server this repo has never run",
+    "created_at": "2026-07-16T09:39:32Z",
+    "last_save_at": "2026-07-16T12:00:36.218Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:539b761c6f701f36ed67eec909a07a882111be301292a9eb57addd06381cc4cc",
+    "source_doc_hashes": {
+      "spec.md": "be541306d6944507d9ccc3a93a0eeb21a838530f189767c69c373ce2150e5662",
+      "plan.md": "8e57904c4f6ed8ee54aeb34542bd407f1dff8569209c395216fe8064425c8e22",
+      "tasks.md": "6601bf630e8b07ba994884988c12483aa829b45ef3ba1401e8a593eba9faa971",
+      "implementation-summary.md": "5c18071e0cfcac8e4bd82387ec0939842266567c8aafc835d11ffad5731538a8",
+      "research/research.md": "2acfba4043c5e8989b6c68d08fa31beeb17445a5d5432a03e95f4374cfda0697"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

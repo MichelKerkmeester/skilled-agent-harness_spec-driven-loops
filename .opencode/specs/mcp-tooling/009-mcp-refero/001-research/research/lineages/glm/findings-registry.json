@@ -1,0 +1,36 @@
+{
+  "lineage": "glm",
+  "sessionId": "fanout-glm-1784198125985-iw9229",
+  "specFolder": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research",
+  "openQuestions": [
+    { "id": "q3", "text": "What rate limits apply, and do they differ between free and paid tiers?", "status": "open", "note": "CONFIRMED UNDOCUMENTED in all authoritative sources (skill repo + refero.design SPA). Unverified gap — resolve via live probe in a later phase.", "resolvedAs": "negative_knowledge" },
+    { "id": "q4", "text": "What is the free vs paid gating — which tools/capabilities/result volumes are free vs paid-only?", "status": "open", "note": "Only signal: craft knowledge = no account; live MCP = auth required. Exact tier boundaries UNDOCUMENTED. Unverified gap.", "resolvedAs": "negative_knowledge" }
+  ],
+  "resolvedQuestions": [
+    { "id": "q1", "text": "What tools does the Refero MCP server expose (names, parameters, response shapes) for UI-design-reference search across apps, screens, flows, elements?", "status": "resolved", "resolvedInIteration": 1, "evidence": "iteration-001.md F1" },
+    { "id": "q2", "text": "What auth model does the Refero MCP expect through mcp-remote (anonymous, OAuth, API key)?", "status": "resolved", "resolvedInIteration": 2, "evidence": "iteration-002.md F8", "answer": "Two paths: mcp-remote OAuth browser flow (existing manual, empty env, interactive first-use) OR Bearer token via HTTP header; endpoint https://api.refero.design/mcp" },
+    { "id": "q5", "text": "What conventions does the refero_skill repo document that the mcp-refero transport packet should mirror?", "status": "resolved", "resolvedInIteration": 1, "evidence": "iteration-001.md F5" },
+    { "id": "q6", "text": "How should a read-only Code-Mode-only transport packet be authored atop the existing mcp-remote manual, paired with sk-design judgment?", "status": "resolved", "resolvedInIteration": 2, "evidence": "iteration-002.md F9, F10", "answer": "Simpler read-only-only peer of mcp-figma (MCP-only, no CLI); SKILL.md + references(refero_mcp_tools, tool_surface collapsed to read-only, mcp_wiring, troubleshooting) + assets(utcp_refero_manual, env_template); Code Mode naming refero.refero_<tool>; pairs with sk-design for judgment" }
+  ],
+  "keyFindings": [
+    { "id": "f1", "iteration": 1, "text": "8 read-only tools across 3 layers: styles (search_styles, get_style), screens (search_screens, get_screen, get_similar_screens, get_screen_image), flows (search_flows, get_flow)", "source": "references/mcp-tools.md" },
+    { "id": "f2", "iteration": 1, "text": "Documented client mistakes: no old _tool names, no get_design_guidance, no image_size/include_similar on get_screen, no limit/image_size/include_similar on search tools, response_format only where schema shows it", "source": "references/mcp-tools.md" },
+    { "id": "f3", "iteration": 1, "text": "Auth: Bearer-token HTTP transport OR mcp-remote OAuth browser flow; endpoint https://api.refero.design/mcp; existing manual uses mcp-remote with empty env", "source": "README + .utcp_config.json" },
+    { "id": "f4", "iteration": 1, "text": "Coverage limit: styles are web-marketing-scoped only (no dashboards/auth/settings/iOS as style systems); screens+flows support platform web|ios", "source": "references/mcp-tools.md + SKILL.md" },
+    { "id": "f5", "iteration": 1, "text": "refero_skill is a standalone design-methodology skill (peer of sk-design), NOT an mcp-tooling transport; MIT; SKILL.md + references/ + assets/", "source": "README + SKILL.md" },
+    { "id": "f6", "iteration": 1, "text": "Existing .utcp_config.json manual is a minimal stdio-over-mcp-remote bridge, empty env; transport packet authored atop it read-only", "source": ".utcp_config.json" },
+    { "id": "f7", "iteration": 2, "text": "NEGATIVE KNOWLEDGE: free-vs-paid gating and rate limits are NOT publicly documented — refero.design root/mcp/pricing are all SPAs (title only); skill repo documents neither. Only signal: craft knowledge no account, live MCP requires auth.", "source": "iteration-002.md F7; WebFetch on refero.design{,/mcp,/pricing}" },
+    { "id": "f8", "iteration": 2, "text": "Auth lifecycle: path A mcp-remote OAuth (interactive browser sign-in first-use, token cached, empty env); path B Bearer token (HTTP header; token-grant flow undocumented). Code Mode env-prefix rule: refero_<NAME> if token wired via env. First-use browser sign-in is an operational constraint (headless/CI needs path B).", "source": "iteration-002.md F8; mcp-figma mcp_wiring.md §3" },
+    { "id": "f9", "iteration": 2, "text": "Transport-packet layout: mcp-refero is a SIMPLER read-only-only peer of mcp-figma (MCP-only, no CLI, no gating taxonomy). Files: SKILL.md + references/{refero_mcp_tools, tool_surface(read-only-only), mcp_wiring, troubleshooting} + assets/{utcp_refero_manual, env_template}. Code Mode calling: refero.refero_<tool>.", "source": "iteration-002.md F9; mcp-figma references" },
+    { "id": "f10", "iteration": 2, "text": "Layer-discipline routing rule (transport must surface): styles first (visual direction) -> screens (concrete UI) -> flows (journeys); combine layers; styles web-marketing-scoped caveat. Judgment routed to sk-design; transport never duplicates refero_skill methodology.", "source": "iteration-002.md F10; SKILL.md Tool Routing" }
+  ],
+  "ruledOutDirections": [
+    { "approach": "Scrape the JS-rendered body of refero.design/mcp for structured pricing/gating data", "reason": "SPA returns only a title via WebFetch; no crawlable body", "evidence": "iteration-001.md", "iteration": 1 },
+    { "approach": "Further scraping of refero.design/* SPA routes (root, pricing) for pricing/gating", "reason": "All routes yield only the title; pricing/gating facts are not web-crawlable", "evidence": "iteration-002.md F7", "iteration": 2 }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": [],
+  "suppressedCandidates": [],
+  "promotedIdeas": [],
+  "blockedStopHistory": []
+}

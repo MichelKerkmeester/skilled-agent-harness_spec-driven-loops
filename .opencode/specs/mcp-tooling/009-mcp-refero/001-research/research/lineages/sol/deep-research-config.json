@@ -1,0 +1,76 @@
+{
+  "topic": "Refero MCP developer surface for an mcp-tooling transport mode: the Refero MCP server per https://refero.design/mcp (tool surface, auth, rate limits, transport via mcp-remote) and the official refero_skill repo https://github.com/referodesign/refero_skill — UI-design-reference search workflows (apps, screens, flows, elements), free vs paid gating, everything needed to author the mcp-refero transport packet (read-only, Code Mode only, sk-design judgment pairing) atop the EXISTING refero manual in .utcp_config.json (npx -y mcp-remote https://api.refero.design/mcp)",
+  "researchTopic": "Refero MCP developer surface for an mcp-tooling transport mode: the Refero MCP server per https://refero.design/mcp (tool surface, auth, rate limits, transport via mcp-remote) and the official refero_skill repo https://github.com/referodesign/refero_skill — UI-design-reference search workflows (apps, screens, flows, elements), free vs paid gating, everything needed to author the mcp-refero transport packet (read-only, Code Mode only, sk-design judgment pairing) atop the EXISTING refero manual in .utcp_config.json (npx -y mcp-remote https://api.refero.design/mcp)",
+  "specFolder": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research",
+  "fanout_lineage_artifact_dir": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/research/lineages/sol",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stop_policy": "max-iterations",
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-1784198125985-iw9229",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "createdAt": "2026-07-16T10:39:36.499Z",
+  "status": "complete",
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "deltas/iter-*.jsonl": "write-once",
+    "research.md": "mutable"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "mergedFrom": [
+    "glm",
+    "luna",
+    "sol"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "state-finding-2-1-7d9e8f388453",
+      "title": "AI-browser workflows + Chrome DevTools bdg contrast + exact .utcp_config.json aside manual + mcp-aside-devtools packet authoring requirements",
+      "summary": "AI-browser workflows + Chrome DevTools bdg contrast + exact .utcp_config.json aside manual + mcp-aside-devtools packet authoring requirements",
+      "text": "AI-browser workflows + Chrome DevTools bdg contrast + exact .utcp_config.json aside manual + mcp-aside-devtools packet authoring requirements",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-81295e830d9e",
+      "title": "Aside CLI command surface + MCP server mechanics (install, run/session/account/exec/repl, aside mcp server transport + auth + session/daemon)",
+      "summary": "Aside CLI command surface + MCP server mechanics (install, run/session/account/exec/repl, aside mcp server transport + auth + session/daemon)",
+      "text": "Aside CLI command surface + MCP server mechanics (install, run/session/account/exec/repl, aside mcp server transport + auth + session/daemon)",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-a08e52a655c4",
+      "title": "Aside lifecycle, accounts, and unattended boundaries",
+      "summary": "Aside lifecycle, accounts, and unattended boundaries",
+      "text": "Aside lifecycle, accounts, and unattended boundaries",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-feb511be509c",
+      "title": "Aside packet design, bdg contrast, and UTCP registration",
+      "summary": "Aside packet design, bdg contrast, and UTCP registration",
+      "text": "Aside packet design, bdg contrast, and UTCP registration",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-1011e22ea0e7",
+      "title": "Browser-automation workflows and capability-probe contract",
+      "summary": "Browser-automation workflows and capability-probe contract",
+      "text": "Browser-automation workflows and capability-probe contract",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-5c553f0646df",
+      "title": "Chrome contrast and repository-specific integration blueprint",
+      "summary": "Chrome contrast and repository-specific integration blueprint",
+      "text": "Chrome contrast and repository-specific integration blueprint",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-51fe274291a4",
+      "title": "MCP transport, authentication boundary, and daemon lifecycle",
+      "summary": "MCP transport, authentication boundary, and daemon lifecycle",
+      "text": "MCP transport, authentication boundary, and daemon lifecycle",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-7cafea442a89",
+      "title": "Official Aside CLI and MCP surface",
+      "summary": "Official Aside CLI and MCP surface",
+      "text": "Official Aside CLI and MCP surface",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-67b5b00d9f6b",
+      "title": "Security, privacy, concurrency, and unattended operation",
+      "summary": "Security, privacy, concurrency, and unattended operation",
+      "text": "Security, privacy, concurrency, and unattended operation",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-36cbfafe91d3",
+      "title": "Standalone CLI, installation, and session surface",
+      "summary": "Standalone CLI, installation, and session surface",
+      "text": "Standalone CLI, installation, and session surface",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 10,
+    "convergenceScore": 0.727,
+    "coverageBySources": {}
+  }
+}

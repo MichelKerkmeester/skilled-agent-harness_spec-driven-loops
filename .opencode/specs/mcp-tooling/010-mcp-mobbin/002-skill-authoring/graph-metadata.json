@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/010-mcp-mobbin/002-skill-authoring",
+  "spec_folder": "mcp-tooling/010-mcp-mobbin/002-skill-authoring",
+  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-mobbin skill authoring",
+      "mobbin transport packet",
+      "mobbin SKILL.md",
+      "mobbin utcp manual snippet",
+      "phase 002 skill-authoring",
+      "mcp-mobbin authoring plan",
+      "mobbin packet inventory",
+      "mobbin package_skill check",
+      "phase 002 plan",
+      "mcp-mobbin authoring tasks",
+      "mobbin packet tasks",
+      "mobbin playbook holdouts"
+    ],
+    "key_topics": [
+      "mcp-mobbin",
+      "skill",
+      "authoring",
+      "mobbin",
+      "transport",
+      "packet",
+      "utcp",
+      "manual",
+      "snippet",
+      "phase",
+      "skill-authoring",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/spec.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/plan.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/tasks.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/checklist.md",
+      "scripts/doctor.sh",
+      "checklist.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/README.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Exemplar",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub has no `mcp-mobbin` packet: there is no SKILL.md contract, no tool-surface reference, no install guide, and no UTCP manual snippet for the Mobbin MCP server",
+    "created_at": "2026-07-16T09:39:33Z",
+    "last_save_at": "2026-07-16T12:00:36.514Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3fc661832e9ea478dff19465142053d054eb2f87e70672a4aef12f5d986d62ff",
+    "source_doc_hashes": {
+      "spec.md": "691ef562d9029fdc8fdd7129e933473d2040cb97f0165afbb62d905e63a4c536",
+      "plan.md": "f3d87b14069769cb95ca8f8352e32d980606b391346f8409170895e5e830d9b2",
+      "tasks.md": "fb0ec5a4b8aeb0fa019c1371b670212449cb1b4f7c2f65fb0963236a2e20754b",
+      "checklist.md": "0012c9072c37c7b91f7b4c8086af8abcc6fbabab33065291aebce0471185186f",
+      "implementation-summary.md": "ce985f4e5f465bb19a1a789da810d2652a52342cc834e50e4bb2beaae275e748"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

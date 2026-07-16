@@ -1,0 +1,49 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id":"Q1","text":"Aside exposes a standalone macOS CLI with direct task, exec, account, mcp, and repl modes; exact unpublished help flags remain unverified.","status":"resolved","iteration":1,"sources":["https://docs.aside.com/help/developers","https://releases.aside.com/install.sh"]},
+    {"id":"Q2","text":"aside mcp is a local stdio child backed by the Aside daemon/browser and device account; no remote endpoint or MCP token is documented.","status":"resolved","iteration":2,"sources":["https://docs.aside.com/help/developers","https://docs.aside.com/changelog/components.md"]},
+    {"id":"Q3","text":"Confirmed automation is Playwright-compatible Asidewright/REPL with accessibility, interaction, screenshots, downloads, network, tabs, and visual fallback; exact MCP schemas and console support require runtime discovery.","status":"resolved","iteration":3,"sources":["https://docs.aside.com/help/developers","https://docs.aside.com/changelog/components.md","https://youmind.com/es-ES/landing/x-viral-articles/aside-sota-browser-agent-benchmarks"]},
+    {"id":"Q4","text":"Safe production use needs independent policy enforcement, account/daemon/profile preflight, per-profile serialization, output redaction, prompt-injection handling, and human stops for authentication and sensitive actions.","status":"resolved","iteration":4,"sources":["https://docs.aside.com/help/security","https://docs.aside.com/help/password-manager","https://aside.com/policy/terms","https://aside.com/policy/privacy"]},
+    {"id":"Q5","text":"Use a five-layer CLI-primary architecture: direct task and deterministic REPL lanes, runtime-discovered Code Mode MCP fallback, one local stdio UTCP manual, caller-owned policy/evidence, and serialized mutation per profile.","status":"resolved","iteration":5,"sources":[".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",".opencode/skills/mcp-code-mode/SKILL.md",".utcp_config.json"]}
+  ],
+  "keyFindings": [
+    {"id":"F1","title":"Standalone CLI confirmed","summary":"Aside ships a real task CLI distinct from its MCP and REPL modes.","iteration":1,"confidence":"high","sources":["https://docs.aside.com/help/developers"]},
+    {"id":"F2","title":"Installer is macOS-only","summary":"The official installer supports Darwin arm64/x64 and links an app-bundle executable into ~/.local/bin.","iteration":1,"confidence":"high","sources":["https://releases.aside.com/install.sh"]},
+    {"id":"F3","title":"Low-level automation belongs to REPL or MCP","summary":"Public CLI docs expose agent tasks; deterministic page inspection and screenshots are assigned to the REPL.","iteration":1,"confidence":"high","sources":["https://docs.aside.com/help/developers"]},
+    {"id":"F4","title":"Exported MCP transport is local stdio","summary":"Client config launches aside mcp as command/args; no URL or token is documented.","iteration":2,"confidence":"high","sources":["https://docs.aside.com/help/developers","https://docs.aside.com/changelog/components.md"]},
+    {"id":"F5","title":"MCP bridge has a daemon dependency","summary":"Idle keepalive and explicit daemon-outage fixes show the stdio child fronts a separate local service.","iteration":2,"confidence":"high","sources":["https://docs.aside.com/changelog/components.md"]},
+    {"id":"F6","title":"MCP account/auth override is undocumented","summary":"MCP configuration has no credential and account flags are documented only for direct and exec modes.","iteration":2,"confidence":"medium","sources":["https://docs.aside.com/help/developers"]},
+    {"id":"F7","title":"Asidewright is the deterministic automation seam","summary":"The REPL exposes Playwright-compatible browser semantics over a lightweight CDP-backed wrapper.","iteration":3,"confidence":"high","sources":["https://docs.aside.com/help/developers","https://docs.aside.com/changelog/components.md","https://youmind.com/es-ES/landing/x-viral-articles/aside-sota-browser-agent-benchmarks"]},
+    {"id":"F8","title":"Automation capability classes are broader than published MCP evidence","summary":"Navigation, accessibility, interaction, screenshots, downloads, tabs, network, and visual fallback are supported; exact MCP names are not published.","iteration":3,"confidence":"high","sources":["https://docs.aside.com/changelog/components.md","https://youmind.com/es-ES/landing/x-viral-articles/aside-sota-browser-agent-benchmarks"]},
+    {"id":"F9","title":"MCP discovery is a hard preflight","summary":"Run initialize and tools/list and cache schemas before invoking any Aside MCP tool.","iteration":3,"confidence":"high","sources":["https://docs.aside.com/help/developers"]},
+    {"id":"F10","title":"MCP needs caller-owned safety policy","summary":"Aside's UI permission model is granular, but MCP inheritance is undocumented; enforce read/action/sensitive classes externally.","iteration":4,"confidence":"high","sources":["https://docs.aside.com/help/security"]},
+    {"id":"F11","title":"Unattended automation has human gates","summary":"MFA, CAPTCHA, vault unlock, identity checks, and sensitive-action approvals require user presence.","iteration":4,"confidence":"high","sources":["https://docs.aside.com/help/password-manager","https://aside.com/policy/terms"]},
+    {"id":"F12","title":"Local-first has documented egress paths","summary":"Hosted models can receive selected prompts, tool results, snapshots, screenshots, and files; sync and analytics add further processors.","iteration":4,"confidence":"high","sources":["https://aside.com/policy/privacy"]},
+    {"id":"F13","title":"Serialize mutating sessions per profile","summary":"Profile-bound state and overlap avoidance support a conservative single-writer-per-profile rule until tested.","iteration":4,"confidence":"medium","sources":["https://docs.aside.com/help/automation","https://docs.aside.com/changelog/components.md"]},
+    {"id":"F14","title":"Reuse routing discipline, not bdg vocabulary","summary":"Aside's CLI-first mode needs separate task and deterministic REPL lanes; typed bdg commands have no Aside evidence.","iteration":5,"confidence":"high","sources":[".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md","https://docs.aside.com/help/developers"]},
+    {"id":"F15","title":"Aside UTCP registration is settled","summary":"Register one manual named aside, type mcp, local stdio command aside with args mcp and no transport credentials.","iteration":5,"confidence":"high","sources":[".utcp_config.json","https://docs.aside.com/help/developers"]},
+    {"id":"F16","title":"Runtime discovery gates MCP calls","summary":"Search/list tools, inspect callable syntax, normalize capabilities, and never guess a tool name.","iteration":5,"confidence":"high","sources":[".opencode/skills/mcp-code-mode/SKILL.md"]},
+    {"id":"F17","title":"Artifact proof follows Chrome standards","summary":"Validate saved screenshots and structured captures independently instead of trusting successful tool returns.","iteration":5,"confidence":"high","sources":[".opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook"]},
+    {"id":"F18","title":"One manual until isolation is proven","summary":"Chrome's explicit isolated instances cannot justify parallel Aside processes; serialize per profile and probe before expansion.","iteration":5,"confidence":"high","sources":[".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",".utcp_config.json"]}
+  ],
+  "ruledOutDirections": [
+    {"direction":"Invent typed low-level CLI subcommands","reason":"No primary evidence; public docs route deterministic browser steps to REPL or MCP.","iteration":1},
+    {"direction":"Configure exported Aside MCP as remote HTTP/SSE","reason":"Primary setup and changelog evidence identify a local stdio child.","iteration":2},
+    {"direction":"Treat Aside MCP-client connectors as export transport","reason":"Authenticated HTTP connectors are an inbound/client feature.","iteration":2},
+    {"direction":"Hard-code tool names from Chrome DevTools or Playwright MCP","reason":"Aside has no published tool list and exposes a code-oriented automation layer.","iteration":3},
+    {"direction":"Require raw CDP from the model","reason":"Asidewright deliberately abstracts CDP behind Playwright-compatible semantics.","iteration":3},
+    {"direction":"Treat local stdio as trusted by default","reason":"The process exposes logged-in browser state and powerful actions.","iteration":4},
+    {"direction":"Permit unattended sensitive actions","reason":"Aside documents human approval and authentication gates.","iteration":4},
+    {"direction":"Allow concurrent mutating clients per profile","reason":"No isolation guarantee is published and product routines skip overlap.","iteration":4},
+    {"direction":"Clone Chrome command names or isolated-instance layout","reason":"Aside documents task/REPL/MCP lanes and no process-isolation flag.","iteration":5},
+    {"direction":"Hard-code Code Mode callable names","reason":"The repository requires progressive discovery and Aside publishes no tool list.","iteration":5}
+  ],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "divergence": {"completed":[],"failures":[],"overrides":[],"saturatedDirections":[]},
+  "metrics": {"iterationsCompleted":5,"openQuestions":0,"resolvedQuestions":5,"keyFindings":18,"convergenceScore":1.0,"coverageBySources":{"official-docs":10,"official-installer":1,"official-changelog":4,"product-site":1,"official-policy":2,"founder-architecture-mirror":1,"benchmark-repository":1,"repository-local-patterns":8}}
+}

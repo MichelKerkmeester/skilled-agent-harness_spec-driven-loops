@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/010-mcp-mobbin/001-research",
+  "description": "Phases 002 and 003 must author a transport packet and a `.utcpconfig.json` manual for an MCP server this repo has never run",
+  "keywords": [
+    "phases",
+    "must",
+    "author",
+    "transport",
+    "packet",
+    "utcpconfig",
+    "json",
+    "manual",
+    "mcp",
+    "server",
+    "repo",
+    "never",
+    "run"
+  ],
+  "lastUpdated": "2026-07-16T12:00:08.199Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "mcp-tooling",
+    "010-mcp-mobbin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

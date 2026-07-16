@@ -1,0 +1,662 @@
+{
+  "sessionId": "fanout-luna-1784196776045-jwfb3a",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "answeredCount": 4,
+    "totalQuestions": 4,
+    "timestamp": "2026-07-16T10:29:00Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-is-the-complete-stable-aside-cli-command-and-option-surface-for-browser-aut",
+      "inboxId": null,
+      "text": "What is the complete stable Aside CLI command and option surface for browser automation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-what-exact-mcp-tools-and-schemas-does-aside-mcp-expose-and-what-is-the-session-d",
+      "inboxId": null,
+      "text": "What exact MCP tools and schemas does `aside mcp` expose, and what is the session/daemon lifecycle?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-how-do-aside-s-cli-primary-and-code-mode-mcp-fallback-map-to-the-bdg-browser-deb",
+      "inboxId": null,
+      "text": "How do Aside's CLI-primary and Code Mode MCP fallback map to the bdg browser-debugging workflow and UTCP registration?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-which-auth-privacy-permission-and-unattended-automation-boundaries-must-mcp-asid",
+      "inboxId": null,
+      "text": "Which auth, privacy, permission, and unattended-automation boundaries must `mcp-aside-devtools` document?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-is-the-complete-stable-aside-cli-command-and-option-surface-for-browser-aut",
+      "inboxId": null,
+      "text": "What is the complete stable Aside CLI command and option surface for browser automation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-what-exact-mcp-tools-and-schemas-does-aside-mcp-expose-and-what-is-the-session-d",
+      "inboxId": null,
+      "text": "What exact MCP tools and schemas does `aside mcp` expose, and what is the session/daemon lifecycle?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-how-do-aside-s-cli-primary-and-code-mode-mcp-fallback-map-to-the-bdg-browser-deb",
+      "inboxId": null,
+      "text": "How do Aside's CLI-primary and Code Mode MCP fallback map to the bdg browser-debugging workflow and UTCP registration?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-which-auth-privacy-permission-and-unattended-automation-boundaries-must-mcp-asid",
+      "inboxId": null,
+      "text": "Which auth, privacy, permission, and unattended-automation boundaries must `mcp-aside-devtools` document?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "What is the complete stable Aside CLI command and option surface for browser automation?",
+    "What exact MCP tools and schemas does `aside mcp` expose, and what is the session/daemon lifecycle?",
+    "How do Aside's CLI-primary and Code Mode MCP fallback map to the bdg browser-debugging workflow and UTCP registration?",
+    "Which auth, privacy, permission, and unattended-automation boundaries must `mcp-aside-devtools` document?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-aside-mcp-is-a-local-stdio-server-aside-mcp-help-has-no-url-port-bearer-token-oa",
+      "text": "Aside MCP is a local stdio server. `aside mcp --help` has no URL, port, bearer-token, OAuth, or HTTP options; a JSON-RPC handshake returned server name `aside`, the installed server version, protocol version `2024-11-05`, and `tools.listChanged: true`. This is sufficient for a Code Mode `transport: \"stdio\"`, `command: \"aside\"`, `args: [\"mcp\"]` manual, but there is no public evidence for a remote HTTP MCP registration. **[SOURCE: local commands: `aside mcp --help` and MCP JSON-RPC `initialize`, observed 2026-07-16] [INFERENCE: the absence of documented remote options plus the successful stdio handshake supports a local-stdio-only registration]**",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local command: `aside --help`, `aside mcp --help`, `aside repl --help`, `aside exec --help`, `aside account --help`]",
+        "[SOURCE: local MCP JSON-RPC probes: `initialize`, `tools/list`, `tools/call(repl)`]"
+      ]
+    },
+    {
+      "id": "finding-1-1-aside-ships-a-real-standalone-cli-not-only-an-mcp-server-the-official-developer-",
+      "text": "Aside ships a real standalone CLI, not only an MCP server. The official developer page documents `aside \"...\"` for a browser-agent task, `aside --session <session-id> \"Continue\"` for continuation, account inspection/switching, `--account` targeting, `aside exec`, `aside mcp`, and `aside repl`. The installed binary confirms the surface and additionally exposes `--model`, `--provider`, `--speed`, and `--effort`; subcommands are `account`, `exec`, `repl`, and `mcp`. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: local command: `aside --version` → 1.26.626.1517; `aside --help`, observed 2026-07-16]**",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local command: `aside --help`, `aside mcp --help`, `aside repl --help`, `aside exec --help`, `aside account --help`]",
+        "[SOURCE: local MCP JSON-RPC probes: `initialize`, `tools/list`, `tools/call(repl)`]"
+      ]
+    },
+    {
+      "id": "finding-1-8-auth-is-account-profile-and-ui-policy-based-not-a-documented-mcp-bearer-api-key-",
+      "text": "Auth is account/profile and UI-policy based, not a documented MCP bearer/API-key contract. The developer page documents `aside account list/status/use`, and `--account` for `aside` and `aside exec`; it does not document an account or auth option for `aside mcp`. Official permission docs define `Read only`, `Guard` (default for new tasks), and `Full access`, plus browser/network/tool rules; saved password values remain hidden from the agent. This means unattended use must be treated as conditional: a signed-in Aside profile and task binding are prerequisites, and MFA, CAPTCHA, approvals, or other visible verification can pause a task. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: https://docs.aside.com/help/security] [SOURCE: https://docs.aside.com/help/tasks] [SOURCE: https://docs.aside.com/help/troubleshooting]**",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local command: `aside --help`, `aside mcp --help`, `aside repl --help`, `aside exec --help`, `aside account --help`]",
+        "[SOURCE: local MCP JSON-RPC probes: `initialize`, `tools/list`, `tools/call(repl)`]"
+      ]
+    },
+    {
+      "id": "finding-1-6-console-and-network-capture-are-not-advertised-as-first-class-mcp-tools-or-helpe",
+      "text": "Console and network capture are not advertised as first-class MCP tools or helper functions in the live schema. A future `mcp-aside-devtools` Code Mode packet should implement those workflows inside the `repl` code using only verified Playwright APIs and should mark them as capability probes until tested against a bound browser profile; it must not invent `aside_console` or `aside_network` tool names. **[SOURCE: local MCP `tools/list` response, observed 2026-07-16] [INFERENCE: browser-side Playwright event listeners may cover console/request capture, but this was not asserted as a live Aside-specific helper]**",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local command: `aside --help`, `aside mcp --help`, `aside repl --help`, `aside exec --help`, `aside account --help`]",
+        "[SOURCE: local MCP JSON-RPC probes: `initialize`, `tools/list`, `tools/call(repl)`]"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-repl-fallback-is-capable-of-the-requested-browser-surface-through-code-the-a",
+      "text": "The `repl` fallback is capable of the requested browser surface through code: the advertised environment includes `openTab(url)`, `tabs`, `listBrowserTabs`, `attachBrowserTab`, `attachActiveBrowserTab`, `snapshot(page, options?)`, `page.screenshot`, `annotatedScreenshot`, `fetch`, `fs`, `sleep`, and a persistent `page`. A non-mutating `repl` probe confirmed `page`, `tabs`, `fs`, and `pwd` are objects/values while `openTab`, `snapshot`, `annotatedScreenshot`, and `fetch` are functions. DOM inspection is therefore snapshot/Playwright-code based; screenshots are page/locator methods; navigation is `openTab`. **[SOURCE: local MCP JSON-RPC `tools/list` and `tools/call(repl)` probes, observed 2026-07-16]**",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local command: `aside --help`, `aside mcp --help`, `aside repl --help`, `aside exec --help`, `aside account --help`]",
+        "[SOURCE: local MCP JSON-RPC probes: `initialize`, `tools/list`, `tools/call(repl)`]"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-documented-install-path-is-the-official-shell-bootstrap-curl-fssl-https-rele",
+      "text": "The documented install path is the official shell bootstrap `curl -fsSL https://releases.aside.com/install.sh | bash`; the fetched script currently supports macOS arm64 and x64, defaults to `~/.aside/cli` for the app and `~/.local/bin/aside` for the command shim, and allows `ASIDE_CLI_VERSION`, `ASIDE_CLI_BASE_URL`, `ASIDE_CLI_INSTALL_DIR`, and `ASIDE_CLI_BIN_DIR` overrides. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: https://releases.aside.com/install.sh]**",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local command: `aside --help`, `aside mcp --help`, `aside repl --help`, `aside exec --help`, `aside account --help`]",
+        "[SOURCE: local MCP JSON-RPC probes: `initialize`, `tools/list`, `tools/call(repl)`]"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-live-server-exposes-one-mcp-tool-repl-rather-than-separate-navigate-dom-scre",
+      "text": "The live server exposes one MCP tool, `repl`, rather than separate `navigate`, `dom`, `screenshot`, `console`, or `network` tools. Its schema requires a user-facing `title` and a JavaScript `code` string. The tool description says the code runs in a persistent sandboxed ES2023+ context with Playwright, a 120-second call timeout, no external modules, and `execution.taskSupport: forbidden`. **[SOURCE: local MCP JSON-RPC `tools/list` response for `aside mcp`, observed 2026-07-16]**",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local command: `aside --help`, `aside mcp --help`, `aside repl --help`, `aside exec --help`, `aside account --help`]",
+        "[SOURCE: local MCP JSON-RPC probes: `initialize`, `tools/list`, `tools/call(repl)`]"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-mcp-process-is-not-a-generic-headless-browser-daemon-with-an-independent-ses",
+      "text": "The MCP process is not a generic headless browser daemon with an independent session identifier. Calling the exposed `repl` tool with `listBrowserTabs()` in a fresh stdio process returned `This task is not bound to a browser profile. Open it in Aside browser and try again.` The server emits startup/shutdown telemetry with `discoveryIdleTimeoutMs: 300000` and `replIdleTimeoutMs: 1800000`, so the process maintains a persistent REPL context while connected, but browser use depends on an Aside task/profile binding. **[SOURCE: local MCP `tools/call(repl)` failure and `aside mcp` startup/shutdown events, observed 2026-07-16]**",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local command: `aside --help`, `aside mcp --help`, `aside repl --help`, `aside exec --help`, `aside account --help`]",
+        "[SOURCE: local MCP JSON-RPC probes: `initialize`, `tools/list`, `tools/call(repl)`]"
+      ]
+    },
+    {
+      "id": "finding-2-4-a-fresh-mcp-process-does-not-acquire-a-browser-merely-by-starting-the-non-mutati",
+      "text": "A fresh MCP process does not acquire a browser merely by starting. The non-mutating `listBrowserTabs()` probe failed with “This task is not bound to a browser profile. Open it in Aside browser and try again.” The packet must make browser binding a precondition, surface this failure clearly, and avoid implying that UTCP registration alone creates a usable browser session. **[SOURCE: local `tools/call(repl)` probe, observed 2026-07-16]**",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/privacy]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `aside --help`, `aside exec --help`, `aside repl --help`, `aside account --help`, `aside mcp --help`, observed 2026-07-16]",
+        "[SOURCE: local MCP JSON-RPC lifecycle and unbound-profile probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-2-2-account-selection-is-exposed-on-task-agent-paths-not-on-the-documented-mcp-launc",
+      "text": "Account selection is exposed on task-agent paths, not on the documented MCP launcher. The stable surface is `aside account list`, `aside account status [id]`, `aside account use <id>`, plus `--account <id>` on `aside` and `aside exec`; `aside mcp --help` exposes only help and “start the MCP server over stdio.” A UTCP manual should launch the local server and rely on the user's Aside profile/session state rather than inventing `ASIDE_ACCOUNT`, bearer-token, or OAuth fields. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: local `aside --help`, `aside account --help`, `aside exec --help`, `aside mcp --help`, observed 2026-07-16]**",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/privacy]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `aside --help`, `aside exec --help`, `aside repl --help`, `aside account --help`, `aside mcp --help`, observed 2026-07-16]",
+        "[SOURCE: local MCP JSON-RPC lifecycle and unbound-profile probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-2-5-aside-s-documented-security-model-is-permission-policy-based-new-tasks-default-t",
+      "text": "Aside's documented security model is permission-policy based. New tasks default to Guard; Read only and Full access are explicit alternatives, and browser/network/tool rules can be allowed, asked, or denied. Full access does not make saved password values available to the agent. A packet should preserve these boundaries and should not normalize Full access as a prerequisite for every browser workflow. **[SOURCE: https://docs.aside.com/help/security] [SOURCE: https://docs.aside.com/help/tasks]**",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/privacy]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `aside --help`, `aside exec --help`, `aside repl --help`, `aside account --help`, `aside mcp --help`, observed 2026-07-16]",
+        "[SOURCE: local MCP JSON-RPC lifecycle and unbound-profile probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-2-6-human-in-the-loop-interruption-is-part-of-the-normal-task-model-mfa-captcha-iden",
+      "text": "Human-in-the-loop interruption is part of the normal task model. MFA, CAPTCHA, identity verification, approvals, and other visible steps can pause a task and require the user to resume it in the browser. Therefore “unattended” can describe a best-effort run only after profile, permission, and site prerequisites are satisfied; it cannot be promised as a universal property of the MCP fallback. **[SOURCE: https://docs.aside.com/help/tasks] [SOURCE: https://docs.aside.com/help/troubleshooting]**",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/privacy]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `aside --help`, `aside exec --help`, `aside repl --help`, `aside account --help`, `aside mcp --help`, observed 2026-07-16]",
+        "[SOURCE: local MCP JSON-RPC lifecycle and unbound-profile probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-cli-has-two-distinct-continuation-concepts-aside-session-id-continue-and-equ",
+      "text": "The CLI has two distinct continuation concepts. `aside --session <id> \"Continue\"` and equivalent `aside exec --session <id>` continue a browser-agent task conversation; `aside repl` is the deterministic browser-automation JavaScript entry point. The live MCP `repl` process is persistent, but its browser context is not equivalent to a general task-session selector. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: local `aside --help`, `aside exec --help`, and `aside repl --help`, observed 2026-07-16] [INFERENCE: keep task continuation and REPL attachment as separate packet concepts]**",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/privacy]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `aside --help`, `aside exec --help`, `aside repl --help`, `aside account --help`, `aside mcp --help`, observed 2026-07-16]",
+        "[SOURCE: local MCP JSON-RPC lifecycle and unbound-profile probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-2-8-the-local-install-update-surface-is-operationally-relevant-aside-help-exposes-up",
+      "text": "The local install/update surface is operationally relevant: `aside --help` exposes `--update`, while the official installer supports version/base/install/bin directory environment overrides and macOS arm64/x64 artifacts. The packet should use the official installer or an already-installed CLI, report `aside --version`, and avoid silently updating a user's installation. **[SOURCE: https://releases.aside.com/install.sh] [SOURCE: local `aside --help`, observed 2026-07-16]**",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/privacy]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `aside --help`, `aside exec --help`, `aside repl --help`, `aside account --help`, `aside mcp --help`, observed 2026-07-16]",
+        "[SOURCE: local MCP JSON-RPC lifecycle and unbound-profile probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-observed-mcp-lifecycle-is-process-scoped-and-stdio-driven-the-client-starts-",
+      "text": "The observed MCP lifecycle is process-scoped and stdio-driven: the client starts `aside mcp`, performs JSON-RPC initialization and tool discovery, then keeps the process alive for repeated `repl` calls. The server reports `tools.listChanged: true`; observed startup telemetry included `discoveryIdleTimeoutMs: 300000` and `replIdleTimeoutMs: 1800000`, and it shuts down when the stdio stream ends. These values are operational telemetry, not a promised public configuration API. **[SOURCE: local MCP JSON-RPC/startup/shutdown probe, observed 2026-07-16]**",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/privacy]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `aside --help`, `aside exec --help`, `aside repl --help`, `aside account --help`, `aside mcp --help`, observed 2026-07-16]",
+        "[SOURCE: local MCP JSON-RPC lifecycle and unbound-profile probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-public-cli-exposes-no-separate-documented-daemon-status-stop-or-mcp-session-",
+      "text": "The public CLI exposes no separate documented `daemon`, `status`, `stop`, or MCP-session-selection command. This does not prove that the product has no internal daemon; it establishes only that `mcp-aside-devtools` should document the externally supported stdio process lifecycle and avoid relying on private daemon internals. **[SOURCE: local `aside --help` and `aside mcp --help`, observed 2026-07-16] [INFERENCE: absence from help is a supportability boundary, not proof of nonexistence]**",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/privacy]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `aside --help`, `aside exec --help`, `aside repl --help`, `aside account --help`, `aside mcp --help`, observed 2026-07-16]",
+        "[SOURCE: local MCP JSON-RPC lifecycle and unbound-profile probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-3-3-a-copy-ready-utcp-manual-is",
+      "text": "A copy-ready UTCP manual is:",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `.utcp_config.json`:14-48]",
+        "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-3-5-aside-is-better-framed-as-a-browser-agent-profile-surface-than-as-a-drop-in-cdp-",
+      "text": "Aside is better framed as a browser-agent/profile surface than as a drop-in CDP replacement. It adds account/profile state, permission modes, approvals, and human-verification pauses; bdg emphasizes direct Chrome/Chromium CDP, Unix-composable outputs, a single global active session, and explicit `status`/`stop`. The skill packet should route to Aside when the user's browser-agent/profile context or Playwright-level interaction is the point, and to bdg when deterministic CDP domains, console logs, HAR output, or low-token CLI composition are the point. **[SOURCE: https://docs.aside.com/help/security] [SOURCE: https://docs.aside.com/help/tasks] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]**",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `.utcp_config.json`:14-48]",
+        "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-3-4-aside-maps-to-the-requested-browser-workflows-through-a-single-code-surface-whil",
+      "text": "Aside maps to the requested browser workflows through a single code surface, while bdg exposes task-oriented CLI helpers and raw CDP. The practical matrix is:",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `.utcp_config.json`:14-48]",
+        "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-3-6-aside-s-browser-bound-prerequisite-is-the-most-important-fallback-error-contract",
+      "text": "Aside's browser-bound prerequisite is the most important fallback error contract. A registered UTCP manual can start a healthy stdio server and still receive “This task is not bound to a browser profile.” The packet should surface that as an actionable prerequisite—open/bind the appropriate Aside browser task/profile, verify permissions, then retry—not as a transport or auth-token failure. **[SOURCE: local MCP `tools/call(repl)` unbound-profile probe, observed 2026-07-16]**",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `.utcp_config.json`:14-48]",
+        "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-3-7-console-network-parity-must-not-be-promised-tools-list-returned-no-dedicated-asi",
+      "text": "Console/network parity must not be promised. `tools/list` returned no dedicated Aside console or network tool, and the live capability probe did not bind to a page. A packet may include guarded REPL examples that attach listeners only after capability discovery, but it should label these experimental/untested and avoid claiming `bdg network har` equivalence. **[SOURCE: local MCP `tools/list`, observed 2026-07-16] [INFERENCE: Playwright listener mapping requires a bound page and runtime validation]**",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `.utcp_config.json`:14-48]",
+        "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-3-8-discovery-is-part-of-the-fallback-flow-not-setup-trivia-the-code-mode-instructio",
+      "text": "Discovery is part of the fallback flow, not setup trivia. The Code Mode instructions require progressive discovery and exact prefixed names; Aside's own MCP advertises `tools.listChanged: true`. The packet should run discovery, inspect the schema, call one small non-mutating probe, and only then execute navigation or capture code. **[SOURCE: local MCP `initialize` and `tools/list`, observed 2026-07-16] [SOURCE: `.opencode/skills/mcp-code-mode/SKILL.md:217-260, 289-326]**",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `.utcp_config.json`:14-48]",
+        "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-cli-primary-packet-should-expose-two-levels-of-use-use-aside-or-aside-exec-f",
+      "text": "The CLI-primary packet should expose two levels of use. Use `aside` or `aside exec` for a high-level browser-agent task and continuation via `--session`; use `aside repl \"...\"` for deterministic browser automation JavaScript such as opening a tab, inspecting a page, or taking a screenshot. First-run checks should be `command -v aside` and `aside --version`; installation should remain an explicit user action through the official installer. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: https://releases.aside.com/install.sh] [SOURCE: local `aside --help`, `aside exec --help`, `aside repl --help`, observed 2026-07-16]**",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `.utcp_config.json`:14-48]",
+        "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-code-mode-fallback-should-register-one-local-stdio-mcp-manual-and-discover-i",
+      "text": "The Code Mode fallback should register one local stdio MCP manual and discover its live tool inventory at runtime. The verified server currently exposes only `repl`, with required `{title, code}` input. Under the repository's Code Mode convention, the expected callable spelling after registering manual `aside` is `aside.aside_repl`; this is a naming derivation, not a claim that the root config is currently registered or that the name is stable across releases. Confirm it with `list_tools`/`tool_info` before calling. **[SOURCE: local MCP `tools/list`, observed 2026-07-16] [SOURCE: .opencode/skills/mcp-code-mode/SKILL.md:217-260, 289-326] [INFERENCE: `{manual_name}.{manual_name}_{tool_name}` applied to manual `aside` and live tool `repl`]**",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `.utcp_config.json`:14-48]",
+        "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
+      ]
+    },
+    {
+      "id": "finding-3-9-the-requested-lineage-can-provide-the-manual-and-packet-design-without-applying-",
+      "text": "The requested lineage can provide the manual and packet design without applying them. The parent `.utcp_config.json`, `mcp-aside-devtools` skill, hub registration, graph persistence, and memory save remain outside this detached artifact boundary. **[SOURCE: local `.utcp_config.json`, observed 2026-07-16] [SOURCE: lineage config and explicit scope boundary]**",
+      "addedAtIteration": 3,
+      "sources": [
+        "[SOURCE: https://docs.aside.com/help/developers]",
+        "[SOURCE: https://docs.aside.com/help/security]",
+        "[SOURCE: https://docs.aside.com/help/tasks]",
+        "[SOURCE: https://docs.aside.com/help/troubleshooting]",
+        "[SOURCE: https://releases.aside.com/install.sh]",
+        "[SOURCE: local `.utcp_config.json`:14-48]",
+        "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-30362541bf00",
+      "text": "A documented remote HTTP/SSE MCP endpoint or static bearer-token configuration: the official developer page and `aside mcp --help` document only the local stdio command. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: local command: `aside mcp --help`, observed 2026-07-16]**",
+      "contentHash": "30362541bf00",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-73bc5ee46409",
+      "text": "Public docs do not enumerate the MCP schema beyond the server launch snippet; live protocol discovery is the authoritative tool inventory for this packet. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: local MCP `tools/list`, observed 2026-07-16]**",
+      "contentHash": "73bc5ee46409",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0b5c53c8433a",
+      "text": "Separate Aside MCP tools named `navigate`, `dom`, `screenshot`, `console`, or `network`: the live `tools/list` inventory returned only `repl`. **[SOURCE: local MCP `tools/list`, observed 2026-07-16]**",
+      "contentHash": "0b5c53c8433a",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b47ae6752843",
+      "text": "Treating a fresh `aside mcp` process as sufficient to control any browser: the live unbound-profile error disproves that assumption. **[SOURCE: local MCP `tools/call(repl)` probe, observed 2026-07-16]**",
+      "contentHash": "b47ae6752843",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-307f79a977e9",
+      "text": "A safe browser-bound smoke test could not be performed without selecting or opening a real Aside profile; no profile or website was touched. **[SOURCE: local MCP unbound-profile error, observed 2026-07-16]**",
+      "contentHash": "307f79a977e9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d81ed269fef0",
+      "text": "Depending on undocumented daemon subcommands or private timeout flags: the public help surface does not expose them. **[SOURCE: local `aside --help` and `aside mcp --help`, observed 2026-07-16]**",
+      "contentHash": "d81ed269fef0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d3c32ca2e6fb",
+      "text": "Public documentation explains task and permission behavior but does not publish a separate MCP session registry or daemon API. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: local CLI help, observed 2026-07-16]**",
+      "contentHash": "d3c32ca2e6fb",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ce3d66d63c70",
+      "text": "Treating `--session` as an MCP browser-target selector: it is documented on agent-task paths; the MCP launcher has no such option. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: local CLI help, observed 2026-07-16]**",
+      "contentHash": "ce3d66d63c70",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c541cb9a2ee9",
+      "text": "Treating a signed-in account as sufficient for unattended execution: permission gates, browser-profile binding, approvals, MFA, CAPTCHA, and visible verification remain independent prerequisites. **[SOURCE: https://docs.aside.com/help/security] [SOURCE: https://docs.aside.com/help/tasks] [SOURCE: https://docs.aside.com/help/troubleshooting]**",
+      "contentHash": "c541cb9a2ee9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a25923fb22f7",
+      "text": "A bound Aside page was not available, so screenshot bytes, DOM snapshots, and event-listener behavior remain validation tasks rather than research facts. **[SOURCE: local MCP unbound-profile probe, observed 2026-07-16]**",
+      "contentHash": "a25923fb22f7",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ce033dba5c07",
+      "text": "Claiming a stable `aside_console`, `aside_network`, or `aside_har` MCP tool: no such live tools were discovered. **[SOURCE: local MCP `tools/list`, observed 2026-07-16]**",
+      "contentHash": "ce033dba5c07",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-743792ecb821",
+      "text": "Registering Aside as remote HTTP/SSE MCP or adding bearer/OAuth configuration: only the local stdio launch is documented and observed. **[SOURCE: https://docs.aside.com/help/developers] [SOURCE: local `aside mcp --help`, observed 2026-07-16]**",
+      "contentHash": "743792ecb821",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-92601d5f8b7b",
+      "text": "Running a live bdg comparison was intentionally skipped because the user requested a research lineage and the lineage boundary prohibits unrelated daemon/profile writes; local references provide the required contrast. **[SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`; lineage boundary]**",
+      "contentHash": "92601d5f8b7b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7a4a0f70119b",
+      "text": "Treating Aside as a CDP-domain-complete replacement for bdg: the live MCP server exposes one REPL tool, not a verified CDP tool catalog. **[SOURCE: local MCP `tools/list`, observed 2026-07-16]**",
+      "contentHash": "7a4a0f70119b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8c686b405fe3",
+      "text": "Treating the derived `aside.aside_repl` name as verified without Code Mode discovery: the name follows repository convention but must be confirmed after registration. **[SOURCE: `.opencode/skills/mcp-code-mode/SKILL.md:217-260`]**",
+      "contentHash": "8c686b405fe3",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0.8066666666666666,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [
+    "Bound-page Aside output and console/network listener behavior remain validation gaps.",
+    "The derived Code Mode callable requires post-registration discovery."
+  ],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 4,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 25,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.7,
+    "coverageBySources": {
+      "code": 29,
+      "docs.aside.com": 5,
+      "releases.aside.com": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

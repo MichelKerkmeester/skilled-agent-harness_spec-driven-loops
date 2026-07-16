@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/010-mcp-mobbin/004-validation-and-handoff",
+  "description": "After phase 003 the mcp-mobbin mode is wired but unproven at strict level: no strict packaging gate has run on the new packet, the hub has not been",
+  "keywords": [
+    "phase",
+    "mcp-mobbin",
+    "mode",
+    "wired",
+    "unproven",
+    "strict",
+    "level",
+    "packaging",
+    "gate",
+    "run",
+    "new",
+    "packet",
+    "hub"
+  ],
+  "lastUpdated": "2026-07-16T12:06:12.950Z",
+  "specId": "004",
+  "folderSlug": "validation-and-handoff",
+  "parentChain": [
+    "mcp-tooling",
+    "010-mcp-mobbin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/009-mcp-refero/004-validation-and-handoff",
+  "spec_folder": "mcp-tooling/009-mcp-refero/004-validation-and-handoff",
+  "parent_id": "mcp-tooling/009-mcp-refero",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-refero validation",
+      "refero handoff",
+      "refero terminal gates",
+      "phase 004 validation-and-handoff",
+      "mcp-refero validation plan",
+      "refero gates plan",
+      "refero handoff plan",
+      "phase 004 plan",
+      "mcp-refero validation tasks",
+      "refero gates tasks",
+      "refero handoff tasks",
+      "phase 004 tasks"
+    ],
+    "key_topics": [
+      "mcp-refero",
+      "validation",
+      "refero",
+      "handoff",
+      "terminal",
+      "gates",
+      "phase",
+      "validation-and-handoff",
+      "plan",
+      "tasks",
+      "phases",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/009-mcp-refero/004-validation-and-handoff/spec.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/004-validation-and-handoff/plan.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/004-validation-and-handoff/tasks.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/004-validation-and-handoff/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/004-validation-and-handoff/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/004-validation-and-handoff/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 001-003 the packet, hub, and spec documentation exist but nothing has proven them consistent end to end: strict gates have not run, checklists are unmarked, and no completion state is recorded",
+    "created_at": "2026-07-16T09:39:30Z",
+    "last_save_at": "2026-07-16T12:04:49.305Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a5407830a51112f6c60e804aebde2e67b4b4b7f4a123e93d0a235b3a4c9a8efa",
+    "source_doc_hashes": {
+      "spec.md": "2d0070ef29690eb276d88c7eb6452550b330e5dd95707e55fbd8f497c4380bb9",
+      "plan.md": "72f2bdc8197361ee4b13c4b58f4624b67d2d61a956ce74b3694120d847b306c9",
+      "tasks.md": "562718df57396b75976d3856283786e28084ed24bdad1049200a1dd9cea6b470",
+      "implementation-summary.md": "6bbe9575863401d63c215aaf7a0f5cd0a982b4c8c04e92e5677d8276cbb3b44c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "topic": "Mobbin MCP developer surface for an mcp-tooling transport mode: the official Mobbin MCP server per https://github.com/mobbin/mobbin-mcp-server (tool surface, auth/API key model, transport, install) and the official Mobbin skills repo https://github.com/mobbin/skills — app/screen/flow/element design-research search workflows, plan gating (free vs Pro), everything needed to author the mcp-mobbin transport packet (read-only, Code Mode only, sk-design judgment pairing) and register a mobbin manual in .utcp_config.json",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {},
+    "note": "Convergence before maxIterations is telemetry only; broaden review angles instead of synthesizing early."
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research",
+  "artifactDir": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/lineages/sol",
+  "fanout_lineage_artifact_dir": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/lineages/sol",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-16T11:03:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-1784199634206-lfqjyo",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanoutRole": "detached-parallel-lineage"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "fileProtection": {
+    "deep-research-config.json": "immutable-except-terminal-status",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "delta-*.jsonl": "write-once",
+    "research.md": "mutable"
+  }
+}

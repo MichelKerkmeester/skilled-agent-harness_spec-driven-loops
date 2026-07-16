@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/010-mcp-mobbin/003-hub-integration",
+  "spec_folder": "mcp-tooling/010-mcp-mobbin/003-hub-integration",
+  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-mobbin hub integration",
+      "mobbin mode-registry entry",
+      "mobbin utcp manual",
+      "mobbin hub-router signals",
+      "phase 003 hub-integration",
+      "mcp-mobbin integration plan",
+      "mobbin registry wiring",
+      "mobbin serial hub edits",
+      "phase 003 plan",
+      "mcp-mobbin integration tasks",
+      "mobbin registry tasks",
+      "mobbin manual utcp tasks"
+    ],
+    "key_topics": [
+      "mcp-mobbin",
+      "hub",
+      "integration",
+      "mobbin",
+      "mode-registry",
+      "entry",
+      "utcp",
+      "manual",
+      "hub-router",
+      "signals",
+      "phase",
+      "hub-integration"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/spec.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/plan.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/tasks.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      ".opencode/skills/mcp-tooling/description.json",
+      ".opencode/skills/mcp-tooling/graph-metadata.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Wire",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 002 the `mcp-mobbin` packet exists but is invisible: the hub's mode registry, router, parent SKILL.md, and graph metadata do not mention it, the advisor cannot route to it, and Code Mode has no `mobbin` manual to call",
+    "created_at": "2026-07-16T09:39:33Z",
+    "last_save_at": "2026-07-16T12:00:36.850Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a1557053e74065d9fb1f57deb7280313eb533dae39fe32e2064ed01f063c34dd",
+    "source_doc_hashes": {
+      "spec.md": "47ab42ed529aba624c62fbf51d5e30f0f905bfed0295700cc69935fc271ae47e",
+      "plan.md": "e216d277ea8421d452e65a523297a13e8e0c90f87957e55ee044264d121462a1",
+      "tasks.md": "748d8434f26e106ecf09aed1fb169d24939cc61ac88a4d8c3394bf8ad872c9db",
+      "checklist.md": "dd9df27a7a76a25ebec16f8e875cbea3d837f738c556e951f36fee51a2e8289c",
+      "implementation-summary.md": "21d2a22a682fa2ebfe1ecb5ee18dc9fd7e2e1d33f95b9cb7134d0511e2784027"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

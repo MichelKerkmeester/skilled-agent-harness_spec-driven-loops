@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/008-mcp-aside/002-skill-authoring",
+  "description": "The mcp-tooling hub has no mode packet for the Aside browser: there is no `SKILL.md` doctrine for when to reach for Aside CLI versus the Aside MCP",
+  "keywords": [
+    "mcp-tooling",
+    "hub",
+    "mode",
+    "packet",
+    "aside",
+    "browser",
+    "skill",
+    "doctrine",
+    "reach",
+    "cli",
+    "versus",
+    "mcp"
+  ],
+  "lastUpdated": "2026-07-16T12:00:08.128Z",
+  "specId": "002",
+  "folderSlug": "skill-authoring",
+  "parentChain": [
+    "mcp-tooling",
+    "008-mcp-aside"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

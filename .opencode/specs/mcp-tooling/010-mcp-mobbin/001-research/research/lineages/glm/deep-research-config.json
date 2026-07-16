@@ -1,0 +1,66 @@
+{
+  "topic": "Mobbin MCP developer surface for an mcp-tooling transport mode: the official Mobbin MCP server (https://github.com/mobbin/mobbin-mcp-server) tool surface, auth/API key model, transport, install; and the official Mobbin skills repo (https://github.com/mobbin/skills) app/screen/flow/element design-research search workflows, plan gating (free vs Pro). Everything needed to author the mcp-mobbin transport packet (read-only, Code Mode only, sk-design judgment pairing) and register a mobbin manual in .utcp_config.json.",
+  "maxIterations": 2,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "note": "Convergence before maxIterations is telemetry only; broaden review angles instead of synthesizing early."
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research",
+  "artifactDir": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/lineages/glm",
+  "fanoutLineageArtifactDir": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/lineages/glm",
+  "lineageLabel": "glm",
+  "createdAt": "2026-07-16T13:00:00Z",
+  "completedAt": "2026-07-16T13:15:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-1784199634206-lfqjyo",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanoutRole": "detached-parallel-lineage"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions", "answered-questions", "what-worked", "what-failed",
+      "exhausted-approaches", "ruled-out-directions", "divergence-frontier", "next-focus"
+    ]
+  },
+  "resource_map_present": false,
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "research_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

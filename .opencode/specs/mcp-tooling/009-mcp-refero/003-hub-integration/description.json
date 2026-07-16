@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/009-mcp-refero/003-hub-integration",
+  "description": "After phase 002 the `mcp-refero` packet exists but is invisible: the hub's mode registry, router signals, parent SKILL.md, and graph identity all",
+  "keywords": [
+    "phase",
+    "mcp-refero",
+    "packet",
+    "exists",
+    "invisible",
+    "hub",
+    "mode",
+    "registry",
+    "router",
+    "signals",
+    "parent",
+    "skill",
+    "graph",
+    "identity"
+  ],
+  "lastUpdated": "2026-07-16T12:00:08.163Z",
+  "specId": "003",
+  "folderSlug": "hub-integration",
+  "parentChain": [
+    "mcp-tooling",
+    "009-mcp-refero"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

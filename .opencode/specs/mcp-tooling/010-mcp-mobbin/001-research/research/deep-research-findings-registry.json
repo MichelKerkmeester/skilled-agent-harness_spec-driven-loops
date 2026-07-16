@@ -1,0 +1,130 @@
+{
+  "mergedFrom": [
+    "glm",
+    "luna",
+    "sol"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "state-finding-5-1-b5e5f7403ff4",
+      "title": "Adversarial completeness and risk audit",
+      "summary": "Adversarial completeness and risk audit",
+      "text": "Adversarial completeness and risk audit",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-5acf4883c9d3",
+      "title": "Auth/plan-gating + exact tool surface (server.json, mcp.json, docs endpoint, mobbin-search SKILL.md)",
+      "summary": "Auth/plan-gating + exact tool surface (server.json, mcp.json, docs endpoint, mobbin-search SKILL.md)",
+      "text": "Auth/plan-gating + exact tool surface (server.json, mcp.json, docs endpoint, mobbin-search SKILL.md)",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-a79445b24329",
+      "title": "Broad survey of mobbin-mcp-server + mobbin/skills repos",
+      "summary": "Broad survey of mobbin-mcp-server + mobbin/skills repos",
+      "text": "Broad survey of mobbin-mcp-server + mobbin/skills repos",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-646521f3b13d",
+      "title": "Code Mode manual and transport-packet architecture",
+      "summary": "Code Mode manual and transport-packet architecture",
+      "text": "Code Mode manual and transport-packet architecture",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-da52f4f87841",
+      "title": "official server identity, transport, authorization, and plan eligibility",
+      "summary": "official server identity, transport, authorization, and plan eligibility",
+      "text": "official server identity, transport, authorization, and plan eligibility",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-b274776a02f3",
+      "title": "Official server, transport, and authorization baseline",
+      "summary": "Official server, transport, and authorization baseline",
+      "text": "Official server, transport, and authorization baseline",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-5940ab5b065b",
+      "title": "Official skill and design-research workflow surface",
+      "summary": "Official skill and design-research workflow surface",
+      "text": "Official skill and design-research workflow surface",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-fddac2a1b76c",
+      "title": "official skills workflow, search_screens contract, and installation",
+      "summary": "official skills workflow, search_screens contract, and installation",
+      "text": "official skills workflow, search_screens contract, and installation",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-c9a63e39a834",
+      "title": "Plan gating, MCP/API separation, and rate limits",
+      "summary": "Plan gating, MCP/API separation, and rate limits",
+      "text": "Plan gating, MCP/API separation, and rate limits",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-e97385028bfb",
+      "title": "read-only Code Mode transport packet, UTCP manual, and sk-design pairing gaps",
+      "summary": "read-only Code Mode transport packet, UTCP manual, and sk-design pairing gaps",
+      "text": "read-only Code Mode transport packet, UTCP manual, and sk-design pairing gaps",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 10,
+    "convergenceScore": 0.458,
+    "coverageBySources": {}
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/009-mcp-refero/001-research",
+  "description": "The Refero MCP is an unverified external surface: this repo has never documented its tool names, parameters, auth expectations, rate limits, or",
+  "keywords": [
+    "refero",
+    "mcp",
+    "unverified",
+    "external",
+    "surface",
+    "repo",
+    "never",
+    "documented",
+    "tool",
+    "names",
+    "parameters",
+    "auth",
+    "expectations",
+    "rate",
+    "limits"
+  ],
+  "lastUpdated": "2026-07-16T12:00:08.162Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "mcp-tooling",
+    "009-mcp-refero"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

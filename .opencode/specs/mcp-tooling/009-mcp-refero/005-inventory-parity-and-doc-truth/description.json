@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth",
+  "description": "The v1.0.0.0 `mcp-refero` packet shipped structurally valid but short of hub-sibling inventory parity: no `examples/` directory, no",
+  "keywords": [
+    "mcp-refero",
+    "packet",
+    "shipped",
+    "structurally",
+    "valid",
+    "short",
+    "hub-sibling",
+    "inventory",
+    "parity",
+    "examples",
+    "directory"
+  ],
+  "lastUpdated": "2026-07-16T13:23:27.816Z",
+  "specId": "005",
+  "folderSlug": "inventory-parity-and-doc-truth",
+  "parentChain": [
+    "mcp-tooling",
+    "009-mcp-refero"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,18 @@
+{
+  "specFolder": "mcp-tooling/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
+  "description": "Phase 1: inventory-parity-and-doc-truth",
+  "keywords": [
+    "phase",
+    "inventory-parity-and-doc-truth"
+  ],
+  "lastUpdated": "2026-07-16T12:58:35.027Z",
+  "specId": "005",
+  "folderSlug": "inventory-parity-and-doc-truth",
+  "parentChain": [
+    "mcp-tooling",
+    "010-mcp-mobbin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

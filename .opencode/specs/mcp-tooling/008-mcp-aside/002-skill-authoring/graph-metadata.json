@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/008-mcp-aside/002-skill-authoring",
+  "spec_folder": "mcp-tooling/008-mcp-aside/002-skill-authoring",
+  "parent_id": "mcp-tooling/008-mcp-aside",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-aside skill authoring",
+      "aside devtools mode authoring",
+      "aside skill packet",
+      "phase 002 skill-authoring",
+      "mcp-aside authoring plan",
+      "aside devtools packet plan",
+      "aside skill inventory",
+      "phase 002 plan",
+      "mcp-aside authoring tasks",
+      "aside devtools packet tasks",
+      "aside skill authoring tasks",
+      "phase 002 tasks"
+    ],
+    "key_topics": [
+      "mcp-aside",
+      "skill",
+      "authoring",
+      "aside",
+      "devtools",
+      "mode",
+      "packet",
+      "phase",
+      "skill-authoring",
+      "plan",
+      "inventory",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/spec.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/plan.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/tasks.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/checklist.md",
+      "checklist.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Exemplar",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-tooling hub has no mode packet for the Aside browser: there is no `SKILL.md` doctrine for when to reach for Aside CLI versus the Aside MCP fallback, no install guide, no routing-recall scenarios, and no backend documentation",
+    "created_at": "2026-07-16T09:39:15Z",
+    "last_save_at": "2026-07-16T12:00:33.284Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d26f15d0d2f0c3539dbcba095d7f819d2207d0c8a40c0cf489ab65d1e13ed298",
+    "source_doc_hashes": {
+      "spec.md": "d1c6d79f375bd2ffb4df748366a2489f3d5d6b560e01892ea143732f211ddc17",
+      "plan.md": "02bc5884d54323cd334ef0460aae9aa4c40feba9023e0ff98762bd07e95ee8e6",
+      "tasks.md": "702dab4c78d2ea8a111e50f13da98a084c41356f9a62a696a7f3f6cd46f73862",
+      "checklist.md": "3dce48773163e54d8c1c1cd9254972a29e364d729d07058e284c81f3a462440a",
+      "implementation-summary.md": "4c24c915fb4de2f475d50c886fc7418ed3cd138fe2c65b42d770f4250448e700"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

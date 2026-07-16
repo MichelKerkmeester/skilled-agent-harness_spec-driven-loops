@@ -1,0 +1,24 @@
+{
+  "topic": "Mobbin MCP developer surface for an mcp-tooling transport mode: the official Mobbin MCP server per https://github.com/mobbin/mobbin-mcp-server (tool surface, auth/API key model, transport, install) and the official Mobbin skills repo https://github.com/mobbin/skills — app/screen/flow/element design-research search workflows, plan gating (free vs Pro), everything needed to author the mcp-mobbin transport packet (read-only, Code Mode only, sk-design judgment pairing) and register a mobbin manual in .utcp_config.json",
+  "specFolder": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": { "convergenceMode": "default", "divergent": {} },
+  "stop_policy": "max-iterations",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "fanout": {
+    "executors": [
+      { "kind": "cli-codex", "model": "gpt-5.6-sol", "reasoningEffort": "xhigh", "serviceTier": "fast", "sandboxMode": "danger-full-access", "timeoutSeconds": 3600, "iterations": 5, "label": "sol" },
+      { "kind": "cli-opencode", "model": "zai-coding-plan/glm-5.2", "reasoningEffort": "max", "timeoutSeconds": 3600, "iterations": 2, "label": "glm" },
+      { "kind": "cli-codex", "model": "gpt-5.6-luna", "reasoningEffort": "max", "serviceTier": "fast", "sandboxMode": "danger-full-access", "timeoutSeconds": 3600, "iterations": 3, "label": "luna" }
+    ],
+    "concurrency": 3
+  },
+  "sandbox_note": "codex lineages use danger-full-access (workspace-write blocks network; web access load-bearing) under a scoped CODEX_HOME with project_doc_max_bytes=0 — prevents codex workers over-applying repo AGENTS.md gates (root-caused on the 008 run).",
+  "lineage": { "sessionId": "dr-010-mobbin-fanout-20260716", "parentSessionId": null, "lineageMode": "new", "generation": 1, "continuedFromRun": null },
+  "createdAt": "2026-07-16T11:05:00Z",
+  "status": "initialized"
+}

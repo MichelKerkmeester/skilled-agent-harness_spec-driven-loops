@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/007-mcp-tooling-parent/009-incumbent-inventory-parity",
+  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/009-incumbent-inventory-parity",
+  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "incumbent inventory parity",
+      "chrome devtools feature catalog",
+      "clickup install guide front door",
+      "figma examples",
+      "mcp tooling parity",
+      "incumbent inventory parity plan",
+      "feature catalog authoring plan",
+      "install guide promotion plan",
+      "incumbent inventory parity tasks",
+      "tasks",
+      "feature catalog tasks",
+      "incumbent inventory parity checklist"
+    ],
+    "key_topics": [
+      "incumbent",
+      "inventory",
+      "parity",
+      "chrome",
+      "devtools",
+      "feature",
+      "catalog",
+      "clickup",
+      "install",
+      "guide",
+      "front",
+      "door"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/feature_catalog/feature_catalog.md",
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/assets/utcp_chrome_devtools_manuals.md",
+      ".opencode/skills/mcp-tooling/mcp-click-up/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-tooling/mcp-figma/examples/README.md",
+      "feature_catalog/feature_catalog.md",
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/bdg-cli/README.md",
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/chrome-devtools-mcp/README.md",
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.10.0.md",
+      ".opencode/skills/mcp-tooling/mcp-click-up/references/install_guide.md",
+      ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-click-up/changelog/v1.0.1.0.md",
+      ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-figma/changelog/v1.0.1.0.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "utcp_chrome_devtools_manuals.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/assets/utcp_chrome_devtools_manuals.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-click-up/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-figma/examples/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.10.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.10.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-click-up/changelog/v1.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three incumbent mcp-tooling modes carried uneven inventories",
+    "created_at": "2026-07-16T12:58:36Z",
+    "last_save_at": "2026-07-16T13:24:25.058Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a5f3aa0525c9cca6fb01ab5fa5917d9fe8fc736ee8c69e8c6b0636c2e0118bdb",
+    "source_doc_hashes": {
+      "spec.md": "bb49c2f10f6ad6b8a7d9fc286297af8436c0be8bcdd39d727bf589e4531644d5",
+      "plan.md": "37f2baacf010b509f086d0ade4d9841049d3d92ff311aa9902e8b1238b05f25b",
+      "tasks.md": "446add68914086c8cce0a8d3657c1042819a8841d641de3ce04ccba35e95d193",
+      "checklist.md": "dd9ab77c44ee56ecc156f0fcd9f525b61c0ed2d9906f5ffb14306af4d4c621e8",
+      "implementation-summary.md": "9e30a31372919dcb643aea3f6f9a00399014b18065055d227b644d3210ab1983"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

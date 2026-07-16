@@ -1,0 +1,28 @@
+{
+  "level": "phase",
+  "specFolder": "mcp-tooling/010-mcp-mobbin",
+  "description": "The `mcp-tooling` hub has two workflow bridges (`mcp-chrome-devtools`, `mcp-click-up`) and one transport (`mcp-figma`), but no app-design-research",
+  "keywords": [
+    "mcp-tooling",
+    "hub",
+    "two",
+    "workflow",
+    "bridges",
+    "mcp-chrome-devtools",
+    "mcp-click-up",
+    "one",
+    "transport",
+    "mcp-figma",
+    "app-design-research"
+  ],
+  "lastUpdated": "2026-07-16T12:07:31.084Z",
+  "specId": "010",
+  "folderSlug": "mcp-mobbin",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-07-26_13-07__converted-010-mcp-mobbin-into-a-4-phase-packet.md"
+  ]
+}

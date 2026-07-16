@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/009-mcp-refero/003-hub-integration",
+  "spec_folder": "mcp-tooling/009-mcp-refero/003-hub-integration",
+  "parent_id": "mcp-tooling/009-mcp-refero",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-refero hub integration",
+      "refero mode registry",
+      "refero hub router",
+      "mcp-tooling fourth mode",
+      "phase 003 hub-integration",
+      "mcp-refero integration plan",
+      "refero registry plan",
+      "refero router plan",
+      "phase 003 plan",
+      "mcp-refero integration tasks",
+      "refero registry tasks",
+      "refero router tasks"
+    ],
+    "key_topics": [
+      "mcp-refero",
+      "hub",
+      "integration",
+      "refero",
+      "mode",
+      "registry",
+      "router",
+      "mcp-tooling",
+      "fourth",
+      "phase",
+      "hub-integration",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/spec.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/plan.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/tasks.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "recorded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 002 the `mcp-refero` packet exists but is invisible: the hub's mode registry, router signals, parent SKILL.md, and graph identity all describe a three-mode hub, so no route can reach the new transport and the advisor's skill graph carries no refero awareness",
+    "created_at": "2026-07-16T09:39:29Z",
+    "last_save_at": "2026-07-16T12:00:35.278Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5b19c8a1e2b2cd21f41885d1895b31c22575f9664ca302f8c8ce766b3af2d28b",
+    "source_doc_hashes": {
+      "spec.md": "493761b834b42184dee5d15d7f42be12a51fb9df9424ca25baef89c46246dc30",
+      "plan.md": "1c8ed43ddf15871682cccd705f464b812dc0a1ab3bf6e9f695f6ce1755f8f76d",
+      "tasks.md": "4eb4975987026406db62437012adf0f8167c9a94aa5f45b7d333ce03a4bdc285",
+      "checklist.md": "347be17875eda3e045958e10cb55376286f7393d8103010c0a22c55667b7ba60",
+      "implementation-summary.md": "35e122d81d3324140552eb13123de2d18d3bce38a4ea4938f6cd5cedbf49b76f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

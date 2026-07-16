@@ -1,0 +1,24 @@
+{
+  "topic": "Aside browser developer surface for an mcp-tooling skill mode: the Aside CLI command surface and the Aside MCP server (tools, auth, transport, install, session/daemon model) per https://docs.aside.com/help/developers#use-mcp — AI-browser-automation workflows (navigate, DOM inspection, screenshots, console/network capture), contrast with Chrome DevTools bdg patterns, everything needed to author the mcp-aside-devtools packet (CLI-primary + Code Mode MCP fallback) and register an aside UTCP manual in .utcp_config.json",
+  "specFolder": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": { "convergenceMode": "default", "divergent": {} },
+  "stop_policy": "max-iterations",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "fanout": {
+    "executors": [
+      { "kind": "cli-codex", "model": "gpt-5.6-sol", "reasoningEffort": "xhigh", "serviceTier": "fast", "sandboxMode": "danger-full-access", "timeoutSeconds": 3600, "iterations": 5, "label": "sol" },
+      { "kind": "cli-opencode", "model": "zai-coding-plan/glm-5.2", "reasoningEffort": "max", "timeoutSeconds": 3600, "iterations": 2, "label": "glm" },
+      { "kind": "cli-codex", "model": "gpt-5.6-luna", "reasoningEffort": "max", "serviceTier": "fast", "sandboxMode": "danger-full-access", "timeoutSeconds": 3600, "iterations": 3, "label": "luna" }
+    ],
+    "concurrency": 3
+  },
+  "sandbox_note": "codex lineages run danger-full-access because workspace-write blocks network (verified 2026-07-16: curl silent-fail vs HTTP 200); web access is load-bearing for this topic. Write boundary enforced by the lineage prompt.",
+  "lineage": { "sessionId": "dr-008-aside-fanout-20260716", "parentSessionId": null, "lineageMode": "new", "generation": 1, "continuedFromRun": null },
+  "createdAt": "2026-07-16T10:10:00Z",
+  "status": "initialized"
+}

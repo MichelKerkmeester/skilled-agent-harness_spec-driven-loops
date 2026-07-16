@@ -1,0 +1,48 @@
+{
+  "topic": "Mobbin MCP developer surface for an mcp-tooling transport mode: the official Mobbin MCP server at https://github.com/mobbin/mobbin-mcp-server and official skills at https://github.com/mobbin/skills; tool surface, OAuth/auth, transport, install, search workflows, plan gating, and the read-only Code Mode transport packet with sk-design judgment pairing and a mobbin UTCP manual",
+  "research_topic": "Mobbin MCP developer surface for an mcp-tooling transport mode: the official Mobbin MCP server per https://github.com/mobbin/mobbin-mcp-server (tool surface, auth/API key model, transport, install) and the official Mobbin skills repo https://github.com/mobbin/skills — app/screen/flow/element design-research search workflows, plan gating (free vs Pro), everything needed to author the mcp-mobbin transport packet (read-only, Code Mode only, sk-design judgment pairing) and register a mobbin manual in .utcp_config.json",
+  "specFolder": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research",
+  "artifact_dir": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/lineages/luna",
+  "fanout_lineage_artifact_dir": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/lineages/luna",
+  "loop_type": "research",
+  "stopPolicy": "max-iterations",
+  "stop_policy": "max-iterations",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1784199634206-lfqjyo",
+    "generation": 1,
+    "lineageId": "luna",
+    "lineageMode": "detached"
+  },
+  "scopeBoundary": {
+    "writeRoot": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/lineages/luna",
+    "forbiddenWrites": [
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/spec.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/plan.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/tasks.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/deep-research-config.json",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/deep-research-state.jsonl",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/deep-research-strategy.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/findings-registry.json",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/research/deep-research-dashboard.md",
+      ".utcp_config.json",
+      ".opencode/skills"
+    ],
+    "writeback": "skipped by detached lineage boundary"
+  },
+  "status": "complete",
+  "stopReason": "maxIterationsReached"
+}

@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "mcp-tooling/009-mcp-refero",
+  "description": "The `mcp-tooling` hub has no design-reference research transport: when UI work needs real-world design examples (screens, flows, patterns from",
+  "keywords": [
+    "mcp-tooling",
+    "hub",
+    "design-reference",
+    "research",
+    "transport",
+    "work",
+    "needs",
+    "real-world",
+    "design",
+    "examples",
+    "screens",
+    "flows",
+    "patterns"
+  ],
+  "lastUpdated": "2026-07-16T12:07:23.255Z",
+  "specId": "009",
+  "folderSlug": "mcp-refero",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-07-26_13-07__converted-009-mcp-refero-into-a-4-phase-packet.md"
+  ]
+}

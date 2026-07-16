@@ -1,0 +1,194 @@
+{
+  "openQuestions": [
+    {
+      "id": "kq-live-tools",
+      "text": "What exact authenticated tools and JSON schemas does tools/list return?",
+      "status": "unknown",
+      "note": "The public server repository and skill text do not publish the authenticated inventory; run discovery after OAuth."
+    },
+    {
+      "id": "kq-adapter",
+      "text": "Does the installed mcp-remote version negotiate Mobbin Streamable HTTP and OAuth without extra flags?",
+      "status": "partial",
+      "note": "The local Code Mode configuration pattern supports mcp-remote, but a Mobbin-authenticated smoke test remains required."
+    },
+    {
+      "id": "kq-runtime-name",
+      "text": "What exact Code Mode-prefixed tool name and schema should the packet call?",
+      "status": "partial",
+      "note": "The logical public operation is search_screens; the mobbin.mobbin_search_screens name is a namespace convention that must be confirmed with search_tools/tool_info."
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "kq-endpoint",
+      "answer": "The official server is the hosted Streamable HTTP endpoint https://api.mobbin.com/mcp.",
+      "resolvedInRun": 1,
+      "source": "https://github.com/mobbin/mobbin-mcp-server/blob/main/server.json"
+    },
+    {
+      "id": "kq-auth",
+      "answer": "MCP uses OAuth/browser authorization with protected-resource metadata, DCR, PKCE S256, and openid; no static Mobbin API key belongs in the MCP manual.",
+      "resolvedInRun": 1,
+      "source": "https://docs.mobbin.com/mcp/build-an-integration"
+    },
+    {
+      "id": "kq-plans",
+      "answer": "Mobbin documents MCP availability for Pro, Team, and Enterprise; Free is not documented as eligible.",
+      "resolvedInRun": 1,
+      "source": "https://docs.mobbin.com/mcp/introduction"
+    },
+    {
+      "id": "kq-skills",
+      "answer": "The official skills repo documents mobbin-search, whose concrete MCP operation is search_screens; app/screen/flow/element intent is expressed through query terms and visual inspection.",
+      "resolvedInRun": 2,
+      "source": "https://github.com/mobbin/skills/blob/main/skills/mobbin-search/SKILL.md"
+    },
+    {
+      "id": "kq-install",
+      "answer": "The skill install path is npx skills add mobbin/skills; the MCP prerequisite is the official remote URL.",
+      "resolvedInRun": 2,
+      "source": "https://github.com/mobbin/skills"
+    },
+    {
+      "id": "kq-manual",
+      "answer": "Use a mobbin mcp manual with a mcp-remote stdio adapter to the official Streamable HTTP URL because the local Code Mode config shape validates stdio/sse rather than a direct Streamable HTTP transport.",
+      "resolvedInRun": 3,
+      "source": "file:.opencode/skills/mcp-code-mode/references/configuration.md"
+    },
+    {
+      "id": "kq-boundary",
+      "answer": "The packet is a read-only Code Mode transport, forbids workspace mutation, and pairs with sk-design for design judgment.",
+      "resolvedInRun": 3,
+      "source": "file:.opencode/skills/mcp-tooling/mode-registry.json"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-remote-streamable-http",
+      "text": "Mobbin's official MCP server is remote Streamable HTTP at https://api.mobbin.com/mcp.",
+      "run": 1,
+      "source": "https://github.com/mobbin/mobbin-mcp-server/blob/main/server.json",
+      "confidence": "high"
+    },
+    {
+      "id": "f-oauth-no-api-key",
+      "text": "MCP uses browser OAuth; the Mobbin API key is a separate REST API credential and is not part of the MCP manual.",
+      "run": 1,
+      "source": "https://docs.mobbin.com/mcp/build-an-integration",
+      "confidence": "high"
+    },
+    {
+      "id": "f-paid-plan-gate",
+      "text": "MCP access is documented for Pro, Team, and Enterprise, not Free.",
+      "run": 1,
+      "source": "https://docs.mobbin.com/mcp/introduction",
+      "confidence": "high"
+    },
+    {
+      "id": "f-search-screens",
+      "text": "mobbin-search documents search_screens with screen metadata, Mobbin/image URLs, platform, failed entries, and inline image blocks.",
+      "run": 2,
+      "source": "https://github.com/mobbin/skills/blob/main/skills/mobbin-search/SKILL.md",
+      "confidence": "high"
+    },
+    {
+      "id": "f-query-dimensions",
+      "text": "App, screen, flow, and element research are query dimensions in the published workflow; separate public tool names are not confirmed.",
+      "run": 2,
+      "source": "https://github.com/mobbin/skills/blob/main/skills/mobbin-search/SKILL.md",
+      "confidence": "high"
+    },
+    {
+      "id": "f-install",
+      "text": "The official skill can be installed with npx skills add mobbin/skills or the documented manual clone/copy path.",
+      "run": 2,
+      "source": "https://github.com/mobbin/skills",
+      "confidence": "high"
+    },
+    {
+      "id": "f-code-mode-adapter",
+      "text": "The paste-ready UTCP shape is an mcp manual named mobbin using the repository's mcp-remote stdio adapter pattern for the official remote URL.",
+      "run": 3,
+      "source": "file:.opencode/skills/mcp-code-mode/references/configuration.md",
+      "confidence": "medium"
+    },
+    {
+      "id": "f-read-only-pairing",
+      "text": "mcp-mobbin should be a non-mutating Code Mode transport and defer design judgment to sk-design.",
+      "run": 3,
+      "source": "file:.opencode/skills/mcp-tooling/SKILL.md",
+      "confidence": "high"
+    },
+    {
+      "id": "f-runtime-gate",
+      "text": "Authenticated tools/list and one search_screens smoke call are implementation gates before freezing exact runtime names or schemas.",
+      "run": 3,
+      "source": "https://github.com/mobbin/skills/blob/main/skills/mobbin-search/SKILL.md",
+      "confidence": "high"
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Local Mobbin stdio server package",
+      "reason": "Official manifests publish a hosted remote endpoint and no local launch command.",
+      "evidence": "https://github.com/mobbin/mobbin-mcp-server/blob/main/server.json",
+      "run": 1
+    },
+    {
+      "approach": "API-key-only MCP authentication",
+      "reason": "Official MCP docs describe OAuth; API keys are documented for the separate REST API.",
+      "evidence": "https://docs.mobbin.com/mcp/build-an-integration",
+      "run": 1
+    },
+    {
+      "approach": "Free-plan MCP entitlement",
+      "reason": "MCP docs list Pro, Team, and Enterprise and do not list Free.",
+      "evidence": "https://docs.mobbin.com/mcp/introduction",
+      "run": 1
+    },
+    {
+      "approach": "Four separately confirmed app/screen/flow/element tools",
+      "reason": "The official skill publishes search_screens and query guidance, not four public tool schemas.",
+      "evidence": "https://github.com/mobbin/skills/blob/main/skills/mobbin-search/SKILL.md",
+      "run": 2
+    },
+    {
+      "approach": "Evidence-board writes from the transport",
+      "reason": "The optional .mobbin board flow is outside a read-only Code Mode transport.",
+      "evidence": "https://github.com/mobbin/skills/blob/main/skills/mobbin-search/SKILL.md",
+      "run": 2
+    },
+    {
+      "approach": "Direct SSE declaration without Streamable HTTP verification",
+      "reason": "The official server metadata says streamable-http; use the local remote adapter until direct support is proven.",
+      "evidence": "https://github.com/mobbin/mobbin-mcp-server/blob/main/server.json",
+      "run": 3
+    },
+    {
+      "approach": "Hardcoded complete authenticated tool inventory",
+      "reason": "Public source does not expose authenticated tools/list schemas.",
+      "evidence": "https://github.com/mobbin/mobbin-mcp-server",
+      "run": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": [],
+  "suppressedCandidates": [],
+  "promotedIdeas": [],
+  "divergence": {
+    "saturatedDirections": [
+      "local stdio server installation",
+      "API-key MCP auth",
+      "hardcoded tool inventory"
+    ],
+    "pivotsTaken": [
+      "server manifests -> official docs -> official skills -> local Code Mode contract"
+    ],
+    "remainingFrontier": [
+      "authenticated tools/list",
+      "mcp-remote Streamable HTTP/OAuth smoke test",
+      "exact Code Mode-prefixed search_screens schema"
+    ]
+  }
+}

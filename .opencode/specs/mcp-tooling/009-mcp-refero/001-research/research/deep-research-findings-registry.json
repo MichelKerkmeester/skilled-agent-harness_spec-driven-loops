@@ -1,0 +1,96 @@
+{
+  "mergedFrom": [
+    "glm",
+    "sol"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "state-finding-1-1-26441bd2f6c9",
+      "title": "Authoritative Refero MCP surface and live unauthenticated behavior",
+      "summary": "Authoritative Refero MCP surface and live unauthenticated behavior",
+      "text": "Authoritative Refero MCP surface and live unauthenticated behavior",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-f856f5fd3ff0",
+      "title": "Broad survey: Refero MCP tool surface (8 tools), auth model, coverage limits, skill-repo conventions vs mcp-figma transport",
+      "summary": "Broad survey: Refero MCP tool surface (8 tools), auth model, coverage limits, skill-repo conventions vs mcp-figma transport",
+      "text": "Broad survey: Refero MCP tool surface (8 tools), auth model, coverage limits, skill-repo conventions vs mcp-figma transport",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-5957327eba7a",
+      "title": "Broaden angles: free-vs-paid gating/rate limits (negative knowledge), auth/token lifecycle, mcp-refero transport-packet layout mapped on mcp-figma",
+      "summary": "Broaden angles: free-vs-paid gating/rate limits (negative knowledge), auth/token lifecycle, mcp-refero transport-packet layout mapped on mcp-figma",
+      "text": "Broaden angles: free-vs-paid gating/rate limits (negative knowledge), auth/token lifecycle, mcp-refero transport-packet layout mapped on mcp-figma",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-746b49b8ed8e",
+      "title": "contradiction review and implementation-readiness matrix",
+      "summary": "contradiction review and implementation-readiness matrix",
+      "text": "contradiction review and implementation-readiness matrix",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-142a13548070",
+      "title": "downstream transport architecture and judgment boundary",
+      "summary": "downstream transport architecture and judgment boundary",
+      "text": "downstream transport architecture and judgment boundary",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-e1d43ed1f37b",
+      "title": "Limits, plan gating, batch behavior, and current data shapes",
+      "summary": "Limits, plan gating, batch behavior, and current data shapes",
+      "text": "Limits, plan gating, batch behavior, and current data shapes",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-9abcf61f57dc",
+      "title": "mcp-remote OAuth, local state, and failure boundary",
+      "summary": "mcp-remote OAuth, local state, and failure boundary",
+      "text": "mcp-remote OAuth, local state, and failure boundary",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 7,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 7,
+    "convergenceScore": 0.57,
+    "coverageBySources": {}
+  }
+}

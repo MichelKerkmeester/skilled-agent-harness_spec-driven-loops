@@ -1,0 +1,244 @@
+{
+  "sessionId": "fanout-luna-1784198125985-iw9229",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "answeredCount": 0,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-16T10:57:05Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-is-the-complete-refero-mcp-tool-inventory-and-each-tool-s-input-output-cont",
+      "inboxId": null,
+      "text": "What is the complete Refero MCP tool inventory and each tool's input/output contract?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-how-does-authentication-work-through-mcp-remote-and-what-rate-limits-apply",
+      "inboxId": null,
+      "text": "How does authentication work through `mcp-remote`, and what rate limits apply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-ui-reference-search-workflows-does-refero-skill-document-for-apps-screens-f",
+      "inboxId": null,
+      "text": "What UI-reference search workflows does `refero_skill` document for apps, screens, flows, and elements?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-what-differs-between-free-and-paid-refero-access",
+      "inboxId": null,
+      "text": "What differs between free and paid Refero access?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-transport-packet-constraints-follow-from-the-existing-manual-read-only-code",
+      "inboxId": null,
+      "text": "What transport-packet constraints follow from the existing manual, read-only Code Mode surface, and `sk-design` pairing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-is-the-complete-refero-mcp-tool-inventory-and-each-tool-s-input-output-cont",
+      "inboxId": null,
+      "text": "What is the complete Refero MCP tool inventory and each tool's input/output contract?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-how-does-authentication-work-through-mcp-remote-and-what-rate-limits-apply",
+      "inboxId": null,
+      "text": "How does authentication work through `mcp-remote`, and what rate limits apply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-what-ui-reference-search-workflows-does-refero-skill-document-for-apps-screens-f",
+      "inboxId": null,
+      "text": "What UI-reference search workflows does `refero_skill` document for apps, screens, flows, and elements?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-what-differs-between-free-and-paid-refero-access",
+      "inboxId": null,
+      "text": "What differs between free and paid Refero access?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-transport-packet-constraints-follow-from-the-existing-manual-read-only-code",
+      "inboxId": null,
+      "text": "What transport-packet constraints follow from the existing manual, read-only Code Mode surface, and `sk-design` pairing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "The GitHub skill’s `references/mcp-tools.md` should be reconciled against current docs during authoring; its older parameter/response examples must not be copied as current contracts.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Live endpoint `tools/list` schema and actual unauthenticated/OAuth challenge behavior remain unverified due to DNS failure in this environment.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether `mcp-remote` itself persists OAuth credentials in the target runtime, and the exact CLI flags needed for static Bearer headers, should be verified during packet installation testing.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "A live `tools/list` response and actual Refero OAuth challenge remain unverified because the API hostname was not reachable in this environment.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "A real installation test against the target host remains unperformed; the exact upstream flags are verified from documentation, but client-specific packaging/caching behavior is not.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No authoritative per-minute, concurrency, or per-tool Refero rate limit was found.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Exact Refero throttling beyond the documented monthly quota remains undocumented.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "A real installation against the target host, including package/cache behavior, client argument escaping, and persistence across runtime restarts, remains unperformed.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The apparent four-tool search-index extract versus the current eight-tool detailed page should be rechecked during packet authoring or installation-time schema inspection.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Live endpoint `tools/list` and the actual OAuth challenge remain unverified because the API hostname was unreachable in this environment.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "What is the complete Refero MCP tool inventory and each tool's input/output contract?",
+    "How does authentication work through `mcp-remote`, and what rate limits apply?",
+    "What UI-reference search workflows does `refero_skill` document for apps, screens, flows, and elements?",
+    "What differs between free and paid Refero access?",
+    "What transport-packet constraints follow from the existing manual, read-only Code Mode surface, and `sk-design` pairing?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 10,
+    "keyFindings": 0,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.83,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/009-mcp-refero/001-research/research/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

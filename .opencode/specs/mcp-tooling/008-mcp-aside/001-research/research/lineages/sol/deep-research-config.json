@@ -1,0 +1,51 @@
+{
+  "topic": "Aside browser developer surface for an mcp-tooling skill mode: the Aside CLI command surface and the Aside MCP server (tools, auth, transport, install, session/daemon model) per https://docs.aside.com/help/developers#use-mcp — AI-browser-automation workflows (navigate, DOM inspection, screenshots, console/network capture), contrast with Chrome DevTools bdg patterns, everything needed to author the mcp-aside-devtools packet (CLI-primary + Code Mode MCP fallback) and register an aside UTCP manual in .utcp_config.json",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research",
+  "fanout_lineage_artifact_dir": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/lineages/sol",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-16T10:12:20Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-1784196482911-9atmiq",
+    "parentSessionId": "dr-008-aside-fanout-20260716",
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "scope": {
+    "writeRoot": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/lineages/sol",
+    "externalWritesSuppressed": ["spec sync", "memory save", "git staging", "root reducer and graph upsert"]
+  }
+}

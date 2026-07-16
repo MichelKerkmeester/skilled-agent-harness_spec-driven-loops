@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/008-mcp-aside/003-hub-integration",
+  "description": "After phase 002 the `mcp-aside-devtools` packet exists but is invisible: the hub's mode-registry and router do not know it, the parent SKILL.md does",
+  "keywords": [
+    "phase",
+    "mcp-aside-devtools",
+    "packet",
+    "exists",
+    "invisible",
+    "hub",
+    "mode-registry",
+    "router",
+    "know",
+    "parent",
+    "skill"
+  ],
+  "lastUpdated": "2026-07-16T12:00:08.129Z",
+  "specId": "003",
+  "folderSlug": "hub-integration",
+  "parentChain": [
+    "mcp-tooling",
+    "008-mcp-aside"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

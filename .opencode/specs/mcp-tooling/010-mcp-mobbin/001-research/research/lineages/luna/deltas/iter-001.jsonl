@@ -1,0 +1,9 @@
+{"type":"iteration","iteration":1,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.95,"status":"complete","focus":"official server identity, transport, authorization, and plan eligibility","findingsCount":6}
+{"type":"finding","id":"f-iter001-endpoint","label":"Official Mobbin MCP is hosted at https://api.mobbin.com/mcp over Streamable HTTP","iteration":1,"source":"https://github.com/mobbin/mobbin-mcp-server/blob/main/server.json"}
+{"type":"finding","id":"f-iter001-oauth","label":"MCP uses OAuth/browser authorization and protected-resource metadata","iteration":1,"source":"https://docs.mobbin.com/mcp/build-an-integration"}
+{"type":"finding","id":"f-iter001-plans","label":"MCP is documented for Pro, Team, and Enterprise","iteration":1,"source":"https://docs.mobbin.com/mcp/introduction"}
+{"type":"finding","id":"f-iter001-rest-distinction","label":"API-key Bearer auth is for the separate REST API","iteration":1,"source":"https://docs.mobbin.com/api/quickstart"}
+{"type":"ruled_out","direction":"local Mobbin stdio server package","reason":"Official manifests publish a hosted remote endpoint only","iteration":1}
+{"type":"ruled_out","direction":"API-key-only MCP authentication","reason":"Official MCP integration uses OAuth; API keys are REST API credentials","iteration":1}
+{"type":"edge","id":"e-iter001-endpoint-source","relation":"SUPPORTS","source":"s-mobbin-server-manifest","target":"f-iter001-endpoint","iteration":1}
+

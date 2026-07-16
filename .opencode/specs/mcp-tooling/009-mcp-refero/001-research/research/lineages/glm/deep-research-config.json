@@ -1,0 +1,31 @@
+{
+  "topic": "Refero MCP developer surface for an mcp-tooling transport mode: the Refero MCP server per https://refero.design/mcp (tool surface, auth, rate limits, transport via mcp-remote) and the official refero_skill repo https://github.com/referodesign/refero_skill — UI-design-reference search workflows (apps, screens, flows, elements), free vs paid gating, everything needed to author the mcp-refero transport packet (read-only, Code Mode only, sk-design judgment pairing) atop the EXISTING refero manual in .utcp_config.json (npx -y mcp-remote https://api.refero.design/mcp)",
+  "specFolder": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research",
+  "maxIterations": 2,
+  "minIterations": 2,
+  "convergenceThreshold": 0.05,
+  "stop_policy": "max-iterations",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": "max",
+    "timeoutSeconds": 3600,
+    "label": "glm"
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-1784198125985-iw9229",
+    "parentSessionId": "dr-009-refero-fanout-20260716",
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanoutLineageArtifactDir": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/research/lineages/glm"
+  },
+  "antiConvergence": { "convergenceMode": "off", "divergent": {}, "note": "stopPolicy=max-iterations: convergence is telemetry-only; broaden review angles instead of synthesizing early" },
+  "createdAt": "2026-07-16T12:35:00Z",
+  "completedAt": "2026-07-16T12:55:00Z",
+  "status": "complete",
+  "stopReason": "maxIterationsReached"
+}
