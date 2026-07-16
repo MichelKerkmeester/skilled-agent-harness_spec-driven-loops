@@ -68,7 +68,7 @@ is accepted as a pass.
 - [ ] CHK-017 [P0] Manifest, AgentIR closure, evaluator capsule, fixture epoch, executor, tool schema, topology, reducer, and upcaster changes produce the declared reuse, revision, fork, quarantine, or rejection result
 - [ ] CHK-018 [P0] Candidate-facing reads redact hidden fixtures, exact terminal evidence, evaluator internals, and promotion authority; access violations are blocking evidence
 - [ ] CHK-019 [P0] Critical family regression, canary veto, stale artifact, evaluator leak, insufficient evidence, and rollback ambiguity cannot become a successful resume or promotion state
-- [ ] CHK-020 [P0] The adapter emits no authority write, legacy-state mutation, candidate dispatch, evaluator mutation, or production promotion before phase 014
+- [ ] CHK-020 [P0] The adapter emits no authority write, legacy-state mutation, candidate dispatch, evaluator mutation, or production promotion before phase 017
 - [ ] CHK-021 [P1] Common evaluator, canary, certificate, receipt, promotion, redaction, and effect-recovery fixture identities match the deep-improvement-common contract without a variant fork
 - [ ] CHK-022 [P1] Duplicate, late, reordered, missing, extra, unsupported-version, and malformed event fixtures preserve prior evidence and return deterministic mismatch identities
 <!-- /ANCHOR:testing -->

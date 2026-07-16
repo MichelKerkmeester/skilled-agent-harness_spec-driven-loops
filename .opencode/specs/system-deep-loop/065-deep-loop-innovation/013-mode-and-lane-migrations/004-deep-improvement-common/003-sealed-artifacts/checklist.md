@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Deep Improvement Common Services - Sealed Reference Artifacts"
-description: "Blocking verification checklist for the phase-003-backed sealed evaluator, candidate, trial, canary, and promotion reference artifacts in the deep-improvement common-services migration."
+description: "Blocking verification checklist for the phase-006-backed sealed evaluator, candidate, trial, canary, and promotion reference artifacts in the deep-improvement common-services migration."
 trigger_phrases:
   - "deep improvement sealed artifacts checklist"
   - "deep improvement tamper evident verification"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T20:45:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined checks for seal reuse, dependency closure, tamper reads, canaries, and promotion inputs"
-    next_safe_action: "Run the seal verifier after the phase-003 primitive and reducer contracts are frozen"
+    next_safe_action: "Run the seal verifier after the phase-006 primitive and reducer contracts are frozen"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -29,7 +29,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking verifier contract for the sealed reference-artifacts phase. Every item is a check the paired
-verify agent runs before the candidate implementation lands; each report pins the candidate SHA, phase-003 sealing primitive
+verify agent runs before the candidate implementation lands; each report pins the candidate SHA, phase-006 sealing primitive
 fingerprint, predecessor reducer fingerprint, artifact-fixture digest, commands, exit codes, artifact counts, and read or
 promotion outcomes. Any alternate sealing scheme, mutable overwrite, accepted tampered read, hidden-evidence leak, missing
 dependency, or downstream contract fork fails the gate.
@@ -39,7 +39,7 @@ dependency, or downstream contract fork fails the gate.
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] `002-reducers-and-projections` artifact-reference, evaluator-epoch, canary-status, promotion-status, and projection-fingerprint inputs are frozen
-- [ ] CHK-002 [P0] The phase-003 sealing primitive contract records canonicalization, digest, dependency, seal-on-write, publication, verification, and failure semantics
+- [ ] CHK-002 [P0] The phase-006 sealing primitive contract records canonicalization, digest, dependency, seal-on-write, publication, verification, and failure semantics
 - [ ] CHK-003 [P1] Artifact field and dependency matrix names every sealed input/output, producer, consumer, visibility rule, and lifecycle state
 - [ ] CHK-004 [P1] Ownership boundaries exclude `004-certificates-and-receipts`, the three downstream variants, typed-ledger schema, and reducer implementation
 - [ ] CHK-005 [P1] Valid, mutated, partial-write, missing-dependency, stale-epoch, stale-canary, leak, and mixed-version fixtures are pinned
@@ -48,7 +48,7 @@ dependency, or downstream contract fork fails the gate.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-006 [P0] Every artifact kind uses the phase-003 sealing adapter; no second digest, signature, chain, manifest, storage, or verification scheme exists
+- [ ] CHK-006 [P0] Every artifact kind uses the phase-006 sealing adapter; no second digest, signature, chain, manifest, storage, or verification scheme exists
 - [ ] CHK-007 [P0] Digest coverage includes canonical bytes, artifact kind, schema version, and ordered dependency closure; omitted dependencies are rejected
 - [ ] CHK-008 [P0] Sealed bytes are immutable, writes are atomic, incomplete artifacts are not readable, and a new identity is required for every content or dependency change
 - [ ] CHK-009 [P1] Scope is limited to common sealed references, service boundaries, fixtures, and verification; no adjacent phase cleanup or authority cutover is included
@@ -95,7 +95,7 @@ dependency, or downstream contract fork fails the gate.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-028 [P1] Implementation and fixture changes land in dependency-closed, path-scoped commits after the predecessor reducer and phase-003 sealing contracts are pinned
+- [ ] CHK-028 [P1] Implementation and fixture changes land in dependency-closed, path-scoped commits after the predecessor reducer and phase-006 sealing contracts are pinned
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

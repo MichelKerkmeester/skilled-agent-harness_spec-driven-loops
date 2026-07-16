@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Rollback Drills"
-description: "Blocking verification contract for mode-scoped rollback rehearsals, integrity recovery, receipt closure, isolation, and phase-011 evidence freshness."
+description: "Blocking verification contract for mode-scoped rollback rehearsals, integrity recovery, receipt closure, isolation, and phase-014 evidence freshness."
 trigger_phrases:
   - "rollback drills checklist"
   - "deep-loop rollback verifier contract"
@@ -39,7 +39,7 @@ mutation fails the gate.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-001 rollback policy and `../../manifest/phase-tree.json` are pinned; the drill uses the later-of-14-days-and-five-runs window and never weakens it
+- [ ] CHK-001 [P0] The phase-004 rollback policy and `../../manifest/phase-tree.json` are pinned; the drill uses the later-of-14-days-and-five-runs window and never weakens it
 - [ ] CHK-002 [P0] The mode has a current, complete sibling-003 parity certificate with zero unresolved divergences
 - [ ] CHK-003 [P0] Every in-flight state in the capsule has exactly one predecessor-004 disposition and a usable rollback anchor
 - [ ] CHK-004 [P0] Legacy and spine writer identities, starting authority epoch, adapters, projections, fingerprint verifier, receipts, and effect recovery are present and version-bound
@@ -71,14 +71,14 @@ mutation fails the gate.
 - [ ] CHK-020 [P0] Legacy resumes from the rollback anchor and completes the declared next loop step with the same protected result as the isolated control lane
 - [ ] CHK-021 [P0] Real authority, live packet state, external targets, writer leases, and live effect counts are unchanged after passing and failing drills
 - [ ] CHK-022 [P0] Missing, wrong-class, late, manually asserted, or nondeterministic regression detection fails without issuing a passing certificate
-- [ ] CHK-023 [P0] Drift in code, BASE, policy, parity, classification, adapter, projection, fingerprint, receipt, rollback asset, mode, or manifest identity makes phase-011 preflight refuse cutover
+- [ ] CHK-023 [P0] Drift in code, BASE, policy, parity, classification, adapter, projection, fingerprint, receipt, rollback asset, mode, or manifest identity makes phase-014 preflight refuse cutover
 - [ ] CHK-024 [P1] Crash injection before/after authority and effect cut points recovers deterministically with one terminal receipt outcome and no unsafe replay
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-025 [P0] Every phase-010 mode proposed for authority cutover has one complete current drill certificate; zero modes or uncovered modes fail the gate
+- [ ] CHK-025 [P0] Every phase-013 mode proposed for authority cutover has one complete current drill certificate; zero modes or uncovered modes fail the gate
 - [ ] CHK-026 [P0] Every certificate binds identity, forward path, injected regression, rollback actions, integrity results, timing, cleanup, pass/fail reason codes, and verifier identity
 - [ ] CHK-027 [P1] A failed drill routes the first deterministic mismatch to its owning contract and the complete affected closure reruns after repair; no waiver or rebaseline converts failure to pass
 <!-- /ANCHOR:fix-completeness -->
@@ -95,7 +95,7 @@ mutation fails the gate.
 ## Documentation
 
 - [ ] CHK-031 [P1] The mode drill manifest, runner command, injected fixture, expected detector, rollback steps, integrity observations, and certificate verification procedure are documented
-- [ ] CHK-032 [P1] Evidence cites the phase-001 rollback policy, sibling shadow-parity certificate, predecessor state classification, phase-004 receipts, and phase tree by exact bound identity
+- [ ] CHK-032 [P1] Evidence cites the phase-004 rollback policy, sibling shadow-parity certificate, predecessor state classification, phase-007 receipts, and phase tree by exact bound identity
 - [ ] CHK-033 [P2] Operator-facing failure guidance maps each reason code to the owning contract without suggesting unsafe manual replay or evidence suppression
 <!-- /ANCHOR:docs -->
 
@@ -111,7 +111,7 @@ mutation fails the gate.
 
 The phase passes only when every P0 item is green for every cutover-eligible mode, every injected regression is detected,
 rollback restores legacy authority within the governed window, fingerprint and projection integrity match the control,
-state and effects reconcile without loss or duplication, real authority remains untouched, and phase 011 verifies each
+state and effects reconcile without loss or duplication, real authority remains untouched, and phase 014 verifies each
 current certificate against all bound inputs. P1 items are required before production readiness; P2 guidance may defer
 with an explicit owner and reason.
 <!-- /ANCHOR:summary -->
@@ -120,6 +120,6 @@ with an explicit owner and reason.
 ## Sign-off
 
 Signed off when the blocking SOL verifier binds the exact candidate and evidence set, confirms all P0 checks for every
-cutover-eligible mode, verifies `validate.sh --strict`, and records that phase 005 moved no real authority. The sign-off
-authorizes phase 011 to evaluate cutover readiness; it does not itself authorize an authority flip.
+cutover-eligible mode, verifies `validate.sh --strict`, and records that phase 008 moved no real authority. The sign-off
+authorizes phase 014 to evaluate cutover readiness; it does not itself authorize an authority flip.
 <!-- /ANCHOR:sign-off -->

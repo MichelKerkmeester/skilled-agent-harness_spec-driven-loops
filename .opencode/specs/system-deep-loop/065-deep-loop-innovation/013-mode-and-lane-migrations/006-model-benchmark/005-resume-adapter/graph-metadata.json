@@ -181,8 +181,8 @@
       }
     ],
     "causal_summary": "Plan the Model Benchmark resume adapter for the typed event-ledger substrate",
-    "created_at": "2026-07-15T21:45:06.735Z",
-    "last_save_at": "2026-07-15T21:45:06.735Z",
+    "created_at": "2026-07-16T03:43:40.285Z",
+    "last_save_at": "2026-07-16T03:43:40.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e039e04adc283b46deb8a9fef76d1bec9e009cc4b0d87fac800c284d25e8bfc1",
+    "source_fingerprint": "sha256:13a34e98da4f684c986217f90bd240f2a71c087360fdf53b801e9dc7403bfc27",
     "source_doc_hashes": {
-      "spec.md": "48a91aad37601256dfa41f57cf001fca14540b1f7d2a7a8bff288794250cf82e",
-      "plan.md": "cc7ffc55710ef00b41b1baac12ef4b6d56d28bcb76e579b602b624dd57b3825f",
-      "tasks.md": "21d36cc41d9c4c695ab9c49d970a87102e6843c18c50269b51ac3a54b7d871c0",
-      "checklist.md": "bde223848f659ee65395079a27e34d746c1bd7cf48a77271c1a94dd901afdf73"
+      "spec.md": "638efb971995ada7ff899f33443a51c9a9a8acc2ff1fbb5fd0426442f1bd0aaa",
+      "plan.md": "430ebb8529a96bbba866fd602a74ff808345c371ba40b6b04a99108e799bcc0b",
+      "tasks.md": "54227901a65864baa26503829e41ac6753dcd4a4f1ec0d822afbd369d2c98abe",
+      "checklist.md": "cd351cbe1572c18fc80b25b3ea14f2c94f9b1dca0189e3f8bc5bd2766485030a"
     },
     "last_active_child_id": null,
     "last_active_at": null

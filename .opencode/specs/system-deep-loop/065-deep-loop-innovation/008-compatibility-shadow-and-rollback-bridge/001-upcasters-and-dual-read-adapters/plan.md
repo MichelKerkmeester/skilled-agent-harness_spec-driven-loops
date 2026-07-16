@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Upcasters & Dual-Read/Single-Write Adapters"
-description: "Implementation plan for deterministic compatibility registries and reversible legacy-authoritative shadow adapters over the phase-003 dark ledger."
+description: "Implementation plan for deterministic compatibility registries and reversible legacy-authoritative shadow adapters over the phase-006 dark ledger."
 trigger_phrases:
   - "upcaster and dual-read adapter implementation plan"
   - "deep-loop shadow compatibility implementation"
@@ -30,12 +30,12 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime compatibility boundary (phase 005 child 001) |
+| **Surface** | system-deep-loop runtime compatibility boundary |
 | **Change class** | Compatibility logic, shadow reads, and non-authoritative mirror writes |
 | **Execution** | Additive behind compatibility gates; legacy remains authoritative |
 
 ### Overview
-Implement one deterministic compatibility layer between the current producer-native state shapes and the phase-003 current envelope/ledger contracts. The layer has three separable responsibilities: validate and chain registered event/state upcasters; obtain comparable legacy and dark observations and reconcile their normalized current models; and preserve one authoritative legacy mutation while appending at most one idempotent, non-authoritative dark mirror. The implementation must not rewrite historical data, infer versions from arbitrary JSON, fail over from legacy to dark, repair either store during reads, or expose an authority switch. Detailed module names are selected against the pinned state census, but behavior is fixed by the phase-001 policy, phase-003 envelope and ledger specs, `atomic-state.ts`, and `manifest/phase-tree.json`.
+Implement one deterministic compatibility layer between the current producer-native state shapes and the phase-006 current envelope/ledger contracts. The layer has three separable responsibilities: validate and chain registered event/state upcasters; obtain comparable legacy and dark observations and reconcile their normalized current models; and preserve one authoritative legacy mutation while appending at most one idempotent, non-authoritative dark mirror. The implementation must not rewrite historical data, infer versions from arbitrary JSON, fail over from legacy to dark, repair either store during reads, or expose an authority switch. Detailed module names are selected against the pinned state census, but behavior is fixed by the phase-004 policy, phase-006 envelope and ledger specs, `atomic-state.ts`, and `manifest/phase-tree.json`.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -43,7 +43,7 @@ Implement one deterministic compatibility layer between the current producer-nat
 
 ### Definition of Ready
 - [ ] The pinned state census identifies every legacy event/snapshot/JSONL family, reader, writer, version discriminator, and rollback anchor in scope
-- [ ] The phase-001 transition/versioning policy and phase-003 envelope, ledger, authorization, and replay contracts are frozen at exact revisions
+- [ ] The phase-004 transition/versioning policy and phase-006 envelope, ledger, authorization, and replay contracts are frozen at exact revisions
 - [ ] Each admitted historical version has canonical input/output fixtures and an explicit adjacent transform path to current
 - [ ] The comparison token binds logical identity, authority epoch, legacy position, verified dark head, and correlation identity
 - [ ] The legacy direct path and its value/error/retry semantics are captured before adapter insertion
@@ -63,7 +63,7 @@ Implement one deterministic compatibility layer between the current producer-nat
 - **Upcast executor**: validates the stored form, resolves the complete chain, executes one pure hop at a time, validates each intermediate result, and returns an effective current model plus stored/effective versions, immutable source reference, registry identity, and ordered trace. It returns no partial model on failure.
 - **Legacy codec boundary**: explicit codecs wrap inventoried call sites that currently pass arbitrary `unknown` shapes to `writeStateAtomic`, `writeStateIfChangedAtomic`, `appendJsonlIfChangedAtomic`, or deferred writers. The atomic utility remains a persistence primitive, not a schema or version detector.
 - **Dual-read sampler**: reads legacy and verified dark sources under one comparison token. It does not race arbitrary latest values; it records exact positions and classifies causal skew before semantic comparison.
-- **Reconciler**: compares normalized current models using the phase-003 canonical/replay fingerprint inputs. It returns the legacy operational value or error plus typed evidence: `parity`, `divergence`, `dark_lagging`, `dark_missing`, `dark_failure`, `legacy_failure_dark_success`, or `not_comparable`.
+- **Reconciler**: compares normalized current models using the phase-006 canonical/replay fingerprint inputs. It returns the legacy operational value or error plus typed evidence: `parity`, `divergence`, `dark_lagging`, `dark_missing`, `dark_failure`, `legacy_failure_dark_success`, or `not_comparable`.
 - **Single-authoritative-write adapter**: calls the legacy writer once. After accepted legacy mutation, it constructs the current canonical envelope and requests one idempotent authorized dark append. The dark receipt or failure is diagnostic; neither changes the legacy command result.
 - **Compatibility controls**: independent gates for upcasting, dual reads, and dark mirroring permit a direct legacy-only rollback. No gate selects dark authority, and no read path performs repair or writeback.
 - **Evidence boundary**: reconciliation and mirror-failure records are bounded, correlation-safe, and do not copy sensitive payloads. They feed later shadow-parity and cutover evidence but are not domain events that advance operational state.
@@ -73,7 +73,7 @@ Implement one deterministic compatibility layer between the current producer-nat
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the phase-000 legacy state census and exact phase-001/phase-003 contract revisions.
+- Pin the phase-003 legacy state census and exact phase-004/phase-006 contract revisions.
 - Build the legacy family manifest with read/write call sites, stored discriminators, supported version ranges, canonical fixtures, and baseline error/retry behavior.
 - Freeze adapter gates, typed error vocabulary, reconciliation outcomes, and comparison-token fields before inserting runtime seams.
 
@@ -107,14 +107,14 @@ Implement one deterministic compatibility layer between the current producer-nat
 | REQ-008 | Fault injection at dark read/verify/append boundaries preserves the legacy value/error and produces bounded diagnostic evidence |
 | REQ-009 | Mutation guards assert no adapter read opens either source for write and no reconciliation result reaches a persistence API |
 | REQ-010 | Gate-off comparison replays the pinned legacy corpus and matches values, errors, retry counts, and stored bytes |
-| REQ-011 | Integration fixtures use phase-003 validated reads and authorized appends; bypass attempts fail before append or consumer dispatch |
+| REQ-011 | Integration fixtures use phase-006 validated reads and authorized appends; bypass attempts fail before append or consumer dispatch |
 | REQ-012 | Call-site inventory maps each `atomic-state.ts` primitive to an explicit codec and proves utility behavior remains unchanged |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The child declares no hard sibling dependency (`depends_on: []`), but execution requires the frozen phase-001 transition/versioning policy and the phase-003 envelope, typed ledger, replay fingerprint, and authorization contracts. The legacy family inventory comes from the pinned phase-000 census. `runtime/lib/deep-loop/atomic-state.ts` is the concrete persistence boundary whose generic shapes and failure semantics must be preserved. The program `spec.md` and `manifest/phase-tree.json` remain authoritative for additive-dark posture, no-cutover scope, and downstream ordering. Successor `002-legacy-projections` and later phase-005 shadow, classification, and rollback children consume this contract.
+The child declares no hard sibling dependency (`depends_on: []`), but execution requires the frozen phase-004 transition/versioning policy and the phase-006 envelope, typed ledger, replay fingerprint, and authorization contracts. The legacy family inventory comes from the pinned phase-003 census. `runtime/lib/deep-loop/atomic-state.ts` is the concrete persistence boundary whose generic shapes and failure semantics must be preserved. The program `spec.md` and `manifest/phase-tree.json` remain authoritative for additive-dark posture, no-cutover scope, and downstream ordering. Successor `002-legacy-projections` and later phase-008 shadow, classification, and rollback children consume this contract.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

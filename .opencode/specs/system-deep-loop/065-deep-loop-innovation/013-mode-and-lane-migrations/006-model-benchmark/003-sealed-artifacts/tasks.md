@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 [P] Define the single phase-003-backed sealing adapter and typed artifact reference, dependency manifest, lifecycle, verification result, and failure vocabulary
+- [ ] T007 [P] Define the single phase-006-backed sealing adapter and typed artifact reference, dependency manifest, lifecycle, verification result, and failure vocabulary
 - [ ] T008 [P] Define canonical serialization and digest coverage for recipes, matrix ordering, model/executor descriptors, fixtures, samples, scoring, visibility, and workload dependencies
 - [ ] T009 Define seal-on-write validation, atomic publication, read-back verification, immutable overwrite refusal, retry identity, and incomplete-cell handling
 - [ ] T010 Define the sealed benchmark recipe and run manifest for mode, model set, executor set, framework, fixture, sample, seed, scoring, visibility, reporting, and workload

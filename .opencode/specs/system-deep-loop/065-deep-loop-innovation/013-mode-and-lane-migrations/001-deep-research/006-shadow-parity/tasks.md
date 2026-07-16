@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Deep Research shadow parity (010 phase 006)"
+title: "Tasks: Deep Research shadow parity"
 description: "Tasks for the Deep Research shadow-parity phase: map the lifecycle, define dual-run adapters, compare typed event projections, exercise resume and handoff fixtures, and issue a blocking parity receipt without changing authority."
 trigger_phrases:
   - "Deep Research shadow parity tasks"
   - "deep-research event parity tasks"
-  - "mode 010 phase 006 tasks"
+  - "mode 010 phase 009 tasks"
 importance_tier: "high"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the phase-009 shared-contract digest, phase-011 shadow-framework interface, parent compatibility-bridge contract, and the fact that this phase has no authority-cutover responsibility
+- [ ] T001 Record the phase-012 shared-contract digest, phase-014 shadow-framework interface, parent compatibility-bridge contract, and the fact that this phase has no authority-cutover responsibility
 - [ ] T002 Inventory the legacy Deep Research lifecycle and reducer boundaries for init, gather/analyze, convergence, synthesis, resume, and memory-save handoff
 - [ ] T003 Freeze the fixture manifest with BASE, run inputs, source snapshots, model/tool fingerprints, budget lease, expected terminal classes, and output locations
 - [ ] T004 Define the parity receipt schema, canonical event tuple, diff classifications, and versioned volatility allowlist before running acceptance comparisons

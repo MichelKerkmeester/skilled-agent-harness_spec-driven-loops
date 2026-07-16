@@ -31,7 +31,7 @@ _memory:
 
 This checklist is the blocking SOL verifier contract for the Skill Benchmark typed-ledger schema phase. Every item is a
 check the paired verify agent runs before the schema candidate is accepted; each report pins the candidate SHA, the phase
-003/phase 009 input schema digests, the event-registry hash, fixture commands, exit codes, and replay/upcast results. The
+003/phase 012 input schema digests, the event-registry hash, fixture commands, exit codes, and replay/upcast results. The
 phase remains planning-only until its event vocabulary is complete; no reducer or projection is accepted as evidence for a
 schema item.
 <!-- /ANCHOR:protocol -->
@@ -39,7 +39,7 @@ schema item.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-003 transition authorization and phase-009 shared event contracts are pinned by version, digest, and replay policy
+- [ ] CHK-001 [P0] Phase-006 transition authorization and phase-012 shared event contracts are pinned by version, digest, and replay policy
 - [ ] CHK-002 [P1] The deep-improvement-common service boundary and Skill Benchmark write set are recorded; shared services are not reimplemented
 - [ ] CHK-003 [P1] Current Skill Benchmark scenario, scoring, gold, treatment, and certificate inputs are mapped to immutable event facts
 <!-- /ANCHOR:pre-impl -->

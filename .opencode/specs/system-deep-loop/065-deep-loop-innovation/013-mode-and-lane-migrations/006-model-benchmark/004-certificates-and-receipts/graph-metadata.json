@@ -190,8 +190,8 @@
       }
     ],
     "causal_summary": "Plan the model-benchmark variant certificate and receipt contract over the typed event-ledger substrate: per-run multi-model benchmark attestations, per-transition receipts, scoring-matrix replay fingerprints, and independent offline verification while reusing deep-improvement-common evaluator, canary, and promotion services.",
-    "created_at": "2026-07-15T21:45:03.664Z",
-    "last_save_at": "2026-07-15T21:45:03.664Z",
+    "created_at": "2026-07-16T03:43:40.006Z",
+    "last_save_at": "2026-07-16T03:43:40.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:8d731d4a3dde123c64e21c2f02c7012c07416f34897365b8bacdf10e38c2abd1",
+    "source_fingerprint": "sha256:b738c9333e7f0c7028892a0e920529d9e2563c0e28fb5e144e5fc46581bfbe0d",
     "source_doc_hashes": {
-      "spec.md": "640008314f7d8121f3470eee643c5e5e7d10977272bcdcdc23501162365f1918",
-      "plan.md": "e6d95ff0e44af9200a4b5a00170ddd22f57542cc1745f6793c58a73c6d8442ce",
-      "tasks.md": "145f7009fbf98f134199eb87de9fd2f3e95f28cbbacfa8c4dcafe903096b4308",
-      "checklist.md": "179b1ffd1b52145c0b242ebcf2a7e45544cce82089d1814cc3c1864e78cfa3c9"
+      "spec.md": "fec22b6422df738ccd982fbbc65c9911065d87c062d6381f340d3cdb9d13b52a",
+      "plan.md": "4be1c2c46241dbc12fadba0f5e530240bb9df2fc916e533680320bc9bceac7e6",
+      "tasks.md": "10f9f4ea55d6c5d3eae40c3abfa19d6f4f54789627d56597a48a86389c75621c",
+      "checklist.md": "a683d933df4511b0a65a4283fa5cb29c8900ca476c82c5d86c8f024229879dc6"
     },
     "last_active_child_id": null,
     "last_active_at": null

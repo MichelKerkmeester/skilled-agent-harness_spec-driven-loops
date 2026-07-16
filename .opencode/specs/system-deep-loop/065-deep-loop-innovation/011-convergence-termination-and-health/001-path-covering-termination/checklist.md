@@ -1,10 +1,10 @@
 ---
-title: "Checklist: path-covering termination (006 phase 008 child 001)"
+title: "Checklist: path-covering termination"
 description: "Blocking verification checklist for mode-profiled path coverage, fail-closed termination, partial-coverage reporting, replay determinism, and shadow safety."
 trigger_phrases:
   - "path-covering termination checklist"
   - "coverage certificate checklist"
-  - "deep-loop phase 008 child 001 checklist"
+  - "deep-loop phase 011 child 001 checklist"
 importance_tier: "high"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/011-convergence-termination-and-health/001-path-covering-termination"
@@ -29,15 +29,15 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 008 child 001. The verifier binds every result to the candidate SHA,
-mode-profile version, input fingerprint, phase-007 projection versions, ledger position, and replay fingerprint. It records commands,
+This checklist is the blocking verifier contract for phase 011 child 001. The verifier binds every result to the candidate SHA,
+mode-profile version, input fingerprint, phase-010 projection versions, ledger position, and replay fingerprint. It records commands,
 exit codes, fixture counts, decision traces, and certificate hashes; zero discovered modes/fixtures or unexpected tracked mutation fails.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The supported mode inventory, profile owners, phase-007 projection inputs, and legacy shadow baselines are frozen
+- [ ] CHK-001 [P0] The supported mode inventory, profile owners, phase-010 projection inputs, and legacy shadow baselines are frozen
 - [ ] CHK-002 [P1] Complete, partial, blocked, excluded, late-expanding, paraphrase-heavy, contradiction-heavy, empty, replay, and limit-exhausted fixtures are versioned
 <!-- /ANCHOR:pre-impl -->
 

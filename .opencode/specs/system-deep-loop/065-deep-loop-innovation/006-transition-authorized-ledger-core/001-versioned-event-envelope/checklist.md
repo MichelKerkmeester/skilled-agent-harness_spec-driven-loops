@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Versioned Event Envelope (003 phase 001)"
+title: "Checklist: Versioned Event Envelope"
 description: "Blocking verifier checklist for the canonical wire shape, deterministic type/version registry, adjacent read-time upcasting, fail-closed errors, dark integration, and successor handoff."
 trigger_phrases:
   - "versioned event envelope checklist"
@@ -28,13 +28,13 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 003 child 001. Every item is a future implementation check; the phase remains Planned and unchecked until runtime evidence exists. The verifier binds its report to the candidate SHA, pinned BASE SHA, phase-001 policy digest, registry/chain identity, commands and exit codes, and discovered fixture counts. Zero tests, skipped negative cases, unexpected tracked mutation, a changed authoritative legacy writer, or an effective event returned after any compatibility failure is a hard failure.
+This checklist is the blocking SOL verifier contract for phase 006 child 001. Every item is a future implementation check; the phase remains Planned and unchecked until runtime evidence exists. The verifier binds its report to the candidate SHA, pinned BASE SHA, phase-004 policy digest, registry/chain identity, commands and exit codes, and discovered fixture counts. Zero tests, skipped negative cases, unexpected tracked mutation, a changed authoritative legacy writer, or an effective event returned after any compatibility failure is a hard failure.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-000 BASE, phase-001 transition policy, target write set, and additive-dark authority boundary are pinned before implementation
+- [ ] CHK-001 [P0] The phase-003 BASE, phase-004 transition policy, target write set, and additive-dark authority boundary are pinned before implementation
 - [ ] CHK-002 [P0] The runtime census includes representative observability, council, iteration/audit, fan-out status, repair/append, reader, and reducer paths
 - [ ] CHK-003 [P1] Envelope field names, namespace grammar, version semantics, nullability, canonicalization, registry invariants, and error codes are frozen in failing contract tests
 <!-- /ANCHOR:pre-impl -->
@@ -85,7 +85,7 @@ This checklist is the blocking SOL verifier contract for phase 003 child 001. Ev
 ## Documentation
 
 - [ ] CHK-026 [P1] The exported envelope, registry, write-preflight, read-result, error, and upcast-provenance contracts are documented with current and historical examples
-- [ ] CHK-027 [P1] References remain traceable to the parent program spec, `manifest/phase-tree.json`, phase-001 transition policy, and representative shipped runtime JSONL writers
+- [ ] CHK-027 [P1] References remain traceable to the parent program spec, `manifest/phase-tree.json`, phase-004 transition policy, and representative shipped runtime JSONL writers
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

@@ -14,12 +14,12 @@ _memory:
     last_updated_at: "2026-07-15T19:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped the Deep Review event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-009 shared contracts"
+    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
     blockers: []
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact shared envelope fields and transition tokens does phase 009 freeze?"
+      - "Which exact shared envelope fields and transition tokens does phase 012 freeze?"
     answered_questions:
       - "Reducers and projections are owned by the next sibling"
 ---
@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 003 transition authorization and phase 009 shared review-loop/event contracts are frozen before naming mode fields
+- [ ] T001 Confirm phase 006 transition authorization and phase 012 shared review-loop/event contracts are frozen before naming mode fields
 - [ ] T002 Inventory current Deep Review config, JSONL, iteration, finding, graph, convergence, adjudication, synthesis, resume, and continuity records
 - [ ] T003 Build the event ownership matrix separating shared review-loop events, Deep Review events, and the next sibling's reducer/projection outputs
 - [ ] T004 [P] Record the deep-alignment shared-backbone boundary and reject a mode-local fork of shared review-loop events
@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Verify every event payload conforms to the phase-009 envelope and every append request carries phase-003 authorization metadata
+- [ ] T010 Verify every event payload conforms to the phase-012 envelope and every append request carries phase-006 authorization metadata
 - [ ] T011 Verify the event union covers `scope -> per-dimension passes -> convergence -> synthesis -> review-report` without assigning reducer ownership
 - [ ] T012 Verify deterministic IDs, causal links, previous-tail hashes, payload digests, immutable evidence references, semantic fingerprints, and supersession-only revisions
 - [ ] T013 Verify raw observations remain separate from candidate confidence, impact, P0/P1/P2 severity, adjudication, convergence, and verdict outcomes

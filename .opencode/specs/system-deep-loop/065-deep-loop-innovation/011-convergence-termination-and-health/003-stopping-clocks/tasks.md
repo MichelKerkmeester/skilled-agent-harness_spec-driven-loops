@@ -1,5 +1,5 @@
 ---
-title: "Tasks: stopping clocks (006 phase 008 child 003)"
+title: "Tasks: stopping clocks"
 description: "Tasks for the planned independent stopping clocks, deterministic earliest-fire arbiter, per-mode profiles, and typed termination-cause event."
 trigger_phrases:
   - "stopping clocks tasks"
@@ -41,7 +41,7 @@ _memory:
 
 - [ ] T001 Pin the baseline and freeze clock kinds, termination classes, event namespace, source-interface versions, evaluation boundaries, and the supported-mode inventory
 - [ ] T002 Define the canonical `StoppingClockObservation`, `StoppingClockProfile`, clock-projection, and `LoopTerminationDeclared` schemas with replay identities
-- [ ] T003 Build deterministic source fixtures for phase-004 budgets, phase-007 novelty, sibling-001 coverage, monotonic wall time, and sibling-002 cycles
+- [ ] T003 Build deterministic source fixtures for phase-007 budgets, phase-010 novelty, sibling-001 coverage, monotonic wall time, and sibling-002 cycles
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->

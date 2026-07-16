@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the phase-000 state census and exact phase-001/phase-003 contract revisions used by this implementation
+- [ ] T001 Pin the phase-003 state census and exact phase-004/phase-006 contract revisions used by this implementation
 - [ ] T002 Inventory each legacy event, snapshot, checkpoint, and JSONL family with its reader, writer, version discriminator, stored examples, and direct-path behavior
 - [ ] T003 Map every in-scope call site of `writeStateAtomic`, `writeStateIfChangedAtomic`, `appendJsonlIfChangedAtomic`, and deferred writers to an explicit legacy codec boundary
 - [ ] T004 Freeze the registry schema, typed compatibility errors, comparison token, reconciliation outcome vocabulary, and independent adapter gates
@@ -57,7 +57,7 @@ _memory:
 - [ ] T011 Implement deterministic reconciliation for parity, divergence, lag, missing, invalid, failed, dark-only success, and non-comparable observations
 - [ ] T012 Implement bounded reconciliation evidence that excludes sensitive payloads and cannot advance domain state or authorize a side effect
 - [ ] T013 Implement the single-authoritative-write wrapper with exactly one legacy invocation and zero-or-one current-version idempotent dark mirror after accepted mutation
-- [ ] T014 Enforce the phase-003 validation and authorization boundary for dark writes and verified typed-reader boundary for dark reads
+- [ ] T014 Enforce the phase-006 validation and authorization boundary for dark writes and verified typed-reader boundary for dark reads
 - [ ] T015 Prohibit dark fallback, read-repair, reverse projection, duplicate legacy retries, partial effective models, and any authority-selection switch
 - [ ] T016 Add independent gates for upcasting, dual reads, and dark mirroring that restore the unchanged direct-legacy path without data conversion
 <!-- /ANCHOR:phase-2 -->

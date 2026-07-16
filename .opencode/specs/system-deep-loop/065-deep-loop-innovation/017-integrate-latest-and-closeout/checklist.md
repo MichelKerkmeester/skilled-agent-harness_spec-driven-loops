@@ -1,9 +1,9 @@
 ---
-title: "Checklist: Integrate Latest & Closeout (065 phase 014)"
-description: "Checklist for phase 014 of the system-deep-loop recommendations implementation: final integration, drift reopening, whole-system gate rerun, and packet closeout."
+title: "Checklist: Integrate Latest & Closeout"
+description: "Checklist for phase 017 of the system-deep-loop recommendations implementation: final integration, drift reopening, whole-system gate rerun, and packet closeout."
 trigger_phrases:
   - "integrate latest and closeout checklist"
-  - "deep-loop phase 014 checklist"
+  - "deep-loop phase 017 checklist"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/017-integrate-latest-and-closeout"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 014. Every item is checked against the exact final SHA; the report records the origin target, pre-integration SHA, final SHA, reopened phases, commands, exit codes, generated-metadata result, and any approved carry-forward item. A pre-integration phase-013 result is historical evidence only.
+This checklist is the blocking SOL verifier contract for phase 017. Every item is checked against the exact final SHA; the report records the origin target, pre-integration SHA, final SHA, reopened phases, commands, exit codes, generated-metadata result, and any approved carry-forward item. A pre-integration phase-016 result is historical evidence only.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
@@ -50,8 +50,8 @@ This checklist is the blocking SOL verifier contract for phase 014. Every item i
 
 - [ ] CHK-001 [P0] Latest origin is integrated in a clean worktree and the final SHA, merge result, and unexpected-mutation check are recorded
 - [ ] CHK-002 [P0] Touched contracts are re-censused and each has an owning phase, changed assumption, baseline/receipt impact, and drift disposition
-- [ ] CHK-003 [P0] Relevant drift reopens the owning phase and downstream consumers before phase 013 is rerun
-- [ ] CHK-004 [P0] The complete phase-013 gate runs on the exact final SHA, including behavior and mode baselines, mixed-version replay, crash injection, counterfactual and degeneration tests, and parity against 000
+- [ ] CHK-003 [P0] Relevant drift reopens the owning phase and downstream consumers before phase 016 is rerun
+- [ ] CHK-004 [P0] The complete phase-016 gate runs on the exact final SHA, including behavior and mode baselines, mixed-version replay, crash injection, counterfactual and degeneration tests, and parity against 000
 - [ ] CHK-013 [P0] A blocking SOL receipt is bound to the final SHA and records gate commands, exit codes, and evidence paths
 - [ ] CHK-014 [P0] Recursive `validate.sh --strict` passes on the final candidate and no pre-integration receipt is presented as final evidence
 - [ ] CHK-015 [P0] Every 065 open item has an append-only disposition, owner, or explicit carry-forward next action
@@ -87,7 +87,7 @@ This checklist is the blocking SOL verifier contract for phase 014. Every item i
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete when every P0 check passes on one exact final SHA, every relevant drift item has a reopened and reverified owner, the complete phase-013 gate is green, generated metadata and parent status reconcile, and the closeout record preserves all historical evidence and approved carry-forward work.
+The phase is complete when every P0 check passes on one exact final SHA, every relevant drift item has a reopened and reverified owner, the complete phase-016 gate is green, generated metadata and parent status reconcile, and the closeout record preserves all historical evidence and approved carry-forward work.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

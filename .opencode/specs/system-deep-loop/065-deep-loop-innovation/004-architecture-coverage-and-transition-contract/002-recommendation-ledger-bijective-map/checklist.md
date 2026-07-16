@@ -37,7 +37,7 @@ duplicate or omitted mapping, any invalid disposition/reference, or any silently
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The 006 parent spec, phase-tree manifest, phase-000 taxonomy, and three source-run inputs are pinned by repo-relative path and digest
+- [ ] CHK-001 [P0] The 006 parent spec, phase-tree manifest, phase-003 taxonomy, and three source-run inputs are pinned by repo-relative path and digest
 - [ ] CHK-002 [P0] Source adapters prove run-a 8, run-b 59, run-c 111, total 178 before IDs are minted
 - [ ] CHK-003 [P2] The execution report records the pinned commit and the reviewer responsible for ambiguous target/disposition decisions
 <!-- /ANCHOR:pre-impl -->
@@ -56,7 +56,7 @@ duplicate or omitted mapping, any invalid disposition/reference, or any silently
 - [ ] CHK-007 [P0] Canonical ledger row count is exactly 178 and source-run counts are exactly 8, 59, and 111
 - [ ] CHK-008 [P0] Stable-ID set has exactly 178 unique values in the reserved `DLR-A/B/C-NNN` ranges with no gaps or reuse
 - [ ] CHK-009 [P0] Source-locator set has exactly 178 unique values and equals the independently extracted source set in both directions
-- [ ] CHK-010 [P0] Every row has one allowed phase-000 taxonomy layer/key and no `unknown`, blank, or out-of-enum target
+- [ ] CHK-010 [P0] Every row has one allowed phase-003 taxonomy layer/key and no `unknown`, blank, or out-of-enum target
 - [ ] CHK-011 [P0] Every row has exactly one disposition matching `adopt-as-phase-NNN`, `merge-into-<id>`, `defer-with-reason`, or `reject-with-reason`
 - [ ] CHK-012 [P0] Every merge/defer/reject row has a non-empty reason; merge targets exist, are non-self, and the merge graph is acyclic
 - [ ] CHK-013 [P0] Every adoption's `NNN` exists in `manifest/phase-tree.json`; no free-text or nonexistent phase target passes

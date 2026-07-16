@@ -1,10 +1,10 @@
 ---
 title: "Checklist: Deep AI Council — Shadow Parity"
-description: "Blocking checklist for phase 006 of the Deep AI Council migration: prove event-for-event canonical projection parity between the legacy emitter and the dark typed ledger path before authority cutover."
+description: "Blocking checklist for phase 009 of the Deep AI Council migration: prove event-for-event canonical projection parity between the legacy emitter and the dark typed ledger path before authority cutover."
 trigger_phrases:
   - "deep ai council shadow parity checklist"
   - "council projection parity gate"
-  - "phase 006 council parity verifier"
+  - "phase 009 council parity verifier"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity"
@@ -30,7 +30,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 006. Every item is a check the paired
+This checklist is the blocking SOL verifier contract for phase 009. Every item is a check the paired
 verify agent runs before a parity candidate can become cutover-eligible; each report pins BASE SHA,
 candidate SHA, fixture and input digests, mapping and normalization-profile hashes, raw event digests,
 canonical projection fingerprints, commands, exit codes, and legacy-authority status. A missing fixture,
@@ -41,7 +41,7 @@ unexplained projection difference fails the gate.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-006 [P0] The phase-011 shadow framework, phase 012 shared mode contract, and `005-resume-adapter` input are pinned for this candidate
+- [ ] CHK-006 [P0] The phase-014 shadow framework, phase 012 shared mode contract, and `005-resume-adapter` input are pinned for this candidate
 - [ ] CHK-007 [P0] BASE SHA, candidate SHA, council configuration digest, target version, fixture manifest digest, and normalization-profile hash are recorded
 - [ ] CHK-008 [P1] Recorded seat outputs, tool receipts, and expected council state boundaries are available for deterministic paired execution
 <!-- /ANCHOR:pre-impl -->

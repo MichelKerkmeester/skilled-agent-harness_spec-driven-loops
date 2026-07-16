@@ -55,7 +55,7 @@ _memory:
 - [ ] T009 Define allow/deny decision fields, atomic append semantics, stale-state behavior, idempotency binding, and gateway-outage denial
 - [ ] T010 Define bounded rejection receipts that preserve auditability without advancing domain state or exposing sensitive payloads
 - [ ] T011 Define the per-mode authority state machine, legal edges, one-writer invariant, monotonic epochs, and compare-and-swap rules
-- [ ] T012 Define shadow-parity readiness evidence and the cutover certificate consumed by phase 011
+- [ ] T012 Define shadow-parity readiness evidence and the cutover certificate consumed by phase 014
 - [ ] T013 Define the minimum 14-day/five-successful-run rollback window, extension conditions, retained assets, and closure gate
 - [ ] T014 Define rollback triggers, admission freeze, spine fencing, state reconciliation, legacy restoration, and rollback certificates
 - [ ] T015 Build the phases 003-012 conformance matrix and prohibit downstream weakening or local redefinition
@@ -70,7 +70,7 @@ _memory:
 - [ ] T019 Verify illegal authority edges, simultaneous writers, cross-mode flips, and unresolved shadow divergences block cutover
 - [ ] T020 Verify rollback window closure waits for both 14 days and five successful authoritative runs and extends on unresolved evidence
 - [ ] T021 Tabletop a mid-window rollback and verify no event deletion, new-epoch legacy restoration, bounded reconciliation, and certificate emission
-- [ ] T022 Verify phases 003, 005, 011, and 012 retain their manifest ownership and every phase 003-012 has a conformance obligation
+- [ ] T022 Verify phases 003, 005, 011, and 012 retain their manifest ownership and every phase 006-012 has a conformance obligation
 - [ ] T023 Run strict spec-kit validation and confirm only deterministic metadata omissions remain
 <!-- /ANCHOR:phase-3 -->
 
@@ -79,7 +79,7 @@ _memory:
 
 - [ ] All policy-authoring and challenge tasks complete
 - [ ] All requirements in spec.md are ratified with traceable review evidence
-- [ ] The architecture-parent handoff records this contract as frozen before program phase 003 begins
+- [ ] The architecture-parent handoff records this contract as frozen before program phase 006 begins
 - [ ] Strict validation has no error except expected missing `description.json` and `graph-metadata.json`
 <!-- /ANCHOR:completion -->
 

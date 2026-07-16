@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Locks & Fencing"
-description: "Tasks for the phase-004 shared locks-and-fencing service: inventory protected resources, implement durable fenced leases and guarded writes, adapt shipped writers, and verify stale-writer rejection."
+description: "Tasks for the phase-007 shared locks-and-fencing service: inventory protected resources, implement durable fenced leases and guarded writes, adapt shipped writers, and verify stale-writer rejection."
 trigger_phrases:
   - "locks and fencing tasks"
   - "deep-loop fencing token tasks"
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin phase-000 BASE and inventory every protected writer/recovery path in the shipped runtime and phase-003 ledger
+- [ ] T001 Pin phase-003 BASE and inventory every protected writer/recovery path in the shipped runtime and phase-006 ledger
 - [ ] T002 Freeze canonical resource-key rules, atomicity domains, lock ordering, timeout/renewal defaults, and unsupported topology behavior
-- [ ] T003 Pin the phase-003 append/head/receipt interfaces and the opaque continuity identity consumed from `007-continuity-identities`
+- [ ] T003 Pin the phase-006 append/head/receipt interfaces and the opaque continuity identity consumed from `007-continuity-identities`
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -66,7 +66,7 @@ _memory:
 - [ ] T015 Verify: Shadow split-brain prevention — legacy and dark emissions share one epoch, raw bypasses fail, and legacy authority is unchanged
 - [ ] T016 Verify: Fan-out isolation — distinct lineages overlap while duplicate same-lineage workers and resumed processes admit only the current token
 - [ ] T017 Verify: Deadlock/timeout/recovery — inversion, contention, malformed state, ambiguous head, clock skew, PID reuse, and unsupported topology fail closed and terminate boundedly
-- [ ] T018 Verify: Regression — shipped lock, repair, council, fan-out, lifecycle, and phase-003 ledger suites pass with the cross-surface fault matrix
+- [ ] T018 Verify: Regression — shipped lock, repair, council, fan-out, lifecycle, and phase-006 ledger suites pass with the cross-surface fault matrix
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

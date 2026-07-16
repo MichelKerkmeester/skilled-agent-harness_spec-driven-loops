@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Model Benchmark typed ledger schema (013 mode migration, 006 child)"
+title: "Feature Specification: Model Benchmark typed ledger schema"
 description: "Plan the Model Benchmark variant's typed append-only event vocabulary over the shared deep-improvement-common backbone. The phase defines the mode envelope specialization, concrete run and scoring-matrix event types, field-level types, provenance and contamination lineage, normalized usage, versioned envelope policy, and upcaster hooks. It stops before reducer and projection design in 002-reducers-and-projections and does not re-implement shared evaluator, canary, or promotion services."
 trigger_phrases:
   - "Model Benchmark typed ledger schema"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the deep-improvement-common backbone) |
-| **Origin** | Phase 006 of the 013 mode-and-lane migration parent; the model-benchmark research recommendations in `findings-registry-modes.json` |
+| **Origin** | Phase 009 of the 013 mode-and-lane migration parent; the model-benchmark research recommendations in `findings-registry-modes.json` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -49,7 +49,7 @@ _memory:
 
 The Model Benchmark lane currently has useful execution and scoring behavior but its evidence is not a durable typed event vocabulary. The research registry records that `dispatch-model.cjs` already exposes normalized latency, token, and cost fields while `sweep-benchmark.cjs` discards usage and `sweep-reporter.cjs` substitutes output word count for efficiency (`findings-registry-modes.json`, model-benchmark contradiction at iter 32). The recommendation set calls for `BenchmarkDesign`, `TrialResult`, a versioned `BenchmarkTrial` ledger, sealed task lineage, candidate-specific judge calibration, validity cards, and a task-conditional selection policy rather than an unqualified global winner.
 
-This phase plans the append-only event schema that makes those behaviors replayable and auditable. It consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts, while layering only Model Benchmark-specific run and scoring-matrix facts on the deep-improvement-common services from mode 004. The envelope must retain raw observations, task-family and perturbation lineage, model and execution-path identity, contamination evidence, judge identity, normalized usage, and validity state without allowing a reducer to rewrite evidence.
+This phase plans the append-only event schema that makes those behaviors replayable and auditable. It consumes the phase-006 transition-authorized ledger core and the phase-012 shared event contracts, while layering only Model Benchmark-specific run and scoring-matrix facts on the deep-improvement-common services from mode 004. The envelope must retain raw observations, task-family and perturbation lineage, model and execution-path identity, contamination evidence, judge identity, normalized usage, and validity state without allowing a reducer to rewrite evidence.
 
 The purpose is a vocabulary contract, not an implementation or a reducer design. The next sibling, `002-reducers-and-projections`, owns folds, projections, selection-certificate reduction, policy materialization, and derived gauges. Shared evaluator, canary, calibration infrastructure, and promotion authority remain shared-service concerns; this phase only declares the Model Benchmark events that consume or reference them.
 <!-- /ANCHOR:problem -->
@@ -86,7 +86,7 @@ The purpose is a vocabulary contract, not an implementation or a reducer design.
 | REQ-006 | Judge and oracle evidence is typed as measurement evidence, not silently promoted to truth | Judge identity, calibration slice, order/style probes, oracle version, uncertainty, abstention, and validity status are explicit; disagreement can remain `unknown` |
 | REQ-007 | Envelope and payload versions have explicit compatibility and upcaster hooks | Exact, compatible, migrate, pin-old-runtime, and blocked outcomes are representable; upcasters preserve original hashes and record the applied transformation |
 | REQ-008 | The schema is append-only and safe under parallel trial completion | Event identity, logical trial identity, monotonic per-stream sequence, causation, correlation, and deterministic tie-breaking fields prevent completion timing from changing evidence identity |
-| REQ-009 | Shared service boundaries remain single-source | The plan names references to deep-improvement-common evaluator/canary/promotion and phase-009 shared contracts; no Model Benchmark duplicate service or competing authority is introduced |
+| REQ-009 | Shared service boundaries remain single-source | The plan names references to deep-improvement-common evaluator/canary/promotion and phase-012 shared contracts; no Model Benchmark duplicate service or competing authority is introduced |
 | REQ-010 | The reducer boundary is explicit and navigable | The final vocabulary exposes immutable evidence and a typed reduction handoff to `002-reducers-and-projections`, while defining no reducer state, projection schema, or selection result event |
 <!-- /ANCHOR:requirements -->
 
@@ -107,7 +107,7 @@ The planned namespace is `deep-improvement.model-benchmark.*`, with the shared e
 
 | Type | Required shape | Contract boundary |
 |------|----------------|-------------------|
-| `ModelBenchmarkEventEnvelope<T>` | Shared envelope fields plus `mode: "model-benchmark"`, `eventType`, `schemaVersion`, `payload: T` | Uses phase-003 authorization and phase-009 causal/replay fields |
+| `ModelBenchmarkEventEnvelope<T>` | Shared envelope fields plus `mode: "model-benchmark"`, `eventType`, `schemaVersion`, `payload: T` | Uses phase-006 authorization and phase-012 causal/replay fields |
 | `BenchmarkRunId`, `TrialId`, `TaskInstanceId`, `TaskFamilyId`, `CandidateId` | Branded opaque identifiers with canonical string encoding | Stable across retries and independent of array position or completion order |
 | `ModelFingerprint`, `ExecutionPath`, `PromptRecipeFingerprint` | Endpoint/build/provider, route/framework, and resolved prompt/tool recipe digests | Crosses model and path factors without collapsing a complete stack into a model name |
 | `TaskLineage` | Source cutoff, visibility, proposer/oracle visibility, first exposure, disclosure, retirement, replacement, and parent lineage refs | Supports private and sealed case lifecycle auditing |
@@ -129,31 +129,31 @@ The schema plan must define `decodeEnvelope`, `validateDiscriminant`, `resolveCo
 - **SC-004**: Raw outputs, raw score observations, normalized usage, judge evidence, oracle versions, and contamination lineage survive as append-only facts.
 - **SC-005**: Version compatibility and upcaster behavior are explicit, hash-preserving, replay-aware, and fail closed for unsupported major changes.
 - **SC-006**: The document set names `002-reducers-and-projections` as the next consumer and contains no reducer or projection design.
-- **SC-007**: The planned schema composes with deep-improvement-common and the phase-009 shared contracts without duplicating evaluator, canary, or promotion authority.
+- **SC-007**: The planned schema composes with deep-improvement-common and the phase-012 shared contracts without duplicating evaluator, canary, or promotion authority.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Schema authority drift** — the Model Benchmark child could silently redefine envelope or transition semantics. Mitigation: phase-003 owns authorization and phase-009 owns shared event contracts; this phase only specializes payloads and references their versions.
+- **Schema authority drift** — the Model Benchmark child could silently redefine envelope or transition semantics. Mitigation: phase-006 owns authorization and phase-012 owns shared event contracts; this phase only specializes payloads and references their versions.
 - **Reducer leakage** — selection policy or score aggregation could be encoded as an event schema before the next sibling is planned. Mitigation: emit immutable evidence and an explicit reduction request only; derived state remains out of scope.
 - **Model/path confounding** — comparing model names without independently identifying route, framework, prompt, tools, and endpoint makes the event ledger unable to support causal interpretation. Mitigation: require `ModelFingerprint`, `ExecutionPath`, and `PromptRecipeFingerprint` in the trial treatment key.
 - **Usage loss** — current sweep behavior discards normalized usage and uses output length as an efficiency proxy. Mitigation: make usage and latency first-class trial observations, including failed and retried cells.
 - **Contamination and oracle drift** — a disclosed or corrected case can invalidate an otherwise stable result. Mitigation: append exposure, contamination, oracle, disclosure, retirement, replacement, and validity events with content-addressed lineage.
 - **Judge bias and false independence** — role prompts do not establish independent judges. Mitigation: preserve judge family/build/context hashes, calibration slice, order/style probes, uncertainty, abstention, and validity status.
 - **Parallel ordering instability** — completion timing can alter aggregate rows if identity is positional. Mitigation: stable trial and task-family keys, per-stream sequence, causation links, and canonical event ordering fields.
-- **Dependencies**: phase-003 transition-authorized ledger core; phase-009 shared event contracts; mode 004 deep-improvement-common evaluator/canary/promotion services; next sibling `002-reducers-and-projections`; later mode gate and staged authority-cutover phases.
+- **Dependencies**: phase-006 transition-authorized ledger core; phase-012 shared event contracts; mode 004 deep-improvement-common evaluator/canary/promotion services; next sibling `002-reducers-and-projections`; later mode gate and staged authority-cutover phases.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 Deferred to the owning contract or execution phase:
-- **Phase-003 / phase-009** — What exact shared envelope field names, namespace rules, authorization receipt shape, and replay-fingerprint components are frozen for mode specializations?
+- **Phase-006 / phase-012** — What exact shared envelope field names, namespace rules, authorization receipt shape, and replay-fingerprint components are frozen for mode specializations?
 - **Schema execution** — Which canonical serialization and branded identifier encoding are used by the runtime, and which fields may be absent only for explicitly terminal failure or unknown outcomes?
 - **Trial identity** — Is the paired block keyed by task family, task instance, or a separate treatment-lattice ID when one task has multiple protocol siblings and decoding seeds?
 - **Usage accounting** — Which cache, retry, routing, grader, and inference costs are authoritative when providers return incomplete usage data?
 - **Validity** — Which validity-plan unknowns are hard blockers for the reducer, and which remain diagnostic evidence for later calibration?
-- **Shared service ownership** — Which evaluator, sealed-canary, calibration, and promotion references are imported from mode 004 versus phase-009 without creating a second registry?
+- **Shared service ownership** — Which evaluator, sealed-canary, calibration, and promotion references are imported from mode 004 versus phase-012 without creating a second registry?
 - **Reducer handoff** — What exact immutable input manifest does `002-reducers-and-projections` require for clustered inference and selection-certificate reduction?
 <!-- /ANCHOR:questions -->

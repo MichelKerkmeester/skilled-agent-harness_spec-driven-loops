@@ -15,12 +15,12 @@ _memory:
     last_updated_at: "2026-07-15T19:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped the Deep Review event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-009 shared contracts"
+    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
     blockers: []
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact shared envelope fields and transition tokens does phase 009 freeze?"
+      - "Which exact shared envelope fields and transition tokens does phase 012 freeze?"
       - "Which review evidence references remain portable without storing report bodies in ledger rows?"
     answered_questions:
       - "This phase owns Deep Review event vocabulary, not reducers or projections"
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-review |
-| **Origin** | Deep Review mode migration after the phase-003 transition-authorized ledger core and phase-009 shared event contracts |
+| **Origin** | Deep Review mode migration after the phase-006 transition-authorized ledger core and phase-012 shared event contracts |
 | **Inputs** | `065-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, `002-deep-loop-effectiveness-and-fanout/research/findings-registry*.json`, and the checked-in `deep-review/SKILL.md` state contract |
 | **Output** | A ratifiable Deep Review event union, field-level payload contract, and version/upcaster hook plan; no reducer or projection implementation |
 <!-- /ANCHOR:metadata -->
@@ -58,24 +58,24 @@ The current Deep Review loop externalizes run state through immutable config, ap
 
 The research inputs identify the missing Deep Review contract. A pass should emit candidates before independent validation activates P0/P1 findings; impact, confidence, reachability, exploitability, evidence strength, and evidence scope must remain separate axes; cross-pass identity needs versioned semantic fingerprints and introduced/fixed/preexisting lineage; and a runtime difference is a witness rather than a verdict. These findings are recorded in `findings-registry-modes.json:2619-2876` and the corresponding counterclaims in `findings-registry.json:4436-4510`. Shared runtime findings additionally require immutable observations, raw pre-reduction values, explicit supersession, stable logical identifiers, and versioned replay compatibility (`findings-registry.json:2600-2747`).
 
-This phase plans the typed append-only vocabulary that carries those facts through the shared ledger. It specializes the event envelope supplied by phase 003 and consumes the shared review-loop contract frozen in phase 009, including the contract shared with deep-alignment mode 008. It does not decide how events fold into the findings registry, dashboard metrics, strategy state, convergence projections, or report-derived views. Those responsibilities remain with `002-reducers-and-projections` and the later mode-gate, rollback, and authority phases.
+This phase plans the typed append-only vocabulary that carries those facts through the shared ledger. It specializes the event envelope supplied by phase 006 and consumes the shared review-loop contract frozen in phase 012, including the contract shared with deep-alignment mode 008. It does not decide how events fold into the findings registry, dashboard metrics, strategy state, convergence projections, or report-derived views. Those responsibilities remain with `002-reducers-and-projections` and the later mode-gate, rollback, and authority phases.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- A `deep-review` event-envelope specialization that reuses the phase-009 shared identity, causation, authorization, integrity, lineage, and replay fields without redefining them.
+- A `deep-review` event-envelope specialization that reuses the phase-012 shared identity, causation, authorization, integrity, lineage, and replay fields without redefining them.
 - A stable event namespace for run initialization, resume/restart, scope resolution, dimension ordering, per-dimension passes, evidence observations, candidate findings, claim adjudication, finding lineage, convergence, blocked stops, synthesis, review-report publication, and continuity handoff.
 - Field-level types and requiredness rules for run, lineage, target, dimension, protocol, iteration, finding candidate, evidence reference, claim-adjudication packet, semantic fingerprint, convergence gate, report revision, and continuity references.
 - Append-only provenance rules: immutable raw observations, content and source digests, file-and-line evidence references, causal links, independent evidence classes, supersession references, and event-tail hashes.
 - Version boundaries for the envelope and each event payload, plus pure upcaster and compatibility-decision hooks for legacy Deep Review JSONL records.
-- Fixtures and validation matrices proving every event type is authorized by the phase-003 gateway and remains replay-addressable without implementing a reducer.
+- Fixtures and validation matrices proving every event type is authorized by the phase-006 gateway and remains replay-addressable without implementing a reducer.
 
 ### Out of Scope
 - Reducer algorithms, findings-registry folds, dashboard metrics, strategy updates, convergence projections, or `review-report.md` materialized-view generation; these belong to `002-reducers-and-projections`.
 - Sealed review artifacts, certificates, mode rollback switches, or the independent mode gate; these are sibling concerns in the Deep Review parent.
-- Shared envelope ownership, transition policy, ledger storage, authorization semantics, generic effect receipts, or the shared review-loop contract; phase 003 and phase 009 own those contracts.
+- Shared envelope ownership, transition policy, ledger storage, authorization semantics, generic effect receipts, or the shared review-loop contract; phase 006 and phase 012 own those contracts.
 - Authority cutover, in-flight state migration, legacy writer retirement, and deletion of `deep-review-state.jsonl`.
 - New review behavior beyond the Deep Review lifecycle and recommendations already mapped in the cited registries.
 <!-- /ANCHOR:scope -->
@@ -85,19 +85,19 @@ This phase plans the typed append-only vocabulary that carries those facts throu
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The Deep Review envelope specializes the phase-009 shared envelope without shadow field names, duplicate lineage fields, or mode-local authorization rules | A contract comparison lists every inherited field, every mode extension, and every rejected duplicate; the mode union compiles against the shared contract |
+| REQ-001 | The Deep Review envelope specializes the phase-012 shared envelope without shadow field names, duplicate lineage fields, or mode-local authorization rules | A contract comparison lists every inherited field, every mode extension, and every rejected duplicate; the mode union compiles against the shared contract |
 | REQ-002 | The event namespace covers the complete run path from scope initialization through per-dimension passes, convergence, synthesis, and review-report handoff | The vocabulary matrix contains a typed event for each lifecycle boundary and names the required predecessor event or causal reference |
 | REQ-003 | Every event has deterministic identity, causal linkage, payload digest, source or artifact references where applicable, and append-only revision semantics | Schema fixtures reject missing IDs, mutable evidence bodies, absent `prevEventHash`, and in-place finding or judgment updates |
 | REQ-004 | Review-specific entities and provenance remain explicit | Target, dimension, protocol, iteration, finding candidate, evidence, claim-adjudication, fingerprint, gate, report revision, and lineage payloads have stable typed references |
 | REQ-005 | Raw observations remain distinct from derived severity and verdict decisions | Raw analyzer output, test result, runtime witness, candidate score, evidence class, adjudication packet, P0/P1/P2 severity, and convergence decision retain separate fields |
 | REQ-006 | Cross-pass finding identity and lineage survive source movement and revision | Fingerprints use semantic anchors, normalized context, program slices, rename mapping, and baseline state; `introduced`, `updated`, `unchanged`, `fixed`, `preexisting`, `absent`, and `disproved` remain distinguishable |
 | REQ-007 | Envelope and payload version changes have explicit compatibility and upcaster hooks | The compatibility matrix covers exact, compatible, migrate, pin-old-runtime, and blocked outcomes; an unknown event or version fails closed |
-| REQ-008 | All event writes carry the phase-003 transition-authorization reference and phase-009 replay metadata | An unauthorized transition fixture is rejected before append, and a replay fixture resolves the same event identity and fingerprint from the same input |
+| REQ-008 | All event writes carry the phase-006 transition-authorization reference and phase-012 replay metadata | An unauthorized transition fixture is rejected before append, and a replay fixture resolves the same event identity and fingerprint from the same input |
 | REQ-009 | Candidate production cannot silently become verdict-bearing publication | A candidate fixture requires independent validation and typed claim adjudication before P0/P1/P2 activation; confidence and impact remain orthogonal |
 | REQ-010 | The schema boundary is limited to event vocabulary and handoff contracts | A scope audit finds no reducer, projection, report view, sealed artifact, certificate, authority-cutover, rollback, or mode-gate implementation in this phase |
 <!-- /ANCHOR:requirements -->
 
-The proposed event union is grouped by lifecycle and uses stable event stems with independent `eventVersion` values. Final field names for inherited envelope members remain subordinate to phase 009. The mode-specific payload plan is:
+The proposed event union is grouped by lifecycle and uses stable event stems with independent `eventVersion` values. Final field names for inherited envelope members remain subordinate to phase 012. The mode-specific payload plan is:
 
 | Event stem | Required payload shape |
 |------------|------------------------|
@@ -130,7 +130,7 @@ The envelope extension uses a typed `scope` object rather than repeating identif
 - **SC-005**: Candidate findings cannot become P0/P1/P2 verdict-bearing state without a typed adjudication event that preserves orthogonal impact and confidence.
 - **SC-006**: The phase contains no reducer, projection, sealed artifact, certificate, rollback, authority-cutover, or mode-gate contract owned by sibling concerns.
 
-**Given** a valid phase-009 envelope, **When** a Deep Review event is encoded, **Then** its mode payload validates without redefining shared identity, lineage, authorization, or replay fields.
+**Given** a valid phase-012 envelope, **When** a Deep Review event is encoded, **Then** its mode payload validates without redefining shared identity, lineage, authorization, or replay fields.
 
 **Given** a dimension pass observes a possible defect, **When** the candidate event is replayed, **Then** its evidence, semantic fingerprint, raw measurements, and candidate status remain reconstructible without a verdict mutation.
 
@@ -148,21 +148,21 @@ The envelope extension uses a typed `scope` object rather than repeating identif
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Shared-contract drift** - phase 009 may rename envelope fields, review-loop event stems, or transition tokens after this planning packet. Mitigation: mark inherited fields as shared, run a contract diff before implementation, and reject mode-local aliases.
-- **Review/alignment divergence** - Deep Review and deep-alignment share the review-loop backbone, so a mode-local fork would create incompatible lineage, convergence, and report events. Mitigation: consume the frozen phase-009 shared review-loop contract and keep only Deep Review payload extensions here.
+- **Shared-contract drift** - phase 012 may rename envelope fields, review-loop event stems, or transition tokens after this planning packet. Mitigation: mark inherited fields as shared, run a contract diff before implementation, and reject mode-local aliases.
+- **Review/alignment divergence** - Deep Review and deep-alignment share the review-loop backbone, so a mode-local fork would create incompatible lineage, convergence, and report events. Mitigation: consume the frozen phase-012 shared review-loop contract and keep only Deep Review payload extensions here.
 - **Candidate/verdict conflation** - treating an LLM or analyzer candidate as a finding can inflate severity and poison convergence. Mitigation: require candidate, evidence, and typed claim-adjudication events before P0/P1/P2 activation.
 - **Mutable evidence leakage** - storing source text, code bodies, transcripts, or report bodies in event payloads makes replay and retention unsafe. Mitigation: store immutable artifact references, content digests, exact locators, and observation outcomes only.
 - **Fingerprint instability** - absolute line ranges and path-only identity break across unrelated edits. Mitigation: retain semantic anchors, normalized context, program slices, rename mapping, baseline status, and a versioned fingerprint algorithm.
 - **False convergence** - low novelty or repeated findings can hide missing dimensions, weak evidence, or correlated validators. Mitigation: preserve raw signals and every gate result; convergence and reducers remain separate consumers.
 - **Upcaster loss** - legacy JSONL may lack stable finding, evidence, or lineage identifiers. Mitigation: allow typed `blocked` or `degraded` compatibility outcomes, preserve the original record digest, and never synthesize identity from mutable prose alone.
 - **Cross-phase scope creep** - reducers, projections, reports, certificates, and authority changes are tempting to embed in the schema. Mitigation: use the explicit ownership boundary and the phase adjacency contract as review blockers.
-- **Dependencies**: phase 003 transition-authorized ledger core, phase 009 shared review-loop/event contracts and write-set conflict graph, current Deep Review state references, the mode findings registry, the later `002-reducers-and-projections` sibling, and the deep-alignment shared-backbone contract.
+- **Dependencies**: phase 006 transition-authorized ledger core, phase 012 shared review-loop/event contracts and write-set conflict graph, current Deep Review state references, the mode findings registry, the later `002-reducers-and-projections` sibling, and the deep-alignment shared-backbone contract.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact shared envelope field names, event identity algorithm, authorization receipt shape, and transition tokens does phase 009 freeze?
+- Which exact shared envelope field names, event identity algorithm, authorization receipt shape, and transition tokens does phase 012 freeze?
 - Does the shared review-loop contract provide generic target, dimension, evidence, claim, gate, and report-reference types, or should Deep Review define narrow digest-only extensions?
 - Which legacy Deep Review JSONL `type` and `event` values map directly to typed events, and which require a `degraded` or `blocked` compatibility disposition?
 - Are graph events, traceability checks, and claim-adjudication packets emitted as shared events with mode payloads or as Deep Review-owned event stems?

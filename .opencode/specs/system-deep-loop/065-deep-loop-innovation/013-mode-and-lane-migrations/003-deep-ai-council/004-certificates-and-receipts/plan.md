@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep AI Council - Certificates & Receipts (013 phase 003 child 004)"
+title: "Implementation Plan: Deep AI Council - Certificates & Receipts"
 description: "Implementation plan for binding the Deep AI Council lifecycle to shared run certificates, transition receipts, replay fingerprints, sealed references, and an independent offline verifier while remaining additive-dark."
 trigger_phrases:
   - "deep ai council certificates and receipts implementation plan"
@@ -31,12 +31,12 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop Deep AI Council mode migration (013 phase 003 child 004) |
+| **Surface** | system-deep-loop Deep AI Council mode migration |
 | **Change class** | Mode-specific receipt/certificate binding and offline verification |
-| **Execution** | Shared phase-003 primitives over sealed references; additive-dark and non-authoritative |
+| **Execution** | Shared phase-006 primitives over sealed references; additive-dark and non-authoritative |
 
 ### Overview
-Plan one Deep AI Council certificate adapter over the shared phase-003 receipt and certificate primitives. The adapter
+Plan one Deep AI Council certificate adapter over the shared phase-006 receipt and certificate primitives. The adapter
 defines one per-run certificate and a typed receipt profile for every logical transition from initialization through seat
 deliberation, critique, blinded adjudication, synthesis, convergence, artifact commit, council test gate, and recovery.
 Each receipt binds the authorized transition, logical operation, attempt history, ordered verified inputs, output digests,
@@ -51,7 +51,7 @@ resume behavior, rollback switching, or authority cutover.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-003 receipt, certificate, event, ledger, authorization, certification-provider, and replay interfaces are frozen for consumption
+- [ ] Phase-006 receipt, certificate, event, ledger, authorization, certification-provider, and replay interfaces are frozen for consumption
 - [ ] The `003-sealed-artifacts` reference matrix and verified-read outcomes are available to the receipt binder
 - [ ] The Deep AI Council transition matrix names logical operation identity, attempt identity, input/output references, and result dispositions
 - [ ] The replay-fingerprint projection and explicit exclusions are contract-tested against event, seat, judgment, reducer, projection, policy, artifact, and gate versions
@@ -71,7 +71,7 @@ resume behavior, rollback switching, or authority cutover.
 ## 3. ARCHITECTURE
 
 - **Shared primitive adapter**: accepts a council receipt or certificate body, delegates canonicalization, durable append,
-  certification, verification, and conflict handling to phase 003, and exposes no alternate hash, signature, key, or trust root.
+  certification, verification, and conflict handling to phase 006, and exposes no alternate hash, signature, key, or trust root.
 - **Logical transition registry**: registers initialization, seat selection/dispatch/return, critique, candidate blinding,
   pairwise judgment, bias audit, synthesis, convergence, artifact commit, council test gate, recovery, rollback observation,
   and completion. A logical transition ID is stable across retries; each attempt ID remains separate forensic data.
@@ -97,7 +97,7 @@ resume behavior, rollback switching, or authority cutover.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the candidate SHA and the phase-003 receipt/certificate, ledger, authorization, certification, and replay-contract digests.
+- Pin the candidate SHA and the phase-006 receipt/certificate, ledger, authorization, certification, and replay-contract digests.
 - Inventory Deep AI Council event stems, reducer/projection outputs, sealed artifact kinds, and gate outputs from the `001` through `003` sibling contracts.
 - Freeze the transition registry, receipt body fields, result dispositions, logical-operation and idempotency-key grammar, and receipt-chain ordering.
 - Freeze the run-certificate body, ordered artifact/reference-set rules, replay-fingerprint input projection, exclusions, and certificate status semantics.
@@ -105,7 +105,7 @@ resume behavior, rollback switching, or authority cutover.
 - Build local fixtures for duplicate seats, stale heads, missing links, order swaps, judge bias, correlated seats, minority loss, failed gates, missing artifacts, and unknown effects.
 
 ### Phase 2: Implementation
-- Register Deep AI Council transition kinds through the shared phase-003 receipt/certificate registry; reject unregistered or ambiguous transitions before emission.
+- Register Deep AI Council transition kinds through the shared phase-006 receipt/certificate registry; reject unregistered or ambiguous transitions before emission.
 - Add initialization receipts binding target, strategy, protocol, seat bounds, capability commitments, configuration, and initial head.
 - Add seat selection, dispatch, return, and proposal receipts binding logical branch identity, independence group, output and evidence digests, cost, lease, and attempt/recovery evidence.
 - Add critique receipts binding visible-information policy, source proposal IDs, cited claims, challenge disposition, and critique output digest without exposing hidden peer state.
@@ -135,7 +135,7 @@ resume behavior, rollback switching, or authority cutover.
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Contract fixture proves every mode receipt and the run certificate delegate to phase-003 primitives and no local verifier, digest, signature, or trust root exists |
+| REQ-001 | Contract fixture proves every mode receipt and the run certificate delegate to phase-006 primitives and no local verifier, digest, signature, or trust root exists |
 | REQ-002 | Positive run fixture verifies identity, heads, receipt-chain digest, sealed-reference digest, replay fingerprint, projections, artifacts, test-gate evidence, obligations, status, and certification metadata |
 | REQ-003 | Transition matrix exercises initialization, seat selection/dispatch/return, critique, blinding, judgment, bias audit, synthesis, convergence, artifact commit, test gate, recovery, and completion with stable logical IDs and separate attempts |
 | REQ-004 / REQ-005 | Fingerprint fixture changes one semantic input at a time and varies excluded process/timing values; only registered semantic changes alter the fingerprint |
@@ -151,11 +151,11 @@ resume behavior, rollback switching, or authority cutover.
 ## 6. DEPENDENCIES
 
 This child declares `depends_on: []` because the eight mode-lane planning contracts are independent and compose at the
-mode gate. Implementation still consumes the phase-003 receipt/certificate, event-envelope, typed-ledger, authorization,
+mode gate. Implementation still consumes the phase-006 receipt/certificate, event-envelope, typed-ledger, authorization,
 certification-provider, and replay-fingerprint interfaces. The predecessor `003-sealed-artifacts` owns council artifact
 registration, canonicalization, sealed publication, and verified reads. `001-typed-ledger-schema` owns event identity and
 lifecycle references; `002-reducers-and-projections` owns pure folds, projection fingerprints, and legacy-shaped shadow
-views. Phase 012 freezes shared mode interfaces and the write-set conflict graph. Successor `005-resume-adapter` consumes
+views. Phase 015 freezes shared mode interfaces and the write-set conflict graph. Successor `005-resume-adapter` consumes
 this certificate and receipt profile, while staged cutover alone changes authority. The research inputs are the parent
 program spec, phase tree, and the two findings registries under `002-deep-loop-effectiveness-and-fanout`.
 <!-- /ANCHOR:dependencies -->

@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: claim continuity (007 phase 003)"
-description: "Implementation plan for stable claim minting, semantic matching, lifecycle folding, and replay-safe resume continuity in phase 007 child 003."
+title: "Implementation Plan: claim continuity"
+description: "Implementation plan for stable claim minting, semantic matching, lifecycle folding, and replay-safe resume continuity in phase 010 child 003."
 trigger_phrases:
   - "claim continuity implementation plan"
   - "stable claim lifecycle implementation"
@@ -30,12 +30,12 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime (phase 007/003) |
+| **Surface** | system-deep-loop runtime |
 | **Change class** | Logic (claim identity, lifecycle reducer, and resume projection) |
 | **Execution** | Additive dark path in an isolated worktree pinned to the program baseline |
 
 ### Overview
-Implement one durable claim record per phase-004 typed `claim` identity. New observations pass through exact alias/fingerprint
+Implement one durable claim record per phase-007 typed `claim` identity. New observations pass through exact alias/fingerprint
 resolution and sibling-001 semantic-community candidates; support and sibling-002 contradiction/supersession events then fold
 onto that identity. A versioned reducer derives lifecycle and epistemic status from the authorized ledger, while resume restores
 typed claim references, cursor, fingerprint, and unresolved work without reminting. The program outcome and sequencing remain
@@ -46,7 +46,7 @@ those in `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/pha
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-004 continuity identity schema and phase-003 event/replay contracts are pinned to exact versions
+- [ ] The phase-007 continuity identity schema and phase-006 event/replay contracts are pinned to exact versions
 - [ ] Sibling-001 semantic candidate output and sibling-002 contradiction/supersession input boundaries are frozen or fixture-backed
 - [ ] Claim namespaces, exact aliases, normalized fingerprints, idempotency keys, and ambiguity outcomes are specified
 - [ ] Lifecycle states and epistemic statuses are separate, exhaustive, and covered by a transition/precedence table
@@ -64,7 +64,7 @@ those in `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/pha
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Typed claim registry**: phase-004 `claim` IDs index immutable mint provenance, namespaced aliases, raw observations, relationship references, and the current derived projection cursor.
+- **Typed claim registry**: phase-007 `claim` IDs index immutable mint provenance, namespaced aliases, raw observations, relationship references, and the current derived projection cursor.
 - **Idempotent mint boundary**: a transition-authorized mint request binds source event and namespace to one durable ID; retry returns the same ID and concurrent collision fails explicitly.
 - **Layered matcher**: exact aliases and normalized fingerprints run first; sibling-001 community membership supplies bounded candidates; a versioned equivalence policy returns reuse, mint, or unresolved ambiguity with provenance.
 - **Observation/evidence attachment**: later wording and sources append typed observations and evidence to the matched claim while retaining source independence, qualification, and duplicate-source metadata.
@@ -78,7 +78,7 @@ those in `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/pha
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the phase-003 event envelope/replay fingerprint and phase-004 continuity identity contracts used by the implementation.
+- Pin the phase-006 event envelope/replay fingerprint and phase-007 continuity identity contracts used by the implementation.
 - Capture sibling-001 candidate and sibling-002 relationship interfaces from their frozen fixtures; adjacency does not become a hard child dependency.
 - Freeze claim namespaces, match-policy version, lifecycle/status tables, resume-frontier schema, legacy comparison corpus, and baseline hashes.
 
@@ -121,8 +121,8 @@ those in `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/pha
 ## 6. DEPENDENCIES
 
 This child declares `depends_on: []` in the phase tree. Its runtime implementation consumes the already ordered program
-substrate: phase 003's transition-authorized ledger and replay fingerprint, phase 004's continuity identities, phase 005's
-compatibility/shadow boundary, and phase 006's durable fan-in identity inputs. Siblings `001-semantic-communities` and
+substrate: phase 006's transition-authorized ledger and replay fingerprint, phase 007's continuity identities, phase 008's
+compatibility/shadow boundary, and phase 009's durable fan-in identity inputs. Siblings `001-semantic-communities` and
 `002-contradiction-and-supersession-events` are adjacent independent planning contracts whose typed interfaces are consumed
 through frozen fixtures, not hidden runtime ordering. Successor `004-next-focus-semantics` may read the committed claim view but
 does not own identity or status recomputation.

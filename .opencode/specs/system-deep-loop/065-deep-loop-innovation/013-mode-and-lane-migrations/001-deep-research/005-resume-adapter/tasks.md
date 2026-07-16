@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase-009 shared resume/replay contracts and the Deep Research sibling boundaries against the phase adjacency
+- [ ] T001 Confirm phase-012 shared resume/replay contracts and the Deep Research sibling boundaries against the phase adjacency
 - [ ] T002 Inventory current Deep Research resume entry points, continuity files, JSONL readers, reducer checkpoints, and mutable inputs demoted from authority
 - [ ] T003 Define the canonical resume request identity, sealed ledger-tail input, reducer checkpoint, projection fingerprint, manifest revision, and root lease contract
 - [ ] T004 [P] Build the continuity-ladder matrix for `init`, plan/frontier, gather, analyze, convergence, synthesis, memory-save, incomplete, and failed states

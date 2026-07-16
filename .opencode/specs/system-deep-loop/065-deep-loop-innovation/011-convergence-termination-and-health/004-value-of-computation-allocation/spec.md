@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Value-of-Computation Allocation (008 phase 004)"
+title: "Feature Specification: Value-of-Computation Allocation"
 description: "Plan replay-stable value-of-computation scoring and adaptive allocation that directs remaining typed budget toward regions and modes with the highest expected marginal evidence value."
 trigger_phrases:
   - "value of computation allocation"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Fourth child of the phase-008 convergence, termination, and health parent |
+| **Origin** | Fourth child of the phase-011 convergence, termination, and health parent |
 | **Depends on** | None (`[]`) |
 <!-- /ANCHOR:metadata -->
 
@@ -66,8 +66,8 @@ convergence.
 The run-2 findings motivate this control loop directly: research-plan nodes carry budgets, draft-to-gap passes enqueue
 the highest-value gap, evaluation work spends budget on maximally informative items, real usage and cost flow through
 selection, and successive halving eliminates weak candidates before expensive scoring. This phase generalizes those
-mode-level findings into a shared, replay-stable allocation contract. The phase-004 hierarchical budget authority
-remains the sole admission and settlement authority. The phase-006 conditional fan-in contract consumes the resulting
+mode-level findings into a shared, replay-stable allocation contract. The phase-007 hierarchical budget authority
+remains the sole admission and settlement authority. The phase-009 conditional fan-in contract consumes the resulting
 usefulness assessment when deciding whether another result is worth awaiting; the allocator cannot bypass admission,
 change fan-in stop taxonomy, or rewrite a frozen reducer input.
 
@@ -83,7 +83,7 @@ Sources: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/007-shared-e
 ### In Scope
 - A versioned `VocAssessment` for one region/mode and allocation quantum, bound to stable candidate identity, event-sequence cut, evidence snapshot, estimator version, and policy digest.
 - A marginal-benefit model covering expected weighted coverage gain, contradiction-resolution probability and impact, stopping-blocker reduction, uncertainty reduction, and diminishing returns.
-- A typed marginal-cost envelope for tokens, fixed-precision monetary cost with pricing digest, iteration attempts, and monotonic wall time, obtained from the phase-004 budget and receipt contracts.
+- A typed marginal-cost envelope for tokens, fixed-precision monetary cost with pricing digest, iteration attempts, and monotonic wall time, obtained from the phase-007 budget and receipt contracts.
 - Dimensionless per-type pressure ratios derived within each budget dimension; the governing pressure is selected without cross-unit arithmetic or implicit conversion.
 - Explicit confidence and calibration fields, including sample count, uncertainty interval or band, prior source, observed-versus-predicted value, and stale-estimate handling.
 - Versioned greedy and proportional allocation policies with deterministic tie-breaking, allocation quanta, mode/region ceilings, and a recorded policy choice.
@@ -94,9 +94,9 @@ Sources: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/007-shared-e
 - Additive-dark shadow comparison against uniform/static allocation before any authority cutover.
 
 ### Out of Scope
-- Implementing or changing the phase-004 budget hierarchy, unit types, reservation, settlement, pricing, exhaustion, ancestor, or reconciliation rules.
-- Implementing the phase-006 fan-in state machine, sufficiency thresholds, partial-failure policy, cancellation, salvage, or reducer-input finalization.
-- Defining path coverage, novelty communities, contradiction identity, stopping clocks, or health/degeneration signals owned by the other phase-008 and upstream children.
+- Implementing or changing the phase-007 budget hierarchy, unit types, reservation, settlement, pricing, exhaustion, ancestor, or reconciliation rules.
+- Implementing the phase-009 fan-in state machine, sufficiency thresholds, partial-failure policy, cancellation, salvage, or reducer-input finalization.
+- Defining path coverage, novelty communities, contradiction identity, stopping clocks, or health/degeneration signals owned by the other phase-011 and upstream children.
 - Treating a high VOC score as permission to dispatch, treating a low score as proof of convergence, or treating budget denial as successful termination.
 - Collapsing typed costs into an untyped currency, learning policy from unledgered outcomes, or allowing fairness credits to create capacity.
 - Moving runtime authority, migrating in-flight packets, or retiring uniform/static scheduling before later shadow-parity and cutover gates.
@@ -162,7 +162,7 @@ No assessment or decision mutates after finalization; a new event supersedes it 
 - **SC-002**: Greedy and proportional policies produce deterministic allocations and decision digests from the same replay inputs.
 - **SC-003**: Higher expected evidence value receives more compute under equal typed pressure, while diminishing returns can redirect the next quantum.
 - **SC-004**: Cold-start and minority regions receive bounded exploration opportunities without bypassing positive-value, health, fan-in, or budget gates.
-- **SC-005**: No candidate is dispatched without phase-004 atomic admission across all required dimensions and ancestors.
+- **SC-005**: No candidate is dispatched without phase-007 atomic admission across all required dimensions and ancestors.
 - **SC-006**: Conditional fan-in consumes VOC usefulness for future work without changing stop taxonomy or any finalized reducer-input set.
 - **SC-007**: Replay reconstructs candidate eligibility, score components, fairness adjustments, chosen quanta, and allocation digest exactly.
 - **SC-008**: Shadow fixtures compare adaptive and uniform/static allocation by realized evidence gain, contradiction resolution, spend, and starvation outcomes without moving authority.
@@ -188,8 +188,8 @@ input or its digest.
 ## 6. RISKS & DEPENDENCIES
 
 This child has `depends_on: []` as an independently authored sibling planning contract. Runtime integration consumes
-the program phase-004 typed-budget authority, phase-006 durable result and conditional-fan-in contracts, phase-007
-coverage/contradiction/continuity signals, and the phase-008 stopping and health siblings once their interfaces are
+the program phase-007 typed-budget authority, phase-009 durable result and conditional-fan-in contracts, phase-010
+coverage/contradiction/continuity signals, and the phase-011 stopping and health siblings once their interfaces are
 frozen. The predecessor and successor in the adjacency line are navigation references, not hard runtime dependencies.
 The program manifest still places convergence and allocation after fan-in, novelty, and claims because those systems
 supply the stable identities and evidence signals used by VOC.

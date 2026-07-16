@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Health & Degeneration Harness (008 phase 005)"
+title: "Feature Specification: Health & Degeneration Harness"
 description: "Plan a generic, mode-agnostic health and degeneration harness that turns mode collapse, repetition, novelty starvation, quality decay, budget thrash, and unusable telemetry into typed signals and bounded pause, re-seed, or stop requests without taking stop authority."
 trigger_phrases:
   - "deep-loop health degeneration harness"
@@ -41,9 +41,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Fifth and final child of phase 008; the phase parent assigns the generic cross-mode degeneration safety net here |
+| **Origin** | Fifth and final child of phase 011; the phase parent assigns the generic cross-mode degeneration safety net here |
 | **Child depends_on** | `[]` |
-| **Inputs** | Sibling cycle detection, phase-007 transactional gauges, run-2 mode research, and the phase-008 manifest |
+| **Inputs** | Sibling cycle detection, phase-010 transactional gauges, run-2 mode research, and the phase-011 manifest |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -56,10 +56,10 @@ threshold while its outputs collapse onto one semantic region, revisit the same 
 lose quality across successive attempts, or spend its budget on retries and reallocations that do not improve the durable
 evidence state.
 
-The phase-008 parent therefore assigns a generic health and degeneration harness to the final child. The harness must work
+The phase-011 parent therefore assigns a generic health and degeneration harness to the final child. The harness must work
 across deep-research, deep-review, deep-ai-council, deep-improvement and its benchmark variants, and deep-alignment without
 embedding any mode's prose, evaluator, or stop policy. It consumes typed observations at an authorized ledger boundary,
-including phase-007 semantic-community, novelty, claim, continuity, projection, and gauge outputs; sibling 002 cycle
+including phase-010 semantic-community, novelty, claim, continuity, projection, and gauge outputs; sibling 002 cycle
 events; durable fan-in and result receipts; value-of-computation decisions; and typed budget settlement. It converts those
 inputs into replayable health observations and typed signals for the shared control plane.
 
@@ -70,7 +70,7 @@ trials, and receipts/certificates rather than terminal prose or aggregate scores
 That finding makes degeneration a cross-mode concern: repeated or low-quality output must be identified against durable
 claims, coverage, evidence, and cost, not against text similarity or an iteration counter alone.
 
-This phase plans a non-authoritative monitor. It does not reimplement cycle detection, redefine phase-007 gauges, authorize
+This phase plans a non-authoritative monitor. It does not reimplement cycle detection, redefine phase-010 gauges, authorize
 dispatch, mutate claims, or unconditionally stop a run. Sibling 002 owns repeated-state detection and emits
 `cycle_suspected`, `cycle_confirmed`, and `cycle_cleared`; the harness normalizes those events into health state. The
 stopping-clock child owns stop arbitration. The harness can raise a typed pause, re-seed, or stop-request signal, while the
@@ -96,7 +96,7 @@ transition gateway and the stopping contract decide whether an action is authori
 - Repetition ingestion from sibling `002-cycle-detection`: suspected cycles remain warnings, confirmed cycles become a
   stronger degeneration input, and clearing evidence removes only the active contribution without deleting history.
 - Novelty-starvation detection that distinguishes no new independent evidence from a legitimately exhausted or blocked
-  frontier, using eligible-work and phase-007 coverage/novelty evidence.
+  frontier, using eligible-work and phase-010 coverage/novelty evidence.
 - Quality-decay detection over normalized, mode-adapted quality observations with evaluator, rubric, judge, or verifier
   digests; the shared harness compares typed quality evidence and never invents a quality score.
 - Budget-thrash detection over typed reservation, settlement, retry, cancellation, lease, and reallocation events, tied to
@@ -113,9 +113,9 @@ transition gateway and the stopping contract decide whether an action is authori
 - Reimplementing focus, claim-frontier, or composite cycle detection owned by
   `011-convergence-termination-and-health/002-cycle-detection`; the harness consumes its typed events.
 - Defining path-covering termination, stopping-clock arbitration, or the value-of-computation scoring/allocation policy
-  owned by the other phase-008 children.
-- Redefining phase-007 semantic communities, claim continuity, novelty arithmetic, transactional projection boundaries, or
-  gauge reducer ownership. The phase-007 gauges contract remains the source of those values
+  owned by the other phase-011 children.
+- Redefining phase-010 semantic communities, claim continuity, novelty arithmetic, transactional projection boundaries, or
+  gauge reducer ownership. The phase-010 gauges contract remains the source of those values
   (`010-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges/spec.md`).
 - Supplying a universal model-based quality judge, comparing raw scores across modes, or promoting a mode because a scalar
   quality value improved.
@@ -147,7 +147,7 @@ transition gateway and the stopping contract decide whether an action is authori
 | REQ-013 | Insufficient or inconsistent inputs fail closed | Missing gauges, stale watermarks, sequence gaps, conflicting event hashes, unknown reducer/adapter versions, non-monotonic cursors, or mixed baselines emit `telemetry_gap`/`not_evaluable` or a typed error, never `healthy` |
 | REQ-014 | Simultaneous signals have deterministic aggregation | Multiple active signals retain individual evidence and resolve to a versioned aggregate health state using severity ordering, scope precedence, and stable tie-breaking |
 | REQ-015 | The harness is bounded and idempotent | History, active-signal state, trace payloads, and deduplication records have explicit retention/size limits; duplicate boundary delivery produces one observation and one signal identity |
-| REQ-016 | Source traceability is preserved | The implementation and verifier contract cite sibling 002, the phase-007 gauges spec, `research-modes.md`, the phase-008 parent, and `manifest/phase-tree.json` |
+| REQ-016 | Source traceability is preserved | The implementation and verifier contract cite sibling 002, the phase-010 gauges spec, `research-modes.md`, the phase-011 parent, and `manifest/phase-tree.json` |
 
 ### Health signal, threshold, and response contract
 
@@ -209,13 +209,13 @@ current lineage. `pause_mode` and `pause_region` preserve in-flight state and wa
 ## 6. RISKS & DEPENDENCIES
 
 This child has `depends_on: []` as an independent planning contract; implementation composes the authorized event ledger,
-receipts and typed budgets, durable fan-in, phase-007 projections/gauges, sibling 002 cycle events, sibling 003 stopping
+receipts and typed budgets, durable fan-in, phase-010 projections/gauges, sibling 002 cycle events, sibling 003 stopping
 clocks, and sibling 004 value-of-computation decisions. The phase manifest places the child after fan-in and novelty/claims
 because those systems supply stable identities and durable evidence, even though the planning packet itself carries no hard
 sibling dependency.
 
 The principal risk is false collapse: a mode may legitimately revisit one community while resolving a contradiction or
-strengthening a claim. The mitigation is the phase-007 progress and independent-evidence input, the sibling cycle progress
+strengthening a claim. The mitigation is the phase-010 progress and independent-evidence input, the sibling cycle progress
 gate, explicit minimum samples, and healthy-window hysteresis. The opposite risk is false health caused by output volume,
 provider/seat count, or an unvalidated mode adapter; only registered typed evidence and coherent watermarks are admissible.
 

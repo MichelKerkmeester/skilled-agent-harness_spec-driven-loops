@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: baseline, taxonomy, and state census (006 phase 000)"
+title: "Feature Specification: baseline, taxonomy, and state census"
 description: "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 006 phase must preserve."
 trigger_phrases:
   - "baseline taxonomy and state census"
-  - "deep-loop recommendations phase 000"
+  - "deep-loop recommendations phase 003"
   - "deep-loop immutable BASE census"
 importance_tier: "critical"
 contextType: "planning"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-deep-loop/065-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Authored the phase-000 baseline and census specification"
+    recent_action: "Authored the phase-003 baseline and census specification"
     next_safe_action: "Pin BASE before collecting census or benchmark evidence"
     blockers: []
     key_files: []
@@ -43,7 +43,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 000 of the 006 recommendations-implementation program; first leaf in `manifest/phase-tree.json` |
+| **Origin** | Phase 003 of the 006 recommendations-implementation program; first leaf in `manifest/phase-tree.json` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -88,7 +88,7 @@ scenario-count proxy.
   prompt/log/delta/iteration directories, benchmark outputs, SQLite coverage/council graphs, writer locks, and any
   packet-local state resolved through the runtime artifact-root seam.
 - Produce a binary known-defect-versus-protected-contract ledger. Every observed behavior has evidence, an owner,
-  a linked scenario or fixture, and one final classification before phase 001 begins; no ambiguous bucket survives.
+  a linked scenario or fixture, and one final classification before phase 004 begins; no ambiguous bucket survives.
 - Inventory the five existing behavior-benchmark packages and 53 scenario IDs under
   `.opencode/skills/system-deep-loop/*/behavior_benchmark/`, then extend coverage to all eight research workstreams.
   Preserve existing IDs and compare expected routing, halt/fail-fast behavior, evidence kind, state mutation, and
@@ -98,10 +98,10 @@ scenario-count proxy.
 
 ### Out of Scope
 - Ratifying the typed-ledger architecture, minting the 178 recommendation IDs, or defining transition authority
-  (phase 001).
+.
 - Implementing a new ledger, changing canonical persistence, or moving runtime authority (phases 003-011).
 - Fixing defects discovered by the census. Defects are classified and linked to their owning later phase.
-- Removing legacy readers or writers (phase 012), or running the final whole-system gate (phase 013).
+- Removing legacy readers or writers, or running the final whole-system gate.
 - Adding `ai-system-improvement` to the program.
 <!-- /ANCHOR:scope -->
 
@@ -119,7 +119,7 @@ scenario-count proxy.
 | REQ-007 | Packet-033 behavior evidence becomes an eight-workstream baseline | The current 5 packages/53 scenarios are frozen by ID and semantics; coverage is extended until all 8 workstreams have independent semantic assertions and BASE results, without renumbering or weakening existing scenarios |
 | REQ-008 | Replay fixtures reproduce current state semantics | Sanitized fixtures cover each event/state family, declare schema/source digests and expected reducer/projection results, and replay deterministically from a clean temporary backend |
 | REQ-009 | Rollback anchors are executable and keyed to BASE | Every mutable backend has a snapshot/restore or recreate procedure, integrity digest, rollback boundary, and pass/fail check tied to BASE; fixture execution never mutates live tracked state |
-| REQ-010 | Phase 001 receives a frozen, auditable handoff | A manifest enumerates all census and baseline artifacts, hashes them, reports zero unresolved taxonomy/schema/state rows, and is referenced by the phase-001 architecture contract |
+| REQ-010 | Phase 004 receives a frozen, auditable handoff | A manifest enumerates all census and baseline artifacts, hashes them, reports zero unresolved taxonomy/schema/state rows, and is referenced by the phase-004 architecture contract |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -148,5 +148,5 @@ SQLite files. The controlling sources are the 006 parent and phase tree, the shi
 ## 7. OPEN QUESTIONS
 
 None blocking for authoring. During execution, observed behavior must be resolved into protected contract or known
-defect before phase 001; unresolved evidence blocks the handoff rather than creating an `unknown` taxonomy bucket.
+defect before phase 004; unresolved evidence blocks the handoff rather than creating an `unknown` taxonomy bucket.
 <!-- /ANCHOR:questions -->

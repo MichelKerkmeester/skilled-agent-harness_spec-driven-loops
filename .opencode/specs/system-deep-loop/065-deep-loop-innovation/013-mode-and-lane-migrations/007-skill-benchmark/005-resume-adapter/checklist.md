@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Skill Benchmark - Resume Adapter (013 mode migration, 007 child 005)"
+title: "Checklist: Skill Benchmark - Resume Adapter"
 description: "Blocking verification checklist for the Skill Benchmark sealed-ledger resume adapter, continuity-ladder mapping, deterministic scenario-cell reconstruction, idempotent re-entry, raw scoring evidence preservation, unknown-effect handling, and shared-service boundary."
 trigger_phrases:
   - "Skill Benchmark resume adapter checklist"
@@ -40,7 +40,7 @@ authority leakage, or unexpected tracked mutation fails the gate.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-003 sealed-ledger contract identifies the finalized frontier, event-tail hash, stream high-watermarks, and seal validation fields
+- [ ] CHK-001 [P0] The phase-006 sealed-ledger contract identifies the finalized frontier, event-tail hash, stream high-watermarks, and seal validation fields
 - [ ] CHK-002 [P0] Skill Benchmark `001-typed-ledger-schema` and `002-reducers-and-projections` inputs are pinned with schema, reducer, projection, ordering, and identity fingerprints
 - [ ] CHK-003 [P0] Deep-improvement-common mode-004 ownership is recorded for evaluator, canary, promotion, receipt, budget, lock, continuity, compatibility, and effect-recovery services
 - [ ] CHK-004 [P1] The exact phase adjacency line names predecessor `004-certificates-and-receipts` and successor `006-shadow-parity`

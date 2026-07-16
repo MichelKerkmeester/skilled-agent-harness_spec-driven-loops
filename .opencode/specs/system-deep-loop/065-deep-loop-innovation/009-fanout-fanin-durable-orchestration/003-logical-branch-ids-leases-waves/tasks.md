@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T14:44:21Z"
     last_updated_by: "codex"
     recent_action: "Sequenced branch identity, lease lifecycle, wave scheduling, and resume verification"
-    next_safe_action: "Implement T001 through T012 against the phase-002 and phase-004 contracts"
+    next_safe_action: "Implement T001 through T012 against the phase-005 and phase-007 contracts"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -39,8 +39,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin phase 002's normalized expansion coordinates, logical-ID handoff, invocation fingerprint, and legacy-parity fixtures
-- [ ] T002 Pin the phase-003 transition/event vocabulary, phase-004 lease/fence API, and predecessor result-envelope branch reference
+- [ ] T001 Pin phase 005's normalized expansion coordinates, logical-ID handoff, invocation fingerprint, and legacy-parity fixtures
+- [ ] T002 Pin the phase-006 transition/event vocabulary, phase-007 lease/fence API, and predecessor result-envelope branch reference
 - [ ] T003 Inventory every dispatch, status, retry, orphan, salvage, result, terminal, and summary mutation around `fanout-pool.cjs`
 - [ ] T004 Freeze manifest-reorder, collision, partial-wave, crash-boundary, duplicate-worker, and stale-resume fixtures
 <!-- /ANCHOR:phase-1 -->
@@ -51,7 +51,7 @@ _memory:
 - [ ] T005 Implement versioned logical-branch ID derivation from explicit model ID, branch ID, and replica ordinal
 - [ ] T006 Implement directory-safety, canonical-coordinate, alias, and collision validation before any branch is registered
 - [ ] T007 Implement immutable idempotent branch registration with manifest, derivation, invocation, wave-plan, and dispatch linkage
-- [ ] T008 Implement the canonical `(run_id, logical_branch_id)` protected-resource mapping through the phase-004 registry
+- [ ] T008 Implement the canonical `(run_id, logical_branch_id)` protected-resource mapping through the phase-007 registry
 - [ ] T009 Implement worker lease acquire, renew, expire, release, takeover, and typed displaced-holder rejection
 - [ ] T010 Route dispatch, status, retry, salvage, result, and terminal writes through atomic transition-and-fence validation
 - [ ] T011 Implement deterministic wave IDs, ordinals, membership, prerequisites, and immutable plan fingerprints

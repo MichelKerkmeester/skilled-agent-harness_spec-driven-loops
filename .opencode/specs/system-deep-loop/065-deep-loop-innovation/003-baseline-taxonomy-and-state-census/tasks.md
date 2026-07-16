@@ -1,9 +1,9 @@
 ---
-title: "Tasks: baseline, taxonomy, and state census (006 phase 000)"
-description: "Tasks for phase 000 of the 006 recommendations-implementation program: immutable BASE, normalized taxonomy, runtime/state census, behavior baseline, replay fixtures, and rollback anchors."
+title: "Tasks: baseline, taxonomy, and state census"
+description: "Tasks for phase 003 of the 006 recommendations-implementation program: immutable BASE, normalized taxonomy, runtime/state census, behavior baseline, replay fixtures, and rollback anchors."
 trigger_phrases:
   - "baseline taxonomy and state census tasks"
-  - "deep-loop recommendations phase 000 tasks"
+  - "deep-loop recommendations phase 003 tasks"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-deep-loop/065-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Authored the phase-000 task breakdown"
+    recent_action: "Authored the phase-003 task breakdown"
     next_safe_action: "Pin BASE before collecting census or benchmark evidence"
     blockers: []
     key_files: []
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 000 has no predecessor, select a clean execution checkout, and resolve one full immutable BASE SHA
+- [ ] T001 Confirm phase 003 has no predecessor, select a clean execution checkout, and resolve one full immutable BASE SHA
 - [ ] T002 Record BASE ref provenance, repository status, tool versions, submodule state, and source-tree digests in the BASE manifest
 - [ ] T003 Define schemas and packet-local locations for taxonomy, subsystem, event, state/backend, behavior, fixture, rollback, and handoff artifacts
 - [ ] T004 Snapshot the live hub/mode declarations and current behavior-benchmark inventory at BASE, including all five package roots and 53 scenario IDs
@@ -64,7 +64,7 @@ _memory:
 - [ ] T018 Capture sanitized happy-path, corrupt-tail, crash-boundary, and mixed-reader fixtures for every applicable event/state family
 - [ ] T019 Record expected reducer, projection, graph, exit, and integrity results for each replay fixture
 - [ ] T020 Define snapshot/restore, projection-rebuild, stale-lock recovery, and BASE-revert anchors for every mutable backend
-- [ ] T021 Freeze artifact digests and produce the phase-001 handoff manifest with zero unresolved taxonomy, schema, state, behavior, or fixture rows
+- [ ] T021 Freeze artifact digests and produce the phase-004 handoff manifest with zero unresolved taxonomy, schema, state, behavior, or fixture rows
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
@@ -79,7 +79,7 @@ _memory:
 - [ ] T028 Verify: Behavior baseline is stable — all 53 existing IDs remain semantically unchanged and all eight workstreams have independent BASE evidence
 - [ ] T029 Verify: Replay is deterministic — every fixture produces identical normalized results across two clean temporary runs
 - [ ] T030 Verify: Rollback is executable — each recipe restores or rebuilds a copied backend and leaves live tracked state unchanged
-- [ ] T031 Verify: Phase-001 handoff is frozen — required artifacts are enumerated, hashed, BASE-keyed, and closure counters are zero
+- [ ] T031 Verify: Phase-004 handoff is frozen — required artifacts are enumerated, hashed, BASE-keyed, and closure counters are zero
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

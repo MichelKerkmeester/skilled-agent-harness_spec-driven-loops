@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Deep Improvement Common Services - Shadow Parity"
-description: "Tasks for the shadow-parity child of the Deep Improvement Common Services migration: define paired legacy and typed execution, event-for-event projection comparison, phase-011 health shadow integration, and cutover-blocking acceptance evidence."
+description: "Tasks for the shadow-parity child of the Deep Improvement Common Services migration: define paired legacy and typed execution, event-for-event projection comparison, phase-014 health shadow integration, and cutover-blocking acceptance evidence."
 trigger_phrases:
   - "deep improvement shadow parity tasks"
   - "common service parity tasks"
@@ -41,7 +41,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm the sibling event, reducer, sealed-artifact, certificate, and resume contracts and record their versions and ownership boundaries
-- [ ] T002 Confirm the phase-011 health and degeneration shadow contract, including cursors, watermarks, policy digests, data-gap states, and non-authoritative action requests
+- [ ] T002 Confirm the phase-014 health and degeneration shadow contract, including cursors, watermarks, policy digests, data-gap states, and non-authoritative action requests
 - [ ] T003 Inventory legacy and typed boundaries for candidate generation, evaluator observations, normalization, canary analysis, promotion, rollback, and terminal events
 - [ ] T004 Freeze the paired-context schema, event matching key, protected projection fields, normalization manifest, mismatch taxonomy, and parity verdict states
 <!-- /ANCHOR:phase-1 -->
@@ -54,7 +54,7 @@ _memory:
 - [ ] T007 Define event comparison for identity, causal links, event family, order, payload meaning, policy/version references, authorization intent, receipt references, and terminal disposition
 - [ ] T008 Define projection snapshots and boundary diffs for lineage, evaluator epoch, raw trials, score normalization, uncertainty, canary lifecycle, promotion state, vetoes, receipts, budgets, rollback, and terminal facts
 - [ ] T009 Define evaluator, canary, and promotion probes that preserve raw evidence, sealed references, order-swapped outcomes, integrity failures, and external authorization without shadow authority
-- [ ] T010 Define phase-011 health observation ingestion, coherent watermark checks, `telemetry_gap` and `not_evaluable` handling, recovery comparison, and observation-only action requests
+- [ ] T010 Define phase-014 health observation ingestion, coherent watermark checks, `telemetry_gap` and `not_evaluable` handling, recovery comparison, and observation-only action requests
 - [ ] T011 Define mismatch evidence receipts, replay fingerprints, idempotency keys, retention limits, parity report schema, and the explicit zero-authority-write assertion
 - [ ] T012 Define shared fixture inputs and namespaced extension rules for `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`
 <!-- /ANCHOR:phase-2 -->
@@ -67,7 +67,7 @@ _memory:
 - [ ] T015 Verify: Projection parity holds at every boundary - intermediate state hashes and protected fields match even when terminal states also converge
 - [ ] T016 Verify: Raw evidence survives later policy changes - score replay retains observation, evaluator, fixture, seed, judge, rationale, normalization, cost, and latency references
 - [ ] T017 Verify: Canary and promotion parity is guarded - leak, drift, invariant, veto, pause, abort, restore, denial, inconclusive, and authorization fixtures agree without shadow mutation
-- [ ] T018 Verify: Phase-011 health parity is observation-only - healthy, degeneration, recovery, stale, missing, and unsupported inputs preserve cursors and never change stop or dispatch authority
+- [ ] T018 Verify: Phase-014 health parity is observation-only - healthy, degeneration, recovery, stale, missing, and unsupported inputs preserve cursors and never change stop or dispatch authority
 - [ ] T019 Verify: Replay, resume, duplicate delivery, and three-variant fixtures are deterministic - match IDs, projection fingerprints, mismatch classes, and verdicts are stable
 - [ ] T020 Verify: The cutover report is blocking and explicit - only a fully green report is `PASS`; `MISMATCH`, `INCONCLUSIVE`, and `TELEMETRY_GAP` cannot authorize later cutover
 <!-- /ANCHOR:phase-3 -->
@@ -78,7 +78,7 @@ _memory:
 - [ ] All tasks complete
 - [ ] All requirements in spec.md met with evidence
 - [ ] Event and projection parity gate green for the shared corpus and all three downstream variant fixture sets
-- [ ] Phase-011 shadow observations remain non-authoritative and fail closed on data gaps
+- [ ] Phase-014 shadow observations remain non-authoritative and fail closed on data gaps
 - [ ] Phase gate green (validate/build/test as applicable)
 <!-- /ANCHOR:completion -->
 

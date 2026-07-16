@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Freeze the sibling-001 dispatch-receipt join fields and phase-003 envelope/append/read interfaces
+- [ ] T001 Freeze the sibling-001 dispatch-receipt join fields and phase-006 envelope/append/read interfaces
 - [ ] T002 Inventory result, evidence, artifact, usage, cost, error, retry, and salvage facts emitted by the shipped fan-out scripts
 - [ ] T003 Pin golden fixtures for successful, partial, failed, timed-out, cancelled, orphaned, retried, salvaged, and registry-reconstructed leaves
 - [ ] T004 Define per-leaf result schemas, required evidence sets, inline-size limits, artifact references, and secret-redaction rules
@@ -52,7 +52,7 @@ _memory:
 - [ ] T006 Implement receipt/result one-to-one pairing, exact-repeat idempotency, and changed-facts conflict rejection
 - [ ] T007 Implement the pure verified-ledger resume reducer and deterministic progress-snapshot schema
 - [ ] T008 Implement completed-leaf exclusion and explicit not-dispatched, in-flight, partial, failed, conflicted, and unreadable states
-- [ ] T009 Implement phase-004 effect reconciliation before any unsettled attempt can become retry-eligible
+- [ ] T009 Implement phase-007 effect reconciliation before any unsettled attempt can become retry-eligible
 - [ ] T010 [P] Implement typed stdout, state-log, iteration-artifact, and registry salvage fragment extractors
 - [ ] T011 Implement append-only salvage recording and deterministic effective-result assembly without source mutation
 - [ ] T012 Implement additive dark adapters at the fan-out result, salvage, and merge boundaries

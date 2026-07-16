@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Legacy Writer Retirement (006 phase 012)"
+title: "Checklist: Legacy Writer Retirement"
 description: "Blocking verifier contract for zero-use telemetry, ordered legacy live-emitter removal, rollback-evidence retention, and archival-reader preservation."
 trigger_phrases:
   - "legacy writer retirement checklist"
@@ -29,8 +29,8 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 012, the last and only legacy live-emitter deletion phase.
-Every item remains unchecked while status is Planned. Each evidence record binds the candidate SHA, phase-000 BASE,
+This checklist is the blocking verifier contract for phase 015, the last and only legacy live-emitter deletion phase.
+Every item remains unchecked while status is Planned. Each evidence record binds the candidate SHA, phase-003 BASE,
 telemetry observation window, mode and authority epoch, delete/retain manifest, and command or verifier result. The gate
 fails on incomplete telemetry, missing positive controls, any live-use event, an unknown path, an open rollback window,
 wrong retire order, a deleted archival reader, lost rollback evidence, candidate drift, or unexpected tracked mutation.
@@ -39,9 +39,9 @@ wrong retire order, a deleted archival reader, lost rollback evidence, candidate
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The 006 parent outcome, phase-tree dependency, phase-000 census, and phase-013 handoff are cited
-- [ ] CHK-002 [P0] Every workstream has a phase-011 cutover certificate, final authority epoch, clean later-of-14-days-and-five-runs window closure, and retained rollback assets
-- [ ] CHK-003 [P0] The current candidate reconciles every phase-000 writer, reader, schema, state surface, backend, dynamic path, and historical-read obligation
+- [ ] CHK-001 [P0] The 006 parent outcome, phase-tree dependency, phase-003 census, and phase-016 handoff are cited
+- [ ] CHK-002 [P0] Every workstream has a phase-014 cutover certificate, final authority epoch, clean later-of-14-days-and-five-runs window closure, and retained rollback assets
+- [ ] CHK-003 [P0] The current candidate reconciles every phase-003 writer, reader, schema, state surface, backend, dynamic path, and historical-read obligation
 - [ ] CHK-004 [P0] The delete/retain manifest identifies every live emitter or replaced logic unit and every archival reader, decoder, upcaster, schema, projection, and fixture
 - [ ] CHK-005 [P1] Planned status, Level 2 structure, phase adjacency, and last-and-only deletion ownership are explicit
 <!-- /ANCHOR:pre-impl -->
@@ -66,15 +66,15 @@ wrong retire order, a deleted archival reader, lost rollback evidence, candidate
 - [ ] CHK-015 [P0] Any live-use event, stale certificate, open rollback window, candidate drift, missing coverage, unknown path, or failed archival read fails closed before deletion
 - [ ] CHK-016 [P0] The ordered deletion log proves writers-before-helpers for each mode and shared-last removal after all eight mode rows pass
 - [ ] CHK-017 [P0] Rollback certificates, cutover certificates, window-closure records, rollback anchors, telemetry reports, and the pre-delete restoration record remain retained after deletion
-- [ ] CHK-018 [P1] Restart, resume, malformed historical input, and recorded phase-000 repair fixtures read through archival paths without canonical legacy writes
+- [ ] CHK-018 [P1] Restart, resume, malformed historical input, and recorded phase-003 repair fixtures read through archival paths without canonical legacy writes
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-019 [P0] Every phase-000 census row maps to one delete, retain, or blocking disposition with an owner, purpose, and verification result
+- [ ] CHK-019 [P0] Every phase-003 census row maps to one delete, retain, or blocking disposition with an owner, purpose, and verification result
 - [ ] CHK-020 [P0] The final delete/retain manifest matches the candidate diff and no shared path is removed before all mode evidence is green
-- [ ] CHK-021 [P1] The phase-013 handoff includes the exact candidate SHA, evidence hashes, zero-use report, closure records, deletion diff, retention manifest, and verification commands
+- [ ] CHK-021 [P1] The phase-016 handoff includes the exact candidate SHA, evidence hashes, zero-use report, closure records, deletion diff, retention manifest, and verification commands
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -89,7 +89,7 @@ wrong retire order, a deleted archival reader, lost rollback evidence, candidate
 ## Documentation
 
 - [ ] CHK-025 [P1] spec.md, plan.md, tasks.md, and checklist.md agree on zero-use proof, mode order, writers-before-shared sequencing, retention, rollback boundary, and phase ownership
-- [ ] CHK-026 [P1] Cross-references resolve to the 006 parent, `manifest/phase-tree.json`, phase-000 census, phase-011 cutover specs, and phase-013 successor
+- [ ] CHK-026 [P1] Cross-references resolve to the 006 parent, `manifest/phase-tree.json`, phase-003 census, phase-014 cutover specs, and phase-016 successor
 - [ ] CHK-027 [P2] Deterministic metadata generation is deferred exactly as instructed and no metadata file is hand-authored
 <!-- /ANCHOR:docs -->
 
@@ -105,12 +105,12 @@ wrong retire order, a deleted archival reader, lost rollback evidence, candidate
 
 The phase may be ratified only when every P0 check has evidence, zero-use telemetry proves complete coverage and no live
 legacy use, all eight modes retire in order with shared logic last, archival readers still read historical packets,
-rollback evidence remains retained, and phase 013 receives the exact post-retirement candidate and handoff bundle.
+rollback evidence remains retained, and phase 016 receives the exact post-retirement candidate and handoff bundle.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the phase-012 verifier confirms the zero-use gate, phase-011 closure evidence, ordered deletion, retained
-archival readers, preserved rollback evidence, clean comment hygiene, and an auditable handoff to phase 013.
+Signed off when the phase-015 verifier confirms the zero-use gate, phase-014 closure evidence, ordered deletion, retained
+archival readers, preserved rollback evidence, clean comment hygiene, and an auditable handoff to phase 016.
 <!-- /ANCHOR:sign-off -->

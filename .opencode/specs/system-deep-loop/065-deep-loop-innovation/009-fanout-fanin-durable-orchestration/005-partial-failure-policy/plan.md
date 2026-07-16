@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: partial-failure policy (065 phase 006/005)"
+title: "Implementation Plan: partial-failure policy"
 description: "Implementation plan for typed leaf failures, deterministic tolerance evaluation, degraded-result marking, and proceed-versus-abort ledger receipts."
 trigger_phrases:
   - "partial-failure policy implementation plan"
@@ -32,7 +32,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop durable fan-out/fan-in runtime |
 | **Change class** | Typed orchestration policy and canonical ledger events |
-| **Execution** | Additive and dark behind the phase-005 compatibility boundary |
+| **Execution** | Additive and dark behind the phase-008 compatibility boundary |
 
 ### Overview
 Replace the current implicit rule in `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`—`partial`
@@ -46,8 +46,8 @@ child 006 responsible for provenance weighting and synthesis.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 000's protected-contract-versus-known-defect classification for current partial summaries is available
-- [ ] Phase 001's event namespace and replay-version policy are frozen
+- [ ] Phase 003's protected-contract-versus-known-defect classification for current partial summaries is available
+- [ ] Phase 004's event namespace and replay-version policy are frozen
 - [ ] Canonical dispatch receipts and result envelopes expose stable run, branch, dispatch, and attempt identities
 - [ ] Child 004's await-set and decision-boundary interface is explicit
 - [ ] The two-thirds default and fatal override list are accepted as versioned policy inputs
@@ -82,7 +82,7 @@ child 006 responsible for provenance weighting and synthesis.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the BASE and load phase 000's defect-versus-contract classification for fan-out failure behavior.
+- Pin the BASE and load phase 003's defect-versus-contract classification for fan-out failure behavior.
 - Freeze interfaces with child 004's decision boundary, canonical dispatch/result envelopes, and child 006's input.
 - Capture current executor-exit, signal, timeout, missing-artifact, salvage, and policy-violation fixtures from
   `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` and its pool tests.
@@ -102,7 +102,7 @@ child 006 responsible for provenance weighting and synthesis.
 - Inject fatal integrity errors at otherwise-sufficient quorums and verify unconditional abort with no reduction call.
 - Crash between leaf settlement, failure append, evaluation append, and reduction dispatch; replay to one verdict.
 - Deliver late and duplicate results after finalization and verify the closed verdict and reduction input do not change.
-- Compare dark typed verdicts with legacy exit/status summaries and resolve differences through phase 000's ledger.
+- Compare dark typed verdicts with legacy exit/status summaries and resolve differences through phase 003's ledger.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -126,9 +126,9 @@ child 006 responsible for provenance weighting and synthesis.
 ## 6. DEPENDENCIES
 
 Local `depends_on` is empty in `manifest/phase-tree.json`; the predecessor/successor line is navigation only. Runtime
-implementation nevertheless consumes the parent program's phase-003 ledger/authorization contract, phase-004 control
-services, and phase-005 compatibility bridge. Within this parent it composes with child 004's immutable await-set and
-decision-boundary contract and supplies child 006 with eligible envelopes plus a policy receipt. Phase 000's
+implementation nevertheless consumes the parent program's phase-006 ledger/authorization contract, phase-007 control
+services, and phase-008 compatibility bridge. Within this parent it composes with child 004's immutable await-set and
+decision-boundary contract and supplies child 006 with eligible envelopes plus a policy receipt. Phase 003's
 defect-versus-protected-contract classification controls which legacy differences are regressions.
 <!-- /ANCHOR:dependencies -->
 
@@ -138,6 +138,6 @@ defect-versus-protected-contract classification controls which legacy difference
 The policy lands additive, dark, and non-authoritative first. Rollback disables typed-policy authority and returns
 fan-in control to the compatibility adapter while retaining append-only policy receipts for diagnosis. No ledger event
 is deleted or rewritten; readers ignore the disabled policy version through the versioned projection. If authority has
-already moved, the phase-005 rollback switch restores the legacy decision path for new epochs, while existing closed
+already moved, the phase-008 rollback switch restores the legacy decision path for new epochs, while existing closed
 epochs remain immutable and auditable.
 <!-- /ANCHOR:rollback -->

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Versioned Event Envelope (003 phase 001)"
+title: "Implementation Plan: Versioned Event Envelope"
 description: "Implementation plan for the canonical deep-loop event envelope, deterministic type/version registry, strict validators, and read-time adjacent-version upcaster boundary."
 trigger_phrases:
   - "versioned event envelope implementation plan"
@@ -30,20 +30,20 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime (program phase 003, child 001) |
+| **Surface** | system-deep-loop runtime (program phase 006, child 001) |
 | **Change class** | Additive-dark schema, registry, validation, and read compatibility foundation |
-| **Execution** | Future runtime implementation in an isolated worktree pinned to the phase-000 BASE |
+| **Execution** | Future runtime implementation in an isolated worktree pinned to the phase-003 BASE |
 
 ### Overview
-Build one strict envelope module and one deterministic event-definition registry before the typed ledger exists. The module validates current write requests, serializes canonical bytes for authorization/append, parses stored rows, and upcasts supported historical payloads to the current in-memory shape. It preserves source bytes and immutable envelope fields, exposes typed failures, and leaves every shipped JSONL writer authoritative and unchanged. The design implements the compatibility rules already fixed by the phase-001 transition policy and provides the sole envelope contract consumed by `002-typed-append-only-ledger`.
+Build one strict envelope module and one deterministic event-definition registry before the typed ledger exists. The module validates current write requests, serializes canonical bytes for authorization/append, parses stored rows, and upcasts supported historical payloads to the current in-memory shape. It preserves source bytes and immutable envelope fields, exposes typed failures, and leaves every shipped JSONL writer authoritative and unchanged. The design implements the compatibility rules already fixed by the phase-004 transition policy and provides the sole envelope contract consumed by `002-typed-append-only-ledger`.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-001 transition/versioning policy is ratified and its `event_type`, `event_version`, upcaster, and fail-closed rules are treated as normative
-- [ ] The phase-000 BASE and runtime writer census identify the shipped observability, council, iteration/audit, fan-out status, and generic JSONL boundaries
+- [ ] The phase-004 transition/versioning policy is ratified and its `event_type`, `event_version`, upcaster, and fail-closed rules are treated as normative
+- [ ] The phase-003 BASE and runtime writer census identify the shipped observability, council, iteration/audit, fan-out status, and generic JSONL boundaries
 - [ ] The canonical outer field table, namespace grammar, version semantics, nullability, and unknown-field posture are frozen in tests before the first event type is registered
 - [ ] Ownership is explicit: this child owns envelope/registry/upcast seams; `002-typed-append-only-ledger` owns persistence; the authorization child owns allow/deny decisions
 - [ ] No legacy writer, reducer, projection, or authority switch is included in the implementation write set
@@ -66,7 +66,7 @@ Build one strict envelope module and one deterministic event-definition registry
 - **Read seam**: preserve raw stored bytes, parse and validate the stored envelope, resolve exact type/version, reject unsupported future values, run and validate every adjacent hop, validate the current payload, then return `{ stored, effective, upcast_trace }`.
 - **Immutability boundary**: upcasters may change only the effective `payload` and increment the effective `event_version`; event ID, stream identity/sequence, timestamps, producer, authority epoch, correlation, causation, and idempotency identity remain byte-semantically stable.
 - **Failure boundary**: parsing, registration, historical validation, chain resolution, hop execution, current validation, and canonical serialization each return a distinct stable error code; no fallback constructs a partial effective event.
-- **Dark integration**: new modules and fixtures are additive. Existing writers in `.opencode/skills/system-deep-loop/runtime/` are evidence inputs only; adapters and live dual reads belong to program phase 005.
+- **Dark integration**: new modules and fixtures are additive. Existing writers in `.opencode/skills/system-deep-loop/runtime/` are evidence inputs only; adapters and live dual reads belong to program phase 008.
 
 Read flow:
 
@@ -77,7 +77,7 @@ Read flow:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the implementation worktree to the phase-000 BASE and record the phase-001 policy digest used by the candidate.
+- Pin the implementation worktree to the phase-003 BASE and record the phase-004 policy digest used by the candidate.
 - Inventory representative records and call sites from `observability-events.cjs`, `round-state-jsonl.cjs`, `executor-audit.ts`, `fanout-pool.cjs`, and `jsonl-repair.ts` without editing those files.
 - Freeze the outer field grammar, event namespace, error taxonomy, registry invariants, canonicalization rule, and module ownership boundaries as failing contract tests.
 
@@ -118,7 +118,7 @@ Read flow:
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This child declares no predecessor dependency (`depends_on: []`). Its normative planning inputs are the parent program invariants, `manifest/phase-tree.json`, and the phase-001 transition/versioning/rollback policy. Its implementation reads the pinned phase-000 runtime census and representative shipped writers. Its first consumer is sibling `002-typed-append-only-ledger`; authorization and replay-fingerprint children consume the same canonical-byte and registry/chain identity outputs. Program phase 005 later supplies legacy adapters and mixed-authority compatibility without changing this envelope contract.
+This child declares no predecessor dependency (`depends_on: []`). Its normative planning inputs are the parent program invariants, `manifest/phase-tree.json`, and the phase-004 transition/versioning/rollback policy. Its implementation reads the pinned phase-003 runtime census and representative shipped writers. Its first consumer is sibling `002-typed-append-only-ledger`; authorization and replay-fingerprint children consume the same canonical-byte and registry/chain identity outputs. Program phase 008 later supplies legacy adapters and mixed-authority compatibility without changing this envelope contract.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

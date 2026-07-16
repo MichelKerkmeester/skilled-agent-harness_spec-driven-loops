@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-improvement common services) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 004; first child of the shared Deep Improvement Common Services migration |
-| **Inputs** | Phase-003 transition-authorized ledger core; phase-009 shared event contracts; 065/002 findings registries |
+| **Inputs** | Phase-006 transition-authorized ledger core; phase-012 shared event contracts; 065/002 findings registries |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -55,8 +55,8 @@ by three later variants but are not yet expressed as one append-only contract. W
 specialization, each variant can invent incompatible identifiers, score fields, lifecycle names, or promotion
 evidence, making replay, shadow parity, and shared-service ownership impossible to verify.
 
-This phase plans the schema contract only. It consumes the phase-003 transition-authorized ledger core and the
-phase-009 shared event contracts, then specializes them for Deep Improvement Common Services. The contract must keep
+This phase plans the schema contract only. It consumes the phase-006 transition-authorized ledger core and the
+phase-012 shared event contracts, then specializes them for Deep Improvement Common Services. The contract must keep
 raw evaluator observations separate from normalization and reduction, preserve candidate and evaluator lineage, bind
 canary and promotion evidence to an evaluation epoch, and expose versioned upcaster hooks. It emits vocabulary for
 the next sibling's reducers and projections; it does not define those reducers.
@@ -74,7 +74,7 @@ the next sibling's reducers and projections; it does not define those reducers.
 
 ### Out of Scope
 - Reducers, projections, materialized gauges, frontier calculation, archive updates, and read models; these belong to `002-reducers-and-projections`.
-- Reimplementation of the phase-003 authorization gateway, ledger durability, replay fingerprint primitive, or phase-009 shared event envelope.
+- Reimplementation of the phase-006 authorization gateway, ledger durability, replay fingerprint primitive, or phase-012 shared event envelope.
 - Variant-only event payloads and mode-specific certificates owned by the three downstream migrations.
 - Authority cutover, legacy-writer retirement, production code, and implementation tests; this is a planning-only phase.
 <!-- /ANCHOR:scope -->
@@ -130,8 +130,8 @@ with a later score or treat a successful target-task score as sufficient promoti
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The primary dependency is the phase-003 transition-authorized ledger core and its fail-closed append boundary, plus the
-phase-009 shared event contracts that define common identity, causation, sequence, receipt, and replay fields. The
+The primary dependency is the phase-006 transition-authorized ledger core and its fail-closed append boundary, plus the
+phase-012 shared event contracts that define common identity, causation, sequence, receipt, and replay fields. The
 phase also depends on the 065/002 mode findings: preserve raw evaluator artifacts, use a versioned evaluator capsule,
 rotate and seal canary epochs, keep optimization reward separate from oversight, and make promotion uncertainty-aware.
 
@@ -146,7 +146,7 @@ and an explicit handoff to `002-reducers-and-projections`.
 ## 7. OPEN QUESTIONS
 
 No blocking questions for the planning contract. The implementation pass must resolve the exact type aliases and
-serialization library against the imported phase-003 and phase-009 contracts, choose the final event-name namespace,
+serialization library against the imported phase-006 and phase-012 contracts, choose the final event-name namespace,
 and confirm the maximum inline payload size before code lands. The next sibling owns reducer input ordering, projection
 keys, frontier semantics, and materialized read models; those decisions must not be pulled into this schema phase.
 <!-- /ANCHOR:questions -->

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Research - Sealed Reference Artifacts (010 phase 001 child 003)"
+title: "Implementation Plan: Deep Research - Sealed Reference Artifacts"
 description: "Implementation plan for binding Deep Research lifecycle inputs, evidence, outputs, resume deltas, and memory-save handoff to the shared seal-on-write and tamper-evident read contract."
 trigger_phrases:
   - "deep research sealed artifacts implementation plan"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T19:20:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined Deep Research seal boundaries and verified-read gates"
-    next_safe_action: "Inventory mode artifacts against the phase-009 shared contract"
+    next_safe_action: "Inventory mode artifacts against the phase-012 shared contract"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -30,17 +30,17 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop Deep Research mode migration (phase 010 child 001/003) |
+| **Surface** | system-deep-loop Deep Research mode migration |
 | **Change class** | Mode-specific artifact registration and seal/read integration |
 | **Execution** | Seal-on-write references across init, iterate, convergence, synthesis, resume, and memory-save; additive-dark |
 
 ### Overview
-Plan one Deep Research adapter over the shared phase-003 sealing primitives. The adapter maps the autonomous loop's
+Plan one Deep Research adapter over the shared phase-006 sealing primitives. The adapter maps the autonomous loop's
 typed lifecycle to registered artifact kinds, seals exact canonical bytes at each boundary, binds ordered digest
 references into the existing event, reducer, projection, replay, and shadow paths, and verifies every reference before
 release to a consumer. The mode must preserve the research registry's branch-local context, typed gap-to-query
 continuation, claim-level cross-validation, unresolved states, and portable research-object handoff without turning a
-prose report into the primary state. The plan consumes the shared sealed-reference contract and the phase-009 mode
+prose report into the primary state. The plan consumes the shared sealed-reference contract and the phase-012 mode
 interfaces; it does not implement shared storage, a second digest scheme, reducers, certificates, or authority cutover.
 <!-- /ANCHOR:summary -->
 
@@ -48,7 +48,7 @@ interfaces; it does not implement shared storage, a second digest scheme, reduce
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-009 shared mode contracts and the executable write-set conflict graph are frozen for the Deep Research lane
+- [ ] Phase-012 shared mode contracts and the executable write-set conflict graph are frozen for the Deep Research lane
 - [ ] The mode artifact matrix names every init, gather, analyze, convergence, synthesis, resume, and memory-save input/output
 - [ ] Each matrix row identifies a shared artifact kind, canonicalization version, media type, and ordered reference role
 - [ ] Seal-on-write and verified-read seams are available without changing the legacy authoritative loop
@@ -64,7 +64,7 @@ interfaces; it does not implement shared storage, a second digest scheme, reduce
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Shared seal adapter**: accepts a typed mode artifact request, delegates canonicalization, atomic publication, digest derivation, and verified reads to the phase-003 primitive, and exposes no alternate hash or blob identity.
+- **Shared seal adapter**: accepts a typed mode artifact request, delegates canonicalization, atomic publication, digest derivation, and verified reads to the phase-006 primitive, and exposes no alternate hash or blob identity.
 - **Mode artifact registry**: registers the initial objective/reference set, source capture, analysis batch, convergence witness, synthesis view, and memory-save handoff as Deep Research specializations of the shared descriptor.
 - **Lifecycle seal boundaries**: seal the init set before dispatch, source captures before analysis, atomic claims and evidence before reduction, one convergence snapshot before the stop decision, the synthesis view after projection, and the handoff before memory save.
 - **Reference-set binder**: assembles the ordered verified digest set using shared logical branch and event ordering, then supplies the same set to typed events, predecessor reducers, replay fingerprints, resume comparison, and shadow parity.
@@ -78,9 +78,9 @@ interfaces; it does not implement shared storage, a second digest scheme, reduce
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-009 shared mode contract and write-set conflict graph; verify predecessor `002-reducers-and-projections` owns the reducer and projection boundary.
+- Confirm the phase-012 shared mode contract and write-set conflict graph; verify predecessor `002-reducers-and-projections` owns the reducer and projection boundary.
 - Inventory current Deep Research init state, branch observations, source captures, analysis records, convergence inputs, synthesis outputs, resume state, and memory-save payloads against the pinned baseline.
-- Freeze the mode artifact-kind matrix, reference roles, canonicalization profiles, media types, stable logical identities, and ordered reference-set rules using the shared phase-003 primitive.
+- Freeze the mode artifact-kind matrix, reference roles, canonicalization profiles, media types, stable logical identities, and ordered reference-set rules using the shared phase-006 primitive.
 - Define typed seal/read failures, source-refresh dispositions, append-only supersession, legacy fallback refusal, and the mode rollback switch.
 
 ### Phase 2: Implementation
@@ -125,12 +125,12 @@ interfaces; it does not implement shared storage, a second digest scheme, reduce
 ## 6. DEPENDENCIES
 
 This child declares `depends_on: []` as an independent planning contract, while its implementation composes with the
-phase-009 shared mode interfaces and write-set conflict graph. The shared phase-003 sealing primitive owns descriptor,
-canonicalization, content addressing, atomic publication, verified reads, and lifecycle retention. The phase-003 event
+phase-012 shared mode interfaces and write-set conflict graph. The shared phase-006 sealing primitive owns descriptor,
+canonicalization, content addressing, atomic publication, verified reads, and lifecycle retention. The phase-006 event
 and replay contracts own outer envelopes and fingerprint derivation. Predecessor `002-reducers-and-projections` owns
 claim/evidence reductions and projection identity. The compatibility and shadow bridge supplies the parity boundary.
-Successor `004-certificates-and-receipts` consumes this mode's verified reference set for boundary evidence; phase 011
-alone changes authority. The phase-000 census supplies concrete legacy state and artifact shapes.
+Successor `004-certificates-and-receipts` consumes this mode's verified reference set for boundary evidence; phase 014
+alone changes authority. The phase-003 census supplies concrete legacy state and artifact shapes.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

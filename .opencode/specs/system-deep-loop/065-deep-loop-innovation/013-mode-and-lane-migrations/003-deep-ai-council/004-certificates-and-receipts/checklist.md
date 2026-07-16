@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep AI Council - Certificates & Receipts (013 phase 003 child 004)"
+title: "Checklist: Deep AI Council - Certificates & Receipts"
 description: "Blocking verification checklist for Deep AI Council run certificates, transition receipts, replay-fingerprint stability, sealed-reference verification, independence and bias evidence, offline verification, recovery handling, and additive-dark authority preservation."
 trigger_phrases:
   - "deep ai council certificates and receipts checklist"
@@ -30,7 +30,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking verifier contract for the Deep AI Council certificate and receipt child. The candidate
-report pins the candidate SHA, shared phase-003 contract and certification-policy digests, transition registry, sealed
+report pins the candidate SHA, shared phase-006 contract and certification-policy digests, transition registry, sealed
 artifact manifest, receipt-chain digest, replay-fingerprint descriptor, offline-bundle digest, and commands with exit codes
 and discovered-case counts. Verification fails on zero transitions, an unverifiable required reference, a receipt before
 its result, an incomplete certificate chain, semantic fingerprint drift, automatic replay of `in_doubt`, lost minority or
@@ -40,7 +40,7 @@ bias evidence, a false trusted gate result, or any change to legacy authority.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-003 receipt/certificate, event, ledger, authorization, certification-provider, and replay contracts are frozen for this candidate
+- [ ] CHK-001 [P0] Phase-006 receipt/certificate, event, ledger, authorization, certification-provider, and replay contracts are frozen for this candidate
 - [ ] CHK-002 [P0] The Deep AI Council transition registry covers initialization, seat selection/dispatch/return, critique, blinding, judgment, bias audit, synthesis, convergence, artifact commit, council test gate, recovery, and completion
 - [ ] CHK-003 [P0] The mode consumes `003-sealed-artifacts` references and names no alternate digest, certificate, signer, trust root, or verifier
 - [ ] CHK-004 [P1] Logical transition IDs, attempt IDs, idempotency keys, receipt-chain ordering, event-head relations, and result dispositions are explicit

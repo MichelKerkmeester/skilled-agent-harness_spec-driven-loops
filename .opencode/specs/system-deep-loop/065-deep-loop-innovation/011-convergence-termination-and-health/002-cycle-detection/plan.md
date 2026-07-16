@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cycle detection (008 phase 002)"
+title: "Implementation Plan: cycle detection"
 description: "Implementation plan for deterministic ledger-window cycle detection across repeated states, claim frontiers, and next-foci, including sensitivity, progress gating, health events, and stopping-clock handoff."
 trigger_phrases:
   - "cycle detection implementation plan"
@@ -30,16 +30,16 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime + typed ledger projections (phase 008 child 002) |
+| **Surface** | system-deep-loop runtime + typed ledger projections |
 | **Change class** | Additive dark health/termination logic |
-| **Execution** | Implement after phase-006 durable boundaries and phase-007 claim/focus projections are available; preserve legacy stop authority |
+| **Execution** | Implement after phase-009 durable boundaries and phase-010 claim/focus projections are available; preserve legacy stop authority |
 
 ### Overview
 Build a versioned observation projector at authorized iteration boundaries, retain a deterministic bounded fingerprint history,
 detect fixed points and short repeated sequences, gate them on material progress, and append typed cycle-health events. The
 initial policy tests periods `1..4` over 12 observations with three traversals, plus repeated focus/claim suspicion at three
 occurrences within eight observations. Confirmed events feed the sibling stopping-clock input but remain non-authoritative.
-Design and fixtures are grounded in phase-007 claim continuity and next-focus semantics, the phase manifest, and the shipped
+Design and fixtures are grounded in phase-010 claim continuity and next-focus semantics, the phase manifest, and the shipped
 snapshot-only council convergence path.
 <!-- /ANCHOR:summary -->
 
@@ -48,8 +48,8 @@ snapshot-only council convergence path.
 
 ### Definition of Ready
 - [ ] The ledger exposes an authorized, committed iteration boundary with monotonic cursor and replay fingerprint
-- [ ] Phase-007 claim-continuity projections expose stable claim IDs, lifecycle/epistemic state, fold version, and unresolved work
-- [ ] Phase-007 next-focus events expose stable candidate/region identity, policy version, projection watermark, and candidate-set fingerprint
+- [ ] Phase-010 claim-continuity projections expose stable claim IDs, lifecycle/epistemic state, fold version, and unresolved work
+- [ ] Phase-010 next-focus events expose stable candidate/region identity, policy version, projection watermark, and candidate-set fingerprint
 - [ ] Coverage, blocker, contradiction, and independent-evidence progress inputs are typed at the same projection watermark
 - [ ] Sibling `003-stopping-clocks` accepts a typed cycle contribution without granting this detector direct stop authority
 
@@ -118,8 +118,8 @@ snapshot-only council convergence path.
 
 The child planning contract declares `depends_on: []`; adjacency to `001-path-covering-termination` and
 `003-stopping-clocks` is navigation and interface ordering, not a sibling implementation prerequisite. Runtime execution
-consumes the program's phase-003 authorized ledger, phase-004 shared identity/control services, phase-006 durable iteration
-boundaries, and phase-007 claim-continuity and next-focus projections. Required source contracts are
+consumes the program's phase-006 authorized ledger, phase-007 shared identity/control services, phase-009 durable iteration
+boundaries, and phase-010 claim-continuity and next-focus projections. Required source contracts are
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/003-claim-continuity/spec.md`,
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics/spec.md`,
 `.opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs`, and

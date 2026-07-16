@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Model Benchmark - certificates and receipts (013 phase 006)"
+title: "Implementation Plan: Model Benchmark - certificates and receipts"
 description: "Implementation Plan for the model-benchmark certificates and receipts phase: freeze model-matrix attestations, replay fingerprints, offline verification, and variant-specific scoring evidence over the shared deep-improvement-common services."
 trigger_phrases:
   - "model benchmark certificates and receipts implementation plan"
@@ -93,7 +93,7 @@ shared evaluator, canary, promotion, or certificate semantics.
 - Inventory model-benchmark dispatch, sweep, reporter, scoring, router, workload, and legacy projection paths and classify
   each as variant adapter, shared service call, persisted evidence, or compatibility observation.
 - Pin the planning inputs from the parent, manifest, and model-benchmark research registry; record the dark boundary,
-  phase-009 freeze handoff, and `005-resume-adapter` consumer boundary.
+  phase-012 freeze handoff, and `005-resume-adapter` consumer boundary.
 
 ### Phase 2: Matrix and Evidence Contract
 - Define stable identities and schema for benchmark recipe, run lineage, model/executor cell, task family, item, protocol,
@@ -151,7 +151,7 @@ shared evaluator, canary, promotion, or certificate semantics.
 | REQ-007 | Exercise candidate-specific judge calibration, shared-family provenance, rubric-axis perturbations, contamination exposure/retirement lineage, fresh-suite comparison, and protocol-by-model/task variation; require typed veto or uncertainty where validity fails |
 | REQ-008 | Run common evaluator, canary, promotion, certificate, receipt, fingerprint, and hard-veto fixtures through all three benchmark adapters; compare shared semantics and reject variant-local forks |
 | REQ-009 | Emit certificates and receipts beside the legacy path; assert no dark verdict changes authority, router state, or legacy projection and that rollback retains readable evidence |
-| REQ-010 | Verify the successor receives exact replay, salvage, uncertain-effect, unsupported-version, changed-matrix, and block cases and that 010 acceptance requires the phase-009 freeze and conflict graph |
+| REQ-010 | Verify the successor receives exact replay, salvage, uncertain-effect, unsupported-version, changed-matrix, and block cases and that 010 acceptance requires the phase-012 freeze and conflict graph |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->

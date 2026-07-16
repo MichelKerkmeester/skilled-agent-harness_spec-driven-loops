@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: semantic communities (007 phase 001)"
-description: "Implementation plan for deterministic semantic communities and concept-level novelty in phase 007 child 001."
+title: "Implementation Plan: semantic communities"
+description: "Implementation plan for deterministic semantic communities and concept-level novelty in phase 010 child 001."
 trigger_phrases:
   - "semantic communities implementation plan"
   - "concept-level novelty implementation"
@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime coverage graph (phase 007 child 001) |
+| **Surface** | system-deep-loop runtime coverage graph |
 | **Change class** | Additive semantic projection and shadow novelty signal |
 | **Execution** | Ledger-replayable, namespace-scoped, non-authoritative until calibrated |
 

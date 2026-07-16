@@ -20,8 +20,8 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact phase-003 certificate primitive signs or seals the run certificate?"
-      - "Which phase-009 transition result fields are inherited by each receipt?"
+      - "Which exact phase-006 certificate primitive signs or seals the run certificate?"
+      - "Which phase-012 transition result fields are inherited by each receipt?"
       - "Does the offline verifier consume a finalized frontier or a certificate-pinned event range?"
     answered_questions:
       - "This phase plans attestations and verification, not authority cutover"
@@ -47,7 +47,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-review |
 | **Origin** | Deep Review mode migration after the shared ledger, sealed-artifact, and review-loop contracts are frozen |
-| **Inputs** | `065-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, the Deep Review typed-ledger sibling, `findings-registry*.json`, phase `003-sealed-artifacts`, and the shared review-loop contract from phase 009 |
+| **Inputs** | `065-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, the Deep Review typed-ledger sibling, `findings-registry*.json`, phase `003-sealed-artifacts`, and the shared review-loop contract from phase 012 |
 | **Output** | A ratifiable per-run certificate, per-transition receipt, replay-fingerprint input, and independent offline-verifier plan; no authority cutover |
 <!-- /ANCHOR:metadata -->
 
@@ -56,7 +56,7 @@ _memory:
 
 The Deep Review loop currently records scope, per-dimension passes, candidate findings, evidence, adjudication, convergence, blocked stops, synthesis, and `review-report.md` through a mixture of JSONL state, iteration artifacts, reducer-owned views, and handoff files. Those records preserve useful history, but the loop has no single per-run attestation proving which immutable inputs, transitions, evidence references, and policy versions produced a report. It also lacks a uniform receipt for each state-changing transition, leaving retries, late evidence, blocked stops, and effect ambiguity difficult to verify without rerunning the live mode.
 
-The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts, versioned replay fingerprints, and receipts/certificates before authority moves. Phase `003-sealed-artifacts` supplies the receipt and certificate primitives consumed here. Phase 009 freezes the shared review-loop backbone used by Deep Review and deep-alignment; this phase must specialize that contract rather than fork it. The mode findings research reinforces the boundary: review passes emit candidates before independent validation activates P0/P1/P2 findings; impact and evidential confidence remain orthogonal; cross-pass identity uses versioned semantic anchors; and deterministic failures remain first-class receipts (`findings-registry-modes.json:2619-2876`).
+The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts, versioned replay fingerprints, and receipts/certificates before authority moves. Phase `003-sealed-artifacts` supplies the receipt and certificate primitives consumed here. Phase 012 freezes the shared review-loop backbone used by Deep Review and deep-alignment; this phase must specialize that contract rather than fork it. The mode findings research reinforces the boundary: review passes emit candidates before independent validation activates P0/P1/P2 findings; impact and evidential confidence remain orthogonal; cross-pass identity uses versioned semantic anchors; and deterministic failures remain first-class receipts (`findings-registry-modes.json:2619-2876`).
 
 This phase plans two related attestations. A **CERTIFICATE** is one per completed or explicitly incomplete Deep Review run and attests the declared run outcome, immutable scope, finalized event range, receipt set, replay fingerprint, and report handoff. A **RECEIPT** is one per authorized transition and attests the transition decision, input and output references, authorization result, effect status, and append-chain position. Neither attestation claims that a semantic finding is true merely because a model or aggregate accepted it; each preserves the evidence and adjudication boundary needed for an independent verifier.
 <!-- /ANCHOR:problem -->
@@ -123,7 +123,7 @@ The offline verifier follows this order: load the trusted contract and certifica
 - **SC-003**: Replay fingerprints include all declared input and behavior classes, distinguish exact from compatible or blocked reuse, and identify the first mismatch offline.
 - **SC-004**: Candidate, evidence, adjudication, P0/P1/P2 severity, convergence, and report publication remain separate attestable stages with raw observations preserved.
 - **SC-005**: An independent verifier can validate a copied ledger and referenced artifacts without model execution, network access, or mutable source access; tampering and unknown versions fail closed.
-- **SC-006**: The certificate and receipt contract consumes phase `003-sealed-artifacts` primitives and phase 009 shared review-loop contracts without duplicating shared mode behavior or preempting `005-resume-adapter`.
+- **SC-006**: The certificate and receipt contract consumes phase `003-sealed-artifacts` primitives and phase 012 shared review-loop contracts without duplicating shared mode behavior or preempting `005-resume-adapter`.
 - **SC-007**: The planning packet is complete enough for implementation and later mode-gate work while containing no authority-cutover, rollback, reducer, report-rendering, or resume implementation.
 
 **Given** a completed Deep Review run, **when** the certificate is verified from its pinned event range, **then** the verifier can reconstruct the declared scope, receipt closure, replay fingerprint, convergence result, report revision, and unresolved IDs without rerunning the mode.
@@ -145,21 +145,21 @@ The offline verifier follows this order: load the trusted contract and certifica
 - **Fingerprint drift** - omitting an evaluator, tool, policy, codec, or ordered-scope input can permit unsafe replay reuse. Mitigation: version the input registry, record each input class, and report the first mismatch.
 - **Mutable-reference leakage** - a digest may point to a mutable path or a source body may be embedded in a receipt. Mitigation: require content-addressed or sealed references, immutable locators, and explicit reference verification.
 - **Unknown external effect** - a lost response can be interpreted as failure or success. Mitigation: retain `unknown` as a first-class receipt state and delegate reuse, reconcile, compensate, or block decisions to the later replay adapter.
-- **Shared-backbone divergence** - Deep Review may invent a local certificate path that deep-alignment cannot consume. Mitigation: compare inherited phase-009 fields and event transitions before accepting mode extensions.
+- **Shared-backbone divergence** - Deep Review may invent a local certificate path that deep-alignment cannot consume. Mitigation: compare inherited phase-012 fields and event transitions before accepting mode extensions.
 - **Verifier trust confusion** - the verifier may trust certificate-supplied policy or authorization claims. Mitigation: resolve contract, primitive, and authorization registries from a trusted offline bundle and treat payload claims as untrusted evidence.
 - **Scope expansion** - certificate work may absorb reducers, resume, rollback, or authority concerns. Mitigation: keep the ownership table and adjacency line as blocking review boundaries.
-- **Dependencies**: phase `003-sealed-artifacts` receipt/certificate primitives; phase 009 shared review-loop and replay contracts; `001-typed-ledger-schema`; later reducer/projection, `005-resume-adapter`, shadow-parity, rollback, authority-cutover, and mode-gate concerns; the Deep Review mode state references; and the mode/shared research registries.
+- **Dependencies**: phase `003-sealed-artifacts` receipt/certificate primitives; phase 012 shared review-loop and replay contracts; `001-typed-ledger-schema`; later reducer/projection, `005-resume-adapter`, shadow-parity, rollback, authority-cutover, and mode-gate concerns; the Deep Review mode state references; and the mode/shared research registries.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-003 primitive represents a run certificate seal, and does the verifier receive a signature, Merkle root, transparency reference, or another typed proof?
-- Which phase-009 transition result, authorization, event-tail, and effect fields are inherited directly by Deep Review receipts?
+- Which exact phase-006 primitive represents a run certificate seal, and does the verifier receive a signature, Merkle root, transparency reference, or another typed proof?
+- Which phase-012 transition result, authorization, event-tail, and effect fields are inherited directly by Deep Review receipts?
 - Is the certificate pinned to a finalized ledger frontier, a contiguous event range, or both when late receipts exist after report publication?
 - Which receipt states and compatibility outcomes are canonical for a report that is complete in scope but contains unresolved or blocked findings?
 - Which artifact-reference checks can run entirely offline, and which missing artifact cases must be `blocked` rather than `invalid`?
-- Does the verifier recompute reducer and report input digests only, or does phase 009 expose a deterministic projection contract that can also be replayed offline?
+- Does the verifier recompute reducer and report input digests only, or does phase 012 expose a deterministic projection contract that can also be replayed offline?
 
 These questions are contract-ratification inputs for implementation. They do not authorize a new shared primitive, a Deep Review-only review-loop fork, a resume policy, or an authority decision in this phase.
 <!-- /ANCHOR:questions -->

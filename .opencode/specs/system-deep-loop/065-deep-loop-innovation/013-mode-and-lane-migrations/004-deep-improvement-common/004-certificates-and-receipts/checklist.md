@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep Improvement Common Services - certificates and receipts (013 phase 004)"
+title: "Checklist: Deep Improvement Common Services - certificates and receipts"
 description: "Checklist for the Deep Improvement Common Services certificate, receipt, replay-fingerprint, offline-verifier, evaluator, canary, and promotion contract."
 trigger_phrases:
   - "deep improvement certificates and receipts checklist"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 004. Every item is a check the paired verify agent
+This checklist is the blocking SOL verifier contract for phase 007. Every item is a check the paired verify agent
 runs against the pinned candidate and shared-service contract before implementation is accepted. Each report records
 the candidate SHA, BASE SHA, contract and evaluator-capsule digests, canary epoch, replay-fingerprint inputs, commands,
 exit codes, fixture counts, verifier version, and unexpected tracked mutation. A missing, unknown, or redacted input
@@ -41,7 +41,7 @@ must produce an explicit incomplete or unsupported result; it must never silentl
 - [ ] CHK-006 [P0] The `003-sealed-artifacts` primitives and their digest/reference contract are available to the phase implementation
 - [ ] CHK-007 [P2] Candidate SHA, BASE SHA, typed-ledger version, reducer version, evaluator-capsule digest, and canary-epoch digest are recorded in the verifier report
 - [ ] CHK-008 [P0] Shared service ownership and variant adapter boundaries are agreed before any downstream 010 migration accepts the contract
-- [ ] CHK-009 [P1] The phase-009 shared-contract freeze and write-set conflict graph handoff are recorded before the 010 migration fan-out
+- [ ] CHK-009 [P1] The phase-012 shared-contract freeze and write-set conflict graph handoff are recorded before the 010 migration fan-out
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -88,7 +88,7 @@ must produce an explicit incomplete or unsupported result; it must never silentl
 ## Documentation
 
 - [ ] CHK-025 [P1] The phase docs define the shared contract consumed by agent-improvement, model-benchmark, and skill-benchmark without duplicating variant design
-- [ ] CHK-026 [P2] The 009 freeze and 010 fan-out handoff, phase-003 primitive consumption, and phase-005 resume boundary are reflected consistently in packet docs
+- [ ] CHK-026 [P2] The 009 freeze and 010 fan-out handoff, phase-006 primitive consumption, and phase-008 resume boundary are reflected consistently in packet docs
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

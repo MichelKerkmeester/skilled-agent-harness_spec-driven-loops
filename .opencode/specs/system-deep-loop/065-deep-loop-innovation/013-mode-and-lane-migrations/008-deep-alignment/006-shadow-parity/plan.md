@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Alignment shadow parity (phase 013 mode 008 concern 006)"
+title: "Implementation Plan: Deep Alignment shadow parity"
 description: "Implementation Plan for the Deep Alignment shadow-parity concern: pair the legacy emitter with the typed ledger path, compare canonical events and projections, and produce a fail-closed parity receipt before authority cutover."
 trigger_phrases:
   - "Deep Alignment shadow parity implementation plan"
@@ -33,20 +33,20 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / Deep Alignment mode 008 / shadow parity concern 006 |
 | **Change class** | Planning contract for an additive verification harness |
-| **Execution** | Phase-011 shadow framework with legacy authority pinned for the full comparison |
+| **Execution** | Phase-014 shadow framework with legacy authority pinned for the full comparison |
 
 ### Overview
 Deep Alignment must prove that the typed ledger path preserves its legacy verify-first behavior before the mode gate can consider authority movement. The implementation should invoke both paths from one frozen paired-run manifest, capture the legacy event stream and the ledger event stream, canonicalize only declared transport differences, and compare one event to one event. It should then compare the mode's public projections, including finding lifecycle, applicability, evidence, known-deviation disposition, authority conflict state, terminal status, and gauges. The comparator is a diagnostic boundary: it reports the first divergence and blocks on uncertainty rather than choosing the path that appears more favorable.
 
-The plan consumes the phase-011 shadow framework and pins the shared review-loop contract frozen in phase 009. It does not change that framework, implement the mode's sibling concerns, or authorize a production cutover.
+The plan consumes the phase-014 shadow framework and pins the shared review-loop contract frozen in phase 012. It does not change that framework, implement the mode's sibling concerns, or authorize a production cutover.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-011 shadow framework exposes paired execution, capture, replay, and mismatch-reporting hooks for a mode adapter
-- [ ] The phase-009 shared review-loop contract and version are frozen for the paired run
+- [ ] The phase-014 shadow framework exposes paired execution, capture, replay, and mismatch-reporting hooks for a mode adapter
+- [ ] The phase-012 shared review-loop contract and version are frozen for the paired run
 - [ ] Legacy and ledger runners accept the same run manifest, authority capsule, lane set, and budget/capability inputs
 - [ ] Deep Alignment event and projection identities are enumerated, including raw finding and deviation history
 - [ ] The comparator's non-semantic normalization allowlist and fail-closed unknown-field policy are explicit
@@ -78,12 +78,12 @@ The plan consumes the phase-011 shadow framework and pins the shared review-loop
 
 ### Phase 1: Setup
 - Confirm `005-resume-adapter` provides stable logical IDs and replay inputs without changing the phase's scope.
-- Confirm the phase-011 shadow framework and phase-009 shared review-loop contract are available and record their exact versions in the paired-run manifest.
+- Confirm the phase-014 shadow framework and phase-012 shared review-loop contract are available and record their exact versions in the paired-run manifest.
 - Inventory Deep Alignment legacy events and public projections by lane, authority epoch, subject, finding lifecycle, applicability state, deviation state, and terminal outcome.
 - Define the comparator contract, semantic field allowlist, mismatch classes, `PARITY_PASS`, `PARITY_FAIL`, and `PARITY_BLOCKED` dispositions.
 
 ### Phase 2: Implementation
-- Add the Deep Alignment mode adapter to the phase-011 paired-run boundary; pass one frozen manifest to both legacy and ledger runners.
+- Add the Deep Alignment mode adapter to the phase-014 paired-run boundary; pass one frozen manifest to both legacy and ledger runners.
 - Capture legacy and ledger events without changing legacy emission or making the ledger authoritative.
 - Canonicalize event envelopes and pair them by stable identity, then compare causal order, semantic payload, authority provenance, evidence references, and lifecycle transitions.
 - Compare per-lane projections and terminal outputs, retaining raw findings, applicability decisions, known-deviation assertions, and authority conflicts rather than collapsing them.
@@ -118,7 +118,7 @@ The plan consumes the phase-011 shadow framework and pins the shared review-loop
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Inherits the 065 program dependencies: the pinned baseline and state census, the transition-authorized ledger core, shared evidence and control services, compatibility adapters, and the spec-kit validator. Phase-specific dependencies are the phase-011 shadow framework, the phase-009 shared review-loop contract, the sibling Deep Alignment schema/reducer/artifact/certificate/resume outputs, the unchanged legacy emitter, and the successor `007-rollback-and-mode-gate` receipt contract.
+Inherits the 065 program dependencies: the pinned baseline and state census, the transition-authorized ledger core, shared evidence and control services, compatibility adapters, and the spec-kit validator. Phase-specific dependencies are the phase-014 shadow framework, the phase-012 shared review-loop contract, the sibling Deep Alignment schema/reducer/artifact/certificate/resume outputs, the unchanged legacy emitter, and the successor `007-rollback-and-mode-gate` receipt contract.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

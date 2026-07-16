@@ -30,10 +30,10 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop phase-011 staged state migration and authority cutover |
+| **Surface** | system-deep-loop phase-014 staged state migration and authority cutover |
 | **Change class** | Per-mode authority selection, cutover coordination, and rollback-window handoff |
 | **Authority** | Legacy remains authoritative until one mode passes every gate and commits its atomic flip |
-| **Primary inputs** | Parent program invariants, phase-tree manifest, phase-001 cutover policy, phase-005 parity and rollback drills, phase-010 mode gates |
+| **Primary inputs** | Parent program invariants, phase-tree manifest, phase-004 cutover policy, phase-008 parity and rollback drills, phase-013 mode gates |
 
 ### Overview
 Build one mode-keyed authority record and selector that every mode adapter uses at its canonical persistence boundary.
@@ -49,10 +49,10 @@ closed by a later phase.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent program invariants and phase-tree `migration_model` are cited without moving phase-005 ownership into this phase
-- [ ] Phase-001 defines the authority state machine, deny-by-default authorization, epoch rules, cutover evidence, and later-of-14-days-and-five-runs window
-- [ ] Phase-005 exposes current mode-scoped parity and rollback-drill certificate verification with fail-closed freshness checks
-- [ ] Phase-010 mode gates expose the canonical eight workstream identities and their mode-specific write sets
+- [ ] The parent program invariants and phase-tree `migration_model` are cited without moving phase-008 ownership into this phase
+- [ ] Phase-004 defines the authority state machine, deny-by-default authorization, epoch rules, cutover evidence, and later-of-14-days-and-five-runs window
+- [ ] Phase-008 exposes current mode-scoped parity and rollback-drill certificate verification with fail-closed freshness checks
+- [ ] Phase-013 mode gates expose the canonical eight workstream identities and their mode-specific write sets
 - [ ] The state-migration sibling exposes a current classification and migration result for every cutover candidate
 - [ ] The selector record, ledger event, certificate inputs, and mode order are versioned before implementation begins
 
@@ -77,10 +77,10 @@ The deliverable has five coupled components and one fixed rollout order:
 2. **Authority selector.** At the canonical mode write boundary, resolve the durable record and verify mode, epoch,
    policy, record digest, and writer identity. Legacy states select the legacy writer. Reversible and final dark states
    select the dark writer. Invalid or stale records return a typed denial rather than falling back silently.
-3. **Pre-flip gate.** Validate the phase-010 mode gate; phase-005 parity certificate; phase-005 rollback-drill
+3. **Pre-flip gate.** Validate the phase-013 mode gate; phase-008 parity certificate; phase-008 rollback-drill
    certificate; state classification and migration; exact BASE, candidate, adapter, reducer, projection, replay,
    selector, and policy identities; the rollback anchor; and the absence of another active cutover or rollback.
-4. **Atomic cutover coordinator.** Submit the exact request to the phase-001 authorization gateway. Within one atomic
+4. **Atomic cutover coordinator.** Submit the exact request to the phase-004 authorization gateway. Within one atomic
    boundary, compare-and-swap `cutover_ready` and its expected epoch to `new_authoritative_reversible`, append the
    registered authority-transition event, and publish the selector record. A conflict, duplicate with a different
    digest, or partial commit leaves legacy authority unchanged.
@@ -100,7 +100,7 @@ the authorization decision, authority epoch, selector state, evidence certificat
 - Freeze the canonical eight-mode list from `manifest/phase-tree.json` and the exact order: deep-research,
   deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark,
   deep-alignment.
-- Extract phase-001 authority states, epoch and authorization rules, event requirements, and rollback-window policy;
+- Extract phase-004 authority states, epoch and authorization rules, event requirements, and rollback-window policy;
   prohibit local reinterpretation in this coordinator.
 - Define the authority-record schema, selector response, cutover request, denial response, authority-transition event,
   window-open evidence, and successor handoff bundle.
@@ -111,12 +111,12 @@ the authorization decision, authority epoch, selector state, evidence certificat
 
 ### Phase 2: Implementation
 - Implement one durable authority record per mode with monotonic epochs and explicit legacy, shadow, ready, reversible,
-  final, and rollback-pending states from phase 001.
+  final, and rollback-pending states from phase 004.
 - Implement the canonical selector at the mode persistence boundary, including record-digest, epoch, mode, writer, and
   policy validation and typed fail-closed errors.
 - Implement certificate and state preflight that rejects absent, partial, stale, wrong-mode, drifted, or unresolved
   evidence before requesting authority.
-- Implement the cutover request and phase-001 authorization call with the exact request digest, actor capability,
+- Implement the cutover request and phase-004 authorization call with the exact request digest, actor capability,
   invariant evidence, expected epoch, policy version, and selected mode.
 - Implement the atomic epoch CAS, authority-transition ledger append, selector publication, and idempotent receipt. A
   failed event append or CAS must not expose dark canonical authority.
@@ -125,7 +125,7 @@ the authorization decision, authority epoch, selector state, evidence certificat
 - Implement the serialized order coordinator, reject multi-mode requests, and isolate shared backend write sets for the
   deep-improvement common workstream and its three variants.
 - Implement window-open telemetry and the immutable handoff bundle without closing the window or retiring legacy writers.
-- Integrate the phase-005 rollback-drill verifier as a precondition and the successor cutover-certificate verifier as a
+- Integrate the phase-008 rollback-drill verifier as a precondition and the successor cutover-certificate verifier as a
   consumer, without duplicating either contract.
 
 ### Phase 3: Verification
@@ -142,7 +142,7 @@ the authorization decision, authority epoch, selector state, evidence certificat
   or authority epoch.
 - Verify reversible mode writes select dark and stale legacy writes are denied while legacy projections and rollback
   assets remain readable.
-- Verify the phase-001 rollback window opens with the later-of-14-days-and-five-runs rule and that this phase does not
+- Verify the phase-004 rollback window opens with the later-of-14-days-and-five-runs rule and that this phase does not
   close the window or retire writers.
 - Verify crash recovery at each atomic boundary and repeat the cutover request to prove idempotent event handling.
 - Run strict spec-kit validation and record the exact candidate and expected deterministic metadata omissions.
@@ -173,15 +173,15 @@ the authorization decision, authority epoch, selector state, evidence certificat
 ## 6. DEPENDENCIES
 
 The normative program sources are `.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`
-and `../../manifest/phase-tree.json`. The phase-001 [transition policy](../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md)
-owns the authority state machine, deny-by-default gateway, epochs, event evidence, and rollback window. The phase-005
+and `../../manifest/phase-tree.json`. The phase-004 [transition policy](../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md)
+owns the authority state machine, deny-by-default gateway, epochs, event evidence, and rollback window. The phase-008
 [shadow-parity harness](../../008-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness/spec.md) owns parity
-certification, and the phase-005 [rollback drills](../../008-compatibility-shadow-and-rollback-bridge/005-rollback-drills/spec.md)
-own rehearsal evidence. The phase-010 mode gates and the adjacent state-migration sibling supply mode and state inputs.
+certification, and the phase-008 [rollback drills](../../008-compatibility-shadow-and-rollback-bridge/005-rollback-drills/spec.md)
+own rehearsal evidence. The phase-013 mode gates and the adjacent state-migration sibling supply mode and state inputs.
 
 This child declares `depends_on: []` as an independent planning contract. Execution cannot pass without current outputs
 from those contracts, but it must not copy their implementation or change their ownership. Downstream consumers are
-`003-cutover-certificate-and-rollback-window`, the remaining phase-011 parent gate, and phase 012's retirement gate.
+`003-cutover-certificate-and-rollback-window`, the remaining phase-014 parent gate, and phase 015's retirement gate.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
@@ -189,8 +189,8 @@ from those contracts, but it must not copy their implementation or change their 
 
 This phase is planned for runtime authority coordination, so rollback of a failed implementation candidate is a
 path-scoped revert before any production selector is enabled, followed by strict validation and re-ratification of the
-phase-011 gate. Once a selector and cutover coordinator are live, recovery must use the phase-001 non-destructive
-rollback contract and the phase-005 drilled procedure: freeze admission, fence the dark writer, reconcile declared
+phase-014 gate. Once a selector and cutover coordinator are live, recovery must use the phase-004 non-destructive
+rollback contract and the phase-008 drilled procedure: freeze admission, fence the dark writer, reconcile declared
 in-flight state and effects, restore legacy at a new epoch, preserve ledger events and evidence, and emit the rollback
 certificate. Reverting documents or deleting the authority event is not a runtime rollback.
 

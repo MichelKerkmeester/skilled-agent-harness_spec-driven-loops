@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Model Benchmark - Rollback & Mode Gate"
-description: "Planning workflow for the Model Benchmark fail-closed rollback switch, bounded rollback window, independent matrix migration gate, shared-service reuse, and phase-011 readiness certificate."
+description: "Planning workflow for the Model Benchmark fail-closed rollback switch, bounded rollback window, independent matrix migration gate, shared-service reuse, and phase-014 readiness certificate."
 trigger_phrases:
   - "model benchmark rollback and mode gate implementation plan"
   - "model benchmark authority switch plan"
@@ -41,7 +41,7 @@ This phase defines one Model Benchmark rollback switch and one independent gate 
 matrices. The switch is a default-deny adapter over shared authority primitives: it freezes typed-authoritative admission,
 fences stale writers, and restores the legacy anchor at a new epoch only after external authorization. The gate assembles
 `006-shadow-parity` with sealed matrix artifacts, certificates, receipts, replay and resume evidence, validity and workload
-checks, and rollback rehearsal. It emits a mode-bound readiness certificate for the phase-011 handoff. No task changes live
+checks, and rollback rehearsal. It emits a mode-bound readiness certificate for the phase-014 handoff. No task changes live
 authority, deletes evidence, re-runs model providers, re-implements shared evaluator/canary/promotion services, or allows a
 benchmark result to bypass the shared transition gateway.
 <!-- /ANCHOR:summary -->
@@ -55,14 +55,14 @@ benchmark result to bypass the shared transition gateway.
   one-writer ownership, and the 14-day/five-successful-authoritative-execution minimum.
 - [ ] Model Benchmark siblings `001` through `006` expose their event, reducer, seal, certificate, receipt, replay, resume,
   and shadow-parity evidence boundaries.
-- [ ] The phase 009 shared mode contracts and executable write-set conflict graph are available for the phase-010 fan-out and
-  phase-011 handoff.
+- [ ] The phase 012 shared mode contracts and executable write-set conflict graph are available for the phase-013 fan-out and
+  phase-014 handoff.
 - [ ] The switch states, request fields, trigger classes, fencing behavior, and external authorization boundary are reviewed.
 - [ ] The gate matrix names every Model Benchmark run, matrix, validity, workload, replay, resume, failure, and rollback
   fixture.
 - [ ] Model Benchmark reuses one Deep Improvement Common Services evaluator, canary, calibration, promotion, certificate,
   receipt, veto, budget, and recovery contract through adapters.
-- [ ] The phase-011 handoff distinguishes migration readiness from authority cutover and legacy-writer retirement.
+- [ ] The phase-014 handoff distinguishes migration readiness from authority cutover and legacy-writer retirement.
 
 ### Definition of Done
 
@@ -72,7 +72,7 @@ benchmark result to bypass the shared transition gateway.
   deterministic replay, resume coverage, validity evidence, and rollback rehearsal.
 - [ ] The mode certificate is exact-SHA and scoring-matrix bound, independently verifiable, and explicit about unresolved
   obligations.
-- [ ] The phase-011 handoff receives readiness evidence without an authority transition, model deployment claim, or
+- [ ] The phase-014 handoff receives readiness evidence without an authority transition, model deployment claim, or
   legacy-writer retirement.
 <!-- /ANCHOR:quality-gates -->
 
@@ -100,7 +100,7 @@ benchmark result to bypass the shared transition gateway.
   through the resume adapter, resolve known effects by stable identity, restore the legacy anchor at a new epoch, preserve both
   histories, and issue a rollback certificate.
 - **Certificate handoff**: emit `gate_passed`, `gate_blocked`, `gate_incomplete`, or `rollback_required` with exact digests.
-  Only `gate_passed` can be consumed as phase-011 readiness, and none of these results flips authority.
+  Only `gate_passed` can be consumed as phase-014 readiness, and none of these results flips authority.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -108,7 +108,7 @@ benchmark result to bypass the shared transition gateway.
 
 ### Phase 1: Setup
 
-- Pin BASE, the shared transition/versioning/rollback policy, phase 009 shared contracts and write-set graph, and the phase-011
+- Pin BASE, the shared transition/versioning/rollback policy, phase 012 shared contracts and write-set graph, and the phase-014
   handoff schema.
 - Inventory Model Benchmark siblings `001` through `006`: event and reducer versions, matrix projections, sealed artifact
   kinds, certificate and receipt classes, replay inputs, resume decisions, parity predicates, mismatch classes, and retained
@@ -140,7 +140,7 @@ benchmark result to bypass the shared transition gateway.
   adaptive diagnostics, task-family uncertainty, calibration, contamination, cost, latency, abstention, veto, abort, restore,
   and insufficient-evidence dispositions.
 - Define the exact-SHA-bound Model Benchmark migration certificate, verifier receipt, failed-predicate list, matrix frontier,
-  rollback anchor, window state, unresolved obligations, and phase-011 acceptance handoff.
+  rollback anchor, window state, unresolved obligations, and phase-014 acceptance handoff.
 - Define deterministic repeated evaluation over the same sealed matrix frontier and reject certificates with another mode,
   contract, evaluator epoch, canary epoch, reducer, matrix, or write-set digest.
 
@@ -157,7 +157,7 @@ benchmark result to bypass the shared transition gateway.
 - Run shared fixtures through the Model Benchmark adapter and reject any variant-local evaluator, canary, calibration,
   promotion, receipt, certificate, veto, or rollback fork.
 - Repeat the gate on the same sealed matrix frontier, then mutate each semantic input class to prove certificate invalidation
-  and phase-011 handoff rejection.
+  and phase-014 handoff rejection.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -186,8 +186,8 @@ The plan consumes the parent program's additive-dark migration model and shared 
 uses Model Benchmark contracts in `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`,
 `004-certificates-and-receipts`, `005-resume-adapter`, and `006-shadow-parity`. Deep Improvement Common Services mode 004
 supplies the evaluator, canary, calibration, promotion, receipt, certificate, veto, budget, and recovery source of truth.
-Phase 009 supplies the shared mode contracts and executable write-set conflict graph before the phase 010 fan-out. The
-phase-011 handoff consumes this mode's readiness certificate; the later staged cutover contract owns authority movement. The
+Phase 012 supplies the shared mode contracts and executable write-set conflict graph before the phase 013 fan-out. The
+phase-014 handoff consumes this mode's readiness certificate; the later staged cutover contract owns authority movement. The
 research basis is the Model Benchmark portion of `findings-registry-modes.json` and the runtime authorization, replay,
 effects, budgets, and rollback findings in `findings-registry.json`.
 <!-- /ANCHOR:dependencies -->

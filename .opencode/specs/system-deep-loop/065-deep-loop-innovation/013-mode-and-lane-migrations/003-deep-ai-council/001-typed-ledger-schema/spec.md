@@ -15,12 +15,12 @@ _memory:
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped Deep AI Council event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-009 shared contracts"
+    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
     blockers: []
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact shared envelope fields and transition tokens does phase-009 freeze?"
+      - "Which exact shared envelope fields and transition tokens does phase-012 freeze?"
       - "Which artifact and test-gate references remain portable without ledger-resident report bodies?"
     answered_questions:
       - "This phase owns Deep AI Council event vocabulary, not reducers or projections"
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-ai-council |
-| **Origin** | Deep AI Council mode migration after the phase-003 transition-authorized ledger core and phase-009 shared event contracts |
+| **Origin** | Deep AI Council mode migration after the phase-006 transition-authorized ledger core and phase-012 shared event contracts |
 | **Inputs** | `065-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, `002-deep-loop-effectiveness-and-fanout/research/findings-registry*.json`, and the checked-in `deep-ai-council` state, convergence, output, and seat-diversity contracts |
 | **Output** | A ratifiable Deep AI Council event union, field-level payload contract, and version/upcaster hook plan; no reducer or projection implementation |
 <!-- /ANCHOR:metadata -->
@@ -58,24 +58,24 @@ The current Deep AI Council run persists a useful append-only `ai-council-state.
 
 The research inputs identify the missing council contract. Independent generation must precede normalized cross-review and separate selection; seat quality must be estimated from correctness-conditioned errors rather than nominal seat count; candidate identity and order must be blinded during adjudication; swapped-order disagreement must abstain or escalate; debate must be a typed escalation; and agreement must retain minority, contradiction, bias, and independence evidence. These findings are recorded in `findings-registry-modes.json` for `deep-ai-council` and in the council-targeted entries of `findings-registry.json`, including the recommendations for effective independence, role isolation, staged fan-in, judge calibration, pairwise adjudication, adaptive seat selection, and council stance trajectories.
 
-This phase plans the typed append-only vocabulary that carries those facts through the shared ledger. It specializes the event envelope supplied by phase-003 and consumes the shared identity, causal-link, authorization, replay, branch, receipt, and artifact-reference contracts frozen by phase-009. The event set covers the run path `seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate`, plus resume, failure, rollback, and completion. It does not decide how events fold into council state, how gauges or graph views are materialized, how artifacts are generated, or when authority cuts over. Those responsibilities remain with `002-reducers-and-projections`, the later sibling concerns, and the mode gate.
+This phase plans the typed append-only vocabulary that carries those facts through the shared ledger. It specializes the event envelope supplied by phase-006 and consumes the shared identity, causal-link, authorization, replay, branch, receipt, and artifact-reference contracts frozen by phase-012. The event set covers the run path `seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate`, plus resume, failure, rollback, and completion. It does not decide how events fold into council state, how gauges or graph views are materialized, how artifacts are generated, or when authority cuts over. Those responsibilities remain with `002-reducers-and-projections`, the later sibling concerns, and the mode gate.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- A `deep-ai-council` event-envelope specialization that reuses the phase-009 shared identity, causation, authorization, integrity, branch, receipt, and replay fields without redefining them.
+- A `deep-ai-council` event-envelope specialization that reuses the phase-012 shared identity, causation, authorization, integrity, branch, receipt, and replay fields without redefining them.
 - A stable event namespace for run initialization, resume/restart, round setup, seat selection and dispatch, proposal observation, cross-seat critique, blinded candidate handling, pairwise adjudication, bias auditing, deliberation synthesis, convergence, artifacts, the council test gate, rollback, and terminal completion.
 - Field-level types and requiredness rules for run, round, seat, proposal, critique, candidate, judgment, independence snapshot, convergence decision, artifact, gate, receipt, and continuity references.
 - Append-only provenance rules: immutable raw seat outputs and judgments, content and prompt/tool/model digests, information-surface boundaries, causal links, calibration references, minority and contradiction references, and event-tail hashes.
 - Version boundaries for the shared envelope and each event payload, plus pure upcaster and compatibility-decision hooks for legacy `ai-council-state.jsonl` records and audit rows.
-- Fixtures and validation matrices proving every event type is authorized by the phase-003 gateway and remains replay-addressable without implementing a reducer.
+- Fixtures and validation matrices proving every event type is authorized by the phase-006 gateway and remains replay-addressable without implementing a reducer.
 
 ### Out of Scope
 - Reducer algorithms, council-state folds, effective-independence projections, dashboard metrics, graph projections, or any materialized `ai-council/**` view generation; these belong to `002-reducers-and-projections`.
 - Sealed council artifacts, certificates, mode rollback switches, or the independent mode gate; these are sibling concerns under `003-deep-ai-council`.
-- Shared envelope ownership, transition policy, ledger storage, authorization semantics, generic effect receipts, branch scheduling, or budget policy; phase-003 and phase-009 own those contracts.
+- Shared envelope ownership, transition policy, ledger storage, authorization semantics, generic effect receipts, branch scheduling, or budget policy; phase-006 and phase-012 own those contracts.
 - Replacing the existing `ai-council-state.jsonl` writer, rewriting historical rows, changing the markdown output parser, or deleting packet-local artifacts.
 - Authority cutover, in-flight state migration, legacy writer retirement, and any production claim that the typed path is authoritative.
 - New council behavior beyond the lifecycle and recommendations already mapped to Deep AI Council in the cited registries.
@@ -86,7 +86,7 @@ This phase plans the typed append-only vocabulary that carries those facts throu
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The Deep AI Council envelope specializes the phase-009 shared envelope without duplicate identity, authorization, or replay fields | A contract comparison lists inherited fields, council extensions, and rejected duplicates; the event union compiles against the shared contract |
+| REQ-001 | The Deep AI Council envelope specializes the phase-012 shared envelope without duplicate identity, authorization, or replay fields | A contract comparison lists inherited fields, council extensions, and rejected duplicates; the event union compiles against the shared contract |
 | REQ-002 | The event namespace covers the complete run path from setup through seat deliberation, critique, convergence, artifact persistence, test gate, and completion | The vocabulary matrix contains a typed event for each lifecycle boundary and names the required predecessor or causal reference |
 | REQ-003 | Every event has deterministic identity, causal linkage, payload digest, append position, and explicit revision semantics | Schema fixtures reject missing IDs, mutable proposal or artifact bodies, absent `prevEventHash`, and in-place judgment or stance updates |
 | REQ-004 | Seat and proposal evidence preserves independence-relevant provenance | Seat, model family, prompt, tool, context, target, proposal, critique, evidence, and calibration references have stable typed IDs and digests |
@@ -94,13 +94,13 @@ This phase plans the typed append-only vocabulary that carries those facts throu
 | REQ-006 | Raw observations remain distinct from adjudication and convergence decisions | Raw proposal scores, critique findings, pairwise outcomes, confidence, costs, seat returns, bias flags, independence inputs, and convergence signals remain separate from selected plans or stop outcomes |
 | REQ-007 | Blinded adjudication and disagreement are auditable | Candidate aliases, deterministic shuffle seed digest, order-swapped judgments, abstentions, inconsistency findings, and bias-audit results are immutable events with explicit candidate references |
 | REQ-008 | Event and payload version changes have explicit compatibility and upcaster hooks | The compatibility matrix covers exact, compatible, migrate, pin-old-runtime, and blocked outcomes; unknown event types or versions fail closed |
-| REQ-009 | All event writes carry phase-003 authorization and phase-009 replay metadata | An unauthorized transition fixture is rejected before append, and a replay fixture resolves the same event identity and fingerprint from the same input |
+| REQ-009 | All event writes carry phase-006 authorization and phase-012 replay metadata | An unauthorized transition fixture is rejected before append, and a replay fixture resolves the same event identity and fingerprint from the same input |
 | REQ-010 | Convergence evidence cannot be reduced to nominal agreement | Convergence events retain effective-independence evidence, calibrated support, minority and contradiction references, required gate results, and explicit `converged`, `non_converged`, `blocked`, or `incomplete` outcomes |
 | REQ-011 | Artifacts and the council test gate are evidence references, not mutable ledger bodies | Artifact events carry relative safe paths, schema versions, content digests, required-section results, and source ranges; gate events carry suite and result digests without embedding reports |
 | REQ-012 | The schema boundary is limited to event vocabulary and handoff contracts | A scope audit finds no reducer, projection, dashboard, graph rebuild, sealed artifact, certificate, rollback switch, authority cutover, or mode-gate implementation in this phase |
 <!-- /ANCHOR:requirements -->
 
-The proposed event union is grouped by lifecycle and uses stable event stems with independent `eventVersion` values. Final field names for inherited envelope members remain subordinate to phase-009. The mode-specific payload plan is:
+The proposed event union is grouped by lifecycle and uses stable event stems with independent `eventVersion` values. Final field names for inherited envelope members remain subordinate to phase-012. The mode-specific payload plan is:
 
 | Event stem | Required payload shape |
 |------------|------------------------|
@@ -137,7 +137,7 @@ The schema adopts the current state contract without flattening it: legacy `roun
 - **SC-006**: Artifact and council test-gate events bind safe paths and immutable digests without moving report, artifact, reducer, or gate authority into this schema phase.
 - **SC-007**: The phase contains no reducer, projection, certificate, rollback implementation, authority-cutover, or mode-gate implementation.
 
-**Given** a valid phase-009 envelope, **When** a Deep AI Council event is encoded, **Then** its mode payload validates without redefining shared identity, authorization, branch, receipt, or replay fields.
+**Given** a valid phase-012 envelope, **When** a Deep AI Council event is encoded, **Then** its mode payload validates without redefining shared identity, authorization, branch, receipt, or replay fields.
 
 **Given** independent seats return proposals and a critique round begins, **When** the event sequence is replayed, **Then** seat, proposal, critique, visible-information, and artifact references remain reconstructible without mutating an earlier event.
 
@@ -153,7 +153,7 @@ The schema adopts the current state contract without flattening it: legacy `roun
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Shared-contract drift** - phase-009 may rename envelope fields, transition tokens, receipt references, or shared branch semantics after this planning packet. Mitigation: mark inherited fields as shared, run a contract diff before implementation, and reject mode-local aliases.
+- **Shared-contract drift** - phase-012 may rename envelope fields, transition tokens, receipt references, or shared branch semantics after this planning packet. Mitigation: mark inherited fields as shared, run a contract diff before implementation, and reject mode-local aliases.
 - **Nominal-consensus inflation** - three seats can share model, prompt, evidence, or ancestry bias. Mitigation: retain correctness-conditioned error inputs, calibration support, pairwise dependence measures, effective seat count, and positive marginal-gain evidence as event fields; do not let this phase reduce them.
 - **Role leakage and bandwagon effects** - scorers or critics may see generator identity, rationale, peer scores, vote counts, or order cues. Mitigation: record visible-information policy and blinded candidate digests, require separate capability references, and treat violations as typed gate evidence.
 - **Candidate/verdict conflation** - a seat proposal or critique can be mistaken for a final recommendation. Mitigation: separate proposal, critique, adjudication, synthesis, convergence, and test-gate event stems with explicit causal links and unresolved states.
@@ -162,13 +162,13 @@ The schema adopts the current state contract without flattening it: legacy `roun
 - **Upcaster loss** - legacy rows may lack stable run, seat, candidate, or artifact identities. Mitigation: preserve the original row digest and allow `degraded` or `blocked` compatibility outcomes; never synthesize identity from mutable prose alone.
 - **One-CLI-per-round ambiguity** - mixing executors inside a round invalidates comparison and rollback semantics. Mitigation: make the executor boundary and round protocol explicit in `round_started` and require additional CLI vantages to form separate rounds.
 - **Cross-phase scope creep** - reducers, projections, sealed artifacts, certificates, and authority changes are tempting to embed in the schema. Mitigation: use the explicit ownership boundary and adjacency contract as implementation blockers.
-- **Dependencies**: phase-003 transition-authorized ledger core, phase-009 shared event and write-set contracts, current Deep AI Council state/output/convergence/seat-diversity references, the mode findings registry, the later `002-reducers-and-projections` sibling, and the mode gate.
+- **Dependencies**: phase-006 transition-authorized ledger core, phase-012 shared event and write-set contracts, current Deep AI Council state/output/convergence/seat-diversity references, the mode findings registry, the later `002-reducers-and-projections` sibling, and the mode gate.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact shared envelope field names, event identity algorithm, authorization receipt shape, branch fields, and transition tokens does phase-009 freeze?
+- Which exact shared envelope field names, event identity algorithm, authorization receipt shape, branch fields, and transition tokens does phase-012 freeze?
 - Does the shared contract provide generic proposal, artifact, evidence, judge-profile, independence, and test-gate reference types, or should Deep AI Council define narrow digest-only extensions?
 - Which legacy `ai-council-state.jsonl` `event` and optional metadata combinations map directly to current events, and which require `degraded` or `blocked` compatibility?
 - Is `council_test_gate_evaluated` a mode-owned event with shared gate references, or a shared gate event specialized by a Deep AI Council payload?

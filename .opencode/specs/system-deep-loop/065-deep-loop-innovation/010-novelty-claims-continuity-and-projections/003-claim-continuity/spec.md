@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: claim continuity (007 phase 003)"
+title: "Feature Specification: claim continuity"
 description: "Plan one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate on the same claim through replay and resume."
 trigger_phrases:
   - "claim continuity"
@@ -41,14 +41,14 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Third child of phase 007; the program manifest assigns stable claim lifecycle tracking to the novelty, claims, continuity, and projections intelligence layer |
+| **Origin** | Third child of phase 010; the program manifest assigns stable claim lifecycle tracking to the novelty, claims, continuity, and projections intelligence layer |
 | **Child depends_on** | `[]` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The phase-004 continuity service defines a typed `claim` identity that survives resume, handover, replay, reorder, rename,
+The phase-007 continuity service defines a typed `claim` identity that survives resume, handover, replay, reorder, rename,
 and cross-mode reference. It deliberately leaves claim lifecycle, contradiction, supersession, and semantic novelty to phase
 007 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/007-continuity-identities/spec.md`).
 Without a claim-specific consumer of that contract, each iteration can still mint a near-duplicate record for a paraphrase,
@@ -59,11 +59,11 @@ Sibling `001-semantic-communities` plans replay-stable semantic equivalence and 
 `002-contradiction-and-supersession-events` owns the typed events that relate claims without erasing prior history
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities/spec.md`
 and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events/spec.md`).
-The program manifest fixes phase 007's outcome as semantic communities, contradiction and supersession events, claim
+The program manifest fixes phase 010's outcome as semantic communities, contradiction and supersession events, claim
 continuity, next-focus semantics, and deterministic projections over the ledger
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`).
 
-This phase plans the joining contract. Every durable claim is minted once under the phase-004 identity schema. Later
+This phase plans the joining contract. Every durable claim is minted once under the phase-007 identity schema. Later
 observations are matched through exact aliases and sibling-001 semantic-community candidates, then support, contradiction,
 supersession, and lifecycle events attach to that one identity. Claim status is a deterministic projection of the authorized
 event prefix, never a mutable last-writer-wins field. Resume restores the claim frontier and replay cursor, validates them
@@ -74,7 +74,7 @@ against the ledger fingerprint, and continues the same claim histories without r
 ## 3. SCOPE
 
 ### In Scope
-- A claim-continuity record keyed by the phase-004 typed `claim` identity, with immutable mint provenance, canonical namespace, raw observations, aliases, semantic-community memberships, evidence references, lifecycle state, derived epistemic status, and last-applied ledger cursor.
+- A claim-continuity record keyed by the phase-007 typed `claim` identity, with immutable mint provenance, canonical namespace, raw observations, aliases, semantic-community memberships, evidence references, lifecycle state, derived epistemic status, and last-applied ledger cursor.
 - Idempotent claim minting for a genuinely new durable assertion and deterministic reuse of the original ID after crash, retry, replay, or resume.
 - A matching pipeline that checks exact namespaced aliases and normalized fingerprints, queries sibling-001 semantic-community candidates, applies a versioned equivalence policy, and records match provenance.
 - Fail-closed ambiguity handling: zero qualifying matches may mint a new claim; one qualifying match reuses it; multiple or conflicting matches remain unresolved until an explicit resolution event.
@@ -88,7 +88,7 @@ against the ledger fingerprint, and continues the same claim histories without r
 ### Out of Scope
 - Semantic edge scoring, community formation, merge/split lineage, and novelty classification owned by `001-semantic-communities`.
 - The authoritative contradiction, qualification, refutation, and supersession event vocabulary owned by `002-contradiction-and-supersession-events`.
-- Next-region selection owned by `004-next-focus-semantics`, transactional projection plumbing owned by `005-transactional-projections-and-gauges`, and convergence thresholds owned by program phase 008.
+- Next-region selection owned by `004-next-focus-semantics`, transactional projection plumbing owned by `005-transactional-projections-and-gauges`, and convergence thresholds owned by program phase 011.
 - Minting or changing the shared identity shape, typed event envelope, append-only ledger, authorization gateway, replay fingerprint, compatibility adapters, or durable fan-in contracts.
 - Collapsing all claims in one semantic community into one claim identity; community membership proposes candidates, while claim equivalence remains versioned, evidenced, and explicit.
 - Mutating historical events, deleting contradicted claims, making the dark projection authoritative, or migrating historical packets during this planning phase.
@@ -99,7 +99,7 @@ against the ledger fingerprint, and continues the same claim histories without r
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Use the phase-004 typed continuity identity as the sole durable claim key | Every claim record and claim-bearing event resolves one valid `claim` ID; array indexes, iteration numbers, paths, text, timestamps, hashes, and community IDs are never substituted for it |
+| REQ-001 | Use the phase-007 typed continuity identity as the sole durable claim key | Every claim record and claim-bearing event resolves one valid `claim` ID; array indexes, iteration numbers, paths, text, timestamps, hashes, and community IDs are never substituted for it |
 | REQ-002 | Mint each genuinely new claim exactly once through an idempotent authorized operation | Retrying the same mint request returns the original claim ID; concurrent equivalent requests produce one accepted identity or an explicit conflict |
 | REQ-003 | Match later observations to existing claims through a deterministic, versioned policy | Exact alias/fingerprint checks and sibling-001 candidate scoring record policy version, candidate set, decision, and provenance; fixed inputs produce the same decision on replay |
 | REQ-004 | Fail closed on ambiguous or unsafe matches | Multiple qualifying claims, cross-namespace collisions, weak similarity, or community disagreement creates an unresolved match record and neither remints nor attaches evidence silently |
@@ -115,7 +115,7 @@ against the ledger fingerprint, and continues the same claim histories without r
 ### Claim identity, lifecycle, and status-fold contract
 
 At first durable observation, the matcher resolves a namespaced exact alias or fingerprint before consulting the committed
-semantic-community projection. No qualifying candidate mints one phase-004 `claim` identity through an idempotency key bound
+semantic-community projection. No qualifying candidate mints one phase-007 `claim` identity through an idempotency key bound
 to the source event. Exactly one qualifying candidate reuses that identity and records the match decision. Multiple candidates,
 conflicting aliases, or an unversioned semantic result produce an unresolved match; the system must not guess, merge, or mint a
 parallel identity. Semantic community is therefore a candidate-discovery and novelty boundary, not the claim's primary key.
@@ -146,8 +146,8 @@ wording, community representatives, and legacy finding keys may aid display or a
 ## 6. RISKS & DEPENDENCIES
 
 This child has no sibling hard dependency (`depends_on: []`); the predecessor and successor references are navigation and
-contract adjacency only. It consumes the phase-004 continuity identity schema, the phase-003 authorized ledger and replay
-fingerprint, the phase-005 compatibility/shadow boundary, and the phase-006 durable fan-in substrate. It integrates with the
+contract adjacency only. It consumes the phase-007 continuity identity schema, the phase-006 authorized ledger and replay
+fingerprint, the phase-008 compatibility/shadow boundary, and the phase-009 durable fan-in substrate. It integrates with the
 planned interfaces of sibling 001 for semantic candidates and sibling 002 for contradiction/supersession events without taking
 ownership of either contract.
 

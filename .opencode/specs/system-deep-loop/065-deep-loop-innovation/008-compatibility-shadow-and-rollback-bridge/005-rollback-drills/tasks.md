@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Rollback Drills"
-description: "Tasks for implementing and verifying hermetic rollback drills, integrity comparisons, receipt closure, and phase-011 cutover evidence."
+description: "Tasks for implementing and verifying hermetic rollback drills, integrity comparisons, receipt closure, and phase-014 cutover evidence."
 trigger_phrases:
   - "rollback drills tasks"
   - "deep-loop rollback evidence tasks"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the phase-001 policy, phase tree, parity-certificate, classification, projection, fingerprint, receipt, and rollback-asset versions used by each mode drill
+- [ ] T001 Pin the phase-004 policy, phase tree, parity-certificate, classification, projection, fingerprint, receipt, and rollback-asset versions used by each mode drill
 - [ ] T002 Define versioned drill-manifest and drill-certificate schemas with complete identity, timeline, epoch, state, effect, integrity, timing, and verdict bindings
 - [ ] T003 Inventory every cutover-eligible mode's control/cutover entry points, rollback anchor, declared regression fixtures, and stricter operational deadline if present
 - [ ] T004 Build isolated lane roots, test authority storage, synthetic clock, hermetic effect targets, and before/after guards for real authority and live effects
@@ -54,9 +54,9 @@ _memory:
 - [ ] T008 Implement fingerprint, projection, stale-epoch, receipt/effect, crash, and timeout fault injectors with exact production-shaped detector matching
 - [ ] T009 Implement admission freeze, spine-writer fencing, predecessor-004 disposition reconciliation, new-epoch legacy restoration, and stale-writer denial
 - [ ] T010 Implement legacy resume from the rollback anchor and the control comparison over replay components, projections/readers, state/artifact/event counts, and timing
-- [ ] T011 Implement phase-004 receipt/effect verification requiring one intent and one confirmed/reconciled terminal outcome with no conflict or unresolved `in_doubt`
+- [ ] T011 Implement phase-007 receipt/effect verification requiring one intent and one confirmed/reconciled terminal outcome with no conflict or unresolved `in_doubt`
 - [ ] T012 Implement immutable pass/fail drill-certificate issuance with complete evidence bindings and cleanup attestation
-- [ ] T013 Implement the phase-011 freshness verifier that rejects missing, partial, failed, wrong-mode, stale, tampered, or policy-incompatible drill evidence
+- [ ] T013 Implement the phase-014 freshness verifier that rejects missing, partial, failed, wrong-mode, stale, tampered, or policy-incompatible drill evidence
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
@@ -68,7 +68,7 @@ _memory:
 - [ ] T017 Verify byte-exact legacy projections, unchanged-reader results, state/artifact/event counts, preserved shadow evidence, and monotonic epochs
 - [ ] T018 Verify every effect intent closes once, no external mutation duplicates, and ambiguous `in_doubt` recovery blocks certificate issuance
 - [ ] T019 Verify every injected regression produces the expected typed detector result and every missing/wrong detector result fails the drill
-- [ ] T020 Verify drift in each certificate-bound code, BASE, policy, parity, classification, adapter, projection, fingerprint, or rollback identity blocks phase 011
+- [ ] T020 Verify drift in each certificate-bound code, BASE, policy, parity, classification, adapter, projection, fingerprint, or rollback identity blocks phase 014
 - [ ] T021 Run crash injection at authority and effect cut points, strict packet validation, and the blocking SOL verifier on the exact candidate evidence
 <!-- /ANCHOR:phase-3 -->
 

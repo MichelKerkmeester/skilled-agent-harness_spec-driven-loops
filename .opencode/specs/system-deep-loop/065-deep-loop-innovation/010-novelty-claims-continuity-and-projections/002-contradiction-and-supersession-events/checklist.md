@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 007 child 002. The implementation report must pin the
+This checklist is the blocking verifier contract for phase 010 child 002. The implementation report must pin the
 candidate SHA, BASE SHA, event-registry digest, semantic-community/evidence fixture digest, reducer version, commands
 and exit codes, and replay fingerprint. A zero-test fixture discovery, unchecked event, or unexpected tracked mutation
 fails the phase. Planned items remain unchecked until machine-detectable implementation evidence exists.
@@ -37,7 +37,7 @@ fails the phase. Planned items remain unchecked until machine-detectable impleme
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-003 envelope, ledger, authorization, reader, and replay-fingerprint interfaces are pinned and available
+- [ ] CHK-001 [P0] Phase-006 envelope, ledger, authorization, reader, and replay-fingerprint interfaces are pinned and available
 - [ ] CHK-002 [P0] Semantic-community, claim-ID, evidence-locator, provenance, and snapshot inputs are versioned and resolvable
 - [ ] CHK-003 [P1] Event names, schema versions, relation actions, status precedence, typed errors, and serializer rules are frozen before writer work
 - [ ] CHK-004 [P2] Candidate SHA, BASE SHA, registry digest, fixture digest, and reducer version are recorded in the verifier report
@@ -49,7 +49,7 @@ fails the phase. Planned items remain unchecked until machine-detectable impleme
 - [ ] CHK-005 [P1] Changes remain inside this phase's implementation scope; no adjacent novelty, continuity, convergence, or authority-cutover logic is absorbed
 - [ ] CHK-006 [P1] Detector, validator, event constructor, authorization/append adapter, reducer, audit, and downstream projection boundaries remain explicit
 - [ ] CHK-007 [P1] Reducers are pure and deterministic; timestamps, source count, map insertion order, locale, and filesystem discovery never determine relationship truth or replay order
-- [ ] CHK-008 [P2] Event and error names follow the phase-003 registry conventions without weakening unknown-version refusal
+- [ ] CHK-008 [P2] Event and error names follow the phase-006 registry conventions without weakening unknown-version refusal
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -67,14 +67,14 @@ fails the phase. Planned items remain unchecked until machine-detectable impleme
 - [ ] CHK-018 [P0] Corruption, gaps, forks, unknown event/reducer versions, unresolved references, and fingerprint mismatch expose no trusted claim-status projection
 - [ ] CHK-019 [P0] Audit output traces each effective status to event IDs, ledger sequences, claim IDs, evidence locators, authorization references, relation actions, versions, and fingerprint
 - [ ] CHK-020 [P0] Downstream claim-continuity and projection consumers accept typed relation/state output and never reinterpret loose contradiction mentions or raw counts
-- [ ] CHK-021 [P0] Dark-path fixtures prove relationship recording changes no legacy output, state schema, error behavior, or authority before phase 011
+- [ ] CHK-021 [P0] Dark-path fixtures prove relationship recording changes no legacy output, state schema, error behavior, or authority before phase 014
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
 - [ ] CHK-022 [P1] Both event types, both actions, all invalid-relation classes, all three effective statuses, and every downstream field have implementation and verifier coverage
-- [ ] CHK-023 [P1] The run-2 additions/corrections/retractions/duplicates/unresolved-contradictions fixture and the phase-007 sibling interface matrix are fully represented
+- [ ] CHK-023 [P1] The run-2 additions/corrections/retractions/duplicates/unresolved-contradictions fixture and the phase-010 sibling interface matrix are fully represented
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -88,13 +88,13 @@ fails the phase. Planned items remain unchecked until machine-detectable impleme
 ## Documentation
 
 - [ ] CHK-026 [P2] Registry docs describe the two event payloads, assertion/withdrawal semantics, status precedence, typed errors, and replay/audit contract
-- [ ] CHK-027 [P2] Phase-007 sibling handoffs document the prospective semantic-community input and the claim-continuity/projection output without declaring hard child dependencies
+- [ ] CHK-027 [P2] Phase-010 sibling handoffs document the prospective semantic-community input and the claim-continuity/projection output without declaring hard child dependencies
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-028 [P1] Event schemas, reducers, fixtures, and audit adapters land in the reviewed phase-007 write-set with no legacy-ledger rewrite or metadata hand-authoring
+- [ ] CHK-028 [P1] Event schemas, reducers, fixtures, and audit adapters land in the reviewed phase-010 write-set with no legacy-ledger rewrite or metadata hand-authoring
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

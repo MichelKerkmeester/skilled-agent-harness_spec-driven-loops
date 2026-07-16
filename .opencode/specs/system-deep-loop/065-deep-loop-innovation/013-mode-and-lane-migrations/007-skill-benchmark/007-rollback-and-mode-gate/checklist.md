@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Skill Benchmark - Rollback & Mode Gate (013 phase 007)"
+title: "Checklist: Skill Benchmark - Rollback & Mode Gate"
 description: "Checklist for the Skill Benchmark rollback switch and independent mode gate over the deep-improvement-common migration backbone."
 trigger_phrases:
   - "skill benchmark rollback mode gate checklist"
@@ -38,7 +38,7 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 012 shared contracts, mode 004 common services, predecessor `006-shadow-parity`, and the phase-013 write-set conflict graph are pinned at BASE
+- [ ] CHK-001 [P0] Phase 015 shared contracts, mode 004 common services, predecessor `006-shadow-parity`, and the phase-013 write-set conflict graph are pinned at BASE
 - [ ] CHK-002 [P1] The Skill Benchmark legacy recipe, stable legacy target, scenario IDs, and baseline fingerprint are recorded in the candidate report
 - [ ] CHK-003 [P2] Mode-specific ownership is separated from shared ledger, receipt, sealing, budget, gauge, lock, continuity, and parity ownership
 <!-- /ANCHOR:pre-impl -->
@@ -48,7 +48,7 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 
 - [ ] CHK-004 [P0] Skill Benchmark adds only scenario, scoring, rollback, and gate logic; no deep-improvement-common service is reimplemented
 - [ ] CHK-005 [P1] Every scenario, treatment, evaluator, environment, and certificate input has a stable fingerprint or explicit unsupported disposition
-- [ ] CHK-006 [P2] Scope remains limited to this mode concern; sibling concerns and phase-014 authority movement are not absorbed
+- [ ] CHK-006 [P2] Scope remains limited to this mode concern; sibling concerns and phase-017 authority movement are not absorbed
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -65,8 +65,8 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 - [ ] CHK-015 [P0] Rollback drill restores the stable legacy path within the declared window with no duplicate logical commits and reconciled receipts
 - [ ] CHK-016 [P0] The independent Skill Benchmark GATE refuses failed shadow parity, missing or unsealed artifacts, invalid certificates, fingerprint drift, incomplete evidence, and rollback unreadiness
 - [ ] CHK-017 [P0] The green mode gate emits a mode certificate only after parity, artifact, certificate, rollback, scope, and handoff checks pass
-- [ ] CHK-018 [P0] The phase-011 handoff contains the certificate, artifact manifest, parity receipt, rollback decision record, and residual-risk disposition
-- [ ] CHK-019 [P0] Mixed-version fixtures prove the gate cannot authorize production authority movement owned by phase 014
+- [ ] CHK-018 [P0] The phase-014 handoff contains the certificate, artifact manifest, parity receipt, rollback decision record, and residual-risk disposition
+- [ ] CHK-019 [P0] Mixed-version fixtures prove the gate cannot authorize production authority movement owned by phase 017
 - [ ] CHK-020 [P1] Exact-SHA replay, fault injection, build, type, unit, and benchmark verification reports non-zero evidence and no unexpected tracked mutation
 <!-- /ANCHOR:testing -->
 
@@ -87,7 +87,7 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-025 [P1] The mode certificate, rollback decision record, phase-011 handoff, and residual-risk disposition are reflected in the packet docs
+- [ ] CHK-025 [P1] The mode certificate, rollback decision record, phase-014 handoff, and residual-risk disposition are reflected in the packet docs
 - [ ] CHK-026 [P2] The implementation report names the shared services consumed and records every intentionally deferred question
 <!-- /ANCHOR:docs -->
 
@@ -103,8 +103,8 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 
 The phase is complete when every P0 verifier check passes, the candidate report binds the exact SHAs and artifact hashes,
 shadow parity is green, the Skill Benchmark effect certificate is valid, the rollback drill restores the stable legacy
-target within the bounded window, and the independent mode gate emits the phase-011 handoff without authorizing production
-authority. Phase 014 remains the sole owner of staged authority cutover.
+target within the bounded window, and the independent mode gate emits the phase-014 handoff without authorizing production
+authority. Phase 017 remains the sole owner of staged authority cutover.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

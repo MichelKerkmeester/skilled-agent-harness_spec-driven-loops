@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Review resume adapter (013 phase 002/005)"
+title: "Implementation Plan: Deep Review resume adapter"
 description: "Implementation plan for the Deep Review resume adapter: fold the sealed ledger through the shared review-loop reducers, rebuild the continuity ladder, and plan idempotent re-entry without duplicate, missing, or unsafe replayed events."
 trigger_phrases:
   - "deep review resume adapter implementation plan"
@@ -31,9 +31,9 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop deep-review mode (phase 013/002/005) |
+| **Surface** | system-deep-loop deep-review mode |
 | **Change class** | Planning contract for ledger-backed recovery and re-entry |
-| **Execution** | Later implementation against the phase-009 shared loop contract and phase-012 conflict graph |
+| **Execution** | Later implementation against the phase-012 shared loop contract and phase-012 conflict graph |
 
 ### Overview
 The adapter will rebuild Deep Review from a sealed ledger frontier rather than from a mutable checkpoint or report. It will run the shared reducers over the accepted event prefix, derive the continuity ladder from scope through review dimensions, candidate/proof obligations, convergence, and report materialization, then return one typed re-entry decision. The decision is keyed by manifest revision, logical identity, artifact receipt, and replay fingerprint; it never assumes that a prior status is reusable merely because a label matches.
@@ -43,8 +43,8 @@ The adapter will rebuild Deep Review from a sealed ledger frontier rather than f
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-009 shared review-loop contract is frozen and names the event frontier, reducer versions, and terminal semantics consumed by modes
-- [ ] Phase 012 has published the mode interface, write ownership, and executable conflict graph
+- [ ] The phase-012 shared review-loop contract is frozen and names the event frontier, reducer versions, and terminal semantics consumed by modes
+- [ ] Phase 015 has published the mode interface, write ownership, and executable conflict graph
 - [ ] Deep Review sibling concerns expose the typed event, reducer, proof, and certificate contracts needed by the adapter
 - [ ] Every interruption boundary and external-effect state has a defined recovery outcome
 - [ ] The continuity ladder and re-entry decision algebra are written as testable invariants
@@ -61,7 +61,7 @@ The adapter will rebuild Deep Review from a sealed ledger frontier rather than f
 ## 3. ARCHITECTURE
 
 - **Authoritative input**: read the sealed ledger prefix and its frontier certificate; verify sequence continuity, event hashes, schema versions, reducer versions, and the replay-compatibility fingerprint before folding.
-- **Shared fold**: invoke the phase-009 review-loop reducer contract for the common lifecycle. Deep Review supplies typed event data and a mode projection; it does not introduce alternate transition rules for scope, pass, convergence, or terminal state.
+- **Shared fold**: invoke the phase-012 review-loop reducer contract for the common lifecycle. Deep Review supplies typed event data and a mode projection; it does not introduce alternate transition rules for scope, pass, convergence, or terminal state.
 - **Deep Review projection**: derive a continuity ladder with these ordered states: `scope-established`, `dimension-active`, `candidate-open`, `proof-open`, `convergence-pending`, `report-pending`, `report-sealed`, and explicit `blocked` or `contested` variants. Each state carries its owning logical ID, last applied event sequence, required evidence, and next safe action.
 - **Finding continuity**: use reducer-owned partial fingerprints and introduced/fixed/preexisting lineage to match findings across passes and revisions. Preserve raw candidates, challenges, proof receipts, dispositions, and suppressions as immutable events; derive P0/P1/P2 only for presentation.
 - **Resume planner**: evaluate each incomplete logical pass or effect as `reuse`, `reexecute`, `compensate`, `reconcile`, or `reject`. Reuse requires compatible manifest and artifact fingerprints. Re-execution changes only the attempt ID while retaining the stable logical ID. Unknown irreversible effects block automatic retry.
@@ -73,7 +73,7 @@ The adapter will rebuild Deep Review from a sealed ledger frontier rather than f
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm phase-009 and phase-012 contracts are available at the pinned baseline and record the exact event, reducer, fingerprint, and write-set interfaces.
+- Confirm phase-012 and phase-015 contracts are available at the pinned baseline and record the exact event, reducer, fingerprint, and write-set interfaces.
 - Inventory Deep Review interruption boundaries: before append, after append, during fold, after candidate admission, after proof receipt, during convergence, and during report materialization.
 - Define the state-transition and invariant matrix for the continuity ladder, including missing, duplicate, conflicting, late, contested, and unknown-effect inputs.
 
@@ -111,7 +111,7 @@ The adapter will rebuild Deep Review from a sealed ledger frontier rather than f
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The adapter depends on the phase-009 shared review-loop contract for lifecycle transitions, sealed-frontier semantics, and reducer invocation. It depends on phase 012 for the common mode interface, shared fixtures, and executable write-set conflict graph. It consumes typed events, reducers, certificates, and shadow interfaces from the Deep Review sibling concerns, but the required adjacency to `004-certificates-and-receipts` and `006-shadow-parity` is navigation and ordering rather than a hard runtime dependency. The later authority-cutover phase remains the only owner of authority changes.
+The adapter depends on the phase-012 shared review-loop contract for lifecycle transitions, sealed-frontier semantics, and reducer invocation. It depends on phase 015 for the common mode interface, shared fixtures, and executable write-set conflict graph. It consumes typed events, reducers, certificates, and shadow interfaces from the Deep Review sibling concerns, but the required adjacency to `004-certificates-and-receipts` and `006-shadow-parity` is navigation and ordering rather than a hard runtime dependency. The later authority-cutover phase remains the only owner of authority changes.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

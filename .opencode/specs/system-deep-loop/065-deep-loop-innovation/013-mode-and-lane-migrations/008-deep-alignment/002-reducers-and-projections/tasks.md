@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Alignment - Reducers & Projections (013 phase 002)"
+title: "Tasks: Deep Alignment - Reducers & Projections"
 description: "Tasks for the Deep Alignment reducers and projections phase: map typed ledger events to deterministic lane, authority, artifact, evidence, verdict, status, and convergence projections with shared review-loop parity."
 trigger_phrases:
   - "Deep Alignment reducers and projections tasks"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the typed event schema, phase-009 shared review-loop contract, 013 write-set graph, Deep Review reuse boundary, Deep Alignment adapter rules, and legacy lane fixtures are available as read-only inputs
+- [ ] T001 Confirm the typed event schema, phase-012 shared review-loop contract, 013 write-set graph, Deep Review reuse boundary, Deep Alignment adapter rules, and legacy lane fixtures are available as read-only inputs
 - [ ] T002 Confirm the phase boundary excludes event-schema authoring, authority compilation, sealed-artifact creation, discovery and re-probe execution, authority cutover, and the six sibling concerns
 - [ ] T003 [P] Record source observation fields, derived verdict fields, authority and verifier metadata, deviation overlays, projection-health fields, and stable identity inputs
 <!-- /ANCHOR:phase-1 -->

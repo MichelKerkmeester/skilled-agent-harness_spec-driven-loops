@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Alignment shadow parity (phase 013 mode 008 concern 006)"
+title: "Tasks: Deep Alignment shadow parity"
 description: "Tasks for the Deep Alignment shadow-parity concern: pair the legacy emitter with the ledger path, compare event and projection semantics, and produce a fail-closed parity receipt before authority cutover."
 trigger_phrases:
   - "Deep Alignment shadow parity tasks"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm `005-resume-adapter`, the phase-011 shadow framework, and the phase-009 shared review-loop contract are available and version-pinned
+- [ ] T001 Confirm `005-resume-adapter`, the phase-014 shadow framework, and the phase-012 shared review-loop contract are available and version-pinned
 - [ ] T002 Inventory Deep Alignment legacy events and public projections by lane, subject, authority epoch, finding lifecycle, applicability, deviation, conflict, and terminal state
 - [ ] T003 Define the paired-run manifest and require identical target, authority, verifier, lane, review-loop, capability, budget, and fixture inputs
 - [ ] T004 Define event identity, causal-order, semantic-payload, projection-identity, and non-semantic-field normalization contracts
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T006 [P] Add the Deep Alignment adapter to the phase-011 paired shadow runner without changing legacy authority
+- [ ] T006 [P] Add the Deep Alignment adapter to the phase-014 paired shadow runner without changing legacy authority
 - [ ] T007 Capture legacy and ledger events, receipts, raw findings, projections, terminal decisions, and provenance from the same run manifest
 - [ ] T008 Implement one-to-one event pairing and comparison for logical identity, event type, lane, subject, authority epoch, causal parent, sequence/barrier position, and lifecycle transition
 - [ ] T009 Implement semantic payload comparison with an explicit versioned allowlist and unknown-field rejection

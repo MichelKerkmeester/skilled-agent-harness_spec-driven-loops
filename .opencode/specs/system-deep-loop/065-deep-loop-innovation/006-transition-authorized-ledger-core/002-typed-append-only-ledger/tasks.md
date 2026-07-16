@@ -70,7 +70,7 @@ _memory:
 - [ ] T019 Verify kill-during-append and torn-tail recovery never truncates, repairs, merges, or overwrites committed ledger bytes
 - [ ] T020 Verify repeated typed read/reduce produces byte-identical projections and the same verified head across clean processes
 - [ ] T021 Verify every inventoried legacy writer retains its schema, output, return code, repair semantics, and authority under dark success and failure injection
-- [ ] T022 Verify no ledger projection, cache, timestamp, or sidecar is used as operational authority before phase 011
+- [ ] T022 Verify no ledger projection, cache, timestamp, or sidecar is used as operational authority before phase 014
 - [ ] T023 Run the runtime build, typecheck, targeted unit/integration suites, adapter manifest check, and strict spec validation
 <!-- /ANCHOR:phase-3 -->
 

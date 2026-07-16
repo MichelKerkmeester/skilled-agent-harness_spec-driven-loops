@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 005. Every item remains pending while the phase status
+This checklist is the blocking SOL verifier contract for phase 008. Every item remains pending while the phase status
 is Planned. The implementation verifier binds its report to the candidate SHA, ledger fixture digest, projection
 manifest digest, bundle/reducer versions, canonical-store schema version, and legacy baseline. It records commands,
 exit codes, fixture counts, transaction fault points, ledger cutoffs, generation IDs, and canonical hashes; zero-event,
@@ -38,7 +38,7 @@ zero-fault, or zero-projection discovery is a failure rather than a pass.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-003 verified reader contract, phase-004 gauge definitions, phase-007 event schemas, and legacy authority boundary are pinned to exact versions.
+- [ ] CHK-001 [P0] The phase-006 verified reader contract, phase-007 gauge definitions, phase-010 event schemas, and legacy authority boundary are pinned to exact versions.
 - [ ] CHK-002 [P0] The projection manifest names every dashboard, registry, claim table, index, and gauge in each atomic consistency bundle.
 - [ ] CHK-003 [P0] The selected store demonstrates atomic multi-table commit, snapshot reads, uniqueness constraints, expected-watermark comparison, and fenced writer ownership.
 - [ ] CHK-004 [P1] Ledger fixtures cover empty, single-event, multi-event, mixed-event, duplicate, conflicting, corrupt, and schema-evolution streams.
@@ -65,7 +65,7 @@ zero-fault, or zero-projection discovery is a failure rather than a pass.
 - [ ] CHK-015 [P0] Rebuild remains invisible until all rows, provenance, constraints, and canonical hashes validate; publication changes visibility with one atomic pointer swap.
 - [ ] CHK-016 [P0] Readers held across the generation swap see a complete old or complete new generation, never mixed rows or partial rebuild progress.
 - [ ] CHK-017 [P0] Corrupt watermarks, receipts, rows, event versions, sequence/hash links, dependency graphs, and canonical values fail closed without trusted progress.
-- [ ] CHK-018 [P0] Phase-004 progress, novelty, cost, and health-input gauge golden fixtures remain byte-identical inside the projection transaction.
+- [ ] CHK-018 [P0] Phase-007 progress, novelty, cost, and health-input gauge golden fixtures remain byte-identical inside the projection transaction.
 - [ ] CHK-019 [P0] External dashboard/sink outage and retry do not change canonical projection rows, receipt count, active generation, or watermark.
 - [ ] CHK-020 [P0] Additive-dark mismatches against `runtime/lib/deep-loop/observability-events.cjs` and legacy views are recorded as evidence and never alter legacy control flow.
 - [ ] CHK-021 [P1] Property tests vary event grouping, restart boundary, key insertion order, and supported platform while preserving canonical projection hashes.

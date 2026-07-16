@@ -1,6 +1,6 @@
 ---
 title: "Tasks: In-Flight State Migration"
-description: "Tasks for the first phase-011 sibling: execute guarded, integrity-checked, fenced, atomic, and resumable migration of classified in-flight deep-loop state."
+description: "Tasks for the first phase-014 sibling: execute guarded, integrity-checked, fenced, atomic, and resumable migration of classified in-flight deep-loop state."
 trigger_phrases:
   - "in-flight state migration tasks"
   - "deep-loop migration tasks"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the frozen phase-000 state census, phase-005 classification manifest, phase-004 locks/fencing contract, and phase-tree entry are available with stable digests
+- [ ] T001 Confirm the frozen phase-003 state census, phase-008 classification manifest, phase-007 locks/fencing contract, and phase-tree entry are available with stable digests
 - [ ] T002 Freeze the migration envelope: migration ID, source identity, classification digest, operation class, source digest, authority epoch, resource key, fence token, rollback anchor, idempotency key, and status enum
 - [ ] T003 Define the coordinator atomicity domain, receipt store, commit marker, retry boundary, crash-resume boundary, and evidence handoff schema for `002-per-mode-authority-flip`
 - [ ] T004 [P] Build fixtures for mid-iteration state, active leases, pending effects, paused checkpoints, fan-out waits, JSON/JSONL bundles, SQLite checkpoints, and malformed or unknown rows
@@ -49,8 +49,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Implement preflight selection and phase-005 freshness checks for source digest, schema, authority epoch, leases, pending effects, prerequisites, and rollback anchor
-- [ ] T006 Implement canonical resource-key resolution and phase-004 lease/fence acquisition; reject stale holders at every protected mutation boundary
+- [ ] T005 Implement preflight selection and phase-008 freshness checks for source digest, schema, authority epoch, leases, pending effects, prerequisites, and rollback anchor
+- [ ] T006 Implement canonical resource-key resolution and phase-007 lease/fence acquisition; reject stale holders at every protected mutation boundary
 - [ ] T007 Implement deterministic pre-operation and post-operation integrity checks using `computeIntegrityHash` and the hard-failure interpretation of `verifyIntegrity`
 - [ ] T008 Implement `UPCAST` as a pure adjacent-version logical conversion that preserves source bytes, stored identity, order, and replay evidence
 - [ ] T009 Implement `FORK` as an isolated dark copy with distinct execution/effect namespaces, source immutability, and blocked live publication
@@ -66,7 +66,7 @@ _memory:
 
 - [ ] T015 Verify one-row/one-receipt closure and reject duplicate, missing, unknown, or unsafe committed outcomes
 - [ ] T016 Verify source drift and stale authority epoch return `BLOCK` before any state, ledger, effect, or commit-marker mutation
-- [ ] T017 Verify stale phase-004 fence tokens fail at the protected write boundary after takeover, including a resumed old process
+- [ ] T017 Verify stale phase-007 fence tokens fail at the protected write boundary after takeover, including a resumed old process
 - [ ] T018 Verify `UPCAST` source-byte preservation and replay-equivalent effective state across every registered adjacent-version fixture
 - [ ] T019 Verify `FORK` cannot mutate source state, publish effects, consume live budget, or become authoritative
 - [ ] T020 Verify `MIGRATE` preserves identity, ordering, idempotency, pending-work, receipts, budgets, and restore evidence for complete checkpoints and rejects partial checkpoints

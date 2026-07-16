@@ -42,7 +42,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (agent-improvement mode) |
-| **Origin** | Phase 005 of the Agent Improvement migration under phase 013 |
+| **Origin** | Phase 008 of the Agent Improvement migration under phase 013 |
 | **Inputs** | 065 parent spec; phase-tree manifest; 065/002 findings registries; Agent Improvement siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`; deep-improvement-common `004-certificates-and-receipts` and `005-resume-adapter` |
 <!-- /ANCHOR:metadata -->
 
@@ -100,7 +100,7 @@ rejection decision rather than silently inheriting prior success.
 | REQ-005 | Branch-local evidence and uncertain effects are preserved | Completed candidate, behavior-family, and evaluator branches remain reusable; started-without-receipt effects remain `UNKNOWN` and route through the common recovery policy rather than automatic retry |
 | REQ-006 | Manifest and contract drift are explicit | Changed AgentIR, change contract, evaluator capsule, fixture epoch, executor, tool schema, reducer, upcaster, or topology resolves to a compatible reuse, new score revision, re-execution, fork, quarantine, or rejection; it never inherits success by label alone |
 | REQ-007 | Deep-improvement-common remains the single service owner | Evaluator, canary, certificate, receipt, promotion, redaction, and effect-recovery fields and transitions are referenced from common contracts; Agent Improvement adds only namespaced resume inputs and projections |
-| REQ-008 | Resume cannot turn score into promotion authority | Critical behavior-family failures, insufficient evidence, stale artifacts, evaluator leakage, canary vetoes, rollback ambiguity, and unknown effects remain visible vetoes; resume changes only the dark path before phase 014 |
+| REQ-008 | Resume cannot turn score into promotion authority | Critical behavior-family failures, insufficient evidence, stale artifacts, evaluator leakage, canary vetoes, rollback ambiguity, and unknown effects remain visible vetoes; resume changes only the dark path before phase 017 |
 | REQ-009 | Replay and checkpoint optimization are equivalent to full fold | A validated checkpoint plus remaining ledger range produces the same AgentIR frontier, coverage, status, receipts, and projection fingerprint as a clean full replay; incompatible checkpoints refuse safely |
 <!-- /ANCHOR:requirements -->
 
@@ -128,7 +128,7 @@ truth and never writes replayed domain events while rebuilding state.
 - **SC-004**: AgentIR component lineage, inherited clauses, failure gradients, behavior-family evidence, evaluator epoch, and profile scope remain available without reading mutable agent or evaluator state.
 - **SC-005**: Changed manifests, reducer or upcaster drift, stale sealed artifacts, evaluator/canary mismatch, hidden-evidence leakage, and incompatible checkpoints fail closed without mutating prior evidence.
 - **SC-006**: Agent Improvement consumes the common evaluator, canary, certificate, receipt, redaction, promotion, and effect-recovery contracts without semantic forks.
-- **SC-007**: Resume remains additive, dark, and non-authoritative; no re-entry decision changes legacy state or authorizes production promotion before phase 014.
+- **SC-007**: Resume remains additive, dark, and non-authoritative; no re-entry decision changes legacy state or authorizes production promotion before phase 017.
 
 **Given** an interrupted Agent Improvement run, **When** the adapter folds its sealed event range, **Then** it reconstructs the
 same AgentIR and behavior-evidence frontier without consulting process memory or regenerating a candidate.
@@ -149,8 +149,8 @@ remains `UNKNOWN` and delegates to the common effect policy rather than treating
 - **Unknown effect mistaken for success** - A crash after dispatch but before receipt can corrupt promotion state. Mitigation: preserve `UNKNOWN` and apply the common query, retry-with-key, compensation, or quarantine policy.
 - **Evaluator leakage during resume** - A candidate-facing read can expose hidden fixture or terminal evidence. Mitigation: use the common redacted projection and record visibility violations as blocking evidence.
 - **Score-only recovery** - A resumed aggregate can hide family regression or insufficient evidence. Mitigation: restore raw observations, family coverage, vetoes, evaluator epoch, and score-policy identity separately.
-- **Authority creep** - A successful shadow re-entry could mutate the live legacy path. Mitigation: assert zero authority writes and leave cutover to phase 014.
-- **Dependencies**: Agent Improvement siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`; deep-improvement-common `004-certificates-and-receipts` and `005-resume-adapter`; phase 012 shared mode contracts and write-set conflict graph; phase 009 ledger contracts; and the spec-kit validator. The child keeps `depends_on: []` as an independent planning contract.
+- **Authority creep** - A successful shadow re-entry could mutate the live legacy path. Mitigation: assert zero authority writes and leave cutover to phase 017.
+- **Dependencies**: Agent Improvement siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`; deep-improvement-common `004-certificates-and-receipts` and `005-resume-adapter`; phase 012 shared mode contracts and write-set conflict graph; phase 012 ledger contracts; and the spec-kit validator. The child keeps `depends_on: []` as an independent planning contract.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

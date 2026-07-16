@@ -30,12 +30,12 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime + phase-003 ledger adapters |
+| **Surface** | system-deep-loop runtime + phase-006 ledger adapters |
 | **Change class** | Additive typed persistence and recovery logic |
 | **Execution** | Dark-write/shadow-compare before any authoritative resume path |
 
 ### Overview
-Implement a registered per-attempt result event paired to the sibling-001 dispatch receipt, then build a pure verified-ledger reducer that reconstructs fan-out progress and excludes completed leaves. Add provenance-bearing salvage adapters over the shipped stdout, state-log, iteration-artifact, and registry recovery paths. Reconcile unsettled dispatch effects through phase 004 before retry eligibility is exposed. Preserve existing `fanout-run.cjs` behavior until shadow parity, crash fixtures, and later cutover gates authorize the typed path.
+Implement a registered per-attempt result event paired to the sibling-001 dispatch receipt, then build a pure verified-ledger reducer that reconstructs fan-out progress and excludes completed leaves. Add provenance-bearing salvage adapters over the shipped stdout, state-log, iteration-artifact, and registry recovery paths. Reconcile unsettled dispatch effects through phase 007 before retry eligibility is exposed. Preserve existing `fanout-run.cjs` behavior until shadow parity, crash fixtures, and later cutover gates authorize the typed path.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -43,8 +43,8 @@ Implement a registered per-attempt result event paired to the sibling-001 dispat
 
 ### Definition of Ready
 - [ ] Sibling 001 freezes the canonical dispatch-receipt ID, attempt identity, invocation fingerprint, and causation fields consumed here
-- [ ] Phase-003 event registry, typed append, verified reader, authorization proof, and replay-fingerprint APIs are available
-- [ ] Phase-004 effect-recovery adapter exposes not-applied, applied, in-doubt, and conflict reconciliation outcomes
+- [ ] Phase-006 event registry, typed append, verified reader, authorization proof, and replay-fingerprint APIs are available
+- [ ] Phase-007 effect-recovery adapter exposes not-applied, applied, in-doubt, and conflict reconciliation outcomes
 - [ ] Legacy fixtures pin `fanout-run.cjs`, `fanout-salvage.cjs`, `fanout-merge.cjs`, and `fanout-pool.cjs` result/retry/salvage behavior
 - [ ] Result success criteria and required evidence sets are declared per supported leaf kind rather than inferred from process exit
 
@@ -59,10 +59,10 @@ Implement a registered per-attempt result event paired to the sibling-001 dispat
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Result-envelope registry and canonicalizer**: register the leaf-result event and status enum; validate receipt/attempt identity, result schema, bounded parsed value or digest reference, evidence/artifact set, timing, usage/cost provenance, error/salvage fields, replay fingerprint, authority epoch, and correlation/causation. Canonical bytes become the phase-003 idempotency/conflict boundary.
+- **Result-envelope registry and canonicalizer**: register the leaf-result event and status enum; validate receipt/attempt identity, result schema, bounded parsed value or digest reference, evidence/artifact set, timing, usage/cost provenance, error/salvage fields, replay fingerprint, authority epoch, and correlation/causation. Canonical bytes become the phase-006 idempotency/conflict boundary.
 - **Receipt/result join index**: derive a map keyed by `dispatch_receipt_id` and attempt identity from verified events. One exact terminal pair is valid; missing, duplicate-with-different-facts, unknown-version, or dangling results are explicit invalid states. This is a projection only and is rebuildable from the ledger.
 - **Resume reducer**: fold the expected leaf set, dispatch receipts, terminal results, salvage events, and effect-recovery outcomes in ledger sequence order. Emit a deterministic progress snapshot with completed exclusions, unresolved attempts, retry-eligible leaves, salvaged partials, conflicts, and unreadable blockers. The reducer performs no dispatch or file writes.
-- **Recovery coordinator**: consume the reducer snapshot. For an unsettled attempt, call the phase-004 recovery gateway under its stable idempotency identity; append the observed reconciliation/result event; refold; expose only proved retry eligibility. The coordinator never retries an in-doubt or conflicted effect.
+- **Recovery coordinator**: consume the reducer snapshot. For an unsettled attempt, call the phase-007 recovery gateway under its stable idempotency identity; append the observed reconciliation/result event; refold; expose only proved retry eligibility. The coordinator never retries an in-doubt or conflicted effect.
 - **Salvage adapters**: generalize `runSalvageSweep` and merge reconstruction into typed extractors for captured stdout, state events, iteration artifacts, and missing registries. Each extractor emits canonical fragment metadata and an external artifact digest; a deterministic assembler derives an effective partial result without mutating source evidence.
 - **Compatibility/shadow adapter**: instrument existing fan-out boundaries to dark-write receipt/result/salvage candidates and compare their reconstructed snapshot with legacy summaries, failure classes, required artifacts, recovered-iteration counts, reconstructed findings, and attribution. Mismatch blocks later cutover evidence but does not change legacy authority.
 <!-- /ANCHOR:architecture -->
@@ -71,7 +71,7 @@ Implement a registered per-attempt result event paired to the sibling-001 dispat
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Freeze the sibling-001 receipt join contract and phase-003 event registration inputs.
+- Freeze the sibling-001 receipt join contract and phase-006 event registration inputs.
 - Capture legacy golden fixtures for success, partial failure, timeout, signal stop, orphaned start, retry, recovered iteration, failed salvage, and state-log registry reconstruction.
 - Define per-leaf result schemas, required evidence sets, safe inline-size limits, usage/cost sources, and secret-redaction rules.
 
@@ -112,11 +112,11 @@ Implement a registered per-attempt result event paired to the sibling-001 dispat
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This planning child has `depends_on: []`; predecessor and successor references express sibling navigation only. Implementation composes with sibling 001's canonical dispatch receipt, phase-003's versioned envelope and typed append-only ledger, phase-004's receipt/effect-recovery gateway, and phase-005's compatibility/shadow bridge. Successor 003 may later add stable logical branch IDs, but this phase keys correctness to the dispatch receipt and attempt identity available at implementation time. Siblings 004-006 consume result/recovery projections without changing this child's pairing or no-rerun rules.
+This planning child has `depends_on: []`; predecessor and successor references express sibling navigation only. Implementation composes with sibling 001's canonical dispatch receipt, phase-006's versioned envelope and typed append-only ledger, phase-007's receipt/effect-recovery gateway, and phase-008's compatibility/shadow bridge. Successor 003 may later add stable logical branch IDs, but this phase keys correctness to the dispatch receipt and attempt identity available at implementation time. Siblings 004-006 consume result/recovery projections without changing this child's pairing or no-rerun rules.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-All implementation is additive and dark. Disable the result/resume shadow adapter and continue using the existing `fanout-run.cjs` orchestration-status, artifact, salvage, and merge paths; committed typed events remain immutable audit evidence but non-authoritative. Revert the phase's path-scoped commits to remove new readers/writers and registry entries. Do not truncate the phase-003 ledger or rewrite result/salvage events. If dark/legacy parity diverges, stop cutover evidence, retain both outputs and the exact replay head, and reopen this phase before phase 011 can authorize fan-out authority.
+All implementation is additive and dark. Disable the result/resume shadow adapter and continue using the existing `fanout-run.cjs` orchestration-status, artifact, salvage, and merge paths; committed typed events remain immutable audit evidence but non-authoritative. Revert the phase's path-scoped commits to remove new readers/writers and registry entries. Do not truncate the phase-006 ledger or rewrite result/salvage events. If dark/legacy parity diverges, stop cutover evidence, retain both outputs and the exact replay head, and reopen this phase before phase 014 can authorize fan-out authority.
 <!-- /ANCHOR:rollback -->

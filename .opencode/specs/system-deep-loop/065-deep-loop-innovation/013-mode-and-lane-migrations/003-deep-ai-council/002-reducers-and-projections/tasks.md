@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep AI Council - Reducers & Projections (013 phase 002)"
+title: "Tasks: Deep AI Council - Reducers & Projections"
 description: "Tasks for the Deep AI Council reducers and projections phase: map typed deliberation events to deterministic convergence, independence, stance, artifact, status, and plural-outcome projections."
 trigger_phrases:
   - "Deep AI Council reducers and projections tasks"

@@ -19,7 +19,7 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact phase-003 certificate primitive signs or seals the run certificate?"
+      - "Which exact phase-006 certificate primitive signs or seals the run certificate?"
     answered_questions:
       - "The certificate attests recorded process integrity, not semantic truth"
 ---
@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase `003-sealed-artifacts`, phase 009 shared review-loop contracts, and `001-typed-ledger-schema` are frozen before naming certificate or receipt fields
+- [ ] T001 Confirm phase `003-sealed-artifacts`, phase 012 shared review-loop contracts, and `001-typed-ledger-schema` are frozen before naming certificate or receipt fields
 - [ ] T002 Inventory every Deep Review typed event and its scope, evidence, adjudication, convergence, synthesis, report, and continuity references
 - [ ] T003 Build the receipt coverage matrix for run, scope, pass, evidence, adjudication, lineage, convergence, recovery, synthesis, report, and completion transitions
 - [ ] T004 [P] Record the Deep Review and deep-alignment shared-backbone boundary and reject mode-local copies of shared transitions
@@ -64,7 +64,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T013 Verify the receipt and certificate types reuse phase `003-sealed-artifacts` and phase 009 primitives without duplicate shared identity, lineage, authorization, or replay fields
+- [ ] T013 Verify the receipt and certificate types reuse phase `003-sealed-artifacts` and phase 012 primitives without duplicate shared identity, lineage, authorization, or replay fields
 - [ ] T014 Verify every in-scope transition has immutable receipt coverage and every receipt resolves to causal, authorization, event-tail, input, output, and effect references
 - [ ] T015 Verify certificate claims resolve to the pinned event range, receipt-set root, scope and dimension coverage, convergence outcome, report revision, and unresolved or blocked IDs
 - [ ] T016 Verify unchanged replay produces stable receipt and run fingerprints, while changed target, policy, schema, tool, evaluator, artifact, reducer, or report inputs produce typed mismatch decisions

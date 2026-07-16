@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Replay Fingerprints (003 phase 003)"
+title: "Tasks: Replay Fingerprints"
 description: "Tasks for versioned replay-fingerprint derivation, immutable attestation storage, fail-closed mismatch detection, and downstream replay-verification integration."
 trigger_phrases:
   - "replay fingerprints tasks"
@@ -55,7 +55,7 @@ _memory:
 - [ ] T009 Implement canonical descriptor serialization and the final digest over descriptor bytes with the final field omitted
 - [ ] T010 Implement authorized `deep-loop.replay.fingerprint-recorded` append after the covered range with self-exclusion and idempotency checks
 - [ ] T011 Implement fail-closed verification, trusted-result typing, bounded component diagnostics, and earliest-divergence reporting
-- [ ] T012 Expose one verifier seam for phase 005 shadow parity and phase 013 whole-system replay without moving authority
+- [ ] T012 Expose one verifier seam for phase 008 shadow parity and phase 016 whole-system replay without moving authority
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: fan-out live-tools unblock (065/006 phase 002)"
+title: "Implementation Plan: fan-out live-tools unblock"
 description: "Implementation plan for the early dispatch-only fan-out unblock: typed live-search policy, fail-closed capabilities, per-kind adapters, invocation fingerprints, and deterministic manifest expansion over the existing capped pool."
 trigger_phrases:
   - "fan-out live-tools implementation plan"
@@ -30,9 +30,9 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime fan-out dispatch (phase 002) |
+| **Surface** | system-deep-loop runtime fan-out dispatch |
 | **Change class** | Additive executor config + dispatch adapters + manifest compiler |
-| **Execution** | Future implementation on the operator-selected git workspace, pinned after phase 001 |
+| **Execution** | Future implementation on the operator-selected git workspace, pinned after phase 004 |
 
 ### Overview
 The existing fan-out scheduler is retained. `executor-config.ts` gains a backward-compatible live-tools policy and a discriminated manifest input; `fanout-run.cjs` gains a capability preflight plus per-kind adapters whose output includes an invocation fingerprint. The new manifest compiles to the same flat lineage list consumed by `runCappedPool`, and omission of every new field preserves the current parse, argv, expansion, and persisted-artifact behavior.
@@ -42,7 +42,7 @@ The existing fan-out scheduler is retained. `executor-config.ts` gains a backwar
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 is complete and its executor/transition vocabulary is frozen
+- [ ] Phase 004 is complete and its executor/transition vocabulary is frozen
 - [ ] Baseline fixtures pin current `executors[]`, `count`, `buildLineageCommand`, and pool behavior
 - [ ] The capability matrix declares all four executor kinds against all four search policies
 - [ ] The dispatch-only boundary explicitly excludes canonical receipts and persisted-shape changes
@@ -70,7 +70,7 @@ The existing fan-out scheduler is retained. `executor-config.ts` gains a backwar
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin phase-001 dependency evidence and capture green baselines for `executor-config.vitest.ts` and `fanout-run.vitest.ts`.
+- Pin phase-004 dependency evidence and capture green baselines for `executor-config.vitest.ts` and `fanout-run.vitest.ts`.
 - Record current legacy config normalization, count expansion, cli-codex argv, pool events, and persisted artifact shapes.
 
 ### Phase 2: Implementation
@@ -105,7 +105,7 @@ The existing fan-out scheduler is retained. `executor-config.ts` gains a backwar
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Phase 001 is the sole blocking program dependency. Runtime dependencies are the shipped Zod executor schema, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`, `fanout-pool.cjs`, and the existing Vitest harness. The live argv contract is grounded in the 065/005 prototype. Phase 006 consumes this phase's stable logical IDs and invocation fingerprint later, when durable receipts and fan-in persistence are authorized.
+Phase 004 is the sole blocking program dependency. Runtime dependencies are the shipped Zod executor schema, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`, `fanout-pool.cjs`, and the existing Vitest harness. The live argv contract is grounded in the 065/005 prototype. Phase 009 consumes this phase's stable logical IDs and invocation fingerprint later, when durable receipts and fan-in persistence are authorized.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

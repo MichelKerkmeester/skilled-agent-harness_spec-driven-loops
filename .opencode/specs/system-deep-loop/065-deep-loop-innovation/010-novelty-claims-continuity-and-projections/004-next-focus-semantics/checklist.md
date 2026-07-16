@@ -1,5 +1,5 @@
 ---
-title: "Checklist: next-focus semantics (recommendations implementation phase 007 child 004)"
+title: "Checklist: next-focus semantics (recommendations implementation phase 010 child 004)"
 description: "Blocking verifier checklist for typed candidate semantics, deterministic selection, durable replay, compatibility, and additive-dark authority."
 trigger_phrases:
   - "next-focus semantics checklist"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 004. Every item is a check the paired
+This checklist is the blocking SOL verifier contract for phase 007. Every item is a check the paired
 verify agent runs BEFORE the candidate commit lands; each SOL report pins the candidate SHA, BASE SHA, scoring-policy
 version, and source-snapshot fingerprint, records commands + exit codes + fixture counts, and fails on zero discovered
 candidates unless the fixture explicitly proves the typed no-eligible outcome.

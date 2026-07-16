@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Child 002 of the phase-001 architecture, coverage, and transition planning gate |
+| **Origin** | Child 002 of the phase-004 architecture, coverage, and transition planning gate |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -61,7 +61,7 @@ Run-b and run-c expose 59 and 111 records in
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json`
 and `research/findings-registry-modes.json`. This phase defines a source-specific extraction contract, freezes the
 source digests and ordinals, mints immutable `DLR-A/B/C-NNN` IDs once, normalizes each primary target against the
-phase-000 5-family / 7-workflowMode / 8-workstream and eight-subsystem taxonomy, and assigns one disposition from the
+phase-003 5-family / 7-workflowMode / 8-workstream and eight-subsystem taxonomy, and assigns one disposition from the
 closed disposition vocabulary.
 
 The literal 178-row ledger is an execution artifact, not prose in this document. The canonical JSON ledger, a
@@ -77,7 +77,7 @@ counts, referential integrity, and complete enumeration of the program phases in
 - Freeze the three corpus inputs by repo-relative path, digest, extraction rule, and source ordinal: run-a ranks 1-8, run-b JSON pointers `/recommendations/0..58`, and run-c pointers `/recommendations/0..110`.
 - Emit exactly one canonical row per source recommendation with immutable ID ranges `DLR-A-001..008`, `DLR-B-001..059`, and `DLR-C-001..111`; IDs are never recomputed from recommendation text or reassigned after publication.
 - Preserve source provenance per row: run, source path, source locator, source digest, original recommendation text, original target text, iteration/rank, and available evidence fields.
-- Normalize one primary target per row as a `taxonomy_layer` + `taxonomy_key` pair drawn from phase 000's runtime-subsystem, workflow-family, workflow-mode, or research-workstream vocabulary; preserve compound raw targets without pretending they were singular.
+- Normalize one primary target per row as a `taxonomy_layer` + `taxonomy_key` pair drawn from phase 003's runtime-subsystem, workflow-family, workflow-mode, or research-workstream vocabulary; preserve compound raw targets without pretending they were singular.
 - Assign exactly one disposition string per row: `adopt-as-phase-NNN`, `merge-into-<id>`, `defer-with-reason`, or `reject-with-reason`. Merge, defer, and reject rows require a non-empty rationale.
 - Validate every adoption phase against the manifest's real `000..014` phase IDs; validate merge targets as existing, non-self stable IDs with no cycles.
 - Publish a coverage summary that names all four disposition buckets and all manifest phases, including explicit zero counts and reasons rather than omitted or silently empty buckets.
@@ -87,7 +87,7 @@ counts, referential integrity, and complete enumeration of the program phases in
 - Hand-writing or embedding the 178 ledger rows in `spec.md`, `plan.md`, `tasks.md`, or `checklist.md`.
 - Rewriting either research packet or mutating any `findings-registry*.json` source.
 - Implementing the recommendations, ratifying the spine ADR, or defining transition/versioning/rollback policy; sibling 001 and 003 and program phases 002-014 own those outcomes.
-- Changing the phase-000 taxonomy or the phase-tree manifest. Drift in either input invalidates the ledger build and requires an explicit reclassification pass rather than silent normalization.
+- Changing the phase-003 taxonomy or the phase-tree manifest. Drift in either input invalidates the ledger build and requires an explicit reclassification pass rather than silent normalization.
 - Adding `ai-system-improvement`, speculative recommendations, or an `unknown` target/disposition bucket.
 <!-- /ANCHOR:scope -->
 
@@ -99,7 +99,7 @@ counts, referential integrity, and complete enumeration of the program phases in
 | REQ-001 | The source corpus is frozen and totals 178 | Source adapters extract 8, 59, and 111 records; their disjoint union is exactly 178 and every source digest is recorded |
 | REQ-002 | Every recommendation receives one immutable stable ID | The three reserved ID ranges contain 178 unique IDs with no gaps, duplicates, reuse, or content-derived reminting |
 | REQ-003 | Every row remains traceable to exactly one source record | Each row has one unique source run + locator and preserves the raw recommendation and raw target; every extracted source locator appears once |
-| REQ-004 | Targets use the phase-000 taxonomy | Every row has one allowed `taxonomy_layer` and canonical `taxonomy_key`; compound source targets remain in provenance and no `unknown` key exists |
+| REQ-004 | Targets use the phase-003 taxonomy | Every row has one allowed `taxonomy_layer` and canonical `taxonomy_key`; compound source targets remain in provenance and no `unknown` key exists |
 | REQ-005 | Every row has exactly one closed-vocabulary disposition | One and only one `disposition` value matches the four allowed forms; no parallel disposition flags or unclassified rows exist |
 | REQ-006 | Non-adoption dispositions are justified and referentially sound | Merge/defer/reject rows have non-empty reasons; merge targets exist, are non-self, and resolve without cycles |
 | REQ-007 | Adoption targets are real program phases | Every `adopt-as-phase-NNN` value names a phase present in `manifest/phase-tree.json`; no free-text or non-manifest phase is accepted |
@@ -122,10 +122,10 @@ counts, referential integrity, and complete enumeration of the program phases in
 ## 6. RISKS & DEPENDENCIES
 
 The governing sources are the [006 parent spec](../../spec.md),
-[`manifest/phase-tree.json`](../../manifest/phase-tree.json), the phase-000 taxonomy contract in
+[`manifest/phase-tree.json`](../../manifest/phase-tree.json), the phase-003 taxonomy contract in
 `../../003-baseline-taxonomy-and-state-census/spec.md`, the run-a packet's `research/findings-registry.json` plus
 ranked §17 list, and the run-b/run-c registries in the 005 packet. The child has `depends_on: []`; the 001 parent
-inherits the program dependency on phase 000, while this child consumes the frozen taxonomy as a read-only input.
+inherits the program dependency on phase 003, while this child consumes the frozen taxonomy as a read-only input.
 
 The main risks are source-shape mismatch in run-a, source-order drift after IDs are minted, inconsistent free-text
 target delimiters, accidental loss of secondary targets during primary normalization, classification bias, merge

@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop architecture contract (phase 001/001) |
+| **Surface** | system-deep-loop architecture contract |
 | **Change class** | Architecture decision and downstream contract |
 | **Execution** | Documentation-only ratification; no runtime writer or authority change |
 
@@ -74,12 +74,12 @@ authorizes otherwise.
 
 | Primitive | Problem solved | Ratified invariant | Primary consumer |
 |-----------|----------------|--------------------|------------------|
-| Typed, append-only, versioned event ledger | Per-mode state fragments cannot be audited, reduced, or replayed under one contract | Canonical history is event-derived, typed, versioned, append-only, and shared across modes | Phase 003 |
-| Fail-closed transition-authorization gateway | A valid event shape alone does not prove that a state transition is permitted | Every transition is explicitly authorized before write; absent or unknown authorization denies | Phase 003 |
-| Sealed/frozen reference artifacts | Mutable rubrics, authorities, canaries, or independence sets let the ruler drift after the move | Governing inputs are immutable for the decision epoch and referenced by content digest | Phase 004 |
-| Versioned replay fingerprints | Unversioned hashes cannot reproduce behavior or track an entity across schema and reducer revisions | Replay identity binds relevant event, schema, reducer, artifact, and policy versions | Phase 003 |
-| Receipts/certificates | Logs do not provide portable, independently checkable proof of effects or boundary decisions | Each governed phase/mode boundary emits typed proof linked to inputs, events, and replay identity | Phase 004 |
-| Blinded/counterfactual adjudication | Self-scoring and provenance/order leakage can reward identity, style, or evaluator gaming instead of merit | Adjudication separates candidate from judge, masks merit-irrelevant provenance, and tests verdict stability | Phase 004 |
+| Typed, append-only, versioned event ledger | Per-mode state fragments cannot be audited, reduced, or replayed under one contract | Canonical history is event-derived, typed, versioned, append-only, and shared across modes | Phase 006 |
+| Fail-closed transition-authorization gateway | A valid event shape alone does not prove that a state transition is permitted | Every transition is explicitly authorized before write; absent or unknown authorization denies | Phase 006 |
+| Sealed/frozen reference artifacts | Mutable rubrics, authorities, canaries, or independence sets let the ruler drift after the move | Governing inputs are immutable for the decision epoch and referenced by content digest | Phase 007 |
+| Versioned replay fingerprints | Unversioned hashes cannot reproduce behavior or track an entity across schema and reducer revisions | Replay identity binds relevant event, schema, reducer, artifact, and policy versions | Phase 006 |
+| Receipts/certificates | Logs do not provide portable, independently checkable proof of effects or boundary decisions | Each governed phase/mode boundary emits typed proof linked to inputs, events, and replay identity | Phase 007 |
+| Blinded/counterfactual adjudication | Self-scoring and provenance/order leakage can reward identity, style, or evaluator gaming instead of merit | Adjudication separates candidate from judge, masks merit-irrelevant provenance, and tests verdict stability | Phase 007 |
 
 ### Why the primitives are indivisible
 
@@ -111,15 +111,15 @@ one evidence and authority chain; weakening any link recreates the ad-hoc behavi
 - Compatibility and cutover decisions become evidence-bearing transitions rather than deployment folklore.
 
 **Costs and constraints**
-- Phase 003 must co-land the first typed writer with authorization; neither component may ship alone.
+- Phase 006 must co-land the first typed writer with authorization; neither component may ship alone.
 - Schema, reducer, artifact, policy, and fingerprint versions become durable compatibility surfaces requiring upcasters and mixed-version tests.
-- Phase 004 must preserve judge separation and raw evidence, increasing service boundaries and storage compared with direct scoring.
+- Phase 007 must preserve judge separation and raw evidence, increasing service boundaries and storage compared with direct scoring.
 - Receipts and seals add lifecycle, retention, and recovery obligations; they cannot be treated as optional observability.
 - Mode teams lose freedom to create independent canonical stores or scoring authorities, but retain freedom over typed domain schemas and projections.
 
 **Migration consequences**
 - The new spine begins additive, dark, and non-authoritative.
-- Phase 005 must preserve legacy reads while comparing spine projections under shadow parity and rehearsing rollback.
+- Phase 008 must preserve legacy reads while comparing spine projections under shadow parity and rehearsing rollback.
 - Later authority cutover remains per mode and certificate-gated; this ADR does not authorize any cutover.
 - Legacy writers remain until zero-use telemetry and retirement gates pass; historical readers remain as required.
 <!-- /ANCHOR:architecture -->
@@ -137,7 +137,7 @@ one evidence and authority chain; weakening any link recreates the ad-hoc behavi
 - Record each primitive's problem, invariant, and downstream owner.
 - Record alternatives with concrete rejection reasons rather than preference claims.
 - Record positive consequences, costs, compatibility obligations, and migration constraints.
-- Bind phase 003, 004, and 005 to their consumer responsibilities without preselecting their implementation details.
+- Bind phase 006, 004, and 005 to their consumer responsibilities without preselecting their implementation details.
 
 ### Phase 3: Verification
 - Trace every decision claim to at least one controlling source.
@@ -159,7 +159,7 @@ one evidence and authority chain; weakening any link recreates the ad-hoc behavi
 | REQ-005 | Verify receipt/certificate language covers phase and mode boundaries and links to governing evidence |
 | REQ-006 | Verify adjudication requires separation, blinding, counterfactual stability, and raw evidence retention |
 | REQ-007 | Check every named alternative has a concrete rejected failure mode and a corresponding consequence |
-| REQ-008 | Cross-check phase 003, 004, and 005 ownership against `manifest/phase-tree.json` outcomes |
+| REQ-008 | Cross-check phase 006, 004, and 005 ownership against `manifest/phase-tree.json` outcomes |
 | REQ-009 | Compare migration consequences with the manifest `migration_model` field and parent sequencing invariants |
 | REQ-010 | Run a citation-path review for all three controlling source files and section 12 |
 <!-- /ANCHOR:testing -->
@@ -171,8 +171,8 @@ This phase has no predecessor (`depends_on: []`). Its authoritative evidence inp
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`,
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`,
 and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md`
-section 12. Downstream dependencies flow outward: phase 003 consumes ledger/authorization/replay, phase 004 consumes
-seals/receipts/adjudication, and phase 005 must preserve the complete decision through compatibility and rollback.
+section 12. Downstream dependencies flow outward: phase 006 consumes ledger/authorization/replay, phase 007 consumes
+seals/receipts/adjudication, and phase 008 must preserve the complete decision through compatibility and rollback.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

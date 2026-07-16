@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep AI Council resume adapter (013 phase 005)"
+title: "Feature Specification: Deep AI Council resume adapter"
 description: "Plan the Deep AI Council resume adapter for the typed event-ledger migration. The adapter reconstructs interrupted multi-seat deliberations from the sealed ledger through deterministic reducers, maps the continuity ladder to derived runtime state, and makes re-entry idempotent without double-applying, losing, or replaying events."
 trigger_phrases:
   - "Deep AI Council resume adapter"

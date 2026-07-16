@@ -194,8 +194,8 @@
       }
     ],
     "causal_summary": "Plan the guarded migration of eligible in-flight deep-loop state at staged cutover: logically upcast safe rows, fork isolated dark copies, migrate quiescent checkpoints to the ledger, preserve pinned legacy work, and defer every blocked row without corrupting or losing a running loop.",
-    "created_at": "2026-07-15T19:00:45.001Z",
-    "last_save_at": "2026-07-15T19:00:45.001Z",
+    "created_at": "2026-07-16T03:43:57.134Z",
+    "last_save_at": "2026-07-16T03:43:57.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:79c5f06c03fa2ae0c8e3d4effe587b57dbb553f6ea82997abb209050a991c1c4",
+    "source_fingerprint": "sha256:439da92df05789410523507e902c91d13d38300ac0fda6a143c5c6aa0ca63f12",
     "source_doc_hashes": {
-      "spec.md": "28a7cbcd11654091019dc53db298eda528aaabc0d4b74518160408fa4b92aa3d",
-      "plan.md": "befffa45bbfe5921cd88dfa14c96bc995a3d3b77e6e34d76caf514f05b6e46e4",
-      "tasks.md": "b2320a85f5bbe185babe022d274f8ed7e0dd6b8fa2e9b0496f7effc3f3dbfc0e",
-      "checklist.md": "3ab1b291ec418f984fe714f5b34c63000703e532775ef722c138b6664e8d4616"
+      "spec.md": "55f64dbc57d1f07928644b3f693032583228de8677f733e7afbafa1838b7ef22",
+      "plan.md": "052031fa67935bacc393a6b36e5287743a630dcee00877ab586f3a6423d3faf9",
+      "tasks.md": "805446fa1fc4602fd02cedb8b46540e7e9e5db73be68b01a434cfe065ec5f06e",
+      "checklist.md": "81f7c6440bc5c5fd8d70b90378da446b9ab1ecff4b7a337c6bcc7ece98f6de71"
     },
     "last_active_child_id": null,
     "last_active_at": null

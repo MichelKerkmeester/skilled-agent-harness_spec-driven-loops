@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Versioned Event Envelope (003 phase 001)"
+title: "Feature Specification: Versioned Event Envelope"
 description: "Define the canonical wire envelope, type/version registry, per-type required-field contracts, and deterministic read-time upcaster entry points that every future deep-loop ledger event uses while the new substrate remains additive, dark, and non-authoritative."
 trigger_phrases:
   - "versioned event envelope"
@@ -40,7 +40,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | First child of the phase-003 transition-authorized ledger core |
+| **Origin** | First child of the phase-006 transition-authorized ledger core |
 | **Dependencies** | None; `depends_on: []` in the approved phase definition |
 <!-- /ANCHOR:metadata -->
 
@@ -49,7 +49,7 @@ _memory:
 
 The parent program requires one typed append-only event spine to serve every deep-loop mode, but the shipped runtime currently persists several producer-native JSONL shapes. The observability writer emits `schema_version`, `event`, and `status`; council round state creates a second `schema_version` envelope with its own timestamps; executor audit writes `type` plus `event`; and the fan-out status ledger accepts an arbitrary serializable entry (`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs`, `.opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs`, `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs`). The generic repair helper safely appends and repairs JSONL records, but it does not impose a domain schema (`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts`). These are valid shipped contracts, not yet one replayable event protocol.
 
-The phase-001 transition policy fixes the compatibility direction before any typed writer exists: every stored domain event has a stable namespaced discriminator and positive per-type version; current writers emit only the latest registered version; current readers upcast supported historical versions through pure adjacent transforms; source bytes and immutable identity remain available; and an unknown type, future version, missing link, lossy transform, or ambiguous default fails closed (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`). The program parent additionally requires the phase-003 substrate to land additive, dark, and non-authoritative, with legacy behavior remaining authoritative (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`).
+The phase-004 transition policy fixes the compatibility direction before any typed writer exists: every stored domain event has a stable namespaced discriminator and positive per-type version; current writers emit only the latest registered version; current readers upcast supported historical versions through pure adjacent transforms; source bytes and immutable identity remain available; and an unknown type, future version, missing link, lossy transform, or ambiguous default fails closed (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`). The program parent additionally requires the phase-006 substrate to land additive, dark, and non-authoritative, with legacy behavior remaining authoritative (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`).
 
 This phase plans the common outer record, the registry that binds each event type/version to a required payload contract, and the read boundary where an upcaster chain produces the current in-memory shape. It does not append records, rewrite legacy JSONL, move authority, or define every mode payload. The typed ledger successor consumes this contract rather than inventing another envelope.
 <!-- /ANCHOR:problem -->
@@ -68,7 +68,7 @@ This phase plans the common outer record, the registry that binds each event typ
 
 ### Out of Scope
 - The append-only storage engine, locking, fsync, sequence allocation, duplicate suppression, and append authorization; sibling `002-typed-append-only-ledger` owns the persistence boundary and consumes this envelope.
-- Transition-authorization policy or gateway behavior. The phase-001 policy is normative; another phase-003 child implements the gateway that must co-land with the first writer.
+- Transition-authorization policy or gateway behavior. The phase-004 policy is normative; another phase-006 child implements the gateway that must co-land with the first writer.
 - Replay fingerprint calculation, projections, reducers, compatibility adapters, dual reads, legacy projections, shadow parity, in-flight migration, authority cutover, or legacy-writer retirement.
 - Rewriting historical JSONL rows or wrapping them in place. Legacy records stay byte-identical and authoritative until the later compatibility and cutover phases govern them.
 - Defining all mode-specific payload schemas. Later shared-mode and per-mode phases register their types against this contract.
@@ -138,11 +138,11 @@ The stored row is parsed once into a strict historical envelope. Registry resolu
 - **Registry nondeterminism changes replay** — discovery order or duplicate registrations could alter the chosen chain. Mitigation: exact keys, deterministic ordering, duplicate/cycle/gap rejection, and a registry/upcaster-chain identity included in replay inputs.
 - **Envelope becomes a second authority path** — a convenient writer could bypass the transition gate. Mitigation: this child exposes validation and serialization only; sibling ledger append requires a co-landed authorization decision and legacy remains authoritative.
 - **Legacy format churn** — generalizing current writers could accidentally rewrite shipped state. Mitigation: representative fixtures are copies of shapes, not migrations; `.opencode/skills/system-deep-loop/runtime/` writers remain unchanged in this child.
-- **Dependencies**: no sibling predecessor is declared. Normative inputs are the phase-001 transition/versioning policy, the program parent invariants, and `manifest/phase-tree.json`; runtime consumers begin with successor `002-typed-append-only-ledger`.
+- **Dependencies**: no sibling predecessor is declared. Normative inputs are the phase-004 transition/versioning policy, the program parent invariants, and `manifest/phase-tree.json`; runtime consumers begin with successor `002-typed-append-only-ledger`.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking. Execution must freeze the exact namespace grammar and error-code vocabulary before the first registry entry is merged; either may be made stricter later, but persisted discriminators, version meaning, immutable field semantics, and the adjacent upcaster rule cannot be weakened without a governed amendment to the phase-001 transition policy.
+None blocking. Execution must freeze the exact namespace grammar and error-code vocabulary before the first registry entry is merged; either may be made stricter later, but persisted discriminators, version meaning, immutable field semantics, and the adjacent upcaster rule cannot be weakened without a governed amendment to the phase-004 transition policy.
 <!-- /ANCHOR:questions -->

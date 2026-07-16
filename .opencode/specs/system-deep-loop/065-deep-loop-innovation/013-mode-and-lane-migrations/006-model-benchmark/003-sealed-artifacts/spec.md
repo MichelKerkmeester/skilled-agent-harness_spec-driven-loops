@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Model Benchmark - Sealed Reference Artifacts"
-description: "Plan the sealed reference artifacts for the model-benchmark variant: multi-model run manifests, resolved model cells, raw observations, workload context, and a reproducible scoring matrix over the shared deep-improvement-common services. The phase consumes the common phase-003 sealing primitives and adds only model-benchmark-specific run and scoring logic."
+description: "Plan the sealed reference artifacts for the model-benchmark variant: multi-model run manifests, resolved model cells, raw observations, workload context, and a reproducible scoring matrix over the shared deep-improvement-common services. The phase consumes the common phase-006 sealing primitives and adds only model-benchmark-specific run and scoring logic."
 trigger_phrases:
   - "model benchmark sealed reference artifacts"
   - "model benchmark scoring matrix sealing"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (model-benchmark mode) |
-| **Origin** | Phase 003 of the model-benchmark migration under phase 013 |
+| **Origin** | Phase 006 of the model-benchmark migration under phase 013 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -53,7 +53,7 @@ The research inputs require a stronger evidence boundary. Model and execution pa
 
 ### Purpose
 
-Define how Model Benchmark seals its reference artifacts over the typed event-ledger substrate. The phase consumes the phase-003 sealing primitives published by `004-deep-improvement-common/003-sealed-artifacts`; it does not invent a second digest, signature, manifest, storage, or verification scheme. It plans content-addressed, seal-on-write, tamper-evident references for the resolved benchmark recipe, multi-model run matrix, per-cell inputs and outputs, scoring observations, paired statistical evidence, contamination/workload lineage, and derived selection views. The model-benchmark variant adds only its run and scoring logic on top of the deep-improvement-common evaluator, canary, and promotion services. The per-mode 010 migrations land after phase 009 freezes the shared contracts and emits the write-set conflict graph.
+Define how Model Benchmark seals its reference artifacts over the typed event-ledger substrate. The phase consumes the phase-006 sealing primitives published by `004-deep-improvement-common/003-sealed-artifacts`; it does not invent a second digest, signature, manifest, storage, or verification scheme. It plans content-addressed, seal-on-write, tamper-evident references for the resolved benchmark recipe, multi-model run matrix, per-cell inputs and outputs, scoring observations, paired statistical evidence, contamination/workload lineage, and derived selection views. The model-benchmark variant adds only its run and scoring logic on top of the deep-improvement-common evaluator, canary, and promotion services. The per-mode 010 migrations land after phase 012 freezes the shared contracts and emits the write-set conflict graph.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -61,7 +61,7 @@ Define how Model Benchmark seals its reference artifacts over the typed event-le
 
 ### In Scope
 
-- A model-benchmark adapter over the common phase-003 sealing primitives, including canonical serialization, content-addressed digest calculation, dependency closure, seal-on-write, immutable references, and tamper-evident reads.
+- A model-benchmark adapter over the common phase-006 sealing primitives, including canonical serialization, content-addressed digest calculation, dependency closure, seal-on-write, immutable references, and tamper-evident reads.
 - A sealed benchmark recipe and run manifest containing profile identity and version, mode, model descriptors, executor and provider identities, framework or prompt references, fixture and task-family manifests, sample and seed policy, matrix ordering, scoring configuration, correctness gates, reporting group, and deployment workload profile.
 - Sealed model-cell inputs containing the frozen workflow prefix and environment snapshot when applicable, resolved model/build/variant, executor capabilities and permissions, framework/template digest, fixture or task digest, seed, sample identity, prompt visibility policy, and all prerequisite artifact references.
 - Sealed raw cell outputs and observations retaining response or trajectory digests, tool and action traces, per-item outcomes, score vectors, judge observations, usage, cost, latency, tail-latency and SLO values, errors, abstentions, retries, and integrity status before reduction.
@@ -75,7 +75,7 @@ Define how Model Benchmark seals its reference artifacts over the typed event-le
 
 ### Out of Scope
 
-- Defining a new hash, signature, chain, manifest, storage, or verification algorithm outside the phase-003 sealing primitives.
+- Defining a new hash, signature, chain, manifest, storage, or verification algorithm outside the phase-006 sealing primitives.
 - Defining the typed event envelope, transition authorization, append-only ledger, reducer fold, common projection schema, or replay fingerprint policy owned by the shared ledger and reducer phases.
 - Re-implementing deep-improvement-common evaluator, canary, scoring, calibration, promotion, effect recovery, or veto services. This phase supplies model-benchmark inputs and scoring artifacts through their shared interfaces.
 - Implementing final certificates, transition receipts, or receipt-chain materialization owned by `004-certificates-and-receipts`; this phase provides the sealed references they bind.
@@ -89,7 +89,7 @@ Define how Model Benchmark seals its reference artifacts over the typed event-le
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Model Benchmark uses one shared sealing scheme | Every model-benchmark reference routes through the phase-003 sealing adapter; no local digest, signature, manifest, storage, or read-verification path exists |
+| REQ-001 | Model Benchmark uses one shared sealing scheme | Every model-benchmark reference routes through the phase-006 sealing adapter; no local digest, signature, manifest, storage, or read-verification path exists |
 | REQ-002 | Benchmark identity is content-addressed and dependency-closed | The sealed recipe digest covers canonical profile, matrix axes and order, model/executor descriptors, fixtures, scoring, visibility, sampling, workload, and ordered dependency digests; changing any dependency produces a new identity |
 | REQ-003 | Run and cell writes are atomic and immutable | A writer validates, canonicalizes, seals, publishes, reads back, and authorizes the run or cell reference only after verification; interrupted writes are unusable and published bytes cannot be overwritten |
 | REQ-004 | Reads are tamper-evident and fail closed | Byte, digest, schema, dependency, lifecycle, matrix-membership, epoch, visibility, freshness, contamination, and workload mismatches return typed refusal rather than stale or guessed evidence |
@@ -106,7 +106,7 @@ Define how Model Benchmark seals its reference artifacts over the typed event-le
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: One phase-003-backed adapter produces deterministic content-addressed identities for benchmark recipes, runs, cells, observations, scoring matrices, and operational evidence.
+- **SC-001**: One phase-006-backed adapter produces deterministic content-addressed identities for benchmark recipes, runs, cells, observations, scoring matrices, and operational evidence.
 - **SC-002**: Replaying a sealed multi-model matrix with the same model/executor, fixture, seed, workload, and scoring dependencies reproduces the same raw references and derived scoring inputs.
 - **SC-003**: Common paired anchors, adaptive diagnostic tails, nested item-family uncertainty, and matrix crossings remain explicit and cannot be conflated by a leaderboard reducer.
 - **SC-004**: Tampered bytes, missing dependencies, hidden-visibility violations, stale or contaminated cases, unsupported schemas, calibration gaps, incomplete usage, and workload mismatches fail closed.
@@ -117,7 +117,7 @@ Define how Model Benchmark seals its reference artifacts over the typed event-le
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Second sealing scheme** - A model-local hash or report manifest could make the same evaluator or trial incomparable with the deep-improvement-common variants. Mitigation: one phase-003 adapter, one canonicalization path, and a contract test that rejects alternate seal metadata.
+- **Second sealing scheme** - A model-local hash or report manifest could make the same evaluator or trial incomparable with the deep-improvement-common variants. Mitigation: one phase-006 adapter, one canonicalization path, and a contract test that rejects alternate seal metadata.
 - **Incomplete matrix identity** - Omitting executor build, prompt framework, workload, fixture version, seed, or visibility can make a model comparison appear reproducible while measuring a different treatment. Mitigation: require a dependency-closed run recipe and resolved cell manifest before dispatch.
 - **Paired-design breakage** - Adaptive case selection can remove common anchors or flatten related item families, overstating certainty. Mitigation: seal anchor membership, adaptive selection policy, family quotas, resampling unit, and confirmatory status in the matrix.
 - **Judge and rubric drift** - One global calibration or a collapsed multi-axis rubric can reverse a model ranking with false confidence. Mitigation: retain candidate/task-cluster calibration, axis perturbation evidence, oracle uncertainty, and invalid-score vetoes as sealed inputs.
@@ -125,14 +125,14 @@ Define how Model Benchmark seals its reference artifacts over the typed event-le
 - **Operational evidence loss** - Current sweep rows can leave token and cost fields null while the reporter ranks efficiency by word count. Mitigation: preserve nullable provenance honestly, require provider parsers or explicit missing evidence, and prevent cost-aware selection from treating fabricated values as measured cost.
 - **Shared-service drift** - Model Benchmark may fork evaluator, canary, promotion, or veto behavior while keeping similar field names. Mitigation: run common fixtures through the model adapter and compare shared fields, failure states, and service decisions before the later fan-out.
 - **Large or partial matrices** - Multi-model runs can fail or finish unevenly, making a partial leaderboard look complete. Mitigation: seal cell admission and exclusion reasons, require an explicit completeness state, and refuse winner claims when required anchors or coverage quotas are absent.
-- **Dependencies**: `004-deep-improvement-common/002-reducers-and-projections` for artifact indexes and service status; `004-deep-improvement-common/003-sealed-artifacts` for all sealing behavior; `004-deep-improvement-common/004-certificates-and-receipts` for successor binding; phase 012 shared mode contracts and write-set conflict graph; phase 009 contract freeze before later 010 migrations; existing model-benchmark scripts and fixtures; and the spec-kit validator.
+- **Dependencies**: `004-deep-improvement-common/002-reducers-and-projections` for artifact indexes and service status; `004-deep-improvement-common/003-sealed-artifacts` for all sealing behavior; `004-deep-improvement-common/004-certificates-and-receipts` for successor binding; phase 012 shared mode contracts and write-set conflict graph; phase 012 contract freeze before later 010 migrations; existing model-benchmark scripts and fixtures; and the spec-kit validator.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 Deferred to execution against the frozen common contracts:
-- What exact canonical ordering and length-delimited serialization does the phase-003 adapter require for models, matrix cells, task families, samples, and nested workload profiles?
+- What exact canonical ordering and length-delimited serialization does the phase-006 adapter require for models, matrix cells, task families, samples, and nested workload profiles?
 - Which executor build, provider capability, permission, network, and runtime fields are semantic inputs to model identity, and which remain external audit fields?
 - Which benchmark cases are common confirmatory anchors, which are adaptive diagnostics, and what family-coverage and sequential-inference policy governs their boundary?
 - Which judge calibration and oracle slices are available per candidate, task cluster, rubric axis, and protocol, and which uncertainty state blocks a ranking?

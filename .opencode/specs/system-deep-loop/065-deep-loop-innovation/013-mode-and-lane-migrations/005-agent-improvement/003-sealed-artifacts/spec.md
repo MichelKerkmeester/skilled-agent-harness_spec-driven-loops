@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (agent-improvement mode) |
-| **Origin** | Phase 003 of the agent-improvement migration under phase 013 |
+| **Origin** | Phase 006 of the agent-improvement migration under phase 013 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -58,7 +58,7 @@ The parent program requires one typed append-only spine with sealed reference ar
 certificates, and staged shadow/canary/ship behavior. The deep-improvement-common workstream already owns the evaluator,
 canary, and promotion services and the shared sealed-artifact contract. This phase therefore plans the agent-improvement
 variant's artifact bindings on top of those services: content-addressed AgentIR and change inputs, proposal and experiment
-outputs, normalized trajectories, behavior-family evidence, and redacted views. It consumes the shared phase-003 sealing
+outputs, normalized trajectories, behavior-family evidence, and redacted views. It consumes the shared phase-006 sealing
 primitives and does not invent a second sealing scheme. This is planning only; certificate and receipt materialization belongs
 to the successor phase.
 
@@ -74,7 +74,7 @@ this phase, not new evaluator or promotion implementations.
 
 ### In Scope
 
-- One agent-improvement adapter over the shared phase-003 sealing primitives and the deep-improvement-common artifact/read contract; no local digest, signature, manifest, storage, or verification protocol.
+- One agent-improvement adapter over the shared phase-006 sealing primitives and the deep-improvement-common artifact/read contract; no local digest, signature, manifest, storage, or verification protocol.
 - A sealed base-agent bundle containing canonical AgentIR, inheritance graph, capability and authority declarations, executor/tool configuration, and the parent agent artifact digest.
 - A sealed change-contract bundle containing changed component IDs, typed patch operations, inherited-clause obligations, intended behavior, preserved behavior, behavioral-semver impact, and the proposal's parent lineage.
 - A sealed improver-lane reference containing improver model/build, prompt or policy, training and development corpus digests, frozen optimizer version, mutation operator identity, and visibility/query policy.
@@ -86,7 +86,7 @@ this phase, not new evaluator or promotion implementations.
 
 ### Out of Scope
 
-- Defining or implementing a second digest, signature, chain, canonicalization, storage, seal-on-write, or read-verification scheme outside the shared phase-003 primitives.
+- Defining or implementing a second digest, signature, chain, canonicalization, storage, seal-on-write, or read-verification scheme outside the shared phase-006 primitives.
 - Re-implementing the deep-improvement-common evaluator, canary, scoring, promotion, redaction, or shared artifact lifecycle services; this phase supplies agent-specific bindings and fields only.
 - Defining the typed event envelope, append-only ledger, reducers, projections, or replay-fingerprint policy owned by the preceding sibling phases.
 - Implementing the agent typed-ledger schema, reducer fold, resume adapter, shadow-parity harness, rollback switch, or independent mode gate owned by the other agent-improvement child phases.
@@ -100,7 +100,7 @@ this phase, not new evaluator or promotion implementations.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Agent-improvement artifacts use the shared sealing primitives | Every declared artifact kind routes through the deep-improvement-common adapter over the phase-003 primitive; no variant-owned digest or verification path exists |
+| REQ-001 | Agent-improvement artifacts use the shared sealing primitives | Every declared artifact kind routes through the deep-improvement-common adapter over the phase-006 primitive; no variant-owned digest or verification path exists |
 | REQ-002 | Agent inputs are content-addressed and dependency-closed | Base AgentIR, inheritance graph, capability policy, executor/tool configuration, and parent lineage resolve to one digest closure; any covered change produces a new identity |
 | REQ-003 | A change contract makes proposal scope reproducible | Changed component IDs, typed patch operations, inherited clauses, intended and preserved behavior, operator lineage, and behavioral-semver impact are sealed before proposal generation |
 | REQ-004 | The improver lane is frozen per experiment | Improver build, optimizer version, training/dev/sealed corpus digests, mutation policy, visibility policy, and query budget are bound to every proposal lineage and cannot change in place |
@@ -134,7 +134,7 @@ this phase, not new evaluator or promotion implementations.
 - **Trajectory reduction erases causality** - A scalar score can hide first-divergence, side-effect, authority, or negative-capability failures. Mitigation: seal normalized raw trajectories and behavior-family vectors before common reducers run.
 - **Executor-specific wins** - An agent may improve only under the discovery executor or verifier. Mitigation: bind executor/environment digests and require non-discovery executor references in the sealed promotion input.
 - **Cross-epoch comparison** - Candidate and baseline evidence may use different evaluator, canary, fixture, or normalization material. Mitigation: require one common evaluator epoch and explicit exposure/retirement state for every comparison.
-- **Dependencies**: the shared phase-003 sealing primitives; `002-reducers-and-projections` for artifact references and service status; `004-deep-improvement-common/003-sealed-artifacts` for the common adapter and service contract; phase 012 shared mode contracts and write-set conflict graph; `004-certificates-and-receipts` for successor binding; and the spec-kit validator.
+- **Dependencies**: the shared phase-006 sealing primitives; `002-reducers-and-projections` for artifact references and service status; `004-deep-improvement-common/003-sealed-artifacts` for the common adapter and service contract; phase 012 shared mode contracts and write-set conflict graph; `004-certificates-and-receipts` for successor binding; and the spec-kit validator.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

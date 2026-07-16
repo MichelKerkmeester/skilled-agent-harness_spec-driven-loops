@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Review - Reducers & Projections (013 phase 002)"
+title: "Implementation Plan: Deep Review - Reducers & Projections"
 description: "Implementation Plan for the Deep Review reducers and projections phase: define a pure typed-event fold, three live projection families, derived finding impact, replay failure behavior, and shadow parity against the legacy loop."
 trigger_phrases:
   - "Deep Review reducers and projections implementation plan"
@@ -30,12 +30,12 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / deep-review mode migration (013 phase 002) |
+| **Surface** | system-deep-loop / deep-review mode migration |
 | **Change class** | Pure reducer and projection design over typed ledger events |
 | **Execution** | Contract-first planning; implementation remains additive, dark, and non-authoritative |
 
 ### Overview
-The phase will specify one deterministic fold over the typed Deep Review event stream and three live projections: iteration/convergence state, an immutable artifact index, and per-mode status. A separate derived presentation projection will expose P0/P1/P2 while retaining factored evidence and lifecycle as source data. The fold will reuse the phase-009 shared review-loop contract also consumed by Deep Alignment mode 008, and it will prove shadow parity before any authority can move.
+The phase will specify one deterministic fold over the typed Deep Review event stream and three live projections: iteration/convergence state, an immutable artifact index, and per-mode status. A separate derived presentation projection will expose P0/P1/P2 while retaining factored evidence and lifecycle as source data. The fold will reuse the phase-012 shared review-loop contract also consumed by Deep Alignment mode 008, and it will prove shadow parity before any authority can move.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -43,7 +43,7 @@ The phase will specify one deterministic fold over the typed Deep Review event s
 
 ### Definition of Ready
 - [ ] The `001-typed-ledger-schema` event contract and version policy are available as read-only inputs.
-- [ ] The phase-009 shared review-loop contract and the Deep Alignment reuse boundary are identified.
+- [ ] The phase-012 shared review-loop contract and the Deep Alignment reuse boundary are identified.
 - [ ] The 013 write-set conflict graph is available for projection ownership and persistence boundaries.
 - [ ] The legacy Deep Review state, replay fixtures, and protected-vs-known-defect decisions are pinned for shadow comparison.
 - [ ] The reducer input, initial state, output state, error result, and projection fingerprint are specified without side effects.
@@ -74,7 +74,7 @@ The phase will specify one deterministic fold over the typed Deep Review event s
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Read the predecessor event schema, phase-009 review-loop contract, Deep Alignment mode-008 boundary, 013 conflict graph, and legacy Deep Review replay fixtures.
+- Read the predecessor event schema, phase-012 review-loop contract, Deep Alignment mode-008 boundary, 013 conflict graph, and legacy Deep Review replay fixtures.
 - Freeze the reducer input/output vocabulary and record which fields are source evidence, derived presentation, compatibility metadata, or projection health.
 - Confirm the planning boundary: no new event schema, sealed artifact writer, authority cutover, or sibling concern is introduced here.
 
@@ -113,7 +113,7 @@ The phase will specify one deterministic fold over the typed Deep Review event s
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The plan consumes the typed event schema from `001-typed-ledger-schema`, the shared review-loop contract frozen in phase 009, the 013 write-set conflict graph, and the legacy Deep Review replay corpus. `003-sealed-artifacts` is a downstream adjacency boundary for sealing and certification, not a dependency for defining the index. Deep Alignment mode 008 is a shared-contract consumer and parity reference, not a separate implementation target in this phase.
+The plan consumes the typed event schema from `001-typed-ledger-schema`, the shared review-loop contract frozen in phase 012, the 013 write-set conflict graph, and the legacy Deep Review replay corpus. `003-sealed-artifacts` is a downstream adjacency boundary for sealing and certification, not a dependency for defining the index. Deep Alignment mode 008 is a shared-contract consumer and parity reference, not a separate implementation target in this phase.
 
 The migration remains additive and dark. Legacy projections remain authoritative until the shared adapters, shadow parity, in-flight classification, and later staged cutover phases authorize a change.
 <!-- /ANCHOR:dependencies -->

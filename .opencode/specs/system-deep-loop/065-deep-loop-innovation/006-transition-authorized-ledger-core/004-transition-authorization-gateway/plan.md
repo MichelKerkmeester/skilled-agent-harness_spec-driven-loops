@@ -30,30 +30,30 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime (phase 003 child 004) |
+| **Surface** | system-deep-loop runtime |
 | **Change class** | Security-sensitive state-transition control and audit |
 | **Execution** | Co-landed dark unit with the versioned envelope, ledger, and replay fingerprints |
 
 ### Overview
-Implement one fail-closed checkpoint between validated transition requests and the typed ledger's domain append. The gateway canonicalizes the authorization inputs, loads an exact immutable policy version, evaluates deterministic rules, and durably emits a typed allow or deny event to the ledger's non-domain authorization-audit stream. Only an earlier, exact, single-use allow decision can unlock the requested domain append. The whole path stays non-authoritative for runtime behavior until phase 011, even though it is authoritative over what may enter the dark ledger.
+Implement one fail-closed checkpoint between validated transition requests and the typed ledger's domain append. The gateway canonicalizes the authorization inputs, loads an exact immutable policy version, evaluates deterministic rules, and durably emits a typed allow or deny event to the ledger's non-domain authorization-audit stream. Only an earlier, exact, single-use allow decision can unlock the requested domain append. The whole path stays non-authoritative for runtime behavior until phase 014, even though it is authoritative over what may enter the dark ledger.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-001 spine ADR and transition/versioning policy are ratified and their authorization fields are frozen
+- [ ] The phase-004 spine ADR and transition/versioning policy are ratified and their authorization fields are frozen
 - [ ] The versioned envelope exposes canonical request bytes and stable event/type/version identities
 - [ ] The ledger exposes a proof-required domain append and a gateway-only non-domain decision-event emitter
 - [ ] Replay fingerprints can incorporate decision, policy, prior-head, authority-epoch, and target-event linkage
-- [ ] The dark/legacy boundary is explicit: gateway outcomes cannot affect legacy mode behavior before phase 011
+- [ ] The dark/legacy boundary is explicit: gateway outcomes cannot affect legacy mode behavior before phase 014
 
 ### Definition of Done
 - [ ] Every typed domain append is preceded by one durable, exact, valid allow event
 - [ ] Allow and deny verdicts are both typed first-class ledger events with complete bounded audit fields
 - [ ] Default-deny, proof-linkage, replay/audit, partial-failure, and direct-bypass tests pass
 - [ ] A dark gateway denial or failure leaves the authoritative legacy result unchanged and emits observable shadow evidence
-- [ ] The phase-003 co-landing gate proves no typed writer exists without the gateway
+- [ ] The phase-006 co-landing gate proves no typed writer exists without the gateway
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -83,14 +83,14 @@ Implement one fail-closed checkpoint between validated transition requests and t
 - The ledger owns sequence allocation and revalidates allow linkage under its exclusive append lock. A pre-lock allow against a changed head or epoch becomes stale and cannot append.
 - Audit-stream progress and domain-stream progress are distinct. A denial or unapplied allow may advance audit order but never domain sequence or projection state.
 - Replay verifies stored verdict/linkage and may deterministically re-evaluate against the registered historical policy. Divergence is reported as evidence; history is never rewritten.
-- Dark integration observes legacy emission boundaries, but gateway errors change only the typed shadow record. Legacy control flow, persistence, outputs, and effects remain authoritative until phase 011.
+- Dark integration observes legacy emission boundaries, but gateway errors change only the typed shadow record. Legacy control flow, persistence, outputs, and effects remain authoritative until phase 014.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Freeze the authorization field/vocabulary matrix against the phase-001 ADR and transition policy.
+- Freeze the authorization field/vocabulary matrix against the phase-004 ADR and transition policy.
 - Confirm the envelope, ledger, and replay-fingerprint sibling interfaces compose without a direct append path.
 - Inventory every dark state-transition emission boundary that will call the gateway.
 - Define typed reason codes and fixtures for allow, policy deny, malformed input, unknown policy, stale head/epoch, evaluator failure, decision-storage failure, and proof mismatch.
@@ -111,8 +111,8 @@ Implement one fail-closed checkpoint between validated transition requests and t
 - Prove denial advances no domain sequence, projection, idempotency success, receipt, or side effect.
 - Prove a decision-audit append failure prevents domain append and a crash after allow remains visibly unapplied.
 - Prove replay reproduces verdicts and detects policy, request, head, epoch, or linkage drift without rewriting history.
-- Prove dark denial/failure leaves every authoritative legacy output and effect unchanged through phase 010.
-- Run the phase-003 parent co-landing gate across envelope, ledger, fingerprint, and authorization fixtures.
+- Prove dark denial/failure leaves every authoritative legacy output and effect unchanged through phase 013.
+- Run the phase-006 parent co-landing gate across envelope, ledger, fingerprint, and authorization fixtures.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -134,11 +134,11 @@ Implement one fail-closed checkpoint between validated transition requests and t
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This child has `depends_on: []`; adjacency to `003-replay-fingerprints` is navigation only. Normative inputs are the program parent `../../spec.md`, `../../manifest/phase-tree.json`, the phase-001 spine ADR, and the phase-001 transition/versioning/rollback policy. Implementation composes with sibling `001-versioned-event-envelope`, `002-typed-append-only-ledger`, and `003-replay-fingerprints` at the phase-003 parent gate. Phase 005 later supplies shadow-parity and compatibility evidence; phase 011 alone changes runtime authority.
+This child has `depends_on: []`; adjacency to `003-replay-fingerprints` is navigation only. Normative inputs are the program parent `../../spec.md`, `../../manifest/phase-tree.json`, the phase-004 spine ADR, and the phase-004 transition/versioning/rollback policy. Implementation composes with sibling `001-versioned-event-envelope`, `002-typed-append-only-ledger`, and `003-replay-fingerprints` at the phase-006 parent gate. Phase 008 later supplies shadow-parity and compatibility evidence; phase 014 alone changes runtime authority.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Before phase 011, rollback disables the dark transition-boundary adapter and leaves authoritative legacy writers untouched. Authorization decision and domain events already recorded remain immutable audit evidence; rollback never truncates, rewrites, or deletes them. If the gateway, decision schema, or proof contract is invalid, stop new dark appends, preserve the verified ledger head and fixtures, revert the bounded implementation commits, and reopen the phase-003 co-landing gate. No authority rollback is performed here because this phase is non-authoritative.
+Before phase 014, rollback disables the dark transition-boundary adapter and leaves authoritative legacy writers untouched. Authorization decision and domain events already recorded remain immutable audit evidence; rollback never truncates, rewrites, or deletes them. If the gateway, decision schema, or proof contract is invalid, stop new dark appends, preserve the verified ledger head and fixtures, revert the bounded implementation commits, and reopen the phase-006 co-landing gate. No authority rollback is performed here because this phase is non-authoritative.
 <!-- /ANCHOR:rollback -->

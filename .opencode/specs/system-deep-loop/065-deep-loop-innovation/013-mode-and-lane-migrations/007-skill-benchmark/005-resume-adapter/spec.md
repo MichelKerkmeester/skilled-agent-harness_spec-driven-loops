@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Skill Benchmark - Resume Adapter (013 mode migration, 007 child 005)"
+title: "Feature Specification: Skill Benchmark - Resume Adapter"
 description: "Plan the Skill Benchmark resume adapter over the sealed typed event ledger. The adapter rebuilds scenario-cell, skill-exposure, trajectory, and scoring state through reducers, maps the continuity ladder, and defines idempotent re-entry without double-apply, lost events, or unsafe replay. It consumes deep-improvement-common services and adds only Skill Benchmark scenario and scoring logic."
 trigger_phrases:
   - "Skill Benchmark resume adapter"
@@ -69,7 +69,7 @@ an explicit continuity ladder, and produces idempotent re-entry decisions. It bu
 mode 004 and adds only Skill Benchmark scenario-cell and scoring logic; it does not re-implement shared evaluator, canary,
 promotion, receipt, budget, lock, continuity, or effect-recovery services.
 
-The phase is planning only. The per-mode 010 migration lands after phase 009 freezes the shared contracts and emits the
+The phase is planning only. The per-mode 010 migration lands after phase 012 freezes the shared contracts and emits the
 write-set conflict graph. The six sibling concerns and the mode gate integrate the rest of Skill Benchmark.
 <!-- /ANCHOR:problem -->
 
@@ -104,7 +104,7 @@ write-set conflict graph. The six sibling concerns and the mode gate integrate t
 - Creating or sealing artifacts, issuing or expiring the Skill Contribution Certificate, shadow-parity instrumentation, or the
   independent rollback and mode gate; those belong to the adjacent Skill Benchmark concerns, including predecessor
   `004-certificates-and-receipts` and successor `006-shadow-parity`.
-- Authority cutover, legacy-writer retirement, in-flight state migration, or phase-010 write-set execution.
+- Authority cutover, legacy-writer retirement, in-flight state migration, or phase-013 write-set execution.
 - Calling executors, reading mutable skill directories or benchmark files, regenerating treatment assignments, rerunning scoring,
   or using current configuration as evidence during ledger reconstruction.
 - Adding benchmark treatments or scenario content beyond the approved Skill Benchmark contract, or widening this child into the
@@ -127,7 +127,7 @@ write-set conflict graph. The six sibling concerns and the mode gate integrate t
 | REQ-008 | Skill-specific scoring state is restored without score laundering | Paired treatment identity, availability/invocation/outcome mediation, trajectory and constraint coverage, raw scores, dynamic gold, validity, contamination, negative transfer, usage, latency, and uncertainty remain visible after resume |
 | REQ-009 | Shared-service authority remains single-source | The adapter references mode-004 evaluator, canary, promotion, receipt, budget, lock, continuity, compatibility, and effect-recovery decisions and cannot clear a shared veto or emit shared authority |
 | REQ-010 | The handoff supports later shadow parity and mode integration | The resume plan exposes deterministic source and output fingerprints, cell decisions, excluded reasons, and shared receipt references required by `006-shadow-parity` and the later mode gate |
-| REQ-011 | Dark-mode boundaries remain intact | Resume and scoring projections affect only the typed shadow path before phase 014; legacy state, live control flow, and user-visible authority remain unchanged |
+| REQ-011 | Dark-mode boundaries remain intact | Resume and scoring projections affect only the typed shadow path before phase 017; legacy state, live control flow, and user-visible authority remain unchanged |
 <!-- /ANCHOR:requirements -->
 
 ### Continuity-ladder mapping
@@ -196,9 +196,9 @@ write-set conflict graph. The six sibling concerns and the mode gate integrate t
 - **Shared-service fork** - A Skill Benchmark adapter could copy evaluator, canary, promotion, or receipt semantics. Mitigation:
   keep mode-004 ownership explicit and test that local projections cannot clear common vetoes or write shared state.
 - **Authority leakage** - A successful shadow resume or score may alter legacy execution before cutover. Mitigation: keep all
-  decisions non-authoritative and route any authority transition to phase 014.
-- **Dependencies**: the phase-003 transition-authorized ledger; phase-009 shared event contracts; Skill Benchmark
-  `001-typed-ledger-schema` and `002-reducers-and-projections`; deep-improvement-common mode-004 services; phase-012 shared
+  decisions non-authoritative and route any authority transition to phase 017.
+- **Dependencies**: the phase-006 transition-authorized ledger; phase-012 shared event contracts; Skill Benchmark
+  `001-typed-ledger-schema` and `002-reducers-and-projections`; deep-improvement-common mode-004 services; phase-015 shared
   mode contracts and write-set conflict graph; predecessor `004-certificates-and-receipts`; successor `006-shadow-parity`; and
   the spec-kit validator. These are contract inputs for planning, not a hard runtime dependency implied by sibling adjacency.
 <!-- /ANCHOR:risks -->

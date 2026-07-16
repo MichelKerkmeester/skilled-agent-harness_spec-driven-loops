@@ -13,14 +13,14 @@
     "trigger_phrases": [
       "cross-mode closures",
       "shared deep-loop mode closures",
-      "phase 009 closure modules",
+      "phase 012 closure modules",
       "deep-loop shared behavior hoisting",
       "cross-mode closures implementation plan",
       "deep-loop shared closure plan",
-      "phase 009 closure implementation",
+      "phase 012 closure implementation",
       "cross-mode closures tasks",
       "deep-loop shared closure tasks",
-      "phase 009 closure fixtures",
+      "phase 012 closure fixtures",
       "cross-mode closures checklist",
       "deep-loop closure verification"
     ],
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Hoist recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures so all phase-010 mode migrations share one implementation while retaining explicit mode-owned policies and state reducers.",
-    "created_at": "2026-07-15T19:00:43.850Z",
-    "last_save_at": "2026-07-15T19:00:43.850Z",
+    "causal_summary": "Hoist recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures so all phase-013 mode migrations share one implementation while retaining explicit mode-owned policies and state reducers.",
+    "created_at": "2026-07-16T03:43:54.270Z",
+    "last_save_at": "2026-07-16T03:43:54.270Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:cfce8a6993f5410870524c5210ba8ce00ef0b94188f5bc8d7e23a71ed32bb7d2",
+    "source_fingerprint": "sha256:1782f0ceb125f60832cf58f3769cc3f36b14c50878216241397d658e2ccbaa6e",
     "source_doc_hashes": {
-      "spec.md": "58dbf9537f9e54b51d714cc6dc81a6a013a3ab82ccbe296b7a8e0a7ab169d655",
-      "plan.md": "eba6fd58eef6291e2a6d8506282b8848984980cb68d23566838cc11a3564be72",
-      "tasks.md": "eb0fff2a6307f02b0ad0df4c48708f26dcc781704a3c910ca993f85916dd90fa",
-      "checklist.md": "eb404157dedd41de497afc8250ab5e7327db1cd2ef924e3b64cd8befdf341448"
+      "spec.md": "96007d61775206c92c8242b67ce4b40516c7bb79d6865f02d57fcea1c733d400",
+      "plan.md": "a0b6f1485860c5f2fef078b7046e37c5b9870fe93862e9c32b9dc1368cdb5748",
+      "tasks.md": "fb45a2057eedb61c082dedb05b80cfac90cad6ab3850d1a688004101393adf72",
+      "checklist.md": "6f09bc8c7ee18234159c43182f9867dfc7b58414fbbc052a12c7066a10908758"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: cycle detection (008 phase 002)"
+title: "Checklist: cycle detection"
 description: "Blocking verification contract for deterministic cycle detection, material-progress gating, replay-safe health events, and non-authoritative stopping-clock contribution."
 trigger_phrases:
   - "cycle detection checklist"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 008 child 002. Every item remains pending while the phase is
+This checklist is the blocking verifier contract for phase 011 child 002. Every item remains pending while the phase is
 Planned. Execution evidence must pin the candidate and baseline SHAs, detector/reducer/policy versions, ledger fixture
 fingerprints, commands with exit codes, observation counts, cycle traces, and legacy-authority comparison; zero discovered
 fixtures, incomplete periods, or unexpected tracked mutation fail the report.
@@ -37,7 +37,7 @@ fixtures, incomplete periods, or unexpected tracked mutation fail the report.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The authorized ledger boundary and phase-006 completed-iteration identity are pinned with monotonic cursor semantics
+- [ ] CHK-001 [P0] The authorized ledger boundary and phase-009 completed-iteration identity are pinned with monotonic cursor semantics
 - [ ] CHK-002 [P0] Claim-continuity and next-focus projection contracts are pinned to versions that expose stable typed identities and one source watermark
 - [ ] CHK-003 [P1] The detector policy records history window 12, max period 4, minimum traversals 3, repetition window 8, occurrence threshold 3, and a versioned progress floor
 <!-- /ANCHOR:pre-impl -->
@@ -81,7 +81,7 @@ fixtures, incomplete periods, or unexpected tracked mutation fail the report.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-020 [P1] Implementation evidence cites phase-007 claim continuity and next-focus specs, `convergence.cjs`, and `manifest/phase-tree.json`
+- [ ] CHK-020 [P1] Implementation evidence cites phase-010 claim continuity and next-focus specs, `convergence.cjs`, and `manifest/phase-tree.json`
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

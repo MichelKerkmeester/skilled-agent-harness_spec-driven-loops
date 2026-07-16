@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep AI Council resume adapter (013 phase 005)"
+title: "Checklist: Deep AI Council resume adapter"
 description: "Checklist for the Deep AI Council resume adapter: sealed-ledger reconstruction, continuity-ladder projection, crash recovery, idempotent re-entry, and non-authoritative mode-gate integration."
 trigger_phrases:
   - "Deep AI Council resume adapter checklist"

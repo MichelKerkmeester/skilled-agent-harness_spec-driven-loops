@@ -31,7 +31,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / Deep Alignment mode (013 mode migration, child 007) |
+| **Surface** | system-deep-loop / Deep Alignment mode |
 | **Change class** | Planning-only safety contract; per-lane mode gate and rollback evidence design |
 | **Execution** | Isolated candidate run pinned to BASE; legacy remains authoritative |
 
@@ -46,7 +46,7 @@ provenance are pinned, all required references verify, and the certificate and r
 The authority control is separate from the gate. A missing, stale, mixed, or invalid authority capsule or cutover arm stays on
 legacy authority. A later authorized ledger transition opens a rollback window with a sealed healthy ledger frontier and matching
 legacy checkpoint; any declared authority, applicability, parity, replay, receipt, effect, fence, or health failure returns to legacy
-or blocks. The phase-009 shared review-loop contract and Deep Review mode 002 fence are consumed as pinned inputs rather than
+or blocks. The phase-012 shared review-loop contract and Deep Review mode 002 fence are consumed as pinned inputs rather than
 reimplemented. No authority cutover or remediation occurs in this phase.
 <!-- /ANCHOR:summary -->
 
@@ -54,13 +54,13 @@ reimplemented. No authority cutover or remediation occurs in this phase.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent 065 invariant, phase tree, phase-009 shared review-loop contract, write-set conflict graph, and phase-011 handoff contract are pinned by digest
+- [ ] The parent 065 invariant, phase tree, phase-012 shared review-loop contract, write-set conflict graph, and phase-014 handoff contract are pinned by digest
 - [ ] The six Deep Alignment sibling contracts expose their event, projection, seal, certificate, resume, and parity evidence boundaries
 - [ ] The legacy Deep Alignment state machine is inventoried for lane resolution, discovery, applicability, verification, known deviations, convergence, report, resume, continuity, and remediation exclusion
 - [ ] The authority-control record, fail-closed resolver, rollback trigger matrix, and dual-bound window are reviewed
 - [ ] The mode-gate evidence matrix distinguishes required, optional, blocked, unresolved, not-applicable, and indeterminate evidence without implicit waivers
 - [ ] Lane fixtures freeze BASE, authority capsule, verifier digest, lane config, target digests, event tails, and expected authority posture
-- [ ] The phase-011 handoff consumer and certificate expiry expectation are named without moving authority in this phase
+- [ ] The phase-014 handoff consumer and certificate expiry expectation are named without moving authority in this phase
 
 ### Definition of Done
 - [ ] Invalid, stale, mixed, or unauthorized authority control always resolves to legacy authority with a typed refusal
@@ -74,8 +74,8 @@ reimplemented. No authority cutover or remediation occurs in this phase.
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Pinned contract bundle**: capture BASE, phase-009 shared review-loop and write-set digests, mode contract revision, event and
-  reducer versions, phase-011 handoff revision, and all six sibling output references before gate evaluation.
+- **Pinned contract bundle**: capture BASE, phase-012 shared review-loop and write-set digests, mode contract revision, event and
+  reducer versions, phase-014 handoff revision, and all six sibling output references before gate evaluation.
 - **Authority capsule boundary**: snapshot the named authority, source anchors, compiled rule IR, applicability profiles, authority
   epoch, signature or content digest, verifier digest, capability checks, rule-test result, and coverage result. A readable live path
   is not an authorized or replay-safe authority.
@@ -102,7 +102,7 @@ reimplemented. No authority cutover or remediation occurs in this phase.
   counterevidence, known deviations, convergence, report, and resume; consume the run certificate and receipt root from
   `004-certificates-and-receipts`.
 - **Handoff artifact**: emit a mode-gate certificate with `PASS` plus `MIGRATED_SHADOW_READY`, all evidence digests, rollback-drill
-  result, per-lane verdicts, coverage, unresolved states, and phase-011 handoff reference. The certificate is readiness evidence, not
+  result, per-lane verdicts, coverage, unresolved states, and phase-014 handoff reference. The certificate is readiness evidence, not
   a cutover certificate.
 <!-- /ANCHOR:architecture -->
 
@@ -110,7 +110,7 @@ reimplemented. No authority cutover or remediation occurs in this phase.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the parent, manifest, phase-009 shared review-loop contract, write-set fence, phase-011 handoff, phase-003 authorization
+- Pin the parent, manifest, phase-012 shared review-loop contract, write-set fence, phase-014 handoff, phase-006 authorization
   boundary, and BASE inputs.
 - Read the six Deep Alignment sibling contracts and build the evidence ownership matrix; reject duplicate local definitions.
 - Inventory the existing Deep Alignment state machine, lane resolver, authority adapters, known-deviation handling, blocked and
@@ -124,7 +124,7 @@ reimplemented. No authority cutover or remediation occurs in this phase.
   restoration receipt.
 - Define the independent Deep Alignment gate matrix for lane resolution, applicability, discovery coverage, verify-first findings,
   known-deviation overlays, unresolved outcomes, convergence, report, resume, continuity, and the `MIGRATED_SHADOW_READY` output.
-- Connect the gate to shared phase-009 scope, coverage, lineage, convergence, report, resume, and write-set contracts and record
+- Connect the gate to shared phase-012 scope, coverage, lineage, convergence, report, resume, and write-set contracts and record
   their digests; preserve Deep Review mode 002 parity of shared fields.
 - Connect shadow-parity receipts, authority and rule seal manifests, verifier reads, run certificates, receipt closure, replay
   fingerprints, resume outcomes, lane health, and rollback-drill results into one certificate-bound evidence bundle.
@@ -133,7 +133,7 @@ reimplemented. No authority cutover or remediation occurs in this phase.
 
 ### Phase 3: Verification
 - Run the complete Deep Alignment lane fixture matrix from one pinned BASE and verify lifecycle coverage from lane scope through
-  report, continuity, and phase-011 handoff.
+  report, continuity, and phase-014 handoff.
 - Verify event count, order, lane identity, authority epoch, causal links, payload and projection fingerprints, applicability edges,
   finding lineage, known-deviation overlays, and declared volatility with no unexplained differences.
 - Verify every authority, rule, target, observation, finding, counterevidence, report, resume reference, receipt, event range,
@@ -143,7 +143,7 @@ reimplemented. No authority cutover or remediation occurs in this phase.
 - Execute rollback at each declared boundary and verify no duplicate finding, effect, report, authority transition, or known-deviation
   overlay is introduced.
 - Confirm the gate emits `PASS` only as `MIGRATED_SHADOW_READY`, retains legacy authority, leaves remediation disabled, and hands
-  evidence to phase 011.
+  evidence to phase 014.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -157,7 +157,7 @@ reimplemented. No authority cutover or remediation occurs in this phase.
 | REQ-004 | Inject authority drift, applicability drift, parity mismatch, replay mismatch, seal or receipt failure, unknown effect, fence loss, contract drift, health alarm, and canonical-write leakage; verify rollback or block classification |
 | REQ-005 | Replay a failed tail, known-deviation overlay, and restoration receipt; verify no truncation, mutation, raw-observation loss, or evidence identity drift |
 | REQ-006 | Run lane resolution, discovery, applicability, artifact checks, live re-probe, known-deviation, unresolved, convergence, report, resume, continuity, and remediation-boundary fixtures through the gate matrix |
-| REQ-007 | Compare legacy and ledger streams plus projections using the phase-006 comparator; require zero unexplained semantic differences and recorded volatility reasons per lane |
+| REQ-007 | Compare legacy and ledger streams plus projections using the phase-009 comparator; require zero unexplained semantic differences and recorded volatility reasons per lane |
 | REQ-008 | Tamper, truncate, substitute, and descriptor-drift authority, rule, target, observation, finding, evidence, report, and resume artifacts; require verified-read failure before gate consumption |
 | REQ-009 | Exercise detector candidates without live re-probes, stale re-probes, known deviations, unresolved applicability, and counterevidence conflicts; require candidate or indeterminate status instead of asserted conformance |
 | REQ-010 | Verify certificate-pinned event range, authority epoch, verifier digest, lane coverage, receipt-set root, replay fingerprint, seal manifest, and independent verifier outcome without live execution |
@@ -168,8 +168,8 @@ reimplemented. No authority cutover or remediation occurs in this phase.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The plan consumes the 065 program's additive-dark migration rule, the phase-009 shared review-loop contract and write-set conflict
-graph, the phase-003 ledger and authorization spine, the phase-011 shadow and handoff contracts, and the Deep Alignment sibling
+The plan consumes the 065 program's additive-dark migration rule, the phase-012 shared review-loop contract and write-set conflict
+graph, the phase-006 ledger and authorization spine, the phase-014 shadow and handoff contracts, and the Deep Alignment sibling
 contracts for typed events, reducers, sealed artifacts, certificates, resume, and shadow parity. It also consumes the existing
 Deep Alignment state machine, authority adapters, known-deviation contracts, the two findings registries, the Deep Review mode 002
 shared-loop boundary, and the spec-kit validator. The predecessor `006-shadow-parity` and all earlier sibling names are navigation

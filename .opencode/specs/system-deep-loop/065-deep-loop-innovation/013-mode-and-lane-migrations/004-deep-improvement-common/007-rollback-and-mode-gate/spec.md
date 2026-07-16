@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Deep Improvement Common Services - Rollback & Mode Gate"
-description: "Plan the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. The gate consumes shadow parity, sealed artifacts, certificates, receipts, replay, and resume evidence, then emits a mode-bound readiness certificate for the phase-011 handoff without moving authority."
+description: "Plan the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. The gate consumes shadow parity, sealed artifacts, certificates, receipts, replay, and resume evidence, then emits a mode-bound readiness certificate for the phase-014 handoff without moving authority."
 trigger_phrases:
   - "deep improvement common rollback and mode gate"
   - "deep improvement authority rollback switch"
   - "shared evaluator canary promotion migration gate"
-  - "deep improvement phase 011 readiness certificate"
+  - "deep improvement phase 014 readiness certificate"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
@@ -101,7 +101,7 @@ complete, replayable, sealed, and reusable by all three variants.
 - The common evaluator, canary, and promotion service reuse contract consumed unchanged by `005-agent-improvement`,
   `006-model-benchmark`, and `007-skill-benchmark`. Variants provide namespaced candidate and domain adapters only; this
   mode owns the shared service semantics and their common gate evidence.
-- A phase-011 handoff that distinguishes a green common-service migration certificate from an authority-cutover certificate,
+- A phase-014 handoff that distinguishes a green common-service migration certificate from an authority-cutover certificate,
   records unresolved obligations, and gives the next phase an exact evidence boundary to verify.
 
 ### Out of Scope
@@ -132,7 +132,7 @@ complete, replayable, sealed, and reusable by all three variants.
 | REQ-007 | Uncertainty never becomes a green gate | Missing, stale, contradictory, malformed, unsupported, `UNKNOWN`, `INCONCLUSIVE`, `INSUFFICIENT_EVIDENCE`, or telemetry-gap inputs produce `blocked`, `incomplete`, `not_ready`, or `rollback_required`, never migration readiness |
 | REQ-008 | The certificate is exact-SHA and evidence bound | The certificate names this mode, BASE, candidate SHA, shared contract versions, evaluator/canary epochs, fixture IDs, stream and artifact digests, gate predicates, rollback anchor, window state, verifier, and dispositions |
 | REQ-009 | Shared services have one source for all three variants | The three downstream variants consume common evaluator, canary, promotion, receipt, certificate, fingerprint, veto, and rollback semantics through adapters and cannot satisfy the gate with private copies |
-| REQ-010 | The gate is independent of authority | An offline verifier evaluates immutable evidence and uses the shared authorization boundary; a passing result emits readiness for phase 011 but cannot mutate authority, dispatch a candidate, alter a baseline, or retire a writer |
+| REQ-010 | The gate is independent of authority | An offline verifier evaluates immutable evidence and uses the shared authorization boundary; a passing result emits readiness for phase 014 but cannot mutate authority, dispatch a candidate, alter a baseline, or retire a writer |
 | REQ-011 | The handoff is deterministic and mode-specific | Re-evaluating the same sealed frontier and contract fingerprints yields the same gate result and certificate body digest; a certificate for another mode, frontier, or service epoch is rejected |
 <!-- /ANCHOR:requirements -->
 
@@ -160,7 +160,7 @@ effect, and promotion decision. A final score match is never sufficient.
 | Variant reuse | Common fixtures pass through `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` adapters without semantic fork | `blocked` on copied service policy, weakened veto, divergent receipt, or private gate semantics |
 
 The emitted result is `gate_passed`, `gate_blocked`, `gate_incomplete`, or `rollback_required`. `gate_passed` means this
-common service migration is ready for the phase-011 handoff; it does not state that live authority moved, that the rollback
+common service migration is ready for the phase-014 handoff; it does not state that live authority moved, that the rollback
 window closed, or that a candidate is globally correct.
 
 <!-- ANCHOR:success-criteria -->
@@ -176,7 +176,7 @@ window closed, or that a candidate is globally correct.
   and leaves legacy authority selected.
 - **SC-005**: The evaluator, canary, and promotion contracts are owned once here and are consumed by all three downstream
   variants without private replacement semantics.
-- **SC-006**: The mode-migration certificate is exact-SHA bound, independently verifiable, and hands phase 011 readiness
+- **SC-006**: The mode-migration certificate is exact-SHA bound, independently verifiable, and hands phase 014 readiness
   without claiming authority cutover or legacy-writer retirement.
 
 **Given** a shared-service run has raw observations, normalized scores, canary results, and promotion evidence, **When** the
@@ -215,14 +215,14 @@ soft aggregate score.
   drift.
 - **Dependencies**: the parent 065 migration invariants; shared transition/versioning/rollback policy; common-service
   siblings `001-typed-ledger-schema` through `006-shadow-parity`; phase 012 shared mode contracts and write-set conflict
-  graph; phase 011 handoff; and the 065/002 findings registries. Sibling `depends_on: []` remains the planning manifest
+  graph; phase 014 handoff; and the 065/002 findings registries. Sibling `depends_on: []` remains the planning manifest
   authority; implementation readiness is established by the parent handoff.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What exact shared authority-record fields and transition token does the phase-011 consumer expose for the common-service
+- What exact shared authority-record fields and transition token does the phase-014 consumer expose for the common-service
   switch without creating a mode-local authority source?
 - Which common-service artifacts are mandatory in the migration certificate when a valid run is blocked or inconclusive,
   and which are referenced from sibling certificates rather than reissued?
@@ -232,7 +232,7 @@ soft aggregate score.
   abstention, incomplete result, or variant adapter failure?
 - Which effect-recovery actions are available for evaluator, canary, and promotion effects, and which providers support
   query-by-idempotency-key before restoration?
-- What exact certificate schema and acceptance endpoint does phase 011 consume for this common-service exit gate while
+- What exact certificate schema and acceptance endpoint does phase 014 consume for this common-service exit gate while
   preserving the later authority-cutover boundary?
 
 These questions are resolved against the frozen shared contracts before implementation. They do not authorize a local

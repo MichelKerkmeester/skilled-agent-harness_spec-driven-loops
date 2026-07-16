@@ -191,8 +191,8 @@
       }
     ],
     "causal_summary": "Plan the fail-closed switch that makes the dark spine canonical for one mode at a time, after current shadow-parity and rollback-drill evidence pass, while all other modes remain legacy-authoritative.",
-    "created_at": "2026-07-15T19:00:45.291Z",
-    "last_save_at": "2026-07-15T19:00:45.291Z",
+    "created_at": "2026-07-16T03:43:57.391Z",
+    "last_save_at": "2026-07-16T03:43:57.391Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:4a33eed68aaf2eb8b8150d22725d019db2b6ae0db7435d798d786ef3a7f60c3d",
+    "source_fingerprint": "sha256:cc3586425d1d33f13b2dcefa0fdd03f98bf09f469ffb64c6dd160b1f31db233d",
     "source_doc_hashes": {
-      "spec.md": "faac70c184338dbca1475e4d7c7e9de57847060d09355254fed952e7c7c0c6ef",
-      "plan.md": "ba7e3f7ed630dcd854ae8abc681d0ff9ec235e0b5d07b22da5669201f596c015",
-      "tasks.md": "784ab97bdf5a231e36679a380ee03da01a29de06e660f1f13ef6147c8d0627cd",
-      "checklist.md": "2054347508400f5f8a24132ffcec9b96642852f6ecbdf9a3ad7efe37755fb2f2"
+      "spec.md": "fdb149412ca564ab481e7999a5725ac5362fe314d467c885be95f405fe76c23e",
+      "plan.md": "720b175e517cb860010579f846c717ffdf734b9e699864be46916f0a8e1832b6",
+      "tasks.md": "4ee3ad06abc0fad0415f76a7e47e585b8b529bbeccfdc55e264334166de15c84",
+      "checklist.md": "d5b5878ff079044b88a249cafbba54f6a5d22c5ecda663b7dabd5eeefff4a93b"
     },
     "last_active_child_id": null,
     "last_active_at": null

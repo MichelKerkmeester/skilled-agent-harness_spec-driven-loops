@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Define the fail-closed gateway that authorizes every typed state transition before ledger append, records allow and deny verdicts as auditable non-domain ledger events, and remains dark until phase 011.",
-    "created_at": "2026-07-15T19:00:34.969Z",
-    "last_save_at": "2026-07-15T19:00:34.969Z",
+    "causal_summary": "Define the fail-closed gateway that authorizes every typed state transition before ledger append, records allow and deny verdicts as auditable non-domain ledger events, and remains dark until phase 014.",
+    "created_at": "2026-07-16T03:43:46.139Z",
+    "last_save_at": "2026-07-16T03:43:46.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:dd29f75627735d1cd927e1c6db935ea548787e0fc90b25bbf939d03a8cbb9c79",
+    "source_fingerprint": "sha256:bd42effd2ada5197cb8d1e3ce431ca68b01c6368c9ae04672e3626bf350da1dc",
     "source_doc_hashes": {
-      "spec.md": "0dcb03a9dd6f33be7370ae5e3b26fb49344b4ab7b2d3e033c517b7538e79d5a4",
-      "plan.md": "fa5d17f85906b856a12e78056d74a7780fc5d40e5e4dd78026a0ede9b664c38f",
-      "tasks.md": "a29a7cf6c015107b290ca0c7179b0b0faae046922bb6494ff81c2451d85073d5",
-      "checklist.md": "7d802494c0781100686b5cac1eac99d6ce7cd8dc855aafcf0e2d3e01e616b476"
+      "spec.md": "e0a1e915afdbca859ad7e5ac6f9a745d70db138b5b884365a347c4bd06f53047",
+      "plan.md": "69c02a3c5efc739b2719a85a7586b4a7f8ac158bfab84aea0d03d26118b342a8",
+      "tasks.md": "6766d628f23c3a45c5fa472819820c55874ac747bfd4ac617e68aee6d33c33cc",
+      "checklist.md": "8725bd55572105ce360d738912ca0db2e1652e52bf457306e313395100f2a63f"
     },
     "last_active_child_id": null,
     "last_active_at": null

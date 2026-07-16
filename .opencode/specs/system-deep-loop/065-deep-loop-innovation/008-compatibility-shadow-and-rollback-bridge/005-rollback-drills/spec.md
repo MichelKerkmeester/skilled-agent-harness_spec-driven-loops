@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Rollback Drills"
-description: "Plan executable, mode-scoped rollback drills that simulate a test-lane authority flip, detect a controlled regression, restore legacy authority within the phase-001 rollback window, and prove state integrity before phase 011 may attempt a real cutover."
+description: "Plan executable, mode-scoped rollback drills that simulate a test-lane authority flip, detect a controlled regression, restore legacy authority within the phase-004 rollback window, and prove state integrity before phase 014 may attempt a real cutover."
 trigger_phrases:
   - "deep-loop rollback drills"
   - "legacy authority rollback rehearsal"
@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored the planned mode-scoped rollback-drill contract"
-    next_safe_action: "Implement hermetic drills before any phase-011 authority flip"
+    next_safe_action: "Implement hermetic drills before any phase-014 authority flip"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -41,19 +41,19 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Final child of the phase-005 compatibility, shadow, and rollback bridge |
-| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-005 parent gate |
-| **Cutover role** | Required mode-scoped rehearsal evidence before phase 011 may attempt a real authority flip |
-| **Authority posture** | Test-lane simulation only; real legacy authority is never changed in phase 005 |
+| **Origin** | Final child of the phase-008 compatibility, shadow, and rollback bridge |
+| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-008 parent gate |
+| **Cutover role** | Required mode-scoped rehearsal evidence before phase 014 may attempt a real authority flip |
+| **Authority posture** | Test-lane simulation only; real legacy authority is never changed in phase 008 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-A rollback switch is not evidence that a live cutover is reversible. The system must prove, before phase 011, that a
+A rollback switch is not evidence that a live cutover is reversible. The system must prove, before phase 014, that a
 mode can move forward in an isolated test lane, expose a controlled regression, freeze new work, fence the spine
 writer, reconcile in-flight state, restore legacy authority at a new epoch, and resume the loop without losing or
-duplicating state. The program manifest assigns that safety proof to phase 005 and explicitly forbids authority
+duplicating state. The program manifest assigns that safety proof to phase 008 and explicitly forbids authority
 cutover here (`../../manifest/phase-tree.json`).
 
 The governing [transition, versioning, and rollback policy](../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md)
@@ -61,7 +61,7 @@ keeps each per-mode cutover reversible for at least 14 calendar days and five su
 whichever completes later. It requires non-destructive rollback, admission freeze, spine-writer fencing, declared
 in-flight reconciliation, a new legacy authority epoch, preserved events, and a rollback certificate. The sibling
 [shadow-parity harness](../003-shadow-parity-harness/spec.md) supplies current, mode-scoped parity evidence and the
-verified replay-component comparisons that make a forward test meaningful. The phase-004
+verified replay-component comparisons that make a forward test meaningful. The phase-007
 [receipts and effect-recovery contract](../../007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md)
 supplies durable intent, confirmation, reconciliation, and boundary evidence needed to prove that rollback neither
 loses nor double-applies an effect.
@@ -72,7 +72,7 @@ flip, runs a bounded workload, injects one declared regression, detects it throu
 executes the rollback procedure. The resumed legacy result is then compared with the untouched control lane using
 verified replay-fingerprint components, canonical legacy projections, receipts, authority epochs, and state counts.
 Only a complete, current drill certificate with every integrity check green can satisfy the rollback-evidence input
-of a later phase-011 cutover certificate.
+of a later phase-014 cutover certificate.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -94,15 +94,15 @@ of a later phase-011 cutover certificate.
 - Post-rollback integrity checks over verified effective-event and canonical-projection fingerprint components,
   byte-exact legacy projection output and reader results, preserved ledger/event ranges, state and artifact counts,
   monotonic authority epochs, stale-writer denial, and receipt/effect lifecycle closure.
-- A pass/fail bar requiring rollback completion before the declared phase-001 window closes, successful legacy resume
+- A pass/fail bar requiring rollback completion before the declared phase-004 window closes, successful legacy resume
   from the rollback anchor, zero lost or duplicated durable facts, zero unresolved `in_doubt` effects, and no residual
   writer with authority under the superseded epoch.
-- An immutable, mode-scoped drill certificate consumed by phase 010 mode gates and revalidated by phase 011 against
+- An immutable, mode-scoped drill certificate consumed by phase 013 mode gates and revalidated by phase 014 against
   current code, contracts, parity evidence, state classification, rollback assets, and authority policy.
 
 ### Out of Scope
 - Changing real runtime authority, running a drill against live mutable packet state, or invoking an irreversible live
-  effect. Phase 005 remains additive, dark, and non-authoritative.
+  effect. Phase 008 remains additive, dark, and non-authoritative.
 - Defining the parity certificate, replay-fingerprint algorithm, legacy projection format, effect-recovery protocol,
   in-flight-state taxonomy, authority state machine, or rollback-window duration; this phase consumes those contracts.
 - Repairing a failed parity case, inventing a new state disposition during rollback, or weakening a regression detector
@@ -121,14 +121,14 @@ of a later phase-011 cutover certificate.
 | REQ-001 | Every drill is mode-scoped, reproducible, and isolated from real authority | The manifest binds all code, contract, state, parity, policy, and evidence inputs; preflight rejects mutable, missing, stale, cross-mode, or production-targeted inputs before any simulated flip |
 | REQ-002 | The drill exercises the complete forward-detect-rollback-resume path | One invocation records a legal test-lane forward epoch change, bounded spine work, declared regression, detector result, admission freeze, spine fence, state reconciliation, legacy restoration, and resumed legacy step |
 | REQ-003 | Regression detection is real and fail closed | The selected fault enters through a declared injection point, the expected production-shaped detector observes it, and a missing, late, wrong-class, or manually asserted detection fails the drill |
-| REQ-004 | Rollback follows the phase-001 authority contract | The runner freezes admission, fences the spine writer, applies only predeclared state dispositions, restores legacy authority by compare-and-swap at a new monotonic epoch, preserves all ledger evidence, and denies stale writers |
+| REQ-004 | Rollback follows the phase-004 authority contract | The runner freezes admission, fences the spine writer, applies only predeclared state dispositions, restores legacy authority by compare-and-swap at a new monotonic epoch, preserves all ledger evidence, and denies stale writers |
 | REQ-005 | Rollback completes inside the governed window | The certificate records window-open and rollback-complete instants plus the governing policy version; completion precedes closure under the later-of-14-days-and-five-runs rule and any stricter declared mode deadline |
 | REQ-006 | Replay integrity survives rollback | Both control and resumed-legacy transcripts verify under the registered replay contract and match on the declared effective-event and canonical-projection component digests; stored cutover-lane events remain preserved and auditable |
 | REQ-007 | Legacy projection integrity survives rollback | The resumed legacy artifacts and unchanged-reader results match the control lane under the sibling projection serializer, ordering, newline, suppression, watermark, and integrity contract |
 | REQ-008 | State and effects are neither lost nor duplicated | Durable fact, artifact, and state counts reconcile to the control plus explicitly retained shadow evidence; every effect has one intent and one confirmed/reconciled terminal outcome, with no conflict or unresolved `in_doubt` result |
 | REQ-009 | Drill evidence is complete, immutable, and freshness-bound | The certificate binds the manifest, injected fault, timeline, epoch transitions, fences, state reconciliation, fingerprint/projection results, receipt IDs, preserved ranges, pass/fail decision, and verifier identity; any bound-input drift invalidates it |
-| REQ-010 | Phase 011 cannot cut over without current drill evidence | A missing, failed, partial, wrong-mode, stale, unverifiable, or policy-incompatible drill certificate blocks the real authority flip while legacy remains authoritative |
-| REQ-011 | Phase 005 never moves real authority | All authority mutations target an isolated test authority store; real mode flags, writer leases, packet state, and external effects remain unchanged before, during, and after every drill |
+| REQ-010 | Phase 014 cannot cut over without current drill evidence | A missing, failed, partial, wrong-mode, stale, unverifiable, or policy-incompatible drill certificate blocks the real authority flip while legacy remains authoritative |
+| REQ-011 | Phase 008 never moves real authority | All authority mutations target an isolated test authority store; real mode flags, writer leases, packet state, and external effects remain unchanged before, during, and after every drill |
 <!-- /ANCHOR:requirements -->
 
 ### Drill certificate minimum
@@ -150,7 +150,7 @@ of a later phase-011 cutover certificate.
 - **SC-003**: Rollback completes before the governed window closes and any stricter mode deadline expires.
 - **SC-004**: Verified replay components and byte-exact legacy projections match the isolated control continuation after legacy resume.
 - **SC-005**: State, artifacts, event ranges, receipts, and effects reconcile with zero loss, duplication, conflict, or unresolved ambiguity.
-- **SC-006**: Phase 011 rejects absent, failed, stale, wrong-mode, or unverifiable drill evidence.
+- **SC-006**: Phase 014 rejects absent, failed, stale, wrong-mode, or unverifiable drill evidence.
 
 **Given** a current parity certificate, sealed rollback capsule, and complete state classification, **When** the test lane
 performs its simulated forward flip, **Then** only the isolated authority store advances and real legacy authority is unchanged.
@@ -165,15 +165,15 @@ the evidence, **Then** it records the typed trigger and starts or blocks rollbac
 declared replay components, legacy projections, reader results, and durable state match with all shadow evidence retained.
 
 **Given** any fingerprint, projection, receipt, effect, state, epoch, timing, isolation, or freshness check fails, **When**
-certificate issuance is requested, **Then** the drill fails and phase 011 remains blocked for that mode.
+certificate issuance is requested, **Then** the drill fails and phase 014 remains blocked for that mode.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 The child declares `depends_on: []` because it is an independent sibling planning contract. Execution nevertheless
-consumes current outputs from the phase-001 rollback policy, sibling shadow-parity harness, predecessor in-flight-state
-classification, phase-004 receipt/effect-recovery service, replay-fingerprint verifier, and legacy projections. Those
+consumes current outputs from the phase-004 rollback policy, sibling shadow-parity harness, predecessor in-flight-state
+classification, phase-007 receipt/effect-recovery service, replay-fingerprint verifier, and legacy projections. Those
 are evidence inputs, not graph-level planning dependencies, and every consumed identity is bound into the drill
 manifest and certificate.
 
@@ -187,7 +187,7 @@ attestation are hard preconditions.
 Other risks are stale parity evidence, an incomplete state classification, rollback assets that no longer match the
 candidate, false equality from comparing only final state, hidden duplicate effects, and a certificate that survives
 code or policy drift. Fail-closed preflight, immutable receipts, replay-component plus byte-level comparisons, complete
-state/effect accounting, and phase-011 freshness validation are mandatory mitigations. Controlling sources are
+state/effect accounting, and phase-014 freshness validation are mandatory mitigations. Controlling sources are
 `../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`,
 `../003-shadow-parity-harness/spec.md`,
 `../../007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md`, and
@@ -199,7 +199,7 @@ state/effect accounting, and phase-011 freshness validation are mandatory mitiga
 
 None blocking for planning. Execution must resolve concrete runner modules, mode-specific regression fixtures, the
 stricter operational deadline when a mode defines one, synthetic-clock implementation, evidence storage, and bounded
-diagnostic payloads from the materialized phase-003/004/005 contracts. Those choices may not weaken the phase-001
+diagnostic payloads from the materialized phase-006/004/005 contracts. Those choices may not weaken the phase-004
 window, isolation boundary, complete forward-detect-rollback-resume sequence, integrity checks, receipt closure,
-certificate freshness, or the rule that phase 005 never changes real authority.
+certificate freshness, or the rule that phase 008 never changes real authority.
 <!-- /ANCHOR:questions -->

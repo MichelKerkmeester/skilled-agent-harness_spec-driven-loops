@@ -19,7 +19,7 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact phase-003 certificate primitive signs or seals the run certificate?"
+      - "Which exact phase-006 certificate primitive signs or seals the run certificate?"
       - "Which receipt states are canonical for unresolved report findings?"
     answered_questions:
       - "Planned scope excludes authority cutover and resume policy"
@@ -34,7 +34,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking SOL verifier contract for the planned Deep Review certificates and receipts phase. The
-verifier pins the candidate SHA, phase `003-sealed-artifacts` and phase 009 contract revisions, typed-ledger revision,
+verifier pins the candidate SHA, phase `003-sealed-artifacts` and phase 012 contract revisions, typed-ledger revision,
 certificate and receipt schema revisions, fingerprint manifest hash, sealed-reference bundle, commands, and exit codes.
 It fails on missing transition receipts, a certificate that overclaims semantic truth, a fingerprint omission, an
 unauthorized or contradictory chain, mutable evidence replacement, an unadjudicated P0/P1/P2 activation, an offline
@@ -45,7 +45,7 @@ verifier dependency on live services, or unexpected tracked mutation.
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] Phase `003-sealed-artifacts` publishes the receipt and certificate primitives, seal/reference format, and verification hooks
-- [ ] CHK-002 [P0] Phase 009 publishes the shared review-loop, transition, lineage, replay, report-reference, and write-set contracts
+- [ ] CHK-002 [P0] Phase 012 publishes the shared review-loop, transition, lineage, replay, report-reference, and write-set contracts
 - [ ] CHK-003 [P0] `001-typed-ledger-schema` publishes the complete Deep Review event union and required cross-event references
 - [ ] CHK-004 [P1] The current Deep Review lifecycle and receipt-bearing boundaries are inventoried from the mode state, evidence, adjudication, convergence, synthesis, report, and continuity records
 - [ ] CHK-005 [P1] The receipt ownership matrix names one owner for every shared, mode, effect, certificate, report, and later resume transition

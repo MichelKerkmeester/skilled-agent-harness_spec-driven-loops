@@ -28,14 +28,14 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for the first phase-005 child. Every item remains unchecked until implementation evidence exists. The verifier pins the candidate SHA, legacy baseline SHA, phase-001 policy revision, phase-003 contract revisions, registry digest, legacy-family manifest digest, and fixture-corpus digest; it records commands, exit codes, discovered family/version counts, reconciliation outcome counts, and storage hashes. Zero discovered families, skipped matrix rows, unclassified observations, or unexpected tracked/storage mutation fail the candidate.
+This checklist is the blocking SOL verifier contract for the first phase-008 child. Every item remains unchecked until implementation evidence exists. The verifier pins the candidate SHA, legacy baseline SHA, phase-004 policy revision, phase-006 contract revisions, registry digest, legacy-family manifest digest, and fixture-corpus digest; it records commands, exit codes, discovered family/version counts, reconciliation outcome counts, and storage hashes. Zero discovered families, skipped matrix rows, unclassified observations, or unexpected tracked/storage mutation fail the candidate.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] The pinned state census enumerates every in-scope legacy family, reader, writer, version discriminator, storage path, and rollback anchor
-- [ ] CHK-002 [P0] Exact phase-001 policy and phase-003 envelope, ledger, replay, and authorization contract revisions are recorded before implementation
+- [ ] CHK-002 [P0] Exact phase-004 policy and phase-006 envelope, ledger, replay, and authorization contract revisions are recorded before implementation
 - [ ] CHK-003 [P0] The direct-legacy baseline records values, errors, retries, call counts, and storage hashes for every adapter fixture
 - [ ] CHK-004 [P1] Every admitted historical version has a canonical fixture, validator, adjacent edge, expected current model, and immutable source hash
 <!-- /ANCHOR:pre-impl -->
@@ -81,7 +81,7 @@ This checklist is the blocking SOL verifier contract for the first phase-005 chi
 ## Security
 
 - [ ] CHK-027 [P0] Typed failures and evidence records contain bounded identifiers and digests only; sensitive legacy or event payloads are not duplicated into diagnostics
-- [ ] CHK-028 [P0] Dark append uses the phase-003 authorization and authority-epoch checks; no adapter bypass can allocate a ledger sequence
+- [ ] CHK-028 [P0] Dark append uses the phase-006 authorization and authority-epoch checks; no adapter bypass can allocate a ledger sequence
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
@@ -101,7 +101,7 @@ This checklist is the blocking SOL verifier contract for the first phase-005 chi
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete when every P0 check passes, every admitted legacy family has a complete deterministic chain or an explicit fail-closed classification, every reconciliation row preserves the legacy operational outcome, write instrumentation proves one legacy mutation plus zero-or-one non-authoritative mirror, and gate-off rollback reproduces the pinned direct-legacy baseline. Green evidence proves compatibility and reversibility only; it does not authorize phase-011 cutover.
+The phase is complete when every P0 check passes, every admitted legacy family has a complete deterministic chain or an explicit fail-closed classification, every reconciliation row preserves the legacy operational outcome, write instrumentation proves one legacy mutation plus zero-or-one non-authoritative mirror, and gate-off rollback reproduces the pinned direct-legacy baseline. Green evidence proves compatibility and reversibility only; it does not authorize phase-014 cutover.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

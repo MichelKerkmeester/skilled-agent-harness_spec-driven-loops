@@ -40,7 +40,7 @@ parity, and any `rebuild_required` or `blocked` result. Planned rows remain unch
 
 - [ ] CHK-001 [P0] The typed event schema, reducer input envelope, canonical ordering fields, and compatibility policy are frozen by `001-typed-ledger-schema`
 - [ ] CHK-002 [P0] The reducer ownership matrix covers every projected field and event family with no duplicate owner
-- [ ] CHK-003 [P1] Phase-009 mode-interface and phase-010 write-set evidence identify the reducer/projection resource boundary
+- [ ] CHK-003 [P1] Phase-012 mode-interface and phase-013 write-set evidence identify the reducer/projection resource boundary
 - [ ] CHK-004 [P2] Legacy reducer and heartbeat outputs are captured as comparison fixtures without treating them as the new authority
 <!-- /ANCHOR:pre-impl -->
 
@@ -102,7 +102,7 @@ parity, and any `rebuild_required` or `blocked` result. Planned rows remain unch
 The phase is complete when all P0 checks pass, the pure fold matches full replay under the fixture matrix, raw evidence
 and versioned judgments remain reversible, artifact and status projections fail closed on missing or incompatible input,
 and the exact projection fingerprint is recorded for the downstream sealed-artifact and mode-gate contracts. No check in
-this phase authorizes production cutover; authority remains with the legacy path until phase 011.
+this phase authorizes production cutover; authority remains with the legacy path until phase 014.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

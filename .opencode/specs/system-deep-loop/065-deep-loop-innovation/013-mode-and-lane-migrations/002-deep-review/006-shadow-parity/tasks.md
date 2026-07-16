@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Review shadow parity (013 phase 006)"
+title: "Tasks: Deep Review shadow parity"
 description: "Tasks for the Deep Review shadow-parity phase: freeze shared contracts, map the legacy lifecycle, compare typed events and projections, and produce a fail-closed parity certificate."
 trigger_phrases:
   - "Deep Review shadow parity tasks"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the phase-009 shared review-loop contract, phase-011 shadow framework, event envelope, replay fingerprint, and projection fingerprints
+- [ ] T001 Record the phase-012 shared review-loop contract, phase-014 shadow framework, event envelope, replay fingerprint, and projection fingerprints
 - [ ] T002 Inventory the legacy Deep Review scope, dimension-pass, finding, convergence, and review-report emission boundaries against the pinned baseline
 - [ ] T003 Define the paired-run envelope, shadow storage boundary, fixture IDs, authority assertion, and certificate input fields
 - [ ] T004 Define the allowlisted normalization fields and the raw-evidence retention rule; no identity or decision field may be normalized away
@@ -55,7 +55,7 @@ _memory:
 - [ ] T009 Implement event-stream comparison for type, causal order, lineage, identity, payload, references, and multiplicity
 - [ ] T010 Implement projection comparison for findings, dispositions, convergence, report ordering, receipts, checkpoints, and replay fingerprints
 - [ ] T011 Implement discrepancy classification, raw evidence capture, and `PARITY_BLOCKED` handling for every mismatch class
-- [ ] T012 Add replay, checkpoint-resume, invalid-transition, duplicate, stale-receipt, and phase-011 fault-injection fixtures
+- [ ] T012 Add replay, checkpoint-resume, invalid-transition, duplicate, stale-receipt, and phase-014 fault-injection fixtures
 - [ ] T013 Produce the content-addressed parity certificate only when event, projection, replay/resume, and safety verdicts are green
 <!-- /ANCHOR:phase-2 -->
 

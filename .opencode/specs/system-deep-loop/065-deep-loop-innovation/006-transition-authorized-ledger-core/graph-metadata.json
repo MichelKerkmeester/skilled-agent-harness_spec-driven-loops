@@ -84,16 +84,16 @@
       }
     ],
     "causal_summary": "The versioned event envelope, typed append-only ledger, replay fingerprints, and fail-closed transition-authorization gateway must co-land as one dark substrate while legacy writers remain authoritative.",
-    "created_at": "2026-07-15T19:00:47.576Z",
-    "last_save_at": "2026-07-15T19:00:47.576Z",
+    "created_at": "2026-07-16T03:43:58.654Z",
+    "last_save_at": "2026-07-16T03:43:58.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5d3e05b7491d8d15ab1bc140413b2b270ed9f3c804d552a6dc529b118ed65f04",
+    "source_fingerprint": "sha256:2627215c763788facf44530f44e89a2aaa7b633d4fda3d234e35fd274e4d6961",
     "source_doc_hashes": {
-      "spec.md": "547a4ea8bd4ea0bfec62aa36c950c195d905ffe599ef5190e87fef7fa14355b5"
+      "spec.md": "af3547494bf70b425d877a61b23a98cc72582c20051cb0bd9b43344c4784deeb"
     },
     "last_active_child_id": null,
     "last_active_at": null

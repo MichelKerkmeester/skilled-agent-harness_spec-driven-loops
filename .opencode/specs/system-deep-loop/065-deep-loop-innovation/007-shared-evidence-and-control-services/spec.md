@@ -3,7 +3,7 @@ title: "Feature Specification: Shared Evidence & Control Services"
 description: "Plan the seven shared evidence and control services that make the transition-authorized ledger usable by the compatibility bridge and every deep-loop mode."
 trigger_phrases:
   - "shared evidence and control services"
-  - "deep-loop phase 004 shared services"
+  - "deep-loop phase 007 shared services"
   - "receipts seals adjudication budgets gauges locks continuity"
 importance_tier: "high"
 contextType: "planning"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services"
     last_updated_at: "2026-07-15T13:53:47Z"
     last_updated_by: "codex"
-    recent_action: "Defined seven shared-service child contracts behind the phase-003 envelope"
+    recent_action: "Defined seven shared-service child contracts behind the phase-006 envelope"
     next_safe_action: "Author the seven child service packets without changing legacy authority"
     blockers: []
     key_files: []
@@ -43,15 +43,15 @@ _memory:
 | **Parent Packet** | system-deep-loop/065-deep-loop-innovation |
 | **Predecessor** | 006-transition-authorized-ledger-core |
 | **Successor** | 008-compatibility-shadow-and-rollback-bridge |
-| **Handoff Criteria** | The seven shared services (receipts + effect-recovery, sealed reference artifacts, blinded adjudication, hierarchical typed budgets, stream-fold gauges, locks/fencing, continuity identities) are each planned behind the phase-003 envelope contract and ready for the compatibility bridge and the mode migrations to consume. |
+| **Handoff Criteria** | The seven shared services (receipts + effect-recovery, sealed reference artifacts, blinded adjudication, hierarchical typed budgets, stream-fold gauges, locks/fencing, continuity identities) are each planned behind the phase-006 envelope contract and ready for the compatibility bridge and the mode migrations to consume. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The recommendations program defines one additive-dark runtime spine, then places this phase after the transition-authorized ledger core and before the compatibility, shadow, and rollback bridge. The parent specification and phase manifest assign this parent the evidence and control services that make the bare ledger usable across modes, while the phase-001 architecture ADR binds receipts, sealed artifacts, and blinded adjudication to the shared spine without moving authority from the legacy path. Sources: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`, `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`, and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`.
+The recommendations program defines one additive-dark runtime spine, then places this phase after the transition-authorized ledger core and before the compatibility, shadow, and rollback bridge. The parent specification and phase manifest assign this parent the evidence and control services that make the bare ledger usable across modes, while the phase-004 architecture ADR binds receipts, sealed artifacts, and blinded adjudication to the shared spine without moving authority from the legacy path. Sources: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`, `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`, and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`.
 
-This phase decomposes that shared layer into seven independently planned service contracts behind the phase-003 event envelope: receipts and effect recovery, sealed reference artifacts, blinded adjudication, typed budgets, stream-fold gauges, locks and fencing, and continuity identities. The run-2 synthesis identifies the recurring cross-mode evidence spine and the AI-council need for counterfactual, provenance-blinded judgement; this parent turns those findings into the child map that phase 005 and the later mode migrations can consume while legacy remains authoritative. Source: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md`.
+This phase decomposes that shared layer into seven independently planned service contracts behind the phase-006 event envelope: receipts and effect recovery, sealed reference artifacts, blinded adjudication, typed budgets, stream-fold gauges, locks and fencing, and continuity identities. The run-2 synthesis identifies the recurring cross-mode evidence spine and the AI-council need for counterfactual, provenance-blinded judgement; this parent turns those findings into the child map that phase 008 and the later mode migrations can consume while legacy remains authoritative. Source: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md`.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:phase-map -->
@@ -67,5 +67,5 @@ This phase decomposes that shared layer into seven independently planned service
 | 006 | `006-locks-and-fencing/` | Locks and fencing tokens for safe concurrent writers and resume, preventing split-brain between legacy and dark paths and between fan-out workers. | Planned |
 | 007 | `007-continuity-identities/` | Stable continuity identities threaded across resume, handover, and mode boundaries, so a claim or lineage keeps one identity across the whole loop. | Planned |
 
-The seven children are shared service contracts that can be planned in parallel once the phase-003 envelope contract is fixed. Together they hand phase 005 and the later mode migrations a complete evidence and control layer while the additive-dark path remains non-authoritative.
+The seven children are shared service contracts that can be planned in parallel once the phase-006 envelope contract is fixed. Together they hand phase 008 and the later mode migrations a complete evidence and control layer while the additive-dark path remains non-authoritative.
 <!-- /ANCHOR:phase-map -->

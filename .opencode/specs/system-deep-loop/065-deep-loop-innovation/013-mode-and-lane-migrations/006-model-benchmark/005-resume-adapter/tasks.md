@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Model Benchmark - Resume Adapter (013 mode migration, 006 child 005)"
+title: "Tasks: Model Benchmark - Resume Adapter"
 description: "Tasks for the Model Benchmark resume adapter: pin sealed-ledger and reducer contracts, map continuity-ladder state, define stable matrix-cell re-entry, preserve scoring evidence, consume shared recovery services, and verify idempotent replay."
 trigger_phrases:
   - "Model Benchmark resume adapter tasks"
@@ -41,7 +41,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm the phase is planning-only, the target folder is scope-locked, and adjacency names predecessor `004-certificates-and-receipts` and successor `006-shadow-parity`
-- [ ] T002 [P] Pin the phase-003 sealed-ledger, phase-009 shared-event, Model Benchmark schema, and reducer contracts with version and fingerprint fields
+- [ ] T002 [P] Pin the phase-006 sealed-ledger, phase-012 shared-event, Model Benchmark schema, and reducer contracts with version and fingerprint fields
 - [ ] T003 [P] Record deep-improvement-common mode-004 ownership for evaluator, canary, promotion, receipt, budget, lock, effect-recovery, and status services
 - [ ] T004 [P] Extract resume obligations from the research registries: replay fingerprints, logical versus attempt identity, branch-local success, unknown effects, task-conditioned scoring, workload, calibration, and contamination
 - [ ] T005 Inventory run, iteration, matrix, cell, attempt, score, usage, latency, validity, receipt, and shared-status fields required for reconstruction

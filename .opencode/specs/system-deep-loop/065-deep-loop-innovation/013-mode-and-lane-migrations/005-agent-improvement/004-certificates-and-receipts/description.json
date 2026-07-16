@@ -1,6 +1,6 @@
 {
   "specFolder": "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts",
-  "description": "Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-003 primitives, references",
+  "description": "Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-006 primitives, references",
   "keywords": [
     "plan",
     "typed",
@@ -12,11 +12,11 @@
     "agent",
     "improvement",
     "consumes",
-    "phase-003",
+    "phase-006",
     "primitives",
     "references"
   ],
-  "lastUpdated": "2026-07-15T20:55:42.740Z",
+  "lastUpdated": "2026-07-16T03:26:42.478Z",
   "specId": "004",
   "folderSlug": "certificates-and-receipts",
   "parentChain": [

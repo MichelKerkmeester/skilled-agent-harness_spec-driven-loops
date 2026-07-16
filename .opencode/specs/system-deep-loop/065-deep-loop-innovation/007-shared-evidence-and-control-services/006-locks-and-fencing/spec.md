@@ -41,9 +41,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Sixth child of the phase-004 shared evidence-and-control-services parent |
-| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-004 parent gate |
-| **Authority posture** | Additive-dark; legacy state remains authoritative until the phase-011 cutover |
+| **Origin** | Sixth child of the phase-007 shared evidence-and-control-services parent |
+| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-007 parent gate |
+| **Authority posture** | Additive-dark; legacy state remains authoritative until the phase-014 cutover |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -53,7 +53,7 @@ The shipped runtime has several local mutual-exclusion mechanisms, but no shared
 
 Other shipped surfaces expose the same gap at narrower scopes. `runtime/lib/council/round-state-jsonl.cjs` takes a bare `wx` lock around repair-and-append and releases it without a nonce or lease; `runtime/lib/deep-loop/jsonl-repair.ts` merges under the CLI writer lock; `runtime/scripts/fanout-pool.cjs` appends orchestration status without a lock; and `runtime/scripts/fanout-run.cjs` atomically replaces a persisted wait checkpoint, then emits `resume_waiting` and continues dispatch without a durable resume-owner epoch. The in-memory one-shot resolver in `runtime/lib/deep-loop/lifecycle-taxonomy.cjs` prevents one stale signal inside one process, while `runtime/scripts/reduce-state.cjs` derives `PAUSED`/`RECOVERING` from events; neither prevents two processes from resuming the same lineage.
 
-The phase-003 typed-ledger contract requires an exclusive append, expected-head comparison, immutable history, and dark coexistence with legacy JSONL (`006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`). This phase supplies the concurrency-safety layer beneath that contract and the later projections: a resource-scoped lease allocates a never-reused fencing token, and the ledger/projection/lineage mutation validates that token atomically with the write. Mutual exclusion is a liveness aid; the fence is the safety boundary. During shadow operation, legacy and dark emissions enter through one guarded mutation boundary so a legacy-only process, dark writer, fan-out worker, or stale resume cannot create a second valid write epoch. The additive-dark and staged-cutover constraints come from the program `spec.md` and `manifest/phase-tree.json`.
+The phase-006 typed-ledger contract requires an exclusive append, expected-head comparison, immutable history, and dark coexistence with legacy JSONL (`006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`). This phase supplies the concurrency-safety layer beneath that contract and the later projections: a resource-scoped lease allocates a never-reused fencing token, and the ledger/projection/lineage mutation validates that token atomically with the write. Mutual exclusion is a liveness aid; the fence is the safety boundary. During shadow operation, legacy and dark emissions enter through one guarded mutation boundary so a legacy-only process, dark writer, fan-out worker, or stale resume cannot create a second valid write epoch. The additive-dark and staged-cutover constraints come from the program `spec.md` and `manifest/phase-tree.json`.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -72,7 +72,7 @@ The phase-003 typed-ledger contract requires an exclusive append, expected-head 
 - Deterministic concurrency, crash, expiry, clock-skew, malformed-lock, and stale-resume tests with observable acquisition, renewal, rejection, takeover, timeout, and release events.
 
 ### Out of Scope
-- Defining the event envelope, ledger frame, replay fingerprint, or transition vocabulary owned by phase 003.
+- Defining the event envelope, ledger frame, replay fingerprint, or transition vocabulary owned by phase 006.
 - Implementing continuity-identity semantics owned by successor `007-continuity-identities`; this phase consumes an opaque canonical lineage/resource identity.
 - Upcasters, shadow-parity policy, in-flight-state classification, rollback drills, or authority cutover owned by phases 005 and 011.
 - Replacing the legacy path as authority, retiring legacy writers, or allowing a dark-path failure to change the legacy operational result.
@@ -114,7 +114,7 @@ The phase-003 typed-ledger contract requires an exclusive append, expected-head 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-This child has `depends_on: []` as an independent planning contract, but implementation consumes the phase-003 ledger's resource identity, append receipt, expected-head, and immutable-recovery boundaries. The highest risk is mistaking lease ownership for storage enforcement. An expired live holder may continue executing after another process acquires; safety exists only when the protected store compares the durable current token inside the same atomic commit as the mutation. Any backend that cannot provide that property must use a single fenced mutation broker or remain unsupported and fail closed.
+This child has `depends_on: []` as an independent planning contract, but implementation consumes the phase-006 ledger's resource identity, append receipt, expected-head, and immutable-recovery boundaries. The highest risk is mistaking lease ownership for storage enforcement. An expired live holder may continue executing after another process acquires; safety exists only when the protected store compares the durable current token inside the same atomic commit as the mutation. Any backend that cannot provide that property must use a single fenced mutation broker or remain unsupported and fail closed.
 
 The shadow period has a second structural risk: legacy writers currently use heterogeneous helpers, including unlocked `appendFileSync` status writes and replace-style checkpoints. Wrapping only the new dark writer would still permit a legacy-only process to race it. The implementation must inventory every protected entry point and route both paths through the same canonical resource guard before claiming split-brain prevention. Legacy remains authoritative, so a dark observation failure is recorded for parity but cannot rewrite or roll back the successful legacy result.
 
@@ -124,5 +124,5 @@ Deadlock and liveness policy must remain subordinate to safety. The preferred sh
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Implementation may choose a transactional coordinator, a fenced single-writer broker, or another backend after the phase-003 storage boundary is materialized, but the choice must prove atomic compare-current-fence-plus-mutation for every protected store. A file lease plus a pre-write token read is insufficient. The declared atomicity domain, token width/overflow behavior, canonical resource-key encoder, and compatibility-adapter removal point must be pinned in implementation evidence before any writer is migrated.
+None blocking for planning. Implementation may choose a transactional coordinator, a fenced single-writer broker, or another backend after the phase-006 storage boundary is materialized, but the choice must prove atomic compare-current-fence-plus-mutation for every protected store. A file lease plus a pre-write token read is insufficient. The declared atomicity domain, token width/overflow behavior, canonical resource-key encoder, and compatibility-adapter removal point must be pinned in implementation evidence before any writer is migrated.
 <!-- /ANCHOR:questions -->

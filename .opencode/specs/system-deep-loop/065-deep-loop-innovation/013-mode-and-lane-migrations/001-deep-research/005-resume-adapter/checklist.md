@@ -37,7 +37,7 @@ mutation, duplicate semantic application, lost committed events, or dark-path au
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-009 shared envelope, replay, idempotency, and conflict contracts are frozen and the candidate records their contract fingerprints
+- [ ] CHK-001 [P0] Phase-012 shared envelope, replay, idempotency, and conflict contracts are frozen and the candidate records their contract fingerprints
 - [ ] CHK-002 [P0] The Deep Research sibling ownership matrix names typed schema, reducers, seals, certificates, resume, shadow parity, rollback, and mode-gate boundaries
 - [ ] CHK-003 [P1] The candidate worktree is clean, pinned to BASE, isolated, and limited to the phase write set
 - [ ] CHK-004 [P2] The continuity-ladder matrix and resume request identity are recorded before implementation fixtures are accepted

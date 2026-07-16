@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Conditional Budget-Aware Fan-in (006 phase 004)"
+title: "Implementation Plan: Conditional Budget-Aware Fan-in"
 description: "Implementation plan for replay-stable fan-in that stops on evidence sufficiency or typed-budget floors and preserves cancellation, salvage, and reducer-input evidence."
 trigger_phrases:
   - "conditional budget-aware fan-in implementation plan"
@@ -30,13 +30,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop durable orchestration (phase 006 child 004) |
+| **Surface** | system-deep-loop durable orchestration |
 | **Change class** | Ledgered orchestration policy and runtime control flow |
 | **Execution** | Additive-dark implementation with replay and shadow-parity fixtures |
 
 ### Overview
 Replace the current implicit wait-for-all join with a versioned decision reducer that evaluates accepted durable
-results, outstanding branch state, partial-failure eligibility, sufficiency evidence, and the phase-004 typed-budget
+results, outstanding branch state, partial-failure eligibility, sufficiency evidence, and the phase-007 typed-budget
 snapshot at one ledger event cut. The reducer either keeps awaiting or finalizes an immutable decision that dispositions
 outstanding leaves and hands an exact ordered result set to reduction. Current \`fanout-run.cjs\` behavior remains the
 shadow baseline until later program gates authorize cutover.
@@ -67,7 +67,7 @@ shadow baseline until later program gates authorize cutover.
 - **FanInPolicy**: versions minimum accepted results, agreement/support threshold, provenance-diversity floor, budget-floor request shape, cancellation policy, salvage policy, and the optional value-of-computation slot.
 - **FanInDecisionView**: folds ledger events through a declared sequence into accepted result envelopes, outstanding branch/attempt states, lease/fence state, partial-failure eligibility, budget snapshot references, and prior open decision state.
 - **SufficiencyEvaluator**: returns typed pass/fail evidence and a provenance digest; it cannot dispatch, reserve budget, cancel leaves, or finalize the decision.
-- **BudgetContinuationProbe**: asks the phase-004 authority for one complete next-result reservation plus settlement margin. Any missing, stale, exhausted, conflicting, or unreconciled dimension denies continuation.
+- **BudgetContinuationProbe**: asks the phase-007 authority for one complete next-result reservation plus settlement margin. Any missing, stale, exhausted, conflicting, or unreconciled dimension denies continuation.
 - **FanInDecisionReducer**: applies deterministic trigger precedence, freezes included/excluded IDs, computes the ordered reducer-input digest, and emits one transition-authorized decision event.
 - **OutstandingDispositionCoordinator**: withdraws queued work, cancels unused reservations, emits fenced cancel requests, and routes racing/non-cancellable terminals to salvage while preserving spend settlement.
 - **ReductionHandoff**: supplies only the decision-bound ordered result set, decision ID, digest, and completion classification to the later provenance-balanced reducer.
@@ -89,7 +89,7 @@ failure to stop a process never permits a late result to mutate the frozen input
 
 ### Phase 2: Implementation
 - Implement the event-cut decision view and sufficiency evaluator with provenance-aware quorum evidence.
-- Implement the typed continuation probe and settlement-margin request against the phase-004 budget authority.
+- Implement the typed continuation probe and settlement-margin request against the phase-007 budget authority.
 - Implement the fan-in decision reducer, authorization call, immutable included set, and reducer-input digest.
 - Implement outstanding-leaf withdrawal, reservation release, fenced cancellation, non-cancellable detach, and late-result salvage.
 - Bind reduction handoff to the finalized decision and reject mismatched or mutated result sets.
@@ -120,7 +120,7 @@ failure to stop a process never permits a late result to mutate the frozen input
 | REQ-009 | Persist a late result after the cut and prove the authoritative reducer input remains unchanged |
 | REQ-010 | Alter order, membership, or content after finalization and require reduction handoff rejection |
 | REQ-011 | Feed strict/quorum/deadline/progressive eligibility outcomes through the same decision schema |
-| REQ-012 | Run with no value signal and a versioned phase-008 stub; typed budget admission remains authoritative |
+| REQ-012 | Run with no value signal and a versioned phase-011 stub; typed budget admission remains authoritative |
 | REQ-013 | Assert shadow mode writes evidence only and the legacy wait-for-all result remains authoritative |
 | REQ-014 | Source-reference lint confirms the budget spec, runtime runner, and phase tree remain cited |
 <!-- /ANCHOR:testing -->

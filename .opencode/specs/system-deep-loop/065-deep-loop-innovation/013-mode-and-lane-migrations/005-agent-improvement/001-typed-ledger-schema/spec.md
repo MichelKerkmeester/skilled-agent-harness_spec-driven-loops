@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (agent-improvement variant) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 005; first child of the Agent Improvement migration |
-| **Inputs** | Phase-003 transition-authorized ledger core; phase-009 shared event contracts; mode 004 Deep Improvement Common Services; 065/002 findings registries |
+| **Inputs** | Phase-006 transition-authorized ledger core; phase-012 shared event contracts; mode 004 Deep Improvement Common Services; 065/002 findings registries |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -57,7 +57,7 @@ are emitted as free-form JSON or folded into one score, replay cannot distinguis
 executor, raw evidence is lost when scoring policy changes, and a candidate can appear better without showing preserved
 authority or safety behavior.
 
-This phase plans the schema contract only. It consumes the phase-003 transition-authorized ledger core and phase-009
+This phase plans the schema contract only. It consumes the phase-006 transition-authorized ledger core and phase-012
 shared event contracts, then specializes the mode-004 Deep Improvement Common Services envelope and event vocabulary
 for Agent Improvement. Common evaluator, canary, and promotion events are reused rather than reimplemented. The
 variant adds only AgentIR, change-contract, causal-experiment, behavior-manifest, and transfer facts. It emits the
@@ -77,7 +77,7 @@ vocabulary consumed by `002-reducers-and-projections`; it does not define reduce
 
 ### Out of Scope
 - Reducers, projections, materialized gauges, candidate frontiers, coverage views, read models, and archive updates; these belong to `002-reducers-and-projections`.
-- Reimplementation of the phase-003 authorization gateway, ledger durability, replay fingerprint primitive, phase-009 shared event envelope, or mode-004 evaluator/canary/promotion services.
+- Reimplementation of the phase-006 authorization gateway, ledger durability, replay fingerprint primitive, phase-012 shared event envelope, or mode-004 evaluator/canary/promotion services.
 - Agent Improvement sealed artifacts, transfer certificates, resume adapters, shadow parity, rollback switch, mode gate, authority cutover, legacy-writer retirement, production code, and implementation tests; this is a planning-only phase.
 <!-- /ANCHOR:scope -->
 
@@ -135,7 +135,7 @@ self-authorize.
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The direct contract inputs are the phase-003 transition-authorized ledger core and phase-009 shared event contracts.
+The direct contract inputs are the phase-006 transition-authorized ledger core and phase-012 shared event contracts.
 Mode 004 supplies the reusable evaluator, canary, promotion, receipt, and authorization event vocabulary. The 065/002
 findings require typed AgentIR, clause-level causal slicing, Pareto-preserved candidate lineage, frozen evaluator and
 canary epochs, controlled feedback, critical invariant gates, family-level non-inferiority, isolated verifiers,

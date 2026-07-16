@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Skill Benchmark - Resume Adapter (013 mode migration, 007 child 005)"
+title: "Tasks: Skill Benchmark - Resume Adapter"
 description: "Tasks for the Skill Benchmark sealed-ledger resume adapter: pin schema and reducer contracts, map continuity-ladder state, define stable scenario-cell re-entry, preserve skill-specific scoring evidence, consume shared recovery services, and verify idempotent replay."
 trigger_phrases:
   - "Skill Benchmark resume adapter tasks"
@@ -41,7 +41,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm the phase is planning-only, the target folder is scope-locked, and adjacency names predecessor `004-certificates-and-receipts` and successor `006-shadow-parity`
-- [ ] T002 [P] Pin the phase-003 sealed-ledger, phase-009 shared-event, Skill Benchmark schema, and reducer contracts with version and fingerprint fields
+- [ ] T002 [P] Pin the phase-006 sealed-ledger, phase-012 shared-event, Skill Benchmark schema, and reducer contracts with version and fingerprint fields
 - [ ] T003 [P] Record deep-improvement-common mode-004 ownership for evaluator, canary, promotion, receipt, budget, lock, continuity, compatibility, and effect-recovery services
 - [ ] T004 [P] Extract research obligations for receipt completion, logical versus attempt identity, branch-local success, unknown effects, paired skill lift, progressive disclosure, executable gold, and mediation metrics
 - [ ] T005 Inventory design, treatment, scenario, stage, trajectory, outcome, gold, score, usage, latency, validity, receipt, and shared-status fields required for reconstruction

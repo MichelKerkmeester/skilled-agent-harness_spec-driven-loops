@@ -1,6 +1,6 @@
 ---
-title: "Tasks: semantic communities (007 phase 001)"
-description: "Tasks for deterministic semantic communities and concept-level novelty in phase 007 child 001."
+title: "Tasks: semantic communities"
+description: "Tasks for deterministic semantic communities and concept-level novelty in phase 010 child 001."
 trigger_phrases:
   - "semantic communities tasks"
   - "concept-level novelty tasks"

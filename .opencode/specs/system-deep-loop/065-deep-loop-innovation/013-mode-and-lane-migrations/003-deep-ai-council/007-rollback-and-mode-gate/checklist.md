@@ -76,7 +76,7 @@ and any typed refusal. A green process exit without the required evidence is not
 
 - [ ] CHK-022 [P0] The mode certificate names `deep-ai-council`, exact baseline and candidate fingerprints, event frontier, sealed manifest, receipt chain, and rollback anchor
 - [ ] CHK-023 [P0] Gate dispositions distinguish `gate_passed`, `gate_blocked`, `gate_incomplete`, and `rollback_required` with failed predicate IDs
-- [ ] CHK-024 [P1] The phase-014 handoff grants eligibility evidence only and contains no authority transition or legacy-writer retirement claim
+- [ ] CHK-024 [P1] The phase-017 handoff grants eligibility evidence only and contains no authority transition or legacy-writer retirement claim
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -106,7 +106,7 @@ and any typed refusal. A green process exit without the required evidence is not
 
 The phase passes when every P0 verifier item is green, every required Deep AI Council fixture has explicit evidence, the mode
 certificate verifies from the pinned frontier, the rollback drill restores the legacy anchor within the declared window, and
-the handoff to phase-014 contains no authority mutation. `validate.sh --strict` must pass except for the expected generated
+the handoff to phase-017 contains no authority mutation. `validate.sh --strict` must pass except for the expected generated
 metadata files while this Planned packet is awaiting deterministic tooling.
 <!-- /ANCHOR:summary -->
 

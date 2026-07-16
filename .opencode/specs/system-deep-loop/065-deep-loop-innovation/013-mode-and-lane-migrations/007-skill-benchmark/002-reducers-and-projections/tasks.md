@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm `001-typed-ledger-schema`, phase 012 shared contracts, and deep-improvement-common interfaces are frozen inputs
+- [ ] T001 Confirm `001-typed-ledger-schema`, phase 015 shared contracts, and deep-improvement-common interfaces are frozen inputs
 - [ ] T002 Inventory skill-benchmark event types, scenario-cell identities, treatment arms, gold states, raw observations, and downstream artifact references
 - [ ] T003 Record the ownership matrix separating deep-improvement-common services from skill-specific reducer and projection logic
 <!-- /ANCHOR:phase-1 -->

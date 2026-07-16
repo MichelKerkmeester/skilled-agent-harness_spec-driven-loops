@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Conditional Budget-Aware Fan-in (006 phase 004)"
+title: "Feature Specification: Conditional Budget-Aware Fan-in"
 description: "Plan replay-stable conditional fan-in that awaits only enough durable results, stops on typed-budget floors or evidence sufficiency, disposes outstanding leaves safely, and records the exact reducer input decision."
 trigger_phrases:
   - "conditional budget-aware fan-in"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Fourth child of the phase-006 durable fan-out/fan-in orchestration parent |
+| **Origin** | Fourth child of the phase-009 durable fan-out/fan-in orchestration parent |
 | **Depends on** | None (\`[]\`) |
 <!-- /ANCHOR:metadata -->
 
@@ -57,7 +57,7 @@ be cancelled while completed evidence is reduced. A successful run therefore wai
 additional computation has low immediate value.
 
 This phase plans conditional fan-in over durable result envelopes and the hierarchical typed-budget authority from
-program phase 004. Fan-in repeatedly evaluates a replay-stable await predicate over an event-sequence cut: accepted
+program phase 007. Fan-in repeatedly evaluates a replay-stable await predicate over an event-sequence cut: accepted
 results, eligible outstanding branches, sufficiency evidence, partial-failure state, and a typed budget snapshot. It
 continues only while another result is both useful under policy and fully reservable across token, monetary,
 iteration-attempt, and monotonic wall-time dimensions. It stops early when a declared sufficiency condition is met,
@@ -67,7 +67,7 @@ included result set and invokes reduction over exactly that set.
 Budget exhaustion is not convergence or success. A budget-floor decision records an incomplete/budget-constrained
 outcome even when the available results are still reducible. Agreement is not a raw count either: quorum policy must
 bind a minimum accepted-result count, a support threshold, and provenance or independence constraints supplied by the
-orchestration contracts. The future value-of-computation allocator in program phase 008 plugs into the usefulness
+orchestration contracts. The future value-of-computation allocator in program phase 011 plugs into the usefulness
 score without changing this phase's stop taxonomy, budget authority, or decision evidence.
 
 Outstanding work remains accountable. Queued leaves may be withdrawn before dispatch; unused reservations may be
@@ -87,21 +87,21 @@ Sources: \`.opencode/specs/system-deep-loop/065-deep-loop-innovation/007-shared-
 - A versioned fan-in policy with minimum accepted results, sufficiency/quorum thresholds, provenance-diversity rules, budget-floor parameters, cancellation disposition, and policy digest.
 - A deterministic await predicate evaluated at a ledger event-sequence cut, never from mutable arrival order alone.
 - Sufficiency evaluation for enough agreeing results without treating duplicate or correlated lineages as independent votes.
-- A typed budget-floor check that asks the phase-004 authority whether one more policy-eligible result plus settlement margin can be reserved across every required dimension and ancestor.
+- A typed budget-floor check that asks the phase-007 authority whether one more policy-eligible result plus settlement margin can be reserved across every required dimension and ancestor.
 - Explicit early-stop reasons: \`sufficiency\`, \`budget_floor\`, \`all_eligible_terminal\`, and fail-closed accounting/policy anomalies, with every simultaneously true condition retained.
 - Atomic decision finalization: freeze the included result-envelope IDs, excluded/outstanding IDs, event cut, budget snapshot, sufficiency evidence, and reducer-input digest before reduction starts.
 - Outstanding-leaf disposition for queued, reserved-not-started, running-cancellable, running-non-cancellable, late-completed, failed, and lease-expired branches.
 - Idempotent cancel requests, reservation release/settlement, and late-result salvage keyed by logical branch, dispatch, attempt, and decision IDs.
 - A ledgered fan-in decision event and reduction handoff that replay to the same included result set and primary stop classification.
-- An optional value-of-computation signal slot that program phase 008 can populate later; the default policy remains deterministic without it.
+- An optional value-of-computation signal slot that program phase 011 can populate later; the default policy remains deterministic without it.
 - Additive-dark integration and shadow comparison against the current wait-for-all behavior before any authority cutover.
 
 ### Out of Scope
-- Implementing the phase-004 hierarchical typed-budget service or redefining its reservation, settlement, exhaustion, pricing, or ancestor rules.
+- Implementing the phase-007 hierarchical typed-budget service or redefining its reservation, settlement, exhaustion, pricing, or ancestor rules.
 - Defining logical branch IDs, lease ownership, or wave construction owned by predecessor sibling \`003-logical-branch-ids-leases-waves\`.
 - Defining strict/quorum/deadline/progressive partial-failure policy owned by successor sibling \`005-partial-failure-policy\`; this phase consumes its typed eligibility result.
 - Designing provenance-balanced reduction algorithms owned by the later reduction sibling; this phase freezes and hands off the reducer input set.
-- Implementing program phase 008 value-of-computation, adaptive allocation, convergence, or termination thresholds.
+- Implementing program phase 011 value-of-computation, adaptive allocation, convergence, or termination thresholds.
 - Treating cancellation as erasure, releasing unproven capacity, dropping late evidence, or changing legacy authority before the program cutover phase.
 <!-- /ANCHOR:scope -->
 
@@ -121,9 +121,9 @@ Sources: \`.opencode/specs/system-deep-loop/065-deep-loop-innovation/007-shared-
 | REQ-009 | Keep late results non-authoritative for the frozen reduction | A result after the decision cut remains ledgered and salvageable but is excluded from that decision's reducer input unless a new authorized decision supersedes it |
 | REQ-010 | Bind reduction to the decision | Reduction consumes exactly the ordered result-envelope IDs and digest recorded by the finalized fan-in decision |
 | REQ-011 | Remain compatible with partial-failure policy | Strict/quorum/deadline/progressive policy can mark results or branches eligible/ineligible without changing the fan-in decision schema or stop taxonomy |
-| REQ-012 | Provide a phase-008 extension point | A versioned optional value-of-computation assessment may rank another result's usefulness, but cannot bypass typed budget admission or rewrite recorded decisions |
+| REQ-012 | Provide a phase-011 extension point | A versioned optional value-of-computation assessment may rank another result's usefulness, but cannot bypass typed budget admission or rewrite recorded decisions |
 | REQ-013 | Preserve additive-dark migration discipline | Conditional decisions first emit shadow records beside the current wait-for-all path; authority moves only under later shadow-parity and cutover gates |
-| REQ-014 | Preserve source traceability | The implementation and verifier contract cite the phase-004 budget specification, current \`fanout-run.cjs\`, and the program phase tree |
+| REQ-014 | Preserve source traceability | The implementation and verifier contract cite the phase-007 budget specification, current \`fanout-run.cjs\`, and the program phase tree |
 <!-- /ANCHOR:requirements -->
 
 ### Await and stop contract
@@ -192,7 +192,7 @@ both triggers are recorded, budget floor is primary, and replay produces the ide
 ## 6. RISKS & DEPENDENCIES
 
 This child has \`depends_on: []\` as an independently authored sibling planning contract. Implementation consumes the
-program phase-004 hierarchical typed-budget API and the durable orchestration parent contracts for result envelopes,
+program phase-007 hierarchical typed-budget API and the durable orchestration parent contracts for result envelopes,
 logical identities, leases, waves, partial-failure eligibility, and reduction handoff once those interfaces are
 frozen. The predecessor and successor named in the adjacency line are navigation references, not hard runtime
 dependencies. The program manifest still places durable fan-in after the additive-dark ledger, shared services,
@@ -202,7 +202,7 @@ The highest risk is a race between decision finalization and a terminal leaf eve
 atomic included-set freeze, replay can reduce a different set. Other risks are false quorum from correlated branches,
 fuzzy “nearly exhausted” thresholds that bypass typed admission, releasing reserved capacity before actual spend
 settles, cancellation that masks a late success or failure, late evidence mutating an authoritative reduction,
-non-cancellable subprocess leaks, and phase 008 silently redefining stop meaning. Verification therefore uses
+non-cancellable subprocess leaks, and phase 011 silently redefining stop meaning. Verification therefore uses
 deterministic event cuts, provenance-aware quorum fixtures, typed ancestor-budget denials, cancel/complete races,
 salvage assertions, reducer-digest checks, and a versioned value-of-computation extension boundary.
 <!-- /ANCHOR:risks -->

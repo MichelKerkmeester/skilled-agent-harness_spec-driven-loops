@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Sealed Reference Artifacts (004 phase 002)"
+title: "Tasks: Sealed Reference Artifacts"
 description: "Tasks for implementing immutable sealing, reference-by-digest, verified reads, replay binding, and retention of deep-loop reference artifacts."
 trigger_phrases:
   - "sealed reference artifacts tasks"
@@ -41,7 +41,7 @@ _memory:
 
 - [ ] T001 Inventory initial artifact kinds, mutable input sources, replay roots, rollback holds, and archival requirements against the pinned baseline
 - [ ] T002 Freeze the versioned seal descriptor, canonicalization registry, algorithm-qualified digest grammar, verified-read errors, reference-set ordering, and lifecycle records
-- [ ] T003 Define the additive-dark integration boundary with phase-003 fingerprints and phase-005 input-equivalence checks without changing legacy authority
+- [ ] T003 Define the additive-dark integration boundary with phase-006 fingerprints and phase-008 input-equivalence checks without changing legacy authority
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -52,8 +52,8 @@ _memory:
 - [ ] T006 Implement idempotent duplicate sealing plus typed collision, descriptor-conflict, corruption, and quarantine handling
 - [ ] T007 Implement exact reference-by-digest schemas and reject mutable-only path, alias, tag, and `latest` inputs from dark replay evidence
 - [ ] T008 Implement streaming verified reads that recompute size and digest before releasing a verified handle and release no bytes on failure
-- [ ] T009 Bind ordered verified artifact-reference sets into ledger events, receipts/certificates, and the phase-003 replay-fingerprint descriptor
-- [ ] T010 Add the phase-005 shadow-parity precondition that legacy and dark executions cite the same verified artifact-reference set
+- [ ] T009 Bind ordered verified artifact-reference sets into ledger events, receipts/certificates, and the phase-006 replay-fingerprint descriptor
+- [ ] T010 Add the phase-008 shadow-parity precondition that legacy and dark executions cite the same verified artifact-reference set
 - [ ] T011 Implement append-only lifecycle records for creation, protected references, retention class, holds, quarantine, eligibility, deletion receipts, tombstones, and exact restoration
 - [ ] T012 Implement conservative mark-and-sweep rooted in runs, fingerprints, receipts, rollback windows, archival readers, and holds; incomplete analysis retains data
 <!-- /ANCHOR:phase-2 -->

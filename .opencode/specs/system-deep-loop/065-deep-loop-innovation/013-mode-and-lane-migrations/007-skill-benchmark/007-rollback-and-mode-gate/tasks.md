@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Skill Benchmark - Rollback & Mode Gate (013 phase 007)"
+title: "Tasks: Skill Benchmark - Rollback & Mode Gate"
 description: "Tasks for the Skill Benchmark rollback switch and independent mode gate over the deep-improvement-common migration backbone."
 trigger_phrases:
   - "skill benchmark rollback mode gate tasks"
@@ -56,8 +56,8 @@ _memory:
 - [ ] T009 Define content-addressed Skill Benchmark effect certificate fields for paired lift, mediation, coverage, uncertainty, provenance, validity domain, and limitations
 - [ ] T010 Define the ROLLBACK SWITCH state machine with fail-closed default, typed refusals, stable legacy target, bounded window, expiry, and unknown-effect quarantine
 - [ ] T011 Define rollback verification using shared transition-authorization, receipt, effect-recovery, lock, and continuity services without duplicating them
-- [ ] T012 Define the independent Skill Benchmark GATE inputs, refusal conditions, mode certificate, and phase-011 handoff contract
-- [ ] T013 Define mixed-version and scope checks proving the mode gate cannot authorize phase-014 production cutover
+- [ ] T012 Define the independent Skill Benchmark GATE inputs, refusal conditions, mode certificate, and phase-014 handoff contract
+- [ ] T013 Define mixed-version and scope checks proving the mode gate cannot authorize phase-017 production cutover
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
@@ -70,7 +70,7 @@ _memory:
 - [ ] T018 Verify: the ROLLBACK SWITCH fails closed — unsafe, stale, conflicting, expired, or unverifiable authority inputs retain the stable legacy path
 - [ ] T019 Verify: the bounded rollback window restores legacy authority — recovery receipts reconcile, unknown effects quarantine, and duplicate logical commits remain absent
 - [ ] T020 Verify: the independent mode gate refuses failed parity, missing artifacts, invalid certificates, fingerprint drift, and incomplete rollback readiness
-- [ ] T021 Verify: the green mode gate emits a Skill Benchmark certificate and complete phase-011 handoff without moving production authority
+- [ ] T021 Verify: the green mode gate emits a Skill Benchmark certificate and complete phase-014 handoff without moving production authority
 - [ ] T022 Verify: exact-SHA validation, build, type, unit, replay, fault-injection, and benchmark gates pass with no unexpected tracked mutation
 <!-- /ANCHOR:phase-3 -->
 

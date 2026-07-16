@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Deep Alignment - Rollback & Mode Gate"
-description: "Plan the Deep Alignment rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, per-lane shadow parity, sealed conformance evidence, certificate closure, and the phase-011 handoff without moving runtime authority."
+description: "Plan the Deep Alignment rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, per-lane shadow parity, sealed conformance evidence, certificate closure, and the phase-014 handoff without moving runtime authority."
 trigger_phrases:
   - "Deep Alignment rollback and mode gate"
   - "deep-alignment authority rollback switch"
@@ -20,9 +20,9 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which phase-009 control record carries the authority arm and inverse rollback transition?"
+      - "Which phase-012 control record carries the authority arm and inverse rollback transition?"
       - "Which per-lane health alarms require immediate rollback rather than observation?"
-      - "Which phase-011 consumer validates the mode-gate certificate and expiry?"
+      - "Which phase-014 consumer validates the mode-gate certificate and expiry?"
     answered_questions:
       - "This phase plans the Deep Alignment switch and gate, not the shared review-loop backbone"
       - "Invalid authority material resolves to legacy authority"
@@ -48,7 +48,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-alignment |
-| **Origin** | Phase 008 Deep Alignment migration after typed schema, reducers, sealed artifacts, certificates, resume adapter, and shadow-parity siblings |
+| **Origin** | Phase 011 Deep Alignment migration after typed schema, reducers, sealed artifacts, certificates, resume adapter, and shadow-parity siblings |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -75,7 +75,7 @@ an externally authorized, fail-closed control that retains legacy authority for 
 material, records a bounded window with a sealed healthy anchor, and restores the legacy path on a declared trigger. The gate is an
 independent per-lane evidence contract that certifies this mode is migrated only when shadow parity is green, required artifacts are
 sealed, verifier and authority provenance are pinned, and the certificate and receipt chain close. This is planning only: it is the
-mode exit gate into phase 011 and does not flip authority, retire legacy writers, migrate in-flight state, or fork the shared
+mode exit gate into phase 014 and does not flip authority, retire legacy writers, migrate in-flight state, or fork the shared
 review-loop backbone used by Deep Review mode 002.
 <!-- /ANCHOR:problem -->
 
@@ -84,7 +84,7 @@ review-loop backbone used by Deep Review mode 002.
 
 ### In Scope
 - A Deep Alignment authority-control record with a fail-closed legacy/shadow/ledger posture, authority epoch, named-authority and
-  verifier digests, phase-009 shared review-loop digest, mode-gate certificate reference, health witness, and one externally
+  verifier digests, phase-012 shared review-loop digest, mode-gate certificate reference, health witness, and one externally
   authorized rollback transition.
 - A bounded rollback-window contract with wall-clock and logical-operation or attempt bounds, a last-healthy sealed ledger
   frontier, the matching legacy checkpoint, observed lane health, rollback triggers, and deterministic expiry behavior.
@@ -95,17 +95,17 @@ review-loop backbone used by Deep Review mode 002.
   finding lifecycle, convergence, per-lane reports, resume decisions, continuity handoff, and explicit remediation exclusion.
 - A gate evidence matrix consuming typed schema, reducers and projections, sealed artifacts, certificates and receipts, resume
   decisions, and `006-shadow-parity` output without redefining those six sibling contracts.
-- A mode-gate certificate binding BASE, the phase-009 shared review-loop contract digest, mode contract digest, event and reducer
+- A mode-gate certificate binding BASE, the phase-012 shared review-loop contract digest, mode contract digest, event and reducer
   versions, lane configuration, authority capsule and verifier digests, applicability coverage, finding receipts, report outputs,
-  parity receipt, receipt root, replay fingerprint, rollback-drill evidence, gate result, and phase-011 handoff.
+  parity receipt, receipt root, replay fingerprint, rollback-drill evidence, gate result, and phase-014 handoff.
 - Shared review-loop conformance with Deep Review mode 002: scope, lane or dimension coverage, finding lineage, convergence,
-  report, resume, and write-set behavior are consumed from phase 009 rather than copied into a Deep Alignment-only state machine.
+  report, resume, and write-set behavior are consumed from phase 012 rather than copied into a Deep Alignment-only state machine.
 - Planning fixtures for clean lane gates, missing or stale authority, unsupported applicability, known deviations, evidence gaps,
   parity drift, malformed switch state, rollback at effect boundaries, expired windows, unknown effects, and safe legacy fallback.
 
 ### Out of Scope
-- Implementing the phase-009 shared review-loop contract, typed ledger, transition gateway, replay fingerprint, sealing primitive,
-  generic receipt service, health detector, or phase-011 generic shadow framework.
+- Implementing the phase-012 shared review-loop contract, typed ledger, transition gateway, replay fingerprint, sealing primitive,
+  generic receipt service, health detector, or phase-014 generic shadow framework.
 - Rewriting the Deep Alignment event schema, reducers, projections, sealed artifact bindings, certificates, resume adapter, or
   comparator owned by the six preceding sibling concerns.
 - Moving runtime authority, deleting or retiring legacy writers, migrating in-flight state, issuing the later authority cutover
@@ -132,8 +132,8 @@ review-loop backbone used by Deep Review mode 002.
 | REQ-008 | Authority and artifact evidence are complete | Authority capsule, rule IR, source anchors, applicability decisions, target digests, verifier receipts, raw observations, counterevidence, known-deviation assertions, and lane coverage references verify through shared seals with no mutable path-only dependency |
 | REQ-009 | Findings remain verify-first and typed | Detector candidates, live re-probe results, severity, confidence, evidence strength, conformance, applicability, unresolved state, and known-deviation adjudication remain separate fields; unsupported claims cannot enter the asserted registry |
 | REQ-010 | Certificates and receipts are independently verifiable | The gate receives a verified run certificate, receipt-set closure, authority epoch, verifier digest, replay fingerprint, and certificate policy digest; signature or process integrity is not overclaimed as semantic conformance |
-| REQ-011 | Deep Alignment reuses the shared review loop | The gate consumes phase-009 shared scope, coverage, lineage, convergence, report, resume, and write-set contracts used by Deep Review; no Deep Alignment-local lifecycle fork can pass |
-| REQ-012 | The gate is independent and phase-safe | Deep Alignment produces its own `PASS`, `BLOCKED`, or `INDETERMINATE` result and certificate; another mode, aggregate dashboard, or final report cannot substitute, and a pass emits only `MIGRATED_SHADOW_READY` for phase 011 |
+| REQ-011 | Deep Alignment reuses the shared review loop | The gate consumes phase-012 shared scope, coverage, lineage, convergence, report, resume, and write-set contracts used by Deep Review; no Deep Alignment-local lifecycle fork can pass |
+| REQ-012 | The gate is independent and phase-safe | Deep Alignment produces its own `PASS`, `BLOCKED`, or `INDETERMINATE` result and certificate; another mode, aggregate dashboard, or final report cannot substitute, and a pass emits only `MIGRATED_SHADOW_READY` for phase 014 |
 
 The authority-control record is resolved by one fail-closed function over requested posture, toggle, mode-gate certificate, authority
 epoch, named-authority capsule, verifier digest, lane configuration, contract digests, rollback-window record, and current health
@@ -165,7 +165,7 @@ the original observation.
 - **SC-005**: Shadow parity is green with zero unexplained semantic differences across clean, drifted, known-deviation, unresolved, resumed, and replayed lane fixtures.
 - **SC-006**: Required authority, rule, target, observation, finding, counterevidence, report, and resume artifacts are sealed and verified from pinned inputs.
 - **SC-007**: A run certificate and receipt chain independently bind the authority epoch, verifier, lane coverage, replay fingerprint, gate result, and rollback evidence.
-- **SC-008**: The gate emits `MIGRATED_SHADOW_READY` with a phase-011 handoff while retaining legacy authority, keeping remediation opt-in, and changing no shared review-loop contract.
+- **SC-008**: The gate emits `MIGRATED_SHADOW_READY` with a phase-014 handoff while retaining legacy authority, keeping remediation opt-in, and changing no shared review-loop contract.
 - **Given** an authority capsule is expired or mixed with a different verifier digest, **When** the gate resolves control state, **Then** it returns `legacy_authoritative` or `BLOCKED` and emits no pass certificate.
 - **Given** a lane has an unresolved applicability predicate, **When** verification is requested, **Then** the lane records `UNRESOLVED` or `NOT_APPLICABLE` before expensive judging and cannot be counted as conformant.
 - **Given** shadow parity differs in event order or a finding receipt is missing, **When** the mode gate evaluates the fixture, **Then** the result is `PARITY_BLOCKED` or `INDETERMINATE` and authority remains unchanged.
@@ -182,17 +182,17 @@ the original observation.
 - **Self-authorized recovery** - a failing lane or quarantined verifier could clear its own quarantine or choose its own replacement. Mitigation: keep rollback authority in the shared transition kernel and require external authorization.
 - **False parity** - matching reports can hide event order, authority epoch, known-deviation, evidence, receipt, or resume drift. Mitigation: compare events, projections, source and target digests, lane coverage, and replay fingerprints with a narrow volatility allowlist.
 - **Certificate overclaim** - a signed certificate can prove origin and integrity without proving authority correctness, scope closure, or evidence sufficiency. Mitigation: keep those obligations as independent P0 evidence rows.
-- **Review/alignment fork** - Deep Alignment and Deep Review could drift in scope, convergence, or report semantics. Mitigation: consume the frozen phase-009 shared review-loop contract and write-set fence rather than defining local lifecycle rules.
-- **Dependencies**: the 065 parent and phase tree; phase-009 shared review-loop and write-set contracts; phase-011 handoff consumer; the phase-003 authorization spine; the six Deep Alignment siblings; Deep Alignment's existing state-machine and adapter contracts; the two findings registries; and the spec-kit validator. The phase tree declares `depends_on: []`; these are pinned contract inputs and navigation boundaries, not an added phase dependency.
+- **Review/alignment fork** - Deep Alignment and Deep Review could drift in scope, convergence, or report semantics. Mitigation: consume the frozen phase-012 shared review-loop contract and write-set fence rather than defining local lifecycle rules.
+- **Dependencies**: the 065 parent and phase tree; phase-012 shared review-loop and write-set contracts; phase-014 handoff consumer; the phase-006 authorization spine; the six Deep Alignment siblings; Deep Alignment's existing state-machine and adapter contracts; the two findings registries; and the spec-kit validator. The phase tree declares `depends_on: []`; these are pinned contract inputs and navigation boundaries, not an added phase dependency.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which phase-009 transition token and authority epoch fields are mandatory for the Deep Alignment cutover arm and inverse rollback event?
+- Which phase-012 transition token and authority epoch fields are mandatory for the Deep Alignment cutover arm and inverse rollback event?
 - Does the shared health witness expose one canonical lane quarantine trigger, or must the gate bind typed authority, applicability, verifier, and receipt alarm classes?
 - Which logical-operation counter is the rollback-window budget: lane transitions, artifact checks, verifier calls, effects, or the shared root lease debit?
-- What exact phase-011 handoff schema consumes `MIGRATED_SHADOW_READY`, and which certificate expiry and authority epoch checks occur before later cutover?
+- What exact phase-014 handoff schema consumes `MIGRATED_SHADOW_READY`, and which certificate expiry and authority epoch checks occur before later cutover?
 - Which fixture proves legacy restoration when an external effect is `unknown`, the authority capsule changed, and the legacy checkpoint is available but the ledger tail is not finalized?
 
 These decisions are resolved against the frozen shared contracts and the pinned baseline during implementation planning. They do not

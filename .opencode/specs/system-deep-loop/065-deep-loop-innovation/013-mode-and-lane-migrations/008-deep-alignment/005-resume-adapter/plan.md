@@ -31,9 +31,9 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop Deep Alignment mode (phase 013/008/005) |
+| **Surface** | system-deep-loop Deep Alignment mode |
 | **Change class** | Planning contract for ledger-backed authority-aware recovery and re-entry |
-| **Execution** | Later implementation against the phase-009 shared review-loop contract and the frozen write-set graph |
+| **Execution** | Later implementation against the phase-012 shared review-loop contract and the frozen write-set graph |
 
 ### Overview
 The adapter will rebuild Deep Alignment from a sealed ledger frontier rather than a mutable checkpoint, current authority
@@ -47,7 +47,7 @@ fingerprint. It never assumes that a prior conformance result is reusable becaus
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-009 shared review-loop contract is frozen with sealed-frontier, reducer, replay, and terminal interfaces
+- [ ] The phase-012 shared review-loop contract is frozen with sealed-frontier, reducer, replay, and terminal interfaces
 - [ ] The shared mode contract and emitted write-set conflict graph are available for same-lineage and independent-lineage resume
 - [ ] Deep Alignment sibling concerns expose the typed events, reducer projections, sealed references, certificates, and receipts consumed here
 - [ ] Authority epoch, subject snapshot, verifier, evidence receipt, and manifest fingerprints have defined compatibility inputs
@@ -67,7 +67,7 @@ fingerprint. It never assumes that a prior conformance result is reusable becaus
 
 - **Authoritative input**: read only the sealed finalized ledger prefix and its frontier certificate. Verify sequence continuity,
   event hashes, schema and reducer versions, authority epoch references, receipt integrity, and the replay-compatibility fingerprint.
-- **Shared fold**: invoke the phase-009 review-loop reducer contract for run, resume, scope, pass, convergence, blocked-stop,
+- **Shared fold**: invoke the phase-012 review-loop reducer contract for run, resume, scope, pass, convergence, blocked-stop,
   continuity, and terminal transitions. Deep Alignment supplies typed payload data and a mode projection, not alternate transitions.
 - **Authority projection**: derive authority capsule validity, epoch compatibility, compiler and verifier identity, expiry,
   rollback or mix-and-match status, and the prerequisite status for all lanes before treating conformance as eligible.
@@ -91,7 +91,7 @@ fingerprint. It never assumes that a prior conformance result is reusable becaus
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm phase-009 shared review-loop and mode-contract inputs are frozen at the pinned baseline; record exact seal, event,
+- Confirm phase-012 shared review-loop and mode-contract inputs are frozen at the pinned baseline; record exact seal, event,
   reducer, compatibility, terminal, and write-set interfaces.
 - Inventory Deep Alignment interruption boundaries: authority validation, lane planning, applicability, discovery, observation,
   candidate emission, proof receipt, adjudication, deviation, convergence, and report or terminal handoff.
@@ -137,14 +137,14 @@ fingerprint. It never assumes that a prior conformance result is reusable becaus
 | REQ-006 | Change logical scope and attempt inputs independently; verify stable logical IDs and changing attempt IDs follow the decision algebra |
 | REQ-007 | Replay authority-invalid, applicability, candidate, proof, evidence, and conformance fixtures; verify detector output alone never produces a blocking result |
 | REQ-008 | Replay active, expired, revoked, mismatched, and reactivated deviations; verify original observations remain immutable and visible |
-| REQ-009 | Run phase-009 shared-loop fixtures and compare Deep Alignment lifecycle shape with Deep Review mode 002; verify no local transition path is exercised |
+| REQ-009 | Run phase-012 shared-loop fixtures and compare Deep Alignment lifecycle shape with Deep Review mode 002; verify no local transition path is exercised |
 | REQ-010 | Confirm the adapter emits deterministic shadow-parity inputs and never writes authority, legacy state, or cutover transitions |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The adapter depends on phase 009 for shared review-loop lifecycle transitions, sealed-frontier semantics, reducer invocation,
+The adapter depends on phase 012 for shared review-loop lifecycle transitions, sealed-frontier semantics, reducer invocation,
 and replay compatibility. It consumes the shared mode contract and write-set conflict graph emitted before the per-mode migration
 fan-out. It consumes Deep Alignment typed events and projections from `001-typed-ledger-schema` and `002-reducers-and-projections`,
 sealed references and certificates from the preceding concerns, and shared effect and receipt policy. The required adjacency to

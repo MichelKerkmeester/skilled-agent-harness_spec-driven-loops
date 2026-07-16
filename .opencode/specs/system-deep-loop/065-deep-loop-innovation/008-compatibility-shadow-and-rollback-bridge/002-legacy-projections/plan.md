@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Planned census-driven folds, refresh timing, and byte-parity gates"
-    next_safe_action: "Build the projection manifest from the frozen phase-000 census"
+    next_safe_action: "Build the projection manifest from the frozen phase-003 census"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -30,13 +30,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime compatibility bridge (phase 005 child 002) |
+| **Surface** | system-deep-loop runtime compatibility bridge |
 | **Change class** | Additive dark projection and legacy-contract preservation |
-| **Execution** | Census-driven implementation against immutable BASE and verified phase-003 ledger fixtures |
+| **Execution** | Census-driven implementation against immutable BASE and verified phase-006 ledger fixtures |
 
 ### Overview
 Implement one versioned projection registry whose entries fold a verified dark-ledger prefix into an exact legacy
-artifact contract. The work starts from the phase-000 schema census, binds each artifact to its existing serializer,
+artifact contract. The work starts from the phase-003 schema census, binds each artifact to its existing serializer,
 refresh trigger, writer boundary, and readers, then proves full-rebuild and incremental byte identity in a shadow
 root. Live legacy writers and paths remain untouched; successor `003-shadow-parity-harness` consumes the resulting
 artifact/digest pairs.
@@ -46,8 +46,8 @@ artifact/digest pairs.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-000 census is frozen and every candidate JSONL/JSON surface has writer and reader traceability
-- [ ] Phase-003 fixtures expose a verified ledger head, typed events, authorization linkage, and deterministic ordering
+- [ ] The phase-003 census is frozen and every candidate JSONL/JSON surface has writer and reader traceability
+- [ ] Phase-006 fixtures expose a verified ledger head, typed events, authorization linkage, and deterministic ordering
 - [ ] BASE fixtures capture exact legacy bytes and publication behavior for every projection-manifest row
 - [ ] Shadow-root path isolation and live-target rejection are defined before any projector opens an output
 - [ ] Projection and reducer versions have a stable identifier included in watermarks and parity reports
@@ -64,7 +64,7 @@ artifact/digest pairs.
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Projection manifest**: generated from the phase-000 census, with artifact identity, path class, schema/version,
+- **Projection manifest**: generated from the phase-003 census, with artifact identity, path class, schema/version,
   writer, readers, fold, serializer, refresh trigger, baseline bytes, repair semantics, and archival obligation.
 - **Verified fold input**: `(BASE anchor, ledger identity, verified head, ordered typed events, projection version,
   configuration)`. Unknown or unverified input stops before staging output.
@@ -78,7 +78,7 @@ artifact/digest pairs.
 - **Projection watermarks**: durable records bind artifact ID, ledger head, projection/reducer version, BASE digest,
   prior watermark, and projected digest. Watermarks advance only after output durability.
 - **Shadow namespace guard**: output resolution is rooted under an isolated fixture/shadow directory, rejects symlink
-  escapes and live legacy targets, and keeps legacy writers authoritative throughout phase 005.
+  escapes and live legacy targets, and keeps legacy writers authoritative throughout phase 008.
 - **Parity handoff**: emit per-head expected bytes, projected bytes, hashes, timings, reader results, and typed mismatch
   classifications for `003-shadow-parity-harness`.
 <!-- /ANCHOR:architecture -->
@@ -87,7 +87,7 @@ artifact/digest pairs.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Freeze the phase-000 census and BASE artifact fixtures; reject unresolved schema, writer, reader, or path rows.
+- Freeze the phase-003 census and BASE artifact fixtures; reject unresolved schema, writer, reader, or path rows.
 - Inventory projection boundaries in `atomic-state.ts` and each censused writer, including serialization and refresh rules.
 - Define projection registry, watermark, shadow-root, mismatch, and fixture schemas.
 
@@ -114,7 +114,7 @@ artifact/digest pairs.
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Compare the projection manifest with the phase-000 schema/state census; fail on missing, duplicate, or unowned rows |
+| REQ-001 | Compare the projection manifest with the phase-003 schema/state census; fail on missing, duplicate, or unowned rows |
 | REQ-002 | Run clean full replays and restarted incremental replays for the same verified heads; compare artifact digests |
 | REQ-003 | Byte-compare snapshot fixtures for insertion order, indentation, terminal newline, omitted fields, integrity, and atomic publication |
 | REQ-004 | Byte-compare JSONL fixtures per head for row order, separators, newline, diff fingerprints, and no-op suppression |
@@ -135,7 +135,7 @@ Execution consumes the frozen census from
 `006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`, the migration posture in
 `manifest/phase-tree.json`, and shipped publication behavior in
 `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts`. The predecessor adapter contract supplies
-the compatibility boundary at the phase-005 parent gate; the successor parity harness consumes this phase's outputs.
+the compatibility boundary at the phase-008 parent gate; the successor parity harness consumes this phase's outputs.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

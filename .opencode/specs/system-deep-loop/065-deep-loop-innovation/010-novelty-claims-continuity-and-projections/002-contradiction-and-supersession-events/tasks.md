@@ -39,8 +39,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the phase-003 envelope, typed-ledger, authorization, and fingerprint interfaces used by both relationship events
-- [ ] T002 Record the prospective `001-semantic-communities` input contract and the stable claim/evidence references consumed at the phase-007 composition gate
+- [ ] T001 Pin the phase-006 envelope, typed-ledger, authorization, and fingerprint interfaces used by both relationship events
+- [ ] T002 Record the prospective `001-semantic-communities` input contract and the stable claim/evidence references consumed at the phase-010 composition gate
 - [ ] T003 Freeze event names, schema versions, relation actions, required evidence fields, status enum, typed rejection codes, and canonical serializer rules
 - [ ] T004 Build the run-2 fixture matrix for additions, corrections, retractions, duplicate sources, unresolved contradictions, and supersession chains
 <!-- /ANCHOR:phase-1 -->

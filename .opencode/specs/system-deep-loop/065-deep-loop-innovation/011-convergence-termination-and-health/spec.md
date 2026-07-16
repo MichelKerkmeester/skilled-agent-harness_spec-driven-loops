@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: convergence-termination-and-health (006 phase 008)"
+title: "Feature Specification: convergence-termination-and-health"
 description: "The current convergence anchor is council-specific and threshold-based. This phase defines five child contracts that replace count-based stopping with path coverage, cycle detection, independent stopping clocks, value-of-computation allocation, and generic cross-mode health signals."
 trigger_phrases:
   - "convergence termination and health"
-  - "deep-loop phase 008"
+  - "deep-loop phase 011"
   - "path-covering loop termination"
 importance_tier: "important"
 contextType: "planning"
@@ -51,7 +51,7 @@ _memory:
 
 The shipped convergence anchor, `.opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs`, makes council-local stop decisions from fixed agreement, dissent, evidence-depth, disagreement, and confidence thresholds. It provides explicit blockers and a decision trace, but it does not establish that the loop covered its available search paths, detect repeated states or claims, arbitrate independent stop conditions, direct compute toward high-value branches, or expose degeneration consistently across modes. The run-2 findings in `.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md` likewise reject raw `newInfoRatio` and iteration exhaustion as evidence of convergence: stopping must be grounded in trusted evidence yield, coverage, unresolved blockers, and longitudinal state.
 
-This phase defines the shared planning boundary for replacing count-based stopping with five complementary contracts. It is deliberately sequenced after durable fan-in and novelty/claims continuity because coverage, cycle, allocation, and health decisions consume those signals, as specified by `.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md` and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`. Its children generalize the current council convergence anchor across all modes and hand phase 009 a coherent termination-and-health boundary on which shared mode contracts and fixtures can depend.
+This phase defines the shared planning boundary for replacing count-based stopping with five complementary contracts. It is deliberately sequenced after durable fan-in and novelty/claims continuity because coverage, cycle, allocation, and health decisions consume those signals, as specified by `.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md` and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`. Its children generalize the current council convergence anchor across all modes and hand phase 012 a coherent termination-and-health boundary on which shared mode contracts and fixtures can depend.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:phase-map -->
@@ -62,7 +62,7 @@ This phase defines the shared planning boundary for replacing count-based stoppi
 | 001 | `001-path-covering-termination/` | Terminate on proven coverage of the search paths/space rather than a raw iteration count, using the coverage + community signals. | Planned |
 | 002 | `002-cycle-detection/` | Detect when the loop is going in circles - revisiting states, claims, or foci - and treat that as a termination/health signal. | Planned |
 | 003 | `003-stopping-clocks/` | Multiple independent stopping clocks (budget, novelty-decay, coverage, wall-time) whose earliest firing stops the loop, each recorded. | Planned |
-| 004 | `004-value-of-computation-allocation/` | Value-of-computation scoring + adaptive allocation: spend more iterations where marginal value is high, gated by the phase-004 typed budgets. | Planned |
+| 004 | `004-value-of-computation-allocation/` | Value-of-computation scoring + adaptive allocation: spend more iterations where marginal value is high, gated by the phase-007 typed budgets. | Planned |
 | 005 | `005-health-and-degeneration-harness/` | A generic health + degeneration harness that detects mode collapse, repetition, and quality decay across any mode. | Planned |
 
 The five children jointly plan when the loop may stop, where remaining compute is worth spending, and whether continued execution remains healthy. Their detailed mechanisms and verification contracts live only in the child folders.

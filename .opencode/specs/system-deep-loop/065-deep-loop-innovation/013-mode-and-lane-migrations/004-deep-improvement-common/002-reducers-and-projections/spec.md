@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-improvement common services) |
-| **Origin** | Phase 002 of the deep-improvement common-services migration under phase 013 |
+| **Origin** | Phase 005 of the deep-improvement common-services migration under phase 013 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

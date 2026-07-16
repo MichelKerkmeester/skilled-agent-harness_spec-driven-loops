@@ -1,5 +1,5 @@
 ---
-title: "Checklist: partial-failure policy (065 phase 006/005)"
+title: "Checklist: partial-failure policy"
 description: "Blocking verifier checklist for failure classification, quorum arithmetic, degraded-result evidence, ledger replay, and fan-in abort isolation."
 trigger_phrases:
   - "partial-failure policy checklist"
@@ -37,7 +37,7 @@ commands, and exit codes. Zero discovered fixtures, a mutable denominator, or an
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] BASE is pinned and phase 000 classifies current `fanout-run.cjs` partial-summary behavior as protected contract or known defect
+- [ ] CHK-001 [P0] BASE is pinned and phase 003 classifies current `fanout-run.cjs` partial-summary behavior as protected contract or known defect
 - [ ] CHK-002 [P0] Child 004's await-set/decision-boundary and child 006's reduction-input boundaries are frozen without overlapping ownership
 - [ ] CHK-003 [P1] The canonical dispatch, result-envelope, ledger, authorization, and replay-version inputs are available
 <!-- /ANCHOR:pre-impl -->
@@ -65,7 +65,7 @@ commands, and exit codes. Zero discovered fixtures, a mutable denominator, or an
 - [ ] CHK-016 [P0] Crash injection around failure append, evaluation append, final verdict, and reduction dispatch replays to one authorized verdict and one reduction request at most
 - [ ] CHK-017 [P0] Duplicate and late terminal results append deterministic evidence but cannot alter a closed decision epoch
 - [ ] CHK-018 [P1] Explicit `empty_tick` yields `not_applicable`; an unexplained zero admitted set aborts as invalid input
-- [ ] CHK-019 [P1] Dark comparison records legacy `ok|partial` and exit `0|2|3` beside typed verdicts; each difference is resolved through phase 000's classification
+- [ ] CHK-019 [P1] Dark comparison records legacy `ok|partial` and exit `0|2|3` beside typed verdicts; each difference is resolved through phase 003's classification
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

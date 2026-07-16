@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Deep Improvement Common Services - Rollback & Mode Gate"
-description: "Planning workflow for the shared Deep Improvement Common Services fail-closed rollback switch, bounded rollback window, independent migration gate, common evaluator/canary/promotion ownership, and phase-011 readiness certificate."
+description: "Planning workflow for the shared Deep Improvement Common Services fail-closed rollback switch, bounded rollback window, independent migration gate, common evaluator/canary/promotion ownership, and phase-014 readiness certificate."
 trigger_phrases:
   - "deep improvement common rollback and mode gate implementation plan"
   - "shared evaluator promotion authority switch plan"
@@ -41,7 +41,7 @@ This phase defines one rollback switch and one independent gate for the evaluato
 default-deny policy adapter over shared authority primitives: it freezes admission, fences stale writers, and restores the
 legacy anchor at a new epoch only after external authorization. The gate assembles the `006-shadow-parity` report with sealed
 artifacts, certificates, receipts, replay and resume evidence, rollback rehearsal, and shared-service reuse results. It emits
-a mode-bound readiness certificate for the phase-011 handoff. No task changes live authority, deletes evidence, retires a
+a mode-bound readiness certificate for the phase-014 handoff. No task changes live authority, deletes evidence, retires a
 legacy writer, or allows a variant to redefine evaluator, canary, or promotion semantics.
 <!-- /ANCHOR:summary -->
 
@@ -59,7 +59,7 @@ legacy writer, or allows a variant to redefine evaluator, canary, or promotion s
 - [ ] The gate matrix names every common evaluator, canary, promotion, replay, resume, failure, and rollback fixture.
 - [ ] The three downstream variants agree to consume one shared evaluator, canary, promotion, certificate, receipt, and
   fingerprint contract through adapters.
-- [ ] The phase-011 handoff distinguishes migration readiness from authority cutover and legacy-writer retirement.
+- [ ] The phase-014 handoff distinguishes migration readiness from authority cutover and legacy-writer retirement.
 
 ### Definition of Done
 
@@ -68,7 +68,7 @@ legacy writer, or allows a variant to redefine evaluator, canary, or promotion s
 - [ ] The independent gate is green only with shadow parity, sealed evidence, complete receipts and certificates,
   deterministic replay, resume coverage, variant reuse, and rollback rehearsal.
 - [ ] The mode certificate is exact-SHA bound, independently verifiable, and explicit about unresolved obligations.
-- [ ] The phase-011 handoff receives readiness evidence without an authority transition or a global cutover claim.
+- [ ] The phase-014 handoff receives readiness evidence without an authority transition or a global cutover claim.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -93,7 +93,7 @@ legacy writer, or allows a variant to redefine evaluator, canary, or promotion s
   adapter, resolve known effects by stable identity, restore the legacy anchor at a new epoch, preserve both histories, and
   issue a rollback certificate.
 - **Certificate handoff**: emit `gate_passed`, `gate_blocked`, `gate_incomplete`, or `rollback_required` with exact digests.
-  Only `gate_passed` can be consumed as phase-011 readiness, and none of these results flips authority.
+  Only `gate_passed` can be consumed as phase-014 readiness, and none of these results flips authority.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -101,7 +101,7 @@ legacy writer, or allows a variant to redefine evaluator, canary, or promotion s
 
 ### Phase 1: Setup
 
-- Pin BASE and the shared transition/versioning/rollback policy, phase-012 contract and write-set graph, and phase-011
+- Pin BASE and the shared transition/versioning/rollback policy, phase-015 contract and write-set graph, and phase-014
   handoff schema.
 - Inventory siblings `001` through `006`: event and reducer versions, sealed artifact kinds, certificate and receipt classes,
   replay inputs, resume decisions, parity predicates, mismatch classes, and retained rollback anchors.
@@ -131,7 +131,7 @@ legacy writer, or allows a variant to redefine evaluator, canary, or promotion s
 - Compare raw evaluator observations before normalized scores and preserve target reward, evaluator integrity, canary health,
   uncertainty, `UNKNOWN`, `INCONCLUSIVE`, `INSUFFICIENT_EVIDENCE`, veto, abort, restore, and promotion dispositions.
 - Define the exact-SHA-bound mode-migration certificate, verifier receipt, failed-predicate list, rollback anchor, window state,
-  unresolved obligations, and phase-011 acceptance handoff.
+  unresolved obligations, and phase-014 acceptance handoff.
 - Define deterministic repeated evaluation over the same sealed frontier and reject certificates with another mode, contract,
   evaluator epoch, canary epoch, reducer, or write-set digest.
 
@@ -145,7 +145,7 @@ legacy writer, or allows a variant to redefine evaluator, canary, or promotion s
   certificate chains, deterministic replay, resume safety, and zero unexplained semantic differences.
 - Run common fixtures through all three downstream adapters and reject any variant-local service or gate fork.
 - Repeat the gate on the same sealed frontier, then mutate each semantic input class to prove certificate invalidation and
-  phase-011 handoff rejection.
+  phase-014 handoff rejection.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -171,8 +171,8 @@ legacy writer, or allows a variant to redefine evaluator, canary, or promotion s
 
 The plan consumes the parent program's additive-dark migration model and shared transition/versioning/rollback policy. It
 uses the Deep Improvement Common Services contracts in `001-typed-ledger-schema`, `002-reducers-and-projections`,
-`003-sealed-artifacts`, `004-certificates-and-receipts`, `005-resume-adapter`, and `006-shadow-parity`. Phase 012 supplies
-the shared mode interfaces and executable write-set conflict graph. The phase-011 handoff consumes this phase's readiness
+`003-sealed-artifacts`, `004-certificates-and-receipts`, `005-resume-adapter`, and `006-shadow-parity`. Phase 015 supplies
+the shared mode interfaces and executable write-set conflict graph. The phase-014 handoff consumes this phase's readiness
 certificate; the later staged cutover contract owns authority movement. The three downstream variants consume the common
 evaluator, canary, and promotion services as adapters after the shared contracts are frozen. The research basis is the
 deep-improvement portion of `findings-registry-modes.json` and the runtime authorization, replay, effects, budgets, and

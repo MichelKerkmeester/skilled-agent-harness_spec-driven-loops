@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Improvement Common Services - Resume Adapter (013 phase 005)"
+title: "Tasks: Deep Improvement Common Services - Resume Adapter"
 description: "Tasks for planning and verifying the sealed-ledger resume adapter, continuity-ladder reducers, idempotent re-entry, and shared evaluator, canary, and guarded-promotion services."
 trigger_phrases:
   - "deep improvement resume adapter tasks"

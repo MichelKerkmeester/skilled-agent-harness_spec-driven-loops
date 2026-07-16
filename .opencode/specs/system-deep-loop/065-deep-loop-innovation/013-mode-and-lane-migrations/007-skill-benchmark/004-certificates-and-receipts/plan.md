@@ -41,7 +41,7 @@ randomized treatment lattice, staged skill exposure, raw scoring and gold eviden
 verdict. Transition receipts bind each scenario and scoring step to its predecessor evidence, effect identity, replay fingerprint,
 and recovery outcome. Deep-improvement-common owns the certificate fields, receipt chain, fingerprint serializer, evaluator,
 canary, promotion, budget, sealing, and offline-verifier machinery; this lane supplies only scenario and scoring adapters. The
-phase remains dark and cannot authorize a cutover. The later 010 fan-out waits for phase 009 to freeze shared contracts and emit
+phase remains dark and cannot authorize a cutover. The later 010 fan-out waits for phase 012 to freeze shared contracts and emit
 the dependency/write-set conflict graph.
 <!-- /ANCHOR:summary -->
 
@@ -54,7 +54,7 @@ the dependency/write-set conflict graph.
 - [ ] The deep-improvement-common ownership matrix identifies every reused service and rejects local replacements
 - [ ] The paired treatment lattice, scenario lifecycle, exposure stages, gold policy, scoring axes, and validity slices are explicit
 - [ ] The shared fingerprint serializer and offline-verifier sequence are available for mode-specific inputs
-- [ ] The phase-009 freeze and write-set conflict graph handoff is recorded before 010 migration integration
+- [ ] The phase-012 freeze and write-set conflict graph handoff is recorded before 010 migration integration
 
 ### Definition of Done
 - [ ] The Skill Benchmark certificate and receipt adapter attests paired scenario and scoring evidence without semantic forks
@@ -74,7 +74,7 @@ the dependency/write-set conflict graph.
 - **Evidence layers**: preserve discovery/invocation/trajectory/constraint/outcome stages, deterministic final-state checks, dynamic reference functions, raw item scores, normalized scores, and policy decisions as separate content-addressed records.
 - **Fingerprint layer**: extend the shared canonical input tuple with treatment, bundle, registry, gold, task, workload, compatibility, canary, raw-evidence order, constraint, and score-policy inputs. Exclude wall-clock and storage-local values under the common rules.
 - **Verifier layer**: reuse the common offline sequence, then add mode checks for treatment coverage, gold integrity and mutation sensitivity, constraint coverage, compatibility slices, negative transfer, composition/security probes, paired effect calculations, and validity/expiry.
-- **Authority boundary**: certificate and receipts are additive evidence beside the legacy path. They do not change authority, publish a skill, or permit a cutover; phase 014 owns authority and phase 010 waits for the 009 shared-contract freeze.
+- **Authority boundary**: certificate and receipts are additive evidence beside the legacy path. They do not change authority, publish a skill, or permit a cutover; phase 017 owns authority and phase 013 waits for the 009 shared-contract freeze.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -83,7 +83,7 @@ the dependency/write-set conflict graph.
 ### Phase 1: Setup
 - Confirm the mode's `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` contracts and the common mode-004 certificate/receipt service versions.
 - Inventory current Skill Benchmark run, treatment, exposure, trajectory, gold, scoring, compatibility, and certificate inputs; map each to shared service fields or a mode-specific adapter field.
-- Record the shared-versus-mode ownership matrix, the Skill Benchmark write set, the phase-009 freeze gate, and the successor `005-resume-adapter` handoff.
+- Record the shared-versus-mode ownership matrix, the Skill Benchmark write set, the phase-012 freeze gate, and the successor `005-resume-adapter` handoff.
 - Pin paired-treatment, empty/pending-gold, component-ablation, compatibility, composition, security, cost, stale-validity, and uncertain-effect fixtures.
 
 ### Phase 2: Implementation
@@ -93,7 +93,7 @@ the dependency/write-set conflict graph.
 - Define the adapter calls to common evaluator, canary, budget, receipt, effect-recovery, sealed-artifact, promotion, and offline-verifier services; add no local implementation of those services.
 - Define the mode verifier checks for paired-cell parity, staged exposure, constraint coverage, gold mutation sensitivity, raw-to-derived score lineage, negative transfer, compatibility/security, cost, and validity expiry.
 - Define dark-write and legacy-parity behavior for missing gold, incomplete observations, unavailable offline evidence, unknown versions, duplicate/out-of-order receipts, stale artifacts, and crash windows.
-- Publish the adapter and reuse matrix for the independent mode gate and `005-resume-adapter`; block 010 integration until phase 009 publishes the frozen shared contracts and conflict graph.
+- Publish the adapter and reuse matrix for the independent mode gate and `005-resume-adapter`; block 010 integration until phase 012 publishes the frozen shared contracts and conflict graph.
 
 ### Phase 3: Verification
 - Recompute certificates and receipt fingerprints from identical semantic fixtures across processes and serialization orders.
@@ -118,7 +118,7 @@ the dependency/write-set conflict graph.
 | REQ-008 | Cross-process canonicalization tests keep identical semantic fingerprints stable and make each treatment, evidence, policy, bundle, capability, budget, retry, or predecessor mutation mismatch |
 | REQ-009 | An offline verifier with live services unavailable resolves sealed references and independently checks fingerprints, receipts, scores, gold, hard vetoes, and validity |
 | REQ-010 | Shared adapter parity tests compare common, agent-improvement, model-benchmark, and Skill Benchmark certificate fields, receipt outcomes, fingerprints, verifier results, and hard-veto order |
-| REQ-011 | A phase-009 freeze fixture blocks 010 migration acceptance until shared contract versions and the executable write-set conflict graph are present |
+| REQ-011 | A phase-012 freeze fixture blocks 010 migration acceptance until shared contract versions and the executable write-set conflict graph are present |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
@@ -127,7 +127,7 @@ the dependency/write-set conflict graph.
 This phase consumes the typed event and projection boundaries from Skill Benchmark siblings `001-typed-ledger-schema` and
 `002-reducers-and-projections`, the `003-sealed-artifacts` primitives, and the deep-improvement-common mode-004 certificate,
 receipt, evaluator, canary, promotion, budget, effect-recovery, fingerprint, and offline-verifier services. It also consumes
-phase 012 shared mode interfaces and must wait for phase 009 to freeze shared contracts and emit the dependency/write-set
+phase 012 shared mode interfaces and must wait for phase 012 to freeze shared contracts and emit the dependency/write-set
 conflict graph before the 010 per-mode fan-out. The successor `005-resume-adapter` consumes receipt recovery and certificate
 validity cases. The manifest records `depends_on: []` for this planning child; implementation still fails closed when a consumed
 contract is missing or incompatible.

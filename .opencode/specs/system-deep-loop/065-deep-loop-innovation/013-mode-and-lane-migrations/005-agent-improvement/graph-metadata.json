@@ -88,16 +88,16 @@
       }
     ],
     "causal_summary": "Migrate the agent-improvement variant of the deep-improvement evaluator loop onto the typed event-ledger substrate through seven concern children, reusing the shared evaluator, canary, and promotion backbone and ending in an independent mode gate.",
-    "created_at": "2026-07-15T21:58:09.759Z",
-    "last_save_at": "2026-07-15T21:58:09.759Z",
+    "created_at": "2026-07-16T03:43:56.015Z",
+    "last_save_at": "2026-07-16T03:43:56.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5c5f8a07a40dc926408f7f5aa91c1d49ff21ffc519be93d0f5b1d6417a4323ad",
+    "source_fingerprint": "sha256:47754c40a7c6762154e72b29d8c0b751ceae90a3fccf70f248685fbed0ff1ed2",
     "source_doc_hashes": {
-      "spec.md": "bb9799c32219fff20e9dffb4f8f876d06fd1cf24e657965d97aa3bffc3123018"
+      "spec.md": "1197c3219a6dc6c36dabbc96797c200fff82912143e236a9f9d8f8fc80f82407"
     },
     "last_active_child_id": null,
     "last_active_at": null

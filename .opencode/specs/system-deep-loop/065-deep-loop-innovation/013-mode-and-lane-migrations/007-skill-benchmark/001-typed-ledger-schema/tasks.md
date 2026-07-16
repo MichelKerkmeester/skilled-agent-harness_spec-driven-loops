@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Pin the phase-003 transition-authorized ledger core and phase-009 shared event contracts, including schema hashes and replay policy
+- [ ] T001 [B] Pin the phase-006 transition-authorized ledger core and phase-012 shared event contracts, including schema hashes and replay policy
 - [ ] T002 [P] Inventory deep-improvement-common services and record the Skill Benchmark-specific write set from the parent conflict graph
 - [ ] T003 [P] Inventory current Skill Benchmark scenario, treatment, scoring, gold, and certificate inputs and map each to an immutable fact boundary
 <!-- /ANCHOR:phase-1 -->

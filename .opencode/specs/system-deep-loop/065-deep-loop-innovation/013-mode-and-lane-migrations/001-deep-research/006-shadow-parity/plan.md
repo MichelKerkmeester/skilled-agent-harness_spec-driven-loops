@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Deep Research shadow parity (010 phase 006)"
+title: "Implementation Plan: Deep Research shadow parity"
 description: "Implementation Plan for the Deep Research shadow-parity phase: define the mode event map, run the ledger adapter beside the legacy emitter, compare canonical streams and projections, and emit a blocking parity receipt without changing authority."
 trigger_phrases:
   - "Deep Research shadow parity implementation plan"
   - "deep-research event parity implementation"
-  - "mode 010 phase 006 implementation plan"
+  - "mode 010 phase 009 implementation plan"
 importance_tier: "high"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity"
@@ -31,20 +31,20 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / Deep Research mode (010 phase 006) |
+| **Surface** | system-deep-loop / Deep Research mode |
 | **Change class** | Planning-only migration contract; shadow instrumentation and verification design |
 | **Execution** | Isolated candidate run pinned to BASE with the legacy path remaining authoritative |
 
 ### Overview
-The phase defines the Deep Research shadow path over the typed event ledger. A mode adapter observes the existing lifecycle, the ledger adapter emits the corresponding typed events, and a comparator evaluates both streams against the same frozen run manifest and input corpus. The comparator checks event-for-event sequence parity plus claim, evidence, contradiction, convergence, synthesis, resume, and memory-save projections. Phase-011 shadow framework facilities and the parent compatibility bridge are consumed rather than reimplemented. A parity receipt is the only handoff artifact; authority remains unchanged.
+The phase defines the Deep Research shadow path over the typed event ledger. A mode adapter observes the existing lifecycle, the ledger adapter emits the corresponding typed events, and a comparator evaluates both streams against the same frozen run manifest and input corpus. The comparator checks event-for-event sequence parity plus claim, evidence, contradiction, convergence, synthesis, resume, and memory-save projections. Phase-014 shadow framework facilities and the parent compatibility bridge are consumed rather than reimplemented. A parity receipt is the only handoff artifact; authority remains unchanged.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Shared mode contracts, event-version rules, and write-set ownership from phase 009 are available as pinned inputs
-- [ ] The phase-011 shadow framework interface and parent compatibility bridge expose non-authoritative dual-run hooks
+- [ ] Shared mode contracts, event-version rules, and write-set ownership from phase 012 are available as pinned inputs
+- [ ] The phase-014 shadow framework interface and parent compatibility bridge expose non-authoritative dual-run hooks
 - [ ] The legacy Deep Research lifecycle and reducer output are inventoried for init, iteration, convergence, synthesis, resume, and memory-save paths
 - [ ] The canonical event tuple and volatility allowlist are reviewed before fixture results are accepted
 - [ ] The fixture corpus freezes source captures, model/tool fingerprints, manifests, budgets, and expected failure dispositions
@@ -75,7 +75,7 @@ The phase defines the Deep Research shadow path over the typed event ledger. A m
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-009 shared contracts, phase-011 shadow-framework interface, and parent compatibility bridge are pinned inputs; do not treat these adjacency references as a hard runtime dependency for this planning document.
+- Confirm the phase-012 shared contracts, phase-014 shadow-framework interface, and parent compatibility bridge are pinned inputs; do not treat these adjacency references as a hard runtime dependency for this planning document.
 - Inventory the actual legacy event and projection boundaries from the Deep Research reducer, command configuration, iteration artifacts, and memory handoff.
 - Freeze the fixture manifest, source and model inputs, expected terminal classes, and parity receipt schema.
 
@@ -115,7 +115,7 @@ The phase defines the Deep Research shadow path over the typed event ledger. A m
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase depends on the parent program's typed event and transition contracts, compatibility bridge, and shared mode contracts. It consumes the phase-011 shadow framework named in the phase brief and the phase-009 write-set conflict graph as interface inputs. It also depends on the existing Deep Research reducer and command fixtures, frozen source and model captures, the memory-save handoff contract, and the spec-kit validator. The predecessor and successor named in the phase adjacency are navigation references for sibling planning contracts; this phase does not infer a hard runtime dependency from adjacency alone.
+The phase depends on the parent program's typed event and transition contracts, compatibility bridge, and shared mode contracts. It consumes the phase-014 shadow framework named in the phase brief and the phase-012 write-set conflict graph as interface inputs. It also depends on the existing Deep Research reducer and command fixtures, frozen source and model captures, the memory-save handoff contract, and the spec-kit validator. The predecessor and successor named in the phase adjacency are navigation references for sibling planning contracts; this phase does not infer a hard runtime dependency from adjacency alone.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

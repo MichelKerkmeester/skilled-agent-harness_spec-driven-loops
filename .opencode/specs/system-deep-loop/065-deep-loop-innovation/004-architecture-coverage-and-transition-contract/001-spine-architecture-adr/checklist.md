@@ -65,7 +65,7 @@ consequences, and phase-consumer boundaries as one internally consistent decisio
 - [ ] CHK-016 [P0] Mutable reference artifacts and self-scoring are rejected for ruler drift, information leakage, and evaluator gaming
 - [ ] CHK-017 [P0] Optional logs in place of receipts are rejected because they cannot provide portable boundary or side-effect proof
 - [ ] CHK-018 [P0] Big-bang replacement is rejected and the additive-dark, shadow-parity, rollback-window, per-mode-cutover sequence remains binding
-- [ ] CHK-019 [P0] Phase 003 owns ledger/authorization/replay, phase 004 owns seals/receipts/adjudication, and phase 005 preserves the spine through compatibility/shadow/rollback
+- [ ] CHK-019 [P0] Phase 006 owns ledger/authorization/replay, phase 007 owns seals/receipts/adjudication, and phase 008 preserves the spine through compatibility/shadow/rollback
 - [ ] CHK-020 [P1] Each requirement has a deterministic document-inspection or source-trace verification method in plan.md
 <!-- /ANCHOR:testing -->
 

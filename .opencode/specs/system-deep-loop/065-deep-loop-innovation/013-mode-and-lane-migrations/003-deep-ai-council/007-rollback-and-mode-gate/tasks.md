@@ -59,7 +59,7 @@ _memory:
 - [ ] T012 Define required effective-independence, minority, contradiction, calibration, bias, order-swap, and control-arm evidence
 - [ ] T013 Define the mode-gate predicates and explicit `passed`, `blocked`, `incomplete`, and `rollback_required` dispositions
 - [ ] T014 Define the Deep AI Council certificate body, mode binding, exact fingerprints, sealed manifest, receipt chain, and unresolved-obligation fields
-- [ ] T015 Define the phase-014 handoff contract and prohibit authority permission without a later cutover receipt
+- [ ] T015 Define the phase-017 handoff contract and prohibit authority permission without a later cutover receipt
 - [ ] T016 Define offline verifier inputs and deterministic re-evaluation rules for the same sealed frontier
 <!-- /ANCHOR:phase-2 -->
 
@@ -75,7 +75,7 @@ _memory:
 - [ ] T023 Verify the same frontier produces the same mode-gate disposition and certificate body digest on repeated evaluation
 - [ ] T024 Run rollback drills at each declared trigger and prove legacy restoration, effect reconciliation, and evidence retention
 - [ ] T025 Verify no test or gate operation changes authority, rewrites legacy state, deletes typed evidence, or crosses mode boundaries
-- [ ] T026 Verify the final handoff contains a Deep AI Council certificate and all phase-014 prerequisites without claiming cutover
+- [ ] T026 Verify the final handoff contains a Deep AI Council certificate and all phase-017 prerequisites without claiming cutover
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

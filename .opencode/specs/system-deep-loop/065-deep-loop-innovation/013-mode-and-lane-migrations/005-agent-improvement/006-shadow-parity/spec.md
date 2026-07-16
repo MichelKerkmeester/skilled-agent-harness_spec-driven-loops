@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Agent Improvement - Shadow Parity"
-description: "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-011 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them."
+description: "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-014 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them."
 trigger_phrases:
   - "Agent Improvement shadow parity"
   - "agent-improvement ledger migration"
@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (owns the Agent Improvement workflow, typed migration, and shadow evidence) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 005; shadow-parity planning after shared contracts and common-service migration |
-| **Inputs** | Parent `065-deep-loop-innovation/spec.md`; `manifest/phase-tree.json`; `findings-registry.json`; `findings-registry-modes.json`; phase-011 shadow framework; sibling `005-resume-adapter` contract |
+| **Inputs** | Parent `065-deep-loop-innovation/spec.md`; `manifest/phase-tree.json`; `findings-registry.json`; `findings-registry-modes.json`; phase-014 shadow framework; sibling `005-resume-adapter` contract |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -64,7 +64,7 @@ promotion disposition.
 
 This phase plans an Agent Improvement shadow harness that runs the legacy emitter and the new ledger adapter from the same frozen
 run context, compares the agent-specific behavior projection event-for-event, and separately checks the shared evaluator, canary,
-and promotion control-plane references supplied by mode 004 Deep Improvement Common Services. It consumes the phase-011 shadow
+and promotion control-plane references supplied by mode 004 Deep Improvement Common Services. It consumes the phase-014 shadow
 framework and shared compatibility bridge, but owns only the Agent Improvement event map, namespaced adapter, projection fields,
 fixtures, comparator extensions, parity receipt, and successor handoff. No authority cutover occurs here.
 <!-- /ANCHOR:problem -->
@@ -95,7 +95,7 @@ fixtures, comparator extensions, parity receipt, and successor handoff. No autho
 - Reimplementing the Deep Improvement Common Services evaluator, canary, promotion, health, or generic shadow harness. Mode 005
   adds namespaced Agent Improvement inputs and projections and reuses the mode 004 services.
 - Reimplementing the typed event envelope, transition-authorization gateway, reducers, sealed artifacts, receipts, resume
-  classification, rollback switch, or phase-011 generic shadow framework.
+  classification, rollback switch, or phase-014 generic shadow framework.
 - Changing Agent Improvement proposal policy, evaluator thresholds, AgentIR semantics, fixture contents, executor behavior, or
   candidate selection policy. This phase observes the pinned contracts and proves their migration parity.
 - Flipping authority from the legacy emitter to the ledger, migrating live in-flight state, removing legacy writers, or defining
@@ -169,7 +169,7 @@ evidence for the later mode gate; it is not a cutover certificate.
   promotion checks. Mitigation: consume mode 004 contracts, namespace only Agent Improvement fields, and bind shared-service digests.
 - **Authority leakage** - A shadow adapter could dispatch, promote, mutate a baseline, or allocate an untracked authority lease.
   Mitigation: assert non-authoritative flags, isolated output, read-only inputs, transition authorization, and no cutover artifact.
-- **Dependencies**: phase 012 shared mode contracts and write-set conflict graph; phase 011 shadow framework; parent compatibility
+- **Dependencies**: phase 012 shared mode contracts and write-set conflict graph; phase 014 shadow framework; parent compatibility
   bridge; mode 004 Deep Improvement Common Services; Agent Improvement siblings `001-typed-ledger-schema` through
   `005-resume-adapter`; existing agent-loop proposal, scoring, trace, and promotion fixtures; and the spec-kit validator.
 <!-- /ANCHOR:risks -->
@@ -177,7 +177,7 @@ evidence for the later mode gate; it is not a cutover certificate.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which phase-011 shadow-framework event envelope and comparator extension points are mandatory for Agent Improvement, and which
+- Which phase-014 shadow-framework event envelope and comparator extension points are mandatory for Agent Improvement, and which
   common evaluator, canary, promotion, and health events remain control-plane evidence only?
 - Which legacy proposal and scoring boundaries are canonical when one proposal call creates multiple AgentIR or package records,
   and what stable logical identity preserves the original grouping?

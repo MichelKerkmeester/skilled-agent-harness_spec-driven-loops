@@ -1,6 +1,6 @@
 ---
-title: "Tasks: claim continuity (007 phase 003)"
-description: "Tasks for stable claim identity minting, semantic matching, lifecycle folding, and resume continuity in phase 007 child 003."
+title: "Tasks: claim continuity"
+description: "Tasks for stable claim identity minting, semantic matching, lifecycle folding, and resume continuity in phase 010 child 003."
 trigger_phrases:
   - "claim continuity tasks"
   - "stable claim lifecycle tasks"
@@ -39,14 +39,14 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the phase-003 ledger/replay and phase-004 continuity identity contracts; record sibling-001 candidate and sibling-002 relationship fixture versions
+- [ ] T001 Pin the phase-006 ledger/replay and phase-007 continuity identity contracts; record sibling-001 candidate and sibling-002 relationship fixture versions
 - [ ] T002 Freeze claim namespaces, match policy, lifecycle/status tables, canonical event order, resume-frontier schema, legacy baseline, and expected projection hashes
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Implement the typed claim registry and idempotent transition-authorized mint operation using the phase-004 `claim` identity
+- [ ] T003 Implement the typed claim registry and idempotent transition-authorized mint operation using the phase-007 `claim` identity
 - [ ] T004 Implement exact namespaced alias and normalized-fingerprint resolution with collision detection
 - [ ] T005 Implement sibling-001 semantic-community candidate lookup and versioned reuse/mint/unresolved match decisions with provenance
 - [ ] T006 Implement observation, support, qualification, and duplicate-source attachment to one stable claim identity

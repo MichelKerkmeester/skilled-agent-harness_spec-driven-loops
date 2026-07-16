@@ -193,8 +193,8 @@
       }
     ],
     "causal_summary": "Plan first-class contradiction and supersession ledger events that preserve evidence, history, deterministic claim status, and replayable audit trails.",
-    "created_at": "2026-07-15T19:00:40.844Z",
-    "last_save_at": "2026-07-15T19:00:40.844Z",
+    "created_at": "2026-07-16T03:43:51.652Z",
+    "last_save_at": "2026-07-16T03:43:51.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b5086351b19a591285eaabb8256efac6d02e0dd1962660b78b420d1b2bd65ec4",
+    "source_fingerprint": "sha256:54bc4b40ba17096a245549a7d8881c9ffa2e202b4aadb8083d14a4d5d5327fc0",
     "source_doc_hashes": {
-      "spec.md": "bbe161d1ed00f00bcc3ec0282697a793a3cc05f2294c8ed36b6dc1566405c879",
-      "plan.md": "444006c1d797dfee87499f1f3025e7cbf7d668695cd028b25f58f7792cc7f15b",
-      "tasks.md": "b39aefe5ad61dbabc3e29032fc4efb92a8078d65c24156744c260f9c786508fc",
-      "checklist.md": "f3859b3fbaf10c03a3a15e5c210be31a210e4ebe9fc41bc723fb042103c2cc37"
+      "spec.md": "ad9ff63b5950a8cf55a4cc2b6924d9f65f82120a0919535fc056ecb10feab626",
+      "plan.md": "f7acdc62b5151b0389193723ad420a1aad6ac0cd685387a0afdb3819e6754730",
+      "tasks.md": "4f6b4944dfff27f7b56efa64617a2c5aeb62aae0b701e7922c2ccef027364222",
+      "checklist.md": "3038029df66ac3e8363bd91d5358e4969444ad006622ff0f1a05dd11fe3d254c"
     },
     "last_active_child_id": null,
     "last_active_at": null

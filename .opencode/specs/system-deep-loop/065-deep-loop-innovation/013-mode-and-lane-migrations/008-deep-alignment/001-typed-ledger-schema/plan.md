@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-15T21:30:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped Deep Alignment event ownership and shared review-loop handoff"
-    next_safe_action: "Freeze authority, lane, and finding events against phase-009 contracts"
+    next_safe_action: "Freeze authority, lane, and finding events against phase-012 contracts"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -33,10 +33,10 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / Deep Alignment mode |
 | **Change class** | Typed event schema and mode event vocabulary |
-| **Execution** | Planning-only child; implementation follows phase-003, phase-009, and shared review-loop contract freeze |
+| **Execution** | Planning-only child; implementation follows phase-006, phase-012, and shared review-loop contract freeze |
 
 ### Overview
-The phase defines one Deep Alignment event contract over the phase-009 shared review-loop backbone. The schema records
+The phase defines one Deep Alignment event contract over the phase-012 shared review-loop backbone. The schema records
 authority validation and epoch identity, per-lane planning, subject snapshots, applicability, raw observations, blinded
 candidate findings, independent verification, proof witnesses, conformance adjudication, visible deviations, cross-epoch
 replay, and terminal handoff. It preserves `not_applicable`, unresolved, inconclusive, untested, and blocked outcomes,
@@ -47,8 +47,8 @@ reuses shared lifecycle events, and leaves reducers and projections to `002-redu
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-003 envelope, authorization, sequence, integrity, receipt, and replay contracts are available for direct type alignment
-- [ ] Phase-009 shared event contracts and review-loop lifecycle rules are available for specialization
+- [ ] Phase-006 envelope, authorization, sequence, integrity, receipt, and replay contracts are available for direct type alignment
+- [ ] Phase-012 shared event contracts and review-loop lifecycle rules are available for specialization
 - [ ] The Deep Review shared-backbone boundary is available and no mode-local fork is required
 - [ ] The event catalog covers authority epochs, lane execution, applicability, observations, candidates, proof, verification, deviations, coverage, convergence, and terminal handoff
 - [ ] Every event payload has explicit field types, identity references, digest rules, and independent envelope/payload version policy
@@ -80,7 +80,7 @@ reuses shared lifecycle events, and leaves reducers and projections to `002-redu
 | Field group | Planned type | Contract |
 |-------------|--------------|----------|
 | Event identity | `EventId`, `DeepAlignmentEventType`, `SchemaVersion`, `PayloadVersion` | Branded identifiers; closed event union; independent envelope and payload versions |
-| Shared lifecycle | `RunId`, `SessionId`, `Generation`, `CausationId`, `CorrelationId` | Imported from phase-009 review-loop contract; no mode aliases |
+| Shared lifecycle | `RunId`, `SessionId`, `Generation`, `CausationId`, `CorrelationId` | Imported from phase-012 review-loop contract; no mode aliases |
 | Authority | `AuthorityRef`, `AuthorityCapsuleRef`, `AuthorityEpochId`, `RuleIrRef` | Source, compiler, profile, applicability, signature, expiry, rollback, and rule-IR digests remain separate |
 | Lane and subject | `LaneRef`, `LaneKind`, `SubjectSnapshotRef`, `ApplicabilityDecisionRef` | Immutable target snapshot and authority-specific applicability precede verification |
 | Evidence | `ObservationRef`, `EvidenceRef[]`, `ReceiptRef[]`, `VerifierRef`, `Freshness` | Raw result, source class, freshness, verifier, and external body references remain separate |
@@ -100,14 +100,14 @@ reuses shared lifecycle events, and leaves reducers and projections to `002-redu
 | Proof and adjudication | `proof_witness_recorded`, `claim_adjudication_recorded`, `conformance_assessment_recorded` | Carry replayable witnesses, counterevidence, assessor mode, and discrete outcome |
 | Deviations | `known_deviation_recorded`, `known_deviation_invalidated` | Record visible, scoped, expiring interpretation overlays and reactivation triggers |
 | Coverage and replay | `applicability_coverage_recorded`, `authority_witness_replayed` | Preserve declared applicability edges, old-authority witnesses, affected rules, and compatibility decisions |
-| Shared handoff | Phase-009 review-loop convergence, blocked-stop, continuity, and terminal events | Carry mode payloads and raw gate inputs without owning reduction or projection |
+| Shared handoff | Phase-012 review-loop convergence, blocked-stop, continuity, and terminal events | Carry mode payloads and raw gate inputs without owning reduction or projection |
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-003 transition-authorized ledger core, phase-009 shared event contracts, and shared Deep Review review-loop vocabulary are the authoritative inputs.
+- Confirm the phase-006 transition-authorized ledger core, phase-012 shared event contracts, and shared Deep Review review-loop vocabulary are the authoritative inputs.
 - Inventory the Deep Alignment run boundaries and identify which authority, subject, evidence, verifier, and lifecycle types are imported versus added as namespaced extensions.
 - Freeze the phase boundary: no reducer, projection, report, sealed artifact, certificate, resume, shadow, rollback, authority-cutover, or mode-gate behavior enters this child.
 
@@ -126,7 +126,7 @@ reuses shared lifecycle events, and leaves reducers and projections to `002-redu
 - Check that invalid authority, not-applicable, unresolved, inconclusive, untested, and blocked states cannot be represented as conformance PASS.
 - Check that raw observations, candidates, verifier judgments, proof witnesses, deviations, and conformance decisions remain separately addressable and append-only.
 - Exercise the schema compatibility matrix for current, supported historical, unknown, missing-field, expired, mixed, ambiguous, and lossy payloads.
-- Verify that phase-009 review-loop events are reused, Deep Review and Deep Alignment share the same backbone, and no reducer, projection, certificate, sealed artifact, resume, shadow, rollback, or mode-gate behavior is specified here.
+- Verify that phase-012 review-loop events are reused, Deep Review and Deep Alignment share the same backbone, and no reducer, projection, certificate, sealed artifact, resume, shadow, rollback, or mode-gate behavior is specified here.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -134,7 +134,7 @@ reuses shared lifecycle events, and leaves reducers and projections to `002-redu
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Contract comparison and serialization fixtures prove every mode event uses `DeepAlignmentEventEnvelope` over the phase-009 envelope and no shared field is duplicated |
+| REQ-001 | Contract comparison and serialization fixtures prove every mode event uses `DeepAlignmentEventEnvelope` over the phase-012 envelope and no shared field is duplicated |
 | REQ-002 | Event-catalog coverage matrix maps authority, epoch, lane, subject, applicability, observation, finding, proof, adjudication, deviation, replay, and terminal behavior to typed event families |
 | REQ-003 | Negative fixtures reject authority parse/type/capability/rule-test/coverage/signature/expiry/rollback/mix failures before conformance PASS |
 | REQ-004 | Applicability fixtures cover `applicable`, `not_applicable`, `unresolved`, and `blocked`; conformance fixtures cover `conformant`, `non_conformant`, `inconclusive`, `not_applicable`, `untested`, and `blocked` |
@@ -148,7 +148,7 @@ reuses shared lifecycle events, and leaves reducers and projections to `002-redu
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The direct inputs are the phase-003 transition-authorized ledger core, phase-009 shared event and review-loop contracts,
+The direct inputs are the phase-006 transition-authorized ledger core, phase-012 shared event and review-loop contracts,
 and the Deep Review shared-backbone contract. The planning evidence is
 `002-deep-loop-effectiveness-and-fanout/research/findings-registry.json` and
 `findings-registry-modes.json`, especially the findings on authority capsule validity, typed rule IR, applicability,
@@ -164,7 +164,7 @@ ledger storage, JSONL layout, verifier provider, reducer storage, materialized c
 ## 7. ROLLBACK PLAN
 
 This child changes planning artifacts only and has no runtime write or data migration. If the proposed schema fails review,
-discard or revert the four phase documents and reopen the planning contract without touching the phase-003 core, phase-009
+discard or revert the four phase documents and reopen the planning contract without touching the phase-006 core, phase-012
 contracts, Deep Review shared backbone, or downstream siblings. During later implementation, keep the mode writer additive
 and dark behind the existing authorization and compatibility bridge; reject incompatible, expired, mixed, or lossy events
 rather than emitting guessed authority, subject, evidence, proof, or conformance data. No reducer or projection rollback is

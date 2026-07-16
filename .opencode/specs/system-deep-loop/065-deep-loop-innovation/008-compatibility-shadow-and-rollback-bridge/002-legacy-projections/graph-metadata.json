@@ -191,8 +191,8 @@
       }
     ],
     "causal_summary": "Plan deterministic folds from the verified dark ledger into byte-identical legacy JSONL and JSON artifacts, preserving every existing reader while legacy authority remains unchanged.",
-    "created_at": "2026-07-15T19:00:37.722Z",
-    "last_save_at": "2026-07-15T19:00:37.722Z",
+    "created_at": "2026-07-16T03:43:48.679Z",
+    "last_save_at": "2026-07-16T03:43:48.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:152c37dfa255d0ad9acfcd706428a1ed05184f3fd9096bf053476437e84195f3",
+    "source_fingerprint": "sha256:9d1c3b7ad37817985fd9cba3173638263890fe7b34847ff000fc715ac9a593e9",
     "source_doc_hashes": {
-      "spec.md": "faed798bb24d5125f3aa1d007749b8dc45296e408b98a70e18b1097703f577da",
-      "plan.md": "0bf8977f617541e406641ab467588244320b35357207fed7ceb3fffd90a79ccb",
-      "tasks.md": "c1fd79807e28ba385d09cdf766c6632299024935a921f7e4394f11dac35618aa",
-      "checklist.md": "3704e3cf0ab7e07812c73a20c1b6320b572fa2e93810299e93949f24ab85f41a"
+      "spec.md": "7e483344048b0b83b98986e39bab2d7adc879298d4f16d76f20079cfb3d24928",
+      "plan.md": "b858acf299aa410a1729b5aa1d16ec50c3d9fd9a26c961484959cdad5bb27890",
+      "tasks.md": "7bea55d0699b2b12e9c90ea087f2f580bcadd1a500885bf6ab39fadcec622db0",
+      "checklist.md": "f4c905fa4780319779ccc4405283a0791bcc8768186bebf911c0b0c951b6764f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Sealed Reference Artifacts (004 phase 002)"
+title: "Implementation Plan: Sealed Reference Artifacts"
 description: "Implementation plan for sealing immutable reference inputs, consuming them by verified digest, and retaining them for deterministic replay and shadow parity."
 trigger_phrases:
   - "sealed reference artifacts implementation plan"
@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop shared evidence/control services (phase 004 child 002) |
+| **Surface** | system-deep-loop shared evidence/control services |
 | **Change class** | Additive-dark immutable artifact service and integration contracts |
 | **Execution** | Content-addressed publication, verified consumption, replay binding, conservative retention |
 
@@ -38,8 +38,8 @@ _memory:
 Implement one shared service for prompts, fixtures, prior-run outputs, configuration, and later mode artifacts. The
 service canonicalizes and seals exact bytes, publishes an algorithm-qualified digest only after atomic persistence and
 verification, resolves runtime inputs only by that digest, verifies again before releasing bytes, and records lifecycle
-changes separately from immutable identity. The phase-003 replay descriptor consumes the ordered verified digest set;
-phase 005 may compare legacy and dark outputs only when both cite the same set. The plan is grounded in
+changes separately from immutable identity. The phase-006 replay descriptor consumes the ordered verified digest set;
+phase 008 may compare legacy and dark outputs only when both cite the same set. The plan is grounded in
 `../../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`,
 `../../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`,
 `../../../spec.md`, and `../../../manifest/phase-tree.json`.
@@ -49,12 +49,12 @@ phase 005 may compare legacy and dark outputs only when both cite the same set. 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Artifact kinds and canonicalization profiles are inventoried from the phase-000 census and later mode contracts
+- [ ] Artifact kinds and canonicalization profiles are inventoried from the phase-003 census and later mode contracts
 - [ ] The seal descriptor has explicit identity, algorithm, canonicalization, media, size, and provenance fields
 - [ ] Atomic publication and immutable storage semantics are selected for the supported runtime
 - [ ] Run/event schemas reject path-only, alias-only, tag-only, or `latest` references
 - [ ] Verified-read failures are typed and release no unverified bytes
-- [ ] Replay fingerprints define an ordered artifact-reference input and phase 005 defines input-equivalence gating
+- [ ] Replay fingerprints define an ordered artifact-reference input and phase 008 defines input-equivalence gating
 - [ ] Retention roots, horizons, holds, quarantine, tombstones, and deletion receipts have explicit ownership
 
 ### Definition of Done
@@ -70,7 +70,7 @@ phase 005 may compare legacy and dark outputs only when both cite the same set. 
 - **Atomic sealer**: stages bytes, canonicalizes once, derives the descriptor and digest, writes immutable blob plus descriptor, verifies persisted bytes, and only then publishes the algorithm-qualified digest reference.
 - **Content-addressed store**: returns immutable objects by exact digest; identical writes are idempotent, conflicting bytes or identity metadata quarantine the key, and mutable discovery aliases never authorize reads.
 - **Verified reader**: resolves exact digest, validates descriptor compatibility, streams and recomputes length/digest over returned bytes, and releases a verified handle only after all checks pass.
-- **Reference-set binder**: canonicalizes the ordered verified artifact set into ledger evidence consumed by phase-003 replay fingerprints, receipts/certificates, and phase-005 parity preconditions.
+- **Reference-set binder**: canonicalizes the ordered verified artifact set into ledger evidence consumed by phase-006 replay fingerprints, receipts/certificates, and phase-008 parity preconditions.
 - **Lifecycle ledger**: records seal creation, protected references, retention class, holds, quarantine, eligibility, deletion receipts, tombstones, and exact-content restoration without changing the blob or descriptor.
 - **Retention collector**: conservative mark-and-sweep over run, fingerprint, receipt, rollback, archival, and hold roots; incomplete scans retain objects, and sweep cannot proceed without a complete mark plus elapsed horizon.
 <!-- /ANCHOR:architecture -->
@@ -79,14 +79,14 @@ phase 005 may compare legacy and dark outputs only when both cite the same set. 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Inventory artifact kinds, mutable input paths, existing run/config references, replay roots, rollback holds, and archival requirements against the pinned phase-000 baseline.
+- Inventory artifact kinds, mutable input paths, existing run/config references, replay roots, rollback holds, and archival requirements against the pinned phase-003 baseline.
 - Freeze seal descriptor, canonicalization registry, typed error taxonomy, reference-set ordering, and lifecycle-state contracts before adding a publisher.
 
 ### Phase 2: Implementation
 - Implement deterministic canonicalizers and algorithm-qualified digest derivation for the initial prompt-set, fixture, prior-run-output, and configuration kinds.
 - Implement staged atomic publication, immutable blob/descriptor storage, idempotent duplicate handling, collision quarantine, and verified read-before-release.
 - Replace dark-path input capture with digest references while preserving legacy authority and rejecting mutable-only references from replay/parity evidence.
-- Bind verified artifact-reference sets into phase-003 fingerprints, run events, receipts/certificates, and the phase-005 shadow-parity input-equivalence gate.
+- Bind verified artifact-reference sets into phase-006 fingerprints, run events, receipts/certificates, and the phase-008 shadow-parity input-equivalence gate.
 - Implement append-only lifecycle records, protected-root discovery, audit and rollback holds, conservative mark-and-sweep, deletion receipts, tombstones, and byte-identical restoration.
 
 ### Phase 3: Verification
@@ -120,16 +120,16 @@ phase 005 may compare legacy and dark outputs only when both cite the same set. 
 ## 6. DEPENDENCIES
 
 The phase has no hard execution dependency (`depends_on: []`) and is an independent sibling planning contract. Its
-implementation composes with the phase-003 event envelope, typed ledger, and replay-fingerprint APIs; the phase-001
-ADR fixes immutable digest addressing as a spine invariant. Phase 005 consumes verified reference sets for shadow
-parity, phase 010 specializes artifact kinds, and phases 011-013 preserve retained inputs through rollback, archival
-replay, and whole-system verification. The phase-000 census supplies concrete storage and legacy-reference evidence.
+implementation composes with the phase-006 event envelope, typed ledger, and replay-fingerprint APIs; the phase-004
+ADR fixes immutable digest addressing as a spine invariant. Phase 008 consumes verified reference sets for shadow
+parity, phase 013 specializes artifact kinds, and phases 011-013 preserve retained inputs through rollback, archival
+replay, and whole-system verification. The phase-003 census supplies concrete storage and legacy-reference evidence.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Land the service additively behind the dark ledger path. Before phase 011, rollback disables new sealing and verified
+Land the service additively behind the dark ledger path. Before phase 014, rollback disables new sealing and verified
 reference capture while leaving legacy reads authoritative; already sealed objects, descriptors, and lifecycle records
 remain immutable for audit and replay. Revert integration commits rather than deleting sealed data. A collector rollout
 starts in mark/report-only mode, then quarantine, and only later sweep after retention fixtures pass; disabling sweep

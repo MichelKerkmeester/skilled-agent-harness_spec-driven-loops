@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep AI Council - Sealed Reference Artifacts (013 phase 003)"
+title: "Checklist: Deep AI Council - Sealed Reference Artifacts"
 description: "Checklist for the Deep AI Council sealed reference artifact phase: shared content-addressed sealing, immutable input and output manifests, tamper-evident reads, replay-safe reuse, information-surface isolation, and dark shadow verification."
 trigger_phrases:
   - "Deep AI Council sealed artifacts checklist"
@@ -28,8 +28,8 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 003. The verifier pins the phase-003 primitive revision,
-phase-009 shared-contract revisions, candidate input-manifest hash, artifact-inventory hash, and legacy comparison fixture.
+This checklist is the blocking verifier contract for phase 006. The verifier pins the phase-006 primitive revision,
+phase-012 shared-contract revisions, candidate input-manifest hash, artifact-inventory hash, and legacy comparison fixture.
 It records seal and read commands, exit codes, object and digest counts, visibility decisions, replay outcomes, shadow-parity
 differences, and tracked mutation. It must fail on any second sealing scheme, mutable-path fallback, digest or manifest mismatch,
 missing required input, identity leakage, unsafe reuse, certificate issuance, authority change, zero or skipped fixtures, or
@@ -39,7 +39,7 @@ unscoped mutation.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-003 sealing primitives and phase-009 shared identity, artifact-reference, replay, receipt, authorization, and write-set contracts are pinned as read-only inputs
+- [ ] CHK-001 [P0] Phase-006 sealing primitives and phase-012 shared identity, artifact-reference, replay, receipt, authorization, and write-set contracts are pinned as read-only inputs
 - [ ] CHK-002 [P0] The phase boundary with `002-reducers-and-projections` and `004-certificates-and-receipts` is recorded; this phase neither indexes projections nor issues certificates
 - [ ] CHK-003 [P1] The complete council artifact inventory and visibility matrix are present for run inputs, seats, critiques, blinded judgments, convergence, synthesis, minority records, council artifacts, and test-gate evidence
 - [ ] CHK-004 [P1] Legacy `ai-council/**` artifacts, state rows, replay fixtures, and protected-vs-known-defect decisions are available for shadow comparison
@@ -48,7 +48,7 @@ unscoped mutation.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] No mode-local digest, seal record, manifest format, object store, verifier, or persistence authority duplicates the phase-003 sealing primitive
+- [ ] CHK-005 [P0] No mode-local digest, seal record, manifest format, object store, verifier, or persistence authority duplicates the phase-006 sealing primitive
 - [ ] CHK-006 [P0] Seal-on-write canonicalization, digest computation, atomic create, idempotence, manifest binding, and append-only supersession ordering are explicit and deterministic
 - [ ] CHK-007 [P0] Every seal binds stable logical identity, council scope, source-event range, schema and policy versions, replay fingerprint, content digest, visibility, and lineage
 - [ ] CHK-008 [P1] Immutable inputs and outputs are separated from derived reducer projections, certificate evidence, mutable caches, and current packet paths
@@ -113,7 +113,7 @@ redefining the sealing scheme.
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the verifier confirms phase-003 and phase-009 contract reuse, immutable seal-on-write, tamper-evident reads,
+Signed off when the verifier confirms phase-006 and phase-012 contract reuse, immutable seal-on-write, tamper-evident reads,
 replay-safe reuse, information-surface isolation, shadow parity, no certificate or authority change, and no unscoped tracked
 mutation.
 <!-- /ANCHOR:sign-off -->

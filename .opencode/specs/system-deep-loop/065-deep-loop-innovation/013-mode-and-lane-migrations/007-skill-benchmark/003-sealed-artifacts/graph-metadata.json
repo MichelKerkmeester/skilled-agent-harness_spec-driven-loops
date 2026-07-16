@@ -172,8 +172,8 @@
       }
     ],
     "causal_summary": "Define immutable, content-addressed, seal-on-write inputs and outputs for Skill Benchmark scenario runs and scoring",
-    "created_at": "2026-07-15T21:45:21.780Z",
-    "last_save_at": "2026-07-15T21:45:21.780Z",
+    "created_at": "2026-07-16T03:43:41.603Z",
+    "last_save_at": "2026-07-16T03:43:41.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,12 +182,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2169e1e204b8ac984341e3c269aa3ee710580ff8fab24ca9ef13de73e1921471",
+    "source_fingerprint": "sha256:b4ab369cf15c4356aae180a038ba15b5ff586f7c289157fc628df998bab9b0fe",
     "source_doc_hashes": {
-      "spec.md": "3f5cbd8a532eae7579361b42aef3aca73bccf1aec58cd460dc76cc8076cccb7c",
-      "plan.md": "2cfa36098ac5a8e4cd2540e09339fa2856e0fcadbd5804641ab52eddc756a20a",
-      "tasks.md": "a5025eef09254df4a9669f9ac116ed167404a992178a4109fdb01c0df7a12679",
-      "checklist.md": "d0337bb9dbe9c5e3f3c101efa1fde2b4cfd2f184fd6bcea5b0617e37d5a524c8"
+      "spec.md": "cf364d581177daac3864f68f368662f6bd251d158dc20904d4f7dea287e3bf8a",
+      "plan.md": "bc05b0dc2c60f4e54f7081eadaab100d7ebea30c620c7370b8ac84bd19a20ec9",
+      "tasks.md": "cad5a1026b3a2dfb43a05708c26923479147c0951600e1b41d15b24b3f4935db",
+      "checklist.md": "8622c10f7b2ed545967ddb2911dfefeaaa72c0a6908dab2d1572e7de45d0f1ba"
     },
     "last_active_child_id": null,
     "last_active_at": null

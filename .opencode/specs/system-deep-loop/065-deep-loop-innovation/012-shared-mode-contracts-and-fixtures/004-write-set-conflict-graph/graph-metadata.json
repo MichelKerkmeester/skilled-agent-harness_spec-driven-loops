@@ -12,23 +12,23 @@
   "derived": {
     "trigger_phrases": [
       "write-set conflict graph",
-      "phase-010 migration scheduling",
+      "phase-013 migration scheduling",
       "deep-loop mode write ownership",
       "parallel-safe mode migrations",
       "write-set conflict graph implementation plan",
-      "phase-010 dependency graph plan",
+      "phase-013 dependency graph plan",
       "deep-loop lane scheduling plan",
       "write-set conflict graph tasks",
-      "phase-010 scheduling tasks",
+      "phase-013 scheduling tasks",
       "deep-loop write ownership tasks",
       "write-set conflict graph checklist",
-      "phase-010 graph verification"
+      "phase-013 graph verification"
     ],
     "key_topics": [
       "write-set",
       "conflict",
       "graph",
-      "phase-010",
+      "phase-013",
       "migration",
       "scheduling",
       "deep-loop",
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the executable dependency and write-set conflict graph for the eight phase-010 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption.",
-    "created_at": "2026-07-15T19:00:44.401Z",
-    "last_save_at": "2026-07-15T19:00:44.401Z",
+    "causal_summary": "Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption.",
+    "created_at": "2026-07-16T03:43:54.781Z",
+    "last_save_at": "2026-07-16T03:43:54.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:3c4414e3e15b0d37cf3eed76969f03f8fef7b08ee426a47ce3a833af4aa5331d",
+    "source_fingerprint": "sha256:77af01fd7bdf76feef437760cf67185c464f538cab693ecc79c166d1273019df",
     "source_doc_hashes": {
-      "spec.md": "5bf1c7918078618d73fa4bbf14eaaacd6598dfb6dc3f7e184ac930c7f57911d6",
-      "plan.md": "581e2d3e834a72948ca6484dde5456074fea1309fa2c0495ecfade273962c024",
-      "tasks.md": "f57680da5296b355588684726682d60976946bac1c42ebb6bdcb6ce49b6dc706",
-      "checklist.md": "9eeb44496e6c5389a093c76e158912a2eafb0deaeab5c3968074a3bc31deec0d"
+      "spec.md": "2ede8a0e7cb148fca2fcbba9680d380f729deeed95ecbc4f04474a7b4efc5cdb",
+      "plan.md": "36f4c58fdae29e54c23dc4327c96a4a07f1741b94f2e6b84ded07f4f4a29d5a4",
+      "tasks.md": "bcc83de3fe6d19b7716576fb4de2acf1c8ff96c8188e204f2231b13cb8ddaa9d",
+      "checklist.md": "a37b4869ac2fa2329b053e89b0fbafde5e763e659b0bc616a29ca8964d0869c9"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep Alignment shadow parity (phase 013 mode 008 concern 006)"
+title: "Checklist: Deep Alignment shadow parity"
 description: "Checklist for the Deep Alignment shadow-parity concern: event-for-event and projection parity between the legacy emitter and typed ledger path, with fail-closed acceptance before authority cutover."
 trigger_phrases:
   - "Deep Alignment shadow parity checklist"
@@ -39,7 +39,7 @@ unexpected authority side effect.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] `005-resume-adapter`, the phase-011 shadow framework, and the phase-009 shared review-loop contract are version-pinned in the paired-run manifest
+- [ ] CHK-001 [P0] `005-resume-adapter`, the phase-014 shadow framework, and the phase-012 shared review-loop contract are version-pinned in the paired-run manifest
 - [ ] CHK-002 [P0] Legacy and ledger paths receive identical run, target, authority, verifier, lane, capability, budget, and fixture inputs; any mismatch blocks before execution
 - [ ] CHK-003 [P1] Deep Alignment event and projection inventories cover every active lane, finding state, applicability outcome, deviation state, authority conflict, terminal state, and public gauge
 - [ ] CHK-004 [P1] The comparator's semantic field allowlist, event pairing key, causal-order rule, projection identities, and unknown-field policy are versioned and reviewed

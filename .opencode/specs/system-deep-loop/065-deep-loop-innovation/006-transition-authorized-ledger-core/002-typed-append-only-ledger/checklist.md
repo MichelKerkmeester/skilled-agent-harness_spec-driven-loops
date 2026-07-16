@@ -39,7 +39,7 @@ remain unchecked until implementation evidence exists.
 
 - [ ] CHK-001 [P0] The sibling envelope and authorization interfaces are frozen enough to bind canonical bytes, stable event identity, event type/version, stream identity, and proof reference
 - [ ] CHK-002 [P0] The runtime inventory names every legacy JSONL/state/checkpoint writer, repair helper, reader, and reducer receiving a dark adapter
-- [ ] CHK-003 [P0] The authority assertion is explicit: legacy remains canonical through phase 010 and only phase 011 may authorize a mode cutover
+- [ ] CHK-003 [P0] The authority assertion is explicit: legacy remains canonical through phase 013 and only phase 014 may authorize a mode cutover
 - [ ] CHK-004 [P2] Candidate SHA, BASE SHA, fixture digest, ledger root, permissions, and lock scope are recorded in the verifier report
 <!-- /ANCHOR:pre-impl -->
 

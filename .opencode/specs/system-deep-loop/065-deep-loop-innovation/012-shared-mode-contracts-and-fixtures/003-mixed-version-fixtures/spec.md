@@ -42,9 +42,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Third child of the phase-009 shared mode contracts and fixtures parent |
-| **Depends on** | None (`[]`) in the phase-tree contract; execution consumes the phase-004 and phase-005 interfaces |
-| **Parent outcome** | Provide deterministic mixed-version fixtures before the phase-010 mode fan-out |
+| **Origin** | Third child of the phase-012 shared mode contracts and fixtures parent |
+| **Depends on** | None (`[]`) in the phase-tree contract; execution consumes the phase-007 and phase-008 interfaces |
+| **Parent outcome** | Provide deterministic mixed-version fixtures before the phase-013 mode fan-out |
 | **Authority posture** | Fixture and verification planning only; legacy remains authoritative and no cutover is permitted |
 <!-- /ANCHOR:metadata -->
 
@@ -57,12 +57,12 @@ boundary. A deep-loop run can contain old events, a newly written event, an old 
 record at the same causal time. Testing only a fully old or fully new stream hides exactly the drift that the migration
 bridge must handle.
 
-The phase-005 upcaster and dual-read contract requires adjacent, deterministic, lossless transforms, immutable source
+The phase-008 upcaster and dual-read contract requires adjacent, deterministic, lossless transforms, immutable source
 evidence, and fail-closed handling of future, ambiguous, or unsupported versions (`../../005-compatibility-shadow-and-
 rollback-bridge/001-upcasters-and-dual-read-adapters/spec.md`). Its shadow-parity child requires both legacy and dark
 paths to consume one identical sealed case capsule, compare verified replay components and legacy projections, and keep
 authority on the legacy path (`../../008-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness/spec.md`).
-The phase-004 sealed-reference-artifact contract supplies the only trusted way to freeze the prompt set, initial state,
+The phase-007 sealed-reference-artifact contract supplies the only trusted way to freeze the prompt set, initial state,
 configuration, prior outputs, and evaluator material used by a replay (`../../007-shared-evidence-and-control-services/
 002-sealed-reference-artifacts/spec.md`).
 
@@ -72,10 +72,10 @@ upcaster chain, mode reducers, resume adapter, replay fingerprint, and shadow-pa
 production authority. Pure-old and pure-new cases remain controls; mid-upgrade and interrupted-migration cases are the
 load-bearing cases for realistic coexistence.
 
-The parent program requires phase 009 to freeze shared mode interfaces, cross-mode closures, mixed-version fixtures, and
-the write-set conflict graph before phase 010 begins. The parent spec and `manifest/phase-tree.json` therefore make this
-fixture set a shared input to all eight phase-010 workstreams, not a private test owned by one mode. The manifest records
-the phase-009 outcome and the phase-005 outcome as the compatibility and parity boundary:
+The parent program requires phase 012 to freeze shared mode interfaces, cross-mode closures, mixed-version fixtures, and
+the write-set conflict graph before phase 013 begins. The parent spec and `manifest/phase-tree.json` therefore make this
+fixture set a shared input to all eight phase-013 workstreams, not a private test owned by one mode. The manifest records
+the phase-012 outcome and the phase-008 outcome as the compatibility and parity boundary:
 `../../manifest/phase-tree.json`.
 <!-- /ANCHOR:problem -->
 
@@ -89,26 +89,26 @@ the phase-009 outcome and the phase-005 outcome as the compatibility and parity 
   migration with a restart or resume from a partially advanced boundary.
 - Independent versioning of event records and persisted state records so a case can contain old events with new state,
   new events with old state, and a valid mixed state at a declared migration boundary.
-- Fixture construction that invokes the phase-005 upcaster registry and dual-read semantics without reimplementing
+- Fixture construction that invokes the phase-008 upcaster registry and dual-read semantics without reimplementing
   their production algorithms or accepting a guessed version mapping.
-- Fixture sealing through the phase-004 artifact service: canonical bytes, ordered digest references, descriptor
+- Fixture sealing through the phase-007 artifact service: canonical bytes, ordered digest references, descriptor
   versions, initial state, configuration, evaluator material, and replay-affecting environment are immutable inputs.
 - Expected outcomes for upcast, direct current read, reducer acceptance, replay parity, legacy projection parity,
   resume classification, typed failure, and certificate eligibility.
-- Deterministic replay and shadow-parity execution for every phase-010 workstream named in
+- Deterministic replay and shadow-parity execution for every phase-013 workstream named in
   `manifest/phase-tree.json`, including deep-improvement-common before its three variants.
 - Negative fixtures for unsupported future versions, missing adjacent edges, lossy transforms, malformed mixed state,
   seal mismatch, wrong causal boundary, missing observations, and nondeterministic reruns.
-- Fixture identifiers, source references, seal identities, and expected outcomes suitable for the phase-009 conformance
-  runner and the phase-005 parity certificate input.
+- Fixture identifiers, source references, seal identities, and expected outcomes suitable for the phase-012 conformance
+  runner and the phase-008 parity certificate input.
 
 ### Out of Scope
 - Implementing the upcaster registry, dual-read/single-write adapter, legacy projections, shadow-parity harness, or
-  rollback drills owned by phase 005.
-- Implementing the phase-004 seal store, canonicalizers, verified-read API, retention policy, or artifact lifecycle.
+  rollback drills owned by phase 008.
+- Implementing the phase-007 seal store, canonicalizers, verified-read API, retention policy, or artifact lifecycle.
 - Defining the shared `ModeContract` surface owned by `001-shared-mode-interfaces` or hoisting common implementations
   owned by `002-cross-mode-closures`.
-- Migrating any production mode, changing reducer authority, changing the phase-003 event envelope, or moving runtime
+- Migrating any production mode, changing reducer authority, changing the phase-006 event envelope, or moving runtime
   authority from legacy to the dark ledger.
 - Rewriting historical events or state, auto-rebaselining expected outputs, accepting unversioned records by inference,
   or using mutable paths, caches, clocks, or live external services as trusted fixture inputs.
@@ -127,11 +127,11 @@ the phase-009 outcome and the phase-005 outcome as the compatibility and parity 
 | REQ-005 | Interrupted migration is restartable and classifiable | A case stops after a partial transition, seals the pre-stop state and pending inputs, resumes from the boundary, and expects one declared `upcast`, `pin-legacy`, `fork`, `migrate`, or `block` result |
 | REQ-006 | Event and state versions are independently exercised | The matrix includes old-event/new-state, new-event/old-state, old-event/old-state, and new-event/new-state combinations where the contracts permit them; unsupported combinations are typed failures |
 | REQ-007 | Upcaster behavior is lossless and fail closed | Supported cases apply only adjacent registered transforms, preserve source bytes and identity, produce stable hop traces, and reject gaps, cycles, future versions, ambiguous shapes, and lossy output |
-| REQ-008 | Every replay input is sealed before execution | A case capsule references verified phase-004 digest descriptors for initial state, event stream, configuration, prompts, evaluator material, prior outputs, and version policy; mutable aliases alone are rejected |
+| REQ-008 | Every replay input is sealed before execution | A case capsule references verified phase-007 digest descriptors for initial state, event stream, configuration, prompts, evaluator material, prior outputs, and version policy; mutable aliases alone are rejected |
 | REQ-009 | Sealing makes replay deterministic | Repeated reads of the same case use identical ordered bytes and descriptors; the same replay contract yields identical effective-event, reducer-state, projection, and classification outputs |
 | REQ-010 | Shadow parity consumes one case capsule | Legacy and dark executions receive the same verified sealed inputs and causal boundary, run in isolated roots, compare declared replay components and legacy-shaped bytes, and never use fixture data to grant authority |
 | REQ-011 | Reducer expectations are explicit | Each case names the expected accepted events, rejected events, state transitions, terminal result, pending effects, receipts, and output artifacts; no expected state is inferred from the implementation under test |
-| REQ-012 | The corpus covers every phase-010 workstream | The manifest-derived matrix covers `001-deep-research`, `002-deep-review`, `003-deep-ai-council`, `004-deep-improvement-common`, `005-agent-improvement`, `006-model-benchmark`, `007-skill-benchmark`, and `008-deep-alignment` |
+| REQ-012 | The corpus covers every phase-013 workstream | The manifest-derived matrix covers `001-deep-research`, `002-deep-review`, `003-deep-ai-council`, `004-deep-improvement-common`, `005-agent-improvement`, `006-model-benchmark`, `007-skill-benchmark`, and `008-deep-alignment` |
 | REQ-013 | Failures block trusted evidence | Seal mismatch, input inequality, missing observation, unsupported version, reducer divergence, replay mismatch, projection mismatch, or nondeterministic rerun blocks parity and certificate eligibility with bounded evidence |
 | REQ-014 | Fixture evolution is versioned and additive | Changing a fixture schema, scenario expectation, or version policy creates a new fixture or contract identity; existing sealed evidence is not mutated or silently rebaselined |
 
@@ -147,7 +147,7 @@ the phase-009 outcome and the phase-005 outcome as the compatibility and parity 
 ### Version-mixing rules
 
 An event version describes the stored event payload and a state version describes the persisted state representation;
-neither may be inferred from the other. A fixture may combine them only when the phase-005 registry and the shared mode
+neither may be inferred from the other. A fixture may combine them only when the phase-008 registry and the shared mode
 contract declare the pair comparable. The fixture records stored version, effective version, ordered upcaster hops,
 source identity, and causal position for every record. A current writer never emits an old version to make a mixed case
 look realistic; realism comes from sealed historical records followed by a current-version boundary write.
@@ -162,13 +162,13 @@ as a legacy success.
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The fixture corpus contains the four required scenario families and a manifest-derived row for every
-  phase-010 workstream.
+  phase-013 workstream.
 - **SC-002**: Pure-old and pure-new controls establish stable version-specific expectations before mixed cases run.
 - **SC-003**: Mid-upgrade fixtures prove old and new events/state coexist across a declared causal boundary with exact
   upcaster hops and deterministic effective reducer state.
 - **SC-004**: Interrupted-migration fixtures preserve sealed stop inputs and yield deterministic resume classification,
   pending-effect handling, and restart output.
-- **SC-005**: Every trusted case consumes phase-004 verified sealed artifacts and rejects mutable, missing, or altered
+- **SC-005**: Every trusted case consumes phase-007 verified sealed artifacts and rejects mutable, missing, or altered
   bytes before reducer or parity execution.
 - **SC-006**: Repeated execution of a sealed case reproduces effective events, reducer state, projections, parity class,
   and evidence identity; nondeterminism blocks certification.
@@ -190,7 +190,7 @@ current records are not downcast, and declared parity components match or produc
 is eligible until the complete affected case set passes.
 
 **Given** a case whose sealed event bytes or descriptor digest changes, **When** the parity runner starts, **Then** the
-phase-004 verified read fails before either path executes and the case is classified as input-inequivalent.
+phase-007 verified read fails before either path executes and the case is classified as input-inequivalent.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -200,31 +200,31 @@ phase-004 verified read fails before either path executes and the case is classi
   unsupported pair. Mitigation: record and validate event and state versions independently and require a declared
   comparable boundary.
 - **Fixtures that encode implementation output** - Generating expected state by calling the reducer under test makes
-  every case pass vacuously. Mitigation: author expected transitions and outcomes from the phase-005 contracts and
+  every case pass vacuously. Mitigation: author expected transitions and outcomes from the phase-008 contracts and
   immutable control evidence, then compare implementation output to those expectations.
 - **Unsealed drift** - A mutable prompt, configuration, evaluator input, or environment value can produce false parity.
-  Mitigation: require phase-004 verified digest references and block any unledgered replay-affecting input.
+  Mitigation: require phase-007 verified digest references and block any unledgered replay-affecting input.
 - **False parity across causal points** - Old and new observations can be semantically equal while representing
   different positions. Mitigation: bind comparison tokens to mode, run/stream, authority epoch, checkpoint, and dark
-  head as required by the phase-005 parity contract.
+  head as required by the phase-008 parity contract.
 - **Interrupted restart duplicates effects** - A restart can replay an accepted effect without its receipt. Mitigation:
-  seal receipt, lease/fencing, pending-effect, and continuity evidence and expect the phase-005 resume classification.
+  seal receipt, lease/fencing, pending-effect, and continuity evidence and expect the phase-008 resume classification.
 - **Mode-specific fixture drift** - Eight workstreams may invent private version combinations. Mitigation: derive the
   matrix from `mode_workstreams_phase_010`, use one fixture envelope, and reject unregistered exceptions.
 - **Dependencies**: the child declares `depends_on: []` in `manifest/phase-tree.json`, but its implementation consumes
-  the phase-004 sealed-reference-artifact contract, phase-005 upcaster and shadow-parity contracts, the phase-009
-  shared-mode interface, and the parent sequencing rules. The phase-010 mode migrations consume this fixture set; phase
+  the phase-007 sealed-reference-artifact contract, phase-008 upcaster and shadow-parity contracts, the phase-012
+  shared-mode interface, and the parent sequencing rules. The phase-013 mode migrations consume this fixture set; phase
   011 consumes its parity evidence but remains the sole authority-cutover owner.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which concrete event and state families from the phase-000 census require mixed cases for every mode, and which shared
+- Which concrete event and state families from the phase-003 census require mixed cases for every mode, and which shared
   families can use one cross-mode fixture row?
 - What exact causal boundary fields are mandatory for each mode's event stream, snapshot, lease, receipt, and continuity
   identity in an interrupted-migration case?
-- Which phase-005 resume classifications can be asserted by a fixture without importing mode-specific migration policy?
+- Which phase-008 resume classifications can be asserted by a fixture without importing mode-specific migration policy?
 - Which legacy projection fields are observable for each mode when the dark path has upcast old records into a current
   effective model?
 - What rerun count and supported process/platform matrix is required before a mixed case can contribute to a parity

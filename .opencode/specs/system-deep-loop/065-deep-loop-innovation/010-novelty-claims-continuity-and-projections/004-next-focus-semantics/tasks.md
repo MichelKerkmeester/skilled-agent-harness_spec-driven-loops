@@ -1,5 +1,5 @@
 ---
-title: "Tasks: next-focus semantics (recommendations implementation phase 007 child 004)"
+title: "Tasks: next-focus semantics (recommendations implementation phase 010 child 004)"
 description: "Tasks for implementing typed next-focus candidates, deterministic scoring and selection, and replayable ledger recording."
 trigger_phrases:
   - "next-focus semantics tasks"

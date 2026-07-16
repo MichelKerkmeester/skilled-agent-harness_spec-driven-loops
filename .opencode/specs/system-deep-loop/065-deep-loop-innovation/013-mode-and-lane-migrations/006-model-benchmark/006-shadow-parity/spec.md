@@ -44,7 +44,7 @@ _memory:
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the deep-improvement-common backbone) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 006; shadow-parity planning after the Model Benchmark schema, reducer, sealing, and receipt contracts |
 | **Child depends_on** | `[]` |
-| **Inputs** | Phase-011 health and degeneration shadow framework; phase-012 shared mode contracts and write-set conflict graph; phase-009 contract freeze; Model Benchmark siblings `001-typed-ledger-schema` through `005-resume-adapter`; mode 004 Deep Improvement Common Services; 065/002 findings registries |
+| **Inputs** | Phase-014 health and degeneration shadow framework; phase-012 shared mode contracts and write-set conflict graph; phase-012 contract freeze; Model Benchmark siblings `001-typed-ledger-schema` through `005-resume-adapter`; mode 004 Deep Improvement Common Services; 065/002 findings registries |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -64,7 +64,7 @@ reverse a ranking without changing its shape. The parity harness therefore runs 
 their Model Benchmark events, and compares mode-specific projections after every matched boundary while the legacy path remains
 authoritative.
 
-This phase plans that proof. It consumes the phase-011 health and degeneration shadow framework for coherent cursors, telemetry
+This phase plans that proof. It consumes the phase-014 health and degeneration shadow framework for coherent cursors, telemetry
 gaps, recovery observations, and non-authoritative action requests. It reuses the mode 004 Deep Improvement Common Services
 evaluator, canary, promotion, receipt, budget, health, and generic parity contracts. It adds only Model Benchmark-specific run
 identity, trial and scoring-matrix events, workload and contamination evidence, validity fields, projections, fixtures, and
@@ -93,7 +93,7 @@ parity reporting. It does not re-implement shared evaluator, canary, or promotio
 - Fixtures for healthy multi-model runs, model-by-task reversals, paired anchors, adaptive diagnostic tails, partial matrices,
   missing usage, judge and rubric perturbations, contamination and disclosure, workload tails, score-policy changes, replay,
   resume, duplicate delivery, late completion, and shared-service veto or promotion-preparation outcomes.
-- Integration with the phase-011 shadow framework for health observations, `telemetry_gap`, `not_evaluable`, degeneration,
+- Integration with the phase-014 shadow framework for health observations, `telemetry_gap`, `not_evaluable`, degeneration,
   recovery, and action-request parity; all requests remain observations until an authorized boundary handles them.
 - A cutover-blocking parity report consumed by `007-rollback-and-mode-gate` and the later staged authority phase; the report is
   evidence only and never a cutover certificate.
@@ -108,7 +108,7 @@ parity reporting. It does not re-implement shared evaluator, canary, or promotio
 - Flipping authority, migrating live in-flight state, retiring legacy writers, issuing a cutover certificate, or implementing the
   successor rollback and mode gate.
 - Implementing the six sibling concerns, the other two benchmark variants, or the parent integration gate.
-- Implementing the per-mode 010 migrations before phase 009 freezes shared contracts and emits the write-set conflict graph.
+- Implementing the per-mode 010 migrations before phase 012 freezes shared contracts and emits the write-set conflict graph.
 - Hand-writing generated `description.json` or `graph-metadata.json` metadata for this folder.
 <!-- /ANCHOR:scope -->
 
@@ -125,7 +125,7 @@ parity reporting. It does not re-implement shared evaluator, canary, or promotio
 | REQ-006 | Raw and operational evidence remains addressable | Raw outputs, item and family observations, usage, latency tails, errors, abstentions, retries, judge evidence, evaluator epochs, exposure lineage, and selection-policy inputs survive normalization, reduction, replay, and ranking changes |
 | REQ-007 | Paired and adaptive matrix evidence remains distinct | Common anchors, family quotas, adaptive diagnostic selection, selection propensities, confirmatory status, and underpowered or missing cells are compared as separate evidence classes; adaptive omission cannot become superiority evidence |
 | REQ-008 | Shared services remain one source of truth | Model Benchmark references mode 004 evaluator, canary, promotion, health, receipt, budget, veto, and mismatch contracts; variant-local fields cannot clear shared vetoes or replace common transitions |
-| REQ-009 | Phase-011 shadow integration remains observation-only | Health, degeneration, recovery, `telemetry_gap`, and `not_evaluable` observations use one coherent cursor and watermark; action requests do not stop, dispatch, cancel, spend, mutate a baseline, or change authority |
+| REQ-009 | Phase-014 shadow integration remains observation-only | Health, degeneration, recovery, `telemetry_gap`, and `not_evaluable` observations use one coherent cursor and watermark; action requests do not stop, dispatch, cancel, spend, mutate a baseline, or change authority |
 | REQ-010 | Parity evidence is reproducible and cutover-blocking | Every fixture binds path versions, contract digests, stream and projection fingerprints, mismatch evidence, and exit status; only a complete green report with zero unexplained differences may be consumed by the successor gate, and it cannot authorize cutover |
 <!-- /ANCHOR:requirements -->
 
@@ -149,7 +149,7 @@ Authority cutover remains blocked until all of the following are green:
   preparation dispositions agree at every boundary; the typed path cannot authorize or mutate a selection.
 - **Replay parity**: complete replay, checkpoint replay, matrix-order permutations, resume, late completion, and duplicate delivery
   reproduce event matches, projection fingerprints, mismatch identities, and verdicts deterministically.
-- **Health-framework parity**: phase-011 observations use the same evidence boundary; `telemetry_gap`, `not_evaluable`, and
+- **Health-framework parity**: phase-014 observations use the same evidence boundary; `telemetry_gap`, `not_evaluable`, and
   degeneration signals block a pass where required data is unavailable and never become direct action authority.
 - **Operational safety**: shadow execution performs no production model dispatch, hidden-case disclosure, evaluator or canary
   mutation, baseline mutation, promotion, authority write, or legacy-writer bypass.
@@ -166,7 +166,7 @@ report, but this child never issues a cutover certificate.
 - **SC-002**: The complete multi-model lifecycle matches event-for-event with zero missing, extra, duplicate, reordered, unauthorized, unsupported, or unexplained protected-field differences.
 - **SC-003**: Matrix and run projections match after every boundary for cell identity, raw observations, score state, uncertainty, coverage, validity, contamination, workload, operational cost, and terminal state.
 - **SC-004**: Common anchors, adaptive diagnostic evidence, task-family clustering, judge calibration, contamination lineage, and missing or insufficient evidence remain visible and comparable.
-- **SC-005**: Phase-011 health and degeneration observations are coherent, replayable, fail closed on gaps, and never change legacy stop, dispatch, budget, promotion, or authority behavior.
+- **SC-005**: Phase-014 health and degeneration observations are coherent, replayable, fail closed on gaps, and never change legacy stop, dispatch, budget, promotion, or authority behavior.
 - **SC-006**: Model Benchmark consumes mode 004 shared services without duplicate evaluator, canary, promotion, or common parity semantics and adds only namespaced run and scoring logic.
 - **SC-007**: A reproducible parity receipt with zero unexplained differences is accepted by `007-rollback-and-mode-gate` as evidence; authority remains with the legacy path until later staged cutover.
 
@@ -181,7 +181,7 @@ report, but this child never issues a cutover certificate.
 **When** parity evaluates the boundary, **Then** both paths expose the same protected disposition and no derived ranking becomes a
 selection authority.
 
-**Given** phase-011 reports degeneration or missing telemetry, **When** the shadow harness consumes the observation, **Then** it
+**Given** phase-014 reports degeneration or missing telemetry, **When** the shadow harness consumes the observation, **Then** it
 records the same cursor and evidence boundary and leaves all action authority with shared control and later cutover contracts.
 <!-- /ANCHOR:success-criteria -->
 
@@ -209,8 +209,8 @@ records the same cursor and evidence boundary and leaves all action authority wi
   Mitigation: consume mode 004 contracts through one adapter and reject local common-service transitions.
 - **Authority creep and duplicate effects** - Shadow code could dispatch models, disclose hidden cases, mutate a baseline, or promote.
   Mitigation: isolated sinks, non-authoritative flags, receipt assertions, and a zero-authority-write gate.
-- **Dependencies**: phase-011 health and degeneration shadow framework; phase-012 shared mode contracts and write-set conflict
-  graph; phase-009 shared contract freeze; parent compatibility bridge; mode 004 Deep Improvement Common Services; Model Benchmark
+- **Dependencies**: phase-014 health and degeneration shadow framework; phase-012 shared mode contracts and write-set conflict
+  graph; phase-012 shared contract freeze; parent compatibility bridge; mode 004 Deep Improvement Common Services; Model Benchmark
   siblings `001-typed-ledger-schema` through `005-resume-adapter`; existing benchmark scripts and fixtures; the 065/002 registries;
   and the spec-kit validator.
 <!-- /ANCHOR:risks -->
@@ -228,7 +228,7 @@ records the same cursor and evidence boundary and leaves all action authority wi
   diagnostic-only until the certificate and mode gate contracts consume them?
 - How should missing provider usage, unknown external outcomes, late completions, and duplicate cells be represented when the legacy
   emitter already owns an effect and the typed path must remain observational?
-- Which phase-011 health observations and action requests are required for Model Benchmark, and which remain generic control-plane
+- Which phase-014 health observations and action requests are required for Model Benchmark, and which remain generic control-plane
   references without introducing a mode-local health policy?
 - What parity receipt fields and failure severities does `007-rollback-and-mode-gate` require before it can accept evidence for
   rollback readiness or later authority review?

@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop 006 / phase 001 / child 002 |
+| **Surface** | system-deep-loop 006 / phase 004 / child 002 |
 | **Change class** | Phase-local data contract, classified ledger, projection, and verifier |
 | **Execution** | Deterministic extraction and review against frozen source digests; `depends_on: []` |
 
@@ -38,7 +38,7 @@ _memory:
 Build one canonical ledger from three source adapters rather than treating unlike research outputs as one implicit
 array. Run-a yields eight ranked entries from the 001 research synthesis with its registry attached as evidence;
 run-b and run-c yield 59 and 111 JSON recommendation records. Freeze source hashes and locators, assign the reserved
-`DLR-A/B/C-NNN` ranges once, preserve raw provenance, normalize a single primary target against the phase-000
+`DLR-A/B/C-NNN` ranges once, preserve raw provenance, normalize a single primary target against the phase-003
 taxonomy, classify one disposition per row, then emit JSON + deterministic CSV and a validation report. The validator
 must prove 178-row source bijection, stable-ID uniqueness, closed dispositions, referential integrity, and explicit
 coverage of every disposition bucket and manifest phase.
@@ -48,7 +48,7 @@ coverage of every disposition bucket and manifest phase.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The 006 parent spec, phase-tree manifest, phase-000 taxonomy, and all three source-run inputs are pinned by path and digest
+- [ ] The 006 parent spec, phase-tree manifest, phase-003 taxonomy, and all three source-run inputs are pinned by path and digest
 - [ ] Source adapters define run-a rank locators and run-b/run-c JSON-pointer locators without mutating the research packets
 - [ ] The stable-ID ranges, normalized-target enum, disposition grammar, and phase manifest enum are frozen before classification
 - [ ] Reviewers agree that raw compound targets remain preserved while one primary normalized target drives ownership
@@ -67,7 +67,7 @@ coverage of every disposition bucket and manifest phase.
 - **Extraction adapters**: run-a maps ranked §17 entries 1-8 and attaches the 001 registry as companion provenance; run-b and run-c map JSON recommendation arrays at frozen zero-based pointers.
 - **Stable identity**: assign `DLR-A-001..008`, `DLR-B-001..059`, and `DLR-C-001..111` from the frozen source locators. IDs are stored, never recalculated from text, and never reused.
 - **Row contract**: retain source run/path/locator/digest, raw recommendation, raw target, rank or iteration, and available rationale/evidence fields; optional missing metadata remains explicit.
-- **Normalized target**: store exactly one `taxonomy_layer` + `taxonomy_key` primary pair from the phase-000 eight subsystems or 5/7/8 mode taxonomy. Preserve the raw compound target for audit and optional secondary-target review.
+- **Normalized target**: store exactly one `taxonomy_layer` + `taxonomy_key` primary pair from the phase-003 eight subsystems or 5/7/8 mode taxonomy. Preserve the raw compound target for audit and optional secondary-target review.
 - **Disposition contract**: one scalar value matching `adopt-as-phase-NNN`, `merge-into-<id>`, `defer-with-reason`, or `reject-with-reason`; merge/defer/reject require a rationale and merge edges must be acyclic.
 - **Artifacts**: `recommendation-ledger.json` is canonical; `recommendation-ledger.csv` is a deterministic review projection; `recommendation-ledger.schema.json` constrains structure; `recommendation-ledger-validation.json` records counts, IDs, buckets, phases, hashes, and verdict.
 - **Verifier**: recomputes source extraction, schema validity, bijection, ID ranges, disposition cardinality, reason requirements, merge integrity, manifest phase validity, bucket enumeration, phase enumeration, and CSV parity; any mismatch exits non-zero.
@@ -78,7 +78,7 @@ coverage of every disposition bucket and manifest phase.
 
 ### Phase 1: Setup
 - Pin the source paths and SHA-256 digests; confirm extraction counts 8, 59, and 111 and total 178.
-- Freeze the run-specific locator schemes, stable-ID ranges, phase-000 taxonomy enum, and manifest phase IDs `000..014`.
+- Freeze the run-specific locator schemes, stable-ID ranges, phase-003 taxonomy enum, and manifest phase IDs `000..014`.
 - Record the run-a source-shape exception and verify its eight ranked entries against the 001 research synthesis.
 
 ### Phase 2: Implementation
@@ -102,7 +102,7 @@ coverage of every disposition bucket and manifest phase.
 | REQ-001 | Source-manifest test asserts digests and exact `8 + 59 + 111 = 178` extraction counts |
 | REQ-002 | ID-range test asserts 178 unique, gap-free IDs and rejects reminting or reuse |
 | REQ-003 | Bijection test compares the extracted source-locator set to the ledger source-locator set in both directions |
-| REQ-004 | Taxonomy test rejects any layer/key outside the frozen phase-000 enum and rejects `unknown` |
+| REQ-004 | Taxonomy test rejects any layer/key outside the frozen phase-003 enum and rejects `unknown` |
 | REQ-005 | Schema and semantic tests require one scalar disposition matching exactly one allowed form |
 | REQ-006 | Reason/reference tests reject blank rationales, missing/self merge targets, and merge cycles |
 | REQ-007 | Adoption test derives allowed `NNN` values from `manifest/phase-tree.json` and rejects non-manifest phases |
@@ -114,11 +114,11 @@ coverage of every disposition bucket and manifest phase.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The child dependency list is empty. Inputs are the 006 parent `spec.md`, `manifest/phase-tree.json`, phase 000's frozen
+The child dependency list is empty. Inputs are the 006 parent `spec.md`, `manifest/phase-tree.json`, phase 003's frozen
 taxonomy contract, the 001 research packet's ranked §17 recommendations and companion `findings-registry.json`, and
-the 005 packet's run-b `findings-registry.json` plus run-c `findings-registry-modes.json`. The parent phase-001 gate
+the 005 packet's run-b `findings-registry.json` plus run-c `findings-registry-modes.json`. The parent phase-004 gate
 coordinates this output with sibling 001's architecture ADR and sibling 003's transition policy; neither sibling is a
-construction dependency, but all three must be frozen before program phase 003 may build a writer.
+construction dependency, but all three must be frozen before program phase 006 may build a writer.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

@@ -19,8 +19,8 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact phase-003 certificate primitive signs or seals the run certificate?"
-      - "Which phase-009 transition result fields are inherited by each receipt?"
+      - "Which exact phase-006 certificate primitive signs or seals the run certificate?"
+      - "Which phase-012 transition result fields are inherited by each receipt?"
     answered_questions:
       - "The certificate attests recorded process integrity, not semantic truth"
 ---
@@ -34,14 +34,14 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / deep-review (mode 002, child 004) |
+| **Surface** | system-deep-loop / deep-review |
 | **Change class** | Certificate, receipt, replay-fingerprint, and offline-verifier contract planning |
-| **Execution** | Implement after phase `003-sealed-artifacts` and phase 009 contracts are frozen; ledger remains additive and non-authoritative |
+| **Execution** | Implement after phase `003-sealed-artifacts` and phase 012 contracts are frozen; ledger remains additive and non-authoritative |
 
 ### Overview
 The plan turns the Deep Review lifecycle into two verifiable attestations over the shared ledger. The per-transition receipt records the authorized transition, immutable inputs and outputs, event-tail position, attempt and effect state, and replay inputs. The per-run certificate binds the certificate-pinned event range, receipt-set root, scope and dimension coverage, convergence and report handoff, unresolved state, and the final replay fingerprint. The offline verifier checks these claims from a trusted contract bundle and content-addressed references without running a model, tool, network call, reducer, or mutable workspace operation.
 
-The typed-ledger sibling supplies event names and payload references. Phase `003-sealed-artifacts` supplies receipt and certificate primitives. Phase 009 supplies the shared review-loop contract used by Deep Review and deep-alignment. The design keeps candidate production, evidence, adjudication, and P0/P1/P2 activation as separate receipt-bearing transitions and treats unknown external effects as explicit recovery state. The later resume adapter may consume these receipts, but this plan does not define its reuse policy.
+The typed-ledger sibling supplies event names and payload references. Phase `003-sealed-artifacts` supplies receipt and certificate primitives. Phase 012 supplies the shared review-loop contract used by Deep Review and deep-alignment. The design keeps candidate production, evidence, adjudication, and P0/P1/P2 activation as separate receipt-bearing transitions and treats unknown external effects as explicit recovery state. The later resume adapter may consume these receipts, but this plan does not define its reuse policy.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -49,7 +49,7 @@ The typed-ledger sibling supplies event names and payload references. Phase `003
 
 ### Definition of Ready
 - [ ] Phase `003-sealed-artifacts` publishes the receipt primitive, certificate primitive, seal/reference format, and offline verification hooks.
-- [ ] Phase 009 publishes the shared review-loop identity, transition result, lineage, causal-link, replay, report-reference, and write-set contracts used by Deep Review and deep-alignment.
+- [ ] Phase 012 publishes the shared review-loop identity, transition result, lineage, causal-link, replay, report-reference, and write-set contracts used by Deep Review and deep-alignment.
 - [ ] `001-typed-ledger-schema` publishes the complete Deep Review event union and required cross-event references.
 - [ ] The current Deep Review lifecycle is inventoried from its config, state JSONL, iteration, finding, evidence, convergence, adjudication, synthesis, report, and continuity records.
 - [ ] The receipt matrix names one receipt owner for each transition and separates shared primitives, mode extensions, and later resume or gate consumers.
@@ -78,7 +78,7 @@ The typed-ledger sibling supplies event names and payload references. Phase `003
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm phase `003-sealed-artifacts`, phase 009, and `001-typed-ledger-schema` artifacts are present, frozen, and compatible with the migration sequence.
+- Confirm phase `003-sealed-artifacts`, phase 012, and `001-typed-ledger-schema` artifacts are present, frozen, and compatible with the migration sequence.
 - Inventory every Deep Review typed event and classify whether its receipt is shared, mode-specific, or supplied by the generic effect/recovery primitive.
 - Build the attestation matrix for scope resolution, ordered dimensions, candidate/evidence handling, claim adjudication, convergence and blocked stops, synthesis, report publication, continuity handoff, and terminal completion.
 - Freeze the verifier trust boundary: contract registry, certificate primitive registry, sealed-artifact resolver, ledger reader, and allowed content-addressed inputs. Exclude network, model, tool, and mutable workspace access.
@@ -91,7 +91,7 @@ The typed-ledger sibling supplies event names and payload references. Phase `003
 - Define the offline verifier pipeline and fixture format for normal completion, incomplete termination, blocked stop, contested findings, retries, late evidence, tampering, unknown versions, and missing sealed references.
 
 ### Phase 3: Verification
-- Compare the receipt and certificate types against phase `003-sealed-artifacts`, phase 009, and the typed event union; reject duplicate shared fields and unowned transitions.
+- Compare the receipt and certificate types against phase `003-sealed-artifacts`, phase 012, and the typed event union; reject duplicate shared fields and unowned transitions.
 - Verify every in-scope transition has one or more immutable receipts, every receipt points to valid causal and authorization references, and every certificate claim resolves to a pinned event or sealed artifact digest.
 - Recompute fingerprints from copied inputs and exercise exact, compatible, migrate, pin-old-runtime, and blocked decisions under changed policy, target, tool, evaluator, schema, and report inputs.
 - Run the verifier with no model, network, external tool, or mutable workspace access and assert that tampering, missing inputs, unknown versions, mutable references, and contradictory chains fail closed.
@@ -119,7 +119,7 @@ The typed-ledger sibling supplies event names and payload references. Phase `003
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This phase consumes phase `003-sealed-artifacts` certificate and receipt primitives, phase 009 shared review-loop and replay contracts, and `001-typed-ledger-schema` event names and references. It also consumes the current Deep Review state and report definitions plus the candidate-first, orthogonal-severity, stable-fingerprint, executable-evidence, and deterministic-receipt recommendations in `findings-registry-modes.json:2619-2876` and `findings-registry.json:2600-2747`.
+This phase consumes phase `003-sealed-artifacts` certificate and receipt primitives, phase 012 shared review-loop and replay contracts, and `001-typed-ledger-schema` event names and references. It also consumes the current Deep Review state and report definitions plus the candidate-first, orthogonal-severity, stable-fingerprint, executable-evidence, and deterministic-receipt recommendations in `findings-registry-modes.json:2619-2876` and `findings-registry.json:2600-2747`.
 
 The later `005-resume-adapter` consumes receipt and certificate references for reuse, re-execute, reconcile, compensate, or block decisions. Reducers and projections consume receipt digests as immutable inputs. Deep-alignment consumes shared review-loop fields and must not receive a Deep Review-only fork. Authority cutover, rollback, and the independent mode gate consume the certificate as evidence after this phase.
 <!-- /ANCHOR:dependencies -->
@@ -127,5 +127,5 @@ The later `005-resume-adapter` consumes receipt and certificate references for r
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase is planning-only until its implementation is separately authorized. If implementation begins, land receipt types, certificate subjects, fingerprint registry, verifier, and fixtures behind the dark ledger path in dependency-closed commits. Reverting those commits restores the prior Deep Review JSONL and report path without deleting historical state or changing authority. Unsupported historical records remain readable through the legacy path or return explicit blocked compatibility outcomes. Any phase `003-sealed-artifacts` or phase 009 contract change invalidates the candidate attestation contract and requires regeneration from the shared definitions before implementation continues.
+This phase is planning-only until its implementation is separately authorized. If implementation begins, land receipt types, certificate subjects, fingerprint registry, verifier, and fixtures behind the dark ledger path in dependency-closed commits. Reverting those commits restores the prior Deep Review JSONL and report path without deleting historical state or changing authority. Unsupported historical records remain readable through the legacy path or return explicit blocked compatibility outcomes. Any phase `003-sealed-artifacts` or phase 012 contract change invalidates the candidate attestation contract and requires regeneration from the shared definitions before implementation continues.
 <!-- /ANCHOR:rollback -->

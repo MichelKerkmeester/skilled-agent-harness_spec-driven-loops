@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Agent Improvement - Rollback & Mode Gate"
-description: "Blocking verification checklist for the Agent Improvement fail-closed rollback switch, bounded rollback window, independent shadow-parity mode gate, common evaluator/canary/promotion ownership, and phase-011 readiness certificate."
+description: "Blocking verification checklist for the Agent Improvement fail-closed rollback switch, bounded rollback window, independent shadow-parity mode gate, common evaluator/canary/promotion ownership, and phase-014 readiness certificate."
 trigger_phrases:
   - "agent improvement rollback and mode gate checklist"
   - "agent loop migration gate verification"
@@ -30,7 +30,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking SOL verifier contract for the Agent Improvement mode gate. Items remain unchecked while the
-phase is Planned. Every report pins BASE, candidate SHA, shared transition and mode-contract digests, the phase-009 and
+phase is Planned. Every report pins BASE, candidate SHA, shared transition and mode-contract digests, the phase-012 and
 phase-012 write-set evidence, event and reducer versions, AgentIR frontier, evaluator and canary epochs, fixture IDs,
 stream and artifact digests, window ID, verifier identity, commands, exit codes, and every disposition. A green process exit
 without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_GAP`, `UNKNOWN`,
@@ -40,7 +40,7 @@ without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase-009 contract digest, phase-012 contract and write-set graph digests, and phase-011 handoff version are recorded
+- [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase-012 contract digest, phase-015 contract and write-set graph digests, and phase-014 handoff version are recorded
 - [ ] CHK-002 [P0] Agent Improvement sibling outputs `001` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and parity references
 - [ ] CHK-003 [P0] The common-service ownership matrix identifies evaluator, canary, promotion, certificate, receipt, fingerprint, veto, and rollback owners for Agent Improvement and the other two variants
 - [ ] CHK-004 [P1] The AgentIR frontier, legacy anchor, evaluator epoch, canary epoch, required behavior-family manifest, and required transfer fixtures are recorded for every gate boundary
@@ -76,7 +76,7 @@ without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_
 - [ ] CHK-024 [P0] The rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations
 - [ ] CHK-025 [P0] Agent Improvement, model-benchmark, and skill-benchmark consume the same evaluator, canary, promotion, certificate, receipt, fingerprint, veto, and rollback fixtures through namespaced adapters
 - [ ] CHK-026 [P0] Repeated evaluation of the same sealed Agent Improvement frontier emits the same gate disposition and certificate body digest; a changed semantic input invalidates the result
-- [ ] CHK-027 [P0] Phase-011 receives a readiness certificate only; any certificate claiming authority moved, the rollback window closed, candidate dispatched, or legacy writers retired is rejected
+- [ ] CHK-027 [P0] Phase-014 receives a readiness certificate only; any certificate claiming authority moved, the rollback window closed, candidate dispatched, or legacy writers retired is rejected
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -99,7 +99,7 @@ without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-035 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Agent Improvement mode gate, mode-migration certificate, phase-011 readiness handoff, and later phase-014 authority-cutover certificate
+- [ ] CHK-035 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Agent Improvement mode gate, mode-migration certificate, phase-014 readiness handoff, and later phase-014 authority-cutover certificate
 - [ ] CHK-036 [P1] The common-service reuse matrix names `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` and records that they consume the mode-004 source
 - [ ] CHK-037 [P2] Research traceability cites the 065/002 findings on AgentIR, first-divergent traces, Pareto lineage, frozen evaluator capsules, raw observations, behavior-family coverage, evaluator leakage, transfer, and reversible promotion
 <!-- /ANCHOR:docs -->
@@ -118,7 +118,7 @@ without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_
 The phase passes only when every P0 verifier item is green, the independent Agent Improvement gate has no unexplained
 evidence gap, shadow parity covers the agent-loop lifecycle and common adapters, AgentIR and trial seals and receipt chains
 verify, the rollback-window contract is intact, rollback rehearsal restores the legacy anchor without data loss, and the
-exact-SHA certificate hands phase-011 readiness without an authority claim. A passing result does not authorize cutover or
+exact-SHA certificate hands phase-014 readiness without an authority claim. A passing result does not authorize cutover or
 legacy-writer retirement.
 <!-- /ANCHOR:summary -->
 

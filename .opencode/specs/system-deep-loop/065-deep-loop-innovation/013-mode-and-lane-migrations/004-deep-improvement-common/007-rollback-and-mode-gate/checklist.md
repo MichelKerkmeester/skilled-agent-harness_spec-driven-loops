@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Deep Improvement Common Services - Rollback & Mode Gate"
-description: "Blocking verification checklist for the shared Deep Improvement Common Services fail-closed rollback switch, bounded rollback window, independent shadow-parity mode gate, common evaluator/canary/promotion ownership, and phase-011 readiness certificate."
+description: "Blocking verification checklist for the shared Deep Improvement Common Services fail-closed rollback switch, bounded rollback window, independent shadow-parity mode gate, common evaluator/canary/promotion ownership, and phase-014 readiness certificate."
 trigger_phrases:
   - "deep improvement common rollback and mode gate checklist"
   - "shared evaluator migration gate verification"
@@ -40,7 +40,7 @@ eligible corpus is blocking.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase-012 contract digest, write-set graph digest, and phase-011 handoff version are recorded
+- [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase-015 contract digest, write-set graph digest, and phase-014 handoff version are recorded
 - [ ] CHK-002 [P0] Sibling outputs `001` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and parity references
 - [ ] CHK-003 [P0] The common-service ownership matrix identifies evaluator, canary, promotion, certificate, receipt, fingerprint, and rollback owners for all three downstream variants
 - [ ] CHK-004 [P1] The legacy anchor, typed frontier, evaluator epoch, canary epoch, and required fixture manifest are recorded for every gate boundary
@@ -76,7 +76,7 @@ eligible corpus is blocking.
 - [ ] CHK-024 [P0] The rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations
 - [ ] CHK-025 [P0] All three downstream variants consume the same evaluator, canary, promotion, certificate, receipt, fingerprint, veto, and rollback fixtures through namespaced adapters
 - [ ] CHK-026 [P0] Repeated evaluation of the same sealed frontier emits the same gate disposition and certificate body digest; a changed semantic input invalidates the result
-- [ ] CHK-027 [P0] Phase-011 receives a readiness certificate only; any certificate claiming authority moved, the rollback window closed, or legacy writers retired is rejected
+- [ ] CHK-027 [P0] Phase-014 receives a readiness certificate only; any certificate claiming authority moved, the rollback window closed, or legacy writers retired is rejected
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -99,7 +99,7 @@ eligible corpus is blocking.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-035 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent mode gate, mode-migration certificate, phase-011 readiness handoff, and later authority-cutover certificate
+- [ ] CHK-035 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent mode gate, mode-migration certificate, phase-014 readiness handoff, and later authority-cutover certificate
 - [ ] CHK-036 [P1] The shared-service reuse matrix names `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` and records that they consume this common source
 - [ ] CHK-037 [P2] Research traceability cites the 065/002 findings on raw observations, evaluator capsules, canary rotation and leakage, independent oversight, score gaming, and reversible promotion
 <!-- /ANCHOR:docs -->
@@ -118,7 +118,7 @@ eligible corpus is blocking.
 The phase passes only when every P0 verifier item is green, the independent gate has no unexplained evidence gap, shadow
 parity is complete for the common lifecycle and all three adapters, seals and receipt chains verify, the rollback window
 contract is intact, rollback rehearsal restores the legacy anchor without data loss, and the exact-SHA certificate hands
-phase-011 readiness without an authority claim. A passing result does not authorize cutover or legacy-writer retirement.
+phase-014 readiness without an authority claim. A passing result does not authorize cutover or legacy-writer retirement.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

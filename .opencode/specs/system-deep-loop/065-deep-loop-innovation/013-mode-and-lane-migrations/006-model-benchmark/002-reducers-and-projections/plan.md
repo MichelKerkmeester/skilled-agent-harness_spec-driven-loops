@@ -178,7 +178,7 @@ gate.
 The planning evidence is `002-deep-loop-effectiveness-and-fanout/research/findings-registry.json` and
 `findings-registry-modes.json`, especially the findings on task-conditioned model strengths, difficulty-aware adaptive
 evaluation, frozen benchmark recipes, raw outputs, paired inference, judge calibration, contamination provenance,
-workload profiles, latency/cost slices, and uncertainty-aware selection. Phase 012 supplies the shared mode contracts and
+workload profiles, latency/cost slices, and uncertainty-aware selection. Phase 015 supplies the shared mode contracts and
 write-set conflict graph before downstream integration. The spec-kit validator remains the documentation gate.
 <!-- /ANCHOR:dependencies -->
 

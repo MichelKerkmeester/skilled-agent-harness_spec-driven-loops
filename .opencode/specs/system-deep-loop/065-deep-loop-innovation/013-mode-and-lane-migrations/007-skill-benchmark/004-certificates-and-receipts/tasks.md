@@ -43,7 +43,7 @@ _memory:
 - [ ] T001 [B] Pin Skill Benchmark siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`, plus the common mode-004 certificate/receipt contract
 - [ ] T002 [P] Inventory current Skill Benchmark run, treatment, exposure, trajectory, gold, scoring, compatibility, risk, and certificate inputs
 - [ ] T003 Record the shared-versus-mode ownership matrix and prove dispatch, evaluator, canary, budget, receipt, sealing, fingerprint, effect-recovery, and verifier services remain common
-- [ ] T004 [P] Record the phase-009 shared-contract freeze and write-set conflict-graph handoff required before the 010 fan-out
+- [ ] T004 [P] Record the phase-012 shared-contract freeze and write-set conflict-graph handoff required before the 010 fan-out
 - [ ] T005 Pin paired-arm, missing-gold, component-ablation, compatibility, composition, security, cost, expiry, tamper, and uncertain-effect fixtures
 <!-- /ANCHOR:phase-1 -->
 
@@ -74,7 +74,7 @@ _memory:
 - [ ] T022 Verify repeated offline replay reproduces fingerprints, receipt chains, raw evidence manifests, score derivations, hard gates, and validity results without live services
 - [ ] T023 Verify every declared semantic mutation mismatches the fingerprint and excluded wall-clock, path, process, or storage mutations do not
 - [ ] T024 Verify incompatible dependencies, registry changes, executor/tool/permission changes, stale canaries, composition/security failures, cost limits, and negative transfer withhold or expire certificates
-- [ ] T025 Verify common-service parity, dark authority behavior, successor resume cases, phase-009 freeze gating, and exact scope
+- [ ] T025 Verify common-service parity, dark authority behavior, successor resume cases, phase-012 freeze gating, and exact scope
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

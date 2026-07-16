@@ -56,8 +56,8 @@ research therefore requires paired within-task and within-executor contrasts, se
 outcome stages, near-neighbor and noise controls, constraint coverage, and a versioned effect certificate with a validity
 domain.
 
-The phase plans the Skill Benchmark specialization of the typed append-only event substrate. It consumes the phase-003
-transition-authorized ledger core and phase-009 shared event contracts, while reusing deep-improvement-common services for
+The phase plans the Skill Benchmark specialization of the typed append-only event substrate. It consumes the phase-006
+transition-authorized ledger core and phase-012 shared event contracts, while reusing deep-improvement-common services for
 run identity, execution descriptors, budgets, receipts, sealed artifacts, and replay metadata. It defines the event
 vocabulary and field-level types that capture Skill Benchmark facts. It does not define reducers, materialized projections,
 attribution estimation, ranking, or authority cutover; those belong to `002-reducers-and-projections` and later migration
@@ -159,7 +159,7 @@ or references required by the event contract.
   Mitigation: bind all certificate inputs to content digests and specify explicit upcast and expiry hooks.
 - **Shared-backbone duplication** — the mode may reimplement common services. Mitigation: reference deep-improvement-common
   identities and receipts; add only Skill Benchmark scenario and scoring observation types.
-- **Dependencies**: the phase-003 transition-authorized ledger core; the phase-009 shared event contracts; the
+- **Dependencies**: the phase-006 transition-authorized ledger core; the phase-012 shared event contracts; the
   deep-improvement-common services from mode 004; the parent phase's write-set conflict graph; and the existing benchmark
   harness used for behavior baselines.
 <!-- /ANCHOR:risks -->

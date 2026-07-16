@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep AI Council - Reducers & Projections (013 phase 002)"
+title: "Implementation Plan: Deep AI Council - Reducers & Projections"
 description: "Implementation plan for the pure Deep AI Council event fold and its deliberation/convergence, independence and stance, artifact-index, per-mode status, and plural-outcome projections."
 trigger_phrases:
   - "Deep AI Council reducers and projections implementation plan"
@@ -31,7 +31,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / deep-ai-council mode migration (013 phase 002) |
+| **Surface** | system-deep-loop / deep-ai-council mode migration |
 | **Change class** | Pure reducer and projection design over typed council ledger events |
 | **Execution** | Contract-first planning; implementation remains additive, dark, and non-authoritative |
 
@@ -119,7 +119,7 @@ the seats-deliberate -> critique-rounds -> converge lifecycle, and proves shadow
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The plan consumes the typed event schema from `001-typed-ledger-schema`, shared mode and fan-in contracts from phase 012,
+The plan consumes the typed event schema from `001-typed-ledger-schema`, shared mode and fan-in contracts from phase 015,
 the 013 write-set conflict graph, shared adjudication/budget/convergence services, and the legacy Deep AI Council replay
 corpus. The research inputs are the Deep AI Council findings in
 `002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json`, the cross-cutting council and replay

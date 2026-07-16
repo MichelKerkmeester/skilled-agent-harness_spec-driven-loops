@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Value-of-Computation Allocation (008 phase 004)"
+title: "Tasks: Value-of-Computation Allocation"
 description: "Tasks for VOC estimation, adaptive allocation, bounded fairness, typed-budget admission, fan-in integration, and replay verification."
 trigger_phrases:
   - "value of computation allocation tasks"
@@ -53,7 +53,7 @@ _memory:
 - [ ] T007 Implement deterministic greedy selection with stable tie-breaking, integer quanta, ceilings, and hysteresis
 - [ ] T008 Implement deterministic proportional selection with largest-remainder rounding, exact remainder handling, and share ceilings
 - [ ] T009 Implement bounded exploration reserve, minimum service, capped aging, maximum consecutive skips, and per-mode/region fairness limits
-- [ ] T010 Gate each dispatchable selection through one atomic phase-004 reservation across every required dimension and ancestor
+- [ ] T010 Gate each dispatchable selection through one atomic phase-007 reservation across every required dimension and ancestor
 - [ ] T011 Populate conditional fan-in's versioned usefulness slot without changing eligibility, stop taxonomy, finalized decisions, or reducer-input digests
 - [ ] T012 Emit shadow allocation and calibration projections comparing adaptive decisions with the authoritative uniform/static path
 <!-- /ANCHOR:phase-2 -->

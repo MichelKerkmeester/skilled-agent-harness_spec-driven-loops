@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop durable fan-out / fan-in (phase 006 child 006) |
+| **Surface** | system-deep-loop durable fan-out / fan-in |
 | **Change class** | Reducer contract, typed provenance evidence, and deterministic replay |
 | **Execution** | Additive-dark implementation in an isolated worktree pinned to the approved BASE |
 
@@ -39,7 +39,7 @@ Generalize the run-2 prototype's SOL + LUNA + GLM round-robin dedup into a versi
 will validate provenance-complete leaf items, canonicalize type-specific identities, retain full contributor sets,
 schedule output with hierarchical weighted fairness across source/model-family strata, and persist a receipt that
 replays independently of completion order. Exact conflicts and uncertain equivalence remain explicit unless the
-phase-004 blinded adjudication service returns a stable merge verdict.
+phase-007 blinded adjudication service returns a stable merge verdict.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -123,11 +123,11 @@ phase-004 blinded adjudication service returns a stable merge verdict.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The planning node declares `depends_on: []` in the phase tree. Its future implementation integrates with the phase-003
-typed ledger and replay fingerprint, phase-004 blinded adjudication, phase-005 compatibility/shadow bridge, and sibling
-phase-006 result-envelope, logical-branch, fan-in, and partial-failure contracts. The design references
+The planning node declares `depends_on: []` in the phase tree. Its future implementation integrates with the phase-006
+typed ledger and replay fingerprint, phase-007 blinded adjudication, phase-008 compatibility/shadow bridge, and sibling
+phase-009 result-envelope, logical-branch, fan-in, and partial-failure contracts. The design references
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs`,
-the phase-004 blinded-adjudication spec, and
+the phase-007 blinded-adjudication spec, and
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`.
 <!-- /ANCHOR:dependencies -->
 

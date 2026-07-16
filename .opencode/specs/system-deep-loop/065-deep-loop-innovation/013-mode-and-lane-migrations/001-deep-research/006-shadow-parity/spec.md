@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Research shadow parity (010 phase 006)"
+title: "Feature Specification: Deep Research shadow parity"
 description: "Plan the Deep Research mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy emitter for init, iterative gather/analyze, convergence detection, synthesis, resume, and memory-save handoff; canonicalizes only declared transport volatility; diffs the mode projection event-for-event; and blocks authority cutover on any unexplained semantic difference. This is planning only and does not authorize a ledger cutover or remove the legacy writer."
 trigger_phrases:
   - "Deep Research shadow parity"
@@ -42,8 +42,8 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 010 Deep Research mode fan-out; shadow-parity planning after the shared mode contracts and compatibility work |
-| **Inputs** | Parent `065-deep-loop-innovation/spec.md`; `manifest/phase-tree.json`; `findings-registry.json`; `findings-registry-modes.json`; the phase-011 shadow framework named by the phase brief |
+| **Origin** | Phase 013 Deep Research mode fan-out; shadow-parity planning after the shared mode contracts and compatibility work |
+| **Inputs** | Parent `065-deep-loop-innovation/spec.md`; `manifest/phase-tree.json`; `findings-registry.json`; `findings-registry-modes.json`; the phase-014 shadow framework named by the phase brief |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -53,7 +53,7 @@ Deep Research currently runs a stateful autonomous loop whose observable lifecyc
 
 The research inputs identify the mode-specific risk. The current reducer reads the complete state log and reparses iteration markdown rather than performing the documented delta refresh (`findings-registry.json`, the reducer and deep-research command anchors cited at the finding). The mode findings also require a durable research-plan DAG, claim-evidence-contradiction history, living-resume invalidation, evidence admission before trusted reduction, and a synthesis view over versioned atomic claims (`findings-registry-modes.json`, deep-research recommendations). A shadow comparison that checks only the final report would miss event ordering, rejected evidence, contradiction history, resume decisions, and memory handoff drift.
 
-This phase plans a mode-owned harness that invokes the legacy emitter and the new ledger adapter on the same frozen input and compares their canonical event projections event-for-event. It consumes the shared phase-011 shadow framework named in the phase brief and the compatibility bridge from the parent program, but owns only Deep Research's event map, fixtures, comparator, parity receipt, and gate inputs. No authority cutover occurs here.
+This phase plans a mode-owned harness that invokes the legacy emitter and the new ledger adapter on the same frozen input and compares their canonical event projections event-for-event. It consumes the shared phase-014 shadow framework named in the phase brief and the compatibility bridge from the parent program, but owns only Deep Research's event map, fixtures, comparator, parity receipt, and gate inputs. No authority cutover occurs here.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -72,7 +72,7 @@ This phase plans a mode-owned harness that invokes the legacy emitter and the ne
 - Flipping Deep Research authority from the legacy emitter to the ledger path; authority belongs to the later cutover work, not this shadow phase.
 - Removing, rewriting, or deprecating the legacy emitter, legacy readers, existing iteration markdown, or archival packet behavior.
 - Reimplementing the shared event envelope, transition-authorization gateway, upcasters, generic shadow transport, rollback controller, or other sibling mode schemas.
-- Choosing final convergence thresholds, replacing the existing legal-stop behavior, or adding new research capabilities beyond the frozen phase-001 ledger and Deep Research recommendations.
+- Choosing final convergence thresholds, replacing the existing legal-stop behavior, or adding new research capabilities beyond the frozen phase-004 ledger and Deep Research recommendations.
 - Treating a final `research.md` or terminal quality score as sufficient evidence when event history, claim provenance, resume state, or handoff receipts differ.
 <!-- /ANCHOR:scope -->
 
@@ -119,13 +119,13 @@ The gate requires zero unexplained differences across the fresh-run, branch, evi
 - **Resume divergence** — a crash between effect, receipt, and state append can produce an uncertain handoff. Mitigation: include boundary fixtures, receipt matching, lease continuity, and explicit block/reconcile outcomes.
 - **Cross-mode contract drift** — the 009 write-set conflict graph and shared event/schema contracts may change while this child is planned. Mitigation: bind the parity receipt to exact contract digests and reopen on relevant drift.
 - **Authority leakage** — a shadow writer or projection accidentally changes the live path. Mitigation: assert non-authoritative flags, read-only comparison inputs, separate output paths, and no cutover mutation in this phase.
-- **Dependencies**: the parent phase-009 shared mode contracts and write-set conflict graph; the compatibility and shadow framework from the parent program; the phase-011 shadow framework named in the phase brief; the existing Deep Research reducer, command, state, and artifact fixtures; and the spec-kit validator.
+- **Dependencies**: the parent phase-012 shared mode contracts and write-set conflict graph; the compatibility and shadow framework from the parent program; the phase-014 shadow framework named in the phase brief; the existing Deep Research reducer, command, state, and artifact fixtures; and the spec-kit validator.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which shared phase-011 shadow-framework event envelope and comparator extension points are mandatory for a mode adapter, and which transport events remain outside the Deep Research stream?
+- Which shared phase-014 shadow-framework event envelope and comparator extension points are mandatory for a mode adapter, and which transport events remain outside the Deep Research stream?
 - Which legacy fields are genuinely volatile, and which must become stable logical IDs or content digests before parity can be measured?
 - What exact source snapshot, model response fixture, and memory-save transport fixture constitute the minimum reproducible corpus for live web and model nondeterminism?
 - Which evidence-admission, contradiction, and source-refresh dispositions are protected legacy behavior versus deliberate defects to be addressed by later mode implementation phases?

@@ -1,10 +1,10 @@
 ---
-title: "Tasks: path-covering termination (006 phase 008 child 001)"
+title: "Tasks: path-covering termination"
 description: "Tasks for mode coverage profiles, replay-stable path reduction, blocker-aware termination, partial-coverage reporting, and shadow verification."
 trigger_phrases:
   - "path-covering termination tasks"
   - "coverage certificate tasks"
-  - "deep-loop phase 008 child 001 tasks"
+  - "deep-loop phase 011 child 001 tasks"
 importance_tier: "high"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/011-convergence-termination-and-health/001-path-covering-termination"
@@ -68,7 +68,7 @@ _memory:
 - [ ] T016 Verify: Any mandatory gap, stale projection, ambiguous major community, critical contradiction, or STOP blocker prevents `STOP_ALLOWED`
 - [ ] T017 Verify: Iteration, time, and budget exhaustion below complete mandatory coverage returns `INCOMPLETE_LIMIT` with exact gaps
 - [ ] T018 Verify: Partial reports expose the denominator, ratios, open/blocked paths, required evidence, contradictions, versions, and ranked next paths
-- [ ] T019 Verify: Late major-region discovery or phase-007 projection drift supersedes stale stop candidates and certificates
+- [ ] T019 Verify: Late major-region discovery or phase-010 projection drift supersedes stale stop candidates and certificates
 - [ ] T020 Verify: Shadow comparisons preserve legacy authority and classify every old/new decision disagreement
 <!-- /ANCHOR:phase-3 -->
 

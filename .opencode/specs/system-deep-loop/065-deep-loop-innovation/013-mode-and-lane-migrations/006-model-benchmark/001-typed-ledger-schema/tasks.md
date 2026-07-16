@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Model Benchmark typed ledger schema (013 mode migration, 006 child)"
+title: "Tasks: Model Benchmark typed ledger schema"
 description: "Tasks for the Model Benchmark typed ledger schema phase: map shared ledger contracts, define the mode event union and field types, specify lineage and validity evidence, define upcaster hooks, and verify the reducer handoff boundary."
 trigger_phrases:
   - "Model Benchmark typed ledger schema tasks"
@@ -41,7 +41,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm the phase is planning-only, the target folder is scope-locked, and the predecessor adjacency is `none` with successor `002-reducers-and-projections`
-- [ ] T002 [P] Read the phase-003 transition-authorized ledger contract and phase-009 shared event contracts; record required envelope, authorization, hash, sequence, and replay fields
+- [ ] T002 [P] Read the phase-006 transition-authorized ledger contract and phase-012 shared event contracts; record required envelope, authorization, hash, sequence, and replay fields
 - [ ] T003 [P] Map the mode-004 deep-improvement-common evaluator, canary, calibration, receipt, and promotion ownership boundaries
 - [ ] T004 [P] Extract Model Benchmark-specific evidence obligations from the research registries: paired trials, private workload, canary lineage, judge calibration, validity, usage, and policy inputs
 - [ ] T005 Inventory current dispatch and sweep facts, including normalized usage fields, failed cells, execution paths, and existing scoring-matrix dimensions

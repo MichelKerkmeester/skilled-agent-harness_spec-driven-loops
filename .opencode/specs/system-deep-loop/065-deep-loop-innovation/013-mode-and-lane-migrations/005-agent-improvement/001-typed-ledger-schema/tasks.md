@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-003 transition-authorized ledger core, phase-009 shared event contracts, and mode-004 common-service vocabulary are the authoritative inputs
+- [ ] T001 Confirm the phase-006 transition-authorized ledger core, phase-012 shared event contracts, and mode-004 common-service vocabulary are the authoritative inputs
 - [ ] T002 Inventory Agent Improvement run boundaries, AgentIR identities, behavior families, causal evidence, manifests, and transfer fields that are variant-owned
 - [ ] T003 Record the hard scope fence: event vocabulary only; common evaluator/canary/promotion services are reused and reducers and projections remain with `002-reducers-and-projections`
 <!-- /ANCHOR:phase-1 -->

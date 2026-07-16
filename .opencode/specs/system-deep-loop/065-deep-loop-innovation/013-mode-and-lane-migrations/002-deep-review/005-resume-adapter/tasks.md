@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Review resume adapter (013 phase 002/005)"
+title: "Tasks: Deep Review resume adapter"
 description: "Tasks for planning and later implementing the Deep Review resume adapter over the sealed event ledger, shared reducers, continuity ladder, and idempotent re-entry contract."
 trigger_phrases:
   - "deep review resume adapter tasks"
@@ -40,8 +40,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-009 shared review-loop contract is frozen and record its sealed-frontier, reducer, replay-fingerprint, and terminal-state interfaces
-- [ ] T002 Confirm phase 012 mode contracts and the executable write-set conflict graph are available for the Deep Review lineage
+- [ ] T001 Confirm the phase-012 shared review-loop contract is frozen and record its sealed-frontier, reducer, replay-fingerprint, and terminal-state interfaces
+- [ ] T002 Confirm phase 015 mode contracts and the executable write-set conflict graph are available for the Deep Review lineage
 - [ ] T003 Inventory interruption boundaries and classify each boundary as committed, uncommitted, unknown-effect, or projection-pending
 - [ ] T004 Define the continuity-ladder state table and the invariants for scope, dimension cells, candidates, proofs, convergence, and report materialization
 <!-- /ANCHOR:phase-1 -->
@@ -69,7 +69,7 @@ _memory:
 - [ ] T017 Verify compatible, migrated, pinned, incompatible, and changed-manifest fingerprints select the correct re-entry decision
 - [ ] T018 Verify unknown external effects require reconciliation or compensation and are never automatically replayed as safe
 - [ ] T019 Verify raw finding and proof events remain immutable and derived P0/P1/P2 presentation survives replay
-- [ ] T020 Verify the adapter consumes phase-009 transitions and respects phase-012 write ownership for same-lineage and independent-lineage resumes
+- [ ] T020 Verify the adapter consumes phase-012 transitions and respects phase-015 write ownership for same-lineage and independent-lineage resumes
 - [ ] T021 Verify readiness for the later shadow-parity and mode-gate checks without authority cutover or legacy-writer changes
 <!-- /ANCHOR:phase-3 -->
 
@@ -86,7 +86,7 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Shared loop authority**: Phase 009 `009-fanout-fanin-durable-orchestration`
-- **Mode contract authority**: Phase 012 `012-shared-mode-contracts-and-fixtures`
+- **Shared loop authority**: Phase 012 `009-fanout-fanin-durable-orchestration`
+- **Mode contract authority**: Phase 015 `012-shared-mode-contracts-and-fixtures`
 - **Sibling navigation**: predecessor `004-certificates-and-receipts`; successor `006-shadow-parity`
 <!-- /ANCHOR:cross-refs -->

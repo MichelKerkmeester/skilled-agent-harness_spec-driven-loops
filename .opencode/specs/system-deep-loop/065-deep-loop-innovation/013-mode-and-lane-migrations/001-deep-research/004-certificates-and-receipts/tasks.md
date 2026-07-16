@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Research - Certificates & Receipts (010 phase 001 child 004)"
+title: "Tasks: Deep Research - Certificates & Receipts"
 description: "Tasks for the Deep Research per-run certificate, per-transition receipts, replay-fingerprint projection, offline verifier, and additive-dark mode gate."
 trigger_phrases:
   - "deep research certificates and receipts tasks"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Sequenced Deep Research receipt, certificate, fingerprint, and verifier work"
-    next_safe_action: "Build the transition matrix from the shared phase-003 contract"
+    next_safe_action: "Build the transition matrix from the shared phase-006 contract"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the candidate SHA and phase-003 receipt/certificate, ledger, authorization, certification, and replay-contract digests
+- [ ] T001 Pin the candidate SHA and phase-006 receipt/certificate, ledger, authorization, certification, and replay-contract digests
 - [ ] T002 Inventory Deep Research init, gather, analyze, convergence, synthesis, memory-save, and resume/recovery transitions against the pinned mode contracts
 - [ ] T003 Map each logical transition to its shared receipt kind, prior/result event, input/output references, result dispositions, and ledger-head rule
 - [ ] T004 Freeze logical operation IDs, attempt IDs, idempotency keys, receipt ordering, duplicate behavior, and same-key/different-facts conflict behavior
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T008 Register Deep Research transition receipt and run-certificate profiles through the shared phase-003 primitives
+- [ ] T008 Register Deep Research transition receipt and run-certificate profiles through the shared phase-006 primitives
 - [ ] T009 Add the `init` receipt for the frozen objective, plan/frontier, recipes, capabilities, configuration, and initial ledger head
 - [ ] T010 Add per-logical-branch `gather` and `analyze` receipts for source/evidence/claim references, admission, validation, contradictions, abstentions, and attempt history
 - [ ] T011 Add convergence receipts for one verified frontier snapshot, raw/trusted signals, blockers, policy versions, budget/lease state, and typed decision

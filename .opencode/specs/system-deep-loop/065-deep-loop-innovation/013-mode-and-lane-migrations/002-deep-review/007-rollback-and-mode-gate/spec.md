@@ -20,9 +20,9 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which phase-009 control record carries the authoritative cutover arm and rollback window?"
+      - "Which phase-012 control record carries the authoritative cutover arm and rollback window?"
       - "Which health alarms require immediate rollback instead of a bounded observation period?"
-      - "Which phase-011 consumer names the mode-gate certificate and its expiry policy?"
+      - "Which phase-014 consumer names the mode-gate certificate and its expiry policy?"
     answered_questions:
       - "This phase plans the Deep Review switch and gate, not the shared loop backbone"
       - "A malformed or stale authority control resolves to legacy authority"
@@ -73,7 +73,7 @@ fail-closed control that keeps legacy authority on any invalid, stale, or incomp
 with a healthy rollback anchor, and restores the legacy path on a declared trigger. The gate is an independent evidence
 contract that certifies this mode is migrated to shadow-ready status only when parity is green, all required artifacts are
 sealed and verified, and the per-run certificate and receipts are emitted and independently verifiable. The gate is the
-Deep Review exit gate into phase 011; it does not itself flip authority, retire legacy writers, or fork the shared review loop.
+Deep Review exit gate into phase 014; it does not itself flip authority, retire legacy writers, or fork the shared review loop.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -90,16 +90,16 @@ Deep Review exit gate into phase 011; it does not itself flip authority, retire 
   review-report` lifecycle, with explicit pass, blocked, indeterminate, and deferred evidence outcomes.
 - A gate evidence matrix consuming the typed schema, reducers and projections, sealed artifacts, certificates and receipts,
   resume decisions, and `006-shadow-parity` output without redefining those sibling contracts.
-- A mode-gate certificate binding BASE, phase-009 shared review-loop contract digest, mode contract digest, event and reducer
+- A mode-gate certificate binding BASE, phase-012 shared review-loop contract digest, mode contract digest, event and reducer
   versions, sealed artifact manifest, parity receipt, run certificate, receipt root, replay fingerprint, rollback-drill
   evidence, gate result, and the next-phase handoff.
 - Shared review-loop conformance with deep-alignment mode 008: shared scope, dimension, lineage, convergence, report, and
-  write-set behavior is consumed from phase 009 rather than copied into a Deep Review-only state machine.
+  write-set behavior is consumed from phase 012 rather than copied into a Deep Review-only state machine.
 - Planning fixtures for valid gate evidence, missing evidence, stale evidence, parity drift, malformed switch state, rollback
   at every declared boundary, expired windows, and safe legacy fallback.
 
 ### Out of Scope
-- Implementing the phase-009 shared review-loop contract, typed ledger, transition gateway, replay fingerprint, sealing
+- Implementing the phase-012 shared review-loop contract, typed ledger, transition gateway, replay fingerprint, sealing
   primitive, generic receipt service, or health detector.
 - Rewriting the Deep Review event schema, reducers, projections, sealed artifact bindings, certificates, resume adapter, or
   shadow comparator owned by the six preceding sibling concerns.
@@ -125,9 +125,9 @@ Deep Review exit gate into phase 011; it does not itself flip authority, retire 
 | REQ-007 | Shadow parity is a blocking gate input | Every required Deep Review fixture has equal canonical event and projection fingerprints after only declared volatility normalization; unexplained or missing parity evidence yields `BLOCKED` or `INDETERMINATE`, never pass |
 | REQ-008 | Sealed artifacts are complete and verified | Scope inputs, pass observations, candidate and adjudication evidence, convergence snapshot, synthesis/report inputs, and resume references have verified shared seal references with no mutable path-only dependency |
 | REQ-009 | Certificates and receipts are emitted and independently verifiable | The mode gate receives a verified run certificate, receipt-set closure, replay fingerprint, and certificate policy digest; process integrity is not overclaimed as semantic truth |
-| REQ-010 | Deep Review reuses the shared review loop | The gate consumes phase-009 shared scope, dimension, lineage, convergence, report, and write-set contracts and records their digest; no Deep Review-local lifecycle fork can pass the gate |
+| REQ-010 | Deep Review reuses the shared review loop | The gate consumes phase-012 shared scope, dimension, lineage, convergence, report, and write-set contracts and records their digest; no Deep Review-local lifecycle fork can pass the gate |
 | REQ-011 | The gate is independent from cutover and from other modes | Deep Review produces its own `PASS`, `BLOCKED`, or `INDETERMINATE` result and certificate; deep-alignment status, a generic mode count, or a shared dashboard cannot substitute for its evidence |
-| REQ-012 | The gate handoff is phase-safe | A `PASS` certifies `MIGRATED_SHADOW_READY` and enables the phase-011 handoff only; it cannot set ledger authority, close the rollback window, remove legacy writers, or authorize another mode |
+| REQ-012 | The gate handoff is phase-safe | A `PASS` certifies `MIGRATED_SHADOW_READY` and enables the phase-014 handoff only; it cannot set ledger authority, close the rollback window, remove legacy writers, or authorize another mode |
 
 The authority-control record is resolved by a single fail-closed function over the requested posture, toggle, mode-gate
 certificate, authority epoch, contract digests, rollback-window record, and current health witness. `legacy_authoritative` is
@@ -156,8 +156,8 @@ disposition, owner, reason, expiry, and proof of non-interference; it cannot be 
 - **SC-004**: The Deep Review gate covers the complete scope-to-report loop, resume, and continuity handoff and does not infer readiness from another mode or a generic status.
 - **SC-005**: Shadow parity is green with zero unexplained semantic differences on the required fresh, dimension, candidate, adjudication, convergence, synthesis, resume, and handoff fixtures.
 - **SC-006**: Required Deep Review artifacts are sealed and verified, and a run certificate plus complete receipt chain is independently verifiable from pinned inputs.
-- **SC-007**: The gate emits a mode certificate with `MIGRATED_SHADOW_READY` and phase-011 handoff evidence without moving authority or retiring legacy writers.
-- **SC-008**: Deep Review consumes the phase-009 shared review-loop contract used by deep-alignment and records the contract digest and write-set fence in its gate evidence.
+- **SC-007**: The gate emits a mode certificate with `MIGRATED_SHADOW_READY` and phase-014 handoff evidence without moving authority or retiring legacy writers.
+- **SC-008**: Deep Review consumes the phase-012 shared review-loop contract used by deep-alignment and records the contract digest and write-set fence in its gate evidence.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -176,21 +176,21 @@ disposition, owner, reason, expiry, and proof of non-interference; it cannot be 
 - **Seal or receipt gaps** - an unsealed target, missing receipt, or unknown effect can pass through a report-only gate.
   Mitigation: make artifact verification and receipt closure P0 gate inputs and return blocked on missing or ambiguous evidence.
 - **Review/alignment fork** - separate Deep Review and deep-alignment loops would drift in scope, convergence, or report semantics.
-  Mitigation: consume the frozen phase-009 shared review-loop contract and the write-set fence rather than defining local lifecycle rules.
+  Mitigation: consume the frozen phase-012 shared review-loop contract and the write-set fence rather than defining local lifecycle rules.
 - **Cutover scope leakage** - a mode gate could accidentally flip authority, close rollback, or remove legacy writers.
   Mitigation: constrain the output to `MIGRATED_SHADOW_READY`; reserve authority and retirement for later phases.
-- **Dependencies**: the 065 parent and phase tree; phase-009 shared mode interfaces, cross-mode closures, mixed-version fixtures,
-  and write-set conflict graph; the phase-003 ledger and authorization spine; the six Deep Review siblings; the existing Deep Review
+- **Dependencies**: the 065 parent and phase tree; phase-012 shared mode interfaces, cross-mode closures, mixed-version fixtures,
+  and write-set conflict graph; the phase-006 ledger and authorization spine; the six Deep Review siblings; the existing Deep Review
   lifecycle and blocked-stop fixtures; the mode research registries; and the spec-kit validator.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which phase-009 transition token and authority epoch fields are mandatory for the Deep Review cutover arm and inverse rollback event?
+- Which phase-012 transition token and authority epoch fields are mandatory for the Deep Review cutover arm and inverse rollback event?
 - Does the shared health witness expose one canonical quarantine trigger, or must the mode gate bind a typed set of health alarm classes?
 - Which logical-operation counter is the rollback-window budget: transitions, effects, review passes, or the shared root lease debit?
-- What exact phase-011 handoff schema consumes `MIGRATED_SHADOW_READY`, and which certificate expiry is checked before a later cutover request?
+- What exact phase-014 handoff schema consumes `MIGRATED_SHADOW_READY`, and which certificate expiry is checked before a later cutover request?
 - Which rollback fixture proves legacy restoration when an external effect is `unknown` and the legacy checkpoint is available but the ledger tail is not finalized?
 
 These decisions are resolved against the frozen shared contracts and the pinned baseline during implementation planning. They do not

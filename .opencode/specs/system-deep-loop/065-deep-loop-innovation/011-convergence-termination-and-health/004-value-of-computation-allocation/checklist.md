@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Value-of-Computation Allocation (008 phase 004)"
+title: "Checklist: Value-of-Computation Allocation"
 description: "Blocking verifier checklist for VOC scoring, adaptive allocation, fairness, typed budgets, conditional fan-in, replay, and shadow safety."
 trigger_phrases:
   - "value of computation allocation checklist"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 004. Every item is a check the paired verify agent runs
+This checklist is the blocking SOL verifier contract for phase 007. Every item is a check the paired verify agent runs
 BEFORE the candidate commit lands; each report pins candidate and baseline SHAs, schema/policy/estimator/calibration
 digests, fixture IDs, commands and exit codes, candidate counts, allocation quanta, typed budget outcomes, fan-in
 decision digests, and tracked-mutation status. Zero discovered fixtures or missing replay evidence fails the phase.
@@ -86,7 +86,7 @@ decision digests, and tracked-mutation status. Zero discovered fixtures or missi
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-025 [P2] Packet and verifier evidence cite the phase-004 typed-budget spec, phase-006 conditional-fan-in spec, run-2 research synthesis, and phase manifest
+- [ ] CHK-025 [P2] Packet and verifier evidence cite the phase-007 typed-budget spec, phase-009 conditional-fan-in spec, run-2 research synthesis, and phase manifest
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

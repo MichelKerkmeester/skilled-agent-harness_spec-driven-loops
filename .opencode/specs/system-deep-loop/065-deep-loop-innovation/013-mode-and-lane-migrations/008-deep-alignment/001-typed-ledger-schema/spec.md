@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-07-15T21:30:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped Deep Alignment event ownership and shared review-loop handoff"
-    next_safe_action: "Freeze authority, lane, and finding events against phase-009 contracts"
+    next_safe_action: "Freeze authority, lane, and finding events against phase-012 contracts"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -42,7 +42,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-alignment |
-| **Origin** | Deep Alignment mode migration after the phase-003 transition-authorized ledger core and phase-009 shared event contracts |
+| **Origin** | Deep Alignment mode migration after the phase-006 transition-authorized ledger core and phase-012 shared event contracts |
 | **Inputs** | `065-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, `002-deep-loop-effectiveness-and-fanout/research/findings-registry*.json`, and the shared review-loop contract used by deep-review |
 | **Output** | A ratifiable Deep Alignment event union, field-level payload contract, and version/upcaster hook plan; no reducer or projection implementation |
 <!-- /ANCHOR:metadata -->
@@ -64,8 +64,8 @@ findings. The mode-specific findings in `findings-registry-modes.json` and the c
 `findings-registry.json` also require blinded detector output, separate scorer identity, raw score retention, and replayable
 positive, negative, boundary, and stateful witnesses.
 
-This phase plans the Deep Alignment typed event vocabulary over the phase-003 transition-authorized ledger core. It reuses
-the shared event and review-loop contract frozen in phase 009, including the backbone shared with Deep Review mode 002.
+This phase plans the Deep Alignment typed event vocabulary over the phase-006 transition-authorized ledger core. It reuses
+the shared event and review-loop contract frozen in phase 012, including the backbone shared with Deep Review mode 002.
 It defines only event envelopes, immutable payloads, field-level types, and compatibility hooks. The next sibling owns
 reducers and projections; later siblings own sealed alignment artifacts, certificates, resume, shadow parity, rollback, and
 the mode gate.
@@ -75,7 +75,7 @@ the mode gate.
 ## 3. SCOPE
 
 ### In Scope
-- A `DeepAlignmentEventEnvelope<TType, TPayload>` specialization over the phase-009 shared review-loop envelope, with inherited identity, causation, authorization, sequence, integrity, receipt, branch, and replay fields kept in one shared owner.
+- A `DeepAlignmentEventEnvelope<TType, TPayload>` specialization over the phase-012 shared review-loop envelope, with inherited identity, causation, authorization, sequence, integrity, receipt, branch, and replay fields kept in one shared owner.
 - A closed Deep Alignment event namespace for authority binding and validation, authority-epoch compatibility, lane planning and execution, subject snapshots, applicability, raw observations, blinded candidate findings, independent verification, proof witnesses, adjudication, deviations, coverage, convergence, continuity, and terminal handoff.
 - Field-level types and requiredness rules for authority capsules, epochs, rule IR nodes, profiles, applicability predicates, lanes, subjects, observations, evidence receipts, candidates, findings, verifiers, proof witnesses, deviations, compatibility outcomes, and conformance dispositions.
 - Separate immutable facts for raw detector observations, verifier results, confidence and impact, evidence classes, authority compatibility, and adjudication; no event may rewrite or delete an earlier observation.
@@ -84,7 +84,7 @@ the mode gate.
 
 ### Out of Scope
 - Reducer algorithms, lane folds, findings registries, applicability or coverage projections, dashboards, claim graphs, materialized gauges, report views, and projection fingerprints; these belong to `002-reducers-and-projections`.
-- Reimplementation of the phase-003 authorization gateway, append-only ledger, replay fingerprint primitive, phase-009 shared event envelope, shared review-loop lifecycle, receipts, branch identity, or budget contracts.
+- Reimplementation of the phase-006 authorization gateway, append-only ledger, replay fingerprint primitive, phase-012 shared event envelope, shared review-loop lifecycle, receipts, branch identity, or budget contracts.
 - Deep Alignment sealed artifacts, authority capsules as a shared artifact implementation, conformance certificates, resume adapters, shadow parity, rollback switches, mode gates, authority cutover, legacy-writer retirement, production code, and implementation tests.
 - New conformance policy, authority sources, verifier algorithms, or remediation behavior beyond the Deep Alignment lifecycle and recommendations mapped in the cited registries.
 <!-- /ANCHOR:scope -->
@@ -94,7 +94,7 @@ the mode gate.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Deep Alignment specializes the phase-009 shared envelope without duplicate identity, authorization, lineage, receipt, or replay fields | A contract comparison lists inherited fields, mode extensions, and rejected duplicates; the event union validates against the shared contract |
+| REQ-001 | Deep Alignment specializes the phase-012 shared envelope without duplicate identity, authorization, lineage, receipt, or replay fields | A contract comparison lists inherited fields, mode extensions, and rejected duplicates; the event union validates against the shared contract |
 | REQ-002 | The event namespace covers the complete verify-first run from authority validation through lane execution, proof, adjudication, convergence, and handoff | A vocabulary matrix names a typed event for each lifecycle boundary and its required causal or predecessor reference |
 | REQ-003 | Authority validity is a prerequisite to artifact conformance | Authority parse, type, capability, rule-test, coverage, expiry, rollback, signature, and mix-and-match results are separately typed; invalid authority blocks conformance and never emits artifact PASS |
 | REQ-004 | Applicability and unknown coverage remain first-class outcomes | Applicability records support `applicable`, `not_applicable`, `unresolved`, and `blocked`; conformance records distinguish `conformant`, `non_conformant`, `inconclusive`, `not_applicable`, `untested`, and `blocked` |
@@ -131,7 +131,7 @@ not authority prose, subject bodies, source trees, transcripts, reports, or muta
 
 | Family | Event types | Deep Alignment responsibility |
 |--------|-------------|-------------------------------|
-| Shared review lifecycle | Phase-009 review-loop run, resume/restart, scope, pass, convergence, blocked-stop, continuity, and terminal events | Reuse the shared contract with Deep Alignment payload discriminants; do not copy Deep Review lifecycle definitions |
+| Shared review lifecycle | Phase-012 review-loop run, resume/restart, scope, pass, convergence, blocked-stop, continuity, and terminal events | Reuse the shared contract with Deep Alignment payload discriminants; do not copy Deep Review lifecycle definitions |
 | Authority and epoch | `deep_alignment.authority_reference_bound`, `deep_alignment.authority_validation_recorded`, `deep_alignment.authority_epoch_compatibility_recorded` | Bind named authority, compiler and profile digests; record valid, invalid, expired, rolled-back, mixed, and compatibility outcomes before lane work |
 | Lane and subject | `deep_alignment.lane_plan_recorded`, `deep_alignment.lane_started`, `deep_alignment.subject_snapshot_bound`, `deep_alignment.lane_completed` | Record ordered lane identity, rule subset, verifier policy, target snapshot, budget reference, and execution status without folding a projection |
 | Applicability | `deep_alignment.applicability_evaluated` | Resolve authority-specific predicates before expensive checks and preserve `applicable`, `not_applicable`, `unresolved`, or `blocked` with required target facts |
@@ -157,10 +157,10 @@ if introduced by a later mode concern, creates a new subject version and is not 
 - **SC-004**: Authority invalidity, not-applicable, unresolved, inconclusive, untested, and blocked outcomes remain explicit and cannot be coerced to PASS or `conformant`.
 - **SC-005**: Every verified finding is proof-carrying and binds the authority epoch, applicability decision, subject digest, evidence receipts, verifier identity, and verification mode.
 - **SC-006**: The compatibility plan maps supported historical payloads through pure upcasters, records the ordered conversion path in replay fingerprints, and blocks unknown or lossy input.
-- **SC-007**: Deep Alignment reuses the phase-009 review-loop backbone shared with Deep Review and introduces no duplicated lifecycle contract.
+- **SC-007**: Deep Alignment reuses the phase-012 review-loop backbone shared with Deep Review and introduces no duplicated lifecycle contract.
 - **SC-008**: The phase contains no reducer, projection, sealed artifact, certificate, resume, shadow-parity, rollback, authority-cutover, or mode-gate implementation.
 
-**Given** a valid phase-009 envelope, **When** a Deep Alignment event is encoded, **Then** its mode payload validates without redefining shared identity, authorization, receipt, branch, or replay fields.
+**Given** a valid phase-012 envelope, **When** a Deep Alignment event is encoded, **Then** its mode payload validates without redefining shared identity, authorization, receipt, branch, or replay fields.
 
 **Given** an authority capsule fails parse, capability, rule-test, coverage, signature, expiry, rollback, or mix-and-match validation, **When** a lane attempts conformance evaluation, **Then** the event stream records `authority_invalid` and does not emit a conformance PASS.
 
@@ -178,23 +178,23 @@ if introduced by a later mode concern, creates a new subject version and is not 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Shared-contract drift** - phase 009 may rename envelope fields, review-loop lifecycle stems, lane fields, or transition tokens. Mitigation: treat inherited members as shared, run a contract diff before implementation, and reject mode-local aliases.
+- **Shared-contract drift** - phase 012 may rename envelope fields, review-loop lifecycle stems, lane fields, or transition tokens. Mitigation: treat inherited members as shared, run a contract diff before implementation, and reject mode-local aliases.
 - **Authority invalidity leakage** - a readable or parseable authority file may be expired, rolled back, mixed across epochs, or incompletely tested. Mitigation: make authority validation a typed prerequisite and block conformance on any required invalid result.
 - **Applicability collapse** - missing target facts or broken discovery can appear as perfect coverage. Mitigation: record declared applicability edges, `not_applicable`, unresolved, and untested states separately from observed artifacts.
 - **Candidate/verdict conflation** - detector output can be mistaken for verified non-conformance. Mitigation: require independent verifier identity, proof witnesses, evidence receipts, and a typed adjudication event before a blocking outcome.
 - **Suppression erasure** - a deviation or resolution can hide the original failure and prevent reactivation after drift. Mitigation: append chronological deviation overlays bound to authority, verifier, subject, scope, issuer, and expiry.
 - **Mutable evidence leakage** - storing authority prose, subjects, source trees, or reports in payloads breaks replay and retention. Mitigation: store safe references, selectors, content digests, and immutable receipt metadata only.
 - **Cross-epoch replay loss** - old witnesses may not map to a new authority without direction-sensitive comparison. Mitigation: retain epoch compatibility classes, affected rule IDs, old witness references, and blocked/degraded outcomes.
-- **Review/alignment fork** - a mode-local review loop would diverge from Deep Review and invalidate shared write-set assumptions. Mitigation: import the phase-009 review-loop contract and keep only Deep Alignment payload extensions.
+- **Review/alignment fork** - a mode-local review loop would diverge from Deep Review and invalidate shared write-set assumptions. Mitigation: import the phase-012 review-loop contract and keep only Deep Alignment payload extensions.
 - **Cross-phase scope creep** - reducers, certificates, sealed artifacts, and authority changes are tempting to embed in this schema. Mitigation: use the adjacency contract and explicit ownership handoff as implementation blockers.
-- **Dependencies**: phase-003 transition-authorized ledger core, phase-009 shared event and review-loop contracts, the 065/002 findings registries, the Deep Review shared-backbone contract, the later `002-reducers-and-projections` sibling, and the later Deep Alignment mode-gate children.
+- **Dependencies**: phase-006 transition-authorized ledger core, phase-012 shared event and review-loop contracts, the 065/002 findings registries, the Deep Review shared-backbone contract, the later `002-reducers-and-projections` sibling, and the later Deep Alignment mode-gate children.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-009 envelope field names, event identity algorithm, transition tokens, receipt shape, and shared review-loop stems are frozen for the first implementation pass?
-- Does phase 009 provide generic authority, subject snapshot, applicability, evidence, verifier, proof, deviation, and conformance reference types, or should Deep Alignment define digest-only extensions?
+- Which exact phase-012 envelope field names, event identity algorithm, transition tokens, receipt shape, and shared review-loop stems are frozen for the first implementation pass?
+- Does phase 012 provide generic authority, subject snapshot, applicability, evidence, verifier, proof, deviation, and conformance reference types, or should Deep Alignment define digest-only extensions?
 - Which legacy Deep Alignment state rows and lane outputs map directly to current events, and which require `degraded` or `blocked` compatibility because stable identities are absent?
 - Which authority capsule validation results are shared control-service events versus Deep Alignment payload extensions?
 - Which proof witness minimization and verifier identity fields remain stable enough for schema version one without coupling this phase to a reducer or a specific verifier implementation?

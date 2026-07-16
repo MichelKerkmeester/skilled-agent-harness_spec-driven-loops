@@ -1,9 +1,9 @@
 {
   "specFolder": "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
-  "description": "Promote each phase-002 resolved leaf invocation into a canonical, authorized, durable pre-spawn ledger receipt so resume can detect prior dispatch",
+  "description": "Promote each phase-005 resolved leaf invocation into a canonical, authorized, durable pre-spawn ledger receipt so resume can detect prior dispatch",
   "keywords": [
     "promote",
-    "phase-002",
+    "phase-005",
     "resolved",
     "leaf",
     "invocation",
@@ -18,7 +18,7 @@
     "prior",
     "dispatch"
   ],
-  "lastUpdated": "2026-07-15T18:52:48.783Z",
+  "lastUpdated": "2026-07-16T03:26:42.450Z",
   "specId": "001",
   "folderSlug": "canonical-dispatch-receipts",
   "parentChain": [

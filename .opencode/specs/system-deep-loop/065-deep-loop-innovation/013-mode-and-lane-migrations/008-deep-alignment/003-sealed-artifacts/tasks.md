@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Alignment - Sealed Reference Artifacts (013 phase 008 child 003)"
+title: "Tasks: Deep Alignment - Sealed Reference Artifacts"
 description: "Tasks for binding Deep Alignment authority capsules, lane inputs, verify-first evidence, witnesses, governed exceptions, convergence outputs, reports, resume references, and save handoffs to the shared sealed-artifact contract."
 trigger_phrases:
   - "deep alignment sealed artifacts tasks"
@@ -40,11 +40,11 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-009 shared review-loop contract and write-set conflict graph, and verify predecessor `002-reducers-and-projections` owns findings, lane verdict, and report projections
+- [ ] T001 Confirm the phase-012 shared review-loop contract and write-set conflict graph, and verify predecessor `002-reducers-and-projections` owns findings, lane verdict, and report projections
 - [ ] T002 Inventory Deep Alignment lane, authority, adapter, scope, discovery, rule, finding, witness, exception, convergence, report, resume, and save state and output shapes against the pinned baseline
 - [ ] T003 Freeze the mode artifact-kind matrix, shared descriptor fields, canonicalization profiles, media types, authority epochs, digest-reference roles, and deterministic reference ordering
 - [ ] T004 Define typed seal/read failures, invalid-authority and expired-exception dispositions, target and authority drift handling, append-only supersession, report/handoff refusal, and the additive-dark rollback switch
-- [ ] T005 Confirm the mode consumes the phase-003 sealing primitives and does not introduce a mode-local digest, blob store, descriptor, or verification path
+- [ ] T005 Confirm the mode consumes the phase-006 sealing primitives and does not introduce a mode-local digest, blob store, descriptor, or verification path
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->

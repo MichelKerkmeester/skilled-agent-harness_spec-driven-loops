@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Review - Sealed Reference Artifacts (013 phase 002 child 003)"
+title: "Feature Specification: Deep Review - Sealed Reference Artifacts"
 description: "Plan the Deep Review mode binding for immutable, content-addressed reference artifacts across scope, per-dimension passes, convergence, review-report synthesis, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme."
 trigger_phrases:
   - "deep review sealed artifacts"
@@ -43,7 +43,7 @@ _memory:
 | **Owner skill** | system-deep-loop |
 | **Origin** | Third Deep Review child in the phase-013 mode migration fan-out |
 | **Depends on** | None (`[]`); sibling planning contracts compose at the Deep Review mode gate |
-| **Consumes** | Shared phase-003 sealing primitives, typed replay references, and the phase-009 shared review-loop contract used by deep-alignment |
+| **Consumes** | Shared phase-006 sealing primitives, typed replay references, and the phase-012 shared review-loop contract used by deep-alignment |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -64,10 +64,10 @@ output, or changed rubric and appear to continue the same lineage while producin
 append-only, but append-only control records alone cannot reconstruct target bytes, context snapshots, diagnostic output,
 adjudication inputs, or report materialization.
 
-This phase plans the Deep Review binding to the shared phase-003 sealing primitives. It registers the mode artifact kinds,
+This phase plans the Deep Review binding to the shared phase-006 sealing primitives. It registers the mode artifact kinds,
 seals the exact canonical bytes at each lifecycle boundary, carries only algorithm-qualified digest references through the
 typed event, reducer, replay, convergence, and report paths, and verifies every read before a consumer receives bytes. The
-same shared review-loop contract frozen in phase 009 is consumed by Deep Review and deep-alignment; this phase adds only
+same shared review-loop contract frozen in phase 012 is consumed by Deep Review and deep-alignment; this phase adds only
 Deep Review artifact bindings and must not fork their common scope, dimension, lineage, convergence, or report semantics.
 It does not invent a mode-local hash, blob store, descriptor, or tamper check. Sealing failures block new dark evidence and
 trusted report or handoff promotion without changing legacy authority.
@@ -87,8 +87,8 @@ trusted report or handoff promotion without changing legacy authority.
 
 ### Out of Scope
 - Defining or replacing the shared seal descriptor, canonicalization registry, digest algorithm, immutable store, atomic publisher, verified-read implementation, lifecycle ledger, retention collector, or corruption policy owned by the shared sealing primitives.
-- Defining the phase-003 event envelope, typed append-only ledger, transition-authorization gateway, or generic replay-fingerprint descriptor; this phase supplies Deep Review references to those contracts.
-- Defining the phase-009 shared review-loop contract used by Deep Review and deep-alignment, including shared target, dimension, lineage, convergence, report, and write-set semantics.
+- Defining the phase-006 event envelope, typed append-only ledger, transition-authorization gateway, or generic replay-fingerprint descriptor; this phase supplies Deep Review references to those contracts.
+- Defining the phase-012 shared review-loop contract used by Deep Review and deep-alignment, including shared target, dimension, lineage, convergence, report, and write-set semantics.
 - Replacing the reducer and projection algorithms owned by predecessor `002-reducers-and-projections`; findings registries, dashboards, and reports are sealed views of those outputs, not second reducers.
 - Defining certificate, receipt, boundary-attestation, promotion, or authority semantics owned by successor `004-certificates-and-receipts` and later cutover phases.
 - Defining the resume decision algebra, state migration, shadow-parity harness, rollback switch, or independent mode-gate policy owned by the other Deep Review siblings and the mode gate; this phase only supplies their immutable references and verification results.
@@ -140,8 +140,8 @@ trusted report or handoff promotion without changing legacy authority.
 
 The highest risk is a second mode-local sealing scheme that hashes a path, JSONL line, iteration markdown file, or report
 without committing the exact canonical bytes consumed by the next review stage. The mode adapter must consume the shared
-phase-003 sealing interface, use its descriptor, canonicalization, atomic publication, and verified-read errors, and expose
-only digest references to the phase-009 review-loop, ledger, reducer, replay, and report layers.
+phase-006 sealing interface, use its descriptor, canonicalization, atomic publication, and verified-read errors, and expose
+only digest references to the phase-012 review-loop, ledger, reducer, replay, and report layers.
 
 Sealing only the control plane leaves target source, diff context, prompt/rubric inputs, deterministic diagnostics, raw
 observations, and adjudication witnesses unreconstructable. Sealing only the final report hides candidate drift and makes
@@ -153,10 +153,10 @@ The review loop has multiple arrival orders: dimensions run in configured order,
 and convergence consumes full JSONL history plus iteration files and graph state. Reference-set ordering must use the shared
 canonical ordering and stable session, generation, iteration, dimension, candidate, and finding identities, never filesystem
 discovery or subprocess completion order. A failed or corrupted read must block dark evidence and synthesis without changing
-the legacy path. The phase-009 conflict graph is required before parallel lane execution so target snapshots, pass outputs,
+the legacy path. The phase-012 conflict graph is required before parallel lane execution so target snapshots, pass outputs,
 candidate evidence, convergence snapshots, and report references have explicit write ownership.
 
-Dependencies are the shared phase-003 sealing, event, and replay contracts; the phase-009 shared review-loop contract and
+Dependencies are the shared phase-006 sealing, event, and replay contracts; the phase-012 shared review-loop contract and
 write-set conflict graph; predecessor `002-reducers-and-projections`; the existing Deep Review state, convergence, and report
 references; and the compatibility/shadow bridge. Successor `004-certificates-and-receipts` consumes this phase's verified
 reference set for boundary evidence. Deep-alignment consumes the same shared review-loop contract and must not receive a
@@ -168,7 +168,7 @@ Deep Review-only sealing or lineage fork.
 
 None blocking for planning. Execution must freeze the final artifact-kind names, canonicalization profiles, media types,
 maximum object sizes, target snapshot boundary, exact reference-set ordering, and typed error mapping against the pinned
-baseline and phase-009 contract. It must decide whether a review-report package stores one sealed bundle or a sealed manifest
+baseline and phase-012 contract. It must decide whether a review-report package stores one sealed bundle or a sealed manifest
 of separately addressed target, evidence, state, and output artifacts, without weakening verified reads, append-only
 supersession, or the shared retention roots. It must also confirm how optional `resource-map.md` coverage is represented
 when the shared review contract enables it. These choices may narrow the mode binding but may not introduce a second sealing

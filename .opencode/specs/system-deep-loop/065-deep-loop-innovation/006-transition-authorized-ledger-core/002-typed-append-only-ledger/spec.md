@@ -41,9 +41,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Second child of the phase-003 transition-authorized ledger-core parent |
-| **Depends on** | None (`[]`); sibling contracts compose at the phase-003 parent gate |
-| **Authority posture** | Additive-dark through phase 010; legacy JSONL remains canonical until phase 011 |
+| **Origin** | Second child of the phase-006 transition-authorized ledger-core parent |
+| **Depends on** | None (`[]`); sibling contracts compose at the phase-006 parent gate |
+| **Authority posture** | Additive-dark through phase 013; legacy JSONL remains canonical until phase 014 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -66,8 +66,8 @@ reducers such as `runtime/scripts/reduce-state.cjs`, `runtime/scripts/reduce-ali
 This phase defines the ledger writer/reader over the envelope planned in sibling `001-versioned-event-envelope`: one
 immutable ordered event stream, exact-repeat idempotency, fail-closed conflict handling, a verifiable hash chain, typed
 decode, and pure deterministic reduction. It is the source of truth for the new spine, but it runs **dark** beside the
-legacy writers and is non-authoritative for runtime decisions until the staged cutover in phase 011. The architecture
-and migration posture come from the program `spec.md`, `manifest/phase-tree.json`, and the phase-001
+legacy writers and is non-authoritative for runtime decisions until the staged cutover in phase 014. The architecture
+and migration posture come from the program `spec.md`, `manifest/phase-tree.json`, and the phase-004
 `001-spine-architecture-adr/spec.md`.
 <!-- /ANCHOR:problem -->
 
@@ -75,7 +75,7 @@ and migration posture come from the program `spec.md`, `manifest/phase-tree.json
 ## 3. SCOPE
 
 ### In Scope
-- A typed ledger writer that accepts only a validated envelope plus an authorization proof supplied by the phase-003 gateway composition.
+- A typed ledger writer that accepts only a validated envelope plus an authorization proof supplied by the phase-006 gateway composition.
 - Monotonic per-ledger sequence assignment under an exclusive writer lock; timestamps are metadata, never order authority.
 - Idempotent append keyed by stable `event_id`: an exact canonical repeat returns the original receipt, while changed content under the same ID fails closed.
 - An immutable record frame carrying sequence, previous-record hash, canonical event hash, and append receipt data.
@@ -88,8 +88,8 @@ and migration posture come from the program `spec.md`, `manifest/phase-tree.json
 ### Out of Scope
 - Defining envelope fields or the type registry owned by `001-versioned-event-envelope`.
 - Defining replay fingerprint composition owned by successor `003-replay-fingerprints`.
-- Implementing the transition vocabulary or authorization decision engine owned by the phase-003 gateway sibling; this ledger only enforces a required valid proof at append.
-- Upcasters, dual-read compatibility, legacy projections, shadow-parity policy, in-flight-state classification, or rollback drills owned by phase 005.
+- Implementing the transition vocabulary or authorization decision engine owned by the phase-006 gateway sibling; this ledger only enforces a required valid proof at append.
+- Upcasters, dual-read compatibility, legacy projections, shadow-parity policy, in-flight-state classification, or rollback drills owned by phase 008.
 - Replacing, rewriting, truncating, or deleting any legacy JSONL/state/checkpoint file.
 - Making ledger reads authoritative, cutting over a mode, or retiring a legacy writer; those actions belong to phases 011 and 012.
 <!-- /ANCHOR:scope -->
@@ -126,8 +126,8 @@ and migration posture come from the program `spec.md`, `manifest/phase-tree.json
 ## 6. RISKS & DEPENDENCIES
 
 The phase has `depends_on: []` as a planning leaf, but its implementation composes with the sibling envelope,
-authorization, and replay-fingerprint contracts at the phase-003 parent gate. The highest risk is accidental authority
-drift: treating the dark ledger as canonical before phase 011, or allowing a dark append failure to change legacy
+authorization, and replay-fingerprint contracts at the phase-006 parent gate. The highest risk is accidental authority
+drift: treating the dark ledger as canonical before phase 014, or allowing a dark append failure to change legacy
 behavior. A second risk is importing mutable legacy recovery semantics; `repairJsonlTail` and merge-by-rewrite are valid
 legacy tools but cannot operate on committed ledger bytes. The ledger therefore fails closed on corruption and uses an
 explicit linked-segment recovery path rather than silent truncation.

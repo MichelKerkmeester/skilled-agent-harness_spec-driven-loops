@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (model-benchmark variant) |
-| **Origin** | Phase 002 of the model-benchmark migration under phase 013 |
+| **Origin** | Phase 005 of the model-benchmark migration under phase 013 |
 | **Depends on** | None as a sibling planning contract; consumes the preceding typed schema and shared deep-improvement services |
 <!-- /ANCHOR:metadata -->
 
@@ -66,7 +66,7 @@ Define the model-benchmark reducers and projections on top of the deep-improveme
 Model-specific logic is limited to multi-model run identity, matrix-cell progress, benchmark recipe and workload
 provenance, scoring-matrix reduction, uncertainty and coverage views, and model-benchmark status. The shared evaluator,
 canary, promotion, rollback, and veto semantics remain owned by deep-improvement-common and are consumed through their
-versioned events and projections. This is planning only. The per-mode 010 migrations land after phase 009 freezes the
+versioned events and projections. This is planning only. The per-mode 010 migrations land after phase 012 freezes the
 shared contracts and emits the write-set conflict graph.
 <!-- /ANCHOR:problem -->
 

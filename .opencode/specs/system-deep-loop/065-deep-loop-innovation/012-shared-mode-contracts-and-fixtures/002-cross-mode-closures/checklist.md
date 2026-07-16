@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Cross-Mode Closures (009 phase 002)"
-description: "Checklist for phase 002 of the 009 shared-mode-contracts-and-fixtures parent: verify one reusable closure layer, explicit mode overrides, and additive-dark parity before phase 010."
+title: "Checklist: Cross-Mode Closures"
+description: "Checklist for phase 005 of the 009 shared-mode-contracts-and-fixtures parent: verify one reusable closure layer, explicit mode overrides, and additive-dark parity before phase 013."
 trigger_phrases:
   - "cross-mode closures checklist"
   - "deep-loop closure verification"
-  - "phase 009 shared behavior conformance"
+  - "phase 012 shared behavior conformance"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/002-cross-mode-closures"
@@ -30,14 +30,14 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 002. The verifier derives the eight mode rows from `manifest/phase-tree.json`, binds each row to the frozen phase-001 interface version, records the shared closure owner and override strategy, and fails on duplicate implementations, bypassed safety ports, nondeterministic output, hidden writes, or evidence that changes legacy authority before phase 011.
+This checklist is the blocking verifier contract for phase 005. The verifier derives the eight mode rows from `manifest/phase-tree.json`, binds each row to the frozen phase-004 interface version, records the shared closure owner and override strategy, and fails on duplicate implementations, bypassed safety ports, nondeterministic output, hidden writes, or evidence that changes legacy authority before phase 014.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] The parent outcome, `depends_on: []`, phase adjacency, and `mode_workstreams_phase_010` list are pinned to `manifest/phase-tree.json`
-- [ ] CHK-002 [P0] `001-shared-mode-interfaces/spec.md`, the phase-004 service contracts, and the shipped runtime/council shared libraries are reconciled in the recurrence-to-port matrix
+- [ ] CHK-002 [P0] `001-shared-mode-interfaces/spec.md`, the phase-007 service contracts, and the shipped runtime/council shared libraries are reconciled in the recurrence-to-port matrix
 - [ ] CHK-003 [P0] The five closure families have one proposed owner, one result envelope, one write-set declaration, and one allowed override boundary
 - [ ] CHK-004 [P1] The handoff boundary with `003-mixed-version-fixtures` and `004-write-set-conflict-graph` is explicit; neither successor artifact is duplicated here
 - [ ] CHK-005 [P2] Intentional deep-improvement parser divergence and mode-local convergence policy are recorded as preserved exceptions
@@ -47,12 +47,12 @@ This checklist is the blocking verifier contract for phase 002. The verifier der
 ## Code Quality
 
 - [ ] CHK-006 [P0] Evidence normalization, sealed-reference verification, raw evidence retention, and provenance use one shared closure path
-- [ ] CHK-007 [P0] Receipt/effect intent, completion, recovery, and boundary emission use one phase-004-backed closure with idempotency and fail-closed ambiguity
+- [ ] CHK-007 [P0] Receipt/effect intent, completion, recovery, and boundary emission use one phase-007-backed closure with idempotency and fail-closed ambiguity
 - [ ] CHK-008 [P0] Blinded/counterfactual adjudication, raw-score retention, independence evidence, and verdict classification use one shared closure without local re-reduction
 - [ ] CHK-009 [P0] Budget admission, reservation, settlement, exhaustion, and uncertain-accounting denial use one typed closure rather than council or fan-out local authority
 - [ ] CHK-010 [P0] Projection updates, stream-fold gauges, replay provenance, continuity identity, and fencing use one deterministic closure while mode reducers own declared fields
 - [ ] CHK-011 [P1] Every override names typed inputs, outputs, policy owner, and invariants; no override bypasses authorization, sealing, receipts, budgets, raw evidence, or fencing
-- [ ] CHK-012 [P1] The call-path inventory proves phase-010 adapters invoke shared closures and contain no copied second implementation
+- [ ] CHK-012 [P1] The call-path inventory proves phase-013 adapters invoke shared closures and contain no copied second implementation
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -75,7 +75,7 @@ This checklist is the blocking verifier contract for phase 002. The verifier der
 ## Fix Completeness
 
 - [ ] CHK-024 [P1] The closure catalog, recurrence matrix, override matrix, and call-path inventory cover every requirement without an unreviewed mode exception
-- [ ] CHK-025 [P1] The phase-010 handoff names the closure version, adapter rows, fixture identifiers, service-port assumptions, and write-set inputs
+- [ ] CHK-025 [P1] The phase-013 handoff names the closure version, adapter rows, fixture identifiers, service-port assumptions, and write-set inputs
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -89,25 +89,25 @@ This checklist is the blocking verifier contract for phase 002. The verifier der
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-029 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist cross-reference the parent, manifest, sibling interface, phase-004 service contracts, shipped runtime libraries, and successor fixture handoff
-- [ ] CHK-030 [P2] The phase-010 handoff states which behavior is shared, which behavior is mode-specific, and how each override is tested
+- [ ] CHK-029 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist cross-reference the parent, manifest, sibling interface, phase-007 service contracts, shipped runtime libraries, and successor fixture handoff
+- [ ] CHK-030 [P2] The phase-013 handoff states which behavior is shared, which behavior is mode-specific, and how each override is tested
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-031 [P1] Authored changes are limited to the four phase-002 documents; `description.json` and `graph-metadata.json` are left to deterministic tooling
-- [ ] CHK-032 [P2] Closure fixtures and handoff inputs remain scoped to this phase and do not mutate phase-001, phase-003, phase-004, research inputs, or shipped runtime files during planning
+- [ ] CHK-031 [P1] Authored changes are limited to the four phase-005 documents; `description.json` and `graph-metadata.json` are left to deterministic tooling
+- [ ] CHK-032 [P2] Closure fixtures and handoff inputs remain scoped to this phase and do not mutate phase-004, phase-006, phase-007, research inputs, or shipped runtime files during planning
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete when every P0 closure and bypass check passes, one implementation serves each repeated behavior across all eight phase-010 rows, mode overrides remain explicit and bounded, common-before-variant ordering is proven, parity is observable, and the additive-dark authority boundary remains intact until phase 011.
+The phase is complete when every P0 closure and bypass check passes, one implementation serves each repeated behavior across all eight phase-013 rows, mode overrides remain explicit and bounded, common-before-variant ordering is proven, parity is observable, and the additive-dark authority boundary remains intact until phase 014.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the verifier records the closure version, recurrence and override matrices, adapter coverage, fixture outcomes, and confirms that no closure or mode override changes runtime authority or bypasses a phase-003/004 safety port.
+Signed off when the verifier records the closure version, recurrence and override matrices, adapter coverage, fixture outcomes, and confirms that no closure or mode override changes runtime authority or bypasses a phase-006/004 safety port.
 <!-- /ANCHOR:sign-off -->

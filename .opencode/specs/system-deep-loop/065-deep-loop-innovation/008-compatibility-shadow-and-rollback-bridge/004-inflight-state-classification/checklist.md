@@ -1,6 +1,6 @@
 ---
 title: "Checklist: In-Flight State Classification"
-description: "Blocking verification checklist for exhaustive, exclusive, fail-closed in-flight state classification before phase-011 cutover."
+description: "Blocking verification checklist for exhaustive, exclusive, fail-closed in-flight state classification before phase-014 cutover."
 trigger_phrases:
   - "in-flight state classification checklist"
   - "deep-loop cutover state verification"
@@ -29,16 +29,16 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking verifier contract for the in-flight-state classification phase. The verifier binds the
-frozen phase-000 census digest, BASE, policy versions, classifier build, canonical classification-manifest digest, and
+frozen phase-003 census digest, BASE, policy versions, classifier build, canonical classification-manifest digest, and
 class-specific receipts. It runs against snapshots or fixtures, never live authoritative state. Zero rows may be
-missing, multiply classified, silently defaulted to a permissive class, or admitted to phase 011 with stale evidence.
+missing, multiply classified, silently defaulted to a permissive class, or admitted to phase 014 with stale evidence.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The executed phase-000 census is frozen with stable row IDs, complete state-family coverage, BASE identity, evidence digests, and rollback anchors
-- [ ] CHK-002 [P0] The phase-001 transition/versioning/rollback policy revision and phase-tree migration model are pinned
+- [ ] CHK-001 [P0] The executed phase-003 census is frozen with stable row IDs, complete state-family coverage, BASE identity, evidence digests, and rollback anchors
+- [ ] CHK-002 [P0] The phase-004 transition/versioning/rollback policy revision and phase-tree migration model are pinned
 - [ ] CHK-003 [P1] Classification runs only against immutable snapshots or fixtures and has no write path to live authoritative state
 <!-- /ANCHOR:pre-impl -->
 
@@ -61,7 +61,7 @@ missing, multiply classified, silently defaulted to a permissive class, or admit
 - [ ] CHK-012 [P0] `FORK` fixtures prove isolated execution/effect namespaces, no live publication, no budget or authority impact, and unchanged source state
 - [ ] CHK-013 [P0] `MIGRATE` fixtures prove quiescent transactional import, preserved identity/order/idempotency/budgets/receipts/pending work, and successful legacy-anchor restoration
 - [ ] CHK-014 [P0] `BLOCK` fixtures cover missing or stale evidence, corruption, unknown shape/version, active locks, uncertain effects, lossy conversion, partial checkpoints, and absent rollback anchors
-- [ ] CHK-015 [P0] Post-classification changes to state digest, authority epoch, schema, lease set, pending effects, or rollback anchor invalidate the row before phase-011 compare-and-swap
+- [ ] CHK-015 [P0] Post-classification changes to state digest, authority epoch, schema, lease set, pending effects, or rollback anchor invalidate the row before phase-014 compare-and-swap
 - [ ] CHK-016 [P0] A mode with any live `BLOCK` row, unterminated `PIN`, failed verifier, missing parity fork, or stale manifest cannot receive a cutover certificate
 - [ ] CHK-017 [P1] Repeated classification over identical census evidence produces byte-identical row order, reason codes, evidence references, and whole-manifest digest
 <!-- /ANCHOR:testing -->
@@ -82,7 +82,7 @@ missing, multiply classified, silently defaulted to a permissive class, or admit
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-021 [P1] The class decision table, family baselines, reason codes, evidence schema, freshness rule, and phase-011 handoff are documented against the frozen census and policy revisions
+- [ ] CHK-021 [P1] The class decision table, family baselines, reason codes, evidence schema, freshness rule, and phase-014 handoff are documented against the frozen census and policy revisions
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
@@ -96,7 +96,7 @@ missing, multiply classified, silently defaulted to a permissive class, or admit
 
 The phase is complete only when the frozen census closes one-to-one to the canonical classification manifest, every
 positive disposition passes its verifier, every unsafe row is explicitly blocked, repeated classification is
-deterministic, and phase 011 demonstrably refuses stale or incomplete evidence. Classification success changes no
+deterministic, and phase 014 demonstrably refuses stale or incomplete evidence. Classification success changes no
 runtime authority; it supplies a prerequisite for later per-mode cutover.
 <!-- /ANCHOR:summary -->
 

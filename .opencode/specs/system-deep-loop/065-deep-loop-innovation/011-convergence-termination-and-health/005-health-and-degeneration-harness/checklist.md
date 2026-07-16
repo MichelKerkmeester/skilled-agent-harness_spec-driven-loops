@@ -1,6 +1,6 @@
 ---
-title: "Checklist: Health & Degeneration Harness (008 phase 005)"
-description: "Checklist for phase 005 of the convergence-termination-and-health program: blocking verification of generic health signals, degeneration detection, bounded action requests, and additive-dark behavior."
+title: "Checklist: Health & Degeneration Harness"
+description: "Checklist for phase 008 of the convergence-termination-and-health program: blocking verification of generic health signals, degeneration detection, bounded action requests, and additive-dark behavior."
 trigger_phrases:
   - "health and degeneration harness checklist"
   - "deep-loop health signal checklist"
@@ -29,7 +29,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 005. The verifier runs every item against a pinned candidate and
+This checklist is the blocking verifier contract for phase 008. The verifier runs every item against a pinned candidate and
 BASE, records commands, exit codes, fixture IDs, policy/adapter digests, ledger/projection watermarks, replay hashes, signal
 counts, action-request counts, and legacy-parity results. It fails on a positive health verdict from missing data, duplicate
 signal identity, unauthorized action, zero fixtures, or unexpected tracked mutation. Shadow output is evidence only until a
@@ -40,7 +40,7 @@ later authority-cutover phase explicitly changes that posture.
 ## Pre-Implementation
 
 - [ ] CHK-006 [P0] The pinned BASE, clean worktree, and path-scoped implementation surface are recorded in the candidate report
-- [ ] CHK-007 [P2] The source-schema and policy digests for the authorized ledger, phase-007 gauges, sibling 002 events, and mode adapters are recorded
+- [ ] CHK-007 [P2] The source-schema and policy digests for the authorized ledger, phase-010 gauges, sibling 002 events, and mode adapters are recorded
 - [ ] CHK-008 [P0] Every registered mode has an adapter row naming required novelty, evidence, coverage, quality, frontier, and typed cost/yield inputs
 <!-- /ANCHOR:pre-impl -->
 
@@ -48,7 +48,7 @@ later authority-cutover phase explicitly changes that posture.
 ## Code Quality
 
 - [ ] CHK-009 [P1] Changes are scoped to the health harness and its declared shadow integration; no adjacent convergence, gauge, budget, fan-in, or mode cleanup is included
-- [ ] CHK-010 [P1] No detector duplicates sibling 002 cycle detection or redefines phase-007 gauge arithmetic, projection ownership, or event identity
+- [ ] CHK-010 [P1] No detector duplicates sibling 002 cycle detection or redefines phase-010 gauge arithmetic, projection ownership, or event identity
 - [ ] CHK-011 [P2] Policy, adapter, reducer, and evaluator provenance is explicit; no hidden wall-clock, output-count, text-only, or provider-count health input is used
 <!-- /ANCHOR:code-quality -->
 

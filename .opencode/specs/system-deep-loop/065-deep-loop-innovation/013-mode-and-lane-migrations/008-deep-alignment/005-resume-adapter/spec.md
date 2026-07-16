@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
 | **Origin** | Phase 013 Deep Alignment fan-out; resume-adapter concern from the typed ledger migration |
-| **Planning authority** | Phase 009 shared review-loop contract, shared mode contracts, and the emitted write-set conflict graph |
+| **Planning authority** | Phase 012 shared review-loop contract, shared mode contracts, and the emitted write-set conflict graph |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -62,7 +62,7 @@ re-execution, reconciliation, compensation, or rejection. It must preserve raw d
 verification, authority compatibility, applicability, and deviation events as immutable facts while deriving lane verdicts and
 conformance presentation from the folded state.
 
-The adapter reuses the shared review-loop backbone frozen for Deep Review mode 002 in phase 009. The per-mode migration
+The adapter reuses the shared review-loop backbone frozen for Deep Review mode 002 in phase 012. The per-mode migration
 execution lands only after the shared contracts and write-set conflict graph are frozen. This phase is planning only: it does
 not define the shared backbone, implement the six sibling concerns, move authority, or solve the mode gate.
 <!-- /ANCHOR:problem -->
@@ -84,7 +84,7 @@ not define the shared backbone, implement the six sibling concerns, move authori
   compatible, changed, incomplete, unknown-effect, and incompatible evidence.
 - Crash-boundary behavior before append, after append, during reducer application, after evidence or proof receipt, during
   adjudication or convergence, and during report or terminal projection.
-- Compatibility with the phase-009 shared review-loop contract and the write-set conflict graph; Deep Alignment adds mode
+- Compatibility with the phase-012 shared review-loop contract and the write-set conflict graph; Deep Alignment adds mode
   projections and payload bindings without introducing a second lifecycle.
 
 ### Out of Scope
@@ -110,7 +110,7 @@ not define the shared backbone, implement the six sibling concerns, move authori
 | REQ-006 | Stable identities survive attempts and authority changes | Logical lane, epoch, rule, subject, observation, finding, proof, effect, and resume-request identities remain stable; attempt IDs may change only for an authorized re-entry |
 | REQ-007 | Verify-first alignment semantics survive recovery | Authority invalidity blocks conformance; `not_applicable`, `unresolved`, `inconclusive`, `untested`, and `blocked` remain explicit; detector candidates cannot become blocking findings without independent proof |
 | REQ-008 | Deviations remain visible chronological facts | A deviation is an append-only overlay bound to authority epoch, subject, scope, verifier, issuer, evidence, and expiry; it never erases the original observation and can reactivate after drift |
-| REQ-009 | Shared review-loop behavior is reused | Deep Alignment consumes the phase-009 run, resume, scope, pass, convergence, blocked-stop, continuity, and terminal semantics with namespaced payloads, not a mode-local lifecycle |
+| REQ-009 | Shared review-loop behavior is reused | Deep Alignment consumes the phase-012 run, resume, scope, pass, convergence, blocked-stop, continuity, and terminal semantics with namespaced payloads, not a mode-local lifecycle |
 | REQ-010 | The adapter is ready for shadow parity without authority movement | Resume decisions, projection fingerprints, receipts, and refusal reasons are deterministic inputs for `006-shadow-parity`; the adapter cannot authorize cutover or rewrite legacy state |
 <!-- /ANCHOR:requirements -->
 
@@ -137,7 +137,7 @@ not define the shared backbone, implement the six sibling concerns, move authori
   recovery outcome rather than inheriting prior conformance by label.
 - **SC-005**: Branch-local lane successes and valid receipts survive recovery; only missing or affected work is selected for
   re-entry, and unknown external effects remain blocked or reconciled.
-- **SC-006**: The adapter preserves phase-009 shared review-loop semantics and produces the deterministic inputs required by
+- **SC-006**: The adapter preserves phase-012 shared review-loop semantics and produces the deterministic inputs required by
   later shadow parity and mode-gate checks without moving authority.
 
 **Given** a sealed frontier ending after a lane records observations and candidates but before independent proof admission,
@@ -168,12 +168,12 @@ execution and emits an auditable refusal reason tied to the last valid frontier.
   Mitigation: use stable logical identities, content digests, impact components, and explicit compatibility classes.
 - **Deviation erasure** - A current exception can hide a historical failure or obsolete verifier. Mitigation: append visible,
   expiring deviation overlays and replay affected witnesses after relevant drift.
-- **Review/alignment fork** - A local lifecycle would violate shared write-set assumptions. Mitigation: phase 009 owns review-loop
+- **Review/alignment fork** - A local lifecycle would violate shared write-set assumptions. Mitigation: phase 012 owns review-loop
   transitions; this adapter owns only mode-specific projection and re-entry mapping.
 - **Scope creep** - Resume planning can absorb certificates, shadow parity, or cutover behavior. Mitigation: enforce sibling
   ownership and keep this phase non-authoritative.
 
-Dependencies are contract-level: the phase-003 ledger core, phase-009 shared event and review-loop contracts, the shared mode
+Dependencies are contract-level: the phase-006 ledger core, phase-012 shared event and review-loop contracts, the shared mode
 contract and write-set graph emitted before the per-mode migration fan-out, Deep Alignment siblings `001-typed-ledger-schema`
 through `004-certificates-and-receipts`, the Deep Review shared-backbone contract, and later `006-shadow-parity`. The required
 adjacency is navigation and ordering, not a hard runtime dependency.
@@ -182,7 +182,7 @@ adjacency is navigation and ordering, not a hard runtime dependency.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-009 seal marker, frontier digest, reducer registry, and terminal event fields are exposed to both Deep Review
+- Which exact phase-012 seal marker, frontier digest, reducer registry, and terminal event fields are exposed to both Deep Review
   and Deep Alignment adapters?
 - Which shared reducer outputs are sufficient for the alignment continuity ladder, and which mode projection fields must remain
   namespaced without duplicating lifecycle semantics?

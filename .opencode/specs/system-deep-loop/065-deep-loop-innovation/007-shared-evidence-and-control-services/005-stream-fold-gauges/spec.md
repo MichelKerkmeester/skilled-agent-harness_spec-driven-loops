@@ -41,8 +41,8 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Fifth child of the phase-004 shared evidence and control services parent |
-| **Depends on** | None (`[]`); implementation consumes the phase-003 ledger contract at the parent gate |
+| **Origin** | Fifth child of the phase-007 shared evidence and control services parent |
+| **Depends on** | None (`[]`); implementation consumes the phase-006 ledger contract at the parent gate |
 | **Authority posture** | Additive-dark; gauge projections do not become runtime authority before staged cutover |
 <!-- /ANCHOR:metadata -->
 
@@ -95,9 +95,9 @@ through their own authority and cutover contracts.
 - Additive-dark adapters that compare new fold outputs with shipped gauges without changing existing runtime decisions or legacy observability schemas.
 
 ### Out of Scope
-- Defining or implementing the phase-003 envelope, ledger writer, authorization proof, sequence allocator, integrity chain, or replay fingerprint.
+- Defining or implementing the phase-006 envelope, ledger writer, authorization proof, sequence allocator, integrity chain, or replay fingerprint.
 - Owning hierarchical budget authorization or exhaustion policy; this phase folds budget events emitted under sibling `004-hierarchical-typed-budgets`.
-- Defining novelty semantics, continuity identities, or claim supersession policy owned by later phase 007; this phase defines how their typed events are reduced once available.
+- Defining novelty semantics, continuity identities, or claim supersession policy owned by later phase 010; this phase defines how their typed events are reduced once available.
 - Choosing convergence thresholds, stop policy, degeneration policy, or promotion decisions owned by phases 008 and 010.
 - Upcasters, dual-read compatibility, shadow-parity orchestration, rollback drills, authority cutover, or legacy-writer retirement owned by phases 005, 011, and 012.
 - Treating gauge snapshots, dashboards, wall-clock reads, process memory, or mutable database rows as source events or canonical state.
@@ -120,7 +120,7 @@ through their own authority and cutover contracts.
 | REQ-010 | Replay has no ambient nondeterminism | Reducers do not read current time, randomness, locale, filesystem order, network state, process globals, or mutable external stores; maps and sets serialize in a declared order |
 | REQ-011 | Schema evolution and unsupported inputs fail explicitly | Supported historical events enter through versioned upcasters before folding; unknown versions, invalid payloads, sequence gaps, or non-canonical values return typed errors and never yield a trusted gauge |
 | REQ-012 | Gauge observation cannot recursively change its source | Snapshot/telemetry events are excluded from their own reducers unless a separately versioned acyclic dependency is declared; no gauge reads its last published value as input |
-| REQ-013 | Additive-dark integration preserves shipped authority | Fold outputs can be emitted and compared with existing fan-out, convergence, and observability values, but a mismatch is evidence for phase 005 and cannot alter legacy decisions in this phase |
+| REQ-013 | Additive-dark integration preserves shipped authority | Fold outputs can be emitted and compared with existing fan-out, convergence, and observability values, but a mismatch is evidence for phase 008 and cannot alter legacy decisions in this phase |
 | REQ-014 | Every published value carries replay provenance | A gauge result names ledger ID, inclusive cutoff sequence/hash, gauge ID/version, configuration digest, accumulator/output hashes, computation mode, and checkpoint provenance when used |
 <!-- /ANCHOR:requirements -->
 
@@ -139,7 +139,7 @@ through their own authority and cutover contracts.
 ## 6. RISKS & DEPENDENCIES
 
 The phase has `depends_on: []` as an independent planning contract, but implementation consumes the versioned envelope,
-verified sequence, canonical bytes, integrity linkage, and typed reader from phase 003. The largest risk is disguising a
+verified sequence, canonical bytes, integrity linkage, and typed reader from phase 006. The largest risk is disguising a
 mutable snapshot as event-sourced state: a checkpoint, SQLite metrics row, or emitted observability payload is useful
 for acceleration and inspection but cannot become the fold's source of truth. Every recovery path therefore validates
 the checkpoint against the ledger prefix and falls back to full replay.
@@ -151,7 +151,7 @@ batch decoding or cache verified prefixes, but it cannot regroup non-associative
 
 The phase also depends on event ownership outside its folder. Budget, novelty, continuity, fan-in, and mode-specific
 events are defined by their owning siblings or later phases. This contract may reserve extension points and test
-fixtures, but it must not invent those domain transitions. Until phase 005 proves shadow parity and phase 011 moves
+fixtures, but it must not invent those domain transitions. Until phase 008 proves shadow parity and phase 014 moves
 authority, any difference from the shipped gauges is recorded as evidence rather than silently reconciled or used to
 change runtime control flow.
 <!-- /ANCHOR:risks -->
@@ -160,7 +160,7 @@ change runtime control flow.
 ## 7. OPEN QUESTIONS
 
 None blocking for planning. Implementation may choose module names, checkpoint cadence, and storage layout after the
-phase-003 ledger API is materialized. Those choices must preserve pure versioned reducers, exact arithmetic, canonical
+phase-006 ledger API is materialized. Those choices must preserve pure versioned reducers, exact arithmetic, canonical
 serialization, prefix-bound checkpoints, explicit unsupported-input errors, byte-identical full/incremental replay,
 and additive-dark non-authority. A choice that requires reading mutable prior gauge state or ambient wall time is
 outside the authorized solution space.

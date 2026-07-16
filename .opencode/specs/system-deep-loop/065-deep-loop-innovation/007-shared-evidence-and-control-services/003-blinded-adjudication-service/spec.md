@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Third child of the phase-004 shared evidence and control services parent |
+| **Origin** | Third child of the phase-007 shared evidence and control services parent |
 | **Depends on** | None (`[]`) |
 <!-- /ANCHOR:metadata -->
 
@@ -57,7 +57,7 @@ This phase plans one shared service that separates candidate registration from j
 candidates, performs mirrored pairwise and targeted counterfactual checks, and records both raw judgments and the
 reduced verdict as typed ledger events. A verdict is stable only when the configured merit-irrelevant interventions do
 not change the decision beyond policy tolerance; otherwise the service emits an unstable or inconclusive outcome rather
-than hiding disagreement in an aggregate. The contract follows the phase-001 ADR requirement to separate scoring
+than hiding disagreement in an aggregate. The contract follows the phase-004 ADR requirement to separate scoring
 authority and retain raw pre-reduction evidence, the manifest's shared blinded/counterfactual primitive, and run-2's
 anonymous A/B plus B/A gate, effective-independence requirement, and warning that judge competence estimates do not
 correct correlated failure by themselves.
@@ -83,7 +83,7 @@ Sources: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architec
 
 ### Out of Scope
 - Candidate generation, council seat selection, debate protocols, finding production, benchmark case generation, or promotion policy.
-- The phase-003 event envelope, ledger storage engine, transition-authorization gateway, or replay-fingerprint implementation.
+- The phase-006 event envelope, ledger storage engine, transition-authorization gateway, or replay-fingerprint implementation.
 - Sealed reference-artifact mechanics owned by `002-sealed-reference-artifacts` or budget enforcement owned by `004-hierarchical-typed-budgets`.
 - A claim that Dawid-Skene or any competence-weighted reducer removes correlation; competence estimates remain advisory and raw scores plus residual-correlation evidence remain authoritative audit inputs.
 - Automatic authority cutover, convergence termination, or legacy-writer retirement; consuming modes decide how a service result affects their own state machine.
@@ -108,7 +108,7 @@ Sources: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architec
 | REQ-011 | Provide typed mode-consumption contracts | Deep-review, deep-ai-council, and improvement/benchmark adapters map their domain inputs and outcomes without bypassing blinding, counterfactual, raw-score, or fail-closed rules |
 | REQ-012 | Keep the service dark and non-authoritative during migration | Adjudication events may be shadow-compared, but no legacy decision authority changes until later compatibility, parity, and cutover phases authorize it |
 | REQ-013 | Preserve audit-controlled deblinding | Deblinding is a separately authorized ledgered action after verdict finalization; routine scorers and reducers cannot access the identity map |
-| REQ-014 | Maintain source traceability | The service contract cites run-2 synthesis, the phase-001 ADR, and the phase manifest for every load-bearing architecture invariant |
+| REQ-014 | Maintain source traceability | The service contract cites run-2 synthesis, the phase-004 ADR, and the phase manifest for every load-bearing architecture invariant |
 <!-- /ANCHOR:requirements -->
 
 ### Mode consumption contract
@@ -134,7 +134,7 @@ transition and must reference the service verdict rather than copy or re-reduce 
 - **SC-004**: Identity leakage, self-scoring, missing probes, order flips, unsupported policies, and insufficient evidence fail closed.
 - **SC-005**: Effective-independence evidence remains distinct from seat count and competence weighting; correlated panels cannot claim synthetic certainty.
 - **SC-006**: Deep-review, deep-ai-council, deep-improvement, model-benchmark, and skill-benchmark have explicit adapter and evidence contracts.
-- **SC-007**: The dark service changes no legacy authority and is ready for phase-005 shadow parity and later per-mode migration.
+- **SC-007**: The dark service changes no legacy authority and is ready for phase-008 shadow parity and later per-mode migration.
 - **SC-008**: Strict validation reports no errors other than the intentionally deferred generated metadata files.
 <!-- /ANCHOR:success-criteria -->
 
@@ -142,7 +142,7 @@ transition and must reference the service verdict rather than copy or re-reduce 
 ## 6. RISKS & DEPENDENCIES
 
 The service has `depends_on: []` as an independently authored sibling planning contract. Integration still consumes the
-phase-001 ADR and manifest invariants, the phase-003 authorized event envelope and replay fingerprint, and the sibling
+phase-004 ADR and manifest invariants, the phase-006 authorized event envelope and replay fingerprint, and the sibling
 sealed-reference interface when available. Those are contract inputs, not justification for weakening this phase's
 blinding or raw-evidence requirements. Adjacency to `002-sealed-reference-artifacts` and
 `004-hierarchical-typed-budgets` is navigational only.
@@ -159,7 +159,7 @@ equivalence fixtures, cloned-seat correlation cases, cycle/tie cases, event repl
 ## 7. OPEN QUESTIONS
 
 None blocking for the planning contract. Implementation may choose the opaque-label format, identity-map custody
-mechanism, pair-selection optimizer, and reducer family after the phase-003 envelope and phase-002 sealed-artifact
+mechanism, pair-selection optimizer, and reducer family after the phase-006 envelope and phase-005 sealed-artifact
 interfaces are fixed. Those choices may not expose provenance during scoring, force a winner from unstable evidence,
 discard raw scores, equate competence weighting with independence, or let a consuming mode bypass typed verdict events.
 <!-- /ANCHOR:questions -->

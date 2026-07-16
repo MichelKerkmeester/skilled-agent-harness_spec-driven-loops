@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Improvement Common Services - Resume Adapter (013 phase 005)"
+title: "Feature Specification: Deep Improvement Common Services - Resume Adapter"
 description: "Define the Deep Improvement Common Services resume adapter over the sealed typed event ledger: deterministic reducer reconstruction, continuity-ladder mapping, idempotent re-entry, and the shared evaluator, canary, and guarded-promotion service contracts reused by the three benchmark variants."
 trigger_phrases:
   - "deep improvement resume adapter"
@@ -103,7 +103,7 @@ than regenerating them.
 | REQ-009 | The canary service is sealed and independent | Canary inputs are frozen for an epoch, candidate-visible leakage produces a veto without exposing canary content, cross-domain health is separate from target reward, and canary receipts bind the candidate and epoch digests |
 | REQ-010 | Promotion is a guarded evidence decision | Promotion requires the receipt lattice for target repair, baseline-pass preservation, known failures, environment and policy freshness, and canary health; `UNKNOWN` or `INSUFFICIENT_EVIDENCE` cannot become `PROMOTE` |
 | REQ-011 | The three variants consume one common contract | `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` can call the same evaluator, canary, promotion, and resume interfaces while retaining variant-owned payloads and projections |
-| REQ-012 | Dark-mode authority boundaries remain intact | Resume and promotion decisions affect only the typed shadow path before phase 014; legacy state, live control flow, and user-visible authority remain unchanged |
+| REQ-012 | Dark-mode authority boundaries remain intact | Resume and promotion decisions affect only the typed shadow path before phase 017; legacy state, live control flow, and user-visible authority remain unchanged |
 <!-- /ANCHOR:requirements -->
 
 ### Continuity-ladder and re-entry contract
@@ -140,7 +140,7 @@ truth; each row is derived from immutable event evidence and the common service 
 - **Reducer or registry drift can change reconstructed state** - bind the reducer set, event registry/upcaster chain, service capsule, and sealed ledger range into the replay fingerprint; reject mismatches before re-entry.
 - **A latest-checkpoint shortcut can skip branch-local evidence** - fold logical branch receipts independently and preserve completed siblings instead of replaying an entire wave or merged iteration.
 - **Shared services can be copied into variants** - publish one common interface and consumer matrix; variant specs may add adapters but may not redefine evaluator, canary, promotion, or resume semantics.
-- **Promotion can become hidden authority** - keep promotion as an auditable typed decision in the shadow path and defer live authority to phase 014; a successful shadow decision must not change legacy state.
+- **Promotion can become hidden authority** - keep promotion as an auditable typed decision in the shadow path and defer live authority to phase 017; a successful shadow decision must not change legacy state.
 - **Canary contamination can invalidate evidence** - use versioned epochs, candidate aliases, leak vetoes, and cross-domain health separate from optimization reward; a veto or unknown result blocks promotion.
 - **Dependencies**: the phase-013 parent contract, the phase-012 shared mode interfaces and write-set conflict graph, the common typed ledger and reducers, and the adjacent receipts/certificates contract. This child keeps `depends_on: []` as an independent planning contract; runtime implementation readiness is established by the parent handoff rather than a new hard dependency.
 <!-- /ANCHOR:risks -->
@@ -150,7 +150,7 @@ truth; each row is derived from immutable event evidence and the common service 
 
 None block planning; implementation resolves these against the frozen shared contracts:
 
-- Which concrete event names and reducer module boundaries expose the continuity ladder without duplicating the phase-012 mode interface?
+- Which concrete event names and reducer module boundaries expose the continuity ladder without duplicating the phase-015 mode interface?
 - Which effect-recovery policy is available for each evaluator, canary, and promotion side effect, and which operations are queryable by stable idempotency key?
 - Which evaluator-capsule fields are common across the three variants and which remain opaque variant extensions while preserving capsule digest stability?
 - What bounded replay-cache optimization is safe after the full-fold correctness contract is established, without making a cache authoritative?

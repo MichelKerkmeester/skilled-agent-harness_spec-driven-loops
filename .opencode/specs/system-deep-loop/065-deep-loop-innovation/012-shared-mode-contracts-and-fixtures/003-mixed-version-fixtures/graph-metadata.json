@@ -187,8 +187,8 @@
       }
     ],
     "causal_summary": "Plan a sealed fixture corpus that mixes old and new event and state versions within one deep-loop run, exercising upcasters, mode reducers, replay, and shadow parity across realistic version drift.",
-    "created_at": "2026-07-15T19:00:44.121Z",
-    "last_save_at": "2026-07-15T19:00:44.121Z",
+    "created_at": "2026-07-16T03:43:54.525Z",
+    "last_save_at": "2026-07-16T03:43:54.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:37aaa71eeee0b52a94d97f25cb3b39e55e3a28327294840395f25acfa03f4a66",
+    "source_fingerprint": "sha256:aa11e68fa967bf1a6edbf6bbba64533215241649e91c93e95705d86e7b00cf06",
     "source_doc_hashes": {
-      "spec.md": "114a68abe96cc2f4437f344e19b4095b9fbc071d92768c1e927430fe66be866f",
-      "plan.md": "cbd1ad761023e8895bd3f50f972944657ab35f6dfd37e8209a8704d9645aabc7",
-      "tasks.md": "dda73c67ebf70ae5b26b0cee39ef5088a432f4b1dd7daae9bb16434e1682614f",
-      "checklist.md": "b1365b45c10212642d4adad3928ecf542487efdf913c5de578e8eba16d0ca891"
+      "spec.md": "f25ea0f42067c9efaa58d364d07b2feb36dd79a4f701b7e61df6d8e1c8253cce",
+      "plan.md": "a4dfdb6b38c578fbd4ddb02953d8d209840339bf573b52514e60246fcbb05cc2",
+      "tasks.md": "967cc09baefcc72afee210578082d3208653fc246446cab9a7e9bd1e01d8bb4a",
+      "checklist.md": "cded77d649652dbfe2a6c3823900c290dab2a67be09a2ae90841ffd10616e7ad"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -43,7 +43,7 @@ _memory:
 - [ ] T002 Extract run-a ranks 1-8 from the 001 research synthesis and bind the packet's findings registry as companion provenance
 - [ ] T003 Extract run-b JSON pointers `/recommendations/0..58` and assert 59 unique recommendation texts
 - [ ] T004 Extract run-c JSON pointers `/recommendations/0..110`, assert 111 unique recommendation texts, and preserve optional empty metadata
-- [ ] T005 Freeze the `DLR-A/B/C-NNN` ID ranges, phase-000 taxonomy enum, and manifest phase IDs before classification starts
+- [ ] T005 Freeze the `DLR-A/B/C-NNN` ID ranges, phase-003 taxonomy enum, and manifest phase IDs before classification starts
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->

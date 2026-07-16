@@ -1,9 +1,9 @@
 ---
 title: "Checklist: Write-Set Conflict Graph"
-description: "Checklist for phase 004 of the phase-009 shared mode contracts and fixtures parent: verify the phase-010 write-set conflict graph, hard ordering, safe parallelism, and orchestrator contract."
+description: "Checklist for phase 007 of the phase-012 shared mode contracts and fixtures parent: verify the phase-013 write-set conflict graph, hard ordering, safe parallelism, and orchestrator contract."
 trigger_phrases:
   - "write-set conflict graph checklist"
-  - "phase-010 graph verification"
+  - "phase-013 graph verification"
   - "deep-loop lane conflict checklist"
 importance_tier: "critical"
 contextType: "planning"
@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined blocking graph, drift, fence, and orchestration verification checks"
-    next_safe_action: "Run graph fixtures after the phase-010 resource manifests are reviewed"
+    next_safe_action: "Run graph fixtures after the phase-013 resource manifests are reviewed"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -30,8 +30,8 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 004. Every item is a check the paired verify agent runs
-before the graph is accepted as the phase-010 orchestration input; each report pins the BASE identity, graph source
+This checklist is the blocking SOL verifier contract for phase 007. Every item is a check the paired verify agent runs
+before the graph is accepted as the phase-013 orchestration input; each report pins the BASE identity, graph source
 digests, graph schema version, graph digest, commands, exit codes, node/edge counts, lane decisions, and unexpected
 tracked mutation. A serial-single-writer fallback is evidence of safety, not evidence that the graph is complete.
 <!-- /ANCHOR:protocol -->
@@ -41,7 +41,7 @@ tracked mutation. A serial-single-writer fallback is evidence of safety, not evi
 
 - [ ] CHK-001 [P0] The parent `spec.md`, `execution-sequencing-strategy.md`, and `manifest/phase-tree.json` are pinned and their source digests are recorded
 - [ ] CHK-002 [P0] The graph node set exactly matches the eight `mode_workstreams_phase_010` entries
-- [ ] CHK-003 [P1] The phase-010 child resource manifests and the graph schema version are recorded in the candidate report
+- [ ] CHK-003 [P1] The phase-013 child resource manifests and the graph schema version are recorded in the candidate report
 - [ ] CHK-004 [P2] This child retains `depends_on: []`; `003-mixed-version-fixtures` remains navigation-only predecessor text
 <!-- /ANCHOR:pre-impl -->
 
@@ -65,7 +65,7 @@ tracked mutation. A serial-single-writer fallback is evidence of safety, not evi
 - [ ] CHK-014 [P0] `001-deep-research` and `003-deep-ai-council` pass the explicit independent-pair assertion only while their mutable resource sets are disjoint
 - [ ] CHK-015 [P0] Missing manifests, stale source digests, unresolved aliases, contradictory ownership, unknown resources, and cycles return serial-single-writer or block
 - [ ] CHK-016 [P0] Repeated derivation from identical sealed inputs produces the same graph digest, sorted edge list, lane order, and decision evidence
-- [ ] CHK-017 [P0] A changed phase-010 resource declaration rejects the old graph before orchestration and requires graph refresh evidence
+- [ ] CHK-017 [P0] A changed phase-013 resource declaration rejects the old graph before orchestration and requires graph refresh evidence
 - [ ] CHK-018 [P0] Orchestrator fixtures wait for hard predecessors and fences and include node, predecessor, resource, graph digest, class, and refusal reason in each decision
 - [ ] CHK-019 [P1] A graph with incomplete evidence never widens parallelism merely because two node names appear different
 <!-- /ANCHOR:testing -->
@@ -73,7 +73,7 @@ tracked mutation. A serial-single-writer fallback is evidence of safety, not evi
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-020 [P1] The graph contract cites the parent spec, sequencing strategy, phase-tree manifest, and every phase-010 resource source used for derivation
+- [ ] CHK-020 [P1] The graph contract cites the parent spec, sequencing strategy, phase-tree manifest, and every phase-013 resource source used for derivation
 - [ ] CHK-021 [P1] The schedule output distinguishes derived conflicts, hard order, review fences, explicit independence, and conservative fallback
 <!-- /ANCHOR:fix-completeness -->
 
@@ -86,7 +86,7 @@ tracked mutation. A serial-single-writer fallback is evidence of safety, not evi
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-023 [P2] The phase outcome and graph handoff are reflected in `spec.md`, `plan.md`, `tasks.md`, and the phase-009 parent documentation where applicable
+- [ ] CHK-023 [P2] The phase outcome and graph handoff are reflected in `spec.md`, `plan.md`, `tasks.md`, and the phase-012 parent documentation where applicable
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
@@ -100,7 +100,7 @@ tracked mutation. A serial-single-writer fallback is evidence of safety, not evi
 ## Verification Summary
 
 The phase is complete when every P0 graph, constraint, drift, determinism, and orchestrator check passes, the report pins
-source and graph digests, the eight node declarations are complete, and no stale or incomplete evidence widens phase-010
+source and graph digests, the eight node declarations are complete, and no stale or incomplete evidence widens phase-013
 parallelism. The graph may be operationally conservative, but it must not be accepted as complete without provenance and
 edge evidence.
 <!-- /ANCHOR:summary -->

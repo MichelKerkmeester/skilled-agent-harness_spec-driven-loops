@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: shared mode interfaces (009 phase 001)"
-description: "Implementation Plan for phase 001 of the 009 shared-mode-contracts-and-fixtures parent: freeze the typed lifecycle contract and conformance boundary for all eight phase-010 modes."
+title: "Implementation Plan: shared mode interfaces"
+description: "Implementation Plan for phase 004 of the 009 shared-mode-contracts-and-fixtures parent: freeze the typed lifecycle contract and conformance boundary for all eight phase-013 modes."
 trigger_phrases:
   - "shared mode interfaces implementation plan"
   - "deep-loop mode contract plan"
-  - "phase 009 typed interface plan"
+  - "phase 012 typed interface plan"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces"
@@ -31,12 +31,12 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime contract and phase-010 mode workstreams |
+| **Surface** | system-deep-loop runtime contract and phase-013 mode workstreams |
 | **Change class** | Planning contract, typed interface, and fixture design |
-| **Execution** | Freeze before phase 010; no authority change or legacy-writer removal |
+| **Execution** | Freeze before phase 013; no authority change or legacy-writer removal |
 
 ### Overview
-The work freezes one `ModeContract` for the eight phase-010 workstreams. The contract separates mode-provided declarations from substrate-consumed ports, binds mode events to the phase-003 authorized envelope, binds evidence and control outputs to phase 004, and exposes the phase-008 convergence and health signals through typed hooks. It also defines version compatibility, resume outcomes, sealed artifacts, certificates, and write-set ownership so that later mode migrations share one lifecycle rather than creating eight bespoke adapters. Detailed implementation is accepted only after the source matrix, mixed-version fixtures, and manifest-derived conformance matrix are complete.
+The work freezes one `ModeContract` for the eight phase-013 workstreams. The contract separates mode-provided declarations from substrate-consumed ports, binds mode events to the phase-006 authorized envelope, binds evidence and control outputs to phase 007, and exposes the phase-011 convergence and health signals through typed hooks. It also defines version compatibility, resume outcomes, sealed artifacts, certificates, and write-set ownership so that later mode migrations share one lifecycle rather than creating eight bespoke adapters. Detailed implementation is accepted only after the source matrix, mixed-version fixtures, and manifest-derived conformance matrix are complete.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -44,16 +44,16 @@ The work freezes one `ModeContract` for the eight phase-010 workstreams. The con
 
 ### Definition of Ready
 - [ ] The parent `012-shared-mode-contracts-and-fixtures` outcome and phase adjacency are recorded.
-- [ ] The phase-003 ledger/envelope contract, phase-004 service map, phase-008 convergence map, parent spec, and manifest are reconciled into one source matrix.
-- [ ] The eight phase-010 workstream names and the deep-improvement common ordering are frozen from `manifest/phase-tree.json`.
+- [ ] The phase-006 ledger/envelope contract, phase-007 service map, phase-011 convergence map, parent spec, and manifest are reconciled into one source matrix.
+- [ ] The eight phase-013 workstream names and the deep-improvement common ordering are frozen from `manifest/phase-tree.json`.
 - [ ] The contract boundary distinguishes provided mode behavior from consumed substrate ports and does not duplicate successor cross-mode closures.
 - [ ] Interface versioning and mixed-version fixture requirements are agreed before any mode migration plan consumes the contract.
 
 ### Definition of Done
 - [ ] A typed mode contract covers event schemas, reducers, sealed artifacts, certificates, convergence hooks, resume adapters, and write sets.
-- [ ] Every phase-010 workstream has a conformance row and a declared implementation dependency on the same contract version.
+- [ ] Every phase-013 workstream has a conformance row and a declared implementation dependency on the same contract version.
 - [ ] Mixed-version, invalid-transition, partial-resume, and write-conflict fixtures have deterministic expected outcomes.
-- [ ] The handoff to phase 010 is frozen and phase 011 remains the sole authority-cutover owner.
+- [ ] The handoff to phase 013 is frozen and phase 014 remains the sole authority-cutover owner.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -61,7 +61,7 @@ The work freezes one `ModeContract` for the eight phase-010 workstreams. The con
 
 - Define a `ModeContract` composed of a `ModeDescriptor`, `ModeEventSchema`, `ModeReducerSet`, `ModeArtifactPolicy`, `ModeCertificatePolicy`, `ModeConvergenceHooks`, `ModeResumeAdapter`, and `ModeWriteSet`.
 - Define mode-provided operations with explicit inputs and outputs: `describe()`, `eventTypes()`, `reduce(event, state)`, `sealArtifacts(state, context)`, `issueCertificate(evidence)`, `convergenceHooks()`, `classifyResume(snapshot)`, `upcastResume(snapshot)`, and `restoreResume(snapshot, services)`.
-- Define mode-consumed ports around the existing substrate rather than new mode-specific services: authorized ledger append/replay and fingerprints from phase 003; receipts/effect recovery, artifact sealing, adjudication, budgets, gauges, locks, and continuity from phase 004; fan-out/fan-in envelopes from phase 006; and coverage, cycle, stopping-clock, allocation, health, and degeneration signals from phase 008.
+- Define mode-consumed ports around the existing substrate rather than new mode-specific services: authorized ledger append/replay and fingerprints from phase 006; receipts/effect recovery, artifact sealing, adjudication, budgets, gauges, locks, and continuity from phase 007; fan-out/fan-in envelopes from phase 009; and coverage, cycle, stopping-clock, allocation, health, and degeneration signals from phase 011.
 - Require every emitted event to carry a stable type, interface/schema version, transition intent, reducer owner, replay inputs, continuity identity, and evidence references. The contract must route writes through authorization and retain legacy projections during the dark period.
 - Require every sealed artifact and certificate to declare its content digests, source events, validity scope, producer version, invalidation rule, and whether it is shadow-parity evidence or a later cutover input.
 - Model resume as an explicit adapter result: `upcast`, `pin-legacy`, `fork`, `migrate`, or `block`, with the result bound to the snapshot version, replay fingerprint, lease/fencing state, pending effects, receipts, artifacts, and continuity identity.
@@ -87,9 +87,9 @@ The work freezes one `ModeContract` for the eight phase-010 workstreams. The con
 ### Phase 3: Verification
 - Verify each requirement in `spec.md` against a named contract section and fixture.
 - Verify every mode row declares the full surface without an unreviewed exception.
-- Verify phase-003, phase-004, and phase-008 ports are referenced rather than reimplemented or weakened.
+- Verify phase-006, phase-007, and phase-011 ports are referenced rather than reimplemented or weakened.
 - Verify the interface version matrix yields deterministic adapter or refusal outcomes and preserves additive-dark authority.
-- Verify the phase-010 handoff is complete and the successor can implement cross-mode closures without changing the frozen lifecycle.
+- Verify the phase-013 handoff is complete and the successor can implement cross-mode closures without changing the frozen lifecycle.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -112,11 +112,11 @@ The work freezes one `ModeContract` for the eight phase-010 workstreams. The con
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The contract depends on the planned boundaries in `006-transition-authorized-ledger-core/spec.md`, `007-shared-evidence-and-control-services/spec.md`, and `011-convergence-termination-and-health/spec.md`, plus the sequencing and handoff rules in `../spec.md` and `../manifest/phase-tree.json`. It also consumes the durable fan-out/fan-in and compatibility assumptions recorded in phases 005-007. Phase 010 cannot begin its eight mode migrations until this contract and its conformance fixtures are frozen. The successor `002-cross-mode-closures` may depend on this interface but must not silently alter it.
+The contract depends on the planned boundaries in `006-transition-authorized-ledger-core/spec.md`, `007-shared-evidence-and-control-services/spec.md`, and `011-convergence-termination-and-health/spec.md`, plus the sequencing and handoff rules in `../spec.md` and `../manifest/phase-tree.json`. It also consumes the durable fan-out/fan-in and compatibility assumptions recorded in phases 005-007. Phase 013 cannot begin its eight mode migrations until this contract and its conformance fixtures are frozen. The successor `002-cross-mode-closures` may depend on this interface but must not silently alter it.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase changes the planned contract and fixture boundary only; it does not move runtime authority or remove legacy writers. If the interface is rejected, discard the unpublished contract revision and retain the prior phase-009 parent plan. If a frozen contract has already been consumed by a mode workstream, increment the interface version, retain the old adapter and fixtures, and block incompatible readers rather than mutating the existing contract in place. Any runtime implementation remains reversible through the phase-005 compatibility bridge and the phase-011 per-mode rollback window.
+This phase changes the planned contract and fixture boundary only; it does not move runtime authority or remove legacy writers. If the interface is rejected, discard the unpublished contract revision and retain the prior phase-012 parent plan. If a frozen contract has already been consumed by a mode workstream, increment the interface version, retain the old adapter and fixtures, and block incompatible readers rather than mutating the existing contract in place. Any runtime implementation remains reversible through the phase-008 compatibility bridge and the phase-014 per-mode rollback window.
 <!-- /ANCHOR:rollback -->

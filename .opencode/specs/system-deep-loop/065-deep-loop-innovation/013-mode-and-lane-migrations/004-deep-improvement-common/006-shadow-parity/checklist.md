@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Deep Improvement Common Services - Shadow Parity"
-description: "Checklist for the shadow-parity child of the Deep Improvement Common Services migration: verify event-for-event legacy and typed parity, boundary projection equality, phase-011 health shadow safety, and cutover-blocking evidence."
+description: "Checklist for the shadow-parity child of the Deep Improvement Common Services migration: verify event-for-event legacy and typed parity, boundary projection equality, phase-014 health shadow safety, and cutover-blocking evidence."
 trigger_phrases:
   - "deep improvement shadow parity checklist"
   - "common service parity gate"
@@ -40,7 +40,7 @@ eligible boundaries is a failed gate, not an implicit pass.
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] The sibling event, reducer, sealed-artifact, certificate, and resume contracts are identified with pinned versions and explicit ownership boundaries
-- [ ] CHK-002 [P0] The phase-011 health and degeneration shadow framework is available with coherent cursor, watermark, policy, adapter, recovery, and action-request semantics
+- [ ] CHK-002 [P0] The phase-014 health and degeneration shadow framework is available with coherent cursor, watermark, policy, adapter, recovery, and action-request semantics
 - [ ] CHK-003 [P1] The paired corpus includes healthy, failure, replay, resume, duplicate-delivery, evaluator-epoch, canary, promotion, and rollback-target fixtures
 - [ ] CHK-004 [P1] The candidate report records BASE SHA, path versions, corpus digest, protected-field manifest hash, and normalization-manifest hash
 <!-- /ANCHOR:pre-impl -->
@@ -65,8 +65,8 @@ eligible boundaries is a failed gate, not an implicit pass.
 - [ ] CHK-014 [P0] Canary fixtures cover sealed, active, burned, retired, leak, drift, invariant-failure, veto, and freshness states without exposing hidden canary contents
 - [ ] CHK-015 [P0] Promotion fixtures cover shadow, canary, authorized, denied, paused, aborted, baseline-restored, completed, and rollback-target states; shadow cannot authorize a transition
 - [ ] CHK-016 [P0] Evaluator-integrity oversight is separate from task success; reward, test, cache, evidence, and hidden-fixture tampering produces a distinct blocking outcome
-- [ ] CHK-017 [P0] Phase-011 healthy, degeneration, recovery, stale, missing, and unsupported observations preserve one coherent evidence boundary; data gaps never count as healthy
-- [ ] CHK-018 [P0] Phase-011 pause, re-seed, quarantine, repair, and stop requests remain observations and do not stop, dispatch, cancel, spend budget, mutate a baseline, or change authority
+- [ ] CHK-017 [P0] Phase-014 healthy, degeneration, recovery, stale, missing, and unsupported observations preserve one coherent evidence boundary; data gaps never count as healthy
+- [ ] CHK-018 [P0] Phase-014 pause, re-seed, quarantine, repair, and stop requests remain observations and do not stop, dispatch, cancel, spend budget, mutate a baseline, or change authority
 - [ ] CHK-019 [P0] Complete replay, checkpoint replay, resume, and duplicate delivery produce identical match identities, projection fingerprints, mismatch classes, and verdicts
 - [ ] CHK-020 [P1] Every mismatch carries source and target event references, raw digests, policy/version identities, cursors, projection fields, and a deterministic mismatch class
 - [ ] CHK-021 [P0] The accepted corpus has zero unexplained protected projection differences and zero authority writes from the typed shadow path
@@ -106,7 +106,7 @@ eligible boundaries is a failed gate, not an implicit pass.
 ## Verification Summary
 
 The phase is complete only when every P0 verifier check passes for the shared corpus and all three downstream variant fixture
-sets, every eligible boundary has event and projection evidence, raw evaluator and canary evidence remains addressable, phase-011
+sets, every eligible boundary has event and projection evidence, raw evaluator and canary evidence remains addressable, phase-014
 health remains non-authoritative, and the final report is `PASS` with zero unexplained protected differences, zero blocking data
 gaps, and zero authority writes. A passing report is evidence for the later mode gate; it is not a cutover certificate.
 <!-- /ANCHOR:summary -->

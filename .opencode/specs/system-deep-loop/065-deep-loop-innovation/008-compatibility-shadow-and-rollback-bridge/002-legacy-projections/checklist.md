@@ -29,7 +29,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking verifier contract for legacy projections. Every item remains pending until execution
-produces evidence bound to immutable BASE, an exact verified phase-003 ledger head, a projection/reducer version, and
+produces evidence bound to immutable BASE, an exact verified phase-006 ledger head, a projection/reducer version, and
 artifact digests. Verification must run only in isolated fixture/shadow roots and must fail on zero manifest rows,
 zero reader fixtures, unexpected live-path access, or tracked mutation.
 <!-- /ANCHOR:protocol -->
@@ -37,8 +37,8 @@ zero reader fixtures, unexpected live-path access, or tracked mutation.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-000 census is frozen; every JSONL/JSON surface has schema, writer, readers, path, fixture, refresh boundary, and archival obligation
-- [ ] CHK-002 [P0] BASE bytes and verified phase-003 ledger fixtures are pinned by full digest and exact ledger head
+- [ ] CHK-001 [P0] The phase-003 census is frozen; every JSONL/JSON surface has schema, writer, readers, path, fixture, refresh boundary, and archival obligation
+- [ ] CHK-002 [P0] BASE bytes and verified phase-006 ledger fixtures are pinned by full digest and exact ledger head
 - [ ] CHK-003 [P1] Projection/reducer versioning, watermark schema, typed failures, and shadow-root policy are approved before output code lands
 <!-- /ANCHOR:pre-impl -->
 
@@ -54,7 +54,7 @@ zero reader fixtures, unexpected live-path access, or tracked mutation.
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-008 [P0] The projection manifest closes against the phase-000 census with zero missing, duplicate, ambiguous, or unowned rows
+- [ ] CHK-008 [P0] The projection manifest closes against the phase-003 census with zero missing, duplicate, ambiguous, or unowned rows
 - [ ] CHK-009 [P0] Full rebuilds repeated in clean processes produce identical bytes and digests for every manifest row
 - [ ] CHK-010 [P0] Incremental projection at each selected ledger head is byte-identical to full replay from BASE
 - [ ] CHK-011 [P0] JSONL fixtures match BASE row bytes, order, separators, terminal newline, diff fingerprints, and unchanged-row suppression
@@ -87,7 +87,7 @@ zero reader fixtures, unexpected live-path access, or tracked mutation.
 ## Documentation
 
 - [ ] CHK-025 [P1] The registry documents every fold, serializer, refresh boundary, watermark field, reader, and parity evidence location
-- [ ] CHK-026 [P1] The phase handoff cites the phase-000 census, phase-003 ledger, `atomic-state.ts`, and `manifest/phase-tree.json`
+- [ ] CHK-026 [P1] The phase handoff cites the phase-003 census, phase-006 ledger, `atomic-state.ts`, and `manifest/phase-tree.json`
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

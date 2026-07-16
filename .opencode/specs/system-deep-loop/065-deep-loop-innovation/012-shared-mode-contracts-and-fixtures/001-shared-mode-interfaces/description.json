@@ -1,12 +1,12 @@
 {
   "specFolder": "system-deep-loop/065-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces",
-  "description": "Freeze the typed contract that every phase-010 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence",
+  "description": "Freeze the typed contract that every phase-013 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence",
   "keywords": [
     "freeze",
     "typed",
     "contract",
     "every",
-    "phase-010",
+    "phase-013",
     "mode",
     "implements",
     "against",
@@ -19,7 +19,7 @@
     "substrate",
     "convergence"
   ],
-  "lastUpdated": "2026-07-15T18:29:57.399Z",
+  "lastUpdated": "2026-07-16T03:26:42.458Z",
   "specId": "001",
   "folderSlug": "shared-mode-interfaces",
   "parentChain": [

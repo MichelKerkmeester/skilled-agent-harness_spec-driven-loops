@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cycle detection (008 phase 002)"
+title: "Feature Specification: cycle detection"
 description: "Plan deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated thresholds that surface degeneration as a health signal and stopping-clock input."
 trigger_phrases:
   - "deep-loop cycle detection"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Second child of phase 008; the program manifest assigns repeated-state, claim, and focus detection to the convergence, termination, and health layer |
+| **Origin** | Second child of phase 011; the program manifest assigns repeated-state, claim, and focus detection to the convergence, termination, and health layer |
 | **Child depends_on** | `[]` |
 <!-- /ANCHOR:metadata -->
 
@@ -55,14 +55,14 @@ longitudinal memory of prior states and therefore cannot distinguish productive 
 evidence changes a durable claim; the same focus, claim frontier, or short state sequence without any coverage, evidence, or
 claim-lifecycle progress is a degeneration signal that a point-in-time score cannot observe.
 
-Phase 007 supplies the identities needed to make that distinction. Claim continuity keeps paraphrases, support,
+Phase 010 supplies the identities needed to make that distinction. Claim continuity keeps paraphrases, support,
 contradictions, and supersession attached to stable claim IDs instead of iteration-local wording
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/003-claim-continuity/spec.md`).
 Next-focus semantics records the selected region, ranked frontier, policy version, projection watermark, and candidate-set
 fingerprint rather than relying on prompt text
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics/spec.md`).
-The parent program and phase manifest place cycle detection after durable fan-in and phase-007 projections, keep it additive
-and dark until staged cutover, and require phase 008 to hand shared mode contracts a generic termination-and-health boundary
+The parent program and phase manifest place cycle detection after durable fan-in and phase-010 projections, keep it additive
+and dark until staged cutover, and require phase 011 to hand shared mode contracts a generic termination-and-health boundary
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md` and
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`).
 
@@ -90,8 +90,8 @@ the evidence and emits a typed health signal; it does not silently stop the loop
 - Shadow fixtures covering productive revisitation, fixed points, two-to-four-state oscillation, paraphrased claims, repeated focus decisions, late progress, history gaps, reducer-version changes, resume, and replay.
 
 ### Out of Scope
-- Defining path-covering termination, clock arbitration, value-of-computation allocation, or the generic cross-mode health harness owned by adjacent phase-008 children.
-- Replacing claim identity, claim matching, claim status folds, next-focus candidate selection, contradiction semantics, semantic-community clustering, or transactional projection ownership from phase 007.
+- Defining path-covering termination, clock arbitration, value-of-computation allocation, or the generic cross-mode health harness owned by adjacent phase-011 children.
+- Replacing claim identity, claim matching, claim status folds, next-focus candidate selection, contradiction semantics, semantic-community clustering, or transactional projection ownership from phase 010.
 - Changing the shipped council thresholds or treating `convergence.cjs` snapshot results as sufficient cycle evidence.
 - Making a cycle signal an unconditional stop, moving authority before shadow parity and cutover, or rewriting/deleting the ledger observations that formed the pattern.
 - Mode-specific calibration, historical packet migration, unbounded history retention, fuzzy text-only cycle matching, or model judgment in the replay path.
@@ -117,7 +117,7 @@ the evidence and emits a typed health signal; it does not silently stop the loop
 ### Cycle signature, sensitivity, and action contract
 
 The observation projector reads exactly one authorized ledger prefix. It canonicalizes the selected focus from the recorded
-phase-007 decision, sorts typed claim references before folding their lifecycle and epistemic states, and binds those
+phase-010 decision, sorts typed claim references before folding their lifecycle and epistemic states, and binds those
 fingerprints to coverage and blocker summaries produced at the same watermark. Canonical serialization includes schema,
 reducer, and detector-policy versions. A replay that encounters an unknown version or cannot reproduce a stored fingerprint
 stops evaluation rather than comparing unlike states.
@@ -148,8 +148,8 @@ health harness owns cross-mode presentation and aggregation. Historical observat
 ## 6. RISKS & DEPENDENCIES
 
 This child has no hard sibling planning dependency (`depends_on: []`); predecessor and successor names provide navigation
-and contract ordering only. Runtime implementation consumes the phase-003 authorized ledger, phase-004 continuity and health
-services, phase-006 durable iteration/fan-in boundaries, and phase-007 claim-continuity plus next-focus projections. The
+and contract ordering only. Runtime implementation consumes the phase-006 authorized ledger, phase-007 continuity and health
+services, phase-009 durable iteration/fan-in boundaries, and phase-010 claim-continuity plus next-focus projections. The
 program manifest requires those shared inputs before convergence activation, even though this planning packet remains an
 independent sibling contract.
 

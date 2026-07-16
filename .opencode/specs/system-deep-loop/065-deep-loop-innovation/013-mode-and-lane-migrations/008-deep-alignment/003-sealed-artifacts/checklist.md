@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep Alignment - Sealed Reference Artifacts (013 phase 008 child 003)"
+title: "Checklist: Deep Alignment - Sealed Reference Artifacts"
 description: "Blocking verification checklist for Deep Alignment authority-capsule sealing, lane and target integrity, verify-first evidence, witness replay, governed exceptions, convergence reproducibility, alignment-report synthesis, and resume handoff references."
 trigger_phrases:
   - "deep alignment sealed artifacts checklist"
@@ -30,7 +30,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking verifier contract for the Deep Alignment sealed-artifact child. Execution evidence must pin
-the candidate SHA, shared phase-003 descriptor and canonicalization versions, digest algorithm, authority-capsule identity,
+the candidate SHA, shared phase-006 descriptor and canonicalization versions, digest algorithm, authority-capsule identity,
 mode artifact-kind matrix, lane and witness fixture corpus, ordered reference sets, commands and exit codes, and
 dark-versus-legacy results. Verification fails on zero fixtures, unverified byte release, invalid authority accepted as a
 pass, blanket exception suppression, mixed reference watermarks, changed legacy behavior, or unexpected tracked mutation.
@@ -39,9 +39,9 @@ pass, blanket exception suppression, mixed reference watermarks, changed legacy 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-009 shared review-loop contracts and the executable write-set conflict graph are frozen for Deep Alignment
+- [ ] CHK-001 [P0] Phase-012 shared review-loop contracts and the executable write-set conflict graph are frozen for Deep Alignment
 - [ ] CHK-002 [P0] The lifecycle artifact matrix covers init/scope, discover, iterate/check, witness/exception, convergence/report, and resume/save boundaries
-- [ ] CHK-003 [P0] The mode consumes the shared phase-003 sealing primitives and names no alternate digest, descriptor, store, or verifier
+- [ ] CHK-003 [P0] The mode consumes the shared phase-006 sealing primitives and names no alternate digest, descriptor, store, or verifier
 - [ ] CHK-004 [P1] Predecessor `002-reducers-and-projections` owns findings, coverage, exception, lane-verdict, and report projection semantics, while this phase owns only artifact binding
 <!-- /ANCHOR:pre-impl -->
 
@@ -96,7 +96,7 @@ pass, blanket exception suppression, mixed reference watermarks, changed legacy 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-028 [P1] Mode binding, fixture, and evidence changes remain path-scoped; shared seal primitives, the phase-009 review-loop contract, and unrelated Deep Alignment siblings are not modified
+- [ ] CHK-028 [P1] Mode binding, fixture, and evidence changes remain path-scoped; shared seal primitives, the phase-012 review-loop contract, and unrelated Deep Alignment siblings are not modified
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

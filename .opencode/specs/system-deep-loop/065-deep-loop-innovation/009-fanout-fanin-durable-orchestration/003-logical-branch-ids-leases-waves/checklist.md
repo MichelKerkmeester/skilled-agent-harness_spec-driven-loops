@@ -28,14 +28,14 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 003. Every item remains pending during planning. The implementation verifier must bind its report to the candidate revision, phase-002 manifest fixture fingerprint, phase-004 fencing contract version, and wave-plan derivation version; record commands, exit codes, event counts, and accepted/rejected fence epochs; and fail on zero executed branches, silent manifest drift, or unexpected tracked mutation.
+This checklist is the blocking verifier contract for phase 006. Every item remains pending during planning. The implementation verifier must bind its report to the candidate revision, phase-005 manifest fixture fingerprint, phase-007 fencing contract version, and wave-plan derivation version; record commands, exit codes, event counts, and accepted/rejected fence epochs; and fail on zero executed branches, silent manifest drift, or unexpected tracked mutation.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-002 expansion coordinates, invocation fingerprint, and stable-ID handoff are pinned before branch registration code is written
-- [ ] CHK-002 [P0] The phase-003 transition gateway and phase-004 lease service expose mutation-atomic head/fence validation in the selected backend
+- [ ] CHK-001 [P0] Phase-005 expansion coordinates, invocation fingerprint, and stable-ID handoff are pinned before branch registration code is written
+- [ ] CHK-002 [P0] The phase-006 transition gateway and phase-007 lease service expose mutation-atomic head/fence validation in the selected backend
 - [ ] CHK-003 [P0] The predecessor result envelope and salvage contract carry an immutable logical-branch reference
 - [ ] CHK-004 [P1] The protected-write manifest covers dispatch, status, retry, orphan, salvage, result, terminal, checkpoint, and wave mutations
 - [ ] CHK-005 [P2] Candidate revision, fixture fingerprints, derivation versions, and baseline pool behavior are recorded in the verifier report
@@ -74,7 +74,7 @@ This checklist is the blocking verifier contract for phase 003. Every item remai
 ## Fix Completeness
 
 - [ ] CHK-025 [P1] The ledger fold reconstructs every registered branch, immutable wave membership, current lease epoch, accepted terminal result, and current/next wave without directory or PID inference
-- [ ] CHK-026 [P1] The implementation cites and conforms to phase 002 manifest expansion, phase 004 locks/fencing, `fanout-pool.cjs`, and `manifest/phase-tree.json`
+- [ ] CHK-026 [P1] The implementation cites and conforms to phase 005 manifest expansion, phase 007 locks/fencing, `fanout-pool.cjs`, and `manifest/phase-tree.json`
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->

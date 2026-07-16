@@ -53,7 +53,7 @@ _memory:
 - [ ] T007 Reject ad-hoc per-mode JSONL, mutable state, unversioned events, and direct ungated writers with failure-specific rationale
 - [ ] T008 Reject mutable reference inputs, optional receipts, self-scoring, and big-bang replacement with failure-specific rationale
 - [ ] T009 Record positive consequences, implementation costs, compatibility surfaces, and migration obligations
-- [ ] T010 Bind phase 003 to ledger/authorization/replay, phase 004 to seals/receipts/adjudication, and phase 005 to compatibility/shadow/rollback preservation
+- [ ] T010 Bind phase 006 to ledger/authorization/replay, phase 007 to seals/receipts/adjudication, and phase 008 to compatibility/shadow/rollback preservation
 - [ ] T011 Preserve the additive-dark, legacy-authoritative, per-mode-cutover migration contract without authorizing runtime cutover
 <!-- /ANCHOR:phase-2 -->
 

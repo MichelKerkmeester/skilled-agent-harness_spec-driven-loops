@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Deep Alignment - Rollback & Mode Gate"
-description: "Tasks for the Deep Alignment rollback switch and independent mode gate: freeze shared inputs, specify fail-closed authority control and bounded rollback, assemble per-lane parity and sealed conformance evidence, and verify the non-authoritative phase-011 handoff."
+description: "Tasks for the Deep Alignment rollback switch and independent mode gate: freeze shared inputs, specify fail-closed authority control and bounded rollback, assemble per-lane parity and sealed conformance evidence, and verify the non-authoritative phase-014 handoff."
 trigger_phrases:
   - "Deep Alignment rollback and mode gate tasks"
   - "deep-alignment rollback switch tasks"
@@ -40,10 +40,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin BASE, the parent 065 invariants, `manifest/phase-tree.json`, phase-009 shared review-loop and write-set digests, phase-011 handoff contract, and the phase-003 authorization boundary
+- [ ] T001 Pin BASE, the parent 065 invariants, `manifest/phase-tree.json`, phase-012 shared review-loop and write-set digests, phase-014 handoff contract, and the phase-006 authorization boundary
 - [ ] T002 Read the six Deep Alignment sibling contracts and record ownership for typed events, reducers, seals, certificates, resume, and shadow parity
 - [ ] T003 Inventory the legacy Deep Alignment lifecycle, lane resolver, authority adapters, applicability path, known-deviation handling, convergence, report, resume, continuity, and remediation boundary
-- [ ] T004 Freeze the authority-control vocabulary, gate result states, rollback trigger classes, dual window bounds, lane fixture IDs, certificate fields, and phase-011 handoff fields
+- [ ] T004 Freeze the authority-control vocabulary, gate result states, rollback trigger classes, dual window bounds, lane fixture IDs, certificate fields, and phase-014 handoff fields
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -54,7 +54,7 @@ _memory:
 - [ ] T007 Define the bounded rollback window with start event, deadline, logical-operation or attempt budget, expiry disposition, renewal rule, and no-self-clear invariant
 - [ ] T008 Define the rollback trigger matrix for authority drift, applicability drift, parity mismatch, replay mismatch, seal/receipt failure, unknown effect, stale fence, contract drift, integrity failure, health quarantine, and canonical-write leakage
 - [ ] T009 Build the independent Deep Alignment gate matrix for lane resolution, discovery, applicability, artifact checks, live re-probes, known deviations, unresolved states, convergence, reports, resume, continuity, and remediation exclusion
-- [ ] T010 Bind the gate to the phase-009 shared review-loop and Deep Review mode 002 fence; reject mode-local copies of scope, coverage, lineage, convergence, report, resume, or write-set semantics
+- [ ] T010 Bind the gate to the phase-012 shared review-loop and Deep Review mode 002 fence; reject mode-local copies of scope, coverage, lineage, convergence, report, resume, or write-set semantics
 - [ ] T011 Bind authority and rule seal manifests, shadow-parity receipts, verifier outcomes, run certificates, receipt roots, replay fingerprints, lane coverage, resume outcomes, and rollback-drill evidence into the mode-gate certificate
 - [ ] T012 Define the `PASS`, `BLOCKED`, `INDETERMINATE`, `UNRESOLVED`, `NOT_APPLICABLE`, and `MIGRATED_SHADOW_READY` semantics; prohibit authority movement, automatic remediation, and legacy-writer retirement
 - [ ] T013 [P] Create clean, missing-authority, stale-authority, mixed-epoch, invalid-applicability, known-deviation, unresolved-evidence, parity-drift, corrupted-seal, unknown-effect, expired-window, and legacy-restoration fixtures
@@ -63,7 +63,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T014 Verify every resolved lane has a named gate row and evidence reference from scope through report, resume, continuity, and phase-011 handoff
+- [ ] T014 Verify every resolved lane has a named gate row and evidence reference from scope through report, resume, continuity, and phase-014 handoff
 - [ ] T015 Verify shadow parity event count, order, lane identity, authority epoch, causal links, payload digest, projection fingerprint, applicability edges, and declared volatility across all required fixtures
 - [ ] T016 Verify every authority, rule, target, observation, finding, counterevidence, known-deviation, report, and resume reference is sealed and tamper-evident
 - [ ] T017 Verify the run certificate, authority capsule, verifier digest, receipt-set closure, replay fingerprint, and mode-gate certificate independently from live execution
@@ -71,7 +71,7 @@ _memory:
 - [ ] T019 Verify every rollback trigger freezes ledger-authoritative work, restores the matching legacy checkpoint when possible, and emits an immutable restoration receipt
 - [ ] T020 Verify deadline and logical-operation rollback bounds, expiry, renewal, stale-window rejection, unknown-effect handling, and unavailable-checkpoint blocking
 - [ ] T021 Verify Deep Alignment gate status is independent from Deep Review status, generic dashboards, final report text, aggregate coverage, and numeric convergence alone
-- [ ] T022 Verify the phase-011 handoff emits only `MIGRATED_SHADOW_READY` evidence, preserves read-only defaults, and emits no cutover, window-close, remediation, or legacy-retirement action
+- [ ] T022 Verify the phase-014 handoff emits only `MIGRATED_SHADOW_READY` evidence, preserves read-only defaults, and emits no cutover, window-close, remediation, or legacy-retirement action
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

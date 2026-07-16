@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: stopping clocks (006 phase 008 child 003)"
+title: "Feature Specification: stopping clocks"
 description: "Plan independent budget, novelty-decay, coverage, wall-time, and cycle clocks whose deterministic earliest firing terminates the loop and records a replayable, typed termination cause."
 trigger_phrases:
   - "deep-loop stopping clocks"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Third child of phase 008; the program manifest assigns independent stopping-clock arbitration to convergence, termination, and health |
+| **Origin** | Third child of phase 011; the program manifest assigns independent stopping-clock arbitration to convergence, termination, and health |
 | **Child depends_on** | `[]` |
 <!-- /ANCHOR:metadata -->
 
@@ -56,10 +56,10 @@ path coverage, elapsed wall time, or a confirmed longitudinal cycle
 limit may end execution without the convergence record naming it, while a threshold-based stop can obscure whether the loop
 actually covered its declared search space or merely ran out of resources.
 
-The inputs now have independent owners. Phase 004 defines atomic, hierarchical token, cost, iteration, and wall-time budget
+The inputs now have independent owners. Phase 007 defines atomic, hierarchical token, cost, iteration, and wall-time budget
 exhaustion without relabeling exhaustion as convergence
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets/spec.md`).
-Phase 007 defines replayable concept-level novelty and evidence novelty, plus deterministic `noveltyDecayBps` inputs
+Phase 010 defines replayable concept-level novelty and evidence novelty, plus deterministic `noveltyDecayBps` inputs
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities/spec.md`
 and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics/spec.md`).
 Sibling `001-path-covering-termination` defines a coverage certificate that distinguishes `STOP_ALLOWED` from
@@ -79,15 +79,15 @@ ended incomplete from resource or time exhaustion. No aggregate score may mask a
 
 ### In Scope
 - A common `StoppingClockObservation` contract with run lineage, clock kind, policy version, evaluation boundary, ledger cursor, monotonic elapsed duration, projection watermark, input fingerprint, state (`armed`, `fired`, `cleared`, or `not_evaluable`), condition trace, and candidate termination class.
-- A **budget-exhaustion clock** that fires on the phase-004 budget authority's typed exhaustion or reservation-denial event for the next required operation. Inputs include governing scope chain, exhausted dimension, requested/reserved/committed/remaining values, receipt/reconciliation state, and budget-policy version. Token, cost, iteration, and budgeted wall-time remain distinct subcauses.
-- A **novelty-decay clock** that applies a versioned deterministic exponential-tail fold to phase-007 concept novelty and independent-evidence yield. It fires only after the configured warm-up, observation window, patience count, and both per-mode floors are satisfied at one fresh projection watermark; paraphrases and duplicate evidence cannot reset it.
+- A **budget-exhaustion clock** that fires on the phase-007 budget authority's typed exhaustion or reservation-denial event for the next required operation. Inputs include governing scope chain, exhausted dimension, requested/reserved/committed/remaining values, receipt/reconciliation state, and budget-policy version. Token, cost, iteration, and budgeted wall-time remain distinct subcauses.
+- A **novelty-decay clock** that applies a versioned deterministic exponential-tail fold to phase-010 concept novelty and independent-evidence yield. It fires only after the configured warm-up, observation window, patience count, and both per-mode floors are satisfied at one fresh projection watermark; paraphrases and duplicate evidence cannot reset it.
 - A **coverage clock** that fires from sibling 001's replay-stable `STOP_ALLOWED` coverage certificate. It requires a frozen valid universe, fresh projections, all mandatory paths dispositioned, zero unresolved critical contradictions, and zero STOP blockers; a partial or `INCOMPLETE_LIMIT` certificate cannot fire this clock.
 - A **wall-time clock** that fires when monotonic elapsed run time reaches an explicit per-mode hard deadline. It is independent of budget accounting: `wall_time_deadline` remains distinct from `budget_exhausted:wall_time`, even when both fire at one boundary.
 - A **cycle clock** that consumes sibling 002's confirmed-cycle event at the configured severity/persistence policy. Suspected, stale, cleared, incomplete-history, or progress-broken cycles do not fire it.
 - Deterministic earliest-fire composition over an authorized ledger prefix. The smallest effective elapsed time wins; candidates committed in the same evaluation batch use a versioned rank `budget > wall_time > cycle > novelty_decay > coverage`, while all co-firing causes remain recorded.
 - A `LoopTerminationDeclared` ledger event containing primary cause, co-firing causes, termination class, mode/profile version, clock traces, source event IDs, ledger/projection watermarks, replay fingerprint, final coverage gaps, unresolved blockers, and last authorized dispatch/iteration identity.
 - Per-mode `StoppingClockProfile` configuration for required clocks, shadow/authoritative state, novelty decay parameters, coverage-profile reference, cycle severity/persistence, hard deadline, evaluation boundaries, unknown/stale-input behavior, and tie-rank version. Missing or unknown configuration fails closed.
-- Pre-dispatch evaluation for budget and wall-time clocks, committed-iteration evaluation for novelty, coverage, and cycle clocks, and post-receipt reevaluation when actual spend or elapsed time changes. A fired clock prevents new dispatch; in-flight work follows phase-006 salvage/cancellation policy rather than being silently discarded.
+- Pre-dispatch evaluation for budget and wall-time clocks, committed-iteration evaluation for novelty, coverage, and cycle clocks, and post-receipt reevaluation when actual spend or elapsed time changes. A fired clock prevents new dispatch; in-flight work follows phase-009 salvage/cancellation policy rather than being silently discarded.
 - Additive, dark integration beside the current council bridge. Shadow clock decisions and termination-cause events remain non-authoritative until the program's staged cutover phase.
 
 ### Out of Scope
@@ -157,9 +157,9 @@ Profile changes mint a new version and never rewrite a recorded termination deci
 
 This child has no hard sibling planning dependency (`depends_on: []`); predecessor `002-cycle-detection` and successor
 `004-value-of-computation-allocation` are navigation and contract-order references. Runtime implementation consumes the
-phase-003 authorized ledger, phase-004 typed budgets, phase-006 durable dispatch/settlement boundaries, phase-007 novelty
+phase-006 authorized ledger, phase-007 typed budgets, phase-009 durable dispatch/settlement boundaries, phase-010 novelty
 projections, and sibling 001/002 certificates/events. The parent manifest requires those program inputs before convergence
-activation, but each phase-008 child remains an independently authored planning contract.
+activation, but each phase-011 child remains an independently authored planning contract.
 
 The principal risk is semantic collapse: if exhaustion, stagnation, cycling, and convergence share one Boolean, operators lose
 the cause and downstream policy may certify an incomplete run. Other risks are clock races, wall-time drift, budget-time and

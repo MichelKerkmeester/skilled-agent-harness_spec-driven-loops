@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Sixth child of the phase-006 fan-out / fan-in durable-orchestration parent |
+| **Origin** | Sixth child of the phase-009 fan-out / fan-in durable-orchestration parent |
 | **Depends on** | None (`[]`) |
 <!-- /ANCHOR:metadata -->
 
@@ -81,7 +81,7 @@ defined by
 - A hierarchical provenance-balance policy: fair scheduling across configured source/model-family buckets, then branches within each bucket, with a per-source contribution cap and at most one support increment per source bucket per merged claim.
 - Deterministic tie-breaks based on canonical source identity, logical branch ID, item digest, and original leaf rank after policy-defined weighting; byte-identical accepted inputs and policy yield byte-identical output.
 - Per-item retained provenance for selected, duplicate, conflicted, deferred, and excluded inputs, including why an item occupied or did not occupy an output position.
-- A contested-merge bridge to the phase-004 blinded adjudication service; producer identity is unavailable to judges and deblinded only for the final audit trail.
+- A contested-merge bridge to the phase-007 blinded adjudication service; producer identity is unavailable to judges and deblinded only for the final audit trail.
 - Typed ledger events and a reduction receipt binding ordered input-event digests, reducer/policy version, normalization version, source-bucket manifest, partial-failure denominator, output digest, and replay fingerprint.
 - Permutation, resume, salvage, duplicate-flood, cloned-source, malformed-provenance, conflict, and partial-survivor fixtures.
 
@@ -144,7 +144,7 @@ provider name, response length, confidence prose, and historical seat reputation
 - **SC-004**: Contradictory exact-key payloads and uncertain semantic equivalence remain explicit unless a stable blinded adjudication verdict authorizes their merge.
 - **SC-005**: Every output and every excluded/deferred input carries a typed provenance and disposition chain back to canonical result-envelope and dispatch evidence.
 - **SC-006**: Partial-fleet output cannot claim full-fleet consensus; the receipt exposes expected and surviving provenance strata plus every exclusion reason.
-- **SC-007**: The reducer runs additive and dark, preserves legacy authority, and produces the provenance-bearing surface required by phase 007.
+- **SC-007**: The reducer runs additive and dark, preserves legacy authority, and produces the provenance-bearing surface required by phase 010.
 - **SC-008**: Strict validation reports no errors other than the intentionally deferred generated metadata files.
 <!-- /ANCHOR:success-criteria -->
 
@@ -153,7 +153,7 @@ provider name, response length, confidence prose, and historical seat reputation
 
 This child has `depends_on: []` as an independently authored sibling planning contract. Runtime integration still
 consumes the parent program's typed ledger, result envelopes, stable branch identities, partial-failure disposition,
-and the phase-004 blinded adjudication interface when those contracts are available. Adjacency to
+and the phase-007 blinded adjudication interface when those contracts are available. Adjacency to
 `005-partial-failure-policy` is navigational only and does not create a hidden authoring dependency.
 
 The highest risk is false independence: multiple branches from one model family or executor configuration may be

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Agent Improvement certificates and receipts (013 mode migration)"
+title: "Feature Specification: Agent Improvement certificates and receipts"
 description: "Plan the Agent Improvement per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase binds proposal generation and scoring evidence to replay fingerprints and offline verification while reusing deep-improvement-common evaluator, canary, and promotion services."
 trigger_phrases:
   - "agent improvement certificates and receipts"
@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-15T20:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped Agent Improvement certificates and transition receipts over common services"
-    next_safe_action: "Freeze certificate fields and verifier vectors against phase-003 primitives"
+    next_safe_action: "Freeze certificate fields and verifier vectors against phase-006 primitives"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -54,7 +54,7 @@ The certificate must attest to the completed Agent Improvement run without makin
 
 ### Purpose
 
-Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-003 primitives, references deep-improvement-common evaluator/canary/promotion services, and can be re-verified offline before the mode gate accepts shadow parity.
+Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-006 primitives, references deep-improvement-common evaluator/canary/promotion services, and can be re-verified offline before the mode gate accepts shadow parity.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -96,7 +96,7 @@ Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improve
 | REQ-003 | Replay fingerprints include the complete Agent Improvement dependency closure. | Recomputing a fingerprint from the canonical vector changes when any event/schema version, ordered parent, candidate or target digest, operator lineage, evaluator/canary/promotion epoch, fixture commitment, executor/model/tool setting, budget, normalization, reducer, or prior-state input changes. |
 | REQ-004 | An independent verifier can validate the certificate and receipts offline. | A clean verifier fixture accepts a valid run using local immutable inputs only and fails closed on digest mismatch, receipt reorder, missing dependency, schema incompatibility, unauthorized transition, stale epoch, or incomplete evidence. |
 | REQ-005 | Agent Improvement reuses deep-improvement-common evaluator, canary, and promotion services. | The integration inventory identifies the shared service IDs and receipt contracts consumed by this mode; no mode-local evaluator, canary, promotion, or threshold implementation is introduced. |
-| REQ-006 | The contract consumes phase-003 receipt/certificate primitives and the `003-sealed-artifacts` artifact references without redefining their ownership. | Cross-phase fixtures show primitive IDs, artifact digests, and lifecycle state are referenced and verified consistently; an incompatible primitive version is refused rather than silently coerced. |
+| REQ-006 | The contract consumes phase-006 receipt/certificate primitives and the `003-sealed-artifacts` artifact references without redefining their ownership. | Cross-phase fixtures show primitive IDs, artifact digests, and lifecycle state are referenced and verified consistently; an incompatible primitive version is refused rather than silently coerced. |
 | REQ-007 | The certificate and receipt contract remains non-authoritative until the Agent Improvement mode gate proves shadow parity. | The mode gate records certificate/verifier parity evidence while authority remains on the legacy path; no certificate is treated as a cutover authorization. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -123,7 +123,7 @@ Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improve
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 003 receipt/certificate primitives and sibling `003-sealed-artifacts` contract | Primitive identity or artifact lifecycle drift can invalidate every Agent Improvement certificate | Pin primitive and artifact schema digests in the fingerprint vector; reject incompatible versions explicitly |
+| Dependency | Phase 006 receipt/certificate primitives and sibling `003-sealed-artifacts` contract | Primitive identity or artifact lifecycle drift can invalidate every Agent Improvement certificate | Pin primitive and artifact schema digests in the fingerprint vector; reject incompatible versions explicitly |
 | Dependency | Mode 004 `004-deep-improvement-common` evaluator, canary, and promotion services | Re-implementing shared logic would create divergent thresholds and unverifiable evidence | Consume shared service IDs, epochs, and receipts as typed dependencies; keep mode-specific code at the binding boundary |
 | Dependency | Phase 012 shared mode contracts and write-set conflict graph | A receipt schema that overlaps another lane can make parallel migration unsafe | Use the emitted write-set ownership and freeze the Agent Improvement event namespace before execution |
 | Dependency | Phases 006-008 typed ledger, control services, and compatibility bridge | Offline verification cannot be authoritative without stable event IDs, transition rules, and immutable inputs | Keep this phase planned against those interfaces and retain legacy authority until the mode gate passes |
@@ -135,9 +135,9 @@ Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improve
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which canonical certificate and receipt-root algorithm is fixed by the phase-003 primitives, and which fields remain mode-owned extensions?
+- Which canonical certificate and receipt-root algorithm is fixed by the phase-006 primitives, and which fields remain mode-owned extensions?
 - Does the Agent Improvement receipt reference common-service receipts by stable ID only, or also carry a typed projection needed by the offline verifier?
-- Which event namespace and transition vocabulary does phase 012 freeze for proposal, evaluation, canary, promotion, rollback, and closure transitions?
+- Which event namespace and transition vocabulary does phase 015 freeze for proposal, evaluation, canary, promotion, rollback, and closure transitions?
 - What disclosure transition releases exact evaluator scores or protected fixture identities after candidate optimization ends?
 - Which verifier failure codes are shared across modes and which Agent Improvement codes belong in the mode-specific contract?
 <!-- /ANCHOR:questions -->

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Versioned Event Envelope (003 phase 001)"
+title: "Tasks: Versioned Event Envelope"
 description: "Ordered tasks for the canonical envelope schema, event-definition registry, write validation, read-time upcasting, shipped-producer fixtures, and fail-closed verification."
 trigger_phrases:
   - "versioned event envelope tasks"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the implementation worktree to the phase-000 BASE and record the phase-001 transition-policy digest
+- [ ] T001 Pin the implementation worktree to the phase-003 BASE and record the phase-004 transition-policy digest
 - [ ] T002 Inventory representative observability, council, iteration/audit, fan-out status, and generic JSONL writer records without modifying authoritative runtime files
 - [ ] T003 Freeze contract tests for outer fields, event namespace, version semantics, canonical bytes, typed errors, registry invariants, and sibling API ownership
 <!-- /ANCHOR:phase-1 -->
@@ -55,7 +55,7 @@ _memory:
 - [ ] T009 Add the read entry point that preserves stored bytes, resolves exact type/version, validates historical payloads, and returns stored/effective forms
 - [ ] T010 Add pure adjacent upcaster execution, per-hop validation, immutable-field guards, deterministic chain identity, and ordered provenance traces
 - [ ] T011 [P] Add dark representative fixtures for observability, council round state, audit/iteration, and fan-out status producer shapes under one `payload` boundary
-- [ ] T012 [P] Document the exported envelope, registry, write-preflight, read-result, and error contracts consumed by later phase-003 siblings
+- [ ] T012 [P] Document the exported envelope, registry, write-preflight, read-result, and error contracts consumed by later phase-006 siblings
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->

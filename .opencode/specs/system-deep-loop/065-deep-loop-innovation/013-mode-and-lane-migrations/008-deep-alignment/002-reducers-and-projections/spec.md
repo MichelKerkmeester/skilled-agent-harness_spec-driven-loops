@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Alignment - Reducers & Projections (013 phase 002)"
+title: "Feature Specification: Deep Alignment - Reducers & Projections"
 description: "Plan the pure deterministic reducers and live projections for the Deep Alignment migration: replay the typed event ledger into lane, authority, artifact, finding, convergence, and per-mode status state while preserving verify-first evidence and the shared review-loop contract used by Deep Review."
 trigger_phrases:
   - "Deep Alignment reducers and projections"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
-| **Origin** | Phase 002 of the 013 per-mode migration program; reducers and projections concern |
+| **Origin** | Phase 005 of the 013 per-mode migration program; reducers and projections concern |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -65,7 +65,7 @@ The research inputs sharpen this boundary. The shared findings registry requires
 - The per-mode status projection: Deep Alignment lifecycle state, active contract and authority versions, lane count and lane statuses, last applied sequence, projection health, blocking obligations, shadow-parity state, and terminal status.
 - A derived per-lane verdict and overall worst-verdict projection that preserves raw observations, `not_applicable`, `unresolved`, `SKIP`, and `EXEMPT` outcomes instead of collapsing them into pass or fail.
 - Differential replay fixtures and a shadow-parity plan that compare the new projections with legacy Deep Alignment state without changing authority.
-- Reuse of the shared review-loop contract frozen in phase 009 and structural parity with Deep Review mode 002; no local fork of scope, pass, convergence, or report semantics.
+- Reuse of the shared review-loop contract frozen in phase 012 and structural parity with Deep Review mode 002; no local fork of scope, pass, convergence, or report semantics.
 
 ### Out of Scope
 - Defining or changing the typed event envelope, transition authorization, event namespace, schema versions, or upcasters owned by `001-typed-ledger-schema` and the shared substrate.
@@ -85,7 +85,7 @@ The research inputs sharpen this boundary. The shared findings registry requires
 | REQ-003 | The artifact and evidence index preserves immutable references | Each indexed item records stable logical identity, artifact kind, producer event, authority/verifier revision where applicable, content digest, applicability, availability, freshness, and supersession lineage without mutating original evidence |
 | REQ-004 | Per-mode status is derived from typed transitions and projection health | Deep Alignment status, contract and authority versions, lane summary, replay position, blocking reason, shadow-parity state, and terminal status are deterministic and reject impossible transitions rather than guessing a status |
 | REQ-005 | Per-lane verdicts and known deviations are derived overlays | Raw observations remain separate from applicability, finding, verifier, and deviation adjudication; a deviation produces an observable `SKIP` or `EXEMPT` result and never deletes the reproduced failure; `not_applicable` and `unresolved` cannot become pass by coercion |
-| REQ-006 | Shared review-loop semantics are reused by Deep Review | Deep Alignment and Deep Review consume the phase-009 shared contract with mode configuration and typed event mappings, not two divergent reducer or convergence implementations |
+| REQ-006 | Shared review-loop semantics are reused by Deep Review | Deep Alignment and Deep Review consume the phase-012 shared contract with mode configuration and typed event mappings, not two divergent reducer or convergence implementations |
 | REQ-007 | Replay incompatibility fails closed | Unknown event or authority versions, missing sequence links, invalid fingerprints, expired or mixed authority material, impossible transitions, and projection-version mismatches produce an explicit blocked/error result with no partial-success claim |
 | REQ-008 | The migration can prove parity before authority changes | A shadow replay compares lane projections, coverage, verdicts, artifact references, and status transitions against frozen legacy Deep Alignment fixtures; discrepancies remain observable and non-authoritative |
 | REQ-009 | Verify-first evidence remains independently replayable | A finding cannot become blocking from detector output alone; the projection retains the authority snapshot, applicability decision, subject-bound observation, live re-probe receipt, verifier identity, and final adjudication as separate facts |
@@ -96,7 +96,7 @@ The research inputs sharpen this boundary. The shared findings registry requires
 
 - **SC-001**: The phase plan defines a pure Deep Alignment fold whose identical typed event sequence produces an identical semantic projection and fingerprint.
 - **SC-002**: The lane iteration/convergence, artifact and evidence index, per-mode status, and derived verdict projections have explicit ownership, inputs, invariants, and failure behavior.
-- **SC-003**: Deep Alignment consumes the shared phase-009 review-loop contract and demonstrates reducer-shape parity with Deep Review without copying a mode-specific fork.
+- **SC-003**: Deep Alignment consumes the shared phase-012 review-loop contract and demonstrates reducer-shape parity with Deep Review without copying a mode-specific fork.
 - **SC-004**: Replay fixtures cover normal multi-lane completion, unresolved applicability, `not_applicable`, known deviations, late re-probes, duplicate events, invalid authority material, schema mismatch, and projection drift; all invalid cases fail closed.
 - **SC-005**: Shadow parity is measurable against the legacy Deep Alignment path while the ledger remains additive, dark, read-only, and non-authoritative.
 <!-- /ANCHOR:success-criteria -->
@@ -106,7 +106,7 @@ The research inputs sharpen this boundary. The shared findings registry requires
 
 The phase inherits the 065 program risks: live in-flight state, additive-dark migration, replay compatibility, shared write-set ownership, and staged authority cutover. Phase-specific risks are that authority or verifier changes leak into replay, event order or object serialization leaks into state, a broken discovery denominator reports perfect coverage, known deviations erase raw failures, `not_applicable` becomes pass, late re-probes change prior facts, the artifact index mutates immutable evidence, or Deep Alignment diverges from Deep Review's shared loop contract.
 
-The reducer consumes the typed ledger contract from `001-typed-ledger-schema`, the shared review-loop contract frozen in phase 009, the write-set conflict graph from the 013 parent, and legacy Deep Alignment replay fixtures. `003-sealed-artifacts` supplies the later sealing boundary but is an adjacency reference, not a runtime dependency of this planning contract. The findings registries supply the five-role separation, authority-validity gate, applicability-first evaluation, observable deviation overlay, cross-epoch compatibility, and proof-carrying finding requirements. No authority cutover is permitted from this phase.
+The reducer consumes the typed ledger contract from `001-typed-ledger-schema`, the shared review-loop contract frozen in phase 012, the write-set conflict graph from the 013 parent, and legacy Deep Alignment replay fixtures. `003-sealed-artifacts` supplies the later sealing boundary but is an adjacency reference, not a runtime dependency of this planning contract. The findings registries supply the five-role separation, authority-validity gate, applicability-first evaluation, observable deviation overlay, cross-epoch compatibility, and proof-carrying finding requirements. No authority cutover is permitted from this phase.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

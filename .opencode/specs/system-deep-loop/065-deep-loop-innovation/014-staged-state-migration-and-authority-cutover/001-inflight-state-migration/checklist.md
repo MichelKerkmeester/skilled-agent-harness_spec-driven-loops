@@ -1,6 +1,6 @@
 ---
 title: "Checklist: In-Flight State Migration"
-description: "Checklist for the first phase-011 sibling: verify guarded, integrity-checked, fenced, atomic, resumable, and fail-closed migration of classified in-flight deep-loop state."
+description: "Checklist for the first phase-014 sibling: verify guarded, integrity-checked, fenced, atomic, resumable, and fail-closed migration of classified in-flight deep-loop state."
 trigger_phrases:
   - "in-flight state migration checklist"
   - "deep-loop migration verification"
@@ -33,14 +33,14 @@ This checklist is the blocking SOL verifier contract for the in-flight migration
 the frozen classification-manifest digest and the migration handoff report; the report records operation receipts,
 source/output digests, fence tokens, crash points, rollback anchors, commands, exit codes, and the final blocked/pinned
 row counts. The verifier fails on duplicate logical migration, unsafe committed state, missing evidence, or any mutation
-that bypasses the phase-004 fence.
+that bypasses the phase-007 fence.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-000 census and phase-005 classification manifest are frozen, digest-addressed, total, and available to the coordinator
-- [ ] CHK-002 [P0] The phase-004 canonical resource key, durable monotonic fence, atomic mutation boundary, and lease-loss result are available to every protected write
+- [ ] CHK-001 [P0] The phase-003 census and phase-008 classification manifest are frozen, digest-addressed, total, and available to the coordinator
+- [ ] CHK-002 [P0] The phase-007 canonical resource key, durable monotonic fence, atomic mutation boundary, and lease-loss result are available to every protected write
 - [ ] CHK-003 [P1] Migration receipt, idempotency key, commit marker, rollback anchor, and successor handoff schemas are frozen before live-state execution
 <!-- /ANCHOR:pre-impl -->
 
@@ -57,7 +57,7 @@ that bypasses the phase-004 fence.
 
 - [ ] CHK-007 [P0] One-row/one-receipt coverage passes for all eligible classification rows with zero duplicate or unsafe committed outcomes
 - [ ] CHK-008 [P0] Digest, authority epoch, lease, pending-effect, prerequisite, or rollback-anchor drift returns `BLOCK` before mutation
-- [ ] CHK-009 [P0] Stale phase-004 fence tokens are rejected after takeover, including writes attempted by a resumed old process
+- [ ] CHK-009 [P0] Stale phase-007 fence tokens are rejected after takeover, including writes attempted by a resumed old process
 - [ ] CHK-010 [P0] `UPCAST` preserves source bytes, immutable identity, ordering, and replay-equivalent effective state
 - [ ] CHK-011 [P0] `FORK` uses isolated execution/effect namespaces and rejects source mutation, live effects, budget writes, and authority changes
 - [ ] CHK-012 [P0] `MIGRATE` accepts only complete quiescent checkpoints, verifies ledger equivalence, preserves a legacy restore anchor, and retries idempotently
@@ -106,5 +106,5 @@ or stale evidence before deciding authority movement.
 ## Sign-off
 
 Signed off when the SOL verifier confirms the P0 migration contract, the fault-injection matrix is green, no protected
-write bypasses the phase-004 fence, and the handoff contains no live unsafe migration or unresolved evidence gap.
+write bypasses the phase-007 fence, and the handoff contains no live unsafe migration or unresolved evidence gap.
 <!-- /ANCHOR:sign-off -->

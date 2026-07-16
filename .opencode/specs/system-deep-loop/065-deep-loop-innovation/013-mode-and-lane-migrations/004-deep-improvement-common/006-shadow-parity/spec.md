@@ -43,7 +43,7 @@ _memory:
 | **Owner skill** | system-deep-loop (Deep Improvement Common Services) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 004; sixth child of the shared Deep Improvement Common Services migration |
 | **Child depends_on** | `[]` |
-| **Inputs** | Phase-011 health and degeneration shadow framework; siblings `001-typed-ledger-schema` through `005-resume-adapter`; parent phase plan; 065/002 findings registries |
+| **Inputs** | Phase-014 health and degeneration shadow framework; siblings `001-typed-ledger-schema` through `005-resume-adapter`; parent phase plan; 065/002 findings registries |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -62,7 +62,7 @@ ledger events, folds both into comparable projections, and records immutable mis
 must preserve raw evaluator observations, score-normalization versions, canary lifecycle, promotion evidence, external
 authorization references, receipts, and rollback targets. A terminal aggregate alone is not parity.
 
-The harness consumes the generic phase-011 health and degeneration shadow framework for coherent observations, telemetry-gap
+The harness consumes the generic phase-014 health and degeneration shadow framework for coherent observations, telemetry-gap
 handling, recovery hysteresis, and non-authoritative action requests. It does not redefine health thresholds, implement a
 second cycle detector, authorize a stop, dispatch a candidate, or cut authority. It owns the shared evaluator, canary, and
 promotion parity contract that `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` reuse. Their later
@@ -86,7 +86,7 @@ mode migrations consume this one source rather than defining variant-specific sh
   projection, evaluator-integrity, canary, promotion, and telemetry-gap differences, with a typed evidence receipt for each.
 - Shared evaluator, canary, and promotion probes that compare raw observations before normalization and compare guarded
   decisions without allowing the shadow path to mutate evaluator assets, hidden fixtures, baselines, or production state.
-- Integration with the phase-011 shadow framework for health observations, `telemetry_gap`, `not_evaluable`, degeneration
+- Integration with the phase-014 shadow framework for health observations, `telemetry_gap`, `not_evaluable`, degeneration
   signals, recovery evidence, and action requests that remain observations until a later authorization boundary.
 - A fixture matrix covering healthy progress, candidate rejection, score-policy changes, evaluator epoch changes, canary leak
   and drift, promotion veto, inconclusive evidence, rollback target preservation, resume/replay, duplicate delivery, missing
@@ -97,7 +97,7 @@ mode migrations consume this one source rather than defining variant-specific sh
 ### Out of Scope
 - Defining the typed event vocabulary, reducer ownership, projection schema, sealed-artifact format, certificate format, or
   resume classification; those remain owned by siblings `001` through `005`.
-- Reimplementing the phase-003 ledger, transition-authorization gateway, receipts, typed budgets, locks, or other shared
+- Reimplementing the phase-006 ledger, transition-authorization gateway, receipts, typed budgets, locks, or other shared
   substrate services. The harness calls their declared ports and verifies their references.
 - Selecting evaluator rubrics, production thresholds, canary contents, promotion policy, or health thresholds. The harness
   compares versioned policy identities and consumes the phase owners' decisions.
@@ -119,7 +119,7 @@ mode migrations consume this one source rather than defining variant-specific sh
 | REQ-004 | Raw evaluator evidence survives parity comparison | Raw observations, fixture identity, evaluator capsule/epoch, judge family, seed, raw scale, rationale digest, normalization version, cost, and latency remain addressable; a later score policy cannot erase parity evidence |
 | REQ-005 | Canary and promotion parity is guarded and non-authoritative | Canary leak, drift, invariant failure, inconclusive, veto, pause, abort, baseline-restore, and promotion decisions match with external authorization references; shadow output cannot authorize or mutate a promotion |
 | REQ-006 | Mismatches fail closed and produce typed evidence | Any missing input, stale watermark, unsupported version, unauthorized event, evaluator-integrity failure, projection drift, or ambiguous mapping blocks the parity report and names the mismatch class and evidence refs |
-| REQ-007 | Phase-011 health shadow integration remains observation-only | Health observations use coherent cursors and policy digests; `telemetry_gap` and `not_evaluable` are never treated as healthy; action requests do not stop, dispatch, cancel, or alter authority |
+| REQ-007 | Phase-014 health shadow integration remains observation-only | Health observations use coherent cursors and policy digests; `telemetry_gap` and `not_evaluable` are never treated as healthy; action requests do not stop, dispatch, cancel, or alter authority |
 | REQ-008 | The gate is deterministic, replayable, and reusable by all three variants | Replaying a captured pair yields the same event matches, projection hashes, mismatch identities, and acceptance result; the shared fixtures pass for agent, model-benchmark, and skill-benchmark extensions |
 <!-- /ANCHOR:requirements -->
 
@@ -150,7 +150,7 @@ variant fixture set:
   no telemetry gap, stale watermark, or non-evaluable boundary may be counted as a pass.
 - **Replay parity**: captured pairs replay deterministically with identical match identities, projection fingerprints, mismatch
   classifications, and final verdict; duplicate delivery is idempotent.
-- **Framework parity**: phase-011 health observations and recovery signals use the same coherent evidence boundary, while all
+- **Framework parity**: phase-014 health observations and recovery signals use the same coherent evidence boundary, while all
   pause, re-seed, quarantine, repair, and stop requests remain non-authoritative.
 - **Operational safety**: the typed path performs no authority write, candidate dispatch, evaluator mutation, hidden-fixture
   disclosure, baseline mutation, or legacy-writer bypass during shadow execution.
@@ -166,7 +166,7 @@ later mode gate may consume a passing report, but this child never issues a cuto
 - **SC-002**: Event-for-event comparison reports zero missing, extra, reordered, unauthorized, unsupported, or unexplained protected-field differences across the required corpus.
 - **SC-003**: Projection snapshots match at every boundary for lineage, evaluator, score, canary, promotion, receipt, budget, rollback, and terminal fields; final-only equality is insufficient.
 - **SC-004**: Raw observations and evaluator/canary/promotion evidence remain addressable across normalization-policy changes and replay without mutation or loss.
-- **SC-005**: Phase-011 health and degeneration shadow outputs are coherent, fail closed on data gaps, and never alter legacy stop, dispatch, budget, or authority behavior.
+- **SC-005**: Phase-014 health and degeneration shadow outputs are coherent, fail closed on data gaps, and never alter legacy stop, dispatch, budget, or authority behavior.
 - **SC-006**: A shared parity report and mismatch taxonomy are reusable unchanged by `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`.
 - **SC-007**: The acceptance report is a hard prerequisite for the later common mode gate; no parity result is treated as authority-cutover approval.
 
@@ -179,7 +179,7 @@ the source-to-target policy path is visible, and incomparable projections return
 **Given** a canary veto, evaluator-integrity failure, or promotion denial occurs, **When** shadow parity evaluates the decision,
 **Then** both paths expose the same protected disposition and the typed path cannot authorize a state transition.
 
-**Given** phase-011 reports degeneration or missing telemetry, **When** the shadow harness consumes the observation, **Then** it
+**Given** phase-014 reports degeneration or missing telemetry, **When** the shadow harness consumes the observation, **Then** it
 records the same evidence boundary and leaves all action authority with the shared gateway and later cutover contract.
 <!-- /ANCHOR:success-criteria -->
 
@@ -194,7 +194,7 @@ records the same evidence boundary and leaves all action authority with the shar
   or promotion vetoes. Mitigation: compare projection snapshots after every event boundary.
 - **Evaluator or canary leakage** - shadow instrumentation could expose hidden fixtures or mutate the evaluator boundary. Mitigation:
   use sealed references and receipts, keep the evaluator outside the mutable candidate surface, and test disclosure/mutation attempts.
-- **Health framework drift** - phase-011 policy or adapter changes can make the two paths observe different watermarks. Mitigation:
+- **Health framework drift** - phase-014 policy or adapter changes can make the two paths observe different watermarks. Mitigation:
   bind observations to policy and adapter digests, classify stale or missing inputs as blocking, and never infer health.
 - **Shared-service divergence** - a downstream variant could fork comparator rules or quietly weaken promotion evidence. Mitigation:
   publish one common harness contract, require namespaced extensions, and run the same fixture matrix for all three variants.
@@ -203,7 +203,7 @@ records the same evidence boundary and leaves all action authority with the shar
 - **Cost and double execution** - shadowing doubles evaluator and canary work. Mitigation: typed budgets, bounded fixtures,
   deterministic replay where safe, and an explicit disable switch that retains evidence without changing legacy behavior.
 
-Dependencies are the parent program's typed ledger and compatibility model, the phase-011 health and degeneration shadow
+Dependencies are the parent program's typed ledger and compatibility model, the phase-014 health and degeneration shadow
 framework, siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`, `004-certificates-and-receipts`,
 and `005-resume-adapter`, the phase-012 shared mode contracts and write-set conflict graph, and the two 065/002 findings
 registries. The successor `007-rollback-and-mode-gate` consumes the passing parity report; the three downstream variants reuse
@@ -225,5 +225,5 @@ the common harness after the shared contracts are frozen.
   external side effect and the typed path is required to remain observational?
 
 These decisions are resolved while freezing the comparator, normalization manifest, fixture corpus, and parity report schema.
-They cannot authorize authority movement, replace phase-011 health policy, or move rollback ownership into this child.
+They cannot authorize authority movement, replace phase-014 health policy, or move rollback ownership into this child.
 <!-- /ANCHOR:questions -->

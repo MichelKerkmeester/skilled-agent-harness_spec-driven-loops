@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Health & Degeneration Harness (008 phase 005)"
-description: "Implementation Plan for phase 005 of the convergence-termination-and-health program: a generic monitor for mode collapse, repetition, novelty starvation, quality decay, budget thrash, and unusable health inputs."
+title: "Implementation Plan: Health & Degeneration Harness"
+description: "Implementation Plan for phase 008 of the convergence-termination-and-health program: a generic monitor for mode collapse, repetition, novelty starvation, quality decay, budget thrash, and unusable health inputs."
 trigger_phrases:
   - "health and degeneration harness implementation plan"
   - "deep-loop health signal implementation"
@@ -36,7 +36,7 @@ _memory:
 | **Execution** | Isolated worktree pinned to the phase baseline; no authority cutover in this phase |
 
 ### Overview
-The harness is a shared monitor over durable ledger and projection evidence. It consumes phase-007 gauges and projection
+The harness is a shared monitor over durable ledger and projection evidence. It consumes phase-010 gauges and projection
 watermarks, sibling 002 cycle events, fan-in/result receipts, VOC allocation decisions, typed budget activity, and
 mode-adapter quality evidence. It emits replayable health observations, individual signals, aggregate health state, and
 non-authoritative response requests. It must identify when the loop is going bad without reducing health to output count,
@@ -51,7 +51,7 @@ shadow calibration, and the shared mode contract are complete.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The authorized event/projection boundary and phase-007 gauge versions are available at one coherent watermark
+- [ ] The authorized event/projection boundary and phase-010 gauge versions are available at one coherent watermark
 - [ ] Sibling `002-cycle-detection` event schema and progress verdict are registered as an input, not reimplemented
 - [ ] Every supported mode has an adapter manifest for novelty, independent evidence, quality, frontier eligibility, and cost/yield fields
 - [ ] The initial health policy records windows, minimum samples, thresholds, hysteresis, cooldown, and a policy digest
@@ -68,7 +68,7 @@ shadow calibration, and the shared mode contract are complete.
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Observation boundary**: accept only an authorized ledger prefix, one phase-007 projection watermark, and a completed
+- **Observation boundary**: accept only an authorized ledger prefix, one phase-010 projection watermark, and a completed
   attempt or durable state transition. Reject mixed cursors, stale projection generations, sequence gaps, unknown reducer
   versions, and conflicting hashes.
 - **Mode adapter registry**: map each mode to a shared schema for semantic community/fingerprint, novelty and independent
@@ -118,7 +118,7 @@ and separation between signal evidence and action authority.
 
 ### Phase 1: Setup
 - Confirm the target worktree is clean and pinned to the phase baseline; verify that only the target runtime surface is in scope.
-- Register the source schemas and digests for the authorized ledger, phase-007 transactional projections/gauges,
+- Register the source schemas and digests for the authorized ledger, phase-010 transactional projections/gauges,
   `002-cycle-detection`, fan-in/result receipts, VOC decisions, and typed budget events.
 - Build the mode-adapter matrix and state which fields are unavailable, optional, or required for each of the eight
   workstreams; an unregistered or incomplete adapter must fail closed.
@@ -173,15 +173,15 @@ and separation between signal evidence and action authority.
 | REQ-013 | Watermark gaps, stale generations, unknown reducers, conflicting hashes, missing baselines, and non-monotonic cursors never return `healthy` |
 | REQ-014 | Simultaneous signal fixtures produce stable individual records and aggregate state under input reordering |
 | REQ-015 | Retention and trace-size limits bound state without changing the replay result for the retained decision window |
-| REQ-016 | Verifier output cites sibling 002, phase-007 gauges, `research-modes.md`, and `manifest/phase-tree.json` |
+| REQ-016 | Verifier output cites sibling 002, phase-010 gauges, `research-modes.md`, and `manifest/phase-tree.json` |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 The planning contract is independent (`depends_on: []`), but runtime implementation consumes the transition-authorized
-ledger and replay identity, phase-004 receipts/budgets/gauges, phase-006 durable fan-in and result receipts, phase-007
-transactional projections and gauges, and phase-008 siblings 001-004. The direct input contracts that must be pinned before
+ledger and replay identity, phase-007 receipts/budgets/gauges, phase-009 durable fan-in and result receipts, phase-010
+transactional projections and gauges, and phase-011 siblings 001-004. The direct input contracts that must be pinned before
 implementation are:
 
 - `011-convergence-termination-and-health/002-cycle-detection/spec.md` for cycle evidence and progress-gated repetition.
@@ -192,7 +192,7 @@ implementation are:
 - `065-deep-loop-innovation/manifest/phase-tree.json` for phase outcome, sequencing, and the explicit `depends_on`
   entry.
 
-The phase-009 shared mode contract must receive the adapter and action-request boundary. The later migration and cutover
+The phase-012 shared mode contract must receive the adapter and action-request boundary. The later migration and cutover
 phases own authority, compatibility, rollback windows, and legacy retirement; this plan must not pull those decisions forward.
 <!-- /ANCHOR:dependencies -->
 
@@ -206,6 +206,6 @@ action request is executed after the consumer is disabled.
 
 If a policy or adapter version is invalid, quarantine that version, emit `telemetry_gap`/`not_evaluable`, and replay from the
 last verified watermark after the source contract is corrected. Do not delete source ledger records, rewrite cycle evidence,
-erase budget receipts, or alter phase-007 gauge history. A later authority cutover requires its own rollback window and is not
+erase budget receipts, or alter phase-010 gauge history. A later authority cutover requires its own rollback window and is not
 part of this phase.
 <!-- /ANCHOR:rollback -->

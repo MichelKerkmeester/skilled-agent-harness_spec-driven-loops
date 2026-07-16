@@ -40,7 +40,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm `002-reducers-and-projections` freezes treatment-cell, artifact-reference, gold-policy, and projection inputs
-- [ ] T002 Read the shared phase-003 sealing primitive and record canonicalization, digest, dependency, seal-on-write, publication, lifecycle, and verification semantics
+- [ ] T002 Read the shared phase-006 sealing primitive and record canonicalization, digest, dependency, seal-on-write, publication, lifecycle, and verification semantics
 - [ ] T003 Read deep-improvement-common mode-004 contracts for evaluator capsules, canary epochs, replay, budgets, receipts, visibility, and common read failures
 - [ ] T004 Build the artifact field and dependency matrix for design, bundle, scenario/gold, assignment, exposure, scoring, and certificate-input references
 - [ ] T005 Define ownership boundaries with the reducer sibling, common services, `004-certificates-and-receipts`, and the shared transition-authorized ledger
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 [P] Define the single phase-003-backed Skill Benchmark sealing adapter, typed reference, dependency manifest, lifecycle, visibility, and verification result
+- [ ] T007 [P] Define the single phase-006-backed Skill Benchmark sealing adapter, typed reference, dependency manifest, lifecycle, visibility, and verification result
 - [ ] T008 [P] Define canonical serialization and digest coverage for treatment designs, skill bundles, resource closures, scenario/gold manifests, assignments, observations, and certificate inputs
 - [ ] T009 Define seal-on-write validation, atomic publication, read-back verification, incomplete-write handling, and immutable overwrite refusal through the shared primitive
 - [ ] T010 Define the randomized off/auto/forced/placebo/distractor/ablation treatment lattice with seed, replicate, blocking, propensity, and paired-cell identity

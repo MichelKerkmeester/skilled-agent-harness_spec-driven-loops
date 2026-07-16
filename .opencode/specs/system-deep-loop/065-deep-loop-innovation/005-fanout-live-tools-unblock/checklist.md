@@ -1,5 +1,5 @@
 ---
-title: "Checklist: fan-out live-tools unblock (065/006 phase 002)"
+title: "Checklist: fan-out live-tools unblock"
 description: "Blocking verification contract for live cli-codex dispatch, fail-closed capability validation, deterministic manifest expansion, legacy parity, and the dispatch-only persistence boundary."
 trigger_phrases:
   - "fan-out live-tools checklist"
@@ -28,13 +28,13 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 002. Every item remains unchecked while the phase is Planned. The implementation verifier records the candidate SHA, phase-001 dependency SHA, exact commands and exit codes, matrix row counts, expanded logical IDs, spawn-sentinel evidence, and legacy artifact hashes. Any unsupported live-search request that reaches a worker, any legacy behavior drift, or any canonical persistence-shape change fails the phase.
+This checklist is the blocking verifier contract for phase 005. Every item remains unchecked while the phase is Planned. The implementation verifier records the candidate SHA, phase-004 dependency SHA, exact commands and exit codes, matrix row counts, expanded logical IDs, spawn-sentinel evidence, and legacy artifact hashes. Any unsupported live-search request that reaches a worker, any legacy behavior drift, or any canonical persistence-shape change fails the phase.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 001 is complete and the executor/transition vocabulary used by this phase is pinned to its exact SHA
+- [ ] CHK-001 [P0] Phase 004 is complete and the executor/transition vocabulary used by this phase is pinned to its exact SHA
 - [ ] CHK-002 [P0] Current `executor-config.vitest.ts` and `fanout-run.vitest.ts` baselines pass before implementation
 - [ ] CHK-003 [P1] Baseline evidence captures legacy config normalization, count expansion, cli-codex argv, pool events, summary shape, and lineage artifact paths
 <!-- /ANCHOR:pre-impl -->
@@ -70,7 +70,7 @@ This checklist is the blocking verifier contract for phase 002. Every item remai
 
 - [ ] CHK-020 [P0] Consumer inventory covers config parsing, lineage expansion, command construction, dispatch environment, pool input, tests, and runtime feature documentation
 - [ ] CHK-021 [P0] The implementation changes only the missing live-tools and manifest dispatch path; it does not rewrite the scheduler or reducer
-- [ ] CHK-022 [P1] Phase 006 handoff records the returned invocation fingerprint and stable logical IDs without prematurely adding durable state here
+- [ ] CHK-022 [P1] Phase 009 handoff records the returned invocation fingerprint and stable logical IDs without prematurely adding durable state here
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->

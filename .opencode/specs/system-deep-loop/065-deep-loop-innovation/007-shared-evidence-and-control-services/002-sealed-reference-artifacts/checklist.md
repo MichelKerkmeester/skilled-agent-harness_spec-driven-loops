@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Sealed Reference Artifacts (004 phase 002)"
+title: "Checklist: Sealed Reference Artifacts"
 description: "Blocking verification checklist for immutable sealing, digest-addressed reads, replay binding, shadow-input parity, and conservative artifact retention."
 trigger_phrases:
   - "sealed reference artifacts checklist"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 004 child 002. Execution evidence must pin the candidate
+This checklist is the blocking verifier contract for phase 007 child 002. Execution evidence must pin the candidate
 SHA, descriptor/canonicalization versions, digest algorithm, artifact-kind matrix, fixture corpus, commands and exit
 codes, and retained/deleted discovery counts. Verification fails on zero fixtures, unverified byte release, mutable-only
 input acceptance, silent rebaseline, incomplete reachability sweep, or unexpected tracked mutation.
@@ -37,9 +37,9 @@ input acceptance, silent rebaseline, incomplete reachability sweep, or unexpecte
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-000 census identifies artifact kinds, mutable input sources, protected replay roots, rollback holds, and archival requirements
+- [ ] CHK-001 [P0] The phase-003 census identifies artifact kinds, mutable input sources, protected replay roots, rollback holds, and archival requirements
 - [ ] CHK-002 [P0] Seal descriptor, canonicalization registry, digest grammar, typed errors, reference-set order, and lifecycle contract are frozen before publication code lands
-- [ ] CHK-003 [P1] The integration boundary cites the phase-001 sealed-artifact primitive, phase-003 fingerprints, phase-005 parity, and the phase-tree manifest
+- [ ] CHK-003 [P1] The integration boundary cites the phase-004 sealed-artifact primitive, phase-006 fingerprints, phase-008 parity, and the phase-tree manifest
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -59,8 +59,8 @@ input acceptance, silent rebaseline, incomplete reachability sweep, or unexpecte
 - [ ] CHK-010 [P0] Path-only, alias-only, tag-only, `latest`, malformed, unsupported-algorithm, and unsupported-canonicalization references are rejected before execution
 - [ ] CHK-011 [P0] Missing, changed, truncated, substituted, wrong-kind, wrong-size, descriptor-drifted, or corrupted objects release zero bytes and return a typed failure
 - [ ] CHK-012 [P0] The exact bytes returned by verified read are the bytes hashed, closing time-of-check/time-of-use substitution paths
-- [ ] CHK-013 [P0] Phase-003 fingerprints commit ordered artifact digests and descriptor versions; changed order, digest, version, or verification state changes or blocks the fingerprint
-- [ ] CHK-014 [P0] Phase-005 parity refuses comparison unless legacy and dark paths cite the same verified artifact-reference set
+- [ ] CHK-013 [P0] Phase-006 fingerprints commit ordered artifact digests and descriptor versions; changed order, digest, version, or verification state changes or blocks the fingerprint
+- [ ] CHK-014 [P0] Phase-008 parity refuses comparison unless legacy and dark paths cite the same verified artifact-reference set
 - [ ] CHK-015 [P0] Same sealed inputs plus the same registered replay contract reproduce byte-identical effective events and projections; mismatch evidence never becomes a new baseline
 - [ ] CHK-016 [P0] Reachability marks live runs, fingerprints, receipts/certificates, rollback windows, archival readers, and explicit holds; incomplete scans retain every candidate
 - [ ] CHK-017 [P0] Sweep deletes only complete-mark, horizon-expired, unheld objects and emits a durable deletion receipt plus a typed tombstone read result
@@ -98,7 +98,7 @@ input acceptance, silent rebaseline, incomplete reachability sweep, or unexpecte
 ## Verification Summary
 
 The phase is complete when every P0 verifier check passes, canonicalization and verified-read matrices are non-empty,
-the phase-003 fingerprint and phase-005 parity gates consume the same verified reference set, retention keeps every
+the phase-006 fingerprint and phase-008 parity gates consume the same verified reference set, retention keeps every
 protected root, sweep evidence is auditable, and legacy authority remains unchanged.
 <!-- /ANCHOR:summary -->
 

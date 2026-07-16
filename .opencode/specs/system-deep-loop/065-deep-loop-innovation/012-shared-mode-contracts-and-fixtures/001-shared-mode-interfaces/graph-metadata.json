@@ -13,14 +13,14 @@
     "trigger_phrases": [
       "shared mode interfaces",
       "deep-loop mode contract",
-      "phase 009 mode interface",
+      "phase 012 mode interface",
       "typed mode migration contract",
       "shared mode interfaces implementation plan",
       "deep-loop mode contract plan",
-      "phase 009 typed interface plan",
+      "phase 012 typed interface plan",
       "shared mode interfaces tasks",
       "deep-loop mode contract tasks",
-      "phase 009 interface fixture tasks",
+      "phase 012 interface fixture tasks",
       "shared mode interfaces checklist",
       "deep-loop mode contract verification"
     ],
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Freeze the typed contract that every phase-010 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence services, and resume path before any per-mode migration begins.",
-    "created_at": "2026-07-15T19:00:43.572Z",
-    "last_save_at": "2026-07-15T19:00:43.572Z",
+    "causal_summary": "Freeze the typed contract that every phase-013 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence services, and resume path before any per-mode migration begins.",
+    "created_at": "2026-07-16T03:43:53.994Z",
+    "last_save_at": "2026-07-16T03:43:53.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:23bde093b15ef4c3e93025d8cfa034f10bb271bf8d88cd9a7d528f4f0533212f",
+    "source_fingerprint": "sha256:1c8e06705525a7827446f5d7f8e8b1aec013f3d40bbd600b071ca1561ac55073",
     "source_doc_hashes": {
-      "spec.md": "1ae325f1dc44c3dddaf288880204fe7b651ae0346c5d591195be061969e24dfc",
-      "plan.md": "eb265ca73ad3b57425c245183bec66045eb208ae76c477a46f7d849761221742",
-      "tasks.md": "162cee4da9c473ead7c343f0b77afcb27b5c1ab3b6e7a29bcb0aad48e9a02ee2",
-      "checklist.md": "43a213b53917f2f7cfaa9aaa571441bc9da472a974b5e86f0ed874743ce95321"
+      "spec.md": "ffd50630cf0a0292ab3ac0f0c72e1418962235f4e891c2e16f1d55ea1bd6d218",
+      "plan.md": "232c07c6967c5e95894ad36017cb04df623694709ff4b9f310b17d55ec4833e4",
+      "tasks.md": "6b65e4addf62cc42731bc30c2ae59df295a2061f8372bb45a421dbeeb8af3614",
+      "checklist.md": "a00c26b0a85720137b8cfcdca85507475ff7de97da2a9074ee06c32448ed3eaf"
     },
     "last_active_child_id": null,
     "last_active_at": null

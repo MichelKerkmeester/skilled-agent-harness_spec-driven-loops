@@ -29,7 +29,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking shadow-parity verifier contract for Agent Improvement phase 006. Every item is a check the paired
+This checklist is the blocking shadow-parity verifier contract for Agent Improvement phase 009. Every item is a check the paired
 verifier runs before parity evidence can be handed to `007-rollback-and-mode-gate`; each report pins BASE, mode and common-service
 versions, AgentIR and evaluator digests, fixture IDs, both stream digests, projection fingerprints, commands, exit codes, coverage
 counts, mismatch counts, and zero-authority-write evidence. `MISMATCH`, `INCONCLUSIVE`, `TELEMETRY_GAP`, `INSUFFICIENT_EVIDENCE`,
@@ -39,7 +39,7 @@ or zero eligible boundaries is a failed gate, not an implicit pass.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-012 shared mode-contract digest, phase-011 shadow-framework interface, parent compatibility bridge, and mode 004 common-service contract are pinned in the candidate report
+- [ ] CHK-001 [P0] The phase-012 shared mode-contract digest, phase-014 shadow-framework interface, parent compatibility bridge, and mode 004 common-service contract are pinned in the candidate report
 - [ ] CHK-002 [P0] The legacy Agent Improvement boundaries are inventoried for AgentIR/package compilation, proposal, mutation, lineage, scoring, raw trials, family stability, frontier, resume, and promotion preparation
 - [ ] CHK-003 [P1] BASE, candidate and baseline digests, inheritance graph, evaluator capsule and epoch, fixture rings, executor/environment descriptors, input state, budget lease, fixture IDs, and output paths are frozen before dual execution
 - [ ] CHK-004 [P1] The canonical event tuple, protected AgentIR and projection fields, diff taxonomy, common-service references, receipt schema, and volatility allowlist are reviewed before any difference is classified as tolerated

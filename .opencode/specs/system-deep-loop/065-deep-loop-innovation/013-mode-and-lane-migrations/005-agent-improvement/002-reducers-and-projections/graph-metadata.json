@@ -190,8 +190,8 @@
       }
     ],
     "causal_summary": "Define the pure Agent Improvement fold and its three live projection families: iteration/convergence state, a",
-    "created_at": "2026-07-15T21:44:36.643Z",
-    "last_save_at": "2026-07-15T21:44:36.643Z",
+    "created_at": "2026-07-16T03:43:37.764Z",
+    "last_save_at": "2026-07-16T03:43:37.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,9 +200,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:30a93bd496186492070ea8b7ff0f46029f513493cc83e2c7c8dd374ac82f9a98",
+    "source_fingerprint": "sha256:b71d22b8d5feda01ec3148030695befa79184088c83c85fd11c5fec94aab0ced",
     "source_doc_hashes": {
-      "spec.md": "04f838b825e44a93f4741a43f03edb053b135f12de181d5dde3d1db338ccdc92",
+      "spec.md": "ca9c395f3d4a5c97cb1a2837aefe888ea57eab93cfcb3cae93030e2e4734b497",
       "plan.md": "9db20da4cef12b64e59ed9519fc274480f88a66a9fd255fd29e66be4f35abdb4",
       "tasks.md": "732c08721313aabfb84adcaeadbce7631805bc6f95bd6c92fb70f91a1bdad0bf",
       "checklist.md": "d312da6eaed4d12c1aa225f31318dab9b7c01bd85b4c5b79f51f45ed169c845b"

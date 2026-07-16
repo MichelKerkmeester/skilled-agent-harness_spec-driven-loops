@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep AI Council resume adapter (013 phase 005)"
+title: "Implementation Plan: Deep AI Council resume adapter"
 description: "Implementation Plan for the Deep AI Council resume adapter: sealed-ledger reduction, continuity-ladder projection, crash recovery, and idempotent re-entry across deliberation, critique, convergence, artifact, and council-gate stages."
 trigger_phrases:
   - "Deep AI Council resume adapter implementation plan"

@@ -18,7 +18,7 @@
   "derived": {
     "trigger_phrases": [
       "convergence termination and health",
-      "deep-loop phase 008",
+      "deep-loop phase 011",
       "path-covering loop termination"
     ],
     "key_topics": [
@@ -107,16 +107,16 @@
       }
     ],
     "causal_summary": "The current convergence anchor is council-specific and threshold-based. This phase defines five child contracts that replace count-based stopping with path coverage, cycle detection, independent stopping clocks, value-of-computation allocation, and generic cross-mode health signals.",
-    "created_at": "2026-07-15T19:00:49.069Z",
-    "last_save_at": "2026-07-15T19:00:49.069Z",
+    "created_at": "2026-07-16T03:43:59.896Z",
+    "last_save_at": "2026-07-16T03:43:59.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1c54693f0cf6c6464a70427e88eece4221aa0252463f1576305bc006443ebe3e",
+    "source_fingerprint": "sha256:8e323bdc4f0ccf6f20df7ef13abb05d1faf524c0d84ab3af38b835cebed9d875",
     "source_doc_hashes": {
-      "spec.md": "452101e363d473cc377d2012b1e854be5b36ee42d1c139e87d3fd9ddac182b7a"
+      "spec.md": "0cbe018af14d41b76fd447eb603aaa341e58aebad26375a89f5a9789313dbd53"
     },
     "last_active_child_id": null,
     "last_active_at": null

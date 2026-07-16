@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Conditional Budget-Aware Fan-in (006 phase 004)"
+title: "Checklist: Conditional Budget-Aware Fan-in"
 description: "Blocking verifier contract for conditional fan-in sufficiency, typed budget floors, cancellation and salvage, replay determinism, and immutable reduction inputs."
 trigger_phrases:
   - "conditional budget-aware fan-in checklist"
@@ -78,7 +78,7 @@ spend settlement, or late-result input drift fail the phase.
 ## Fix Completeness
 
 - [ ] CHK-025 [P1] Every requirement maps to a named fixture and every fan-in decision field is asserted in replay or race coverage
-- [ ] CHK-026 [P1] The implementation cites and conforms to the phase-004 typed-budget spec, current \`fanout-run.cjs\`, and \`manifest/phase-tree.json\`
+- [ ] CHK-026 [P1] The implementation cites and conforms to the phase-007 typed-budget spec, current \`fanout-run.cjs\`, and \`manifest/phase-tree.json\`
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->

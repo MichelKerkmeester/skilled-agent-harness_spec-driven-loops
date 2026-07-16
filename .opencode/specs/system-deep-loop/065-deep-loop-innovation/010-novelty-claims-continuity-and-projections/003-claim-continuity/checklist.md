@@ -1,6 +1,6 @@
 ---
-title: "Checklist: claim continuity (007 phase 003)"
-description: "Blocking verification checklist for stable claim identity, lifecycle status folding, replay parity, and resume continuity in phase 007 child 003."
+title: "Checklist: claim continuity"
+description: "Blocking verification checklist for stable claim identity, lifecycle status folding, replay parity, and resume continuity in phase 010 child 003."
 trigger_phrases:
   - "claim continuity checklist"
   - "stable claim lifecycle checklist"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 007 child 003. Every item remains pending while the phase is Planned.
+This checklist is the blocking verifier contract for phase 010 child 003. Every item remains pending while the phase is Planned.
 At implementation time, the verifier pins the candidate SHA, substrate contract versions, match/reducer policy versions, fixture
 corpus hash, replay fingerprint, commands, exit codes, case counts, and projection hashes. Zero discovered fixtures, silent
 ambiguity resolution, unexpected tracked mutation, or any legacy-authority change fails the phase.
@@ -37,7 +37,7 @@ ambiguity resolution, unexpected tracked mutation, or any legacy-authority chang
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-003 ledger/replay and phase-004 continuity identity contracts are pinned to exact versions
+- [ ] CHK-001 [P0] The phase-006 ledger/replay and phase-007 continuity identity contracts are pinned to exact versions
 - [ ] CHK-002 [P0] Sibling-001 semantic candidate and sibling-002 contradiction/supersession fixture interfaces are recorded without creating a sibling hard dependency
 - [ ] CHK-003 [P1] Claim namespaces, aliases, fingerprints, match policy, lifecycle/status tables, resume schema, fixture corpus, and legacy baseline are frozen
 <!-- /ANCHOR:pre-impl -->
@@ -53,7 +53,7 @@ ambiguity resolution, unexpected tracked mutation, or any legacy-authority chang
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-007 [P0] Retry, crash-after-append, and concurrent equivalent-mint fixtures produce one accepted phase-004 `claim` ID or an explicit conflict
+- [ ] CHK-007 [P0] Retry, crash-after-append, and concurrent equivalent-mint fixtures produce one accepted phase-007 `claim` ID or an explicit conflict
 - [ ] CHK-008 [P0] Reorder, iteration, path, wording, timestamp, content-hash, representative, and mode-boundary changes do not alter an existing claim ID
 - [ ] CHK-009 [P0] Exact aliases and normalized fingerprints reuse the expected claim and record the namespaced match provenance
 - [ ] CHK-010 [P0] Paraphrase candidates reuse one claim while semantically adjacent distinct claims remain separate at the frozen policy version

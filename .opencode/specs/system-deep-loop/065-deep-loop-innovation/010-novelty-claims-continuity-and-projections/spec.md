@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: Novelty, Claims, Continuity & Projections (recommendations implementation phase 007)"
+title: "Feature Specification: Novelty, Claims, Continuity & Projections (recommendations implementation phase 010)"
 description: "This phase defines the intelligence layer over the durable deep-loop substrate: concept-level novelty, typed contradiction and supersession, stable claim continuity, next-focus semantics, and deterministic transactional projections and gauges for convergence to consume."
 trigger_phrases:
   - "novelty claims continuity projections"
-  - "deep-loop intelligence layer phase 007"
+  - "deep-loop intelligence layer phase 010"
   - "semantic communities and claim continuity"
 importance_tier: "high"
 contextType: "planning"
@@ -53,7 +53,7 @@ The recommendations program places this phase after durable fan-in and before co
 
 Run-2 found that deep-loop value comes from a longitudinal, replayable evidence ledger rather than a stateless terminal result. Its deep-research findings call for stable claim records, duplicate-source handling, support/refute/qualify relationships, independence clusters, and supersession links; its cross-mode synthesis makes continuity identity and replayable projections shared runtime concerns. Those findings make string-equality deduplication and isolated scalar novelty insufficient inputs for later stopping decisions. Source: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md`.
 
-This phase defines that intelligence layer over the durable substrate. Its five children establish concept-level semantic communities, typed contradiction and supersession, stable claim continuity, typed next-focus semantics, and deterministic transactional projections and gauges. Together they hand phase 008 coherent novelty, coverage, claim-state, and derived-view signals on which convergence, termination, and health decisions can rely.
+This phase defines that intelligence layer over the durable substrate. Its five children establish concept-level semantic communities, typed contradiction and supersession, stable claim continuity, typed next-focus semantics, and deterministic transactional projections and gauges. Together they hand phase 011 coherent novelty, coverage, claim-state, and derived-view signals on which convergence, termination, and health decisions can rely.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:phase-map -->

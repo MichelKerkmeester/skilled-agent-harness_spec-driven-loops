@@ -189,9 +189,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan a total, fail-closed classification of every phase-000 in-flight state row into upcast, pin, fork, migrate, or block before any phase-011 authority cutover.",
-    "created_at": "2026-07-15T19:00:38.282Z",
-    "last_save_at": "2026-07-15T19:00:38.282Z",
+    "causal_summary": "Plan a total, fail-closed classification of every phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover.",
+    "created_at": "2026-07-16T03:43:49.300Z",
+    "last_save_at": "2026-07-16T03:43:49.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e6c91209b9676bc178151808a5057894cef505e65fe0da8edde564bb12268464",
+    "source_fingerprint": "sha256:8c79b5ec3af8ebf4555fc21cac46cc4b5f6fc35af714bbd763e19bb48844cd9b",
     "source_doc_hashes": {
-      "spec.md": "c3a2a4d1feed7bc82c14147613a92daaf535fb0f32d9c7e872d45faeecffa3b6",
-      "plan.md": "f5e7949873f386f3a62cbd70df5376bd0885c60e3976376ec25b4435fb706ba7",
-      "tasks.md": "60239b0f786030720e8af35d2f5445c25e192e1e8463d8d7d303514c56eb5679",
-      "checklist.md": "6cd839e83d33feb31a25fa10aad7921808a34300130022f4fca96686e1933ae7"
+      "spec.md": "21eeddde59302acfdb222b958ff5ef1da1bacdb5c61a28bf33cd1fa3923ada92",
+      "plan.md": "0533d234f3406b70c3a4f2fc1ca27c9950f154fc088e9fd02f1a7fb88974938f",
+      "tasks.md": "a573eb66021eb8891754d502036af182b7bd40a2c3bf92a7ddf4872d3432873b",
+      "checklist.md": "c7c073989795b27efd8b8efe3724741ce7a036dd20602e42576ee4ced3cf6dbb"
     },
     "last_active_child_id": null,
     "last_active_at": null

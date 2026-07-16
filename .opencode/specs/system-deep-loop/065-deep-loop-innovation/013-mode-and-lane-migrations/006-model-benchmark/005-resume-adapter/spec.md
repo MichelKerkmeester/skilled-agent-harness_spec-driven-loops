@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Model Benchmark - Resume Adapter (013 mode migration, 006 child 005)"
+title: "Feature Specification: Model Benchmark - Resume Adapter"
 description: "Plan the Model Benchmark resume adapter over the sealed typed event ledger. The adapter rebuilds multi-model run state and scoring-matrix state through reducers, maps the continuity ladder, and defines idempotent re-entry without double-apply, lost events, or unsafe replay. It consumes deep-improvement-common services and does not re-implement shared evaluator, canary, or promotion behavior."
 trigger_phrases:
   - "Model Benchmark resume adapter"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the deep-improvement-common backbone) |
-| **Origin** | Phase 005 of the Model Benchmark migration under phase 013; the resume, replay, and model-benchmark findings in the 065/002 registries |
+| **Origin** | Phase 008 of the Model Benchmark migration under phase 013; the resume, replay, and model-benchmark findings in the 065/002 registries |
 | **Depends on** | `[]` as a sibling planning contract; consumes frozen shared and preceding mode contracts when implementation begins |
 <!-- /ANCHOR:metadata -->
 
@@ -75,7 +75,7 @@ Plan the Model Benchmark resume adapter for the typed event-ledger substrate. Th
 replay compatibility, reducer projections, matrix-cell evidence, and shared-service status into one deterministic
 continuity ladder. It defines an idempotent re-entry contract in which the same sealed frontier yields the same resume plan,
 duplicate application is a no-op, conflicting duplicates fail closed, and no event or effect is lost or replayed by a crash.
-This phase is planning only. The per-mode 010 migrations land after phase 009 freezes the shared contracts and emits the
+This phase is planning only. The per-mode 010 migrations land after phase 012 freezes the shared contracts and emits the
 write-set conflict graph; the six sibling concerns and the mode gate integrate the rest of Model Benchmark.
 <!-- /ANCHOR:problem -->
 
@@ -108,7 +108,7 @@ write-set conflict graph; the six sibling concerns and the mode gate integrate t
 - Creating sealed artifact formats, certificates, shadow-parity instrumentation, or the independent mode gate; those belong
   to the adjacent Model Benchmark concerns, including predecessor `004-certificates-and-receipts` and successor
   `006-shadow-parity`.
-- Authority cutover, legacy-writer retirement, in-flight state migration, or the phase-010 write-set execution.
+- Authority cutover, legacy-writer retirement, in-flight state migration, or the phase-013 write-set execution.
 - Calling model providers, rerunning scoring, reading mutable benchmark directories, selecting a new model, or treating a
   current provider response as evidence during ledger reconstruction.
 - Authoring `description.json` or `graph-metadata.json`; deterministic tooling generates those files after this document set.
@@ -128,7 +128,7 @@ write-set conflict graph; the six sibling concerns and the mode gate integrate t
 | REQ-007 | No event or effect is lost, duplicated, or silently replayed | The adapter consumes only the sealed finalized frontier, preserves branch-local successes, keeps late evidence append-only, and routes uncertain effects through shared recovery policy instead of automatic duplicate execution |
 | REQ-008 | Scoring-matrix state is restored without score laundering | Re-entry preserves task/model/path/treatment identity, paired blocks, workload profile, evaluator epoch, raw scores, usage, latency, calibration, contamination, validity, abstention, and underpowered states |
 | REQ-009 | Shared service authority remains single-source | The adapter references common evaluator, canary, promotion, receipt, budget, lock, effect-recovery, and status decisions and cannot clear a shared veto or emit shared promotion authority |
-| REQ-010 | The handoff supports later shadow parity and mode integration | The resume plan exposes deterministic inputs, fingerprints, action decisions, and receipts required by `006-shadow-parity`, phase 012 contracts, and the later mode gate without implementing those concerns here |
+| REQ-010 | The handoff supports later shadow parity and mode integration | The resume plan exposes deterministic inputs, fingerprints, action decisions, and receipts required by `006-shadow-parity`, phase 015 contracts, and the later mode gate without implementing those concerns here |
 <!-- /ANCHOR:requirements -->
 
 ### Continuity-ladder mapping
@@ -190,7 +190,7 @@ write-set conflict graph; the six sibling concerns and the mode gate integrate t
   preserve raw observations and explicit abstained, invalid, underpowered, contaminated, and unknown states.
 - **Shared-service fork** - A mode adapter could recreate common recovery or promotion semantics. Mitigation: ownership matrix,
   contract fixtures, and a hard boundary around deep-improvement-common services.
-- **Dependencies**: the phase-003 transition-authorized ledger, phase-009 shared event contracts, Model Benchmark
+- **Dependencies**: the phase-006 transition-authorized ledger, phase-012 shared event contracts, Model Benchmark
   `001-typed-ledger-schema`, `002-reducers-and-projections`, `004-certificates-and-receipts`, deep-improvement-common mode
   004 services, phase 012 shared mode contracts and write-set conflict graph, and the spec-kit validator. These are contract
   inputs for this planning child, not a hard runtime dependency implied by the sibling adjacency.
@@ -200,7 +200,7 @@ write-set conflict graph; the six sibling concerns and the mode gate integrate t
 ## 7. OPEN QUESTIONS
 
 Deferred to the owning contract or implementation phase:
-- **Ledger seal** - Which phase-003 or phase-009 fields are the canonical finalized frontier, tail hash, and per-stream high-watermarks?
+- **Ledger seal** - Which phase-006 or phase-012 fields are the canonical finalized frontier, tail hash, and per-stream high-watermarks?
 - **Projection checkpoint** - Is a checkpointed projection accepted only when its reducer, schema, score-policy, and source-frontier fingerprints all match the sealed ledger?
 - **Unknown effect** - Which Model Benchmark execution paths support receipt lookup or idempotency keys, and which must remain blocked until external reconciliation?
 - **Matrix epoch** - Which changes to model alias, prompt/tool recipe, workload, evaluator, judge, or score policy require a new epoch instead of migration?

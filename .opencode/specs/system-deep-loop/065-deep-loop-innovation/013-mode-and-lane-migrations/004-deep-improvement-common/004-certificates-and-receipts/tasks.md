@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Improvement Common Services - certificates and receipts (013 phase 004)"
+title: "Tasks: Deep Improvement Common Services - certificates and receipts"
 description: "Tasks for planning and implementing the shared Deep Improvement Common Services certificate, receipt, replay-fingerprint, offline-verifier, evaluator, canary, and promotion contracts."
 trigger_phrases:
   - "deep improvement certificates and receipts tasks"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T20:35:00Z"
     last_updated_by: "opencode"
     recent_action: "Sequenced certificate, receipt, verifier, and shared-service work"
-    next_safe_action: "Inspect phase-003 primitives and enumerate shared evaluator write boundaries"
+    next_safe_action: "Inspect phase-006 primitives and enumerate shared evaluator write boundaries"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -41,7 +41,7 @@ _memory:
 
 - [ ] T001 Confirm the `003-sealed-artifacts` primitives, typed ledger interfaces, and reducer boundaries before designing new fields
 - [ ] T002 [P] Inventory shared evaluator, canary, promotion, candidate, scoring, and legacy projection paths
-- [ ] T003 Record the additive-dark boundary, the phase-009 contract-freeze handoff, and the later 010 migration consumers
+- [ ] T003 Record the additive-dark boundary, the phase-012 contract-freeze handoff, and the later 010 migration consumers
 - [ ] T004 Define the shared-versus-variant ownership matrix for agent-improvement, model-benchmark, and skill-benchmark
 <!-- /ANCHOR:phase-1 -->
 

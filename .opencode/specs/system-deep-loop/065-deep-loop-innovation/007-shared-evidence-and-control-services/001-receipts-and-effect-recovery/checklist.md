@@ -28,13 +28,13 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for receipts and effect recovery. The candidate report pins the candidate SHA, phase-003 interface and registry digests, boundary manifest digest, adapter manifest, certification-provider policy, and crash-fixture seed. Every command records exit code and discovered-case count. Verification fails on zero discovered boundaries/effects, a receipt preceding its result, an effect preceding durable intent, a success preceding durable confirmation, automatic replay of `in_doubt`, duplicate external mutation, secret leakage, or any change to legacy authority before phase 011.
+This checklist is the blocking verifier contract for receipts and effect recovery. The candidate report pins the candidate SHA, phase-006 interface and registry digests, boundary manifest digest, adapter manifest, certification-provider policy, and crash-fixture seed. Every command records exit code and discovered-case count. Verification fails on zero discovered boundaries/effects, a receipt preceding its result, an effect preceding durable intent, a success preceding durable confirmation, automatic replay of `in_doubt`, duplicate external mutation, secret leakage, or any change to legacy authority before phase 014.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-003 envelope, typed ledger, replay fingerprint, authorization gateway, event registry, and policy digests are frozen for this candidate
+- [ ] CHK-001 [P0] The phase-006 envelope, typed ledger, replay fingerprint, authorization gateway, event registry, and policy digests are frozen for this candidate
 - [ ] CHK-002 [P0] The boundary manifest inventories every certifiable phase/mode boundary and excludes intermediate/non-boundary events
 - [ ] CHK-003 [P0] The effect manifest names target identity, idempotency support, reconciliation query, and ambiguous-outcome behavior for every adapter
 - [ ] CHK-004 [P1] Hermetic targets and fault injection cover subprocess, file, and API effects without touching production systems
@@ -104,7 +104,7 @@ This checklist is the blocking verifier contract for receipts and effect recover
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is implementation-complete only when every P0 check passes, all replay-safe adapters prove one externally observable mutation under crash and concurrency, ambiguous effects stop in `in_doubt`, every registered boundary has one verified receipt, and the phase-003/004 composition plus shipped runtime regression gates are green. The verifier must separately confirm that legacy outputs, production effect selection, and authority remain unchanged before phase 011.
+The phase is implementation-complete only when every P0 check passes, all replay-safe adapters prove one externally observable mutation under crash and concurrency, ambiguous effects stop in `in_doubt`, every registered boundary has one verified receipt, and the phase-006/004 composition plus shipped runtime regression gates are green. The verifier must separately confirm that legacy outputs, production effect selection, and authority remain unchanged before phase 014.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

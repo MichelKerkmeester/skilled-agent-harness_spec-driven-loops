@@ -1,5 +1,5 @@
 ---
-title: "Tasks: partial-failure policy (065 phase 006/005)"
+title: "Tasks: partial-failure policy"
 description: "Tasks for implementing and verifying typed leaf failures, quorum evaluation, degraded results, and ledgered fan-in abort decisions."
 trigger_phrases:
   - "partial-failure policy tasks"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin BASE and read phase 000's protected-contract-versus-known-defect classification for fan-out failures
+- [ ] T001 Pin BASE and read phase 003's protected-contract-versus-known-defect classification for fan-out failures
 - [ ] T002 Freeze the child-004 await-set/decision-boundary input and child-006 reduction handoff schemas
 - [ ] T003 Inventory current executor, timeout, signal, artifact, salvage, retry, summary, and exit-code behavior in `fanout-run.cjs` and `fanout-pool.cjs`
 <!-- /ANCHOR:phase-1 -->
@@ -68,7 +68,7 @@ _memory:
 - [ ] T017 Verify degraded envelopes contain all required provenance, arithmetic, finality, and receipt fields
 - [ ] T018 Verify crash/restart and duplicate-event replay converge on one immutable verdict
 - [ ] T019 Verify late results append evidence without changing a closed epoch or reduction input
-- [ ] T020 Verify dark-policy differences from legacy summaries are classified through phase 000, not silently normalized
+- [ ] T020 Verify dark-policy differences from legacy summaries are classified through phase 003, not silently normalized
 - [ ] T021 Run packet strict validation and the targeted fan-out pool/runtime test suite
 <!-- /ANCHOR:phase-3 -->
 

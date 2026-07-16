@@ -178,8 +178,8 @@
       }
     ],
     "causal_summary": "Plan the Deep Research mode binding for immutable, content-addressed reference artifacts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
-    "created_at": "2026-07-15T19:00:31.749Z",
-    "last_save_at": "2026-07-15T19:00:31.749Z",
+    "created_at": "2026-07-16T03:43:30.948Z",
+    "last_save_at": "2026-07-16T03:43:30.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,12 +188,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:6d85f56b6b7c1483aed7aceac5d19c4adf8de16f8ab3fdf045c6661ab963c746",
+    "source_fingerprint": "sha256:83a3ae767961d875ba795b7a3931bb663158768f022aa1efb5bdb587197f8343",
     "source_doc_hashes": {
-      "spec.md": "6b5dbcbfb03705f03139830ec96782dc5c491aee70a95590440f28f5ddac91d5",
-      "plan.md": "a1d48669efe6fb5b4ba936cf39da3addf94ce9a970ac7765ccbaa3e6e684c420",
-      "tasks.md": "ab6f9545fae17f46c5acc63c715dbc1eff0e457c045336dab730001d127f7384",
-      "checklist.md": "1dde50a99b20f16c55b3bc33b718da57b45b3494268488bb4ee3af65bd832bea"
+      "spec.md": "34f0371f76ae3c7167b61041856f51de328435d6aecbf81035398d44940b2c0e",
+      "plan.md": "ab2ff8cc3506617b2a25707013f9facf44f347215b4e2c01700424d0775e5797",
+      "tasks.md": "c6a21cfc96a3c5f29506dfa59e7645c0116e4726134b4a62be4159760941c3e6",
+      "checklist.md": "4467f5439def9a12987595f64edf3b69cfb0dc70a9d32db0b316f9f8ceb97fac"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Skill Benchmark - Rollback & Mode Gate (013 phase 007)"
+title: "Implementation Plan: Skill Benchmark - Rollback & Mode Gate"
 description: "Implementation Plan for the Skill Benchmark rollback switch and independent mode gate over the deep-improvement-common migration backbone."
 trigger_phrases:
   - "skill benchmark rollback mode gate implementation plan"
@@ -52,14 +52,14 @@ readiness certificate, not a production authority flip.
 - [ ] Predecessor `006-shadow-parity` has a reproducible green/failed result contract
 - [ ] Scenario treatment arms, benchmark signature, environment metadata, and scoring-policy fingerprint are specified
 - [ ] The ROLLBACK SWITCH default, rollback window, stable legacy target, and refusal events are specified
-- [ ] The independent mode-gate inputs, certificate fields, and phase-011 handoff are specified
+- [ ] The independent mode-gate inputs, certificate fields, and phase-014 handoff are specified
 - [ ] No task re-implements shared ledger, receipt, sealing, budget, gauge, lock, continuity, or parity services
 
 ### Definition of Done
 - [ ] Paired scenario and scoring evidence replays under the pinned Skill Benchmark fingerprint
 - [ ] The ROLLBACK SWITCH refuses unsafe authority decisions and restores the stable legacy path within the declared window
 - [ ] The Skill Benchmark GATE accepts only green parity, sealed artifacts, and a verified mode certificate
-- [ ] Phase-011 handoff evidence is emitted without changing production authority ownership
+- [ ] Phase-014 handoff evidence is emitted without changing production authority ownership
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -90,7 +90,7 @@ readiness certificate, not a production authority flip.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-012 shared contracts, mode-004 common services, predecessor `006-shadow-parity`, and phase-013
+- Confirm the phase-015 shared contracts, mode-004 common services, predecessor `006-shadow-parity`, and phase-013
   write-set conflict graph are present at the pinned BASE.
 - Record the legacy behavior baseline, current benchmark recipe, existing scenario identifiers, and the stable legacy
   rollback target without modifying research inputs.
@@ -110,7 +110,7 @@ readiness certificate, not a production authority flip.
 - Define the bounded rollback window, expiry handling, recovery evidence, unknown-effect quarantine, and stable-target
   verification using shared effect-recovery and transition-authorization services.
 - Define the independent Skill Benchmark GATE and its certificate. Require shadow parity, sealed artifact manifest,
-  verified effect certificate, rollback readiness, clean scope, compatible fingerprints, and phase-011 handoff fields.
+  verified effect certificate, rollback readiness, clean scope, compatible fingerprints, and phase-014 handoff fields.
 
 ### Phase 3: Verification
 - Replay paired scenario runs and scoring from sealed inputs and compare raw events, reducer outputs, and certificates.
@@ -120,7 +120,7 @@ readiness certificate, not a production authority flip.
   certificate invalidity, conflicting decisions, and unknown external effects.
 - Drill cutover-window rollback to the stable legacy path, verify recovery receipts, and prove no duplicate logical commits.
 - Run the independent gate against green, failed, partial, stale, unsealed, and mixed-version fixtures. Confirm only the
-  green case emits a mode certificate and phase-011 handoff.
+  green case emits a mode certificate and phase-014 handoff.
 - Confirm the gate cannot authorize production cutover and that all implementation changes remain within the phase write set.
 <!-- /ANCHOR:phases -->
 
@@ -137,7 +137,7 @@ readiness certificate, not a production authority flip.
 | REQ-006 | Fail-closed switch matrix covers missing, stale, conflicting, unauthorized, expired, and unverifiable cutover inputs |
 | REQ-007 | Rollback drill covers each window boundary, stable-target restoration, unknown effect quarantine, and receipt reconciliation |
 | REQ-008 | Mode-gate matrix accepts only green parity plus sealed artifacts plus valid certificate plus rollback readiness |
-| REQ-009 | Handoff fixture includes phase-011 certificate evidence and demonstrates no phase-014 authority mutation |
+| REQ-009 | Handoff fixture includes phase-014 certificate evidence and demonstrates no phase-017 authority mutation |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
@@ -158,5 +158,5 @@ discard the isolated worktree before any authority action. If a future cutover r
 path authoritative and append the typed refusal. If a cutover has started inside the declared window, the switch restores
 the pinned legacy target only through a transition-authorized rollback event, then verifies receipts, state compatibility,
 and no duplicate commits. After window expiry, the mode enters `quarantined` or `expired`; it must not silently reopen or
-retry an unknown effect. This phase defines and tests the switch, but phase 014 owns live authority movement.
+retry an unknown effect. This phase defines and tests the switch, but phase 017 owns live authority movement.
 <!-- /ANCHOR:rollback -->

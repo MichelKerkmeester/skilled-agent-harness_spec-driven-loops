@@ -37,7 +37,7 @@ exit codes, discovered fixture counts, and ledger evidence IDs, and fails on zer
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-001 adjudication invariant and phase-003 envelope, authorization, and replay-fingerprint contracts are pinned before implementation
+- [ ] CHK-001 [P0] The phase-004 adjudication invariant and phase-006 envelope, authorization, and replay-fingerprint contracts are pinned before implementation
 - [ ] CHK-002 [P0] Identity-bearing fields, allowed presentation transformations, required counterfactuals, and mode-adapter boundaries are reviewed and versioned
 - [ ] CHK-003 [P1] The service is configured additive-dark and the legacy path remains the sole decision authority
 <!-- /ANCHOR:pre-impl -->
@@ -62,7 +62,7 @@ exit codes, discovered fixture counts, and ledger evidence IDs, and fails on zer
 - [ ] CHK-013 [P0] Candidate producers cannot judge their own candidates directly or through an equivalent identity, and rejected attempts append no accepted raw-score event
 - [ ] CHK-014 [P0] Every final verdict traverses to immutable candidate/reference digests, raw component scores, rationales/evidence locators, uncertainty, abstentions, probes, policy versions, and fingerprint
 - [ ] CHK-015 [P0] Replaying the same ordered events under the same reducer and fingerprint reproduces the verdict; changed reducer versions retain and reference the original raw evidence
-- [ ] CHK-016 [P0] Duplicate, reordered, missing, unauthorized, unsupported-version, and malformed events are rejected or handled exactly as the phase-003 envelope contract declares
+- [ ] CHK-016 [P0] Duplicate, reordered, missing, unauthorized, unsupported-version, and malformed events are rejected or handled exactly as the phase-006 envelope contract declares
 - [ ] CHK-017 [P0] Cloned-seat and shared-provider fixtures keep measured effective independence below configured seat count and expose residual-correlation evidence
 - [ ] CHK-018 [P0] Dawid-Skene-style competence weighting never suppresses correlation warnings, replaces raw-score gauges, or claims conditional independence was established
 - [ ] CHK-019 [P0] Pre-verdict and unauthorized deblinding fail; authorized post-verdict deblinding records actor, purpose, scope, identity-map version, and result
@@ -92,7 +92,7 @@ exit codes, discovered fixture counts, and ledger evidence IDs, and fails on zer
 ## Documentation
 
 - [ ] CHK-030 [P2] Event schemas, blinding policy, counterfactual policy, reducer semantics, failure modes, mode adapters, and deblinding procedure are documented
-- [ ] CHK-031 [P2] Load-bearing decisions cite `research-modes.md`, the phase-001 spine ADR, and `manifest/phase-tree.json`
+- [ ] CHK-031 [P2] Load-bearing decisions cite `research-modes.md`, the phase-004 spine ADR, and `manifest/phase-tree.json`
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
