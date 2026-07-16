@@ -28,16 +28,19 @@ Route /create:changelog to its presentation contract and workflow YAML for creat
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-## 4. EXECUTION TARGETS
-
 1. Read `.opencode/commands/create/assets/create_changelog_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
-4. Load exactly one workflow YAML:
-   - `:auto` -> `.opencode/commands/create/assets/create_changelog_auto.yaml`
-   - `:confirm` or omitted mode -> `.opencode/commands/create/assets/create_changelog_confirm.yaml`
+4. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
 5. Execute the selected YAML step by step.
 6. Use the presentation contract, not this router, for user prompts, setup/status dashboards, release-option display, and final result display.
+
+## 4. EXECUTION TARGETS
+
+| Mode | Target |
+|------|--------|
+| `:auto` | `.opencode/commands/create/assets/create_changelog_auto.yaml` |
+| `:confirm` or omitted mode | `.opencode/commands/create/assets/create_changelog_confirm.yaml` |
 
 ## 5. PRESENTATION BOUNDARY
 

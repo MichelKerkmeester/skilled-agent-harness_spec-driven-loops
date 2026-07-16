@@ -28,17 +28,20 @@ Route /create:skill to its presentation contract and workflow YAML for creating 
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-## 4. EXECUTION TARGETS
-
 1. Read `.opencode/commands/create/assets/create_skill_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve operation from setup: `full-create`, `full-update`, `reference-only`, or `asset-only`.
 4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
-5. Load exactly one workflow YAML:
-   - `:auto` -> `.opencode/commands/create/assets/create_skill_auto.yaml`
-   - `:confirm` or omitted mode -> `.opencode/commands/create/assets/create_skill_confirm.yaml`
+5. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
 6. Execute the selected YAML step by step and route to the resolved operation branch.
 7. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
+
+## 4. EXECUTION TARGETS
+
+| Mode | Target |
+|------|--------|
+| `:auto` | `.opencode/commands/create/assets/create_skill_auto.yaml` |
+| `:confirm` or omitted mode | `.opencode/commands/create/assets/create_skill_confirm.yaml` |
 
 ## 5. PRESENTATION BOUNDARY
 
