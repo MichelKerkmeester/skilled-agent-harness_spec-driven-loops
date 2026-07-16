@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: semantic validation and fixtures"
 description: "Backlog W1/W2/W6: enforce the command contract's behavioral invariants, not just section presence. Add a gate-obligation check for required-input routers, a mode-completeness check that a declared :auto/:confirm mode has both its workflow YAML and an EXECUTION TARGETS row, and close the reference-coverage omission that skips speckit/memory/doctor — each guarded by an independent mutation fixture. Canonize the new rules before enforcing them."
-status: in_progress
+status: complete
 trigger_phrases:
   - "semantic command validation"
   - "gate obligation check"
@@ -12,19 +12,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures"
-    last_updated_at: "2026-07-16T13:20:00Z"
+    last_updated_at: "2026-07-16T15:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Materialized Level-2 doc set for semantic-validation phase"
-    next_safe_action: "Canonize W6 mode-completeness in Step 10, then build the checks"
+    recent_action: "Built both checks + coverage fix; re-froze corpus to 15 trees; gates green"
+    next_safe_action: "Commit the reconciled packet and sync to origin"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs"
       - ".opencode/skills/sk-doc/create-command/SKILL.md"
-    open_questions:
-      - "Is timeout-bounds enforceable as a static invariant, or documentation-only?"
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "Timeout-bounds stays documentation-only for this phase; not enforced as a static fixture."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-16 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->

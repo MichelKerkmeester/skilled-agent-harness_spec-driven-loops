@@ -39,7 +39,7 @@
       "verification"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
       ".opencode/commands/scripts/validate-command-references.cjs",
@@ -48,8 +48,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -95,31 +95,19 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Materialized Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -143,7 +131,25 @@
         "source": "derived"
       },
       {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Materialized Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -185,12 +191,6 @@
         "source": "derived"
       },
       {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Backlog W1/W2/W6: enforce the command contract's behavioral invariants, not just section presence. Add a gate-obligation check for required-input routers, a mode-completeness check that a declared :auto/:confirm mode has both its workflow YAML and an EXECUTION TARGETS row, and close the reference-coverage omission that skips speckit/memory/doctor — each guarded by an independent mutation fixture. Canonize the new rules before enforcing them.",
     "created_at": "2026-07-16T11:52:03.667Z",
-    "last_save_at": "2026-07-16T12:12:20.806Z",
+    "last_save_at": "2026-07-16T13:52:42.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44cb10aca6d9f6d0c210bb6e9ae0237fba91d4a3772e8b71c1958a61670e7fd6",
+    "source_fingerprint": "sha256:efa8aadfd24a7d8a0e01f102826950c846fb2651b593504e3e4fa955c6f4e85a",
     "source_doc_hashes": {
-      "spec.md": "b7425161b6c2322a41b4e46c415de8cc0110b8cf7513a3132a79236225112a79",
+      "spec.md": "2345d929b463c4701d1dd47f882ed08f51fae0077e8dcdf8501f16ecc57729e4",
       "plan.md": "1d78b762e55f6a6bebf2b21fe9ec6cf8b09da428ce64940801b16678971a0299",
-      "tasks.md": "ac8d5cb6c736e89d0d3901171cfebc83ad86cc7e97ad2a1739edd381c00aeeb4",
-      "checklist.md": "d43319232d68ff576bcda407d7c23301d9b301c3e9bce56b7176b74ed0577aa5",
-      "implementation-summary.md": "e8107a6af9f0fd8fc1a95bac0f2d8077e6388e3c9b3f86fa6eaa73cfd6a8b746"
+      "tasks.md": "ad8ca7fbf06b0b19edc26735479f0dd4d2325a99d200d9c10e120210e13d789a",
+      "checklist.md": "f11a20069bb11b3e5f0b826971cf4980adefe288c92df38731135b96728a95f5",
+      "implementation-summary.md": "cf6a5b080cf33ee0d20d2496a1f63055d3418f7f2a337a9716bdafab8c157531"
     },
     "last_active_child_id": null,
     "last_active_at": null

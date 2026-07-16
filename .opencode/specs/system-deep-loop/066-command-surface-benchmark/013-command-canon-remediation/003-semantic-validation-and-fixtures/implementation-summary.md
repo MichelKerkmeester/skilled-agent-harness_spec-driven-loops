@@ -1,7 +1,7 @@
 ---
 title: "Implementation Summary: semantic validation and fixtures"
-description: "Status of the W1/W2/W6 semantic-validation phase: Level-2 doc set materialized; implementation of the gate-obligation and mode-completeness checks, the reference-coverage fix, and the mutation fixtures is in progress."
-status: in_progress
+description: "Status of the W1/W2/W6 semantic-validation phase: both semantic checks, the reference-coverage fix, and the two mutation fixtures are built and verified; the expectation corpus is re-frozen at 15 trees."
+status: complete
 trigger_phrases:
   - "semantic validation implementation"
   - "gate obligation status"
@@ -11,20 +11,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures"
-    last_updated_at: "2026-07-16T14:10:00Z"
+    last_updated_at: "2026-07-16T15:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Canonized W6 mode-completeness in Step 10; found doctor runtime-path coverage nuance"
-    next_safe_action: "Fix reference-coverage extractor for doctor runtime paths, then add adapter checks"
+    recent_action: "Built both checks + coverage fix; re-froze corpus to 15 trees; gates green"
+    next_safe_action: "Commit the reconciled packet and sync to origin"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs"
       - ".opencode/skills/sk-doc/create-command/SKILL.md"
-    completion_pct: 30
-    open_questions:
-      - "Is timeout-bounds enforceable as a static invariant, or documentation-only?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Timeout-bounds stays documentation-only for this phase; it is not enforced as a static mutation fixture."
 ---
 # Implementation Summary
 
@@ -39,8 +39,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-semantic-validation-and-fixtures |
-| **Status** | In Progress |
-| **Completed** | Level-2 doc set materialized; checks and fixtures not yet built |
+| **Status** | Complete |
+| **Completed** | Both semantic checks, the coverage fix, and two mutation fixtures built and verified; corpus re-frozen at 15 trees |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,22 +49,24 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The Level-2 doc set is materialized and the W6 canon is written. Task T001 is complete: create-command Step 10 now carries a **Mode completeness** paragraph stating that every advertised mode must have both its workflow asset and an EXECUTION TARGETS row — the "canonize before enforcing" rule for the mode-completeness check. The two adapter checks, the coverage fix, and the mutation fixtures are still owed.
+The phase enforces three of the phase-001 contract's behavioral invariants the earlier checks missed, and each is now built and verified:
 
-A coverage-expansion probe surfaced a concrete complication for T002: running the reference-resolution check across the doctor family reports eleven `[skill-asset]` misses in `doctor_update.yaml`, all of which are runtime-generated paths (`.flock` / `.lock` / `.log` locks and logs, `*.sqlite.pre-doctor-update` backups, `.doctor-update.config-instructions`). These are not static assets, so the coverage fix must teach the extractor to skip runtime-generated artifacts — not merely widen the hard-coded family list. speckit assets resolve cleanly; memory has no asset YAMLs.
+- **Gate obligation (W1).** A required-input router that owns its own gate (`input.required === true` and `input.gate_owner === 'router'`) must advertise it through `argument-hint`; an absent or empty hint is a P0 `CMD-S3-GATE-OBLIGATION-UNMET`.
+- **Mode completeness (W6).** A `mode-pair` router must reference the workflow asset for every advertised core mode (`:auto` → `*_auto.yaml`, `:confirm` → `*_confirm.yaml`); a declared mode with no matching reference is a P1 `CMD-S3-MODE-INCOMPLETE`. create-command Step 10 carries the **Mode completeness** paragraph, written before the check enforced it (T001).
+- **Reference coverage (W2).** `validate-command-references.cjs` now derives the family set from the command tree instead of the hard-coded `['create', 'deep', 'design']`, and skips runtime-generated doctor artifacts (locks, logs, `*.sqlite.pre-doctor-update` backups, config-instruction dotfiles) so the coverage widening does not report those transient paths as missing assets.
 
-The planned change enforces three of the phase-001 contract's behavioral invariants the current checks miss: a gate-obligation check for required-input routers (W1), a mode-completeness check that a declared `:auto` / `:confirm` mode has both its workflow YAML and an EXECUTION TARGETS row (W6), and closure of the reference-coverage omission where `validate-command-references.cjs` hard-codes `FAMILIES = ['create', 'deep', 'design']` and skips speckit, memory, and doctor (W2). Each new invariant will be guarded by an independent mutation fixture detected by both the production adapter and the boundary-protected reference oracle.
+Both classifiers read the shared `command_contract.json` so the production adapter and the boundary-protected reference oracle stay byte-identical; the adapter does not import the oracle. Each new invariant is guarded by one public mutation fixture — `public-gate-obligation-unmet` and `public-mode-incomplete` — and the expectation corpus is re-frozen at 15 trees (10 public defects, 4 held-out, 1 clean).
 
 ### Files Changed
 
-Planned targets:
-
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-doc/create-command/SKILL.md` | Planned | Write the mode-completeness rule into Step 10 before enforcing it |
-| `.opencode/commands/scripts/validate-command-references.cjs` | Planned | Derive the family set from the command tree; remove the hard-coded omission |
-| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs` | Planned | Add contract-driven gate-obligation and mode-completeness checks |
-| `reference-oracle.cjs` + fixture mutation manifest | Planned | Independent invariant implementations + one mutation fixture per invariant, re-frozen |
+| `.opencode/skills/sk-doc/create-command/SKILL.md` | Done (`37fafc727e`) | Mode-completeness rule written into Step 10 before enforcement |
+| `.opencode/commands/scripts/validate-command-references.cjs` | Done | Family set derived from the tree; hard-coded omission removed; runtime doctor artifacts skipped |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs` | Done | Contract-driven gate-obligation and mode-completeness checks added |
+| `002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs` | Done | Independent invariant implementations; `EXPECTED_PUBLIC_DEFECTS` 8 → 10 |
+| `002-deterministic-fixtures-oracle/fixtures/mutation-manifest.json` + corpus | Done | Two public mutation fixtures added and materialized |
+| `002-deterministic-fixtures-oracle/expectations/*` + consuming manifest | Done | Expectation corpus re-frozen at 15 trees |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -72,7 +74,7 @@ Planned targets:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. The build order is canonize (Step 10) → coverage fix → adapter checks → oracle counterparts and fixtures → re-freeze and verify, so the canon precedes enforcement and each invariant is proven against an independent mutation.
+Delivered in the intended order: canonize (Step 10) → coverage fix → oracle classifiers → adapter checks → mutation fixtures → re-freeze and verify. The canon preceded enforcement, and each invariant is proven against an independent mutation detected identically by the adapter and the boundary-protected oracle. The oracle and adapter share no code; they agree only because both read the same real-repo `command_contract.json` and use the same reference-extraction regex, which is what the differential test confirms.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -92,16 +94,15 @@ Not yet delivered. The build order is canonize (Step 10) → coverage fix → ad
 <!-- ANCHOR:verification -->
 ## Verification
 
-Pending implementation. The gates below apply once the work is built.
-
 | Check | Result |
 |-------|--------|
-| Gate-obligation check fires on a required-input router missing its gate | PENDING |
-| Mode-completeness check flags an incomplete advertised mode | PENDING |
-| Reference coverage reports all six families | PENDING |
-| One mutation fixture fails per new invariant; adapter and oracle agree | PENDING |
-| Step 10 canon precedes enforcement | PENDING |
-| Strict packet validation | Run `validate.sh --strict` on this folder |
+| Gate-obligation check fires on a required-input router missing its gate | PASS — scratch `doctor/mcp.md` without `argument-hint` → one `CMD-S3-GATE-OBLIGATION-UNMET`; clean base `[]` |
+| Mode-completeness check flags an incomplete advertised mode | PASS — scratch `deep/alignment.md` without the confirm-workflow reference → one `CMD-S3-MODE-INCOMPLETE`; clean base `[]` |
+| Reference coverage reports all six families | PASS — `[create, deep, design, doctor, memory, speckit]`, 69 asset files, doctor misses 0, `--self-test` 3/3 |
+| One mutation fixture fails per new invariant; adapter and oracle agree | PASS — differential test `PASS fixtures=15`; oracle `--verify` `PASS all=15` |
+| No false positives on the conformant real corpus | PASS — adapter `check .opencode/commands` emits zero new-code findings |
+| Step 10 canon precedes enforcement | PASS — Mode completeness paragraph committed `37fafc727e` before the check was built |
+| Strict packet validation | PASS — `validate.sh --strict` on this folder, Errors:0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -109,6 +110,6 @@ Pending implementation. The gates below apply once the work is built.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not yet implemented.** Only the Level-2 doc set exists.
-2. **Timeout-bounds invariant undecided.** Whether the contract's `timeout_bounds` can fail a static mutation fixture or is runtime-only is an open question; it may be deferred as documentation-only.
+1. **Timeout-bounds is documentation-only for this phase.** The contract's `timeout_bounds` is not enforced as a static mutation fixture; enforcing it would require runtime evidence a static fixture cannot supply, so it stays out of scope here.
+2. **Predecessor 002's completion narrative predates this re-freeze.** Re-freezing the expectation corpus for the two new invariants changed the frozen hashes that 002's shipped docs cite; those 002 narrative docs are intentionally left as-shipped and flagged for a separate operator decision, since editing another phase's completion record is out of this phase's scope.
 <!-- /ANCHOR:limitations -->

@@ -1,16 +1,16 @@
 ---
 title: "Tasks: semantic validation and fixtures"
-description: "Task breakdown for the W1/W2/W6 semantic-validation phase: canonize mode completeness, close the reference-coverage omission, add the gate-obligation and mode-completeness checks, and guard each new invariant with an independent mutation fixture. Scaffolded; not yet implemented."
-status: in_progress
+description: "Task breakdown for the W1/W2/W6 semantic-validation phase: canonize mode completeness, close the reference-coverage omission, add the gate-obligation and mode-completeness checks, and guard each new invariant with an independent mutation fixture. Built and verified."
+status: complete
 importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures"
-    last_updated_at: "2026-07-16T14:10:00Z"
+    last_updated_at: "2026-07-16T15:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Canonized W6 mode-completeness in Step 10; found doctor runtime-path coverage nuance"
-    next_safe_action: "Fix reference-coverage extractor for doctor runtime paths, then add adapter checks"
+    recent_action: "Built both checks + coverage fix; re-froze corpus to 15 trees; gates green"
+    next_safe_action: "Commit the reconciled packet and sync to origin"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
@@ -27,7 +27,7 @@ _memory:
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-`[ ]` open · `[x]` complete. Each task carries its verification evidence. T001 (canonize the mode-completeness rule) is complete; T002-T006 (the coverage fix, the two adapter checks, the oracle fixtures, and the gate run) remain open.
+`[ ]` open · `[x]` complete. Each task carries its verification evidence. All tasks are complete: the canon (T001), the coverage fix (T002), the two adapter checks (T003-T004), the oracle counterparts and fixtures (T005), and the full gate run (T006).
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
@@ -39,16 +39,16 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 — Derive the reference-check family set from the command tree in validate-command-references.cjs and resolve any real reference failure surfaced by the newly covered families. Verification when done: the coverage report names all six families with no hard-coded list, and the check exits clean.
-- [ ] T003 — Add the gate-obligation check to the adapter: a required-input router missing its gate is a finding. Verification when done: a required-input router with its gate removed fails and the conformant corpus passes.
-- [ ] T004 — Add the mode-completeness check to the adapter: an advertised mode missing its YAML or EXECUTION TARGETS row is a P1 finding. Verification when done: a crafted incomplete mode fails and the conformant corpus passes.
-- [ ] T005 — Implement the gate-obligation and mode-completeness invariants in the reference oracle, add one mutation fixture per invariant, and regenerate the frozen expectations. Verification when done: the adapter differential test reports the new fixtures and the oracle --verify agrees on all of them.
+- [x] T002 — Derived the reference-check family set from the command tree in validate-command-references.cjs and confirmed the newly covered families resolve. Evidence: `discoverFamilies()` replaced the hard-coded `['create','deep','design']`; the run reports `[create, deep, design, doctor, memory, speckit]` across 69 asset files, and doctor runtime-generated artifacts are skipped so remaining misses are 0. `--self-test` reports all three cases PASS.
+- [x] T003 — Added the gate-obligation check to the adapter: a required-input router that owns its gate but omits argument-hint is a P0 finding. Evidence: a scratch tree with `argument-hint` removed from `doctor/mcp.md` yields one `CMD-S3-GATE-OBLIGATION-UNMET`; the real corpus yields none.
+- [x] T004 — Added the mode-completeness check to the adapter: a mode-pair router that does not reference the workflow asset for an advertised core mode is a P1 finding. Evidence: a scratch tree with the confirm-workflow reference removed from `deep/alignment.md` yields one `CMD-S3-MODE-INCOMPLETE`; the real corpus yields none.
+- [x] T005 — Implemented both invariants in the reference oracle (no adapter/oracle import either way), added one mutation fixture per invariant, and re-froze the expectations. Evidence: `build-fixtures.cjs` materialized 15 trees (10 public defects, 4 held-out, 1 clean); the oracle froze 15 expectation sets; the adapter differential test reports `PASS fixtures=15` and oracle `--verify` reports `PASS all=15`.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 — Run the full gate set: adapter differential test, reference-oracle --verify, reference-coverage check, and packet strict validation. Verification when done: all gates green and validate.sh --strict is Errors:0.
+- [x] T006 — Ran the full gate set: adapter differential test `PASS fixtures=15`, reference-oracle `--verify` `PASS all=15`, reference-coverage check clean across the six families, and packet strict validation. Evidence: all four gates green; `validate.sh --strict` on this folder is recorded in implementation-summary.md.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
