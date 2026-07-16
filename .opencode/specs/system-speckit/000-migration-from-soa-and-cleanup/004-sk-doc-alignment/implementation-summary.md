@@ -13,10 +13,10 @@ _memory:
     packet_pointer: "system-speckit/000-migration-from-soa-and-cleanup/004-sk-doc-alignment"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored planning-stub implementation-summary"
-    next_safe_action: "Re-check sk-doc git status after concurrent commit"
+    recent_action: "Operator directed skip of sk-doc phase"
+    next_safe_action: "No action sk-doc alignment skipped"
     blockers:
-      - "sk-doc tree dirty from concurrent migration (929 paths at scaffold time); no git-mv/rm until clean."
+      - "SKIPPED by operator directive 2026-07-16: sk-doc is under active concurrent migration (create-diff + fixture work still writing at decision time); operator chose to skip this alignment phase rather than fight the live session. Not executed."
     key_files:
       - ".opencode/specs/sk-doc/z_archive/"
       - ".opencode/specs/sk-doc/015-sk-doc-parent/"
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-sk-doc-alignment |
-| **Completed** | Pending (scaffold only, not executed) |
+| **Completed** | SKIPPED — operator directive 2026-07-16 (active concurrent sk-doc migration; not executed) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -102,9 +102,9 @@ Not yet delivered. Execution is pending per plan.md / checklist.md.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Scaffold only.** No verification or mutation has run against sk-doc; this document only states the gate and the two valid target end-states.
-2. **Hard-blocked on a concurrent migration.** As of scaffold time the sk-doc tree carried 929 dirty paths from a separate active session; this packet cannot proceed to verification until that session commits and the tree is clean.
-3. **Numbering decision deferred.** Whether the 014 gap closes and whether 016-030 becomes contiguous is left to the concurrent session or the operator, not decided here.
+1. **SKIPPED by operator directive (2026-07-16).** The sk-doc tree was still under active concurrent migration at decision time (create-diff scripts + 033 scratch reports writing within the last few minutes, plus committed 012 fixture phases landing mid-session). Rather than defer indefinitely or fight the live session, the operator directed skipping this alignment phase. No verification or mutation ran against sk-doc.
+2. **Numbering decision left to the sk-doc owner.** Whether the 014 gap closes and whether 016-030 becomes contiguous is owned by the concurrent sk-doc migration (the sk-doc/017 hyphen-naming program), not this packet.
+3. **Re-openable.** If the sk-doc migration lands and the operator later wants numbering verified, this phase can be revived from its plan.md; the clean-tree gate and both valid 014 end-states are still recorded there.
 <!-- /ANCHOR:limitations -->
 
 ---

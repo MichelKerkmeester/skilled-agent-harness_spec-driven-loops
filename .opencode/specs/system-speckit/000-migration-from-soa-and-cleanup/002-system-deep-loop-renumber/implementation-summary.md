@@ -13,10 +13,10 @@ _memory:
     packet_pointer: "system-speckit/000-migration-from-soa-and-cleanup/002-system-deep-loop-renumber"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Operator selected Option B execution deferred"
-    next_safe_action: "Execute Option B when deep-loop clean"
+    recent_action: "Operator directed skip of deep-loop renumber"
+    next_safe_action: "No action deep-loop renumber skipped"
     blockers:
-      - "Option B (full active renumber 029-068 -> 024-038, order-preserving) SELECTED by operator, execution DEFERRED: 065+066 have live uncommitted work and the ref surface is 5436 tracked files / 2832 ref files including 114 cross-track (96 skills). Execute only when system-deep-loop is clean."
+      - "SKIPPED by operator directive 2026-07-16: deep-loop is under active concurrent authoring (066/013/003 packet being written at decision time). Option B renumber map (029-068 -> 024-038, order-preserving) is preserved in Known Limitations for future revival but was NOT executed; renumbering a live track would orphan in-flight work."
     key_files:
       - ".opencode/specs/system-deep-loop/z_archive/"
       - ".opencode/specs/system-deep-loop/graph-metadata.json"
@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-system-deep-loop-renumber |
-| **Completed** | Investigation complete; **Option B selected** by operator; git-mv execution **deferred** (deep-loop concurrency) |
+| **Completed** | Investigation complete; **Option B selected**; git-mv execution **SKIPPED** by operator 2026-07-16 (active concurrent deep-loop authoring; not executed) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -107,7 +107,7 @@ Read-only git-history investigation (`git log --all --full-history`, `git log --
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Option B selected; execution deferred on concurrency.** The operator chose the full active renumber. Execution is ready but blocked: `065` + `066` currently hold live uncommitted work, so a git-mv would orphan it. Run only when `system-deep-loop` is clean. **Ready plan:** order-preserving map `029->024, 030->025, 031->026, 032->027, 033->028, 035->029, 038->030, 052->031, 054->032, 059->033, 063->034, 065->035, 066->036, 067->037, 068->038`; execute in ascending-target order (collision-free, no temp namespace needed); repair the full old-basename token across the tree (2,832 ref files) **including the 114 cross-track files** (96 skills, 17 specs, 1 command) — NOT self-contained like the speckit renumber; regen the 15 packets' metadata + the track-root `children_ids`; validate error-delta <= baseline.
+1. **Option B selected; execution SKIPPED by operator (2026-07-16).** The operator chose the full active renumber, then directed skipping execution because deep-loop is under active concurrent authoring (the `066/013/003-semantic-validation-and-fixtures` packet was being written within minutes of the decision) — renumbering a live track would orphan in-flight work. The map below is preserved for future revival, NOT executed. **Ready plan:** order-preserving map `029->024, 030->025, 031->026, 032->027, 033->028, 035->029, 038->030, 052->031, 054->032, 059->033, 063->034, 065->035, 066->036, 067->037, 068->038`; execute in ascending-target order (collision-free, no temp namespace needed); repair the full old-basename token across the tree (2,832 ref files) **including the 114 cross-track files** (96 skills, 17 specs, 1 command) — NOT self-contained like the speckit renumber; regen the 15 packets' metadata + the track-root `children_ids`; validate error-delta <= baseline.
 2. **Active-gap sampling is partial.** 5 internal gaps were traced; the remaining internal gaps and the `024`-`028` pre-start range are documented as UNKNOWN, not exhaustively audited.
 3. **Stale `graph-metadata.json` `children_ids`.** Lists several nested-away paths plus one untraceable entry (`system-deep-loop/133-runtime-remediation-from-dogfood-findings`); flagged as a related follow-up for whichever future packet regenerates deep-loop graph metadata, not actioned here.
 <!-- /ANCHOR:limitations -->
