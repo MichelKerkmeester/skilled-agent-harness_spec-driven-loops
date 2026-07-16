@@ -594,6 +594,7 @@ function routeSkillResources({ skillRoot, taskText }) {
       return {
         parseable: true,
         intents,
+        surfaceIntents,
         resources: asm.resources,
         missingResources: asm.missingResources,
         scores,
