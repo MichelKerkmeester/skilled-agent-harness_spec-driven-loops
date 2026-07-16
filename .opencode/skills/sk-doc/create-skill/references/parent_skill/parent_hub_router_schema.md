@@ -295,6 +295,23 @@ All resource paths must be hub-root-relative and packet-qualified.
 
 Avoid unqualified names like `SKILL.md` in router resources. A parent hub has multiple packet roots, so every resource must identify the packet or shared hub location that owns it.
 
+### Path contract: hubLoadAddress vs leafResourceId
+
+A hub carries two distinct path kinds. Conflating them is the defect this contract exists to prevent.
+
+| Kind | Where it lives | Shape | Example |
+| --- | --- | --- | --- |
+| **hubLoadAddress** | `routerSignals[].resources` in this file | packet entrypoint the hub loads | `code-review/SKILL.md` |
+| **leafResourceId** | the second-layer surface router (`shared/references/smart_routing.md`) | canonical packet-root-relative resource id | `references/validation.md` |
+
+The hub router selects a **mode**; it emits packet pointers, not the per-intent leaf gold. The exact leaf resources an intent should load belong in the surface router, scaffolded from [`parent_skill_smart_routing_template.md`](../../assets/parent_skill/parent_skill_smart_routing_template.md).
+
+A raw path in the surface router is converted to the canonical `(workflowMode, leafResourceId)` pair at **exactly one boundary** — the leaf-resource contract library — through one of two shapes only:
+- a **packet-qualified** prefix: `[packet]/references|assets/…` resolves to the mode bound to that packet.
+- an **authored shared alias**: a `shared/…` disk path listed in `leaf-aliases.json`.
+
+Never strip a prefix generically, and never infer a shared-tier file into a mode. A hub that keeps its per-intent leaf sets only in this file, with no surface router, re-creates the handoff ambiguity.
+
 ---
 
 ## 9. CONFORMANCE

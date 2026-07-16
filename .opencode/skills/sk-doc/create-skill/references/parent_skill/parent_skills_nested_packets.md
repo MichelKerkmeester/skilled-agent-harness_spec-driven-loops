@@ -206,7 +206,7 @@ Naming policy:
 - `grandfatheredFolderMismatch: true` is only for an existing mismatch that must be preserved.
 - Never create a new mismatch for convenience.
 - Keep natural-language `aliases[]` unique across all modes, and lowercase — the router vocabulary is matched case-folded, so a non-lowercase alias silently fails to mirror its vocabulary class.
-- **Two vocabulary strategies** — pick one per hub and hold it: *mirrored* copies every registry alias verbatim into a hub-router `vocabularyClasses` entry (sk-design; keeps vocab-sync clean), or *compositional* builds match phrases from parts so some registry aliases have no literal router-vocab home (sk-doc leaves ~34 such aliases). Both are valid; mixing them makes vocab-sync drift meaningless.
+- **Two vocabulary strategies** — pick one per hub and hold it: *mirrored* copies every registry alias verbatim into a hub-router `vocabularyClasses` entry (sk-design; keeps vocab-sync clean), or *compositional* builds match phrases from parts so some registry aliases have no literal router-vocab home. Both are valid; mixing them makes vocab-sync drift meaningless.
 - Name vocabulary classes by owner, such as `<surface>-aliases`, `<surface>-runtime`, or `<mode>-aliases`.
 
 Companion file policy:

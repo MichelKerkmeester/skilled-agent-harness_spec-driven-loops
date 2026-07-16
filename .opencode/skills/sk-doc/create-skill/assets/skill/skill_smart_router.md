@@ -163,6 +163,7 @@ return {"routing_key": routing_key, "resources": loaded}
 - Build `RESOURCE_BASES` from skill-local `references/` and `assets/` only
 - Check `if base.exists()` before recursive discovery so deleted folders do not fail routing
 - Return the original path list from `_filter_paths()` when keywords are empty so filtering never degrades to an empty result
+- **Path contract (nested packets):** inside a parent hub, a packet's `references/`/`assets/` paths become packet-qualified `leafResourceId`s in the hub's second-layer surface router. A raw path converts to the canonical `(workflowMode, leafResourceId)` pair at exactly one boundary — the leaf-resource contract — via a packet-qualified prefix or an authored shared alias, never by generic prefix stripping. See [parent_hub_router_schema.md](../../references/parent_skill/parent_hub_router_schema.md) §8 and scaffold the surface router from [parent_skill_smart_routing_template.md](../parent_skill/parent_skill_smart_routing_template.md).
 
 **Template:**
 

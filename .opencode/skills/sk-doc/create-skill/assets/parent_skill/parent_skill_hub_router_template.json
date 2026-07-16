@@ -1,6 +1,7 @@
 {
   "_template": "Parent-skill hub-router.json scaffold. Replace every [bracketed] placeholder. Keep routerSignals keys bidirectionally aligned with mode-registry.json modes[].workflowMode. The canonical live example is sk-code/hub-router.json.",
   "_surfaceBundleNote": "The surfaceBundle outcome and its bundleRule are surface-axis only; a pure workflow hub keeps only single, orderedBundle, and defer (checker 5f/5g).",
+  "_pathContract": "Two path kinds live in a hub and must never be conflated. A hubLoadAddress is what routerSignals[].resources hold: a packet entrypoint the hub loads (e.g. [workflow-packet-a]/SKILL.md). A leafResourceId is the canonical packet-root-relative resource id (references/... or assets/...) that the second-layer surface router (shared/references/smart_routing.md, scaffolded from parent_skill_smart_routing_template.md) maps each intent to. A raw path is converted to the canonical (workflowMode, leafResourceId) pair at exactly one boundary — the leaf-resource contract library — via a packet-qualified prefix ([packet]/references|assets/...) or an authored shared alias (leaf-aliases.json). Never strip a prefix generically and never infer a shared-tier file into a mode.",
   "skill": "[parent-skill-name]",
   "version": "1.0.0.0",
   "routerPolicy": {
