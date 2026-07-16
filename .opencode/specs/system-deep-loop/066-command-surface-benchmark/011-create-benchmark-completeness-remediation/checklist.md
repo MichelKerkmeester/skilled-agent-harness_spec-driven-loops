@@ -7,7 +7,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/011-create-benchmark-completeness-remediation"
-    last_updated_at: "2026-07-15T18:00:00Z"
+    last_updated_at: "2026-07-16T04:35:00Z"
     last_updated_by: "claude"
     recent_action: "Authored verification checklist"
     next_safe_action: "Execute and check off T003"
@@ -51,7 +51,7 @@ Each item is checked against the real patched file with evidence (path/line, val
 - [x] CHK-T01 [P1] — `command-surface` README + `conformance_benchmark.md` authored; both `validate_document.py` 0 issues. (`cec7160e47`)
 - [x] CHK-T02 [P1] — v2 scaffold field set reconciled against `framework.md`; the corrected oracle verify command verifies all 13 fixtures. (`8ab89656c6`)
 - [x] CHK-T03 [P1] — Per-doc `validate_document.py` 0 issues; `validate.sh --strict` on this child is Errors:0 Warnings:0 RESULT:PASSED. Fixed `recent_action` length, refreshed `source_fingerprint`, added CHK-* `[P*]` priority tags, phase headers, and evidence markers.
-- [x] CHK-T04 [P1] — Sol Ultra Fast re-review executed; report archived at `evidence/review-sol-ultra-rereview.md` [evidence: evidence/review-sol-ultra-rereview.md]. **Verdict was FAIL, not clean:** confirmed regressions closed (`8ab89656c6`), structural P1s escalated (tasks.md T016).
+- [x] CHK-T04 [P1] — Sol Ultra Fast re-review executed; report archived at `evidence/review-sol-ultra-rereview.md` [evidence: evidence/review-sol-ultra-rereview.md]. **Verdict was FAIL, not clean:** confirmed regressions closed (`8ab89656c6`); structural findings escalated, then resolved as doc/template edits under operator authorization (tasks.md T016).
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -89,5 +89,5 @@ Each item is checked against the real patched file with evidence (path/line, val
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The documentation remediation is landed and validated: all Q/T/D/F/S items are satisfied with commit evidence, all three review reports are archived, per-doc `validate_document.py` is 0 issues, and every fix is committed pathspec-scoped + FF-pushed to `skilled/v4.0.0.0`. This packet is **not** a clean "no surviving P1" pass: the Sol Ultra re-review returned FAIL, its confirmed regressions were closed, and its deeper structural P1s (tasks.md T016) are escalated to the operator as beyond documentation-remediation scope. `validate.sh --strict` on this child is Errors:0 Warnings:0 RESULT:PASSED.
+The documentation remediation is landed and validated: all Q/T/D/F/S items are satisfied with commit evidence, all three review reports are archived, per-doc `validate_document.py` is 0 issues, and every fix is committed pathspec-scoped + FF-pushed to `skilled/v4.0.0.0`. This packet is **not** a clean "no surviving P1" pass: the Sol Ultra re-review returned FAIL, and its confirmed regressions were closed. Its deeper structural findings were escalated to the operator, then — under the operator's "Fix all" authorization — all resolved as documentation/template edits with no runtime, scorer, evaluator, or frozen-framework change (tasks.md T016). `validate.sh --strict` on this child is Errors:0 Warnings:0 RESULT:PASSED.
 <!-- /ANCHOR:summary -->

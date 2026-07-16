@@ -181,7 +181,7 @@
     ],
     "causal_summary": "Publishes the two-axis scorecard and remediation backlog, reconciles all packet status metadata, and runs recursive strict validation so the benchmark ships as a coherent, evidence-backed packet.",
     "created_at": "2026-07-14T20:37:00.688Z",
-    "last_save_at": "2026-07-15T04:53:48.542Z",
+    "last_save_at": "2026-07-16T04:21:31.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,9 +189,9 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:06623ba27133297c54b2ea352d5d8646dab6e104431f5dc36feec56056fc6acc",
+    "source_fingerprint": "sha256:dd112a811cf188c20e1caf44dea05266aeef216113607a859db2fd17bd280f18",
     "source_doc_hashes": {
-      "spec.md": "43dea54544ff61afa5ce590ed4e66a7359c495bfe959b0b587332ffd7990c8a3",
+      "spec.md": "1c45664d31729316455280293100163c9579f922fd01e44ca66098c62174d611",
       "plan.md": "8fccd7e5949eadeffc7f8e24095abd04efed6303082b4ece0075cae01ba66815",
       "tasks.md": "599b1c4c9b20b8b8988ffa5a9b6c6d46409fdd0ab7152f0c4192d55d742f484d"
     },

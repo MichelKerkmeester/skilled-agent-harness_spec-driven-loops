@@ -7,7 +7,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/011-create-benchmark-completeness-remediation"
-    last_updated_at: "2026-07-15T18:00:00Z"
+    last_updated_at: "2026-07-16T04:35:00Z"
     last_updated_by: "claude"
     recent_action: "Authored task ledger from dual-review findings"
     next_safe_action: "Execute T003 (router fix)"
@@ -69,13 +69,22 @@ _memory:
 - [x] N1 broken oracle verify command (path-doubling) · N2 false "no run" status (004 has a completed FAIL run) · N3/N5 v1 scaffold missing evidence_kind/min_seats/candidate_evidence + postcondition shape · N6 router-overclaim prose · N7 matrix `resultPointer` omission · N8 scorer/seed over-claim · N9 sk-code stale headline.
 - N4 = the `cec7160e47` commit-sweep of 16 concurrent-session files (disclosed to operator; not un-swept — needs force-push, forbidden). N10 = this metadata reconciliation.
 
-**T016 — surviving structural findings (ESCALATED, beyond doc-remediation scope)**
+**T016 — structural findings (RESOLVED under operator "Fix all" authorization)**
 
-- [ ] Sol P1-2 — Lane C primary-corpus authoring not wired end-to-end (needs a fixture-pair scaffold in `create-manual-testing-playbook`, not just a link).
-- [ ] Sol P1-3 / Fable #5 — `command_benchmark` is not a router `FAMILIES` key (adding it is a runtime router change, not a doc edit).
-- [ ] Sol P1-4 — Lane B reviewer-profile authoring excluded although a live `reviewer_regression.json` exists (needs a reviewer-profile template + policy decision).
-- [ ] Sol P1-6 / Fable #1 — conformance guide requires package-local fixtures, but the shipped manifest uses an external `fixtureRoot`; the doctrine needs an explicit decision on which pattern is canonical.
-- [ ] Lower-severity: Fable #8 (`/create:benchmark` 2-of-6 coverage note), Sol P2-4 (stale Lane B profile-count README), Sol P2-6 (RVB-001 budget mismatch, ACB seat wording), Sol P2-7 (vision-audit classification).
+Initially escalated as beyond doc-remediation scope; the operator authorized them, and all were closed as documentation/template edits — no scorer, evaluator, scheduler, runtime, or frozen-framework code was changed.
+
+- [x] Sol P1-2 / P2-1 — Lane C playbook snippet template now carries the loader-gating frontmatter (`id`, `expected_intent`, `expected_resources`) so a playbook scenario is discoverable by the skill-benchmark loader; authoring notes document the prompt + negative-activation contract.
+- [x] Sol P1-3 / Fable #5 — `command_benchmark` stays a composition (not a seventh `FAMILIES` key), but a Tier-0 composite routing branch now loads both family guides + the composition doc, making it routable by name; the prose matches.
+- [x] Sol P1-4 — the reviewer-mode profile (`reviewer_regression.json`) is now recorded in the model-benchmark section as a distinct, gated, lane-owned input rather than silently excluded.
+- [x] Sol P1-6 / Fable #1 — the conformance guide documents both fixture-corpus patterns (package-local vs external `fixtureRoot` delegation), matching the shipped exemplar.
+- [x] Sol P2-2 / Fable #3 — the shared route-map template table now lists the four conformance templates.
+- [x] Sol P2-4 — Lane B profiles README corrected (three → 10; reviewer profile named).
+- [x] Sol P2-6 — deep-review RVB index budgets reconciled to the scenario `budget_ms` contracts (five rows: RVB-001/003/004/007/008).
+- [x] Sol P2-7 — one-off/experimental benchmarks (e.g. the prompt-models vision audit) are explicitly out-of-taxonomy in "When NOT to Use".
+- [x] Fable #6 — deep-improvement Lane C README notes the pending frozen `baseline/` anchor (no run fabricated).
+- [x] Fable #7 — the spec-kit MCP README repoints "canonical mechanics" to create-benchmark `SKILL.md` §3-8.
+- [x] Fable #8 — §13 states `/create:benchmark` drives two of six families; the other four are authored directly.
+- [x] Fable #9 — behavior guide `DAB` prefix and the §1 behavior-mode taxonomy aligned to the framework's fixed-prefix table.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

@@ -7,10 +7,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/011-create-benchmark-completeness-remediation"
-    last_updated_at: "2026-07-15T21:00:00Z"
+    last_updated_at: "2026-07-16T04:35:00Z"
     last_updated_by: "claude"
-    recent_action: "Reconciled 011 docs; strict validate PASSED 0/0; structural gaps escalated"
-    next_safe_action: "Operator scope decision on the T016 structural findings (runtime/scaffold, not doc edits)"
+    recent_action: "Closed all T016 structural findings as doc/template edits; strict validate 0/0"
+    next_safe_action: "Ship the T016 fixes; then 066 phase-010 closeout remains"
     completion_pct: 90
     blockers:
       - "T016 structural P1s (command_benchmark FAMILIES key, reviewer-profile template, Lane C corpus scaffold, conformance fixture-location doctrine) exceed doc-remediation scope and await an operator decision"
@@ -94,7 +94,7 @@ Behavior preservation is verified by scope: edits are documentation, templates, 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Structural findings escalated (T016).** The re-review surfaced legitimate gaps that exceed a documentation remediation: `command_benchmark` is not a router `FAMILIES` key (runtime router change), Lane B reviewer-profile authoring is excluded although a live profile exists (needs a template + policy), the Lane C primary corpus is linked but not scaffolded end-to-end, and the conformance guide's package-local fixture doctrine conflicts with the exemplar's external `fixtureRoot`. These await an operator scope decision; they are tracked in `tasks.md` T016, not silently closed.
+1. **Structural findings resolved (T016).** The re-review surfaced legitimate deeper gaps, initially escalated as beyond doc-remediation scope. Under the operator's "Fix all" authorization they were all closed as documentation/template edits (no scorer, evaluator, scheduler, runtime, or frozen-framework code changed): `command_benchmark` gained a Tier-0 composite routing branch (still a composition, now routable by name); the reviewer-mode profile is recorded as a distinct lane-owned input; the Lane C playbook snippet template carries the loader-gating frontmatter; the conformance guide documents both fixture-corpus patterns (package-local vs external `fixtureRoot`); and the P2/Fable prose-drift items (route-map table, Lane B count, RVB budgets, vision-audit taxonomy, baseline-anchor note, spec-kit pointer, DAB prefix, `/create:benchmark` coverage) are reconciled. Full ledger in `tasks.md` T016.
 2. **Commit-sweep (`cec7160e47`).** The T005 commit swept 16 already-staged concurrent-session files (`.codex/config.toml`, `cli-codex/**`, `mcp-click-up/**`) because a bare `git commit` committed the whole index. Content is intact and unaltered; the clean un-sweep needs a force-push (forbidden), so it is left as-is and disclosed. All later commits use the sweep-proof `git add <paths> && git commit --only` pattern.
 3. **Conformance exemplar is 066-adjacent.** The `command-surface` README/contract completion overlaps 066 closeout and is cross-referenced in 010. The executing phase (004) already holds a completed live convergence run (verdict FAIL); a frozen fixture-corpus run identity is still pending.
 4. **Pre-existing (not introduced here):** the four deep-mode `behavior_benchmark.md` indexes carry a `missing overview` validator warning (they use `## PURPOSE`); the phase-002 `fixture-manifest.json` records the same path-doubling oracle command this remediation corrected in its own contract.
@@ -107,5 +107,5 @@ Behavior preservation is verified by scope: edits are documentation, templates, 
 
 1. **A second fix round followed the re-review.** The plan expected the re-review to confirm a clean tree; instead it returned FAIL and caught real regressions in the fixes. Those were verified and closed in a follow-up commit (`8ab89656c6`) rather than deferred — the honest response to a review that found genuine defects.
 2. **T008 was over-corrected then re-fixed.** The first pass rewrote the model-guide scorer/seed sentence to say the author selects them; the profile template shows the sweep ignores the scorer field and the runtime never reads the seed, so the claim was reverted to lane-owned.
-3. **Structural findings escalated, not force-fit.** T016's P1s require runtime/scaffold changes (router `FAMILIES`, a reviewer-profile template, a corpus scaffold) that exceed this documentation remediation's frozen scope; they are surfaced for an operator decision rather than pulled in silently.
+3. **Structural findings escalated first, then resolved on authorization.** T016's findings were surfaced for an operator scope decision rather than pulled in silently; the operator authorized them ("Fix all"), and each was closable within documentation/template scope after all — the router change was a composite routing branch (not a `FAMILIES` mutation), the reviewer profile was acknowledged (not templated into a new scorer), and no corpus, fixture data, or runtime code was generated or changed.
 <!-- /ANCHOR:deviations -->
