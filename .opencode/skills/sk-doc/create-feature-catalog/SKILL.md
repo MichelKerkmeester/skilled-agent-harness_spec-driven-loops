@@ -15,7 +15,7 @@ Feature catalogs are the canonical inventory for what a system does today. They 
 
 Core principle: use the root catalog for stable inventory and navigation, and use per-feature files for implementation truth and traceable source anchors.
 
-This packet owns `/create:feature-catalog`, its `references/` set (indexed by `references/README.md`), and `assets/feature_catalog/`. It consumes shared sk-doc validation and writing standards from `../shared/`.
+This packet owns `/create:feature-catalog`, its `references/` set (indexed by `references/README.md`), and `assets/`. It consumes shared sk-doc validation and writing standards from `../shared/`.
 
 ---
 
@@ -194,8 +194,8 @@ Invariants:
 
 Use these packet resources while authoring:
 
-- `assets/feature_catalog/feature_catalog_template.md` for the root catalog scaffold.
-- `assets/feature_catalog/feature_catalog_snippet_template.md` for each per-feature file.
+- `assets/feature_catalog_template.md` for the root catalog scaffold.
+- `assets/feature_catalog_snippet_template.md` for each per-feature file.
 - `../shared/references/quick_reference.md` and `../shared/references/validation.md` before delivery.
 - `../shared/references/frontmatter_versioning.md` when checking frontmatter version fields.
 - `references/README.md` to route the reference overflow — [`examples.md`](references/examples.md) (worked live-catalog walkthrough) and [`common_pitfalls.md`](references/common_pitfalls.md) (deep-dive pitfalls, template-versus-reference split) — only for depth beyond this inline workflow.
@@ -210,9 +210,9 @@ Follow this workflow in order.
 2. Decide whether a catalog is warranted; use a README summary instead when the feature surface is small, complete, stable, or too volatile for a maintained catalog.
 3. Decide the category taxonomy before writing prose.
 4. Stabilize category names, feature names, and feature slugs before polishing descriptions.
-5. Create `feature_catalog/feature_catalog.md` from `assets/feature_catalog/feature_catalog_template.md`.
+5. Create `feature_catalog/feature_catalog.md` from `assets/feature_catalog_template.md`.
 6. Create one category folder per root section using a descriptive `underscore_case` slug such as `category_name`; the root catalog listing defines display order.
-7. Create one per-feature file for each root entry using `assets/feature_catalog/feature_catalog_snippet_template.md`.
+7. Create one per-feature file for each root entry using `assets/feature_catalog_snippet_template.md`.
 8. Write concise root summaries and link each feature to its per-feature file.
 9. Fill each per-feature `## 2. HOW IT WORKS` section with current behavior.
 10. Use plain prose for short `HOW IT WORKS` sections and H3 subheadings for sections longer than three paragraphs.
@@ -354,8 +354,8 @@ Validator boundary:
 
 ### ✅ ALWAYS
 
-1. Use `assets/feature_catalog/feature_catalog_template.md` for the root catalog scaffold.
-2. Use `assets/feature_catalog/feature_catalog_snippet_template.md` for per-feature files.
+1. Use `assets/feature_catalog_template.md` for the root catalog scaffold.
+2. Use `assets/feature_catalog_snippet_template.md` for per-feature files.
 3. Preserve the canonical root path `feature_catalog/feature_catalog.md`.
 4. Name category folders with a descriptive `underscore_case` slug such as `category_name`; let the root catalog index own display order.
 5. Keep per-feature filenames stable after publication.
@@ -429,8 +429,8 @@ The primary contract is this `SKILL.md`. Load the resources below only for overf
 - `references/README.md` - route map for the packet reference set.
 - `references/examples.md` - annotated walkthrough of a shipped feature-catalog package.
 - `references/common_pitfalls.md` - deep-dive pitfalls with before/after fixes and the template-versus-reference split.
-- `assets/feature_catalog/feature_catalog_template.md` - root catalog scaffold.
-- `assets/feature_catalog/feature_catalog_snippet_template.md` - per-feature file scaffold.
+- `assets/feature_catalog_template.md` - root catalog scaffold.
+- `assets/feature_catalog_snippet_template.md` - per-feature file scaffold.
 - `../shared/references/quick_reference.md` - condensed commands and file locations.
 - `../shared/references/validation.md` - shared validation and quality-scoring workflow.
 - `../shared/references/frontmatter_versioning.md` - four-part version field rules.

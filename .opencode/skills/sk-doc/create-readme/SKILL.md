@@ -9,7 +9,7 @@ version: 1.0.0.0
 
 # Create README (workflow)
 
-`create-readme` is the README authoring packet in the `sk-doc` family. It writes current-state folder READMEs and install guides from local evidence, using packet-local templates under `assets/readme/` and shared create-quality-control validators under `../shared`.
+`create-readme` is the README authoring packet in the `sk-doc` family. It writes current-state folder READMEs and install guides from local evidence, using packet-local templates under `assets/` and shared create-quality-control validators under `../shared`.
 
 ---
 
@@ -46,11 +46,11 @@ Route by artifact type first, then by folder purpose.
 
 | Request | Output | Primary Template |
 | --- | --- | --- |
-| Project, skill, feature or component README | `README.md` in the target folder | `assets/readme/readme_template.md` |
-| Source-code folder README | `README.md` in the source folder | `assets/readme/readme_code_template.md` |
-| Install guide | Markdown guide, usually under `.opencode/install_guides/` | `assets/readme/install_guide_template.md` |
+| Project, skill, feature or component README | `README.md` in the target folder | `assets/readme_template.md` |
+| Source-code folder README | `README.md` in the source folder | `assets/readme_code_template.md` |
+| Install guide | Markdown guide, usually under `.opencode/install_guides/` | `assets/install_guide_template.md` |
 
-This packet uses simple artifact routing. It selects README, code-folder README, or install-guide behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/`, `references/install_guide/` and `assets/readme/`.
+This packet uses simple artifact routing. It selects README, code-folder README, or install-guide behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/`, `references/install_guide/` and `assets/`.
 
 Router resilience rules:
 
@@ -458,9 +458,9 @@ Escalate if:
 
 The core workflow lives in this `SKILL.md`. Use these files only for deep overflow detail, exhaustive scaffolds, edge cases and long examples:
 
-- `assets/readme/readme_template.md` for the full fillable general README scaffold.
-- `assets/readme/readme_code_template.md` for the full fillable code-folder scaffold and diagram examples.
-- `assets/readme/install_guide_template.md` for full install-guide examples and platform config patterns.
+- `assets/readme_template.md` for the full fillable general README scaffold.
+- `assets/readme_code_template.md` for the full fillable code-folder scaffold and diagram examples.
+- `assets/install_guide_template.md` for full install-guide examples and platform config patterns.
 - `references/README.md` for the overflow route map that indexes the `readme/` and `install_guide/` reference groups.
 - `references/readme/` for extended README type, voice, writing-pattern and quality detail across three single-concern files.
 - `references/install_guide/` for extended install-guide section examples, platform config and quality standards across two single-concern files.
