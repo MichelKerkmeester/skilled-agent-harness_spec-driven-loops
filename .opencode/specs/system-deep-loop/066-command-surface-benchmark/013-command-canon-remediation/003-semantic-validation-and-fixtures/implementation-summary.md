@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures"
-    last_updated_at: "2026-07-16T13:20:00Z"
+    last_updated_at: "2026-07-16T14:10:00Z"
     last_updated_by: "claude"
-    recent_action: "Materialized Level-2 doc set for semantic-validation phase"
-    next_safe_action: "Canonize W6 mode-completeness in Step 10, then build the checks"
+    recent_action: "Canonized W6 mode-completeness in Step 10; found doctor runtime-path coverage nuance"
+    next_safe_action: "Fix reference-coverage extractor for doctor runtime paths, then add adapter checks"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs"
       - ".opencode/skills/sk-doc/create-command/SKILL.md"
-    completion_pct: 20
+    completion_pct: 30
     open_questions:
       - "Is timeout-bounds enforceable as a static invariant, or documentation-only?"
     answered_questions: []
@@ -49,7 +49,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The Level-2 doc set is materialized. The implementation is not yet written.
+The Level-2 doc set is materialized and the W6 canon is written. Task T001 is complete: create-command Step 10 now carries a **Mode completeness** paragraph stating that every advertised mode must have both its workflow asset and an EXECUTION TARGETS row — the "canonize before enforcing" rule for the mode-completeness check. The two adapter checks, the coverage fix, and the mutation fixtures are still owed.
+
+A coverage-expansion probe surfaced a concrete complication for T002: running the reference-resolution check across the doctor family reports eleven `[skill-asset]` misses in `doctor_update.yaml`, all of which are runtime-generated paths (`.flock` / `.lock` / `.log` locks and logs, `*.sqlite.pre-doctor-update` backups, `.doctor-update.config-instructions`). These are not static assets, so the coverage fix must teach the extractor to skip runtime-generated artifacts — not merely widen the hard-coded family list. speckit assets resolve cleanly; memory has no asset YAMLs.
 
 The planned change enforces three of the phase-001 contract's behavioral invariants the current checks miss: a gate-obligation check for required-input routers (W1), a mode-completeness check that a declared `:auto` / `:confirm` mode has both its workflow YAML and an EXECUTION TARGETS row (W6), and closure of the reference-coverage omission where `validate-command-references.cjs` hard-codes `FAMILIES = ['create', 'deep', 'design']` and skips speckit, memory, and doctor (W2). Each new invariant will be guarded by an independent mutation fixture detected by both the production adapter and the boundary-protected reference oracle.
 

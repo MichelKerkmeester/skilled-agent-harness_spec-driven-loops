@@ -315,6 +315,8 @@ Interactive mode pauses after each step for approval, presents options such as a
 
 If the mode-based command is large or has visible dashboards/prompts/results, use the router/presentation split.
 
+**Mode completeness.** Every mode a command advertises must be fully realized, not merely reachable. For each mode in the argument hint (`:auto`, `:confirm`), the command must have both its workflow asset (the `_auto.yaml` / `_confirm.yaml`) and an EXECUTION TARGETS row that resolves the mode to that asset. A hint that lists `:auto` with no `_auto.yaml` or no `:auto` execution row is incomplete — a reader cannot route the advertised mode — so declare only the modes you have wired end to end.
+
 ### Step 11: Author The Router As A First-Class Command Type
 
 A router is a first-class command type, not a loose refactor. Its `.md` is a thin dispatcher: verify the orchestrating agent, resolve mode and arguments, then hand off to owned assets (a presentation `.txt`, optional `_auto.yaml` / `_confirm.yaml`, or scripts). It carries no inline dashboards, prompts, or result templates.

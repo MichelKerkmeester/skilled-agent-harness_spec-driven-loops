@@ -7,10 +7,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures"
-    last_updated_at: "2026-07-16T13:20:00Z"
+    last_updated_at: "2026-07-16T14:10:00Z"
     last_updated_by: "claude"
-    recent_action: "Materialized Level-2 doc set for semantic-validation phase"
-    next_safe_action: "Canonize W6 mode-completeness in Step 10, then build the checks"
+    recent_action: "Canonized W6 mode-completeness in Step 10; found doctor runtime-path coverage nuance"
+    next_safe_action: "Fix reference-coverage extractor for doctor runtime paths, then add adapter checks"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
@@ -27,13 +27,13 @@ _memory:
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-`[ ]` open · `[x]` complete. Each task lists the verification that will confirm it when the work is done. All tasks are open: this phase is scaffolded and not yet implemented.
+`[ ]` open · `[x]` complete. Each task carries its verification evidence. T001 (canonize the mode-completeness rule) is complete; T002-T006 (the coverage fix, the two adapter checks, the oracle fixtures, and the gate run) remain open.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 — Canonize the mode-completeness rule in create-command Step 10: every advertised mode must have both its workflow YAML and an EXECUTION TARGETS row. Verification when done: Step 10 states the completeness rule and the skill still passes structural validation.
+- [x] T001 — Canonized the mode-completeness rule in create-command Step 10: every advertised mode must have both its workflow YAML and an EXECUTION TARGETS row. Evidence: Step 10 now carries a `Mode completeness` paragraph, and `validate_document.py --type skill` on `create-command/SKILL.md` reports only the two pre-existing `non_sequential_numbering` warnings (unchanged from HEAD), no new issues.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
