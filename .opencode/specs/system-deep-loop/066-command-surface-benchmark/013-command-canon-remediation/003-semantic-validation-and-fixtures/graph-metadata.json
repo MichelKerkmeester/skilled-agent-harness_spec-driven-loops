@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures",
+  "parent_id": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "semantic command validation",
+      "gate obligation check",
+      "mode completeness check",
+      "command reference coverage omission",
+      "verification",
+      "checklist",
+      "semantic validation",
+      "gate obligation",
+      "mode completeness",
+      "semantic validation implementation",
+      "gate obligation status",
+      "mode completeness status"
+    ],
+    "key_topics": [
+      "semantic",
+      "command",
+      "validation",
+      "gate",
+      "obligation",
+      "check",
+      "mode",
+      "completeness",
+      "reference",
+      "coverage",
+      "omission",
+      "verification"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs",
+      ".opencode/skills/sk-doc/create-command/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "sk-doc-command.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reference-oracle.cjs",
+        "kind": "file",
+        "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Materialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Step",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Parent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Backlog W1/W2/W6: enforce the command contract's behavioral invariants, not just section presence. Add a gate-obligation check for required-input routers, a mode-completeness check that a declared :auto/:confirm mode has both its workflow YAML and an EXECUTION TARGETS row, and close the reference-coverage omission that skips speckit/memory/doctor — each guarded by an independent mutation fixture. Canonize the new rules before enforcing them.",
+    "created_at": "2026-07-16T11:52:03.667Z",
+    "last_save_at": "2026-07-16T12:04:36.391Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5eb98ec4fb35669753e1ee8b4429736f6ae12bde5027f3f6b504f4cba8184c49",
+    "source_doc_hashes": {
+      "spec.md": "b7425161b6c2322a41b4e46c415de8cc0110b8cf7513a3132a79236225112a79",
+      "plan.md": "1d78b762e55f6a6bebf2b21fe9ec6cf8b09da428ce64940801b16678971a0299",
+      "tasks.md": "74969114a455b8cd44befbfced3e797260b459b7abea2a884e4dc13e7334d2e4",
+      "checklist.md": "d43319232d68ff576bcda407d7c23301d9b301c3e9bce56b7176b74ed0577aa5",
+      "implementation-summary.md": "76f700737d925bab31ea4def38ef2009de39f31e20b563ae20f130f819dfc4ed"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
