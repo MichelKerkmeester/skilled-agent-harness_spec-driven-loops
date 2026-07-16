@@ -283,6 +283,7 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 
 - **Research Source**: `../011-skill-advisor-routing-research/research/research.md`
 - **Sibling Fix Packet (shared P1-5 boundary)**: `../012-sk-doc-routing-fixes/spec.md`
+- **Following phase (map order)**: `../014-benchmark-harness-typed-wiring/spec.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
