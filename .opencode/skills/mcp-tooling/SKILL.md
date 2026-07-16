@@ -25,7 +25,7 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 | **mcp-chrome-devtools** | workflow | Browser debugging and automation: screenshots, DOM inspection, console/network capture, Lighthouse, via CLI (`bdg`) with an MCP fallback | `mcp-tooling/mcp-chrome-devtools/` |
 | **mcp-click-up** | workflow | ClickUp task management: daily ops via `cupt` CLI, documents/goals/bulk ops via the official MCP | `mcp-tooling/mcp-click-up/` |
 | **mcp-aside-devtools** | workflow | AI-browser automation via the Aside browser: agentic `aside` CLI tasks, deterministic `aside repl` evidence capture, `aside mcp` via Code Mode fallback | `mcp-tooling/mcp-aside-devtools/` |
-| **mcp-figma** _(transport)_ | transport | Drive Figma Desktop from the terminal via `figma-ds-cli` — a bridge that writes only to Figma Desktop, never this workspace, always paired with `sk-design` for design judgment | `mcp-tooling/mcp-figma/` |
+| **mcp-figma** _(transport)_ | transport | Drive Figma Desktop from the terminal via `figma-ds-cli` — document mutation lands in Figma Desktop (local writes limited to explicit-path exports per the registry's workspaceWrites clarifier), always paired with `sk-design` for design judgment | `mcp-tooling/mcp-figma/` |
 | **mcp-refero** _(transport)_ | transport | Search real-app UI design references via the Refero MCP (Code Mode, read-only) — screens, flows, styles; always paired with `sk-design` for design judgment | `mcp-tooling/mcp-refero/` |
 | **mcp-mobbin** _(transport)_ | transport | App/screen/flow design research via the Mobbin MCP (Code Mode, read-only) — mobile UX patterns from real apps; always paired with `sk-design` for design judgment | `mcp-tooling/mcp-mobbin/` |
 
@@ -55,6 +55,8 @@ read hub-router.json
   -> read mode-registry.json for packetKind, backendKind, toolSurface, and advisorRouting
   -> load the selected packet(s)
 ```
+
+A scored route loads exactly the selected mode's declared resources. `routerPolicy.defaultResource` is **fallback-only**: it is consulted solely when no mode scores (the zero-signal branch), and then only as the defer-time suggestion — it is never unioned into a scored route's resource set. Hub-identity vocabulary (and other `routerPolicy.discoveryClasses`) is discovery/defer evidence only, never per-mode scoring signal.
 
 ### Outcomes
 

@@ -11,12 +11,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/011-routing-remediation"
-    last_updated_at: "2026-07-16T18:55:00Z"
+    last_updated_at: "2026-07-16T19:05:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored six-phase plan with FIX ADDENDUM covering F001-F015"
-    next_safe_action: "Operator rules on ADR-001, then Phase 0 executes"
-    blockers:
-      - "Phase 0 ADR-001 ruling gate blocks Phases 1 and 2"
+    recent_action: "Completed Phase 3 WS3 (F006, F007) and Phase 4 WS4 (F009-F011)"
+    next_safe_action: "Execute Phase 5 terminal bounded re-review"
+    blockers: []
     key_files:
       - ".opencode/skills/mcp-tooling/hub-router.json"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs"
@@ -25,10 +24,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-011-routing-remediation"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "ADR-001 ruling pending (Phase 0 gate)"
-    answered_questions: []
+    completion_pct: 25
+    open_questions: []
+    answered_questions:
+      - "ADR-001 ruling: fallback-only (option a), Accepted 2026-07-16; ADR-002 scope confirmed as planned"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Routing remediation for the mcp-tooling six-mode hub: deterministic routing, route-gold benchmark enforcement, transport trust metadata, six-mode traceability

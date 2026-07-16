@@ -39,9 +39,9 @@ Drive **Figma Desktop from the terminal** through the silships **figma-cli** (pu
 
 **Inspect / export (CLI, read-only).** List/find nodes, get properties, `extract` a DESIGN.md, export assets/CSS/Tailwind/JSX/Storybook, run a11y audits, none of which change the Figma document.
 
-**Author / modify (CLI, gated).** Render JSX, create frames/components/icons, set properties, bind variables, generate variants. Every one changes the document and is gated.
+**Author / modify (CLI, gated).** Render JSX, create frames/components/icons, set properties, bind variables, generate variants. Every one changes the document and is gated, and every one is design-affecting: apply `sk-design` (the mandatory cross-hub pairing, hub ADR-002) BEFORE authoring — this transport never decides what to render.
 
-**Design-system / tokens (CLI, gated).** Create token collections, import from Tailwind/CSS/tokens/Storybook, bind `var:name`.
+**Design-system / tokens (CLI, gated).** Create token collections, import from Tailwind/CSS/tokens/Storybook, bind `var:name`. Token and variable choices are design decisions: the `sk-design` pairing precondition applies before any token authoring, same as author/modify.
 
 **Optional MCP context pull (Code Mode).** When the agent needs Figma design context as model input (design data, variables, screenshots), call the Framelink `figma` manual through Code Mode.
 
@@ -82,7 +82,7 @@ TASK CONTEXT
     +- STEP 1: Score intent -> CREATE_RENDER | DESIGN_SYSTEM_TOKENS | INSPECT_EXPORT | CONNECT_SETUP_DAEMON | MCP_CONTEXT | TROUBLESHOOT
     +- Phase 1: Connect / daemon (safe default; yolo only on consent)            [CONNECT_SETUP_DAEMON]
     +- Phase 2: Inspect / export (read-only; explicit output paths, no overwrite) [INSPECT_EXPORT]
-    +- Phase 3: Author / modify / tokens (MUTATING -> gate; DESTRUCTIVE -> confirm+target+rollback) [CREATE_RENDER / DESIGN_SYSTEM_TOKENS]
+    +- Phase 3: Author / modify / tokens (sk-design pairing FIRST; MUTATING -> gate; DESTRUCTIVE -> confirm+target+rollback) [CREATE_RENDER / DESIGN_SYSTEM_TOKENS]
     +- Phase 4: Optional MCP context pull via Code Mode (Framelink figma)         [MCP_CONTEXT]
     +- Phase 5: Verify (daemon healthy, output captured, no unconfirmed mutation)
 ```
@@ -104,11 +104,12 @@ assets/env_template.md              # the prefixed figma_FIGMA_API_KEY .env line
 
 | Level | When to Load | Resources |
 | ----- | ------------ | --------- |
-| ALWAYS | Every invocation | `references/figma_cli_reference.md` (binary/daemon/connect baseline) |
+| ALWAYS (scored routes) | Every scored route (declared per intent in RESOURCE_MAP) | `references/figma_cli_reference.md` (binary/daemon/connect baseline) |
 | CONDITIONAL | Author/modify/tokens intent | `references/tool_surface.md` (gating taxonomy) |
 | CONDITIONAL | MCP_CONTEXT intent | `references/mcp_wiring.md` (Code Mode Framelink path) |
 | CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
-| ALWAYS (design work) | A read/export feeds a design decision | `sk-design` principles, applied before deciding |
+| FALLBACK | Zero-score routes only | `references/figma_cli_reference.md` suggested (never auto-loaded) |
+| ALWAYS (design work) | A read/export feeds a design decision, OR an author/modify/token path will create or change design artifacts (render, create, bind, variants, tokens) | `sk-design` principles, applied before deciding or authoring |
 
 ### Smart Router Pseudocode
 
@@ -120,6 +121,10 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/figma_cli_reference.md"
+# Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
+# into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
+# zero-score routes load nothing and ask for disambiguation instead.
+DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
 MIN_CONFIDENCE = 1
 AMBIGUITY_DELTA = 1
 
@@ -187,7 +192,7 @@ def classify_intents(request: str):
     ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
     primary, top = ranked[0]
     if top == 0:
-        return ("CONNECT_SETUP_DAEMON", None, scores)   # unrouted -> start by verifying setup
+        return (None, None, scores)   # unrouted -> no intent selected; fallback branch disambiguates
     secondary, second = ranked[1]
     if second > 0 and (top - second) <= AMBIGUITY_DELTA:
         return (primary, secondary, scores)
@@ -196,7 +201,7 @@ def classify_intents(request: str):
 def route_figma_resources(request: str):
     inventory = discover_markdown_resources()
     primary, secondary, scores = classify_intents(request)
-    intents = [primary] + ([secondary] if secondary else [])
+    intents = [i for i in (primary, secondary) if i]
     loaded, seen, notices = [], set(), []
 
     def load_if_available(rel: str) -> bool:
@@ -208,10 +213,12 @@ def route_figma_resources(request: str):
             notices.append(f"Resource not found in inventory: {guarded}")
         return False
 
-    load_if_available(DEFAULT_RESOURCE)
     if max(scores.values() or [0]) < MIN_CONFIDENCE:
+        # Fallback-only: nothing is loaded on a zero-score route; the default
+        # reference is offered as a suggestion beside the disambiguation ask.
         return {"intents": intents, "load_level": "UNKNOWN_FALLBACK", "needs_disambiguation": True,
-                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded, "notices": notices}
+                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+                "suggested_fallback": DEFAULT_RESOURCE, "resources": loaded, "notices": notices}
     for intent in intents:
         for rel in RESOURCE_MAP.get(intent, []):
             load_if_available(rel)
@@ -245,7 +252,7 @@ Figma Desktop must be **open with a file**, since figma-cli drives the live Desk
 
 The full per-command taxonomy lives in [`references/tool_surface.md`](references/tool_surface.md). Summary:
 - **READ-ONLY** (safe default): `status`, `var list/find`, `get`, `find`, `inspect`, `node tree`, `extract`, `export*`, `export-jsx`, `export-storybook`, `analyze*`, `a11y*`, `files`, `--dry-run` variants. (Local exports still write files, so require an explicit output path, never silently overwrite.)
-- **MUTATING** (gate): all `create*`/`render*`/`tokens *`/`var create|bind|set|rename|visualize`, `bind *`, `set *`, layout verbs, `duplicate`, `use/theme`, `node to-component`, `slot/sizes/variants/combos`, `shadcn add`, `import`, `lint --fix`, `screenshot-url`, `recreate-url`, `gradient mesh`. App-level: `connect`, `unpatch`, `daemon start/stop/restart`, `config set`, `init-agent`.
+- **MUTATING** (gate): all `create*`/`render*`/`tokens *`/`var create|bind|set|rename|visualize`, `bind *`, `set *`, layout verbs, `duplicate`, `use/theme`, `node to-component`, `slot/sizes/variants/combos`, `shadcn add`, `import`, `lint --fix`, `screenshot-url`, `recreate-url`, `gradient mesh`. App-level: `connect`, `unpatch`, `daemon start/stop/restart`, `config set`, `init-agent`. Design-affecting MUTATING verbs (authoring, tokens, binding, variants — everything except the app-level connection/daemon/config verbs) additionally carry the `sk-design` pairing precondition: the design judgment is made there first, then executed here.
 - **DESTRUCTIVE** (confirm + explicit target + rollback): `var delete-all`, `var delete-batch`, `delete/remove`, `node delete`, `undo`, `unwrap`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear`, `annotate clear`.
 - **ARBITRARY** (treat as mutating, review first): `eval`, `raw`, `run`.
 
@@ -266,7 +273,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 5. **ALWAYS gate every DESTRUCTIVE verb** behind explicit user confirmation, an explicit target node/file, a command preview, and a one-line rollback (prefer duplicating the file/page/selection first).
 6. **ALWAYS treat `eval`, `raw`, and `run` as arbitrary mutation**, reviewing the code/command before running, even when the prompt sounds exploratory.
 7. **ALWAYS require an explicit output path for local exports** (`extract`/`export`/`export-jsx`) and never silently overwrite existing files.
-8. **ALWAYS apply `sk-design`** when a Figma read/export feeds a design decision. This skill owns the transport, and that skill owns the taste.
+8. **ALWAYS apply `sk-design` BEFORE any design-affecting operation** — both directions: when a Figma read/export feeds a design decision, AND before every design-affecting authoring path (render, create frames/components/icons, bind variables, generate variants, token/variable work). The mandatory cross-hub pairing (hub ADR-002, `crossHubPairing`) makes the judgment precondition, not an afterthought: this skill owns the transport, and that skill owns the taste.
 
 ### ⛔ NEVER
 
@@ -318,7 +325,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 - ✅ The requested data/asset was captured to an explicit path with no overwrite, and no mutating or destructive command ran.
 
 **Author / modify complete when:**
-- ✅ The user confirmed the target and intent; mutating commands ran; destructive verbs had an explicit target + rollback; the result was verified (e.g. `get`/`verify`).
+- ✅ The `sk-design` pairing supplied the design judgment first (what to render/bind/tokenize); the user confirmed the target and intent; mutating commands ran; destructive verbs had an explicit target + rollback; the result was verified (e.g. `get`/`verify`).
 
 **Optional MCP context complete when:**
 - ✅ Code Mode discovery confirmed the `figma` manual + tool names, the token was configured, and the context was pulled without claiming unverified tools.
@@ -338,7 +345,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ### Cross-Workflow Contracts
 
-- **`sk-design`** owns the design judgment and is applied whenever a Figma read/export feeds a design decision (grounding, token/type/layout choices). This skill is the transport, and that skill is the taste.
+- **`sk-design`** owns the design judgment as a mandatory cross-hub pairing (hub ADR-002): applied whenever a Figma read/export feeds a design decision (grounding, token/type/layout choices) AND as the precondition before every design-affecting authoring path (render/create, variable binding, variants, token collections). This skill is the transport, and that skill is the taste.
 - **`sk-code`** owns adapting extracted tokens / DESIGN.md / exported code into a real application, and verifying it.
 - **`mcp-chrome-devtools`** is used only for a last-mile browser preview of an implemented page, never to operate Figma.
 

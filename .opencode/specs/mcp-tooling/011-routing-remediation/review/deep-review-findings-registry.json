@@ -1,0 +1,53 @@
+{
+  "mergedFrom": [
+    "sol-rereview"
+  ],
+  "mergedVerdict": "PASS",
+  "openFindings": [
+    {
+      "findingId": "SRR-P2-001",
+      "severity": "P2",
+      "title": "Registry discriminator descriptions omit two transports and the Code Mode backend",
+      "file": ".opencode/skills/mcp-tooling/mode-registry.json",
+      "line": 7,
+      "description": "Primary discriminator help omits Refero, Mobbin, and code-mode-remote-mcp.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "The mismatch is local to an explicitly bound file.",
+      "affectedSurfaceHints": [
+        "registry help consumers"
+      ],
+      "contentHash": "c9ef9d5a06fa864797f79bc2902270bc6c8e5e2374968cfb41754e7892a56402",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-rereview"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 0,
+  "activeP2": 1
+}

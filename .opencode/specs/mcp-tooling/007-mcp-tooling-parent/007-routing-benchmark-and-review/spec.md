@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review"
-    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_at: "2026-07-16T18:29:00Z"
     last_updated_by: "claude"
-    recent_action: "Marked routing benchmark and review deferred"
-    next_safe_action: "Run Lane-C benchmark when scheduled"
+    recent_action: "Added dated six-mode/executed-benchmark amendment (routing remediation F010)"
+    next_safe_action: "None; phase complete, amendment recorded"
     blockers: []
     key_files:
       - ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md"
@@ -168,6 +168,19 @@ Prove the hub routes correctly and the fold-in diff is clean, and resolve the on
 - Owned here: whether the figma transport needs a lexical routing carve-out or hub-membership metadata routing suffices — resolved by this phase's benchmark, not pre-decided.
 - Any routing-config amendment lands against the phase 002 ADRs (same ADR number, dated note), never as a competing decision.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:amendment-2026-07-16 -->
+## 8. AMENDMENT (2026-07-16): SIX-MODE REALITY AND EXECUTED BENCHMARK
+
+Dated amendment — the sections above are preserved as authored; this note records what changed after authoring:
+
+1. **Six modes, not three.** The hub grew from three modes to six (added `mcp-aside-devtools`, `mcp-refero`, `mcp-mobbin`) before this phase executed. Every "three modes" framing above (Phase Context, REQ-001, SC-001, scope) reads as the six-mode inventory in `mode-registry.json`; the executed corpus covers 13 hub scenarios across all six modes (7 primary + 6 blind holdouts, one holdout per mode).
+2. **The benchmark WAS executed.** The Execution Note's "only the `.gitkeep` baseline, no `router-final/` report" claim is superseded: the Lane-C skill-benchmark ran with real evidence at `.opencode/skills/mcp-tooling/benchmark/baseline/` (frozen pre-remediation run, PASS 95, 13 scenarios) and was re-run after routing remediation at `.opencode/skills/mcp-tooling/benchmark/after-routing-remediation/` (PASS 98, route-gold hard gate enforced: rows 13, matches 13, violations 0).
+3. **Naming supersession.** The drafted `benchmark/router-final/` run label (Files to Change, plan storage row) was superseded by the benchmark storage guide's frozen `baseline/` naming plus per-remediation run labels; no `router-final/` folder exists or will be created.
+4. **Findings remediation.** The deep-review's 15 findings were remediated in `.opencode/specs/mcp-tooling/011-routing-remediation/` (route-gold enforcement, fallback-only `defaultResource`, six-mode traceability); the figma-transport carve-out stayed resolved as metadata routing with vocabulary recall fixes, no ADR amendment.
+<!-- /ANCHOR:amendment-2026-07-16 -->
 
 ---
 

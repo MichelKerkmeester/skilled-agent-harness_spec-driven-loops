@@ -5,7 +5,7 @@
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
     "packetKind": "The axis discriminator: 'workflow' for the local-mutating tool bridges (mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools) that write to this repo's workspace; 'transport' for mcp-figma, which bridges to Figma Desktop rather than performing design judgment or mutating this workspace.",
-    "backendKind": "Which backend runs the mode: cli-plus-mcp for the workflow bridges (CLI-primary, Code Mode MCP fallback); figma-desktop-transport for the figma transport (drives the external Figma Desktop app over its local daemon)."
+    "backendKind": "Which backend runs the mode: cli-plus-mcp for the workflow bridges (CLI-primary, Code Mode MCP fallback); figma-desktop-transport for the figma transport (drives the external Figma Desktop app over its local daemon); code-mode-remote-mcp for the refero and mobbin transports (remote MCP servers reached through Code Mode via their registered manuals)."
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For mcp-tooling every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity mcp-tooling and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
@@ -15,7 +15,7 @@
   },
   "extensions": {
     "transport-axis": {
-      "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata', mutatesWorkspace:false since writes land in the external tool, not this repo). Transports never perform design judgment themselves and carry a mandatory cross-hub pairing to sk-design (a DIFFERENT hub) for design decisions \u2014 licensed by ADR-002 as a legitimate cross-hub judgment partner, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply design judgment. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode).",
+      "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never perform design judgment themselves and carry a mandatory cross-hub pairing to sk-design (a DIFFERENT hub) for design decisions \u2014 licensed by ADR-002 as a legitimate cross-hub judgment partner, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply design judgment. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode).",
       "transports": [
         "mcp-figma",
         "mcp-refero",
@@ -153,6 +153,7 @@
           "Task"
         ],
         "mutatesWorkspace": false,
+        "workspaceWrites": "export-only: the read-path export commands (extract DESIGN.md, export PNG/SVG/JSX/CSS/Tailwind/Storybook, screenshots) save their OUTPUT ARTIFACTS to the local filesystem at an explicit, operator-supplied output path (never a silent overwrite, per the packet's local-export rule). No command edits existing repo sources; document mutation lands in Figma Desktop, so mutatesWorkspace stays false per the transport axis' dominant-posture semantics.",
         "bashAllowlist": []
       },
       "packet": "mcp-figma",

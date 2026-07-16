@@ -14,11 +14,14 @@ version: 1.0.0.0
 
 ## Verdict (latest)
 
-| Run | Date | Mode | Verdict | Aggregate | Scenarios |
-|---|---|---|---|---|---|
-| `baseline/` | 2026-07-16 | Mode A router-replay | **PASS** | 95 | 13 |
+| Run | Date | Mode | Verdict | Aggregate | Scenarios | Route gold |
+|---|---|---|---|---|---|---|
+| `after-routing-remediation/` | 2026-07-16 | Mode A router-replay | **PASS** | 98 | 13 | ENFORCED (auto) — 13 rows, 13 matches, 0 violations |
+| `baseline/` | 2026-07-16 | Mode A router-replay | **PASS** | 95 | 13 | not scored (pre-gate harness; routeGoldRows 0) |
 
 Baseline captured with all six modes registered (three workflow + three transports), 6/6 hub_routing holdout coverage, and the post-expansion advisor index (generation 11998).
+
+`after-routing-remediation/` is the first run under the route-gold hard gate (`--route-gold auto`, enforced for hub-type skills): every scenario's `expected_intent` and `expected_resources` scored as hard gold under the fallback-only `defaultResource` contract, 13/13 conformant.
 
 ## Structure
 

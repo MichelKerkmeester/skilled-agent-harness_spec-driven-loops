@@ -149,6 +149,30 @@ function renderReport(report) {
     lines.push('');
   }
 
+  if (r.routeGold) {
+    const g = r.routeGold;
+    lines.push('## Route gold (hard lane)');
+    lines.push('');
+    lines.push(`- Gate: **${g.enabled ? 'ENFORCED' : 'not enforced'}** (flag \`${g.mode}\`) · rows scored: **${g.rows}** · matches: **${g.matches}** · violations: **${g.violations}** (gold parse failures: ${g.parseFailures})`);
+    if (g.failed) lines.push('- ⚠ **Route-gold violation(s) fail this run** — a route mismatch cannot remain a PASS while the gate is on.');
+    if (g.details && g.details.length) {
+      lines.push('');
+      lines.push('| Scenario | Intent | Resources | Expected | Observed |');
+      lines.push('| -------- | ------ | --------- | -------- | -------- |');
+      const cell = (v) => (Array.isArray(v) ? (v.length ? v.join('<br>') : '_empty set_') : (v == null ? '—' : String(v)));
+      for (const d of g.details) {
+        if (d.reason === 'gold-parse-failure') {
+          lines.push(`| ${d.scenarioId || '—'} | — | — | _gold parse failure_ | ${String(d.detail || '').replace(/\|/g, '\\|')} |`);
+          continue;
+        }
+        const expected = `intent: ${cell(d.expectedIntents)}<br>resources: ${cell(d.expectedResources)}`;
+        const observed = `intent: ${cell(d.observedIntents)}<br>resources: ${cell(d.observedResources)}`;
+        lines.push(`| ${d.scenarioId || '—'} | ${d.intentOk === false ? 'MISMATCH' : 'ok'} | ${d.resourceOk === false ? 'MISMATCH' : 'ok'} | ${expected.replace(/\|/g, '\\|')} | ${observed.replace(/\|/g, '\\|')} |`);
+      }
+    }
+    lines.push('');
+  }
+
   lines.push('## Funnel');
   lines.push('');
   for (const [stage, count] of Object.entries(r.funnel || {})) {

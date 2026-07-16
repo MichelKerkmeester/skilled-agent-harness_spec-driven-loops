@@ -170,8 +170,17 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `node run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--trace-mode router\|live] [--scenarios <ids>] [--output <report.json>]` | CLI | Runs the Lane C benchmark and writes `report.json` + `report.md`. |
+| `node run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--trace-mode router\|live] [--scenarios <ids>] [--output <report.json>] [--route-gold on\|off\|auto]` | CLI | Runs the Lane C benchmark and writes `report.json` + `report.md`. |
 | `... --d4 [--d4-scenarios <ids>] [--grader-mode real\|mock]` | CLI (opt-in) | Adds the D4-R task-outcome ablation; requires `--trace-mode live`. Augments the report with advisory `D4_task_outcome`. |
+
+### Route-gold hard gate (`--route-gold on|off|auto`)
+
+Mode A consumes every authored `expected_intent`/`expected_resources` assertion as hard route gold: intent gold is an exact-set assertion (the rejection labels `none`/`defer`/`UNKNOWN` assert the empty intent set), resource gold is an exact-assembly assertion for frontmatter (sk-doc-shape) corpora and a must-include + no-forbidden-prefix assertion for sk-code-shape corpora. A present-but-unparseable gold block is a LOUD counted parse failure, never a silent skip. The report always records the flag state, row count, matches, and per-scenario violation detail under `routeGold`; when the gate is enforced, any violation (including a parse failure) flips the verdict to `BLOCKED-BY-ROUTE-GOLD` and the process exits 3.
+
+- `auto` (default): enforced when the target skill is hub-type (ships a `hub-router.json`), off otherwise — existing non-hub baselines keep their meaning.
+- `on` / `off`: explicit per-run override (e.g. `off` while triaging a hub corpus's newly-surfaced violations).
+
+Default-resource semantics are declared by the router itself: `DEFAULT_RESOURCE_SEMANTICS = "fallback-only"` (SKILL.md/router doc) or `routerPolicy.defaultResourceSemantics` (hub-router.json) makes the default a defer-time suggestion the replay never assembles; a router with no declaration keeps the legacy always-union replay behavior.
 | `run({ ... })` | Function | Programmatic orchestrator entry; returns the report object. |
 | `routeSkillResources({ task, skillRoot })` | Function | Deterministic Mode A router replay used directly by tests and the generator. |
 
@@ -182,12 +191,14 @@ Main flow:
 Run from the repository root.
 
 ```bash
-npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts
-npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/playbook-mode.vitest.ts
-npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts
+cd .opencode/skills/system-deep-loop/deep-improvement/scripts
+npx vitest run skill-benchmark/tests/skill-benchmark.vitest.ts
+npx vitest run skill-benchmark/tests/playbook-mode.vitest.ts
+npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts
+npx vitest run skill-benchmark/tests/route-gold-gate.vitest.ts
 ```
 
-Expected result: all three Lane C suites pass.
+Expected result: all four Lane C suites pass (`route-gold-gate.vitest.ts` covers the route-gold hard gate, loud gold parsing, and the mcp-tooling fallback-parity guard).
 
 ---
 

@@ -1,0 +1,630 @@
+{
+  "summary": {
+    "capturedAt": "2026-07-16T17:20:50.029Z",
+    "tag": "post-ws1",
+    "replayEngine": "router-replay.cjs routeSkillResources (deterministic, hub-router.json projection)",
+    "scenarioCount": 13,
+    "intentMatches": 13,
+    "resourceMatches": 2
+  },
+  "rows": [
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-001",
+      "featureFile": "hub_routing/chrome_devtools_browser_debug.md",
+      "prompt": "Use Chrome DevTools to capture a HAR for the reducer dashboard failing in staging.",
+      "gold": {
+        "expected_intent": "mcp-chrome-devtools",
+        "expected_resources": [
+          "mcp-chrome-devtools/SKILL.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "mcp-chrome-devtools"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-chrome-devtools",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-chrome-devtools"
+          ],
+          "matchedAliases": [
+            "chrome devtools"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "cli-plus-mcp"
+          ],
+          "packet": [
+            "mcp-chrome-devtools"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-002",
+      "featureFile": "hub_routing/clickup_task_management.md",
+      "prompt": "Mark the ClickUp task done and add a note that it shipped.",
+      "gold": {
+        "expected_intent": "mcp-click-up",
+        "expected_resources": [
+          "mcp-click-up/SKILL.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "mcp-click-up"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-click-up/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-click-up",
+            "score": 8
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-click-up"
+          ],
+          "matchedAliases": [
+            "clickup",
+            "clickup task"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "cli-plus-mcp"
+          ],
+          "packet": [
+            "mcp-click-up"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-003",
+      "featureFile": "hub_routing/figma_transport.md",
+      "prompt": "Render this component in Figma and export the design tokens.",
+      "gold": {
+        "expected_intent": "mcp-figma",
+        "expected_resources": [
+          "mcp-figma/SKILL.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "mcp-figma"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-figma/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-figma",
+            "score": 8
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-figma"
+          ],
+          "matchedAliases": [
+            "figma",
+            "design tokens"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "figma-desktop-transport"
+          ],
+          "packet": [
+            "mcp-figma"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-004",
+      "featureFile": "hub_routing/ambiguous_defer.md",
+      "prompt": "Use the MCP tool bridge for this.",
+      "gold": {
+        "expected_intent": "defer",
+        "expected_resources": []
+      },
+      "replay": {
+        "intents": [],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md"
+        ],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": null,
+          "matchedAliases": [],
+          "defaultApplied": true,
+          "deferReason": "no-mode-scored",
+          "backendKind": [],
+          "packet": []
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-007",
+      "featureFile": "hub_routing/aside_browser_automation.md",
+      "prompt": "Use the Aside browser to sign into the staging dashboard, capture REPL evidence of the console errors, and screenshot the failing widget.",
+      "gold": {
+        "expected_intent": "mcp-aside-devtools",
+        "expected_resources": [
+          "mcp-aside-devtools/SKILL.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "mcp-aside-devtools"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-aside-devtools/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-aside-devtools",
+            "score": 8
+          },
+          {
+            "intent": "mcp-chrome-devtools",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-aside-devtools"
+          ],
+          "matchedAliases": [
+            "aside",
+            "aside browser"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "cli-plus-mcp"
+          ],
+          "packet": [
+            "mcp-aside-devtools"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-008",
+      "featureFile": "hub_routing/refero_design_reference.md",
+      "prompt": "Search Refero for real-app checkout flow screens and pull style references for the redesign.",
+      "gold": {
+        "expected_intent": "mcp-refero",
+        "expected_resources": [
+          "mcp-refero/SKILL.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "mcp-refero"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-refero/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-refero",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-refero"
+          ],
+          "matchedAliases": [
+            "refero"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "code-mode-remote-mcp"
+          ],
+          "packet": [
+            "mcp-refero"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-009",
+      "featureFile": "hub_routing/mobbin_app_research.md",
+      "prompt": "Research onboarding flow patterns from real iOS apps on Mobbin and collect screen examples for the signup redesign.",
+      "gold": {
+        "expected_intent": "mcp-mobbin",
+        "expected_resources": [
+          "mcp-mobbin/SKILL.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "mcp-mobbin"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-mobbin/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-mobbin",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-mobbin"
+          ],
+          "matchedAliases": [
+            "mobbin"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "code-mode-remote-mcp"
+          ],
+          "packet": [
+            "mcp-mobbin"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-H01",
+      "featureFile": "hub_routing/holdout_browser_inspect.md",
+      "prompt": "The staging site throws runtime errors on load; I need to inspect its network requests and the live DOM to find the cause.",
+      "gold": {
+        "expected_intent": "mcp-chrome-devtools",
+        "expected_resources": [
+          "mcp-chrome-devtools/SKILL.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "mcp-chrome-devtools"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-chrome-devtools",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-chrome-devtools"
+          ],
+          "matchedAliases": [
+            "network requests"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "cli-plus-mcp"
+          ],
+          "packet": [
+            "mcp-chrome-devtools"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-H02",
+      "featureFile": "hub_routing/holdout_design_tokens.md",
+      "prompt": "Pull the button component's colors and spacing values out of our shared design file and hand them to the build.",
+      "gold": {
+        "expected_intent": "mcp-figma",
+        "expected_resources": [
+          "mcp-figma/SKILL.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "mcp-figma"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-figma/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-figma",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-figma"
+          ],
+          "matchedAliases": [
+            "design file"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "figma-desktop-transport"
+          ],
+          "packet": [
+            "mcp-figma"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-H03",
+      "featureFile": "hub_routing/holdout_task_tracking.md",
+      "prompt": "Close out yesterday's two open items in our project tracker, add a short note on what shipped, and log the hour I spent.",
+      "gold": {
+        "expected_intent": "mcp-click-up",
+        "expected_resources": [
+          "mcp-click-up/SKILL.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "mcp-click-up"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-click-up/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-click-up",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-click-up"
+          ],
+          "matchedAliases": [
+            "project tracker"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "cli-plus-mcp"
+          ],
+          "packet": [
+            "mcp-click-up"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-H04",
+      "featureFile": "hub_routing/holdout_agentic_browser.md",
+      "prompt": "Have the browser sign into the staging portal on its own, click through the checkout flow, and save proof screenshots of every step it takes.",
+      "gold": {
+        "expected_intent": "mcp-aside-devtools",
+        "expected_resources": [
+          "mcp-aside-devtools/SKILL.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "mcp-aside-devtools"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-aside-devtools/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-aside-devtools",
+            "score": 8
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-aside-devtools"
+          ],
+          "matchedAliases": [
+            "click through",
+            "on its own"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "cli-plus-mcp"
+          ],
+          "packet": [
+            "mcp-aside-devtools"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-H05",
+      "featureFile": "hub_routing/holdout_web_design_reference.md",
+      "prompt": "Show me how shipped web products design their checkout pages — concrete screenshots and the styles they use — so I can compare against our redesign.",
+      "gold": {
+        "expected_intent": "mcp-refero",
+        "expected_resources": [
+          "mcp-refero/SKILL.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "mcp-refero"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-refero/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-refero",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-refero"
+          ],
+          "matchedAliases": [
+            "web products"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "code-mode-remote-mcp"
+          ],
+          "packet": [
+            "mcp-refero"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-tooling",
+      "scenarioId": "MT-H06",
+      "featureFile": "hub_routing/holdout_mobile_pattern_research.md",
+      "prompt": "Collect how popular phone apps welcome first-time users — real product walkthroughs, not mockups — so we can rework our signup.",
+      "gold": {
+        "expected_intent": "mcp-mobbin",
+        "expected_resources": [
+          "mcp-mobbin/SKILL.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "mcp-mobbin"
+        ],
+        "resources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-mobbin/SKILL.md"
+        ],
+        "scores": [
+          {
+            "intent": "mcp-mobbin",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": true,
+          "source": "hub-router",
+          "workflowMode": [
+            "mcp-mobbin"
+          ],
+          "matchedAliases": [
+            "phone apps"
+          ],
+          "defaultApplied": false,
+          "deferReason": null,
+          "backendKind": [
+            "code-mode-remote-mcp"
+          ],
+          "packet": [
+            "mcp-mobbin"
+          ]
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    }
+  ]
+}

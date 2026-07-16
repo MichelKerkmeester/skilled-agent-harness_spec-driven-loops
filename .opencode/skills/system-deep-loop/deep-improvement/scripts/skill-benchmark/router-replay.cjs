@@ -13,8 +13,13 @@
  * target SKILL.md; it is documentation, not an importable module, so this script
  * extracts the dictionaries and reproduces the exact substring-scoring semantics:
  * lowercase the task, score each intent by whether each keyword is a substring,
- * keep intents within an ambiguity delta of the top score, then union the default
- * resource + RESOURCE_MAP[intent] for the selected intents.
+ * keep intents within an ambiguity delta of the top score, then assemble
+ * RESOURCE_MAP[intent] for the selected intents. Default-resource handling is
+ * declared by the router itself: a router that declares fallback-only semantics
+ * (DEFAULT_RESOURCE_SEMANTICS / routerPolicy.defaultResourceSemantics) treats
+ * its default as a defer-time suggestion that is never assembled; a router with
+ * no declaration keeps the legacy behavior of unioning the default into every
+ * route, so undeclared skills replay byte-identically.
  *
  * Exit: 0 on a successful replay (even with zero intents), 2 on unparseable router.
  */
@@ -109,6 +114,16 @@ function parseDefaultResource(text) {
   return strM ? [strM[1]] : [];
 }
 
+// A router may declare how its default resource is consumed
+// (DEFAULT_RESOURCE_SEMANTICS = "fallback-only"). Fallback-only means the
+// default is a defer-time suggestion offered alongside disambiguation, never
+// assembled into any route's resource set; an absent declaration keeps the
+// legacy always-union behavior for every skill that has not opted in.
+function parseDefaultResourceSemantics(text) {
+  const m = /DEFAULT_RESOURCE_SEMANTICS\s*=\s*["']([a-z-]+)["']/.exec(text || '');
+  return m ? m[1] : null;
+}
+
 function projectHubRouter(filePath) {
   const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   const signals = data.routerSignals && typeof data.routerSignals === 'object' ? data.routerSignals : {};
@@ -142,6 +157,9 @@ function projectHubRouter(filePath) {
     intentSignals,
     resourceMap,
     defaultResource: Array.isArray(policy.defaultResource) ? policy.defaultResource : [],
+    defaultResourceSemantics: typeof policy.defaultResourceSemantics === 'string'
+      ? policy.defaultResourceSemantics
+      : null,
   };
 }
 
@@ -323,6 +341,7 @@ function parseRouter(skillMdText, skillRoot) {
   let intentSignals = parseIntentSignals(extractDictBody(skillMdText, 'INTENT_SIGNALS'));
   let resourceMap = parseResourceMap(extractDictBody(skillMdText, 'RESOURCE_MAP'));
   let defaultResource = parseDefaultResource(skillMdText);
+  let defaultResourceSemantics = parseDefaultResourceSemantics(skillMdText);
   let routerSource = 'inline';
 
   const inlineEmpty = Object.keys(intentSignals).length === 0 && Object.keys(resourceMap).length === 0;
@@ -336,6 +355,7 @@ function parseRouter(skillMdText, skillRoot) {
         intentSignals = refSignals;
         resourceMap = refMap;
         defaultResource = defaultResource.length ? defaultResource : parseDefaultResource(refText);
+        defaultResourceSemantics = defaultResourceSemantics || parseDefaultResourceSemantics(refText);
         routerSource = path.relative(skillRoot, refDoc);
       }
     }
@@ -348,13 +368,14 @@ function parseRouter(skillMdText, skillRoot) {
         intentSignals = projected.intentSignals;
         resourceMap = projected.resourceMap;
         defaultResource = defaultResource.length ? defaultResource : projected.defaultResource;
+        defaultResourceSemantics = defaultResourceSemantics || projected.defaultResourceSemantics;
         routerSource = 'hub-router.json';
       }
     }
   }
 
   const parseable = Object.keys(intentSignals).length > 0 || Object.keys(resourceMap).length > 0;
-  return { intentSignals, resourceMap, defaultResource, parseable, routerSource };
+  return { intentSignals, resourceMap, defaultResource, defaultResourceSemantics, parseable, routerSource };
 }
 
 /**
@@ -481,8 +502,12 @@ function loadSurfaceRouter(skillRoot) {
     const intentSignals = parseIntentSignals(extractDictBody(text, 'INTENT_SIGNALS'));
     const resourceMap = parseResourceMap(extractDictBody(text, 'RESOURCE_MAP'));
     const defaultResource = parseDefaultResource(text);
+    const defaultResourceSemantics = parseDefaultResourceSemantics(text);
     if (Object.keys(intentSignals).length > 0 || Object.keys(resourceMap).length > 0) {
-      return { intentSignals, resourceMap, defaultResource, sourceRel: path.relative(skillRoot, doc) };
+      return {
+        intentSignals, resourceMap, defaultResource, defaultResourceSemantics,
+        sourceRel: path.relative(skillRoot, doc),
+      };
     }
   }
   return null;
@@ -501,17 +526,24 @@ function registryPacketRoots(skillRoot) {
   return roots;
 }
 
-// Union the default preamble with each selected intent's resources, then apply
-// surface-aware slicing when the map uses a per-surface layout (sk-code): keep the
-// universal tier + Motion.dev overlay + only the DETECTED surface's slice, drop
-// the other surface's resources (the documented over-routing source). Assets are
+// Assemble each selected intent's resources, then apply surface-aware slicing
+// when the map uses a per-surface layout (sk-code): keep the universal tier +
+// Motion.dev overlay + only the DETECTED surface's slice, drop the other
+// surface's resources (the documented over-routing source). The default
+// resource joins the union only under legacy (undeclared) semantics: a router
+// that declares fallback-only treats its default as a defer-time suggestion,
+// never an assembled resource — a scored route carries exactly its intents'
+// declared resources and a zero-score route carries none. Assets are
 // deferred — never the routing gold. A MIXED task keeps both surfaces; UNKNOWN
 // falls back to the universal + Motion tier only. Existence is checked against the
 // skill root plus any extra roots (a hub's packet roots), since a hub's surface
 // paths resolve under a packet rather than the hub root.
 function assembleResources({ skillRoot, taskLower, intents, router, extraRoots = [] }) {
   const resourceSet = new Set();
-  for (const r of router.defaultResource || []) resourceSet.add(r);
+  const fallbackOnly = router.defaultResourceSemantics === 'fallback-only';
+  if (!fallbackOnly) {
+    for (const r of router.defaultResource || []) resourceSet.add(r);
+  }
   for (const intent of intents) {
     for (const r of router.resourceMap[intent] || []) resourceSet.add(r);
   }

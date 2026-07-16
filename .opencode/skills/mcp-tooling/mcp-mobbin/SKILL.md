@@ -97,9 +97,10 @@ assets/utcp-mobbin-manual.md    # Registered manual's reference shape + post-reg
 
 | Level | When to Load | Resources |
 | ----- | ------------ | --------- |
-| ALWAYS | Every invocation | `references/tool-surface.md` (tool contract + workflow baseline) |
+| CONDITIONAL | Research intent (apps/screens/flows/elements) | `references/tool-surface.md` (tool contract + workflow baseline) |
 | CONDITIONAL | Wiring / auth intent | `references/mcp-wiring.md`, `assets/utcp-mobbin-manual.md` |
 | CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
+| FALLBACK | Zero-score routes only | `references/tool-surface.md` suggested (never auto-loaded) |
 | ALWAYS (design work) | Retrieved evidence feeds a design decision | `sk-design` modes, loaded before any taste call |
 
 ### Smart Router Pseudocode
@@ -112,13 +113,17 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/tool-surface.md"
+# Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
+# into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
+# zero-score routes load nothing and ask for disambiguation instead.
+DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
 MIN_CONFIDENCE = 1
 AMBIGUITY_DELTA = 1
 
 INTENT_MODEL = {
     "APPS":         {"keywords": [("app design research", 4), ("app research", 4), ("competitor", 3), ("app comparison", 3), ("banking apps", 2), ("category", 2), ("how do apps", 2), ("real apps", 3)]},
-    "SCREENS":      {"keywords": [("screen", 4), ("screen examples", 4), ("ui pattern", 3), ("empty state", 3), ("onboarding screen", 3), ("component example", 3), ("screenshot", 3), ("paywall", 2), ("settings", 2), ("dashboard", 2)]},
-    "FLOWS":        {"keywords": [("flow", 4), ("ux flow", 4), ("user flow", 4), ("journey", 4), ("multi-step", 3), ("progression", 2), ("forgot password", 2), ("checkout", 2), ("signup process", 2)]},
+    "SCREENS":      {"keywords": [("screen", 4), ("screen examples", 4), ("ui pattern", 3), ("empty state", 3), ("first open", 3), ("onboarding screen", 3), ("component example", 3), ("screenshot", 3), ("paywall", 2), ("settings", 2), ("dashboard", 2)]},
+    "FLOWS":        {"keywords": [("flow", 4), ("ux flow", 4), ("user flow", 4), ("journey", 4), ("start to finish", 3), ("multi-step", 3), ("progression", 2), ("forgot password", 2), ("checkout", 2), ("signup process", 2)]},
     "ELEMENTS":     {"keywords": [("element", 4), ("bottom sheet", 3), ("inline validation", 3), ("component behavior", 3), ("button state", 2), ("tab bar", 2), ("modal", 2), ("confirmation dialog", 2)]},
     "WIRING_AUTH":  {"keywords": [("wiring", 4), ("utcp", 4), ("oauth", 4), ("mcp-remote", 4), ("authenticate", 4), ("pkce", 3), ("manual", 3), ("register", 3), ("token", 3), ("plan", 2), ("install", 2), ("setup", 2)]},
     "TROUBLESHOOT": {"keywords": [("error", 4), ("failed", 4), ("401", 4), ("not working", 4), ("not resolving", 4), ("429", 3), ("rate limit", 3), ("timeout", 3), ("unauthorized", 3), ("denied", 3)]},
@@ -132,8 +137,8 @@ INTENT_MODEL = {
 # keep the two blocks in sync whenever either one is edited.
 INTENT_SIGNALS = {
     "APPS":         {"weight": 4, "keywords": ["app design research", "app research", "competitor", "app comparison", "banking apps", "category", "how do apps", "real apps"]},
-    "SCREENS":      {"weight": 4, "keywords": ["screen", "screen examples", "ui pattern", "empty state", "onboarding screen", "component example", "screenshot", "paywall", "settings", "dashboard"]},
-    "FLOWS":        {"weight": 4, "keywords": ["flow", "ux flow", "user flow", "journey", "multi-step", "progression", "forgot password", "checkout", "signup process"]},
+    "SCREENS":      {"weight": 4, "keywords": ["screen", "screen examples", "ui pattern", "empty state", "first open", "onboarding screen", "component example", "screenshot", "paywall", "settings", "dashboard"]},
+    "FLOWS":        {"weight": 4, "keywords": ["flow", "ux flow", "user flow", "journey", "start to finish", "multi-step", "progression", "forgot password", "checkout", "signup process"]},
     "ELEMENTS":     {"weight": 4, "keywords": ["element", "bottom sheet", "inline validation", "component behavior", "button state", "tab bar", "modal", "confirmation dialog"]},
     "WIRING_AUTH":  {"weight": 4, "keywords": ["wiring", "utcp", "oauth", "mcp-remote", "authenticate", "pkce", "manual", "register", "token", "plan", "install", "setup"]},
     "TROUBLESHOOT": {"weight": 4, "keywords": ["error", "failed", "401", "not working", "not resolving", "429", "rate limit", "timeout", "unauthorized", "denied"]},
@@ -179,7 +184,7 @@ def classify_intents(request: str):
     ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
     primary, top = ranked[0]
     if top == 0:
-        return ("WIRING_AUTH", None, scores)   # unrouted -> start by reporting the wiring state
+        return (None, None, scores)   # unrouted -> no intent selected; fallback branch disambiguates
     secondary, second = ranked[1]
     if second > 0 and (top - second) <= AMBIGUITY_DELTA:
         return (primary, secondary, scores)
@@ -188,7 +193,7 @@ def classify_intents(request: str):
 def route_mobbin_resources(request: str):
     inventory = discover_markdown_resources()
     primary, secondary, scores = classify_intents(request)
-    intents = [primary] + ([secondary] if secondary else [])
+    intents = [i for i in (primary, secondary) if i]
     loaded, seen, notices = [], set(), []
 
     def load_if_available(rel: str) -> bool:
@@ -200,10 +205,12 @@ def route_mobbin_resources(request: str):
             notices.append(f"Resource not found in inventory: {guarded}")
         return False
 
-    load_if_available(DEFAULT_RESOURCE)
     if max(scores.values() or [0]) < MIN_CONFIDENCE:
+        # Fallback-only: nothing is loaded on a zero-score route; the default
+        # reference is offered as a suggestion beside the disambiguation ask.
         return {"intents": intents, "load_level": "UNKNOWN_FALLBACK", "needs_disambiguation": True,
-                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded, "notices": notices}
+                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+                "suggested_fallback": DEFAULT_RESOURCE, "resources": loaded, "notices": notices}
     for intent in intents:
         for rel in RESOURCE_MAP.get(intent, []):
             load_if_available(rel)

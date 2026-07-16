@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review"
-    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_at: "2026-07-16T18:29:00Z"
     last_updated_by: "claude"
-    recent_action: "Executed benchmark + independent review; findings deferred to planning"
-    next_safe_action: "Run the benchmark and review after integration lands"
+    recent_action: "Added dated six-mode/executed-benchmark amendment (routing remediation F010)"
+    next_safe_action: "None; phase complete, amendment recorded"
     blockers: []
     key_files:
       - ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md"
@@ -96,6 +96,18 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
+
+---
+
+<!-- ANCHOR:amendment-2026-07-16 -->
+## Amendment (2026-07-16): six-mode reality and executed benchmark
+
+Dated amendment — task text and evidence above are preserved as authored:
+
+- Task wording that says "the three modes" (T002, T004 heading lineage, T007) executed against the SIX-mode hub (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-figma`, `mcp-refero`, `mcp-mobbin`) — 13 hub scenarios, one blind holdout per mode, as T002/T007 evidence already records.
+- The T004 target path `benchmark/router-final/` was superseded by frozen-baseline naming: real evidence lives at `.opencode/skills/mcp-tooling/benchmark/baseline/` (PASS 95) and, post-remediation, `.opencode/skills/mcp-tooling/benchmark/after-routing-remediation/` (PASS 98, route-gold enforced 13/13).
+- The 15 deferred review findings (T008) were remediated in `.opencode/specs/mcp-tooling/011-routing-remediation/`.
+<!-- /ANCHOR:amendment-2026-07-16 -->
 
 ---
 

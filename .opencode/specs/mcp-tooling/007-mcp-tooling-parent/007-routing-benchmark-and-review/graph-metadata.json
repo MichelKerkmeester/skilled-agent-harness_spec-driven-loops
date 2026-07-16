@@ -88,12 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "Run Lane",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -113,6 +107,12 @@
       },
       {
         "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The fold-in is functionally complete after phase 006, but two things are unverified: whether the advisor actually routes the three tools correctly through the single hub identity (especially the figma transport, whose routing carve-out was deferred here), and whether the full diff is free of correctness regressions",
     "created_at": "2026-07-09T20:18:25Z",
-    "last_save_at": "2026-07-16T14:35:55.527Z",
+    "last_save_at": "2026-07-16T18:30:02.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fb85702112cbf8e1efa397900b148cfdae3b900d661b9ba70c48906dfedf7f6",
+    "source_fingerprint": "sha256:81c81869a9935e803bd6a295416cf9e8f93ba54d7c99717be1090c047824d725",
     "source_doc_hashes": {
-      "spec.md": "a20abff2724ded4ff880cebe92a743660a4767bcbc89e8fd2d5c95976d6ff0fb",
-      "plan.md": "4c223cb478ec86602d59f7bd6905161877b2e65c5f0761c35698e199b2a0b67c",
-      "tasks.md": "129b2ea9764374b0038a3ae5a38bc5589d8b4f43b4d3d87aae3b2aec3aa70736",
-      "implementation-summary.md": "6a30fea823c268c6678b56a53458cf2381deb696b18dbef717cd83bf8e58dc0b"
+      "spec.md": "26644122e295b4778639dabac41837802941df2da531bcffa9bd824e54af010a",
+      "plan.md": "bda459bd578fdeac6811f4ae90d5822da7d83b4bbcf956124a804a6fc17abd10",
+      "tasks.md": "452a626cf56906bac50687fc594674116d73abd1e27435150c9ce8f0f3ef6bb6",
+      "implementation-summary.md": "85ada396f2f35253eb784c6ef5c02ee425e4075b45c480a488f17b46f17296fb"
     },
     "last_active_child_id": null,
     "last_active_at": null

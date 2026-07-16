@@ -862,6 +862,111 @@ function buildRunQualityNote({ routeTelemetry, recipeMiss, modePrecisionAvg, rel
   ].join(' ');
 }
 
+// Rejection labels corpora use for "no intent selected" — the routers' own
+// zero-score vocabulary (`UNKNOWN` from packet pseudocode, `none` from negative
+// fixtures, `defer` from hub policy). All map to the empty expected-intent set.
+const REJECTION_INTENT_LABELS = new Set(['none', 'defer', 'unknown']);
+
+/**
+ * Evaluate a scenario's authored route gold (expected_intent /
+ * expected_resources) against the replayed route. This is the hard route-gold
+ * lane: intent gold is an exact set assertion (rejection labels assert the
+ * empty set); resource gold is an exact-assembly assertion for frontmatter
+ * (sk-doc-shape) corpora and a must-include + no-forbidden-prefix assertion for
+ * sk-code-shape corpora (whose authored lists are non-exhaustive by contract).
+ * A gold parse failure is itself a violation — a broken oracle must never
+ * score as a pass or silently drop out of the denominator.
+ *
+ * @param {Object} args - Evaluation inputs.
+ * @param {Object} args.scenario - Loader-normalized scenario (carries gold + flags).
+ * @param {Object} args.observed - Executor observation (observedIntents/observedResources).
+ * @returns {Object} Route-gold row: {applicable, pass, intentOk, resourceOk, ...detail}.
+ */
+function evaluateRouteGold({ scenario, observed }) {
+  if (!scenario || scenario.classKind === 'browser' || !observed || observed.routedOut) {
+    return { applicable: false, pass: true };
+  }
+  if (scenario.goldParseError) {
+    return {
+      applicable: true,
+      pass: false,
+      reason: 'gold-parse-failure',
+      detail: scenario.goldParseError,
+      scenarioId: scenario.scenarioId,
+    };
+  }
+  const hasIntentGold = scenario.hasIntentGold === true;
+  const shape = scenario.source && scenario.source.shape;
+  const hasResourceGold = scenario.hasResourceGold === true;
+  if (!hasIntentGold && !hasResourceGold) return { applicable: false, pass: true };
+
+  const intents = uniqueArray(observed.observedIntents);
+  const resources = uniqueArray(observed.observedResources);
+
+  let intentOk = null;
+  let expectedIntents = null;
+  if (hasIntentGold) {
+    const labels = Array.isArray(scenario.expectedIntents) && scenario.expectedIntents.length
+      ? scenario.expectedIntents
+      : [scenario.expectedIntent];
+    expectedIntents = labels.filter((l) => !REJECTION_INTENT_LABELS.has(String(l).toLowerCase()));
+    intentOk = sameSet(intents, uniqueArray(expectedIntents));
+  }
+
+  let resourceOk = null;
+  let expectedResources = null;
+  if (hasResourceGold) {
+    expectedResources = uniqueArray(scenario.expectedResources);
+    if (shape === 'sk-code') {
+      const have = new Set(resources);
+      const forbidden = Array.isArray(scenario.forbiddenResources) ? scenario.forbiddenResources : [];
+      resourceOk = expectedResources.every((r) => have.has(r))
+        && !forbidden.some((f) => resources.some((r) => r.startsWith(f)));
+    } else {
+      resourceOk = sameSet(resources, expectedResources);
+    }
+  }
+
+  return {
+    applicable: true,
+    pass: intentOk !== false && resourceOk !== false,
+    intentOk,
+    resourceOk,
+    scenarioId: scenario.scenarioId,
+    ...(expectedIntents ? { expectedIntents } : {}),
+    observedIntents: intents,
+    ...(expectedResources ? { expectedResources } : {}),
+    observedResources: resources,
+  };
+}
+
+/**
+ * Reduce per-row route-gold results into the report's routeGold block and the
+ * gate decision. The block always reports flag state and row count so a
+ * hub-type PASS with zero scored route-gold rows is structurally visible.
+ *
+ * @param {Array} rows - Scored scenario rows (each may carry routeGold).
+ * @param {Object} config - {mode:'on'|'off'|'auto', enabled:boolean}.
+ * @returns {Object} Route-gold summary: counts, violations detail, gate verdict.
+ */
+function reduceRouteGold(rows, config) {
+  const mode = (config && config.mode) || 'auto';
+  const enabled = !!(config && config.enabled);
+  const goldRows = rows.filter((r) => r && r.routeGold && r.routeGold.applicable);
+  const violations = goldRows.filter((r) => !r.routeGold.pass);
+  const parseFailures = violations.filter((r) => r.routeGold.reason === 'gold-parse-failure');
+  return {
+    mode,
+    enabled,
+    rows: goldRows.length,
+    matches: goldRows.length - violations.length,
+    violations: violations.length,
+    parseFailures: parseFailures.length,
+    failed: enabled && violations.length > 0,
+    details: violations.map((r) => r.routeGold),
+  };
+}
+
 function scoreHubRoute({ expected, routerResult }) {
   if (!expected || expected.routeOutcome == null || expected.workflowMode == null) {
     return { applicable: false, pass: true };
@@ -1470,7 +1575,7 @@ function resolveAdvisorOwner(skillRoot) {
   return { visible: false, owner: null };
 }
 
-function aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry = {}, traceMode, lintFindings, divergence }) {
+function aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry = {}, traceMode, lintFindings, divergence, routeGold }) {
   const allScenarioRows = scenarioRows.filter(Boolean);
   // Oracle-fault rows (fixture_schema_error / fixture_topology_error /
   // fixture_selection_error) are excluded from every denominator below; they
@@ -1623,10 +1728,17 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry
     });
   }
 
+  // Route-gold hard lane: authored expected_intent/expected_resources gold is
+  // consumed as pass/fail per row; the gate flips the verdict only when the
+  // run-level flag is enabled (default on for hub-type skills), so existing
+  // non-hub baselines keep their meaning while the counts stay visible.
+  const routeGoldGate = reduceRouteGold(rows, routeGold);
+
   const hasActiveP1 = bottlenecks.some((bottleneck) => bottleneck.severity === 'P1');
   let verdict;
   if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
   else if (hubRegistry && hubRegistry.gateFailed) verdict = 'BLOCKED-BY-REGISTRY';
+  else if (routeGoldGate.failed) verdict = 'BLOCKED-BY-ROUTE-GOLD';
   else if (hubRouteGate.failed) verdict = 'BLOCKED-BY-ROUTING';
   else if (toolSurfaceGate.failed) verdict = 'BLOCKED-BY-TOOL-SURFACE';
   else if (aggregateScore == null) verdict = 'NO-SCENARIOS';
@@ -1666,7 +1778,9 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry
       reason: gateFailed ? 'D5 structural hard-gate failure' : null,
       hubRoute: hubRouteGate,
       toolSurface: toolSurfaceGate,
+      routeGold: routeGoldGate,
     },
+    routeGold: routeGoldGate,
     dimensionScores: {
       D1inter: d1interDim,
       D1intra: { points: WEIGHTS.d1intra, score: avg((r) => (r.dims && r.dims.d1intra ? Math.round(r.dims.d1intra.score * 100) : null)) },
@@ -1727,6 +1841,8 @@ module.exports = {
   scoreScenario,
   aggregate,
   computeDivergence,
+  evaluateRouteGold,
+  reduceRouteGold,
   reduceRouteTelemetry,
   reduceRecipeMiss,
   scoreToolSurface,

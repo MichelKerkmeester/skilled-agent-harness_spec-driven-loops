@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review"
-    last_updated_at: "2026-07-16T16:55:00Z"
+    last_updated_at: "2026-07-16T18:29:00Z"
     last_updated_by: "claude"
-    recent_action: "Drafted the benchmark and review plan"
-    next_safe_action: "Run the benchmark and review after integration lands"
+    recent_action: "Added dated six-mode/executed-benchmark amendment (routing remediation F010)"
+    next_safe_action: "None; phase complete, amendment recorded"
     blockers: []
     key_files:
       - ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md"
@@ -162,6 +162,18 @@ Required inventories:
 - **Trigger**: A routing-config amendment overcorrects, or a deep-review fix introduces a new regression.
 - **Procedure**: Revert the `hub-router.json` weight change via git and re-run the benchmark; re-open the ADR amendment with the new evidence before retrying.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:amendment-2026-07-16 -->
+## 8. AMENDMENT (2026-07-16): SIX-MODE REALITY AND EXECUTED BENCHMARK
+
+Dated amendment — planning prose above is preserved as authored:
+
+- **Six modes, not three.** The hub inventory grew to six modes (`+ mcp-aside-devtools, mcp-refero, mcp-mobbin`) before execution; the matrix axis "three modes x routing/discovery/efficiency/usefulness" executed as six modes across 13 hub scenarios.
+- **Storage naming superseded.** Benchmark output did NOT land under `benchmark/router-final/` — the storage guide's frozen naming applied instead: `.opencode/skills/mcp-tooling/benchmark/baseline/` (pre-remediation run, PASS 95) and `.opencode/skills/mcp-tooling/benchmark/after-routing-remediation/` (post-remediation re-run, PASS 98 with the route-gold hard gate enforced 13/13).
+- **Amendment path outcome.** No routing-config amendment against the phase 002 ADRs was needed; routing fixes and the review's 15 findings were remediated in `.opencode/specs/mcp-tooling/011-routing-remediation/`.
+<!-- /ANCHOR:amendment-2026-07-16 -->
 
 ---
 

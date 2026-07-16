@@ -18,9 +18,13 @@ const { run, augmentWithD4R } = require(join(HARNESS, 'run-skill-benchmark.cjs')
 const CODE_OPENCODE = join(REPO_SKILLS, 'sk-code', 'code-opencode'); // advisor-invisible surface
 const SK_CODE = join(REPO_SKILLS, 'sk-code'); // advisor-visible hub identity
 
+// The subject here is dimension-applicability REPORTING, not route conformance,
+// so the route-gold hard gate (default on for hub-type skills) is disabled per
+// run — otherwise a hub target's latent route-gold violations would fail these
+// runs on an unrelated lane.
 function runRouter(skill: string): { out: string; report: any } {
   const out = mkdtempSync(join(tmpdir(), 'lc-appl-'));
-  const code = run({ skill, 'outputs-dir': out, 'trace-mode': 'router' });
+  const code = run({ skill, 'outputs-dir': out, 'trace-mode': 'router', 'route-gold': 'off' });
   expect(code).toBe(0);
   return { out, report: JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8')) };
 }

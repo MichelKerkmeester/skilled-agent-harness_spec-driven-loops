@@ -48,9 +48,9 @@ Browser debugging and automation through two complementary approaches: CLI (bdg)
 
 | Level       | When to Load             | Resources                       |
 | ----------- | ------------------------ | ------------------------------- |
-| ALWAYS      | Every skill invocation   | Core CDP pattern reference      |
 | CONDITIONAL | If intent signals match  | CLI/MCP/session/troubleshooting |
 | ON_DEMAND   | Only on explicit request | Full diagnostics set            |
+| FALLBACK    | Zero-score routes only   | Core CDP pattern reference suggested (never auto-loaded) |
 
 ### Smart Router Pseudocode
 
@@ -59,7 +59,7 @@ The authoritative routing logic for scoped loading, weighted intent scoring, and
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans skill-local `references/` and `assets/` when those folders exist.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, the discovered `inventory`, and a `seen` set.
 - Pattern 3: Simple Intent Routing - CLI/MCP/install/troubleshoot/automation intents select the real flat `references/*.md` resources. This skill currently has no keyed `references/<key>/` or `assets/<key>/` resource subdirectories.
-- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` requests CLI/MCP/session disambiguation, and missing intent routes return a "no knowledge base" notice while retaining the default CDP reference when available.
+- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` requests CLI/MCP/session disambiguation and SUGGESTS the default CDP reference without loading it (`DEFAULT_RESOURCE_SEMANTICS = "fallback-only"`): a scored route loads exactly its intents' mapped resources, and a zero-score route loads nothing beyond the disambiguation checklist.
 
 ```python
 from pathlib import Path
@@ -67,6 +67,10 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/cdp_patterns.md"
+# Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
+# into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
+# zero-score routes load nothing and ask for disambiguation instead.
+DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm CLI vs MCP path",
@@ -78,7 +82,7 @@ INTENT_SIGNALS = {
     "CLI": {"weight": 4, "keywords": ["bdg", "browser-debugger-cli", "terminal", "cli", "command line", "command-line", "shell", "headless", "lightweight", "token efficient"]},
     "MCP": {"weight": 4, "keywords": ["mcp", "code mode", "multi-tool", "parallel sessions", "model context protocol", "multiple tools", "isolated instances", "tool chain", "in parallel"]},
     "INSTALL": {"weight": 4, "keywords": ["install", "setup", "not installed", "command -v bdg", "set up", "getting started", "download", "npm install", "not found", "first time"]},
-    "TROUBLESHOOT": {"weight": 4, "keywords": ["error", "failed", "troubleshoot", "session issue", "keeps dropping", "won't connect", "figure out why", "hangs", "hanging", "stuck", "crash", "crashing", "broken", "not working", "timeout", "disconnect", "flaky", "root cause"]},
+    "TROUBLESHOOT": {"weight": 4, "keywords": ["error", "failed", "troubleshoot", "session issue", "keeps dropping", "won't connect", "figure out why", "work out the cause", "hangs", "hanging", "stuck", "crash", "crashing", "broken", "not working", "timeout", "disconnect", "flaky", "root cause"]},
     "AUTOMATION": {"weight": 3, "keywords": ["ci", "pipeline", "automation", "production", "automate", "unattended", "continuous integration", "batch", "recurring"]},
 }
 
@@ -91,7 +95,6 @@ RESOURCE_MAP = {
 }
 
 LOADING_LEVELS = {
-    "ALWAYS": [DEFAULT_RESOURCE],
     "ON_DEMAND_KEYWORDS": ["full troubleshooting", "full session guide", "all patterns", "capture a har", "console errors", "routing dashboard", "staging", "devtools"],
     "ON_DEMAND": ["references/troubleshooting.md", "references/session_management.md"],
 }
@@ -157,10 +160,9 @@ def route_chrome_devtools_resources(task):
             loaded.append(guarded)
             seen.add(guarded)
 
-    for relative_path in LOADING_LEVELS["ALWAYS"]:
-        load_if_available(relative_path)
-
     if max(scores.values() or [0]) < 0.5:
+        # Fallback-only: nothing is loaded on a zero-score route; the default
+        # reference is offered as a suggestion beside the disambiguation ask.
         return {
             "routing_key": "chrome-devtools",
             "intents": intents,
@@ -168,6 +170,7 @@ def route_chrome_devtools_resources(task):
             "load_level": "UNKNOWN_FALLBACK",
             "needs_disambiguation": True,
             "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "suggested_fallback": DEFAULT_RESOURCE,
             "resources": loaded,
         }
 
@@ -184,12 +187,10 @@ def route_chrome_devtools_resources(task):
         for relative_path in LOADING_LEVELS["ON_DEMAND"]:
             load_if_available(relative_path)
 
-    if not loaded:
-        load_if_available(DEFAULT_RESOURCE)
-
     result = {"routing_key": "chrome-devtools", "intents": intents, "intent_scores": scores, "resources": loaded}
     if not matched_intents:
         result["notice"] = f"No knowledge base found for intent(s): {', '.join(intents)}"
+        result["suggested_fallback"] = DEFAULT_RESOURCE
     return result
 ```
 

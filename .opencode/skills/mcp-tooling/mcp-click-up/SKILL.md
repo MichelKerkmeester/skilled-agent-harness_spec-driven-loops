@@ -104,6 +104,11 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/cupt_commands.md"
+# Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
+# into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
+# zero-score routes load nothing and ask for disambiguation instead.
+DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm whether the request is for cupt daily ops, official ClickUp MCP, install/auth, or troubleshooting",
@@ -119,6 +124,7 @@ INTENT_SIGNALS = {
                      "statuses", "summary", "teams", "attach", "work queue", "complete task",
                      "mark done", "log time", "track time",
                      "my tasks", "assigned to me", "due today", "due this week", "overdue",
+                     "ticket", "close it out", "jot down",
                      "wrap up", "close out", "update status", "leave a comment", "add a comment",
                      "task details", "start timer", "stop timer", "clock in", "clock out",
                      "log hours", "worklog", "task summary", "list teams", "upload a file",
@@ -128,7 +134,8 @@ INTENT_SIGNALS = {
         "weight": 5,
         "keywords": ["document", "goal", "okr", "bulk", "webhook", "chat", "audit",
                      "create_bulk", "manage_documents", "checklist", "custom field",
-                     "quarterly goals", "key results", "doc page", "wiki page",
+                     "quarterly goals", "quarterly objective", "objective", "key results",
+                     "doc page", "wiki page", "write-up page",
                      "create a folder", "create a space", "manage lists", "task dependencies",
                      "link tasks", "bulk update", "mass create", "batch create", "user groups",
                      "guest access", "enterprise feature", "task template", "space tags"],
@@ -154,15 +161,12 @@ INTENT_SIGNALS = {
 
 # NOTE: no "DEFAULT" entry — route_clickup_resources() never indexes RESOURCE_MAP
 # by that key (the selected `intent` is always one of the four INTENT_SIGNALS
-# keys above). Both no-match fallback branches already hardcode
-# "references/cupt_commands.md" directly, so a "DEFAULT" dict entry would be
-# dead weight duplicating that literal. Promoting it to a top-level
-# DEFAULT_RESOURCE = [...] constant instead would change semantics: the
-# benchmark harness (and any router-doc-aware caller) treats DEFAULT_RESOURCE
-# as an always-loaded preamble unioned into EVERY route, which would make
-# cupt_commands.md load on MCP_ADVANCED/INSTALL/TROUBLESHOOT routes too —
-# resources those intents' gold never expects. Removing the key keeps the
-# hardcoded fallback as the single source of truth for the no-match case.
+# keys above). The no-match case is owned by DEFAULT_RESOURCE above, whose
+# declared fallback-only semantics mean it is SUGGESTED beside the
+# disambiguation checklist, never loaded — so cupt_commands.md can never leak
+# into MCP_ADVANCED/INSTALL/TROUBLESHOOT routes, and router-doc-aware callers
+# (the benchmark replay honors the same declaration) assemble exactly what a
+# scored intent's RESOURCE_MAP entry names.
 RESOURCE_MAP = {
     "CUPT_DAILY":    ["references/cupt_commands.md"],
     "MCP_ADVANCED":  ["references/mcp_tools.md"],
@@ -208,11 +212,13 @@ def route_clickup_resources(request: str) -> dict:
             scores[intent] = score
 
     if not scores:
-        load_if_available("references/cupt_commands.md", loaded, seen, inventory)
+        # Fallback-only: nothing is loaded on a zero-score route; the default
+        # reference is offered as a suggestion beside the disambiguation ask.
         return {
             "load_level": "UNKNOWN_FALLBACK",
             "needs_disambiguation": True,
             "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "suggested_fallback": DEFAULT_RESOURCE,
             "resources": loaded,
         }
 
@@ -228,11 +234,11 @@ def route_clickup_resources(request: str) -> dict:
         load_if_available(resource, loaded, seen, inventory)
 
     if not loaded:
-        load_if_available("references/cupt_commands.md", loaded, seen, inventory)
         return {
             "load_level": "UNKNOWN_FALLBACK",
             "notice": f"No ClickUp reference docs available for intent '{intent}'",
             "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "suggested_fallback": DEFAULT_RESOURCE,
             "resources": loaded,
         }
 

@@ -1,0 +1,135 @@
+{
+  "topic": "TERMINAL RE-REVIEW (remediation verification) of the mcp-tooling hub routing surfaces",
+  "sessionId": "fanout-sol-rereview-1784227058428-v8wtp3",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 4,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/mcp-tooling/011-routing-remediation",
+  "artifactDir": ".opencode/specs/mcp-tooling/011-routing-remediation/review/lineages/sol-rereview",
+  "createdAt": "2026-07-16T18:41:41Z",
+  "status": "complete",
+  "releaseReadinessState": "converged",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/mcp-tooling/011-routing-remediation",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "severityThreshold": "P2",
+  "reviewScopeRoots": [
+    ".opencode/skills/mcp-tooling",
+    ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark",
+    ".opencode/specs/mcp-tooling/011-routing-remediation",
+    ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review"
+  ],
+  "reviewScopeFiles": [
+    ".opencode/skills/mcp-tooling/mode-registry.json",
+    ".opencode/skills/mcp-tooling/hub-router.json",
+    ".opencode/skills/mcp-tooling/SKILL.md",
+    ".opencode/skills/mcp-tooling/description.json",
+    ".opencode/skills/mcp-tooling/graph-metadata.json",
+    ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+    ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/",
+    ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/intra_routing_recall/",
+    ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/intra_routing_recall/",
+    ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/intra-routing-recall/",
+    ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/intra_routing_recall/",
+    ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/intra-routing-recall/",
+    ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/intra-routing-recall/",
+    ".opencode/skills/mcp-tooling/benchmark/after-routing-remediation/skill-benchmark-report.json",
+    ".opencode/skills/mcp-tooling/benchmark/after-routing-remediation/skill-benchmark-report.md",
+    ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+    ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+    ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+    ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+    ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+    ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/route-gold-gate.vitest.ts",
+    ".opencode/specs/mcp-tooling/011-routing-remediation/spec.md",
+    ".opencode/specs/mcp-tooling/011-routing-remediation/plan.md",
+    ".opencode/specs/mcp-tooling/011-routing-remediation/tasks.md",
+    ".opencode/specs/mcp-tooling/011-routing-remediation/checklist.md",
+    ".opencode/specs/mcp-tooling/011-routing-remediation/decision-record.md",
+    ".opencode/specs/mcp-tooling/011-routing-remediation/implementation-summary.md",
+    ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md"
+  ],
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "fileProtection": {
+    "deep-review-config.json": "immutable-until-synthesis-status-finalization",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "resource-map.md": "synthesis-generated",
+    "iteration-*.md": "write-once",
+    "deltas/iter-*.jsonl": "write-once",
+    "prompts/iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "fullJSONLHistory",
+      "iterationFiles",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

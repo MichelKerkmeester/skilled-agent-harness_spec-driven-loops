@@ -1,0 +1,1672 @@
+{
+  "summary": {
+    "capturedAt": "2026-07-16T17:20:50.041Z",
+    "tag": "post-ws1",
+    "scenarioCount": 49,
+    "intentMatches": 38,
+    "resourceMatches": 31,
+    "perPacket": {
+      "mcp-chrome-devtools": {
+        "scenarios": 8,
+        "intentMatches": 6
+      },
+      "mcp-click-up": {
+        "scenarios": 7,
+        "intentMatches": 4
+      },
+      "mcp-aside-devtools": {
+        "scenarios": 8,
+        "intentMatches": 7
+      },
+      "mcp-figma": {
+        "scenarios": 9,
+        "intentMatches": 8
+      },
+      "mcp-refero": {
+        "scenarios": 8,
+        "intentMatches": 7
+      },
+      "mcp-mobbin": {
+        "scenarios": 9,
+        "intentMatches": 6
+      }
+    }
+  },
+  "rows": [
+    {
+      "skill": "mcp-chrome-devtools",
+      "scenarioId": "CD-H01",
+      "featureFile": "intra_routing_recall/holdout_troubleshoot.md",
+      "prompt": "The headless page-debugging session keeps dropping halfway through a run and I cannot work out the cause.",
+      "gold": {
+        "expected_intent": "TROUBLESHOOT",
+        "expected_resources": [
+          "references/troubleshooting.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "CLI",
+          "TROUBLESHOOT"
+        ],
+        "resources": [
+          "references/cdp_patterns.md",
+          "references/session_management.md",
+          "references/troubleshooting.md"
+        ],
+        "scores": [
+          {
+            "intent": "CLI",
+            "score": 4
+          },
+          {
+            "intent": "TROUBLESHOOT",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-chrome-devtools",
+      "scenarioId": "CD-H02",
+      "featureFile": "intra_routing_recall/holdout_cli.md",
+      "prompt": "Drive the page debugger straight from my shell prompt to snapshot the request waterfall.",
+      "gold": {
+        "expected_intent": "CLI",
+        "expected_resources": [
+          "references/cdp_patterns.md",
+          "references/session_management.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "CLI"
+        ],
+        "resources": [
+          "references/cdp_patterns.md",
+          "references/session_management.md"
+        ],
+        "scores": [
+          {
+            "intent": "CLI",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-chrome-devtools",
+      "scenarioId": "CD-N01",
+      "featureFile": "intra_routing_recall/negative.md",
+      "prompt": "Summarise this quarterly sales report into three bullet points.",
+      "gold": {
+        "expected_intent": "none",
+        "expected_resources": []
+      },
+      "replay": {
+        "intents": [],
+        "resources": [
+          "references/cdp_patterns.md"
+        ],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-chrome-devtools",
+      "scenarioId": "CD-R01",
+      "featureFile": "intra_routing_recall/cli.md",
+      "prompt": "Drive a headless browser debug session from the terminal with the bdg command-line tool and dump a CDP trace.",
+      "gold": {
+        "expected_intent": "CLI",
+        "expected_resources": [
+          "references/cdp_patterns.md",
+          "references/session_management.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "CLI"
+        ],
+        "resources": [
+          "references/cdp_patterns.md",
+          "references/session_management.md"
+        ],
+        "scores": [
+          {
+            "intent": "CLI",
+            "score": 16
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-chrome-devtools",
+      "scenarioId": "CD-R02",
+      "featureFile": "intra_routing_recall/mcp.md",
+      "prompt": "Run several parallel browser sessions through code mode as a multi-tool mcp workflow.",
+      "gold": {
+        "expected_intent": "MCP",
+        "expected_resources": [
+          "references/session_management.md",
+          "references/cdp_patterns.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "MCP"
+        ],
+        "resources": [
+          "references/cdp_patterns.md",
+          "references/session_management.md"
+        ],
+        "scores": [
+          {
+            "intent": "MCP",
+            "score": 12
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-chrome-devtools",
+      "scenarioId": "CD-R03",
+      "featureFile": "intra_routing_recall/install.md",
+      "prompt": "The tool is not installed on this machine; walk me through the initial setup.",
+      "gold": {
+        "expected_intent": "INSTALL",
+        "expected_resources": [
+          "references/troubleshooting.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "INSTALL"
+        ],
+        "resources": [
+          "references/cdp_patterns.md",
+          "references/troubleshooting.md"
+        ],
+        "scores": [
+          {
+            "intent": "INSTALL",
+            "score": 12
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-chrome-devtools",
+      "scenarioId": "CD-R04",
+      "featureFile": "intra_routing_recall/troubleshoot.md",
+      "prompt": "The debug session failed with a connection error mid-run; help me troubleshoot the session issue.",
+      "gold": {
+        "expected_intent": "TROUBLESHOOT",
+        "expected_resources": [
+          "references/troubleshooting.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "TROUBLESHOOT"
+        ],
+        "resources": [
+          "references/cdp_patterns.md",
+          "references/troubleshooting.md"
+        ],
+        "scores": [
+          {
+            "intent": "TROUBLESHOOT",
+            "score": 16
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-chrome-devtools",
+      "scenarioId": "CD-R05",
+      "featureFile": "intra_routing_recall/automation.md",
+      "prompt": "Wire this browser capture into a CI pipeline so it runs unattended in production automation.",
+      "gold": {
+        "expected_intent": "AUTOMATION",
+        "expected_resources": [
+          "references/cdp_patterns.md",
+          "references/session_management.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "AUTOMATION"
+        ],
+        "resources": [
+          "references/cdp_patterns.md",
+          "references/session_management.md"
+        ],
+        "scores": [
+          {
+            "intent": "AUTOMATION",
+            "score": 15
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-click-up",
+      "scenarioId": "CU-H01",
+      "featureFile": "intra_routing_recall/holdout_daily.md",
+      "prompt": "I finished the ticket I was working on this morning - please close it out and jot down a quick comment that the client approved it.",
+      "gold": {
+        "expected_intent": "CUPT_DAILY",
+        "expected_resources": [
+          "references/cupt_commands.md"
+        ]
+      },
+      "replay": {
+        "intents": [],
+        "resources": [],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-click-up",
+      "scenarioId": "CU-H02",
+      "featureFile": "intra_routing_recall/holdout_advanced.md",
+      "prompt": "Set up a new quarterly objective for the team and spin up a shared write-up page in ClickUp where we can draft the plan.",
+      "gold": {
+        "expected_intent": "MCP_ADVANCED",
+        "expected_resources": [
+          "references/mcp_tools.md"
+        ]
+      },
+      "replay": {
+        "intents": [],
+        "resources": [],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-click-up",
+      "scenarioId": "CU-N01",
+      "featureFile": "intra_routing_recall/negative.md",
+      "prompt": "Refactor this Python function to use async and await, then add unit tests for the database layer.",
+      "gold": {
+        "expected_intent": "none",
+        "expected_resources": []
+      },
+      "replay": {
+        "intents": [],
+        "resources": [],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-click-up",
+      "scenarioId": "CU-R01",
+      "featureFile": "intra_routing_recall/cupt_daily.md",
+      "prompt": "Show me my task list for today, mark the ones I finished as done, then log time against them and add a priority tag.",
+      "gold": {
+        "expected_intent": "CUPT_DAILY",
+        "expected_resources": [
+          "references/cupt_commands.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "CUPT_DAILY"
+        ],
+        "resources": [
+          "references/cupt_commands.md"
+        ],
+        "scores": [
+          {
+            "intent": "CUPT_DAILY",
+            "score": 30
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-click-up",
+      "scenarioId": "CU-R02",
+      "featureFile": "intra_routing_recall/mcp_advanced.md",
+      "prompt": "Create a ClickUp document, set quarterly OKR goals, and bulk-create the sprint task cards.",
+      "gold": {
+        "expected_intent": "MCP_ADVANCED",
+        "expected_resources": [
+          "references/mcp_tools.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "MCP_ADVANCED"
+        ],
+        "resources": [
+          "references/mcp_tools.md"
+        ],
+        "scores": [
+          {
+            "intent": "MCP_ADVANCED",
+            "score": 20
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-click-up",
+      "scenarioId": "CU-R03",
+      "featureFile": "intra_routing_recall/install.md",
+      "prompt": "Walk me through the cupt setup - install cupt and authenticate with my API token.",
+      "gold": {
+        "expected_intent": "INSTALL",
+        "expected_resources": [
+          "references/install_guide.md",
+          "references/troubleshooting.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "INSTALL"
+        ],
+        "resources": [
+          "references/install_guide.md",
+          "references/troubleshooting.md"
+        ],
+        "scores": [
+          {
+            "intent": "INSTALL",
+            "score": 30
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-click-up",
+      "scenarioId": "CU-R04",
+      "featureFile": "intra_routing_recall/troubleshoot.md",
+      "prompt": "The cupt command failed with a 403 error, it's not working, and every request is painfully slow.",
+      "gold": {
+        "expected_intent": "TROUBLESHOOT",
+        "expected_resources": [
+          "references/troubleshooting.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "TROUBLESHOOT"
+        ],
+        "resources": [
+          "references/troubleshooting.md"
+        ],
+        "scores": [
+          {
+            "intent": "TROUBLESHOOT",
+            "score": 30
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-aside-devtools",
+      "scenarioId": "AD-H01",
+      "featureFile": "intra-routing-recall/holdout-repl.md",
+      "prompt": "Step through the page in exact scripted order and snapshot every state so the run can be replayed identically as proof.",
+      "gold": {
+        "expected_intent": "REPL",
+        "expected_resources": [
+          "references/aside-cli-reference.md",
+          "references/session-management.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "REPL"
+        ],
+        "resources": [
+          "references/aside-cli-reference.md",
+          "references/session-management.md"
+        ],
+        "scores": [
+          {
+            "intent": "REPL",
+            "score": 8
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-aside-devtools",
+      "scenarioId": "AD-H02",
+      "featureFile": "intra-routing-recall/holdout-troubleshoot.md",
+      "prompt": "My browser automation run hangs halfway and then the tool won't connect anymore; help me find the root cause.",
+      "gold": {
+        "expected_intent": "TROUBLESHOOT",
+        "expected_resources": [
+          "references/troubleshooting.md",
+          "references/session-management.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "TROUBLESHOOT"
+        ],
+        "resources": [
+          "references/aside-cli-reference.md",
+          "references/troubleshooting.md",
+          "references/session-management.md"
+        ],
+        "scores": [
+          {
+            "intent": "TROUBLESHOOT",
+            "score": 12
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-aside-devtools",
+      "scenarioId": "AD-N01",
+      "featureFile": "intra-routing-recall/negative.md",
+      "prompt": "Draft a two-paragraph welcome email for the new marketing hire starting on Monday.",
+      "gold": {
+        "expected_intent": "none",
+        "expected_resources": []
+      },
+      "replay": {
+        "intents": [],
+        "resources": [
+          "references/aside-cli-reference.md"
+        ],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-aside-devtools",
+      "scenarioId": "AD-R01",
+      "featureFile": "intra-routing-recall/task.md",
+      "prompt": "Have the aside browser agent run a multi-step natural language task: sign in and download my latest invoice.",
+      "gold": {
+        "expected_intent": "TASK",
+        "expected_resources": [
+          "references/aside-cli-reference.md",
+          "references/session-management.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "TASK"
+        ],
+        "resources": [
+          "references/aside-cli-reference.md",
+          "references/session-management.md"
+        ],
+        "scores": [
+          {
+            "intent": "TASK",
+            "score": 20
+          },
+          {
+            "intent": "INSTALL",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-aside-devtools",
+      "scenarioId": "AD-R02",
+      "featureFile": "intra-routing-recall/repl.md",
+      "prompt": "Use the deterministic repl with playwright helpers to openTab the page, take a snapshot, and save a screenshot as evidence.",
+      "gold": {
+        "expected_intent": "REPL",
+        "expected_resources": [
+          "references/aside-cli-reference.md",
+          "references/session-management.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "REPL"
+        ],
+        "resources": [
+          "references/aside-cli-reference.md",
+          "references/session-management.md"
+        ],
+        "scores": [
+          {
+            "intent": "REPL",
+            "score": 28
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-aside-devtools",
+      "scenarioId": "AD-R03",
+      "featureFile": "intra-routing-recall/mcp.md",
+      "prompt": "Run the aside mcp server over stdio and chain its repl tool with other code mode tools in one call_tool_chain block.",
+      "gold": {
+        "expected_intent": "MCP",
+        "expected_resources": [
+          "references/mcp-wiring.md",
+          "references/session-management.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "MCP"
+        ],
+        "resources": [
+          "references/aside-cli-reference.md",
+          "references/mcp-wiring.md",
+          "references/session-management.md",
+          "assets/utcp-aside-manual.md"
+        ],
+        "scores": [
+          {
+            "intent": "MCP",
+            "score": 16
+          },
+          {
+            "intent": "TASK",
+            "score": 4
+          },
+          {
+            "intent": "REPL",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-aside-devtools",
+      "scenarioId": "AD-R04",
+      "featureFile": "intra-routing-recall/install.md",
+      "prompt": "Aside is not installed on this machine — set up the CLI with the curl installer and sign in for the first time.",
+      "gold": {
+        "expected_intent": "INSTALL",
+        "expected_resources": [
+          "references/troubleshooting.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "INSTALL"
+        ],
+        "resources": [
+          "references/aside-cli-reference.md",
+          "references/troubleshooting.md"
+        ],
+        "scores": [
+          {
+            "intent": "INSTALL",
+            "score": 24
+          },
+          {
+            "intent": "TASK",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-aside-devtools",
+      "scenarioId": "AD-R05",
+      "featureFile": "intra-routing-recall/troubleshoot.md",
+      "prompt": "My aside run failed with a \"not bound to a browser profile\" error and now the daemon won't connect; troubleshoot the root cause.",
+      "gold": {
+        "expected_intent": "TROUBLESHOOT",
+        "expected_resources": [
+          "references/troubleshooting.md",
+          "references/session-management.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "TROUBLESHOOT"
+        ],
+        "resources": [
+          "references/aside-cli-reference.md",
+          "references/troubleshooting.md",
+          "references/session-management.md"
+        ],
+        "scores": [
+          {
+            "intent": "TROUBLESHOOT",
+            "score": 28
+          },
+          {
+            "intent": "TASK",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-figma",
+      "scenarioId": "FG-H01",
+      "featureFile": "intra_routing_recall/holdout_create.md",
+      "prompt": "Build me a new screen with a call-to-action and a set of navigation links laid out in columns.",
+      "gold": {
+        "expected_intent": "CREATE_RENDER",
+        "expected_resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "CREATE_RENDER"
+        ],
+        "resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "CREATE_RENDER",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-figma",
+      "scenarioId": "FG-H02",
+      "featureFile": "intra_routing_recall/holdout_inspect.md",
+      "prompt": "Grab the measurements and a picture of the selected element and write up its accessibility notes.",
+      "gold": {
+        "expected_intent": "INSPECT_EXPORT",
+        "expected_resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "INSPECT_EXPORT"
+        ],
+        "resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "INSPECT_EXPORT",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-figma",
+      "scenarioId": "FG-N01",
+      "featureFile": "intra_routing_recall/negative.md",
+      "prompt": "Refactor this Python function to run more efficiently.",
+      "gold": {
+        "expected_intent": "none",
+        "expected_resources": []
+      },
+      "replay": {
+        "intents": [],
+        "resources": [
+          "references/figma_cli_reference.md"
+        ],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-figma",
+      "scenarioId": "FG-R01",
+      "featureFile": "intra_routing_recall/create_render.md",
+      "prompt": "Create a new frame with a button component and an icon in a two-column layout.",
+      "gold": {
+        "expected_intent": "CREATE_RENDER",
+        "expected_resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "CREATE_RENDER"
+        ],
+        "resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "CREATE_RENDER",
+            "score": 24
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-figma",
+      "scenarioId": "FG-R02",
+      "featureFile": "intra_routing_recall/design_tokens.md",
+      "prompt": "Extract the design system color tokens and variables into a shadcn collection.",
+      "gold": {
+        "expected_intent": "DESIGN_SYSTEM_TOKENS",
+        "expected_resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "DESIGN_SYSTEM_TOKENS"
+        ],
+        "resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "DESIGN_SYSTEM_TOKENS",
+            "score": 20
+          },
+          {
+            "intent": "INSPECT_EXPORT",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-figma",
+      "scenarioId": "FG-R03",
+      "featureFile": "intra_routing_recall/inspect_export.md",
+      "prompt": "Inspect the selected node and export a screenshot plus a design.md summary.",
+      "gold": {
+        "expected_intent": "INSPECT_EXPORT",
+        "expected_resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "INSPECT_EXPORT"
+        ],
+        "resources": [
+          "references/figma_cli_reference.md",
+          "references/tool_surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "INSPECT_EXPORT",
+            "score": 16
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-figma",
+      "scenarioId": "FG-R04",
+      "featureFile": "intra_routing_recall/connect_daemon.md",
+      "prompt": "Connect the local daemon and safely diagnose whether to patch or unpatch it.",
+      "gold": {
+        "expected_intent": "CONNECT_SETUP_DAEMON",
+        "expected_resources": [
+          "references/figma_cli_reference.md",
+          "references/troubleshooting.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "CONNECT_SETUP_DAEMON"
+        ],
+        "resources": [
+          "references/figma_cli_reference.md",
+          "references/troubleshooting.md"
+        ],
+        "scores": [
+          {
+            "intent": "CONNECT_SETUP_DAEMON",
+            "score": 24
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-figma",
+      "scenarioId": "FG-R05",
+      "featureFile": "intra_routing_recall/mcp_context.md",
+      "prompt": "Pull design context through code mode via the figma-developer-mcp wiring.",
+      "gold": {
+        "expected_intent": "MCP_CONTEXT",
+        "expected_resources": [
+          "references/mcp_wiring.md",
+          "assets/utcp_figma_manual.md",
+          "assets/env_template.md",
+          "references/figma_cli_reference.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "MCP_CONTEXT"
+        ],
+        "resources": [
+          "references/figma_cli_reference.md",
+          "references/mcp_wiring.md",
+          "assets/utcp_figma_manual.md",
+          "assets/env_template.md"
+        ],
+        "scores": [
+          {
+            "intent": "MCP_CONTEXT",
+            "score": 20
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-figma",
+      "scenarioId": "FG-R06",
+      "featureFile": "intra_routing_recall/troubleshoot.md",
+      "prompt": "The command failed: the binary is not found and the request came back unauthorized.",
+      "gold": {
+        "expected_intent": "TROUBLESHOOT",
+        "expected_resources": [
+          "references/troubleshooting.md",
+          "references/figma_cli_reference.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "TROUBLESHOOT"
+        ],
+        "resources": [
+          "references/figma_cli_reference.md",
+          "references/troubleshooting.md"
+        ],
+        "scores": [
+          {
+            "intent": "TROUBLESHOOT",
+            "score": 8
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-refero",
+      "scenarioId": "RF-H01",
+      "featureFile": "intra-routing-recall/holdout-styles.md",
+      "prompt": "I need the visual direction for our marketing site grounded in real shipped work, with an editorial look and feel to anchor it.",
+      "gold": {
+        "expected_intent": "STYLES",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "STYLES"
+        ],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "STYLES",
+            "score": 8
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-refero",
+      "scenarioId": "RF-H02",
+      "featureFile": "intra-routing-recall/holdout-flows.md",
+      "prompt": "Walk me through how real products structure the checkout journey from cart to confirmation.",
+      "gold": {
+        "expected_intent": "FLOWS",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [
+          "FLOWS"
+        ],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "FLOWS",
+            "score": 8
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-refero",
+      "scenarioId": "RF-N01",
+      "featureFile": "intra-routing-recall/negative.md",
+      "prompt": "Refactor this Python function to run more efficiently.",
+      "gold": {
+        "expected_intent": "none",
+        "expected_resources": []
+      },
+      "replay": {
+        "intents": [],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-refero",
+      "scenarioId": "RF-R01",
+      "featureFile": "intra-routing-recall/styles.md",
+      "prompt": "Search Refero styles for a bold editorial aesthetic to ground a saas landing page.",
+      "gold": {
+        "expected_intent": "STYLES",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "STYLES"
+        ],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "STYLES",
+            "score": 12
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-refero",
+      "scenarioId": "RF-R02",
+      "featureFile": "intra-routing-recall/screens.md",
+      "prompt": "Find real app screens showing an empty state on a dashboard, and pull similar screens for the best hit.",
+      "gold": {
+        "expected_intent": "SCREENS",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "SCREENS"
+        ],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "SCREENS",
+            "score": 20
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-refero",
+      "scenarioId": "RF-R03",
+      "featureFile": "intra-routing-recall/flows.md",
+      "prompt": "Get the Refero user flow for cancel subscription on iOS, step by step.",
+      "gold": {
+        "expected_intent": "FLOWS",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "FLOWS"
+        ],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "FLOWS",
+            "score": 12
+          },
+          {
+            "intent": "WIRING_AUTH",
+            "score": 4
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-refero",
+      "scenarioId": "RF-R04",
+      "featureFile": "intra-routing-recall/wiring.md",
+      "prompt": "Verify the refero utcp manual wiring and explain how the mcp-remote oauth authentication works.",
+      "gold": {
+        "expected_intent": "WIRING_AUTH",
+        "expected_resources": [
+          "references/mcp-wiring.md",
+          "assets/utcp-refero-manual.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "WIRING_AUTH"
+        ],
+        "resources": [
+          "references/tool-surface.md",
+          "references/mcp-wiring.md",
+          "assets/utcp-refero-manual.md"
+        ],
+        "scores": [
+          {
+            "intent": "WIRING_AUTH",
+            "score": 20
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-refero",
+      "scenarioId": "RF-R05",
+      "featureFile": "intra-routing-recall/troubleshoot.md",
+      "prompt": "Every request failed: I get 401 unauthorized and then a connection closed error from Code Mode.",
+      "gold": {
+        "expected_intent": "TROUBLESHOOT",
+        "expected_resources": [
+          "references/troubleshooting.md",
+          "references/mcp-wiring.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "TROUBLESHOOT"
+        ],
+        "resources": [
+          "references/tool-surface.md",
+          "references/troubleshooting.md",
+          "references/mcp-wiring.md"
+        ],
+        "scores": [
+          {
+            "intent": "TROUBLESHOOT",
+            "score": 20
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-mobbin",
+      "scenarioId": "MB-H01",
+      "featureFile": "intra-routing-recall/holdout-screens.md",
+      "prompt": "I want to see how shipped iOS products present the moment a user first opens the app with nothing saved yet.",
+      "gold": {
+        "expected_intent": "SCREENS",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-mobbin",
+      "scenarioId": "MB-H02",
+      "featureFile": "intra-routing-recall/holdout-flows.md",
+      "prompt": "Show me how real products take someone who lost their account credential back into a working session, start to finish.",
+      "gold": {
+        "expected_intent": "FLOWS",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ],
+        "blindToRouterKeywords": true
+      },
+      "replay": {
+        "intents": [],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-mobbin",
+      "scenarioId": "MB-N01",
+      "featureFile": "intra-routing-recall/negative.md",
+      "prompt": "Optimize this SQL query so the report loads faster.",
+      "gold": {
+        "expected_intent": "none",
+        "expected_resources": []
+      },
+      "replay": {
+        "intents": [],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": false,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-mobbin",
+      "scenarioId": "MB-R01",
+      "featureFile": "intra-routing-recall/apps.md",
+      "prompt": "Run app design research on Mobbin: an app comparison of how competitor banking apps handle identity verification.",
+      "gold": {
+        "expected_intent": "APPS",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "APPS"
+        ],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "APPS",
+            "score": 16
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-mobbin",
+      "scenarioId": "MB-R02",
+      "featureFile": "intra-routing-recall/screens.md",
+      "prompt": "Find screen examples of an empty state dashboard from real shipped web apps on Mobbin.",
+      "gold": {
+        "expected_intent": "SCREENS",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "SCREENS"
+        ],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "SCREENS",
+            "score": 16
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-mobbin",
+      "scenarioId": "MB-R03",
+      "featureFile": "intra-routing-recall/flows.md",
+      "prompt": "Pull ux flow references from Mobbin for the signup process journey, including the multi-step progression.",
+      "gold": {
+        "expected_intent": "FLOWS",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "FLOWS"
+        ],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "FLOWS",
+            "score": 24
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-mobbin",
+      "scenarioId": "MB-R04",
+      "featureFile": "intra-routing-recall/elements.md",
+      "prompt": "Show me the element in context on Mobbin: a bottom sheet confirmation dialog and its button state variations.",
+      "gold": {
+        "expected_intent": "ELEMENTS",
+        "expected_resources": [
+          "references/tool-surface.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "ELEMENTS"
+        ],
+        "resources": [
+          "references/tool-surface.md"
+        ],
+        "scores": [
+          {
+            "intent": "ELEMENTS",
+            "score": 16
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": true
+    },
+    {
+      "skill": "mcp-mobbin",
+      "scenarioId": "MB-R05",
+      "featureFile": "intra-routing-recall/wiring.md",
+      "prompt": "Explain the mobbin utcp manual wiring, how mcp-remote handles oauth, and how I authenticate before we register anything.",
+      "gold": {
+        "expected_intent": "WIRING_AUTH",
+        "expected_resources": [
+          "references/mcp-wiring.md",
+          "assets/utcp-mobbin-manual.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "WIRING_AUTH"
+        ],
+        "resources": [
+          "references/tool-surface.md",
+          "references/mcp-wiring.md",
+          "assets/utcp-mobbin-manual.md"
+        ],
+        "scores": [
+          {
+            "intent": "WIRING_AUTH",
+            "score": 28
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    },
+    {
+      "skill": "mcp-mobbin",
+      "scenarioId": "MB-R06",
+      "featureFile": "intra-routing-recall/troubleshoot.md",
+      "prompt": "Every Mobbin request failed: first a 401 unauthorized error, then a 429 rate limit response.",
+      "gold": {
+        "expected_intent": "TROUBLESHOOT",
+        "expected_resources": [
+          "references/troubleshooting.md",
+          "references/mcp-wiring.md"
+        ]
+      },
+      "replay": {
+        "intents": [
+          "TROUBLESHOOT"
+        ],
+        "resources": [
+          "references/tool-surface.md",
+          "references/troubleshooting.md",
+          "references/mcp-wiring.md"
+        ],
+        "scores": [
+          {
+            "intent": "TROUBLESHOOT",
+            "score": 24
+          }
+        ],
+        "surface": null,
+        "routeTelemetry": {
+          "observed": false,
+          "reason": "no-hub-router"
+        }
+      },
+      "intentMatch": true,
+      "resourceMatch": false
+    }
+  ]
+}

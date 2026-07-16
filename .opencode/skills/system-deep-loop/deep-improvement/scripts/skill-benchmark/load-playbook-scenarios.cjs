@@ -118,6 +118,64 @@ function parseExpectedRankBelowSkillIds(text) {
 }
 
 /**
+ * Parse an authored expected_resources gold block from YAML frontmatter into
+ * inert strings, loudly. Route gold is a contract, so a present-but-unparseable
+ * block must surface as a parse failure the gate can count — never a silent
+ * empty list (the historical silent-skip channel). Items are taken verbatim
+ * (cleaned of bullets/quotes/backticks) and NEVER interpreted or executed, so a
+ * command-shaped value is just a string that will fail to match any routed
+ * resource. An explicit empty list (`[]`, inline or on the following line) is a
+ * real assertion: "this route assembles nothing".
+ *
+ * @param {string} block - Full frontmatter block text.
+ * @returns {{present:boolean,resources:string[],parseError:(string|null)}} Parsed gold.
+ */
+function parseExpectedResourcesGold(block) {
+  const keyM = /(?:^|\n)[ \t]*expected_resources[ \t]*:(.*)/.exec(block);
+  if (!keyM) return { present: false, resources: [], parseError: null };
+
+  const inlineRest = keyM[1].trim();
+  if (inlineRest) {
+    const inlineList = /^\[(.*)\]$/.exec(inlineRest);
+    if (inlineList) return { present: true, resources: parseListText(inlineList[1]), parseError: null };
+    // Inline scalar (`expected_resources: references/x.md`) — a single inert item.
+    return { present: true, resources: parseListText(inlineRest), parseError: null };
+  }
+
+  const after = block.slice(keyM.index + keyM[0].length).replace(/^\n/, '');
+  if (/^[ \t]*\[\s*\]/.test(after)) return { present: true, resources: [], parseError: null };
+  const dashList = /^((?:[ \t]*-[ \t]*.+\n?)+)/.exec(after);
+  if (dashList) {
+    const resources = [...new Set(parseListText(dashList[1]))];
+    if (resources.length === 0) return { present: true, resources: [], parseError: 'expected_resources list items did not parse' };
+    return { present: true, resources, parseError: null };
+  }
+  return { present: true, resources: [], parseError: 'expected_resources block is present but unparseable' };
+}
+
+/**
+ * Parse an authored expected_intent gold value, loudly (same contract as
+ * parseExpectedResourcesGold): a present-but-unparseable value is a counted
+ * parse failure, not a silent null. Values are inert labels; corpora author
+ * multi-intent gold as `A+B` or `A → B` sequences, parsed to a label list.
+ * `none`/`defer`/`UNKNOWN` are the documented rejection labels meaning "no
+ * intent selected" (the routers' own zero-score convention).
+ *
+ * @param {string} block - Full frontmatter block text.
+ * @returns {{present:boolean,intent:(string|null),intents:string[],parseError:(string|null)}} Parsed gold.
+ */
+function parseExpectedIntentGold(block) {
+  const keyM = /(?:^|\n)[ \t]*expected_intent[ \t]*:(.*)/.exec(block);
+  if (!keyM) return { present: false, intent: null, intents: [], parseError: null };
+  const value = cleanListItem(keyM[1]);
+  const labels = value.split(/\s*(?:\+|→|->)\s*/).map((l) => l.trim()).filter(Boolean);
+  if (labels.length === 0 || labels.some((l) => !/^[A-Za-z0-9_-]+$/.test(l))) {
+    return { present: true, intent: null, intents: [], parseError: 'expected_intent value is present but unparseable' };
+  }
+  return { present: true, intent: labels[0], intents: labels, parseError: null };
+}
+
+/**
  * Pull every `references/...` / `assets/...` / `../shared/...` markdown-ish path
  * token out of a text block, deduped, order-preserving. Tolerates backticks,
  * bullets, and trailing parentheticals like "(when intent is X)". The sibling
@@ -255,6 +313,11 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
     expectedSubLanguage: subLangM ? subLangM[1].toUpperCase() : null,
     expectedIntent: null,
     expectedResources,
+    // sk-code gold is a must-include list (with a separate forbidden set), not
+    // an exact assembly assertion, so presence means a non-empty authored list.
+    hasIntentGold: false,
+    hasResourceGold: expectedResources.length > 0,
+    goldParseError: null,
     expectedAssets,
     forbiddenResources,
     expectedRankBelowSkillIds,
@@ -292,8 +355,11 @@ function parseRootIndex(rootText) {
   return idx;
 }
 
-// sk-doc shape: walk per-scenario files, read YAML frontmatter gold.
-function loadYamlFrontmatterScenarios(playbookDir) {
+// sk-doc shape: walk per-scenario files, read YAML frontmatter gold. Gold
+// parsing is LOUD: an authored expected_intent/expected_resources block that
+// fails to parse marks the scenario (goldParseError) and emits a warning the
+// route-gold gate counts, instead of the historical silent empty-gold skip.
+function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
   const out = [];
   const stack = [playbookDir];
   while (stack.length) {
@@ -312,13 +378,12 @@ function loadYamlFrontmatterScenarios(playbookDir) {
       const block = fm[1];
       if (!/(?:^|\n)[ \t]*(?:id|expected_intent|expected_resources)[ \t]*:/.test(block)) continue;
       const idM = /(?:^|\n)[ \t]*id:\s*["']?([A-Za-z0-9-]+)/.exec(block);
-      const intentM = /(?:^|\n)[ \t]*expected_intent:\s*["']?([A-Za-z0-9_-]+)/.exec(block);
-      const resM = /(?:^|\n)[ \t]*expected_resources:\s*\n((?:\s*-\s*.+\n?)+)/.exec(block);
+      const intentGold = parseExpectedIntentGold(block);
+      const resourceGold = parseExpectedResourcesGold(block);
       const stageM = /(?:^|\n)[ \t]*stage:\s*["']?([A-Za-z0-9_-]+)/.exec(block);
       const stage = stageM && ['routing', 'holdout', 'negative'].includes(stageM[1])
         ? stageM[1]
         : 'routing';
-      const resources = resM ? extractPaths(resM[1]) : [];
       const expectedRankBelowSkillIds = parseFrontmatterList(block, [
         'rankBelowSkillIds',
         'rank_below_skill_ids',
@@ -327,16 +392,28 @@ function loadYamlFrontmatterScenarios(playbookDir) {
       const category = path.basename(cur);
       const prompt = parsePromptBlock(text);
       const id = idM ? idM[1] : e.name.replace(/\.md$/, '');
+      const goldParseErrors = [intentGold.parseError, resourceGold.parseError].filter(Boolean);
+      for (const err of goldParseErrors) warnings.push(`${id}: gold-parse-failure — ${err}`);
+      const parseWarnings = [
+        ...(prompt ? [] : ['missing-exact-prompt']),
+        ...goldParseErrors.map((err) => `gold-parse-failure: ${err}`),
+      ];
       out.push({
         scenarioId: id,
         category,
         prompt: prompt || null,
         stage,
-        classKind: classifyKind(id, category, null, intentM ? intentM[1] : ''),
+        classKind: classifyKind(id, category, null, intentGold.intent || ''),
         expectedSurface: null,
         expectedSubLanguage: null,
-        expectedIntent: intentM ? intentM[1] : null,
-        expectedResources: resources,
+        expectedIntent: intentGold.intent,
+        expectedIntents: intentGold.intents,
+        expectedResources: resourceGold.resources,
+        // Route-gold presence flags: `expected_resources: []` is a real
+        // "assembles nothing" assertion, distinguishable from an absent key.
+        hasIntentGold: intentGold.present,
+        hasResourceGold: resourceGold.present,
+        goldParseError: goldParseErrors.length ? goldParseErrors.join('; ') : null,
         expectedAssets: [],
         expectedRankBelowSkillIds,
         expected: expectedRankBelowSkillIds.length ? { rankBelowSkillIds: expectedRankBelowSkillIds } : undefined,
@@ -347,7 +424,7 @@ function loadYamlFrontmatterScenarios(playbookDir) {
         // routing hit. holdout/routing fixtures stay positive-scored.
         negativeActivation: stage === 'negative',
         source: { featureFile: path.relative(playbookDir, full), shape: 'sk-doc' },
-        parseWarnings: prompt ? [] : ['missing-exact-prompt'],
+        parseWarnings,
       });
     }
   }
@@ -393,7 +470,7 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
   }
 
   // No root index table -> sk-doc YAML-frontmatter shape.
-  const scenarios = loadYamlFrontmatterScenarios(dir);
+  const scenarios = loadYamlFrontmatterScenarios(dir, warnings);
   return { scenarios, shape: scenarios.length ? 'sk-doc' : 'none', warnings };
 }
 
@@ -401,7 +478,10 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { loadPlaybookScenarios, classifyKind, extractPaths, extractForbiddenPrefixes, parseRootIndex };
+module.exports = {
+  loadPlaybookScenarios, classifyKind, extractPaths, extractForbiddenPrefixes, parseRootIndex,
+  parseExpectedResourcesGold, parseExpectedIntentGold,
+};
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));

@@ -94,9 +94,10 @@ assets/utcp-refero-manual.md    # verified manual snapshot (already registered) 
 
 | Level | When to Load | Resources |
 | ----- | ------------ | --------- |
-| ALWAYS | Every invocation | `references/tool-surface.md` (tool contract + workflow baseline) |
+| CONDITIONAL | Research intent (styles/screens/flows) | `references/tool-surface.md` (tool contract + workflow baseline) |
 | CONDITIONAL | Wiring / auth intent | `references/mcp-wiring.md`, `assets/utcp-refero-manual.md` |
 | CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
+| FALLBACK | Zero-score routes only | `references/tool-surface.md` suggested (never auto-loaded) |
 | ALWAYS (design work) | Retrieved evidence feeds a design decision | `sk-design` modes, loaded before any taste call |
 
 ### Smart Router Pseudocode
@@ -109,6 +110,10 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/tool-surface.md"
+# Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
+# into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
+# zero-score routes load nothing and ask for disambiguation instead.
+DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
 MIN_CONFIDENCE = 1
 AMBIGUITY_DELTA = 1
 
@@ -173,7 +178,7 @@ def classify_intents(request: str):
     ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
     primary, top = ranked[0]
     if top == 0:
-        return ("WIRING_AUTH", None, scores)   # unrouted -> start by verifying the wiring
+        return (None, None, scores)   # unrouted -> no intent selected; fallback branch disambiguates
     secondary, second = ranked[1]
     if second > 0 and (top - second) <= AMBIGUITY_DELTA:
         return (primary, secondary, scores)
@@ -182,7 +187,7 @@ def classify_intents(request: str):
 def route_refero_resources(request: str):
     inventory = discover_markdown_resources()
     primary, secondary, scores = classify_intents(request)
-    intents = [primary] + ([secondary] if secondary else [])
+    intents = [i for i in (primary, secondary) if i]
     loaded, seen, notices = [], set(), []
 
     def load_if_available(rel: str) -> bool:
@@ -194,10 +199,12 @@ def route_refero_resources(request: str):
             notices.append(f"Resource not found in inventory: {guarded}")
         return False
 
-    load_if_available(DEFAULT_RESOURCE)
     if max(scores.values() or [0]) < MIN_CONFIDENCE:
+        # Fallback-only: nothing is loaded on a zero-score route; the default
+        # reference is offered as a suggestion beside the disambiguation ask.
         return {"intents": intents, "load_level": "UNKNOWN_FALLBACK", "needs_disambiguation": True,
-                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded, "notices": notices}
+                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+                "suggested_fallback": DEFAULT_RESOURCE, "resources": loaded, "notices": notices}
     for intent in intents:
         for rel in RESOURCE_MAP.get(intent, []):
             load_if_available(rel)

@@ -8,19 +8,19 @@
       {
         "target": "mcp-code-mode",
         "weight": 0.7,
-        "context": "External cross-skill dependency (ADR-005): the shared MCP execution substrate all three modes (mcp-chrome-devtools, mcp-click-up, mcp-figma) reach through the unchanged code_mode MCP registration key. mcp-code-mode is infrastructure serving consumers beyond this hub, not a hub member."
+        "context": "External cross-skill dependency (ADR-005): the shared MCP execution substrate all six modes reach through the unchanged code_mode MCP registration key — the three workflow bridges (mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools) as their MCP fallback lane, and the three transports (mcp-figma via the optional Framelink manual, mcp-refero and mcp-mobbin as remote MCP through Code Mode). mcp-code-mode is infrastructure serving consumers beyond this hub, not a hub member."
       },
       {
         "target": "sk-design",
         "weight": 0.7,
-        "context": "mcp-figma's mandatory cross-hub judgment pairing (ADR-002): apply sk-design's anti-default judgment before any Figma read/export feeds a design decision. Also a sibling overlap -- sk-design's own md-generator mode sources design tokens from live URLs while mcp-figma sources from Figma Desktop, with DESIGN.md output overlap."
+        "context": "The mandatory cross-hub judgment pairing (ADR-002) for all three design transports: apply sk-design's anti-default judgment before any design-affecting operation — mcp-figma reads/exports feeding a design decision AND its author/modify/token paths, mcp-refero and mcp-mobbin whenever their references ground a design decision. Also a sibling overlap -- sk-design's own md-generator mode sources design tokens from live URLs while mcp-figma sources from Figma Desktop, with DESIGN.md output overlap."
       }
     ],
     "enhances": [
       {
         "target": "sk-code",
         "weight": 0.5,
-        "context": "Union of all three modes' contributions to sk-code implementation: browser debugging for the WEB stack route (mcp-chrome-devtools), task-management context for development workflows (mcp-click-up), and Figma exports/DESIGN.md/variables/screenshots feeding implementation (mcp-figma)."
+        "context": "Union of all six modes' contributions to sk-code implementation: browser debugging for the WEB stack route (mcp-chrome-devtools), task-management context for development workflows (mcp-click-up), agentic-browser task evidence and REPL captures (mcp-aside-devtools), Figma exports/DESIGN.md/variables/screenshots feeding implementation (mcp-figma), and real-app UI reference research grounding what gets built (mcp-refero for web products, mcp-mobbin for mobile app patterns)."
       }
     ],
     "siblings": [
@@ -215,7 +215,22 @@
       "design tokens",
       "figma export",
       "figma mcp",
-      "code mode figma"
+      "code mode figma",
+      "aside",
+      "aside browser",
+      "aside repl",
+      "agentic browser",
+      "ai browser automation",
+      "autonomous browser task",
+      "refero",
+      "design reference search",
+      "ui reference",
+      "real app screens",
+      "web design references",
+      "mobbin",
+      "app design research",
+      "mobile design patterns",
+      "ux flow references"
     ],
     "key_files": [
       ".opencode/skills/mcp-tooling/SKILL.md",
@@ -275,7 +290,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "mcp-tooling is the single public advisor identity for three MCP tool bridges, folded into one parent hub (packet 126-mcp-tooling-parent). mcp-chrome-devtools routes browser-debugging work between the bdg CLI and Code Mode MCP, prioritizing the cheapest effective interface. mcp-click-up routes ClickUp task management between the cupt CLI (daily ops) and the official ClickUp MCP (documents, goals, bulk operations), with agent-safety invariants (dry-run before batch completion, per-list status resolution). mcp-figma drives Figma Desktop from the terminal through figma-ds-cli, gated read-only/mutating/destructive, paired with sk-design for design judgment before any design-affecting operation -- it never decides taste itself. It matters because it gives three previously-flat, independently advisor-routable MCP bridges one coherent identity while preserving each mode's own contract, and mcp-code-mode -- the shared execution substrate all three reach through Code Mode -- stays external infrastructure rather than a dissolved hub member.",
+    "causal_summary": "mcp-tooling is the single public advisor identity for six MCP tool bridges: three workflow modes and three design transports, folded into one parent hub (packet 126-mcp-tooling-parent, extended to six modes by the aside/refero/mobbin additions). mcp-chrome-devtools routes browser-debugging work between the bdg CLI and Code Mode MCP, prioritizing the cheapest effective interface. mcp-click-up routes ClickUp task management between the cupt CLI (daily ops) and the official ClickUp MCP (documents, goals, bulk operations), with agent-safety invariants (dry-run before batch completion, per-list status resolution). mcp-aside-devtools drives the agentic Aside browser (natural-language tasks and the deterministic repl evidence lane) for autonomous browser work that developer-driven CDP inspection does not cover. mcp-figma drives Figma Desktop from the terminal through figma-ds-cli, gated read-only/mutating/destructive. mcp-refero searches real shipped web-product UI references and mcp-mobbin researches real mobile app/screen/flow patterns, both read-only remote MCP through Code Mode. All three transports carry the mandatory sk-design cross-hub pairing for design judgment before any design-affecting operation -- no transport decides taste itself. It matters because it gives six previously-flat or independently-added MCP bridges one coherent advisor identity while preserving each mode's own contract, and mcp-code-mode -- the shared execution substrate all six reach through Code Mode -- stays external infrastructure rather than a dissolved hub member.",
     "source_docs": [
       "SKILL.md",
       "mode-registry.json",
@@ -294,7 +309,7 @@
       "mcp-mobbin/README.md"
     ],
     "created_at": "2026-07-10T06:16:00Z",
-    "last_updated_at": "2026-07-10T06:16:00Z",
-    "last_save_at": "2026-07-16T15:55:00Z"
+    "last_updated_at": "2026-07-16T21:30:00Z",
+    "last_save_at": "2026-07-16T21:30:00Z"
   }
 }

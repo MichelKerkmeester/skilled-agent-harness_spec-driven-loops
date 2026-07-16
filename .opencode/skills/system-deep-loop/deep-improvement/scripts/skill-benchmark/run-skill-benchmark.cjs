@@ -30,7 +30,7 @@ const crypto = require('crypto');
 const { routeSkillResources } = require('./router-replay.cjs');
 const { buildBannedVocab, lintFixture } = require('./contamination-lint.cjs');
 const { scanConnectivity, scanHubRegistry } = require('./d5-connectivity.cjs');
-const { scoreScenario, aggregate } = require('./score-skill-benchmark.cjs');
+const { scoreScenario, aggregate, evaluateRouteGold } = require('./score-skill-benchmark.cjs');
 const { probeAdvisor } = require('./advisor-probe.cjs');
 const { renderReport } = require('./build-report.cjs');
 const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
@@ -60,6 +60,32 @@ function resolveSkillRoot(skillArg) {
 
 function resolveSkillId(skillRoot) {
   return path.basename(skillRoot);
+}
+
+// Hub-type detection for the route-gold gate default: a skill that ships a
+// hub-router.json routes between packets by contract, so its route gold is
+// enforced by default; flat skills opt in per run.
+function isHubTypeSkill(skillRoot) {
+  return fs.existsSync(path.join(skillRoot, 'hub-router.json'));
+}
+
+/**
+ * Resolve the route-gold gate flag: `--route-gold on|off|auto` (default auto).
+ * `auto` derives from the target: ON for hub-type skills, OFF otherwise.
+ * Gate ON means any route-gold violation (including a gold parse failure)
+ * fails the run verdict; the report records flag state and row count either way.
+ *
+ * @param {Object} args - Parsed CLI args.
+ * @param {string} skillRoot - Target skill root dir.
+ * @returns {{mode:'on'|'off'|'auto', enabled:boolean}} Gate configuration.
+ */
+function resolveRouteGold(args, skillRoot) {
+  const raw = args['route-gold'] == null ? 'auto' : String(args['route-gold']).toLowerCase();
+  if (!['on', 'off', 'auto'].includes(raw)) {
+    throw new Error(`invalid --route-gold value "${raw}" (expected on|off|auto)`);
+  }
+  const enabled = raw === 'on' || (raw === 'auto' && isHubTypeSkill(skillRoot));
+  return { mode: raw, enabled };
 }
 
 /**
@@ -174,7 +200,11 @@ function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, pla
     }
     const advisorResult = (advisorMode === 'python' && sc.classKind === 'advisor' && sc.prompt)
       ? probeAdvisor({ prompt: sc.prompt }) : undefined;
-    scenarioRows.push(scoreScenario({ scenario: sc, skillId, observed, advisorResult, traceMode }));
+    const row = scoreScenario({ scenario: sc, skillId, observed, advisorResult, traceMode });
+    // Route-gold lane: evaluated on every row that carries authored gold so
+    // the report always shows the counts; the gate flag decides enforcement.
+    row.routeGold = evaluateRouteGold({ scenario: sc, observed });
+    scenarioRows.push(row);
   }
 }
 
@@ -202,6 +232,14 @@ function run(args) {
 
   if (!fs.existsSync(path.join(skillRoot, 'SKILL.md'))) {
     process.stderr.write(`run-skill-benchmark: no SKILL.md at ${skillRoot}\n`);
+    return 2;
+  }
+
+  let routeGold;
+  try {
+    routeGold = resolveRouteGold(args, skillRoot);
+  } catch (err) {
+    process.stderr.write(`run-skill-benchmark: ${err.message}\n`);
     return 2;
   }
 
@@ -238,7 +276,7 @@ function run(args) {
   }
 
   // aggregate + emit.
-  const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry, traceMode, lintFindings });
+  const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry, traceMode, lintFindings, routeGold });
   if (topologyDigestBefore !== null) report.topologyDigest = topologyDigestBefore;
   if (warnings.length) report.parseWarnings = warnings;
   const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
@@ -251,8 +289,12 @@ function run(args) {
   // The D5 gate exists to make a structurally-broken skill (dead router, broken
   // hub registry) unusable regardless of weighted score. An exit code that stays
   // 0 on that verdict lets a CI caller treat "blocked" the same as "passed" —
-  // reports still write either way, but the process signal must disagree.
-  if (report.verdict === 'BLOCKED-BY-STRUCTURE' || report.verdict === 'BLOCKED-BY-REGISTRY') return 3;
+  // reports still write either way, but the process signal must disagree. The
+  // route-gold gate carries the same contract: an enforced route-contract
+  // violation must be a non-zero process signal, not just report text.
+  if (report.verdict === 'BLOCKED-BY-STRUCTURE'
+      || report.verdict === 'BLOCKED-BY-REGISTRY'
+      || report.verdict === 'BLOCKED-BY-ROUTE-GOLD') return 3;
   return 0;
 }
 
@@ -325,12 +367,12 @@ async function augmentWithD4R(args) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { run, augmentWithD4R, resolveSkillRoot, loadFixtures };
+module.exports = { run, augmentWithD4R, resolveSkillRoot, loadFixtures, isHubTypeSkill, resolveRouteGold };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
   if (!args.skill || !args['outputs-dir']) {
-    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--playbook-dir <path>] [--scenarios <ids>] [--output <report.json>] [--trace-mode router|live] [--d4 [--d4-scenarios <ids>] [--grader-mode real|mock]]\n');
+    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--playbook-dir <path>] [--scenarios <ids>] [--output <report.json>] [--trace-mode router|live] [--route-gold on|off|auto] [--d4 [--d4-scenarios <ids>] [--grader-mode real|mock]]\n');
     process.exit(2);
   }
   const code = run(args);

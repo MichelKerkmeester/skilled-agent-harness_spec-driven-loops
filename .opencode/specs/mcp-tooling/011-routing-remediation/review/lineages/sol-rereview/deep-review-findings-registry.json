@@ -1,0 +1,758 @@
+{
+  "sessionId": "fanout-sol-rereview-1784227058428-v8wtp3",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-07-16T18:59:47Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "SRR-P2-001",
+      "severity": "P2",
+      "title": "Registry discriminator descriptions omit two transports and the Code Mode backend",
+      "file": ".opencode/skills/mcp-tooling/mode-registry.json",
+      "line": 7,
+      "description": "Primary discriminator help omits Refero, Mobbin, and code-mode-remote-mcp.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "The mismatch is local to an explicitly bound file.",
+      "affectedSurfaceHints": [
+        "registry help consumers"
+      ],
+      "contentHash": "c9ef9d5a06fa864797f79bc2902270bc6c8e5e2374968cfb41754e7892a56402",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "registry-help-drift"
+    ],
+    "ruledOut": [
+      "benchmark-route-gate-blindness",
+      "blind-holdout-recall-gap",
+      "cross-mode-resource-contamination",
+      "defer-contract-bypass",
+      "documented-runtime-fallback-drift",
+      "finding-map-gap",
+      "gold-parser-command-execution",
+      "graph-drift",
+      "hardcoded-consumer-semantics",
+      "index-drift",
+      "legacy-router-regression",
+      "mid-run-topology-drift",
+      "missing-design-judgment-pairing",
+      "phase-drift",
+      "positive-route-failure",
+      "provider-vocabulary-collision",
+      "repeat-run-nondeterminism",
+      "report-only-gate",
+      "shared-harness-regression",
+      "silent-gold-parse-skip",
+      "silent-parse-failure",
+      "transport-workspace-write-misrepresentation",
+      "zero-score-resource-load"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "positive-route-failure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross-mode-resource-contamination": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "defer-contract-bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "blind-holdout-recall-gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "provider-vocabulary-collision": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "benchmark-route-gate-blindness": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "zero-score-resource-load": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "documented-runtime-fallback-drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "gold-parser-command-execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "silent-gold-parse-skip": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "transport-workspace-write-misrepresentation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "missing-design-judgment-pairing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "registry-help-drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "finding-map-gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "graph-drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "phase-drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "index-drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "report-only-gate": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "hardcoded-consumer-semantics": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "legacy-router-regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "repeat-run-nondeterminism": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "silent-parse-failure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "mid-run-topology-drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "shared-harness-regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "hub-router.json",
+        "hub_routing/"
+      ],
+      "bugClass": "positive-route-failure",
+      "disposition": "ruled_out",
+      "rationale": "Executable full-matrix replay is clean.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/hub-router.json:150-171",
+        ".opencode/specs/mcp-tooling/011-routing-remediation/review/lineages/sol-rereview/logs/iteration-001-replay-hub.json"
+      ],
+      "reason": "13/13 exact intent and resource matches."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "hub-router.json",
+        "router-replay.cjs"
+      ],
+      "bugClass": "cross-mode-resource-contamination",
+      "disposition": "ruled_out",
+      "rationale": "Producer/consumer semantics and executable replay agree.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/hub-router.json:20-29",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:529-550"
+      ],
+      "reason": "No default resource appears in scored or zero-score assemblies."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "hub-router.json",
+        "ambiguous_defer.md"
+      ],
+      "bugClass": "defer-contract-bypass",
+      "disposition": "ruled_out",
+      "rationale": "Discovery/scoring vocabulary separation is explicit and replayed.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/hub-router.json:25-29",
+        ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/ambiguous_defer.md:14-24"
+      ],
+      "reason": "Zero-signal request defers with empty assembly."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "run-skill-benchmark.cjs",
+        "score-skill-benchmark.cjs"
+      ],
+      "bugClass": "benchmark-route-gate-blindness",
+      "disposition": "ruled_out",
+      "rationale": "Both positive and negative control paths were executed.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:289-298",
+        ".opencode/specs/mcp-tooling/011-routing-remediation/review/lineages/sol-rereview/logs/iteration-001-benchmark/skill-benchmark-report.json"
+      ],
+      "reason": "The hard gate blocks a violation and accepts the clean corpus."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "six packet SKILL.md files",
+        "route-gold-gate.vitest.ts"
+      ],
+      "bugClass": "zero-score-resource-load",
+      "disposition": "ruled_out",
+      "rationale": "Independent source, test, and replay evidence agree.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md:217-225",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/route-gold-gate.vitest.ts:270-340"
+      ],
+      "reason": "No packet hard-loads its default on fallback."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "load-playbook-scenarios.cjs",
+        "route-gold-gate.vitest.ts"
+      ],
+      "bugClass": "gold-parser-command-execution",
+      "disposition": "ruled_out",
+      "rationale": "Parser has no execution sink and fails loudly.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121-175",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/route-gold-gate.vitest.ts:219-269"
+      ],
+      "reason": "Untrusted-looking values only participate in exact comparisons."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "mode-registry.json",
+        "mcp-figma/SKILL.md",
+        "hub SKILL.md"
+      ],
+      "bugClass": "transport-workspace-write-misrepresentation",
+      "disposition": "ruled_out",
+      "rationale": "Dominant posture and local-write nuance are jointly explicit.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/mode-registry.json:139-166",
+        ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md:254-276"
+      ],
+      "reason": "No silent local write or unpaired design-decision path remains."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-011",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "run-skill-benchmark.cjs",
+        "router-replay.cjs",
+        "route-gold-gate.vitest.ts"
+      ],
+      "bugClass": "shared-harness-regression",
+      "disposition": "ruled_out",
+      "rationale": "Source and regression controls cover current and compatibility paths.",
+      "evidenceRefs": [
+        "run-skill-benchmark.cjs:65-89,289-298",
+        "router-replay.cjs:529-550",
+        "route-gold-gate.vitest.ts:270-420"
+      ],
+      "reason": "No mcp-tooling hardcode or legacy behavior break exists."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "iteration-001 benchmark",
+        "iteration-004 benchmark"
+      ],
+      "bugClass": "repeat-run-nondeterminism",
+      "disposition": "ruled_out",
+      "rationale": "Key deterministic metrics are identical.",
+      "evidenceRefs": [
+        "logs/iteration-001-benchmark/skill-benchmark-report.json",
+        "logs/iteration-004-benchmark/skill-benchmark-report.json"
+      ],
+      "reason": "No scoring or gate drift observed."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        "hub-router.json",
+        "hub_routing/"
+      ],
+      "bugClass": "positive-route-failure",
+      "disposition": "ruled_out",
+      "rationale": "Executable full-matrix replay is clean.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/hub-router.json:150-171",
+        ".opencode/specs/mcp-tooling/011-routing-remediation/review/lineages/sol-rereview/logs/iteration-001-replay-hub.json"
+      ],
+      "proof": "13/13 exact intent and resource matches."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "hub-router.json",
+        "router-replay.cjs"
+      ],
+      "bugClass": "cross-mode-resource-contamination",
+      "disposition": "ruled_out",
+      "rationale": "Producer/consumer semantics and executable replay agree.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/hub-router.json:20-29",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:529-550"
+      ],
+      "proof": "No default resource appears in scored or zero-score assemblies."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "hub-router.json",
+        "ambiguous_defer.md"
+      ],
+      "bugClass": "defer-contract-bypass",
+      "disposition": "ruled_out",
+      "rationale": "Discovery/scoring vocabulary separation is explicit and replayed.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/hub-router.json:25-29",
+        ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/ambiguous_defer.md:14-24"
+      ],
+      "proof": "Zero-signal request defers with empty assembly."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "run-skill-benchmark.cjs",
+        "score-skill-benchmark.cjs"
+      ],
+      "bugClass": "benchmark-route-gate-blindness",
+      "disposition": "ruled_out",
+      "rationale": "Both positive and negative control paths were executed.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:289-298",
+        ".opencode/specs/mcp-tooling/011-routing-remediation/review/lineages/sol-rereview/logs/iteration-001-benchmark/skill-benchmark-report.json"
+      ],
+      "proof": "The hard gate blocks a violation and accepts the clean corpus."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "six packet SKILL.md files",
+        "route-gold-gate.vitest.ts"
+      ],
+      "bugClass": "zero-score-resource-load",
+      "disposition": "ruled_out",
+      "rationale": "Independent source, test, and replay evidence agree.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md:217-225",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/route-gold-gate.vitest.ts:270-340"
+      ],
+      "proof": "No packet hard-loads its default on fallback."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        "load-playbook-scenarios.cjs",
+        "route-gold-gate.vitest.ts"
+      ],
+      "bugClass": "gold-parser-command-execution",
+      "disposition": "ruled_out",
+      "rationale": "Parser has no execution sink and fails loudly.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121-175",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/route-gold-gate.vitest.ts:219-269"
+      ],
+      "proof": "Untrusted-looking values only participate in exact comparisons."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "mode-registry.json",
+        "mcp-figma/SKILL.md",
+        "hub SKILL.md"
+      ],
+      "bugClass": "transport-workspace-write-misrepresentation",
+      "disposition": "ruled_out",
+      "rationale": "Dominant posture and local-write nuance are jointly explicit.",
+      "evidenceRefs": [
+        ".opencode/skills/mcp-tooling/mode-registry.json:139-166",
+        ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md:254-276"
+      ],
+      "proof": "No silent local write or unpaired design-decision path remains."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-011",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "run-skill-benchmark.cjs",
+        "router-replay.cjs",
+        "route-gold-gate.vitest.ts"
+      ],
+      "bugClass": "shared-harness-regression",
+      "disposition": "ruled_out",
+      "rationale": "Source and regression controls cover current and compatibility paths.",
+      "evidenceRefs": [
+        "run-skill-benchmark.cjs:65-89,289-298",
+        "router-replay.cjs:529-550",
+        "route-gold-gate.vitest.ts:270-420"
+      ],
+      "proof": "No mcp-tooling hardcode or legacy behavior break exists."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "iteration-001 benchmark",
+        "iteration-004 benchmark"
+      ],
+      "bugClass": "repeat-run-nondeterminism",
+      "disposition": "ruled_out",
+      "rationale": "Key deterministic metrics are identical.",
+      "evidenceRefs": [
+        "logs/iteration-001-benchmark/skill-benchmark-report.json",
+        "logs/iteration-004-benchmark/skill-benchmark-report.json"
+      ],
+      "proof": "No scoring or gate drift observed."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "report-only-gate",
+      "hardcoded-consumer-semantics",
+      "legacy-router-regression",
+      "repeat-run-nondeterminism",
+      "silent-parse-failure",
+      "mid-run-topology-drift"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "report-only-gate",
+      "hardcoded-consumer-semantics",
+      "legacy-router-regression",
+      "repeat-run-nondeterminism",
+      "silent-parse-failure",
+      "mid-run-topology-drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 3,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 62,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "manual_testing_playbook.md",
+          "iteration-001 replay logs"
+        ],
+        "findingRefs": [],
+        "summary": "Thirteen links resolve and 62 route rows match."
+      },
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "core",
+        "applicable": true,
+        "counts": {
+          "pass": 15,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "spec.md:128-175",
+          "checklist.md:72-132"
+        ],
+        "findingRefs": [],
+        "summary": "F001-F015 close against current evidence."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "gateClass": "core",
+        "applicable": true,
+        "counts": {
+          "pass": 26,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "checklist.md:63-132",
+          "implementation-summary.md"
+        ],
+        "findingRefs": [],
+        "summary": "Checked claims are supported."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 5,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "mode-registry.json:5-18",
+          "description.json",
+          "graph-metadata.json"
+        ],
+        "findingRefs": [
+          "SRR-P2-001"
+        ],
+        "summary": "Six-mode content is complete; discriminator help is incomplete."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

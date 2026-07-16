@@ -46,9 +46,9 @@ AI-browser automation through the Aside CLI: natural-language agent tasks and a 
 
 | Level       | When to Load             | Resources                          |
 | ----------- | ------------------------ | ---------------------------------- |
-| ALWAYS      | Every skill invocation   | Core CLI reference                 |
 | CONDITIONAL | If intent signals match  | REPL/MCP/session/troubleshooting   |
 | ON_DEMAND   | Only on explicit request | Full diagnostics set               |
+| FALLBACK    | Zero-score routes only   | Core CLI reference suggested (never auto-loaded) |
 
 ### Smart Router Pseudocode
 
@@ -57,7 +57,7 @@ The authoritative routing logic for scoped loading, weighted intent scoring, and
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans skill-local `references/` and `assets/` when those folders exist.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, the discovered `inventory`, and a `seen` set.
 - Pattern 3: Simple Intent Routing - TASK/REPL/MCP/INSTALL/TROUBLESHOOT intents select the real flat `references/*.md` resources plus the flat `assets/utcp-aside-manual.md` snapshot. This skill has no keyed `references/<key>/` or `assets/<key>/` resource subdirectories.
-- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` requests CLI/REPL/MCP disambiguation, and missing intent routes return a "no knowledge base" notice while retaining the default CLI reference when available.
+- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` requests CLI/REPL/MCP disambiguation and SUGGESTS the default CLI reference without loading it (`DEFAULT_RESOURCE_SEMANTICS = "fallback-only"`): a scored route loads exactly its intents' mapped resources, and a zero-score route loads nothing beyond the disambiguation checklist.
 
 ```python
 from pathlib import Path
@@ -65,6 +65,10 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/aside-cli-reference.md"
+# Fallback-only: DEFAULT_RESOURCE is a defer-time suggestion, never unioned
+# into a route's loaded set. Scored routes load exactly RESOURCE_MAP[intent];
+# zero-score routes load nothing and ask for disambiguation instead.
+DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm agent-task CLI vs deterministic REPL vs Code Mode MCP path",
@@ -89,7 +93,6 @@ RESOURCE_MAP = {
 }
 
 LOADING_LEVELS = {
-    "ALWAYS": [DEFAULT_RESOURCE],
     "ON_DEMAND_KEYWORDS": ["full troubleshooting", "full session guide", "all patterns", "permission model", "daemon health", "everything about aside"],
     "ON_DEMAND": ["references/troubleshooting.md", "references/session-management.md", "references/mcp-wiring.md"],
 }
@@ -155,10 +158,9 @@ def route_aside_devtools_resources(task):
             loaded.append(guarded)
             seen.add(guarded)
 
-    for relative_path in LOADING_LEVELS["ALWAYS"]:
-        load_if_available(relative_path)
-
     if max(scores.values() or [0]) < 0.5:
+        # Fallback-only: nothing is loaded on a zero-score route; the default
+        # reference is offered as a suggestion beside the disambiguation ask.
         return {
             "routing_key": "aside-devtools",
             "intents": intents,
@@ -166,6 +168,7 @@ def route_aside_devtools_resources(task):
             "load_level": "UNKNOWN_FALLBACK",
             "needs_disambiguation": True,
             "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "suggested_fallback": DEFAULT_RESOURCE,
             "resources": loaded,
         }
 
@@ -182,12 +185,10 @@ def route_aside_devtools_resources(task):
         for relative_path in LOADING_LEVELS["ON_DEMAND"]:
             load_if_available(relative_path)
 
-    if not loaded:
-        load_if_available(DEFAULT_RESOURCE)
-
     result = {"routing_key": "aside-devtools", "intents": intents, "intent_scores": scores, "resources": loaded}
     if not matched_intents:
         result["notice"] = f"No knowledge base found for intent(s): {', '.join(intents)}"
+        result["suggested_fallback"] = DEFAULT_RESOURCE
     return result
 ```
 

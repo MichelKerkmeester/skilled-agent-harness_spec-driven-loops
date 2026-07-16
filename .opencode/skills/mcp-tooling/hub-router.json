@@ -1,6 +1,6 @@
 {
   "skill": "mcp-tooling",
-  "version": "1.0.0.0",
+  "version": "1.1.0.0",
   "routerPolicy": {
     "defaultMode": "mcp-chrome-devtools",
     "ambiguityDelta": 1,
@@ -19,15 +19,21 @@
     },
     "defaultResource": [
       "mcp-chrome-devtools/SKILL.md"
-    ]
+    ],
+    "defaultResourceSemantics": "fallback-only",
+    "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted ONLY when no mode scores (zero-signal branch), and then only as the defer-time suggestion offered alongside disambiguation - it is never unioned into a scored route's resource set.",
+    "discoveryClasses": [
+      "hub-identity",
+      "provider-neutral-design-research"
+    ],
+    "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: a prompt matching only discovery vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
   },
   "routerSignals": {
     "mcp-chrome-devtools": {
       "weight": 4,
       "classes": [
         "chrome-devtools-aliases",
-        "browser-debug",
-        "hub-identity"
+        "browser-debug"
       ],
       "resources": [
         "mcp-chrome-devtools/SKILL.md"
@@ -37,8 +43,7 @@
       "weight": 4,
       "classes": [
         "clickup-aliases",
-        "task-management",
-        "hub-identity"
+        "task-management"
       ],
       "resources": [
         "mcp-click-up/SKILL.md"
@@ -48,8 +53,7 @@
       "weight": 4,
       "classes": [
         "aside-devtools-aliases",
-        "agentic-browser",
-        "hub-identity"
+        "agentic-browser"
       ],
       "resources": [
         "mcp-aside-devtools/SKILL.md"
@@ -59,8 +63,7 @@
       "weight": 4,
       "classes": [
         "figma-aliases",
-        "design-transport",
-        "hub-identity"
+        "design-transport"
       ],
       "resources": [
         "mcp-figma/SKILL.md"
@@ -70,8 +73,7 @@
       "weight": 4,
       "classes": [
         "refero-aliases",
-        "design-reference-research",
-        "hub-identity"
+        "design-reference-research"
       ],
       "resources": [
         "mcp-refero/SKILL.md"
@@ -81,8 +83,7 @@
       "weight": 4,
       "classes": [
         "mobbin-aliases",
-        "app-design-research",
-        "hub-identity"
+        "app-design-research"
       ],
       "resources": [
         "mcp-mobbin/SKILL.md"
@@ -91,11 +92,18 @@
   },
   "vocabularyClasses": {
     "hub-identity": {
+      "note": "Discovery-only (see routerPolicy.discoveryClasses): hub-level vocabulary that identifies THIS hub, not any one mode. Deliberately unreferenced by routerSignals so hub-identity-only prompts defer.",
       "keywords": [
         "mcp-tooling",
         "mcp tool bridge",
         "mode-registry",
         "hub-router"
+      ]
+    },
+    "provider-neutral-design-research": {
+      "note": "Discovery-only (see routerPolicy.discoveryClasses): generic design-research phrasing naming neither provider. Reserved for defer between mcp-refero and mcp-mobbin per MT-008/MT-009 scenario contracts; never provider-scoring vocabulary.",
+      "keywords": [
+        "screen examples"
       ]
     },
     "chrome-devtools-aliases": {
@@ -125,7 +133,8 @@
         "task management",
         "work queue",
         "mark done",
-        "time tracking"
+        "time tracking",
+        "project tracker"
       ]
     },
     "task-management": {
@@ -140,6 +149,7 @@
     },
     "figma-aliases": {
       "keywords": [
+        "figma",
         "figma cli",
         "figma-ds-cli",
         "figma desktop",
@@ -155,7 +165,9 @@
         "connect to figma",
         "figma variables",
         "export from figma",
-        "figma export"
+        "figma export",
+        "design tokens",
+        "design file"
       ]
     },
     "aside-devtools-aliases": {
@@ -176,7 +188,9 @@
         "browser agent",
         "aside daemon",
         "aside account",
-        "repl evidence capture"
+        "repl evidence capture",
+        "click through",
+        "on its own"
       ]
     },
     "refero-aliases": {
@@ -193,10 +207,10 @@
       "keywords": [
         "design reference",
         "ui screens from real apps",
-        "screen examples",
         "design inspiration search",
         "reference styles",
-        "user flow references"
+        "user flow references",
+        "web products"
       ]
     },
     "mobbin-aliases": {
@@ -204,7 +218,6 @@
         "mobbin",
         "mobbin mcp",
         "app design research",
-        "screen examples",
         "ux flow references",
         "mobile design patterns"
       ]
@@ -216,7 +229,8 @@
         "onboarding flow examples",
         "app screen gallery",
         "design pattern research",
-        "ios app examples"
+        "ios app examples",
+        "phone apps"
       ]
     }
   }

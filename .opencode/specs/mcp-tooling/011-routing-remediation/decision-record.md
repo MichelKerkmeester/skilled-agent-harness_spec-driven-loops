@@ -11,7 +11,7 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/011-routing-remediation"
-    last_updated_at: "2026-07-16T18:55:00Z"
+    last_updated_at: "2026-07-16T19:05:00Z"
     last_updated_by: "claude"
     recent_action: "Authored ADR-001 and ADR-002, both Proposed"
     next_safe_action: "Operator rules on ADR-001 before WS1 implementation"
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted (2026-07-16, Phase 0 gate: fallback-only, option (a) — ruling recorded in the Adjudication note below; operator may overturn) |
 | **Date** | 2026-07-16 |
 | **Deciders** | Operator (ruling required at implementation start) |
 
@@ -152,7 +152,7 @@ The hub's original ADR lineage was checked (`.opencode/specs/mcp-tooling/007-mcp
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted (2026-07-16, Phase 0 gate: scope confirmed as planned — harness-wide opt-in flag, default on for hub-type skills) |
 | **Date** | 2026-07-16 |
 | **Deciders** | Operator (with WS2 implementation) |
 
