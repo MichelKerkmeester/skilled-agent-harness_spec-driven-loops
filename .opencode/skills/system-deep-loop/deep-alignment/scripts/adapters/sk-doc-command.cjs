@@ -54,6 +54,13 @@ const SYNC_PROMPTS_CJS = path.join(
   'sync-prompts.cjs',
 );
 const COMMAND_CANON = path.join(SKILLS_DIR, 'sk-doc', 'create-command', 'SKILL.md');
+const COMMAND_CONTRACT = path.join(
+  SKILLS_DIR,
+  'sk-doc',
+  'create-command',
+  'assets',
+  'command_contract.json',
+);
 const TOPOLOGY_TAXONOMY = path.join(
   REPO_ROOT,
   '.opencode',
@@ -352,6 +359,32 @@ function readCommand(rootDir, source) {
   return fs.readFileSync(path.join(rootDir, source), 'utf8');
 }
 
+// The family behavior contract always comes from the canonical skill tree, never
+// from the artifact root under check, so a fixture command classifies against the
+// same authority the ground-truth oracle uses. Fail closed if it is unreadable.
+let commandContractCache = null;
+function loadCommandContract() {
+  if (commandContractCache) return commandContractCache;
+  commandContractCache = JSON.parse(fs.readFileSync(COMMAND_CONTRACT, 'utf8'));
+  return commandContractCache;
+}
+
+// A command's family is the first path segment under the command root; top-level
+// monolithic commands have no family and carry no per-family contract.
+function commandFamily(source) {
+  const commandRelative = source.replace(/^\.opencode\/commands\//, '');
+  const segments = commandRelative.split('/');
+  return segments.length > 1 ? segments[0] : null;
+}
+
+function frontmatterField(text, key) {
+  const frontmatter = text.match(/^---\n([\s\S]*?)\n---/);
+  if (!frontmatter) return null;
+  const field = frontmatter[1].match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
+  if (!field) return null;
+  return field[1].trim().replace(/^["']|["']$/g, '').trim();
+}
+
 function workflowTargets(sourceText) {
   return [...new Set(referenceChecks.extractCommandTargets(sourceText)
     .map((reference) => reference.target)
@@ -527,6 +560,39 @@ function checkPresentationOwnership(rootDir, source, sourceText) {
   return findings;
 }
 
+function checkGateObligation(source, sourceText, contract) {
+  const family = commandFamily(source);
+  const spec = family ? contract.families[family] : null;
+  if (!spec) return [];
+  // A router that requires input and owns its own gate must advertise that gate
+  // to the caller; an absent or empty argument-hint leaves the obligation unmet.
+  if (spec.input?.required !== true || spec.input?.gate_owner !== 'router') return [];
+  if (frontmatterField(sourceText, 'argument-hint')) return [];
+  return [makeFinding('CMD-S3-GATE-OBLIGATION-UNMET', 'P0', 'S3', source, 1)];
+}
+
+function checkModeCompleteness(source, sourceText, contract) {
+  const family = commandFamily(source);
+  const spec = family ? contract.families[family] : null;
+  if (!spec || spec.topology !== 'mode-pair') return [];
+  // Every advertised core mode must reference its own workflow asset; a declared
+  // mode with no matching asset reference is an incomplete mode pair.
+  const supportedModes = spec.mode_matrix?.supported_modes || [];
+  const referencedTargets = referenceChecks.extractCommandTargets(sourceText)
+    .map((reference) => reference.target);
+  const modeAssets = [
+    { mode: ':auto', suffix: '_auto.yaml' },
+    { mode: ':confirm', suffix: '_confirm.yaml' },
+  ];
+  const findings = [];
+  for (const modeAsset of modeAssets) {
+    if (!supportedModes.includes(modeAsset.mode)) continue;
+    if (referencedTargets.some((target) => target.endsWith(modeAsset.suffix))) continue;
+    findings.push(makeFinding('CMD-S3-MODE-INCOMPLETE', 'P1', 'S3', source, 1));
+  }
+  return findings;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 9. CHECK(ARTIFACT, RULES, OPTIONS)
 // ─────────────────────────────────────────────────────────────────────────────
@@ -581,12 +647,15 @@ function check(artifact, rulesOrOptions, maybeOptions) {
   }
   const selectedSources = new Set(selectedEntries.map((entry) => entry.source));
   const findings = checkMirrorAndReachability(surface, selectedSources);
+  const contract = loadCommandContract();
 
   for (const entry of selectedEntries) {
     const sourceText = readCommand(rootDir, entry.source);
     findings.push(...checkRouteGraph(rootDir, entry.source, sourceText, entry.topology));
     findings.push(...checkCapabilitiesAndSafety(rootDir, sourceText));
     findings.push(...checkPresentationOwnership(rootDir, entry.source, sourceText));
+    findings.push(...checkGateObligation(entry.source, sourceText, contract));
+    findings.push(...checkModeCompleteness(entry.source, sourceText, contract));
   }
 
   const deviations = Array.isArray(rules.knownDeviations)

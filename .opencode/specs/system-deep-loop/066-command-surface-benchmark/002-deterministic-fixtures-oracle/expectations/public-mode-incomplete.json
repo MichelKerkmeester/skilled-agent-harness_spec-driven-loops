@@ -1,10 +1,10 @@
 {
   "schemaVersion": "1.0.0",
-  "fixtureId": "public-route-cycle",
+  "fixtureId": "public-mode-incomplete",
   "classification": "public",
   "fixtureHash": {
     "algorithm": "sha256",
-    "value": "3d9b45ce1aa04b53e866f35425808b964976b440ed997a8798c81cb5183fcb6a"
+    "value": "b0ad96cf6e1c10967ddb1dc4419def6176a3d7266231e4d5d9e33d08ed0e77ea"
   },
   "oracleHash": {
     "algorithm": "sha256",
@@ -12,10 +12,10 @@
   },
   "findings": [
     {
-      "code": "CMD-S3-ROUTE-CYCLE",
-      "severity": "P0",
+      "code": "CMD-S3-MODE-INCOMPLETE",
+      "severity": "P1",
       "dimension": "S3",
-      "location": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml:10"
+      "location": ".opencode/commands/deep/alignment.md:1"
     }
   ]
 }

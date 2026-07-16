@@ -36,14 +36,24 @@ const path = require('path');
 // ─────────────────────────────────────────────────────────────────────────────
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..');
 
-// Command families whose assets declare live agent/skill/runtime references.
-const FAMILIES = ['create', 'deep', 'design'];
-
 // Real runtime-agent directories. An agent reference resolves if the file exists
 // in ANY of these; a runtime-directory reference is valid only if it names one.
 const AGENT_DIRS = ['.opencode/agents', '.claude/agents', '.codex/agents'];
 const RUNTIME_DIR_ALLOWLIST = new Set(['.opencode', '.claude', '.codex']);
 const COMMAND_INVENTORY_EXCLUDES = new Set(['assets', 'scripts', 'fixtures']);
+
+// Command families are derived from the real command tree so a new family directory
+// is covered the moment it ships assets, instead of drifting behind a hardcoded list.
+function discoverFamilies(rootDir = REPO_ROOT) {
+  const commandsRoot = path.join(rootDir, '.opencode', 'commands');
+  if (!fs.existsSync(commandsRoot)) return [];
+  return fs.readdirSync(commandsRoot, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && !COMMAND_INVENTORY_EXCLUDES.has(e.name))
+    .map((e) => e.name)
+    .filter((name) => fs.existsSync(path.join(commandsRoot, name, 'assets')))
+    .sort();
+}
+const FAMILIES = discoverFamilies();
 
 // Path token stops at YAML/prose delimiters and at any template metacharacter, so an
 // interpolated reference (e.g. skills/{skill_name}/SKILL.md) truncates to a bare dir
@@ -100,8 +110,18 @@ function extractViolations(file, rootDir = REPO_ROOT) {
 
     SKILL_TOKEN.lastIndex = 0;
     while ((m = SKILL_TOKEN.exec(text)) !== null) {
+      // A referenced skill path that is a runtime-generated artifact must not be
+      // resolved against a clean checkout — it exists only while a command runs:
+      //   - a match cut off at a shell glob wildcard is a truncated backup pattern
+      //     (e.g. a `.sqlite.pre-<op>.*.bak` snapshot), never a concrete file.
+      //   - a `.doctor-<route>.` dotfile is a lock/pid/state/log the doctor
+      //     orchestrator writes and tears down within a single run.
+      // The skip is unconditional (before the existence check) so a clean checkout
+      // and a machine that happens to hold a leftover artifact behave identically.
+      if (text.charAt(m.index + m[0].length) === '*') continue;
       const token = normalizeSkillToken(m[0]);
       if (!token) continue;
+      if (/^\.doctor-[a-z0-9-]+\./.test(path.basename(token))) continue;
       if (!fs.existsSync(path.join(rootDir, token))) {
         add(lineNo, 'skill-asset', token, 'path does not exist on disk');
       }

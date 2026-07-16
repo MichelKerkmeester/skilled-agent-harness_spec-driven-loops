@@ -4,9 +4,9 @@
   "oracleProvenance": {
     "oracleId": "command-surface-independent-reference-oracle",
     "implementationPath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs",
-    "versionOrCommit": "sha256:fc1eb9aee6b296333b9a93feca14550f3805083d4d199c97bf16ceee2b179e83",
+    "versionOrCommit": "sha256:dfbe80622958f3f33a3aca5add40ece89759d75183d3edea9510993d10515aab",
     "verificationCommand": "node .opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs --verify --manifest .opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/fixtures/fixture-manifest.json",
-    "verifiedAt": "2026-07-15T06:53:18.718Z",
+    "verifiedAt": "2026-07-16T13:29:35.048Z",
     "evidencePath": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/expectations/index.json"
   },
   "productionAdapterImportProhibited": true,
@@ -14,7 +14,7 @@
   "fixtureRoot": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus",
   "fixtureRootHash": {
     "algorithm": "sha256",
-    "value": "0d1e6ab84ad9214a0ad6eabeb5147e99499cfea640326aeeb66503f24e537bf8"
+    "value": "4b5d7b35bc0bced4273f51de1485658ab35a6324decac8b3bff1247a4bfa6923"
   },
   "fixtures": [
     {
@@ -246,6 +246,60 @@
           "dimension": "S5",
           "locations": [
             ".opencode/commands/doctor/mcp.md:37"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-gate-obligation-unmet",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-gate-obligation-unmet",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "8edda795246537a8d1fb9fa80a03436363025c99e665b51fd1c1b7936a6b420d"
+      },
+      "mutations": [
+        {
+          "id": "remove-doctor-argument-hint",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/mcp.md",
+          "description": "Remove the argument-hint gate from a required-input subaction router."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S3-GATE-OBLIGATION-UNMET",
+          "severity": "P0",
+          "dimension": "S3",
+          "locations": [
+            ".opencode/commands/doctor/mcp.md:1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-mode-incomplete",
+      "classification": "public",
+      "path": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/public-mode-incomplete",
+      "hash": {
+        "algorithm": "sha256",
+        "value": "b0ad96cf6e1c10967ddb1dc4419def6176a3d7266231e4d5d9e33d08ed0e77ea"
+      },
+      "mutations": [
+        {
+          "id": "remove-confirm-workflow-reference",
+          "operation": "replaceText",
+          "target": ".opencode/commands/deep/alignment.md",
+          "description": "Remove the confirm-mode workflow asset reference from a mode-pair router."
+        }
+      ],
+      "expectedFindings": [
+        {
+          "code": "CMD-S3-MODE-INCOMPLETE",
+          "severity": "P1",
+          "dimension": "S3",
+          "locations": [
+            ".opencode/commands/deep/alignment.md:1"
           ]
         }
       ]

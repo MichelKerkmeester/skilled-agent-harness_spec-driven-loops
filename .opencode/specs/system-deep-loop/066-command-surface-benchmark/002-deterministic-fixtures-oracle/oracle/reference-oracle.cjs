@@ -32,7 +32,7 @@ const EXPECTATIONS_ROOT = path.join(PHASE_ROOT, 'expectations');
 const ORACLE_PATH = __filename;
 const COMMAND_REFERENCE = /\.opencode\/commands\/[A-Za-z0-9._/-]+\.(?:md|ya?ml|txt)/g;
 const PRESENTATION_MARKER = /\[presentation:([a-z0-9-]+)\]/g;
-const EXPECTED_PUBLIC_DEFECTS = 8;
+const EXPECTED_PUBLIC_DEFECTS = 10;
 const EXPECTED_HELD_OUT = 4;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -220,6 +220,41 @@ function makeFinding(code, severity, dimension, findingLocation) {
   return { code, severity, dimension, location: findingLocation };
 }
 
+// The family behavior contract is the shared authority for both this ground-truth
+// oracle and the production adapter; each reads the same real-repo copy so their
+// classifications stay byte-identical. Fail closed if it is unreadable.
+let commandContractCache = null;
+function loadCommandContract() {
+  if (commandContractCache) return commandContractCache;
+  const contractPath = path.join(
+    REPO_ROOT,
+    '.opencode',
+    'skills',
+    'sk-doc',
+    'create-command',
+    'assets',
+    'command_contract.json',
+  );
+  commandContractCache = readJson(contractPath);
+  return commandContractCache;
+}
+
+// A command's family is the first path segment under the command root; top-level
+// monolithic commands have no family and carry no per-family contract.
+function commandFamily(sourceRelative) {
+  const commandRelative = sourceRelative.replace(/^\.opencode\/commands\//, '');
+  const segments = commandRelative.split('/');
+  return segments.length > 1 ? segments[0] : null;
+}
+
+function frontmatterField(text, key) {
+  const frontmatter = text.match(/^---\n([\s\S]*?)\n---/);
+  if (!frontmatter) return null;
+  const field = frontmatter[1].match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
+  if (!field) return null;
+  return field[1].trim().replace(/^["']|["']$/g, '').trim();
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. INDEPENDENT CLASSIFIER
 // ─────────────────────────────────────────────────────────────────────────────
@@ -230,6 +265,7 @@ function classifyFixture(fixtureRoot) {
   const canonicalFiles = listFiles(canonicalRoot).filter((filePath) => filePath.endsWith('.md'));
   const mirrorFiles = listFiles(mirrorRoot).filter((filePath) => filePath.endsWith('.md'));
   const findings = [];
+  const contract = loadCommandContract();
   const expectedMirrors = new Map();
 
   for (const sourcePath of canonicalFiles) {
@@ -262,6 +298,8 @@ function classifyFixture(fixtureRoot) {
     classifySourceRoutes(fixtureRoot, sourceRelative, sourceText, findings);
     classifyCapabilities(fixtureRoot, sourceText, findings);
     classifyPresentationOwnership(fixtureRoot, sourceRelative, sourceText, findings);
+    classifyGateObligation(sourceRelative, sourceText, contract, findings);
+    classifyModeCompleteness(sourceRelative, sourceText, contract, findings);
   }
 
   for (const mirrorPath of mirrorFiles) {
@@ -429,6 +467,44 @@ function classifyPresentationOwnership(
         location(sourceRelative, marker.line),
       ),
     );
+  }
+}
+
+function classifyGateObligation(sourceRelative, sourceText, contract, findings) {
+  const family = commandFamily(sourceRelative);
+  const spec = family ? contract.families[family] : null;
+  if (!spec) return;
+  // A router that requires input and owns its own gate must advertise that gate
+  // to the caller; an absent or empty argument-hint leaves the obligation unmet.
+  if (spec.input?.required !== true || spec.input?.gate_owner !== 'router') return;
+  const hint = frontmatterField(sourceText, 'argument-hint');
+  if (!hint) {
+    findings.push(
+      makeFinding('CMD-S3-GATE-OBLIGATION-UNMET', 'P0', 'S3', location(sourceRelative, 1)),
+    );
+  }
+}
+
+function classifyModeCompleteness(sourceRelative, sourceText, contract, findings) {
+  const family = commandFamily(sourceRelative);
+  const spec = family ? contract.families[family] : null;
+  if (!spec || spec.topology !== 'mode-pair') return;
+  // Every advertised core mode must reference its own workflow asset; a declared
+  // mode with no matching asset reference is an incomplete mode pair.
+  const supportedModes = spec.mode_matrix?.supported_modes || [];
+  const referencedTargets = extractReferences(sourceText).map((reference) => reference.target);
+  const modeAssets = [
+    { mode: ':auto', suffix: '_auto.yaml' },
+    { mode: ':confirm', suffix: '_confirm.yaml' },
+  ];
+  for (const modeAsset of modeAssets) {
+    if (!supportedModes.includes(modeAsset.mode)) continue;
+    const referenced = referencedTargets.some((target) => target.endsWith(modeAsset.suffix));
+    if (!referenced) {
+      findings.push(
+        makeFinding('CMD-S3-MODE-INCOMPLETE', 'P1', 'S3', location(sourceRelative, 1)),
+      );
+    }
   }
 }
 

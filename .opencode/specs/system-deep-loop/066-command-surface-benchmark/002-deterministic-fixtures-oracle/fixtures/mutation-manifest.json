@@ -192,6 +192,42 @@
       ]
     },
     {
+      "id": "public-gate-obligation-unmet",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "required-input router missing its argument gate",
+      "dimension": "S3",
+      "output": "fixtures/corpus/public/public-gate-obligation-unmet",
+      "mutations": [
+        {
+          "id": "remove-doctor-argument-hint",
+          "operation": "replaceText",
+          "target": ".opencode/commands/doctor/mcp.md",
+          "description": "Remove the argument-hint gate from a required-input subaction router.",
+          "from": "argument-hint: \"<install|debug> [--server <name>]\"\n",
+          "to": ""
+        }
+      ]
+    },
+    {
+      "id": "public-mode-incomplete",
+      "classification": "public",
+      "kind": "defect",
+      "defectClass": "advertised mode missing its workflow asset reference",
+      "dimension": "S3",
+      "output": "fixtures/corpus/public/public-mode-incomplete",
+      "mutations": [
+        {
+          "id": "remove-confirm-workflow-reference",
+          "operation": "replaceText",
+          "target": ".opencode/commands/deep/alignment.md",
+          "description": "Remove the confirm-mode workflow asset reference from a mode-pair router.",
+          "from": "| Confirm workflow | `.opencode/commands/deep/assets/deep_alignment_confirm.yaml` |\n",
+          "to": ""
+        }
+      ]
+    },
+    {
       "id": "held-out-orphan-mirror",
       "classification": "held-out",
       "kind": "defect",

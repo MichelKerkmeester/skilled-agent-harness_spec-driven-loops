@@ -1,10 +1,10 @@
 {
   "schemaVersion": "1.0.0",
-  "fixtureId": "public-route-cycle",
+  "fixtureId": "public-gate-obligation-unmet",
   "classification": "public",
   "fixtureHash": {
     "algorithm": "sha256",
-    "value": "3d9b45ce1aa04b53e866f35425808b964976b440ed997a8798c81cb5183fcb6a"
+    "value": "8edda795246537a8d1fb9fa80a03436363025c99e665b51fd1c1b7936a6b420d"
   },
   "oracleHash": {
     "algorithm": "sha256",
@@ -12,10 +12,10 @@
   },
   "findings": [
     {
-      "code": "CMD-S3-ROUTE-CYCLE",
+      "code": "CMD-S3-GATE-OBLIGATION-UNMET",
       "severity": "P0",
       "dimension": "S3",
-      "location": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml:10"
+      "location": ".opencode/commands/doctor/mcp.md:1"
     }
   ]
 }
