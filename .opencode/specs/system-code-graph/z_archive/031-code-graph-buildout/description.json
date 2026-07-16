@@ -1,0 +1,28 @@
+{
+  "level": "phase",
+  "specFolder": "system-code-graph/z_archive/031-code-graph-buildout",
+  "description": "Build and harden the code-graph structural-indexing surface: the standalone package, CocoIndex decoupling, startup fixes, and the code-graph runtime,",
+  "keywords": [
+    "harden",
+    "code-graph",
+    "structural-indexing",
+    "surface",
+    "standalone",
+    "package",
+    "cocoindex",
+    "decoupling",
+    "startup",
+    "runtime"
+  ],
+  "lastUpdated": "2026-07-15T19:24:55.075Z",
+  "specId": "031",
+  "folderSlug": "code-graph-buildout",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "Feature Specification: Code Graph Package"
+  ]
+}

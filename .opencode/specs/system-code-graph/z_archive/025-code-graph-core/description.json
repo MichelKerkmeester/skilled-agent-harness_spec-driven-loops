@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-code-graph/z_archive/025-code-graph-core",
+  "description": "The code graph research surfaced candidate work across deterministic traversal, edge lifecycle, readiness, parser resilience and doc-symbol coverage",
+  "keywords": [
+    "code",
+    "graph",
+    "research",
+    "surfaced",
+    "candidate",
+    "work",
+    "across",
+    "deterministic",
+    "traversal",
+    "edge",
+    "lifecycle",
+    "readiness",
+    "parser",
+    "resilience",
+    "doc-symbol",
+    "coverage"
+  ],
+  "lastUpdated": "2026-07-15T19:24:54.892Z",
+  "specId": "025",
+  "folderSlug": "code-graph-core",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

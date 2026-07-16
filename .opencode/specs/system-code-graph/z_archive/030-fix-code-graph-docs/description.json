@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/z_archive/030-fix-code-graph-docs",
+  "description": "The read-only audit at `011-code-graph-doc-audit/review-report.md` confirmed six documentation-alignment defects in",
+  "keywords": [
+    "read-only",
+    "audit",
+    "011-code-graph-doc-audit",
+    "review-report",
+    "confirmed",
+    "six",
+    "documentation-alignment",
+    "defects"
+  ],
+  "lastUpdated": "2026-07-15T19:24:54.897Z",
+  "specId": "030",
+  "folderSlug": "fix-code-graph-docs",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

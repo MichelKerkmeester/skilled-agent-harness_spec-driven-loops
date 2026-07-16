@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-code-graph/z_archive/027-code-graph-edge-lifecycle",
+  "description": "Three code-graph edge-lifecycle capabilities ship finished but dark behind default-off flags with no measured verdict",
+  "keywords": [
+    "three",
+    "code-graph",
+    "edge-lifecycle",
+    "capabilities",
+    "ship",
+    "finished",
+    "dark",
+    "behind",
+    "default-off",
+    "flags",
+    "measured",
+    "verdict"
+  ],
+  "lastUpdated": "2026-07-15T19:24:54.895Z",
+  "specId": "027",
+  "folderSlug": "code-graph-edge-lifecycle",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

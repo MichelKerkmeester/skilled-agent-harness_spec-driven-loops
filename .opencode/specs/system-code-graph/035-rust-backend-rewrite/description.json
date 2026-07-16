@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-code-graph/035-rust-backend-rewrite",
+  "description": "The `system-code-graph` backend is ~46K LOC of authored TypeScript across ~163 files (`mcpserver/`, `scripts/`), run as a long-lived MCP server that",
+  "keywords": [
+    "system-code-graph",
+    "backend",
+    "46k",
+    "loc",
+    "authored",
+    "typescript",
+    "across",
+    "files",
+    "mcpserver",
+    "scripts",
+    "run",
+    "long-lived",
+    "mcp",
+    "server"
+  ],
+  "lastUpdated": "2026-07-15T19:24:55.122Z",
+  "specId": "035",
+  "folderSlug": "rust-backend-rewrite",
+  "parentChain": [
+    "system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

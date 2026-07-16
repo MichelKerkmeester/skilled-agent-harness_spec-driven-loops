@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/033-advisor-code-graph-shared-features",
+  "spec_folder": "system-code-graph/z_archive/033-advisor-code-graph-shared-features",
+  "parent_id": "system-code-graph",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-code-graph/033-advisor-code-graph-shared-features/001-codegraph-tombstone-audit",
+    "system-code-graph/033-advisor-code-graph-shared-features/002-codegraph-bfs-consolidation",
+    "system-code-graph/033-advisor-code-graph-shared-features/003-codegraph-why-included",
+    "system-code-graph/033-advisor-code-graph-shared-features/004-codegraph-bm25-symbol-resolver",
+    "system-code-graph/z_archive/033-advisor-code-graph-shared-features/001-codegraph-tombstone-audit",
+    "system-code-graph/z_archive/033-advisor-code-graph-shared-features/002-codegraph-bfs-consolidation",
+    "system-code-graph/z_archive/033-advisor-code-graph-shared-features/003-codegraph-why-included",
+    "system-code-graph/z_archive/033-advisor-code-graph-shared-features/004-codegraph-bm25-symbol-resolver"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018-xce-feature-adoption-advisor-codegraph",
+      "advisor 027 feature adoption",
+      "code graph 027 feature adoption",
+      "advisor codegraph shared features phase parent"
+    ],
+    "key_topics": [
+      "018-xce-feature-adoption-advisor-codegraph",
+      "advisor",
+      "feature",
+      "adoption",
+      "code",
+      "graph",
+      "codegraph",
+      "shared",
+      "features",
+      "phase",
+      "parent",
+      "spec-027"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec-027 hardened the Spec Kit Memory system with retrieval observability, a provenance-overwrite guard, packed BM25/BM25F lexical search, shared app-level BFS traversal, shadow feedback reducers, and soft-delete tombstones",
+    "created_at": "2026-06-10T19:24:08Z",
+    "last_save_at": "2026-07-16T16:01:31.993Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:27b0c8b8dd98e5923c848360ea117fa6b88c496913f4e07159d61368c4c7260c",
+    "source_doc_hashes": {
+      "spec.md": "e918a3441e9bfa907da36e98a0cc6b53d7c1f8d33a31553422faa37d5cccbece"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

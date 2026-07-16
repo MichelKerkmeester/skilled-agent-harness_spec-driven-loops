@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/028-code-graph-defaults-bitemporal",
+  "spec_folder": "system-code-graph/z_archive/028-code-graph-defaults-bitemporal",
+  "parent_id": "system-code-graph",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "degree cap",
+      "bitemporal",
+      "code graph",
+      "reindex",
+      "reverse dep force parse",
+      "edge replacement",
+      "degree cap plan",
+      "bitemporal plan",
+      "reindex wiring",
+      "code graph plan",
+      "degree cap tasks",
+      "bitemporal tasks"
+    ],
+    "key_topics": [
+      "degree",
+      "cap",
+      "bitemporal",
+      "code",
+      "graph",
+      "reindex",
+      "reverse",
+      "dep",
+      "force",
+      "parse",
+      "edge",
+      "replacement"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "mcp_server/tool-schemas.ts",
+      "benchmark/degree-cap-sweep.mjs",
+      "benchmark/degree-cap-sweep-results.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "structural-indexer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "degree-cap-sweep.mjs",
+        "kind": "file",
+        "path": "benchmark/degree-cap-sweep.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "degree-cap-sweep-results.json",
+        "kind": "config",
+        "path": "benchmark/degree-cap-sweep-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Degree",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cap Default",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bitemporal Reindex Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Set",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 009 dark-flag validation found two production-readiness gaps in the system-code-graph subsystem, both behind existing default-off flags",
+    "created_at": "2026-06-24T07:59:17.363Z",
+    "last_save_at": "2026-07-16T16:01:30.255Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0c5be7bedb0c677974566da17718634aae531feefa8f3e538fb00eeb6efbd5f2",
+    "source_doc_hashes": {
+      "spec.md": "67f39ed9e5eda0f8bcdd4206599b54387c3daeaf9c3a7915570252a330ef5087",
+      "plan.md": "39f78002982f6bbbaa97936e4c66f8f0e9b98f16101aae53b204f623243261df",
+      "tasks.md": "6e35d6b4acb5753e3f48ef0d719e5853cfca3054d380cc8b27fa86b754718a69",
+      "checklist.md": "c965f596f1f23672eb2713f1a0111ec402cf7ac6cedeaa46e47d92bf26e6070e",
+      "implementation-summary.md": "1ea65800bd02b3101a9b446729487d9c5169e8642c18e14635f46a91ccdae170"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
