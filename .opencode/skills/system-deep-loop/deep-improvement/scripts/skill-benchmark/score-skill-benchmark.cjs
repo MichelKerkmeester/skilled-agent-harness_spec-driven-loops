@@ -113,6 +113,10 @@ function expectedFromScenario(scenario, obs, arg) {
     // (sk-doc's expectedIntent); surface correctness is scored separately.
     intentKeys: scenario.expectedIntent ? [scenario.expectedIntent] : [],
     resources: scenario.expectedResources || [],
+    // Parallel typed-pair gold, additive alongside the flat-string list above.
+    // Only a scenario that actually declares this field engages the taxonomy
+    // gate; every other scenario's `resources` lane is untouched.
+    leafResources: normalizeLeafResourceList(readLeafResourceGoldFromScenario(scenario)),
     // Paths (usually glob prefixes) a scenario asserts must NOT be routed. Only
     // meaningful once the router actually emits per-surface resources; before
     // that a suppression scenario passed trivially by routing nothing at all.
@@ -143,6 +147,9 @@ function routerResultFromObservation(obs) {
     resources: obs.observedResources || [],
     missingResources: obs.missingResources || [],
     routeTelemetry: (obs.raw && obs.raw.routeTelemetry) || null,
+    // Only a manifest-bearing skill's dispatch carries this field at all, so a
+    // skill with no leaf-manifest.json keeps an identical routerResult shape.
+    ...(obs.resourceContract ? { resourceContract: obs.resourceContract } : {}),
   };
 }
 
@@ -1084,6 +1091,173 @@ function buildLiveEvidence(obs) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 3B. TYPED-GOLD ERROR TAXONOMY (additive, gated on a leaf-manifest-bearing
+// skill plus a fixture that carries typed gold). Reuses the pre-dispatch
+// fixture classifier so class boundaries never diverge from the gate that
+// already blocks dispatch for the same fault. A skill with no manifest, or a
+// fixture with no typed gold, never enters this path at all.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const TOPOLOGY_VALIDATOR_PATH = path.resolve(__dirname, '..', '..', '..', '..', 'sk-doc', 'create-skill', 'scripts', 'validate-playbook-topology.cjs');
+let cachedTopologyValidator;
+function loadTopologyValidator() {
+  if (cachedTopologyValidator !== undefined) return cachedTopologyValidator;
+  try {
+    // eslint-disable-next-line global-require
+    cachedTopologyValidator = require(TOPOLOGY_VALIDATOR_PATH);
+  } catch {
+    cachedTopologyValidator = null;
+  }
+  return cachedTopologyValidator;
+}
+
+const CLASS_ROUTING_CONTRACT = 'routing_contract_error';
+const CLASS_ROUTING_MISS = 'routing_miss';
+
+function hasLeafManifestFile(skillRoot) {
+  return !!skillRoot && fs.existsSync(path.join(skillRoot, 'leaf-manifest.json'));
+}
+
+function readLeafResourceGoldFromScenario(scenario) {
+  if (!scenario) return undefined;
+  return scenario.expected_leaf_resources !== undefined
+    ? scenario.expected_leaf_resources
+    : scenario.expectedLeafResources;
+}
+
+function normalizeLeafPair(entry) {
+  if (!entry || typeof entry !== 'object') return null;
+  const workflowMode = entry.workflowMode !== undefined ? entry.workflowMode : entry.workflow_mode;
+  const leafResourceId = entry.leafResourceId !== undefined ? entry.leafResourceId : entry.leaf_resource_id;
+  return { workflowMode, leafResourceId };
+}
+
+function normalizeLeafResourceList(raw) {
+  if (!Array.isArray(raw)) return [];
+  return raw.map(normalizeLeafPair).filter(Boolean);
+}
+
+function deriveDeclaredModeString(expected) {
+  const mode = expected && expected.workflowMode;
+  if (mode == null) return null;
+  return Array.isArray(mode) ? mode.join('+') : String(mode);
+}
+
+/**
+ * Classify a scenario's typed leaf-resource gold against the same schema ->
+ * manifest -> selected-map stages the pre-dispatch gate uses, so a stale or
+ * malformed oracle is excluded from scoring instead of counted as a routing
+ * miss. Returns null when the scenario carries no typed gold or the target
+ * skill ships no manifest at all — the flat-string scoring path below is left
+ * completely untouched in that case.
+ *
+ * @param {Object} args - Classification inputs.
+ * @param {Object} args.scenario - Raw scenario object (may carry typed gold).
+ * @param {Object} args.expected - Normalized expected-gold object for this row.
+ * @param {string} args.skillRoot - Target skill root dir.
+ * @returns {{status:string,errorClass:(string|null),problems:string[]}|null} Verdict, or null when ungated.
+ */
+function classifyTypedGoldFixture({ scenario, expected, skillRoot }) {
+  const rawGold = readLeafResourceGoldFromScenario(scenario);
+  if (rawGold === undefined) return null;
+  // Playbook-shape callers routinely omit an explicit skillRoot and expect it
+  // derived from expected.skillId (the same fallback scoreCommandRecipe uses),
+  // so the gate has to resolve it the same way to ever fire on a real run.
+  const resolvedSkillRoot = resolveExpectedSkillRoot(expected, skillRoot);
+  if (!hasLeafManifestFile(resolvedSkillRoot)) return null;
+
+  const validator = loadTopologyValidator();
+  if (!validator) return null;
+
+  let leavesByMode;
+  try {
+    leavesByMode = validator.loadManifestLeaves(resolvedSkillRoot);
+  } catch (err) {
+    return {
+      status: 'blocked',
+      errorClass: validator.CLASS_TOPOLOGY,
+      problems: [`leaf-manifest.json could not be loaded: ${err && err.message ? err.message : String(err)}`],
+    };
+  }
+
+  const pairsOk = Array.isArray(rawGold);
+  const pairs = (pairsOk ? rawGold : []).map(normalizeLeafPair).filter(Boolean);
+  const shapeOk = pairsOk && pairs.length === rawGold.length;
+
+  const fixtureLike = {
+    id: scenario && scenario.scenarioId,
+    expectedWorkflowMode: deriveDeclaredModeString(expected),
+    fullInventoryIntent: !!(scenario && (scenario.full_inventory_intent === true || scenario.fullInventoryIntent === true)),
+    leafResourcesParsed: shapeOk,
+    pairs,
+  };
+
+  return validator.classifyFixture(fixtureLike, leavesByMode);
+}
+
+function pairKey(pair) {
+  return `${pair && pair.workflowMode} ${pair && pair.leafResourceId}`;
+}
+
+/**
+ * Composite-pair recall for a gated, schema-valid typed-gold row: compares the
+ * router's already-capped resourceContract pairs against the fixture's typed
+ * gold, deduped by composite key. A router-emitted contract violation
+ * (unresolved raw resources, or more workflow modes than the selected-map cap
+ * allows) always wins over a plain miss, since it points at a router defect
+ * rather than an ordinary recall gap.
+ *
+ * @param {Object} args - Recall inputs.
+ * @param {Array<{workflowMode:string,leafResourceId:string}>} args.expectedPairs - Typed gold pairs.
+ * @param {Object} args.routerResult - Normalized router result carrying resourceContract, when applicable.
+ * @returns {{applicable:true,score:(number|null),errorClass:(string|null)}} Typed-pair recall payload.
+ */
+function scoreTypedPairRecall({ expectedPairs, routerResult }) {
+  const contract = routerResult && routerResult.resourceContract;
+  if (!contract) {
+    return {
+      applicable: true,
+      score: null,
+      hit: 0,
+      expectedCount: (expectedPairs || []).length,
+      observedCount: 0,
+      unresolvedCount: 0,
+      capExceeded: false,
+      errorClass: CLASS_ROUTING_CONTRACT,
+      reason: 'gated scenario observed no resourceContract from the router',
+    };
+  }
+
+  const validator = loadTopologyValidator();
+  const cap = validator ? validator.MAX_SIMULTANEOUS_WORKFLOW_MODES : Infinity;
+  const unresolved = Array.isArray(contract.unresolved) ? contract.unresolved : [];
+  const observedPairs = Array.isArray(contract.pairs) ? contract.pairs : [];
+  const observedModes = uniqueArray(observedPairs.map((p) => p.workflowMode));
+  const capExceeded = contract.fullInventoryIntent !== true && observedModes.length > cap;
+  const contractViolation = unresolved.length > 0 || capExceeded;
+
+  const expectedKeys = uniqueArray((expectedPairs || []).map(pairKey));
+  const observedKeySet = new Set(observedPairs.map(pairKey));
+  const hit = expectedKeys.filter((k) => observedKeySet.has(k)).length;
+  const score = expectedKeys.length === 0 ? null : hit / expectedKeys.length;
+
+  let errorClass = null;
+  if (contractViolation) errorClass = CLASS_ROUTING_CONTRACT;
+  else if (score != null && score < 1) errorClass = CLASS_ROUTING_MISS;
+
+  return {
+    applicable: true,
+    score,
+    hit,
+    expectedCount: expectedKeys.length,
+    observedCount: observedPairs.length,
+    unresolvedCount: unresolved.length,
+    capExceeded,
+    errorClass,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -1109,6 +1283,21 @@ function scoreScenario(arg) {
   const stage = scenario && (scenario.stage === 'holdout' || scenario.stage === 'negative')
     ? scenario.stage
     : 'routing';
+
+  // A fixture whose typed gold fails to resolve against the committed manifest
+  // is an oracle fault, not a routing failure — exclude it before any dims are
+  // computed so it can never be counted (even as a zero) in any denominator.
+  const typedGoldVerdict = classifyTypedGoldFixture({ scenario, expected, skillRoot: arg.skillRoot });
+  if (typedGoldVerdict && typedGoldVerdict.status === 'blocked') {
+    return {
+      scenarioId, tier, stage,
+      excluded: true,
+      errorClass: typedGoldVerdict.errorClass,
+      problems: typedGoldVerdict.problems,
+      applicable: false,
+      classKind: scenario ? scenario.classKind : undefined,
+    };
+  }
 
   // D1-intra: did the in-skill router select the expected intents + resources?
   // Live mode reports references and assets on SEPARATE channels (the model states
@@ -1203,6 +1392,14 @@ function scoreScenario(arg) {
   // actually did) without bloating the JSON with full transcripts.
   const liveEvidence = buildLiveEvidence(obs);
 
+  // Typed-pair recall rides alongside the existing flat-string dims rather
+  // than replacing them, so a gated row's D1-D5 math stays byte-identical to
+  // an ungated one; only this extra field and the row-level errorClass differ.
+  const typedPairRecall = typedGoldVerdict && typedGoldVerdict.status === 'valid'
+    ? scoreTypedPairRecall({ expectedPairs: expected.leafResources, routerResult })
+    : null;
+  if (typedPairRecall) dims.typedPairRecall = typedPairRecall;
+
   return {
     scenarioId, tier, stage, dims, firstFailingStage: failingStage, modeAScore: score, applicable: true, recipeCapped,
     classKind: scenario ? scenario.classKind : undefined,
@@ -1211,6 +1408,7 @@ function scoreScenario(arg) {
     traceMode: arg.traceMode || (obs ? obs.mode : undefined),
     liveEvidence,
     routeTelemetry: routerResult.routeTelemetry || null,
+    ...(typedPairRecall ? { errorClass: typedPairRecall.errorClass } : {}),
   };
 }
 
@@ -1273,7 +1471,14 @@ function resolveAdvisorOwner(skillRoot) {
 }
 
 function aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry = {}, traceMode, lintFindings, divergence }) {
-  const rows = scenarioRows.filter(Boolean).map((row) => applyAggregateToolSurface(row, skillRoot));
+  const allScenarioRows = scenarioRows.filter(Boolean);
+  // Oracle-fault rows (fixture_schema_error / fixture_topology_error /
+  // fixture_selection_error) are excluded from every denominator below; they
+  // report in a separate section instead of folding into the routing score.
+  const excludedRows = allScenarioRows.filter((row) => row.excluded === true);
+  const rows = allScenarioRows
+    .filter((row) => row.excluded !== true)
+    .map((row) => applyAggregateToolSurface(row, skillRoot));
   const avg = (sel) => {
     const vals = rows.map(sel).filter((v) => typeof v === 'number');
     return vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
@@ -1494,6 +1699,12 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry
     divergence: divergence || [],
     lintFindings: lintFindings || [],
     scenarioRows: rows,
+    excludedRows: excludedRows.map((row) => ({
+      scenarioId: row.scenarioId,
+      errorClass: row.errorClass,
+      problems: row.problems || [],
+      stage: row.stage,
+    })),
     runQuality: {
       scenarioCount: rows.length,
       traceMode: traceMode || 'router',
@@ -1523,4 +1734,8 @@ module.exports = {
   loadCommandMetadata,
   WEIGHTS,
   RECIPE_INVALID_CAP,
+  classifyTypedGoldFixture,
+  scoreTypedPairRecall,
+  CLASS_ROUTING_CONTRACT,
+  CLASS_ROUTING_MISS,
 };

@@ -31,6 +31,37 @@ function dimLine(name, d) {
   return `| ${name}${gate} | ${d.points}pts | ${score} |`;
 }
 
+/**
+ * Fail-closed provenance guard. Scoped to the gated typed-pair taxonomy only:
+ * a plain report (no excluded rows, no row carrying an errorClass) never
+ * enters this check, so it can never trip for any pre-existing report shape.
+ * Once a report DOES carry gated rows, it must be able to say which skill
+ * root and manifest digest they were scored against, and every gated/excluded
+ * row must be individually identifiable — otherwise the report is rendered
+ * without knowing what it is claiming, which is worse than not rendering it.
+ *
+ * @param {Object} report - Candidate report object.
+ * @returns {string[]} Provenance problems; empty when the report is clean or ungated.
+ */
+function validateProvenance(report) {
+  const problems = [];
+  const excluded = Array.isArray(report && report.excludedRows) ? report.excludedRows : [];
+  const rows = Array.isArray(report && report.scenarioRows) ? report.scenarioRows : [];
+  const gatedRows = rows.filter((row) => row && row.errorClass != null);
+  if (excluded.length === 0 && gatedRows.length === 0) return problems;
+
+  if (!report || !report.targetSkill || !report.targetSkill.root) {
+    problems.push('missing provenance: targetSkill.root (skill root)');
+  }
+  if (!report.topologyDigest) {
+    problems.push('missing provenance: topologyDigest (manifest digest)');
+  }
+  for (const row of [...excluded, ...gatedRows]) {
+    if (!row.scenarioId) problems.push('missing provenance: a gated/excluded row has no scenarioId');
+  }
+  return problems;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -41,6 +72,10 @@ function dimLine(name, d) {
  * @returns {string} Markdown document rendered deterministically from the report.
  */
 function renderReport(report) {
+  const provenanceProblems = validateProvenance(report);
+  if (provenanceProblems.length) {
+    throw new Error(`build-report: fail-closed on missing provenance — ${provenanceProblems.join('; ')}`);
+  }
   const r = report;
   const lines = [];
   lines.push(`# Skill Benchmark Report — ${r.targetSkill ? r.targetSkill.id : 'unknown'}`);
@@ -150,6 +185,19 @@ function renderReport(report) {
     }
   }
   lines.push('');
+
+  if (r.excludedRows && r.excludedRows.length) {
+    lines.push('## Excluded (fixture/oracle faults — not scored)');
+    lines.push('');
+    lines.push('_Excluded from every denominator above rather than counted as zero recall — a bad oracle, not a routing miss._');
+    lines.push('');
+    lines.push('| Scenario | Error class | Problems |');
+    lines.push('| -------- | ----------- | -------- |');
+    for (const e of r.excludedRows) {
+      lines.push(`| ${e.scenarioId || '—'} | ${e.errorClass || '—'} | ${(e.problems || []).join('; ').replace(/\|/g, '\\|')} |`);
+    }
+    lines.push('');
+  }
 
   if (r.divergence && r.divergence.length) {
     lines.push('## A↔B divergence (router vs live)');
