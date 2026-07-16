@@ -26,10 +26,10 @@ version: 1.8.0.36
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Markdown quality enforcement, component scaffolding and packaging, benchmark authoring, flowcharts, install guides, feature catalogs, testing playbooks and changelogs |
+| **Use it for** | Markdown quality enforcement, component scaffolding and packaging, benchmark authoring, flowcharts, install guides, feature catalogs, testing playbooks, changelogs and local before/after document diffs |
 | **Invoke with** | "create a skill", "validate doc", "conformance benchmark", "readme", "documentation", "flowchart", "changelog" or Gate 2 auto-routing on doc keywords |
 | **Works on** | Markdown files, OpenCode components (skills, agents, commands) and ASCII flowcharts |
-| **Produces** | DQI scores, validated documents, packaged skill zips and templated component directories |
+| **Produces** | DQI scores, validated documents, packaged skill zips, templated component directories and self-contained HTML diff reports |
 
 ---
 
@@ -43,7 +43,7 @@ sk-doc makes structure the first gate so these problems never reach production. 
 
 ### What It Does
 
-sk-doc is the single specialist for documentation and OpenCode components. Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist and a list of violations, all computed before the AI judges the content. Beyond quality enforcement it scaffolds, validates and packages skills, agents and commands. It authors benchmark packages, including deterministic conformance inputs for peer adapters, and builds ASCII flowcharts, five-phase install guides, feature catalogs that inventory current behavior and manual testing playbooks that prove it.
+sk-doc is the single specialist for documentation and OpenCode components. Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist and a list of violations, all computed before the AI judges the content. Beyond quality enforcement it scaffolds, validates and packages skills, agents and commands. It authors benchmark packages, including deterministic conformance inputs for peer adapters, and builds ASCII flowcharts, five-phase install guides, feature catalogs that inventory current behavior and manual testing playbooks that prove it. Its create-diff packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation.
 
 It does not own code or spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns the spec-folder lifecycle, memory and continuity. The two skills touch markdown but do not overlap: sk-doc judges document quality and system-spec-kit enforces the spec-packet contract.
 
@@ -110,9 +110,9 @@ Enforcement is type-aware so a SKILL.md cannot ship with a missing frontmatter, 
 
 ### When To Use This Skill
 
-Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, agent or command and when you need a quality gate before publishing. Use it when you build an install guide, a feature catalog, a testing playbook, a flowchart or a changelog. Use it too when a document's DQI score drops and you need to know what to fix and why.
+Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, agent or command and when you need a quality gate before publishing. Use it when you build an install guide, a feature catalog, a testing playbook, a flowchart, a changelog or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
 
-You reach it through ten `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:flowchart`, `/create:readme` and `/create:changelog`. `/create:benchmark --family=conformance_benchmark` authors and validates stable conformance inputs, then stops before adapter or deep-alignment execution. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
+You reach it through eleven `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:flowchart`, `/create:readme`, `/create:changelog` and `/create:diff`. `/create:benchmark --family=conformance_benchmark` authors and validates stable conformance inputs, then stops before adapter or deep-alignment execution. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
 
 Skip sk-doc for code changes (route to `sk-code`), for spec-folder lifecycle operations (route to `system-spec-kit`) and for git workflow orchestration (route to `sk-git`).
 
@@ -176,6 +176,8 @@ A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-par
 | [`references/README.md`](create-manual-testing-playbook/references/README.md) | Playbook package structure, scenario tables and cross-reference index |
 | [`references/README.md`](create-feature-catalog/references/README.md) | Feature catalog inventory standards and per-feature file structure |
 | [`create-benchmark/README.md`](create-benchmark/README.md) | Benchmark family registry, including conformance authoring triggers and package boundaries |
+| [`create-diff/README.md`](create-diff/README.md) | Git-free before/after document diff: snapshot lifecycle, comparison engine and the self-contained HTML report |
+| [`create-diff/references/workflow.md`](create-diff/references/workflow.md) | The create-diff capture/compare workflow and CLI reference |
 | [`scripts/validate_document.py`](./scripts/validate_document.py) | Fast format validator, exit 0/1/2, supports `--json` and `--fix` |
 | [`scripts/extract_structure.py`](./scripts/extract_structure.py) | Full DQI analysis with type-specific checklists and JSON output |
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |

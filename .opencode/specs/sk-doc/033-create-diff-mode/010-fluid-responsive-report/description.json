@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/033-create-diff-mode/010-fluid-responsive-report",
   "description": "The create-diff HTML report is a self-contained document opened inside IDE preview panes and editor webviews on the desktop, whose widths vary widely",
   "keywords": [
@@ -20,14 +21,15 @@
     "vary",
     "widely"
   ],
-  "lastUpdated": "2026-07-16T05:37:32.254Z",
+  "lastUpdated": "2026-07-16T14:51:11.409Z",
   "specId": "010",
   "folderSlug": "fluid-responsive-report",
   "parentChain": [
     "sk-doc",
     "033-create-diff-mode"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-07-26_15-51__completed-the-create-diff-report-design-arc-and.md"
+  ]
 }
