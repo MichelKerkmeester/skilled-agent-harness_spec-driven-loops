@@ -26,6 +26,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { routeSkillResources } = require('./router-replay.cjs');
 const { buildBannedVocab, lintFixture } = require('./contamination-lint.cjs');
 const { scanConnectivity, scanHubRegistry } = require('./d5-connectivity.cjs');
@@ -59,6 +60,20 @@ function resolveSkillRoot(skillArg) {
 
 function resolveSkillId(skillRoot) {
   return path.basename(skillRoot);
+}
+
+/**
+ * Digest a skill's committed leaf-manifest.json, when it has one. Used to
+ * detect a manifest edited out from under a run in progress; a skill with no
+ * manifest at all always digests to null and never engages the abort below.
+ *
+ * @param {string} skillRoot - Skill root dir.
+ * @returns {string|null} Hex sha256 digest, or null when no manifest exists.
+ */
+function readManifestDigest(skillRoot) {
+  const manifestPath = path.join(skillRoot, 'leaf-manifest.json');
+  if (!fs.existsSync(manifestPath)) return null;
+  return crypto.createHash('sha256').update(fs.readFileSync(manifestPath)).digest('hex');
 }
 
 /**
@@ -190,6 +205,12 @@ function run(args) {
     return 2;
   }
 
+  // Topology digest snapshot: a manifest-bearing skill's leaf-manifest.json
+  // must not change while a run is scoring against it, or the scored rows and
+  // the committed gold would silently drift apart mid-run. A skill with no
+  // manifest digests to null and never reaches the abort check below.
+  const topologyDigestBefore = readManifestDigest(skillRoot);
+
   // D5 hard gate first.
   const connectivity = scanConnectivity({ skillRoot });
   const hubRegistry = scanHubRegistry({ skillRoot });
@@ -207,8 +228,18 @@ function run(args) {
     });
   }
 
+  const topologyDigestAfter = readManifestDigest(skillRoot);
+  if (topologyDigestBefore !== null && topologyDigestBefore !== topologyDigestAfter) {
+    process.stderr.write(
+      `run-skill-benchmark: topology_changed_during_run — leaf-manifest.json changed while scoring ${skillId} `
+      + `(before=${topologyDigestBefore} after=${topologyDigestAfter}); aborting rather than scoring against a shifted manifest\n`,
+    );
+    return 4;
+  }
+
   // aggregate + emit.
   const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, hubRegistry, traceMode, lintFindings });
+  if (topologyDigestBefore !== null) report.topologyDigest = topologyDigestBefore;
   if (warnings.length) report.parseWarnings = warnings;
   const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
   const reportMdPath = reportJsonPath.replace(/\.json$/, '.md');
