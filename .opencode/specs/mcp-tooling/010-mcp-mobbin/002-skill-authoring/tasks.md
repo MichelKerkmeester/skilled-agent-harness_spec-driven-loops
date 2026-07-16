@@ -66,10 +66,10 @@ _memory:
 
 - [x] T004 Author SKILL.md with the transport contract: read-only surface, `mutatesWorkspace:false`, no Write/Edit/Task, sk-design pairing (`.opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md`)
 - [x] T005 Author README.md and INSTALL_GUIDE.md incl. credential provisioning and verification steps (`.opencode/skills/mcp-tooling/mcp-mobbin/`)
-- [x] T006 [P] Author references/mcp_wiring.md, references/tool_surface.md, references/troubleshooting.md from the research findings (`.opencode/skills/mcp-tooling/mcp-mobbin/references/`)
+- [x] T006 [P] Author references/mcp-wiring.md, references/tool-surface.md, references/troubleshooting.md from the research findings (`.opencode/skills/mcp-tooling/mcp-mobbin/references/`)
 - [x] T007 [P] Author assets/ with the ready-to-paste UTCP `mobbin` manual snippet and env template; validate the snippet parses as JSON (`.opencode/skills/mcp-tooling/mcp-mobbin/assets/`)
 - [x] T008 [P] Author feature_catalog/, changelog/ (v1.0.0.0), scripts/, and mcp-servers/mobbin-mcp/README.md (`.opencode/skills/mcp-tooling/mcp-mobbin/`)
-- [x] T009 Author manual_testing_playbook/ incl. intra_routing_recall/ with 2+ holdouts, negative.md, troubleshoot.md (`.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/`)
+- [x] T009 Author manual_testing_playbook/ incl. intra-routing-recall/ with 2+ holdouts, negative.md, troubleshoot.md (`.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -78,7 +78,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T010 Run `package_skill.py --check` on the packet and iterate to exit 0 [evidence: `package_skill.py --check --strict` PASS, orchestrator re-verified]
-- [x] T011 Placeholder grep across the packet returns zero; spot-check tool_surface.md traceability against research.md citations [evidence: `package_skill.py --check --strict` PASS, orchestrator re-verified]
+- [x] T011 Placeholder grep across the packet returns zero; spot-check tool-surface.md traceability against research.md citations [evidence: `package_skill.py --check --strict` PASS, orchestrator re-verified]
 - [x] T012 Complete checklist.md with evidence, verify no writes outside the packet tree + this phase folder, run phase-folder validation [evidence: `package_skill.py --check --strict` PASS, orchestrator re-verified]
 <!-- /ANCHOR:phase-3 -->
 

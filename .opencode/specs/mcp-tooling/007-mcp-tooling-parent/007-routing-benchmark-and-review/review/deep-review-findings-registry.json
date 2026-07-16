@@ -168,7 +168,7 @@
       "findingId": "F015",
       "severity": "P2",
       "title": "Eleven positive packet scenarios omit always-loaded base gold",
-      "file": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/intra_routing_recall/install.md",
+      "file": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/intra-routing-recall/install.md",
       "line": 1,
       "description": "",
       "findingClass": null,

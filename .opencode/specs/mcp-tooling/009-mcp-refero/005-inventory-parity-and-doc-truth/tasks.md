@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read ground truth: research.md sections A/C/D/G + tool_surface.md + SKILL.md + playbook root + a sibling scenario + catalog files (`../001-research/research/research.md`, `.opencode/skills/mcp-tooling/mcp-refero/`)
+- [x] T001 Read ground truth: research.md sections A/C/D/G + tool-surface.md + SKILL.md + playbook root + a sibling scenario + catalog files (`../001-research/research/research.md`, `.opencode/skills/mcp-tooling/mcp-refero/`)
 - [x] T002 [P] Read the exemplar examples directory and install wrapper (`.opencode/skills/mcp-tooling/mcp-aside-devtools/examples/`, `mcp-aside-devtools/scripts/install.sh`)
 - [x] T003 Capture BEFORE gates: sk-design `validate_skill_package.py` output saved to scratchpad; mcp-refero `package_skill.py --check --strict` PASS baseline
 <!-- /ANCHOR:phase-1 -->
@@ -62,7 +62,7 @@ _memory:
 
 - [x] T004 Author `examples/README.md` + 3 walkthroughs: funnel, metadata-first lookup, screen-image fetch (`.opencode/skills/mcp-tooling/mcp-refero/examples/`)
 - [x] T005 Author `scripts/install.sh` verify-only posture check; `bash -n` + live run (`.opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh`)
-- [x] T006 [P] Author FUNNEL-001, FORMAT-001, QUOTA-001 scenario leaves (`manual_testing_playbook/read_only/funnel_walk.md`, `read_only/format_text_retrieval.md`, `safety_gate/quota_recovery.md`)
+- [x] T006 [P] Author FUNNEL-001, FORMAT-001, QUOTA-001 scenario leaves (`manual_testing_playbook/read-only/funnel-walk.md`, `read-only/format-text-retrieval.md`, `safety-gate/quota-recovery.md`)
 - [x] T007 Update playbook root: coverage table 9, waves, two new section-8 summaries + one section-9 summary, index 9/9, readiness rule, v1.1.0.0 (`manual_testing_playbook/manual_testing_playbook.md`)
 - [x] T008 [P] Author 8 per-tool catalog leaves (`feature_catalog/styles/{search_styles,get_style}.md`, `screens/{search_screens,get_screen,get_similar_screens,get_screen_image}.md`, `flows/{search_flows,get_flow}.md`)
 - [x] T009 Update domain files with leaf links + root count summary (3 domain + 8 leaves) (`feature_catalog/`)

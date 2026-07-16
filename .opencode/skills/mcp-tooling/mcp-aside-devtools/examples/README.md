@@ -114,6 +114,6 @@ Every artifact needs independent proof: a screenshot is a non-empty PNG-magic fi
 ## 5. SEE ALSO
 
 - `../SKILL.md` — lane router and full rule set
-- `../references/aside_cli_reference.md` — verified command surface
-- `../references/mcp_wiring.md` — handshake, discovery, registration posture
+- `../references/aside-cli-reference.md` — verified command surface
+- `../references/mcp-wiring.md` — handshake, discovery, registration posture
 - `../scripts/doctor.sh` — read-only diagnostics combining these checks

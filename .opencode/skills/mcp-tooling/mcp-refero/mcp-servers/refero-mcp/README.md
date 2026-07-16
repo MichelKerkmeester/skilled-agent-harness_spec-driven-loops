@@ -31,7 +31,7 @@ const tools = await list_tools();
 const info = await tool_info({ tool_name: "refero.refero_refero_search_styles" });
 ```
 
-Expected result: `list_tools()` includes the `refero` manual's tools, and `tool_info()` returns a concrete schema for the doubled-prefix callable — both work pre-auth (confirmed 2026-07-16: all eight tools listed as `refero.refero.refero_<tool>`; fixture `references/discovery_fixture_2026-07-16.json`). Fail closed if the eight documented tools are missing, renamed, or expanded.
+Expected result: `list_tools()` includes the `refero` manual's tools, and `tool_info()` returns a concrete schema for the doubled-prefix callable — both work pre-auth (confirmed 2026-07-16: all eight tools listed as `refero.refero.refero_<tool>`; fixture `references/discovery-fixture-2026-07-16.json`). Fail closed if the eight documented tools are missing, renamed, or expanded.
 
 ---
 
@@ -64,9 +64,9 @@ Expected result: `list_tools()` includes the `refero` manual's tools, and `tool_
 
 | Document | Purpose |
 |---|---|
-| [`../../references/mcp_wiring.md`](../../references/mcp_wiring.md) | Full wiring: the registered manual, OAuth/Bearer, naming, and discovery |
-| [`../../references/tool_surface.md`](../../references/tool_surface.md) | The eight-tool contract, funnel, and plan gating |
-| [`../../assets/utcp_refero_manual.md`](../../assets/utcp_refero_manual.md) | The byte-preserved manual snapshot and the Bearer alternative |
+| [`../../references/mcp-wiring.md`](../../references/mcp-wiring.md) | Full wiring: the registered manual, OAuth/Bearer, naming, and discovery |
+| [`../../references/tool-surface.md`](../../references/tool-surface.md) | The eight-tool contract, funnel, and plan gating |
+| [`../../assets/utcp-refero-manual.md`](../../assets/utcp-refero-manual.md) | The byte-preserved manual snapshot and the Bearer alternative |
 | [`../../SKILL.md`](../../SKILL.md) | Runtime contract for the mcp-refero skill |
 
 ### Source

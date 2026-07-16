@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/008-mcp-aside/002-skill-authoring"
-    last_updated_at: "2026-07-16T13:40:00Z"
+    last_updated_at: "2026-07-16T15:05:07Z"
     last_updated_by: "claude"
     recent_action: "Verified packet gate and marked checklist with evidence"
     next_safe_action: "Run phase 003 hub integration for mcp-aside-devtools"
@@ -57,7 +57,7 @@ _memory:
 
 - `SKILL.md` (8 numbered sections, exemplar order; SMART ROUTING carries the benchmark-parseable `INTENT_SIGNALS` block: TASK/REPL/MCP/INSTALL/TROUBLESHOOT), `README.md`, `INSTALL_GUIDE.md`.
 - `references/` (aside_cli_reference, mcp_wiring, session_management, troubleshooting), `examples/` (3 worked scripts), `scripts/` (install.sh, doctor.sh — read-only diagnostics incl. a watchdog-guarded MCP handshake probe), `changelog/v1.0.0.0.md`.
-- `manual_testing_playbook/` — 15 scenarios across 6 dirs, incl. `intra_routing_recall/` with 2 blind holdouts, `negative.md`, `troubleshoot.md`; the MCP scenario explicitly GATED until manual registration.
+- `manual_testing_playbook/` — 15 scenarios across 6 dirs, incl. `intra-routing-recall/` with 2 blind holdouts, `negative.md`, `troubleshoot.md`; the MCP scenario explicitly GATED until manual registration.
 - `mcp-servers/aside-cli/` + `aside-mcp/` — backend docs; the drafted `aside` UTCP manual is embedded verbatim and marked NOT REGISTERED (phase 003 registers it).
 <!-- /ANCHOR:what-built -->
 

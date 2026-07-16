@@ -6,9 +6,9 @@ version: 1.1.1.0
 
 # mcp-mobbin Examples
 
-Worked, end-to-end Code Mode walkthroughs for the `mcp-mobbin` transport. Every example targets the live tool contract in [`../references/tool_surface.md`](../references/tool_surface.md) — the only tool-surface authority these examples trace to.
+Worked, end-to-end Code Mode walkthroughs for the `mcp-mobbin` transport. Every example targets the live tool contract in [`../references/tool-surface.md`](../references/tool-surface.md) — the only tool-surface authority these examples trace to.
 
-> **Read before running.** The `mobbin` manual is registered in `.utcp_config.json`, and the Code Mode callables are **CONFIRMED by live pre-auth discovery 2026-07-16** ([`../references/discovery_fixture_2026-07-16.json`](../references/discovery_fixture_2026-07-16.json)): `mobbin.mobbin_search_screens`, `mobbin.mobbin_search_flows`, and `mobbin.mobbin_search_sections` (registry names dotted `mobbin.mobbin.<tool>`). Every walkthrough still opens with the **mandatory per-session `tool_info` confirmation** and fails closed on drift from the fixture baseline. Live CALLS additionally require operator-completed browser OAuth on a paid Mobbin plan (Pro, Team, or Enterprise) — until then, the OAuth-gated steps in each walkthrough are **SKIP-valid** with the exact commands recorded for later.
+> **Read before running.** The `mobbin` manual is registered in `.utcp_config.json`, and the Code Mode callables are **CONFIRMED by live pre-auth discovery 2026-07-16** ([`../references/discovery-fixture-2026-07-16.json`](../references/discovery-fixture-2026-07-16.json)): `mobbin.mobbin_search_screens`, `mobbin.mobbin_search_flows`, and `mobbin.mobbin_search_sections` (registry names dotted `mobbin.mobbin.<tool>`). Every walkthrough still opens with the **mandatory per-session `tool_info` confirmation** and fails closed on drift from the fixture baseline. Live CALLS additionally require operator-completed browser OAuth on a paid Mobbin plan (Pro, Team, or Enterprise) — until then, the OAuth-gated steps in each walkthrough are **SKIP-valid** with the exact commands recorded for later.
 
 ---
 
@@ -16,9 +16,9 @@ Worked, end-to-end Code Mode walkthroughs for the `mcp-mobbin` transport. Every 
 
 | # | File | What it demonstrates | Live access needed |
 |---|---|---|---|
-| 1 | [`smoke_search_limit_1.md`](./smoke_search_limit_1.md) | The smallest possible verification: `tool_info` confirmation, then one screen search at `limit: 1`, checking `screens[]`, `failed[]`, and inline-image arrival | Yes (SKIP-valid) |
-| 2 | [`platform_flow_research.md`](./platform_flow_research.md) | Platform-filtered flow-pattern research: a journey-shaped query on `platform: "web"`, sequence reconstruction labeled as inference, `mobbin_url` citations | Yes (SKIP-valid) |
-| 3 | [`element_intent_query.md`](./element_intent_query.md) | An element-intent query compared across apps: component-plus-context phrasing, `app_name` comparison, the no-invented-tools boundary | Yes (SKIP-valid) |
+| 1 | [`smoke-search-limit-1.md`](./smoke-search-limit-1.md) | The smallest possible verification: `tool_info` confirmation, then one screen search at `limit: 1`, checking `screens[]`, `failed[]`, and inline-image arrival | Yes (SKIP-valid) |
+| 2 | [`platform-flow-research.md`](./platform-flow-research.md) | Platform-filtered flow-pattern research: a journey-shaped query on `platform: "web"`, sequence reconstruction labeled as inference, `mobbin_url` citations | Yes (SKIP-valid) |
+| 3 | [`element-intent-query.md`](./element-intent-query.md) | An element-intent query compared across apps: component-plus-context phrasing, `app_name` comparison, the no-invented-tools boundary | Yes (SKIP-valid) |
 
 ---
 
@@ -42,7 +42,7 @@ There is no agent-side command. The operator triggers any first `mobbin.*` call 
 // Confirmed 2026-07-16 (fixture). Whatever tool_info returns this session supersedes it.
 const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 // Fail closed if the name, schema, or tool set differs from the three-tool
-// fixture baseline in references/tool_surface.md - never improvise a call on drift.
+// fixture baseline in references/tool-surface.md - never improvise a call on drift.
 ```
 
 ---
@@ -59,5 +59,5 @@ const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 
 ## 4. RELATED RESOURCES
 
-- [`../references/tool_surface.md`](../references/tool_surface.md) - the single-tool contract every example traces to.
+- [`../references/tool-surface.md`](../references/tool-surface.md) - the single-tool contract every example traces to.
 - [`../SKILL.md`](../SKILL.md) - the runtime rules the examples operate under.

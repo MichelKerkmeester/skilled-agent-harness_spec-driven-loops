@@ -100,7 +100,7 @@
     ],
     "causal_summary": "`mcp-chrome-devtools`, `mcp-click-up`, and `mcp-figma` are three flat, independently advisor-routable MCP tool-bridge skills, all `family: mcp`, that already share a router-and-gating pattern and reach external tools through the shared Code Mode substrate — but have no structural relationship: no shared registry, no single advisor identity, no hub",
     "created_at": "2026-07-09T20:18:21Z",
-    "last_save_at": "2026-07-16T14:13:52.232Z",
+    "last_save_at": "2026-07-16T14:41:46.657Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -110,7 +110,7 @@
     "source_doc_hashes": {
       "spec.md": "676ab2dc70a0e69e03258d47548066039e71d32d4c5166bd44c5fb80953d95e3"
     },
-    "last_active_child_id": "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout",
-    "last_active_at": "2026-07-10T07:36:17Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-16T14:41:46.657Z"
   }
 }

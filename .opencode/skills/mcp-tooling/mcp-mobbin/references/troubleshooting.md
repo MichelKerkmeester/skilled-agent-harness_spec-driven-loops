@@ -25,7 +25,7 @@ Failure modes for the `mcp-mobbin` transport, ordered roughly by how often they 
 | HTTP 401 before any authorization | The **expected** protected-resource challenge: the endpoint requires browser OAuth, and the empty manual `env` is not anonymous access **[CONFIRMED: live probe]** | Complete browser OAuth (operator-only); **do not add an API key** — none exists for Mobbin MCP |
 | Browser/OAuth callback fails | Headless session, blocked localhost callback port, or callback timeout **[INFERRED]** | Move to an interactive, browser-capable session; never ask the user to paste a token — no token-paste path exists |
 | No `mobbin.*` tools in Code Mode | Code Mode session predates the registration (manuals load at startup), manual load failure, incomplete OAuth, plan ineligibility, or a broken/reverted registration (`doctor.sh` reports absence as ERR) | Validate the manual JSON read-only, confirm Node/npx, reconnect Code Mode, escalate the OAuth step, then check plan eligibility — in that order; a missing manual is escalated to the operator, never re-added from this packet |
-| Callable name or schema mismatch at discovery | Provider or adapter drift against the 2026-07-16 fixture baseline (`mobbin.mobbin_search_screens` + `search_flows` + `search_sections`, confirmed in `discovery_fixture_2026-07-16.json`) | Re-run discovery; **fail closed**; save a fresh dated fixture and update the reviewed packet docs rather than improvising a call |
+| Callable name or schema mismatch at discovery | Provider or adapter drift against the 2026-07-16 fixture baseline (`mobbin.mobbin_search_screens` + `search_flows` + `search_sections`, confirmed in `discovery-fixture-2026-07-16.json`) | Re-run discovery; **fail closed**; save a fresh dated fixture and update the reviewed packet docs rather than improvising a call |
 | HTTP 429 | The 60 requests / 60 seconds / user window was exceeded **[CONFIRMED: docs.mobbin.com/rate-limits]** | Honor `Retry-After`, then exponential backoff with jitter; do not invent finer-grained burst or concurrency contracts |
 | Free account blocked | Entitlement boundary: MCP is documented for Pro, Team, and Enterprise only **[CONFIRMED]**; the exact denial status/payload/UX is **[UNVERIFIED]** | Explain that MCP starts at Pro; do not guess or fabricate the exact denial semantics; report the provider's message verbatim |
 | Inline images do not appear through `call_tool_chain` | Whether Code Mode faithfully passes inline image content blocks is **[UNKNOWN]** | Verify at install; if images are dropped, report the gap and plan a side-channel for visual inspection — never fabricate an image-download tool |
@@ -50,7 +50,7 @@ Failure modes for the `mcp-mobbin` transport, ordered roughly by how often they 
 
 ## 3. RELATED RESOURCES
 
-- [mcp_wiring.md](mcp_wiring.md) - the bridge, OAuth model, inferred naming, and discovery contract behind these fixes.
-- [tool_surface.md](tool_surface.md) - the single-tool contract, plan gating, rate limit, and the open questions.
-- [utcp_mobbin_manual.md](../assets/utcp_mobbin_manual.md) - the registered manual's reference shape and the post-registration checklist (doc-side items executed; live items pending).
+- [mcp-wiring.md](mcp-wiring.md) - the bridge, OAuth model, inferred naming, and discovery contract behind these fixes.
+- [tool-surface.md](tool-surface.md) - the single-tool contract, plan gating, rate limit, and the open questions.
+- [utcp-mobbin-manual.md](../assets/utcp-mobbin-manual.md) - the registered manual's reference shape and the post-registration checklist (doc-side items executed; live items pending).
 - [SKILL.md](../SKILL.md) - the runtime contract, including the escalation rules these fixes feed.

@@ -31,7 +31,7 @@ The AI will:
 - Run `scripts/doctor.sh`, which verifies only and never edits configuration or auth state
 - Confirm the `refero` manual is present (read-only grep) rather than re-adding it
 - Surface the operator-only OAuth step and wait for you to complete it
-- Confirm the doubled-prefix callables through Code Mode discovery (pre-auth; first satisfied 2026-07-16 — see `references/discovery_fixture_2026-07-16.json`)
+- Confirm the doubled-prefix callables through Code Mode discovery (pre-auth; first satisfied 2026-07-16 — see `references/discovery-fixture-2026-07-16.json`)
 
 **Expected setup time:** 2 to 5 minutes, plus the operator OAuth step
 
@@ -135,7 +135,7 @@ The gated live probe sends one unauthenticated HTTPS request. **HTTP 401 is the 
 
 ### Alternative path: env-backed Bearer header
 
-Documented upstream and quoted verbatim in [`assets/utcp_refero_manual.md`](assets/utcp_refero_manual.md). It never enters the base manual, and how to obtain a Refero Bearer token is UNKNOWN (account/dashboard access required). Adopting this path is an operator decision.
+Documented upstream and quoted verbatim in [`assets/utcp-refero-manual.md`](assets/utcp-refero-manual.md). It never enters the base manual, and how to obtain a Refero Bearer token is UNKNOWN (account/dashboard access required). Adopting this path is an operator decision.
 
 ### Validation: `phase_3_complete`
 
@@ -159,7 +159,7 @@ Expected: the eight documented tools resolve with the **doubled prefix** (`refer
 
 ### Validation: `phase_4_complete`
 
-- [x] `tool_info` returned a schema for at least one doubled-prefix callable [evidence: `references/discovery_fixture_2026-07-16.json` `tool_info_first` — full `refero_refero_search_stylesInput` interface with `response_format?: "json" | "md"`]
+- [x] `tool_info` returned a schema for at least one doubled-prefix callable [evidence: `references/discovery-fixture-2026-07-16.json` `tool_info_first` — full `refero_refero_search_stylesInput` interface with `response_format?: "json" | "md"`]
 - [ ] The live tool set matches the eight documented tools (or the drift was reported and work stopped)
 
 A first read-only search (`refero_refero_search_styles`) that returns a `{ pagination, records }` object confirms the system is operational end to end.
@@ -190,7 +190,7 @@ See [`references/troubleshooting.md`](references/troubleshooting.md) for the ful
 | Path | Purpose |
 | ---- | ------- |
 | `scripts/doctor.sh` | Read-only diagnostics; gated live probe via `REFERO_DOCTOR_LIVE=1` |
-| `assets/utcp_refero_manual.md` | Verified manual snapshot + Bearer alternative (verbatim) |
+| `assets/utcp-refero-manual.md` | Verified manual snapshot + Bearer alternative (verbatim) |
 | `.utcp_config.json` (repo root) | Holds the registered `refero` manual; **never edited by this skill** |
 | `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) | Operator-owned auth state; **never touched by this skill** |
 
@@ -200,8 +200,8 @@ See [`references/troubleshooting.md`](references/troubleshooting.md) for the ful
 | -------- | -------- | ------- |
 | README | `.opencode/skills/mcp-tooling/mcp-refero/README.md` | Human orientation and quick start |
 | SKILL.md | `.opencode/skills/mcp-tooling/mcp-refero/SKILL.md` | Runtime instructions and routing |
-| Tool Surface | `.opencode/skills/mcp-tooling/mcp-refero/references/tool_surface.md` | The eight-tool contract, funnel, and plan gating |
-| MCP Wiring | `.opencode/skills/mcp-tooling/mcp-refero/references/mcp_wiring.md` | Bridge, OAuth/Bearer, naming, discovery |
+| Tool Surface | `.opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md` | The eight-tool contract, funnel, and plan gating |
+| MCP Wiring | `.opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md` | Bridge, OAuth/Bearer, naming, discovery |
 | Troubleshooting | `.opencode/skills/mcp-tooling/mcp-refero/references/troubleshooting.md` | Full failure-mode table |
 
 ### Licensing and Upstream
@@ -221,7 +221,7 @@ REFERO_DOCTOR_LIVE=1 bash scripts/doctor.sh  # + one unauthenticated probe (expe
 
 ### Authenticate (operator-only)
 
-Browser OAuth on a Pro (or higher) account; auth state persists in `~/.mcp-auth`. Bearer header is the documented alternative (see `assets/utcp_refero_manual.md`).
+Browser OAuth on a Pro (or higher) account; auth state persists in `~/.mcp-auth`. Bearer header is the documented alternative (see `assets/utcp-refero-manual.md`).
 
 ### Confirm (inside Code Mode)
 

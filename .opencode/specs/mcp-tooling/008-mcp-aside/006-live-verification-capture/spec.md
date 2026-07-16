@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Operator handoff: authenticated smoke invocation and browser-binding probe"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery_fixture_2026-07-16.json"
-      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp_wiring.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md"
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -66,7 +66,7 @@ This is **Phase 6** of the mcp-aside-devtools completion: inventory parity, doc 
 - The live Code Mode discovery run of 2026-07-16 produced the fixture this phase records.
 
 **Deliverables**:
-- `references/discovery_fixture_2026-07-16.json` treated as packet ground truth.
+- `references/discovery-fixture-2026-07-16.json` treated as packet ground truth.
 - Discovery-pending claims flipped to observed facts across 12 packet files.
 - Packet version 1.1.1.0 with `changelog/v1.1.1.0.md`.
 
@@ -94,7 +94,7 @@ Every discovery claim in the packet states the two observed name forms precisely
 ### In Scope
 - Recording the 2026-07-16 fixture (`initialize`, then `tools/call` on `list_tools`, `search_tools`, `tool_info` against CodeMode-MCP with `UTCP_CONFIG_FILE=.utcp_config.json`) as ground truth.
 - Flipping the callable-name claims: registry/discovery name `aside.aside.repl` (dot-separated), TS callable `aside.aside_repl(args)` per the fixture `Access as:` line and mcp-code-mode's `{manual_name}.{manual_name}_{tool_name}` convention.
-- Recording the re-confirmed one-`repl`-tool inventory and the fixture's full helper surface in `references/mcp_wiring.md` and `references/aside_cli_reference.md`.
+- Recording the re-confirmed one-`repl`-tool inventory and the fixture's full helper surface in `references/mcp-wiring.md` and `references/aside-cli-reference.md`.
 - Updating the preconditions of still-open operator items (smoke invocation, binding probe) so they no longer wait on callable confirmation.
 - Version bump to 1.1.1.0 plus `changelog/v1.1.1.0.md`.
 
@@ -108,18 +108,18 @@ Every discovery claim in the packet states the two observed name forms precisely
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery_fixture_2026-07-16.json` | Create | Dated live-discovery fixture (already written by the probe; recorded as ground truth) |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json` | Create | Dated live-discovery fixture (already written by the probe; recorded as ground truth) |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md` | Modify | Confirmed dual naming, re-confirmed inventory, NEVER rule update, version 1.1.1.0 |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md` | Modify | Quick-start MCP step and FAQ flipped to confirmed naming |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md` | Modify | Post-registration step 3 records the confirmed dual naming |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp_wiring.md` | Modify | Discovery DONE banner, confirmed-naming bullet, fixture helper surface |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside_cli_reference.md` | Modify | Helper surface superseded by the fixture; UNKNOWN narrowed |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp_aside_manual.md` | Modify | Discovery checklist items flipped with fixture evidence |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Modify | Discovery DONE banner, confirmed-naming bullet, fixture helper surface |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md` | Modify | Helper surface superseded by the fixture; UNKNOWN narrowed |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md` | Modify | Discovery checklist items flipped with fixture evidence |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md` | Modify | Checklist step 4 records confirmed naming |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/feature_catalog.md` | Modify | Registration banner and MCP row flipped to CONFIRMED |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp_transport_and_code_mode.md` | Modify | Callable paragraph flipped to observed facts |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp-transport-and-code-mode.md` | Modify | Callable paragraph flipped to observed facts |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/manual_testing_playbook.md` | Modify | Notation note and ASD-011 contract diff against the fixture baseline |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp_transport/code_mode_discovery.md` | Modify | Scenario records the satisfied 2026-07-16 run and the drift protocol |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp-transport/code-mode-discovery.md` | Modify | Scenario records the satisfied 2026-07-16 run and the drift protocol |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` | Modify | Discovery hint states the fixture baseline (both name forms) |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.1.0.md` | Create | Release record for the discovery flips |
 <!-- /ANCHOR:scope -->
@@ -133,16 +133,16 @@ Every discovery claim in the packet states the two observed name forms precisely
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Both observed name forms recorded precisely wherever a callable is named | Every flipped claim states registry `aside.aside.repl` (dotted) and TS callable `aside.aside_repl(args)` and cites `references/discovery_fixture_2026-07-16.json` |
+| REQ-001 | Both observed name forms recorded precisely wherever a callable is named | Every flipped claim states registry `aside.aside.repl` (dotted) and TS callable `aside.aside_repl(args)` and cites `references/discovery-fixture-2026-07-16.json` |
 | REQ-002 | The wrong pre-discovery registry prediction is corrected, not papered over | Docs state the prediction `aside.aside_repl` was wrong as a registry name and right as the TS call surface |
-| REQ-003 | One-`repl`-tool inventory recorded as re-confirmed live 2026-07-16 | SKILL.md and mcp_wiring.md state the re-confirmation with the fixture cited; rediscovery mandate retained |
+| REQ-003 | One-`repl`-tool inventory recorded as re-confirmed live 2026-07-16 | SKILL.md and mcp-wiring.md state the re-confirmation with the fixture cited; rediscovery mandate retained |
 | REQ-004 | Packet gate green | `package_skill.py .opencode/skills/mcp-tooling/mcp-aside-devtools --check --strict` prints PASS |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Fixture helper surface supersedes the version-pinned description | mcp_wiring.md and aside_cli_reference.md list the full fixture helper set and mark it as superseding, with bound-page shapes still probe-required |
+| REQ-005 | Fixture helper surface supersedes the version-pinned description | mcp-wiring.md and aside-cli-reference.md list the full fixture helper set and mark it as superseding, with bound-page shapes still probe-required |
 | REQ-006 | Still-open operator items keep SKIP-valid status with updated preconditions | Smoke invocation and binding items remain open; their prose no longer waits on callable confirmation |
 | REQ-007 | Version and changelog updated | SKILL.md frontmatter reads 1.1.1.0; `changelog/v1.1.1.0.md` records need/change/why plus files changed |
 <!-- /ANCHOR:requirements -->
@@ -164,7 +164,7 @@ Every discovery claim in the packet states the two observed name forms precisely
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `references/discovery_fixture_2026-07-16.json` | Without it there is no ground truth to cite | Fixture written by the probe before this phase started; every flip cites it |
+| Dependency | `references/discovery-fixture-2026-07-16.json` | Without it there is no ground truth to cite | Fixture written by the probe before this phase started; every flip cites it |
 | Risk | Fixture is a dated snapshot (`tools.listChanged: true`) | Future inventory drift would silently invalidate the recorded names | Every flipped doc retains the per-session rediscovery mandate and the fail-closed drift protocol |
 | Risk | Discovery lists the surface but exercises no call | Overclaiming runtime behavior from a listing | Bound-page output shapes and invocation behavior stay marked probe-required |
 <!-- /ANCHOR:risks -->

@@ -78,8 +78,8 @@ FAILURE MODES:
 
 - [x] CHK-020 [P0] All spec.md acceptance criteria met with recorded evidence [evidence: acceptance evidence recorded in `tasks.md`]
 - [x] CHK-021 [P0] `package_skill.py --check` exit 0 on `.opencode/skills/mcp-tooling/mcp-refero/`, output recorded [evidence: `package_skill.py --check --strict` Result: PASS, exit 0 — re-verified by orchestrator]
-- [x] CHK-022 [P1] intra_routing_recall/ carries at least 2 holdout scenarios plus negative.md and troubleshoot.md, each dry-read for unambiguous routing intent [evidence: 2/2 holdouts + `negative.md` + `troubleshoot.md`; 8/8 recall prompts hit expected intent in dry simulation]
-- [x] CHK-023 [P1] assets/ UTCP manual snippet diffed against the live `refero` manual in `.utcp_config.json` (shape match) [evidence: `assets/utcp_refero_manual.md` verified byte-identical to the live manual incl. indentation]
+- [x] CHK-022 [P1] intra-routing-recall/ carries at least 2 holdout scenarios plus negative.md and troubleshoot.md, each dry-read for unambiguous routing intent [evidence: 2/2 holdouts + `negative.md` + `troubleshoot.md`; 8/8 recall prompts hit expected intent in dry simulation]
+- [x] CHK-023 [P1] assets/ UTCP manual snippet diffed against the live `refero` manual in `.utcp_config.json` (shape match) [evidence: `assets/utcp-refero-manual.md` verified byte-identical to the live manual incl. indentation]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -103,7 +103,7 @@ FAILURE MODES:
 
 - [x] CHK-030 [P0] No hardcoded secrets, tokens, or account identifiers anywhere in the packet [evidence: 0/29 files contain secrets/tokens/account ids; OAuth fenced operator-only in `INSTALL_GUIDE.md`]
 - [x] CHK-031 [P0] No packet doc instructs local workspace mutation or a Refero write path (read-only surface preserved) [evidence: 0/29 docs instruct workspace mutation; transport rules in `SKILL.md` forbid Write/Edit/Task]
-- [x] CHK-032 [P1] Auth guidance documents the researched auth model without embedding credentials; rate-limit and tier caveats stated [evidence: auth documented as OAuth mechanism in `mcp_wiring.md`; Pro 8000/mo + Free-no-MCP caveats in `tool_surface.md`]
+- [x] CHK-032 [P1] Auth guidance documents the researched auth model without embedding credentials; rate-limit and tier caveats stated [evidence: auth documented as OAuth mechanism in `mcp-wiring.md`; Pro 8000/mo + Free-no-MCP caveats in `tool-surface.md`]
 <!-- /ANCHOR:security -->
 
 ---
@@ -113,7 +113,7 @@ FAILURE MODES:
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized with what was actually authored [evidence: `spec.md`/`plan.md`/`tasks.md` match delivered 29-file inventory]
 - [x] CHK-041 [P1] Every documented tool name, parameter, auth note, and limit traces to a cited finding in `../001-research/research/research.md`; unprobed claims marked as inferred [evidence: 8/8 tools + params + limits trace to cited findings; OAuth end-to-end marked Inferred]
-- [x] CHK-042 [P2] tool_surface reference records the research date for future drift detection [evidence: `tool_surface.md` records the 2026-07-16 research date]
+- [x] CHK-042 [P2] tool_surface reference records the research date for future drift detection [evidence: `tool-surface.md` records the 2026-07-16 research date]
 <!-- /ANCHOR:docs -->
 
 ---

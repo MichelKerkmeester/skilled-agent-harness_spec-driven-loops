@@ -10,13 +10,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/008-mcp-aside/005-inventory-parity-and-doc-truth"
-    last_updated_at: "2026-07-16T13:16:00Z"
+    last_updated_at: "2026-07-16T15:05:07Z"
     last_updated_by: "claude-agent"
     recent_action: "Completed phase; all gates green"
     next_safe_action: "Phase 006 live discovery capture in a fresh Code Mode session"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp_aside_manual.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md"
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/feature_catalog.md"
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh"
     session_dedup:
@@ -54,7 +54,7 @@ The `aside` UTCP manual landed in `.utcp_config.json`, and this phase makes the 
 
 ### Registered-state doc truth
 
-You can now trust any registration claim in the packet: SKILL.md, README, INSTALL_GUIDE, `references/mcp_wiring.md`, both `mcp-servers/` READMEs, and the playbook all say the manual is registered (2026-07-16), that discovery pends a fresh Code Mode session, and that `aside.aside_repl` stays unconfirmed until `tool_info()` returns it. Playbook scenario ASD-011 lost its registration gate: its precondition is now a session with the code_mode MCP loaded, SKIP is valid only as "no Code Mode session available", and a missing manual is a FAIL (registration regressed). `scripts/doctor.sh` enforces the same posture: manual absence in an existing `.utcp_config.json` is an error with exit 1 instead of expected-absent info, while staying strictly read-only.
+You can now trust any registration claim in the packet: SKILL.md, README, INSTALL_GUIDE, `references/mcp-wiring.md`, both `mcp-servers/` READMEs, and the playbook all say the manual is registered (2026-07-16), that discovery pends a fresh Code Mode session, and that `aside.aside_repl` stays unconfirmed until `tool_info()` returns it. Playbook scenario ASD-011 lost its registration gate: its precondition is now a session with the code_mode MCP loaded, SKIP is valid only as "no Code Mode session available", and a missing manual is a FAIL (registration regressed). `scripts/doctor.sh` enforces the same posture: manual absence in an existing `.utcp_config.json` is an error with exit 1 instead of expected-absent info, while staying strictly read-only.
 
 ### Feature catalog
 
@@ -62,7 +62,7 @@ You can now trust any registration claim in the packet: SKILL.md, README, INSTAL
 
 ### Registered manual asset
 
-`assets/utcp_aside_manual.md` carries the registered entry byte-true to the live config (verified programmatically), provenance-marked "registered 2026-07-16; verify with jq, do not re-add", plus the remaining post-registration checklist and the open single-vs-dual-manual pointer. The SKILL.md router now loads it for MCP intent.
+`assets/utcp-aside-manual.md` carries the registered entry byte-true to the live config (verified programmatically), provenance-marked "registered 2026-07-16; verify with jq, do not re-add", plus the remaining post-registration checklist and the open single-vs-dual-manual pointer. The SKILL.md router now loads it for MCP intent.
 
 ### Files Changed
 
@@ -71,14 +71,14 @@ You can now trust any registration claim in the packet: SKILL.md, README, INSTAL
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md` | Modified | Registered-state posture, asset routing, version 1.1.0.0 |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md` | Modified | Quick start, FAQ, related documents, doctor row |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md` | Modified | MCP section registered + verify-with-jq checklist line |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp_wiring.md` | Modified | Registration section retitled REGISTERED with snapshot pointer |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Modified | Registration section retitled REGISTERED with snapshot pointer |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md` | Modified | Registered-entry truth, post-registration checklist framing |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md` | Modified | Cross-reference updated |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/manual_testing_playbook.md` | Modified | ASD-011 ungated; preconditions, wave plan, index |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp_transport/code_mode_discovery.md` | Modified | Gate replaced with code_mode-session precondition |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp-transport/code-mode-discovery.md` | Modified | Gate replaced with code_mode-session precondition |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` | Modified | Manual absence err + exit 1; read-only preserved |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/` (6 files) | Created | Root catalog + task/repl/mcp/install/troubleshoot leaves |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp_aside_manual.md` | Created | Byte-true registered snapshot + remaining checklist |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md` | Created | Byte-true registered snapshot + remaining checklist |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.0.0.md` | Created | Release record |
 <!-- /ANCHOR:what-built -->
 

@@ -81,7 +81,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## 3. HOW IT WAS DELIVERED
 
-Read-first, gate-bracketed: ground truth (research sections A/C/D/G, `tool_surface.md`) and the aside-devtools exemplar were read before writing; both gates were captured BEFORE (sk-design gate saved to scratchpad, mcp-refero strict PASS), all additive packet work landed, then the sk-design rewrite ran against a consumer inventory (7 files reviewed, 6 edited), and the AFTER gates plus a 29-file relative-link sweep closed it out.
+Read-first, gate-bracketed: ground truth (research sections A/C/D/G, `tool-surface.md`) and the aside-devtools exemplar were read before writing; both gates were captured BEFORE (sk-design gate saved to scratchpad, mcp-refero strict PASS), all additive packet work landed, then the sk-design rewrite ran against a consumer inventory (7 files reviewed, 6 edited), and the AFTER gates plus a 29-file relative-link sweep closed it out.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -92,7 +92,7 @@ Read-first, gate-bracketed: ground truth (research sections A/C/D/G, `tool_surfa
 | Decision | Why |
 |----------|-----|
 | Examples as .md walkthroughs, not .sh scripts | Every Refero call runs inside Code Mode (`call_tool_chain`), never in a shell; a shell script could only fake the calls. The one shell step (posture) delegates to `install.sh`. |
-| Flow-record ID key left unpinned in the funnel example | `tool_surface.md` pins the numeric typing but not the field name; the example defers the key to live `tool_info` rather than inventing `first.id` as fact. |
+| Flow-record ID key left unpinned in the funnel example | `tool-surface.md` pins the numeric typing but not the field name; the example defers the key to live `tool_info` rather than inventing `first.id` as fact. |
 | Per-tool leaves ADDED under domain dirs instead of replacing domain files | Domain files carry funnel-role context the leaves should not duplicate; both tiers are indexed in the root count summary so drift is checkable. |
 | QUOTA-001 placed in Safety Gate with a never-SKIP contract half | The live 429 cannot be produced without burning paid quota (itself a discipline failure), but the honesty contract (no invented backoff, no mutation-as-recovery) is gradable offline. |
 | `refero_tools.md` kept as a pointer file instead of deleted | Five design-interface consumers (SKILL router RESOURCE_MAP, README, discipline doc, sibling catalog, ID-010 playbook) reference the path; keeping a pointer preserves routing and the byte-identical gate. |

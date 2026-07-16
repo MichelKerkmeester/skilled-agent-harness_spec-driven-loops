@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Operator handoff: browser OAuth and first authenticated smoke search"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery_fixture_2026-07-16.json"
-      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool_surface.md"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md"
       - ".opencode/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -50,11 +50,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-The fixture did not just confirm the packet - it corrected it. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) listed **three** Mobbin tools pre-auth on 2026-07-16, where the packet's entire doctrine assumed one. The dated fixture `references/discovery_fixture_2026-07-16.json` is now ground truth, and 22 packet files flipped to match it.
+The fixture did not just confirm the packet - it corrected it. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) listed **three** Mobbin tools pre-auth on 2026-07-16, where the packet's entire doctrine assumed one. The dated fixture `references/discovery-fixture-2026-07-16.json` is now ground truth, and 22 packet files flipped to match it.
 
 ### The supersession
 
-You can now call `search_flows` and `search_sections` - two tools the packet previously forbade an agent to even imagine. The live registry lists `mobbin.mobbin.{search_screens,search_flows,search_sections}` (TS callables `mobbin.mobbin_search_screens(args)` etc., exactly the convention-predicted forms), all read-only search tools; the mutation-refusal check passed. The one-public-tool record stays visible as a dated historical baseline in `tool_surface.md`, and every operating claim now tracks the live inventory. Flow research rebuilt around the real tool: `search_flows` returns flow objects with `actions[]`, `screen_count`, and per-screen previews ordered by `position`, so returned ordering is retrieved fact and only interpolation beyond it stays labeled inference.
+You can now call `search_flows` and `search_sections` - two tools the packet previously forbade an agent to even imagine. The live registry lists `mobbin.mobbin.{search_screens,search_flows,search_sections}` (TS callables `mobbin.mobbin_search_screens(args)` etc., exactly the convention-predicted forms), all read-only search tools; the mutation-refusal check passed. The one-public-tool record stays visible as a dated historical baseline in `tool-surface.md`, and every operating claim now tracks the live inventory. Flow research rebuilt around the real tool: `search_flows` returns flow objects with `actions[]`, `screen_count`, and per-screen previews ordered by `position`, so returned ordering is retrieved fact and only interpolation beyond it stays labeled inference.
 
 ### The resolutions
 
@@ -64,15 +64,15 @@ The `deep` conflict is closed: the fixture schema shows `mode?: "deep" | "standa
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `references/discovery_fixture_2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads (3 tools, full schemas) |
+| `references/discovery-fixture-2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads (3 tools, full schemas) |
 | `SKILL.md` | Modified | Three-tool surface, resolved deep, workflows, rules, quick ref, version 1.1.1.0 |
-| `references/tool_surface.md` | Modified | Rebuilt on fixture schemas; open questions 1/3/4/10 resolved |
-| `references/mcp_wiring.md`, `references/troubleshooting.md` | Modified | Naming CONFIRMED; drift rows diff against the fixture |
+| `references/tool-surface.md` | Modified | Rebuilt on fixture schemas; open questions 1/3/4/10 resolved |
+| `references/mcp-wiring.md`, `references/troubleshooting.md` | Modified | Naming CONFIRMED; drift rows diff against the fixture |
 | `README.md`, `INSTALL_GUIDE.md`, `mcp-servers/mobbin-mcp/README.md` | Modified | Three tools + pre-auth discovery in all consumer mirrors |
 | `feature_catalog/` (root + flows/screens/apps/elements) | Modified | Inventory, areas, count; flows leaf rebuilt on search_flows |
 | `examples/` (README + 3 walkthroughs) | Modified | Confirmed names; flow example calls search_flows |
 | `manual_testing_playbook/` (root + 3 scenarios) | Modified | Grading re-anchored on the fixture baseline |
-| `assets/utcp_mobbin_manual.md` | Modified | Checklist items flipped with fixture evidence |
+| `assets/utcp-mobbin-manual.md` | Modified | Checklist items flipped with fixture evidence |
 | `scripts/doctor.sh`, `scripts/install.sh` | Modified | Hints state the confirmed three-tool baseline |
 | `changelog/v1.1.1.0.md` | Created | Release record |
 <!-- /ANCHOR:what-built -->

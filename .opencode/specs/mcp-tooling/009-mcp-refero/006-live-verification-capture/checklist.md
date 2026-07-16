@@ -69,8 +69,8 @@ _memory:
 
 - [x] CHK-020 [P0] All acceptance criteria met [evidence: REQ-001 to REQ-007 verified through tasks.md T003-T009, 7/7 with command evidence]
 - [x] CHK-021 [P0] Manual verification complete [evidence: `rg -n "conflicting derivations exist|after (I|you) authenticate|requires completed operator auth" .opencode/skills/mcp-tooling/mcp-refero` returns 0 hits outside changelog history]
-- [x] CHK-022 [P1] Edge cases covered [evidence: the refuted single-prefix derivation kept as negative knowledge in `references/mcp_wiring.md` section 4, 1/1 losing form named]
-- [x] CHK-023 [P1] Drift scenario validated [evidence: fail-closed drift rule retained in `SKILL.md` discovery paragraph and `mcp_wiring.md` operating rule, 2/2 surfaces]
+- [x] CHK-022 [P1] Edge cases covered [evidence: the refuted single-prefix derivation kept as negative knowledge in `references/mcp-wiring.md` section 4, 1/1 losing form named]
+- [x] CHK-023 [P1] Drift scenario validated [evidence: fail-closed drift rule retained in `SKILL.md` discovery paragraph and `mcp-wiring.md` operating rule, 2/2 surfaces]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -92,9 +92,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets [evidence: fixture contains tool metadata only; `rg -n "Bearer|api[_-]?key|token" references/discovery_fixture_2026-07-16.json` returns 0 credential values]
+- [x] CHK-030 [P0] No hardcoded secrets [evidence: fixture contains tool metadata only; `rg -n "Bearer|api[_-]?key|token" references/discovery-fixture-2026-07-16.json` returns 0 credential values]
 - [x] CHK-031 [P0] No auth-state or config mutation [evidence: `.utcp_config.json` and `~/.mcp-auth` untouched; `git status` shows changes only inside the packet and this spec child]
-- [x] CHK-032 [P1] OAuth boundary preserved [evidence: "Never claim OAuth works end-to-end" retained in `SKILL.md` NEVER rule 3 and `mcp_wiring.md` banner, 2/2 surfaces]
+- [x] CHK-032 [P1] OAuth boundary preserved [evidence: "Never claim OAuth works end-to-end" retained in `SKILL.md` NEVER rule 3 and `mcp-wiring.md` banner, 2/2 surfaces]
 <!-- /ANCHOR:security -->
 
 ---

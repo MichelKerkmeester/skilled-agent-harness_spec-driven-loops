@@ -47,7 +47,7 @@ description: "Evidence-derived resource map for the detached sol lineage."
 | `.opencode/skills/mcp-code-mode/references/configuration.md` | Analyzed | OK | Manual schema and remote OAuth example |
 | `.opencode/skills/mcp-code-mode/references/naming_convention.md` | Analyzed | OK | `{manual}.{manual}_{tool}` convention |
 | `.opencode/skills/mcp-tooling/mcp-figma/SKILL.md` | Analyzed | OK | External transport exemplar and discovery discipline |
-| `.opencode/skills/mcp-tooling/mcp-figma/references/mcp_wiring.md` | Analyzed | OK | Live-vs-inferred tool-surface labeling pattern |
+| `.opencode/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md` | Analyzed | OK | Live-vs-inferred tool-surface labeling pattern |
 | `.opencode/skills/sk-design/SKILL.md` | Analyzed | OK | Transport-versus-judgment and acceptance boundary |
 | `.opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/spec.md` | Analyzed | OK | Packet inventory, permission contract, manual asset ownership |
 | `.opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/spec.md` | Analyzed | OK | Hub transport registration, cross-hub pairing, manual application |

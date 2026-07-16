@@ -391,7 +391,7 @@ Create under `mcp-tooling/mcp-refero/`:
 - `SKILL.md` — transport identity, smart routing, Code Mode-only workflow, eight-tool allowlist, argument/error/safety rules, `sk-design` boundary.
 - `README.md` — user-facing overview, prerequisites, exact doubled namespace, plan/auth caveats.
 - `INSTALL_GUIDE.md` — verify the existing manual/runtime/OAuth only; explicitly say no config rewrite is required.
-- `references/tool_surface.md` — authoritative eight-tool matrix and current response shapes.
+- `references/tool-surface.md` — authoritative eight-tool matrix and current response shapes.
 - `references/workflows.md` — styles/screens/flows and factual-vs-design-affecting recipes.
 - `references/auth_transport.md` — existing `mcp-remote`, OAuth state ownership, plan/quota boundary.
 - `references/troubleshooting.md` — discovery, doubled prefix, Node runtime, auth, timeout, quota, drift.

@@ -41,15 +41,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-tooling/mcp-refero/references/discovery_fixture_2026-07-16.json",
-      ".opencode/skills/mcp-tooling/mcp-refero/references/mcp_wiring.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/references/discovery-fixture-2026-07-16.json",
+      ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md",
       ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
       "scripts/doctor.sh",
       ".opencode/skills/mcp-tooling/mcp-refero/README.md",
       ".opencode/skills/mcp-tooling/mcp-refero/INSTALL_GUIDE.md",
-      ".opencode/skills/mcp-tooling/mcp-refero/references/tool_surface.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md",
       ".opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md",
-      ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery_setup/discovery_first.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery-setup/discovery-first.md",
       ".opencode/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md",
       "spec.md",
       "plan.md",
@@ -59,15 +59,15 @@
     ],
     "entities": [
       {
-        "name": "discovery_fixture_2026-07-16.json",
+        "name": "discovery-fixture-2026-07-16.json",
         "kind": "config",
-        "path": ".opencode/skills/mcp-tooling/mcp-refero/references/discovery_fixture_2026-07-16.json",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/references/discovery-fixture-2026-07-16.json",
         "source": "derived"
       },
       {
-        "name": "mcp_wiring.md",
+        "name": "mcp-wiring.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-refero/references/mcp_wiring.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md",
         "source": "derived"
       },
       {
@@ -95,15 +95,15 @@
         "source": "derived"
       },
       {
-        "name": "tool_surface.md",
+        "name": "tool-surface.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-refero/references/tool_surface.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md",
         "source": "derived"
       },
       {
-        "name": "discovery_first.md",
+        "name": "discovery-first.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery_setup/discovery_first.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery-setup/discovery-first.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The packet carried a preserved cross-lineage naming conflict: the doubled-prefix callable `refero.referorefero<tool>` was live-verified only indirectly, a single-prefix derivation still circulated, and several docs gated callable confirmation on completed operator OAuth",
     "created_at": "2026-07-16T12:58:33Z",
-    "last_save_at": "2026-07-16T14:24:48.703Z",
+    "last_save_at": "2026-07-16T15:03:15.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f71aadda03472b44ab258d83b750261529693d6d582993138bc9b766ec7a3af3",
+    "source_fingerprint": "sha256:bcb062affa693f458d3a0b3c567a3f2f9b90dd827abbbe647f2740000f68e2b2",
     "source_doc_hashes": {
-      "spec.md": "50f3e4718426fd33a4aeaf51307c80224f02ea474064be275f2903be8d4779d4",
-      "plan.md": "5f7e39bc44693e92ffc1319d19788f0e2830e68eaa75966b62d09db7a22ba7bd",
-      "tasks.md": "7fa4a04493f45b853c6a1e71fcbe93f5a266fe5866aa83b64060d55b1a922859",
-      "checklist.md": "67cc8e0f46ee4ac8190826a536bab3d8a201946ff424d3595ded089bad5df3a0",
-      "implementation-summary.md": "4f9770417a30aa4ca9bd20896b5b0fa66a4065e0a87fc1916be2f8557466bf0f"
+      "spec.md": "cd466aa84511710a40c67d6284df675e2f2c201b49047444b0e3056fb8ac618c",
+      "plan.md": "4812e713e22f7da8b623963db2b0258bb2f7981d38a4faa6bf8b26609967cff2",
+      "tasks.md": "4c8a7022f18a12c00514ff7210d9e16530b429162b14a0d97bf50887c308ad53",
+      "checklist.md": "cd75531b26daf65d1fa6266f3cbec161250396951bcdb6fcbc939f67c6540a38",
+      "implementation-summary.md": "4534d759f5ece5efefcbccedb1ed92c7e0fde0fef1e9034704fd8b5e24f5f8d8"
     },
     "last_active_child_id": null,
     "last_active_at": null

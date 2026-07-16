@@ -15,12 +15,14 @@
     "skills",
     "family"
   ],
-  "lastUpdated": "2026-07-16T14:13:51.817Z",
+  "lastUpdated": "2026-07-16T14:41:42.733Z",
   "specId": "007",
   "folderSlug": "mcp-tooling-parent",
   "parentChain": [
     "mcp-tooling"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-07-26_15-41__completion-program-executed-end-to-end-full.md"
+  ]
 }

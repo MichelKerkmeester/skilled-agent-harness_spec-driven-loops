@@ -69,8 +69,8 @@ _memory:
 
 - [x] CHK-020 [P0] All acceptance criteria met [evidence: REQ-001 to REQ-007 verified through tasks.md T003-T010, 7/7 with command evidence]
 - [x] CHK-021 [P0] Manual verification complete [evidence: `rg -n "unconfirmed until|discovery is still pending|UNKNOWN until confirmed" .opencode/skills/mcp-tooling/mcp-aside-devtools` returns 0 hits outside changelog history]
-- [x] CHK-022 [P1] Edge cases covered [evidence: the wrong-registry-prediction case (`aside.aside_repl` vs observed `aside.aside.repl`) documented in 2/2 target docs: `references/mcp_wiring.md` section 4 and `manual_testing_playbook/mcp_transport/code_mode_discovery.md`]
-- [x] CHK-023 [P1] Drift scenario validated [evidence: ASD-011 failure triage step 2 in `code_mode_discovery.md` prescribes fresh-fixture + reviewed update on baseline drift, 2/2 triage branches covered]
+- [x] CHK-022 [P1] Edge cases covered [evidence: the wrong-registry-prediction case (`aside.aside_repl` vs observed `aside.aside.repl`) documented in 2/2 target docs: `references/mcp-wiring.md` section 4 and `manual_testing_playbook/mcp-transport/code-mode-discovery.md`]
+- [x] CHK-023 [P1] Drift scenario validated [evidence: ASD-011 failure triage step 2 in `code-mode-discovery.md` prescribes fresh-fixture + reviewed update on baseline drift, 2/2 triage branches covered]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -81,7 +81,7 @@ _memory:
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class [evidence: the stale naming claim is class-of-bug (one prediction, 12 mirror surfaces); classified in `plan.md` affected-surfaces table, 7/7 rows]
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed [evidence: `rg -n "aside_repl|unconfirmed|discovery" .opencode/skills/mcp-tooling/mcp-aside-devtools` swept the whole packet; 12 producer files flipped, changelogs deliberately excluded]
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed docs [evidence: playbook index, catalog cross-links, and server-README pointers re-checked after flips; `package_skill.py` link check green]
-- [x] CHK-FIX-004 [P0] Adversarial cases for parser/security fixes [evidence: not a parser/security fix; the drift protocol enumerates 3/3 failure classes (renamed, missing, mutation-capable) in `code_mode_discovery.md`]
+- [x] CHK-FIX-004 [P0] Adversarial cases for parser/security fixes [evidence: not a parser/security fix; the drift protocol enumerates 3/3 failure classes (renamed, missing, mutation-capable) in `code-mode-discovery.md`]
 - [x] CHK-FIX-005 [P1] Matrix axes and row count listed before completion [evidence: plan.md affected-surfaces names file-kind x claim-kind axes; 14 file rows (12 modified + fixture + changelog) match `git status` for the packet]
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant [evidence: docs only; doctor.sh reads `$HERE`-relative paths, unchanged logic, `bash -n` green]
 - [x] CHK-FIX-007 [P1] Evidence pinned, not branch-relative [evidence: all evidence pinned to file paths and the dated fixture at verification date 2026-07-16 on branch `skilled/v4.0.0.0`]
@@ -92,9 +92,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets [evidence: fixture contains tool metadata only; `rg -n "api[_-]?key|token|secret" references/discovery_fixture_2026-07-16.json` returns 0 credential values]
+- [x] CHK-030 [P0] No hardcoded secrets [evidence: fixture contains tool metadata only; `rg -n "api[_-]?key|token|secret" references/discovery-fixture-2026-07-16.json` returns 0 credential values]
 - [x] CHK-031 [P0] No auth-state or config mutation [evidence: `.utcp_config.json` untouched (`git status` shows no change to it); all edits inside the packet directory]
-- [x] CHK-032 [P1] Auth model claims unchanged [evidence: account/session-based auth statements preserved verbatim in 2/2 wiring surfaces: `SKILL.md` MCP approach and `references/mcp_wiring.md` section 1]
+- [x] CHK-032 [P1] Auth model claims unchanged [evidence: account/session-based auth statements preserved verbatim in 2/2 wiring surfaces: `SKILL.md` MCP approach and `references/mcp-wiring.md` section 1]
 <!-- /ANCHOR:security -->
 
 ---

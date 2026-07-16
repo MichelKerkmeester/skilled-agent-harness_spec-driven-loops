@@ -85,7 +85,7 @@ Exemplar-derived documentation packet: transport contract at the root (SKILL.md)
 
 ### Key Components
 - **SKILL.md (contract)**: Declares the read-only Mobbin design-research surface, `mutatesWorkspace:false`, forbidden tools (Write/Edit/Task), Code Mode as the call path, and the mandatory sk-design cross-hub pairing for design judgment.
-- **references/**: `tool_surface.md` (verified tool list with inputs/outputs and gating), `mcp_wiring.md` (Code Mode call path and manual naming), `troubleshooting.md` (auth failures, gating errors, rate limits).
+- **references/**: `tool-surface.md` (verified tool list with inputs/outputs and gating), `mcp-wiring.md` (Code Mode call path and manual naming), `troubleshooting.md` (auth failures, gating errors, rate limits).
 - **assets/**: Ready-to-paste UTCP `mobbin` manual snippet plus credential env template.
 - **manual_testing_playbook/**: Routing-recall holdouts (2+), negative.md, troubleshoot.md, plus surface smoke scenarios.
 - **mcp-servers/mobbin-mcp/README.md**: Upstream pin — repo URL, version verified against, credential requirement.
@@ -124,11 +124,11 @@ Required inventories:
 ### Phase 2: Core Implementation
 - [ ] Author SKILL.md with the full transport contract, then README.md and INSTALL_GUIDE.md
 - [ ] Author references/ (mcp_wiring, tool_surface, troubleshooting), assets/ (UTCP snippet + env template), feature_catalog/, changelog/, scripts/, mcp-servers/mobbin-mcp/README.md
-- [ ] Author manual_testing_playbook/ including intra_routing_recall/ with 2+ holdouts, negative.md, troubleshoot.md
+- [ ] Author manual_testing_playbook/ including intra-routing-recall/ with 2+ holdouts, negative.md, troubleshoot.md
 
 ### Phase 3: Verification
 - [ ] Run `package_skill.py --check` and iterate to exit 0
-- [ ] Placeholder grep across the packet returns zero; traceability spot-check of tool_surface.md against research.md
+- [ ] Placeholder grep across the packet returns zero; traceability spot-check of tool-surface.md against research.md
 - [ ] Complete checklist.md with evidence and run phase-folder validation
 <!-- /ANCHOR:phases -->
 
@@ -141,7 +141,7 @@ Required inventories:
 |-----------|-------|-------|
 | Packaging gate | Whole mcp-mobbin packet | `package_skill.py --check` |
 | Placeholder scan | All authored packet files | rg for bracketed placeholders / template prose |
-| Traceability review | tool_surface.md + UTCP snippet vs research.md | Manual cross-check with citations |
+| Traceability review | tool-surface.md + UTCP snippet vs research.md | Manual cross-check with citations |
 | JSON validity | UTCP manual snippet in assets/ | `python3 -m json.tool` (or node JSON.parse) |
 <!-- /ANCHOR:testing -->
 

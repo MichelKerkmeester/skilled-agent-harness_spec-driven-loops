@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md"
-      - ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp_mobbin_manual.md"
-      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool_surface.md"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-002-mobbin-authoring-complete"
@@ -57,7 +57,7 @@ _memory:
 
 - `SKILL.md` — transport contract mirroring the mcp-refero sibling: OAuth/DCR/PKCE (no API key env var — negative answer preserved), stdio `mcp-remote` bridge to `https://api.mobbin.com/mcp`, 60/60 rate limit, plan gating, callable name INFERRED pending live discovery, benchmark-parseable intent block.
 - `README.md`, `INSTALL_GUIDE.md` (verify-only; registration + OAuth fenced to later phases/operator).
-- `assets/utcp_mobbin_manual.md` — draft byte-identical to the research (`name: "mobbin"`, empty env), marked NOT REGISTERED with a 9-item post-registration checklist.
+- `assets/utcp-mobbin-manual.md` — draft byte-identical to the research (`name: "mobbin"`, empty env), marked NOT REGISTERED with a 9-item post-registration checklist.
 - `references/` (tool_surface/mcp_wiring/troubleshooting with CONFIRMED/INFERRED/UNKNOWN tags), `feature_catalog/` (4 query-intent domains over the 1 documented tool, honestly framed), `scripts/doctor.sh` (manual-absence = INFO pre-registration; env-gated 401 probe), `manual_testing_playbook/` (6 scenarios incl. REFUSE-001 — refuses to fabricate an API key; 2 holdouts + negative + troubleshoot), `changelog/`, `mcp-servers/mobbin-mcp/README.md`.
 <!-- /ANCHOR:what-built -->
 

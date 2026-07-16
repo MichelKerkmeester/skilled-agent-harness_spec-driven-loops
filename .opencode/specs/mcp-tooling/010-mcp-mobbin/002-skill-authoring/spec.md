@@ -77,7 +77,7 @@ This is **Phase 2** of the mcp-mobbin nested mode: Mobbin design-research MCP tr
 - sk-doc create-skill standards and `package_skill.py --check` as the gate
 
 **Deliverables**:
-- Complete `mcp-mobbin` transport packet: SKILL.md, README.md, INSTALL_GUIDE.md, assets/ (incl. ready-to-paste UTCP `mobbin` manual snippet), changelog/, feature_catalog/, references/ (mcp_wiring, tool_surface, troubleshooting), scripts/, manual_testing_playbook/ (incl. intra_routing_recall/ with at least 2 holdouts plus negative.md and troubleshoot.md), and mcp-servers/mobbin-mcp/README.md
+- Complete `mcp-mobbin` transport packet: SKILL.md, README.md, INSTALL_GUIDE.md, assets/ (incl. ready-to-paste UTCP `mobbin` manual snippet), changelog/, feature_catalog/, references/ (mcp_wiring, tool_surface, troubleshooting), scripts/, manual_testing_playbook/ (incl. intra-routing-recall/ with at least 2 holdouts plus negative.md and troubleshoot.md), and mcp-servers/mobbin-mcp/README.md
 - Transport rules stated in SKILL.md: `mutatesWorkspace:false`, forbids Write/Edit/Task, mandatory cross-hub judgment pairing with `sk-design`
 
 **Changelog**:
@@ -122,9 +122,9 @@ Author a complete, `package_skill.py --check`-clean `mcp-mobbin` transport packe
 | `.opencode/skills/mcp-tooling/mcp-mobbin/assets/` | Create | Ready-to-paste UTCP `mobbin` manual snippet + env template |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/changelog/` | Create | v1.0.0.0 changelog entry |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/` | Create | Catalog of Mobbin research capabilities (apps, screens, flows, patterns) |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/references/{mcp_wiring.md,tool_surface.md,troubleshooting.md}` | Create | Wiring, verified tool surface, failure modes |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/references/{mcp-wiring.md,tool-surface.md,troubleshooting.md}` | Create | Wiring, verified tool surface, failure modes |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/` | Create | Minimal helper scripts (doctor/print-snippet class; no daemon machinery) |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/` | Create | Playbook incl. intra_routing_recall/ with 2+ holdouts, negative.md, troubleshoot.md |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/` | Create | Playbook incl. intra-routing-recall/ with 2+ holdouts, negative.md, troubleshoot.md |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md` | Create | Upstream server notes: repo pointer, version, auth requirement |
 <!-- /ANCHOR:scope -->
 
@@ -139,14 +139,14 @@ Author a complete, `package_skill.py --check`-clean `mcp-mobbin` transport packe
 |----|-------------|---------------------|
 | REQ-001 | Full packet inventory authored | Every file in the Files to Change table exists with real content; no template placeholders remain (grep for bracketed placeholders returns zero) |
 | REQ-002 | Transport contract stated and consistent | SKILL.md declares `mutatesWorkspace:false`, forbids Write/Edit/Task, and mandates cross-hub judgment pairing with `sk-design`; no doc in the packet contradicts it |
-| REQ-003 | Grounded in research.md | Every tool named in `references/tool_surface.md` and the UTCP snippet traces to a cited finding in `../001-research/research/research.md`; residual unknowns are carried as explicit caveats, not invented |
+| REQ-003 | Grounded in research.md | Every tool named in `references/tool-surface.md` and the UTCP snippet traces to a cited finding in `../001-research/research/research.md`; residual unknowns are carried as explicit caveats, not invented |
 | REQ-004 | Packaging gate passes | `package_skill.py --check` exits 0 on `.opencode/skills/mcp-tooling/mcp-mobbin/` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Routing-recall playbook seeded | `manual_testing_playbook/intra_routing_recall/` contains at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` |
+| REQ-005 | Routing-recall playbook seeded | `manual_testing_playbook/intra-routing-recall/` contains at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` |
 | REQ-006 | UTCP snippet is paste-ready | The `assets/` manual snippet is valid JSON matching `.utcp_config.json` manual conventions (name-keyed `mobbin`), so phase 003 can apply it without rework |
 <!-- /ANCHOR:requirements -->
 

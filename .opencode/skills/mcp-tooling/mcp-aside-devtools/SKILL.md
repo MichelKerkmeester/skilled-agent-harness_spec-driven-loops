@@ -2,7 +2,7 @@
 name: mcp-aside-devtools
 description: "Aside AI-browser orchestrator: routes between the aside CLI (agent tasks + deterministic REPL) and Aside MCP via Code Mode."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.1.0
+version: 1.2.0.0
 ---
 
 <!-- Keywords: aside, ai-browser, browser-agent, aside-cli, aside-repl, aside-mcp, playwright-repl, browser-automation, mcp-code-mode, orchestrator -->
@@ -56,7 +56,7 @@ The authoritative routing logic for scoped loading, weighted intent scoring, and
 
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans skill-local `references/` and `assets/` when those folders exist.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, the discovered `inventory`, and a `seen` set.
-- Pattern 3: Simple Intent Routing - TASK/REPL/MCP/INSTALL/TROUBLESHOOT intents select the real flat `references/*.md` resources plus the flat `assets/utcp_aside_manual.md` snapshot. This skill has no keyed `references/<key>/` or `assets/<key>/` resource subdirectories.
+- Pattern 3: Simple Intent Routing - TASK/REPL/MCP/INSTALL/TROUBLESHOOT intents select the real flat `references/*.md` resources plus the flat `assets/utcp-aside-manual.md` snapshot. This skill has no keyed `references/<key>/` or `assets/<key>/` resource subdirectories.
 - Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` requests CLI/REPL/MCP disambiguation, and missing intent routes return a "no knowledge base" notice while retaining the default CLI reference when available.
 
 ```python
@@ -64,7 +64,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/aside_cli_reference.md"
+DEFAULT_RESOURCE = "references/aside-cli-reference.md"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm agent-task CLI vs deterministic REPL vs Code Mode MCP path",
@@ -81,17 +81,17 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "TASK": ["references/aside_cli_reference.md", "references/session_management.md"],
-    "REPL": ["references/aside_cli_reference.md", "references/session_management.md"],
-    "MCP": ["references/mcp_wiring.md", "references/session_management.md", "assets/utcp_aside_manual.md"],
+    "TASK": ["references/aside-cli-reference.md", "references/session-management.md"],
+    "REPL": ["references/aside-cli-reference.md", "references/session-management.md"],
+    "MCP": ["references/mcp-wiring.md", "references/session-management.md", "assets/utcp-aside-manual.md"],
     "INSTALL": ["references/troubleshooting.md"],
-    "TROUBLESHOOT": ["references/troubleshooting.md", "references/session_management.md"],
+    "TROUBLESHOOT": ["references/troubleshooting.md", "references/session-management.md"],
 }
 
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
     "ON_DEMAND_KEYWORDS": ["full troubleshooting", "full session guide", "all patterns", "permission model", "daemon health", "everything about aside"],
-    "ON_DEMAND": ["references/troubleshooting.md", "references/session_management.md", "references/mcp_wiring.md"],
+    "ON_DEMAND": ["references/troubleshooting.md", "references/session-management.md", "references/mcp-wiring.md"],
 }
 
 def _task_text(task) -> str:
@@ -237,9 +237,9 @@ Boundary rules: `--account` is documented for direct tasks and `exec` only — n
 
 ### MCP Approach (Fallback) - Aside MCP via Code Mode
 
-`aside mcp` is a client-spawned local **stdio** process with no URL, port, token, or credential field; it inherits the logged-in CLI account/provider context. The Code Mode manual is named `aside` and **is registered in `.utcp_config.json`** (registered 2026-07-16; snapshot in `assets/utcp_aside_manual.md`). **Live discovery ran 2026-07-16** (direct stdio MCP probe of CodeMode-MCP; fixture `references/discovery_fixture_2026-07-16.json`): the registry/discovery name is **`aside.aside.repl`** (dot-separated — NOT the previously predicted `aside.aside_repl` registry form), and the TypeScript callable inside `call_tool_chain` is **`aside.aside_repl(args)`** (fixture `Access as:` line, matching mcp-code-mode's `{manual_name}.{manual_name}_{tool_name}` convention). Rediscovery before invocation remains mandatory (`tools.listChanged: true`).
+`aside mcp` is a client-spawned local **stdio** process with no URL, port, token, or credential field; it inherits the logged-in CLI account/provider context. The Code Mode manual is named `aside` and **is registered in `.utcp_config.json`** (registered 2026-07-16; snapshot in `assets/utcp-aside-manual.md`). **Live discovery ran 2026-07-16** (direct stdio MCP probe of CodeMode-MCP; fixture `references/discovery-fixture-2026-07-16.json`): the registry/discovery name is **`aside.aside.repl`** (dot-separated — NOT the previously predicted `aside.aside_repl` registry form), and the TypeScript callable inside `call_tool_chain` is **`aside.aside_repl(args)`** (fixture `Access as:` line, matching mcp-code-mode's `{manual_name}.{manual_name}_{tool_name}` convention). Rediscovery before invocation remains mandatory (`tools.listChanged: true`).
 
-**Version-pinned tool inventory**: against version `1.26.626.1517` (protocol `2024-11-05`, `tools.listChanged: true`), `tools/list` returned exactly **one tool, `repl`** (required inputs `title` + `code`; persistent sandboxed ES2023+/Playwright REPL; 120-second call timeout; no `import`/`require`). The one-`repl`-tool inventory was **re-confirmed live through Code Mode discovery on 2026-07-16** (`references/discovery_fixture_2026-07-16.json`). This is evidence, not a contract: always rediscover at runtime (`initialize` → `tools/list`, then Code Mode `search_tools()`/`list_tools()`/`tool_info()`) before invocation. There are no first-class `navigate`, `dom`, `screenshot`, `console`, or `network` MCP tools.
+**Version-pinned tool inventory**: against version `1.26.626.1517` (protocol `2024-11-05`, `tools.listChanged: true`), `tools/list` returned exactly **one tool, `repl`** (required inputs `title` + `code`; persistent sandboxed ES2023+/Playwright REPL; 120-second call timeout; no `import`/`require`). The one-`repl`-tool inventory was **re-confirmed live through Code Mode discovery on 2026-07-16** (`references/discovery-fixture-2026-07-16.json`). This is evidence, not a contract: always rediscover at runtime (`initialize` → `tools/list`, then Code Mode `search_tools()`/`list_tools()`/`tool_info()`) before invocation. There are no first-class `navigate`, `dom`, `screenshot`, `console`, or `network` MCP tools.
 
 **Browser-profile binding**: a fresh `aside mcp` process is transport-healthy but browser-unbound — `listBrowserTabs()` fails with "This task is not bound to a browser profile." This is a binding failure, not an auth failure. The supported binding procedure is **UNKNOWN** (undocumented); report it distinctly and stop.
 
@@ -272,7 +272,7 @@ No public isolation guarantee exists for concurrent mutating clients on one prof
 ### ⛔ NEVER Rules
 
 1. Invent typed subcommands (`aside navigate/dom/screenshot/console/network`) or MCP tools beyond the discovered inventory.
-2. Hardcode the MCP tool list or the callable without discovery confirmation (confirmed 2026-07-16: registry `aside.aside.repl`, TS callable `aside.aside_repl(args)` — fixture `references/discovery_fixture_2026-07-16.json`; still re-verify per session).
+2. Hardcode the MCP tool list or the callable without discovery confirmation (confirmed 2026-07-16: registry `aside.aside.repl`, TS callable `aside.aside_repl(args)` — fixture `references/discovery-fixture-2026-07-16.json`; still re-verify per session).
 3. Run the installer or `aside --update` implicitly; installation is operator-invoked only.
 4. Pass `--account` to `aside mcp` or `aside repl`; it is documented for direct tasks and `exec` only.
 5. Register a second parallel `aside` manual without a controlled multi-client isolation test — the strategy is unresolved.
@@ -333,9 +333,9 @@ Use `aside "<task>"`, `aside --session <id> "<task>"`, `aside exec`, `aside acco
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill routes over the flat reference set: `references/aside_cli_reference.md`, `references/mcp_wiring.md`, `references/session_management.md`, and `references/troubleshooting.md`.
+The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill routes over the flat reference set: `references/aside-cli-reference.md`, `references/mcp-wiring.md`, `references/session-management.md`, and `references/troubleshooting.md`.
 
-Assets: [`assets/utcp_aside_manual.md`](assets/utcp_aside_manual.md) — the registered `aside` UTCP manual snapshot (registered 2026-07-16; verify with jq, do not re-add), loaded for MCP intent.
+Assets: [`assets/utcp-aside-manual.md`](assets/utcp-aside-manual.md) — the registered `aside` UTCP manual snapshot (registered 2026-07-16; verify with jq, do not re-add), loaded for MCP intent.
 
 Feature catalog: [`feature_catalog/feature_catalog.md`](feature_catalog/feature_catalog.md) — the capability inventory across the five intent domains. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
@@ -343,7 +343,7 @@ Scripts: `scripts/install.sh`, `scripts/doctor.sh`.
 
 Examples: [`examples/README.md`](examples/README.md) — workflow example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
-Server packages: [`mcp-servers/aside-cli/README.md`](mcp-servers/aside-cli/README.md) and [`mcp-servers/aside-mcp/README.md`](mcp-servers/aside-mcp/README.md) — install pointers for the CLI and the MCP registration (the `aside` UTCP manual is registered; see `assets/utcp_aside_manual.md`).
+Server packages: [`mcp-servers/aside-cli/README.md`](mcp-servers/aside-cli/README.md) and [`mcp-servers/aside-mcp/README.md`](mcp-servers/aside-mcp/README.md) — install pointers for the CLI and the MCP registration (the `aside` UTCP manual is registered; see `assets/utcp-aside-manual.md`).
 
 Related skills: `mcp-code-mode` for the MCP transport, `mcp-chrome-devtools` for CDP-level browser debugging, and `sk-code` for the application code being verified.
 

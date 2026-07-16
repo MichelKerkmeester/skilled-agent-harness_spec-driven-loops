@@ -50,7 +50,7 @@ Captured 2026-07-16 against installed CLI `1.26.626.1517` under a lineage-local 
 |---|---|---|
 | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | CLI-primary/Code Mode fallback pattern, lifecycle, discovery, cleanup | sol, luna, glm |
 | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md` | Chrome CDP patterns | sol, luna |
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md` | Chrome session lifecycle | sol, luna |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md` | Chrome session lifecycle | sol, luna |
 | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md` | Chrome recovery taxonomy | sol |
 | `.opencode/skills/mcp-code-mode/SKILL.md` | progressive discovery, callable naming, structured results, rules | sol, luna, glm |
 | `.opencode/skills/mcp-code-mode/references/configuration.md` | UTCP manual schema and stdio configuration | sol |

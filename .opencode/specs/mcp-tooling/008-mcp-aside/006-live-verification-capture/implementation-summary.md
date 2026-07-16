@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Operator handoff: authenticated smoke invocation and binding probe"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery_fixture_2026-07-16.json"
-      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp_wiring.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md"
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-Live Code Mode discovery finally ran against the registered `aside` manual, and the packet now tells the observed truth instead of a convention prediction. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) produced the dated fixture `references/discovery_fixture_2026-07-16.json`, and every discovery-pending claim in the packet flipped to cite it.
+Live Code Mode discovery finally ran against the registered `aside` manual, and the packet now tells the observed truth instead of a convention prediction. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) produced the dated fixture `references/discovery-fixture-2026-07-16.json`, and every discovery-pending claim in the packet flipped to cite it.
 
 ### The captured facts
 
@@ -64,14 +64,14 @@ Twelve packet files stopped saying "unconfirmed" and started citing the fixture:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `references/discovery_fixture_2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads |
+| `references/discovery-fixture-2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads |
 | `SKILL.md` | Modified | Dual naming, re-confirmed inventory, version 1.1.1.0 |
 | `README.md`, `INSTALL_GUIDE.md` | Modified | Consumer-facing steps quote both forms |
-| `references/mcp_wiring.md`, `references/aside_cli_reference.md` | Modified | DONE banner, naming bullet, fixture helper surface |
-| `assets/utcp_aside_manual.md` | Modified | Discovery checklist items flipped with evidence |
+| `references/mcp-wiring.md`, `references/aside-cli-reference.md` | Modified | DONE banner, naming bullet, fixture helper surface |
+| `assets/utcp-aside-manual.md` | Modified | Discovery checklist items flipped with evidence |
 | `mcp-servers/aside-mcp/README.md` | Modified | Checklist step 4 confirmed naming |
-| `feature_catalog/feature_catalog.md`, `feature_catalog/mcp/mcp_transport_and_code_mode.md` | Modified | Catalog mirrors flipped to CONFIRMED |
-| `manual_testing_playbook/manual_testing_playbook.md`, `manual_testing_playbook/mcp_transport/code_mode_discovery.md` | Modified | ASD-011 records the satisfied run + drift protocol |
+| `feature_catalog/feature_catalog.md`, `feature_catalog/mcp/mcp-transport-and-code-mode.md` | Modified | Catalog mirrors flipped to CONFIRMED |
+| `manual_testing_playbook/manual_testing_playbook.md`, `manual_testing_playbook/mcp-transport/code-mode-discovery.md` | Modified | ASD-011 records the satisfied run + drift protocol |
 | `scripts/doctor.sh` | Modified | Hint states the fixture baseline (both forms) |
 | `changelog/v1.1.1.0.md` | Created | Release record |
 <!-- /ANCHOR:what-built -->

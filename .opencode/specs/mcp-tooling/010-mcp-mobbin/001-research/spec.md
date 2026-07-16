@@ -158,7 +158,7 @@ Produce a converged, source-cited factual foundation (`research/research.md`) on
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All 10 iterations complete across the three lineages and the synthesis converges with cited findings sufficient for phase 002 to author `tool_surface.md` and the UTCP manual snippet without new research.
+- **SC-001**: All 10 iterations complete across the three lineages and the synthesis converges with cited findings sufficient for phase 002 to author `tool-surface.md` and the UTCP manual snippet without new research.
 - **SC-002**: Zero files outside `001-research/` are touched during this phase.
 <!-- /ANCHOR:success-criteria -->
 

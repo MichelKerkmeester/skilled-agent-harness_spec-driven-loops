@@ -41,21 +41,21 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery_fixture_2026-07-16.json",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp_wiring.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
       "feature_catalog/feature_catalog.md",
       "manual_testing_playbook/manual_testing_playbook.md",
       "scripts/doctor.sh",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside_cli_reference.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp_aside_manual.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/feature_catalog.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp_transport_and_code_mode.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp-transport-and-code-mode.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp_transport/code_mode_discovery.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp-transport/code-mode-discovery.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.1.0.md",
       ".opencode/skills/mcp-code-mode/references/naming_convention.md",
@@ -64,15 +64,15 @@
     ],
     "entities": [
       {
-        "name": "discovery_fixture_2026-07-16.json",
+        "name": "discovery-fixture-2026-07-16.json",
         "kind": "config",
-        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery_fixture_2026-07-16.json",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json",
         "source": "derived"
       },
       {
-        "name": "mcp_wiring.md",
+        "name": "mcp-wiring.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp_wiring.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
         "source": "derived"
       },
       {
@@ -112,27 +112,27 @@
         "source": "derived"
       },
       {
-        "name": "aside_cli_reference.md",
+        "name": "aside-cli-reference.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside_cli_reference.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md",
         "source": "derived"
       },
       {
-        "name": "utcp_aside_manual.md",
+        "name": "utcp-aside-manual.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp_aside_manual.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
         "source": "derived"
       },
       {
-        "name": "mcp_transport_and_code_mode.md",
+        "name": "mcp-transport-and-code-mode.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp_transport_and_code_mode.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp-transport-and-code-mode.md",
         "source": "derived"
       },
       {
-        "name": "code_mode_discovery.md",
+        "name": "code-mode-discovery.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp_transport/code_mode_discovery.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp-transport/code-mode-discovery.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The packet predicted `aside.asiderepl` as THE Code Mode callable and marked it UNCONFIRMED/UNKNOWN in 12 files, because live discovery had never run against the registered manual",
     "created_at": "2026-07-16T12:58:31Z",
-    "last_save_at": "2026-07-16T14:21:25.408Z",
+    "last_save_at": "2026-07-16T15:03:13.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fdce6f6c22bac9b50162d9d13ff6daea16a087811a3fc66c3a9143699462aec",
+    "source_fingerprint": "sha256:79be86d10853e1aa961603295a619a40e2797271ec9ea78d0f6a33acc22ed831",
     "source_doc_hashes": {
-      "spec.md": "eb16ee8abf15daa1aed7e1ffa66627cbce162a6225fe19e44f15031bb5645745",
-      "plan.md": "cad755692fca79823b4167d0e9c986396e7cbb56004cf0ec67615d49e18a5e37",
-      "tasks.md": "82f30d0e64e98aca621fe5a6def9bdbabcaadbf2363d83a5434ae7f2391dbeea",
-      "checklist.md": "f7177fe8688d9be4835326e37fefc7e7372c806a797eee691fe943d8e2d3ed80",
-      "implementation-summary.md": "2c87e4dfbfc79ff9b829b32636f5374d05666c56e30d2e3467f260fef93da926"
+      "spec.md": "ea6d114a364e0fe7f656fba4112b465e96559c81db4dddb175d196e061c479a0",
+      "plan.md": "8eb62a0ff0ea10eb6edeca3a2ded387b758591ebb03f74cbe11c4a97c80b7fc5",
+      "tasks.md": "2d12c80d03a01239a5a1cb5c0c20475f763ee2c2e4b4b82f111c401e1f4c52c2",
+      "checklist.md": "5741cd8445b3ff3e6fe37f68da13b3f9ffd4c51b8c325f4356f14e3303c8a2df",
+      "implementation-summary.md": "7ca6dc0345f66e747bad7f142ccd591c7e31a279463a892249851fc68bc6d351"
     },
     "last_active_child_id": null,
     "last_active_at": null

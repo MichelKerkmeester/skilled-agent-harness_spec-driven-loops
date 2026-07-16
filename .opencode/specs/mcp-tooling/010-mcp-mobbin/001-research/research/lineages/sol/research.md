@@ -355,8 +355,8 @@ Phase 002 creates `.opencode/skills/mcp-tooling/mcp-mobbin/` only:
 - `README.md` — user-facing purpose, prerequisites, public surface, plan/auth caveats.
 - `INSTALL_GUIDE.md` — Node/npx, manual snippet, first-use OAuth, discovery verification; no provider server install.
 - `assets/` — paste-ready `mobbin` UTCP manual with empty env; no secret template.
-- `references/mcp_wiring.md` — remote HTTP versus local stdio adapter, discovery/call naming, confirmed/inferred labels.
-- `references/tool_surface.md` — single public documented baseline, response shape, authenticated-live UNKNOWNs.
+- `references/mcp-wiring.md` — remote HTTP versus local stdio adapter, discovery/call naming, confirmed/inferred labels.
+- `references/tool-surface.md` — single public documented baseline, response shape, authenticated-live UNKNOWNs.
 - `references/workflows.md` or equivalent — app/screen/flow/element semantic query recipes and grounded analysis.
 - `references/troubleshooting.md` — 401, OAuth callback, manual discovery, plan, 429, drift, partial images.
 - `feature_catalog/` — capability inventory marked read-only.
@@ -410,7 +410,7 @@ Transport and local sources:
 - [SOURCE: file:.opencode/skills/mcp-code-mode/references/configuration.md]
 - [SOURCE: file:.opencode/skills/mcp-code-mode/references/naming_convention.md]
 - [SOURCE: file:.opencode/skills/mcp-tooling/mcp-figma/SKILL.md]
-- [SOURCE: file:.opencode/skills/mcp-tooling/mcp-figma/references/mcp_wiring.md]
+- [SOURCE: file:.opencode/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md]
 - [SOURCE: file:.opencode/skills/sk-design/SKILL.md]
 - [SOURCE: file:.opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/spec.md]
 - [SOURCE: file:.opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/spec.md]

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The hub has no `mcp-mobbin` packet: there is no SKILL.md contract, no tool-surface reference, no install guide, and no UTCP manual snippet for the Mobbin MCP server",
     "created_at": "2026-07-16T09:39:33Z",
-    "last_save_at": "2026-07-16T12:00:36.514Z",
+    "last_save_at": "2026-07-16T15:03:16.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fc661832e9ea478dff19465142053d054eb2f87e70672a4aef12f5d986d62ff",
+    "source_fingerprint": "sha256:f8f3e482d7fb5894cd6acb0f8ad2907a092a20ce23b90f32acfc2a78d47e89af",
     "source_doc_hashes": {
-      "spec.md": "691ef562d9029fdc8fdd7129e933473d2040cb97f0165afbb62d905e63a4c536",
-      "plan.md": "f3d87b14069769cb95ca8f8352e32d980606b391346f8409170895e5e830d9b2",
-      "tasks.md": "fb0ec5a4b8aeb0fa019c1371b670212449cb1b4f7c2f65fb0963236a2e20754b",
-      "checklist.md": "0012c9072c37c7b91f7b4c8086af8abcc6fbabab33065291aebce0471185186f",
-      "implementation-summary.md": "ce985f4e5f465bb19a1a789da810d2652a52342cc834e50e4bb2beaae275e748"
+      "spec.md": "9c9622eaf613f84d1c72984d48112d3eeb7dea17a7c2d7509369ade9ea3ff05a",
+      "plan.md": "667593a465dcc0361553ac689c07469ec17936b8396117cdcff61b07f54ec58a",
+      "tasks.md": "5e2e5c94c1774ed706326726ad088934fd964893e6213383a197c75d0608ce8c",
+      "checklist.md": "c1974b10492c95dc3b5e5f549320118ebb5ebfe15ea44d3ebb4d926f33e697b4",
+      "implementation-summary.md": "23c16f7dd7f1e5d58d34e29c5dde6f5c49235b6462b1fa75e010dab3e499294d"
     },
     "last_active_child_id": null,
     "last_active_at": null

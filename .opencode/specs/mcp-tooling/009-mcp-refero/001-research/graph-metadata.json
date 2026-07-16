@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Refero MCP is an unverified external surface: this repo has never documented its tool names, parameters, auth expectations, rate limits, or free-vs-paid gating, and the official `referoskill` repo's conventions have not been reviewed",
     "created_at": "2026-07-16T09:39:27Z",
-    "last_save_at": "2026-07-16T12:00:34.602Z",
+    "last_save_at": "2026-07-16T15:05:25.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:45da214180915b8b43dfaefa2f680100a35db0c3c538692b3919b719ff2df525",
+    "source_fingerprint": "sha256:329bfcdee87c4367813f136cf10c49b1986e46b228087feb32660b60cac3f5d3",
     "source_doc_hashes": {
       "spec.md": "e177c18461c4d2497da0b627b262cc94dcb7bbad1b3272997a120d855a9a7a4f",
       "plan.md": "b34f9e812607ccd586903652419aaa738776b974b6f9406a3d481a8bd67e478d",
       "tasks.md": "4129c3e09a1652d67755c03a815b8c167c424cd596de5bbc40c882bdb44d451a",
-      "implementation-summary.md": "87568bd144ed1d80011d74541a22f84ceef1ec582eb53a93b0929f3105a7de4f",
-      "research/research.md": "2f8d39eb82604acce2aa69edb870e17e0c44b22c50624e5b5978d4fe9aff2774"
+      "implementation-summary.md": "6a5281b3c68199309a3e9189a8d3f63f152adc32e4ab73566e69157f117cac9c",
+      "research/research.md": "d634cc8ee44804c395d5f5abdf56b5a511d56df585ae26ca6e2251b0a4e76e9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

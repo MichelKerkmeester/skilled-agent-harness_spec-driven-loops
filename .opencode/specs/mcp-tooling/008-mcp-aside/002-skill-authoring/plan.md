@@ -85,7 +85,7 @@ Exemplar-mirrored authoring: copy the shape from `mcp-chrome-devtools`, fill the
 ### Key Components
 - **SKILL.md doctrine**: When to reach for Aside, CLI-primary dispatch, Aside MCP through `mcp__code_mode__call_tool_chain` as fallback, gating rules mirroring the sibling workflow modes.
 - **Install/user surface**: `README.md` + `INSTALL_GUIDE.md` with verified install, launch, and auth steps.
-- **Playbook**: `manual_testing_playbook/` scenarios including `intra_routing_recall/` (≥2 holdouts, `negative.md`, `troubleshoot.md`).
+- **Playbook**: `manual_testing_playbook/` scenarios including `intra-routing-recall/` (≥2 holdouts, `negative.md`, `troubleshoot.md`).
 - **Backend docs**: `mcp-servers/aside-cli/` and `mcp-servers/aside-mcp/` documenting both dispatch paths and their failure modes.
 - **Support dirs**: `changelog/` (seed version), `examples/`, `references/`, `scripts/`.
 
@@ -124,7 +124,7 @@ Required inventories:
 ### Phase 2: Core Implementation
 - [ ] Author `SKILL.md` (dispatch doctrine), `README.md`, and `INSTALL_GUIDE.md`
 - [ ] Author `mcp-servers/aside-cli/` and `mcp-servers/aside-mcp/` backend docs
-- [ ] Author `manual_testing_playbook/` incl. `intra_routing_recall/` (≥2 holdouts, `negative.md`, `troubleshoot.md`), plus `changelog/`, `examples/`, `references/`, `scripts/`
+- [ ] Author `manual_testing_playbook/` incl. `intra-routing-recall/` (≥2 holdouts, `negative.md`, `troubleshoot.md`), plus `changelog/`, `examples/`, `references/`, `scripts/`
 
 ### Phase 3: Verification
 - [ ] Inventory diff against the exemplar: no missing top-level components

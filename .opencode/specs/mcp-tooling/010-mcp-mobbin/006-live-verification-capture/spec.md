@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Operator handoff: browser OAuth and first authenticated smoke search"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery_fixture_2026-07-16.json"
-      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool_surface.md"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md"
       - ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -66,7 +66,7 @@ This is **Phase 6** of the mcp-mobbin completion: inventory parity, doc truth, l
 - The live Code Mode discovery run of 2026-07-16 produced the fixture this phase records.
 
 **Deliverables**:
-- `references/discovery_fixture_2026-07-16.json` treated as packet ground truth.
+- `references/discovery-fixture-2026-07-16.json` treated as packet ground truth.
 - The one-tool baseline superseded by the live three-tool inventory across 22 packet files.
 - The `deep` conflict resolved as a client-settable `mode` input.
 - Packet version 1.1.1.0 with `changelog/v1.1.1.0.md`.
@@ -111,14 +111,14 @@ The packet's contract tracks the live-discovered three-tool inventory with the f
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/mcp-tooling/mcp-mobbin/references/discovery_fixture_2026-07-16.json` | Create | Dated live-discovery fixture (already written by the probe; recorded as ground truth) |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json` | Create | Dated live-discovery fixture (already written by the probe; recorded as ground truth) |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Modify | Discovery banner, three-tool surface, resolved deep, workflows, rules, quick ref, version 1.1.1.0 |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` | Modify | Why-this-packet, quick start, wiring state, troubleshooting rows |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md` | Modify | Pre-auth precondition; checklist items satisfied with fixture evidence |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/references/tool_surface.md` | Modify | Rewritten to the live three-tool contract; open questions 1/3/4/10 resolved |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/references/mcp_wiring.md` | Modify | Naming section CONFIRMED; pre-auth discovery recorded |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md` | Modify | Rewritten to the live three-tool contract; open questions 1/3/4/10 resolved |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md` | Modify | Naming section CONFIRMED; pre-auth discovery recorded |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md` | Modify | Drift row diffs against the fixture baseline |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp_mobbin_manual.md` | Modify | Discovery/schema checklist items flipped with fixture evidence |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md` | Modify | Discovery/schema checklist items flipped with fixture evidence |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md` | Modify | Expected discovery result and call-syntax row flipped |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/feature_catalog.md` | Modify | Banner, inventory, areas table, count summary |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/flows/flows.md` | Modify | Rebuilt on the live search_flows tool |
@@ -126,13 +126,13 @@ The packet's contract tracks the live-discovered three-tool inventory with the f
 | `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/apps/apps.md` | Modify | Resolved deep note |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/elements/elements.md` | Modify | Resolved deep note |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/examples/README.md` | Modify | Confirmed callables banner, preflight, shared rules |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke_search_limit_1.md` | Modify | Confirmed callable, fixture-schema expectations |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/examples/platform_flow_research.md` | Modify | Rebuilt on search_flows |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/examples/element_intent_query.md` | Modify | Confirmed callable |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke-search-limit-1.md` | Modify | Confirmed callable, fixture-schema expectations |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/examples/platform-flow-research.md` | Modify | Rebuilt on search_flows |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/examples/element-intent-query.md` | Modify | Confirmed callable |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/manual_testing_playbook.md` | Modify | Naming status, do-not-run note, DISCOVER-001 row |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery_setup/discovery_first.md` | Modify | Fixture-baseline re-confirmation contract |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read_only/flow_intent.md` | Modify | search_flows-first flow research contract |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read_only/screens_search.md` | Modify | Fixture-declared inputs/fields; deep now allowed deliberately |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery-setup/discovery-first.md` | Modify | Fixture-baseline re-confirmation contract |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/flow-intent.md` | Modify | search_flows-first flow research contract |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/screens-search.md` | Modify | Fixture-declared inputs/fields; deep now allowed deliberately |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` | Modify | Discovery hint states the confirmed three-tool baseline |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/install.sh` | Modify | Callable-confirmation hint flipped to confirmed |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.1.0.md` | Create | Release record for the supersession and resolutions |
@@ -147,8 +147,8 @@ The packet's contract tracks the live-discovered three-tool inventory with the f
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The one-tool baseline is superseded explicitly and dated | Docs say the live 2026-07-16 discovery supersedes the research baseline, naming both new tools and citing `references/discovery_fixture_2026-07-16.json` |
-| REQ-002 | The mutation-refusal check is recorded | tool_surface.md and SKILL.md state all three live tools are read-only search tools and the check passed |
+| REQ-001 | The one-tool baseline is superseded explicitly and dated | Docs say the live 2026-07-16 discovery supersedes the research baseline, naming both new tools and citing `references/discovery-fixture-2026-07-16.json` |
+| REQ-002 | The mutation-refusal check is recorded | tool-surface.md and SKILL.md state all three live tools are read-only search tools and the check passed |
 | REQ-003 | The `deep` conflict is resolved from the fixture schema | Docs state `mode?: "deep" | "standard" | "fast"` as a client input with the fixture cited; the old do-not-hardcode rule is retired |
 | REQ-004 | Naming recorded in both forms | Registry `mobbin.mobbin.<tool>` (dotted) and TS callable `mobbin.mobbin_<tool>(args)` presented together wherever a callable is named |
 | REQ-005 | Packet gate green | `package_skill.py .opencode/skills/mcp-tooling/mcp-mobbin --check --strict` prints PASS |
@@ -180,7 +180,7 @@ The packet's contract tracks the live-discovered three-tool inventory with the f
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `references/discovery_fixture_2026-07-16.json` | Without it there is no live inventory to cite | Fixture written by the probe before this phase; every flip cites it |
+| Dependency | `references/discovery-fixture-2026-07-16.json` | Without it there is no live inventory to cite | Fixture written by the probe before this phase; every flip cites it |
 | Risk | Declared schemas differ from authenticated responses | Docs could assert response fields the live server never sends | The `index`/`failed[]` absence is flagged for first-call verification; unknown fields are preserved, never stripped |
 | Risk | Provider surface drift after the fixture date | The three-tool baseline could stale silently | Per-session `tool_info` re-confirmation and the fail-closed drift protocol stay mandatory everywhere |
 <!-- /ANCHOR:risks -->

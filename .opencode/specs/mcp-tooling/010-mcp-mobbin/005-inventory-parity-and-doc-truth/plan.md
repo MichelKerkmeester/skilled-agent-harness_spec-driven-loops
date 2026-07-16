@@ -86,7 +86,7 @@ Documentation truth-sweep plus additive inventory build inside one skill packet;
 - **Parity additions**: examples/ (3 walkthroughs), playbook scenarios (PLATFORM-001, RATELIMIT-001, PAIDGATE-001), catalog constraint sections
 
 ### Data Flow
-`.utcp_config.json` (read-only observation) feeds the asset's reference shape and checklist evidence; `references/tool_surface.md` is the single trace target for examples and catalog constraints; the root playbook index mirrors the per-scenario files 9-to-9.
+`.utcp_config.json` (read-only observation) feeds the asset's reference shape and checklist evidence; `references/tool-surface.md` is the single trace target for examples and catalog constraints; the root playbook index mirrors the per-scenario files 9-to-9.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -99,10 +99,10 @@ The stale pre-registration claims behave like a class-of-bug across the packet, 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | SKILL.md / README.md / INSTALL_GUIDE.md | Doctrine producers (agents read these first) | Updated to registered-state truth | Packet-wide marker grep clean outside exclusions |
-| references/*.md, assets/utcp_mobbin_manual.md | Contract producers | Updated; asset checklist executed doc-side | Grep + field-for-field config match |
+| references/*.md, assets/utcp-mobbin-manual.md | Contract producers | Updated; asset checklist executed doc-side | Grep + field-for-field config match |
 | scripts/doctor.sh | Status producer | Absence branch flipped INFO to ERR | `bash -n`; live run shows OK on the registered manual |
 | manual_testing_playbook/** | Test consumers of the doctrine | MANUAL-001 renamed/rewritten; index and preconditions flipped; 3 scenarios added | Index count 9 = 9 files |
-| feature_catalog/** | Capability consumers | Registered framing + constraint sections | Grep + trace links to tool_surface.md |
+| feature_catalog/** | Capability consumers | Registered framing + constraint sections | Grep + trace links to tool-surface.md |
 | changelog/v1.0.0.0.md, 1.0.0.0 history row | Historical records | Unchanged (deliberate) | Excluded from the grep acceptance |
 
 Required inventories:
@@ -123,7 +123,7 @@ Required inventories:
 - [x] Flip doctor.sh absence to ERR; execute the asset's 9-item checklist doc-side (3 evidence-marked, 6 SKIP-valid with exact commands)
 
 ### Phase 2: Parity additions
-- [x] Create examples/ (README + smoke + platform-flow + element-intent), traced to tool_surface.md only
+- [x] Create examples/ (README + smoke + platform-flow + element-intent), traced to tool-surface.md only
 - [x] Create scripts/install.sh (verify-only posture check)
 - [x] Rename/rewrite MANUAL-001; add PLATFORM-001, RATELIMIT-001, PAIDGATE-001; update the root index to 9/9
 - [x] Enrich the 4 catalog leaves with recipes + cross-cutting constraints
@@ -166,5 +166,5 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The `mobbin` manual is removed from `.utcp_config.json` (registration reverted), or the strict gate regresses.
-- **Procedure**: The packet tree is untracked-new (never committed), so rollback means restoring the 1.0.0.0 content: delete the parity additions (examples/, scripts/install.sh, limits_access/, read_only/platform_filter.md, changelog/v1.1.0.0.md), rename manual_registered_expected.md back, and revert the in-place doc flips from this phase's Files-to-Change record. If only the registration reverts, doctor.sh already reports it as ERR by design - escalate to the operator instead of rolling docs back.
+- **Procedure**: The packet tree is untracked-new (never committed), so rollback means restoring the 1.0.0.0 content: delete the parity additions (examples/, scripts/install.sh, limits-access/, read-only/platform-filter.md, changelog/v1.1.0.0.md), rename manual-registered-expected.md back, and revert the in-place doc flips from this phase's Files-to-Change record. If only the registration reverts, doctor.sh already reports it as ERR by design - escalate to the operator instead of rolling docs back.
 <!-- /ANCHOR:rollback -->

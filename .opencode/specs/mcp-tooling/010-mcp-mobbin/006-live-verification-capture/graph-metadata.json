@@ -41,15 +41,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery_fixture_2026-07-16.json",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool_surface.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
       "scripts/doctor.sh",
       ".opencode/skills/mcp-tooling/mcp-mobbin/README.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp_wiring.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp_mobbin_manual.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/feature_catalog.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/flows/flows.md",
@@ -57,22 +57,22 @@
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/apps/apps.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/elements/elements.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/examples/README.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke_search_limit_1.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/platform_flow_research.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/element_intent_query.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke-search-limit-1.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/platform-flow-research.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/element-intent-query.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/manual_testing_playbook.md"
     ],
     "entities": [
       {
-        "name": "discovery_fixture_2026-07-16.json",
+        "name": "discovery-fixture-2026-07-16.json",
         "kind": "config",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery_fixture_2026-07-16.json",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json",
         "source": "derived"
       },
       {
-        "name": "tool_surface.md",
+        "name": "tool-surface.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool_surface.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md",
         "source": "derived"
       },
       {
@@ -100,9 +100,9 @@
         "source": "derived"
       },
       {
-        "name": "mcp_wiring.md",
+        "name": "mcp-wiring.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp_wiring.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md",
         "source": "derived"
       },
       {
@@ -112,9 +112,9 @@
         "source": "derived"
       },
       {
-        "name": "utcp_mobbin_manual.md",
+        "name": "utcp-mobbin-manual.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp_mobbin_manual.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md",
         "source": "derived"
       },
       {
@@ -148,21 +148,21 @@
         "source": "derived"
       },
       {
-        "name": "smoke_search_limit_1.md",
+        "name": "smoke-search-limit-1.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke_search_limit_1.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke-search-limit-1.md",
         "source": "derived"
       },
       {
-        "name": "platform_flow_research.md",
+        "name": "platform-flow-research.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/examples/platform_flow_research.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/examples/platform-flow-research.md",
         "source": "derived"
       },
       {
-        "name": "element_intent_query.md",
+        "name": "element-intent-query.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/examples/element_intent_query.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/examples/element-intent-query.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The whole packet was built on the official one-public-tool record: `searchscreens` only, `searchflows` explicitly listed as a tool that must never be invented, the `deep` search question preserved as an unresolved conflict, and the callable name marked INFERRED",
     "created_at": "2026-07-16T12:58:35Z",
-    "last_save_at": "2026-07-16T14:28:32.926Z",
+    "last_save_at": "2026-07-16T15:03:18.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bdcef7fde6a9a0b98f9def75d17c5ca3d255e51ebdd87d09bb738db0f6a2b902",
+    "source_fingerprint": "sha256:e09cb111de8dc6006b5d0c966a87d29278d1458d8a88010955f1ce978c94e9c9",
     "source_doc_hashes": {
-      "spec.md": "77b5ee93f02aa50616c0438b55d387c2a6d0cbf2e1d0685a8cef4e459e733ce7",
-      "plan.md": "99032667f2f1303753e03c52ffc842a6d2448e009021f52129d3ec8a3e8fe3f6",
-      "tasks.md": "4063a40216fdecd59e63c945f1429830f73bd57a4d36c871ade73cdb84fedf90",
-      "checklist.md": "f969b701bf0bfdbfe8ca632d3afb9f38a4c8924d1a94d102f7e24114fd3bc72c",
-      "implementation-summary.md": "2dfedd12ec603958e5b7555a4562597d1f06f3215f59afeb25a3523184aabb48"
+      "spec.md": "9733aa0b7e3dc84dd42d6c18b08344682b7d07455347c61cc9200b68d8d49093",
+      "plan.md": "4cd678306195e936515d4c7d5f22454ecd525a762edc48f8c7beea8e60b138df",
+      "tasks.md": "01687a44fcc55700d6bbcd982c248c6feaddb5ee1135f2dadbe8d79696f2f08f",
+      "checklist.md": "a8bdbc613cfea11d4b791c32b60540cc148182a75f189e8f5943b7457cbdb582",
+      "implementation-summary.md": "c5253f8da7cf80ae4453ede41fe26ef8e6f9e432e1458608595e824a0c0934dd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -271,7 +271,7 @@ Planning Packet
 #### F015 — Eleven positive packet scenarios omit always-loaded base gold
 
 - Dimension: maintainability
-- Location: `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/intra_routing_recall/install.md:1-18`
+- Location: `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/intra-routing-recall/install.md:1-18`
 - Evidence: Four Aside, three Chrome, two Mobbin, and two Refero rows omit their documented universal preamble from `expected_resources`.
 - Impact: Exact resource scoring will classify declared base behavior as waste or stale gold.
 - Recommendation: Adjudicate which base resources are truly universal, then align positive gold without blessing unrelated eager loads.

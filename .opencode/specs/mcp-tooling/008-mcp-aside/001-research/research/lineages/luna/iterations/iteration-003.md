@@ -50,9 +50,9 @@ Finish the implementation-facing research needed for `mcp-aside-devtools`: a CLI
    | Network | no dedicated verified CLI command; capability probe in REPL | probe `page.on('request'/'response', ...)` only if supported; do not promise HAR parity | `bdg network har output.har`, `Network.enable` | Aside not verified; bdg documented locally |
    | Session | task continuation `--session`; REPL process/profile binding | persistent stdio process but no public MCP selector; close process to clean up | `bdg <url>`, `bdg status`, operations, `bdg stop` | Both surfaces documented/observed; semantics differ |
 
-   **[SOURCE: local MCP `tools/list` and capability probe, observed 2026-07-16] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`] [INFERENCE: standard Playwright event-listener probes are conditional and not an Aside-specific guarantee]**
+   **[SOURCE: local MCP `tools/list` and capability probe, observed 2026-07-16] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`] [INFERENCE: standard Playwright event-listener probes are conditional and not an Aside-specific guarantee]**
 
-5. Aside is better framed as a browser-agent/profile surface than as a drop-in CDP replacement. It adds account/profile state, permission modes, approvals, and human-verification pauses; bdg emphasizes direct Chrome/Chromium CDP, Unix-composable outputs, a single global active session, and explicit `status`/`stop`. The skill packet should route to Aside when the user's browser-agent/profile context or Playwright-level interaction is the point, and to bdg when deterministic CDP domains, console logs, HAR output, or low-token CLI composition are the point. **[SOURCE: https://docs.aside.com/help/security] [SOURCE: https://docs.aside.com/help/tasks] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]**
+5. Aside is better framed as a browser-agent/profile surface than as a drop-in CDP replacement. It adds account/profile state, permission modes, approvals, and human-verification pauses; bdg emphasizes direct Chrome/Chromium CDP, Unix-composable outputs, a single global active session, and explicit `status`/`stop`. The skill packet should route to Aside when the user's browser-agent/profile context or Playwright-level interaction is the point, and to bdg when deterministic CDP domains, console logs, HAR output, or low-token CLI composition are the point. **[SOURCE: https://docs.aside.com/help/security] [SOURCE: https://docs.aside.com/help/tasks] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]**
 
 6. Aside's browser-bound prerequisite is the most important fallback error contract. A registered UTCP manual can start a healthy stdio server and still receive “This task is not bound to a browser profile.” The packet should surface that as an actionable prerequisite—open/bind the appropriate Aside browser task/profile, verify permissions, then retry—not as a transport or auth-token failure. **[SOURCE: local MCP `tools/call(repl)` unbound-profile probe, observed 2026-07-16]**
 
@@ -93,7 +93,7 @@ Finish the implementation-facing research needed for `mcp-aside-devtools`: a CLI
 - [SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]
 - [SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]
 - [SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]
-- [SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]
+- [SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]
 - [SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]
 
 ## Assessment

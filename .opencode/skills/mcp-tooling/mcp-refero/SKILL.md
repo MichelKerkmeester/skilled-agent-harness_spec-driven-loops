@@ -3,7 +3,7 @@ name: mcp-refero
 description: "Refero MCP transport: read-only UI design-reference search (styles, screens, flows) via Code Mode; sk-design owns the judgment."
 compatibility: Requires a Refero Pro plan (Free has no MCP access), the npx mcp-remote bridge, and Node.js >=18; this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.1.0
+version: 1.2.0.0
 user-invocable: true
 ---
 
@@ -11,9 +11,9 @@ user-invocable: true
 
 # Refero (mcp-refero)
 
-Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ user flows per the official repo) from an agent through the **Refero MCP via Code Mode**: styles for visual direction, screens for concrete UI patterns, flows for multi-step journeys. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every read and "write" happens against the external Refero service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design` first. Deep operational detail lives in [`references/tool_surface.md`](references/tool_surface.md) and [`references/mcp_wiring.md`](references/mcp_wiring.md).
+Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ user flows per the official repo) from an agent through the **Refero MCP via Code Mode**: styles for visual direction, screens for concrete UI patterns, flows for multi-step journeys. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every read and "write" happens against the external Refero service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design` first. Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
 
-> **Naming trap (read first).** Inside `call_tool_chain`, Refero tools resolve with a **DOUBLED prefix**: the callable form is `refero.refero_refero_<tool>(...)` (for example `refero.refero_refero_search_styles`), because Code Mode's `{manual}.{manual}_{tool}` rule applies to tools whose own names already begin with `refero_`. **CONFIRMED by live discovery 2026-07-16** (`references/discovery_fixture_2026-07-16.json`): `list_tools` returned all eight registry names in the dotted doubled form `refero.refero.refero_<tool>` — pre-auth, no OAuth needed for discovery — and the fixture's `Access as:` line shows the TS callable `refero.refero_refero_search_styles(args)`. Per-session `tool_info` re-confirmation stays mandatory: confirm, then call, and fail closed on drift.
+> **Naming trap (read first).** Inside `call_tool_chain`, Refero tools resolve with a **DOUBLED prefix**: the callable form is `refero.refero_refero_<tool>(...)` (for example `refero.refero_refero_search_styles`), because Code Mode's `{manual}.{manual}_{tool}` rule applies to tools whose own names already begin with `refero_`. **CONFIRMED by live discovery 2026-07-16** (`references/discovery-fixture-2026-07-16.json`): `list_tools` returned all eight registry names in the dotted doubled form `refero.refero.refero_<tool>` — pre-auth, no OAuth needed for discovery — and the fixture's `Access as:` line shows the TS callable `refero.refero_refero_search_styles(args)`. Per-session `tool_info` re-confirmation stays mandatory: confirm, then call, and fail closed on drift.
 >
 > **Access trap.** Live MCP access is paid and authenticated. The Free plan has **no MCP access at all** (denial, not a reduced tool set). Pro is the first tier with MCP and carries a published quota of **8,000 tool calls per month**. Unauthenticated calls return HTTP 401.
 
@@ -84,18 +84,18 @@ TASK CONTEXT
 The router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring. This skill uses a **flat intent router**: no keyed `references/<key>/` subdirectories. References are the primary loaded resources; the single asset is the paste-ready manual snapshot.
 
 ```text
-references/tool_surface.md      # the 8-tool surface, args/bounds, workflows, plan gating
-references/mcp_wiring.md        # manual, mcp-remote bridge, OAuth/Bearer, naming, discovery
+references/tool-surface.md      # the 8-tool surface, args/bounds, workflows, plan gating
+references/mcp-wiring.md        # manual, mcp-remote bridge, OAuth/Bearer, naming, discovery
 references/troubleshooting.md   # failure modes + fixes
-assets/utcp_refero_manual.md    # verified manual snapshot (already registered) + Bearer alternative
+assets/utcp-refero-manual.md    # verified manual snapshot (already registered) + Bearer alternative
 ```
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | ----- | ------------ | --------- |
-| ALWAYS | Every invocation | `references/tool_surface.md` (tool contract + workflow baseline) |
-| CONDITIONAL | Wiring / auth intent | `references/mcp_wiring.md`, `assets/utcp_refero_manual.md` |
+| ALWAYS | Every invocation | `references/tool-surface.md` (tool contract + workflow baseline) |
+| CONDITIONAL | Wiring / auth intent | `references/mcp-wiring.md`, `assets/utcp-refero-manual.md` |
 | CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
 | ALWAYS (design work) | Retrieved evidence feeds a design decision | `sk-design` modes, loaded before any taste call |
 
@@ -108,7 +108,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/tool_surface.md"
+DEFAULT_RESOURCE = "references/tool-surface.md"
 MIN_CONFIDENCE = 1
 AMBIGUITY_DELTA = 1
 
@@ -135,11 +135,11 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "STYLES":       ["references/tool_surface.md"],
-    "SCREENS":      ["references/tool_surface.md"],
-    "FLOWS":        ["references/tool_surface.md"],
-    "WIRING_AUTH":  ["references/mcp_wiring.md", "assets/utcp_refero_manual.md"],
-    "TROUBLESHOOT": ["references/troubleshooting.md", "references/mcp_wiring.md"],
+    "STYLES":       ["references/tool-surface.md"],
+    "SCREENS":      ["references/tool-surface.md"],
+    "FLOWS":        ["references/tool-surface.md"],
+    "WIRING_AUTH":  ["references/mcp-wiring.md", "assets/utcp-refero-manual.md"],
+    "TROUBLESHOOT": ["references/troubleshooting.md", "references/mcp-wiring.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -219,11 +219,11 @@ const all = await list_tools();
 const info = await tool_info({ tool_name: "refero.refero_refero_search_styles" });
 ```
 
-The doubled-prefix callable form (`refero.refero_refero_<tool>`) is **confirmed by live registry evidence** (2026-07-16 discovery fixture, `references/discovery_fixture_2026-07-16.json`): all eight tools were live-listed pre-auth as `refero.refero.refero_{search_styles,search_screens,get_style,get_similar_screens,get_screen_image,get_screen,search_flows,get_flow}`, resolving the research record's conflicting derivations — the single-prefix derivation is dead. Discovery is pre-auth; authenticated CALLS remain operator-gated. The per-session `tool_info` confirmation step is still not optional. If discovery shows the eight tools missing, renamed, or expanded, **fail closed**: report the drift; a changed provider surface requires a reviewed packet update, not an improvised call.
+The doubled-prefix callable form (`refero.refero_refero_<tool>`) is **confirmed by live registry evidence** (2026-07-16 discovery fixture, `references/discovery-fixture-2026-07-16.json`): all eight tools were live-listed pre-auth as `refero.refero.refero_{search_styles,search_screens,get_style,get_similar_screens,get_screen_image,get_screen,search_flows,get_flow}`, resolving the research record's conflicting derivations — the single-prefix derivation is dead. Discovery is pre-auth; authenticated CALLS remain operator-gated. The per-session `tool_info` confirmation step is still not optional. If discovery shows the eight tools missing, renamed, or expanded, **fail closed**: report the drift; a changed provider surface requires a reviewed packet update, not an improvised call.
 
 ### The 8-tool surface (three layers)
 
-The expected contract (authoritative docs baseline; `tool_info` is the final live schema). Full args, bounds, and result shapes: [`references/tool_surface.md`](references/tool_surface.md).
+The expected contract (authoritative docs baseline; `tool_info` is the final live schema). Full args, bounds, and result shapes: [`references/tool-surface.md`](references/tool-surface.md).
 
 | Layer | Tool | Required args | Notes |
 |---|---|---|---|
@@ -266,11 +266,11 @@ Cite evidence by `record.url` (styles) or `record.refero_url` (screens). JSON se
 4. **Apps / elements**: company, pattern, state, or element terms in screen/flow queries, compared through `site`, `ui_elements`, `ux_patterns`, `page_types`.
 5. **Metadata-first discipline**: search -> shortlist -> detail for shortlisted IDs -> similar -> thumbnail -> full, in that order. Batch modestly; on batch failure retry with fewer IDs.
 
-Breadth is allowed during transport research; for design-affecting use, `sk-design` collapses the evidence to ONE declared critique reference before any judgment. A transport response is untrusted reference evidence, never design approval. Full workflow detail: [`references/tool_surface.md`](references/tool_surface.md).
+Breadth is allowed during transport research; for design-affecting use, `sk-design` collapses the evidence to ONE declared critique reference before any judgment. A transport response is untrusted reference evidence, never design approval. Full workflow detail: [`references/tool-surface.md`](references/tool-surface.md).
 
 ### Auth, plans, and limits
 
-- **Auth**: with no custom header, first use triggers a **browser OAuth** flow (localhost callback, port 3334 by default, 30-second default timeout). Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) and is **operator-owned**: never inspect, clear, or repair it. A static `Authorization: Bearer` header is a documented env-backed alternative (see [`assets/utcp_refero_manual.md`](assets/utcp_refero_manual.md)), never part of the base manual. End-to-end OAuth through this bridge is **Inferred**, not verified: an unauthenticated probe observed HTTP 401 with OAuth metadata, but no operator has completed the flow in this repo's record.
+- **Auth**: with no custom header, first use triggers a **browser OAuth** flow (localhost callback, port 3334 by default, 30-second default timeout). Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) and is **operator-owned**: never inspect, clear, or repair it. A static `Authorization: Bearer` header is a documented env-backed alternative (see [`assets/utcp-refero-manual.md`](assets/utcp-refero-manual.md)), never part of the base manual. End-to-end OAuth through this bridge is **Inferred**, not verified: an unauthenticated probe observed HTTP 401 with OAuth metadata, but no operator has completed the flow in this repo's record.
 - **Plans**: Free has **no MCP access** (denial, not degradation). Pro: **8,000 MCP tool calls per month**. Team inherits Pro. Business is custom volume. "Unlimited access" plan copy must not be read as unlimited MCP calls.
 - **Unknown limits**: no per-second, burst, concurrency, page-size, or `Retry-After` behavior is published. Never invent a QPS number or backoff guarantee; on 429, preserve the provider's message only.
 - **Local runtime**: Code Mode must run on **Node 24** (isolated-vm has no Node 25 build; `call_tool_chain` SIGSEGVs under Node 25). Local operational evidence, not a server property.
@@ -301,7 +301,7 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 ### ⚠️ ESCALATE IF
 
 1. **ESCALATE IF authentication is required** (HTTP 401, OAuth prompt, token needs). Completing browser OAuth or obtaining a Bearer token is **operator-only**; surface the step and wait.
-2. **ESCALATE IF discovery shows catalog drift**: a documented tool missing or renamed, unexpected new tools, or schemas that contradict [`references/tool_surface.md`](references/tool_surface.md). A provider-surface change requires a reviewed packet update.
+2. **ESCALATE IF discovery shows catalog drift**: a documented tool missing or renamed, unexpected new tools, or schemas that contradict [`references/tool-surface.md`](references/tool-surface.md). A provider-surface change requires a reviewed packet update.
 3. **ESCALATE IF the account is Free-tier or quota-limited** (entitlement denial, 429, or quota exhaustion), reporting the provider's message verbatim.
 4. **ESCALATE IF `call_tool_chain` drops the connection** (`-32000 Connection closed`), which locally indicates a Node 25 runtime; the Node 24 pin is an operator-side fix.
 5. **ESCALATE IF retrieved evidence conflicts with an `sk-design` reference lock or decision ledger**, asking which source prevails before any design conclusion is drawn.
@@ -312,17 +312,17 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 
 ### Core References
 
-- [tool_surface.md](references/tool_surface.md) - The 8-tool contract: arguments, bounds, ID typing, result shapes, the research funnel, plan gating, and the deprecated-surface negative knowledge.
-- [mcp_wiring.md](references/mcp_wiring.md) - The registered `refero` manual, the mcp-remote bridge (transport strategy, OAuth, auth state), the doubled-prefix naming rule, and the discovery-first contract.
+- [tool-surface.md](references/tool-surface.md) - The 8-tool contract: arguments, bounds, ID typing, result shapes, the research funnel, plan gating, and the deprecated-surface negative knowledge.
+- [mcp-wiring.md](references/mcp-wiring.md) - The registered `refero` manual, the mcp-remote bridge (transport strategy, OAuth, auth state), the doubled-prefix naming rule, and the discovery-first contract.
 - [troubleshooting.md](references/troubleshooting.md) - Failure modes and fixes (401, tools not resolving, Node 25 SIGSEGV, sparse flows, quota, batch failures).
 
 ### Templates and Assets
 
-- [utcp_refero_manual.md](assets/utcp_refero_manual.md) - The verified `.utcp_config.json` manual snapshot (already registered: verify, do not re-add) plus the env-backed Bearer-header alternative, marked alternative-only.
+- [utcp-refero-manual.md](assets/utcp-refero-manual.md) - The verified `.utcp_config.json` manual snapshot (already registered: verify, do not re-add) plus the env-backed Bearer-header alternative, marked alternative-only.
 
 ### Reference Loading Notes
 
-- `tool_surface.md` is the baseline (always). Load `mcp_wiring.md` and the manual asset for wiring/auth intent, `troubleshooting.md` for errors.
+- `tool-surface.md` is the baseline (always). Load `mcp-wiring.md` and the manual asset for wiring/auth intent, `troubleshooting.md` for errors.
 - Keep Section 2 (SMART ROUTING) as the single routing authority.
 
 ---
@@ -364,7 +364,7 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 
 ### Knowledge Base Dependencies
 
-**Required**: `references/tool_surface.md` (tool contract baseline). **Conditional**: `mcp_wiring.md` + `assets/utcp_refero_manual.md` (wiring/auth), `troubleshooting.md` (errors).
+**Required**: `references/tool-surface.md` (tool contract baseline). **Conditional**: `mcp-wiring.md` + `assets/utcp-refero-manual.md` (wiring/auth), `troubleshooting.md` (errors).
 
 ---
 
@@ -389,9 +389,9 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) discovers reference and asset docs dynamically. Start from `references/tool_surface.md` for the tool contract and workflows, `references/mcp_wiring.md` for the bridge and auth model, and `references/troubleshooting.md` for failures.
+The router (Section 2) discovers reference and asset docs dynamically. Start from `references/tool-surface.md` for the tool contract and workflows, `references/mcp-wiring.md` for the bridge and auth model, and `references/troubleshooting.md` for failures.
 
-Assets: `assets/utcp_refero_manual.md` (the verified, already-registered manual snapshot plus the Bearer alternative), loaded for wiring/auth intent.
+Assets: `assets/utcp-refero-manual.md` (the verified, already-registered manual snapshot plus the Bearer alternative), loaded for wiring/auth intent.
 
 Scripts: `scripts/doctor.sh` (read-only, non-interactive diagnostics; optional endpoint probe gated behind `REFERO_DOCTOR_LIVE=1`) and `scripts/install.sh` (verify-only posture check: runtime prerequisites, manual presence read-only, operator-only auth boundaries; nothing is installed or modified).
 

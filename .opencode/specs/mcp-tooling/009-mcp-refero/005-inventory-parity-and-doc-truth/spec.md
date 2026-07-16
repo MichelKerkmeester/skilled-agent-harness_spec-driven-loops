@@ -116,7 +116,7 @@ One canonical home for every Refero transport fact (`mcp-refero`), full inventor
 - Live authenticated verification (OAuth completion, live `tool_info` capture) - that is phase 006.
 - `design_references_mcp.md` beyond the lines that link moved catalog content - it remains the judgment-side contract.
 - Hub registration surfaces (mode-registry, hub-router) - registered in phase 003; no routing signal changes here.
-- New tools, arguments, or limits - everything traces to `references/tool_surface.md`.
+- New tools, arguments, or limits - everything traces to `references/tool-surface.md`.
 
 ### Files to Change
 
@@ -124,7 +124,7 @@ One canonical home for every Refero transport fact (`mcp-refero`), full inventor
 |-----------|-------------|-------------|
 | `mcp-refero/examples/` (README + 3 walkthroughs) | Create | Worked Code Mode walkthroughs mirroring mcp-aside-devtools examples conventions |
 | `mcp-refero/scripts/install.sh` | Create | Verify-only posture check, bash -n clean |
-| `mcp-refero/manual_testing_playbook/read_only/funnel_walk.md`, `read_only/format_text_retrieval.md`, `safety_gate/quota_recovery.md` | Create | Three research-grounded scenarios, live parts SKIP-valid |
+| `mcp-refero/manual_testing_playbook/read-only/funnel-walk.md`, `read-only/format-text-retrieval.md`, `safety-gate/quota-recovery.md` | Create | Three research-grounded scenarios, live parts SKIP-valid |
 | `mcp-refero/manual_testing_playbook/manual_testing_playbook.md` | Modify | Coverage 9 scenarios, waves, summaries, index, v1.1.0.0 |
 | `mcp-refero/feature_catalog/` (8 leaves + 3 domain files + root) | Create/Modify | Per-tool leaves; domain files link leaves; count summary updated |
 | `mcp-refero/SKILL.md`, `mcp-refero/README.md` | Modify | v1.1.0.0; examples/install.sh surfaced |
@@ -142,10 +142,10 @@ One canonical home for every Refero transport fact (`mcp-refero`), full inventor
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Examples directory with worked walkthroughs, each opening with `tool_info` confirmation, doubled-prefix callables only, OAuth steps SKIP-valid with exact commands, no invented tools/params | 4 files exist; every callable matches the 8-tool surface in `references/tool_surface.md`; link check 0 broken |
+| REQ-001 | Examples directory with worked walkthroughs, each opening with `tool_info` confirmation, doubled-prefix callables only, OAuth steps SKIP-valid with exact commands, no invented tools/params | 4 files exist; every callable matches the 8-tool surface in `references/tool-surface.md`; link check 0 broken |
 | REQ-002 | `scripts/install.sh` non-interactive verify posture: node>=18 + npx, manual presence read-only grep, Node-25 SIGSEGV warning, OAuth operator-only | `bash -n` exit 0; live run reports OK on all posture checks without writing anything |
 | REQ-003 | Playbook >=17 scenario files with >=3 new research-grounded scenarios; root index consistent | 9 IDs = 9 per-scenario files in the index; 17 files under the playbook tree (9 indexed + 8 routing-recall) |
-| REQ-004 | Feature catalog gives each of the 8 documented tools a home | 8 per-tool leaves exist, each tracing args/bounds to `references/tool_surface.md`; count summary matches |
+| REQ-004 | Feature catalog gives each of the 8 documented tools a home | 8 per-tool leaves exist, each tracing args/bounds to `references/tool-surface.md`; count summary matches |
 | REQ-005 | sk-design de-dup executed with an unchanged validation gate | `refero_tools.md` is a pointer doc; `validate_skill_package.py .opencode/skills/sk-design` output byte-identical before/after; 0 broken links in touched files |
 | REQ-006 | Version 1.1.0.0 + changelog | SKILL.md frontmatter `version: 1.1.0.0`; `changelog/v1.1.0.0.md` exists and describes the release |
 
@@ -164,7 +164,7 @@ One canonical home for every Refero transport fact (`mcp-refero`), full inventor
 
 - **SC-001**: `mcp-refero` matches hub-sibling inventory shape (examples/, scripts/install.sh, enriched playbook, per-tool catalog leaves, versioned changelog) with `package_skill.py --check --strict` PASS.
 - **SC-002**: Exactly one canonical home for the Refero tool surface: `refero_tools.md` in sk-design points to `mcp-refero` and keeps only judgment-side guidance, with the sk-design package gate output unchanged.
-- **SC-003**: Every new documented callable, argument, and bound traces to `references/tool_surface.md`; nothing invented; OAuth-gated steps SKIP-valid.
+- **SC-003**: Every new documented callable, argument, and bound traces to `references/tool-surface.md`; nothing invented; OAuth-gated steps SKIP-valid.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -174,7 +174,7 @@ One canonical home for every Refero transport fact (`mcp-refero`), full inventor
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 001 synthesis + tool_surface.md as ground truth | Wrong facts propagate to examples/scenarios | Every claim traced to the cited table; no live-only claims stated as verified |
+| Dependency | Phase 001 synthesis + tool-surface.md as ground truth | Wrong facts propagate to examples/scenarios | Every claim traced to the cited table; no live-only claims stated as verified |
 | Risk | sk-design slimming breaks a consumer link or the package gate | sk-design routing/validation regression | Gate run before and after with byte-diff; link check over every touched file |
 | Risk | Playbook index drift (counts vs files) | Broken release-readiness contract | Index sentence, coverage table, and file count updated together and re-counted |
 | Risk | SKILL.md word-count creep past the 5,000 hard cap | Strict gate failure | Additions kept minimal (3,889 words after edit; cap 5,000) |
@@ -185,5 +185,5 @@ One canonical home for every Refero transport fact (`mcp-refero`), full inventor
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. Runtime/provider unknowns (live callable confirmation, OAuth end-to-end, 429 behavior) are deliberately carried in `references/tool_surface.md` Section 5 and belong to phase 006, not this phase.
+- None. Runtime/provider unknowns (live callable confirmation, OAuth end-to-end, 429 behavior) are deliberately carried in `references/tool-surface.md` Section 5 and belong to phase 006, not this phase.
 <!-- /ANCHOR:questions -->

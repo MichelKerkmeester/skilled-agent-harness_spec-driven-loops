@@ -101,7 +101,7 @@ FAILURE MODES:
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets introduced into `.utcp_config.json` — the `mobbin` manual references credentials via env, per the phase 002 snippet [evidence: 0 secrets/tokens; `env: {}` deliberate — OAuth via mcp-remote browser round-trip]
-- [x] CHK-031 [P0] Pre-existing `.utcp_config.json` manuals untouched in the diff [evidence: `mobbin` manual added byte-per the packet draft in `assets/utcp_mobbin_manual.md`; 9/9 prior manuals unchanged per structured diff]
+- [x] CHK-031 [P0] Pre-existing `.utcp_config.json` manuals untouched in the diff [evidence: `mobbin` manual added byte-per the packet draft in `assets/utcp-mobbin-manual.md`; 9/9 prior manuals unchanged per structured diff]
 - [x] CHK-032 [P1] Transport posture preserved in registry: mutatesWorkspace false, no Write/Edit/Task grants [evidence: `mode-registry.json` entry: `mutatesWorkspace: false` + forbidden Write/Edit/Task; 0/8 surfaces add grants]
 <!-- /ANCHOR:security -->
 

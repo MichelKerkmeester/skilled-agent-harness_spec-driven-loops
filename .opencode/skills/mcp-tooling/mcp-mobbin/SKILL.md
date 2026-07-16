@@ -3,7 +3,7 @@ name: mcp-mobbin
 description: "Mobbin MCP transport: read-only app/screen/flow design research via Code Mode; sk-design owns the judgment."
 compatibility: Requires a paid Mobbin plan for MCP (Pro, Team, or Enterprise; Free has no MCP access), the npx mcp-remote bridge, Node.js >=18, and a browser OAuth round-trip on first use.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.1.0
+version: 1.2.0.0
 user-invocable: true
 ---
 
@@ -11,9 +11,9 @@ user-invocable: true
 
 # Mobbin (mcp-mobbin)
 
-Search **Mobbin's library of real app UI screenshots** ("the world's largest library of real app UI screenshots" per the official repo) from an agent through the **Mobbin MCP via Code Mode**: one documented tool, `search_screens`, answering app, screen, flow, and element research as query intents. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every call goes against the external hosted Mobbin service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design` first. Deep operational detail lives in [`references/tool_surface.md`](references/tool_surface.md) and [`references/mcp_wiring.md`](references/mcp_wiring.md).
+Search **Mobbin's library of real app UI screenshots** ("the world's largest library of real app UI screenshots" per the official repo) from an agent through the **Mobbin MCP via Code Mode**: one documented tool, `search_screens`, answering app, screen, flow, and element research as query intents. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every call goes against the external hosted Mobbin service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design` first. Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
 
-> **Discovery status (read first).** The `mobbin` Code Mode manual **IS REGISTERED** in this repo's `.utcp_config.json` (registered 2026-07-16 by an operator; this packet never edits the config), and **live discovery RAN 2026-07-16, pre-auth** (fixture: `references/discovery_fixture_2026-07-16.json`): `list_tools` returned **THREE** read tools — registry names `mobbin.mobbin.{search_screens,search_flows,search_sections}` (dot-separated), TS callables `mobbin.mobbin_search_screens(...)` etc. per the fixture's `Access as:` lines — superseding the research's one-public-tool baseline. Operator browser OAuth is still pending for CALLS. Per-session `tool_info` re-confirmation stays MANDATORY before relying on any name: confirm, then call, and fail closed on drift.
+> **Discovery status (read first).** The `mobbin` Code Mode manual **IS REGISTERED** in this repo's `.utcp_config.json` (registered 2026-07-16 by an operator; this packet never edits the config), and **live discovery RAN 2026-07-16, pre-auth** (fixture: `references/discovery-fixture-2026-07-16.json`): `list_tools` returned **THREE** read tools — registry names `mobbin.mobbin.{search_screens,search_flows,search_sections}` (dot-separated), TS callables `mobbin.mobbin_search_screens(...)` etc. per the fixture's `Access as:` lines — superseding the research's one-public-tool baseline. Operator browser OAuth is still pending for CALLS. Per-session `tool_info` re-confirmation stays MANDATORY before relying on any name: confirm, then call, and fail closed on drift.
 >
 > **Access trap.** Mobbin MCP access is documented for **Pro, Team, and Enterprise — not Free**. Authentication is **browser OAuth only** (DCR + PKCE S256, `openid` scope): **no static API key or auth env var exists for MCP** — that question is answered in the negative, not open. Unauthenticated calls return HTTP 401. The service is rate-limited to **60 requests per 60 seconds per user**.
 
@@ -87,18 +87,18 @@ TASK CONTEXT
 The router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring. This skill uses a **flat intent router**: no keyed `references/<key>/` subdirectories. References are the primary loaded resources; the single asset is the registered manual's reference shape.
 
 ```text
-references/tool_surface.md      # the one-tool surface, args, response shape, workflows, plan gating
-references/mcp_wiring.md        # registered manual, mcp-remote bridge, OAuth/DCR/PKCE, naming, discovery
+references/tool-surface.md      # the one-tool surface, args, response shape, workflows, plan gating
+references/mcp-wiring.md        # registered manual, mcp-remote bridge, OAuth/DCR/PKCE, naming, discovery
 references/troubleshooting.md   # failure modes + fixes
-assets/utcp_mobbin_manual.md    # Registered manual's reference shape + post-registration checklist
+assets/utcp-mobbin-manual.md    # Registered manual's reference shape + post-registration checklist
 ```
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | ----- | ------------ | --------- |
-| ALWAYS | Every invocation | `references/tool_surface.md` (tool contract + workflow baseline) |
-| CONDITIONAL | Wiring / auth intent | `references/mcp_wiring.md`, `assets/utcp_mobbin_manual.md` |
+| ALWAYS | Every invocation | `references/tool-surface.md` (tool contract + workflow baseline) |
+| CONDITIONAL | Wiring / auth intent | `references/mcp-wiring.md`, `assets/utcp-mobbin-manual.md` |
 | CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
 | ALWAYS (design work) | Retrieved evidence feeds a design decision | `sk-design` modes, loaded before any taste call |
 
@@ -111,7 +111,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/tool_surface.md"
+DEFAULT_RESOURCE = "references/tool-surface.md"
 MIN_CONFIDENCE = 1
 AMBIGUITY_DELTA = 1
 
@@ -140,12 +140,12 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "APPS":         ["references/tool_surface.md"],
-    "SCREENS":      ["references/tool_surface.md"],
-    "FLOWS":        ["references/tool_surface.md"],
-    "ELEMENTS":     ["references/tool_surface.md"],
-    "WIRING_AUTH":  ["references/mcp_wiring.md", "assets/utcp_mobbin_manual.md"],
-    "TROUBLESHOOT": ["references/troubleshooting.md", "references/mcp_wiring.md"],
+    "APPS":         ["references/tool-surface.md"],
+    "SCREENS":      ["references/tool-surface.md"],
+    "FLOWS":        ["references/tool-surface.md"],
+    "ELEMENTS":     ["references/tool-surface.md"],
+    "WIRING_AUTH":  ["references/mcp-wiring.md", "assets/utcp-mobbin-manual.md"],
+    "TROUBLESHOOT": ["references/troubleshooting.md", "references/mcp-wiring.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -226,11 +226,11 @@ const all = await list_tools();
 const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 ```
 
-Both the dotted discovery names and the callable form are **CONFIRMED by live discovery 2026-07-16** (`references/discovery_fixture_2026-07-16.json`; the convention-derived prediction held exactly). Discovery ran **pre-auth** — `tools/list` and schemas needed no OAuth; authenticated CALLS remain operator-gated. If a future discovery shows different names, missing tools, unexpected new tools, or a mutation-capable tool, **fail closed**: report the drift; a changed provider surface requires a reviewed packet update, not an improvised call.
+Both the dotted discovery names and the callable form are **CONFIRMED by live discovery 2026-07-16** (`references/discovery-fixture-2026-07-16.json`; the convention-derived prediction held exactly). Discovery ran **pre-auth** — `tools/list` and schemas needed no OAuth; authenticated CALLS remain operator-gated. If a future discovery shows different names, missing tools, unexpected new tools, or a mutation-capable tool, **fail closed**: report the drift; a changed provider surface requires a reviewed packet update, not an improvised call.
 
 ### The live three-tool surface (supersedes the one-tool baseline, 2026-07-16)
 
-The research's **one publicly documented tool** baseline is superseded: live pre-auth discovery on 2026-07-16 listed **three** read-only search tools. All three passed the mutation-refusal check (no mutation-capable tool in the listing). Full fixture schemas and the completeness boundary: [`references/tool_surface.md`](references/tool_surface.md).
+The research's **one publicly documented tool** baseline is superseded: live pre-auth discovery on 2026-07-16 listed **three** read-only search tools. All three passed the mutation-refusal check (no mutation-capable tool in the listing). Full fixture schemas and the completeness boundary: [`references/tool-surface.md`](references/tool-surface.md).
 
 | Tool | Posture | Required inputs (fixture schema) | Optional inputs (fixture schema) |
 |---|---|---|---|
@@ -242,7 +242,7 @@ Declared `search_screens` output (fixture): `{ query, screens: [{ id, image_url,
 
 ### Calling through Code Mode
 
-> **Callable-name status.** The callable is confirmed by live discovery 2026-07-16 (`references/discovery_fixture_2026-07-16.json`): registry name `mobbin.mobbin.search_screens`, TS callable `mobbin.mobbin_search_screens(args)`. The call below quotes the confirmed form; the live RESPONSE behavior is still unexercised (authenticated calls pend operator OAuth), so re-confirm with `tool_info` per session.
+> **Callable-name status.** The callable is confirmed by live discovery 2026-07-16 (`references/discovery-fixture-2026-07-16.json`): registry name `mobbin.mobbin.search_screens`, TS callable `mobbin.mobbin_search_screens(args)`. The call below quotes the confirmed form; the live RESPONSE behavior is still unexercised (authenticated calls pend operator OAuth), so re-confirm with `tool_info` per session.
 
 ```typescript
 call_tool_chain({
@@ -286,7 +286,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 
 ### ✅ ALWAYS
 
-1. **ALWAYS confirm callables with `tool_info` before first use.** The `mobbin.mobbin_search_screens` form is **CONFIRMED by live discovery 2026-07-16** (fixture `references/discovery_fixture_2026-07-16.json`; registry names are dotted `mobbin.mobbin.<tool>`). Fail closed on any drift from the live three-tool baseline (`search_screens`, `search_flows`, `search_sections`).
+1. **ALWAYS confirm callables with `tool_info` before first use.** The `mobbin.mobbin_search_screens` form is **CONFIRMED by live discovery 2026-07-16** (fixture `references/discovery-fixture-2026-07-16.json`; registry names are dotted `mobbin.mobbin.<tool>`). Fail closed on any drift from the live three-tool baseline (`search_screens`, `search_flows`, `search_sections`).
 2. **ALWAYS load `sk-design` first for any design-affecting request.** This packet is the transport; `sk-design` is the mandatory cross-hub judgment partner. Transport output can never satisfy taste, accessibility, responsiveness, or readiness gates by itself.
 3. **ALWAYS report the manual's registration state honestly.** The `mobbin` manual is registered in `.utcp_config.json`: presence means verify read-only and proceed to discovery; absence is a **failure symptom** (a broken or reverted registration) to escalate to the operator, never to repair from this packet.
 4. **ALWAYS follow the documented input contract**: `query` from the user's actual words, `platform` `ios`|`web` (infer from context; unclear -> ask), `limit` starting at 5 and never exceeding ~15 without asking. Preserve unknown response fields untouched.
@@ -296,7 +296,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 ### ⛔ NEVER
 
 1. **NEVER use Write, Edit, or Task through this packet.** It is a TRANSPORT: it retrieves external evidence and changes nothing in this workspace. Hand file changes to the owning workflow skill.
-2. **NEVER edit, re-draft, or re-add the `mobbin` manual in `.utcp_config.json`.** The registered entry is operator-owned. The reference shape in [`assets/utcp_mobbin_manual.md`](assets/utcp_mobbin_manual.md) exists for verification and escalation, not for this packet to apply or repair.
+2. **NEVER edit, re-draft, or re-add the `mobbin` manual in `.utcp_config.json`.** The registered entry is operator-owned. The reference shape in [`assets/utcp-mobbin-manual.md`](assets/utcp-mobbin-manual.md) exists for verification and escalation, not for this packet to apply or repair.
 3. **NEVER invent an API key or auth env var.** No `MOBBIN_API_KEY` or any MCP auth env var exists — the manual's `env` stays empty, and the auth env-var question is answered in the negative, not open. Never accept credentials in prompts or tool arguments; never print Authorization headers, OAuth codes, token responses, adapter debug logs, or auth-cache contents.
 4. **NEVER claim OAuth works end-to-end.** It is **Inferred** pending an operator-completed authorization; report it as such. Never inspect, clear, or repair `~/.mcp-auth` / `MCP_REMOTE_CONFIG_DIR` — reauthorization is an explicit operator action.
 5. **NEVER invent tool schemas or tool families beyond the discovered inventory.** The live pre-auth listing (2026-07-16) contains exactly `search_screens`, `search_flows`, and `search_sections`. No `search_apps`, `search_elements`, detail, image-download, or mutation tools exist to call. The `deep` question is resolved — `mode: "deep" | "standard" | "fast"` is a real client input on `search_screens` — but do not assume undeclared parameters on any tool.
@@ -317,17 +317,17 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 
 ### Core References
 
-- [tool_surface.md](references/tool_surface.md) - The live three-tool contract (fixture schemas for `search_screens`, `search_flows`, `search_sections`), the resolved `deep` mode, the query-intent workflows, plan gating, the completeness boundary, and the open questions.
-- [mcp_wiring.md](references/mcp_wiring.md) - The registered `mobbin` manual, the mcp-remote bridge (remote Streamable HTTP vs local stdio adapter), OAuth/DCR/PKCE, the confirmed naming (2026-07-16 fixture), and the discovery-first contract, with CONFIRMED/INFERRED/UNKNOWN tagging.
+- [tool-surface.md](references/tool-surface.md) - The live three-tool contract (fixture schemas for `search_screens`, `search_flows`, `search_sections`), the resolved `deep` mode, the query-intent workflows, plan gating, the completeness boundary, and the open questions.
+- [mcp-wiring.md](references/mcp-wiring.md) - The registered `mobbin` manual, the mcp-remote bridge (remote Streamable HTTP vs local stdio adapter), OAuth/DCR/PKCE, the confirmed naming (2026-07-16 fixture), and the discovery-first contract, with CONFIRMED/INFERRED/UNKNOWN tagging.
 - [troubleshooting.md](references/troubleshooting.md) - Failure modes and fixes (pre-auth 401, no tools resolving, 429, Free-account denial, drift).
 
 ### Templates and Assets
 
-- [utcp_mobbin_manual.md](assets/utcp_mobbin_manual.md) - The registered manual's reference shape exactly as researched (registered 2026-07-16, byte-identical to the live config), plus the post-registration checklist (doc-side items executed; live items pending).
+- [utcp-mobbin-manual.md](assets/utcp-mobbin-manual.md) - The registered manual's reference shape exactly as researched (registered 2026-07-16, byte-identical to the live config), plus the post-registration checklist (doc-side items executed; live items pending).
 
 ### Reference Loading Notes
 
-- `tool_surface.md` is the baseline (always). Load `mcp_wiring.md` and the manual asset for wiring/auth intent, `troubleshooting.md` for errors.
+- `tool-surface.md` is the baseline (always). Load `mcp-wiring.md` and the manual asset for wiring/auth intent, `troubleshooting.md` for errors.
 - Keep Section 2 (SMART ROUTING) as the single routing authority.
 
 ---
@@ -370,7 +370,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 
 ### Knowledge Base Dependencies
 
-**Required**: `references/tool_surface.md` (tool contract baseline). **Conditional**: `mcp_wiring.md` + `assets/utcp_mobbin_manual.md` (wiring/auth), `troubleshooting.md` (errors).
+**Required**: `references/tool-surface.md` (tool contract baseline). **Conditional**: `mcp-wiring.md` + `assets/utcp-mobbin-manual.md` (wiring/auth), `troubleshooting.md` (errors).
 
 ---
 
@@ -379,7 +379,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 | Item | Value |
 |---|---|
 | Endpoint | `https://api.mobbin.com/mcp` (hosted remote, Streamable HTTP; local bridge `npx -y mcp-remote`) |
-| Manual | `mobbin` — **REGISTERED** in `.utcp_config.json` (2026-07-16); discovery DONE 2026-07-16 pre-auth (`references/discovery_fixture_2026-07-16.json`); OAuth pends the operator for CALLS (reference shape in `assets/utcp_mobbin_manual.md`) |
+| Manual | `mobbin` — **REGISTERED** in `.utcp_config.json` (2026-07-16); discovery DONE 2026-07-16 pre-auth (`references/discovery-fixture-2026-07-16.json`); OAuth pends the operator for CALLS (reference shape in `assets/utcp-mobbin-manual.md`) |
 | Callable form | `mobbin.mobbin_search_screens(...)` — **CONFIRMED 2026-07-16**; registry names dotted `mobbin.mobbin.<tool>`; re-confirm via `tool_info` per session |
 | Tool surface | THREE live tools: `search_screens` (`query`, `platform` `"ios"`\|`"web"`, `mode` `"deep"`\|`"standard"`\|`"fast"`, `limit`, `exclude_screen_ids`, `image_format`), `search_flows` (`query`, `platform`, `limit`, `page`), `search_sections` (`query`, `limit`, `page`) |
 | Result | Declared: `search_screens` `{query, screens[{id, app_name, mobbin_url, image_url, platform}]}`; `search_flows`/`search_sections` add `page`, `has_next_page`; live response shape untested pre-OAuth |
@@ -394,9 +394,9 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) discovers reference and asset docs dynamically. Start from `references/tool_surface.md` for the tool contract and workflows, `references/mcp_wiring.md` for the bridge and auth model, and `references/troubleshooting.md` for failures.
+The router (Section 2) discovers reference and asset docs dynamically. Start from `references/tool-surface.md` for the tool contract and workflows, `references/mcp-wiring.md` for the bridge and auth model, and `references/troubleshooting.md` for failures.
 
-Assets: `assets/utcp_mobbin_manual.md` (the registered manual's reference shape, byte-identical to the researched sol/luna drafts and to the live `.utcp_config.json` entry), loaded for wiring/auth intent.
+Assets: `assets/utcp-mobbin-manual.md` (the registered manual's reference shape, byte-identical to the researched sol/luna drafts and to the live `.utcp_config.json` entry), loaded for wiring/auth intent.
 
 Scripts: `scripts/doctor.sh` (read-only, non-interactive diagnostics; manual absence now reported as an ERROR — a broken or reverted registration; optional endpoint probe gated behind `MOBBIN_DOCTOR_LIVE=1`, expecting the documented HTTP 401) and `scripts/install.sh` (non-interactive verify-only posture check: Node 18+/npx, manual presence, and the operator-only OAuth pointer).
 

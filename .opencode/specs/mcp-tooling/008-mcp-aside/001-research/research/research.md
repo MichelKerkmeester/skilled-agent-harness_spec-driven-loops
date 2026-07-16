@@ -278,7 +278,7 @@ Registration notes (merged):
 | `references/mcp.md` | initialize/tools/list, one-`repl`-tool reality + rediscovery, Code Mode naming, timeouts, browser-binding error explanation [luna], fallback |
 | `references/security.md` | Identities, permission modes, approvals, prompt injection, sensitive actions, privacy/egress |
 | `references/troubleshooting.md` | Error taxonomy; daemon/account/profile/MCP recovery; sign-out recovery (`aside account use <id>` / `--account`) [glm] |
-| `assets/utcp_aside_manual.md` | Exact manual object (§13) + validation instructions |
+| `assets/utcp-aside-manual.md` | Exact manual object (§13) + validation instructions |
 | `scripts/doctor.sh` | Read-only platform/binary/version/account/daemon/config/discovery diagnostics |
 | `manual_testing_playbook/` | Positive/negative scenario contracts with concrete evidence (sol's §15 acceptance matrix: install, CLI, session, REPL, screenshot, download, network, console probe, MCP handshake, Code Mode discovery, fallback, lifecycle, identity, human gate, prompt injection, concurrency, artifact-failure) |
 

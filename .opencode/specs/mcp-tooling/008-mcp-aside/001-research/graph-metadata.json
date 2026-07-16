@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The Aside browser's developer surface is unverified: the program assumes an Aside CLI (primary) plus an Aside MCP server (fallback through Code Mode), but no one has confirmed the CLI exists as a real standalone binary, what tools the MCP server exposes, or how auth works",
     "created_at": "2026-07-16T09:39:14Z",
-    "last_save_at": "2026-07-16T12:00:32.932Z",
+    "last_save_at": "2026-07-16T15:05:08.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b882e829b3256097e356842551a68dbcd39ecf204e78a939ecb68ea23c4988db",
+    "source_fingerprint": "sha256:dcfbaf6d63f70e55064ab4851a26352d429918dc02540041ff971bc604e20f4e",
     "source_doc_hashes": {
       "spec.md": "324c06201afc546ad036a7c331d34f548fa29614d70ec15881312c42cb00ee5a",
       "plan.md": "cba8744c11eab19a1212c3d2b785772b7010a095f2f86ff84b3f88a15e0dfe02",
       "tasks.md": "4b16d1a3047cbd4dec035a0d8f505e419185f4498cc0bdc676a42645261b851d",
-      "implementation-summary.md": "360a84ffa3dafb2909922b1e980ee02e20de8bd44076fb8ab8ead284d2e537d7",
-      "research/research.md": "c6df6441de290ac6eec6d5c88b1def6fb605ea25c8b38d6785d305e789a7467b"
+      "implementation-summary.md": "9d055ba94b65e7bce0021aae7ccf21694dd79c717dd1cd82c2ad8cc895a3b9cc",
+      "research/research.md": "088f72d919a5d73bfbdea0f3c1ef49351380d2b3013c6c97c96789781aa98937"
     },
     "last_active_child_id": null,
     "last_active_at": null

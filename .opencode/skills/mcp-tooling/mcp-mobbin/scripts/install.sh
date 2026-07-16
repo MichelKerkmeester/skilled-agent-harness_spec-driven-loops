@@ -53,11 +53,11 @@ if [ -f "$UTCP" ]; then
     if grep -q 'mcp-remote' "$UTCP" 2>/dev/null && grep -q 'api.mobbin.com/mcp' "$UTCP" 2>/dev/null; then
       ok "Bridge shape present: npx mcp-remote -> $ENDPOINT (empty env; no credential belongs here)"
     else
-      err "Manual present but the expected bridge shape (npx mcp-remote -> $ENDPOINT) is not fully matched; escalate to the operator with assets/utcp_mobbin_manual.md as the reference shape"
+      err "Manual present but the expected bridge shape (npx mcp-remote -> $ENDPOINT) is not fully matched; escalate to the operator with assets/utcp-mobbin-manual.md as the reference shape"
       FAILURES=$((FAILURES + 1))
     fi
   else
-    err "'mobbin' manual NOT found in .utcp_config.json — a broken or reverted registration. Escalate to the operator (reference shape: assets/utcp_mobbin_manual.md); this script never re-adds it"
+    err "'mobbin' manual NOT found in .utcp_config.json — a broken or reverted registration. Escalate to the operator (reference shape: assets/utcp-mobbin-manual.md); this script never re-adds it"
     FAILURES=$((FAILURES + 1))
   fi
 else
@@ -71,7 +71,7 @@ info "Mobbin MCP auth is a browser OAuth round-trip on first use — operator-on
 info "There is NO API key or auth env var for Mobbin MCP; the manual env stays empty and no credential is ever added"
 info "Requires a paid plan (Pro, Team, or Enterprise); the Free plan has no MCP access"
 info "To authenticate: open a FRESH Code Mode session (manuals load at startup), trigger any first mobbin.* call, and complete the browser authorization; auth state persists under ~/.mcp-auth"
-info "Then confirm the callables inside Code Mode: tool_info({ tool_name: \"mobbin.mobbin_search_screens\" }) — confirmed 2026-07-16 (plus search_flows, search_sections; see references/discovery_fixture_2026-07-16.json); re-confirm per session"
+info "Then confirm the callables inside Code Mode: tool_info({ tool_name: \"mobbin.mobbin_search_screens\" }) — confirmed 2026-07-16 (plus search_flows, search_sections; see references/discovery-fixture-2026-07-16.json); re-confirm per session"
 
 log ""
 if [ "$FAILURES" -eq 0 ]; then

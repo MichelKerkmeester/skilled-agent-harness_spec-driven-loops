@@ -36,7 +36,7 @@ Generated from five research iterations for session `fanout-sol-1784196482911-9a
 |---|---|
 | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | CLI-primary/Code Mode fallback, lifecycle, discovery, cleanup |
 | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md` | Chrome CDP patterns |
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md` | Chrome session lifecycle |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md` | Chrome session lifecycle |
 | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md` | Chrome recovery taxonomy |
 | `.opencode/skills/mcp-code-mode/SKILL.md` | progressive discovery, callable naming, structured results, rules |
 | `.opencode/skills/mcp-code-mode/references/configuration.md` | UTCP manual schema and stdio configuration |

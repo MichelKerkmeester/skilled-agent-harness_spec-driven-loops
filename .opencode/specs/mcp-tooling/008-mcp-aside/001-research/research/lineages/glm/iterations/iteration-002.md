@@ -94,7 +94,7 @@ Everything needed to author the packet at `.opencode/skills/mcp-tooling/mcp-asid
    - §4 Rules: ALWAYS check CLI first (`command -v aside`); ALWAYS discover tool names before MCP calls; ALWAYS wrap MCP in try/finally; NEVER assume REPL API without `--help`; auth rule: verify account sign-in for built-in models.
    - §5 Success criteria, §6 Integration points (Gate 2, Tool Routing, Memory), §7 Quick reference, §8 References.
 2. **INSTALL_GUIDE.md:** `curl -fsSL https://releases.aside.com/install.sh | bash`; verify `aside --version`; resolve account sign-in.
-3. **references/** flat set (like mcp-chrome-devtools): `aside_cli_patterns.md` (NL agent + REPL recipes), `mcp_session_management.md` (account/session/permission modes), `troubleshooting.md` (sign-out recovery, session not found).
+3. **references/** flat set (like mcp-chrome-devtools): `aside_cli_patterns.md` (NL agent + REPL recipes), `mcp_session-management.md` (account/session/permission modes), `troubleshooting.md` (sign-out recovery, session not found).
 4. **scripts/install.sh:** thin wrapper around the curl installer + `command -v aside` verification.
 5. **Registration:**
    - New UTCP manual `aside` in `.utcp_config.json` (F2.4).

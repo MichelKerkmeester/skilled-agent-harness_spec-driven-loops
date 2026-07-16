@@ -16,7 +16,7 @@ version: 1.1.0.0
 
 ## 1. OVERVIEW
 
-Each walkthrough is a working sequence and an honest capability boundary: it exercises only the eight documented tools from [`references/tool_surface.md`](../references/tool_surface.md), confirms callable names live before relying on them, and marks every OAuth-gated step **SKIP-valid** with the exact command an operator (or a later authenticated run) executes. These are documents, not shell scripts, because every Refero call runs inside Code Mode (`call_tool_chain`), never in a shell.
+Each walkthrough is a working sequence and an honest capability boundary: it exercises only the eight documented tools from [`references/tool-surface.md`](../references/tool-surface.md), confirms callable names live before relying on them, and marks every OAuth-gated step **SKIP-valid** with the exact command an operator (or a later authenticated run) executes. These are documents, not shell scripts, because every Refero call runs inside Code Mode (`call_tool_chain`), never in a shell.
 
 **Prerequisites for all walkthroughs**: the `refero` manual registered in `.utcp_config.json` (verify with `bash ../scripts/doctor.sh` or `bash ../scripts/install.sh`; read-only, never edited), Code Mode on Node 24, and — for live steps — a Refero **Pro (or higher)** account with operator-completed OAuth. The Free plan has no MCP access at all, so an unauthenticated environment records live steps as SKIP with the auth blocker, never as failures. See [INSTALL_GUIDE.md](../INSTALL_GUIDE.md).
 
@@ -24,7 +24,7 @@ Each walkthrough is a working sequence and an honest capability boundary: it exe
 
 ## 2. AVAILABLE WALKTHROUGHS
 
-### 2.1 funnel_styles_screens_flows.md
+### 2.1 funnel-styles-screens-flows.md
 
 **Purpose:** The full official research funnel — styles first for visual direction, screens for concrete patterns, flows for the journey — with metadata-first ordering held at every layer.
 
@@ -35,7 +35,7 @@ Each walkthrough is a working sequence and an honest capability boundary: it exe
 
 ---
 
-### 2.2 metadata_first_lookup.md
+### 2.2 metadata-first-lookup.md
 
 **Purpose:** A single-tool, metadata-first screen lookup: answer "what do real empty states look like" from search metadata alone, fetching detail only for a justified shortlist.
 
@@ -46,7 +46,7 @@ Each walkthrough is a working sequence and an honest capability boundary: it exe
 
 ---
 
-### 2.3 screen_image_fetch.md
+### 2.3 screen-image-fetch.md
 
 **Purpose:** Fetch a screenshot for one materially relevant screen — image last, `thumbnail` before `full`, and never `response_format` on the image tool.
 
@@ -91,7 +91,7 @@ Calls run synchronously inside the `call_tool_chain` body (no top-level `await`)
 ## 5. SEE ALSO
 
 - `../SKILL.md` — the runtime contract and full rule set
-- `../references/tool_surface.md` — the eight-tool contract every walkthrough traces to
-- `../references/mcp_wiring.md` — the registered manual, discovery, and the doubled-prefix rule
+- `../references/tool-surface.md` — the eight-tool contract every walkthrough traces to
+- `../references/mcp-wiring.md` — the registered manual, discovery, and the doubled-prefix rule
 - `../scripts/install.sh` — non-interactive verify-only posture check
 - `../scripts/doctor.sh` — read-only diagnostics with the optional gated endpoint probe

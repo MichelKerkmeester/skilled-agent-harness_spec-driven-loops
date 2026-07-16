@@ -33,7 +33,7 @@ The inferred callable `mobbin.mobbin_search_screens({ query, platform, limit? })
 | Job-to-be-done | `<surface> <job>` | `"web empty-state dashboard"` |
 | Smoke check | Any concrete screen phrase at `limit: 1` | `"onboarding"` with `limit: 1` |
 
-### Cross-cutting constraints (traced to [`tool_surface.md`](../../references/tool_surface.md))
+### Cross-cutting constraints (traced to [`tool-surface.md`](../../references/tool-surface.md))
 
 - **Rate limit** (§3): 60 requests per 60 seconds per user; on 429 honor `Retry-After`, then exponential backoff with jitter — never invent finer burst contracts.
 - **Plan gating** (§3): MCP requires Pro, Team, or Enterprise (Free excluded; exact denial semantics UNVERIFIED — relay the provider's message verbatim).
@@ -48,15 +48,15 @@ The inferred callable `mobbin.mobbin_search_screens({ query, platform, limit? })
 
 | File | Layer | Role |
 |---|---|---|
-| `references/tool_surface.md` | Shared | Inputs, response shape, inline-image ordering, and the resolved `deep` mode |
-| `references/mcp_wiring.md` | Shared | Inferred callable naming and the discovery-first contract |
+| `references/tool-surface.md` | Shared | Inputs, response shape, inline-image ordering, and the resolved `deep` mode |
+| `references/mcp-wiring.md` | Shared | Inferred callable naming and the discovery-first contract |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read_only/screens_search.md` | Manual playbook | The screen-search contract and citation discipline |
-| `manual_testing_playbook/pairing/sk_design_pairing.md` | Manual playbook | Screen evidence routes through sk-design before any design verdict |
+| `manual_testing_playbook/read-only/screens-search.md` | Manual playbook | The screen-search contract and citation discipline |
+| `manual_testing_playbook/pairing/sk-design-pairing.md` | Manual playbook | Screen evidence routes through sk-design before any design verdict |
 
 ---
 

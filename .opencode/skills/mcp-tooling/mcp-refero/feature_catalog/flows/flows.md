@@ -33,14 +33,14 @@ Both tools are READ-ONLY. Flow IDs are **numeric**, the only numeric layer; styl
 
 | File | Layer | Role |
 |---|---|---|
-| `references/tool_surface.md` | Shared | Flow tool arguments, the numeric-ID rule, and the sparse-flow discipline |
-| `references/mcp_wiring.md` | Shared | Doubled-prefix callable rule and the discovery-first contract |
+| `references/tool-surface.md` | Shared | Flow tool arguments, the numeric-ID rule, and the sparse-flow discipline |
+| `references/mcp-wiring.md` | Shared | Doubled-prefix callable rule and the discovery-first contract |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read_only/flow_detail.md` | Manual playbook | A numeric-ID flow detail returns ordered steps read-only |
+| `manual_testing_playbook/read-only/flow-detail.md` | Manual playbook | A numeric-ID flow detail returns ordered steps read-only |
 
 ---
 
@@ -51,8 +51,8 @@ Both tools are READ-ONLY. Flow IDs are **numeric**, the only numeric layer; styl
 - Feature file path: `flows/flows.md`
 
 Per-tool leaves in this domain:
-- [search_flows.md](search_flows.md) - task/journey search (numeric flow IDs)
-- [get_flow.md](get_flow.md) - ordered step retrieval (numeric ID union; batch heuristic 10)
+- [search-flows.md](search-flows.md) - task/journey search (numeric flow IDs)
+- [get-flow.md](get-flow.md) - ordered step retrieval (numeric ID union; batch heuristic 10)
 
 Related references:
 - [screens.md](../screens/screens.md) covers the screens used to reconstruct sparse journeys

@@ -57,7 +57,7 @@ if [ -f "$UTCP" ]; then
       info "Expected bridge shape (npx mcp-remote -> $ENDPOINT) not fully matched; inspect the manual manually"
     fi
   else
-    err "'mobbin' manual NOT found in .utcp_config.json — UNEXPECTED: the manual is registered; absence means a broken or reverted registration. Escalate to the operator (reference shape in assets/utcp_mobbin_manual.md); never re-add it from this script"
+    err "'mobbin' manual NOT found in .utcp_config.json — UNEXPECTED: the manual is registered; absence means a broken or reverted registration. Escalate to the operator (reference shape in assets/utcp-mobbin-manual.md); never re-add it from this script"
   fi
 else
   warn ".utcp_config.json not found at repo root ($UTCP)"
@@ -92,7 +92,7 @@ fi
 log "-- Callable confirmation (run inside Code Mode) --"
 info "The mandatory tool_info confirmation cannot run from a shell. In a fresh Code Mode session (manuals load at startup), run:"
 info '  tool_info({ tool_name: "mobbin.mobbin_search_screens" })'
-info "Callables CONFIRMED by live discovery 2026-07-16 (references/discovery_fixture_2026-07-16.json):"
+info "Callables CONFIRMED by live discovery 2026-07-16 (references/discovery-fixture-2026-07-16.json):"
 info "  registry names mobbin.mobbin.{search_screens,search_flows,search_sections} (dotted)."
 info "Re-confirm per session; fail closed on drift from the fixture baseline."
 info "Discovery has not yet run against the registered manual; OAuth (operator-only) has not been completed."

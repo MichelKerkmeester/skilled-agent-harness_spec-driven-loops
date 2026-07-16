@@ -33,7 +33,7 @@ Compose the query from the component plus its context and state — for example 
 | Component + state | `<component> <state> on <surface>` | `"inline validation on signup"` |
 | Behavior comparison | `<component>` compared across `app_name` values in one result set | `"tab bar"` at `limit: 5` |
 
-### Cross-cutting constraints (traced to [`tool_surface.md`](../../references/tool_surface.md))
+### Cross-cutting constraints (traced to [`tool-surface.md`](../../references/tool-surface.md))
 
 - **Rate limit** (§3): 60 requests per 60 seconds per user; on 429 honor `Retry-After`, then exponential backoff with jitter.
 - **Plan gating** (§3): MCP requires Pro, Team, or Enterprise (Free excluded); no per-tool tier gates may be invented.
@@ -48,15 +48,15 @@ Compose the query from the component plus its context and state — for example 
 
 | File | Layer | Role |
 |---|---|---|
-| `references/tool_surface.md` | Shared | The element-intent workflow and the no-fabricated-tools boundary |
-| `references/mcp_wiring.md` | Shared | Inferred callable naming and the discovery-first contract |
+| `references/tool-surface.md` | Shared | The element-intent workflow and the no-fabricated-tools boundary |
+| `references/mcp-wiring.md` | Shared | Inferred callable naming and the discovery-first contract |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read_only/screens_search.md` | Manual playbook | The search contract element-intent queries run on |
-| `manual_testing_playbook/pairing/sk_design_pairing.md` | Manual playbook | Element evidence routes through sk-design before any design verdict |
+| `manual_testing_playbook/read-only/screens-search.md` | Manual playbook | The search contract element-intent queries run on |
+| `manual_testing_playbook/pairing/sk-design-pairing.md` | Manual playbook | Element evidence routes through sk-design before any design verdict |
 
 ---
 

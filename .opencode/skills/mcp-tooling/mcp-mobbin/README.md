@@ -31,7 +31,7 @@ version: 1.1.0.0
 
 ### Why This Skill Exists
 
-Mobbin bills itself as the world's largest library of real app UI screenshots, and it exposes that library through a paid, hosted MCP. Reaching it from a coding agent without a contract is risky in specific, documented ways. The live tool surface is bounded: pre-auth discovery on 2026-07-16 lists exactly three read-only search tools (`search_screens`, `search_flows`, `search_sections` — the latter two live-discovered, superseding the one-tool research baseline), and an agent that guesses beyond them will invent `search_apps` or detail tools that do not exist. The auth model invites a worse guess: there is **no API key** — Mobbin MCP is browser OAuth only (DCR, PKCE S256), so an agent that "helpfully" wires a `MOBBIN_API_KEY` env var has fabricated a credential path the provider never published. Access is plan-gated (Pro/Team/Enterprise; Free excluded), unauthenticated CALLS return HTTP 401 by design (discovery is pre-auth), and the service enforces 60 requests per 60 seconds. The Code Mode callables are observation-confirmed (`references/discovery_fixture_2026-07-16.json`), and each session still re-confirms them. This packet wraps the wiring truth, the three-tool contract, the intent workflows, and the hard boundary that judgment belongs to `sk-design`, so the agent always knows what it can call, what it can claim, and what it must hand off.
+Mobbin bills itself as the world's largest library of real app UI screenshots, and it exposes that library through a paid, hosted MCP. Reaching it from a coding agent without a contract is risky in specific, documented ways. The live tool surface is bounded: pre-auth discovery on 2026-07-16 lists exactly three read-only search tools (`search_screens`, `search_flows`, `search_sections` — the latter two live-discovered, superseding the one-tool research baseline), and an agent that guesses beyond them will invent `search_apps` or detail tools that do not exist. The auth model invites a worse guess: there is **no API key** — Mobbin MCP is browser OAuth only (DCR, PKCE S256), so an agent that "helpfully" wires a `MOBBIN_API_KEY` env var has fabricated a credential path the provider never published. Access is plan-gated (Pro/Team/Enterprise; Free excluded), unauthenticated CALLS return HTTP 401 by design (discovery is pre-auth), and the service enforces 60 requests per 60 seconds. The Code Mode callables are observation-confirmed (`references/discovery-fixture-2026-07-16.json`), and each session still re-confirms them. This packet wraps the wiring truth, the three-tool contract, the intent workflows, and the hard boundary that judgment belongs to `sk-design`, so the agent always knows what it can call, what it can claim, and what it must hand off.
 
 ### What It Does
 
@@ -57,13 +57,13 @@ bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
 
 **Step 2 (operator): reconnect, authenticate, discover.**
 
-The `mobbin` manual is registered in `.utcp_config.json` (reference shape in [`assets/utcp_mobbin_manual.md`](./assets/utcp_mobbin_manual.md)). An operator reconnects Code Mode (manuals load at startup) and completes browser OAuth on a paid account. Then discovery is mandatory:
+The `mobbin` manual is registered in `.utcp_config.json` (reference shape in [`assets/utcp-mobbin-manual.md`](./assets/utcp-mobbin-manual.md)). An operator reconnects Code Mode (manuals load at startup) and completes browser OAuth on a paid account. Then discovery is mandatory:
 
 ```typescript
 // Inside Code Mode. Callables CONFIRMED by live discovery 2026-07-16 (pre-auth):
 //   registry names mobbin.mobbin.{search_screens,search_flows,search_sections}
 //   TS callables mobbin.mobbin_search_screens(...) etc.
-// Fixture: references/discovery_fixture_2026-07-16.json. Re-confirm per session:
+// Fixture: references/discovery-fixture-2026-07-16.json. Re-confirm per session:
 const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 // Fail closed if the name, schema, or tool set differs from the fixture baseline.
 ```
@@ -93,11 +93,11 @@ Any design-affecting use routes through `sk-design`. Cite every selected screen 
 
 ### The Live Three-Tool Surface
 
-Live pre-auth discovery on 2026-07-16 ([`references/discovery_fixture_2026-07-16.json`](./references/discovery_fixture_2026-07-16.json)) **supersedes the research's one-public-tool baseline**: the registry lists three read-only search tools — `search_screens` (`query`; `platform` `"ios"`|`"web"`; `mode` `"deep"`|`"standard"`|`"fast"`; `limit`; `exclude_screen_ids`; `image_format`), `search_flows` (one user journey per query; `platform`; `limit`; `page` max 20), and `search_sections` (one website section per query; `limit`; `page`). The `deep` dispute is resolved: it is a client-settable `mode` input on `search_screens` (`"deep"` = AI-powered relevance pipeline). App, screen, and element research remain query intents over `search_screens`; flows and website sections have their own tools; no detail, image-download, or mutation tool exists to invent. The declared `search_screens` output is `{ query, screens[{id, app_name, mobbin_url, image_url, platform}] }` — the research-documented `index`/`failed[]` fields do not appear in the declared schema; verify the actual shape on the first authenticated call. Full contract: [`references/tool_surface.md`](./references/tool_surface.md).
+Live pre-auth discovery on 2026-07-16 ([`references/discovery-fixture-2026-07-16.json`](./references/discovery-fixture-2026-07-16.json)) **supersedes the research's one-public-tool baseline**: the registry lists three read-only search tools — `search_screens` (`query`; `platform` `"ios"`|`"web"`; `mode` `"deep"`|`"standard"`|`"fast"`; `limit`; `exclude_screen_ids`; `image_format`), `search_flows` (one user journey per query; `platform`; `limit`; `page` max 20), and `search_sections` (one website section per query; `limit`; `page`). The `deep` dispute is resolved: it is a client-settable `mode` input on `search_screens` (`"deep"` = AI-powered relevance pipeline). App, screen, and element research remain query intents over `search_screens`; flows and website sections have their own tools; no detail, image-download, or mutation tool exists to invent. The declared `search_screens` output is `{ query, screens[{id, app_name, mobbin_url, image_url, platform}] }` — the research-documented `index`/`failed[]` fields do not appear in the declared schema; verify the actual shape on the first authenticated call. Full contract: [`references/tool-surface.md`](./references/tool-surface.md).
 
 ### The Registered Wiring State
 
-The provider is a hosted remote server over Streamable HTTP at `api.mobbin.com/mcp` — there is no local package; the official repo is registration metadata only. The local bridge is a `stdio` manual launching `npx -y mcp-remote https://api.mobbin.com/mcp` with an **empty env**, drafted byte-identically by two research lineages and now **registered** in `.utcp_config.json` (2026-07-16, operator-applied verbatim; reference shape in [`assets/utcp_mobbin_manual.md`](./assets/utcp_mobbin_manual.md)). Live discovery ran the same day, pre-auth: the Code Mode callable `mobbin.mobbin_search_screens(...)` is confirmed (registry name `mobbin.mobbin.search_screens`; fixture `references/discovery_fixture_2026-07-16.json`), and two additional tools (`search_flows`, `search_sections`) were listed. Per-session `tool_info` re-confirmation before first use stays the rule.
+The provider is a hosted remote server over Streamable HTTP at `api.mobbin.com/mcp` — there is no local package; the official repo is registration metadata only. The local bridge is a `stdio` manual launching `npx -y mcp-remote https://api.mobbin.com/mcp` with an **empty env**, drafted byte-identically by two research lineages and now **registered** in `.utcp_config.json` (2026-07-16, operator-applied verbatim; reference shape in [`assets/utcp-mobbin-manual.md`](./assets/utcp-mobbin-manual.md)). Live discovery ran the same day, pre-auth: the Code Mode callable `mobbin.mobbin_search_screens(...)` is confirmed (registry name `mobbin.mobbin.search_screens`; fixture `references/discovery-fixture-2026-07-16.json`), and two additional tools (`search_flows`, `search_sections`) were listed. Per-session `tool_info` re-confirmation before first use stays the rule.
 
 ### Authentication Without An API Key
 
@@ -152,7 +152,7 @@ A: No — and do not create one. Mobbin MCP has **no API key and no auth env var
 
 **Q: Why don't any `mobbin.*` tools resolve in Code Mode?**
 
-A: The `mobbin` manual **is registered** in `.utcp_config.json`, but manuals load at Code Mode startup: a session opened before the registration will not see them, and operator OAuth is still pending. Reconnect Code Mode in a fresh session and complete OAuth. If `doctor.sh` reports the manual missing, the registration broke — escalate to the operator; the reference shape and the post-registration checklist live in `assets/utcp_mobbin_manual.md`.
+A: The `mobbin` manual **is registered** in `.utcp_config.json`, but manuals load at Code Mode startup: a session opened before the registration will not see them, and operator OAuth is still pending. Reconnect Code Mode in a fresh session and complete OAuth. If `doctor.sh` reports the manual missing, the registration broke — escalate to the operator; the reference shape and the post-registration checklist live in `assets/utcp-mobbin-manual.md`.
 
 **Q: Can I search apps, flows, or elements directly?**
 
@@ -189,10 +189,10 @@ A: No. It is a transport with `mutatesWorkspace: false`: Write, Edit, and Task a
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Verify-only setup: the registered wiring state, the paid-plan gate, and the operator-only OAuth step |
-| [`references/tool_surface.md`](./references/tool_surface.md) | The single-tool contract, the four intent workflows, plan gating, rate limit, and the open questions |
-| [`references/mcp_wiring.md`](./references/mcp_wiring.md) | The registered manual, the mcp-remote bridge, OAuth/DCR/PKCE, inferred naming, and discovery |
+| [`references/tool-surface.md`](./references/tool-surface.md) | The single-tool contract, the four intent workflows, plan gating, rate limit, and the open questions |
+| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth/DCR/PKCE, inferred naming, and discovery |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Full failure-mode table |
-| [`assets/utcp_mobbin_manual.md`](./assets/utcp_mobbin_manual.md) | The registered manual's reference shape and the post-registration checklist (doc-side executed; live items pending) |
+| [`assets/utcp-mobbin-manual.md`](./assets/utcp-mobbin-manual.md) | The registered manual's reference shape and the post-registration checklist (doc-side executed; live items pending) |
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: smoke search, platform-filtered flow research, element intent |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Capability inventory: one tool, four query-intent domains |
 | [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for registration/OAuth-gated steps) |

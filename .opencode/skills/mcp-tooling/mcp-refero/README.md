@@ -88,11 +88,11 @@ Any design-affecting use routes through `sk-design`, which collapses the evidenc
 
 ### The Eight-Tool Surface
 
-Refero exposes eight read-only tools across three layers. Styles (`refero_search_styles`, `refero_get_style`) carry visual direction and cover web marketing/product pages only. Screens (`refero_search_screens`, `refero_get_screen`, `refero_get_similar_screens`, `refero_get_screen_image`) carry concrete UI patterns for web and iOS. Flows (`refero_search_flows`, `refero_get_flow`) carry multi-step journeys with ordered step goals, actions, and system responses. Styles and screens use UUID strings; flows use numeric IDs; the two typings are never interchangeable. "Apps" and "elements" are query facets inspected through `site` and `ui_elements` metadata, not tool families. Full contract: [`references/tool_surface.md`](./references/tool_surface.md).
+Refero exposes eight read-only tools across three layers. Styles (`refero_search_styles`, `refero_get_style`) carry visual direction and cover web marketing/product pages only. Screens (`refero_search_screens`, `refero_get_screen`, `refero_get_similar_screens`, `refero_get_screen_image`) carry concrete UI patterns for web and iOS. Flows (`refero_search_flows`, `refero_get_flow`) carry multi-step journeys with ordered step goals, actions, and system responses. Styles and screens use UUID strings; flows use numeric IDs; the two typings are never interchangeable. "Apps" and "elements" are query facets inspected through `site` and `ui_elements` metadata, not tool families. Full contract: [`references/tool-surface.md`](./references/tool-surface.md).
 
 ### The Doubled-Prefix Callable
 
-Code Mode names calls `{manual}.{manual}_{tool}`. Because every Refero tool is already named `refero_*`, the callable form doubles the prefix: `refero.refero_refero_search_styles(...)`. Live discovery on 2026-07-16 (`references/discovery_fixture_2026-07-16.json`) settled the research record's naming conflict: all eight tools listed pre-auth under the dotted doubled registry names `refero.refero.refero_<tool>`, and the fixture's `Access as:` line confirms the doubled TS callable. The rule stays discovery-first: re-confirm the exact callable with `tool_info` per session, and fail closed on drift. Calls run synchronously inside the `call_tool_chain` body, with no top-level `await`.
+Code Mode names calls `{manual}.{manual}_{tool}`. Because every Refero tool is already named `refero_*`, the callable form doubles the prefix: `refero.refero_refero_search_styles(...)`. Live discovery on 2026-07-16 (`references/discovery-fixture-2026-07-16.json`) settled the research record's naming conflict: all eight tools listed pre-auth under the dotted doubled registry names `refero.refero.refero_<tool>`, and the fixture's `Access as:` line confirms the doubled TS callable. The rule stays discovery-first: re-confirm the exact callable with `tool_info` per session, and fail closed on drift. Calls run synchronously inside the `call_tool_chain` body, with no top-level `await`.
 
 ### Wiring And Authentication
 
@@ -146,7 +146,7 @@ A: Yes, for any live call. The Free plan has no MCP access at all, which is an a
 
 **Q: Why is the callable prefix doubled?**
 
-A: Code Mode names calls `{manual}.{manual}_{tool}`. The manual is named `refero` and every Refero tool is already named `refero_*`, so the callable becomes `refero.refero_refero_<tool>`. Live registry evidence confirmed this on 2026-07-16 (`references/discovery_fixture_2026-07-16.json`): discovery lists the dotted `refero.refero.refero_<tool>` names, and the doubled TS callable is real. The packet still requires a per-session `tool_info` confirmation before first use because provider surfaces drift.
+A: Code Mode names calls `{manual}.{manual}_{tool}`. The manual is named `refero` and every Refero tool is already named `refero_*`, so the callable becomes `refero.refero_refero_<tool>`. Live registry evidence confirmed this on 2026-07-16 (`references/discovery-fixture-2026-07-16.json`): discovery lists the dotted `refero.refero.refero_<tool>` names, and the doubled TS callable is real. The packet still requires a per-session `tool_info` confirmation before first use because provider surfaces drift.
 
 **Q: Does OAuth work end to end?**
 
@@ -173,7 +173,7 @@ A: `sk-design` owns the design judgment and is loaded first for any design-affec
 | Install posture | `bash .opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh` exits 0 (verify-only; nothing installed or modified) |
 | Wiring presence | `bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports the `refero` manual registered (read-only grep) |
 | Endpoint reachability | `REFERO_DOCTOR_LIVE=1 bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports HTTP 401 (auth required, as documented) |
-| Callable confirmation | Inside Code Mode: `tool_info({ tool_name: "refero.refero_refero_search_styles" })` returns a schema — works pre-auth (confirmed 2026-07-16, `references/discovery_fixture_2026-07-16.json`); authenticated CALLS still need operator OAuth |
+| Callable confirmation | Inside Code Mode: `tool_info({ tool_name: "refero.refero_refero_search_styles" })` returns a schema — works pre-auth (confirmed 2026-07-16, `references/discovery-fixture-2026-07-16.json`); authenticated CALLS still need operator OAuth |
 
 ---
 
@@ -183,10 +183,10 @@ A: `sk-design` owns the design judgment and is loaded first for any design-affec
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Verify-only setup: the registered manual, the Pro-plan requirement, and the operator-only OAuth step |
-| [`references/tool_surface.md`](./references/tool_surface.md) | The eight-tool contract, ID typing, the research funnel, plan gating, and the deprecated legacy surface |
-| [`references/mcp_wiring.md`](./references/mcp_wiring.md) | The registered manual, the mcp-remote bridge, OAuth/Bearer, the doubled-prefix rule, and discovery |
+| [`references/tool-surface.md`](./references/tool-surface.md) | The eight-tool contract, ID typing, the research funnel, plan gating, and the deprecated legacy surface |
+| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth/Bearer, the doubled-prefix rule, and discovery |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Full failure-mode table |
-| [`assets/utcp_refero_manual.md`](./assets/utcp_refero_manual.md) | The verified manual snapshot and the Bearer alternative, verbatim |
+| [`assets/utcp-refero-manual.md`](./assets/utcp-refero-manual.md) | The verified manual snapshot and the Bearer alternative, verbatim |
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: the full funnel, a metadata-first lookup, and a screen-image fetch |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Capability inventory by layer (styles, screens, flows) with one per-tool leaf per documented tool |
 | [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for paid/OAuth steps) |

@@ -52,7 +52,7 @@ Failure modes for the `mcp-refero` transport, ordered roughly by how often they 
 
 ## 3. RELATED RESOURCES
 
-- [mcp_wiring.md](mcp_wiring.md) - the bridge, OAuth/Bearer model, naming rule, and discovery contract behind these fixes.
-- [tool_surface.md](tool_surface.md) - the eight-tool contract and the deprecated legacy surface.
-- [utcp_refero_manual.md](../assets/utcp_refero_manual.md) - the verified manual snapshot and the Bearer alternative.
+- [mcp-wiring.md](mcp-wiring.md) - the bridge, OAuth/Bearer model, naming rule, and discovery contract behind these fixes.
+- [tool-surface.md](tool-surface.md) - the eight-tool contract and the deprecated legacy surface.
+- [utcp-refero-manual.md](../assets/utcp-refero-manual.md) - the verified manual snapshot and the Bearer alternative.
 - [SKILL.md](../SKILL.md) - the runtime contract, including the escalation rules these fixes feed.

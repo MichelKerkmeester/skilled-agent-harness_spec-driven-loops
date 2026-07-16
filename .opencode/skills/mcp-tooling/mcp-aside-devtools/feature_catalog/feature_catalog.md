@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 This document is the canonical capability inventory for the `mcp-aside-devtools` skill. The root catalog acts as the system-level directory: it maps the five Smart Router intent domains (TASK, REPL, MCP, INSTALL, TROUBLESHOOT from SKILL.md §2) onto the three lanes the skill routes between — the natural-language agent-task CLI, the deterministic Playwright-compatible REPL, and the Aside MCP server via Code Mode. Every capability below traces to the packet's references, examples, playbook scenarios, or the completed fan-out research; nothing is invented beyond that verified surface.
 
-> **Registration status (read first).** The `aside` UTCP manual **is registered** in `.utcp_config.json` (2026-07-16; snapshot in [`../assets/utcp_aside_manual.md`](../assets/utcp_aside_manual.md)), and the Code Mode callable is **CONFIRMED by live discovery 2026-07-16** ([`../references/discovery_fixture_2026-07-16.json`](../references/discovery_fixture_2026-07-16.json)): registry/discovery name `aside.aside.repl` (dot-separated), TypeScript callable `aside.aside_repl(args)` inside `call_tool_chain`. Per-session rediscovery still precedes first invocation (`tools.listChanged: true`).
+> **Registration status (read first).** The `aside` UTCP manual **is registered** in `.utcp_config.json` (2026-07-16; snapshot in [`../assets/utcp-aside-manual.md`](../assets/utcp-aside-manual.md)), and the Code Mode callable is **CONFIRMED by live discovery 2026-07-16** ([`../references/discovery-fixture-2026-07-16.json`](../references/discovery-fixture-2026-07-16.json)): registry/discovery name `aside.aside.repl` (dot-separated), TypeScript callable `aside.aside_repl(args)` inside `call_tool_chain`. Per-session rediscovery still precedes first invocation (`tools.listChanged: true`).
 
 > **Verification note.** The CLI command surface and the one-`repl`-tool MCP inventory are version-pinned evidence against `1.26.626.1517` (observed 2026-07-16). Re-capture `aside --help` and re-run `tools/list` before relying on any flag or tool name; `tools.listChanged: true` makes hardcoding a defect.
 
@@ -54,7 +54,7 @@ Outcome-oriented browser-agent work: `aside "<task>"` and `aside exec` run natur
 | Explicit execution | Task execution with provider/model controls | MUTATING (browser-side) | `aside exec ...` |
 | Account selection | Run a direct task under a chosen account | MUTATING (browser-side) | `aside --account <id> "<task>"` |
 
-See [`task/agent_tasks.md`](task/agent_tasks.md) for boundary rules, the pause/resume approval model, and the unresolved model-flag spelling.
+See [`task/agent-tasks.md`](task/agent-tasks.md) for boundary rules, the pause/resume approval model, and the unresolved model-flag spelling.
 
 ---
 
@@ -67,7 +67,7 @@ Deterministic proof steps: `aside repl "<JavaScript>"` keeps a persistent Playwr
 | Deterministic browser steps | Persistent ES2023+/Playwright REPL: `openTab(url)`, `snapshot(page)` | MUTATING (browser-side) | `aside repl "<JavaScript>"` |
 | Evidence capture | Screenshot/PDF artifacts verified by PNG magic bytes, not tool response | MUTATING (writes artifacts) | `bash examples/repl-evidence-capture.sh <url> <dir>` |
 
-See [`repl/repl_evidence_capture.md`](repl/repl_evidence_capture.md) for the helper inventory and the independent-artifact-verification rule.
+See [`repl/repl-evidence-capture.md`](repl/repl-evidence-capture.md) for the helper inventory and the independent-artifact-verification rule.
 
 ---
 
@@ -78,9 +78,9 @@ Code Mode composition: `aside mcp` (local stdio, no credential field) exposes on
 | Feature | One-line description | Class | Canonical invocation |
 |---|---|---|---|
 | Stdio handshake + discovery | `initialize` then `tools/list`; one `repl` tool on `1.26.626.1517` | READ-ONLY | `bash examples/mcp-handshake-probe.sh` |
-| Code Mode composition | Chain browser work with other Code Mode tools via the registered manual | MUTATING (browser-side) | `aside.aside_repl({ title, code })` — CONFIRMED 2026-07-16 (registry name `aside.aside.repl`; fixture `references/discovery_fixture_2026-07-16.json`) |
+| Code Mode composition | Chain browser work with other Code Mode tools via the registered manual | MUTATING (browser-side) | `aside.aside_repl({ title, code })` — CONFIRMED 2026-07-16 (registry name `aside.aside.repl`; fixture `references/discovery-fixture-2026-07-16.json`) |
 
-See [`mcp/mcp_transport_and_code_mode.md`](mcp/mcp_transport_and_code_mode.md) for the registered-manual state, rediscovery mandate, and binding constraint.
+See [`mcp/mcp-transport-and-code-mode.md`](mcp/mcp-transport-and-code-mode.md) for the registered-manual state, rediscovery mandate, and binding constraint.
 
 ---
 
@@ -93,7 +93,7 @@ Operator-invoked setup and diagnostics: the official curl installer (macOS-only)
 | CLI install (operator-invoked) | Official curl bootstrap installer; wrapper adds platform gate + idempotency | MUTATING (host install) | `bash scripts/install.sh` |
 | Health diagnostics | Read-only doctor: binary, version, account, MCP handshake, registered manual | READ-ONLY | `bash scripts/doctor.sh` |
 
-See [`install/install_and_doctor.md`](install/install_and_doctor.md) for prerequisites, the preflight fixture discipline, and the never-install-implicitly rule.
+See [`install/install-and-doctor.md`](install/install-and-doctor.md) for prerequisites, the preflight fixture discipline, and the never-install-implicitly rule.
 
 ---
 
@@ -106,7 +106,7 @@ Failure classification and recovery: distinguishing binding, auth, transport, an
 | Error taxonomy + recovery | PROFILE_UNBOUND vs signed-out vs dead child vs daemon outage | READ-ONLY | `references/troubleshooting.md` |
 | Guarded capability probes | Console/network capture probes that fail closed (no verified contract) | READ-ONLY (probe) | Playbook ASD-012 / ASD-013 |
 
-See [`troubleshoot/troubleshooting_recipes.md`](troubleshoot/troubleshooting_recipes.md) for the recovery sequences and the open UNKNOWN items.
+See [`troubleshoot/troubleshooting-recipes.md`](troubleshoot/troubleshooting-recipes.md) for the recovery sequences and the open UNKNOWN items.
 
 ---
 
@@ -116,11 +116,11 @@ Each capability area maps to exactly one per-feature file in its intent folder.
 
 | Section | Area | Capabilities | Per-feature file |
 |---|---|---|---|
-| 2 | Task | 4 | `task/agent_tasks.md` |
-| 3 | Repl | 2 | `repl/repl_evidence_capture.md` |
-| 4 | Mcp | 2 | `mcp/mcp_transport_and_code_mode.md` |
-| 5 | Install | 2 | `install/install_and_doctor.md` |
-| 6 | Troubleshoot | 2 | `troubleshoot/troubleshooting_recipes.md` |
+| 2 | Task | 4 | `task/agent-tasks.md` |
+| 3 | Repl | 2 | `repl/repl-evidence-capture.md` |
+| 4 | Mcp | 2 | `mcp/mcp-transport-and-code-mode.md` |
+| 5 | Install | 2 | `install/install-and-doctor.md` |
+| 6 | Troubleshoot | 2 | `troubleshoot/troubleshooting-recipes.md` |
 | **Total** | **5 intents** | **12 capabilities** | **5 per-feature files** |
 
 > The subcommand surface is exactly `account`, `exec`, `repl`, `mcp` plus the top-level task form — nothing else may be invented. Open UNKNOWNs that stay flagged: the browser-profile binding procedure, the permission mode `aside mcp` inherits, the `-m` vs `--model`/`--provider` flag spelling, console/network capture contracts, and the single-vs-dual-manual isolation question. Keep the per-feature file count equal to the 5 intent areas as the surface evolves.

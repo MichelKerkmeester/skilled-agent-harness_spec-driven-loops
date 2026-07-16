@@ -25,7 +25,7 @@ Please help me:
    which steps are mine to do (Code Mode reconnect + browser OAuth), then STOP there
 5. Confirm the callables inside Code Mode with tool_info (discovery works pre-auth; confirmed
    2026-07-16: mobbin.mobbin_search_screens plus search_flows and search_sections -
-   see references/discovery_fixture_2026-07-16.json)
+   see references/discovery-fixture-2026-07-16.json)
 
 Do NOT edit .utcp_config.json, do NOT invent a MOBBIN_API_KEY, do NOT touch ~/.mcp-auth,
 and never handle my credentials.
@@ -132,7 +132,7 @@ The gated live probe sends one unauthenticated HTTPS request. **HTTP 401 is the 
 
 ### Step A: reconnect Code Mode
 
-The `mobbin` manual is already registered in `manual_call_templates[]` of `.utcp_config.json` (stdio, `npx -y mcp-remote https://api.mobbin.com/mcp`, **empty `env`** — no credential of any kind, and no `.env` line; reference shape in [`assets/utcp_mobbin_manual.md`](assets/utcp_mobbin_manual.md)). Reconnect Code Mode so the manual loads: manuals load at startup, so any session opened before the registration cannot see it.
+The `mobbin` manual is already registered in `manual_call_templates[]` of `.utcp_config.json` (stdio, `npx -y mcp-remote https://api.mobbin.com/mcp`, **empty `env`** — no credential of any kind, and no `.env` line; reference shape in [`assets/utcp-mobbin-manual.md`](assets/utcp-mobbin-manual.md)). Reconnect Code Mode so the manual loads: manuals load at startup, so any session opened before the registration cannot see it.
 
 ### Step B: browser OAuth (the only auth path)
 
@@ -166,7 +166,7 @@ Expected: `search_screens` resolves under the `mobbin` manual. The predicted cal
 ### Validation: `phase_4_complete`
 
 - [ ] `tool_info` returned a schema for the live callable (predicted or corrected)
-- [x] The live tool set was compared against the documented baseline: pre-auth discovery 2026-07-16 lists THREE tools (`search_screens`, `search_flows`, `search_sections`), superseding the one-tool baseline — recorded as a reviewed packet update, not drift-improvisation [evidence: `references/discovery_fixture_2026-07-16.json` `list_tools` payload]
+- [x] The live tool set was compared against the documented baseline: pre-auth discovery 2026-07-16 lists THREE tools (`search_screens`, `search_flows`, `search_sections`), superseding the one-tool baseline — recorded as a reviewed packet update, not drift-improvisation [evidence: `references/discovery-fixture-2026-07-16.json` `list_tools` payload]
 - [ ] A first `limit: 1` smoke search returned `screens[]` + `failed[]`, and inline-image arrival through `call_tool_chain` was observed (its fidelity is UNKNOWN until this step)
 
 ---
@@ -196,7 +196,7 @@ See [`references/troubleshooting.md`](references/troubleshooting.md) for the ful
 | ---- | ------- |
 | `scripts/doctor.sh` | Read-only diagnostics; manual absence now an ERROR (broken registration); gated live probe via `MOBBIN_DOCTOR_LIVE=1` |
 | `scripts/install.sh` | Non-interactive verify-only posture check: Node 18+/npx, registered manual presence, operator OAuth pointer |
-| `assets/utcp_mobbin_manual.md` | The registered manual's reference shape + post-registration checklist (doc-side executed; live pending) |
+| `assets/utcp-mobbin-manual.md` | The registered manual's reference shape + post-registration checklist (doc-side executed; live pending) |
 | `examples/` | Worked Code Mode walkthroughs (smoke search, platform-filtered flow research, element intent) |
 | `.utcp_config.json` (repo root) | Holds the registered `mobbin` manual (2026-07-16); **never edited by this skill** |
 | `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) | Operator-owned auth state; **never touched by this skill** |
@@ -207,8 +207,8 @@ See [`references/troubleshooting.md`](references/troubleshooting.md) for the ful
 | -------- | -------- | ------- |
 | README | `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` | Human orientation and quick start |
 | SKILL.md | `.opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Runtime instructions and routing |
-| Tool Surface | `.opencode/skills/mcp-tooling/mcp-mobbin/references/tool_surface.md` | The single-tool contract, intent workflows, plan gating, and rate limit |
-| MCP Wiring | `.opencode/skills/mcp-tooling/mcp-mobbin/references/mcp_wiring.md` | Registered manual, bridge, OAuth/DCR/PKCE, inferred naming, discovery |
+| Tool Surface | `.opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md` | The single-tool contract, intent workflows, plan gating, and rate limit |
+| MCP Wiring | `.opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md` | Registered manual, bridge, OAuth/DCR/PKCE, inferred naming, discovery |
 | Troubleshooting | `.opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md` | Full failure-mode table |
 
 ### Licensing and Upstream

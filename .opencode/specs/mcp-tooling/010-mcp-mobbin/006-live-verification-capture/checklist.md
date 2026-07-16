@@ -69,8 +69,8 @@ _memory:
 
 - [x] CHK-020 [P0] All acceptance criteria met [evidence: REQ-001 to REQ-009 verified through tasks.md T003-T012, 9/9 with command evidence]
 - [x] CHK-021 [P0] Manual verification complete [evidence: `rg -n "INFERRED" .opencode/skills/mcp-tooling/mcp-mobbin --glob '!changelog/*' --glob '!*fixture*'` returns only bracketed epistemic tags for OAuth items, 0 callable-name INFERRED claims]
-- [x] CHK-022 [P1] Edge cases covered [evidence: the declared-vs-documented output difference (`index`/`failed[]` absent from the declared schema) flagged in 3/3 authority docs: `tool_surface.md`, `SKILL.md`, `README.md`]
-- [x] CHK-023 [P1] Drift scenario validated [evidence: fail-closed drift wording re-anchored on the fixture three-tool baseline in `troubleshooting.md`, `discovery_first.md`, and both scripts, 4/4 surfaces]
+- [x] CHK-022 [P1] Edge cases covered [evidence: the declared-vs-documented output difference (`index`/`failed[]` absent from the declared schema) flagged in 3/3 authority docs: `tool-surface.md`, `SKILL.md`, `README.md`]
+- [x] CHK-023 [P1] Drift scenario validated [evidence: fail-closed drift wording re-anchored on the fixture three-tool baseline in `troubleshooting.md`, `discovery-first.md`, and both scripts, 4/4 surfaces]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -81,7 +81,7 @@ _memory:
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class [evidence: three findings classified in `plan.md` affected-surfaces: inventory supersession (cross-consumer), deep resolution (class-of-bug), pre-auth correction (class-of-bug), 10/10 rows]
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed [evidence: `rg -n "INFERRED|single documented|one documented|deep"` swept the packet; 22 producer files flipped, changelogs excluded as immutable history]
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed docs [evidence: catalog count summary and playbook index re-checked after leaf rebuilds; `package_skill.py` link check green, 0 broken links]
-- [x] CHK-FIX-004 [P0] Adversarial cases for parser/security fixes [evidence: not a parser/security fix; the mutation-refusal check is recorded as passed for 3/3 live tools in `tool_surface.md` section 1]
+- [x] CHK-FIX-004 [P0] Adversarial cases for parser/security fixes [evidence: not a parser/security fix; the mutation-refusal check is recorded as passed for 3/3 live tools in `tool-surface.md` section 1]
 - [x] CHK-FIX-005 [P1] Matrix axes and row count listed before completion [evidence: `plan.md` affected-surfaces names file-kind x claim-kind axes; 24 file rows (22 modified + fixture + changelog) match `git status` for the packet]
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant [evidence: script edits are info-hint strings only; `bash -n` green 2/2 and no env reads added (`rg -n "export|getenv" scripts/` unchanged)]
 - [x] CHK-FIX-007 [P1] Evidence pinned, not branch-relative [evidence: all evidence pinned to file paths and the dated fixture at verification date 2026-07-16 on branch `skilled/v4.0.0.0`]
@@ -92,7 +92,7 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets [evidence: fixture contains tool metadata only; `rg -n "api[_-]?key|Bearer|token" references/discovery_fixture_2026-07-16.json` returns 0 credential values]
+- [x] CHK-030 [P0] No hardcoded secrets [evidence: fixture contains tool metadata only; `rg -n "api[_-]?key|Bearer|token" references/discovery-fixture-2026-07-16.json` returns 0 credential values]
 - [x] CHK-031 [P0] No auth-state or config mutation [evidence: `.utcp_config.json` and `~/.mcp-auth` untouched; `git status` shows changes only inside the packet and this spec child]
 - [x] CHK-032 [P1] Auth boundary preserved [evidence: no-API-key and OAuth-for-calls statements retained in `SKILL.md` NEVER rules 3-4 and `README.md`, 2/2 surfaces; pre-auth applies to discovery only]
 <!-- /ANCHOR:security -->
@@ -103,7 +103,7 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized [evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/mcp-tooling/010-mcp-mobbin/006-live-verification-capture --strict --no-recursive` printed "RESULT: PASSED"]
-- [x] CHK-041 [P1] Claims carry the durable WHY [evidence: the supersession explains WHY the old boundary existed (auth-protected endpoint made public enumeration impossible) in `tool_surface.md` completeness boundary, 1/1 historical note retained]
+- [x] CHK-041 [P1] Claims carry the durable WHY [evidence: the supersession explains WHY the old boundary existed (auth-protected endpoint made public enumeration impossible) in `tool-surface.md` completeness boundary, 1/1 historical note retained]
 - [x] CHK-042 [P2] Changelog updated [evidence: `changelog/v1.1.1.0.md` with need/change/why sections and a 15-row files-changed table]
 <!-- /ANCHOR:docs -->
 

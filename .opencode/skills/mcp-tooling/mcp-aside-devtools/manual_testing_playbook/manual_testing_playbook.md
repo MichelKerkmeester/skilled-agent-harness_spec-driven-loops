@@ -14,13 +14,13 @@ This document combines the full manual-validation contract for the `mcp-aside-de
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
-- `cli_lifecycle/`
-- `agent_task/`
-- `repl_evidence/`
-- `mcp_transport/`
-- `probes_and_gaps/`
-- `recovery_and_failure/`
-- `intra_routing_recall/`
+- `cli-lifecycle/`
+- `agent-task/`
+- `repl-evidence/`
+- `mcp-transport/`
+- `probes-and-gaps/`
+- `recovery-and-failure/`
+- `intra-routing-recall/`
 
 ---
 
@@ -70,7 +70,7 @@ This playbook provides 15 deterministic scenarios across 6 categories (plus the 
 
 - CLI commands are shown as `aside <subcommand/args>` (e.g., `aside repl "openTab('https://example.com')"`).
 - MCP requests are shown as JSON-RPC method names (`initialize`, `tools/list`, `tools/call(repl)`).
-- Code Mode calls are shown as `aside.aside_repl({ ... })` (the TS call surface, confirmed by live discovery 2026-07-16; the registry/discovery name is `aside.aside.repl` — see `references/discovery_fixture_2026-07-16.json`).
+- Code Mode calls are shown as `aside.aside_repl({ ... })` (the TS call surface, confirmed by live discovery 2026-07-16; the registry/discovery name is `aside.aside.repl` — see `references/discovery-fixture-2026-07-16.json`).
 - Bash steps are shown as `bash: <command>`.
 - `->` separates sequential steps.
 
@@ -112,7 +112,7 @@ Prompt summary: As a manual-testing orchestrator, confirm aside is installed and
 Expected signals: Step 1: `command -v aside` returns a non-empty path; Step 2: `aside --version 2>&1` returns a version string.
 
 #### Test Execution
-> **Feature File:** [ASD-001](cli_lifecycle/install_version.md)
+> **Feature File:** [ASD-001](cli-lifecycle/install-version.md)
 
 ### ASD-002 | Help fixture capture
 
@@ -125,7 +125,7 @@ Prompt summary: As a manual-testing orchestrator, capture the installed aside co
 Expected signals: Step 1: `aside --help 2>&1` is non-empty and saved to a fixture file; Step 2: output names `account`, `exec`, `repl`, `mcp`; Step 3: fixture records the option spellings actually present (model-flag spelling is version-dependent).
 
 #### Test Execution
-> **Feature File:** [ASD-002](cli_lifecycle/help_fixture.md)
+> **Feature File:** [ASD-002](cli-lifecycle/help-fixture.md)
 
 ### ASD-003 | Account status
 
@@ -138,7 +138,7 @@ Prompt summary: As a manual-testing orchestrator, inspect the signed-in account 
 Expected signals: Step 1: `aside account list 2>&1` exits 0 with at least one account (or a clear signed-out message); Step 2: `aside account status 2>&1` reports the active account's state.
 
 #### Test Execution
-> **Feature File:** [ASD-003](cli_lifecycle/account_status.md)
+> **Feature File:** [ASD-003](cli-lifecycle/account-status.md)
 
 ---
 
@@ -157,7 +157,7 @@ Prompt summary: As a manual-testing orchestrator, run a simple read-only agent t
 Expected signals: Step 1: `aside "Open https://example.com and summarize the page" 2>&1` returns; Step 2: output contains a plausible summary of the page; Step 3: any approval/MFA pause is documented as a human boundary.
 
 #### Test Execution
-> **Feature File:** [ASD-004](agent_task/direct_task.md)
+> **Feature File:** [ASD-004](agent-task/direct-task.md)
 
 ### ASD-005 | Session continuation
 
@@ -170,7 +170,7 @@ Prompt summary: As a manual-testing orchestrator, continue a prior agent task by
 Expected signals: Step 1: a prior task's session id is captured from its run output/UI; Step 2: `aside --session <id> "<follow-up>" 2>&1` returns; Step 3: the response demonstrably uses prior context. Where the session id is not surfaced by the installed version, record that as the finding (storage backend is an open question) and SKIP with that blocker.
 
 #### Test Execution
-> **Feature File:** [ASD-005](agent_task/session_continuation.md)
+> **Feature File:** [ASD-005](agent-task/session-continuation.md)
 
 ---
 
@@ -189,7 +189,7 @@ Prompt summary: As a manual-testing orchestrator, open a tab deterministically t
 Expected signals: Step 1: `aside repl "await openTab('https://example.com')" 2>&1` exits 0; Step 2: no "not bound to a browser profile" error (if present, the verdict is FAIL-with-binding-cause, cross-reference ASD-010's explanation of the same state on MCP).
 
 #### Test Execution
-> **Feature File:** [ASD-006](repl_evidence/repl_open_tab.md)
+> **Feature File:** [ASD-006](repl-evidence/repl-open-tab.md)
 
 ### ASD-007 | Screenshot artifact verification
 
@@ -202,7 +202,7 @@ Prompt summary: As a manual-testing orchestrator, capture a screenshot of the op
 Expected signals: Step 1: `bash: examples/repl-evidence-capture.sh https://example.com /tmp/aside-evidence` (or the equivalent inline REPL calls) exits 0; Step 2: file exists with size > 0; Step 3: `xxd` head shows `89 50 4e 47`.
 
 #### Test Execution
-> **Feature File:** [ASD-007](repl_evidence/repl_screenshot_artifact.md)
+> **Feature File:** [ASD-007](repl-evidence/repl-screenshot-artifact.md)
 
 ---
 
@@ -221,7 +221,7 @@ Prompt summary: As a manual-testing orchestrator, spawn aside mcp and complete t
 Expected signals: Step 1: `bash: examples/mcp-handshake-probe.sh` exits 0; Step 2: response contains `protocolVersion` and `serverInfo.name` = `aside`; Step 3: no leaked process after the probe.
 
 #### Test Execution
-> **Feature File:** [ASD-008](mcp_transport/mcp_handshake.md)
+> **Feature File:** [ASD-008](mcp-transport/mcp-handshake.md)
 
 ### ASD-009 | tools/list runtime discovery
 
@@ -234,7 +234,7 @@ Prompt summary: As a manual-testing orchestrator, discover the MCP tool inventor
 Expected signals: Step 1: `tools/list` returns a non-empty `tools` array; Step 2: fixture file saved; Step 3: presence/absence of the `repl` tool (with `title`+`code` required inputs) explicitly reported.
 
 #### Test Execution
-> **Feature File:** [ASD-009](mcp_transport/tools_list_discovery.md)
+> **Feature File:** [ASD-009](mcp-transport/tools-list-discovery.md)
 
 ### ASD-010 | Unbound-profile error classification
 
@@ -247,12 +247,12 @@ Prompt summary: As a manual-testing orchestrator, call listBrowserTabs() via too
 Expected signals: Step 1: `tools/call(repl)` with `listBrowserTabs()` returns the binding error text; Step 2: the report names the state PROFILE_UNBOUND and cites the undocumented binding procedure as an open question. If the installed version returns tabs instead (behavior change), record the new behavior as the finding.
 
 #### Test Execution
-> **Feature File:** [ASD-010](mcp_transport/unbound_profile_error.md)
+> **Feature File:** [ASD-010](mcp-transport/unbound-profile-error.md)
 
 ### ASD-011 | Code Mode discovery
 
 #### Description
-Verify post-registration Code Mode discovery exposes the Aside callable. First satisfied 2026-07-16 (fixture: `references/discovery_fixture_2026-07-16.json`): registry name `aside.aside.repl`, TS callable `aside.aside_repl(args)`.
+Verify post-registration Code Mode discovery exposes the Aside callable. First satisfied 2026-07-16 (fixture: `references/discovery-fixture-2026-07-16.json`): registry name `aside.aside.repl`, TS callable `aside.aside_repl(args)`.
 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, discover Aside callables through Code Mode against the registered `aside` manual. Verify search_tools/tool_info surface the repl callable. Return a concise user-facing pass/fail verdict with the main reason. SKIP only with the documented blocker "no Code Mode session available".
@@ -260,7 +260,7 @@ Prompt summary: As a manual-testing orchestrator, discover Aside callables throu
 Expected signals: Step 1: `.utcp_config.json` contains the `aside` manual (registered; empty jq output is a FAIL — registration regressed); Step 2: Code Mode `search_tools()` finds Aside tools; Step 3: `tool_info()` confirms the exact callable name (baseline from the 2026-07-16 fixture: registry `aside.aside.repl`, TS callable `aside.aside_repl(args)` — record the actual and diff against the fixture).
 
 #### Test Execution
-> **Feature File:** [ASD-011](mcp_transport/code_mode_discovery.md)
+> **Feature File:** [ASD-011](mcp-transport/code-mode-discovery.md)
 
 ---
 
@@ -279,7 +279,7 @@ Prompt summary: As a manual-testing orchestrator, attempt a sentinel console rou
 Expected signals: Step 1: guarded listener registration + `console.log('ASD-012 sentinel')` evaluation; Step 2: either the sentinel appears in captured output (record shape) or the failure is captured verbatim; Step 3: the verdict never claims parity with dedicated console tooling.
 
 #### Test Execution
-> **Feature File:** [ASD-012](probes_and_gaps/console_probe.md)
+> **Feature File:** [ASD-012](probes-and-gaps/console-probe.md)
 
 ### ASD-013 | Network capture probe (guarded)
 
@@ -292,7 +292,7 @@ Prompt summary: As a manual-testing orchestrator, attempt guarded request/respon
 Expected signals: Step 1: guarded listener registration + navigation; Step 2: either parseable event records with a known marker or the failure captured verbatim; Step 3: no HAR-export parity claim in the verdict.
 
 #### Test Execution
-> **Feature File:** [ASD-013](probes_and_gaps/network_probe.md)
+> **Feature File:** [ASD-013](probes-and-gaps/network-probe.md)
 
 ---
 
@@ -311,7 +311,7 @@ Prompt summary: As a manual-testing orchestrator, simulate a missing aside binar
 Expected signals: Step 1: `bash: PATH=/usr/bin:/bin bash scripts/doctor.sh` reports "aside not on PATH"; Step 2: output includes the official curl install command as guidance; Step 3: nothing was installed or modified.
 
 #### Test Execution
-> **Feature File:** [ASD-014](recovery_and_failure/missing_binary.md)
+> **Feature File:** [ASD-014](recovery-and-failure/missing-binary.md)
 
 ### ASD-015 | Dead MCP process **(DESTRUCTIVE)**
 
@@ -324,7 +324,7 @@ Prompt summary: As a manual-testing orchestrator, spawn a probe-owned aside mcp 
 Expected signals: Step 2: post-kill requests fail with EOF/broken-pipe symptoms; Step 3: stderr evidence distinguishes dead-child vs DAEMON_UNAVAILABLE; Step 4: a fresh probe handshake succeeds; Step 5: no leaked `aside mcp` processes remain.
 
 #### Test Execution
-> **Feature File:** [ASD-015](recovery_and_failure/dead_mcp_process.md)
+> **Feature File:** [ASD-015](recovery-and-failure/dead-mcp-process.md)
 
 ---
 
@@ -332,14 +332,14 @@ Expected signals: Step 2: post-kill requests fail with EOF/broken-pipe symptoms;
 
 Routing-recall contracts validate that the SKILL.md Smart Router's intent model routes realistic prompts to the right references. Routing-stage files may use router vocabulary; holdout files are blind to obvious tool-name keywords; the negative file must route nowhere.
 
-- AD-R01: [Task routing](intra_routing_recall/task.md)
-- AD-R02: [REPL routing](intra_routing_recall/repl.md)
-- AD-R03: [MCP routing](intra_routing_recall/mcp.md)
-- AD-R04: [Install routing](intra_routing_recall/install.md)
-- AD-R05: [Troubleshoot routing](intra_routing_recall/troubleshoot.md)
-- AD-H01: [Blind holdout: scripted evidence](intra_routing_recall/holdout_repl.md)
-- AD-H02: [Blind holdout: stalled automation](intra_routing_recall/holdout_troubleshoot.md)
-- AD-N01: [Negative: out of domain](intra_routing_recall/negative.md)
+- AD-R01: [Task routing](intra-routing-recall/task.md)
+- AD-R02: [REPL routing](intra-routing-recall/repl.md)
+- AD-R03: [MCP routing](intra-routing-recall/mcp.md)
+- AD-R04: [Install routing](intra-routing-recall/install.md)
+- AD-R05: [Troubleshoot routing](intra-routing-recall/troubleshoot.md)
+- AD-H01: [Blind holdout: scripted evidence](intra-routing-recall/holdout-repl.md)
+- AD-H02: [Blind holdout: stalled automation](intra-routing-recall/holdout-troubleshoot.md)
+- AD-N01: [Negative: out of domain](intra-routing-recall/negative.md)
 
 ---
 
@@ -347,33 +347,33 @@ Routing-recall contracts validate that the SKILL.md Smart Router's intent model 
 
 ### CLI LIFECYCLE
 
-- ASD-001: [Install + version](cli_lifecycle/install_version.md)
-- ASD-002: [Help fixture capture](cli_lifecycle/help_fixture.md)
-- ASD-003: [Account status](cli_lifecycle/account_status.md)
+- ASD-001: [Install + version](cli-lifecycle/install-version.md)
+- ASD-002: [Help fixture capture](cli-lifecycle/help-fixture.md)
+- ASD-003: [Account status](cli-lifecycle/account-status.md)
 
 ### AGENT TASK
 
-- ASD-004: [Direct natural-language task](agent_task/direct_task.md)
-- ASD-005: [Session continuation](agent_task/session_continuation.md)
+- ASD-004: [Direct natural-language task](agent-task/direct-task.md)
+- ASD-005: [Session continuation](agent-task/session-continuation.md)
 
 ### REPL EVIDENCE
 
-- ASD-006: [REPL open tab](repl_evidence/repl_open_tab.md)
-- ASD-007: [Screenshot artifact verification](repl_evidence/repl_screenshot_artifact.md)
+- ASD-006: [REPL open tab](repl-evidence/repl-open-tab.md)
+- ASD-007: [Screenshot artifact verification](repl-evidence/repl-screenshot-artifact.md)
 
 ### MCP TRANSPORT
 
-- ASD-008: [MCP stdio handshake](mcp_transport/mcp_handshake.md)
-- ASD-009: [tools/list runtime discovery](mcp_transport/tools_list_discovery.md)
-- ASD-010: [Unbound-profile error classification](mcp_transport/unbound_profile_error.md)
-- ASD-011: [Code Mode discovery](mcp_transport/code_mode_discovery.md)
+- ASD-008: [MCP stdio handshake](mcp-transport/mcp-handshake.md)
+- ASD-009: [tools/list runtime discovery](mcp-transport/tools-list-discovery.md)
+- ASD-010: [Unbound-profile error classification](mcp-transport/unbound-profile-error.md)
+- ASD-011: [Code Mode discovery](mcp-transport/code-mode-discovery.md)
 
 ### PROBES AND GAPS
 
-- ASD-012: [Console capture probe (guarded)](probes_and_gaps/console_probe.md)
-- ASD-013: [Network capture probe (guarded)](probes_and_gaps/network_probe.md)
+- ASD-012: [Console capture probe (guarded)](probes-and-gaps/console-probe.md)
+- ASD-013: [Network capture probe (guarded)](probes-and-gaps/network-probe.md)
 
 ### RECOVERY AND FAILURE
 
-- ASD-014: [Missing binary](recovery_and_failure/missing_binary.md)
-- ASD-015: [Dead MCP process **(DESTRUCTIVE)**](recovery_and_failure/dead_mcp_process.md)
+- ASD-014: [Missing binary](recovery-and-failure/missing-binary.md)
+- ASD-015: [Dead MCP process **(DESTRUCTIVE)**](recovery-and-failure/dead-mcp-process.md)

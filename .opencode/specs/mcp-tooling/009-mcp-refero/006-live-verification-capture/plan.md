@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Operator handoff for OAuth items"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-refero/references/discovery_fixture_2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/discovery-fixture-2026-07-16.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "agent-006-live-verification-capture-refero"
@@ -73,7 +73,7 @@ The 2026-07-16 fixture settles the packet's central hedge. The work greps every 
 Evidence-first documentation: one dated fixture is the single source of truth; the conflict resolution names both the winning evidence and the refuted derivation; runtime discipline (per-session `tool_info`, fail-closed drift) stays in force.
 
 ### Key Components
-- **Fixture** (`references/discovery_fixture_2026-07-16.json`): raw `list_tools`/`search_tools`/`tool_info` payloads plus 8 `discoveredCallableNames`.
+- **Fixture** (`references/discovery-fixture-2026-07-16.json`): raw `list_tools`/`search_tools`/`tool_info` payloads plus 8 `discoveredCallableNames`.
 - **Naming presentation**: dotted registry `refero.refero.refero_<tool>` for discovery queries; doubled TS callable `refero.refero_refero_<tool>(...)` for calls (fixture `Access as:` line).
 - **Pre-auth boundary**: discovery needs no OAuth; calls do - both stated together wherever either appears.
 
@@ -90,9 +90,9 @@ Probe output (fixture JSON) feeds doc claims; doc claims cite the fixture path; 
 |---------|--------------|--------|--------------|
 | SKILL.md (naming trap, discovery paragraph, quick ref, version) | Runtime contract | update | grep shows fixture-cited resolution |
 | README.md + INSTALL_GUIDE.md | Consumer-facing naming and preconditions | update | Pre-auth discovery stated; OAuth kept for calls |
-| references/mcp_wiring.md + tool_surface.md | Deep naming rule + open questions | update | Conflict closed; Q1 resolved, Q2 partially resolved |
+| references/mcp-wiring.md + tool-surface.md | Deep naming rule + open questions | update | Conflict closed; Q1 resolved, Q2 partially resolved |
 | mcp-servers/refero-mcp/README.md | Discovery expectation mirror | update | Pre-auth confirmed wording |
-| manual_testing_playbook/discovery_setup/discovery_first.md | DISCOVER-001 rationale | update | Closed-conflict wording with fixture path |
+| manual_testing_playbook/discovery-setup/discovery-first.md | DISCOVER-001 rationale | update | Closed-conflict wording with fixture path |
 | scripts/doctor.sh + install.sh | Already state the doubled prefix | unchanged | grep shows no old assumed names; update-only-if-stale rule |
 | changelog/v1.0.0.0.md + v1.1.0.0.md | Immutable release history | unchanged | Historical records keep original wording |
 
@@ -141,7 +141,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `references/discovery_fixture_2026-07-16.json` | Internal (probe output) | Green | No registry evidence; phase impossible |
+| `references/discovery-fixture-2026-07-16.json` | Internal (probe output) | Green | No registry evidence; phase impossible |
 | `mcp-code-mode/references/naming_convention.md` | Internal | Green | TS-surface convention could be misstated |
 | `package_skill.py` | Internal tooling | Green | No structural gate |
 <!-- /ANCHOR:dependencies -->

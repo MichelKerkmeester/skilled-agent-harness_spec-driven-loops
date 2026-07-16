@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Operator handoff: OAuth completion and first authenticated search"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-refero/references/discovery_fixture_2026-07-16.json"
-      - ".opencode/skills/mcp-tooling/mcp-refero/references/mcp_wiring.md"
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/discovery-fixture-2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md"
       - ".opencode/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-The packet's central naming hedge is gone. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) listed all eight Refero tools on 2026-07-16 and wrote the dated fixture `references/discovery_fixture_2026-07-16.json`; seven packet files now cite it instead of preserving a two-lineage dispute.
+The packet's central naming hedge is gone. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) listed all eight Refero tools on 2026-07-16 and wrote the dated fixture `references/discovery-fixture-2026-07-16.json`; seven packet files now cite it instead of preserving a two-lineage dispute.
 
 ### The captured facts
 
@@ -64,13 +64,13 @@ The probe worked WITHOUT OAuth, which disproved a precondition several docs asse
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `references/discovery_fixture_2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads (8 registry names) |
+| `references/discovery-fixture-2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads (8 registry names) |
 | `SKILL.md` | Modified | Naming trap flipped to confirmed; version 1.1.1.0 |
 | `README.md`, `INSTALL_GUIDE.md` | Modified | Resolved conflict + pre-auth preconditions |
-| `references/mcp_wiring.md` | Modified | Naming section confirmed; single-prefix derivation refuted |
-| `references/tool_surface.md` | Modified | Open question 1 resolved; question 2 partially resolved |
+| `references/mcp-wiring.md` | Modified | Naming section confirmed; single-prefix derivation refuted |
+| `references/tool-surface.md` | Modified | Open question 1 resolved; question 2 partially resolved |
 | `mcp-servers/refero-mcp/README.md` | Modified | Discovery expectation corrected to pre-auth |
-| `manual_testing_playbook/discovery_setup/discovery_first.md` | Modified | DISCOVER-001 rationale records the closed conflict |
+| `manual_testing_playbook/discovery-setup/discovery-first.md` | Modified | DISCOVER-001 rationale records the closed conflict |
 | `changelog/v1.1.1.0.md` | Created | Release record |
 <!-- /ANCHOR:what-built -->
 
@@ -117,5 +117,5 @@ The fixture was read before any edit and the flip set came from a packet-wide gr
 
 1. **Authenticated calls remain unexercised, by design.** The capture phase is complete; OAuth completion, the first authenticated search, rate-limit observation, and the Bearer-token acquisition path are documented operator handoff items (SKIP-valid with exact commands in the packet), not unfinished work in this phase.
 2. **Six tools' `response_format` exposure is still a runtime check.** The fixture shows full schemas for the two search tools only; per-tool `tool_info` remains the rule for the rest.
-3. **The fixture is a dated snapshot.** Provider surface drift after 2026-07-16 reopens the claims; the fail-closed drift protocol in SKILL.md and mcp_wiring.md is the guard.
+3. **The fixture is a dated snapshot.** Provider surface drift after 2026-07-16 reopens the claims; the fail-closed drift protocol in SKILL.md and mcp-wiring.md is the guard.
 <!-- /ANCHOR:limitations -->

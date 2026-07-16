@@ -108,10 +108,10 @@ manual_missing=0
 if [ -f "$UTCP" ]; then
   if grep -q '"name"[[:space:]]*:[[:space:]]*"aside"' "$UTCP" 2>/dev/null; then
     ok "Code Mode 'aside' manual registered in .utcp_config.json"
-    info "Confirm callables via Code Mode discovery before invoking. 2026-07-16 fixture baseline: registry name aside.aside.repl (dotted); TS callable aside.aside_repl(args). See references/discovery_fixture_2026-07-16.json"
+    info "Confirm callables via Code Mode discovery before invoking. 2026-07-16 fixture baseline: registry name aside.aside.repl (dotted); TS callable aside.aside_repl(args). See references/discovery-fixture-2026-07-16.json"
   else
     err "No 'aside' manual in .utcp_config.json — expected registered; registration has regressed"
-    info "Restore from the snapshot in assets/utcp_aside_manual.md (operator-invoked; doctor never writes)."
+    info "Restore from the snapshot in assets/utcp-aside-manual.md (operator-invoked; doctor never writes)."
     manual_missing=1
   fi
 else

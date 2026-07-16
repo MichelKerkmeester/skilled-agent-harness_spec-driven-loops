@@ -68,7 +68,7 @@ _memory:
 - [x] T005 [P] Author README.md and INSTALL_GUIDE.md (`.opencode/skills/mcp-tooling/mcp-refero/`)
 - [x] T006 [P] Author references/mcp_wiring, references/tool_surface, references/troubleshooting (`.opencode/skills/mcp-tooling/mcp-refero/references/`)
 - [x] T007 [P] Author mcp-servers/refero-mcp/README.md endpoint notes (`.opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md`)
-- [x] T008 Author manual_testing_playbook/ incl. intra_routing_recall/ with ≥2 holdouts, negative.md, troubleshoot.md (`.opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/`)
+- [x] T008 Author manual_testing_playbook/ incl. intra-routing-recall/ with ≥2 holdouts, negative.md, troubleshoot.md (`.opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/`)
 - [x] T009 [P] Seed changelog/, feature_catalog/, scripts/, and assets/ with the ready-to-paste UTCP manual snippet (`.opencode/skills/mcp-tooling/mcp-refero/assets/`)
 <!-- /ANCHOR:phase-2 -->
 

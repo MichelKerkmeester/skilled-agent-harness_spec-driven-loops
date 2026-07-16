@@ -362,13 +362,13 @@
         "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
-        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]",
         "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
       ]
     },
     {
       "id": "finding-3-5-aside-is-better-framed-as-a-browser-agent-profile-surface-than-as-a-drop-in-cdp-",
-      "text": "Aside is better framed as a browser-agent/profile surface than as a drop-in CDP replacement. It adds account/profile state, permission modes, approvals, and human-verification pauses; bdg emphasizes direct Chrome/Chromium CDP, Unix-composable outputs, a single global active session, and explicit `status`/`stop`. The skill packet should route to Aside when the user's browser-agent/profile context or Playwright-level interaction is the point, and to bdg when deterministic CDP domains, console logs, HAR output, or low-token CLI composition are the point. **[SOURCE: https://docs.aside.com/help/security] [SOURCE: https://docs.aside.com/help/tasks] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]**",
+      "text": "Aside is better framed as a browser-agent/profile surface than as a drop-in CDP replacement. It adds account/profile state, permission modes, approvals, and human-verification pauses; bdg emphasizes direct Chrome/Chromium CDP, Unix-composable outputs, a single global active session, and explicit `status`/`stop`. The skill packet should route to Aside when the user's browser-agent/profile context or Playwright-level interaction is the point, and to bdg when deterministic CDP domains, console logs, HAR output, or low-token CLI composition are the point. **[SOURCE: https://docs.aside.com/help/security] [SOURCE: https://docs.aside.com/help/tasks] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`] [SOURCE: `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]**",
       "addedAtIteration": 3,
       "sources": [
         "[SOURCE: https://docs.aside.com/help/developers]",
@@ -380,7 +380,7 @@
         "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
-        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]",
         "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
       ]
     },
@@ -398,7 +398,7 @@
         "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
-        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]",
         "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
       ]
     },
@@ -416,7 +416,7 @@
         "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
-        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]",
         "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
       ]
     },
@@ -434,7 +434,7 @@
         "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
-        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]",
         "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
       ]
     },
@@ -452,7 +452,7 @@
         "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
-        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]",
         "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
       ]
     },
@@ -470,7 +470,7 @@
         "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
-        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]",
         "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
       ]
     },
@@ -488,7 +488,7 @@
         "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
-        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]",
         "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
       ]
     },
@@ -506,7 +506,7 @@
         "[SOURCE: local `.opencode/skills/mcp-code-mode/SKILL.md`:217-260, 289-326]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`]",
         "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`]",
-        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`]",
+        "[SOURCE: local `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`]",
         "[SOURCE: local Aside CLI/MCP probes, observed 2026-07-16]"
       ]
     }

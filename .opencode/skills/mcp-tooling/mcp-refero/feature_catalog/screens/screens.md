@@ -33,15 +33,15 @@ All four tools are READ-ONLY. Screen IDs are UUID strings, never numbers.
 
 | File | Layer | Role |
 |---|---|---|
-| `references/tool_surface.md` | Shared | Screen tool arguments, bounds, result shape, and the deprecated-argument negative knowledge |
-| `references/mcp_wiring.md` | Shared | Doubled-prefix callable rule and the discovery-first contract |
+| `references/tool-surface.md` | Shared | Screen tool arguments, bounds, result shape, and the deprecated-argument negative knowledge |
+| `references/mcp-wiring.md` | Shared | Doubled-prefix callable rule and the discovery-first contract |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read_only/styles_funnel.md` | Manual playbook | Funnel ordering including the screens shortlist step |
-| `manual_testing_playbook/pairing/sk_design_pairing.md` | Manual playbook | Screen evidence routes through sk-design before any design verdict |
+| `manual_testing_playbook/read-only/styles-funnel.md` | Manual playbook | Funnel ordering including the screens shortlist step |
+| `manual_testing_playbook/pairing/sk-design-pairing.md` | Manual playbook | Screen evidence routes through sk-design before any design verdict |
 
 ---
 
@@ -52,10 +52,10 @@ All four tools are READ-ONLY. Screen IDs are UUID strings, never numbers.
 - Feature file path: `screens/screens.md`
 
 Per-tool leaves in this domain:
-- [search_screens.md](search_screens.md) - platform-scoped screen search (metadata facets)
-- [get_screen.md](get_screen.md) - full screen metadata (never `image_size`/`include_similar`)
-- [get_similar_screens.md](get_similar_screens.md) - comparables after one relevant hit (`limit` 1-20)
-- [get_screen_image.md](get_screen_image.md) - raw screenshot, image last (never `response_format`)
+- [search-screens.md](search-screens.md) - platform-scoped screen search (metadata facets)
+- [get-screen.md](get-screen.md) - full screen metadata (never `image_size`/`include_similar`)
+- [get-similar-screens.md](get-similar-screens.md) - comparables after one relevant hit (`limit` 1-20)
+- [get-screen-image.md](get-screen-image.md) - raw screenshot, image last (never `response_format`)
 
 Related references:
 - [styles.md](../styles/styles.md) covers visual direction, the funnel's first stop

@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Operator handoff for live-call items"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery_fixture_2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "agent-006-live-verification-capture-aside"
@@ -56,7 +56,7 @@ The 2026-07-16 discovery fixture is the ground truth; the work is a doc-truth sw
 ### Definition of Ready
 - [x] Problem statement clear and scope documented [evidence: spec.md sections 2-3]
 - [x] Success criteria measurable [evidence: spec.md SC-001 to SC-003, each a command with an expected result]
-- [x] Dependencies identified [evidence: fixture present at `references/discovery_fixture_2026-07-16.json`, capturedAt `2026-07-16T13:49:06.278Z`]
+- [x] Dependencies identified [evidence: fixture present at `references/discovery-fixture-2026-07-16.json`, capturedAt `2026-07-16T13:49:06.278Z`]
 
 ### Definition of Done
 - [x] All acceptance criteria met [evidence: tasks.md T001-T010 all checked with per-task evidence]
@@ -73,7 +73,7 @@ The 2026-07-16 discovery fixture is the ground truth; the work is a doc-truth sw
 Evidence-first documentation: one dated fixture file is the single source of truth; every prose claim cites it; runtime discipline (per-session rediscovery, fail-closed drift) stays in force so the fixture never becomes a hardcoded contract.
 
 ### Key Components
-- **Fixture** (`references/discovery_fixture_2026-07-16.json`): raw `list_tools`/`search_tools`/`tool_info` payloads plus `discoveredCallableNames`.
+- **Fixture** (`references/discovery-fixture-2026-07-16.json`): raw `list_tools`/`search_tools`/`tool_info` payloads plus `discoveredCallableNames`.
 - **Naming presentation**: every flip states BOTH forms - registry `aside.aside.repl` (what discovery returns verbatim) and TS callable `aside.aside_repl(args)` (the fixture `Access as:` line, matching `mcp-code-mode/references/naming_convention.md`).
 - **Drift protocol**: ASD-011 and doctor.sh now diff future discovery output against the fixture baseline.
 
@@ -90,8 +90,8 @@ Probe output (fixture JSON) feeds doc claims; doc claims cite back to the fixtur
 |---------|--------------|--------|--------------|
 | SKILL.md (MCP approach, NEVER rules, version) | Runtime contract naming the callable | update | grep shows dual-form presentation with fixture citation |
 | README.md + INSTALL_GUIDE.md | Consumer-facing quick start and install steps | update | Step 4 / step 3 quote both forms |
-| references/mcp_wiring.md + aside_cli_reference.md | Deep wiring + helper-surface truth | update | Fixture helper list present; "UNKNOWN until confirmed" bullet replaced |
-| assets/utcp_aside_manual.md | Post-registration checklist | update | Discovery items `[x]` with `[evidence: fixture]` |
+| references/mcp-wiring.md + aside-cli-reference.md | Deep wiring + helper-surface truth | update | Fixture helper list present; "UNKNOWN until confirmed" bullet replaced |
+| assets/utcp-aside-manual.md | Post-registration checklist | update | Discovery items `[x]` with `[evidence: fixture]` |
 | feature_catalog (root + mcp leaf), playbook (root + ASD-011), mcp-servers/aside-mcp/README.md | Mirrors of the naming claim | update | All mirrors quote the confirmed forms |
 | scripts/doctor.sh | Hardcoded old expected name (line 111 only, per grep) | update | `bash -n` passes; hint states both forms |
 | changelog/v1.0.0.0.md + v1.1.0.0.md | Immutable release history | unchanged | Historical records keep their original wording |
@@ -114,7 +114,7 @@ Required inventories:
 
 ### Phase 2: Doc flips
 - [x] 12 packet files flipped to the dual-form presentation with fixture citations [evidence: tasks.md T002-T008]
-- [x] Helper surface refreshed from the fixture in both references [evidence: mcp_wiring.md section 2; aside_cli_reference.md section 3]
+- [x] Helper surface refreshed from the fixture in both references [evidence: mcp-wiring.md section 2; aside-cli-reference.md section 3]
 
 ### Phase 3: Verification
 - [x] `package_skill.py --check --strict` PASS [evidence: "Skill is valid!", warnings only]
@@ -141,7 +141,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `references/discovery_fixture_2026-07-16.json` | Internal (probe output) | Green | No ground truth; phase impossible |
+| `references/discovery-fixture-2026-07-16.json` | Internal (probe output) | Green | No ground truth; phase impossible |
 | `mcp-code-mode/references/naming_convention.md` | Internal | Green | TS-surface convention could be misstated |
 | `package_skill.py` | Internal tooling | Green | No structural gate |
 <!-- /ANCHOR:dependencies -->

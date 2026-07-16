@@ -78,7 +78,7 @@ The existing manual uses **path A** (empty `env`): **[CONFIRMED: .utcp_config.js
 
 **Operational constraint:** the interactive browser sign-in (path A) is a **first-use dependency**. The transport's troubleshooting reference MUST warn that first invocation requires a browser-capable session; headless/CI runs likely need path B (a pre-supplied Bearer token). **[INFERRED: operational consequence of the documented OAuth flow]**
 
-**Code Mode env-prefix rule:** if a token is wired via env under path B, Code Mode prefixes env vars with the manual name → `refero_<NAME>`. The default asset keeps `env: {}` for path A and documents path B as an optional override. **[CONFIRMED: mcp-figma/references/mcp_wiring.md §3; INFERRED: Refero's token-grant flow]**
+**Code Mode env-prefix rule:** if a token is wired via env under path B, Code Mode prefixes env vars with the manual name → `refero_<NAME>`. The default asset keeps `env: {}` for path A and documents path B as an optional override. **[CONFIRMED: mcp-figma/references/mcp-wiring.md §3; INFERRED: Refero's token-grant flow]**
 
 ---
 
@@ -128,7 +128,7 @@ The official methodology mandates a routing order that materially affects result
 
 ## 9. `mcp-refero` Transport-Packet Design (mapped onto mcp-figma)
 
-`mcp-refero` is a **SIMPLER, read-only-only peer of `mcp-figma`**: MCP-only (no CLI primary), entirely read-only (no gating taxonomy beyond auth). **[CONFIRMED: mcp-figma/{SKILL.md, references/mcp_wiring.md, references/tool_surface.md}]**
+`mcp-refero` is a **SIMPLER, read-only-only peer of `mcp-figma`**: MCP-only (no CLI primary), entirely read-only (no gating taxonomy beyond auth). **[CONFIRMED: mcp-figma/{SKILL.md, references/mcp-wiring.md, references/tool-surface.md}]**
 
 **Proposed file layout (phase 002 authoring brief):**
 
@@ -136,15 +136,15 @@ The official methodology mandates a routing order that materially affects result
 |------|------|
 | `SKILL.md` | Focused contract: when to use, smart routing, read-only transport, **pairs with `sk-design`** (never duplicates `refero_skill`) |
 | `references/refero_mcp_tools.md` | The 8-tool inventory (params, returns) — derived from `refero_skill`'s `references/mcp-tools.md` |
-| `references/tool_surface.md` | Collapsed taxonomy: **all 8 tools READ-ONLY**; encode the §3 guardrails |
-| `references/mcp_wiring.md` | The existing `refero` manual (path A) + Code Mode discover-first flow + `call_tool_chain` example + OAuth-vs-Bearer (path B) + env-prefix rule |
+| `references/tool-surface.md` | Collapsed taxonomy: **all 8 tools READ-ONLY**; encode the §3 guardrails |
+| `references/mcp-wiring.md` | The existing `refero` manual (path A) + Code Mode discover-first flow + `call_tool_chain` example + OAuth-vs-Bearer (path B) + env-prefix rule |
 | `references/troubleshooting.md` | Weak-results guidance, first-use browser sign-in failures, `mcp-remote` token cache/expiry |
-| `assets/utcp_refero_manual.md` | Paste-ready existing manual (stdio/mcp-remote, empty env) |
+| `assets/utcp-refero-manual.md` | Paste-ready existing manual (stdio/mcp-remote, empty env) |
 | `assets/env_template.md` | Mostly empty for path A; documents the optional `refero_<TOKEN>` Bearer override for path B |
 
 **Distinctions from mcp-figma:** mcp-figma is CLI-primary + optional MCP with a complex gating taxonomy (read-only/mutating/destructive/arbitrary); mcp-refero is MCP-only and read-only-only — far simpler.
 
-**Code Mode calling convention:** tool names are `{manual}.{manual}_{tool}`, so every call is `refero.refero_<tool>` (e.g., `refero.refero_search_styles`, `refero.refero_get_flow`). **Discover-first is mandatory:** `list_tools()` → `search_tools()` → `tool_info()` before invoking, since the live surface can change and clients namespace the `refero_` names. **[CONFIRMED: mcp-figma mcp_wiring.md §3-5]**
+**Code Mode calling convention:** tool names are `{manual}.{manual}_{tool}`, so every call is `refero.refero_<tool>` (e.g., `refero.refero_search_styles`, `refero.refero_get_flow`). **Discover-first is mandatory:** `list_tools()` → `search_tools()` → `tool_info()` before invoking, since the live surface can change and clients namespace the `refero_` names. **[CONFIRMED: mcp-figma mcp-wiring.md §3-5]**
 
 ---
 
@@ -196,7 +196,7 @@ The live transport under test is the existing `refero` manual in `.utcp_config.j
 | F5 | 1 | refero_skill = methodology skill (peer of sk-design), MIT | README + SKILL.md |
 | F6 | 1 | Existing manual = minimal stdio/mcp-remote bridge, empty env | .utcp_config.json |
 | F7 | 2 | NEGATIVE KNOWLEDGE: gating + rate limits undocumented | iteration-002.md; WebFetch |
-| F8 | 2 | Auth lifecycle: OAuth interactive first-use vs Bearer; env-prefix rule | iteration-002.md; mcp-figma mcp_wiring.md |
+| F8 | 2 | Auth lifecycle: OAuth interactive first-use vs Bearer; env-prefix rule | iteration-002.md; mcp-figma mcp-wiring.md |
 | F9 | 2 | Packet layout: simpler read-only-only peer of mcp-figma | iteration-002.md; mcp-figma references |
 | F10 | 2 | Layer-discipline routing rule; sk-design pairing | SKILL.md Tool Routing |
 
@@ -217,7 +217,7 @@ The live transport under test is the existing `refero` manual in `.utcp_config.j
 - https://raw.githubusercontent.com/referodesign/refero_skill/master/SKILL.md — research-first methodology + routing.
 - https://refero.design and https://refero.design/pricing — SPA (title only; confirmed unscrapable).
 - `.utcp_config.json` — existing `refero` manual (stdio/mcp-remote bridge, empty env).
-- `.opencode/skills/mcp-tooling/mcp-figma/SKILL.md`, `references/mcp_wiring.md`, `references/tool_surface.md` — transport-packet convention.
+- `.opencode/skills/mcp-tooling/mcp-figma/SKILL.md`, `references/mcp-wiring.md`, `references/tool-surface.md` — transport-packet convention.
 - `.opencode/specs/mcp-tooling/009-mcp-refero/001-research/spec.md` — phase scope, risks, open questions.
 
 ---

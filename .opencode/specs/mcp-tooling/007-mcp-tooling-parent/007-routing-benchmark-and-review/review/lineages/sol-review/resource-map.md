@@ -30,7 +30,7 @@ description: "Auto-generated review resource map from convergence evidence."
 | .opencode/skills/mcp-tooling/hub-router.json | Analyzed | OK | Findings P0=1 P1=3 P2=0; Iterations=2 |
 | .opencode/skills/mcp-tooling/hub-router.json:5,20-22 | Analyzed | MISSING | Findings P0=1 P1=0 P2=0; Iterations=1 |
 | .opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-| .opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/intra_routing_recall/install.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/intra-routing-recall/install.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 | .opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/intra_routing_recall/holdout_daily.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 | .opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/intra_routing_recall/negative.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 | .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |

@@ -218,7 +218,7 @@ Recommended files and responsibilities:
 | `references/mcp.md` | initialize/tools/list, capability registry, Code Mode naming, timeouts, fallback |
 | `references/security.md` | identities, permissions, approvals, prompt injection, sensitive actions, privacy |
 | `references/troubleshooting.md` | error taxonomy and daemon/account/profile/MCP recovery |
-| `assets/utcp_aside_manual.md` | exact manual object and validation instructions |
+| `assets/utcp-aside-manual.md` | exact manual object and validation instructions |
 | `scripts/doctor.sh` | read-only platform/binary/version/account/daemon/config/discovery diagnostics |
 | `manual_testing_playbook/` | positive and negative scenario contracts with concrete evidence |
 

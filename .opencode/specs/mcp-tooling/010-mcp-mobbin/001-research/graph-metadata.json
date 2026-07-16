@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phases 002 and 003 must author a transport packet and a `.utcpconfig.json` manual for an MCP server this repo has never run",
     "created_at": "2026-07-16T09:39:32Z",
-    "last_save_at": "2026-07-16T12:00:36.218Z",
+    "last_save_at": "2026-07-16T15:05:29.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +211,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:539b761c6f701f36ed67eec909a07a882111be301292a9eb57addd06381cc4cc",
+    "source_fingerprint": "sha256:94f5bcd0785b3fc7e7cb4a8ab0459597a5756be5b81e4bc211f6634551854d63",
     "source_doc_hashes": {
-      "spec.md": "be541306d6944507d9ccc3a93a0eeb21a838530f189767c69c373ce2150e5662",
+      "spec.md": "01bea300f0e765c65dd63234823a12fc6aaefbba9f6f23b00e567b4db82f59b1",
       "plan.md": "8e57904c4f6ed8ee54aeb34542bd407f1dff8569209c395216fe8064425c8e22",
       "tasks.md": "6601bf630e8b07ba994884988c12483aa829b45ef3ba1401e8a593eba9faa971",
-      "implementation-summary.md": "5c18071e0cfcac8e4bd82387ec0939842266567c8aafc835d11ffad5731538a8",
+      "implementation-summary.md": "d1b33542c9cd7380907b4334070b4cc4a6deb339626cdfbc958e65535bf83e42",
       "research/research.md": "2acfba4043c5e8989b6c68d08fa31beeb17445a5d5432a03e95f4374cfda0697"
     },
     "last_active_child_id": null,

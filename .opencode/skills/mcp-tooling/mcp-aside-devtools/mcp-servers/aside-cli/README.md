@@ -63,6 +63,6 @@ Or use the wrapper with platform gate and idempotency: `bash ../../scripts/insta
 ## 4. RELATED DOCUMENTS
 
 - [`../../INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md) — full install, sign-in, and permission-tier walkthrough
-- [`../../references/aside_cli_reference.md`](../../references/aside_cli_reference.md) — verified command surface
+- [`../../references/aside-cli-reference.md`](../../references/aside-cli-reference.md) — verified command surface
 - [`../aside-mcp/README.md`](../aside-mcp/README.md) — the MCP server package (the `aside` manual is registered in `.utcp_config.json`)
 - Source: https://releases.aside.com/install.sh · https://docs.aside.com/help/developers

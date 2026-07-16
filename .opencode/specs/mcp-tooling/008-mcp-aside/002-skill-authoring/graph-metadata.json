@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The mcp-tooling hub has no mode packet for the Aside browser: there is no `SKILL.md` doctrine for when to reach for Aside CLI versus the Aside MCP fallback, no install guide, no routing-recall scenarios, and no backend documentation",
     "created_at": "2026-07-16T09:39:15Z",
-    "last_save_at": "2026-07-16T12:00:33.284Z",
+    "last_save_at": "2026-07-16T15:05:14.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d26f15d0d2f0c3539dbcba095d7f819d2207d0c8a40c0cf489ab65d1e13ed298",
+    "source_fingerprint": "sha256:6c466ffed44ddbca8c58e3d973c1fe55c3845e3c9415825269d2f67347501cbb",
     "source_doc_hashes": {
-      "spec.md": "d1c6d79f375bd2ffb4df748366a2489f3d5d6b560e01892ea143732f211ddc17",
-      "plan.md": "02bc5884d54323cd334ef0460aae9aa4c40feba9023e0ff98762bd07e95ee8e6",
-      "tasks.md": "702dab4c78d2ea8a111e50f13da98a084c41356f9a62a696a7f3f6cd46f73862",
-      "checklist.md": "3dce48773163e54d8c1c1cd9254972a29e364d729d07058e284c81f3a462440a",
-      "implementation-summary.md": "4c24c915fb4de2f475d50c886fc7418ed3cd138fe2c65b42d770f4250448e700"
+      "spec.md": "bfc74bba5ec492bd6ca8d0bbe7163b8ce51e16b23f8b720ca94960a444a4d604",
+      "plan.md": "615366933e4b070602b89e841a97f01e0d9f441975d0399204df2d30be959561",
+      "tasks.md": "8289ec65310acbb2930eb8f33c2174ef28fe2277154c1c7a34359ce763ea880a",
+      "checklist.md": "9d56427ad2ca2e4b6360a6b011b2cf67242b1e221799d86effc71d0a79396ac7",
+      "implementation-summary.md": "4e59da2ec0daf5821c26b2acbd84a7623ee455a96ae2b306a85969f9cffbd93b"
     },
     "last_active_child_id": null,
     "last_active_at": null

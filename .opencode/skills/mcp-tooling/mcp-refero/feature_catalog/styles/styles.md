@@ -33,14 +33,14 @@ Both tools are READ-ONLY. Coverage is **web marketing/product pages ONLY** (land
 
 | File | Layer | Role |
 |---|---|---|
-| `references/tool_surface.md` | Shared | Style tool arguments, bounds, result shape, and the funnel role |
-| `references/mcp_wiring.md` | Shared | Doubled-prefix callable rule and the discovery-first contract |
+| `references/tool-surface.md` | Shared | Style tool arguments, bounds, result shape, and the funnel role |
+| `references/mcp-wiring.md` | Shared | Doubled-prefix callable rule and the discovery-first contract |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read_only/styles_funnel.md` | Manual playbook | The metadata-first styles funnel returns cited evidence read-only |
+| `manual_testing_playbook/read-only/styles-funnel.md` | Manual playbook | The metadata-first styles funnel returns cited evidence read-only |
 
 ---
 
@@ -51,8 +51,8 @@ Both tools are READ-ONLY. Coverage is **web marketing/product pages ONLY** (land
 - Feature file path: `styles/styles.md`
 
 Per-tool leaves in this domain:
-- [search_styles.md](search_styles.md) - semantic style search (paginated UUID records)
-- [get_style.md](get_style.md) - full style retrieval (batched 3-4 UUIDs)
+- [search-styles.md](search-styles.md) - semantic style search (paginated UUID records)
+- [get-style.md](get-style.md) - full style retrieval (batched 3-4 UUIDs)
 
 Related references:
 - [screens.md](../screens/screens.md) covers the in-app and iOS patterns styles do not

@@ -82,7 +82,7 @@ This is **Phase 2** of the mcp-refero nested mode: Refero design-reference MCP t
 - `assets/` including a ready-to-paste UTCP manual snippet matching the existing `refero` manual shape.
 - `changelog/`, `feature_catalog/`, `scripts/`.
 - `references/`: `mcp_wiring`, `tool_surface`, `troubleshooting`.
-- `manual_testing_playbook/` including `intra_routing_recall/` with at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md`.
+- `manual_testing_playbook/` including `intra-routing-recall/` with at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md`.
 - `mcp-servers/refero-mcp/README.md`.
 
 **Changelog**:
@@ -126,7 +126,7 @@ Author a complete, research-grounded `mcp-refero` transport packet under the `mc
 | `.opencode/skills/mcp-tooling/mcp-refero/{README.md,INSTALL_GUIDE.md}` | Create | Overview and install/verify path for the remote MCP |
 | `.opencode/skills/mcp-tooling/mcp-refero/assets/**` | Create | Ready-to-paste UTCP manual snippet and supporting assets |
 | `.opencode/skills/mcp-tooling/mcp-refero/references/{mcp_wiring,tool_surface,troubleshooting}/**` | Create | Wiring, verified tool inventory, and failure-mode references |
-| `.opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/**` | Create | Playbook incl. intra_routing_recall with ≥2 holdouts, negative.md, troubleshoot.md |
+| `.opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/**` | Create | Playbook incl. intra-routing-recall with ≥2 holdouts, negative.md, troubleshoot.md |
 | `.opencode/skills/mcp-tooling/mcp-refero/{changelog,feature_catalog,scripts}/**` | Create | Changelog seed, feature catalog, and (minimal) scripts area |
 | `.opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md` | Create | Server-level notes for the remote refero-mcp endpoint |
 <!-- /ANCHOR:scope -->
@@ -149,7 +149,7 @@ Author a complete, research-grounded `mcp-refero` transport packet under the `mc
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | Research-grounded content | Every documented tool name, parameter, auth note, and rate limit traces to a cited finding in `../001-research/research/research.md`; unverified claims are marked as such |
-| REQ-005 | Routing-recall playbook depth | `intra_routing_recall/` contains at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` |
+| REQ-005 | Routing-recall playbook depth | `intra-routing-recall/` contains at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` |
 | REQ-006 | Ready-to-paste UTCP snippet accuracy | The assets/ manual snippet byte-matches the shape of the existing `refero` manual in `.utcp_config.json` (name-keyed, `mcp-remote` stdio transport) |
 <!-- /ANCHOR:requirements -->
 

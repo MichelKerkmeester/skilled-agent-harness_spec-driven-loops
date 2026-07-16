@@ -254,7 +254,7 @@ The loop broadened review angles instead of synthesizing when the telemetry was 
 - `.opencode/skills/mcp-code-mode/SKILL.md`
 - `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`
 - `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`
-- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md`
 - `.utcp_config.json` (read-only; current conventions at lines 14–48)
 - Lineage-local `resource-map.md`, `findings-registry.json`, `deep-research-dashboard.md`, `deep-research-state.jsonl`, and `iterations/iteration-001.md` through `iteration-003.md`.
 

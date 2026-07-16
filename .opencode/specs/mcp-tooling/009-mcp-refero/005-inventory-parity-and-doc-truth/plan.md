@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 5: inventory-parity-and-doc-truth"
-description: "Enrich the mcp-refero packet to hub-sibling inventory parity (examples, install.sh, playbook, per-tool catalog leaves, changelog) and execute the sk-design de-duplication behind a byte-diffed before/after gate; everything traced to references/tool_surface.md."
+description: "Enrich the mcp-refero packet to hub-sibling inventory parity (examples, install.sh, playbook, per-tool catalog leaves, changelog) and execute the sk-design de-duplication behind a byte-diffed before/after gate; everything traced to references/tool-surface.md."
 trigger_phrases:
   - "refero parity plan"
   - "mcp-refero 005 plan"
@@ -88,7 +88,7 @@ Additive doc enrichment inside a fixed packet contract, plus a single pointer-in
 - **sk-design pointer**: `refero_tools.md` keeps frontmatter (v1.6.0.0), a canonical-home-moved note, and only judgment-side guidance; 8 bounded prose edits across design-interface name the transport correctly.
 
 ### Data Flow
-Ground truth flows one way: `research.md` sections A/C/D/G -> `references/tool_surface.md` -> every new example, scenario, and catalog leaf. sk-design consumes the surface via the pointer; nothing flows back into sk-design as duplicated fact.
+Ground truth flows one way: `research.md` sections A/C/D/G -> `references/tool-surface.md` -> every new example, scenario, and catalog leaf. sk-design consumes the surface via the pointer; nothing flows back into sk-design as duplicated fact.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -104,7 +104,7 @@ The de-duplication changes what `refero_tools.md` contains, so its consumers wer
 | `design-interface/SKILL.md` (3 lines), `README.md` (2 lines) | Consumers: describe the old catalog/integration | Updated to "mcp-refero transport over mcp-code-mode" phrasing | `rg -n "refero" design-interface` sweep; gate byte-diff |
 | `design_references_mcp.md` (2 link lines) | Consumer: links the catalog for arguments/shapes | Only the moved-content link phrasing updated; discipline content untouched | Link sweep; file otherwise unchanged per git diff |
 | `mobbin_tools.md` (1 line), `initiative_ask_fallback_routing.md` (1 anchor row) | Consumers: cross-link/role description | Parenthetical role updated to pointer | Link sweep |
-| `mcp-refero/references/tool_surface.md` | Canonical owner | Unchanged (already canonical) | `package_skill.py --check --strict` PASS |
+| `mcp-refero/references/tool-surface.md` | Canonical owner | Unchanged (already canonical) | `package_skill.py --check --strict` PASS |
 
 Consumer inventory command: `rg -ln "refero" .opencode/skills/sk-design/design-interface --include="*.md"` returned 7 files; all reviewed, 6 edited (query_default_then_deviate.md only lists the path in frontmatter and needed no change).
 <!-- /ANCHOR:affected-surfaces -->
@@ -115,7 +115,7 @@ Consumer inventory command: `rg -ln "refero" .opencode/skills/sk-design/design-i
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Baselines and exemplars
-- [x] Read research.md sections A/C/D/G, tool_surface.md, SKILL.md, playbook root + one scenario leaf, catalog files
+- [x] Read research.md sections A/C/D/G, tool-surface.md, SKILL.md, playbook root + one scenario leaf, catalog files
 - [x] Read `mcp-aside-devtools/examples/` (README + scripts) and its `scripts/install.sh` for structural conventions
 - [x] Capture BEFORE gates: sk-design `validate_skill_package.py` (saved to scratchpad), mcp-refero `package_skill.py --check --strict` PASS
 

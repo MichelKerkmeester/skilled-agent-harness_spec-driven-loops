@@ -54,7 +54,7 @@ description: "Deduplicated consolidation of the sol and luna lineage resource ma
 | `.opencode/skills/mcp-tooling/SKILL.md` | Analyzed | OK | luna | Cross-hub transport and judgment rule |
 | `.opencode/skills/mcp-tooling/mode-registry.json` | Analyzed | OK | luna | Transport/read-only registry pattern; transport-axis + pairing shape |
 | `.opencode/skills/mcp-tooling/mcp-figma/SKILL.md` | Analyzed | OK | sol, luna | Read-only external-transport exemplar; discovery discipline |
-| `.opencode/skills/mcp-tooling/mcp-figma/references/mcp_wiring.md` | Analyzed | OK | sol | Live-vs-inferred tool-surface labeling pattern |
+| `.opencode/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md` | Analyzed | OK | sol | Live-vs-inferred tool-surface labeling pattern |
 | `.opencode/skills/mcp-tooling/mcp-figma/assets/utcp_figma_manual.md` | Analyzed | OK | luna | Paste-ready UTCP manual exemplar |
 | `.opencode/skills/sk-design/SKILL.md` | Analyzed | OK | sol | Transport-versus-judgment and acceptance boundary |
 | `.opencode/skills/sk-design/design-md-generator/SKILL.md` | Analyzed | OK | luna | Design-judgment boundary |

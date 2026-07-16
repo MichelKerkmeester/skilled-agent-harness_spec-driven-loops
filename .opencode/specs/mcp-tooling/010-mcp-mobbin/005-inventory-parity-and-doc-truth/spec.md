@@ -108,7 +108,7 @@ Every packet doc states the registered wiring truth (registered; discovery pends
 - Flip every stale registration marker in the packet to registered-state truth, including renaming and rewriting the MANUAL-001 scenario file
 - Flip `scripts/doctor.sh` so manual absence reports as an ERROR while staying read-only and `bash -n` clean
 - Execute the asset's 9-item post-registration checklist doc-side (evidence for doc-executable items; exact commands for SKIP-valid live items)
-- Add `examples/` (README plus 3 walkthroughs traced to `references/tool_surface.md` only) and a non-interactive verify-only `scripts/install.sh`
+- Add `examples/` (README plus 3 walkthroughs traced to `references/tool-surface.md` only) and a non-interactive verify-only `scripts/install.sh`
 - Enrich the playbook to 9 scenarios and all 4 feature-catalog leaves with query recipes plus cross-cutting constraints
 - Bump the packet to 1.1.0.0 with `changelog/v1.1.0.0.md`
 
@@ -125,16 +125,16 @@ Every packet doc states the registered wiring truth (registered; discovery pends
 | `.opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Modify | Registration trap becomes discovery trap; rules, routing, quick reference flipped; v1.1.0.0 |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` | Modify | Quick start, FAQ, troubleshooting, verification flipped to registered state |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md` | Modify | Section 4 becomes reconnect-and-authenticate; doctor expectations flipped; 1.1.0.0 history row |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp_mobbin_manual.md` | Modify | Reference shape of the registered manual; 9-item checklist executed doc-side |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md` | Modify | Reference shape of the registered manual; 9-item checklist executed doc-side |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/references/{mcp_wiring,tool_surface,troubleshooting}.md` | Modify | Registered-state framing; absence as failure; discovery-first kept |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` | Modify | Manual absence now ERR; callable pointer notes pending discovery/OAuth |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/install.sh` | Create | Non-interactive verify-only posture check (node/npx, manual presence, OAuth pointer) |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/examples/{README,smoke_search_limit_1,platform_flow_research,element_intent_query}.md` | Create | Worked Code Mode walkthroughs; INFERRED callable with mandatory tool_info first |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/manual_testing_playbook.md` | Modify | 9-scenario index, 5 categories, 5 waves, registered-state preconditions |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery_setup/manual_registered_expected.md` | Rename+Rewrite | Was manual_absent_expected.md; presence expected, absence escalated |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read_only/platform_filter.md` | Create | PLATFORM-001: ios/web enum, infer-or-ask, per-platform comparison |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/limits_access/{rate_limit_backoff,paid_gate_taxonomy}.md` | Create | RATELIMIT-001 (429/backoff observation, SKIP-valid); PAIDGATE-001 (error taxonomy) |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/{feature_catalog,apps/apps,screens/screens,flows/flows,elements/elements}.md` | Modify | Registered-state framing; recipes + cross-cutting constraints traced to tool_surface.md |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery-setup/manual-registered-expected.md` | Rename+Rewrite | Was manual_absent_expected.md; presence expected, absence escalated |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/platform-filter.md` | Create | PLATFORM-001: ios/web enum, infer-or-ask, per-platform comparison |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/limits-access/{rate_limit_backoff,paid_gate_taxonomy}.md` | Create | RATELIMIT-001 (429/backoff observation, SKIP-valid); PAIDGATE-001 (error taxonomy) |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/{feature_catalog,apps/apps,screens/screens,flows/flows,elements/elements}.md` | Modify | Registered-state framing; recipes + cross-cutting constraints traced to tool-surface.md |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md` | Modify | Pointer flipped to registered state |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.0.0.md` | Create | Registered-state truth + parity additions release notes |
 <!-- /ANCHOR:scope -->
@@ -157,10 +157,10 @@ Every packet doc states the registered wiring truth (registered; discovery pends
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Examples ship with discipline | `examples/` contains README plus 3 walkthroughs, each opening with the mandatory `tool_info` confirmation, keeping OAuth steps SKIP-valid with exact commands, and tracing tool-surface claims to `references/tool_surface.md` only |
+| REQ-005 | Examples ship with discipline | `examples/` contains README plus 3 walkthroughs, each opening with the mandatory `tool_info` confirmation, keeping OAuth steps SKIP-valid with exact commands, and tracing tool-surface claims to `references/tool-surface.md` only |
 | REQ-006 | install.sh verifies posture | `scripts/install.sh` is non-interactive and verify-only: node 18+/npx, `mobbin` manual PRESENT in `.utcp_config.json` (grep, presence = OK), operator-only OAuth pointer; `bash -n` clean; exit 0 on the healthy posture |
 | REQ-007 | Playbook reaches 9 scenarios | Root index lists 9 IDs across 5 categories matching 9 per-scenario files; the 3 additions are grounded in the research workflows (platform filter; 429/backoff observation SKIP-valid; paid-gate taxonomy); sibling frontmatter schema kept |
-| REQ-008 | Catalog leaves carry constraints | Each of apps/screens/flows/elements has query-intent recipes plus the cross-cutting rate-limit and plan-gating constraints, traced to `tool_surface.md` |
+| REQ-008 | Catalog leaves carry constraints | Each of apps/screens/flows/elements has query-intent recipes plus the cross-cutting rate-limit and plan-gating constraints, traced to `tool-surface.md` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -192,7 +192,7 @@ Every packet doc states the registered wiring truth (registered; discovery pends
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. The two questions this phase inherited were answered during execution: the registration state (registered, verified byte-equivalent) and the MANUAL-001 rename target (`manual_registered_expected.md`).
+- None. The two questions this phase inherited were answered during execution: the registration state (registered, verified byte-equivalent) and the MANUAL-001 rename target (`manual-registered-expected.md`).
 <!-- /ANCHOR:questions -->
 
 ---

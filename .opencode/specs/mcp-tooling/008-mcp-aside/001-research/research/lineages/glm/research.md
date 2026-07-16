@@ -177,7 +177,7 @@ Location: `.opencode/skills/mcp-tooling/mcp-aside-devtools/`
 
 1. **SKILL.md** — frontmatter `name: mcp-aside-devtools`, `allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]`; sections mirroring mcp-chrome-devtools: §1 When to Use (triggers: "aside browser", "AI browser automation", "aside cli/mcp"; when-not: imperative CDP → bdg, heavy frameworks → Playwright), §2 Smart Routing (CLI/MCP/INSTALL/TROUBLESHOOT/AUTOMATION intents), §3 How it Works (two-path CLI-primary `aside`/`aside repl` + Code Mode MCP fallback `aside mcp`), §4 Rules (check `command -v aside` first; discover tool names before MCP calls; try/finally cleanup; verify account sign-in for built-in models), §5-8 success/integration/quick-ref/references.
 2. **INSTALL_GUIDE.md** — curl install + `aside --version` verify + account sign-in.
-3. **references/** — `aside_cli_patterns.md` (NL agent + REPL recipes), `mcp_session_management.md` (account/session/permission modes), `troubleshooting.md` (sign-out recovery, session-not-found).
+3. **references/** — `aside_cli_patterns.md` (NL agent + REPL recipes), `mcp_session-management.md` (account/session/permission modes), `troubleshooting.md` (sign-out recovery, session-not-found).
 4. **scripts/install.sh** — thin wrapper around the curl installer + `command -v aside` verify.
 5. **Registration** — UTCP manual `aside` in `.utcp_config.json` (§14); mode entry in `mode-registry.json`.
 

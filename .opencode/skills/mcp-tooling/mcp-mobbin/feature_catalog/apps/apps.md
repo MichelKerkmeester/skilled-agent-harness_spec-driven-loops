@@ -33,11 +33,11 @@ Compose the query from the app/company/category and the comparison goal — for 
 | Named-app study | `<app or company> <surface or state>` | `"Airbnb search results filtering"` |
 | Cross-platform contrast | Same query, one call per `platform` value | `"subscription paywall"` on `ios`, then `web` |
 
-### Cross-cutting constraints (traced to [`tool_surface.md`](../../references/tool_surface.md))
+### Cross-cutting constraints (traced to [`tool-surface.md`](../../references/tool-surface.md))
 
 - **Rate limit** (§3): 60 requests per 60 seconds per user — comparison sweeps across many categories consume the window fast; on 429 honor `Retry-After`, then exponential backoff with jitter.
 - **Plan gating** (§3): MCP requires Pro, Team, or Enterprise (Free excluded); per-plan usage caps within eligible tiers are undocumented — never claim a caps matrix.
-- **Auth** (§3, via `mcp_wiring.md` §4): browser OAuth only; no API key exists to wire.
+- **Auth** (§3, via `mcp-wiring.md` §4): browser OAuth only; no API key exists to wire.
 - **Schema honesty** (§1): the `deep` question is resolved (2026-07-16) — `mode: "deep" | "standard"` is a real `search_screens` input; preserve unknown response fields and never invent undeclared parameters.
 
 ---
@@ -48,15 +48,15 @@ Compose the query from the app/company/category and the comparison goal — for 
 
 | File | Layer | Role |
 |---|---|---|
-| `references/tool_surface.md` | Shared | The single-tool contract, app-intent query design, and the completeness boundary |
-| `references/mcp_wiring.md` | Shared | Inferred callable naming and the discovery-first contract |
+| `references/tool-surface.md` | Shared | The single-tool contract, app-intent query design, and the completeness boundary |
+| `references/mcp-wiring.md` | Shared | Inferred callable naming and the discovery-first contract |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/read_only/screens_search.md` | Manual playbook | The search contract app-intent queries run on |
-| `manual_testing_playbook/pairing/sk_design_pairing.md` | Manual playbook | App evidence routes through sk-design before any design verdict |
+| `manual_testing_playbook/read-only/screens-search.md` | Manual playbook | The search contract app-intent queries run on |
+| `manual_testing_playbook/pairing/sk-design-pairing.md` | Manual playbook | App evidence routes through sk-design before any design verdict |
 
 ---
 

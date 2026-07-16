@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md"
-      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp_aside_manual.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md"
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/feature_catalog.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -68,7 +68,7 @@ This is **Phase 5** of the mcp-aside-devtools completion: inventory parity, doc 
 
 **Deliverables**:
 - Registered-state doc-truth flips across the whole packet, including the ungated ASD-011 scenario and the doctor error posture
-- New `feature_catalog/` (root + 5 intent domains) and `assets/utcp_aside_manual.md`
+- New `feature_catalog/` (root + 5 intent domains) and `assets/utcp-aside-manual.md`
 - Packet version 1.1.0.0 with `changelog/v1.1.0.0.md`
 
 **Changelog**:
@@ -97,7 +97,7 @@ Every registration claim in the packet states the registered truth, the discover
 - Ungate playbook scenario ASD-011 (precondition becomes a session with the code_mode MCP loaded; SKIP-valid without one; missing manual becomes FAIL)
 - `scripts/doctor.sh`: manual absence in `.utcp_config.json` becomes an error (was expected-absent info); stays read-only and `bash -n` clean
 - New `feature_catalog/` mirroring `mcp-mobbin`: root catalog plus one snake_case dir per SKILL.md INTENT_SIGNALS key (task, repl, mcp, install, troubleshoot)
-- New `assets/utcp_aside_manual.md`: byte-true registered snapshot with provenance and the single-vs-dual-manual open question
+- New `assets/utcp-aside-manual.md`: byte-true registered snapshot with provenance and the single-vs-dual-manual open question
 - SKILL.md/README/INSTALL_GUIDE consistency pass referencing the new inventory; packet version bump to 1.1.0.0 plus `changelog/v1.1.0.0.md`
 - This spec child authored at Level 2 with metadata backfill and strict validation
 
@@ -114,14 +114,14 @@ Every registration claim in the packet states the registered truth, the discover
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md` | Modify | Registered-state MCP posture, asset routing, version 1.1.0.0 |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md` | Modify | Quick start, FAQ, related documents flipped to registered state |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md` | Modify | MCP configuration section registered + verify-with-jq |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp_wiring.md` | Modify | Registration section retitled REGISTERED |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Modify | Registration section retitled REGISTERED |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md` | Modify | Drafted-manual framing replaced with registered truth |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md` | Modify | Cross-reference updated |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/manual_testing_playbook.md` | Modify | ASD-011 ungated; preconditions and wave plan updated |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp_transport/code_mode_discovery.md` | Modify | Gate replaced with code_mode-session precondition |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp-transport/code-mode-discovery.md` | Modify | Gate replaced with code_mode-session precondition |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` | Modify | Manual absence becomes an error (exit 1) |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/` | Create | Root catalog + 5 intent-domain files |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp_aside_manual.md` | Create | Byte-true registered snapshot + checklist |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md` | Create | Byte-true registered snapshot + checklist |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.0.0.md` | Create | Release record for this phase |
 <!-- /ANCHOR:scope -->
 
@@ -135,9 +135,9 @@ Every registration claim in the packet states the registered truth, the discover
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | No stale registration claims remain in the packet | Grep for "NOT REGISTERED", "not registered", "later phase", "not yet registered", "manual absent" returns zero hits outside the immutable v1.0.0.0 changelog |
-| REQ-002 | ASD-011 is ungated | `code_mode_discovery.md` precondition is a session with the code_mode MCP loaded; SKIP blocker is "no Code Mode session available"; missing manual is FAIL |
+| REQ-002 | ASD-011 is ungated | `code-mode-discovery.md` precondition is a session with the code_mode MCP loaded; SKIP blocker is "no Code Mode session available"; missing manual is FAIL |
 | REQ-003 | Doctor treats manual absence as an error | `doctor.sh` reports err and exits 1 when the `aside` manual is missing from an existing `.utcp_config.json`; `bash -n` passes; script stays read-only |
-| REQ-004 | `assets/utcp_aside_manual.md` is byte-true to the live entry | Programmatic comparison of the embedded JSON block against `jq '.manual_call_templates[] | select(.name == "aside")' .utcp_config.json` output matches exactly |
+| REQ-004 | `assets/utcp-aside-manual.md` is byte-true to the live entry | Programmatic comparison of the embedded JSON block against `jq '.manual_call_templates[] | select(.name == "aside")' .utcp_config.json` output matches exactly |
 | REQ-005 | Packet gate passes | `package_skill.py --check --strict` reports PASS |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -176,6 +176,6 @@ Every registration claim in the packet states the registered truth, the discover
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Single vs dual `aside` manual: unresolved pending a controlled multi-client isolation test (documented in the asset and `references/mcp_wiring.md`; not this phase's decision)
+- Single vs dual `aside` manual: unresolved pending a controlled multi-client isolation test (documented in the asset and `references/mcp-wiring.md`; not this phase's decision)
 - Exact Code Mode callable name: pends discovery in a fresh Code Mode session (phase 006)
 <!-- /ANCHOR:questions -->

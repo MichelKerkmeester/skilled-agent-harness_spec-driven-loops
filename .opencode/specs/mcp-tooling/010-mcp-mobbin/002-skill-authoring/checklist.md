@@ -77,8 +77,8 @@ FAILURE MODES:
 
 - [x] CHK-020 [P0] All spec.md acceptance criteria (REQ-001..REQ-006) verified with evidence [evidence: acceptance evidence in `tasks.md`]
 - [x] CHK-021 [P0] Transport contract consistency pass: no packet doc grants or implies Write/Edit/Task [evidence: `package_skill.py --check --strict` Result: PASS — re-verified by orchestrator, exit 0]
-- [x] CHK-022 [P1] intra_routing_recall/ contains at least 2 holdout scenarios plus negative.md and troubleshoot.md [evidence: 2/2 holdouts + `negative.md` + `troubleshoot.md`; 6/6 routing prompts dry-read unambiguous]
-- [x] CHK-023 [P1] tool_surface.md claims spot-checked against research.md citations; unknowns carried as explicit caveats [evidence: `assets/utcp_mobbin_manual.md` verified BYTE-IDENTICAL to research draft programmatically]
+- [x] CHK-022 [P1] intra-routing-recall/ contains at least 2 holdout scenarios plus negative.md and troubleshoot.md [evidence: 2/2 holdouts + `negative.md` + `troubleshoot.md`; 6/6 routing prompts dry-read unambiguous]
+- [x] CHK-023 [P1] tool-surface.md claims spot-checked against research.md citations; unknowns carried as explicit caveats [evidence: `assets/utcp-mobbin-manual.md` verified BYTE-IDENTICAL to research draft programmatically]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -102,7 +102,7 @@ FAILURE MODES:
 
 - [x] CHK-030 [P0] No hardcoded secrets: credential handling documented via env template only [evidence: 0/31 files contain secrets/tokens; no `MOBBIN_API_KEY` invented (negative answer preserved)]
 - [x] CHK-031 [P0] INSTALL_GUIDE.md provisions the Mobbin credential without embedding a real key anywhere in the packet [evidence: 0/31 docs instruct workspace mutation; read-only transport posture in `SKILL.md` RULES]
-- [x] CHK-032 [P1] Read-only posture verified: documented tool surface contains no workspace-mutating operation [evidence: OAuth/DCR/PKCE documented as mechanism in `mcp_wiring.md`; 60/60 rate limit + plan gating stated]
+- [x] CHK-032 [P1] Read-only posture verified: documented tool surface contains no workspace-mutating operation [evidence: OAuth/DCR/PKCE documented as mechanism in `mcp-wiring.md`; 60/60 rate limit + plan gating stated]
 <!-- /ANCHOR:security -->
 
 ---
@@ -111,8 +111,8 @@ FAILURE MODES:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized with what was actually authored [evidence: `spec.md`/`plan.md`/`tasks.md` match the delivered 31-file inventory]
-- [x] CHK-041 [P1] SKILL.md, README.md, and INSTALL_GUIDE.md agree on install steps, tool names, and pairing rules [evidence: 10/10 open questions carried verbatim in `tool_surface.md`; callable marked INFERRED]
-- [x] CHK-042 [P2] changelog/v1.0.0.0 entry reflects the shipped inventory [evidence: `tool_surface.md` records the 2026-07-16 research date]
+- [x] CHK-041 [P1] SKILL.md, README.md, and INSTALL_GUIDE.md agree on install steps, tool names, and pairing rules [evidence: 10/10 open questions carried verbatim in `tool-surface.md`; callable marked INFERRED]
+- [x] CHK-042 [P2] changelog/v1.0.0.0 entry reflects the shipped inventory [evidence: `tool-surface.md` records the 2026-07-16 research date]
 <!-- /ANCHOR:docs -->
 
 ---

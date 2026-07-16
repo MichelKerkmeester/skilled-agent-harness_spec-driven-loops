@@ -88,9 +88,9 @@ Each layer maps to one domain overview file plus one per-tool leaf per documente
 
 | Section | Area | Tools listed | Domain overview | Per-tool leaves |
 |---|---|---|---|---|
-| 2 | Styles | 2 | `styles/styles.md` | `styles/search_styles.md`, `styles/get_style.md` |
-| 3 | Screens | 4 | `screens/screens.md` | `screens/search_screens.md`, `screens/get_screen.md`, `screens/get_similar_screens.md`, `screens/get_screen_image.md` |
-| 4 | Flows | 2 | `flows/flows.md` | `flows/search_flows.md`, `flows/get_flow.md` |
+| 2 | Styles | 2 | `styles/styles.md` | `styles/search-styles.md`, `styles/get-style.md` |
+| 3 | Screens | 4 | `screens/screens.md` | `screens/search-screens.md`, `screens/get-screen.md`, `screens/get-similar-screens.md`, `screens/get-screen-image.md` |
+| 4 | Flows | 2 | `flows/flows.md` | `flows/search-flows.md`, `flows/get-flow.md` |
 | **Total** | **3 layers** | **8 tools** | **3 domain files** | **8 per-tool leaves** |
 
 > The eight tools are the complete documented surface. There are no `search_apps`, `get_app`, `search_elements`, or `get_element` tools, and the deprecated legacy surface (`_tool` names, `get_design_guidance`, numeric screen IDs, `limit`/`offset` search paging) must be rejected on sight. The per-tool leaf count MUST equal the 8 documented tools; keep them in sync as the provider surface evolves, and treat any live drift from these 8 tools as a fail-closed escalation.

@@ -77,7 +77,7 @@ FAILURE MODES:
 
 - [x] CHK-020 [P0] All acceptance criteria (REQ-001..005) met with evidence per requirement [evidence: 12/12 tasks evidenced in `tasks.md`]
 - [x] CHK-021 [P0] `package_skill.py --check` exits 0 on the packet (record command and exit code) [evidence: `package_skill.py --check` Result: PASS, exit code 0, 0 errors 0 warnings]
-- [x] CHK-022 [P1] `intra_routing_recall/` carries at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` [evidence: 2/2 holdouts + `negative.md` + `troubleshoot.md` present]
+- [x] CHK-022 [P1] `intra-routing-recall/` carries at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` [evidence: 2/2 holdouts + `negative.md` + `troubleshoot.md` present]
 - [x] CHK-023 [P1] Both backend docs cover failure modes (CLI unavailable, MCP transport down, auth expired) [evidence: `references/troubleshooting.md` + both `mcp-servers/` READMEs cover the 3 failure modes]
 <!-- /ANCHOR:testing -->
 
@@ -96,7 +96,7 @@ FAILURE MODES:
 
 - [x] CHK-030 [P0] No hardcoded secrets — auth documentation describes the mechanism without embedding tokens or credentials [evidence: 0/41 files contain tokens/credentials; auth described as mechanism in `INSTALL_GUIDE.md`]
 - [x] CHK-031 [P0] INSTALL_GUIDE auth steps match the verified research findings (no speculative auth flows) [evidence: `INSTALL_GUIDE.md` auth = account sign-in + provider tiers per synthesis section 9]
-- [x] CHK-032 [P1] Unattended-automation caveats from research are documented, not silently dropped [evidence: unattended boundary documented in `SKILL.md` RULES + `session_management.md`]
+- [x] CHK-032 [P1] Unattended-automation caveats from research are documented, not silently dropped [evidence: unattended boundary documented in `SKILL.md` RULES + `session-management.md`]
 <!-- /ANCHOR:security -->
 
 ---

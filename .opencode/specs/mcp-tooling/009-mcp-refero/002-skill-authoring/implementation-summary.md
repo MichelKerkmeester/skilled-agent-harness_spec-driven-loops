@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md"
-      - ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp_refero_manual.md"
-      - ".opencode/skills/mcp-tooling/mcp-refero/references/tool_surface.md"
+      - ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md"
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-002-refero-authoring-complete"
@@ -57,7 +57,7 @@ _memory:
 
 - `SKILL.md` — transport contract: doubled-prefix callable (`refero.refero_refero_<tool>`) with mandatory post-registration `tool_info` confirmation, 8-tool surface, plan gating (Pro 8,000 calls/mo, Free has no MCP), Write/Edit/Task forbidden, benchmark-parseable intent block.
 - `README.md`, `INSTALL_GUIDE.md` (verify-only posture — the `refero` manual is ALREADY registered; OAuth fenced operator-only).
-- `assets/utcp_refero_manual.md` — byte-identical snapshot of the live manual + luna's Bearer-header alternative, both provenance-marked.
+- `assets/utcp-refero-manual.md` — byte-identical snapshot of the live manual + luna's Bearer-header alternative, both provenance-marked.
 - `references/` (tool_surface with CONFIRMED/INFERRED/UNKNOWN tagging + research date; mcp_wiring; troubleshooting with 14-row matrix), `feature_catalog/` (3 tool-domain dirs), `scripts/doctor.sh` (read-only; env-gated live probe), `manual_testing_playbook/` (6 scenarios incl. 2 holdouts, negative, troubleshoot; paid/OAuth scenarios SKIP-valid), `changelog/`, `mcp-servers/refero-mcp/README.md`.
 <!-- /ANCHOR:what-built -->
 
@@ -98,7 +98,7 @@ Single authoring agent, contract-first (create-skill doctrine → transport-axis
 
 - Not yet hub-routable: registration happens in phase 003.
 - End-to-end OAuth remains Inferred everywhere it is mentioned; first live call requires operator authorization.
-- 10 research open questions carried verbatim in `tool_surface.md`; paid capabilities documented-not-exercised.
+- 10 research open questions carried verbatim in `tool-surface.md`; paid capabilities documented-not-exercised.
 <!-- /ANCHOR:limitations -->
 
 ---

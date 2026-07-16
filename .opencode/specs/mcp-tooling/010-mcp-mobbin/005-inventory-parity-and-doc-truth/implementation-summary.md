@@ -57,12 +57,12 @@ _memory:
 
 The `mobbin` manual now sits in `.utcp_config.json` (operator-registered 2026-07-16, byte-equivalent to the researched draft), and the packet finally says so: every doc that taught "NOT registered / absence expected / later phase" now teaches registered-state truth — registered; discovery pends a fresh Code Mode session; OAuth pends the operator; callable still INFERRED until `tool_info`. The packet also caught up with its transport siblings on inventory.
 
-- **Doc-truth sweep (15 files, 98 baseline marker lines)**: `SKILL.md` (registration trap became a discovery trap; RULES/ESCALATE reframed to escalate-never-repair), `README.md`, `INSTALL_GUIDE.md` (Section 4 is now "Reconnect and Authenticate", operator-only), `references/{mcp_wiring,tool_surface,troubleshooting}.md`, `assets/utcp_mobbin_manual.md` (now the registered manual's reference shape, 9-item checklist executed doc-side: 3 evidenced, 6 SKIP-valid with exact commands), `feature_catalog/**`, `manual_testing_playbook/**`, `mcp-servers/mobbin-mcp/README.md`.
+- **Doc-truth sweep (15 files, 98 baseline marker lines)**: `SKILL.md` (registration trap became a discovery trap; RULES/ESCALATE reframed to escalate-never-repair), `README.md`, `INSTALL_GUIDE.md` (Section 4 is now "Reconnect and Authenticate", operator-only), `references/{mcp_wiring,tool_surface,troubleshooting}.md`, `assets/utcp-mobbin-manual.md` (now the registered manual's reference shape, 9-item checklist executed doc-side: 3 evidenced, 6 SKIP-valid with exact commands), `feature_catalog/**`, `manual_testing_playbook/**`, `mcp-servers/mobbin-mcp/README.md`.
 - **`scripts/doctor.sh`**: manual absence flipped from expected INFO to **ERR** (a broken or reverted registration to escalate); still read-only, non-interactive, `bash -n` clean.
-- **`examples/` (new, 4 files)**: README plus `smoke_search_limit_1.md`, `platform_flow_research.md`, `element_intent_query.md` — each opens with the mandatory `tool_info` confirmation of the INFERRED `mobbin.mobbin_search_screens`, keeps OAuth SKIP-valid with exact commands, and traces to `references/tool_surface.md` only.
+- **`examples/` (new, 4 files)**: README plus `smoke-search-limit-1.md`, `platform-flow-research.md`, `element-intent-query.md` — each opens with the mandatory `tool_info` confirmation of the INFERRED `mobbin.mobbin_search_screens`, keeps OAuth SKIP-valid with exact commands, and traces to `references/tool-surface.md` only.
 - **`scripts/install.sh` (new)**: non-interactive verify-only posture check (Node 18+/npx, manual PRESENT in `.utcp_config.json`, operator-only OAuth pointer); exit 0 on the healthy posture.
-- **Playbook 6 to 9 scenarios**: MANUAL-001 renamed/rewritten (`manual_absent_expected.md` became `manual_registered_expected.md`; presence expected); new PLATFORM-001 (ios/web enum, infer-or-ask), RATELIMIT-001 (429 `Retry-After` + backoff observation, SKIP-valid), PAIDGATE-001 (401 vs entitlement vs 429 taxonomy); root index updated to 9 IDs across 5 categories and 5 waves.
-- **Catalog leaves enriched**: apps/screens/flows/elements each gained query-intent recipe tables plus the cross-cutting rate-limit and plan-gating constraints, traced to `tool_surface.md`.
+- **Playbook 6 to 9 scenarios**: MANUAL-001 renamed/rewritten (`manual_absent_expected.md` became `manual-registered-expected.md`; presence expected); new PLATFORM-001 (ios/web enum, infer-or-ask), RATELIMIT-001 (429 `Retry-After` + backoff observation, SKIP-valid), PAIDGATE-001 (401 vs entitlement vs 429 taxonomy); root index updated to 9 IDs across 5 categories and 5 waves.
+- **Catalog leaves enriched**: apps/screens/flows/elements each gained query-intent recipe tables plus the cross-cutting rate-limit and plan-gating constraints, traced to `tool-surface.md`.
 - **Release**: version 1.1.0.0 plus `changelog/v1.1.0.0.md`.
 
 ### Files Changed
@@ -70,7 +70,7 @@ The `mobbin` manual now sits in `.utcp_config.json` (operator-registered 2026-07
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/mcp-tooling/mcp-mobbin/{SKILL,README,INSTALL_GUIDE}.md` | Modified | Registered-state doctrine, operator steps reframed, v1.1.0.0 |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/references/*.md` + `assets/utcp_mobbin_manual.md` | Modified | Reference shape of the registered manual; checklist executed doc-side |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/references/*.md` + `assets/utcp-mobbin-manual.md` | Modified | Reference shape of the registered manual; checklist executed doc-side |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` | Modified | Absence now ERR; pending discovery/OAuth stated |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/install.sh` | Created | Verify-only posture check |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/examples/*.md` (4) | Created | Worked Code Mode walkthroughs |

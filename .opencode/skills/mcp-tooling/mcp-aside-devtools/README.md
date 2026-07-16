@@ -75,7 +75,7 @@ aside repl "openTab('https://example.com')"
 
 **Step 4: MCP path with Code Mode.**
 
-The `aside` manual **is registered** in `.utcp_config.json` (registered 2026-07-16; snapshot in [`assets/utcp_aside_manual.md`](./assets/utcp_aside_manual.md)), and **live discovery confirmed the callable on 2026-07-16** (fixture: [`references/discovery_fixture_2026-07-16.json`](./references/discovery_fixture_2026-07-16.json)): discovery lists the registry name `aside.aside.repl` (dot-separated); the TypeScript call inside `call_tool_chain` is `aside.aside_repl(args)`:
+The `aside` manual **is registered** in `.utcp_config.json` (registered 2026-07-16; snapshot in [`assets/utcp-aside-manual.md`](./assets/utcp-aside-manual.md)), and **live discovery confirmed the callable on 2026-07-16** (fixture: [`references/discovery-fixture-2026-07-16.json`](./references/discovery-fixture-2026-07-16.json)): discovery lists the registry name `aside.aside.repl` (dot-separated); the TypeScript call inside `call_tool_chain` is `aside.aside_repl(args)`:
 
 ```typescript
 call_tool_chain(`
@@ -149,7 +149,7 @@ A: Use `aside "<prompt>"` when the outcome matters more than the steps (multi-si
 
 **Q: Can I use the MCP path today?**
 
-A: Yes. The transport works (`aside mcp` over stdio), the `aside` UTCP manual is registered in `.utcp_config.json` (2026-07-16), and live discovery confirmed the surface the same day (fixture: `references/discovery_fixture_2026-07-16.json`): registry name `aside.aside.repl`, TS callable `aside.aside_repl(args)`, one `repl` tool only. Per-session rediscovery stays mandatory (`tools.listChanged: true`); actual browser work still needs a profile binding.
+A: Yes. The transport works (`aside mcp` over stdio), the `aside` UTCP manual is registered in `.utcp_config.json` (2026-07-16), and live discovery confirmed the surface the same day (fixture: `references/discovery-fixture-2026-07-16.json`): registry name `aside.aside.repl`, TS callable `aside.aside_repl(args)`, one `repl` tool only. Per-session rediscovery stays mandatory (`tools.listChanged: true`); actual browser work still needs a profile binding.
 
 **Q: Does Aside capture console logs or network traffic like `bdg`?**
 
@@ -182,14 +182,14 @@ A: Unresolved. Docs examples show `-m provider/model`; the installed help shows 
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the lane router, and the full rule set |
 | [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Step-by-step install: curl installer, sign-in, permission tiers, MCP posture |
-| [`references/aside_cli_reference.md`](./references/aside_cli_reference.md) | Verified command surface, options, boundary rules |
-| [`references/mcp_wiring.md`](./references/mcp_wiring.md) | MCP transport, handshake, discovery, UTCP registration posture |
-| [`references/session_management.md`](./references/session_management.md) | Three-layer session model, permissions, concurrency |
+| [`references/aside-cli-reference.md`](./references/aside-cli-reference.md) | Verified command surface, options, boundary rules |
+| [`references/mcp-wiring.md`](./references/mcp-wiring.md) | MCP transport, handshake, discovery, UTCP registration posture |
+| [`references/session-management.md`](./references/session-management.md) | Three-layer session model, permissions, concurrency |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Error taxonomy and recovery sequences |
 | [`examples/README.md`](./examples/README.md) | Guide to the workflow example scripts |
 | [`scripts/install.sh`](./scripts/install.sh) | Non-interactive macOS installer wrapper with verification |
 | [`scripts/doctor.sh`](./scripts/doctor.sh) | Read-only diagnostics: binary, version, account, MCP handshake, registered manual |
-| [`assets/utcp_aside_manual.md`](./assets/utcp_aside_manual.md) | The registered `aside` manual snapshot and post-registration checklist |
+| [`assets/utcp-aside-manual.md`](./assets/utcp-aside-manual.md) | The registered `aside` manual snapshot and post-registration checklist |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Capability inventory: five intent domains over three lanes |
 | [`mcp-servers/aside-cli/README.md`](./mcp-servers/aside-cli/README.md) | CLI install pointer package |
 | [`mcp-servers/aside-mcp/README.md`](./mcp-servers/aside-mcp/README.md) | MCP registration package (registered state) |

@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Operator handoff: OAuth completion and first authenticated search"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-refero/references/discovery_fixture_2026-07-16.json"
-      - ".opencode/skills/mcp-tooling/mcp-refero/references/mcp_wiring.md"
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/discovery-fixture-2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md"
       - ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -66,7 +66,7 @@ This is **Phase 6** of the mcp-refero completion: inventory parity, sk-design de
 - The live Code Mode discovery run of 2026-07-16 produced the fixture this phase records.
 
 **Deliverables**:
-- `references/discovery_fixture_2026-07-16.json` treated as packet ground truth.
+- `references/discovery-fixture-2026-07-16.json` treated as packet ground truth.
 - The doubled-prefix naming conflict closed with live registry evidence across 7 packet files.
 - Packet version 1.1.1.0 with `changelog/v1.1.1.0.md`.
 
@@ -108,14 +108,14 @@ Every naming claim in the packet cites the live registry evidence, the single-pr
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/mcp-tooling/mcp-refero/references/discovery_fixture_2026-07-16.json` | Create | Dated live-discovery fixture (already written by the probe; recorded as ground truth) |
+| `.opencode/skills/mcp-tooling/mcp-refero/references/discovery-fixture-2026-07-16.json` | Create | Dated live-discovery fixture (already written by the probe; recorded as ground truth) |
 | `.opencode/skills/mcp-tooling/mcp-refero/SKILL.md` | Modify | Naming trap flipped to confirmed, discovery paragraph, quick-ref row, version 1.1.1.0 |
 | `.opencode/skills/mcp-tooling/mcp-refero/README.md` | Modify | Naming/FAQ/verification rows record the resolved conflict and pre-auth discovery |
 | `.opencode/skills/mcp-tooling/mcp-refero/INSTALL_GUIDE.md` | Modify | Pre-auth preconditions; tool_info checklist item satisfied with fixture evidence |
-| `.opencode/skills/mcp-tooling/mcp-refero/references/mcp_wiring.md` | Modify | Naming section flipped to confirmed registry evidence; banner updated |
-| `.opencode/skills/mcp-tooling/mcp-refero/references/tool_surface.md` | Modify | Open question 1 resolved, question 2 partially resolved, fixture cited |
+| `.opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md` | Modify | Naming section flipped to confirmed registry evidence; banner updated |
+| `.opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md` | Modify | Open question 1 resolved, question 2 partially resolved, fixture cited |
 | `.opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md` | Modify | Expected discovery result corrected to pre-auth confirmed |
-| `.opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery_setup/discovery_first.md` | Modify | DISCOVER-001 rationale records the closed conflict and fixture baseline |
+| `.opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery-setup/discovery-first.md` | Modify | DISCOVER-001 rationale records the closed conflict and fixture baseline |
 | `.opencode/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md` | Create | Release record for the discovery flips |
 <!-- /ANCHOR:scope -->
 
@@ -128,8 +128,8 @@ Every naming claim in the packet cites the live registry evidence, the single-pr
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The naming conflict closes on live registry evidence, both forms recorded | Flipped claims state dotted registry `refero.refero.refero_<tool>` and doubled TS callable `refero.refero_refero_<tool>(...)`, citing `references/discovery_fixture_2026-07-16.json` |
-| REQ-002 | The single-prefix derivation is recorded as refuted | mcp_wiring.md and the playbook name the losing derivation as refuted by the live registry, not merely disfavored |
+| REQ-001 | The naming conflict closes on live registry evidence, both forms recorded | Flipped claims state dotted registry `refero.refero.refero_<tool>` and doubled TS callable `refero.refero_refero_<tool>(...)`, citing `references/discovery-fixture-2026-07-16.json` |
+| REQ-002 | The single-prefix derivation is recorded as refuted | mcp-wiring.md and the playbook name the losing derivation as refuted by the live registry, not merely disfavored |
 | REQ-003 | Discovery preconditions state pre-auth truthfully | No doc gates `tools/list`/`tool_info` on OAuth; authenticated CALLS stay operator-gated in the same sentences |
 | REQ-004 | Packet gate green | `package_skill.py .opencode/skills/mcp-tooling/mcp-refero --check --strict` prints PASS |
 
@@ -159,7 +159,7 @@ Every naming claim in the packet cites the live registry evidence, the single-pr
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `references/discovery_fixture_2026-07-16.json` | Without it there is no registry evidence to cite | Fixture written by the probe before this phase; every flip cites it |
+| Dependency | `references/discovery-fixture-2026-07-16.json` | Without it there is no registry evidence to cite | Fixture written by the probe before this phase; every flip cites it |
 | Risk | Provider surface drift after the fixture date | Recorded names could silently stale | Per-session `tool_info` re-confirmation and the fail-closed drift protocol stay mandatory in every flipped doc |
 | Risk | Overclaiming schema coverage from a truncated `search_tools` payload | Wrong per-tool `response_format` claims | Only the two fully-shown search-tool schemas recorded; the other six stay runtime checks |
 <!-- /ANCHOR:risks -->

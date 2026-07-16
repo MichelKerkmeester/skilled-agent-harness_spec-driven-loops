@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Operator handoff for OAuth items"
     blockers: []
     key_files:
-      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery_fixture_2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "agent-006-live-verification-capture-mobbin"
@@ -73,7 +73,7 @@ This is the largest of the three transport flips because the fixture does not ju
 Evidence-first documentation with an explicit supersession record: the historical documented baseline stays visible (dated), the live inventory replaces it as the operating contract, and the boundary rules re-anchor on the fixture instead of the old record.
 
 ### Key Components
-- **Fixture** (`references/discovery_fixture_2026-07-16.json`): `list_tools`/`search_tools`/`tool_info` payloads, 3 `discoveredCallableNames`, full declared schemas for all three tools.
+- **Fixture** (`references/discovery-fixture-2026-07-16.json`): `list_tools`/`search_tools`/`tool_info` payloads, 3 `discoveredCallableNames`, full declared schemas for all three tools.
 - **Supersession statement**: "live discovery 2026-07-16 supersedes the one-public-tool baseline" appears wherever the old boundary lived.
 - **Mode resolution**: `mode?: "deep" | "standard" | "fast"` on `search_screens`, from the fixture schema.
 - **Ordering contract**: `search_flows` returns `screens[].position`; returned ordering is fact, interpolation is labeled inference.
@@ -90,14 +90,14 @@ Probe output (fixture JSON) feeds doc claims; doc claims cite the fixture path; 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | SKILL.md (banner, surface table, workflows, rules, quick ref, version) | Runtime contract | update | grep shows three-tool + resolved-deep wording with fixture citations |
-| references/tool_surface.md | The tool contract authority | update | Section 1 rebuilt on fixture schemas; open questions 1/3/4/10 resolved |
-| references/mcp_wiring.md + troubleshooting.md | Naming rule + drift taxonomy | update | CONFIRMED table; drift rows diff against the fixture |
+| references/tool-surface.md | The tool contract authority | update | Section 1 rebuilt on fixture schemas; open questions 1/3/4/10 resolved |
+| references/mcp-wiring.md + troubleshooting.md | Naming rule + drift taxonomy | update | CONFIRMED table; drift rows diff against the fixture |
 | README.md + INSTALL_GUIDE.md + mcp-servers/mobbin-mcp/README.md | Consumer-facing mirrors | update | Three tools + pre-auth discovery stated |
 | feature_catalog root + flows/screens/apps/elements leaves | Capability inventory | update | Areas table adds Sections row; flows leaf rebuilt on search_flows |
 | examples (README + 3 walkthroughs) | Worked invocations | update | Confirmed names; flow example calls `mobbin.mobbin_search_flows` |
 | playbook root + DISCOVER-001 + FLOWS-001 + SCREENS-001 | Grading contracts | update | Fixture-baseline re-confirmation; no grading on retired rules |
 | scripts/doctor.sh + install.sh | Hardcoded INFERRED hints (grep-confirmed) | update | `bash -n` passes; hints state the confirmed baseline |
-| assets/utcp_mobbin_manual.md | Post-registration checklist | update | Discovery + schema items `[x]` with fixture evidence |
+| assets/utcp-mobbin-manual.md | Post-registration checklist | update | Discovery + schema items `[x]` with fixture evidence |
 | changelog/v1.0.0.0.md + v1.1.0.0.md | Immutable release history | unchanged | Historical records keep original wording |
 
 Required inventories:
@@ -117,7 +117,7 @@ Required inventories:
 - [x] Stale-claim grep inventory built [evidence: 22 files carrying INFERRED, one-tool, or open-deep wording]
 
 ### Phase 2: Core Implementation
-- [x] SKILL.md and tool_surface.md rebuilt on the three-tool contract [evidence: tasks.md T003-T004]
+- [x] SKILL.md and tool-surface.md rebuilt on the three-tool contract [evidence: tasks.md T003-T004]
 - [x] Consumer mirrors, catalog leaves, examples, and playbook scenarios flipped [evidence: tasks.md T005-T010]
 - [x] Scripts updated, version 1.1.1.0 + changelog authored [evidence: tasks.md T011]
 
@@ -145,7 +145,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `references/discovery_fixture_2026-07-16.json` | Internal (probe output) | Green | No live inventory; phase impossible |
+| `references/discovery-fixture-2026-07-16.json` | Internal (probe output) | Green | No live inventory; phase impossible |
 | `mcp-code-mode/references/naming_convention.md` | Internal | Green | TS-surface convention could be misstated |
 | `package_skill.py` | Internal tooling | Green | No structural gate |
 <!-- /ANCHOR:dependencies -->

@@ -76,7 +76,7 @@ Documentation packet conformance: exemplar-mirrored structure (sibling parity) w
 ### Key Components
 - **Doc-truth flip set**: 9 modified files whose registration claims flip from later-phase to registered state
 - **feature_catalog/**: root directory page plus one leaf per router intent (task, repl, mcp, install, troubleshoot), mirroring `mcp-mobbin/feature_catalog/`
-- **assets/utcp_aside_manual.md**: byte-true snapshot of the registered manual, mirroring `mcp-mobbin/assets/utcp_mobbin_manual.md` adjusted to registered state
+- **assets/utcp-aside-manual.md**: byte-true snapshot of the registered manual, mirroring `mcp-mobbin/assets/utcp-mobbin-manual.md` adjusted to registered state
 - **doctor.sh error posture**: manual absence in an existing `.utcp_config.json` reports err and exits 1; healthy path still exits 0
 
 ### Data Flow
@@ -110,13 +110,13 @@ Required inventories:
 
 ### Phase 1: Setup
 - [x] Grep inventory of every stale registration marker across the packet
-- [x] Read exemplars: `mcp-mobbin/feature_catalog/` and `mcp-mobbin/assets/utcp_mobbin_manual.md`
+- [x] Read exemplars: `mcp-mobbin/feature_catalog/` and `mcp-mobbin/assets/utcp-mobbin-manual.md`
 - [x] Capture the live `aside` entry bytes from `.utcp_config.json`
 
 ### Phase 2: Core Implementation
 - [x] Flip doc-truth claims in the 9 affected files, ungate ASD-011
 - [x] Change doctor.sh manual-absence posture from info to err with exit 1
-- [x] Create feature_catalog/ (root + 5 intent domains) and assets/utcp_aside_manual.md
+- [x] Create feature_catalog/ (root + 5 intent domains) and assets/utcp-aside-manual.md
 - [x] Consistency pass: SKILL.md routing and references, README related documents, INSTALL_GUIDE checklist; bump to 1.1.0.0; add changelog
 
 ### Phase 3: Verification

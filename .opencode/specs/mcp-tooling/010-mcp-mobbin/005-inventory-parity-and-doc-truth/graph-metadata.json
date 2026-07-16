@@ -53,10 +53,10 @@
       "checklist.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/README.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp_mobbin_manual.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery_setup/manual_registered_expected.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read_only/platform_filter.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery-setup/manual-registered-expected.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/platform-filter.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md",
       "feature_catalog/feature_catalog.md",
       "implementation-summary.md"
@@ -123,9 +123,9 @@
         "source": "derived"
       },
       {
-        "name": "utcp_mobbin_manual.md",
+        "name": "utcp-mobbin-manual.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp_mobbin_manual.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md",
         "source": "derived"
       },
       {
@@ -135,15 +135,15 @@
         "source": "derived"
       },
       {
-        "name": "manual_registered_expected.md",
+        "name": "manual-registered-expected.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery_setup/manual_registered_expected.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery-setup/manual-registered-expected.md",
         "source": "derived"
       },
       {
-        "name": "platform_filter.md",
+        "name": "platform-filter.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read_only/platform_filter.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/platform-filter.md",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The `mobbin` Code Mode manual is now registered in `.utcpconfig.json`, but the entire packet still teaches pre-registration doctrine: 98 marker lines across 15 files claim the manual is \"NOT registered\", call absence \"expected\", and fence registration to \"a later phase\"",
     "created_at": "2026-07-16T12:58:34Z",
-    "last_save_at": "2026-07-16T13:39:23.637Z",
+    "last_save_at": "2026-07-16T15:03:17.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a8366e910e01ad1064b69acea4b3be2c54ba2f0859dcf5355f5ec6de98bb255",
+    "source_fingerprint": "sha256:f192e06cdc7c2af019cd2a8b9ad6c082e9c7543159ea3761bda2b9128d0e8630",
     "source_doc_hashes": {
-      "spec.md": "86644ab341f6c3f442375e2eddac3a3c028bd663590ac94f9c23cbd1d6d23c57",
-      "plan.md": "cfc5722254175e919cd4dd5f82bc6ec86b1e08aac9b62338dcc4d3333e4b3eeb",
-      "tasks.md": "603c2ad9bdd9d4c28ffd07ceda590326171eb82d71c743d914138bfc3c22ae52",
-      "checklist.md": "e75e1193e8a70a2c2bb878e7cdde2e6500aabc39904fc82f88972e2eb02e4bdc",
-      "implementation-summary.md": "27b299cbb99eb28659fa351e6272e4001a9b16abfb9559907266f1fa3ced7162"
+      "spec.md": "3938909a46a06eae663a13da4bd2b2d78d91a7fa942239fc36fb45d6082f8442",
+      "plan.md": "aa7b187d04d5e59d1d3f044ffea2103eb05405813b69e83f1e7adbd91b6e0dbf",
+      "tasks.md": "38ee2a5fc71e2188f55f25a4e900a043d4ff77e20484d3cd9fa6b9adc8b5f83b",
+      "checklist.md": "dfd75e0cd18cde57e4a1563e12126b15588c0ab834e77241469a40fb01200534",
+      "implementation-summary.md": "56ffb7c85dc7147c6f4c96cf61825e4a6ab36ad9180514426ecd15934a9301a2"
     },
     "last_active_child_id": null,
     "last_active_at": null
