@@ -1,6 +1,6 @@
 ---
 title: "benchmark-profiles: Lane B run profiles"
-description: "The three Lane B benchmark profiles that tell run-benchmark.cjs which fixtures, models, frameworks, and scoring to use."
+description: "The 10 Lane B benchmark profiles that tell run-benchmark.cjs which fixtures, models, frameworks, and scoring to use."
 trigger_phrases:
   - "benchmark profile"
   - "framework-bakeoff profile"
@@ -15,7 +15,7 @@ version: 1.17.0.4
 
 ## 1. OVERVIEW
 
-`benchmark-profiles/` holds the three JSON profiles a Lane B run loads with `run-benchmark.cjs --profile <path-or-id>`. A profile declares the fixtures to score, where outputs land, the scoring method, and (for sweep profiles) the matrix of frameworks and models to run. `default.json` is the legacy single-pass profile; `framework_bakeoff.json` and `model_vs_model.json` add a `mode` field and a sweep matrix.
+`benchmark-profiles/` holds the 10 JSON profiles a Lane B run loads with `run-benchmark.cjs --profile <path-or-id>`. A profile declares the fixtures to score, where outputs land, the scoring method, and (for sweep profiles) the matrix of frameworks and models to run. `default.json` is the legacy single-pass profile; `framework_bakeoff.json` and `model_vs_model.json` add a `mode` field and a sweep matrix. Alongside these original single-pass and sweep profiles, the set now also includes `reviewer_regression.json` (`mode: reviewer`, gated on `SPECKIT_REVIEWER_BENCHMARKS`), a reviewer-mode regression profile scored by the reviewer scorer rather than the pattern or `5dim` path. The remaining profiles — `capability_m3_vs_mimo.json`, `capability_m3_vs_mimo_v2.json`, `capability_m3_vs_mimo_v3.json`, `glm_5.2_frameworks.json`, `kimi_k2.7_discriminating.json`, and `kimi_k2.7_frameworks.json` — are additional Lane B run profiles kept in this folder; see each file for its own mode and matrix.
 
 Current state:
 

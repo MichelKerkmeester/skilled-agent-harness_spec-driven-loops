@@ -49,14 +49,29 @@ Author this shape inside the owning mode-packet:
     ├── conformance_benchmark.md           # stable per-benchmark contract
     ├── lane-config.json                   # one deep-alignment lane array
     └── fixtures/
-        ├── fixture-manifest.json          # oracle provenance + expected findings
-        ├── public/                        # clean control + calibration fixtures
-        └── held-out/                      # fixtures excluded from adapter authoring
+        ├── fixture-manifest.json          # oracle provenance + expected findings (always package-local)
+        ├── public/                        # clean control + calibration fixtures (package-local corpus only)
+        └── held-out/                      # fixtures excluded from adapter authoring (package-local corpus only)
 ```
 
 The family `README.md` sits one level above `<benchmark-id>` and indexes every
 benchmark directory. Within `<benchmark-id>`, the contract, lane config, and
-`fixtures/` directory are required.
+`fixtures/fixture-manifest.json` are always required.
+
+**Fixture-corpus location — two supported patterns.** The manifest is always
+package-local, but the fixture *data* it references may live in either place:
+
+- **Package-local corpus.** Ship the `public/` and `held-out/` fixture files
+  inside `fixtures/`. Use this when the package itself owns a small, self-contained
+  corpus. The manifest omits `fixtureRoot` (or points it at `./`).
+- **External `fixtureRoot` delegation.** When a spec packet's oracle phase
+  generates and owns the deterministic corpus, keep the fixtures with their
+  generator and set the manifest's `fixtureRoot` to that external path, with
+  per-fixture SHA-256 hashes pinning the authored revision. The shipped
+  `command-surface` exemplar uses this pattern: its `fixtureRoot` resolves against
+  the oracle's `002-deterministic-fixtures-oracle` corpus, so `fixtures/` here
+  carries only the manifest. Do not duplicate an oracle-owned corpus into the
+  package — reference it and hash it.
 
 | Shipped file | Template |
 | --- | --- |

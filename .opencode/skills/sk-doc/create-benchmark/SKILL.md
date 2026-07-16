@@ -30,7 +30,7 @@ Use this packet when a completed benchmark, or a benchmark's input artifacts, ne
 ### Activation Triggers
 
 - **MCP promotion** (on-disk `shared`; sections 3-8) — promote a completed MCP benchmark or bake-off from a spec packet into a skill-local `mcp_server/benchmarks/` folder: author the ten-section `benchmark_report.md` and `SOURCE.md`, copy `results.csv` / `per-probe.jsonl` / runtime sidecars into a dated folder, and update the `benchmarks/README.md` index row.
-- **Behavior benchmark** (section 9) — author or extend a `behavior_benchmark` package for a deep-loop mode (`context`, `research`, `review`, `ai-council`, `improvement`, or a declared extension such as `alignment`): the `behavior_benchmark.md` index, per-scenario `<PREFIX>-NNN-<slug>.md` machine contracts, and `baselines/claude-baseline.md`, designing the entry-surface and clarity scenario matrix.
+- **Behavior benchmark** (section 9) — author or extend a `behavior_benchmark` package for a deep-loop mode. The framework fixes an ID prefix per package — `research` (RSB), `review` (RVB), `ai-council` (ACB), `improvement` (IMB), and `alignment` (DAB) — and a new mode extends that table with its own prefix declared in the index OVERVIEW: the `behavior_benchmark.md` index, per-scenario `<PREFIX>-NNN-<slug>.md` machine contracts, and `baselines/claude-baseline.md`, designing the entry-surface and clarity scenario matrix.
 - **Conformance benchmark** (section 12) — author a deterministic `conformance_benchmark` input package for a peer-adapter or deep-alignment benchmark, including the family index, contract, lane config, and fixture manifest; triggers include `conformance benchmark`, `conformance_benchmark`, `peer adapter benchmark`, `deep-alignment benchmark`, `lane-config benchmark`, and `sk-doc-command`.
 - **Skill-benchmark** (section 10) — author or update a hub's `benchmark/README.md` run-label index, or establish the `benchmark/` storage convention (sibling run-label folders, frozen `baseline/` anchor) for a Lane C tree.
 - **Model-benchmark** (section 11) — author a Lane B input fixture (code-task oracle, pattern/capability, or reviewer-prompt) or a run profile that selects fixtures, models, frameworks, scoring, and the gate.
@@ -78,6 +78,7 @@ Use another `sk-doc` packet when:
 - A re-run confirms the same headline; update the existing `benchmark_report.md` with a re-run note instead.
 - The result mixes data from different MCP stacks and asks for a single comparative verdict.
 - The task is to hand-edit a `skill-benchmark-report.md` (renderer-owned) or to define how any benchmark is *scored* — a rubric, evaluator, reviewer verdict, or D1-D5 weight. Those stay lane-local in deep-improvement; this packet authors inputs, indexes, and reports, not scoring (sections 10-11).
+- The benchmark is a one-off or experimental artifact that fits none of the six families — for example a standalone capability probe such as `sk-prompt/prompt-models/references/vision-audit-benchmark.md`. These stay lane-local as their own document; this packet's taxonomy does not absorb them, and there is no "misc" family.
 
 If unsure, default to "not yet." Promotion is cheap after rigor; reverting a premature folder costs more.
 
@@ -123,10 +124,24 @@ UNKNOWN_FALLBACK_CHECKLIST = [
     "(references/shared/command_benchmark_composition.md)",
 ]
 
+COMMAND_BENCHMARK_GUIDES = ["references/behavior_benchmark/behavior_benchmark_guide.md",
+                            "references/conformance_benchmark/conformance_benchmark_authoring_guide.md",
+                            "references/shared/command_benchmark_composition.md"]
+
 def route_benchmark_request(request):
     inventory = discover_markdown_resources()
     loaded, seen = [], set()
     routing_key = get_routing_key(request, FAMILIES)
+
+    # A command benchmark is a composition, not a family key, but it IS routable by
+    # name: detected, it loads BOTH family guides plus the composition standard so
+    # the author can build the behavior and conformance packages and bind them via
+    # the matrix manifest. It stays out of FAMILIES because no single guide answers
+    # it — the composite branch is what makes "route by name" honest.
+    if is_command_benchmark_request(request):                    # Tier 0 (composite)
+        for path in COMMAND_BENCHMARK_GUIDES:
+            load_if_available(path, inventory, loaded, seen)
+        return {"load_level": "COMMAND_BENCHMARK_COMPOSITE", "resources": loaded}
 
     if routing_key == "unknown":                                 # Tier 1
         load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
@@ -154,10 +169,12 @@ package plus one `conformance_benchmark` package — bound by a lane-owned matri
 manifest and driven by a launcher that reports both axes without averaging. The
 composition standard and the matrix-manifest field shape live in
 [`references/shared/command_benchmark_composition.md`](references/shared/command_benchmark_composition.md).
-Because it is not a family key, a bare "command benchmark" request has no single
-routing target: the router returns the unknown-fallback checklist, whose
-command-benchmark line directs the author to both family guides plus that
-composition doc.
+It is not a family key — no single family guide answers it — but it is routable by
+name: the Tier-0 composite branch above loads BOTH the behavior and conformance
+authoring guides plus that composition doc, so an author who asks for a "command
+benchmark" gets the two axes and the binding standard together. Only a request too
+vague to detect as a command benchmark falls through to the unknown-fallback
+checklist, whose command-benchmark line points to the same three resources.
 
 ### Family Boundary
 
@@ -518,12 +535,12 @@ Each template's fenced json block is the only thing copied into the shipped `.js
 1. **Pick the family and shape** and copy the closest existing fixture.
 2. **Author a code-task oracle** by generating every `tests[]` / `hidden_tests[]` value from a verified reference implementation — never hand-guess an oracle; bias hidden cases to held-out adversarial inputs.
 3. **Author a reviewer-prompt fixture** against the lane-local `reviewer_schema.md`; keep `expectedFindings` token-specific.
-4. **Add or extend a profile** referencing the fixture `id` (code-task/pattern only — reviewer-prompt is lane-only), with a `scorer` matching the fixture shape plus the sweep matrix, sampling, and gate.
+4. **Add or extend a profile** referencing the fixture `id` (code-task or pattern/capability), with a `scorer` matching the fixture shape plus the sweep matrix, sampling, and gate. A reviewer-mode profile (`mode: reviewer`, e.g. the shipped `reviewer_regression.json`) is a SEPARATE gated lane family (`SPECKIT_REVIEWER_BENCHMARKS`) that `profile-validator.cjs` does not validate — it is authored in-lane, not through this scaffold; the packet only records that it exists as a distinct reviewer input.
 5. **Parse every fixture and profile as JSON**, then hand off to the lane to dispatch, score, and file the evidence.
 
 ### ✅ ALWAYS / ⛔ NEVER (model-benchmark)
 
-- **ALWAYS** match the profile's scorer to the fixture shape — code-task → code-task scorer, evidence-contract → pattern scorer; reviewer-prompt is lane-only (`mode: reviewer`), not this profile path.
+- **ALWAYS** match the profile's scorer to the fixture shape — code-task → code-task scorer, evidence-contract → pattern scorer. Reviewer-prompt fixtures feed the lane-owned reviewer-mode profile (`mode: reviewer`, `reviewer` scorer, gated), which is authored in-lane, not through this profile scaffold.
 - **ALWAYS** generate code-task oracle `expect` values from a verified reference implementation, with held-out `hidden_tests[]` guarding overfit.
 - **ALWAYS** keep fixtures and profiles pure JSON, and each id in `profile.fixtures` matching an on-disk fixture's `id` field.
 - **NEVER** restate or copy the evaluator rubric, scorer mechanics, or reviewer schema / verdict contract into this packet — they are lane-local; cross-link them.
@@ -581,6 +598,8 @@ discovery, convergence, reduction, and generated reports stay lane-owned.
 
 This packet authors inputs and indexes only, never runs a benchmark: `/deep:skill-benchmark`, `/deep:model-benchmark`, and `/deep:agent-improvement` each run their lane against what is templated here (§10, §11, §14). Conformance authoring stops before its peer adapter or deep-alignment execution (§12).
 
+The `/create:benchmark` command drives two of the six families end-to-end — `mcp_promotion` (the benchmark-folder workflow, §3-8) and `conformance_benchmark` (copy/fill the four templates, validate, report the path, §12). The other four (behavior, skill-benchmark, model-benchmark, agent-improvement) are authored directly against the family sections above; there is no command that scaffolds them.
+
 ---
 
 ## 14. REFERENCES AND RELATED RESOURCES
@@ -592,7 +611,7 @@ This packet authors inputs and indexes only, never runs a benchmark: `/deep:skil
 - [`references/conformance_benchmark/conformance_benchmark_authoring_guide.md`](references/conformance_benchmark/conformance_benchmark_authoring_guide.md) — conformance package authoring and handoff boundary (§12).
 - [`references/skill_benchmark/skill_benchmark_storage_guide.md`](references/skill_benchmark/skill_benchmark_storage_guide.md) — skill-benchmark storage convention and renderer boundary (§10).
 - [`references/model_benchmark/model_benchmark_fixture_guide.md`](references/model_benchmark/model_benchmark_fixture_guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§11).
-- [`agent_improvement_authoring_guide.md`](references/agent_improvement/agent_improvement_authoring_guide.md) — Lane A input authoring (§2).
+- [`agent_improvement_authoring_guide.md`](references/agent_improvement/agent_improvement_authoring_guide.md) — Lane A input authoring (§14).
 
 **Lane-owned contracts** — cross-link, never restate:
 

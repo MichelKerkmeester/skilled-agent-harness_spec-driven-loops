@@ -63,6 +63,10 @@ The case studies, pitfalls, and worked example cover the **MCP promotion** famil
 | [`model_benchmark_code_task_fixture_template.md`](../../assets/model_benchmark/model_benchmark_code_task_fixture_template.md) | Fillable scaffold for one code-task oracle fixture (model-benchmark) |
 | [`model_benchmark_pattern_fixture_template.md`](../../assets/model_benchmark/model_benchmark_pattern_fixture_template.md) | Fillable scaffold for a pattern/capability or reviewer-prompt fixture (model-benchmark) |
 | [`model_benchmark_profile_template.md`](../../assets/model_benchmark/model_benchmark_profile_template.md) | Fillable scaffold for a Lane B run profile (model-benchmark) |
+| [`conformance_benchmark_readme_template.md`](../../assets/conformance_benchmark/conformance_benchmark_readme_template.md) | Fillable scaffold for a `conformance_benchmark` family README/index (conformance benchmark) |
+| [`conformance_benchmark_contract_template.md`](../../assets/conformance_benchmark/conformance_benchmark_contract_template.md) | Fillable scaffold for the per-benchmark conformance contract (conformance benchmark) |
+| [`conformance_benchmark_lane_config_template.md`](../../assets/conformance_benchmark/conformance_benchmark_lane_config_template.md) | Fillable scaffold for the deep-alignment lane config (conformance benchmark) |
+| [`conformance_benchmark_fixture_manifest_template.md`](../../assets/conformance_benchmark/conformance_benchmark_fixture_manifest_template.md) | Fillable scaffold for the fixture manifest (conformance benchmark) |
 
 ### Validation
 

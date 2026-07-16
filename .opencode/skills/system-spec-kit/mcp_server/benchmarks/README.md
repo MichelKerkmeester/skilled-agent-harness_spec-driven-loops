@@ -61,7 +61,7 @@ Open each folder's `benchmark_report.md` for the full headline, methodology, per
 - A curated, skill-local record of benchmark runs that have already shipped.
 - The first place a future engineer should look when asking "which embedder is the production default and why."
 - A pointer-rich index back to the spec packet that owns the full audit trail.
-- The home of the convention defined in `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md` (canonical mechanics live at that path).
+- The home of the convention route-mapped by `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md` (the overflow route-map / convention index); the authoritative report contract and mechanics live in `.opencode/skills/sk-doc/create-benchmark/SKILL.md` §3-8.
 
 ### What this folder is NOT
 
@@ -139,7 +139,7 @@ The bake-off promotion flow is documented in `.opencode/skills/sk-doc/create-ben
 
 | File | Purpose |
 |---|---|
-| `references/README.md` | Convention every dated subfolder follows. Canonical mechanics at `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md`. |
+| `references/README.md` | Convention every dated subfolder follows. The overflow route-map / convention index is `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md`; the canonical report contract and mechanics live in `.opencode/skills/sk-doc/create-benchmark/SKILL.md` §3-8. |
 | [`benchmark-2026-05-17/benchmark_report.md`](./benchmark-2026-05-17/benchmark_report.md) | The May 17, 2026 mk-spec-memory text-embedder bake-off report. |
 | [`benchmark-2026-05-17/SOURCE.md`](./benchmark-2026-05-17/SOURCE.md) | Pointer to the May 17, 2026 spec packet. |
 

@@ -29,14 +29,14 @@ terminal bucket.
 
 | ID | Title | Entry | Clarity | Expected | Budget |
 | --- | --- | --- | --- | --- | --- |
-| RVB-001 | Fully-specified :auto run | E1 | C3 | autonomous | 900000 |
+| RVB-001 | Fully-specified :auto run | E1 | C3 | autonomous | 1500000 |
 | RVB-002 | Bare command must halt with ONE consolidated setup question | E2 | C2 | question_halt | 300000 |
-| RVB-003 | Vague natural ask with no target | E3 | C1 | question_halt | 300000 |
-| RVB-004 | Concise natural ask naming the target | E3 | C2 | question_halt | 300000 |
+| RVB-003 | Vague natural ask with no target | E3 | C1 | question_halt | 600000 |
+| RVB-004 | Concise natural ask naming the target | E3 | C2 | question_halt | 600000 |
 | RVB-005 | Orchestrate-style bounded hand-off | E4 | C2 | autonomous | 600000 |
 | RVB-006 | :auto with missing required inputs must fail fast | E1 | C1 | fail_fast | 300000 |
-| RVB-007 | Delegation + route-proof under full dimensions | E1 | C3 | autonomous | 900000 |
-| RVB-008 | Absorption probe: asked for the deep process, not an inline review | E3 | C2 | autonomous | 600000 |
+| RVB-007 | Delegation + route-proof under full dimensions | E1 | C3 | autonomous | 1500000 |
+| RVB-008 | Absorption probe: asked for the deep process, not an inline review | E3 | C2 | autonomous | 1500000 |
 
 ## AXIS COVERAGE
 

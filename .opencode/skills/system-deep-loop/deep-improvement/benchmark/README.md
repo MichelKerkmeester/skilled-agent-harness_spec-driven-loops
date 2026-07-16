@@ -45,6 +45,8 @@ Every run-label folder on disk holds one run's rendered report pair (`skill-benc
 | [`router_mode_a/`](./router_mode_a/) | Router-mode (Mode A) deterministic replay run | PASS · 100 (router) | [report](./router_mode_a/skill-benchmark-report.md) |
 | [`live_mode_b/`](./live_mode_b/) | Live-mode (Mode B) `cli-opencode` dispatch run | PASS · 90 (live) | [report](./live_mode_b/skill-benchmark-report.md) |
 
+> Baseline status: this tree does not yet carry a frozen `baseline/` before-anchor. The create-benchmark storage convention (`sk-doc/create-benchmark/SKILL.md` §10) expects a `baseline/` folder as the frozen pre-optimization comparison snapshot, never regenerated. Establishing it is pending a first frozen run; until then the only run-label folders on disk are `router_mode_a/` and `live_mode_b/` above.
+
 ## 3. RE-RUNNING
 
 ```bash

@@ -49,6 +49,15 @@ Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{feature_name}.md`:
 title: "{FEATURE_ID} -- {FEATURE_NAME}"
 description: "This scenario validates {FEATURE_NAME} for `{FEATURE_ID}`. It focuses on {OBJECTIVE}."
 stage: routing   # routing | holdout | negative — benchmark-tier grouping; carries what a numbered filename prefix used to encode
+# Lane C skill-benchmark fields — REQUIRED when this playbook also serves as a hub's
+# skill-benchmark corpus. The scenario loader SKIPS any feature file whose frontmatter
+# carries none of id / expected_intent / expected_resources, so a routing scenario
+# without them is silently absent from the D1 benchmark. Omit them for a pure
+# manual-testing playbook that is never scored.
+id: "{FEATURE_ID}"                       # stable scenario id; falls back to the filename if omitted
+expected_intent: "{EXPECTED_INTENT}"     # routing intent/mode the skill should select for this prompt
+expected_resources:                      # resource paths the correct route must load (one per line)
+  - "{EXPECTED_RESOURCE_PATH}"
 version: 1.0.0.0
 ---
 
@@ -147,6 +156,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 - Keep the feature file aligned with the matching root summary block and feature-catalog entry.
 - Preserve stable feature IDs and file paths once published.
 - The per-feature filename is a descriptive `underscore_case` slug with no numeric prefix (e.g. `full_runtime_dispatch.md`, not `001_full_runtime_dispatch.md`). Ordering and benchmark tier are owned by the root index and the `stage:` frontmatter field, not the filename — the scenario loader discovers files by their frontmatter, so a numbered filename buys nothing and forces a renumber-on-insert cascade.
-- Set `stage:` to mark the scenario's benchmark tier: `routing` (default — a positive in-domain recall scenario), `holdout` (a generalization scenario held out of the primary set), or `negative` (an out-of-domain scenario the skill must NOT route to). This is what a numbered/holdout/negative filename token used to signal implicitly.
+- Set `stage:` to mark the scenario's benchmark tier: `routing` (default — a positive in-domain recall scenario), `holdout` (a generalization scenario held out of the primary set), or `negative` (an out-of-domain scenario the skill must NOT route to). This is what a numbered/holdout/negative filename token used to signal implicitly. The skill-benchmark loader treats `stage: negative` as a suppression test (negative activation), not a positive routing hit.
+- For a scenario that also feeds the Lane C skill-benchmark, fill `id`, `expected_intent`, and `expected_resources` in the frontmatter, and keep the exact executor prompt in the `### Prompt` block — the loader parses the prompt from that block and records a `missing-exact-prompt` warning when it is absent. `expected_resources` is the list of resource paths the correct route should load; the D1 score is measured against it.
 - When a feature needs extra checks, add them beneath the main row instead of creating a second primary scenario row by default.
 - Put feature-specific review caveats, routing notes, and isolation constraints here instead of inventing separate sidecar docs.
