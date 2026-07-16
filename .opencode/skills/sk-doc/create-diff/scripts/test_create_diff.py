@@ -20,6 +20,7 @@ Run: python3 test_create_diff.py
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import subprocess
@@ -328,8 +329,23 @@ class ReportInvariants(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             html = _report(Path(d), "a", "b")
         self.assertIn("container-type:inline-size", html)
-        self.assertIn("@container report", html)
+        self.assertIn("container-name:report", html)
+        self.assertIn("@container report (max-width:34rem)", html)
+        self.assertIn("@container report (min-width:80rem)", html)
         self.assertIn("cqi", html)
+
+    def test_fluid_tokens_degrade_to_fixed_sizes_without_cqi(self):
+        # A var() consumer whose cqi value fails at computed-value time inherits
+        # instead of using its clamp bounds, so the base tokens must be static
+        # (the shipped fixed sizes) and fluid values may only apply inside a
+        # feature query that engines without container-query units skip.
+        with tempfile.TemporaryDirectory() as d:
+            html = _report(Path(d), "a", "b")
+        root = re.search(r":root\{([^}]*)\}", html).group(1)
+        self.assertIn("--fs-0:1rem", root)
+        self.assertIn("--fs-code:13px", root)
+        self.assertNotIn("cqi", root)
+        self.assertIn("@supports (font-size:1cqi)", html)
 
     def test_page_gutter_has_two_rem_minimum(self):
         # The report content must never sit flush against the pane edge; a >=2rem
@@ -380,6 +396,68 @@ class ReportInvariants(unittest.TestCase):
         hidden = int(re.search(r"(\d+)", collapses[0].note).group(1))
         # 20 equal lines, minus CONTEXT_LINES kept on each side.
         self.assertEqual(hidden, 20 - 2 * cd.CONTEXT_LINES)
+
+
+class SnapshotCleanupContainment(unittest.TestCase):
+    """Cleanup must never read or delete through a hostile manifest.
+
+    The snapshot store is on-disk state; a corrupt or crafted manifest.json
+    must not turn cleanup's unlink into an arbitrary-file delete.
+    """
+
+    def _forge_store(self, base: Path, blob_value: str) -> Path:
+        victim = base / "victim.txt"
+        victim.write_text("keep me\n", encoding="utf-8")
+        sub = base / "state" / "snapshots" / "0123456789abcdef"
+        sub.mkdir(parents=True)
+        (sub / "manifest.json").write_text(json.dumps({
+            "source_path": str(base / "some-source.md"),
+            "snapshots": [{"blob": blob_value,
+                           "captured_at": "2026-01-01T00:00:00+00:00",
+                           "sha256": "0" * 64, "size": 8}],
+        }), encoding="utf-8")
+        return victim
+
+    def _run_cleanup(self, base: Path) -> int:
+        rc, _ = _run_cli("cleanup", "--state-dir", str(base / "state"))
+        return rc
+
+    def test_traversal_blob_is_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            victim = self._forge_store(Path(d), "../../../victim.txt")
+            rc = self._run_cleanup(Path(d))
+            self.assertEqual(rc, cd.EXIT_OK)
+            self.assertTrue(victim.exists(),
+                            "cleanup must never delete outside its store")
+
+    def test_absolute_blob_is_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            victim = self._forge_store(base, str((base / "victim.txt").resolve()))
+            rc = self._run_cleanup(base)
+            self.assertEqual(rc, cd.EXIT_OK)
+            self.assertTrue(victim.exists())
+
+    def test_symlink_blob_escape_is_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            victim = self._forge_store(base, "link.bin")
+            sub = base / "state" / "snapshots" / "0123456789abcdef"
+            (sub / "link.bin").symlink_to(victim)
+            self._run_cleanup(base)
+            self.assertTrue(victim.exists(),
+                            "a symlinked blob must not be trusted")
+
+    def test_legitimate_blob_still_cleaned(self):
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            self._forge_store(base, "good.bin")
+            sub = base / "state" / "snapshots" / "0123456789abcdef"
+            blob = sub / "good.bin"
+            blob.write_text("snapshot bytes", encoding="utf-8")
+            rc = self._run_cleanup(base)
+            self.assertEqual(rc, cd.EXIT_OK)
+            self.assertFalse(blob.exists(), "real snapshots must still be removed")
 
 
 class LegendContrast(unittest.TestCase):

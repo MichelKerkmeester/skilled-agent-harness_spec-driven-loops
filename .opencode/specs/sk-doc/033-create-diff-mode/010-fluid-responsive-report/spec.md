@@ -12,10 +12,10 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/033-create-diff-mode/010-fluid-responsive-report"
-    last_updated_at: "2026-07-16T05:42:31Z"
+    last_updated_at: "2026-07-16T14:27:21Z"
     last_updated_by: "claude"
-    recent_action: "Applied the fluid layer and locked it with a regression test"
-    next_safe_action: "Commit the renderer change + this phase and push to v4"
+    recent_action: "Remediated deep-review P0/P1/P2 and folded design increments into docs"
+    next_safe_action: "Commit the remediation and re-sync to v4"
     blockers: []
     key_files:
       - "spec.md"
@@ -75,6 +75,7 @@ Add an always-on fluid-responsive layer to the report renderer that scales type 
 - A fluid type + section-rhythm layer in the report renderer's embedded stylesheet (`create_diff.py` `_CSS`): the report container becomes an `inline-size` query container; new `clamp()` tokens keyed to container units (`cqi`) with `px`/`rem` min–max bounds drive body, heading, caption, code, and rhythm sizing; two `@container` refinements adjust the summary label column and content padding at the narrow and wide ends.
 - Preserving the structural caps (page `max-width`, summary table width, side-by-side scroll floor) as fixed `rem` so layout guarantees are unchanged; splitting the prose measure onto a `ch`-based cap.
 - One renderer regression test that locks the fluid layer (asserts the rendered CSS carries the container context and an `@container` block).
+- **Delivered follow-on increments (operator-directed iterations in this phase):** the Cursor light-mode design adoption (parchment/ink/ember palette with forest/crimson diff hues, bone/linen/stone surfaces, 4px geometry, Cursor-led font stacks, light-only lock — tokens sourced from `.opencode/skills/sk-design/styles/cursor/`), a ≥2rem page-gutter floor, heading-aware document sections for markdown diffs (nearest-heading bands + `§`-labeled hunks), and the deep-review remediation: snapshot-manifest blob containment before reads/deletes plus a real `@supports`-gated unsupported-`cqi` fallback.
 
 ### Out of Scope
 - Any HTML/markup change or wrapper element (the container is established purely in CSS on the existing `<main>`).
@@ -102,7 +103,8 @@ Add an always-on fluid-responsive layer to the report renderer that scales type 
 |----|-------------|---------------------|
 | REQ-001 | The fluid layer is always on and container-keyed | The rendered report establishes an `inline-size` container on `<main>` and scales type + section rhythm from `cqi`-based `clamp()` tokens; sizing responds to the content column, not the viewport. |
 | REQ-002 | The safety-validator contract is unbroken | The added CSS introduces none of the substrings `url(`, `@import`, `expression(`, adds no inline `style=` attribute, no new tag/attribute, and leaves the CSP `<meta>` byte-identical; every generated report still passes `validate_report.py` (exit 0). |
-| REQ-003 | Phase-008 accessibility guarantees are preserved | The side-by-side `min-width` scroll floor, the labelled scroll region, the legend full-strength-text rule, the inline add/del non-colour decorations, and the light/dark contrast tokens are all byte-preserved; contrast ratios are unchanged. |
+| REQ-003 | Phase-008 accessibility guarantees are preserved | The side-by-side `min-width` scroll floor, the labelled scroll region, the legend full-strength-text rule, the inline add/del non-colour decorations, and the contrast gates (≥4.5:1 on inline marks) all hold after the light-only recolor. |
+| REQ-007 | Snapshot-manifest paths are contained to their store | No manifest-controlled blob path may resolve outside its own snapshot directory: traversal, absolute-path, symlink-escape, and malformed-shape entries are refused before any read or unlink, with negative tests covering each variant plus legitimate-cleanup parity. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -110,7 +112,10 @@ Add an always-on fluid-responsive layer to the report renderer that scales type 
 |----|-------------|---------------------|
 | REQ-004 | Tuned to the IDE desktop width envelope with no regression at comfortable width | The clamp tokens span roughly a 480–1600px content column; every token's maximum endpoint equals the previously shipped fixed size, so a comfortable-width report is visually unchanged. |
 | REQ-005 | Clean iteration hooks | The scale is driven by a single base token plus a small set of named semantic tokens (type, code, rhythm, measure), so the visual design can be retuned by editing those values rather than individual rules. |
-| REQ-006 | The layer is regression-locked | A renderer test asserts the fluid context and an `@container` block are present in the rendered output, and the full renderer test suite stays green. |
+| REQ-006 | The layer is regression-locked | A renderer test asserts the fluid context, the named container, both `@container` refinements, and the `@supports` fallback gate, and the full renderer test suite stays green. |
+| REQ-008 | The report ships the Cursor light-mode design | The palette, surfaces, geometry, font stacks, and ≥2rem page gutter derive from the extracted Cursor tokens; the report is light-only (`color-scheme:light`, no dark override), locked by test. |
+| REQ-009 | Markdown diffs are navigable by document structure | The nearest heading above each change surfaces as a section band (including out of collapsed runs), change hunks carry their section name, unchanged sections stay collapsed, and plain-text/HTML inputs are unaffected. |
+| REQ-010 | The unsupported-`cqi` fallback is real | Base tokens are static at the shipped fixed sizes and fluid values apply only inside `@supports (font-size:1cqi)`, so engines without container-query units render the fixed scale instead of inheriting; locked by test. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -121,6 +126,7 @@ Add an always-on fluid-responsive layer to the report renderer that scales type 
 - **SC-001**: The renderer test suite passes in full, including the new fluid-layer invariant test.
 - **SC-002**: Both report views (unified and side-by-side) generate end to end and pass `validate_report.py` (exit 0), with the rendered CSS carrying `container-type:inline-size` and both `@container report` refinements.
 - **SC-003**: All phase-008 accessibility literals and the CSP are byte-preserved (no contrast, scroll, or safety regression), and `validate.sh --strict` on this child reports 0 content/structure errors.
+- **SC-004**: A 10-iteration deep review of the skill + command surface completes with all four dimensions covered, and every active finding (P0 manifest containment, P1 fallback, P2 test lock) is remediated with passing regression tests before this phase re-closes.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -200,6 +206,8 @@ Add an always-on fluid-responsive layer to the report renderer that scales type 
 - **Predecessor**: `../009-create-diff-command/spec.md` (the `/create:diff` command that invokes this renderer).
 - **Renderer**: `.opencode/skills/sk-doc/create-diff/scripts/create_diff.py` (`_CSS` and `render_report`).
 - **Safety gate**: `.opencode/skills/sk-doc/create-diff/scripts/validate_report.py` (the allowlist the layer stays within).
+- **Design tokens**: `.opencode/skills/sk-design/styles/cursor/` (the extracted Cursor style reference the light-mode design consumes).
+- **Deep-review packet**: `review/review-report.md` (verdict FAIL → remediated; 10 iterations, findings registry, resource map).
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

@@ -11,10 +11,10 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/033-create-diff-mode/010-fluid-responsive-report"
-    last_updated_at: "2026-07-16T05:42:31Z"
+    last_updated_at: "2026-07-16T14:27:21Z"
     last_updated_by: "claude"
-    recent_action: "Applied the fluid layer, added the regression test, verified suite + validator"
-    next_safe_action: "Commit the renderer change + this phase and push to v4"
+    recent_action: "Remediated deep-review P0/P1/P2 and folded design increments into docs"
+    next_safe_action: "Commit the remediation and re-sync to v4"
     blockers: []
     key_files:
       - "spec.md"
@@ -61,6 +61,15 @@ Status: Complete — a container-query fluid type and section-rhythm layer added
 |------|--------|--------|
 | `.opencode/skills/sk-doc/create-diff/scripts/create_diff.py` | Modified | `_CSS` gains fluid tokens (`--fs-0` base + modular `--fs-h1/-h2/-sm`, `--fs-code`, `--rhythm`, `--measure`, `clamp()`-redefined `--text-caption`); `<main>` becomes an `inline-size` query container with a `main>*` fluid base; sized rules retargeted to the tokens; `table.diff` `font` shorthand converted to longhand; prose measure split onto a `ch` cap; two `@container report (...)` refinements added. No markup/CSP change. |
 | `.opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py` | Modified | Added `ReportInvariants::test_fluid_type_layer_is_container_keyed`, asserting the rendered report carries `container-type:inline-size` and an `@container report` block. |
+
+### Follow-on increments delivered in this phase
+
+| Increment | Result |
+|-----------|--------|
+| 2rem page-gutter floor | `main{...padding:2rem}`; locked by `test_page_gutter_has_two_rem_minimum`. |
+| Cursor light-mode design | Parchment/ink/ember palette (add=forest, removed=crimson), bone/linen/stone surfaces, 4px geometry (no pills), weight-400 headline with Cursor tracking, CursorGothic/berkeleyMono-led stacks; light-only (dark override removed, locked by `test_report_is_light_mode_only`). Tokens consumed from `.opencode/skills/sk-design/styles/cursor/`. |
+| Heading-aware document sections | Markdown diffs surface the nearest heading above each change as a divider band (including out of collapsed runs); hunk headers carry `· § <section>`; change-free heading bands emit no `@@` noise; text/HTML inputs unaffected. |
+| Deep-review remediation | 10-iteration SOL review (`review/review-report.md`, verdict FAIL) → P0 snapshot-manifest containment (`_safe_blob_path` at the compare read + cleanup unlink, 4 negative tests), P1 real `@supports (font-size:1cqi)` fallback with static base tokens, P2 strengthened fluid invariant (named container + both refinements). |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -100,6 +109,8 @@ All structural gates run and green.
 | Phase-008 accessibility preserved (REQ-003) | VERIFIED: `.sxs{min-width:` (60rem floor), `.diff-scroll:focus-visible`, `.legend mark.wd{color:var(--text)}`, `mark.wd.add/.del` decorations, and the light/dark contrast tokens all present unchanged; `LegendContrast` + side-by-side scroll tests green. |
 | IDE-width tuning, no comfortable-width regression (REQ-004) | VERIFIED: token max endpoints equal prior fixed sizes (`--fs-0`→`1rem`, `--fs-code`→`13px`); `test_byte_reproducible` holds. |
 | Strict validation (this child) | VERIFIED: `validate.sh 010-fluid-responsive-report --strict` → Errors 0. |
+| Follow-on increments (REQ-007–REQ-010) | VERIFIED: final suite 48/48 OK; 8/8 gallery reports (incl. three real 500–770-line documents) pass `validate_report.py`; hostile-manifest cleanup replay refused with the victim file intact; first `:root` is static with fluid tokens feature-gated. |
+| Deep review (SC-004) | VERIFIED: 10/10 iterations, 4/4 dimensions, verdict FAIL with 3 findings — all remediated post-synthesis; the `/create:diff` command surface and README/hub mentions came back clean. |
 | Live IDE-webview visual acceptance | DEFERRED: not reproducible from the authoring environment; rendered unified + side-by-side artifacts were delivered for operator review (CHK-008). |
 <!-- /ANCHOR:verification -->
 
@@ -110,5 +121,5 @@ All structural gates run and green.
 
 1. **12px narrow-pane type floor.** At very narrow splits (<~700px column) the code/caption size settles at its 12px `clamp()` floor (13px at comfortable width). Desktop IDE panes are typically ≥900px so this rarely bites; if judged too small it is a single-value edit on `--fs-code`/`--text-caption`, with no structural or test impact.
 2. **Live webview acceptance is operator-owned.** Automated gates confirm the CSS is safe, valid, byte-reproducible, and preserves the accessibility contract, but the subjective narrow-pane readability judgment is a user-runtime step (CHK-008); the rendered reports were delivered for that review.
-3. **Outer page gutter stays fixed px.** A container cannot measure itself with its own `cqi`, so the `<main>` outer padding remains fixed; fluidizing it would need a `vw` clamp (deliberately rejected) or a new wrapper element (markup change, out of scope). Flagged as the one place the fluid layer intentionally does not reach.
+3. **Outer page gutter stays fixed.** A container cannot measure itself with its own `cqi`, so the `<main>` outer padding remains fixed (now a 2rem floor per the operator's direction); fluidizing it would need a `vw` clamp (deliberately rejected) or a new wrapper element (markup change, out of scope). Flagged as the one place the fluid layer intentionally does not reach.
 <!-- /ANCHOR:limitations -->

@@ -46,6 +46,7 @@
       "tasks.md",
       ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
       ".opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py",
+      "review/review-report.md",
       ".opencode/skills/sk-doc/create-diff/scripts/validate_report.py",
       "checklist.md",
       "implementation-summary.md"
@@ -79,6 +80,12 @@
         "name": "test_create_diff.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-diff HTML report is a self-contained document opened inside IDE preview panes and editor webviews on the desktop, whose widths vary widely (a narrow split around 480–700px, a half-screen editor around 900–1100px, a full editor up to ~1600px+)",
     "created_at": "2026-07-16T05:37:43.581Z",
-    "last_save_at": "2026-07-16T05:45:53.171Z",
+    "last_save_at": "2026-07-16T14:27:21.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:291cac6819a5bc42c746a6e9aee3b329b0620e48a456db8d71d5f43574d6d964",
+    "source_fingerprint": "sha256:4945689a8d02c5086f0e88fc0a9c0a727d7ed53d6f04ab27f234f6ab749c2c0d",
     "source_doc_hashes": {
-      "spec.md": "87c9712ddc820acdea0dff4149da6db076d0c0bca1e144008359120b198335ff",
-      "plan.md": "6159c7177bdb82de63d0ad34912f1dea687fecdc7292a424d412eb64aeef8fc4",
-      "tasks.md": "68d2d260db7c5ff11a726f8886d463fb678688004908490722e6f799bbb4611a",
-      "checklist.md": "7d7c5a2d743f5524c13c94f46c6a1cd8e585c474b685d296a055ffacfe9992f6",
-      "implementation-summary.md": "7580a972b89f98f753cf6e27097ee7cf916bb2501bcc5fffc5bfe31d4443cbba"
+      "spec.md": "4c525cd6c6b2e2222f5b39eeb6da5520fb31c301451d5326aab9fff9cd8bf5a7",
+      "plan.md": "0c1f0b07ebda108b5981715bcf0e56396ec3d796eba8e003a186433b1d01ab17",
+      "tasks.md": "d0239f48c52faa158bc97e6878d06306e29cb2476c636d8eae0e8ea47baee908",
+      "checklist.md": "40815e6d3ab4b8db981e8980c5663f70e1789913765900506e64da33eea4e7d0",
+      "implementation-summary.md": "cd972db5ea91dede0c22656a49e24ae73e900ac9a4f7f6f2854ee9fff4266430"
     },
     "last_active_child_id": null,
     "last_active_at": null

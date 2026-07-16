@@ -1,0 +1,498 @@
+{
+  "sessionId": "fanout-sol-1784207165086-152crx",
+  "parentSessionId": "fanout-sol-1784207165086-152crx",
+  "generation": 1,
+  "lineageMode": "resume",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-07-16T14:15:05Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P0-001",
+      "severity": "P0",
+      "title": "",
+      "file": ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
+      "line": 1444,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "0c69843c1ef5a5194ac0ea92716c36b014365e1dc7e1ab943e17ab9d3c089fa1",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "94ef07822c8698c839181090e2818bd8e86fbadd0cff7e01a55f3e36a7bfb097",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "14930c0a0f9f8d0515e40d023d7eaf2df6619f4a7d4175eb21720a25445facc0",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [
+    {
+      "run": 5,
+      "blockedBy": [
+        "dimensionCoverageGate",
+        "p0ResolutionGate"
+      ],
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "convergenceGate": {
+          "pass": true,
+          "score": 1
+        },
+        "dimensionCoverageGate": {
+          "pass": false,
+          "covered": [
+            "correctness",
+            "security",
+            "traceability",
+            "maintainability"
+          ],
+          "missing": []
+        },
+        "p0ResolutionGate": {
+          "pass": false,
+          "activeP0": 1
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "avgEvidencePerFinding": 2.67
+        },
+        "hotspotSaturationGate": {
+          "pass": true
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "activeP0P1": 2
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "securitySensitive": false,
+          "requiredRows": 0,
+          "passingRows": 0
+        },
+        "candidateCoverageGate": {
+          "pass": true,
+          "searchDebt": [],
+          "missing": []
+        },
+        "graphlessFallbackGate": {
+          "pass": true,
+          "mode": "graphless_fallback",
+          "missing": [],
+          "unavailabilityReason": "detached lineage write boundary prohibits coverage-graph mutation"
+        }
+      },
+      "recoveryStrategy": "Age full dimension coverage and adversarially replay the active P0 before another stop vote.",
+      "timestamp": "2026-07-16T14:09:05Z"
+    },
+    {
+      "run": 6,
+      "blockedBy": [
+        "p0ResolutionGate"
+      ],
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "convergenceGate": {
+          "pass": true,
+          "score": 1
+        },
+        "dimensionCoverageGate": {
+          "pass": true,
+          "covered": [
+            "correctness",
+            "security",
+            "traceability",
+            "maintainability"
+          ],
+          "missing": []
+        },
+        "p0ResolutionGate": {
+          "pass": false,
+          "activeP0": 1
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "avgEvidencePerFinding": 2.67
+        },
+        "hotspotSaturationGate": {
+          "pass": true
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "activeP0P1": 2
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "securitySensitive": false,
+          "requiredRows": 0,
+          "passingRows": 0
+        },
+        "candidateCoverageGate": {
+          "pass": true,
+          "searchDebt": [],
+          "missing": []
+        },
+        "graphlessFallbackGate": {
+          "pass": true,
+          "mode": "graphless_fallback",
+          "missing": [],
+          "unavailabilityReason": "detached lineage write boundary prohibits coverage-graph mutation"
+        }
+      },
+      "recoveryStrategy": "Continue saturation passes; P0-001 remains active and prevents legal convergence.",
+      "timestamp": "2026-07-16T14:10:05Z"
+    },
+    {
+      "run": 7,
+      "blockedBy": [
+        "p0ResolutionGate"
+      ],
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "convergenceGate": {
+          "pass": true,
+          "score": 1
+        },
+        "dimensionCoverageGate": {
+          "pass": true,
+          "covered": [
+            "correctness",
+            "security",
+            "traceability",
+            "maintainability"
+          ],
+          "missing": []
+        },
+        "p0ResolutionGate": {
+          "pass": false,
+          "activeP0": 1
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "avgEvidencePerFinding": 2.67
+        },
+        "hotspotSaturationGate": {
+          "pass": true
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "activeP0P1": 2
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "securitySensitive": false,
+          "requiredRows": 0,
+          "passingRows": 0
+        },
+        "candidateCoverageGate": {
+          "pass": true,
+          "searchDebt": [],
+          "missing": []
+        },
+        "graphlessFallbackGate": {
+          "pass": true,
+          "mode": "graphless_fallback",
+          "missing": [],
+          "unavailabilityReason": "detached lineage write boundary prohibits coverage-graph mutation"
+        }
+      },
+      "recoveryStrategy": "Continue review breadth until the hard ceiling; target mutation is forbidden.",
+      "timestamp": "2026-07-16T14:11:05Z"
+    },
+    {
+      "run": 8,
+      "blockedBy": [
+        "p0ResolutionGate"
+      ],
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "convergenceGate": {
+          "pass": true,
+          "score": 1
+        },
+        "dimensionCoverageGate": {
+          "pass": true,
+          "covered": [
+            "correctness",
+            "security",
+            "traceability",
+            "maintainability"
+          ],
+          "missing": []
+        },
+        "p0ResolutionGate": {
+          "pass": false,
+          "activeP0": 1
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "avgEvidencePerFinding": 2.67
+        },
+        "hotspotSaturationGate": {
+          "pass": true
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "activeP0P1": 2
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "securitySensitive": false,
+          "requiredRows": 0,
+          "passingRows": 0
+        },
+        "candidateCoverageGate": {
+          "pass": true,
+          "searchDebt": [],
+          "missing": []
+        },
+        "graphlessFallbackGate": {
+          "pass": true,
+          "mode": "graphless_fallback",
+          "missing": [],
+          "unavailabilityReason": "detached lineage write boundary prohibits coverage-graph mutation"
+        }
+      },
+      "recoveryStrategy": "Inspect adjacent negative tests before the terminal pass.",
+      "timestamp": "2026-07-16T14:12:05Z"
+    },
+    {
+      "run": 9,
+      "blockedBy": [
+        "p0ResolutionGate"
+      ],
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "convergenceGate": {
+          "pass": true,
+          "score": 1
+        },
+        "dimensionCoverageGate": {
+          "pass": true,
+          "covered": [
+            "correctness",
+            "security",
+            "traceability",
+            "maintainability"
+          ],
+          "missing": []
+        },
+        "p0ResolutionGate": {
+          "pass": false,
+          "activeP0": 1
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "avgEvidencePerFinding": 2.67
+        },
+        "hotspotSaturationGate": {
+          "pass": true
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "activeP0P1": 2
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "securitySensitive": false,
+          "requiredRows": 0,
+          "passingRows": 0
+        },
+        "candidateCoverageGate": {
+          "pass": true,
+          "searchDebt": [],
+          "missing": []
+        },
+        "graphlessFallbackGate": {
+          "pass": true,
+          "mode": "graphless_fallback",
+          "missing": [],
+          "unavailabilityReason": "detached lineage write boundary prohibits coverage-graph mutation"
+        }
+      },
+      "recoveryStrategy": "Proceed to the final stabilization pass and stop at maxIterationsReached.",
+      "timestamp": "2026-07-16T14:13:05Z"
+    }
+  ],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 0,
+      "partial": 2,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "findingRefs": [
+          "P1-001"
+        ]
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "findingRefs": [
+          "P1-001",
+          "P2-001"
+        ]
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "findingRefs": [
+          "P0-001"
+        ]
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "findingRefs": [
+          "P0-001"
+        ]
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [
+    {
+      "index": 1,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

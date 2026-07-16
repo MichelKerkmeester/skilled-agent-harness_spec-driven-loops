@@ -10,10 +10,10 @@ contextType: "verification"
 _memory:
   continuity:
     packet_pointer: "sk-doc/033-create-diff-mode/010-fluid-responsive-report"
-    last_updated_at: "2026-07-16T05:42:31Z"
+    last_updated_at: "2026-07-16T14:27:21Z"
     last_updated_by: "claude"
-    recent_action: "Applied the fluid layer and locked it with a regression test"
-    next_safe_action: "Commit the renderer change + this phase and push to v4"
+    recent_action: "Remediated deep-review P0/P1/P2 and folded design increments into docs"
+    next_safe_action: "Commit the remediation and re-sync to v4"
     blockers: []
     key_files:
       - "spec.md"
@@ -77,6 +77,10 @@ _memory:
 - [x] CHK-022 [P0] REQ-003 phase-008 accessibility guarantees preserved. [EVIDENCE: `.sxs{min-width:` (60rem floor), `.diff-scroll:focus-visible`, `.legend mark.wd{color:var(--text)}`, `mark.wd.add/.del` decorations, light/dark contrast tokens all unchanged; `LegendContrast` + side-by-side scroll tests green.]
 - [x] CHK-023 [P1] REQ-004 IDE-width tuning with no comfortable-width regression. [EVIDENCE: each `--fs-*` max endpoint equals the prior fixed size (`--fs-0`→`1rem`, `--fs-code`→`13px`); `test_byte_reproducible` holds.]
 - [x] CHK-024 [P1] REQ-006 the layer is regression-locked; the suite is green. [EVIDENCE: `python3 -m unittest test_create_diff` → Ran 40 tests, OK (39 prior + 1 new).]
+- [x] CHK-025 [P0] REQ-008 the Cursor light-mode design is locked: light-only, 2rem gutter, contrast gates hold. [EVIDENCE: `test_report_is_light_mode_only` + `test_page_gutter_has_two_rem_minimum` green; inline-mark contrast ≥4.5 verified from live `_CSS`.]
+- [x] CHK-026 [P1] REQ-009 heading-aware sections are locked for markdown and inert for plain text. [EVIDENCE: `test_markdown_headings_divide_sections` + `test_plain_text_gets_no_section_rows` green.]
+- [x] CHK-027 [P0] REQ-007 snapshot cleanup containment is locked. [EVIDENCE: `SnapshotCleanupContainment` — traversal, absolute, symlink-escape refused; legitimate blobs still cleaned; live hostile-manifest replay leaves the victim file intact.]
+- [x] CHK-028 [P1] REQ-010 the unsupported-`cqi` fallback is locked. [EVIDENCE: `test_fluid_tokens_degrade_to_fixed_sizes_without_cqi` — first `:root` static, fluid tokens only inside `@supports (font-size:1cqi)`; final suite 48/48 OK.]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -96,6 +100,7 @@ _memory:
 
 - [x] CHK-040 [P0] No new network, font, image, or external reference is introduced; the report stays self-contained under the existing CSP. [EVIDENCE: no `url(`/`@import`/`@font-face`; system font stacks retained; CSP `<meta>` unchanged.]
 - [x] CHK-041 [P0] No inline `style=` attribute and no `<script` substring introduced. [EVIDENCE: `test_zero_js_and_exact_csp` green; validator `style=` rejection not triggered.]
+- [x] CHK-042 [P0] Manifest-controlled paths cannot read or delete outside their snapshot store. [EVIDENCE: `_safe_blob_path` enforces plain-filename + resolved-containment at both the compare read and the cleanup unlink; deep-review P0 reproduction re-run against the fix → refused.]
 <!-- /ANCHOR:security -->
 
 ---
@@ -130,6 +135,8 @@ _memory:
 | Clean iteration hooks (REQ-005) | VERIFIED | scale retunable from `--fs-0` + named semantic tokens |
 | Regression-locked, suite green (REQ-006) | VERIFIED | `test_create_diff` → 40 tests OK |
 | Strict validation (this child) | VERIFIED | `validate.sh 010-fluid-responsive-report --strict` → Errors 0 |
+| Cursor light-mode design + sections + gutter (REQ-008/009) | VERIFIED | light-only/gutter/section tests green; 8/8 gallery reports validate PASS |
+| Deep-review remediation (REQ-007/010) | VERIFIED | P0 containment + P1 fallback + P2 test lock fixed; suite 48/48; hostile-manifest replay refused |
 | Live IDE-webview visual acceptance (CHK-070) | DEFERRED | user-runtime step; rendered artifacts delivered for review |
 
 **Verification Date**: 2026-07-16 (structural + test verification; live webview visual acceptance deferred — see CHK-070)

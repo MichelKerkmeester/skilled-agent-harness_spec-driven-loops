@@ -717,16 +717,21 @@ _CSS = """
 --del-bg:#f7e6e3;--del-inline:#f3c9cd;--del-marker:#b02a48;
 --warn-bg:#f6ecd4;--warn-border:#c08532;--warn-text:#574011;--focus:#f54e00;
 --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-6:24px;--sp-8:32px;
---fs-0:clamp(.875rem,calc(.766rem + .3125cqi),1rem);
+--fs-0:1rem;
 --fs-h1:calc(var(--fs-0) * 1.5);
 --fs-h2:calc(var(--fs-0) * 1.0625);
 --fs-sm:calc(var(--fs-0) * .875);
---fs-code:clamp(12px,calc(.6625rem + .2cqi),13px);
---rhythm:clamp(16px,calc(8px + 2cqi),24px);
+--fs-code:13px;
+--rhythm:24px;
 --measure:min(72rem, 84ch);
---text-caption:clamp(12px,calc(.6625rem + .2cqi),13px);
+--text-caption:13px;
 --font-ui:"CursorGothic",Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 --font-code:"berkeleyMono",ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+@supports (font-size:1cqi){:root{
+--fs-0:clamp(.875rem,calc(.766rem + .3125cqi),1rem);
+--fs-code:clamp(12px,calc(.6625rem + .2cqi),13px);
+--rhythm:clamp(16px,calc(8px + 2cqi),24px);
+--text-caption:clamp(12px,calc(.6625rem + .2cqi),13px)}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--canvas);color:var(--text);font:1rem/1.5 var(--font-ui)}
 main{container-type:inline-size;container-name:report;
@@ -1184,6 +1189,28 @@ def _load_manifest(manifest: Path) -> dict:
     return {}
 
 
+def _safe_blob_path(snap_dir: Path, entry) -> Optional[Path]:
+    """Resolve a manifest snapshot entry's blob strictly inside its store.
+
+    Manifest JSON is on-disk state that can be corrupt or hostile. A blob
+    reference is trusted only when it is a plain filename whose resolved
+    location stays inside the snapshot directory; traversal, absolute paths,
+    symlink escapes, and non-string shapes are refused so reads and deletes
+    can never reach outside the store.
+    """
+    name = entry.get("blob") if isinstance(entry, dict) else None
+    if (not isinstance(name, str) or not name or name in (".", "..")
+            or name != Path(name).name):
+        return None
+    candidate = snap_dir / name
+    try:
+        if candidate.resolve().parent != snap_dir.resolve():
+            return None
+    except OSError:
+        return None
+    return candidate
+
+
 def _write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(dir=str(path.parent))
@@ -1333,7 +1360,12 @@ def cmd_compare(args: argparse.Namespace) -> int:
               f"`snapshot {path}` before the edit, or use `compare-pair`.",
               file=sys.stderr)
         return EXIT_NO_BASELINE
-    blob = _snap_dir(state, path) / snap["blob"]
+    blob = _safe_blob_path(_snap_dir(state, path), snap)
+    if blob is None:
+        print(f"error: snapshot manifest for {path.name} references an unsafe "
+              f"blob path; refusing to read it. Inspect the state store.",
+              file=sys.stderr)
+        return EXIT_IO
     try:
         ext_before = extract(blob, fmt=detect_format(path))
         ext_after = extract(path)
@@ -1435,13 +1467,26 @@ def cmd_cleanup(args: argparse.Namespace) -> int:
             continue
         kept = []
         for s in data.get("snapshots") or []:
+            # Fail safe on untrusted state: an entry that cannot be proven to
+            # stay inside its snapshot directory is kept, never deleted.
+            blob = _safe_blob_path(sub, s)
+            if blob is None:
+                print(f"warning: skipping snapshot entry with unsafe blob "
+                      f"reference in {manifest}", file=sys.stderr)
+                kept.append(s)
+                continue
             drop = True
             if cutoff is not None:
-                captured = _dt.datetime.fromisoformat(s["captured_at"])
+                try:
+                    captured = _dt.datetime.fromisoformat(s["captured_at"])
+                except (KeyError, TypeError, ValueError):
+                    print(f"warning: skipping snapshot entry with invalid "
+                          f"captured_at in {manifest}", file=sys.stderr)
+                    kept.append(s)
+                    continue
                 drop = captured < cutoff
             if drop:
                 removed += 1
-                blob = sub / s["blob"]
                 print(f"{'[dry-run] would remove' if args.dry_run else 'removed'} "
                       f"{blob}")
                 if not args.dry_run and blob.exists():

@@ -11,10 +11,10 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/033-create-diff-mode/010-fluid-responsive-report"
-    last_updated_at: "2026-07-16T05:42:31Z"
+    last_updated_at: "2026-07-16T14:27:21Z"
     last_updated_by: "claude"
-    recent_action: "Applied the fluid layer and locked it with a regression test"
-    next_safe_action: "Commit the renderer change + this phase and push to v4"
+    recent_action: "Remediated deep-review P0/P1/P2 and folded design increments into docs"
+    next_safe_action: "Commit the remediation and re-sync to v4"
     blockers: []
     key_files:
       - "spec.md"
@@ -66,6 +66,8 @@ Layer a container-query fluid type and section-rhythm scale onto the existing re
 - [x] No `url(`/`@import`/`expression(`, no inline `style=`, CSP byte-identical; every generated report passes `validate_report.py`
 - [x] Every phase-008 accessibility literal preserved byte-for-byte
 - [x] Renderer suite green including the new fluid-layer test; `validate.sh --strict` on this child = 0 errors
+- [x] Follow-on increments delivered under this phase: 2rem gutter floor, Cursor light-mode design (light-only lock), heading-aware markdown sections, snapshot-manifest blob containment, and the `@supports`-gated `cqi` fallback — each locked by its own regression test (suite 48/48)
+- [x] Deep review (10 iterations) synthesized to `review/review-report.md`; all active findings remediated before re-close
 <!-- /ANCHOR:quality-gates -->
 
 ---
