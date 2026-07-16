@@ -90,8 +90,8 @@ FAILURE MODES:
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class [evidence: stale registration doctrine classed `class-of-bug` (repeated across 15 files); doctor.sh absence-severity classed `instance-only` (one branch, one script)]
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed [evidence: baseline `rg -i` marker sweep recorded 98 lines across 15 files before edits; every file visited]
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for the renamed scenario file and flipped doctor output [evidence: `rg 'manual_absent_expected'` consumers (root playbook x2, self-reference) all updated; docs quoting the old `INFO ... NOT registered` doctor line updated to the `OK`/`ERR` outputs]
-- [x] CHK-FIX-004 [P0] Security/path/parser fixes include adversarial cases [evidence: N/A - no security/path/parser code changed; both scripts remain read-only grep/report tools]
-- [x] CHK-FIX-005 [P1] Matrix axes listed before completion [evidence: plan.md FIX ADDENDUM file-x-marker-class matrix (6 surface rows); tasks T003-T009 carry per-file flip counts]
+- [x] CHK-FIX-004 [P0] Security/path/parser fixes include adversarial cases [evidence: N/A - no security/path/parser code changed; `doctor.sh` and `install.sh` remain read-only grep/report tools with 0 write paths]
+- [x] CHK-FIX-005 [P1] Matrix axes listed before completion [evidence: `plan.md` FIX ADDENDUM file-x-marker-class matrix carries 6/6 surface rows; tasks T003-T009 carry per-file flip counts]
 - [x] CHK-FIX-006 [P1] Hostile env variant considered where process-wide state is read [evidence: doctor.sh/install.sh read only PATH lookups + one env flag (`MOBBIN_DOCTOR_LIVE`); missing-node/npx branches exercise as `err` paths by construction]
 - [x] CHK-FIX-007 [P1] Evidence pinned to a stable base [evidence: edits on branch `skilled/v4.0.0.0`, working tree over base `ce0641e6f8`; the mcp-mobbin packet tree is untracked-new, so this phase's edits are the tree state at that base]
 <!-- /ANCHOR:fix-completeness -->
@@ -103,7 +103,7 @@ FAILURE MODES:
 
 - [x] CHK-030 [P0] No credential invented, requested, or embedded anywhere [evidence: grep for `MOBBIN_API_KEY` across the packet matches only refusal/negative-answer prose; registered manual `env` verified `{}`; `.env` has no mobbin entry]
 - [x] CHK-031 [P0] `.utcp_config.json` and `~/.mcp-auth` untouched by this phase [evidence: this phase issued only read commands against `.utcp_config.json` (python3 json parse, grep); its working-tree diff is the operator registration applied BEFORE this phase ran; no command touched `~/.mcp-auth`]
-- [x] CHK-032 [P1] Read-only transport posture preserved in all new content [evidence: examples and new scenarios forbid config/auth mutation; install.sh states "installs nothing, edits nothing" and has no write path]
+- [x] CHK-032 [P1] Read-only transport posture preserved in all new content [evidence: examples and new scenarios forbid config/auth mutation; `install.sh` prints `installs nothing, edits nothing` and contains 0 write paths]
 <!-- /ANCHOR:security -->
 
 ---
@@ -111,8 +111,8 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized with what actually shipped [evidence: Files-to-Change table matches the 15 modified + 8 created files; tasks T001-T016 all evidenced]
-- [x] CHK-041 [P1] SKILL.md, README.md, INSTALL_GUIDE.md agree on the wiring state and operator steps [evidence: all three state registered 2026-07-16, discovery pends fresh session, OAuth pends operator, callable INFERRED]
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized with what actually shipped [evidence: `spec.md` Files-to-Change table matches the 15 modified + 8 created files; tasks 16/16 evidenced]
+- [x] CHK-041 [P1] SKILL.md, README.md, INSTALL_GUIDE.md agree on the wiring state and operator steps [evidence: 3/3 docs state registered 2026-07-16, discovery pends a fresh session, OAuth pends the operator, and the callable stays `INFERRED` until `tool_info`]
 - [x] CHK-042 [P2] changelog/v1.1.0.0.md reflects the shipped inventory [evidence: release notes enumerate the doc flips, doctor change, examples/, install.sh, 6-to-9 playbook, catalog enrichment]
 <!-- /ANCHOR:docs -->
 

@@ -1,11 +1,26 @@
 {
+  "level": "1",
   "specFolder": "mcp-tooling/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
-  "description": "Phase 1: inventory-parity-and-doc-truth",
+  "description": "The `mobbin` Code Mode manual is now registered in `.utcpconfig.json`, but the entire packet still teaches pre-registration doctrine: 98 marker lines",
   "keywords": [
-    "phase",
-    "inventory-parity-and-doc-truth"
+    "mobbin",
+    "code",
+    "mode",
+    "manual",
+    "now",
+    "registered",
+    "utcpconfig",
+    "json",
+    "entire",
+    "packet",
+    "still",
+    "teaches",
+    "pre-registration",
+    "doctrine",
+    "marker",
+    "lines"
   ],
-  "lastUpdated": "2026-07-16T12:58:35.027Z",
+  "lastUpdated": "2026-07-16T13:39:11.763Z",
   "specId": "005",
   "folderSlug": "inventory-parity-and-doc-truth",
   "parentChain": [
@@ -13,6 +28,5 @@
     "010-mcp-mobbin"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
