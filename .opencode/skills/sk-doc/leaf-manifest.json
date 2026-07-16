@@ -53,6 +53,8 @@
     },
     {
       "leaves": [
+        "assets/command_contract.json",
+        "assets/command_contract.schema.json",
         "assets/command_presentation_template.md",
         "assets/command_router_template.md",
         "assets/command_template.md",
