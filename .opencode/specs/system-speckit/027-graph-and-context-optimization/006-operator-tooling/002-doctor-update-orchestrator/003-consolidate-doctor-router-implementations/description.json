@@ -1,0 +1,28 @@
+{
+  "childTopology": [],
+  "specFolder": "system-speckit/027-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+  "description": "The 10 `/doctor:` markdown commands in `.opencode/commands/doctor/` share ~50 lines of duplicated boilerplate per file",
+  "keywords": [
+    "doctor",
+    "markdown",
+    "commands",
+    "opencode",
+    "share",
+    "lines",
+    "duplicated",
+    "boilerplate",
+    "per",
+    "file"
+  ],
+  "lastUpdated": "2026-07-10T06:22:42.997Z",
+  "specId": "003",
+  "folderSlug": "consolidate-doctor-router-implementations",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "006-operator-tooling",
+    "002-doctor-update-orchestrator"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

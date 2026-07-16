@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "durability stress domain",
+      "checkpoint contention stress",
+      "index scan coalescing stress",
+      "daemon recycle transparency stress",
+      "durability stress plan",
+      "checkpoint contention stress plan",
+      "index scan coalescing stress plan",
+      "stress durability script",
+      "durability stress tasks",
+      "checkpoint contention stress tasks",
+      "index scan coalescing stress tasks",
+      "stress durability script tasks"
+    ],
+    "key_topics": [
+      "durability",
+      "stress",
+      "domain",
+      "checkpoint",
+      "contention",
+      "index",
+      "scan",
+      "coalescing",
+      "daemon",
+      "recycle",
+      "transparency",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "mcp_server/stress_test/durability/checkpoint-v2-contention-stress.vitest.ts",
+      "mcp_server/stress_test/durability/enrichment-marker-backfill-stress.vitest.ts",
+      "mcp_server/stress_test/durability/index-scan-coalescing-stress.vitest.ts",
+      "mcp_server/stress_test/durability/daemon-recycle-transparency-stress.vitest.ts",
+      "lib/storage/checkpoints.ts",
+      "handlers/save/enrichment-state.ts",
+      "core/db-state.ts",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "mcp_server/stress_test/durability/README.md",
+      "mcp_server/package.json",
+      "mcp_server/vitest.stress.config.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "checkpoint-v2-contention-stress.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/durability/checkpoint-v2-contention-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "enrichment-marker-backfill-stress.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/durability/enrichment-marker-backfill-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scan-coalescing-stress.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/durability/index-scan-coalescing-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-recycle-transparency-stress.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/durability/daemon-recycle-transparency-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "enrichment-state.ts",
+        "kind": "code",
+        "path": "handlers/save/enrichment-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-state.ts",
+        "kind": "code",
+        "path": "core/db-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/stress_test/durability/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.stress.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.stress.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Durability Stress Domain",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The durability surfaces shipped by the 013 roadmap each have a correctness unit test under `mcpserver/tests/` (`checkpoints-v2-create/restore`, `vector-index-schema-enrichment-v30`, `handler-memory-index-async-scan`, `launcher-session-proxy`)",
+    "created_at": "2026-06-02T11:00:00.000Z",
+    "last_save_at": "2026-07-02T05:31:12.456Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a572d3c113b2e044a600a9cf62299f4a799a2c370d2ef7ccd03ffad25bb6121a",
+    "source_doc_hashes": {
+      "spec.md": "cd5c6073ca851d8d6c7fe87e65f5bfec7967dea51d69bb6e5883dc4c5af2a71c",
+      "plan.md": "3e47e2eb84f00039fe3be5d93d898fb66292666fa9d0955c50ce233c3441ba3b",
+      "tasks.md": "fc618e160229184ea5ab850d3ebd4fae07677ea481933ab862b42bfb22641726",
+      "checklist.md": "1319ec371e4e45a05a3b96aaaae8c892f6140832c8f8fb21eb1f7fb7d46db1a7",
+      "decision-record.md": "4b3ae548f7cbcfed760b3554633d30a196c3ceff401b3c27f33990bd1beb2af9",
+      "implementation-summary.md": "c18e262a150523b7b012b32d86563f73e9339df9aa3c2a7ae07a9c7426c060fa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

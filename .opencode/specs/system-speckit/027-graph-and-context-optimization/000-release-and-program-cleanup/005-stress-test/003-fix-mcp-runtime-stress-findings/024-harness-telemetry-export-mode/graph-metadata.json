@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/024-harness-telemetry-export-mode",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/024-harness-telemetry-export-mode",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "024-harness-telemetry-export-mode",
+      "harness telemetry export",
+      "search quality telemetry mode",
+      "harness envelope output",
+      "024-harness-telemetry-export-mode resource map"
+    ],
+    "key_topics": [
+      "024-harness-telemetry-export-mode",
+      "harness",
+      "telemetry",
+      "export",
+      "search",
+      "quality",
+      "mode",
+      "envelope",
+      "output",
+      "resource",
+      "map",
+      "search-quality"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts",
+      "spec.md",
+      "mcp_server/stress_test/search-quality/harness.ts",
+      "plan.md",
+      "tasks.md",
+      "mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "harness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "harness-telemetry-export.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-decision-envelope.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harness Telemetry Export Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Extend",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fixture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "optional",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The search-quality harness at `mcpserver/stresstest/search-quality/` is intentionally database-agnostic and result-oriented:",
+    "created_at": "2026-04-29T08:45:00.000Z",
+    "last_save_at": "2026-07-02T05:31:10.810Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:dd774d1e8af5907285014e5d5606167192b751d0c50dc5c7bd8f207d65535d79",
+    "source_doc_hashes": {
+      "spec.md": "d78d141775e2ba3a13a7f596ebf29b8bccf447b1101d398ed0e862b74cdd2145",
+      "plan.md": "51ce80b522ab8a1f79bdc95265aedc6fa93f12aa192c70aacb740d2dbb07eb98",
+      "tasks.md": "f684cbdb0502120c343873a41910eb156577866bc04ff2593c982d7b798219be",
+      "implementation-summary.md": "d36e548408e9d3e98793e24510e03b3b32ae630b6a176df449091b8a25a540b1",
+      "resource-map.md": "1cc35fddd843aefc91b8da9740237e19589d00981ede56877768196713185eca"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

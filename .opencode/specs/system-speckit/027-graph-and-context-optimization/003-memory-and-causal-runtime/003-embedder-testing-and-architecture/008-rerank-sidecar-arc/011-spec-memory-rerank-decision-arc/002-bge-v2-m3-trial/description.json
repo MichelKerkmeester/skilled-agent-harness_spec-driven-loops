@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial",
+  "description": "Arc 008 tried two off-the-shelf rerankers on spec-memory:",
+  "keywords": [
+    "arc",
+    "tried",
+    "two",
+    "off-the-shelf",
+    "rerankers",
+    "spec-memory"
+  ],
+  "lastUpdated": "2026-07-10T06:23:32.872Z",
+  "specId": "002",
+  "folderSlug": "bge-v2-m3-trial",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc",
+    "011-spec-memory-rerank-decision-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "success vector coverage hygiene",
+      "success rows missing vector",
+      "missing active vector success",
+      "vector coverage repair",
+      "success vector coverage plan",
+      "missing vector hygiene implementation",
+      "vector coverage repair plan",
+      "success vector coverage tasks",
+      "missing vector hygiene tasks",
+      "success vector coverage summary",
+      "missing vector hygiene summary"
+    ],
+    "key_topics": [
+      "success",
+      "vector",
+      "coverage",
+      "hygiene",
+      "rows",
+      "missing",
+      "active",
+      "repair",
+      "plan",
+      "implementation",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "mcp_server/lib/embedders/embedding-reconcile.ts",
+      "mcp_server/tests/embedding-reconcile.vitest.ts",
+      "mcp_server/tools/types.ts",
+      "schemas/tool-input-schemas.ts",
+      "mcp_server/tests/vector-coverage-hygiene.vitest.ts",
+      "tests/vector-coverage-hygiene.vitest.ts",
+      "lib/embedders/embedding-reconcile.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "embedding-reconcile.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-reconcile.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedding-reconcile.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-coverage-hygiene.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/vector-coverage-hygiene.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sibling",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Verification during the 005 reconcile found 23 rows marked `embeddingstatus='success'` that are MISSING from an active vector surface — not present in `activevec.vecmemoriesrowids` OR not present in `activevec.vec<dim>`",
+    "created_at": "2026-05-27T08:49:43.296Z",
+    "last_save_at": "2026-07-10T06:21:09.862Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dc31766d4af5dcc5cbf8529338f78afe305cb9b0fc5195abe64c6e10d7aefc5f",
+    "source_doc_hashes": {
+      "spec.md": "9ed394cbb454597c56887bf8e242bc5658d38f50b7918095f6a33c57bdd8a214",
+      "plan.md": "d0ec5d6452666755969e017f30ccef9ef42e34cc6615960cad1d721ff7c092e9",
+      "tasks.md": "255ba0b194c8ab78e1970cca653e676923de95297b87b57b62fbb4b5053e17ad",
+      "implementation-summary.md": "5d79b601dc7d0e435fce94f2c239eded3a00dffc58527037d210289f125100a2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

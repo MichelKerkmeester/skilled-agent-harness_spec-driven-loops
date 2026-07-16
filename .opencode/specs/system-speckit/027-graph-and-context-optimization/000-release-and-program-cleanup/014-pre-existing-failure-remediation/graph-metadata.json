@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre-existing failure remediation",
+      "advisor renderer fixture drift",
+      "feature-flag-reference-docs renumber",
+      "deferred suite gating",
+      "macos einval security-hardening",
+      "pre-existing failure remediation plan",
+      "pre-existing failure remediation tasks",
+      "pre-existing failure remediation summary",
+      "advisor suite green"
+    ],
+    "key_topics": [
+      "pre-existing",
+      "failure",
+      "remediation",
+      "advisor",
+      "renderer",
+      "fixture",
+      "drift",
+      "feature-flag-reference-docs",
+      "renumber",
+      "deferred",
+      "suite",
+      "gating"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/lib/security-hardening.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feature-flag-reference-docs.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "security-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/lib/security-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "file-disjoint",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The first real central verification of the 013 program surfaced ~38 failing tests/docs that predate 013/014/015 (confirmed via file provenance + origin/main ancestry)",
+    "created_at": "2026-06-05T06:23:26.207Z",
+    "last_save_at": "2026-07-02T05:31:11.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:20e09d75f54e234321021f062bc7b9b7366f76389fd3f6a64b350ad71738fb90",
+    "source_doc_hashes": {
+      "spec.md": "1a3a5cda181a777d624b051def106f91c20cd9b4f054aa2f834736e72222efd3",
+      "plan.md": "4b45b58413db623f641007a2115846344817808554bc7fbb30c6dfa12da6b181",
+      "tasks.md": "5ee4d872e9b3908174fe31fc0765a7408bb6239eaf2f1491b19dda1dab9e6181",
+      "implementation-summary.md": "83e5f7ab5b68caa7a715c7d8248d8cec115ca1daf0449b1fb260ea0bfe5fe612"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

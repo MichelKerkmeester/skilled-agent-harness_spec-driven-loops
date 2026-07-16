@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/z_archive/wave-2-merges/007-017-physical-move-and-database",
+  "description": "ADR-001 accepted `.opencode/skills/system-code-graph/` as the new owner of the code-graph source tree and database",
+  "keywords": [
+    "adr-001",
+    "accepted",
+    "opencode",
+    "skills",
+    "system-code-graph",
+    "new",
+    "owner",
+    "code-graph",
+    "source",
+    "tree",
+    "database"
+  ],
+  "lastUpdated": "2026-07-10T06:24:36.261Z",
+  "specId": "007",
+  "folderSlug": "017-physical-move-and-database",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

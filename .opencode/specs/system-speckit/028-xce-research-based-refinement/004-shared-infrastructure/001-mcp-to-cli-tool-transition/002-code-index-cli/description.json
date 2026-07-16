@@ -1,0 +1,50 @@
+{
+  "title": "Code-Index CLI Workstream",
+  "trigger_phrases": [
+    "code index cli feasibility",
+    "code graph cli fallback",
+    "mk_code_index cli",
+    "028 002 research"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
+  "status": "phase-parent",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
+  "importance_tier": "important",
+  "created_at": "2026-06-06T13:40:00Z",
+  "is_phase_parent": true,
+  "children": [
+    "000-code-index-cli-research",
+    "001-cli-core",
+    "002-hardening-and-tests",
+    "003-runtime-integration"
+  ],
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
+  "description": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session",
+  "keywords": [
+    "mkcodeindex",
+    "mcp",
+    "server",
+    "tools",
+    "structural-code-search",
+    "backbone",
+    "only",
+    "client",
+    "surface",
+    "protocol",
+    "layer",
+    "mid-session"
+  ],
+  "lastUpdated": "2026-07-10T06:24:41.263Z",
+  "specId": "002",
+  "folderSlug": "code-index-cli",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "001-mcp-to-cli-tool-transition"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
+  "description": "After the packet 096 singular→plural path-residue fix, three follow-on issues remain in the runtime: (1) `findAdvisorWorkspaceRoot` uses a bare",
+  "keywords": [
+    "packet",
+    "singular",
+    "plural",
+    "path-residue",
+    "three",
+    "follow-on",
+    "issues",
+    "remain",
+    "runtime",
+    "findadvisorworkspaceroot",
+    "bare"
+  ],
+  "lastUpdated": "2026-07-10T06:22:00.781Z",
+  "specId": "004",
+  "folderSlug": "runtime-root-memory-cleanup-followup-fixes",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "004-followup-post-program"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-05-26_10-53__req-001-hardened-default-sentinel-in-skill.md"
+  ]
+}

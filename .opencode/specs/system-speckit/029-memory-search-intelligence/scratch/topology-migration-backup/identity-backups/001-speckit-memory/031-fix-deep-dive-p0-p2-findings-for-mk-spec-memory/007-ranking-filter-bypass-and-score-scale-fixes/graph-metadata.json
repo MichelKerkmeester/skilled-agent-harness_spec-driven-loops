@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/007-ranking-filter-bypass-and-score-scale-fixes",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/007-ranking-filter-bypass-and-score-scale-fixes",
+  "parent_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ranking filter bypass",
+      "score scale fixes",
+      "flag read root cause",
+      "group-a flag plumbing",
+      "minstate inversion",
+      "rescue injection gates",
+      "hyde gate fix",
+      "filter bypass battery plan",
+      "score scale battery plan",
+      "verify first battery",
+      "phase 007 tasks",
+      "phase 007 checklist"
+    ],
+    "key_topics": [
+      "ranking",
+      "filter",
+      "bypass",
+      "score",
+      "scale",
+      "flag",
+      "read",
+      "root",
+      "cause",
+      "group-a",
+      "plumbing",
+      "minstate"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "lib/search/search-flags.ts",
+      "lib/search/search-utils.ts",
+      "lib/search/pipeline/stage4-filter.ts",
+      "lib/search/pipeline/orchestrator.ts",
+      "lib/search/rerank/retrieval-rescue.ts",
+      "lib/search/vector-index-queries.ts",
+      "lib/search/hybrid-search.ts",
+      "lib/search/pipeline/stage2-fusion.ts",
+      "lib/cognitive/adaptive-ranking.ts",
+      "lib/scoring/mpab-aggregation.ts",
+      "lib/search/hyde.ts",
+      "lib/search/graph-search-fn.ts",
+      "lib/search/causal-boost.ts",
+      "lib/search/query-router.ts",
+      "lib/search/evidence-gap-detector.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-utils.ts",
+        "kind": "code",
+        "path": "lib/search/search-utils.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage4-filter.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/stage4-filter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-rescue.ts",
+        "kind": "code",
+        "path": "lib/search/rerank/retrieval-rescue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-queries.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adaptive-ranking.ts",
+        "kind": "code",
+        "path": "lib/cognitive/adaptive-ranking.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mpab-aggregation.ts",
+        "kind": "code",
+        "path": "lib/scoring/mpab-aggregation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hyde.ts",
+        "kind": "code",
+        "path": "lib/search/hyde.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-search-fn.ts",
+        "kind": "code",
+        "path": "lib/search/graph-search-fn.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-boost.ts",
+        "kind": "code",
+        "path": "lib/search/causal-boost.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": "lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-gap-detector.ts",
+        "kind": "code",
+        "path": "lib/search/evidence-gap-detector.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranking Filter Bypass",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Score Scale Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-dive report (../research/deep-dive-report.md, Chain D) shows a large fraction of the ranking stack is computed, recorded in telemetry as applied, and then discarded or bypassed before it can influence final order",
+    "created_at": "2026-07-03T09:44:22Z",
+    "last_save_at": "2026-07-09T10:02:56.295Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ae753f5383a0d4545e7deef13914c47344ecfdfdbb40ca210ccb36160ffe2eb",
+    "source_doc_hashes": {
+      "spec.md": "705a67acad1ec2f1cec79afae080ab5b6933549ce54d1f318529846c415c4375",
+      "plan.md": "75ef0afa270b3a12e52ba529abcc8d1625e7f96e70b91fe286f0ced1f6712ad1",
+      "tasks.md": "cb8b92a652df8fa1d28e6315126120541668018d10417c2dc663b67885b15844",
+      "checklist.md": "9e14954fc6dca83a3cca567073c59ccfafa6c95b1258b34fbaa3141376ada937",
+      "decision-record.md": "3fb13e3caf7952c80ef460ccb5d0e58f007436601eeae1b2f6d8cacb425a40c1",
+      "implementation-summary.md": "3314fbda28b1ae8569639cc8824850a78b6021a1493f377d133200f2392f2e40"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

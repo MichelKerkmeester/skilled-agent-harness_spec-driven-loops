@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
+  "description": "Three gaps remained after packet 010 made the at-rest WAL durable",
+  "keywords": [
+    "three",
+    "gaps",
+    "remained",
+    "packet",
+    "at-rest",
+    "wal",
+    "durable"
+  ],
+  "lastUpdated": "2026-07-10T06:24:30.501Z",
+  "specId": "012",
+  "folderSlug": "boot-integrity-retention-probe",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge",
+  "description": "Add a launcher bridge so secondary MCP launcher instances can attach to the primary daemon over an IPC socket instead of exiting with LEASE_HELD_BY.",
+  "keywords": [
+    "launcher",
+    "bridge",
+    "secondary",
+    "mcp",
+    "instances",
+    "attach",
+    "primary",
+    "daemon",
+    "ipc",
+    "socket",
+    "instead",
+    "exiting"
+  ],
+  "lastUpdated": "2026-07-10T06:21:57.727Z",
+  "specId": "010",
+  "folderSlug": "multi-client-stdio-socket-bridge",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

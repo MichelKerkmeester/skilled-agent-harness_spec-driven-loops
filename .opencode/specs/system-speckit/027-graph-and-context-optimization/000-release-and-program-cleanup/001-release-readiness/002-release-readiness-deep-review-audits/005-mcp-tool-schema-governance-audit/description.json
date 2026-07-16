@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/005-mcp-tool-schema-governance-audit",
+  "description": "The release-readiness program needs a truth check for the MCP tool schema contract",
+  "keywords": [
+    "release-readiness",
+    "program",
+    "needs",
+    "truth",
+    "check",
+    "mcp",
+    "tool",
+    "schema",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.191Z",
+  "specId": "005",
+  "folderSlug": "mcp-tool-schema-governance-audit",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "001-release-readiness",
+    "002-release-readiness-deep-review-audits"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

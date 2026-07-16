@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/004-vector-and-checkpoint-durability",
+  "description": "The epic deep-review sweep left this lane with 12 unverified P1 claims and 19 P2 clusters",
+  "keywords": [
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
+    "lane",
+    "unverified",
+    "claims",
+    "clusters"
+  ],
+  "lastUpdated": "2026-07-10T06:24:52.077Z",
+  "specId": "004",
+  "folderSlug": "vector-and-checkpoint-durability",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "001-finding-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

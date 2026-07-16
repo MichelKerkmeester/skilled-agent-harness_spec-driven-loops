@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/002-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
+  "description": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/`",
+  "keywords": [
+    "eight",
+    "shipped",
+    "workflows",
+    "pullrequest",
+    "paths",
+    "filters",
+    "grep",
+    "schedule",
+    "cron",
+    "across",
+    "github"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.518Z",
+  "specId": "011",
+  "folderSlug": "scheduled-dq-sweep",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "002-spec-data-quality",
+    "002-retroactive-automation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

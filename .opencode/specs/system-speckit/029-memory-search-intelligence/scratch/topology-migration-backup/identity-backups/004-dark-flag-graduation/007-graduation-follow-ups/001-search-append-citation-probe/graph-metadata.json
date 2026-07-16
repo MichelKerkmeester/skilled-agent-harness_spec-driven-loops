@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups/001-search-append-citation-probe",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups/001-search-append-citation-probe",
+  "parent_id": "system-speckit/029-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "append-exempt serializer",
+      "tail-append token budget truncation",
+      "true-citation density probe",
+      "reranker training threshold",
+      "search append citation probe",
+      "append-exempt serializer plan",
+      "density probe plan",
+      "token budget trim selection",
+      "append-exempt tasks",
+      "density probe tasks",
+      "append-exempt checklist",
+      "density probe checklist"
+    ],
+    "key_topics": [
+      "append-exempt",
+      "serializer",
+      "tail-append",
+      "token",
+      "budget",
+      "truncation",
+      "true-citation",
+      "density",
+      "probe",
+      "reranker",
+      "training",
+      "threshold"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/true-citation-emitter.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/formatters/search-results.ts",
+      "mcp_server/context-server.ts",
+      "mcp_server/lib/feedback/true-citation-emitter.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/tests/append-exempt-serializer.vitest.ts",
+      "mcp_server/tests/true-citation-emitter.vitest.ts",
+      "lib/search/deterministic-multihop.ts",
+      "lib/search/lane-champion-backfill.ts",
+      "formatters/search-results.ts",
+      "lib/feedback/true-citation-emitter.ts",
+      "handlers/memory-crud-health.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "true-citation-emitter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/true-citation-emitter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "append-exempt-serializer.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/append-exempt-serializer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "true-citation-emitter.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/true-citation-emitter.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic-multihop.ts",
+        "kind": "code",
+        "path": "lib/search/deterministic-multihop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lane-champion-backfill.ts",
+        "kind": "code",
+        "path": "lib/search/lane-champion-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Append",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exempt Serializer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Citation Density Probe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 009 dark-flag validation found two production-readiness gaps in the search layer",
+    "created_at": "2026-06-24T08:04:02.092Z",
+    "last_save_at": "2026-07-10T06:23:59.859Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:04128c8b49ca6bef58b7141ba381868d80e90ca8f206a27b7735acb318d9154b",
+    "source_doc_hashes": {
+      "spec.md": "437fc77109b0695170c2883b79939d2020cf1b3f859a97c6f94abd04a0646057",
+      "plan.md": "7fcab885055e6736d9beb5e3671d8fa2cb1e9faf583850af9beb0d51faf74fef",
+      "tasks.md": "26852bf0bad66a756ea5f012ba63a2e08242ffae4a47513ccc8b4c48acf3de64",
+      "checklist.md": "7c0475cd590e05f5474804ee7728e9c843e157b23c3bcb83eb7b41d5749e9ddf",
+      "implementation-summary.md": "e3f681e76d1256d2b62c0bc1caaf98868d5f33015138c1c97fd9f11691f30eb7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

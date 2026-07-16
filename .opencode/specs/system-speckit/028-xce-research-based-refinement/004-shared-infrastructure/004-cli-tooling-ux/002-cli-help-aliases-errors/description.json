@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors",
+  "description": "The three daemon CLI front-doors are inconsistent in discoverability and error recovery",
+  "keywords": [
+    "three",
+    "daemon",
+    "cli",
+    "front-doors",
+    "inconsistent",
+    "discoverability",
+    "error",
+    "recovery"
+  ],
+  "lastUpdated": "2026-07-10T06:24:06.560Z",
+  "specId": "002",
+  "folderSlug": "cli-help-aliases-errors",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "004-cli-tooling-ux"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

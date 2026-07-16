@@ -1,0 +1,76 @@
+{
+  "topic": "Mine caura-memclaw (MemClaw \u2014 fleet memory for AI agents) for design teachings transferable to the LOCAL single-user Spec Kit Memory system. Per-teaching adopt/adapt/reject/defer verdict with risk, mapped to 027 children 002-008 or a proposed new sub-packet. Negative knowledge (what NOT to copy given arch/scale mismatch) is first-class.",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 18,
+  "maxMinutesPerIteration": 9,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement",
+  "artifactDir": "research/008-caura-memclaw-fleet-memory-teachings",
+  "createdAt": "2026-06-06T06:30:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "orchestration": {
+    "mode": "orchestrator-driven-parallel-fanout",
+    "rationale": "Executors run READ-ONLY analysis only; orchestrator writes all iteration/delta/state artifacts. Sidesteps the project Gate-3 executor-write HARD BLOCK, is compaction-safe, and honors the operator's standing parallel-fanout preference.",
+    "fanoutWidth": 4,
+    "killOrphansBetweenRounds": true
+  },
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "variant": "high",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": "read-only",
+    "format": "json",
+    "dir": "<repo-root>",
+    "timeoutSeconds": 540,
+    "stdinGuard": "</dev/null"
+  },
+  "researchTarget": {
+    "name": "caura-memclaw (MemClaw)",
+    "path": "external/caura-memclaw-main",
+    "kind": "production fleet-memory system for multi-agent AI (Python; Postgres/pgvector; event-driven; MCP+REST)",
+    "license": "Apache-2.0 (design inspiration only \u2014 no code copying)"
+  },
+  "consumer": {
+    "name": "Spec Kit Memory",
+    "kind": "LOCAL single-user / single-tenant continuity store (SQLite index + separate vector store; ollama nomic 768d); semantic+lexical triggers; importance tiers; causal edges; FSRS decay/co-activation; self-maintaining incremental index; shadow-first learning-feedback reducers; 37-tool MCP surface",
+    "refinementPacket": "028-xce-research-based-refinement (children 002-008)"
+  },
+  "lineage": {
+    "sessionId": "2026-06-06-008-caura-memclaw-teachings",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "newRunStart": 1
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

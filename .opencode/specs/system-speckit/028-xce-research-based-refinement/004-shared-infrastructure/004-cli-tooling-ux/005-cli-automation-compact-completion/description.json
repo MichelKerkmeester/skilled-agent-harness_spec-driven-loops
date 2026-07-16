@@ -1,0 +1,35 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion",
+  "description": "The `list-tools --format json` output includes the full `inputSchema` for every tool, so machine scripts must parse large payloads to get tool names:",
+  "keywords": [
+    "list-tools",
+    "format",
+    "json",
+    "output",
+    "includes",
+    "full",
+    "inputschema",
+    "every",
+    "tool",
+    "machine",
+    "scripts",
+    "must",
+    "parse",
+    "large",
+    "payloads",
+    "get",
+    "names"
+  ],
+  "lastUpdated": "2026-07-10T06:23:34.982Z",
+  "specId": "005",
+  "folderSlug": "cli-automation-compact-completion",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "004-cli-tooling-ux"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

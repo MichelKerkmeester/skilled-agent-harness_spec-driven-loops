@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-design/006-design-mcp-open-design",
+  "description": "The shipped `design-mcp-open-design` transport mode had no packet in git or memory",
+  "keywords": [
+    "shipped",
+    "design-mcp-open-design",
+    "transport",
+    "mode",
+    "packet",
+    "git",
+    "memory"
+  ],
+  "lastUpdated": "2026-07-16T08:57:35.417Z",
+  "specId": "006",
+  "folderSlug": "design-mcp-open-design",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

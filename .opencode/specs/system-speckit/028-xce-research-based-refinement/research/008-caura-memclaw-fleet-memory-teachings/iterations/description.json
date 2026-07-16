@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/028-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings/iterations",
+  "description": "Research iteration artifacts for 008-caura-memclaw-fleet-memory-teachings.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "008-caura-memclaw-fleet-memory-teachings",
+    "system-spec-kit",
+    "028-xce-research-based-refinement",
+    "iterations"
+  ],
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
+  "specId": "008",
+  "folderSlug": "caura-memclaw-fleet-memory-teachings-iterations",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "research",
+    "008-caura-memclaw-fleet-memory-teachings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

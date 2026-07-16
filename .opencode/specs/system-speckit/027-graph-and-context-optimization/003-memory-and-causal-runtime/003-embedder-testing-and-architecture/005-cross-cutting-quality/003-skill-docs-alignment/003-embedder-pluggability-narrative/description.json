@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/003-embedder-pluggability-narrative",
+  "description": "Author canonical doc covering mk-spec-memory + CocoIndex embedder architecture, out-of-box for any embedder + first-install + swap mechanism",
+  "keywords": [
+    "author",
+    "canonical",
+    "doc",
+    "covering",
+    "mk-spec-memory",
+    "cocoindex",
+    "embedder",
+    "architecture",
+    "out-of-box",
+    "first-install",
+    "swap",
+    "mechanism"
+  ],
+  "lastUpdated": "2026-07-10T06:24:25.495Z",
+  "specId": "003",
+  "folderSlug": "embedder-pluggability-narrative",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "005-cross-cutting-quality",
+    "003-skill-docs-alignment"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

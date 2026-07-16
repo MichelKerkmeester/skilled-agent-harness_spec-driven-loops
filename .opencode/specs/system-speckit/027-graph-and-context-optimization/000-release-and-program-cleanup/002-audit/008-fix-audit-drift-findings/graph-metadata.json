@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008-fix-audit-drift-findings spec",
+      "drift finding remediation",
+      "008-fix-audit-drift-findings plan",
+      "008-fix-audit-drift-findings tasks",
+      "008-fix-audit-drift-findings checklist",
+      "008-fix-audit-drift-findings summary"
+    ],
+    "key_topics": [
+      "008-fix-audit-drift-findings",
+      "spec",
+      "drift",
+      "finding",
+      "remediation",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "packets",
+      "surfaced",
+      "findings"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "spec.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Finding Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog-anchored",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packets 042-044 surfaced 4 drift findings between the feature catalogs and product code, all flagged with `FIXME(<featureid>)` markers in stress tests",
+    "created_at": "2026-05-01T03:28:16Z",
+    "last_save_at": "2026-07-10T06:23:37.133Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:baa6a297b9297fae2e5ce6f770f2cbb4db0091465cba9f8fa3ba86293d635ba5",
+    "source_doc_hashes": {
+      "spec.md": "d39c6f7081732d5905155e68ee5701b0f28009ca1dcda187efa6274504400cf1",
+      "plan.md": "d0e70d74261ff65ab4f3fd3325944dbcaeb116dbe64b9be2114b469e284fb122",
+      "tasks.md": "bbd9d679da1cf5affc1d1be862c8503f3173ead2ff12aa2ba058329ef7094756",
+      "checklist.md": "747cbc910556ffb98c75466085ce3623336b7a253c5cd91e623ddc1e4ec0cc00",
+      "implementation-summary.md": "35db9a801eb290f38283ae5c95cc965d249845b440993f584b3dd252ddee64ba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

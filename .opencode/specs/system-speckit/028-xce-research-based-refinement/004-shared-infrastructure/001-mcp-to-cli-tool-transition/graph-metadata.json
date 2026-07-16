@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
+  "spec_folder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
+  "parent_id": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure",
+  "children_ids": [
+    "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli",
+    "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
+    "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-release-and-program-cleanup"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp to cli transition",
+      "010 transition",
+      "spec-memory cli phases",
+      "memory mcp cli",
+      "dual-stack cli program"
+    ],
+    "key_topics": [
+      "mcp",
+      "cli",
+      "transition",
+      "spec-memory",
+      "phases",
+      "memory",
+      "dual-stack",
+      "program",
+      "mk-spec-memory",
+      "server",
+      "tools",
+      "spec-kit"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "003-release-and-program-cleanup/implementation-summary.md",
+      "001-spec-memory-cli/spec.md",
+      "001-spec-memory-cli/000-spec-memory-cli-research/research/research.md",
+      "001-spec-memory-cli/000-spec-memory-cli-research/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Transition",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session transport disconnect permanently removes the tools from a live session because Claude Code never reconnects MCP transports, every session pays tool-schema token overhead, and each runtime needs separate MCP registration",
+    "created_at": "2026-06-06T08:46:15.481Z",
+    "last_save_at": "2026-07-10T06:24:34.649Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0078c53cd132568f11038a66df823146b8e445feb70b4a91a5e8df780a0dff83",
+    "source_doc_hashes": {
+      "spec.md": "6b2505757ba35d301b1864433050f0aacebaf906877f05332b70c01b80895592"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-09T20:29:34.821Z"
+  }
+}

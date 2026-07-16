@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance",
+  "parent_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "search hot path performance",
+      "rescue full table like scan",
+      "stage2 latency",
+      "memory search p50 800ms",
+      "batched rescue hydration",
+      "scan event loop lag",
+      "search hot path plan",
+      "rescue batched hydration plan",
+      "stage2 latency fix",
+      "perf harness baseline",
+      "rank parity fixture",
+      "search hot path tasks"
+    ],
+    "key_topics": [
+      "search",
+      "hot",
+      "path",
+      "performance",
+      "rescue",
+      "full",
+      "table",
+      "like",
+      "scan",
+      "stage2",
+      "latency",
+      "memory"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "scratch/mechanism-baseline-2026-07-04.md",
+      "lib/search/rerank/retrieval-rescue.ts",
+      "lib/search/retrieval-directives.ts",
+      "lib/search/hybrid-search.ts",
+      "lib/storage/incremental-index.ts",
+      "handlers/memory-index.ts",
+      "lib/search/folder-discovery.ts",
+      "handlers/memory-index-alias.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mechanism-baseline-2026-07-04.md",
+        "kind": "doc",
+        "path": "scratch/mechanism-baseline-2026-07-04.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-rescue.ts",
+        "kind": "code",
+        "path": "lib/search/rerank/retrieval-rescue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-directives.ts",
+        "kind": "code",
+        "path": "lib/search/retrieval-directives.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.ts",
+        "kind": "code",
+        "path": "lib/storage/incremental-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": "lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index-alias.ts",
+        "kind": "code",
+        "path": "handlers/memory-index-alias.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Hot Path Performance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Convert",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Staged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Warm `memorysearch` takes 2.0-2.9s at 33,101 rows (stage1 0.5-1.5s, stage2 ~1.2s constant even for 15-19 candidates), with +3.9s on the first-call auto-surface, ~15s cold runtime init, and ~492MB RSS at 9s uptime (deep-dive report §1/§4, measured 🟢 2026-07-03)",
+    "created_at": "2026-07-03T09:44:24Z",
+    "last_save_at": "2026-07-09T10:02:56.317Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:48bbabba4118431ef293ca3c352ac73e59eed8c24c71c6208cf3c20bf0f4de03",
+    "source_doc_hashes": {
+      "spec.md": "cfe96a12a57ba1aeff9737208cc192947078c1598d1b36b33a65dad9c541458c",
+      "plan.md": "475dd267a7dc38cac6248913ec1e62716defd0b3b9665642cd94b559084094c5",
+      "tasks.md": "3d6152b2db5a241930cc07141e49b6de5d4782d88fce9f204d2ee209b4962ac5",
+      "checklist.md": "a9fa1b8deae6c76a0648bb6b2b4a5b08266c98d996cd7f52fb0b55345c342a14",
+      "implementation-summary.md": "814f7ac56752854de0d29ca4ffcf68c90e67d338b5cf4589df63daab514321f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

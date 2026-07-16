@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/041-cmd-speckit-family-rename",
+  "spec_folder": "system-speckit/041-cmd-speckit-family-rename",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "speckit rename",
+      "spec_kit to speckit",
+      "commands/speckit",
+      "slash command rename",
+      "cli-devin rename dispatch",
+      "speckit rename plan",
+      "cli-devin dispatch plan",
+      "speckit reference sweep",
+      "speckit rename tasks",
+      "rename task list",
+      "speckit rename summary",
+      "speckit retrospective"
+    ],
+    "key_topics": [
+      "speckit",
+      "rename",
+      "commands",
+      "slash",
+      "command",
+      "cli-devin",
+      "dispatch",
+      "plan",
+      "reference",
+      "sweep",
+      "tasks",
+      "task"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js",
+      ".opencode/commands/README.txt",
+      "scripts/tests/test-phase-command-workflows.js",
+      "scripts/tests/memory-learn-command-docs.vitest.ts",
+      "scripts/tests/yaml-intake-event-payloads.vitest.ts",
+      "mcp_server/tests/full-spec-doc-indexing.vitest.ts",
+      "mcp_server/scripts/tests/resource-map-extractor.vitest.ts",
+      "scripts/spec/scaffold-debug-delegation.sh",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "test-phase-command-workflows.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "memory-learn-command-docs.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/memory-learn-command-docs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "yaml-intake-event-payloads.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/yaml-intake-event-payloads.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "full-spec-doc-indexing.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/full-spec-doc-indexing.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map-extractor.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/scripts/tests/resource-map-extractor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-debug-delegation.sh",
+        "kind": "script",
+        "path": "scripts/spec/scaffold-debug-delegation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "underscore",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Pass",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Topology",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exclusion Boundary",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "edge-case",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The SpecKit slash-command directory was named `speckit/` (snakecase with underscore), inconsistent with the recent rename convention shipping `speckit` (single token) across the repo — e.g., `/create:sk-skill → /create:skill` and `doctor/help.md → doctor/speckit.md`",
+    "created_at": "2026-05-23T14:01:41.753Z",
+    "last_save_at": "2026-07-15T16:51:26.732Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dda74a1de5498151523c5164d73b6195ac49776be9d078de07658f94db3997b6",
+    "source_doc_hashes": {
+      "spec.md": "1b2334e0e575adb5b0bbd4686a903fba054c19f5a294d88fd24c6758a391f0f3",
+      "plan.md": "868b6a291e48a0eaa9f279578088d3a1e0b17da4ce0440009f30399c9a846c55",
+      "tasks.md": "e5b51ee3e501d9fd8c195777fada212158a42ceb2db6fe2caf75172d55d81655",
+      "implementation-summary.md": "d3b214a9efe0625b039bf4ead8bbcbad583652254e35d8bd06b6621c02e66fcd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

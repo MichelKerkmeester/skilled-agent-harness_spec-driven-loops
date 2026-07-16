@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "023-live-handler-envelope-capture-interface",
+      "live handler envelope capture",
+      "handleMemorySearch behavioral test",
+      "search decision envelope test",
+      "search decision envelope audit",
+      "live handler envelope capture tasks",
+      "handler-memory-search-live-envelope",
+      "search decision envelope audit tasks",
+      "live handler envelope capture summary",
+      "search decision envelope audit summary",
+      "023-live-handler-envelope-capture-interface resource map"
+    ],
+    "key_topics": [
+      "023-live-handler-envelope-capture-interface",
+      "live",
+      "handler",
+      "envelope",
+      "capture",
+      "handlememorysearch",
+      "behavioral",
+      "test",
+      "search",
+      "decision",
+      "audit",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "mcp_server/tests/handler-memory-search-live-envelope.vitest.ts",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "handler-memory-search-live-envelope.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-decision-envelope.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Handler Envelope Capture Seam",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Behavioral",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v1.0.3 stress test (Phase H) tried to capture full live-handler `SearchDecisionEnvelope` rows by importing `handleMemorySearch` directly and invoking it with corpus inputs",
+    "created_at": "2026-04-29T08:45:00.000Z",
+    "last_save_at": "2026-07-02T05:31:10.807Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:f3625594bbc151975722c85fa7b6441a9aadc440428e6a2241d775655a7261e0",
+    "source_doc_hashes": {
+      "spec.md": "a68d694dc5ddce70e2364ab2fbfd98d3feda0d3b069d9aaddc6edb6cd8da7be8",
+      "plan.md": "a3f566bb47573f824755fcbd09135d8bb9b4755ef53601a9d2a9b98fe170dd39",
+      "tasks.md": "40a5929d50cc6cb0024be93c0cd0071a5b4c12c925fa8d1fea74ac1db7276de9",
+      "implementation-summary.md": "d2a0010f663034dd9ae8304b3bbbf8a3d1844ded72554ef8e0a52e97f43d11c3",
+      "resource-map.md": "34cefb37d08fc2a99fed19159d2a06e3d7101f5386971416be3582e3fb48402b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

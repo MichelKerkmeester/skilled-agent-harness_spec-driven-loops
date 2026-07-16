@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
+  "description": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session",
+  "keywords": [
+    "mkcodeindex",
+    "mcp",
+    "server",
+    "tools",
+    "structural-code-search",
+    "backbone",
+    "only",
+    "client",
+    "surface",
+    "protocol",
+    "layer",
+    "mid-session"
+  ],
+  "lastUpdated": "2026-07-10T06:24:19.500Z",
+  "specId": "000",
+  "folderSlug": "code-index-cli-research",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "001-mcp-to-cli-tool-transition",
+    "002-code-index-cli"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-06-26_15-11__daemon-backed-cli-over-existing-ipc-not-daemon.md"
+  ]
+}

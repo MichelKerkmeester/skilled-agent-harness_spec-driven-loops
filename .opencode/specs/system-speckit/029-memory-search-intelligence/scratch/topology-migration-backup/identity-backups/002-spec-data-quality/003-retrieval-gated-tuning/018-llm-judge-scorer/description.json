@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/002-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer",
+  "description": "The retrieval fusion stage already applies a bounded quality multiplier over the composite score",
+  "keywords": [
+    "retrieval",
+    "fusion",
+    "stage",
+    "already",
+    "applies",
+    "bounded",
+    "quality",
+    "multiplier",
+    "composite",
+    "score"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.553Z",
+  "specId": "018",
+  "folderSlug": "llm-judge-scorer",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "002-spec-data-quality",
+    "003-retrieval-gated-tuning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

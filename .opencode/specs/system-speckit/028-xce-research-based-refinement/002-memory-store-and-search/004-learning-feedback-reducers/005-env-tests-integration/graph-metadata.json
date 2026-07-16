@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration",
+  "spec_folder": "system-speckit/028-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration",
+  "parent_id": "system-speckit/028-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009 env tests integration",
+      "005 env tests",
+      "feedback reducer integration",
+      "ENV_REFERENCE feedback flags",
+      "009 env tests plan",
+      "009 env tests tasks",
+      "009 env tests checklist",
+      "009 env tests implementation summary"
+    ],
+    "key_topics": [
+      "env",
+      "tests",
+      "integration",
+      "feedback",
+      "reducer",
+      "flags",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "level"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tests/feedback-reducers-integration.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-reducers-integration.vitest.ts",
+        "kind": "test",
+        "path": "tests/feedback-reducers-integration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Env Tests Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feedback Reducer Env",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integration Closeout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Level 2 closeout child for ENV_REFERENCE flags and integration tests across feedback reducer consumers.",
+    "created_at": "2026-05-12T07:20:00.000Z",
+    "last_save_at": "2026-07-10T06:23:42.896Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fd0f93a6bd9676474465a5cab6924955657d14256ca55d3dc1409c8f192ac9ab",
+    "source_doc_hashes": {
+      "spec.md": "9bd866116c8311a6809d82d654002a4aeec8fcca34ffcbf17e7cf52aa7d81ba1",
+      "plan.md": "8544f19392835a286802bacd59d62c0ca065289ce3a9b9d30835ef71311c20f0",
+      "tasks.md": "b7af0ca5441c32860d35e929ee6bf27615db1fe7a0127e51fc2943d7dae9056c",
+      "checklist.md": "0958428109e7748ceb2ccf9d03160342e432be04f1d670c99d1ebba69c89860a",
+      "implementation-summary.md": "983c110f24efcbe2ffeffe2b8dfdca6d0d51b87af8d8d6c9e5608fe1ed3a7886"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

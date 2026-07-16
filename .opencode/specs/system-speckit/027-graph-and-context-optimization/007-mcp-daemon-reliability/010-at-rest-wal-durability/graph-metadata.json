@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "at-rest WAL durability",
+      "active_vec wal checkpoint",
+      "wal_autocheckpoint 256",
+      "checkpointAllWal",
+      "026 007 010 at-rest wal durability",
+      "at-rest WAL durability plan",
+      "active_vec checkpoint plan",
+      "wal_autocheckpoint 256 plan",
+      "at-rest WAL durability tasks",
+      "active_vec checkpoint tasks",
+      "wal_autocheckpoint tasks",
+      "at-rest WAL durability checklist"
+    ],
+    "key_topics": [
+      "at-rest",
+      "wal",
+      "durability",
+      "checkpoint",
+      "checkpointallwal",
+      "plan",
+      "tasks",
+      "checklist",
+      "packet",
+      "close-time",
+      "walcheckpoint",
+      "truncate"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store.vitest.ts",
+      "scratch/wal-durability-benchmark-results.json",
+      "lib/search/vector-index.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "wal-durability-benchmark-results.json",
+        "kind": "config",
+        "path": "scratch/wal-durability-benchmark-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 008 added a close-time `walcheckpoint(TRUNCATE)` for the main context index, but the active vector shard remained attached without a shard TRUNCATE checkpoint in the close path",
+    "created_at": "2026-05-29T13:15:08.290Z",
+    "last_save_at": "2026-07-10T06:24:13.834Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:787067102309dfed8936bba6f5f431076535e454beba5853c796d8c8340f1894",
+    "source_doc_hashes": {
+      "spec.md": "8d7bd7ccef4e8c0d5b0f29bd6c1a1a69f31de48c544f09a69012db8300319232",
+      "plan.md": "7e7696e8f5d4c0d8beddacca6ab0ae19ffbba17717f2999c462090ad062a96d5",
+      "tasks.md": "51c7da8aa12b125217d10615debfc64d0939aa9bedb8876ff1184ec3f170af8c",
+      "checklist.md": "ddbf4550af9b40833bbdefc6b4a12510ecd37bab11f759026409a31f5a5823b2",
+      "implementation-summary.md": "214bf81c52a551e4ea125a49f3d34dacf93bcc1d96cd810b73a67eb021a3ba1a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/008-mcp-daemon-rebuild-protocol",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/008-mcp-daemon-rebuild-protocol",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008-mcp-daemon-rebuild-protocol",
+      "MCP daemon restart protocol",
+      "phantom fix problem",
+      "dist marker verification",
+      "live MCP probe contract",
+      "Q1 four-part verification",
+      "MCP rebuild restart protocol plan",
+      "MCP rebuild restart protocol tasks",
+      "MCP rebuild restart protocol summary"
+    ],
+    "key_topics": [
+      "008-mcp-daemon-rebuild-protocol",
+      "mcp",
+      "daemon",
+      "restart",
+      "protocol",
+      "phantom",
+      "problem",
+      "dist",
+      "marker",
+      "verification",
+      "live",
+      "probe"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "references/mcp-rebuild-restart-protocol.md",
+      "references/live-probe-template.md",
+      "references/dist-marker-grep-cheatsheet.md",
+      "references/implementation-verification-checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-rebuild-restart-protocol.md",
+        "kind": "doc",
+        "path": "references/mcp-rebuild-restart-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-probe-template.md",
+        "kind": "doc",
+        "path": "references/live-probe-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "dist-marker-grep-cheatsheet.md",
+        "kind": "doc",
+        "path": "references/dist-marker-grep-cheatsheet.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-verification-checklist.md",
+        "kind": "doc",
+        "path": "references/implementation-verification-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Search",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Daemon Restart Required",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 005 packet implementation summary claimed Cluster 1-3 P0 fixes landed",
+    "created_at": "2026-04-27T07:56:42.313Z",
+    "last_save_at": "2026-07-10T06:22:49.011Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f580f89b39150b9d86d1622999e139ea87b85da3998dc9fdbffbda62eb6d0de2",
+    "source_doc_hashes": {
+      "spec.md": "d8bf66b03311623f6ac757b2492ac700d08c22c11b0edb4bfbcab05fdd6e0f08",
+      "plan.md": "e07adb4c170fbac78eabb9e1539ca626af5bc8dddcc8265b1a800266cf0e9d4d",
+      "tasks.md": "ee513b50c95dbe2d51636a7658f5b237d90cc8eff23d2c30c8a159109cca6bbb",
+      "implementation-summary.md": "c5943de972ff103d1eb1766f1d9b534591c28f7c951b75cd558d258e6c516b1d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

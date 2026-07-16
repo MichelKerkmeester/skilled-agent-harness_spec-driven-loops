@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage",
+  "description": "The 3-reviewer audit of packets 006+007 surfaced 14 P2 findings — none blockers, each a hardening opportunity",
+  "keywords": [
+    "3-reviewer",
+    "audit",
+    "packets",
+    "surfaced",
+    "findings",
+    "none",
+    "blockers",
+    "hardening",
+    "opportunity"
+  ],
+  "lastUpdated": "2026-07-10T06:24:45.240Z",
+  "specId": "004",
+  "folderSlug": "launcher-diagnostics-and-signal-coverage",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

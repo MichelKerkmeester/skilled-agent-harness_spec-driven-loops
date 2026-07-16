@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/003-review-remediation/004-p2-triage",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/003-review-remediation/004-p2-triage",
+  "parent_id": "system-speckit/029-memory-search-intelligence/003-review-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 p2 triage",
+      "review p2 findings triage",
+      "fix-now accept-as-is p2 scope",
+      "028 p2 triage plan",
+      "p2 fix-now routing plan",
+      "028 p2 triage tasks",
+      "p2 fix-now routing tasks",
+      "028 p2 triage checklist",
+      "p2 fix-now routing checklist",
+      "004-p2-triage implementation summary",
+      "028 review remediation p2 triage"
+    ],
+    "key_topics": [
+      "triage",
+      "review",
+      "findings",
+      "fix-now",
+      "accept-as-is",
+      "scope",
+      "plan",
+      "routing",
+      "tasks",
+      "checklist",
+      "004-p2-triage",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Group",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Decision",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review surfaced 91 P2 findings",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-07-10T06:23:00.152Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b639fe8a25ddad7cdda0c9ca5130f76a1e18f21eaa392dcb9d41a8f63e3b433b",
+    "source_doc_hashes": {
+      "spec.md": "02bde303c07ef2e2e003aa5ddd5dbecc32db2fe0883549df25178d2bbe2db376",
+      "plan.md": "165a4b3618dd86a015a872a9f253ecfd1a2a3e9fffa4637e91ddb7a440c2f7c2",
+      "tasks.md": "375fd117860c14262e34709f303fa577844f4d60162768dbfa703b3f89e21f80",
+      "checklist.md": "c5d2814735ac691487e816981c83646e4b978ac76a4861a3dbe9a733fd187926",
+      "implementation-summary.md": "d32048f284851801de3fd316b0f3f48d30b1e6342b690a00871c8d27f3adf97f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

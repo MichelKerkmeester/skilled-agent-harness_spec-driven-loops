@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-design/004-design-audit",
+  "description": "The shipped `audit` mode is the cross-cutting QA and critique child of the `sk-design` family, but its packet was absent from git and memory",
+  "keywords": [
+    "shipped",
+    "audit",
+    "mode",
+    "cross-cutting",
+    "critique",
+    "child",
+    "sk-design",
+    "family",
+    "packet",
+    "absent",
+    "git",
+    "memory"
+  ],
+  "lastUpdated": "2026-07-16T08:50:21.216Z",
+  "specId": "004",
+  "folderSlug": "design-audit",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
