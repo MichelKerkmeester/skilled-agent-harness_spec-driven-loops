@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-doc/031-sk-doc-router-alignment/014-benchmark-harness-typed-wiring"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored checklist from the plan.md phase gates and the verified SOL-redirect ledger"
+    recent_action: "Rewrote checklist to ten phases; swapped hub-subset invariant for coherence"
     next_safe_action: "Leave unchecked until implementation lands. Verify with evidence, not by inspection"
     blockers: []
     key_files:
@@ -49,9 +49,9 @@ _memory:
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] Requirements documented in spec.md, traced to the verified SOL-redirect ledger (8 confirmed, 3 plausible, 1 refuted)
-- [ ] CHK-002 [P0] Technical approach defined in plan.md, seven dependency-ordered phases
-- [ ] CHK-003 [P0] Selection-fix mechanism ratified (ADR-001: couple now, unify later) before either emitter is touched
-- [ ] CHK-004 [P1] Baseline captured: current skill-benchmark suite failures recorded before Phase 1 (delta-based regression)
+- [ ] CHK-002 [P0] Technical approach defined in plan.md, ten dependency-ordered phases
+- [ ] CHK-003 [P0] Collapse mechanism ratified (ADR-005: one authoritative intent→leaf taxonomy, hub demoted to telemetry) before the router is rewritten
+- [ ] CHK-004 [P1] Baseline captured: current skill-benchmark suite failures recorded before Phase 4 (the first runtime change; delta-based regression)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -72,12 +72,12 @@ _memory:
 
 Phase verification gates.
 
-- [ ] CHK-020 [P0] Zero-to-nonzero: the T001 regression test pins SD-003/015/016 + a core out-of-fixture sample from zero to non-zero, mode-consistent pairs
-- [ ] CHK-021 [P0] Loader surfaces `expected_leaf_resources`/`expected_workflow_mode`/`full_inventory_intent` (T002 unit test)
-- [ ] CHK-022 [P0] The runner blocks a synthetic invalid fixture before dispatch (T003)
-- [ ] CHK-023 [P0] Live output carries typed pairs and scoring weights actual reads (T004)
-- [ ] CHK-024 [P0] The topology validator rejects a fixture whose gold is absent from `smart_routing.md`'s `RESOURCE_MAP` (T005)
-- [ ] CHK-025 [P0] `PARENT_HUB_CHECK_STRICT=1 node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-doc` passes after the relocation (T006)
+- [ ] CHK-020 [P0] Zero-to-nonzero: the T008 regression test pins SD-003/015/016/018/020 + a core out-of-fixture sample from zero to non-zero, mode-consistent pairs
+- [ ] CHK-021 [P0] Loader surfaces `expected_leaf_resources`/`expected_workflow_mode`/`full_inventory_intent` (T012 unit test)
+- [ ] CHK-022 [P0] The runner blocks a synthetic invalid fixture before dispatch (T012)
+- [ ] CHK-023 [P0] Live output carries typed pairs and scoring weights actual reads (T014)
+- [ ] CHK-024 [P0] The topology validator rejects a fixture whose gold is absent from the authored taxonomy (T013)
+- [ ] CHK-025 [P0] `PARENT_HUB_CHECK_STRICT=1 node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-doc` passes after the relocation (T002)
 - [ ] CHK-026 [P1] Aggregate: `npx vitest run --config .opencode/skills/system-deep-loop/deep-improvement/scripts/vitest.config.mjs --no-coverage` shows zero new failures against the captured baseline
 <!-- /ANCHOR:testing -->
 
@@ -86,7 +86,7 @@ Phase verification gates.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-MTX-001 [P0] Selection: leaf selection is a subset of the hub-selected capped modes; no typed pair carries a `workflowMode` outside the hub selection
+- [ ] CHK-MTX-001 [P0] Coherence: advertised `workflowModes` equals `orderedUnique(pairs[*].workflowMode)` capped at two on every fixture; an empty typed contract with non-empty raw resources raises a hard error, never a silent zero
 - [ ] CHK-MTX-002 [P0] Wiring: the loader, runner, live executor and scorer all consume the typed contract; the shipped 5-class taxonomy is no longer dormant
 - [ ] CHK-MTX-003 [P0] Join: "topology valid" means "consistent with the authored router", proven by a rejected mismatched fixture
 - [ ] CHK-MTX-004 [P0] Relocation: no runtime path outside sk-doc imports the contract library from the sk-doc packet
@@ -112,7 +112,7 @@ Phase verification gates.
 ## Documentation
 
 - [ ] CHK-040 [P1] spec.md, plan.md, tasks.md, checklist.md and decision-record.md stay synchronized with the verified ledger
-- [ ] CHK-041 [P1] The coupling logic carries a doc comment explaining why leaf selection is intersected with the hub modes (the two-classifier root cause)
+- [ ] CHK-041 [P1] The single-pass router carries a doc comment explaining the durable why: the mode is a projection of the selected leaves (via the manifest), not an independent classification
 - [ ] CHK-042 [P2] The 012 record correction is cross-referenced (the "18/19 fixed" relabel lives in 012, not here)
 <!-- /ANCHOR:docs -->
 
@@ -148,10 +148,10 @@ Phase verification gates.
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [ ] CHK-100 [P0] All four settled decisions documented in decision-record.md (staged selection fix, SD-015 option C, contract-lib relocation, holdout protocol)
-- [ ] CHK-101 [P1] All ADRs carry a status field (Proposed here, Accepted only after operator sign-off)
-- [ ] CHK-102 [P1] The eliminated selection-fix alternatives (Option 1-only, Option 2 hub-tuning, Option 3-now) documented with rejection rationale
-- [ ] CHK-103 [P2] The staged path to the unified contract (Option 3 follow-up) documented as an explicit successor
+- [ ] CHK-100 [P0] All five settled decisions documented in decision-record.md (ADR-005 collapse, SD-015 option C, contract-lib relocation, holdout protocol, and the superseded ADR-001)
+- [ ] CHK-101 [P1] All ADRs carry a status field (ADR-002/003/004/005 Accepted; ADR-001 Superseded)
+- [ ] CHK-102 [P1] The eliminated alternatives (staged coupling, union hub∪surface, hub-scorer tuning) documented with rejection rationale
+- [ ] CHK-103 [P2] The hub-deletion successor (remove the telemetry hub once it earns no independent value) documented as an explicit follow-up
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -170,7 +170,7 @@ Phase verification gates.
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback procedure documented in plan.md Section 7; the Phase 1 coupling is gated behind a regression test so it reverts cleanly
+- [ ] CHK-120 [P0] Rollback procedure documented in plan.md Section 7; the router rewrite (Phases 4-5) is gated behind regression + tripwire tests so it reverts cleanly
 - [ ] CHK-121 [P1] Wave-2 propagation is explicitly blocked on the offline + live gates; no fitted `smart_routing.md` is copied to another skill first
 - [ ] CHK-122 [P1] N/A. No production monitoring surface for this internal tooling change
 - [ ] CHK-123 [P2] Runbook: the phase verification commands in order serve as the operational runbook
