@@ -196,6 +196,18 @@ function symlinkedChangelogs(root) {
   return out;
 }
 
+// Flatten a leaf-manifest.json object into its (workflowMode, leafResourceId)
+// pairs, tolerating a malformed shape so callers can validate first.
+function manifestCompositePairs(manifestObject) {
+  const pairs = [];
+  for (const mode of (manifestObject && Array.isArray(manifestObject.modes) ? manifestObject.modes : [])) {
+    for (const leaf of (Array.isArray(mode.leaves) ? mode.leaves : [])) {
+      pairs.push({ workflowMode: mode.workflowMode, leafResourceId: leaf, packet: mode.packet });
+    }
+  }
+  return pairs;
+}
+
 function main() {
   const argTarget = process.argv[2] || DEFAULT_TARGET;
   const target = path.isAbsolute(argTarget) ? argTarget : path.resolve(REPO_ROOT, argTarget);
@@ -907,6 +919,176 @@ function main() {
     pass('9b: benchmark/ baseline present');
   } else {
     softFail('9b: benchmark/ baseline is missing');
+  }
+
+  // ───────────────────────────────────────────────────────────────
+  // 10. leaf-manifest.json contract guards (opt-in per hub; canon: FAIL by
+  // default once a hub has adopted the contract). A hub that has not
+  // committed leaf-manifest.json has not opted in, so this whole block stays
+  // silent for it — no new pass/fail/warn beyond a single informational line.
+  // The contract library and generator are resolved relative to `target`
+  // (never REPO_ROOT), matching how every other target-scoped path in this
+  // checker already resolves.
+  // ───────────────────────────────────────────────────────────────
+  const leafManifestPath = path.join(target, 'leaf-manifest.json');
+  if (!fs.existsSync(leafManifestPath)) {
+    info('10: hub has no leaf-manifest.json — leaf-resource contract guards do not apply');
+  } else {
+    const generatorPath = path.join(target, 'create-skill', 'scripts', 'generate-leaf-manifest.cjs');
+    const contractLibPath = path.join(target, 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
+
+    // 10a: manifest-source — the registry declares a contract version and the
+    // committed manifest is present, readable JSON in the expected shape.
+    // Anything a regeneration cannot even attempt (missing registry field,
+    // malformed alias declarations, an out-of-root leaf, a missing library)
+    // is a source defect, not staleness — it is reported here, not in 10b.
+    const sourceIssues = [];
+    if (!registry || typeof registry.resourceContractVersion !== 'number') {
+      sourceIssues.push('mode-registry.json is missing a numeric resourceContractVersion field');
+    }
+
+    let committedManifest = null;
+    let committedBytes = null;
+    try {
+      committedBytes = fs.readFileSync(leafManifestPath);
+      committedManifest = JSON.parse(committedBytes.toString('utf8'));
+      if (typeof committedManifest.resourceContractVersion !== 'number' || !Array.isArray(committedManifest.modes)) {
+        throw new Error('missing resourceContractVersion or modes[] array');
+      }
+    } catch (e) {
+      sourceIssues.push(`leaf-manifest.json is unreadable or malformed: ${e.message}`);
+    }
+
+    let contractLib = null;
+    let generatorLib = null;
+    if (!fs.existsSync(generatorPath) || !fs.existsSync(contractLibPath)) {
+      sourceIssues.push('the leaf-resource contract library/generator is missing under create-skill/scripts/');
+    } else {
+      try {
+        // eslint-disable-next-line global-require, import/no-dynamic-require
+        contractLib = require(contractLibPath);
+        // eslint-disable-next-line global-require, import/no-dynamic-require
+        generatorLib = require(generatorPath);
+      } catch (e) {
+        sourceIssues.push(`failed to load the leaf-resource contract library/generator: ${e.message}`);
+      }
+    }
+
+    let freshBytes = null;
+    let regenerationError = null;
+    if (sourceIssues.length === 0 && generatorLib) {
+      try {
+        freshBytes = generatorLib.buildManifestBytes(target);
+      } catch (e) {
+        regenerationError = e;
+        // A duplicate composite is the target/collision guard's finding, not
+        // a malformed source — it still blocks regeneration, but 10a stays
+        // clean so the two guard codes point at distinct root causes.
+        if (e.code !== 'DUPLICATE_COMPOSITE') {
+          sourceIssues.push(`regeneration failed (${e.code || 'ERROR'}): ${e.message}`);
+        }
+      }
+    }
+
+    if (sourceIssues.length === 0) {
+      pass('10a-manifest-source: resourceContractVersion declared and leaf-manifest.json is present, readable, and well-formed');
+    } else {
+      softFail(`10a-manifest-source: ${sourceIssues.join('; ')}`);
+    }
+
+    // 10b: byte-drift — re-derive the manifest from the contract library and
+    // committed inputs, then compare canonical bytes against leaf-manifest.json.
+    // A hand-edit or a stale generation run fails closed rather than being
+    // silently trusted.
+    if (sourceIssues.length > 0) {
+      info('10b-byte-drift: skipped — manifest-source is invalid, see 10a');
+    } else if (regenerationError) {
+      info('10b-byte-drift: skipped — regeneration is blocked by a composite collision, see 10c');
+    } else if (Buffer.compare(committedBytes, freshBytes) === 0) {
+      pass('10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte');
+    } else {
+      const freshManifest = JSON.parse(freshBytes.toString('utf8'));
+      const committedKeys = new Set(manifestCompositePairs(committedManifest).map((p) => contractLib.compositeKey(p)));
+      const freshKeys = new Set(manifestCompositePairs(freshManifest).map((p) => contractLib.compositeKey(p)));
+      const added = [...freshKeys].filter((k) => !committedKeys.has(k));
+      const removed = [...committedKeys].filter((k) => !freshKeys.has(k));
+      const detail = added.length || removed.length
+        ? ` — added: [${added.join(', ') || 'none'}], removed: [${removed.join(', ') || 'none'}]`
+        : ' — same entries, different byte layout';
+      softFail(
+        `10b-byte-drift: leaf-manifest.json is stale (committed ${contractLib.digestManifestBytes(committedBytes)} != fresh ${contractLib.digestManifestBytes(freshBytes)})${detail}. `
+        + `Re-run: node "${generatorPath}" --write "${target}"`,
+      );
+    }
+
+    // 10c: target/collision — no two sources claim one composite key, and
+    // every committed leaf resolves to a real file on disk or a declared
+    // alias diskPath.
+    if (sourceIssues.length > 0) {
+      info('10c-target-collision: skipped — manifest-source is invalid, see 10a');
+    } else {
+      const committedPairs = manifestCompositePairs(committedManifest);
+      const collisionIssues = contractLib.findDuplicateComposites(committedPairs)
+        .map((k) => `duplicate composite in committed manifest: ${k}`);
+      if (regenerationError && regenerationError.code === 'DUPLICATE_COMPOSITE') {
+        collisionIssues.push(regenerationError.message);
+      }
+
+      let aliasEntries = [];
+      const aliasesPath = path.join(target, 'leaf-aliases.json');
+      if (fs.existsSync(aliasesPath)) {
+        try {
+          const data = readJson(aliasesPath);
+          aliasEntries = Array.isArray(data) ? data : (Array.isArray(data && data.aliases) ? data.aliases : []);
+        } catch {
+          // An unreadable leaf-aliases.json already failed 10a via the
+          // regeneration attempt; nothing further to add here.
+        }
+      }
+      const aliasByComposite = new Map(
+        aliasEntries
+          .filter((a) => a && typeof a.workflowMode === 'string' && typeof a.leafResourceId === 'string')
+          .map((a) => [contractLib.compositeKey({ workflowMode: a.workflowMode, leafResourceId: a.leafResourceId }), a]),
+      );
+
+      const missingTargets = [];
+      for (const p of committedPairs) {
+        const onDisk = fs.existsSync(path.join(target, p.packet || '', p.leafResourceId));
+        if (onDisk) continue;
+        const alias = aliasByComposite.get(contractLib.compositeKey({ workflowMode: p.workflowMode, leafResourceId: p.leafResourceId }));
+        const aliasResolved = alias && typeof alias.diskPath === 'string' && fs.existsSync(path.join(target, alias.diskPath));
+        if (!aliasResolved) missingTargets.push(`${p.workflowMode}:${p.leafResourceId}`);
+      }
+      if (missingTargets.length > 0) {
+        collisionIssues.push(`leaf(s) resolve to no on-disk file or alias diskPath: [${missingTargets.join(', ')}]`);
+      }
+
+      if (collisionIssues.length === 0) {
+        pass('10c-target-collision: no duplicate composite keys; every committed leaf resolves to a disk file or a declared alias');
+      } else {
+        softFail(`10c-target-collision: ${collisionIssues.join('; ')}`);
+      }
+    }
+
+    // 10d: bidirectional selected-map reachability — every registered
+    // workflow mode has a manifest entry and every manifest entry maps back
+    // to a registered mode, so the public identity set and the routed mode
+    // set never silently diverge.
+    if (sourceIssues.length > 0) {
+      info('10d-reachability: skipped — manifest-source is invalid, see 10a');
+    } else {
+      const registryModes = new Set(
+        (registry && Array.isArray(registry.modes) ? registry.modes : []).map((m) => m.workflowMode).filter(Boolean),
+      );
+      const manifestModes = new Set(committedManifest.modes.map((m) => m.workflowMode).filter(Boolean));
+      const missingFromManifest = [...registryModes].filter((m) => !manifestModes.has(m));
+      const orphanedInManifest = [...manifestModes].filter((m) => !registryModes.has(m));
+      if (missingFromManifest.length === 0 && orphanedInManifest.length === 0) {
+        pass(`10d-reachability: all ${manifestModes.size} manifest mode(s) reach back to a registered mode and vice versa`);
+      } else {
+        softFail(`10d-reachability: mode-registry ↔ leaf-manifest mismatch — missing from manifest: [${missingFromManifest.join(', ') || 'none'}], orphaned in manifest: [${orphanedInManifest.join(', ') || 'none'}]`);
+      }
+    }
   }
 
   // ───────────────────────────────────────────────────────────────
