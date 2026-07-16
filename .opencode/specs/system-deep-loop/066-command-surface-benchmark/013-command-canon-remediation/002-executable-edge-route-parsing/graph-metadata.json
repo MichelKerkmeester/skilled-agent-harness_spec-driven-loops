@@ -33,9 +33,10 @@
       "progress"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs",
       ".opencode/commands/create/assets/create_readme_auto.yaml",
       ".opencode/commands/doctor/_routes.yaml",
       "spec.md",
@@ -48,6 +49,12 @@
         "name": "sk-doc-command.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-command-adapter.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs",
         "source": "derived"
       },
       {
@@ -93,18 +100,6 @@
         "source": "derived"
       },
       {
-        "name": "Authored Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -123,14 +118,20 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "no",
         "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
@@ -141,13 +142,25 @@
         "source": "derived"
       },
       {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria Route",
+        "name": "Completion Criteria Met",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -155,12 +168,6 @@
       {
         "name": "References Parent",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "typed",
-        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -177,13 +184,7 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built Nothing",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed No",
+        "name": "What Was Built The",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -191,7 +192,7 @@
     ],
     "causal_summary": "Backlog K3: replace the route-cycle detector's raw-text edge extraction — which reads YAML comments as dispatch edges and yields false P0 circular-dependency findings — with schema-aware parsing that traverses only declared dispatch fields. Clears the false P0 cycles while keeping real direct/subaction/workflow cycles failing. Independent of the 001 contract chain; can run in parallel.",
     "created_at": "2026-07-16T07:51:58.792Z",
-    "last_save_at": "2026-07-16T08:08:33.358Z",
+    "last_save_at": "2026-07-16T11:33:15.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64b660f9ebcfed42b35d665a4d81154db3315e6af507edf79f14dff8d94cd8f3",
+    "source_fingerprint": "sha256:a7d98b2eb39e9641e3ac28698be1ccd9907a0bacf29666aa7de4de295aa57a17",
     "source_doc_hashes": {
-      "spec.md": "da809eb5f35b80fb752b4c6d3b0f53183e0402480e7cdfc24eb4d88b86eef312",
-      "plan.md": "5264a83e99233cc7dc57025456670565fee8c0cbade28b5e76113d015de0ddaa",
-      "tasks.md": "0f5b84a95f62d2964de18705ec7f9d04df692a35dcf8e72da1e416ee457065ef",
-      "implementation-summary.md": "31ee3c6becaeca3ded88414f2409928b9fecf93000cf81d57b93ad1f1e293e9c"
+      "spec.md": "1b2df3118aada1b18b2c8eaf5232f0a1ce2d64c1adb625c2cfa6e57a524fae80",
+      "plan.md": "c5c620755ed2979d8f709691ddc6354a536bfdff74da4245e7596f8891608d07",
+      "tasks.md": "8e3b8b93c4c0025b55f0b0fee1cc827e5c5415527b898d0d764520cb8d713267",
+      "implementation-summary.md": "aa7cc194d9280de2bc160b9e510f9101c04791ca7b7979a9aa02b25e5abae5a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

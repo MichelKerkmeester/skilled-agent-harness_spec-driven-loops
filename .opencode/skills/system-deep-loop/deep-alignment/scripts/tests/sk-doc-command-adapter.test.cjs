@@ -51,6 +51,58 @@ function testStandardSource() {
   assert.throws(() => adapter.standardSource('other'));
 }
 
+function testExecutableEdges() {
+  const src = '.opencode/commands/create/readme.md';
+  // Comment references — whole-line and inline — are never executable edges.
+  assert.deepEqual(
+    adapter.executableCommandEdges(`# The setup phase in ${src} determines the operation`),
+    [],
+    'a whole-line comment must yield zero edges',
+  );
+  assert.deepEqual(
+    adapter.executableCommandEdges(`role: Expert Creator  # mirrors ${src}`),
+    [],
+    'an inline comment must yield zero edges',
+  );
+  // Structural value positions are edges, each carrying a kind and a source line.
+  const mapping = adapter.executableCommandEdges(`back_edge: "${src}"`);
+  assert.deepEqual(
+    mapping,
+    [{ target: src, line: 1, kind: 'direct' }],
+    'a mapping value must be a direct edge with its source line',
+  );
+  const listItem = adapter.executableCommandEdges(`steps:\n  - ${src}`);
+  assert.deepEqual(
+    listItem,
+    [{ target: src, line: 2, kind: 'direct' }],
+    'a sequence item must be a direct edge with its source line',
+  );
+  const workflow = adapter.executableCommandEdges(
+    'workflow: .opencode/commands/doctor/assets/doctor_mcp_install.yaml',
+  );
+  assert.deepEqual(
+    workflow,
+    [{ target: '.opencode/commands/doctor/assets/doctor_mcp_install.yaml', line: 1, kind: 'workflow' }],
+    'a .yaml mapping value must be a workflow edge',
+  );
+  const arrow = adapter.executableCommandEdges(
+    '  - `install` -> `.opencode/commands/doctor/assets/doctor_mcp_install.yaml`',
+  );
+  assert.deepEqual(
+    arrow,
+    [{ target: '.opencode/commands/doctor/assets/doctor_mcp_install.yaml', line: 1, kind: 'subaction' }],
+    'a route arrow must be a subaction edge',
+  );
+  for (const edge of [...mapping, ...listItem, ...workflow, ...arrow]) {
+    assert.ok(
+      ['direct', 'subaction', 'workflow'].includes(edge.kind),
+      'every edge kind must be in the direct/subaction/workflow taxonomy',
+    );
+    assert.equal(typeof edge.line, 'number', 'every edge must carry a numeric source line');
+  }
+  console.log('[sk-doc-command] PASS executable-edges: comment=0, direct/subaction/workflow typed');
+}
+
 function testDiscoverMatchesSyncInventory() {
   const sync = spawnSync(process.execPath, [SYNC_PROMPTS, '--check'], {
     cwd: REPO_ROOT,
@@ -153,6 +205,7 @@ function testFixtureExpectations() {
 }
 
 testStandardSource();
+testExecutableEdges();
 const discoverCount = testDiscoverMatchesSyncInventory();
 const outcomes = testFixtureExpectations();
 for (const outcome of outcomes) {

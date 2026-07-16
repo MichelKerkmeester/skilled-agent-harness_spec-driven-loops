@@ -358,6 +358,40 @@ function workflowTargets(sourceText) {
     .filter((target) => /\.ya?ml$/.test(target)))];
 }
 
+// A command reference inside a workflow or route manifest is an executable
+// dispatch edge only when it sits in a structural value position — a mapping
+// value, a sequence item, or a subaction route arrow. References inside YAML
+// comments or prose sentences are never edges, so documentation that merely
+// names a command can no longer fabricate a route cycle.
+const EXECUTABLE_EDGE =
+  /(?::\s*|^\s*-\s*|->\s*)(["'`]?)(\.opencode\/commands\/[A-Za-z0-9._/-]+\.(?:md|ya?ml|txt))\1/;
+
+function stripInlineYamlComment(line) {
+  // Drop a trailing inline comment (whitespace then '#' to end of line). Command
+  // paths contain no '#', so this can never truncate a real dispatch target.
+  return line.replace(/\s+#.*$/, '');
+}
+
+function edgeKind(line, target) {
+  if (/^\s*-\s*`[^`]+`\s*->/.test(line)) return 'subaction';
+  if (/\.ya?ml$/.test(target)) return 'workflow';
+  return 'direct';
+}
+
+function executableCommandEdges(text) {
+  const edges = [];
+  const lines = text.split('\n');
+  for (let index = 0; index < lines.length; index += 1) {
+    const raw = lines[index];
+    if (/^\s*#/.test(raw)) continue;
+    const line = stripInlineYamlComment(raw);
+    const match = line.match(EXECUTABLE_EDGE);
+    if (!match) continue;
+    edges.push({ target: match[2], line: index + 1, kind: edgeKind(line, match[2]) });
+  }
+  return edges;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 8. DIMENSION CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -411,8 +445,8 @@ function checkRouteGraph(rootDir, source, sourceText, topology) {
     const targetPath = path.join(rootDir, target);
     if (!fs.existsSync(targetPath)) continue;
     const targetText = fs.readFileSync(targetPath, 'utf8');
-    const backEdge = referenceChecks.extractCommandTargets(targetText)
-      .find((reference) => reference.target === source);
+    const backEdge = executableCommandEdges(targetText)
+      .find((edge) => edge.target === source);
     if (backEdge) {
       findings.push(makeFinding('CMD-S3-ROUTE-CYCLE', 'P0', 'S3', target, backEdge.line));
     }
@@ -616,4 +650,5 @@ module.exports = {
   check,
   loadKnownDeviations,
   runSyncInventoryCheck,
+  executableCommandEdges,
 };

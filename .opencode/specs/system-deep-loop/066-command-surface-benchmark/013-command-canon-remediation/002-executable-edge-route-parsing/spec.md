@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: executable-edge route parsing"
 description: "Backlog K3: replace the route-cycle detector's raw-text edge extraction — which reads YAML comments as dispatch edges and yields false P0 circular-dependency findings — with schema-aware parsing that traverses only declared dispatch fields. Clears the false P0 cycles while keeping real direct/subaction/workflow cycles failing. Independent of the 001 contract chain; can run in parallel."
-status: in_progress
+status: complete
 trigger_phrases:
   - "executable edge route parsing"
   - "route cycle false positive"
@@ -11,17 +11,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing"
-    last_updated_at: "2026-07-16T08:08:17Z"
+    last_updated_at: "2026-07-16T13:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored Level-1 doc set for route-parsing phase"
-    next_safe_action: "Read sk-doc-command.cjs route inference and flagged YAML fixtures"
+    recent_action: "Shipped structural edge parser; comment-derived route cycles 3 to 0"
+    next_safe_action: "013 phases 003-006 remain planned in the parent map"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs"
       - ".opencode/commands/create/assets/create_readme_auto.yaml"
       - ".opencode/commands/doctor/_routes.yaml"
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "No YAML parser is available to the adapter; a dependency-free structural value-position extractor is used, not a new dependency"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -36,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-16 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
@@ -91,7 +93,7 @@ The route-cycle detector infers command edges from raw text, so YAML comments re
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether to reuse a YAML parser already available to the adapter or add a scoped dependency for the structural parse.
+- **RESOLVED — no new dependency.** No YAML parser is available to the adapter (a `require` of `js-yaml` fails with `MODULE_NOT_FOUND`), and adding one to a validator that must run inside bare git worktrees is a liability. The structural parse is therefore a dependency-free, line-oriented extractor that follows only structural value positions — mapping values, sequence items, and `-> ` route arrows — and never comment or prose lines.
 <!-- /ANCHOR:questions -->
 
 ## PHASE SEQUENCE
