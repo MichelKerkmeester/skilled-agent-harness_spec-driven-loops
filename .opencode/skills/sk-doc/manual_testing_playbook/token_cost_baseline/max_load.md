@@ -179,9 +179,17 @@ expected_leaf_resources:
   - workflow_mode: create-quality-control
     leaf_resource_id: references/README.md
   - workflow_mode: create-quality-control
+    leaf_resource_id: references/core_standards.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/evergreen_packet_id_rule.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/hvr_rules.md
+  - workflow_mode: create-quality-control
     leaf_resource_id: references/optimization.md
   - workflow_mode: create-quality-control
     leaf_resource_id: references/transformation_patterns.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/validation.md
   - workflow_mode: create-quality-control
     leaf_resource_id: references/validation_and_enforcement.md
   - workflow_mode: create-quality-control
@@ -216,6 +224,8 @@ expected_leaf_resources:
     leaf_resource_id: assets/parent_skill/parent_skill_hub_template.md
   - workflow_mode: create-skill
     leaf_resource_id: assets/parent_skill/parent_skill_registry_template.json
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/parent_skill/parent_skill_smart_routing_template.md
   - workflow_mode: create-skill
     leaf_resource_id: assets/parent_skill/scaffold/hub_skill_scaffold.md
   - workflow_mode: create-skill
@@ -260,6 +270,8 @@ expected_leaf_resources:
     leaf_resource_id: assets/parent_skill/parent_skill_hub_template.md
   - workflow_mode: create-skill-parent
     leaf_resource_id: assets/parent_skill/parent_skill_registry_template.json
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/parent_skill/parent_skill_smart_routing_template.md
   - workflow_mode: create-skill-parent
     leaf_resource_id: assets/parent_skill/scaffold/hub_skill_scaffold.md
   - workflow_mode: create-skill-parent
