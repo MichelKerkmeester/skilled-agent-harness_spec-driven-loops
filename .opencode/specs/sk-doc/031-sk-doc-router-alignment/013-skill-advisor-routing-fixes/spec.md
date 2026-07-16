@@ -14,10 +14,10 @@ _memory:
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored Level 3 scaffold (spec/plan/tasks/checklist/decision-record) from 011 research"
-    next_safe_action: "Await operator authorization, then start Phase 1 (P0-1 output contract)"
+    next_safe_action: "Start Phase 1 P0-1: align hook tests and reference doc to the accepted directive"
     blockers:
       - "Implementation start awaits explicit operator authorization"
-      - "P1-5 metadata-hub discovery battery is a shared deliverable with sibling packet 012-sk-doc-routing-fixes. Fixture location and format need joint confirmation before Phase 5 starts"
+      - "P1-5 metadata-hub discovery battery: fixture ownership RESOLVED, packet 012 owns the canonical typed-gold fixtures under the sk-doc tree, this packet consumes read-only"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -98,7 +98,7 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 - **P0-2 Fallback-budget reservation.** Reserve a fallback slice out of the hook timeout instead of handing the primary the whole budget, and add timing tests for the primary-timeout, probe-timeout, skipped and daemon-absent cases.
 - **P0-3 Executor-delegation coherence.** Fix the stale `suppressed-codex-abstain` fixture, add coverage for the never-exercised existing-candidate branch, and enforce one finalization boundary so `result.ambiguous` derives from the same final cluster as `ambiguousWith`.
 - **P0-4 Calibration measurement freshness.** Reconcile the 193-row corpus with both committed baselines and produce one joined evaluator report with holdout top-1, ambiguity accuracy, floor frequency and Brier/ECE reliability bins. Measurement repair only, no scorer changes here.
-- **P1-5 Metadata-hub advisor-discovery battery.** A new suite enumerating registry-bearing hubs, with one representative prompt plus hard negatives per workflow mode, routing at compat thresholds through the real scorer. Extends `parent-skill-check.cjs` to fail when a metadata-routed mode lacks a fixture. **This is the same shared boundary as sk-doc's "unguarded advisor-discovery boundary" finding in sibling packet `012-sk-doc-routing-fixes`.** The research packet names it from the advisor side, an unguarded routing-registry-drift-guard boundary for metadata-routed hubs. The sk-doc packet names it from the hub side, hub discoverability fixtures. Both point at the same missing artifact: behavioral discovery fixtures per sk-doc workflow mode, checked from both the advisor test suite and `parent-skill-check.cjs`. Phase 5 of this packet's plan coordinates fixture design and ownership with 012 before either packet writes fixture files.
+- **P1-5 Metadata-hub advisor-discovery battery.** A new suite enumerating registry-bearing hubs, with one representative prompt plus hard negatives per workflow mode, routing at compat thresholds through the real scorer. Extends `parent-skill-check.cjs` to fail when a metadata-routed mode lacks a fixture. **This is the same shared boundary as sk-doc's "unguarded advisor-discovery boundary" finding in sibling packet `012-sk-doc-routing-fixes`.** The research packet names it from the advisor side, an unguarded routing-registry-drift-guard boundary for metadata-routed hubs. The sk-doc packet names it from the hub side, hub discoverability fixtures. Both point at the same missing artifact: behavioral discovery fixtures per sk-doc workflow mode, checked from both the advisor test suite and `parent-skill-check.cjs`. Ownership is settled: packet 012 owns the single canonical typed-gold fixture set under the sk-doc tree, defined in its early Layer-A phase. Phase 5 of this packet's plan builds the P1-5 battery on top of those fixtures, read-only.
 - **P1-6 Threshold-surface-parity suite.** A two-layer matrix across MCP dispatch, shared brief, Claude hook entry and CLI fallback args (env rows), plus MCP and shared brief only (call-override rows, since the hook exposes no threshold input). Also absorbs or renames the mislabeled `runtime-parity.vitest.ts`.
 - **P1/P2-7 Transport diagnostic taxonomy and docs.** Split `mcp_channel_unavailable`, `warm_daemon_unavailable`, `probe_timeout` and `cli_timeout`, state which are CLI-recoverable, and fix the stale/mixed ownership paths in `references/hooks/skill_advisor_hook.md` and the manual playbook.
 - **P2-8 Shadow calibration experiment, gated on P0-4.** Public thresholds stay unchanged. Single candidate: `SCORING_CALIBRATION.confidence.taskIntentFloor` 0.82 to 0.80, accepted only if holdout stays at or above 57/78, coverage at or above 61/78 and ambiguity slice at or above 16/25.
@@ -174,7 +174,7 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 - **SC-002**: The joined calibration report exists and is reproducible, with reliability bins that make the 0.82 floor's plateau correctness legible to any reader of `SCORING_CALIBRATION`.
 - **SC-003**: Every sk-doc workflow mode routes correctly on its representative discovery fixture, and `parent-skill-check.cjs` fails closed on a missing one.
 - **SC-004**: The P2-8 shadow experiment reports a strict accept or reject against the three pre-registered gates, with no post-hoc gate relaxation.
-- **SC-005**: Sibling packet 012's hub-discoverability fixture plan and this packet's P1-5 battery share one fixture format and location, confirmed jointly before either packet writes fixture files.
+- **SC-005**: Sibling packet 012's hub-discoverability fixture plan and this packet's P1-5 battery share one fixture format and location. Ownership is settled: 012 owns the canonical typed-gold fixtures under the sk-doc tree, this packet's P1-5 battery and `parent-skill-check.cjs` consume them read-only.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -185,8 +185,8 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | P0-4 joined calibration evaluator | P2-8 cannot run without it. Every later phase's calibration claims stay unverifiable | Land P0-4 before starting P2-8, gate the phase in plan.md explicitly |
-| Dependency | Sibling packet 012-sk-doc-routing-fixes | P1-5's fixture format and ownership need joint design, or the two packets build divergent, duplicate discovery fixtures | Coordinate at Phase 5 kickoff, reference the shared finding in both packets' scope sections |
-| Risk | The no-brief output contract choice (P0-1) has two viable answers and research does not pick one | Picking the wrong default could require a second contract migration later | Decide at Phase 1 kickoff using the criteria in decision-record.md ADR-007, informed by whether the governance directive already reaches production consumers |
+| Dependency | Sibling packet 012-sk-doc-routing-fixes | P1-5 builds on 012's canonical typed-gold fixture set. If 012's Layer-A fixture work slips, Phase 5 has nothing to build on top of | Sequence Phase 5 after 012's early Layer-A fixture phase lands; ownership is already settled (012 owns, this packet consumes read-only) |
+| Risk | RESOLVED: the no-brief output contract (P0-1) is now Accepted (ADR-007), adopting the governance fallback directive | None remaining, the risk was picking the wrong default before the consumer check ran | Decision recorded in decision-record.md ADR-007, Phase 1 aligns the 4 stale tests and the reference doc to it |
 | Risk | The Spec Kit Memory daemon was unhealthy for the whole research session (exit 75 warm-only timeouts) | Live transport-lane evidence for P1/P2-7 is thinner than the source-loaded scorer evidence | Treat transport findings as directional, verify the diagnostic taxonomy split against source, not against a live daemon session |
 | Risk | A `better-sqlite3` Node ABI mismatch forced the executor-delegation test into filesystem-projection fallback during research | The red-fixture failure is consistent with checked-in metadata, but P0-3's live-run confirmation still needs a working native module | Confirm the ABI issue is resolved, or re-run P0-3's verification command in filesystem-projection mode explicitly, before claiming REQ-003 done |
 <!-- /ANCHOR:risks -->
@@ -270,11 +270,11 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 
 ## 12. OPEN QUESTIONS
 
-- Does the no-brief output contract resolve to `{}` or the governance fallback directive, and which downstream consumers does that choice affect?
+- RESOLVED (ADR-007, Accepted): the no-brief output contract adopts the governance fallback directive, since it already reaches production on every prompt today. Phase 1 aligns the 4 stale hook tests and the reference doc, the implementation stays as-is.
 - Can a natural production prompt reach the executor-delegation existing-candidate branch, or does the fixture need to seed the projection?
 - Should a retired-executor alias remain part of the supported metadata contract for the replacement abstain fixture?
 - Is env-override freezing at module load acceptable for long-lived daemon processes, or should threshold resolution become read-per-call?
-- What exact fixture format and directory does packet 012 need for the shared metadata-hub discovery boundary?
+- RESOLVED: packet 012 owns the canonical typed-gold discovery-fixture set under the sk-doc tree, defined in its early Layer-A phase. This packet's P1-5 battery and `parent-skill-check.cjs` consume it read-only.
 <!-- /ANCHOR:questions -->
 
 ---

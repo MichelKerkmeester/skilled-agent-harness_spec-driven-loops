@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the Level 3 scaffold from the 010 research synthesis"
-    next_safe_action: "Kick off Phase 1 (contract library) once the operator authorizes implementation"
+    recent_action: "Recorded shared discovery-fixture ownership: this packet owns, 013 consumes read-only"
+    next_safe_action: "Kick off Phase 1 (contract library, includes discovery-fixture format/location)"
     blockers:
       - "Implementation start awaits explicit operator authorization. The 031 parent sequences this after the concurrent skill-advisor routing research (011-skill-advisor-routing-research)"
     key_files:
@@ -86,6 +86,7 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 ### In Scope
 
 - Layer A, the runtime-critical minimum: a pure contract library and manifest generator, hub topology artifacts (`resourceContractVersion`, `leaf-aliases.json`, `leaf-manifest.json`), extended `parent-skill-check.cjs` enforcement, typed-gold migration of all 19 sk-doc scenario fixtures plus a pre-dispatch topology validator, canonical typed-pair emission in `router-replay.cjs` and `executor-dispatch.cjs`, correction of the nine affected packet maps and a scorer/report error taxonomy.
+- **Shared discovery-fixture boundary (with sibling packet `013-skill-advisor-routing-fixes`).** This packet OWNS the single canonical discovery-fixture set for the metadata-hub advisor-discovery boundary. Format is typed gold, the same typed-pair format this packet already uses for its 19 sk-doc scenario fixtures, and location is under the sk-doc tree. Layer A defines the format and location early. Packet 013's P1-5 metadata-hub advisor-discovery battery and `parent-skill-check.cjs` build on top of and consume these fixtures read-only, they do not author a competing set.
 - Layer B, authoring doctrine: the `pathContract` declaration in create-skill's hub-router templates and schema doc, plus the second-layer router scaffold and sk-doc's own `shared/references/smart_routing.md`. It also fixes the stale "~34 alias" canon text.
 - The six verification test files these steps introduce or extend and the eight verification commands in Section 9 of the research.
 
@@ -159,6 +160,7 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 - **SC-003**: Fresh structural score (D5 connectivity) reads 100 on the new run. The report never reuses the old 20/100 value.
 - **SC-004**: Manifest generation is reproducible: permuting registry or enumeration order produces identical manifest bytes and digest.
 - **SC-005**: `create-benchmark` and `create-diff` show zero diff in this packet's change set, confirming the untouched-packet boundary held.
+- **SC-006**: This packet's canonical typed-gold discovery-fixture set, owned under the sk-doc tree, is the single fixture set sibling packet 013's P1-5 battery and `parent-skill-check.cjs` consume. No divergent or duplicate discovery fixture set exists anywhere else.
 <!-- /ANCHOR:success-criteria -->
 
 ---

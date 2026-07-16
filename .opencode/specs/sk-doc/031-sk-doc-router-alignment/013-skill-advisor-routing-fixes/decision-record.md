@@ -558,9 +558,9 @@ Both committed calibration baselines (`bench/scorer-calibration-baseline.json`, 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-16 |
-| **Deciders** | Pending, decision required at Phase 1 kickoff |
+| **Deciders** | Operator, ratified 2026-07-16 |
 
 ---
 
@@ -577,9 +577,9 @@ Research left this decision open by design: "decide: skipped/fail-open returns `
 
 ### Decision
 
-**We chose**: Not yet decided. This ADR stays Proposed until Phase 1 kickoff resolves it using the criteria below, at which point it moves to Accepted and the two rejected paths move to this ADR's alternatives table with the actual rationale recorded.
+**We chose**: Adopt the governance fallback directive as the no-brief output contract. `renderAdvisorFallbackDirective()` (`.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts:204`) already reaches the model on every prompt in production today, confirmed live. `git blame` on the `brief ?? renderAdvisorFallbackDirective()` line (`hooks/claude/user-prompt-submit.ts:243`) shows it landed as an intentional, review-hardened change in commit 7adbd30db9f (2026-07-10), not accidental drift. The implementation is the intended behavior, the 4 red tests are stale.
 
-**How it works**: Before writing any code, grep every consumer of the hook's brief output (`rg -n "buildSkillAdvisorBrief" .` scoped to callers, not the builder itself) to determine whether the governance directive already reaches a production consumer that depends on it. If yes, align the tests to the governance directive (the implementation is the intended behavior, the tests are stale). If no production consumer depends on it, align the implementation back to `{}` (the tests reflect the intended contract, the implementation drifted). Either path resolves all 4 red tests, only the direction of alignment differs.
+**How it works**: `renderAdvisorFallbackDirective()` returns the comment-hygiene directive plus the Fable-5 governor directive whenever the hook runs but produces no brief. Skip-eligible and fail-open paths still return `{}` unchanged, only the ran-but-produced-no-brief path emits the directive. Phase 1 aligns the 4 stale hook tests and `references/hooks/skill_advisor_hook.md` to this directive, the implementation itself does not change. Path correction for Phase 1: the real hook lives at `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`, not the `mcp_server/hooks/...` path shown in this packet's Files to Change table in spec.md.
 
 ---
 
@@ -587,10 +587,10 @@ Research left this decision open by design: "decide: skipped/fail-open returns `
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| Align implementation to `{}`, fix the drift | Matches what the tests already expect, smaller diff if no consumer depends on the governance directive | Wrong choice if a production consumer already relies on the governance directive shipping today | Pending Phase 1 grep |
-| Align tests to the governance directive, adopt it as the new contract | Correct choice if the governance directive already reached production and is providing value | Wrong choice if it was an unintentional drift with no real consumer, in which case this locks in an accidental behavior | Pending Phase 1 grep |
+| Align implementation to `{}`, fix the drift | Matches what the tests already expect, smaller diff if no consumer depends on the governance directive | Wrong choice if a production consumer already relies on the governance directive shipping today | Rejected |
+| Align tests to the governance directive, adopt it as the new contract | Correct choice if the governance directive already reached production and is providing value | Wrong choice if it was an unintentional drift with no real consumer, in which case this locks in an accidental behavior | Chosen |
 
-**Why this one**: Neither option is chosen yet. The grep-first criterion in the Decision section is the deciding test, not a preference between the two shapes.
+**Why this one**: The consumer check confirmed the governance directive already reaches production on every prompt (`render.ts:204`, confirmed live), and `git blame` confirmed the change was intentional and review-hardened, commit 7adbd30db9f, not accidental drift. That makes the 4 red tests stale, not the implementation.
 
 ---
 
@@ -615,20 +615,20 @@ Research left this decision open by design: "decide: skipped/fail-open returns `
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | 4 of 11 hook tests are red right now because of this exact ambiguity |
-| 2 | **Beyond Local Maxima?** | N/A | Decision not yet made, evaluation deferred to Phase 1 |
-| 3 | **Sufficient?** | N/A | Decision not yet made |
+| 2 | **Beyond Local Maxima?** | PASS | The choice traces to a live production check (`render.ts:204`) and a `git blame` confirmation (commit 7adbd30db9f), not a guess between two equally plausible shapes |
+| 3 | **Sufficient?** | PASS | Aligning the 4 stale tests and the reference doc to the directive resolves the drift completely, no implementation change is required |
 | 4 | **Fits Goal?** | PASS | Directly blocks REQ-001, resolving it unblocks the rest of Phase 1 |
-| 5 | **Open Horizons?** | N/A | Decision not yet made |
+| 5 | **Open Horizons?** | PASS | The directive stays reusable governance infrastructure for any future no-brief path, not a one-off carve-out |
 
-**Checks Summary**: 2/5 PASS, 3 deferred pending the Phase 1 decision
+**Checks Summary**: 5/5 PASS
 
 ---
 
 ### Implementation
 
-**What changes**: Pending. Either `hooks/claude/user-prompt-submit.ts:228-245` (align to `{}`) or `tests/hooks/claude-user-prompt-submit-hook.vitest.ts:143-178` (align to the governance directive), plus `references/hooks/skill_advisor_hook.md` either way.
+**What changes**: `.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:143-178` (align the 4 stale expectations to the governance directive) and `.opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md` (document the accepted contract). `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:228-245` is the hook itself, it stays unchanged since the implementation is already the intended behavior.
 
-**How to roll back**: Whichever direction Phase 1 picks, rollback is a single-commit revert, since only one side of the contract changes.
+**How to roll back**: Git revert restores the 4 test expectations and the reference doc to their pre-alignment state. The hook implementation never changes, so rollback touches only the test and doc side of the contract.
 <!-- /ANCHOR:adr-007 -->
 
 ---
