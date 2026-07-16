@@ -1,0 +1,3085 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-b-live",
+  "traceMode": "live",
+  "targetSkill": {
+    "id": "sk-code",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
+  },
+  "verdict": "CONDITIONAL",
+  "aggregateScore": 65,
+  "generalization": {
+    "fittedScore": 65,
+    "holdoutScore": null,
+    "generalizationGap": null,
+    "fittedCount": 30,
+    "holdoutCount": 0,
+    "negativeCount": 6,
+    "note": "no holdout-staged scenarios; fitted aggregate equals the overall score (score-preserving)"
+  },
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null,
+    "hubRoute": {
+      "failed": false,
+      "regressions": 0,
+      "knownGaps": 0,
+      "reason": null
+    },
+    "toolSurface": {
+      "failed": false,
+      "violations": [],
+      "reason": null
+    }
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 65
+    },
+    "D2": {
+      "points": 20,
+      "score": 65
+    },
+    "D3": {
+      "points": 15,
+      "score": 58
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "excludedDimensions": [],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": 58,
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    },
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    }
+  },
+  "funnel": {
+    "passed": 18,
+    "routed-intra": 6,
+    "browser": 6
+  },
+  "headlineBottleneck": "routed-intra",
+  "bottlenecks": [
+    {
+      "class": "funnel_attrition",
+      "severity": "P1",
+      "stage": "routed-intra",
+      "detail": "6 scenario(s) first fail at stage 'routed-intra'"
+    }
+  ],
+  "coverage": {
+    "routing": 21,
+    "advisor": 2,
+    "browser": 7,
+    "routedOut": 0,
+    "scored": 30,
+    "holdout": 0,
+    "negative": 6
+  },
+  "divergence": [],
+  "lintFindings": [],
+  "scenarioRows": [
+    {
+      "scenarioId": "SD-001",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 11,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "code-webflow/assets/webflow_verification_checklist.md",
+            "code-webflow/assets/patterns/interaction_gate_patterns.js"
+          ],
+          "observedAssets": [
+            "code-webflow/assets/webflow_verification_checklist.md",
+            "code-webflow/assets/patterns/interaction_gate_patterns.js"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 41,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md",
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "code-webflow/manual_testing_playbook/implementation_quality/implementation_routing.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"WEBFLOW\",\"subLanguage\":\"none\",\"resources\":[\"references/stack_detection.md\",\"references/smart_routing.md\",\"references/phase_detection.md\",\"references/universal/code_quality_standards.md\",\"code-webflow/references/implementation/webflow_patterns/overview_limits_and_collection_lists."
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "SD-002",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 0,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "observedAssets": [],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 16,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "read",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TypeScript\",\"resources\":[\"code-opencode/SKILL.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "SD-003",
+      "tier": "live",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 0,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 12,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"UNKNOWN\",\"subLanguage\":\"go\",\"resources\":[\"shared/README.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":true}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "LS-001",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 5,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "observedAssets": [
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 45,
+        "activated": true,
+        "toolCalls": [
+          "skill",
+          "mk-spec-memory_memory_match_triggers",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "grep",
+          "grep",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "grep",
+          "read"
+        ],
+        "observedReads": [
+          "code-opencode/SKILL.md",
+          "references/smart_routing.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TYPESCRIPT\",\"resources\":[\"code-opencode/references/typescript/style_guide/overview_strict_and_naming.md\",\"code-opencode/references/typescript/quality_standards/overview_and_type_system.md\",\"code-opencode/references/typescript/quick_reference/template_nami"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "LS-002",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 2,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 0,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/python_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "observedAssets": [],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 12,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"Python\",\"resources\":[\"code-opencode/SKILL.md\",\"shared/references/workflow_implement.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "LS-003",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 5,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/shell_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "observedAssets": [
+            "code-opencode/assets/checklists/shell_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 41,
+        "activated": false,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read"
+        ],
+        "observedReads": [
+          "code-opencode/SKILL.md",
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "references/phase_detection.md",
+          "code-quality/SKILL.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"SHELL\",\"resources\":[\"code-opencode/references/shell/style_guide/overview_structure_and_naming.md\",\"code-opencode/references/shell/quality_standards/overview_and_priority_blockers.md\",\"code-opencode/references/shell/quick_reference/template_variables_and_l"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "LS-004",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 0,
+          "wastedCount": 0,
+          "proxy": "no-routing",
+          "note": "not-applicable: nothing routed against positive gold; over-routing efficiency undefined"
+        },
+        "assetRecall": {
+          "score": 0,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/config_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "observedAssets": [],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 12,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"JSON\",\"resources\":[],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "RD-001",
+      "tier": "live",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 4,
+          "wastedCount": 4,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 9,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "skill"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"JavaScript\",\"resources\":[\"code-opencode/SKILL.md\",\"shared/references/workflow_implement.md\",\"shared/references/workflow_debug.md\",\"shared/references/workflow_verify.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "RD-002",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 1,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "advisor",
+      "expectedSurface": null,
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 9,
+        "activated": false,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"none\",\"resources\":[\"shared/references/smart_routing.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "SA-001",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 1,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "advisor",
+      "expectedSurface": null,
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 23,
+        "activated": false,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [
+          "references/smart_routing.md",
+          "references/stack_detection.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"none\",\"resources\":[\"shared/README.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":true}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "MR-001",
+      "tier": "browser-gated",
+      "modeAScore": 100,
+      "firstFailingStage": null,
+      "dims": {
+        "d1intra": {
+          "score": 1
+        },
+        "d2": {
+          "score": 1
+        },
+        "d3": {
+          "score": 1
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "PASS",
+        "signalsObserved": {
+          "exportsOk": true,
+          "animateDone": true,
+          "error": null,
+          "consoleErrors": 0
+        },
+        "evidence": [
+          "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skc-browser-THbclk/skc-MR-001.html"
+        ]
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "MR-002",
+      "tier": "browser-gated",
+      "modeAScore": 50,
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": 0.5
+        },
+        "d2": {
+          "score": 0.5
+        },
+        "d3": {
+          "score": 0.5
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "PARTIAL-NEEDS-ARTIFACT",
+        "reason": "CDN @latest scan is CLI-checkable; export probe needs a per-URL harness",
+        "evidence": []
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "MR-003",
+      "tier": "browser-gated",
+      "modeAScore": 50,
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": 0.5
+        },
+        "d2": {
+          "score": 0.5
+        },
+        "d3": {
+          "score": 0.5
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "PARTIAL-NEEDS-ARTIFACT",
+        "reason": "reduced-motion media-query is checkable; motion-neutralization needs positional comparison",
+        "evidence": []
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "MR-004",
+      "tier": "browser-gated",
+      "modeAScore": 50,
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": 0.5
+        },
+        "d2": {
+          "score": 0.5
+        },
+        "d3": {
+          "score": 0.5
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "PARTIAL-NEEDS-ARTIFACT",
+        "reason": "video baseline diff is capture-only, not auto-judgeable",
+        "evidence": []
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "CB-001",
+      "tier": "browser-gated",
+      "modeAScore": 50,
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": 0.5
+        },
+        "d2": {
+          "score": 0.5
+        },
+        "d3": {
+          "score": 0.5
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "PARTIAL-NEEDS-ARTIFACT",
+        "reason": "Chrome leg automatable; Safari/Firefox out of bdg scope",
+        "escalation": "cross-browser:safari,firefox",
+        "evidence": []
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "CB-002",
+      "tier": "browser-gated",
+      "modeAScore": 50,
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": 0.5
+        },
+        "d2": {
+          "score": 0.5
+        },
+        "d3": {
+          "score": 0.5
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "PARTIAL-NEEDS-ARTIFACT",
+        "reason": "LCP/CLS derivable via PerformanceObserver; INP needs a scripted interaction",
+        "evidence": []
+      }
+    },
+    {
+      "mode": "browser",
+      "classKind": "browser",
+      "scenarioId": "CB-003",
+      "tier": "browser-gated",
+      "modeAScore": 50,
+      "firstFailingStage": "browser",
+      "dims": {
+        "d1intra": {
+          "score": 0.5
+        },
+        "d2": {
+          "score": 0.5
+        },
+        "d3": {
+          "score": 0.5
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "browser scenario"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "browser scenario"
+        }
+      },
+      "browser": {
+        "verdict": "PARTIAL-NEEDS-ARTIFACT",
+        "reason": "layout/recalc counters via Performance.getMetrics; compositor judgement assisted",
+        "evidence": []
+      }
+    },
+    {
+      "scenarioId": "CS-001",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.7,
+          "intentRecall": null,
+          "resourceRecall": 0.7,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.7,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 7,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 0.6,
+          "expectedAssets": [
+            "code-webflow/assets/checklists/code_quality_checklist.md",
+            "code-webflow/assets/checklists/verification_checklist.md",
+            "code-webflow/assets/animation/install_card.md",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/snippets/cdn_bootstrap.js"
+          ],
+          "observedAssets": [
+            "code-webflow/assets/animation/install_card.md",
+            "code-webflow/assets/animation/snippets/cdn_bootstrap.js",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 79,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 50,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "glob"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md",
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "code-webflow/benchmark/live_mode_b/skill-benchmark-report.json",
+          "references/**/*.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"WEBFLOW\",\"subLanguage\":\"JavaScript\",\"resources\":[\"references/stack_detection.md\",\"references/smart_routing.md\",\"code-webflow/references/implementation/animation_workflows/overview_decision_tree_and_css.md\",\"code-webflow/references/implementation/observer_patterns/mutation_and_int"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "CS-002",
+      "tier": "live",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 0.6666666666666666,
+          "intentRecall": null,
+          "resourceRecall": 0.6666666666666666,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6666666666666666,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.6666666666666666,
+          "routedCount": 4,
+          "wastedCount": 4,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "code-webflow/assets/animation/snippets/hover_gesture.js",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/install_card.md"
+          ],
+          "observedAssets": [
+            "code-webflow/assets/animation/snippets/hover_gesture.js",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/install_card.md"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 67,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 63,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "glob",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "read",
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md",
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "code-webflow/manual_testing_playbook/performance_animation/motion_dev_routing.md",
+          "code-webflow/assets/animation/playbook_entries.md",
+          "code-webflow/assets/animation/snippets/README.md",
+          "code-webflow/assets/animation/snippets/hover_gesture.js",
+          "code-webflow/assets/animation/snippets/in_view_reveal.js"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"UNKNOWN\",\"subLanguage\":\"none\",\"resources\":[\"code-webflow/references/animation/quick_start.md\",\"code-webflow/references/animation/integration_patterns.md\",\"code-webflow/references/animation/scroll_and_gestures.md\",\"code-webflow/references/animation/decision_matrix.md\"],\"assets\":[\""
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "CS-003",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 0,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/universal_checklist.md",
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-webflow/assets/animation/snippets/es_module_bootstrap.js"
+          ],
+          "observedAssets": [],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 9,
+        "activated": false,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"typescript\",\"resources\":[\"code-opencode/SKILL.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "CS-004",
+      "tier": "live",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 0.6,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.6,
+          "routedCount": 5,
+          "wastedCount": 5,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "code-webflow/assets/animation/snippets/hover_gesture.js"
+          ],
+          "observedAssets": [
+            "code-webflow/assets/animation/snippets/hover_gesture.js"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 60,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 44,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "glob",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "glob",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "grep",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/**/*",
+          "references/smart_routing.md",
+          "code-webflow/SKILL.md",
+          "references/stack_detection.md",
+          "code-webflow/references/animation/decision_matrix.md",
+          "code-webflow/manual_testing_playbook/performance_animation/motion_dev_routing.md",
+          "code-webflow/references/implementation/animation_workflows/overview_decision_tree_and_css.md",
+          "code-webflow/references/animation/quick_start.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"UNKNOWN\",\"subLanguage\":\"none\",\"resources\":[\"shared/references/stack_detection.md\",\"shared/references/smart_routing.md\",\"code-webflow/references/animation/decision_matrix.md\",\"code-webflow/references/animation/performance_and_pitfalls.md\",\"code-webflow/references/animation/integra"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "CS-005",
+      "tier": "live",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 0.5,
+          "intentRecall": null,
+          "resourceRecall": 0.5,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5,
+          "routedCount": 7,
+          "wastedCount": 7,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": 0.5,
+          "expectedAssets": [
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/snippets/animate_on_scroll.js"
+          ],
+          "observedAssets": [
+            "code-webflow/assets/animation/snippets/in_view_reveal.js"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 50,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 22,
+        "activated": false,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "read",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "code-webflow/references/animation/integration_patterns.md",
+          "code-webflow/assets/animation/snippets/in_view_reveal.js",
+          "code-webflow/assets/animation/snippets/README.md",
+          "code-webflow/references/javascript/style_guide/overview_naming_and_structure.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"UNKNOWN\",\"subLanguage\":\"none\",\"resources\":[\"code-webflow/references/animation/quick_start.md\",\"code-webflow/references/animation/animation_principles.md\",\"code-webflow/references/animation/integration_patterns.md\",\"code-webflow/references/animation/decision_matrix.md\",\"code-webfl"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "CS-006",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 8,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 0.5,
+          "expectedAssets": [
+            "references/performance_loading_checklist.md",
+            "code-webflow/assets/patterns/performance_patterns.js"
+          ],
+          "observedAssets": [
+            "shared/references/performance_loading_checklist.md",
+            "code-webflow/assets/patterns/performance_patterns.js"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 52,
+        "activated": false,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "glob",
+          "glob",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "glob",
+          "glob",
+          "grep",
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md",
+          "code-review/SKILL.md",
+          "assets/**/*",
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "code-webflow/manual_testing_playbook/performance_animation/motion_dev_routing.md",
+          "code-webflow/manual_testing_playbook/performance_animation/performance_routing.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"WEBFLOW\",\"subLanguage\":\"none\",\"resources\":[\"references/stack_detection.md\",\"references/smart_routing.md\",\"code-webflow/references/performance/cwv_remediation.md\",\"code-webflow/references/performance/interaction_gated_loading.md\",\"code-webflow/references/performance/resource_loadi"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "CS-007",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 7,
+          "wastedCount": 0,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": 1,
+          "expectedAssets": [
+            "code-review/assets/code_quality_checklist.md",
+            "code-webflow/assets/webflow_verification_checklist.md",
+            "code-webflow/assets/animation/snippets/hover_gesture.js",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js"
+          ],
+          "observedAssets": [
+            "code-review/assets/code_quality_checklist.md",
+            "code-webflow/assets/webflow_verification_checklist.md",
+            "code-webflow/assets/animation/snippets/hover_gesture.js",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js"
+          ],
+          "note": "live stated-asset recall (advisory, not weighted)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 39,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "grep",
+          "read"
+        ],
+        "observedReads": [
+          "code-webflow/SKILL.md",
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "references/phase_detection.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"WEBFLOW\",\"subLanguage\":\"JavaScript\",\"resources\":[\"references/stack_detection.md\",\"references/smart_routing.md\",\"code-webflow/references/implementation/animation_workflows/overview_decision_tree_and_css.md\",\"code-webflow/references/javascript/quality_standards/init_dom_error_and_a"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "DR-001",
+      "tier": "live",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 0,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 16,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "read",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TypeScript\",\"resources\":[\"code-opencode/SKILL.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "DR-002",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 1,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 12,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TypeScript\",\"resources\":[\"shared/references/workflow_implement.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "DR-003",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 15,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 55,
+        "activated": false,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "glob",
+          "read"
+        ],
+        "observedReads": [
+          "code-opencode/SKILL.md",
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "references/phase_detection.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"TYPESCRIPT\",\"resources\":[\"references/stack_detection.md\",\"references/phase_detection.md\",\"references/smart_routing.md\",\"references/universal/code_quality_standards.md\",\"references/universal/code_style_guide.md\",\"shared/references/workflow_implement.md\",\"c"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "DR-004",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 0,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 3,
+        "activated": false,
+        "toolCalls": [],
+        "observedReads": [],
+        "statedRoutingParsed": false,
+        "responseHead": "Adding `assets/<fake-surface>` modifies the workspace, conflicting with “do NOT edit files.” Should I create the temporary orphan folder for the failure test?"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "TH-001",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 14,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 92,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "glob",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "grep",
+          "read",
+          "grep",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "grep",
+          "grep",
+          "grep",
+          "read",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "glob"
+        ],
+        "observedReads": [
+          "code-opencode/SKILL.md",
+          "references/smart_routing.md",
+          "code-opencode/references/shared/hooks.md",
+          "code-opencode/references/shared/alignment_verification_automation.md",
+          "references/stack_detection.md",
+          "references/workflow_implement.md",
+          "references/workflow_verify.md",
+          "code-opencode/references/shared/**/*.md",
+          "code-opencode/references/typescript/**/*.md",
+          "code-opencode/references/shell/**/*.md",
+          "code-opencode/assets/checklists/**/*.md",
+          "code-opencode/assets/scripts/*",
+          "code-opencode/references/workflow_*.md",
+          "code-opencode/**/workflow_*.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "SKILL ROUTING: User directed -> `sk-code`; the request is OpenCode-surface code work. I’m checking only `sk-code`’s registry/router and OpenCode packet to resolve its load paths and dispatch contract.```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"typescript\",\"resources\":[\"references/shared/universal_p"
+      },
+      "routeTelemetry": null
+    },
+    {
+      "scenarioId": "TH-002",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 16,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 63,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "glob",
+          "grep",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "grep",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read",
+          "glob",
+          "grep",
+          "grep",
+          "read",
+          "read",
+          "read",
+          "read",
+          "glob"
+        ],
+        "observedReads": [
+          "code-quality/**",
+          "code-opencode/**",
+          "code-quality/SKILL.md",
+          "code-opencode/SKILL.md",
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "code-quality/benchmark/router_mode_a/skill-benchmark-report.md",
+          "code-opencode/benchmark/router_mode_a/skill-benchmark-report.md",
+          "code-quality/benchmark/live_mode_b/skill-benchmark-report.json",
+          "code-quality/benchmark/**/*"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"SHELL\",\"resources\":[\"shared/references/stack_detection.md\",\"shared/references/phase_detection.md\",\"shared/references/smart_routing.md\",\"shared/references/universal/code_quality_standards.md\",\"shared/references/universal/code_style_guide.md\",\"code-opencode"
+      },
+      "routeTelemetry": null
+    }
+  ],
+  "runQuality": {
+    "scenarioCount": 30,
+    "traceMode": "live",
+    "hubRouteKnownGaps": 0,
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    },
+    "recipeGoldRows": 0,
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0)."
+  },
+  "parseWarnings": [
+    "SA-001: missing-exact-prompt"
+  ]
+}

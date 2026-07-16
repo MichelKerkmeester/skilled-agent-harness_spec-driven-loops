@@ -199,8 +199,8 @@
     ],
     "causal_summary": "The Lane C skill-benchmark live path (Mode B) dispatches its model \"test subject\" exclusively through cli-opencode; the `--executor` flag is threaded all the way to `runLiveScenario` but ignored there, so cli-codex is unwired",
     "created_at": "2026-07-15T14:32:09Z",
-    "last_save_at": "2026-07-15T15:15:00.612Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-16T03:04:59.448Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:056d7acae1d5279224cefd434f2c3f8b651842937d375e68d56cc23488747257",
+    "source_fingerprint": "sha256:efc1d5198edbceb8a254246326b769f307e786b2768556d34df785b16ed89718",
     "source_doc_hashes": {
       "spec.md": "bddb9ae3e32b7d133c2dea2279846c191c7f30a2ef3ab0d1fbf36d26cce3898b",
       "plan.md": "8c92bd87fcb1b03a4bc153f564b2a344222e1bb40bfcb03a2c794bf10d8b53e6",
       "tasks.md": "7cf75b31ced5093821b8785e4d42894770f6ecf53a3eb071ca7abfe5728aa0ce",
       "checklist.md": "2c2fcd91e422f0cca2848760cd922b72e7b8c177136936357dd8a5f07f46bd6c",
-      "implementation-summary.md": "211d08a6e8dba29e5c8eda81c04fd168e86cd9c781dc87692fc08b98c8ba0141"
+      "implementation-summary.md": "0d74d46608b8b431f27bd444547477a56942da5b90631eb7315f2266190e3381"
     },
     "last_active_child_id": null,
     "last_active_at": null
