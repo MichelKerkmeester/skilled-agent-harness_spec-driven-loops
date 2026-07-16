@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings",
+  "description": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
+  "keywords": [
+    "phase",
+    "sub-phases",
+    "shipped",
+    "sandbox-blocked",
+    "verification"
+  ],
+  "lastUpdated": "2026-07-10T06:24:05.476Z",
+  "specId": "004",
+  "folderSlug": "deep-review-findings",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "005-graph-impact-and-affordance"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-04-26_14-51__initialized-010-007-fix-external-project-adoption-deep-review-findings-sub-phase.md"
+  ]
+}

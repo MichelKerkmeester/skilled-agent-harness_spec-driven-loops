@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/006-generator-hardening",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/006-generator-hardening",
+  "parent_id": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "graph metadata source fingerprint",
+      "phase child contract unify",
+      "access telemetry split",
+      "freshness telemetry split",
+      "generator hardening"
+    ],
+    "key_topics": [
+      "graph",
+      "metadata",
+      "source",
+      "fingerprint",
+      "phase",
+      "child",
+      "contract",
+      "unify",
+      "access",
+      "telemetry",
+      "split",
+      "freshness"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/access-telemetry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/generator-hardening.vitest.ts",
+      "lib/validation/generated-metadata-integrity.ts",
+      "scripts/tests/phase-parent-pointer.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      "mcp_server/tests/generator-hardening.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
+        "source": "derived"
+      },
+      {
+        "name": "access-telemetry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/access-telemetry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "generator-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/generator-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parent-pointer.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/phase-parent-pointer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generator Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Persist",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a live crash, both are protections against silent drift and churn",
+    "created_at": "2026-06-27T17:15:42.806Z",
+    "last_save_at": "2026-07-11T18:40:36.204Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:20888580ab4f96ca452305736967134d4212d4fc2c2895d5e4dbfc13c21bb815",
+    "source_doc_hashes": {
+      "spec.md": "033334f01706867455a122e8954403db70a120da1518adfadd8929eaad9da033",
+      "plan.md": "b12a3a7e540e78f34aee5420d6a5a4abd268c2e2dae3e9827a921fe728cb26a2",
+      "tasks.md": "cbfe481730846c779380b5736d1c3d0f1f7b4aba8ac906eb4517e1cd3b652203",
+      "checklist.md": "b739b0db1dcb9d16ea48c0a53fb7d9d2f9093af50c9e5e3cd4300cdb4d9e805d",
+      "implementation-summary.md": "044368927f7b08aa82c2f848960565883c24aa2683986adc14a57c3d8d094447"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

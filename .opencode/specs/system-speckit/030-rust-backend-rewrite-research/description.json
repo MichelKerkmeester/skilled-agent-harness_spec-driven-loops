@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/030-rust-backend-rewrite-research",
+  "description": "The `system-spec-kit` backend is ~244K LOC of authored TypeScript across ~1,487 files (`mcpserver/`, `scripts/`, `shared/`), run as a long-lived MCP",
+  "keywords": [
+    "system-spec-kit",
+    "backend",
+    "244k",
+    "loc",
+    "authored",
+    "typescript",
+    "across",
+    "files",
+    "mcpserver",
+    "scripts",
+    "shared",
+    "run",
+    "long-lived",
+    "mcp"
+  ],
+  "lastUpdated": "2026-07-16T08:02:32.766Z",
+  "specId": "030",
+  "folderSlug": "rust-backend-rewrite-research",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

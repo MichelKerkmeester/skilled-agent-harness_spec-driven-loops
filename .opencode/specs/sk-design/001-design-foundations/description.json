@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-design/001-design-foundations",
+  "description": "The shipped foundations mode defines the static visual system for the sk-design family, but its packet was absent from git and memory",
+  "keywords": [
+    "shipped",
+    "foundations",
+    "mode",
+    "defines",
+    "static",
+    "visual",
+    "system",
+    "sk-design",
+    "family",
+    "packet",
+    "absent",
+    "git",
+    "memory"
+  ],
+  "lastUpdated": "2026-07-16T08:38:48.103Z",
+  "specId": "001",
+  "folderSlug": "design-foundations",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

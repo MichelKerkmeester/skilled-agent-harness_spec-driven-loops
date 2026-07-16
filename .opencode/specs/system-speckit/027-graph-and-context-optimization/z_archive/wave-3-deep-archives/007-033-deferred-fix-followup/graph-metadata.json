@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "019 deferred fix followup",
+      "architecture md reconstruction",
+      "code graph apply scenarios",
+      "019 plan",
+      "deferred fix followup plan",
+      "019 tasks",
+      "deferred fix followup tasks",
+      "019 implementation summary",
+      "deferred fix followup results"
+    ],
+    "key_topics": [
+      "deferred",
+      "followup",
+      "architecture",
+      "reconstruction",
+      "code",
+      "graph",
+      "apply",
+      "scenarios",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-code-graph/architecture.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "architecture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "documented",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "correct",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Launcher Resilience",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Expansion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Closes the 5 deferred findings from 018 (F001, F006/F011, F012, F017, F018) — architecture.md reconstruction, launcher kitDir-derived path, source-map verification, 3 new playbook scenarios.",
+    "created_at": "2026-05-14T21:35:00Z",
+    "last_save_at": "2026-07-10T06:24:47.379Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:00fc6e69b856a39572e1852de244ba46db3e3ccce7b39dc7dc1aa07d76801887",
+    "source_doc_hashes": {
+      "spec.md": "6afdf6e681ecf099815fe6103a5a393e7dac3cb2c4b7af95789d8061957f52e8",
+      "plan.md": "dc9c6afbaf67f2a08d9208ddfe29bcfb8fe308e3097f3f8ddf5e5361480d62c3",
+      "tasks.md": "0446d6fe3b21c794cfbdb1760b6974c1786098222de3806052e9535a954bceb9",
+      "implementation-summary.md": "54110582d22e7a40999f4bd87c32d7e01f85543f1ea6117fc3d4617c62d8a7be"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/021-residual-correctness",
+  "description": "This sub-phase closes two always-on correctness residuals surfaced by the 008 retrieval-evaluation campaign",
+  "keywords": [
+    "sub-phase",
+    "closes",
+    "two",
+    "always-on",
+    "correctness",
+    "residuals",
+    "surfaced",
+    "retrieval-evaluation",
+    "campaign"
+  ],
+  "lastUpdated": "2026-07-09T10:02:56.186Z",
+  "specId": "021",
+  "folderSlug": "residual-correctness",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

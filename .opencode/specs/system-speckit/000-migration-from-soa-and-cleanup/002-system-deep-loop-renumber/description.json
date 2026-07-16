@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-speckit/000-migration-from-soa-and-cleanup/002-system-deep-loop-renumber",
+  "description": "`system-deep-loop`'s spec-folder numbering has two separate discontinuities:",
+  "keywords": [
+    "system-deep-loop",
+    "spec-folder",
+    "numbering",
+    "two",
+    "separate",
+    "discontinuities"
+  ],
+  "lastUpdated": "2026-07-16T11:59:40.571Z",
+  "specId": "002",
+  "folderSlug": "system-deep-loop-renumber",
+  "parentChain": [
+    "system-speckit",
+    "000-migration-from-soa-and-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

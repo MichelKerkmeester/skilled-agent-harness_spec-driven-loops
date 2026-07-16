@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/008-design-shared-backbone",
+  "spec_folder": "sk-design/008-design-shared-backbone",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design shared backbone reconstruction",
+      "design context loading contract",
+      "shared design proof gates",
+      "sk-design benchmark and feature catalog",
+      "shared backbone reconstruction plan",
+      "sk-design context proof plan",
+      "design benchmark evidence plan",
+      "design procedure card plan",
+      "shared backbone reconstruction tasks",
+      "sk-design proof contract tasks",
+      "design benchmark evidence tasks",
+      "shared procedure card tasks"
+    ],
+    "key_topics": [
+      "sk-design",
+      "shared",
+      "backbone",
+      "reconstruction",
+      "design",
+      "context",
+      "loading",
+      "contract",
+      "proof",
+      "gates",
+      "benchmark",
+      "feature"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconstruct",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Brand",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Sources",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design family shares a backbone of register, context, proof, transport-boundary, token, procedure, and verification contracts, but this packet was absent from git and memory",
+    "created_at": "2026-07-16T09:11:04.878Z",
+    "last_save_at": "2026-07-16T09:11:04.878Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:a1a874926b565eaa4406219e2cd0f5e23a7fe201898297c14ba1a008fde3ef77",
+    "source_doc_hashes": {
+      "spec.md": "25f635264d56c96140b7e1ed1a1bb0dc96673c8e83010fdfd9ece15cf49408ee",
+      "plan.md": "bf84ac6a6d816fc2752ff74fa65b526e2a8f901855ee5fbadb6fab017c04b720",
+      "tasks.md": "ea7cdfb50a49d99c13e8768488295ac4edddafc46eda78868a25b2f54ae650dc",
+      "checklist.md": "46e5e0567e91860fcc4120bf27bdfccb4aefe5033f9709ef6424e830239f6fe9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability",
+  "description": "The 003-fix-mcp-runtime-stress-findings deep review confirmed the v1.0.2 verdict (6/7 PROVEN, 0 REGRESSION, 83.8% overall) holds independent",
+  "keywords": [
+    "003-fix-mcp-runtime-stress-findings",
+    "deep",
+    "review",
+    "confirmed",
+    "verdict",
+    "proven",
+    "regression",
+    "overall",
+    "holds",
+    "independent"
+  ],
+  "lastUpdated": "2026-07-10T06:23:19.373Z",
+  "specId": "001",
+  "folderSlug": "fix-mcp-stress-cycle-doc-observability",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "005-stress-test"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

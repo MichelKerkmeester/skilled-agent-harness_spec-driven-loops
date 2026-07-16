@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/002-author-presentation-md",
+  "description": "Speckit Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and",
+  "keywords": [
+    "speckit",
+    "commands",
+    "needs",
+    "scoped",
+    "author",
+    "presentation",
+    "markdown",
+    "phase",
+    "extraction",
+    "proceed",
+    "without",
+    "mixing",
+    "implementation",
+    "routing"
+  ],
+  "lastUpdated": "2026-07-10T06:23:08.648Z",
+  "specId": "002",
+  "folderSlug": "author-presentation-md",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "002-command-presentation-workflow-separation",
+    "002-speckit-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

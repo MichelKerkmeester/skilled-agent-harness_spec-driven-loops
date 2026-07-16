@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/008-spec-memory-mcp-stress-test",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/008-spec-memory-mcp-stress-test",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 spec",
+      "mk-spec-memory stress test",
+      "manual testing playbook full run",
+      "008 plan",
+      "008 tasks",
+      "008 summary",
+      "008 handover"
+    ],
+    "key_topics": [
+      "spec",
+      "mk-spec-memory",
+      "stress",
+      "test",
+      "manual",
+      "testing",
+      "playbook",
+      "full",
+      "run",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "handover.md",
+      "evidence/tool-sweep.jsonl",
+      "evidence/playbook-results.jsonl",
+      "evidence/checkpoint-create-rca.md",
+      "tasks.md",
+      "evidence/agent-config-008.json",
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      "mcp_server/vitest.config.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js",
+      "dist/tool-schemas.js",
+      "spec.md",
+      "lib/utils/README.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-sweep.jsonl",
+        "kind": "file",
+        "path": "evidence/tool-sweep.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-results.jsonl",
+        "kind": "file",
+        "path": "evidence/playbook-results.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoint-create-rca.md",
+        "kind": "doc",
+        "path": "evidence/checkpoint-create-rca.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-config-008.json",
+        "kind": "config",
+        "path": "evidence/agent-config-008.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/utils/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin SWE-1.6",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "z_archive",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Stress",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Exercise all 39 mk-spec-memory MCP tools and execute all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 to validate behavior post-113 z_archive un-exclusion.",
+    "created_at": "2026-05-16T13:55:00Z",
+    "last_save_at": "2026-07-10T06:23:20.489Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:1486a1c43cda0d884399d2cc90ca8daf663b05565d7512138ecd8625d8cb9267",
+    "source_doc_hashes": {
+      "spec.md": "5b3d1788c80526aefbed007603fa3c5521076323d4fe46150d24b619d764f423",
+      "plan.md": "27fa21a98d921d8b4673dcdc198a5312afc9013682cfb3fce75ec29a53031b33",
+      "tasks.md": "074a55801d8ae69588c199271b23f6da1f475adbe35b4f9ac21b8fe48822d55c",
+      "implementation-summary.md": "f074e765a74e66f8674f1c51f6ec50b95327c4e4c1d96541529f32782923d24c",
+      "handover.md": "d80834e32b58bfca23aa48701febaa7f9e70061fcdb8b5fde579656eae9aac2b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

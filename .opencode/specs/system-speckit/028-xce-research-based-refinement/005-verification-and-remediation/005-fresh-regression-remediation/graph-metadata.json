@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "spec_folder": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "parent_id": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening",
+    "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search",
+    "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle",
+    "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety",
+    "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation",
+    "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
+    "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fresh regression remediation",
+      "027 review round 3 remediation",
+      "remediate every deep-review finding"
+    ],
+    "key_topics": [
+      "fresh",
+      "regression",
+      "remediation",
+      "review",
+      "round",
+      "remediate",
+      "every",
+      "deep-review",
+      "finding",
+      "phase",
+      "parent",
+      "coordinating"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "fix-coverage.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "fix-coverage.json",
+        "kind": "config",
+        "path": "fix-coverage.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Regression Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent coordinating remediation of ALL 113 findings from the 027 fresh+regression deep-review, decomposed into 6 subsystem sub-phases (memory-storage, daemon-launcher, code-graph, CLI front-doors, spec-folder metadata, doc-truth/mirrors). Scaffold only — every finding carried as a task; no fixes applied.",
+    "created_at": "2026-06-16T00:00:00Z",
+    "last_save_at": "2026-07-10T06:22:46.879Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b1865ef30bd2d6c948461061deb39fa77b8b1b82e1451d482aa3a3e1f4e3395a",
+    "source_doc_hashes": {
+      "spec.md": "4106dfadcbc3e19a636ee965c72d0abe95ea6b7654b3e6e0ae22c10e936c5fac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

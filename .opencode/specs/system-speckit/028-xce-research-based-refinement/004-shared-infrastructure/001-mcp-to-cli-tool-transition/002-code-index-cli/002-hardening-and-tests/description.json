@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/002-hardening-and-tests",
+  "description": "The code-trace guarantees from the research (lease races, dual-client safety, blocked-read discipline) are not regression-locked; any refactor can",
+  "keywords": [
+    "code-trace",
+    "guarantees",
+    "research",
+    "lease",
+    "races",
+    "dual-client",
+    "safety",
+    "blocked-read",
+    "discipline",
+    "regression-locked",
+    "refactor"
+  ],
+  "lastUpdated": "2026-07-10T06:22:29.479Z",
+  "specId": "002",
+  "folderSlug": "hardening-and-tests",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "001-mcp-to-cli-tool-transition",
+    "002-code-index-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

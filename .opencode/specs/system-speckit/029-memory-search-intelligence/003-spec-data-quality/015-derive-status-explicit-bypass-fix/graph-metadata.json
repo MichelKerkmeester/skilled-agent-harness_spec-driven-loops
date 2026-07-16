@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/015-derive-status-explicit-bypass-fix",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/015-derive-status-explicit-bypass-fix",
+  "parent_id": "system-speckit/029-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deriveStatus explicit status bypass fix",
+      "orchestrator status completion consistency wiring",
+      "gpt followup audit T2 remediation",
+      "derive status explicit bypass fix plan",
+      "derive status explicit bypass fix tasks",
+      "derive status explicit bypass fix summary"
+    ],
+    "key_topics": [
+      "derivestatus",
+      "explicit",
+      "status",
+      "bypass",
+      "orchestrator",
+      "completion",
+      "consistency",
+      "wiring",
+      "gpt",
+      "followup",
+      "audit",
+      "remediation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+      "spec.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "plan.md",
+      "scripts/validation/generated-metadata-integrity.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
+      "tests/feature-flag-reference-docs.vitest.ts",
+      "mcp_server/lib/validation/orchestrator.ts"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.ts",
+        "kind": "code",
+        "path": "scripts/validation/generated-metadata-integrity.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feature-flag-reference-docs.vitest.ts",
+        "kind": "test",
+        "path": "tests/feature-flag-reference-docs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Narrow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1185-1195`) reads any doc's own explicit `status:` frontmatter field or `spec.md`'s METADATA table status, ranked `implementation-summary.md` > `checklist.md` > `tasks.md` > `plan.md` > `spec.md`, and returns that value immediately when present — including `complete` — before the phase-010 completion-evidence fallback (`:1215-1239`) ever runs",
+    "created_at": "2026-07-02T15:04:28.309Z",
+    "last_save_at": "2026-07-11T18:40:36.263Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d0a2328920318b3e1d9b7e0df79d727fa50b822731cfdf8aa1aad59dccb290d9",
+    "source_doc_hashes": {
+      "spec.md": "3efd38d67eda218a225b62f4cfe835181e61a15077133c25d76c8cde97904e30",
+      "plan.md": "d43be3d1aaa5aa79f1bed1c3083f8510fbe8410e0a979ad36bbc4f85397e1d27",
+      "tasks.md": "b5edfd2365c22bf2c639182d2d9a4b44bd39c7a934f8c8014d65d74b38a761ce",
+      "implementation-summary.md": "2a8f3b9d02941926eb3f3ff99c7207fba0dac536665284a2b90dde75a364becb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

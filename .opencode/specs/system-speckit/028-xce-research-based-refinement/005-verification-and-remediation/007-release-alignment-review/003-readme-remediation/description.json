@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
+  "description": "The Track A release-alignment review (`../001-readmes-vs-027/review/findings-all.json`) surfaced confirmed README / code-README staleness: the READMEs",
+  "keywords": [
+    "track",
+    "release-alignment",
+    "review",
+    "001-readmes-vs-027",
+    "findings-all",
+    "json",
+    "surfaced",
+    "confirmed",
+    "readme",
+    "code-readme",
+    "staleness",
+    "readmes"
+  ],
+  "lastUpdated": "2026-07-10T06:24:50.235Z",
+  "specId": "003",
+  "folderSlug": "readme-remediation",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "007-release-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

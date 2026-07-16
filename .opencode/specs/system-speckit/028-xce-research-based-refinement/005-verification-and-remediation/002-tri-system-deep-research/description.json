@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
+  "description": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery — but every review so far was scoped to shipped diffs",
+  "keywords": [
+    "epic",
+    "shipped",
+    "twenty-four",
+    "phases",
+    "finding-remediation",
+    "program",
+    "database",
+    "recovery",
+    "every",
+    "review",
+    "far",
+    "scoped",
+    "diffs"
+  ],
+  "lastUpdated": "2026-07-10T06:23:58.423Z",
+  "specId": "002",
+  "folderSlug": "tri-system-deep-research",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "005-verification-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

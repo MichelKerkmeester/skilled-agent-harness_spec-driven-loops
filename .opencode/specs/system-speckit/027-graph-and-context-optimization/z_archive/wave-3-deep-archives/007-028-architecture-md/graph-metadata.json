@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-028-architecture-md",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-028-architecture-md",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph architecture",
+      "mk-code-index architecture",
+      "014 architecture md",
+      "architecture implementation plan",
+      "system-code-graph architecture tasks",
+      "014 architecture md tasks",
+      "system-code-graph architecture summary",
+      "014 architecture md implementation"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "architecture",
+      "mk-code-index",
+      "implementation",
+      "plan",
+      "tasks",
+      "summary",
+      "extracted",
+      "skill",
+      "runtime",
+      "readme",
+      "documentation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/architecture.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "architecture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Anchored",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The extracted `system-code-graph` skill has runtime and README documentation, but it lacks a dedicated `architecture.md` that mirrors the sibling `system-spec-kit` architecture pattern",
+    "created_at": "2026-05-14T17:43:18Z",
+    "last_save_at": "2026-07-10T06:24:29.551Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:180d28ca2fa2ddb4473791e6dd34672f784ca183bb4b5ebec777b5598408e720",
+    "source_doc_hashes": {
+      "spec.md": "31b360873a1a1bb5db34fddbea3022c88d574a388692f24eca2d654856bbc9f4",
+      "plan.md": "9334c7eecbc63f93a3c7dbb2fd7e5cba1fb6b03f9763b88d747a33ec92b7f0b6",
+      "tasks.md": "6ecce8c0bcc87a1aa352b2810e7452232a292cadb57d66e5c13eb390a12eadf0",
+      "implementation-summary.md": "5283c6245387c88266789c3b3aeb9ea66ea4afab5357606a8f49d2af09d0e75c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

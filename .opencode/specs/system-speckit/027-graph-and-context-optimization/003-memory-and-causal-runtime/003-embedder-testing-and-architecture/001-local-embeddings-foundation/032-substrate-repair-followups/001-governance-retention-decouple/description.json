@@ -1,0 +1,46 @@
+{
+  "title": "001 governance-retention-decouple (ADR-002 Option A)",
+  "schema_version": 1,
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
+  "summary": "Remove retentionPolicy:'ephemeral' from requiresGovernedIngest() triggers; add DEFAULT_EPHEMERAL_TTL_MS; auto-populate deleteAfter when ephemeral has no explicit one. 3-case vitest coverage required.",
+  "tags": [
+    "governance",
+    "retention",
+    "ephemeral",
+    "ADR-002",
+    "scope-governance"
+  ],
+  "created_at": "2026-05-14T11:10:00Z",
+  "updated_at": "2026-05-14T11:10:00Z",
+  "status": "complete",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
+  "description": "Passing `retentionPolicy: \"ephemeral\"` to `memorysave` silently triggered governed-ingest validation and required the full audit chain",
+  "keywords": [
+    "passing",
+    "retentionpolicy",
+    "ephemeral",
+    "memorysave",
+    "silently",
+    "triggered",
+    "governed-ingest",
+    "validation",
+    "required",
+    "full",
+    "audit",
+    "chain"
+  ],
+  "lastUpdated": "2026-07-10T06:23:03.509Z",
+  "specId": "001",
+  "folderSlug": "governance-retention-decouple",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation",
+    "032-substrate-repair-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

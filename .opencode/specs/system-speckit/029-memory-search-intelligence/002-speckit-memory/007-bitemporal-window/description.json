@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/029-memory-search-intelligence/002-speckit-memory/007-bitemporal-window",
+  "description": "The Memory MCP's causal-edge currentness machinery records the wrong time and the wrong number of times",
+  "keywords": [
+    "memory",
+    "mcp",
+    "causal-edge",
+    "currentness",
+    "machinery",
+    "records",
+    "wrong",
+    "time",
+    "number",
+    "times"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.554Z",
+  "specId": "007",
+  "folderSlug": "bitemporal-window",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

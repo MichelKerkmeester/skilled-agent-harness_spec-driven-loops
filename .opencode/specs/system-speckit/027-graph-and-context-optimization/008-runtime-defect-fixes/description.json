@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/008-runtime-defect-fixes",
+  "description": "The 028 CLI-transition research and gap audits surfaced four live defects in the three MCP systems' integration surfaces: the OpenCode code-graph",
+  "keywords": [
+    "cli-transition",
+    "research",
+    "gap",
+    "audits",
+    "surfaced",
+    "four",
+    "live",
+    "defects",
+    "three",
+    "mcp",
+    "systems",
+    "integration",
+    "surfaces",
+    "opencode",
+    "code-graph"
+  ],
+  "lastUpdated": "2026-07-10T06:24:07.384Z",
+  "specId": "008",
+  "folderSlug": "runtime-defect-fixes",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

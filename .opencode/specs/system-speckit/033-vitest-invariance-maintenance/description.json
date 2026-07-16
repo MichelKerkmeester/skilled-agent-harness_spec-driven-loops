@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-vitest-invariance-maintenance",
+  "description": "Commit `5149f3abe5` (\"refactor(system-spec-kit): de-number 699 catalog+playbook snippet files\") renamed 699 system-spec-kit catalog and playbook",
+  "keywords": [
+    "commit",
+    "5149f3abe5",
+    "refactor",
+    "system-spec-kit",
+    "de-number",
+    "catalog",
+    "playbook",
+    "snippet",
+    "files",
+    "renamed"
+  ],
+  "lastUpdated": "2026-07-16T08:02:32.770Z",
+  "specId": "033",
+  "folderSlug": "vitest-invariance-maintenance",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

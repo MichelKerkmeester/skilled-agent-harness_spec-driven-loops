@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/004-failed-embedding-cleanup",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/004-failed-embedding-cleanup",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repair failed embeddings script",
+      "memory_index embedding_status failed cleanup",
+      "one-shot embedding retry",
+      "repair failed embeddings plan",
+      "failed embedding cleanup implementation",
+      "failed embedding cleanup tasks",
+      "repair failed embeddings tasks",
+      "failed embedding cleanup checklist",
+      "repair failed embeddings verification",
+      "failed embedding cleanup summary",
+      "repair failed embeddings outcome"
+    ],
+    "key_topics": [
+      "repair",
+      "failed",
+      "embeddings",
+      "script",
+      "cleanup",
+      "one-shot",
+      "embedding",
+      "retry",
+      "plan",
+      "implementation",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "blocked",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-failed-embeddings.mjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "mcp_server/scripts/repair-failed-embeddings.mjs",
+      "shared/dist/embeddings.js",
+      "shared/dist/embeddings/profile.js"
+    ],
+    "entities": [
+      {
+        "name": "repair-failed-embeddings.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-failed-embeddings.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings.js",
+        "source": "derived"
+      },
+      {
+        "name": "profile.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings/profile.js",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The active Memory MCP database has historical rows in `memoryindex` with `embeddingstatus='failed'`",
+    "created_at": "2026-05-14T11:10:00Z",
+    "last_save_at": "2026-07-02T05:31:11.641Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T11:10:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1367ad0d029b313f6b24eecb40cae4f85cf7ca13748286a29918a79deaffe63e",
+    "source_doc_hashes": {
+      "spec.md": "19f4be50fa47f880ea1c790432303226123755b3097da795a6fad254c7fabd4d",
+      "plan.md": "8abed274c596f8e81861ea689fb955f982301c2ba18ec382246f2e427cbeab7f",
+      "tasks.md": "e352a31de9bc05213d91fce71d352cd833e21e8877724cbbf6017b0499c496ab",
+      "checklist.md": "0dec6755f94c02c3da200ebb376adce4fc3b1cbe528ab700b3524b623a8f143b",
+      "implementation-summary.md": "f8ab973c477d26a33282d9e28b8bc7337210fd34aaab5da1f1947d217aa43982"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

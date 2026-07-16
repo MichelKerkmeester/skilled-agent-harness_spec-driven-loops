@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "all skills alignment sweep",
+      "skill docs audit",
+      "sk-doc compliance sweep",
+      "all skills alignment plan",
+      "skill docs batch plan",
+      "all skills alignment tasks",
+      "all skills alignment verification",
+      "all skills alignment decisions",
+      "all skills alignment summary"
+    ],
+    "key_topics": [
+      "skills",
+      "alignment",
+      "sweep",
+      "skill",
+      "docs",
+      "audit",
+      "sk-doc",
+      "compliance",
+      "plan",
+      "batch",
+      "tasks",
+      "verification"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "research/skills-audit.md",
+      "implementation-summary.md",
+      ".opencode/skills/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "skills-audit.md",
+        "kind": "doc",
+        "path": "research/skills-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Skills Alignment Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Batch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Batch",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill docs have accumulated mixed current-state language across recent restructures: standalone `systemskilladvisor`, the `mk-code-index` code-graph rename, post-040 embedding behavior, and sk-doc template hardening",
+    "created_at": "2026-05-14T18:47:27Z",
+    "last_save_at": "2026-07-10T06:22:14.068Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e182abdef96168230be02dca7c158088262ea2332687a88810a46fcada981f9d",
+    "source_doc_hashes": {
+      "spec.md": "97bb69008d7954e7c2e41b4cec5bdc4c3a004997e8ff487d75cecbaacb43bcb9",
+      "plan.md": "dac6a02f9dbf086ab8ff666ba91ee88ef4060f40250b67c3017ca971ecd6149b",
+      "tasks.md": "43e12d68184318bab9cd491d9ae40de19d54063fdf7f7114ae41bcb97ca573ee",
+      "checklist.md": "7e930e333b0c98609d0723ed7066392489b5e447668d95c98d1b8ac296932661",
+      "decision-record.md": "c69e1c089df6baa07e306379cfad76f9a9ad362ace068ecad980702db3cf7353",
+      "implementation-summary.md": "90ad6de840def43d0e202a15441deeb5b7b0e5dfc8d6da8400721939aa7226d3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

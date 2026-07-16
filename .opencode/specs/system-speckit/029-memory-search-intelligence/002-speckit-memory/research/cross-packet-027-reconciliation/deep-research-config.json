@@ -1,0 +1,74 @@
+{
+  "topic": "Revisit the subjects packet 027 (XCE-derived Spec Kit refinement) shipped - memory write-safety/provenance, retention/TTL, causal-edge lifecycle + tombstones + frontmatter promoter, learning feedback reducers, incremental memory index + statediff reconciliation, semantic triggers, vector/BM25 search resilience + score-scale + response-policy gate, daemon re-election + advisor reconnect + IPC cap, observability + continuity, memclaw derived-memory write safety - through the lens of packet 028's aionforge/galadriel findings (edge-presence bi-temporal currentness, bounded Beta posterior, content-addressed idempotency, determinism + generation watermark, query-class routing, graceful degradation). Produce a supersede/extend/contradict/already-covered reconciliation ledger citing live 027 code + the 028 finding. Read-only.",
+  "maxIterations": 52,
+  "convergenceThreshold": 0.03,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-speckit/029-memory-search-intelligence/005-revisit-027",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "createdAt": "2026-06-16T20:15:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "2026-06-16-028-005-revisit-027",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/deep-research-findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

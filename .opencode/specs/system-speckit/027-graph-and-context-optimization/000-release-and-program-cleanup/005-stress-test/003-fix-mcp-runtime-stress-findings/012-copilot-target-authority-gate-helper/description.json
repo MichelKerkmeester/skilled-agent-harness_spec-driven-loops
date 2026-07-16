@@ -1,0 +1,34 @@
+{
+  "trigger_phrases": [
+    "012-copilot-target-authority-gate-helper",
+    "copilot target authority helper",
+    "cli-copilot Gate 3 bypass fix",
+    "buildCopilotPromptArg",
+    "target authority preamble",
+    "P0 cli-copilot remediation"
+  ],
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper",
+  "description": "The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated",
+  "keywords": [
+    "stress-test",
+    "rerun",
+    "cell",
+    "runs",
+    "cli-copilot-1",
+    "scored",
+    "cli-copilot",
+    "mutated"
+  ],
+  "lastUpdated": "2026-07-10T06:24:07.389Z",
+  "specId": "012",
+  "folderSlug": "copilot-target-authority-gate-helper",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "005-stress-test",
+    "003-fix-mcp-runtime-stress-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

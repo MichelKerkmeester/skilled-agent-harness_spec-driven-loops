@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo",
+  "spec_folder": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo",
+  "parent_id": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "causal-and-memo remediation",
+      "027 finding lane 002",
+      "epic sweep lane 002",
+      "causal-and-memo plan",
+      "lane 002 remediation plan",
+      "verify first pipeline",
+      "causal-and-memo tasks",
+      "lane 002 tasks",
+      "remediation lane tasks",
+      "causal-and-memo summary",
+      "lane 002 disposition",
+      "remediation lane summary"
+    ],
+    "key_topics": [
+      "causal-and-memo",
+      "remediation",
+      "finding",
+      "lane",
+      "epic",
+      "sweep",
+      "plan",
+      "verify",
+      "first",
+      "pipeline",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Finding Remediation Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal And Memo",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Nothing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Refute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "regressions",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Every",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lane Disposition",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Fable",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The epic deep-review sweep left this lane with 14 unverified P1 claims and 5 P2 clusters",
+    "created_at": "2026-06-11T19:10:00Z",
+    "last_save_at": "2026-07-10T06:23:04.223Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:82aea8e30843ce0228d48c77717315fecaddf4712f8eb557286c35f4343719bd",
+    "source_doc_hashes": {
+      "spec.md": "508f9b3066f6b69e8d8881efe54b5be077da67e822e954d3c4b7bb03ee997a79",
+      "plan.md": "2b60b377e3f0353a77b884562f13ad0aa7721ce7863f78e9197d7a20a2741516",
+      "tasks.md": "6f57c0e21342c6b9b7e8b3162abba6c2111013f4feb6a545f72f73c2dd647897",
+      "implementation-summary.md": "1a15d19d8f5d12f989048cf4872542d74acf9b19f0fa7db48c4bacad4d0c5014"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/006-global-spec-drift-deep-research",
+  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/006-global-spec-drift-deep-research",
+  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "global spec drift research",
+      "spec drift deep research sweep",
+      "prior context optimization research",
+      "006 global spec drift",
+      "global spec drift research plan",
+      "deep research fan-out plan",
+      "normal convergence deep research launch",
+      "006 research plan",
+      "global spec drift research tasks",
+      "deep research fan-out tasks",
+      "006 task breakdown",
+      "global spec drift research checklist"
+    ],
+    "key_topics": [
+      "global",
+      "spec",
+      "drift",
+      "research",
+      "deep",
+      "sweep",
+      "prior",
+      "context",
+      "optimization",
+      "plan",
+      "fan-out",
+      "normal"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      ".opencode/commands/deep/research.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-deep-loop/deep-research/feature_catalog/loop_lifecycle/fanout_dispatch.md",
+      ".opencode/skills/system-deep-loop/deep-research/feature_catalog/convergence/divergent_convergence_mode.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout_dispatch.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/feature_catalog/loop_lifecycle/fanout_dispatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "divergent_convergence_mode.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/feature_catalog/convergence/divergent_convergence_mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Launch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Git Workspace Safety",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent packet (`000-migration-from-soa-and-cleanup`) diagnosed numbering drift in exactly five tracks and scoped phases 001-005 to fix only that drift",
+    "created_at": "2026-07-16T06:17:13.608Z",
+    "last_save_at": "2026-07-16T12:54:34.678Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:50f514c08af8bff9db167acc5754c116d0b4bc4d44dd361480d643827c113415",
+    "source_doc_hashes": {
+      "spec.md": "b2529690497b37831d0585eb17a59cbf4d4186a8041d0295af2ec0fef5a3d080",
+      "plan.md": "123043f83d89f96fa1ac4e06def55ecee94815c6eebde1b1b47b054789f20d70",
+      "tasks.md": "5bbcfee50386c8fa94b9688bc5a4b473316c60cc66ebcd85eb2d471d3278fc13",
+      "checklist.md": "d46974333197ec77c683d892570f9e5db69dec64e33893a275beb5946dc97ef5",
+      "implementation-summary.md": "950b7966d3dd4730e069910749222424be07bfa94fb622d5d6b0e15403337421"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

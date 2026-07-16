@@ -1,0 +1,42 @@
+{
+  "topic": "Hunt for NOVEL, ambitious, out-of-the-box data-quality capabilities the prior reuse-first lineages deliberately did NOT propose. Each candidate (LLM-as-judge wired to a real ranking/gate consumer, auto-generated answerable-questions/semantic-intent fused into retrieval, knowledge-graph enrichment auto-extracted from doc content, cross-doc contradiction+staleness detection, doc-freshness decay with auto-refresh queueing, doc-quality leaderboard/dashboard, retrieval-driven auto-rewriting, automatic example/test generation from specs, embedding-drift monitoring with alerting, a context-budget optimizer under the truncation floor, auto-summarization rollup nodes, per-doc quality SLAs) gets: concept, value per reader (retrieval/adherence/logic), feasibility on this corpus, survival under the truncation law, go/no-go.",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 14,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": true,
+  "specFolder": "system-speckit/029-memory-search-intelligence/002-spec-data-quality",
+  "createdAt": "2026-06-21T11:11:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fanoutLineage": "dq-novel-oob",
+  "artifactDir": ".opencode/specs/system-speckit/029-memory-search-intelligence/002-spec-data-quality/research/lineages/dq-novel-oob",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "opus",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-dq-novel-oob-1782033074035-k81aak",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "resourceMapPresent": false
+}

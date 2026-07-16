@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015-cocoindex-seed-telemetry-passthrough",
+      "cocoindex seed telemetry passthrough",
+      "cocoindex fork telemetry leverage",
+      "code_graph_context rawScore pathClass rankingSignals",
+      "Q-OPP cocoindex seed fidelity",
+      "novel finding 5 cocoindex telemetry",
+      "cocoindex seed telemetry plan",
+      "cocoindex seed telemetry tasks",
+      "cocoindex seed telemetry checklist",
+      "015 checklist",
+      "verification 015",
+      "cocoindex seed telemetry summary"
+    ],
+    "key_topics": [
+      "015-cocoindex-seed-telemetry-passthrough",
+      "cocoindex",
+      "seed",
+      "telemetry",
+      "passthrough",
+      "fork",
+      "leverage",
+      "rawscore",
+      "pathclass",
+      "rankingsignals",
+      "q-opp",
+      "fidelity"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/lib/search/hybrid-search.ts",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Finding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "optional",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "same",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The CocoIndex fork (cocoindexcode v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result — `rawscore`, `pathclass`, `rankingSignals`, `dedupedAliases`, `uniqueResultCount` — but `codegraphcontext` drops all of them when a CocoIndex result is supplied as a seed",
+    "created_at": "2026-04-27T19:55:00.000Z",
+    "last_save_at": "2026-07-02T05:31:10.779Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9857a95f18c106acffba8d526daf8e7603e45ced81daefc611a5c62b78a41fe8",
+    "source_doc_hashes": {
+      "spec.md": "43db11729d4c8dc9826e0c9ee6ad56539c10b28f297c6643add937788416cd71",
+      "plan.md": "a4dc8b8a10093c023ae58966f7b00e7e2472b2c1bfc7f406d6413178fc3faafb",
+      "tasks.md": "23eaf79c2c47927e8e79c37312dd1795e1b17344e9593f635644b293feb93e8a",
+      "checklist.md": "df8bc2f37ceb02fcec4ba565fee8314e0d9e653a7a1d1a1809b2d90f8d0726fc",
+      "implementation-summary.md": "ac59fd7815c34c9a5c0c2f7db76cb6b09288defa0ed020869a1ce5edfa4917a8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

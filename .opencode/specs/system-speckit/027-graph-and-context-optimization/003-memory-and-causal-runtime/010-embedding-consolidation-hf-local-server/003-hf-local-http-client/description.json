@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client",
+  "description": "hf-local.ts currently owns in-process transformers execution",
+  "keywords": [
+    "hf-local",
+    "currently",
+    "owns",
+    "in-process",
+    "transformers",
+    "execution"
+  ],
+  "lastUpdated": "2026-07-10T06:22:02.734Z",
+  "specId": "003",
+  "folderSlug": "hf-local-http-client",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "010-embedding-consolidation-hf-local-server"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

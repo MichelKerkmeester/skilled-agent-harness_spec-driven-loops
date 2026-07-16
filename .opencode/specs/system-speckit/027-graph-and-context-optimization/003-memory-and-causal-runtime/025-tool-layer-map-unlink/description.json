@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink",
+  "description": "`memorycausalunlink` is a registered MCP tool (added by commit `deee30b319`, defined in",
+  "keywords": [
+    "memorycausalunlink",
+    "registered",
+    "mcp",
+    "tool",
+    "commit",
+    "deee30b319",
+    "defined"
+  ],
+  "lastUpdated": "2026-07-10T06:23:14.513Z",
+  "specId": "025",
+  "folderSlug": "tool-layer-map-unlink",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

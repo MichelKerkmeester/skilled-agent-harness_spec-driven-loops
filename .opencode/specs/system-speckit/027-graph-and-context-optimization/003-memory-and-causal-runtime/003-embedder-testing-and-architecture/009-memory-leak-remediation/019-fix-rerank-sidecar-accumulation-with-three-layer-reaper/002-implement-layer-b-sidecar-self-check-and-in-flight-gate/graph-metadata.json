@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/002-implement-layer-b-sidecar-self-check-and-in-flight-gate",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/002-implement-layer-b-sidecar-self-check-and-in-flight-gate",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "arc 010 005 002 rerank sidecar self check",
+      "layer b layer a telemetry in flight gate",
+      "arc 010 005 002 plan",
+      "rerank sidecar self reaper plan",
+      "arc 010 005 002 tasks",
+      "rerank sidecar self reaper tasks",
+      "arc 010 005 002 checklist",
+      "rerank sidecar self reaper checklist",
+      "arc 010 005 002 decisions",
+      "rerank sidecar reaper adr",
+      "arc 010 005 002 summary",
+      "rerank sidecar self reaper implementation summary"
+    ],
+    "key_topics": [
+      "arc",
+      "rerank",
+      "sidecar",
+      "self",
+      "check",
+      "layer",
+      "telemetry",
+      "flight",
+      "gate",
+      "plan",
+      "reaper",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sidecar Self",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flight Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Scope",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Invariants Enforced",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The rerank FastAPI sidecar can remain alive after owners disappear because the current app has no background owner-liveness self-check, no app-level in-flight request gate, no idle timeout backstop, and no process-lifecycle telemetry",
+    "created_at": "2026-05-26T16:49:55.587Z",
+    "last_save_at": "2026-07-10T06:22:07.304Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:44d6ff58afb272e8bfa1c73a0bf262cc75bc5f947dae7009613c85f5e04cf110",
+    "source_doc_hashes": {
+      "spec.md": "3e6081ca6c681db1716f61cf094401938c0205cb23d6cbb8ecaab21409bf959b",
+      "plan.md": "118cbc55bf6674dc040c2b272dd1a24d75afda2b74fb5daf19b189a6a8486ce0",
+      "tasks.md": "c742ae0e86c55b116c3ecac2312e3d845bba82e1b5c00461dd96b94046c8285a",
+      "checklist.md": "e7975b838664940db02f39c8c72222b06d569f07d3aeee28cbc6dfcaca551a24",
+      "decision-record.md": "8f32351c2e83956b38e2c854b06dd3266bba19631c9e24fb90e4a40a0d16f585",
+      "implementation-summary.md": "982498a7afdee2c69412eac7583634fa9366e2038fc872a313dfe5b7606958ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
