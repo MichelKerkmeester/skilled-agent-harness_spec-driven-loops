@@ -1,0 +1,11 @@
+{
+  "owner_pid": 13350,
+  "started_at_iso": "2026-07-16T05:47:04.335Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-16T05:47:04.335Z",
+  "packet_id": ".opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-16T05:47:04.335Z",
+  "acquire_nonce": "13350-1784180824335-419d4a12-5cf7-4a1f-a822-b55429d034d2"
+}

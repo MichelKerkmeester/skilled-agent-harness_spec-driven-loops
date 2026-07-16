@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research",
+  "spec_folder": "sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research",
+  "parent_id": "sk-doc/031-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc routing research",
+      "hub router alias coverage",
+      "skill benchmark recall sk-doc",
+      "path contract handoff sk-doc",
+      "sk-doc routing research plan",
+      "sk-doc routing research tasks",
+      "sk-doc routing research iterations",
+      "sk-doc routing research outcome",
+      "sk-doc benchmark root cause",
+      "sk-doc routing fix plan handoff",
+      "sk-doc routing research findings",
+      "leaf resource contract"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "routing",
+      "research",
+      "hub",
+      "router",
+      "alias",
+      "coverage",
+      "skill",
+      "benchmark",
+      "recall",
+      "path",
+      "contract"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "spec.md",
+      "implementation-summary.md",
+      "research/deep-research-dashboard.md",
+      "research/findings-registry.json",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "research/iterations/iteration-006.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      "research/iterations/iteration-009.md",
+      "research/iterations/iteration-010.md",
+      "plan.md",
+      ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/hub-router.json"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tier2-sk-doc-luna-opencode.report.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Foundation Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Diagnose",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Tier-2 gpt-5.6-luna skill-benchmark scored sk-doc at 20/100 with roughly 19% exact-resource recall",
+    "created_at": "2026-07-16T07:29:53.884Z",
+    "last_save_at": "2026-07-16T08:17:51.886Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:9dcadaf8cb0e1433cf3f06b8280d5725796b0bb2ed76b6e94244e2d479a1996e",
+    "source_doc_hashes": {
+      "spec.md": "0df2584f3dbcdc5e58d31b11109c78f6031cb3fdd90cd2beeef98aa48f7dfb79",
+      "plan.md": "6886461d0f35737c7a186b60002c577c409125228b4bf39b73f4ed1999bf04a4",
+      "tasks.md": "d9a09f8a0eb9cfd3cd310fd67e86887e319316aeea38d45164a1d86efd856b6e",
+      "implementation-summary.md": "c0aa55072468b03435df598f6ee88808b722c292deaaaa463dabacdc8ae26aa8",
+      "research/research.md": "bfcb1cda9aaa16df2d23b284eaffc5da4b6e03e3792ee33e612aa8eb44112d5a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

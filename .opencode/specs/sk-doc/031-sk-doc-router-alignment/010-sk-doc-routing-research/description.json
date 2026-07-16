@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research",
+  "description": "The Tier-2 gpt-5.6-luna skill-benchmark scored sk-doc at 20/100 with roughly 19% exact-resource recall",
+  "keywords": [
+    "tier-2",
+    "gpt-5",
+    "6-luna",
+    "skill-benchmark",
+    "scored",
+    "sk-doc",
+    "roughly",
+    "exact-resource",
+    "recall"
+  ],
+  "lastUpdated": "2026-07-16T08:15:30.591Z",
+  "specId": "010",
+  "folderSlug": "sk-doc-routing-research",
+  "parentChain": [
+    "sk-doc",
+    "031-sk-doc-router-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

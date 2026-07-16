@@ -1,0 +1,704 @@
+{
+  "sessionId": "dr-20260716-054704-skill-advisor-routing",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-how-does-the-advisor-recommend-mcp-path-advisor-server-ts-tools-index-ts-work",
+      "inboxId": null,
+      "text": "Q1: How does the advisor_recommend MCP path (advisor-server.ts, tools/index.ts) work end-to-end, and is its 5-lane RRF fusion confidence (derived / explicit / graph-causal / lexical / semantic-shadow lanes in lib/scorer/fusion.ts) well-calibrated, or does lane fusion saturate/mislead against the 0.05 ambiguity margin (lib/scorer/ambiguity.ts) and compat-contract thresholds (lib/compat/contract.ts) backing Gate 2 (≥0.8) and Gate 1 (≥0.70 / ≤0.35)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-how-does-the-claude-side-user-prompt-submit-hook-advisor-brief-hooks-claude-u",
+      "inboxId": null,
+      "text": "Q2: How does the Claude-side user-prompt-submit hook advisor brief (hooks/claude/user-prompt-submit.ts, lib/skill-advisor-brief.ts) work, and does its documented CLI fallback path hold up when the MCP/daemon transport is unhealthy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-do-the-hook-s-shouldfireadvisor-gate-lib-prompt-policy-ts-and-the-mcp-tool-s-",
+      "inboxId": null,
+      "text": "Q3: Do the hook's shouldFireAdvisor gate (lib/prompt-policy.ts) and the MCP tool's threshold resolution stay provably in sync — two independent call paths converging on the same compat-contract thresholds — or is there drift?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-q4-how-does-routing-registry-drift-guard-exercise-parity-against-sk-doc-s-hub-ro",
+      "inboxId": null,
+      "text": "Q4: How does routing-registry-drift-guard exercise parity against sk-doc's hub-router.json / mode-registry.json vocabulary, and does the advisor's vocabulary stay aligned with the hubs it routes to?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-what-prioritized-implementable-improvements-to-advisor-usefulness-confidence-",
+      "inboxId": null,
+      "text": "Q5: What prioritized, implementable improvements to advisor usefulness, confidence calibration, transport resilience, and routing integration follow from the evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-how-does-the-advisor-recommend-mcp-path-advisor-server-ts-tools-index-ts-work",
+      "inboxId": null,
+      "text": "Q1: How does the advisor_recommend MCP path (advisor-server.ts, tools/index.ts) work end-to-end, and is its 5-lane RRF fusion confidence (derived / explicit / graph-causal / lexical / semantic-shadow lanes in lib/scorer/fusion.ts) well-calibrated, or does lane fusion saturate/mislead against the 0.05 ambiguity margin (lib/scorer/ambiguity.ts) and compat-contract thresholds (lib/compat/contract.ts) backing Gate 2 (≥0.8) and Gate 1 (≥0.70 / ≤0.35)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-how-does-the-claude-side-user-prompt-submit-hook-advisor-brief-hooks-claude-u",
+      "inboxId": null,
+      "text": "Q2: How does the Claude-side user-prompt-submit hook advisor brief (hooks/claude/user-prompt-submit.ts, lib/skill-advisor-brief.ts) work, and does its documented CLI fallback path hold up when the MCP/daemon transport is unhealthy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-do-the-hook-s-shouldfireadvisor-gate-lib-prompt-policy-ts-and-the-mcp-tool-s-",
+      "inboxId": null,
+      "text": "Q3: Do the hook's shouldFireAdvisor gate (lib/prompt-policy.ts) and the MCP tool's threshold resolution stay provably in sync — two independent call paths converging on the same compat-contract thresholds — or is there drift?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-how-does-routing-registry-drift-guard-exercise-parity-against-sk-doc-s-hub-ro",
+      "inboxId": null,
+      "text": "Q4: How does routing-registry-drift-guard exercise parity against sk-doc's hub-router.json / mode-registry.json vocabulary, and does the advisor's vocabulary stay aligned with the hubs it routes to?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-what-prioritized-implementable-improvements-to-advisor-usefulness-confidence-",
+      "inboxId": null,
+      "text": "Q5: What prioritized, implementable improvements to advisor usefulness, confidence calibration, transport resilience, and routing integration follow from the evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q3: Are hook gating and MCP threshold resolution provably synchronized across environment and call-specific overrides?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: How does the Claude prompt-submit hook brief behave when MCP or daemon transport is unhealthy?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Which improvements have the highest correctness and resilience payoff?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: What exact normalization and reciprocal-rank constant does the shared RRF helper apply, and how do fused scores, confidence floors, ambiguity clusters, and correctness relate on the held-out scorer corpus?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Does the advisor vocabulary remain aligned with hub-router and mode-registry vocabulary?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: Prove hook gating and MCP threshold synchronization across environment and call-specific overrides.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Consolidate and rank improvements after the transport and threshold evidence is complete.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: Quantify RRF normalization, confidence-floor saturation, ambiguity clusters, and held-out correctness.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Trace hook brief behavior and CLI fallback under unhealthy transport.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 remains: rank the timing-reservation, end-to-end coverage, diagnostic taxonomy, output-contract reconciliation, and documentation-path fixes against calibration improvements from later iterations.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 remains: prove threshold and prompt-policy synchronization across environment and call-specific overrides. The Q2 trace shows threshold forwarding on the CLI path, but not full cross-path parity.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 remains: prioritize implementation changes, including an explicit cross-surface parity matrix for defaults, valid/invalid environment overrides, and call-specific overrides.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remains: quantify RRF normalization, confidence-floor saturation, ambiguity clusters, and held-out correctness.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The test inventory should be strengthened with one named end-to-end parity suite even though the targeted existing tests passed in this run.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the existing `runtime-parity.vitest.ts` should be renamed/fixed or absorbed into the new suite is an implementation decision; the research evidence supports either, provided the duplicate runtime label is removed.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 remains: rank this suite against transport-budget reservation, diagnostic taxonomy, output-contract reconciliation, vocabulary coverage, and calibration changes.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 remains: after baseline freshness is repaired, quantify exact RRF normalization, `0.82` floor frequency, ambiguity-cluster composition, uncertainty bands, and held-out correctness in one joined report.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The final numeric calibration proposal remains intentionally open until that report exists.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Floor frequency, ambiguity composition, uncertainty bands, and held-out correctness remain open.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The final numeric proposal remains open.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The joined evaluator should add calibration error or reliability bins; accuracy and floor frequency establish miscalibration risk but do not estimate probability calibration directly.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the shadow `0.80` floor candidate preserve the three gates when implemented in a separate, authorized change packet?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Why can result-level ambiguity remain true while the leading executor recommendation has no `ambiguousWith` attribution?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should an authoritative executor alias suppress fusion ambiguity, or should it expose the displaced fusion candidate in a final `ambiguousWith` cluster? Current comments imply suppression, but this needs an explicit contract.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The shadow `0.80` task-intent floor experiment and probability-calibration bins remain separate follow-up work.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How many frozen executor-delegation cases take the injection path versus the existing-candidate path?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Replace the obsolete Codex abstain example with a currently retired executor identity, if one remains part of the supported metadata contract.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Add one deliberately constructed existing-candidate fixture and determine whether a natural production prompt can reach it without a seeded projection.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Run the separate shadow `0.80` task-intent floor experiment with reliability bins in an authorized implementation packet.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: How does the advisor_recommend MCP path (advisor-server.ts, tools/index.ts) work end-to-end, and is its 5-lane RRF fusion confidence (derived / explicit / graph-causal / lexical / semantic-shadow lanes in lib/scorer/fusion.ts) well-calibrated, or does lane fusion saturate/mislead against the 0.05 ambiguity margin (lib/scorer/ambiguity.ts) and compat-contract thresholds (lib/compat/contract.ts) backing Gate 2 (≥0.8) and Gate 1 (≥0.70 / ≤0.35)?",
+    "Q2: How does the Claude-side user-prompt-submit hook advisor brief (hooks/claude/user-prompt-submit.ts, lib/skill-advisor-brief.ts) work, and does its documented CLI fallback path hold up when the MCP/daemon transport is unhealthy?",
+    "Q3: Do the hook's shouldFireAdvisor gate (lib/prompt-policy.ts) and the MCP tool's threshold resolution stay provably in sync — two independent call paths converging on the same compat-contract thresholds — or is there drift?",
+    "Q4: How does routing-registry-drift-guard exercise parity against sk-doc's hub-router.json / mode-registry.json vocabulary, and does the advisor's vocabulary stay aligned with the hubs it routes to?",
+    "Q5: What prioritized, implementable improvements to advisor usefulness, confidence calibration, transport resilience, and routing integration follow from the evidence?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-2-1-add-a-metadata-hub-advisor-discovery-battery-under-system-skill-advisor-mcp-serv",
+      "text": "Add a metadata-hub advisor-discovery battery under `system-skill-advisor/mcp_server/tests/` that enumerates registry-bearing hubs, reads curated public prompts per workflow mode, runs the real scorer, and requires the hub identity to meet the compatibility thresholds. For sk-doc, start with one uncontaminated representative prompt per 12 workflow modes plus hard negative neighbors. This closes the actual pre-hub failure boundary.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/vocabulary-agreement.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/hub-router.json`",
+        "`.opencode/skills/sk-doc/mode-registry.json`",
+        "`.opencode/skills/sk-doc/graph-metadata.json`"
+      ]
+    },
+    {
+      "id": "finding-2-2-extend-the-parent-hub-contract-with-an-explicit-pointer-to-those-discovery-fixtu",
+      "text": "Extend the parent-hub contract with an explicit pointer to those discovery fixtures, then make `parent-skill-check.cjs` fail when a metadata-routed mode has no representative fixture. Keep mode aliases in `mode-registry.json`; do not copy the complete alias set into `graph-metadata.json`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/vocabulary-agreement.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/hub-router.json`",
+        "`.opencode/skills/sk-doc/mode-registry.json`",
+        "`.opencode/skills/sk-doc/graph-metadata.json`"
+      ]
+    },
+    {
+      "id": "finding-2-3-rename-or-document-routing-registry-drift-guard-vitest-ts-as-the-system-deep-loo",
+      "text": "Rename or document `routing-registry-drift-guard.vitest.ts` as the system-deep-loop projection guard, or generalize it to iterate only hubs declaring an advisor-projection extension. This prevents a green test name from being read as repository-wide hub-vocabulary coverage.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/vocabulary-agreement.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/hub-router.json`",
+        "`.opencode/skills/sk-doc/mode-registry.json`",
+        "`.opencode/skills/sk-doc/graph-metadata.json`"
+      ]
+    },
+    {
+      "id": "finding-4-1-shouldfireadvisor-is-not-a-second-implementation-of-the-0-80-0-35-recommendation",
+      "text": "`shouldFireAdvisor` is not a second implementation of the 0.80/0.35 recommendation gate. It decides whether a prompt merits advisor work using prompt length, meaningful-token, work-intent, casual-acknowledgement, command, and explicit-marker rules. Those integer thresholds have their own `SPECKIT_ADVISOR_PROMPT_POLICY_*` overrides. Recommendation confidence and uncertainty are evaluated only after this eligibility stage. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts:46] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts:100]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5-35`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts:30-197`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-163,401-513`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-424,485-498`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tools/advisor-recommend.ts:12-35`",
+        "`.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts:99:`",
+        "Targeted Vitest command over: `tests/handlers/advisor-recommend.vitest.ts`, `tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`, `tests/handlers/advisor-recommend-unavailable.vitest.ts`, `tests/legacy/advisor-prompt-policy.vitest.ts`, `tests/compat/python-compat.vitest.ts`, `tests/compat/plugin-bridge.vitest.ts`, `tests/compat/plugin-bridge-smoke.vitest.ts`, `tests/compat/redirect-metadata.vitest.ts`, `tests/compat/shim.vitest.ts`, `tests/compat/daemon-probe.vitest.ts`, `tests/compat/README.md`"
+      ]
+    },
+    {
+      "id": "finding-4-4-environment-overrides-are-resolved-into-module-level-constants-so-they-are-synch",
+      "text": "Environment overrides are resolved into module-level constants, so they are synchronized for a normally started process but do not dynamically refresh if `process.env` changes after module import. Call-specific overrides remain dynamic and win through nullish precedence. This is a test-isolation and long-lived-process caveat, not evidence of current cross-path numeric drift. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:17] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts:30] [INFERENCE: module-level constant initialization plus per-call nullish override ordering]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5-35`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts:30-197`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-163,401-513`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-424,485-498`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tools/advisor-recommend.ts:12-35`",
+        "`.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts:99:`",
+        "Targeted Vitest command over: `tests/handlers/advisor-recommend.vitest.ts`, `tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`, `tests/handlers/advisor-recommend-unavailable.vitest.ts`, `tests/legacy/advisor-prompt-policy.vitest.ts`, `tests/compat/python-compat.vitest.ts`, `tests/compat/plugin-bridge.vitest.ts`, `tests/compat/plugin-bridge-smoke.vitest.ts`, `tests/compat/redirect-metadata.vitest.ts`, `tests/compat/shim.vitest.ts`, `tests/compat/daemon-probe.vitest.ts`, `tests/compat/README.md`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-claude-hook-does-not-carry-an-independent-confidence-uncertainty-implementat",
+      "text": "The Claude hook does not carry an independent confidence/uncertainty implementation; it delegates the prompt to `buildSkillAdvisorBrief`, whose shared resolver, subprocess forwarding, local post-filter, cache key, and renderer all receive the same `thresholdConfig`. This establishes code-level parity between hook-side recommendation acceptance and MCP-side call overrides, while leaving prompt eligibility intentionally separate. [SOURCE: .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts:99:] [SOURCE: .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-prompt-cache.vitest.ts:19:] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:401] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:481] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:506]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5-35`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts:30-197`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-163,401-513`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-424,485-498`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tools/advisor-recommend.ts:12-35`",
+        "`.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts:99:`",
+        "Targeted Vitest command over: `tests/handlers/advisor-recommend.vitest.ts`, `tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`, `tests/handlers/advisor-recommend-unavailable.vitest.ts`, `tests/legacy/advisor-prompt-policy.vitest.ts`, `tests/compat/python-compat.vitest.ts`, `tests/compat/plugin-bridge.vitest.ts`, `tests/compat/plugin-bridge-smoke.vitest.ts`, `tests/compat/redirect-metadata.vitest.ts`, `tests/compat/shim.vitest.ts`, `tests/compat/daemon-probe.vitest.ts`, `tests/compat/README.md`"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-recommendation-paths-do-share-one-default-environment-resolver-resolvedconfi",
+      "text": "The recommendation paths do share one default/environment resolver. `resolvedConfidenceThreshold` and `resolvedUncertaintyThreshold` own the 0.80/0.35 defaults and validate `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` / `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` within 0..1. The brief builder snapshots those resolved defaults and `resolveAdvisorThresholdConfig` gives call-specific values precedence; the MCP handler calls that same resolver for public effective thresholds and forwards the same call options into scoring. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:137] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:418]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5-35`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts:30-197`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-163,401-513`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-424,485-498`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tools/advisor-recommend.ts:12-35`",
+        "`.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts:99:`",
+        "Targeted Vitest command over: `tests/handlers/advisor-recommend.vitest.ts`, `tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`, `tests/handlers/advisor-recommend-unavailable.vitest.ts`, `tests/legacy/advisor-prompt-policy.vitest.ts`, `tests/compat/python-compat.vitest.ts`, `tests/compat/plugin-bridge.vitest.ts`, `tests/compat/plugin-bridge-smoke.vitest.ts`, `tests/compat/redirect-metadata.vitest.ts`, `tests/compat/shim.vitest.ts`, `tests/compat/daemon-probe.vitest.ts`, `tests/compat/README.md`"
+      ]
+    },
+    {
+      "id": "finding-5-4-assertions-must-reflect-the-real-capability-boundary-default-and-environment-row",
+      "text": "Assertions must reflect the real capability boundary. Default and environment rows can compare MCP `effectiveThresholds`, shared-brief inclusion/exclusion, Claude `additionalContext`, and CLI fallback arguments. Call-specific rows can compare MCP dispatch and direct shared-brief construction, but must not claim hook-entry override parity: `handleClaudeUserPromptSubmit` passes runtime, workspace, and timeout only, and exposes no threshold-config input. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-424] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:137-164] [SOURCE: .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:202-218]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5-35`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-180,395-535`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-435`",
+        "`.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:170-245`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/package.json`"
+      ]
+    },
+    {
+      "id": "finding-5-1-no-existing-suite-proves-threshold-policy-through-the-full-routing-surfaces-advi",
+      "text": "No existing suite proves threshold policy through the full routing surfaces. `advisor-recommend.vitest.ts` proves handler forwarding and output, `advisor-recommend-descriptor-parity.vitest.ts` proves schema preservation, hook suites inject already-built results, and the CLI envelope suite checks fallback transport. Those tests are useful unit/integration slices, but none applies one threshold case to MCP dispatch, shared brief filtering, Claude hook output, and CLI-fallback forwarding. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts:126-460] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend-descriptor-parity.vitest.ts:21-49] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:40-74] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts:1-220]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5-35`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-180,395-535`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-435`",
+        "`.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:170-245`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/package.json`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-current-runtime-parity-vitest-ts-is-not-the-missing-end-to-end-suite-it-exer",
+      "text": "The current `runtime-parity.vitest.ts` is not the missing end-to-end suite. It exercises the shared brief builder/renderer, declares `RUNTIMES = ['claude', 'opencode', 'opencode']`, and never crosses the MCP tool dispatcher or Claude hook entrypoint. Its “3-runtime” label therefore overstates both runtime diversity and surface coverage. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts:15-109]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5-35`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-180,395-535`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-435`",
+        "`.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:170-245`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/package.json`"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-implementable-suite-should-be-named-opencode-skills-system-skill-advisor-mcp",
+      "text": "The implementable suite should be named `.opencode/skills/system-skill-advisor/mcp_server/tests/integration/advisor-threshold-surface-parity.vitest.ts`, with `describe('advisor threshold surface parity')`. Its table should cover: unset environment -> `0.80/0.35`; valid environment -> configured values; invalid/non-numeric/out-of-range environment -> defaults; and call-specific overrides -> caller values. Each environment row must run after `vi.resetModules()` and fresh dynamic imports because the brief defaults snapshot environment values at module load. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:17-35] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-147]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5-35`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-180,395-535`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-435`",
+        "`.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:170-245`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/package.json`"
+      ]
+    },
+    {
+      "id": "finding-5-5-to-qualify-as-surface-parity-rather-than-another-handler-unit-test-the-mcp-asser",
+      "text": "To qualify as surface parity rather than another handler unit test, the MCP assertion should enter through `dispatchTool('advisor_recommend', input)`, and the hook assertion should enter through `handleClaudeUserPromptSubmit` with only lower-level scorer/subprocess/CLI transport seams controlled. A boundary fixture should include one recommendation immediately inside and one immediately outside the effective thresholds, then assert identical acceptance, rendered skill label, and resolved values wherever the surface publishes them. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts:19-24] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:40-48] [INFERENCE: cross-surface assertions required to close the observed inventory gap]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts:5-35`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:112-180,395-535`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:369-435`",
+        "`.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:170-245`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/runtime-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/settings-driven-invocation-parity.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/package.json`"
+      ]
+    },
+    {
+      "id": "finding-6-1-p0-reconcile-the-no-brief-output-contract-decide-whether-skipped-fail-open-cases",
+      "text": "**P0 — Reconcile the no-brief output contract.** Decide whether skipped/fail-open cases return `{}` or the governance fallback directive, then align implementation, tests, and reference text. This is first because the current hook suite has four known failures and the chosen contract determines the assertions for every later handoff test. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-003.md:36-42] [SOURCE: .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:228-245] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:143-178]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-p0-reserve-fallback-time-and-add-live-handoff-timing-coverage-give-the-primary-s",
+      "text": "**P0 — Reserve fallback time and add live handoff timing coverage.** Give the primary subprocess less than the whole hook budget, reserve a bounded CLI slice, and test primary-timeout-to-warm-daemon success plus total-budget exhaustion. This repairs a confirmed resilience defect: the primary currently receives the entire hook timeout while the fallback receives only the remainder, potentially 1 ms. [SOURCE: .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:202-218] [SOURCE: .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:152-164] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-003.md:22-26]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-p0-enablement-repair-calibration-evaluation-freshness-before-changing-scorer-pol",
+      "text": "**P0 enablement — Repair calibration/evaluation freshness before changing scorer policy.** Reconcile the current corpus with both committed baselines and make one report join held-out top-1, ambiguity accuracy, confidence-floor frequency, Brier score, and ECE. This is measurement repair, not a scorer change. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/bench/scorer-calibration-baseline.json:3-7] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/scorer-eval-baseline.json:3-34] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts:214-256]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-p1-add-advisor-threshold-surface-parity-vitest-ts-keep-the-two-layer-matrix-from",
+      "text": "**P1 — Add `advisor-threshold-surface-parity.vitest.ts`.** Keep the two-layer matrix from iteration 5: default/environment cases across MCP, shared brief, hook, and CLI; call-specific cases across MCP and the shared brief only. It is a strong preventive guard, but no numeric threshold drift was found, so it ranks behind current failures and the unguarded discovery boundary. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-004.md:16-30] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-005.md:16-24]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-p1-add-the-metadata-hub-advisor-discovery-battery-this-closes-the-real-pre-hub-c",
+      "text": "**P1 — Add the metadata-hub advisor-discovery battery.** This closes the real pre-hub correctness boundary: hub-internal vocabulary checks can stay green while the advisor fails to discover a metadata-routed hub. Use representative public prompts and hard negatives, not a full alias mirror. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-002.md:44-60]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-p1-p2-split-transport-diagnostics-and-correct-operator-documentation-emit-distin",
+      "text": "**P1/P2 — Split transport diagnostics and correct operator documentation.** Emit distinct causes for MCP-channel failure, warm-daemon absence, probe timeout, and CLI timeout, then document which are recoverable. This improves triage but does not restore routing by itself, so it follows the behavioral changes and guards. [SOURCE: .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:224-245] [SOURCE: .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:523-548] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-003.md:28-34]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-p2-gated-change-confidence-floors-ambiguity-margins-lane-weights-or-compatibilit",
+      "text": "**P2, gated — Change confidence floors, ambiguity margins, lane weights, or compatibility thresholds only after item 3.** Static evidence already shows policy quantization and correlated-evidence uncertainty, but parameter edits without a fresh joined report would be guesswork. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-001.md:49-65]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-result-ambiguous-result-recommendations-0-ambiguouswith-length-0-0-when-the-top-",
+      "text": "`result.ambiguous === ((result.recommendations[0]?.ambiguousWith?.length ?? 0) > 0)` when the top is visible;",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-6-authoritative-executor-resolution-has-an-explicit-expected-ambiguity-policy",
+      "text": "authoritative executor resolution has an explicit expected ambiguity policy.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-every-recommendation-s-passes-threshold-matches-its-final-confidence-and-uncerta",
+      "text": "every recommendation's `passes_threshold` matches its final confidence and uncertainty;",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-keep-the-override-late-then-run-one-explicit-finalizer-that-recalculates-passes-",
+      "text": "Keep the override late, then run one explicit finalizer that recalculates `passes_threshold`, removes stale `ambiguousWith`, reapplies ambiguity, and returns both the annotated list and boolean from one cluster result.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-move-the-executor-override-before-final-threshold-and-ambiguity-finalization-thi",
+      "text": "Move the executor override before final threshold and ambiguity finalization. This is structurally cleaner because confidence, uncertainty, ordering, and injection settle before derived fields are computed.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-no-recommendation-retains-an-ambiguouswith-skill-outside-the-final-passing-clust",
+      "text": "no recommendation retains an `ambiguousWith` skill outside the final passing cluster;",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-add-explicit-fixture-coverage-for-both-override-application-paths-with-branch-id",
+      "text": "Add explicit fixture coverage for both override application paths, with branch identity or provenance asserted rather than inferred only from top-1.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-continue-the-previously-ranked-transport-budget-diagnostic-vocabulary-and-thresh",
+      "text": "Continue the previously ranked transport-budget, diagnostic, vocabulary, and threshold-parity work.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-enforce-the-resolved-executor-ambiguity-contract-and-final-derived-field-coheren",
+      "text": "Enforce the resolved-executor ambiguity contract and final derived-field coherence in the same regression suite.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-keep-the-shadow-0-80-floor-and-probability-calibration-bins-behind-fresh-joined-",
+      "text": "Keep the shadow `0.80` floor and probability-calibration bins behind fresh joined evidence.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-repair-the-stale-codex-fixture-or-replace-it-with-a-genuinely-retired-executor-a",
+      "text": "Repair the stale Codex fixture or replace it with a genuinely retired executor alias so the targeted suite becomes green again.",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-1993980d7c1b",
+      "text": "Spec Memory trigger lookup was cancelled/unavailable. It supplied no research evidence; repository sources remained sufficient for the iteration focus.",
+      "contentHash": "1993980d7c1b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-91e2f77db68b",
+      "text": "Treating the public confidence as the RRF score was ruled out: the scorer computes it through a separate calibrated policy function.",
+      "contentHash": "91e2f77db68b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-134651632396",
+      "text": "The first parent checker invocation used a repo-relative path even though the checker resolves from `.opencode/`; it was an invocation error, not a product failure. Re-running with `skills/sk-doc` passed with zero warnings.",
+      "contentHash": "134651632396",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-df1a9f6cd18e",
+      "text": "Treating a green `routing-registry-drift-guard` result as sk-doc coverage was ruled out; its source path is hard-wired to system-deep-loop.",
+      "contentHash": "df1a9f6cd18e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-34e10ca0977d",
+      "text": "Treating exact graph-metadata alias coverage as routing recall was ruled out; the advisor uses multiple weighted fields and semantic/derived lanes, while the hub uses the richer alias vocabulary only after discovery.",
+      "contentHash": "34e10ca0977d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e7da199e7cc9",
+      "text": "Treating `shouldFireAdvisor` prompt eligibility as a duplicate or drifting copy of the confidence/uncertainty acceptance gate. The code separates these stages and their configuration domains.",
+      "contentHash": "e7da199e7cc9",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-46cc9d8ebba9",
+      "text": "A single matrix asserting call-specific threshold overrides through the Claude hook entrypoint. The hook does not expose that input, so such a test would encode a nonexistent contract rather than parity.",
+      "contentHash": "46cc9d8ebba9",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7a5b43e0170b",
+      "text": "Treating the existing runtime-parity file as end-to-end coverage; it does not cross the MCP dispatcher or Claude hook entrypoint.",
+      "contentHash": "7a5b43e0170b",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0.18,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "type": "source_diversity_guard",
+      "description": "Source diversity (0.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions.",
+      "count": 1,
+      "severity": "blocking"
+    },
+    {
+      "type": "evidence_depth_guard",
+      "description": "Evidence depth (1.00) is below the blocking threshold (1.5). STOP is blocked until question->finding->source chains are deeper.",
+      "count": 1,
+      "severity": "blocking"
+    },
+    {
+      "type": "unverified_claims",
+      "description": "3 claim(s) remain unverified",
+      "count": 3,
+      "severity": "blocking"
+    }
+  ],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 29,
+    "keyFindings": 30,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.81,
+    "coverageBySources": {
+      "code": 18,
+      "other": 16
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}
