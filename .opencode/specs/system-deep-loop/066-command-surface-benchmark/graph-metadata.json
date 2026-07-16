@@ -14,7 +14,8 @@
     "system-deep-loop/066-command-surface-benchmark/008-bounded-command-matrix",
     "system-deep-loop/066-command-surface-benchmark/010-scorecard-and-closeout",
     "system-deep-loop/066-command-surface-benchmark/001-create-benchmark-conformance-family",
-    "system-deep-loop/066-command-surface-benchmark/009-command-benchmark-command"
+    "system-deep-loop/066-command-surface-benchmark/009-command-benchmark-command",
+    "system-deep-loop/066-command-surface-benchmark/011-create-benchmark-completeness-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -120,19 +121,19 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (37 baseline, 38 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself.",
+    "causal_summary": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (36 baseline, 37 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself.",
     "created_at": "2026-07-14T20:25:28.626Z",
-    "last_save_at": "2026-07-15T04:48:24.733Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-15T17:39:53.248Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0703bcdb9d0d1520c23745eff48286319ee1f28358fff14f093a2d11f0345194",
+    "source_fingerprint": "sha256:014f47c987e59d270a9da2284973903f7133b477aeba8c8559dbccb1186ae615",
     "source_doc_hashes": {
-      "spec.md": "a68a012096ee1f9afe463cafd4cef74527b26f22d6a4761d2f517b3d895847bd"
+      "spec.md": "600302a8382e418f6a1c2583c11db34d658bffe332db71a58785ab307d01bef8"
     },
     "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_at": "2026-07-15T15:06:01.185Z"
   }
 }
