@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/014-agents/001-ai-council-verify",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/014-agents/001-ai-council-verify",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/014-agents",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ai-council agent naming",
+      "agents phase 001",
+      "ai-council filename verification",
+      "ai-council agent naming implementation plan",
+      "agents phase 001 implementation plan",
+      "ai-council agent naming tasks",
+      "agents phase 001 tasks",
+      "ai-council agent naming checklist",
+      "agents phase 001 checklist"
+    ],
+    "key_topics": [
+      "ai-council",
+      "agent",
+      "naming",
+      "agents",
+      "phase",
+      "filename",
+      "verification",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "surface"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Agent Naming Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Treating Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "path-level",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The agents surface needs an explicit candidate audit for ai-council across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
+    "created_at": "2026-07-14T15:18:39Z",
+    "last_save_at": "2026-07-16T04:53:35.817Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:d9041150e298c52879f38e39f929236dbdc58abcdb45197a905d3bbdb69dd343",
+    "source_doc_hashes": {
+      "spec.md": "cab265be7cc11e91c810b2fb1d5384205cfc30bbed72596283f88bf6a3e918aa",
+      "plan.md": "2651b361564788339de4a8433e48d5545896f9a967f8961d6d5b04dc83e40503",
+      "tasks.md": "40b0874579512dfe5d14ebb57ba2de7ae587549a7b6afa81971b71fde25f8dcc",
+      "checklist.md": "c5e48b12beb8433565cf2901c437ca2c46f21b2390091ac9b3c2cd55b75a6668"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

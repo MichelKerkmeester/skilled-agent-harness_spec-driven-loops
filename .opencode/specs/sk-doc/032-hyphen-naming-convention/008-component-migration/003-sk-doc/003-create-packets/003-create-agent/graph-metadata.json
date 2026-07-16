@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-agent resource naming",
+      "create-agent kebab-case phase",
+      "agent template rename",
+      "create-agent resource implementation plan",
+      "agent template rename plan",
+      "create-agent resource tasks",
+      "agent template rename tasks",
+      "create-agent resource checklist",
+      "agent template rename verification"
+    ],
+    "key_topics": [
+      "create-agent",
+      "resource",
+      "naming",
+      "kebab-case",
+      "phase",
+      "agent",
+      "template",
+      "rename",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "unchanged",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create-agent packet contains snake_case template and reference filenames used to scaffold agent documentation. This phase converts those non-exempt names to kebab-case and updates packet-local references without changing agent permission fields, SKILL.md, or other tool-mandated names.",
+    "created_at": "2026-07-14T15:22:35Z",
+    "last_save_at": "2026-07-16T04:53:50.718Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:b760259c680f1c00ae716f152debdc5adc1e1460d5dea227c40629b9498a0391",
+    "source_doc_hashes": {
+      "spec.md": "b10c94e5f76620e1b86ca96877c8e48a2da306753b29f39f45bc89a1e0a6a9f0",
+      "plan.md": "c3fdf774da831bbd00947d353dc064daf8e34cca9f6a7fd5bf09e2f76fc8d8ce",
+      "tasks.md": "164b1516a9c4daa81c330a100e21ca5e742654c456f5cc3cde557d2df1251445",
+      "checklist.md": "0f220f8663f6a9051ee696bc42fa60a4d2dffa264210fed42df49b27771f9b5f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

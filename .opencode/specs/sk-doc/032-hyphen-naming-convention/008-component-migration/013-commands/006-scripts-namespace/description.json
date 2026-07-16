@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
+  "description": "The scripts namespace is part of the commands filesystem surface, so it must be checked against the program's canonical kebab-case rule",
+  "keywords": [
+    "scripts",
+    "namespace",
+    "part",
+    "commands",
+    "filesystem",
+    "surface",
+    "must",
+    "checked",
+    "against",
+    "program",
+    "canonical",
+    "kebab-case",
+    "rule"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.674Z",
+  "specId": "006",
+  "folderSlug": "scripts-namespace",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "013-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

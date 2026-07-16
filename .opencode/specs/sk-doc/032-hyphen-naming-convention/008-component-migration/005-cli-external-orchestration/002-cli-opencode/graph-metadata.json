@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-opencode kebab-case migration",
+      "OpenCode reference asset naming",
+      "cli-external phase 002 naming",
+      "cli-opencode implementation plan",
+      "OpenCode asset reference rename plan",
+      "cli-external phase 002 plan",
+      "cli-opencode naming tasks",
+      "OpenCode path map tasks",
+      "cli-external phase 002 tasks",
+      "cli-opencode naming checklist",
+      "OpenCode path map verifier",
+      "cli-external phase 002 acceptance"
+    ],
+    "key_topics": [
+      "cli-opencode",
+      "kebab-case",
+      "migration",
+      "opencode",
+      "reference",
+      "asset",
+      "naming",
+      "cli-external",
+      "phase",
+      "implementation",
+      "plan",
+      "rename"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "active",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exactly",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-opencode component has snake_case reference and asset filenames, including permissions-matrix examples/schema and prompt assets, with active links from SKILL.md, README.md, and JSON path values. This phase renames those local filesystem names and closes their references while preserving tool contracts and delegated playbook ownership.",
+    "created_at": "2026-07-14T15:17:36Z",
+    "last_save_at": "2026-07-16T04:53:04.931Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:08267be245f16b41e67330f50cdeb87aecccadde798e08511d67c755e467f291",
+    "source_doc_hashes": {
+      "spec.md": "f343f0e1c02bb5e2a2462641921e8f690b3109a1f60ea8627d8b822e6ec65b28",
+      "plan.md": "9bba45bff7dc147aad4ad4e0011f14091062c7f3e643544309cdf524c204c2ac",
+      "tasks.md": "b0785da3104196110b3c194fdbfd1fe5f10da0fb9ee751998f16ce27c11b1ded",
+      "checklist.md": "16997c85d413453f89c9102ce4f62494aa3e501206645cc8f8b281891e7ebb1c",
+      "decision-record.md": "55d6e3a2c1913ac890c4b26bc96de16b10942b43b9ed5c6ff3d85394dfa706dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/014-agents/005-deep-alignment-verify",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/014-agents/005-deep-alignment-verify",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/014-agents",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment agent naming",
+      "agents phase 005",
+      "deep-alignment filename verification",
+      "deep-alignment agent naming implementation plan",
+      "agents phase 005 implementation plan",
+      "deep-alignment agent naming tasks",
+      "agents phase 005 tasks",
+      "deep-alignment agent naming checklist",
+      "agents phase 005 checklist"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "agent",
+      "naming",
+      "agents",
+      "phase",
+      "filename",
+      "verification",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "surface"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment Agent Naming Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Treating Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "path-level",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The agents surface needs an explicit candidate audit for deep-alignment across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
+    "created_at": "2026-07-14T15:18:42Z",
+    "last_save_at": "2026-07-16T04:53:39.156Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:7fe20ae80d7e451efdaf23ebf4445a51547b4361569bd2bac8733e838d1af196",
+    "source_doc_hashes": {
+      "spec.md": "f26248905473832a987a0d95e438efa809ec52353a98a938b7d0909aef55f5d8",
+      "plan.md": "d25677c8d9b9f18a9f9ccd9f1046350ffee727f64d4edaf2744c2f5e7df28a40",
+      "tasks.md": "b65cd7fe614ae433dc0505702b63741c2c77dc19c37862f1f08a67946c20ce4d",
+      "checklist.md": "cec2671d017a7665eaaf01194a357218818d34d361c4154bc73ce97d7458eb7d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

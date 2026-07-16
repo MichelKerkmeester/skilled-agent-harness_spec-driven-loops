@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook",
+  "description": "The advisor manual-testing tree uses the snakecase root manualtestingplaybook, nine snakecase category",
+  "keywords": [
+    "advisor",
+    "manual-testing",
+    "tree",
+    "snakecase",
+    "root",
+    "manualtestingplaybook",
+    "nine",
+    "category"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.637Z",
+  "specId": "006",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "009-system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc changelog verification",
+      "sk-doc version bump check",
+      "032 changelog verify phase",
+      "sk-doc changelog verification plan",
+      "sk-doc version bump verification",
+      "sk-doc changelog verification tasks",
+      "sk-doc version bump tasks",
+      "sk-doc changelog verification checklist"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "changelog",
+      "verification",
+      "version",
+      "bump",
+      "check",
+      "verify",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "component"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-doc/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-doc component migration needs a changelog entry that names the completed rename set and records the corresponding four-part version bump. This verification phase performs no filesystem renames; it checks the released changelog evidence against the sibling phase manifests and the current skill version contract.",
+    "created_at": "2026-07-14T15:17:28Z",
+    "last_save_at": "2026-07-16T04:53:28.153Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:f11cee429014234cc10ce9475797de0ac9283b620bae232bb5d97a33c3ab86c6",
+    "source_doc_hashes": {
+      "spec.md": "75506349e4703bd4febdda6f5f23c7edcca07cbf47e2918aa065184e73e54658",
+      "plan.md": "6fb1c119da71e8b3a862c66f3b97b796bdb29c922a1e3e5663b3e6546cdba0f6",
+      "tasks.md": "ae789ec72c29ccf0a46209262658ac957c0266236a802312feaf532ab53425ed",
+      "checklist.md": "621cc01b979e6b00ffe3ba852d51c40d72fc08e2023c30d8b4ccb38a22c883e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

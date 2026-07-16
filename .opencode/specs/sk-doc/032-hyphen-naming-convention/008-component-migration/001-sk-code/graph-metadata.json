@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code component migration",
+      "kebab-case sk-code surface",
+      "hyphenate sk-code resources",
+      "sk-code naming phases"
+    ],
+    "key_topics": [
+      "sk-code",
+      "component",
+      "migration",
+      "kebab-case",
+      "surface",
+      "hyphenate",
+      "resources",
+      "naming",
+      "phases",
+      "nested",
+      "family",
+      "rather"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/skills/sk-code/hub-router.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code surface is a nested family rather than one flat directory: a routing hub, shared references and assets, two workflow modes, two read-only surface packets, a root manual-testing playbook, and benchmark storage all participate in path resolution",
+    "created_at": "2026-07-14T15:16:54Z",
+    "last_save_at": "2026-07-16T04:52:55.402Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8268003e0747990bfa8f0eeb206a1f5eb8b41763db16755e4526cef14fee5272",
+    "source_doc_hashes": {
+      "spec.md": "b00236170f20d32d498dc0b2d8ed0170e38954122c6a38cb9e2402308ec19a25"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

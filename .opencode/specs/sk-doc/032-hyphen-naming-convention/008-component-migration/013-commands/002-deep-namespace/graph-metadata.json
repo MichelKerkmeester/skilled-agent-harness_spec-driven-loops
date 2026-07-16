@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep command namespace naming",
+      "kebab-case deep assets",
+      "deep command contract paths",
+      "deep namespace naming plan",
+      "deep asset rename plan",
+      "compiled contract path repair",
+      "deep namespace naming tasks",
+      "deep asset rename tasks",
+      "deep contract refresh",
+      "deep namespace naming checklist",
+      "deep asset rename verification",
+      "compiled contract verification"
+    ],
+    "key_topics": [
+      "deep",
+      "command",
+      "namespace",
+      "naming",
+      "kebab-case",
+      "assets",
+      "contract",
+      "paths",
+      "plan",
+      "asset",
+      "rename",
+      "compiled"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/deep/assets/compiled/README.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The maintained deep asset tree contains names such as `deepai-councilauto.yaml`, `deepresearchpresentation.txt`, and `deepai-council.body.md`",
+    "created_at": "2026-07-14T15:18:32Z",
+    "last_save_at": "2026-07-16T04:53:16.850Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:0c9438849a0e6186437073432012d058093061710273be9910fd25b10e292f44",
+    "source_doc_hashes": {
+      "spec.md": "7c2499ee2627780ff25f3753fc679d7639c308404d21faa29f045b6e063c8509",
+      "plan.md": "833da5b7bbd806607b0fa5fc336df67f6951a22cc077e7c3bda1e7e3ca854285",
+      "tasks.md": "19e1d37dbd32691bfc5db9c094d7f9904f5257b6222d33e74489c1aa0530c24d",
+      "checklist.md": "a97848eddee362c527b552916c8ed4ee2a2cdad7477305f2cc947f0abf43cdb1",
+      "decision-record.md": "2a87b515957c81c087f4ac4b09a95ec8bd622acc247b79d206794017dcdffec1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

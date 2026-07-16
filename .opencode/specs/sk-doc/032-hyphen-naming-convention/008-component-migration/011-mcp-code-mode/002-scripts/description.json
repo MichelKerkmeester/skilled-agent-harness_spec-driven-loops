@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts",
+  "description": "The mcp-code-mode scripts surface must be audited under the 032 filesystem exemption boundary.",
+  "keywords": [
+    "mcp-code-mode",
+    "scripts",
+    "surface",
+    "must",
+    "audited",
+    "filesystem",
+    "exemption",
+    "boundary"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.692Z",
+  "specId": "002",
+  "folderSlug": "scripts",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "011-mcp-code-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

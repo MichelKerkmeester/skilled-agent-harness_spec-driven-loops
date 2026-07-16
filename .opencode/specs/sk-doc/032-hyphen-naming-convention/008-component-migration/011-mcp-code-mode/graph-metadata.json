@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-code-mode component migration",
+      "032 mcp code mode naming",
+      "kebab-case mcp-code-mode"
+    ],
+    "key_topics": [
+      "mcp-code-mode",
+      "component",
+      "migration",
+      "mcp",
+      "code",
+      "mode",
+      "naming",
+      "kebab-case",
+      "surface",
+      "still",
+      "contains",
+      "directory"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-code-mode surface still contains snake_case directory, reference, asset, and manual-playbook names. This phase parent defines seven independent contracts that move permitted filesystem names to kebab-case while preserving Python names, tool-mandated names, generated history, and non-filesystem identifiers.",
+    "created_at": "2026-07-14T15:17:03Z",
+    "last_save_at": "2026-07-16T04:52:56.682Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:7787d95fb11d5f4221e61651e7dc9a4176cccd4eac599a45672d44989b80b59e",
+    "source_doc_hashes": {
+      "spec.md": "08b732ecf37b3459aac6c0814215746bfb96bbd6907aa9e3d6a6a11da34fc062"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

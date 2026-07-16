@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
+  "description": "The tracked benchmark tree mixes compliant run names with underscore-bearing storage labels: d4rlive/, fixtures/skcode/, livefinal/, livemodeb/,",
+  "keywords": [
+    "tracked",
+    "benchmark",
+    "tree",
+    "mixes",
+    "compliant",
+    "run",
+    "names",
+    "underscore-bearing",
+    "storage",
+    "labels",
+    "d4rlive",
+    "fixtures",
+    "skcode",
+    "livefinal",
+    "livemodeb"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.638Z",
+  "specId": "007",
+  "folderSlug": "benchmark",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "001-sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

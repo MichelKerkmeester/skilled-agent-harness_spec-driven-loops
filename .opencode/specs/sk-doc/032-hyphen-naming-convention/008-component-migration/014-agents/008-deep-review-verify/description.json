@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/014-agents/008-deep-review-verify",
+  "description": "The agents surface needs an explicit candidate audit for deep-review across the three runtime agent directories.",
+  "keywords": [
+    "agents",
+    "surface",
+    "needs",
+    "explicit",
+    "candidate",
+    "audit",
+    "deep-review",
+    "across",
+    "three",
+    "runtime",
+    "agent",
+    "directories"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.708Z",
+  "specId": "008",
+  "folderSlug": "deep-review-verify",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "014-agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

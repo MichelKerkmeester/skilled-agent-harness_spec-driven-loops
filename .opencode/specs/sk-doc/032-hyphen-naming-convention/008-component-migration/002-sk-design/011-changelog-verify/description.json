@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify",
+  "description": "The rename program needs an auditable sk-design release-note entry that identifies the completed subtree and records the resulting version bump, but",
+  "keywords": [
+    "rename",
+    "program",
+    "needs",
+    "auditable",
+    "sk-design",
+    "release-note",
+    "entry",
+    "identifies",
+    "completed",
+    "subtree",
+    "records",
+    "resulting",
+    "version",
+    "bump"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.615Z",
+  "specId": "011",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

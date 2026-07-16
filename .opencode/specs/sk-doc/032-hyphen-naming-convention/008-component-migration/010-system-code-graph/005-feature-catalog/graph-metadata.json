@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph feature catalog naming",
+      "code graph feature-catalog tree migration",
+      "feature_catalog to feature-catalog",
+      "code graph catalog link closure",
+      "system-code-graph feature catalog implementation plan",
+      "code graph feature-catalog path closure",
+      "catalog rename map",
+      "system-code-graph feature catalog tasks",
+      "code graph catalog rename tasks",
+      "feature-catalog link repair tasks",
+      "system-code-graph feature catalog checklist",
+      "code graph feature-catalog verification"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "feature",
+      "catalog",
+      "naming",
+      "code",
+      "graph",
+      "feature-catalog",
+      "tree",
+      "migration",
+      "link",
+      "closure",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Convert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dependency",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph feature catalog currently uses the snakecase root featurecatalog, eight snakecase category",
+    "created_at": "2026-07-14T15:18:16Z",
+    "last_save_at": "2026-07-16T04:53:33.377Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:4f28babdc8beff1a0f97dea51019507fd980721cc1b2aaddd89bb34a9a7062d0",
+    "source_doc_hashes": {
+      "spec.md": "d7084c6314b05a0948d36d311bfbb01802b896ddce08d83678e02da783cc80dc",
+      "plan.md": "6d07528d9f9f97076a443f06588e2decfcb84cc3c5b70e05c65e0fa682e28197",
+      "tasks.md": "5182f3f197484d89db0e10d39276ba121dd76ba22e5bc6f8aaea8b5583101bdd",
+      "checklist.md": "50008dc98fa30b2039a229bf3f3a201df392a03061185b0aa15c5e6f6466e2cf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

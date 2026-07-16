@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
+  "description": "The `.opencode/commands/memory/assets/` tree contains `learnpresentation.txt`, `managepresentation.txt`, `savepresentation.txt`, and",
+  "keywords": [
+    "opencode",
+    "commands",
+    "memory",
+    "assets",
+    "tree",
+    "contains",
+    "learnpresentation",
+    "txt",
+    "managepresentation",
+    "savepresentation"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.678Z",
+  "specId": "005",
+  "folderSlug": "memory-namespace",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "013-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

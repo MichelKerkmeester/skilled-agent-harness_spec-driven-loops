@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/010-whole-repo-gate",
+  "description": "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and",
+  "keywords": [
+    "migration",
+    "needs",
+    "one",
+    "evidence-based",
+    "end-state",
+    "gate",
+    "proves",
+    "scope-aware",
+    "filesystem",
+    "naming",
+    "rule",
+    "reference",
+    "closure",
+    "git",
+    "rename",
+    "history"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.565Z",
+  "specId": "010",
+  "folderSlug": "whole-repo-gate",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

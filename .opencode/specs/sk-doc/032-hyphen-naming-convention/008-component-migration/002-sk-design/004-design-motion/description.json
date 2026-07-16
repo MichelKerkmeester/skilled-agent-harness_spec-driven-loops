@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion",
+  "description": "The design-motion mode uses underscore-bearing asset, procedure, and reference names that are cited by its routing contract and operational guidance.",
+  "keywords": [
+    "design-motion",
+    "mode",
+    "underscore-bearing",
+    "asset",
+    "procedure",
+    "reference",
+    "names",
+    "cited",
+    "routing",
+    "contract",
+    "operational",
+    "guidance"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.607Z",
+  "specId": "004",
+  "folderSlug": "design-motion",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

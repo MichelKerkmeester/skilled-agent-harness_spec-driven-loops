@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-gate naming phase",
+      "sk-design skill gate phase",
+      "032 skill-gate",
+      "skill-gate implementation plan",
+      "sk-design skill gate plan",
+      "032 skill-gate tasks",
+      "skill-gate tasks",
+      "sk-design skill gate execution",
+      "032 skill-gate checklist",
+      "skill-gate verification",
+      "sk-design skill gate checklist",
+      "032 skill-gate gate"
+    ],
+    "key_topics": [
+      "skill-gate",
+      "naming",
+      "phase",
+      "sk-design",
+      "skill",
+      "gate",
+      "implementation",
+      "plan",
+      "tasks",
+      "execution",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Sibling",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "pinned",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sweep Markdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sibling phases need one blocking rollup gate that proves their evidence is complete and that no in-scope snake_case filesystem name or stale path remains in sk-design.",
+    "created_at": "2026-07-14T15:17:23Z",
+    "last_save_at": "2026-07-16T04:53:11.138Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:2ed44283706786e1254e36a8b690a0b1312cb9b416f8a5fec306301306638743",
+    "source_doc_hashes": {
+      "spec.md": "e6c02bfbc6c493b7245246b213315cfafb4dc80a3eb8d1b37069c7f3dc4a5719",
+      "plan.md": "f61b6065220a8fca03ecc41a3dfec74f16246b08eeb33dc3ec2dddacc4be6c7f",
+      "tasks.md": "760544242c81df8050f7610ae9fd61bd81abe89f632125cff1dd288562ec7ec6",
+      "checklist.md": "868a032576c7ab32de05c826f5b764ce8248675651ed8bca27c1dddb70f27c08"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

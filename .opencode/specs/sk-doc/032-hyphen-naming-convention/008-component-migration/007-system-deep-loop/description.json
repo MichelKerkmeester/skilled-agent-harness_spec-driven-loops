@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "description": "The system-deep-loop surface contains snake_case directories and files across runtime, five workflow packets, the root manual-testing playbook, and",
+  "keywords": [
+    "system-deep-loop",
+    "surface",
+    "contains",
+    "directories",
+    "files",
+    "across",
+    "runtime",
+    "five",
+    "workflow",
+    "packets",
+    "root",
+    "manual-testing",
+    "playbook"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.586Z",
+  "specId": "007",
+  "folderSlug": "system-deep-loop",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

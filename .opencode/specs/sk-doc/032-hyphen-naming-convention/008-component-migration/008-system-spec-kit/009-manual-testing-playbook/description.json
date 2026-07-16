@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
+  "description": "The system-spec-kit manual_testing_playbook tree contains 440 underscore-bearing basenames: the root, 18 category directories, and 421 scenario or",
+  "keywords": [
+    "system-spec-kit",
+    "tree",
+    "contains",
+    "underscore-bearing",
+    "basenames",
+    "root",
+    "category",
+    "directories",
+    "scenario"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.722Z",
+  "specId": "009",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "root and OpenCode infrastructure strays",
+      "hyphen naming root infrastructure closure",
+      "phase 007 root infra",
+      "root infrastructure closure implementation plan",
+      "OpenCode infrastructure naming plan",
+      "phase 007 child 001 plan",
+      "root infrastructure closure tasks",
+      "OpenCode infrastructure naming tasks",
+      "phase 007 child 001 tasks",
+      "root infrastructure closure checklist",
+      "OpenCode infrastructure naming checklist",
+      "phase 007 child 001 verifier"
+    ],
+    "key_topics": [
+      "root",
+      "opencode",
+      "infrastructure",
+      "strays",
+      "hyphen",
+      "naming",
+      "closure",
+      "phase",
+      "infra",
+      "implementation",
+      "plan",
+      "child"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
+      ".opencode/install_guides/install_scripts/_utils.sh",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_feature_catalog_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_utils.sh",
+        "kind": "script",
+        "path": ".opencode/install_guides/install_scripts/_utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Infrastructure Strays",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Root-level and `.opencode` infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed filesystem-name contract before downstream component work consumes them.",
+    "created_at": "2026-07-14T15:16:51Z",
+    "last_save_at": "2026-07-16T04:52:59.943Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:278553a3120052a698de3c149e193dcdd14a3195ebaf4862fe41ae54550f5d63",
+    "source_doc_hashes": {
+      "spec.md": "600dbde6d7383e5443f7e27b97678bf1920ddcd9cee9be0270c4b9f7ec06a84c",
+      "plan.md": "a653fae193e0a484df3c7dda9dc5158adb49a3b0de882df2b6a3c7e9d4c98cf8",
+      "tasks.md": "00189f372c0804cd4a027a00f9acefa601b6772260906b9ce327171774056432",
+      "checklist.md": "c636c2f61e7042d59b285aa0e281453e6c284317960e329c312bb63f4137dd5a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

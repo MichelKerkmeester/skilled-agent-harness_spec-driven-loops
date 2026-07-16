@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts",
+  "description": "The scripts tree is mostly already compliant, but its regression dataset is named",
+  "keywords": [
+    "scripts",
+    "tree",
+    "mostly",
+    "already",
+    "compliant",
+    "regression",
+    "dataset",
+    "named"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.629Z",
+  "specId": "002",
+  "folderSlug": "scripts",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "009-system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

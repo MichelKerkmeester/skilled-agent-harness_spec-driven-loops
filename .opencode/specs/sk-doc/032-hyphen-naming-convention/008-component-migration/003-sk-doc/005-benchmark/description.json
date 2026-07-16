@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
+  "description": "The root sk-doc benchmark directory is assigned a naming phase for fixtures, profiles, and storage-guide artifacts, but the pinned surface currently",
+  "keywords": [
+    "root",
+    "sk-doc",
+    "benchmark",
+    "directory",
+    "assigned",
+    "naming",
+    "phase",
+    "fixtures",
+    "profiles",
+    "storage-guide",
+    "artifacts",
+    "pinned",
+    "surface",
+    "currently"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.691Z",
+  "specId": "005",
+  "folderSlug": "benchmark",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hoisted shared script closures",
+      "shared script naming closure",
+      "phase 007 shared scripts",
+      "shared script closure implementation plan",
+      "hoisted script naming plan",
+      "phase 007 child 003 plan",
+      "shared script closure tasks",
+      "hoisted script naming tasks",
+      "phase 007 child 003 tasks",
+      "shared script closure checklist",
+      "hoisted script verifier",
+      "phase 007 child 003 checklist"
+    ],
+    "key_topics": [
+      "hoisted",
+      "shared",
+      "script",
+      "closures",
+      "naming",
+      "closure",
+      "phase",
+      "scripts",
+      "implementation",
+      "plan",
+      "child",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-doc/shared/scripts/skill_contract.cjs",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "skill_contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/skill_contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hoisted Shared Script Closures",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preserve Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "child",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than being hidden inside one component subtree.",
+    "created_at": "2026-07-14T15:16:52Z",
+    "last_save_at": "2026-07-16T04:53:00.925Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:dbbcae9477c1b304d75631f8c9a837907b23b8e5cb7f1df93e8f2316d72a56b8",
+    "source_doc_hashes": {
+      "spec.md": "478fe7723ef1abce1d19cbf62c7dbd6fa6aa7c617add671a69c3787bdf66570e",
+      "plan.md": "7cedea61904307446a3ebadb9c72317ad5d3df76bcc960523e3d93dd1d037232",
+      "tasks.md": "83b62e92f4c6e8ef9835bc6836c73d9619fe6b56132de7b4d9e16dcd83317ebe",
+      "checklist.md": "171129fb8abe6591c06aca9b326eae6c09ec320eebadafca16f1b84dcf344a19"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

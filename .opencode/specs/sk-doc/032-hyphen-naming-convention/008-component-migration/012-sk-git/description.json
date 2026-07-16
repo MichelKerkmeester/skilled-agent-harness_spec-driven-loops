@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "description": "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog",
+  "keywords": [
+    "sk-git",
+    "surface",
+    "needs",
+    "scoped",
+    "kebab-case",
+    "migration",
+    "plan",
+    "covers",
+    "references",
+    "assets",
+    "manual",
+    "playbook",
+    "benchmark",
+    "artifacts",
+    "changelog"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.587Z",
+  "specId": "012",
+  "folderSlug": "sk-git",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

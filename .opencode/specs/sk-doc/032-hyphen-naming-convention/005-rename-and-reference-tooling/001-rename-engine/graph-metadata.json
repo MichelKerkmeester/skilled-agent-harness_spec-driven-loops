@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "semantic rename engine",
+      "dependency-closure rename batching",
+      "dry-run git-mv engine",
+      "rename engine rollback",
+      "semantic rename engine implementation plan",
+      "dependency-closure rename plan",
+      "git-mv dry-run rollback plan",
+      "semantic rename engine tasks",
+      "dependency-closure rename tasks",
+      "git-mv rollback tasks",
+      "semantic rename engine checklist",
+      "dependency-closure rename verifier"
+    ],
+    "key_topics": [
+      "semantic",
+      "rename",
+      "engine",
+      "dependency-closure",
+      "batching",
+      "dry-run",
+      "git-mv",
+      "rollback",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Rename Engine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "symlink",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The migration needs a deterministic git-mv engine driven by an explicit semantic source-to-target map. It must batch by dependency closure, skip every policy exemption, abort safely on collisions, remain idempotent, and support dry-run and rollback without performing the migration during authoring.",
+    "created_at": "2026-07-14T15:16:48Z",
+    "last_save_at": "2026-07-16T04:52:59.221Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:d6d0ea1bfb79fe83bd1d645d415920af019dcb389ab413468fe1191486c27b35",
+    "source_doc_hashes": {
+      "spec.md": "7d83a93f49eb4bc9052a3ea9be34d6978841aa95860395f0964f1566cfeda3f9",
+      "plan.md": "ad8b73f9b090e0b03cc6493b19c1904f72742384d8a13557809a04dfb3be469e",
+      "tasks.md": "c227cdd11fa4888f70f1338a7d3e6fd73aa588d467fca0a5f4da2cf5f800ba38",
+      "checklist.md": "07761bedcc687e49a21c29ed5b0d553c4242591314cfc9e4b1968bf3fd16fed9",
+      "decision-record.md": "9fd442b0f4dda52b512e6d11ddfcdac90e1b522fb631ae8593b858d594b936ee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

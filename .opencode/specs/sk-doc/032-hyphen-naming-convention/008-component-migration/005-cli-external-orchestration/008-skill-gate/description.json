@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate",
+  "description": "This read-only rollup gate aggregates phases 001–007 and proves that the complete cli-external-orchestration naming surface is kebab-clean within the",
+  "keywords": [
+    "read-only",
+    "rollup",
+    "gate",
+    "aggregates",
+    "phases",
+    "proves",
+    "complete",
+    "cli-external-orchestration",
+    "naming",
+    "surface",
+    "kebab-clean",
+    "within"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.621Z",
+  "specId": "008",
+  "folderSlug": "skill-gate",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "005-cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

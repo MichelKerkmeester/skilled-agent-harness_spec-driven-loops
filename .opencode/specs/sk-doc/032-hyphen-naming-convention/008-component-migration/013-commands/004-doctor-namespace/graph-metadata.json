@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor command namespace naming",
+      "kebab-case doctor assets",
+      "doctor route manifest paths",
+      "doctor namespace naming plan",
+      "doctor asset rename plan",
+      "doctor routes path repair",
+      "doctor namespace naming tasks",
+      "doctor asset rename tasks",
+      "doctor route repair",
+      "doctor namespace naming checklist",
+      "doctor asset rename verification",
+      "doctor route verification"
+    ],
+    "key_topics": [
+      "doctor",
+      "command",
+      "namespace",
+      "naming",
+      "kebab-case",
+      "assets",
+      "route",
+      "manifest",
+      "paths",
+      "plan",
+      "asset",
+      "rename"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/commands/doctor/scripts/audit_descriptions.py",
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "snake_case",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor asset tree contains route targets such as `doctormcpdebug.yaml`, `doctormcpinstall.yaml`, `doctorskillgraphfreshness.yaml`, and `doctorupdatepresentation.txt`",
+    "created_at": "2026-07-14T15:18:33Z",
+    "last_save_at": "2026-07-16T04:53:17.195Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:221f696babd5665e9479ab5ad2b162e1900eca98890bcdd1c8254e1c57acd49a",
+    "source_doc_hashes": {
+      "spec.md": "598a266b82609ed4df61f00785a2dc99d9f90cae05129e330a27b22107e28d5f",
+      "plan.md": "2b9124225e4b3d5c19f7e6fe600721b6418c6361c4a5be17e027c8f76058c859",
+      "tasks.md": "8408ca1d731a28982215f6a99bb0e0c629be931006d794d3049a46ca41018743",
+      "checklist.md": "921a48c442f9f5c821bec8cb3c5e669a9400e63ea926e973a6783b7b5baeeecb",
+      "decision-record.md": "2a7953bd374c1cfb3f5cc888c1e284d09c825b0a34648a914e9682cb92ceb3ae"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

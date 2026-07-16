@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research kebab-case migration",
+      "deep research filesystem names",
+      "research packet path repair",
+      "deep-research snake_case resources",
+      "deep-research implementation plan",
+      "deep research kebab-case rename plan",
+      "research packet reference closure",
+      "deep-research tasks",
+      "deep research kebab-case naming tasks",
+      "research packet path repair tasks",
+      "deep-research checklist",
+      "deep research naming verification"
+    ],
+    "key_topics": [
+      "deep-research",
+      "kebab-case",
+      "migration",
+      "deep",
+      "research",
+      "filesystem",
+      "names",
+      "packet",
+      "path",
+      "repair",
+      "resources",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research packet contains 13 underscore-bearing directory families and 103 underscore-bearing files across assets, catalogs, playbooks, behavior benchmarks, references, and state artifacts. This phase renames those in-scope paths to kebab-case and repairs their consumers while preserving research state schemas, Python exemptions, and the SKILL.md contract.",
+    "created_at": "2026-07-14T15:17:49Z",
+    "last_save_at": "2026-07-16T04:53:13.130Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:ea8c358173d1c57305a3bada6703e03cb2b2559dae76683f54729ee4681600ac",
+    "source_doc_hashes": {
+      "spec.md": "04ae47daf2186c1d0c7d83e897b95e78043d5cc14e71aa3c078e7de0150ae634",
+      "plan.md": "2051176fa5e50ec16399efde37dfc7afac86c3c9ad5917a056bd57284c1a67fb",
+      "tasks.md": "ac645381bbc64320cbb7bf71ebc8cc02cfa41febb3018df55542269e73a68820",
+      "checklist.md": "d2edea35998eee2852c5448da8eec5892eacf16665437e509e60f250f2bef05b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

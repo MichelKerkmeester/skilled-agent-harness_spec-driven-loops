@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
+  "description": "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully",
+  "keywords": [
+    "superseded",
+    "concurrent",
+    "work",
+    "already",
+    "executed",
+    "sk-git",
+    "reference",
+    "rename",
+    "set",
+    "committed",
+    "skilled",
+    "live",
+    "surface",
+    "fully"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.679Z",
+  "specId": "001",
+  "folderSlug": "references",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "012-sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up",
+  "description": "The mcp-click-up component contains snake_case catalog roots, catalog category directories, manual-testing categories, index files, reference files,",
+  "keywords": [
+    "mcp-click-up",
+    "component",
+    "contains",
+    "catalog",
+    "roots",
+    "category",
+    "directories",
+    "manual-testing",
+    "categories",
+    "index",
+    "files",
+    "reference"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.655Z",
+  "specId": "003",
+  "folderSlug": "mcp-click-up",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "006-mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate",
+  "description": "The sk-git component needs a blocking rollup gate that aggregates the five sibling phase contracts and proves its complete tracked filesystem surface",
+  "keywords": [
+    "sk-git",
+    "component",
+    "needs",
+    "blocking",
+    "rollup",
+    "gate",
+    "aggregates",
+    "five",
+    "sibling",
+    "phase",
+    "contracts",
+    "proves",
+    "complete",
+    "tracked",
+    "filesystem",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.682Z",
+  "specId": "006",
+  "folderSlug": "skill-gate",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "012-sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

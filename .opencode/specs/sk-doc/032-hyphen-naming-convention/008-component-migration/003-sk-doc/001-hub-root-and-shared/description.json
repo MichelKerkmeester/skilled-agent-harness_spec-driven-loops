@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared",
+  "description": "The sk-doc hub's shared assets, references, and one CommonJS contract file use snake_case filesystem names.",
+  "keywords": [
+    "sk-doc",
+    "hub",
+    "shared",
+    "assets",
+    "references",
+    "one",
+    "commonjs",
+    "contract",
+    "file",
+    "filesystem",
+    "names"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.688Z",
+  "specId": "001",
+  "folderSlug": "hub-root-and-shared",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/011-integrate-and-closeout",
+  "description": "The migration candidate may have passed the whole-repo gate against an earlier base while the integration target continues to move.",
+  "keywords": [
+    "migration",
+    "candidate",
+    "passed",
+    "whole-repo",
+    "gate",
+    "against",
+    "earlier",
+    "base",
+    "while",
+    "integration",
+    "target",
+    "continues",
+    "move"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.568Z",
+  "specId": "011",
+  "folderSlug": "integrate-and-closeout",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

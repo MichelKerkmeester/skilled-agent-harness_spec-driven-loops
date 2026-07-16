@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/002-root-name-consumer-migration",
+  "description": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real",
+  "keywords": [
+    "catalog",
+    "playbook",
+    "root",
+    "index",
+    "names",
+    "consumed",
+    "network",
+    "runtime",
+    "paths",
+    "just",
+    "classifier",
+    "symlink",
+    "plus",
+    "real"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.562Z",
+  "specId": "002",
+  "folderSlug": "root-name-consumer-migration",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

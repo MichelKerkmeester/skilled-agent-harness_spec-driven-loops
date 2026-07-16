@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality",
+  "description": "The code-quality mode still stores its reusable checklist under assets/codequalitychecklist/, its playbook under manualtestingplaybook/qualitygate/,",
+  "keywords": [
+    "code-quality",
+    "mode",
+    "still",
+    "stores",
+    "reusable",
+    "checklist",
+    "assets",
+    "codequalitychecklist",
+    "playbook",
+    "manualtestingplaybook",
+    "qualitygate"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.645Z",
+  "specId": "003",
+  "folderSlug": "code-quality",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "001-sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

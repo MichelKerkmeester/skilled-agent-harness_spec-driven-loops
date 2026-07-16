@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "description": "The sk-code surface is a nested family rather than one flat directory: a routing hub, shared references and assets, two workflow modes, two read-only",
+  "keywords": [
+    "sk-code",
+    "surface",
+    "nested",
+    "family",
+    "rather",
+    "one",
+    "flat",
+    "directory",
+    "routing",
+    "hub",
+    "shared",
+    "references",
+    "assets",
+    "two",
+    "workflow",
+    "modes",
+    "read-only"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.587Z",
+  "specId": "001",
+  "folderSlug": "sk-code",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

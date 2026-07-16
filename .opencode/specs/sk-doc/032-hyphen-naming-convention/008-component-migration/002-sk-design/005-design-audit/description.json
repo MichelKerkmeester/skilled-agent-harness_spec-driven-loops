@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit",
+  "description": "The design-audit mode has a broad underscore-bearing fixture and evidence surface, including AI-fingerprint fixture directories, registry files, and",
+  "keywords": [
+    "design-audit",
+    "mode",
+    "broad",
+    "underscore-bearing",
+    "fixture",
+    "evidence",
+    "surface",
+    "including",
+    "ai-fingerprint",
+    "directories",
+    "registry",
+    "files"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.608Z",
+  "specId": "005",
+  "folderSlug": "design-audit",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control",
+  "description": "The create-quality-control packet contains snake_case transformation, validation, and workflow reference filenames.",
+  "keywords": [
+    "create-quality-control",
+    "packet",
+    "contains",
+    "transformation",
+    "validation",
+    "workflow",
+    "reference",
+    "filenames"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.732Z",
+  "specId": "011",
+  "folderSlug": "create-quality-control",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc",
+    "003-create-packets"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

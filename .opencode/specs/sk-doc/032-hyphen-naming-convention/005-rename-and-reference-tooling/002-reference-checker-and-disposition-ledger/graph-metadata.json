@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "whole-repo reference checker",
+      "rename disposition ledger",
+      "dynamic require source glob audit",
+      "reference checker completeness",
+      "reference checker implementation plan",
+      "disposition ledger schema plan",
+      "dynamic reference completeness plan",
+      "reference checker tasks",
+      "disposition ledger tasks",
+      "dynamic reference audit tasks",
+      "reference checker checklist",
+      "disposition ledger verifier"
+    ],
+    "key_topics": [
+      "whole-repo",
+      "reference",
+      "checker",
+      "rename",
+      "disposition",
+      "ledger",
+      "dynamic",
+      "require",
+      "source",
+      "glob",
+      "audit",
+      "completeness"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Checker",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Disposition Ledger",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Manifest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "location",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The migration needs a whole-repository checker that follows every mapped path through code, docs, configs, registries, and symlinks, while recording a disposition for every rename and dynamic require, source, or glob site.",
+    "created_at": "2026-07-14T15:16:48Z",
+    "last_save_at": "2026-07-16T04:52:58.886Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:913c2fb374838e6d5d3c44246cbd12c3afc427e6808bda3e21d5bfe6bba3ef1e",
+    "source_doc_hashes": {
+      "spec.md": "9756542b9b0e825ee828deff96b16c8eee305040d7908f60276371a95919f08f",
+      "plan.md": "d91bc3c5709b01996b99bc4dfe5cfcb5dd798443be2a9f8afbb27bb2f39d6382",
+      "tasks.md": "63a4179007e5dfb7eaa8408abbf7504eec06898003df6a4cadc744909f3c696e",
+      "checklist.md": "a2d34d764a0d460de63568b48fb2d4bb99c65060973da01f6dbf8de0a84da152",
+      "decision-record.md": "0b744b3e260038dad8543de2cc882f4519c3ddeb996091f8165e1781c6e08396"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

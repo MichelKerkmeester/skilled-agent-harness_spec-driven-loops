@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
+  "description": "The sk-doc scripts tree contains snake_case markdown fixture filenames and Python script names that must be treated differently.",
+  "keywords": [
+    "sk-doc",
+    "scripts",
+    "tree",
+    "contains",
+    "markdown",
+    "fixture",
+    "filenames",
+    "python",
+    "script",
+    "names",
+    "must",
+    "treated",
+    "differently"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.686Z",
+  "specId": "002",
+  "folderSlug": "scripts",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "description": "Phase parent for the kebab-case migration of the cli-external-orchestration hub, its three CLI workflow components, manual-testing-playbook trees,",
+  "keywords": [
+    "phase",
+    "parent",
+    "kebab-case",
+    "migration",
+    "cli-external-orchestration",
+    "hub",
+    "three",
+    "cli",
+    "workflow",
+    "components",
+    "manual-testing-playbook",
+    "trees"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.585Z",
+  "specId": "005",
+  "folderSlug": "cli-external-orchestration",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

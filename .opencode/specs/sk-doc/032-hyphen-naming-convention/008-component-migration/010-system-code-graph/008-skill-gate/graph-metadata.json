@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph subtree rollup gate",
+      "system-code-graph skill gate",
+      "032 system-code-graph phase 008",
+      "system-code-graph subtree gate plan",
+      "system-code-graph rollup verification",
+      "code graph whole-surface naming gate",
+      "system-code-graph rollup gate tasks",
+      "system-code-graph whole-surface verification tasks",
+      "code graph naming gate tasks",
+      "system-code-graph rollup checklist",
+      "system-code-graph whole surface gate",
+      "code graph naming verification"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "subtree",
+      "rollup",
+      "gate",
+      "skill",
+      "phase",
+      "plan",
+      "verification",
+      "code",
+      "graph",
+      "whole-surface",
+      "naming"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/checklist.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts/checklist.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references/checklist.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime/checklist.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog/checklist.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook/checklist.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify/checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Subtree Rollup Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Markdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "delegated",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exemption",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 032 exemption boundary without performing new migration work.",
+    "created_at": "2026-07-14T15:18:18Z",
+    "last_save_at": "2026-07-16T04:53:33.062Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:2d47b22833193e62af5e1562189b7fdccc51e7c9f8d886272f866058e7c63647",
+    "source_doc_hashes": {
+      "spec.md": "c5bfdbb72554bcb2bfb9b40004ba8dce8231038f49540a033f71a52ed4d77b25",
+      "plan.md": "66b268d96b542b30a6b14a4a14362dda1cefecc3ea2b1c735ca3a96c7d4d42db",
+      "tasks.md": "976a1c818b475bf8d5d67f8aeebc7ebb7b3b679867948dfe30dab46d3b68e353",
+      "checklist.md": "8511e90db349c7c908e70d0c636cb06d1c0eed788df7f07da794fa1a070d591a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

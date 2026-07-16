@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
+  "description": "The cli-claude-code component has underscore-separated reference and prompt-asset filenames with active links from its skill and README.",
+  "keywords": [
+    "cli-claude-code",
+    "component",
+    "underscore-separated",
+    "reference",
+    "prompt-asset",
+    "filenames",
+    "active",
+    "links",
+    "skill",
+    "readme"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.625Z",
+  "specId": "003",
+  "folderSlug": "cli-claude-code",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "005-cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

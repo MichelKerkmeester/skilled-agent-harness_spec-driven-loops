@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-skill symlink closure",
+      "atomic symlink rename contract",
+      "hyphen naming symlink phase",
+      "cross-skill symlink implementation plan",
+      "atomic symlink closure plan",
+      "phase 007 child 002 plan",
+      "cross-skill symlink closure tasks",
+      "atomic symlink tasks",
+      "phase 007 child 002 tasks",
+      "cross-skill symlink checklist",
+      "atomic symlink verifier",
+      "phase 007 child 002 checklist"
+    ],
+    "key_topics": [
+      "cross-skill",
+      "symlink",
+      "closure",
+      "atomic",
+      "rename",
+      "contract",
+      "hyphen",
+      "naming",
+      "phase",
+      "implementation",
+      "plan",
+      "child"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/install_guides/install_scripts/install-spec-kit-memory.sh",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "install-spec-kit-memory.sh",
+        "kind": "script",
+        "path": ".opencode/install_guides/install_scripts/install-spec-kit-memory.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "workflow_debug.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Symlink Closure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Symlink targets and link-nodes cross skill boundaries, so a target name change is safe only when every pointer, relative target string, and executable target mode moves as one dependency-closed operation.",
+    "created_at": "2026-07-14T15:16:51Z",
+    "last_save_at": "2026-07-16T04:53:00.604Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:65f056a5d2970906a32ad6c45448020ad0d94f6c2842756ae579bf0a2eaff347",
+    "source_doc_hashes": {
+      "spec.md": "d17bb649de7ad20ab44ac3032d9763de6a7e00887e59b0b1244f381209e17c71",
+      "plan.md": "4b699fb0a0f322cdf235a35592c31130aea905e00ee86dae6aad85e9e121bb1c",
+      "tasks.md": "10aebbb5fa1ee48d64b188422a3385a6b5de9153d14f374ffc6c22c12eafebfa",
+      "checklist.md": "ebde497a4bb9f4a380cb0f3b125548f6fdd51a16ef777949a473dfb8f6149ba9",
+      "decision-record.md": "d86727c5475ba9150ae35446a7f432baf91249eba26778b0d14f4c65f78a9f0c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

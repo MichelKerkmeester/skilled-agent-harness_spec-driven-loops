@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/014-agents/009-design-verify",
+  "description": "The agents surface needs an explicit candidate audit for design across the three runtime agent directories.",
+  "keywords": [
+    "agents",
+    "surface",
+    "needs",
+    "explicit",
+    "candidate",
+    "audit",
+    "design",
+    "across",
+    "three",
+    "runtime",
+    "agent",
+    "directories"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.704Z",
+  "specId": "009",
+  "folderSlug": "design-verify",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "014-agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

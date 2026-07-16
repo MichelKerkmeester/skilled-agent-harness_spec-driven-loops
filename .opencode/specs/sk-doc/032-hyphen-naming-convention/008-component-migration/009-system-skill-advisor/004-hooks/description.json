@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
+  "description": "Hook paths are consumed by runtime settings, install guides, plugin bridges, and the hook reference",
+  "keywords": [
+    "hook",
+    "paths",
+    "consumed",
+    "runtime",
+    "settings",
+    "install",
+    "guides",
+    "plugin",
+    "bridges",
+    "reference"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.635Z",
+  "specId": "004",
+  "folderSlug": "hooks",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "009-system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

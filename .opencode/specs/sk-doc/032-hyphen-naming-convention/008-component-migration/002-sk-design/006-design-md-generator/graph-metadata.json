@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-md-generator naming phase",
+      "sk-design design-md-generator phase",
+      "032 design-md-generator",
+      "design-md-generator implementation plan",
+      "sk-design design-md-generator plan",
+      "032 design-md-generator tasks",
+      "design-md-generator tasks",
+      "sk-design design-md-generator execution",
+      "032 design-md-generator checklist",
+      "design-md-generator verification",
+      "sk-design design-md-generator checklist",
+      "032 design-md-generator gate"
+    ],
+    "key_topics": [
+      "design-md-generator",
+      "naming",
+      "phase",
+      "sk-design",
+      "implementation",
+      "plan",
+      "tasks",
+      "execution",
+      "checklist",
+      "verification",
+      "gate",
+      "md-generator"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Live",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "pinned",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "map",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The md-generator mode contains underscore-bearing authoring, extraction, and validation resource names, including its installation guide and private extraction procedure.",
+    "created_at": "2026-07-14T15:17:18Z",
+    "last_save_at": "2026-07-16T04:53:10.182Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:bc3cd59b9e88274875629c5f3bb24561762369298381fe5a9b2a7c913cce82c3",
+    "source_doc_hashes": {
+      "spec.md": "e227f6155ccaaaab5052beb44fd1f9ba80804976a921d53da1ec0926b5fccbdb",
+      "plan.md": "1c47cb1e1658f7911c9fb80c79514df0aed007fb1f34b9f44670cae49037f9e9",
+      "tasks.md": "d73c6c5b92e7531d97d2fdeb9eb1ebf1e067645a31a373c5107bf8236180987f",
+      "checklist.md": "0204a8da91c3852824482133700fa35fe7fdf1a42062b92adbe227c6d7357c72"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

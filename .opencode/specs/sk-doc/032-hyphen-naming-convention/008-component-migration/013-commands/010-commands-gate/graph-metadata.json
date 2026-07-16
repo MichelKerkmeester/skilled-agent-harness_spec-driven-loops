@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "commands subtree rollup gate",
+      "commands naming gate",
+      "command surface kebab verification",
+      "commands rollup gate plan",
+      "command subtree verification plan",
+      "commands kebab closure plan",
+      "commands rollup gate tasks",
+      "commands subtree acceptance tasks",
+      "command naming gate tasks",
+      "commands rollup checklist",
+      "commands subtree naming verification",
+      "whole command surface kebab check"
+    ],
+    "key_topics": [
+      "commands",
+      "subtree",
+      "rollup",
+      "gate",
+      "naming",
+      "command",
+      "surface",
+      "kebab",
+      "verification",
+      "plan",
+      "closure",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Aggregate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Treating Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "pinned BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Ready",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The commands surface is split across seven namespace migrations, a loose-root classification, a residual asset/reference closure, and this gate",
+    "created_at": "2026-07-14T15:18:38Z",
+    "last_save_at": "2026-07-16T04:53:18.277Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:88c7c244a778c06f084ffc38aea55429be1e077ea08830122205e73a50b87ab7",
+    "source_doc_hashes": {
+      "spec.md": "6a741263a99d1dd3b54385dcf8440952769cbbcd9d0523ae32cb90c220dbb178",
+      "plan.md": "0df74364980118b44b39c962eb563b88d27906f4a1fff34a72a0bfc51aefe023",
+      "tasks.md": "625f6d263b939279b2f446f24fdbf4f83dfb8baa797e908e9b2d89b42bb87707",
+      "checklist.md": "4e345311cedc4c25c4916e537deb78b03c7ab03307e115d528f76ccc42ce6476"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

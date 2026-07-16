@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
+  "description": "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 032 filesystem migration was recorded.",
+  "keywords": [
+    "system-code-graph",
+    "release",
+    "history",
+    "currently",
+    "ends",
+    "prove",
+    "filesystem",
+    "migration",
+    "recorded"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.601Z",
+  "specId": "007",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "010-system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

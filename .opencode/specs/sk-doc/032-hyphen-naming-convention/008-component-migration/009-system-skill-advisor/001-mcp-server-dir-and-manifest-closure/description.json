@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
+  "description": "The advisor runtime is rooted at mcpserver/, and the current surface also contains the non-Python directories",
+  "keywords": [
+    "advisor",
+    "runtime",
+    "rooted",
+    "mcpserver",
+    "current",
+    "surface",
+    "also",
+    "contains",
+    "non-python",
+    "directories"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.633Z",
+  "specId": "001",
+  "folderSlug": "mcp-server-dir-and-manifest-closure",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "009-system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

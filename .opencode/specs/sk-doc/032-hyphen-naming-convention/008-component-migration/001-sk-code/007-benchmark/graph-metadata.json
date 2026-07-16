@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code benchmark naming",
+      "benchmark artifact kebab-case",
+      "benchmark storage path rename",
+      "sk-code fixture directory migration",
+      "benchmark naming implementation plan",
+      "sk-code benchmark rename plan",
+      "benchmark storage path repair",
+      "benchmark naming tasks",
+      "sk-code benchmark rename tasks",
+      "benchmark storage path tasks",
+      "benchmark naming checklist",
+      "sk-code benchmark rename verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "benchmark",
+      "naming",
+      "artifact",
+      "kebab-case",
+      "storage",
+      "path",
+      "rename",
+      "fixture",
+      "directory",
+      "migration",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/benchmark/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Classify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The tracked benchmark tree mixes compliant run names with underscore-bearing storage labels: d4rlive/, fixtures/skcode/, livefinal/, livemodeb/, liveremediated/, routerbaseline/, and routerfinal/",
+    "created_at": "2026-07-14T15:17:11Z",
+    "last_save_at": "2026-07-16T04:53:19.718Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:6cf2ced7c4185a6cda3a8d1637a5585b196104c80ce7e3363ae45a7e84256875",
+    "source_doc_hashes": {
+      "spec.md": "38b896493ff835ee380a072ed9801c789d405d893032061d02ebefc7f88c0bea",
+      "plan.md": "684d0a2e943e578959d13a7d4f610308a45fc166dcf56b1a6ff5bbe3ece33672",
+      "tasks.md": "90ad8e823d202f977cd9c63a68a63b23158fd1507e3f11305119f9778d26ee89",
+      "checklist.md": "d3fc440b9ddc5f9f315bd9ba6ac8bcfe775240a7df641f2c785c235024ca1ff1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

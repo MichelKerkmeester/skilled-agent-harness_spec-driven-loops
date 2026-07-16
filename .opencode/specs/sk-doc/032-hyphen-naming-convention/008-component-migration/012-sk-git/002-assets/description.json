@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets",
+  "description": "SUPERSEDED by concurrent v4 work, which already executed the three sk-git asset renames (committed on skilled/v4); the live asset surface is fully",
+  "keywords": [
+    "superseded",
+    "concurrent",
+    "work",
+    "already",
+    "executed",
+    "three",
+    "sk-git",
+    "asset",
+    "renames",
+    "committed",
+    "skilled",
+    "live",
+    "surface",
+    "fully"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.680Z",
+  "specId": "002",
+  "folderSlug": "assets",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "012-sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review",
+  "description": "The code-review packet contains snakecase checklist files, review-flow and security scenario directories, a manualtestingplaybook root, benchmark",
+  "keywords": [
+    "code-review",
+    "packet",
+    "contains",
+    "snakecase",
+    "checklist",
+    "files",
+    "review-flow",
+    "security",
+    "scenario",
+    "directories",
+    "manualtestingplaybook",
+    "root",
+    "benchmark"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.643Z",
+  "specId": "004",
+  "folderSlug": "code-review",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "001-sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

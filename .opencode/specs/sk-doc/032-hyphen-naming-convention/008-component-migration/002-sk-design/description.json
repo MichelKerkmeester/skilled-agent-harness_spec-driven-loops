@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "description": "Lean phase parent for the kebab-case filesystem naming work across the sk-design hub, mode packets, catalog/playbook trees, benchmark artifacts,",
+  "keywords": [
+    "lean",
+    "phase",
+    "parent",
+    "kebab-case",
+    "filesystem",
+    "naming",
+    "work",
+    "across",
+    "sk-design",
+    "hub",
+    "mode",
+    "packets",
+    "catalog",
+    "playbook",
+    "trees",
+    "benchmark",
+    "artifacts"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.586Z",
+  "specId": "002",
+  "folderSlug": "sk-design",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

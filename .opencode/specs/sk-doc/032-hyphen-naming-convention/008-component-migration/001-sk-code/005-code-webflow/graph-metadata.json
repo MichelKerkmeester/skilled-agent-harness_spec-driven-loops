@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-webflow naming migration",
+      "Webflow packet kebab-case",
+      "Webflow asset path rename",
+      "animation reference path migration",
+      "code-webflow naming implementation plan",
+      "Webflow packet rename plan",
+      "Webflow asset reference repair",
+      "code-webflow naming tasks",
+      "Webflow packet rename tasks",
+      "Webflow asset path tasks",
+      "code-webflow naming checklist",
+      "Webflow packet rename verification"
+    ],
+    "key_topics": [
+      "code-webflow",
+      "naming",
+      "migration",
+      "webflow",
+      "packet",
+      "kebab-case",
+      "asset",
+      "path",
+      "rename",
+      "animation",
+      "reference",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/code-webflow/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-webflow/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Group",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Record Webflow",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-webflow packet has snakecase names throughout its animation snippets, integration/pattern/template assets, manual-testing-playbook categories, and deep reference tree",
+    "created_at": "2026-07-14T15:17:09Z",
+    "last_save_at": "2026-07-16T04:53:21.903Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:0b59c3dce32e860030b54ad42c174d9274da1a96810cf9109c41e168228e4c3f",
+    "source_doc_hashes": {
+      "spec.md": "73b0211b377477df1020c9e1b2de23fe911163d6dc1ca23c6f3de6e360b614e7",
+      "plan.md": "31322b41ca64df265ebd1dc1c2e4be927b71c0f6fef46180bdf3034d46fae270",
+      "tasks.md": "f890d440a8990f95a69d6c11247f532192c0dcbd05f63ce9c081e5fe52761a79",
+      "checklist.md": "21d65e9244eb5f68548f23930122c38b6a8630eb977647f45c3944370a5796c9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

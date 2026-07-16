@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify",
+  "description": "v4 already shipped sk-git version 1.3.2.0 and its changelog entry as part of the kebab pilot, covering the reference, asset, and manual-playbook",
+  "keywords": [
+    "already",
+    "shipped",
+    "sk-git",
+    "version",
+    "changelog",
+    "entry",
+    "part",
+    "kebab",
+    "pilot",
+    "covering",
+    "reference",
+    "asset",
+    "manual-playbook"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.683Z",
+  "specId": "005",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "012-sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

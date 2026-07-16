@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "commands component migration",
+      "kebab-case commands surface",
+      "hyphenate OpenCode command assets",
+      "commands subtree naming gate"
+    ],
+    "key_topics": [
+      "commands",
+      "component",
+      "migration",
+      "kebab-case",
+      "surface",
+      "hyphenate",
+      "opencode",
+      "command",
+      "assets",
+      "subtree",
+      "naming",
+      "gate"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/README.txt",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `.opencode/commands/` surface combines seven namespaced command families, two loose root command files, shared command tooling, and asset trees",
+    "created_at": "2026-07-14T15:17:04Z",
+    "last_save_at": "2026-07-16T04:52:55.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ef0730549d3412b502b8cf509b2b8495bd4c7e734041f6e25580ba7c63b33bc9",
+    "source_doc_hashes": {
+      "spec.md": "2b95e7e3016c331a391088b3564dc56ddb0e9aaba5866a69d289dcd7bbe929c1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts",
+  "description": "The system-code-graph surface has two actual script files: scripts/doctor.sh and",
+  "keywords": [
+    "system-code-graph",
+    "surface",
+    "two",
+    "actual",
+    "script",
+    "files",
+    "scripts",
+    "doctor"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.597Z",
+  "specId": "002",
+  "folderSlug": "scripts",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "010-system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

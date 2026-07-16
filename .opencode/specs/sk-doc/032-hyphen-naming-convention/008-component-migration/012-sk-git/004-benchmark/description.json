@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
+  "description": "The sk-git benchmark surface contains two snake_case live-profile directories and report content with historical path pointers.",
+  "keywords": [
+    "sk-git",
+    "benchmark",
+    "surface",
+    "contains",
+    "two",
+    "live-profile",
+    "directories",
+    "report",
+    "content",
+    "historical",
+    "path",
+    "pointers"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.684Z",
+  "specId": "004",
+  "folderSlug": "benchmark",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "012-sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

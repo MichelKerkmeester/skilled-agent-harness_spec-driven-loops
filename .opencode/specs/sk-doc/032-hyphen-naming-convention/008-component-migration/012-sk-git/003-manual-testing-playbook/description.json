@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook",
+  "description": "SUPERSEDED by concurrent v4 work, which already renamed the sk-git manual-testing-playbook tree to kebab-case (committed on skilled/v4).",
+  "keywords": [
+    "superseded",
+    "concurrent",
+    "work",
+    "already",
+    "renamed",
+    "sk-git",
+    "manual-testing-playbook",
+    "tree",
+    "kebab-case",
+    "committed",
+    "skilled"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.681Z",
+  "specId": "003",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "012-sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

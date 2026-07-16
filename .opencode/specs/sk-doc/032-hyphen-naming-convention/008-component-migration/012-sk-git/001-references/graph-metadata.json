@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git references kebab-case",
+      "032 sk-git reference rename",
+      "reference pointer closure",
+      "sk-git references implementation plan",
+      "032 sk-git reference phase plan",
+      "reference rename pointer closure plan",
+      "sk-git references tasks",
+      "032 reference rename tasks",
+      "reference pointer closure tasks",
+      "sk-git references checklist",
+      "032 reference rename verification",
+      "reference pointer closure acceptance"
+    ],
+    "key_topics": [
+      "sk-git",
+      "references",
+      "kebab-case",
+      "reference",
+      "rename",
+      "pointer",
+      "closure",
+      "implementation",
+      "plan",
+      "phase",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-git/assets/worktree-checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/assets/worktree-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Git",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "history",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm zero underscore-bearing reference paths remain and every active pointer resolves, adopting v4's kebab names as the baseline.",
+    "created_at": "2026-07-14T15:18:26Z",
+    "last_save_at": "2026-07-16T04:53:25.793Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:c9f2ace77dbb842fd97a89ee5044cec11e93a6100f9fa0f41f842ae748055183",
+    "source_doc_hashes": {
+      "spec.md": "9cf795dff930f62b865bf85530915a3185789f00ae44311269b5825dd77d44d0",
+      "plan.md": "c5f12a4735c28534071a855ad60e829efd497b8366206b998cfa119179c3424b",
+      "tasks.md": "e57815d88bc219654c4efff06c04b6ea78217ba5c250d14a98530d36a60b999d",
+      "checklist.md": "438fabf0ca9320ae7d9cb9c67050ef02f043ed993173529f067c2a84ec58e465"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

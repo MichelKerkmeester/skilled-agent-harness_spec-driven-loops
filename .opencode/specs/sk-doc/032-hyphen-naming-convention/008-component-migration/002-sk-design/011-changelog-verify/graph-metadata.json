@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog-verify naming phase",
+      "sk-design changelog verification phase",
+      "032 changelog-verify",
+      "changelog-verify implementation plan",
+      "sk-design changelog verification plan",
+      "032 changelog-verify tasks",
+      "changelog-verify tasks",
+      "sk-design changelog verification execution",
+      "032 changelog-verify checklist",
+      "changelog-verify verification",
+      "sk-design changelog verification checklist",
+      "032 changelog-verify gate"
+    ],
+    "key_topics": [
+      "changelog-verify",
+      "naming",
+      "phase",
+      "sk-design",
+      "changelog",
+      "verification",
+      "implementation",
+      "plan",
+      "tasks",
+      "execution",
+      "checklist",
+      "gate"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/changelog/v1.4.3.0.md",
+      ".opencode/skills/sk-design/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "v1.4.3.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/changelog/v1.4.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Changelog",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "pinned",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The rename program needs an auditable sk-design release-note entry that identifies the completed subtree and records the resulting version bump, but this phase is verification-only.",
+    "created_at": "2026-07-14T15:17:22Z",
+    "last_save_at": "2026-07-16T04:53:10.506Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:708f13d875894923fcfc7750779a5b9e25d96226e010840b25f14868706ca2dd",
+    "source_doc_hashes": {
+      "spec.md": "b53edd4148df2d2f76ca7092a0c9b1d23315db4428b6480b2da66e0da1e33574",
+      "plan.md": "bb152a6265196862563f6a88d73cc4b0fb552c6a15d3899b5b312a89ea8e746c",
+      "tasks.md": "a04978802b8639d0869f01b1546402b3b448f48dafa112c60dabd057cddea377",
+      "checklist.md": "1c448615a5cb4320b5f52c53b70f6fac7c6a8c477b00204f968cb9c63cb68dc1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

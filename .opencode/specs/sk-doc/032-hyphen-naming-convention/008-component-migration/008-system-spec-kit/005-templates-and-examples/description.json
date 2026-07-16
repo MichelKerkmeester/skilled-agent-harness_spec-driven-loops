@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
+  "description": "The system-spec-kit template surface contains underscore-bearing directory and file names in the examples and stress-test layouts, including level_1,",
+  "keywords": [
+    "system-spec-kit",
+    "template",
+    "surface",
+    "contains",
+    "underscore-bearing",
+    "directory",
+    "file",
+    "names",
+    "examples",
+    "stress-test",
+    "layouts",
+    "including"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.717Z",
+  "specId": "005",
+  "folderSlug": "templates-and-examples",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

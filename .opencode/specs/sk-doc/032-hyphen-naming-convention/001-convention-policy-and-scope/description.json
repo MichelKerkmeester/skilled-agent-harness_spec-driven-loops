@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/001-convention-policy-and-scope",
+  "description": "There is no single authoritative statement that kebab-case (hyphens) is the canonical filesystem-naming form, nor a written exemption boundary, nor a",
+  "keywords": [
+    "single",
+    "authoritative",
+    "statement",
+    "kebab-case",
+    "hyphens",
+    "canonical",
+    "filesystem-naming",
+    "form",
+    "written",
+    "exemption",
+    "boundary"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.559Z",
+  "specId": "001",
+  "folderSlug": "convention-policy-and-scope",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

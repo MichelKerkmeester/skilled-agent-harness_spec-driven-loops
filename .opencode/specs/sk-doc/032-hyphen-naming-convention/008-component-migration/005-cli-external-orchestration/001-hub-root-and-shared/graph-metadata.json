@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-external hub root kebab-case",
+      "cli external shared boundary",
+      "cli-external phase 001 naming",
+      "cli-external hub root implementation plan",
+      "cli external shared boundary plan",
+      "cli-external phase 001 plan",
+      "cli-external hub root tasks",
+      "cli external shared boundary tasks",
+      "cli-external phase 001 tasks",
+      "cli-external hub root checklist",
+      "cli external shared boundary verifier",
+      "cli-external phase 001 acceptance"
+    ],
+    "key_topics": [
+      "cli-external",
+      "hub",
+      "root",
+      "kebab-case",
+      "cli",
+      "external",
+      "shared",
+      "boundary",
+      "phase",
+      "naming",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/README.md",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/mode-registry.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Pinned",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary. This phase records ownership and renames only hub/shared-owned authored names without crossing delegated playbook or benchmark scope.",
+    "created_at": "2026-07-14T15:17:35Z",
+    "last_save_at": "2026-07-16T04:53:03.581Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:b00fa159cacb90e8dc486215df269349c2e93d7061499830cc5c6424662c103b",
+    "source_doc_hashes": {
+      "spec.md": "6b9b6f67dbed1b901f08f48edda0c049931004529067638e82d3478d216fc87f",
+      "plan.md": "22faff1cc1a1c7068bd2942e517cfc9372ef07b044802754ede8ecf872a7b432",
+      "tasks.md": "f6a3faf547ac43eb8855613ffcb307e80e0ffc0425c6b14c1fd64c7b932ce0e7",
+      "checklist.md": "88dafd837154b10fb40eea86256b8c2269322237a9672f4a0156c37bea1d2ee6",
+      "decision-record.md": "7d1c78ce6e6b457258a986a46e1d99ddf20faa35fdae5f8f3e4818f5a74bfb39"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

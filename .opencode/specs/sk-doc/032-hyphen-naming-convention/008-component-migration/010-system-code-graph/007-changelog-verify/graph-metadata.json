@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph changelog verification",
+      "system-code-graph naming version bump",
+      "032 system-code-graph phase 007",
+      "system-code-graph changelog verification plan",
+      "system-code-graph version bump check",
+      "code graph release evidence",
+      "system-code-graph changelog tasks",
+      "system-code-graph version verification tasks",
+      "code graph release evidence tasks",
+      "system-code-graph changelog checklist",
+      "system-code-graph version bump verification",
+      "code graph release evidence checklist"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "changelog",
+      "verification",
+      "naming",
+      "version",
+      "bump",
+      "phase",
+      "plan",
+      "check",
+      "code",
+      "graph",
+      "release"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/checklist.md",
+      ".opencode/specs/sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook/checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changelog Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "phases",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 032 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename.",
+    "created_at": "2026-07-14T15:18:18Z",
+    "last_save_at": "2026-07-16T04:53:34.090Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:10453d069f4efc47181bf97f52144ab9fc36eb4521aa3441cf1f8d7c489f8579",
+    "source_doc_hashes": {
+      "spec.md": "ba5367003e40c44c0a3c8601e229267489d92dbc8c3569c7a32970f7b723f575",
+      "plan.md": "c9bec3ed18958b4c89a2570fe8e141279cbd2f5f6a1da51d193413bc8a52e55d",
+      "tasks.md": "3300a5a537b30cecd86c07fb18b572f34d85d501dec6f227cc584c5e54d6bdef",
+      "checklist.md": "2e0c026fbb9cd1432eaa8a034e513730476b7b358caa7dc16e7b391bbbc7e8fb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

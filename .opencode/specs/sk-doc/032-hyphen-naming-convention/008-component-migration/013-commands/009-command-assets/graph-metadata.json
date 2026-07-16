@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/013-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command asset reference closure",
+      "command template filename migration",
+      "residual command asset naming",
+      "command asset closure plan",
+      "residual command file plan",
+      "command reference reconciliation plan",
+      "command asset closure tasks",
+      "residual command reference tasks",
+      "command template path tasks",
+      "command asset closure checklist",
+      "residual command path verification",
+      "command template reference verification"
+    ],
+    "key_topics": [
+      "command",
+      "asset",
+      "reference",
+      "closure",
+      "template",
+      "filename",
+      "migration",
+      "residual",
+      "naming",
+      "plan",
+      "file",
+      "reconciliation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "checklist.md",
+      ".opencode/commands/deep/assets/compiled/README.md",
+      ".opencode/commands/scripts/README.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Ready",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Done",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The commands surface stores workflow, presentation, legacy, compiled, fixture, and reference-like files under several namespace asset directories",
+    "created_at": "2026-07-14T15:18:37Z",
+    "last_save_at": "2026-07-16T04:53:16.477Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:fd9d4efe15603fc4bce8a2b4d8a5a85a1273fca8de0fb19fd2c78409da2e6bc0",
+    "source_doc_hashes": {
+      "spec.md": "9073b6be9c1c18d5f53b51e019ce614df52846ebdce84ea98f43035dff4bcc23",
+      "plan.md": "fc67dc7eb9e8e2755686ff07d4d83b0b3fd54a14d7c7af0b3371871e901f949d",
+      "tasks.md": "befc93031813cc8d2b9ed4f56daf56253d527543aa78307586b720b214d79215",
+      "checklist.md": "b49a1ad24f50fca9f7cbd194238024796280bf5302932c15372e83fd5907ac12",
+      "decision-record.md": "97d6d00c4e9e42aff292f57fbf8db0da1fe159bd3923d7c50872a24feeba02ef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

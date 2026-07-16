@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
+  "description": "The system-code-graph runtime is rooted at mcpserver/, with pluginbridges/ and stresstest/ as ordinary direct",
+  "keywords": [
+    "system-code-graph",
+    "runtime",
+    "rooted",
+    "mcpserver",
+    "pluginbridges",
+    "stresstest",
+    "ordinary",
+    "direct"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.600Z",
+  "specId": "001",
+  "folderSlug": "mcp-server-dir-and-manifest-closure",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "010-system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

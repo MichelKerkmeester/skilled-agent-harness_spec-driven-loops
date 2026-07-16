@@ -1,0 +1,1236 @@
+{
+  "sessionId": "fanout-sol-xhigh-1784064061456-29xqh9",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-07-14T21:47:33.117Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "The phase parent routes execution through a superseded topology",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/spec.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "30fe25b481dc3aec832108f572e756fde0309f0121d6a0fb027193e8ad8ce402",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "The checked-in authoritative phase tree is not reproducible from its generator",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/manifest/build-phase-tree.mjs",
+      "line": 138,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "de1777e77f89e3c84bd982738adeb1ed7892b9839e77fc357bf00e3ee1faf3ff",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Apply is not required to revalidate the reviewed dry-run snapshot",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md",
+      "line": 77,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "1397acc79a25172c10e68fb1a9718fd72acf2de52c093c0617167bb7a66e61c4",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "The declared leading-hyphen CLI hazard has no rejecting engine or harness criterion",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
+      "line": 72,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "3cfc48c5af41bbb5cb820b62fd5197a420bbee291a111f1caa1b230289384ac7",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Current phase-transition gates remain placeholder-only",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/spec.md",
+      "line": 232,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c4866b2574b34ac8b5d0ff19c8a4c90d2f990c132c0954044777f3d297518739",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "The frozen-map phase does not define its durable consumer interface",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md",
+      "line": 37,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "689821b124018cd37329b1ee637b37083c99cc6afcab1ffa6ae42fcff7a31050",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "The phase-tree generator defaults to a developer-private scratch path",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/manifest/build-phase-tree.mjs",
+      "line": 218,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "8b243653a7910ea0ad3ecdf1dae6a1d20399c46bd4ce6eb65292ce9f5b10f803",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "The phase parent routes execution through a superseded topology",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/spec.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "30fe25b481dc3aec832108f572e756fde0309f0121d6a0fb027193e8ad8ce402",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "The checked-in authoritative phase tree is not reproducible from its generator",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/manifest/build-phase-tree.mjs",
+      "line": 138,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "de1777e77f89e3c84bd982738adeb1ed7892b9839e77fc357bf00e3ee1faf3ff",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Current phase-transition gates remain placeholder-only",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/spec.md",
+      "line": 232,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c4866b2574b34ac8b5d0ff19c8a4c90d2f990c132c0954044777f3d297518739",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "The phase parent routes execution through a superseded topology",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/spec.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "30fe25b481dc3aec832108f572e756fde0309f0121d6a0fb027193e8ad8ce402",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "The checked-in authoritative phase tree is not reproducible from its generator",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/manifest/build-phase-tree.mjs",
+      "line": 138,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "de1777e77f89e3c84bd982738adeb1ed7892b9839e77fc357bf00e3ee1faf3ff",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Current phase-transition gates remain placeholder-only",
+      "file": ".opencode/specs/sk-doc/032-hyphen-naming-convention/spec.md",
+      "line": 232,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c4866b2574b34ac8b5d0ff19c8a4c90d2f990c132c0954044777f3d297518739",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 1
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.968,
+  "graphDecision": "STOP",
+  "graphBlockers": [
+    {
+      "type": "strict_validator_runtime",
+      "reason": "@spec-kit/shared remains unresolved."
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "findingStability": 0.95,
+    "p0ResolutionRate": 1,
+    "evidenceDensity": 0.94,
+    "hotspotSaturation": 0.95
+  },
+  "candidateCoverage": {
+    "covered": [
+      "cli_option_path",
+      "generated_artifact_drift",
+      "generator_drift",
+      "missing_artifact_schema",
+      "missing_regeneration_gate",
+      "nonportable_cli",
+      "phase_topology",
+      "placeholder_handoffs",
+      "placeholder_leakage",
+      "stale_phase_adjacency",
+      "stale_plan_replay",
+      "template_copy_drift"
+    ],
+    "ruledOut": [
+      "active_finding_drift",
+      "broken_relative_links",
+      "candidate_denominator",
+      "collision_preflight",
+      "compatibility_state_machine",
+      "documented_postprocess",
+      "dual_root_ambiguity",
+      "duplicate_descriptions",
+      "duplicate_ids",
+      "duplicate_specs",
+      "early_alias_removal",
+      "edge_reciprocity",
+      "folder_mismatch",
+      "graph_referential_integrity",
+      "legacy_write_leak",
+      "metadata_parse",
+      "missing_batch_closure",
+      "missing_candidate_denominator",
+      "missing_checklist_protocols",
+      "missing_dimension",
+      "nondeterministic_inputs",
+      "repairing_gate",
+      "repository_boundary",
+      "severity_misclassification",
+      "source_hash_drift",
+      "terminal_novelty",
+      "unsupported_completion"
+    ],
+    "deferred": [],
+    "blocked": [
+      "strict_validator_runtime"
+    ],
+    "byBugClass": {
+      "phase_topology": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "generated_artifact_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_plan_replay": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "cli_option_path": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "repository_boundary": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "collision_preflight": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_phase_adjacency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "broken_relative_links": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "placeholder_handoffs": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "missing_checklist_protocols": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "unsupported_completion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "strict_validator_runtime": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          4,
+          10
+        ]
+      },
+      "metadata_parse": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "duplicate_ids": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "edge_reciprocity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "folder_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "source_hash_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "graph_referential_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "generator_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "nonportable_cli": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "missing_regeneration_gate": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "nondeterministic_inputs": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "documented_postprocess": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "missing_artifact_schema": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "missing_candidate_denominator": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "missing_batch_closure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "candidate_denominator": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "legacy_write_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "early_alias_removal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "dual_root_ambiguity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "repairing_gate": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "compatibility_state_machine": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "placeholder_leakage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "duplicate_specs": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "duplicate_descriptions": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "template_copy_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "active_finding_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "severity_misclassification": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "missing_dimension": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "terminal_novelty": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 4,
+      "id": "SL-004-03",
+      "dimension": "traceability",
+      "targetRefs": [
+        "strict validator"
+      ],
+      "bugClass": "strict_validator_runtime",
+      "disposition": "blocked",
+      "rationale": "Dependency resolution failed outside target.",
+      "evidenceRefs": [
+        "captured validator output"
+      ],
+      "reason": "Dependency resolution failed outside target."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SL-002-03",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/checklist.md",
+        ".opencode/specs/sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/checklist.md"
+      ],
+      "bugClass": "repository_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Executable negative criteria cover the boundary.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/checklist.md:71-75",
+        ".opencode/specs/sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/checklist.md:71-75"
+      ],
+      "reason": "Executable negative criteria cover the boundary."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        "674 packet Markdown files"
+      ],
+      "bugClass": "broken_relative_links",
+      "disposition": "ruled_out",
+      "rationale": "Every explicit target exists.",
+      "evidenceRefs": [
+        "packet-wide resolver output: markdownFiles=674, brokenLinks=0"
+      ],
+      "reason": "Every explicit target exists."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        "156 checklists"
+      ],
+      "bugClass": "missing_checklist_protocols",
+      "disposition": "ruled_out",
+      "rationale": "Leaf structure is present.",
+      "evidenceRefs": [
+        "checklist inventory output"
+      ],
+      "reason": "Leaf structure is present."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        "176 graph-metadata.json files"
+      ],
+      "bugClass": "graph_referential_integrity",
+      "disposition": "ruled_out",
+      "rationale": "Machine topology and current sources agree.",
+      "evidenceRefs": [
+        "metadataFiles=176; ids=176; all error counters=0"
+      ],
+      "reason": "Machine topology and current sources agree."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        "phase 006 spec"
+      ],
+      "bugClass": "candidate_denominator",
+      "disposition": "ruled_out",
+      "rationale": "Denominator semantics are explicit.",
+      "evidenceRefs": [
+        "phase 006 spec:72-75"
+      ],
+      "reason": "Denominator semantics are explicit."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        "phases 002,009,010"
+      ],
+      "bugClass": "compatibility_state_machine",
+      "disposition": "ruled_out",
+      "rationale": "No lifecycle gap found.",
+      "evidenceRefs": [
+        "phase 002 spec:61-103",
+        "phase 009 plan:41-109",
+        "phase 010 spec:56-113"
+      ],
+      "reason": "No lifecycle gap found."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-01",
+      "dimension": "all",
+      "targetRefs": [
+        "F001-F007 source evidence"
+      ],
+      "bugClass": "active_finding_drift",
+      "disposition": "ruled_out",
+      "rationale": "Registry is stable.",
+      "evidenceRefs": [
+        "iteration-010 active-finding table"
+      ],
+      "reason": "Registry is stable."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-02",
+      "dimension": "all",
+      "targetRefs": [
+        "iterations 001-009"
+      ],
+      "bugClass": "missing_dimension",
+      "disposition": "ruled_out",
+      "rationale": "Coverage is synthesis-ready.",
+      "evidenceRefs": [
+        "iteration-010 coverage accounting"
+      ],
+      "reason": "Coverage is synthesis-ready."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SL-002-03",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/specs/sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/checklist.md",
+        ".opencode/specs/sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/checklist.md"
+      ],
+      "bugClass": "repository_boundary",
+      "disposition": "ruled_out",
+      "rationale": "Executable negative criteria cover the boundary.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/checklist.md:71-75",
+        ".opencode/specs/sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/checklist.md:71-75"
+      ],
+      "proof": "Executable negative criteria cover the boundary."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-01",
+      "dimension": "traceability",
+      "targetRefs": [
+        "674 packet Markdown files"
+      ],
+      "bugClass": "broken_relative_links",
+      "disposition": "ruled_out",
+      "rationale": "Every explicit target exists.",
+      "evidenceRefs": [
+        "packet-wide resolver output: markdownFiles=674, brokenLinks=0"
+      ],
+      "proof": "Every explicit target exists."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        "156 checklists"
+      ],
+      "bugClass": "missing_checklist_protocols",
+      "disposition": "ruled_out",
+      "rationale": "Leaf structure is present.",
+      "evidenceRefs": [
+        "checklist inventory output"
+      ],
+      "proof": "Leaf structure is present."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        "176 graph-metadata.json files"
+      ],
+      "bugClass": "graph_referential_integrity",
+      "disposition": "ruled_out",
+      "rationale": "Machine topology and current sources agree.",
+      "evidenceRefs": [
+        "metadataFiles=176; ids=176; all error counters=0"
+      ],
+      "proof": "Machine topology and current sources agree."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        "phase 006 spec"
+      ],
+      "bugClass": "candidate_denominator",
+      "disposition": "ruled_out",
+      "rationale": "Denominator semantics are explicit.",
+      "evidenceRefs": [
+        "phase 006 spec:72-75"
+      ],
+      "proof": "Denominator semantics are explicit."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-01",
+      "dimension": "correctness",
+      "targetRefs": [
+        "phases 002,009,010"
+      ],
+      "bugClass": "compatibility_state_machine",
+      "disposition": "ruled_out",
+      "rationale": "No lifecycle gap found.",
+      "evidenceRefs": [
+        "phase 002 spec:61-103",
+        "phase 009 plan:41-109",
+        "phase 010 spec:56-113"
+      ],
+      "proof": "No lifecycle gap found."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-01",
+      "dimension": "all",
+      "targetRefs": [
+        "F001-F007 source evidence"
+      ],
+      "bugClass": "active_finding_drift",
+      "disposition": "ruled_out",
+      "rationale": "Registry is stable.",
+      "evidenceRefs": [
+        "iteration-010 active-finding table"
+      ],
+      "proof": "Registry is stable."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-02",
+      "dimension": "all",
+      "targetRefs": [
+        "iterations 001-009"
+      ],
+      "bugClass": "missing_dimension",
+      "disposition": "ruled_out",
+      "rationale": "Coverage is synthesis-ready.",
+      "evidenceRefs": [
+        "iteration-010 coverage accounting"
+      ],
+      "proof": "Coverage is synthesis-ready."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "active_finding_drift",
+      "severity_misclassification",
+      "missing_dimension",
+      "terminal_novelty"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "active_finding_drift",
+      "severity_misclassification",
+      "missing_dimension",
+      "terminal_novelty"
+    ],
+    "deferred": [],
+    "blocked": [
+      "strict_validator_runtime"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 2,
+      "partial": 0,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          "F001-F005",
+          "F007"
+        ],
+        "findingRefs": [
+          "F001",
+          "F002",
+          "F003",
+          "F004",
+          "F005",
+          "F007"
+        ],
+        "summary": "Six active required fixes."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          "F003-F005",
+          "F007"
+        ],
+        "findingRefs": [
+          "F003",
+          "F004",
+          "F005",
+          "F007"
+        ],
+        "summary": "Required evidence contracts retain gaps."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "iteration 8 compatibility lifecycle"
+        ],
+        "findingRefs": [],
+        "summary": "Planned catalog-root transition is coherent."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "iteration 8 compatibility lifecycle"
+        ],
+        "findingRefs": [],
+        "summary": "Planned playbook-root transition is coherent."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

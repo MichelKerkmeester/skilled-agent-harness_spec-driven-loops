@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/009-remove-transition-aliases",
+  "description": "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the",
+  "keywords": [
+    "migration",
+    "completed",
+    "bounded",
+    "coexistence",
+    "window",
+    "phase",
+    "closed",
+    "runtime",
+    "consumers",
+    "still",
+    "carry",
+    "compatibility",
+    "paths"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.563Z",
+  "specId": "009",
+  "folderSlug": "remove-transition-aliases",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

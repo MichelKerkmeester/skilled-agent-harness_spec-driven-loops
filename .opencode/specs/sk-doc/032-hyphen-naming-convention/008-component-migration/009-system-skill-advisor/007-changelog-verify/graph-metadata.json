@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-skill-advisor changelog verification",
+      "advisor rename release evidence",
+      "kebab-case changelog entry",
+      "skill version bump verification",
+      "changelog verification implementation plan",
+      "advisor release evidence plan",
+      "skill version bump audit",
+      "changelog verification tasks",
+      "advisor release evidence tasks",
+      "version bump audit tasks",
+      "changelog verification checklist",
+      "advisor release evidence checklist"
+    ],
+    "key_topics": [
+      "system-skill-advisor",
+      "changelog",
+      "verification",
+      "advisor",
+      "rename",
+      "release",
+      "evidence",
+      "kebab-case",
+      "entry",
+      "skill",
+      "version",
+      "bump"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/system-skill-advisor/README.md",
+      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Verify",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor has versioned changelog entries through v0.10.0, while the skill identity documents expose version",
+    "created_at": "2026-07-14T15:18:11Z",
+    "last_save_at": "2026-07-16T04:53:06.674Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:6350b8130f1d32ed7d1493a2de61dce7eb879e096afe1dc5df2454dc1ec0f410",
+    "source_doc_hashes": {
+      "spec.md": "662a4dc339d088e52048ba735ff00e0766d2bd7a98607871eff2eaeea9fc751f",
+      "plan.md": "51b90cd8b6fccab7a773cf49673d0d5ba65b8fe01061df94049dfa8e35849056",
+      "tasks.md": "ec8ccc8d9cada205bbb40d593f8aefa6b7da54ee2ef7fceb777828aaea7a4627",
+      "checklist.md": "b4bc85eb315c0daf299e4d2b496e19f2f9efc19aa6e4fac6458cefc8bfb8cd06"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

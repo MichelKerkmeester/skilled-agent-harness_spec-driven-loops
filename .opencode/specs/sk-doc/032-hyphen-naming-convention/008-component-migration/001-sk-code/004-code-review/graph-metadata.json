@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-review naming migration",
+      "review mode kebab-case",
+      "review playbook path rename",
+      "sk-code review packet migration",
+      "code-review naming implementation plan",
+      "review mode rename plan",
+      "review playbook reference repair",
+      "code-review naming tasks",
+      "review mode rename tasks",
+      "review playbook path tasks",
+      "code-review naming checklist",
+      "review mode rename verification"
+    ],
+    "key_topics": [
+      "code-review",
+      "naming",
+      "migration",
+      "review",
+      "mode",
+      "kebab-case",
+      "playbook",
+      "path",
+      "rename",
+      "sk-code",
+      "packet",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/code-review/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-review packet contains snakecase checklist files, review-flow and security scenario directories, a manualtestingplaybook root, benchmark labels, and review reference documents",
+    "created_at": "2026-07-14T15:17:09Z",
+    "last_save_at": "2026-07-16T04:53:21.522Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:306f2e53b3723e9651608c596d5a5aabd6e34f803742b47bf3155b839b1a1c4a",
+    "source_doc_hashes": {
+      "spec.md": "7745dd55f72aee9ea9614b7865c86637074f0a662bc6e9a6d18b0738fe2816d7",
+      "plan.md": "8ff24f34cbe831ab062833003ba766916484a1cac80b83e68af17211a83a0bca",
+      "tasks.md": "535808274a1320a8f09274b8b7e1b9ec222beb3883ef9a8e76688929e1360935",
+      "checklist.md": "065743e97d042c9ae1e04625c2e89d67cea6a91da8041bf939b60ed0066c8370"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

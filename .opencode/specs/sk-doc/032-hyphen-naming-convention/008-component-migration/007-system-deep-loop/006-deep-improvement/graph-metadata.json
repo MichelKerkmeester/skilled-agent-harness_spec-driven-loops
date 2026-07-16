@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-improvement kebab-case migration",
+      "improvement packet filesystem names",
+      "deep improvement path repair",
+      "deep-improvement snake_case resources",
+      "deep-improvement implementation plan",
+      "improvement lane kebab-case rename plan",
+      "deep improvement benchmark path closure",
+      "deep-improvement tasks",
+      "improvement lane kebab-case naming tasks",
+      "deep improvement benchmark path repair tasks",
+      "system-deep-loop deep improvement checklist",
+      "deep-improvement naming verification"
+    ],
+    "key_topics": [
+      "deep-improvement",
+      "kebab-case",
+      "migration",
+      "improvement",
+      "packet",
+      "filesystem",
+      "names",
+      "deep",
+      "path",
+      "repair",
+      "resources",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Handle",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Leave Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compare Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preserve Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-improvement packet has 22 underscore-bearing directory families and 250 underscore-bearing files across three improvement lanes, benchmark assets, playbooks, references, and scripts. This phase renames the in-scope authored names to kebab-case, repairs the shared loop-host and benchmark path closure, and protects Python files, package directories, generated output, and data contracts.",
+    "created_at": "2026-07-14T15:17:52Z",
+    "last_save_at": "2026-07-16T04:53:15.745Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:0c5c45318c97adafe69c6dbda573981508b68d38addea993731098e24cae5172",
+    "source_doc_hashes": {
+      "spec.md": "616ca0acd0e3e1b86eb859f85e0311a526abedec0cb7d689f82fd354ccc80bda",
+      "plan.md": "d24c67d9628f1a4c64f96492f55ce86b6d810a0d18ed85ed84ff5ef900178960",
+      "tasks.md": "9a2329220daad6a8864a5eaf1ec94d0b62bfc8c64814b202fb95141bc1b6e1ed",
+      "checklist.md": "b340c23e70f932722bc0314aa51f9234636ea0e900993339c46418ac803cc033",
+      "decision-record.md": "006504e53fa908c6c3377023a4cad28b2c2307dfdf0cf90804875a85ef33e0f7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

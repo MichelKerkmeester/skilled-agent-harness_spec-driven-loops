@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-readme resource naming",
+      "install guide kebab-case phase",
+      "create-readme template rename",
+      "create-readme resource implementation plan",
+      "install guide template rename plan",
+      "create-readme resource tasks",
+      "install guide template rename tasks",
+      "create-readme resource checklist",
+      "install guide template rename verification"
+    ],
+    "key_topics": [
+      "create-readme",
+      "resource",
+      "naming",
+      "install",
+      "guide",
+      "kebab-case",
+      "phase",
+      "template",
+      "rename",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "broken",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Record Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mark Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create-readme packet contains an install_guide directory and snake_case template/reference filenames. This phase renames those non-exempt resources to kebab-case and updates documentation and audit-script path references while keeping Python scripts and template payload keys exact.",
+    "created_at": "2026-07-14T15:22:34Z",
+    "last_save_at": "2026-07-16T04:53:49.238Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:6fd197a2aef3d271d88a6f9915dbc348378e48ab7bcd24c7ec8afce165c88408",
+    "source_doc_hashes": {
+      "spec.md": "7caddc02aabd94466c0bfda36774d3b592dcfbf9a4314225fcc1e8a1b4f27233",
+      "plan.md": "f7251aa8edcbb357b319857d3b64b44ba381f5c79d1b549f607f3cedbaa807aa",
+      "tasks.md": "3ba21914848e8b0a62dc1de2d43d53a63f56664dd3e3642e60c73892dd95f927",
+      "checklist.md": "46be99b4fbdbec28ed389e4d12f9463482ede5b4c25e0d9ff1a876dea26895e1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

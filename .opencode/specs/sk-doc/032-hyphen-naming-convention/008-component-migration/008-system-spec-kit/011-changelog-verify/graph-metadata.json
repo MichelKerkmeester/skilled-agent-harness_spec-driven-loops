@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-spec-kit changelog verify",
+      "system-spec-kit naming migration changelog",
+      "system-spec-kit version bump evidence",
+      "changelog phase 011"
+    ],
+    "key_topics": [
+      "system-spec-kit",
+      "changelog",
+      "verify",
+      "naming",
+      "migration",
+      "version",
+      "bump",
+      "evidence",
+      "phase",
+      "verify-only",
+      "confirms",
+      "records"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Compare",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This verify-only phase confirms that the system-spec-kit changelog records the complete phase 001-010 filesystem rename set, the exemption boundary, and a coherent version bump above the current v3.7.1.0 baseline. It does not perform renames or rewrite historical changelog entries.",
+    "created_at": "2026-07-14T15:18:05Z",
+    "last_save_at": "2026-07-16T04:53:42.809Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:6cb04bf21b12d5ff3cdd1a72fea29e55962d49cb83c91654e3fde4623404f5b5",
+    "source_doc_hashes": {
+      "spec.md": "5693d5757d72b3a516cb5b7fce5fc0b89ebe5aec61abb8e65b497b831ef114f5",
+      "plan.md": "5bca3f61bc787da78546302db9fa22c58818a9b1f673d7775fa6ea5e9c3a08e9",
+      "tasks.md": "c9002f4c646b8dc42db7e4c3aeadfd3458fd3352c26f30e9a867baf1ce6ad3bc",
+      "checklist.md": "46d01b7a8114b0faafd81c7be75fc8813fec06921a372f009146865264a1c25a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

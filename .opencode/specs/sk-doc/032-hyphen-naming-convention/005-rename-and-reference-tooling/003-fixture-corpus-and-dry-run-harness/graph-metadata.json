@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fixture corpus dry-run harness",
+      "rename tooling fixtures",
+      "pre-migration dry run",
+      "rename checker harness",
+      "fixture corpus implementation plan",
+      "rename dry-run harness plan",
+      "pre-migration fixture testing",
+      "fixture corpus tasks",
+      "dry-run harness tasks",
+      "rename tooling scenario tasks",
+      "fixture corpus checklist",
+      "dry-run harness verifier"
+    ],
+    "key_topics": [
+      "fixture",
+      "corpus",
+      "dry-run",
+      "harness",
+      "rename",
+      "tooling",
+      "fixtures",
+      "pre-migration",
+      "dry",
+      "run",
+      "checker",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Corpus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Harness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Disposable Git",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scenario",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The rename engine and reference checker need representative, repeatable evidence before a real migration run. This phase builds disposable fixtures and a dry-run harness for semantic names, exemptions, collisions, references, idempotency, rollback, and empty scans.",
+    "created_at": "2026-07-14T15:16:49Z",
+    "last_save_at": "2026-07-16T04:52:58.530Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:0109651a491e49de75d69cac7babc25c4f49239ec02388243911a8953648d3b0",
+    "source_doc_hashes": {
+      "spec.md": "e5eaddd69cf8b41949c5e201a608d7d9355ac66809c1e1299c64b07168830cea",
+      "plan.md": "7bc501e5318e0dffd11d13397d7bff153fa2698664df26a183d845a6cdc67bc7",
+      "tasks.md": "2e450ee5247937531165cd8d0f31fc8c8667235c22fa9f041d88c53388004df4",
+      "checklist.md": "2ed83d9cbebaf50cb2a6cda1b64c30e009ae11676d78f5443bb6f15db2f502ff"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

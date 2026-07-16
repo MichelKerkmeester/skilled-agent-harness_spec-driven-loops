@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-spec-kit naming phases",
+      "system-spec-kit kebab-case migration",
+      "032 system-spec-kit component migration"
+    ],
+    "key_topics": [
+      "system-spec-kit",
+      "naming",
+      "phases",
+      "kebab-case",
+      "migration",
+      "component",
+      "lean",
+      "phase",
+      "parent",
+      "filesystem-name",
+      "work",
+      "across"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Count",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Lean phase parent for the kebab-case filesystem-name work across the system-spec-kit MCP surface, scripts, templates, references/assets, shared/runtime paths, feature catalog, manual testing playbook, verification evidence, and final subtree gate.",
+    "created_at": "2026-07-14T15:17:01Z",
+    "last_save_at": "2026-07-16T04:52:57.733Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f8046ee18b7f62b6d8a4c9ec394fdc5fe6ddd928c93149ab24a04a676afbcbef",
+    "source_doc_hashes": {
+      "spec.md": "19571c738be7ad6ef5841e9943ff85db04535be3b6a1e70375d8c6128f72e8e1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

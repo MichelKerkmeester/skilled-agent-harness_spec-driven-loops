@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-opencode naming migration",
+      "OpenCode packet kebab-case",
+      "OpenCode reference rename",
+      "OpenCode playbook path migration",
+      "code-opencode naming implementation plan",
+      "OpenCode packet rename plan",
+      "OpenCode resource path repair",
+      "code-opencode naming tasks",
+      "OpenCode packet rename tasks",
+      "OpenCode reference repair tasks",
+      "code-opencode naming checklist",
+      "OpenCode packet rename verification"
+    ],
+    "key_topics": [
+      "code-opencode",
+      "naming",
+      "migration",
+      "opencode",
+      "packet",
+      "kebab-case",
+      "reference",
+      "rename",
+      "playbook",
+      "path",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/code-opencode/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Process",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-opencode packet is a large evidence tree with snakecase names across assets/checklists, manual-testing-playbook categories, language-reference directories, Rust checklists, shared organization references, and benchmark labels",
+    "created_at": "2026-07-14T15:17:07Z",
+    "last_save_at": "2026-07-16T04:53:21.121Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:0bd72ed7e068dd7ff095e595b5bb48af845862962f255f05467cfe5dbdd197a4",
+    "source_doc_hashes": {
+      "spec.md": "fea1eb5f156c2501b44ff0d7c4889a416a36debca8306cf7c6b230bbaa4606a1",
+      "plan.md": "c4626d359fc3a57c8bd33b1969197fec085a449256c600a33ad39ee6c5303c08",
+      "tasks.md": "b179e591d6ce98b20572e488699d15b2527e0bb1cba65386168a1f0fa4a19e9e",
+      "checklist.md": "92e8a18d3da3d67aabc35279f00b06c04bddef24d18f5fb6553396829c4fcb32"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

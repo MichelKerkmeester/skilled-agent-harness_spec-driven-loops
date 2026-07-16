@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-chrome-devtools kebab-case",
+      "chrome devtools playbook rename",
+      "032 mcp tooling phase 002",
+      "mcp-chrome-devtools naming implementation plan",
+      "chrome devtools playbook path repair",
+      "mcp-chrome-devtools naming tasks",
+      "chrome devtools playbook rename tasks",
+      "mcp-chrome-devtools naming checklist",
+      "chrome devtools playbook verification"
+    ],
+    "key_topics": [
+      "mcp-chrome-devtools",
+      "kebab-case",
+      "chrome",
+      "devtools",
+      "playbook",
+      "rename",
+      "mcp",
+      "tooling",
+      "phase",
+      "naming",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Naming Closure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Chrome",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Markdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relative Markdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Chrome",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Markdown",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-chrome-devtools component contains snake_case manual-testing categories, scenario filenames, reference filenames, and an uppercase underscored install guide. This phase renames those filesystem paths to semantic kebab-case and updates every component-local reference while preserving the SKILL.md contract and non-filesystem identifiers.",
+    "created_at": "2026-07-14T15:17:42Z",
+    "last_save_at": "2026-07-16T04:53:24.018Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:a9bf87a795b0f49a7f4a648762258ac84053a2d4363544337847bfccb68ed55a",
+    "source_doc_hashes": {
+      "spec.md": "a35c05ed30ad832eb3a33b04389cbaa5bf6bfd0c1c89ec597387d385043853c8",
+      "plan.md": "9eef58585068e193fd364452d2699a527e4a31d589232f758cf87dbfd4d4523c",
+      "tasks.md": "5e27ae8952a142154ee56145ed0ef5fa71bfab44bcd6b5eb73facb78cb708b46",
+      "checklist.md": "b77d3315fa06a734d545f0315c69862d03c01b9f787929c017e635c082ad5f2d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

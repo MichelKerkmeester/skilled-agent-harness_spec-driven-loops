@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council kebab-case migration",
+      "AI council filesystem names",
+      "council packet path repair",
+      "deep-ai-council snake_case resources",
+      "deep-ai-council implementation plan",
+      "AI council kebab-case rename plan",
+      "council paired playbook path closure",
+      "deep-ai-council tasks",
+      "AI council kebab-case naming tasks",
+      "council paired path repair tasks",
+      "system-deep-loop deep ai council checklist",
+      "deep-ai-council naming verification"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "kebab-case",
+      "migration",
+      "council",
+      "filesystem",
+      "names",
+      "packet",
+      "path",
+      "repair",
+      "resources",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolve Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-ai-council packet contains 12 underscore-bearing directory families and 89 underscore-bearing files, including paired feature-catalog and manual-playbook trees, council graph material, and assets. This phase renames those in-scope paths to kebab-case and repairs their references while preserving council artifacts, state contracts, and tool-mandated names.",
+    "created_at": "2026-07-14T15:17:51Z",
+    "last_save_at": "2026-07-16T04:53:13.874Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:fe30c37e093edb089657d3e49a2d7430ea207ef95bd21477c531688a79bb802d",
+    "source_doc_hashes": {
+      "spec.md": "129058bb914c13ff161206e53fe361b6d9cf9f1d9a77203a86fb81a267234f42",
+      "plan.md": "689ba4bbabbac3e467c3458e818ea004423a3c251c730d31a9f198301452f199",
+      "tasks.md": "334643e92fa7c0cf187adc25fdb7b97ea0c944240775d97fbd458bc0c70cf5c6",
+      "checklist.md": "3468129168e8b923cd55884662e944e9e38a67c1a86e0c066ebc2fb17324f0b2",
+      "decision-record.md": "fd2feca4367f6cf3332220bfd823c329d5d475708741e0e80b3125d1edf8b0e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

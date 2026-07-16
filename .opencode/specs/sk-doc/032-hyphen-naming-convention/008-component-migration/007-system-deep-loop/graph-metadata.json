@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify",
+    "sk-doc/032-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop kebab-case migration",
+      "deep loop naming phases",
+      "hyphenate system-deep-loop resources",
+      "system-deep-loop filesystem names"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "kebab-case",
+      "migration",
+      "deep",
+      "loop",
+      "naming",
+      "phases",
+      "hyphenate",
+      "resources",
+      "filesystem",
+      "names",
+      "surface"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/SKILL.md",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-deep-loop surface contains snake_case directories and files across runtime, five workflow packets, the root manual-testing playbook, and benchmark storage. This phase parent defines eleven independently reviewable child contracts that move only in-scope filesystem names to kebab-case, repair path references, and preserve the program exemption boundary.",
+    "created_at": "2026-07-14T15:17:00Z",
+    "last_save_at": "2026-07-16T04:52:54.620Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:fbc545ea4395abdf4e701b4fc3793a2ae8a8ff35f382c118a7507c43406a8d74",
+    "source_doc_hashes": {
+      "spec.md": "624f6e326e061d3d63379b3d8404accc98038404c7f520c8941b19770f5315f5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

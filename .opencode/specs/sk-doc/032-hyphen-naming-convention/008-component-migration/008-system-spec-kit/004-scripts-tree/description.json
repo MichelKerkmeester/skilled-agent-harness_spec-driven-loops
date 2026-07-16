@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
+  "description": "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names",
+  "keywords": [
+    "system-spec-kit",
+    "surface",
+    "small",
+    "set",
+    "non-python",
+    "script",
+    "filenames",
+    "still",
+    "contain",
+    "underscores",
+    "while",
+    "python",
+    "scripts",
+    "test",
+    "fixture",
+    "names"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.712Z",
+  "specId": "004",
+  "folderSlug": "scripts-tree",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

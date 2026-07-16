@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "description": "The sk-doc surface uses snakecase in several directory and filename families, while the 032 program defines kebab-case as the sole canonical form for",
+  "keywords": [
+    "sk-doc",
+    "surface",
+    "snakecase",
+    "several",
+    "directory",
+    "filename",
+    "families",
+    "while",
+    "program",
+    "defines",
+    "kebab-case",
+    "sole",
+    "canonical",
+    "form"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.588Z",
+  "specId": "003",
+  "folderSlug": "sk-doc",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

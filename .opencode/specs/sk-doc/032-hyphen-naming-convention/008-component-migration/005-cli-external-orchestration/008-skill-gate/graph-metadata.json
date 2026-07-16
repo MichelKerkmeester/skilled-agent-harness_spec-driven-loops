@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-external subtree rollup gate",
+      "cli-external kebab-clean verifier",
+      "cli-external phase 008 acceptance",
+      "cli-external subtree rollup gate plan",
+      "cli-external kebab-clean plan",
+      "cli-external phase 008 plan",
+      "cli-external subtree rollup gate tasks",
+      "cli-external final naming census",
+      "cli-external phase 008 tasks",
+      "cli-external subtree rollup gate checklist"
+    ],
+    "key_topics": [
+      "cli-external",
+      "subtree",
+      "rollup",
+      "gate",
+      "kebab-clean",
+      "verifier",
+      "phase",
+      "acceptance",
+      "plan",
+      "tasks",
+      "final",
+      "naming"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approved Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changing Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Sibling",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This read-only rollup gate aggregates phases 001–007 and proves that the complete cli-external-orchestration naming surface is kebab-clean within the 032 exemption boundary. It performs no new rename, reference rewrite, changelog repair, or metadata mutation.",
+    "created_at": "2026-07-14T15:17:40Z",
+    "last_save_at": "2026-07-16T04:53:02.594Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:3ca927c0fa4a83cab9264b85147ca8860a4cfc4331c5dcc4df3ff5bb2099a122",
+    "source_doc_hashes": {
+      "spec.md": "cbfd59dad29e45b2d347c9577e33f3bcd296a0c786729580bf655bb917ef067d",
+      "plan.md": "7b9e7b29e878063a0870764be406a60468298e80cf9e6e766595b11148adec5d",
+      "tasks.md": "9c029faea35dfd837ea984065b6b878d9041cb8f4481aaea3b49534eca167154",
+      "checklist.md": "49243cb84cab4018c219d8795b78dae8ae1315749c7ca0d7c0a828f50e4d6ffc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

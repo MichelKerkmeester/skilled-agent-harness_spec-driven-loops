@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
+  "description": "The `/create:*` auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths.",
+  "keywords": [
+    "auto",
+    "confirm",
+    "presentation",
+    "assets",
+    "still",
+    "contain",
+    "output",
+    "rules",
+    "examples",
+    "emit",
+    "underscore",
+    "paths"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.584Z",
+  "specId": "004",
+  "folderSlug": "command-asset-emitters",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "003-create-generators-and-templates"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

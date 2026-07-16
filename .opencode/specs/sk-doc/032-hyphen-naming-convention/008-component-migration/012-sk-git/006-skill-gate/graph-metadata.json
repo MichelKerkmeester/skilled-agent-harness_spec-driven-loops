@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git skill gate",
+      "032 sk-git naming rollup",
+      "sk-git subtree kebab-case gate",
+      "sk-git skill gate plan",
+      "032 sk-git rollup verification",
+      "component naming gate plan",
+      "sk-git skill gate tasks",
+      "032 sk-git rollup tasks",
+      "whole surface naming gate tasks",
+      "sk-git skill gate checklist",
+      "whole surface naming gate acceptance"
+    ],
+    "key_topics": [
+      "sk-git",
+      "skill",
+      "gate",
+      "naming",
+      "rollup",
+      "subtree",
+      "kebab-case",
+      "plan",
+      "verification",
+      "component",
+      "tasks",
+      "whole"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "matching",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "owner",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "sibling",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-git component needs a blocking rollup gate that aggregates the five sibling phase contracts and proves its complete tracked filesystem surface is kebab-clean within the 032 exemption boundary. This phase adds no migration work.",
+    "created_at": "2026-07-14T15:18:30Z",
+    "last_save_at": "2026-07-16T04:53:26.786Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:539edfe20fde57d884b2ef5fb4a0cbaeb25ad502602bfee6e691b89aaad2098d",
+    "source_doc_hashes": {
+      "spec.md": "fe012a17447d4d95671e27f1b24888967ea0e50640ffbab06bd2f74febde7121",
+      "plan.md": "99cb438e8ecfb25a0615c089f64178f758d4c30efca0de213d8a4be89aca2c1f",
+      "tasks.md": "4a5ba61db67cee48e652883c338e5f4d965986572ff2f6d78af4432c4ec7c12f",
+      "checklist.md": "316750b718d85f790889da212f278a2c1d3bf681a2d79fdf9ecc43e0866349d1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

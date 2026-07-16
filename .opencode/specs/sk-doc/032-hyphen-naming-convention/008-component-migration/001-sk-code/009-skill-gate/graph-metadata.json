@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
+  "spec_folder": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
+  "parent_id": "sk-doc/032-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code subtree rollup gate",
+      "sk-code kebab-clean verification",
+      "sk-code naming surface gate",
+      "sk-code phase 009 acceptance",
+      "sk-code skill gate plan",
+      "sk-code subtree rollup plan",
+      "sk-code kebab-clean census",
+      "sk-code skill gate tasks",
+      "sk-code subtree rollup tasks",
+      "sk-code final naming census",
+      "sk-code rollup gate checklist",
+      "sk-code kebab-clean verifier"
+    ],
+    "key_topics": [
+      "sk-code",
+      "subtree",
+      "rollup",
+      "gate",
+      "kebab-clean",
+      "verification",
+      "naming",
+      "surface",
+      "phase",
+      "acceptance",
+      "skill",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Independent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Aggregate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reconcile",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Independent child phases can pass while a cross-boundary snakecase filesystem name, stale reference, missing exemption",
+    "created_at": "2026-07-14T15:17:12Z",
+    "last_save_at": "2026-07-16T04:53:20.801Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:297fcb86314a1b24ea4dc47c36f4e8bafb86c2d0381fea2b89eda27ff09d2525",
+    "source_doc_hashes": {
+      "spec.md": "77fffa06d5645d3a7bffe5df74ee4fd59a647f6f3f0c0f1ae7b8ea35ef659f0e",
+      "plan.md": "1d94f276a95165f440062599394a9a18983732c282f63eabc75bf7ca1ec6d695",
+      "tasks.md": "74ff30a7e5963fbd3ca4946c4d9a2f1fc65448acc687fb277652fb9ba3f71ae3",
+      "checklist.md": "7202b6b21d84c13d8a30153ecbefe2407b665782ed5eeedc62517aa4c0d30889"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

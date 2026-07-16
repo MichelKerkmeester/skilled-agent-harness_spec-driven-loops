@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
+  "description": "Renaming the MCP package and its inner directories changes path-valued references across the skill, sibling skills, scripts, manifests, hooks, and",
+  "keywords": [
+    "renaming",
+    "mcp",
+    "package",
+    "inner",
+    "directories",
+    "changes",
+    "path-valued",
+    "references",
+    "across",
+    "skill",
+    "sibling",
+    "skills",
+    "scripts",
+    "manifests",
+    "hooks"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.716Z",
+  "specId": "003",
+  "folderSlug": "mcp-server-consumer-rewrites",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

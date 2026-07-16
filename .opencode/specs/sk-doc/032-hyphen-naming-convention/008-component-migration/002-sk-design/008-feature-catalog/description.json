@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog",
+  "description": "The sk-design hub and mode packets use feature_catalog roots, category directories, and feature files with underscores, while catalog indexes link to",
+  "keywords": [
+    "sk-design",
+    "hub",
+    "mode",
+    "packets",
+    "roots",
+    "category",
+    "directories",
+    "feature",
+    "files",
+    "underscores",
+    "while",
+    "catalog",
+    "indexes",
+    "link"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.616Z",
+  "specId": "008",
+  "folderSlug": "feature-catalog",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

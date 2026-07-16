@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify",
+  "description": "The mcp-tooling changelog history predates the 032 kebab-case rename set and currently has no verified append-only entry for the hub/component",
+  "keywords": [
+    "mcp-tooling",
+    "changelog",
+    "history",
+    "predates",
+    "kebab-case",
+    "rename",
+    "set",
+    "currently",
+    "verified",
+    "append-only",
+    "entry",
+    "hub",
+    "component"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.647Z",
+  "specId": "007",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration",
+    "006-mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

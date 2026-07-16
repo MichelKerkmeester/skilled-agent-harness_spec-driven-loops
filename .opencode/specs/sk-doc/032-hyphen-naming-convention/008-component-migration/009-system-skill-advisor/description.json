@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/032-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "description": "The system-skill-advisor surface contains several independent filesystem-name groups that still use snakecase:",
+  "keywords": [
+    "system-skill-advisor",
+    "surface",
+    "contains",
+    "several",
+    "independent",
+    "filesystem-name",
+    "groups",
+    "still",
+    "snakecase"
+  ],
+  "lastUpdated": "2026-07-16T04:49:23.586Z",
+  "specId": "009",
+  "folderSlug": "system-skill-advisor",
+  "parentChain": [
+    "sk-doc",
+    "032-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
