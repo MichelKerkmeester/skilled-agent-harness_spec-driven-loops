@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/002-sk-improve-prompt-rename",
-  "spec_folder": "sk-prompt/002-sk-improve-prompt-rename",
+  "packet_id": "sk-prompt/z_archive/002-sk-improve-prompt-rename",
+  "spec_folder": "sk-prompt/z_archive/002-sk-improve-prompt-rename",
   "parent_id": null,
   "children_ids": [
     "sk-prompt/002-sk-improve-prompt-rename/001-discovery-impact-map",
@@ -9,7 +9,13 @@
     "sk-prompt/002-sk-improve-prompt-rename/003-opencode-internals",
     "sk-prompt/002-sk-improve-prompt-rename/004-runtime-mirrors",
     "sk-prompt/002-sk-improve-prompt-rename/005-root-and-config",
-    "sk-prompt/002-sk-improve-prompt-rename/006-advisor-and-validate"
+    "sk-prompt/002-sk-improve-prompt-rename/006-advisor-and-validate",
+    "sk-prompt/z_archive/002-sk-improve-prompt-rename/001-discovery-impact-map",
+    "sk-prompt/z_archive/002-sk-improve-prompt-rename/002-skill-folder-rename",
+    "sk-prompt/z_archive/002-sk-improve-prompt-rename/003-opencode-internals",
+    "sk-prompt/z_archive/002-sk-improve-prompt-rename/004-runtime-mirrors",
+    "sk-prompt/z_archive/002-sk-improve-prompt-rename/005-root-and-config",
+    "sk-prompt/z_archive/002-sk-improve-prompt-rename/006-advisor-and-validate"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -194,7 +200,7 @@
     ],
     "causal_summary": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/prompt`) and agent (`@improve-prompt`)",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-07-15T08:09:41.757Z",
+    "last_save_at": "2026-07-16T15:57:11.029Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

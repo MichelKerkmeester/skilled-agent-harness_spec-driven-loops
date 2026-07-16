@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename",
+  "specFolder": "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename",
   "description": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
   "keywords": [
     "two",
@@ -12,11 +12,12 @@
     "sk-improve-prompt",
     "sk-prompt"
   ],
-  "lastUpdated": "2026-07-15T08:09:15.260Z",
+  "lastUpdated": "2026-07-15T10:50:09.217Z",
   "specId": "003",
   "folderSlug": "sk-prompt-testing-playbook-and-agent-rename",
   "parentChain": [
-    "sk-prompt"
+    "sk-prompt",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

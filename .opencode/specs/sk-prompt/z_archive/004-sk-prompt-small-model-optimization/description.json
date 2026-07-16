@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-prompt/004-sk-prompt-small-model-optimization",
+  "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization",
   "description": "Our cli- dispatch surface (`cli-devin` for SWE-1.6, `cli-opencode` for DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) and `sk-prompt`'s framework",
   "keywords": [
     "cli",
@@ -15,11 +15,11 @@
     "sk-prompt",
     "framework"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.673Z",
-  "specId": "093",
-  "folderSlug": "small-ai-model-optimization",
+  "lastUpdated": "2026-07-15T10:50:08.717Z",
+  "specId": "004",
+  "folderSlug": "sk-prompt-small-model-optimization",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-prompt",
     "z_archive"
   ],
   "memorySequence": 5,
