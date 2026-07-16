@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/033-create-diff-mode/009-create-diff-command",
+  "spec_folder": "sk-doc/033-create-diff-mode/009-create-diff-command",
+  "parent_id": "sk-doc/033-create-diff-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create diff command",
+      "/create:diff slash command",
+      "create-diff command router",
+      "diff command auto confirm modes",
+      "create diff command plan",
+      "diff command router plan",
+      "create-diff command workflow yaml",
+      "create diff command tasks",
+      "diff command router tasks",
+      "create-diff command workflow tasks",
+      "create diff command checklist",
+      "diff command verification"
+    ],
+    "key_topics": [
+      "diff",
+      "command",
+      "slash",
+      "create-diff",
+      "router",
+      "auto",
+      "confirm",
+      "modes",
+      "plan",
+      "workflow",
+      "yaml",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/commands/create/diff.md",
+      ".opencode/commands/create/assets/create_diff_presentation.txt",
+      ".opencode/commands/create/assets/create_diff_auto.yaml",
+      ".opencode/commands/create/assets/create_diff_confirm.yaml",
+      ".codex/prompts/create-diff.md",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/commands/create/flowchart.md",
+      ".opencode/skills/sk-doc/create-diff/SKILL.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "diff.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/diff.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_diff_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/assets/create_diff_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create_diff_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_diff_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_diff_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_diff_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-diff.md",
+        "kind": "doc",
+        "path": ".codex/prompts/create-diff.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "flowchart.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/flowchart.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `create-diff` mode ships a working engine (`creatediff.py`) and validator (`validatereport.py`), is registered in the sk-doc hub, and routes through the advisor — but it is the only one of the eleven sk-doc `create-` workflow packets with no dedicated slash command",
+    "created_at": "2026-07-15T18:43:15.367Z",
+    "last_save_at": "2026-07-15T19:19:10.913Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a188db31f3ba03aeadf85f383f4abdf9e4c4d841825edc589c61b35891dd8315",
+    "source_doc_hashes": {
+      "spec.md": "36bbc68e22bf68e13b00af46bf31714b1168fb8f3522f72a544a23bf08eaae48",
+      "plan.md": "06fa8d48fea182aee14b26b33247fcb40744386f3d3e19e59e2862b86919a6a0",
+      "tasks.md": "e90a35d2e2d2bf8a71315b68e426f259bd8e99920e3c573cf8120e8c34af8702",
+      "checklist.md": "792fff9058dc56f172403c6cf36e431cd2858e7b2bcc2d7101616f028791b6b3",
+      "implementation-summary.md": "9d6bd9b0554e08be0de9153afc1bb5e5bf5d1c66719b6410bc1f18566c27dcef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

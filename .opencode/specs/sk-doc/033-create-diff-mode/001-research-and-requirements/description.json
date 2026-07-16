@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/033-create-diff-mode/001-research-and-requirements",
+  "description": "People use AI to edit documents outside Git repositories and cannot reliably inspect the exact before-and-after change",
+  "keywords": [
+    "people",
+    "edit",
+    "documents",
+    "outside",
+    "git",
+    "repositories",
+    "cannot",
+    "reliably",
+    "inspect",
+    "exact",
+    "before-and-after",
+    "change"
+  ],
+  "lastUpdated": "2026-07-15T09:53:39.633Z",
+  "specId": "001",
+  "folderSlug": "research-and-requirements",
+  "parentChain": [
+    "sk-doc",
+    "033-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

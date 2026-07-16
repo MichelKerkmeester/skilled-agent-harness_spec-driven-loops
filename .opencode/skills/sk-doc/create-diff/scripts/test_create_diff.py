@@ -322,6 +322,15 @@ class ReportInvariants(unittest.TestCase):
         self.assertIn('tabindex="0"', html)
         self.assertIn('.diff-scroll:focus-visible', html)
 
+    def test_fluid_type_layer_is_container_keyed(self):
+        # Type and section rhythm flex to the content column (not the viewport), so
+        # the report stays readable across the range of IDE preview-pane widths.
+        with tempfile.TemporaryDirectory() as d:
+            html = _report(Path(d), "a", "b")
+        self.assertIn("container-type:inline-size", html)
+        self.assertIn("@container report", html)
+        self.assertIn("cqi", html)
+
     def test_collapsed_context_accounting(self):
         middle = "\n".join(f"line{i}" for i in range(20))
         d = _diff(f"HEAD\n{middle}\nTAIL", f"head\n{middle}\ntail")

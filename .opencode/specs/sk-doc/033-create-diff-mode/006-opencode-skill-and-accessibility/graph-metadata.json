@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/033-create-diff-mode/006-opencode-skill-and-accessibility",
+  "spec_folder": "sk-doc/033-create-diff-mode/006-opencode-skill-and-accessibility",
+  "parent_id": "sk-doc/033-create-diff-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "OpenCode document diff skill",
+      "AI edit before after review",
+      "accessible document diff report",
+      "automatic document snapshot",
+      "OpenCode document diff implementation",
+      "AI edit capture workflow",
+      "document diff accessibility plan",
+      "OpenCode skill tasks",
+      "AI edit snapshot tasks",
+      "document diff accessibility tasks",
+      "OpenCode skill phase summary",
+      "document diff accessibility status"
+    ],
+    "key_topics": [
+      "opencode",
+      "document",
+      "diff",
+      "skill",
+      "edit",
+      "review",
+      "accessible",
+      "report",
+      "automatic",
+      "snapshot",
+      "implementation",
+      "capture"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_diff.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A portable CLI alone does not capture the moment before an AI edit or guide users through review inside OpenCode",
+    "created_at": "2026-07-15T10:56:00.016Z",
+    "last_save_at": "2026-07-15T16:20:24.094Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:883460c8651e4deb9687bd1c348df7e7aedd08def2379b91eeeda921109569d3",
+    "source_doc_hashes": {
+      "spec.md": "ed5f05dd0b3bc419cbd246db9784a4d0e5aa1a593e9b40cf3508bf8bc2141f24",
+      "plan.md": "2fe41b11e20d0203ab07b43de9a20d718767f6cd0950ebfd7380aa40b02f1d2e",
+      "tasks.md": "d01c3aa1cb931460dc795720753a4b022922ff69a0442b20656e793ac0e91086",
+      "implementation-summary.md": "42c3c56b1a39e5e1b9706c0de3a0e0907b22f28d4a56aebf59a934d020cf5b49"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
