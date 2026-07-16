@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+  "description": "Define immutable, content-addressed, seal-on-write inputs and outputs for Skill Benchmark scenario runs and scoring",
+  "keywords": [
+    "define",
+    "immutable",
+    "content-addressed",
+    "seal-on-write",
+    "inputs",
+    "outputs",
+    "skill",
+    "benchmark",
+    "scenario",
+    "runs",
+    "scoring"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.768Z",
+  "specId": "003",
+  "folderSlug": "sealed-artifacts",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "007-skill-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-unification",
+  "spec_folder": "system-deep-loop/030-deep-loop-unification",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/052-deep-loop-unification/001-reference-research",
+    "system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting",
+    "system-deep-loop/052-deep-loop-unification/003-external-reference-migration",
+    "system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring",
+    "system-deep-loop/052-deep-loop-unification/005-validation-and-closeout",
+    "system-deep-loop/052-deep-loop-unification/006-skillmd-template-conformance",
+    "system-deep-loop/052-deep-loop-unification/007-comprehensive-deep-review",
+    "system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood",
+    "system-deep-loop/052-deep-loop-unification/009-deep-router-agent-rename",
+    "system-deep-loop/052-deep-loop-unification/010-deep-loop-parent-skill-alignment",
+    "system-deep-loop/052-deep-loop-unification/011-skill-frontmatter-standardization",
+    "system-deep-loop/052-deep-loop-unification/012-deep-command-family-parity",
+    "system-deep-loop/030-deep-loop-unification/001-reference-research",
+    "system-deep-loop/030-deep-loop-unification/002-hub-rename-and-runtime-nesting",
+    "system-deep-loop/030-deep-loop-unification/003-external-reference-migration",
+    "system-deep-loop/030-deep-loop-unification/004-fallback-router-wiring",
+    "system-deep-loop/030-deep-loop-unification/005-validation-and-closeout",
+    "system-deep-loop/030-deep-loop-unification/006-skillmd-template-conformance",
+    "system-deep-loop/030-deep-loop-unification/007-comprehensive-deep-review",
+    "system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood",
+    "system-deep-loop/030-deep-loop-unification/009-deep-router-agent-rename",
+    "system-deep-loop/030-deep-loop-unification/010-deep-loop-parent-skill-alignment",
+    "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization",
+    "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop unification",
+      "system-deep-loop merge",
+      "merge deep-loop-workflows and deep-loop-runtime",
+      "052 deep loop unification",
+      "deep-loop-runtime into deep-loop-workflows"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "unification",
+      "system-deep-loop",
+      "merge",
+      "deep-loop-workflows",
+      "deep-loop-runtime",
+      "public",
+      "advisor-routable",
+      "parent",
+      "hub",
+      "mode"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "001-reference-research/spec.md",
+      "002-hub-rename-and-runtime-nesting/spec.md",
+      "003-external-reference-migration/spec.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Unification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-loop-workflows` (the public, advisor-routable parent hub — 4 mode packets, ~1.1.0.0) and `deep-loop-runtime` (its \"frozen, MCP-free backend\" — v1.5.0.1, no MCP tools, own build tooling) are two separate top-level skills today, even though `051-deep-loop-parent-skill-alignment` already established that `deep-loop-workflows` is the canonical parent-skill hub example and explicitly deferred merging runtime in (\"R4: runtime reconciliation.",
+    "created_at": "2026-07-08T04:36:15.214Z",
+    "last_save_at": "2026-07-16T16:33:10.089Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:239e48a0807af850a5e6ec3ee910738341915fdf34a1178ba2b9f79abe86d44e",
+    "source_doc_hashes": {
+      "spec.md": "3fe3a2c0a5d5baad2becff9442ff1e4c3b0614155315d32bb8a23ec38df00ede"
+    },
+    "last_active_child_id": "system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood",
+    "last_active_at": "2026-07-11T08:51:13.833Z"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design",
+  "description": "Phase 001 of packet 036 (command contract compiler, carved from 035).",
+  "keywords": [
+    "phase",
+    "packet",
+    "command",
+    "contract",
+    "compiler",
+    "carved"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.856Z",
+  "specId": "001",
+  "folderSlug": "contract-compiler-design",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "025-deep-loop-gpt-reliability",
+    "007-compiled-contract-compiler"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "04-07-26_16-31__gap-closed-the-stop-hook-correctly-flagged-the.md",
+    "04-07-26_16-34__task-tracker-reset-no-matter-the-work-is.md"
+  ]
+}

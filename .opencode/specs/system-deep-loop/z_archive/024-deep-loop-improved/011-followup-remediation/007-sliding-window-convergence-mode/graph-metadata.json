@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sliding window convergence mode",
+      "denominator drag fix",
+      "sliding window convergence checklist",
+      "verification checklist",
+      "sliding window convergence decisions",
+      "convergence mode architecture",
+      "decision record"
+    ],
+    "key_topics": [
+      "sliding",
+      "window",
+      "convergence",
+      "mode",
+      "denominator",
+      "drag",
+      "checklist",
+      "verification",
+      "decisions",
+      "architecture",
+      "decision",
+      "record"
+    ],
+    "importance_tier": "medium",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Window Convergence Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Window Convergence Mode For Long Loops",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Opt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "denominator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`ADR-001: Sliding-Window Convergence Mode For Long Loops` (`.opencode/specs/system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) proved via generation-2 forced-depth research — two real 35-iteration lineages run under `stopPolicy=max-iterations` — that the current full-history convergence-novelty calculation suffers \"denominator drag\" on 30+ iteration loops",
+    "created_at": "2026-07-01T19:38:04.144Z",
+    "last_save_at": "2026-07-16T16:32:21.224Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:646033c221e18061a6fd5ba559b3a55782307da1fbdd58f964f1bc6687dd347a",
+    "source_doc_hashes": {
+      "spec.md": "e77b487148546b99e5759061e4d15ee841656b2a86e3448cc56b3f0ff2911084",
+      "plan.md": "3d3cbc0ffd654435212eec1ee4198a09cca9d56d7cf6e0c19918e9192f08dd7d",
+      "tasks.md": "d5212bb05c8571d7d6c60a96737bbcdddb3bc40e170be07b455d6e84c702d70b",
+      "checklist.md": "6368fd88d87a57057d7ef5f6b0fbb314c524b196d26adb9528b533ef9ca0e0b9",
+      "decision-record.md": "550273b295ada328d2b110e9d3eff3d3ba3b311c7102fe07fa394e7ffea7aa48",
+      "implementation-summary.md": "8dca5512f7c7b9a0525f7612a36a41eed45c14026cff8aecce66c9f6d135fa28"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

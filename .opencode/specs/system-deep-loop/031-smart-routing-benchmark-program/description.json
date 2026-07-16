@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program",
+  "description": "Skill routing quality was only partially measured",
+  "keywords": [
+    "skill",
+    "routing",
+    "quality",
+    "only",
+    "partially",
+    "measured"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.638Z",
+  "specId": "031",
+  "folderSlug": "smart-routing-benchmark-program",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

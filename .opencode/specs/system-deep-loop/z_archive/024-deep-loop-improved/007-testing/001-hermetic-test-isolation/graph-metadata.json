@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/007-testing/001-hermetic-test-isolation",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/007-testing/001-hermetic-test-isolation",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved/007-testing",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hermetic test isolation",
+      "001 hermetic test isolation",
+      "spawn-cjs helper",
+      "test isolation home dir",
+      "vitest parallel isolation",
+      "hermetic test isolation summary",
+      "createHermeticEnv",
+      "spawn-cjs hermetic helper",
+      "parallel vitest isolation"
+    ],
+    "key_topics": [
+      "hermetic",
+      "test",
+      "isolation",
+      "spawn-cjs",
+      "helper",
+      "home",
+      "dir",
+      "vitest",
+      "parallel",
+      "summary",
+      "createhermeticenv",
+      "tests"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hermetic Test Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Env",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Deep",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`, `database/`, and system temp directories because there is no shared hermetic helper",
+    "created_at": "2026-06-28T16:15:21.565Z",
+    "last_save_at": "2026-07-16T16:32:26.508Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b05b4601f3f9cb8a26efa1f9ce95b02abe92c4254857ca895017cbe3ecf6e810",
+    "source_doc_hashes": {
+      "spec.md": "e0d66d44224a4dbe85c99aaa21cc5d29069782823d290153b5a87b0c17c9fe93",
+      "plan.md": "3a5bf2a2bfd892b7f6eb41cdc854c3b7d4315f43455e21ac23a7a70ebe68a94f",
+      "tasks.md": "544a052e4f4ff1cfdf3062392847a38312c86e8a2a902cc86596c70c53f2899d",
+      "implementation-summary.md": "b20b622510fc4c5d41ee485552ead25ce9530900f13afea016ce825f1115cd7f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

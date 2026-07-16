@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+  "description": "Plan the Skill Benchmark resume adapter over the sealed typed event ledger.",
+  "keywords": [
+    "plan",
+    "skill",
+    "benchmark",
+    "resume",
+    "adapter",
+    "sealed",
+    "typed",
+    "event",
+    "ledger"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.742Z",
+  "specId": "005",
+  "folderSlug": "resume-adapter",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "007-skill-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "p2 test adequacy",
+      "genuinely concurrent jsonl append test",
+      "child process append harness",
+      "p2 test adequacy plan",
+      "genuinely concurrent jsonl append test plan",
+      "child process append harness plan",
+      "p2 test adequacy tasks",
+      "genuinely concurrent jsonl append test tasks",
+      "child process append harness tasks",
+      "p2 test adequacy summary",
+      "genuinely concurrent jsonl append test summary",
+      "child process append harness summary"
+    ],
+    "key_topics": [
+      "test",
+      "adequacy",
+      "genuinely",
+      "concurrent",
+      "jsonl",
+      "append",
+      "child",
+      "process",
+      "harness",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Adequacy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Cross",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Concurrent Append Harness",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The JSONL append test named \"keeps concurrent append records parseable at record boundaries\" ran two child writers with blocking `spawnSync` calls — left fully completed before right started — and wrote through raw `appendFileSync` rather than the real `appendJsonlRecord` fn",
+    "created_at": "2026-06-29T10:43:21Z",
+    "last_save_at": "2026-07-16T16:32:25.373Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:25dafc5f5f0a522b7a521a81360b04a0d631dc6526bbdf0085c41581f8f9c1ab",
+    "source_doc_hashes": {
+      "spec.md": "ae8514facb1696f5bdf07904ad8b104526c479e8165dc5bc6414df0466e131d4",
+      "plan.md": "5e09f74cb98a2ce3573eb37bdf6977e7e36351e353f378df987b9b1a77662bcc",
+      "tasks.md": "fc0df11149896af115ab1a6812d08ed059b6c0301f6a5e0e36c1fc0c4b791320",
+      "implementation-summary.md": "cd00b9d19fb3be2b85886ff877d1e832004cd665304bf69f015fea4dbbdd49fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

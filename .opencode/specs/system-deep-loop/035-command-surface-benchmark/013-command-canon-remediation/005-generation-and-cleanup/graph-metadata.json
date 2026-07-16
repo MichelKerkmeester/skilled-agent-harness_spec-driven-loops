@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup",
+  "spec_folder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup",
+  "parent_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command router generation",
+      "command contract single source",
+      "argument-hint budget",
+      "deep router slimming",
+      "command ergonomics canon",
+      "command router generation plan",
+      "generate-command-routers",
+      "argument-hint budget plan",
+      "deep router slimming plan",
+      "generation cleanup tasks",
+      "command router generator tasks",
+      "A-W4 table standardization"
+    ],
+    "key_topics": [
+      "command",
+      "router",
+      "generation",
+      "contract",
+      "single",
+      "source",
+      "argument-hint",
+      "budget",
+      "deep",
+      "slimming",
+      "ergonomics",
+      "canon"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-command/assets/command_contract.json",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+      ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
+      ".opencode/skills/sk-doc/create-command/SKILL.md",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/commands/deep/research.md",
+      ".opencode/commands/memory/save.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+      ".opencode/skills/sk-doc/create-command/assets/command_template.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "command_contract.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/create-command/assets/command_contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command_router_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-command.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/assets/command_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Materialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The command contract is machine-readable and versioned, but the router surfaces that must obey it are still authored by hand-copying prose across six families",
+    "created_at": "2026-07-16T14:59:02.625Z",
+    "last_save_at": "2026-07-16T16:34:19.177Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e6b6e6964f5883d6f5e493193726e7ed7fed557bc74beef812ae8fbf26557cb1",
+    "source_doc_hashes": {
+      "spec.md": "1f1f5b263c26a9dc7ef3b3406ba2c413eee0e66ba278d78fdc8a588eb1bcc966",
+      "plan.md": "205c7ff9eb4d7c22293886b5334b9df3686d1df2c2836ddcbeac8054bd622c32",
+      "tasks.md": "2894480a0e3f18912d2baf04f7e3bd4c350ac3232ecdf4b7942bccc72027c3c1",
+      "checklist.md": "2a9d792e4848c58fc8b72a74f943769957f794689077c8d38c4d27fdc545f57d",
+      "decision-record.md": "ff99f6d0421882167346dc3b532551d545ea739351cc210357a62ed8dfa59500",
+      "implementation-summary.md": "52714504d8183ce80721d17215fef8c9ddba3e29c7fba84911aed65e554a3937"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/016-llm-judge-hardening",
+  "description": "A single model call failure in the judge path propagates contaminated or null output into convergence and coverage scoring; there is no neutral",
+  "keywords": [
+    "single",
+    "model",
+    "call",
+    "failure",
+    "judge",
+    "path",
+    "propagates",
+    "contaminated",
+    "null",
+    "output",
+    "convergence",
+    "coverage",
+    "scoring",
+    "neutral"
+  ],
+  "lastUpdated": "2026-07-16T16:26:59.390Z",
+  "specId": "016",
+  "folderSlug": "llm-judge-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "002-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

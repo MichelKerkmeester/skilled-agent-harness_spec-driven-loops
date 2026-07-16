@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge",
+  "description": "The default `validate.sh` invocation path uses `.opencode/skills/system-spec-kit/mcpserver/lib/validation/orchestrator.ts` (a hand-written TypeScript",
+  "keywords": [
+    "default",
+    "validate",
+    "invocation",
+    "path",
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "mcpserver",
+    "lib",
+    "validation",
+    "orchestrator",
+    "hand-written",
+    "typescript"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.418Z",
+  "specId": "006",
+  "folderSlug": "validate-sh-registry-bridge",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "011-followup-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

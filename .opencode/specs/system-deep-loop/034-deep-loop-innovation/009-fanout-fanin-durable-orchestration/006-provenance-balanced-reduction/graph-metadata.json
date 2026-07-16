@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/034-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+  "spec_folder": "system-deep-loop/034-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+  "parent_id": "system-deep-loop/034-deep-loop-innovation/009-fanout-fanin-durable-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "provenance-balanced reduction",
+      "source-balanced fan-in",
+      "deterministic provenance merge",
+      "provenance-balanced reduction implementation plan",
+      "source-balanced fan-in implementation plan",
+      "provenance-balanced reduction tasks",
+      "source-balanced fan-in tasks",
+      "provenance-balanced reduction checklist",
+      "source-balanced fan-in checklist"
+    ],
+    "key_topics": [
+      "provenance-balanced",
+      "reduction",
+      "source-balanced",
+      "fan-in",
+      "deterministic",
+      "provenance",
+      "merge",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "reducer"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service/spec.md",
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/manifest/phase-tree.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "fanout-prototype.cjs",
+        "kind": "file",
+        "path": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Balanced Reduction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "arrival",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Generalize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "hierarchical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-closed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan a deterministic fan-in reducer that deduplicates surviving leaf results, balances contribution across source/model provenance, preserves every item's lineage, and escalates contested merges without allowing one prolific source to dominate.",
+    "created_at": "2026-07-16T03:43:51.149Z",
+    "last_save_at": "2026-07-16T16:33:26.384Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:92e3f70733563fea33733337c680ed1b2b96f6984ca2fc8efdad2bada732dcff",
+    "source_doc_hashes": {
+      "spec.md": "05d5c232a898afac0b40b3f4b257fe8288f5534fdc560d2c924ef6d80aeb821d",
+      "plan.md": "ee30c38673c84ec82c1eeb335d57cbd6901b8c80e1aa7383f8bdcc5515a48d66",
+      "tasks.md": "0546c9e04a8e22662ac446ab37d320aa6e3d443c24a36ac9ef6119a12275422f",
+      "checklist.md": "123b0f6e427a79cc4e34bed03737172257aba92926a18a51baed144636564bd3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

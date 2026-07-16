@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections",
+  "description": "Plan the pure deterministic reducers and live projections for the Deep Alignment migration: replay the typed event ledger into lane, authority,",
+  "keywords": [
+    "plan",
+    "pure",
+    "deterministic",
+    "reducers",
+    "live",
+    "projections",
+    "deep",
+    "alignment",
+    "migration",
+    "replay",
+    "typed",
+    "event",
+    "ledger",
+    "lane",
+    "authority"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.531Z",
+  "specId": "002",
+  "folderSlug": "reducers-and-projections",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "008-deep-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

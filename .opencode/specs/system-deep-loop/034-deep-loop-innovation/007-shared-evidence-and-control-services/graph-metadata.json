@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services",
+  "spec_folder": "system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services",
+  "parent_id": "system-deep-loop/034-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+    "system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/002-sealed-reference-artifacts",
+    "system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service",
+    "system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets",
+    "system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/005-stream-fold-gauges",
+    "system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing",
+    "system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/007-continuity-identities",
+    "system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+    "system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services/002-sealed-reference-artifacts",
+    "system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service",
+    "system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets",
+    "system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services/005-stream-fold-gauges",
+    "system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing",
+    "system-deep-loop/034-deep-loop-innovation/007-shared-evidence-and-control-services/007-continuity-identities"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared evidence and control services",
+      "deep-loop phase 007 shared services",
+      "receipts seals adjudication budgets gauges locks continuity"
+    ],
+    "key_topics": [
+      "shared",
+      "evidence",
+      "control",
+      "services",
+      "deep-loop",
+      "phase",
+      "receipts",
+      "seals",
+      "adjudication",
+      "budgets",
+      "gauges",
+      "locks"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/spec.md",
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/manifest/phase-tree.json",
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md",
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "research-modes.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Control Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the seven shared evidence and control services that make the transition-authorized ledger usable by the compatibility bridge and every deep-loop mode.",
+    "created_at": "2026-07-16T03:43:58.919Z",
+    "last_save_at": "2026-07-16T16:33:37.472Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:cc2c6c8a2dc39c9d6e872bc8ffc0c30c435b8fd789f2f21392dd3fa733d5caf0",
+    "source_doc_hashes": {
+      "spec.md": "14b4a142b388fd142e835b49cccb1d5c666a27a895165fd84cae85bf5d43f9ad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

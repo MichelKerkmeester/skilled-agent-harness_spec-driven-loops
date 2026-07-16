@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-unification/004-fallback-router-wiring",
+  "spec_folder": "system-deep-loop/030-deep-loop-unification/004-fallback-router-wiring",
+  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fallback router wiring",
+      "deep-loop model fallback",
+      "glm to mimo fallback",
+      "fallback router wiring plan",
+      "fallback router wiring tasks"
+    ],
+    "key_topics": [
+      "fallback",
+      "router",
+      "wiring",
+      "deep-loop",
+      "model",
+      "glm",
+      "mimo",
+      "plan",
+      "tasks",
+      "deep-loop-runtime",
+      "lib",
+      "fallback-router"
+    ],
+    "importance_tier": "low",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Wire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Minimal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-loop-runtime/lib/deep-loop/fallback-router.ts` is a fully shipped, unit-tested pure-function library (`resolveFallback`/`createFallbackRouter`/`validateFallbackGraph`, confirmed via direct code read) implementing exactly the \"model A fails, route to model B in a different quota pool\" pattern the operator asked for on `001-reference-research`'s GLM-5.2 → MiMo-v2.5-Pro lineage",
+    "created_at": "2026-07-08T04:36:15.774Z",
+    "last_save_at": "2026-07-16T16:33:08.911Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:1fb00de468d2975e4ce4b65bbf3a52ac737ff3008498fb7260aebd2f9251bace",
+    "source_doc_hashes": {
+      "spec.md": "c63875ba7fb9edd9fb7a8b9ae4e964f475c582c7ed835fa2788222dd2b19ddb5",
+      "plan.md": "85ed4e530d375f1b8b3d7759e422cae802ea814a01633ea571768f37429f570b",
+      "tasks.md": "49624fddf08b43f72714919b1842204803895c6ad9655c639f77f81c0e3b9bc2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

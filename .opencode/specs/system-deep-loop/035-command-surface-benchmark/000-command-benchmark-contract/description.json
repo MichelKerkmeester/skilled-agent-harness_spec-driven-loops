@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/035-command-surface-benchmark/000-command-benchmark-contract",
+  "description": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries",
+  "keywords": [
+    "freezes",
+    "canonical",
+    "command",
+    "census",
+    "four-topology",
+    "taxonomy",
+    "two",
+    "non-averaged",
+    "verdict",
+    "axes",
+    "per-phase",
+    "baseline",
+    "counts",
+    "ownership",
+    "boundaries"
+  ],
+  "lastUpdated": "2026-07-16T16:26:56.958Z",
+  "specId": "000",
+  "folderSlug": "command-benchmark-contract",
+  "parentChain": [
+    "system-deep-loop",
+    "035-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

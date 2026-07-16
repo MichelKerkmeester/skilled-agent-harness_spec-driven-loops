@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family",
+  "spec_folder": "system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family",
+  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conformance benchmark family",
+      "conformance_benchmark template",
+      "peer adapter benchmark authoring",
+      "create-benchmark conformance family",
+      "create-benchmark conformance implementation",
+      "conformance benchmark family complete",
+      "peer adapter authoring branch",
+      "benchmark family parity test"
+    ],
+    "key_topics": [
+      "conformance",
+      "benchmark",
+      "family",
+      "template",
+      "peer",
+      "adapter",
+      "authoring",
+      "create-benchmark",
+      "implementation",
+      "complete",
+      "branch",
+      "parity"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+      ".opencode/skills/sk-doc/create-benchmark/README.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/commands/create/benchmark.md",
+      ".opencode/skills/sk-doc/create-benchmark/changelog/v1.4.0.0.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/sk-doc/README.md",
+      ".opencode/commands/create/assets/create_benchmark_presentation.txt",
+      ".opencode/commands/create/assets/create_benchmark_auto.yaml",
+      ".opencode/commands/create/assets/create_benchmark_confirm.yaml",
+      ".opencode/skills/sk-doc/scripts/tests/test_create_benchmark_family_registry.py",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/changelog/v1.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_benchmark_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/assets/create_benchmark_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create_benchmark_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_benchmark_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_benchmark_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_benchmark_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "test_create_benchmark_family_registry.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_create_benchmark_family_registry.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "procedural",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the SKILL",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Adds a fifth authored create-benchmark family, conformance_benchmark, that templates the input scaffolding for deterministic artifact-conformance benchmarks run through a deep-alignment peer adapter, plus routing projections, a minimal authoring-command branch, and a family-parity regression test.",
+    "created_at": "2026-07-15T04:42:13.321Z",
+    "last_save_at": "2026-07-16T16:34:15.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b674fc00234219fff827326ac0f0c33c5768e10a8ed544b480d04fe82877d108",
+    "source_doc_hashes": {
+      "spec.md": "0f9a69802a389aff673140b2fcb564050bea9752f29805c473f0a978e26e8e10",
+      "plan.md": "888341edcd1af17623a5d7b4ff989e17a9144cb49b1c17122495dca6aad1c451",
+      "tasks.md": "7d4ce7f259a56eb18857c0e3bbd12e0f43d480dd8d9ed438072993de2a6e5499",
+      "implementation-summary.md": "2304270f4f7eff52f446650f7eeed318b62921b22370ba04ed9a3b0ac0811c51"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

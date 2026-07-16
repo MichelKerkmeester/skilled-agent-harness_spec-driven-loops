@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/011-convergence-termination-and-health/002-cycle-detection",
+  "description": "Plan deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated thresholds that surface",
+  "keywords": [
+    "plan",
+    "deterministic",
+    "detection",
+    "repeated",
+    "loop",
+    "states",
+    "claim",
+    "frontiers",
+    "next-foci",
+    "ledger",
+    "history",
+    "progress-gated",
+    "thresholds",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-16T16:26:54.243Z",
+  "specId": "002",
+  "folderSlug": "cycle-detection",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "011-convergence-termination-and-health"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

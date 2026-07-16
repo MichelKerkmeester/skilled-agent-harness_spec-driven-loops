@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/001-reference-research",
+  "description": "Our loop systems had unquantified gaps in resilience, convergence quality, observability, safety, and interconnection",
+  "keywords": [
+    "loop",
+    "systems",
+    "unquantified",
+    "gaps",
+    "resilience",
+    "convergence",
+    "quality",
+    "observability",
+    "safety",
+    "interconnection"
+  ],
+  "lastUpdated": "2026-07-16T16:26:59.803Z",
+  "specId": "001",
+  "folderSlug": "reference-research",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

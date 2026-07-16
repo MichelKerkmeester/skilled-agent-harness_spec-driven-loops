@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation",
+  "spec_folder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation",
+  "parent_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/007-compiled-contract-compiler",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "036 phase 002",
+      "deep-loop router deprecation",
+      "deprecate deep-loop agent",
+      "036 phase 002 plan",
+      "deep-loop router deprecation plan",
+      "036 phase 002 tasks",
+      "deep-loop router deprecation tasks",
+      "036 phase 002 summary",
+      "deep-loop router deprecation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "deep-loop",
+      "router",
+      "deprecation",
+      "deprecate",
+      "agent",
+      "plan",
+      "tasks",
+      "summary",
+      "packet",
+      "command",
+      "contract"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Router Agent Deprecation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Route",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Retired",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 of packet 036 (command contract compiler). Retire the now-dead deep-loop primary router agent: the compiled-command-contract mechanism (phase 001 + the review/research/context/ai-council rollout) made the /deep:* commands dispatch their leaf agents directly, so the routing hop the deep-loop agent provided is off every live path. Full-delete the three mirror agent files and reword the two orchestrate boundary lines that named it, preserving the positive leaf-dispatch rule.",
+    "created_at": "2026-07-04T12:45:57.770Z",
+    "last_save_at": "2026-07-16T16:32:27.845Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a27d65d5129ba7aa70aacae9209a5d36ce047ec2bbb6e9572473d5af7189be3",
+    "source_doc_hashes": {
+      "spec.md": "afe43a8be8dcf7f1a185a4ce12d6310884d32f5d2ec28f54c4c17c2de59043c3",
+      "plan.md": "c9edef7c0962cda84cec55db6d6926e2aeea8e4badacb54d5d67f7ca30cf24dc",
+      "tasks.md": "cc00a89e676841c8e6325d2a179a0fc4e9e5160875444e32c3bbf6e7b82dbe59",
+      "implementation-summary.md": "423dc1740c15f8029e1b0c3ff8fd14628552f8529427750589866c8914fc4a7a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

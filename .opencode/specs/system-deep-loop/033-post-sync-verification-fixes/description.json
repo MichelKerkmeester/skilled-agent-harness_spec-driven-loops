@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/033-post-sync-verification-fixes",
+  "description": "A large operator-directed sync of outstanding working-tree state (3,801 files, from concurrent sessions on `skilled/v4.0.0.0`) was committed and",
+  "keywords": [
+    "large",
+    "operator-directed",
+    "sync",
+    "outstanding",
+    "working-tree",
+    "state",
+    "files",
+    "concurrent",
+    "sessions",
+    "skilled",
+    "committed"
+  ],
+  "lastUpdated": "2026-07-16T16:26:54.032Z",
+  "specId": "033",
+  "folderSlug": "post-sync-verification-fixes",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
+  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
+  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scenario loader code surface paths",
+      "load-playbook extractPaths code prefix",
+      "benchmark gold parser code-webflow",
+      "scenario loader code surface plan",
+      "code surface path parse plan",
+      "load playbook code prefix plan",
+      "scenario loader code surface tasks",
+      "code surface path parse tasks",
+      "load playbook code prefix tasks",
+      "scenario loader code surface checklist",
+      "code surface path parse checklist",
+      "load playbook code prefix verification"
+    ],
+    "key_topics": [
+      "scenario",
+      "loader",
+      "code",
+      "surface",
+      "paths",
+      "load-playbook",
+      "extractpaths",
+      "prefix",
+      "benchmark",
+      "gold",
+      "parser",
+      "code-webflow"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/spec.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/plan.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/tasks.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/checklist.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/implementation-summary.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/description.json",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Teach",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harness Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diagnose Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes",
+    "created_at": "2026-07-05T18:53:23.765Z",
+    "last_save_at": "2026-07-16T16:33:17.225Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:04587926dda141665ff3588bef0fe1bbba3b056d1cc0f5f4576dda109d53b46a",
+    "source_doc_hashes": {
+      "spec.md": "e2ec948a4218de71b33466ad4297efe7eb04e836ae3364def2b19d90096ef6c9",
+      "plan.md": "c62486d1b967245099b66a291bc18ece114cfbddca3eb1566372cd8aa2246b97",
+      "tasks.md": "4d2762d734b46b230ed082f78090a3418ff7fde1735f53999f3ad1f2d131d573",
+      "checklist.md": "33670933ed1d0a5342150a6f2a4d8288fed3903df2c68d1bcbd45fa4b574970d",
+      "implementation-summary.md": "6fd9dd4bd59f0a1844d29ff238f01b138b1bf0ad80a98835f1e8fd45b14f3146"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

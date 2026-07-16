@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph",
+  "description": "Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived",
+  "keywords": [
+    "plan",
+    "executable",
+    "dependency",
+    "write-set",
+    "conflict",
+    "graph",
+    "eight",
+    "phase-013",
+    "mode",
+    "migrations",
+    "including",
+    "canonical",
+    "read",
+    "write",
+    "resources",
+    "derived"
+  ],
+  "lastUpdated": "2026-07-16T16:26:54.288Z",
+  "specId": "004",
+  "folderSlug": "write-set-conflict-graph",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "012-shared-mode-contracts-and-fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

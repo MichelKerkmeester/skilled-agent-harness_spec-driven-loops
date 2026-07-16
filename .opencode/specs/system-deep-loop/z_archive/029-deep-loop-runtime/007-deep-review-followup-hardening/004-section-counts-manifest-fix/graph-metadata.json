@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/004-section-counts-manifest-fix",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/004-section-counts-manifest-fix",
+  "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "section counts fix",
+      "section counts false warning",
+      "section counts plan",
+      "section counts tasks",
+      "section counts checklist",
+      "section counts decisions",
+      "section counts implementation",
+      "section counts verification"
+    ],
+    "key_topics": [
+      "section",
+      "counts",
+      "false",
+      "warning",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "implementation",
+      "verification",
+      "check-section-counts",
+      "sectionexpectedspech2"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-section-counts.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Counts Manifest Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Swap",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In `check-section-counts.sh`, `sectionexpectedspech2` counts every `sectionGates` entry active at the declared level from `template-structure.js level-contract` output — a cross-document total (25 at Level 1, 59 at Level 3) — and the rule then warns whenever spec.md's own `##` count is below it",
+    "created_at": "2026-07-02T15:14:06.999Z",
+    "last_save_at": "2026-07-16T16:32:57.849Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:af41b8895d6c5546c9d79421749f3c6470c0ad907b336893a572ac8839c6560b",
+    "source_doc_hashes": {
+      "spec.md": "04955ea69291d6bf1a42aec38edb4d541eb85dd8464e6b3bf8f41ed96244d07f",
+      "plan.md": "9d586e92b50b48931f554d9448272780bc7fe41e4e320a7a9954a1207a4b289e",
+      "tasks.md": "8cc29d8df5b73007367be6a5663d9b96f1bb334d8af2d15c4e4b13ae6be73d17",
+      "checklist.md": "27e1d9b717edd1413cffc686c6ccff810035b42808963e650e261b317e314908",
+      "decision-record.md": "5fba1f0f029b2cc8c515841d994211f0f9141585fd548fdeab06c808bf31bda9",
+      "implementation-summary.md": "aad39acd9ae614663eea91c32d46afa75bf3ec084ecfb52955b952fb69f6a03f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

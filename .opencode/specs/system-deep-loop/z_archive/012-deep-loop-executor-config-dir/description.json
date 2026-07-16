@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/012-deep-loop-executor-config-dir",
+  "description": "Deep-loop fan-out can dispatch `cli-claude-code` seats with a selected model, but it had no per-executor way to select a Claude account directory",
+  "keywords": [
+    "deep-loop",
+    "fan-out",
+    "dispatch",
+    "cli-claude-code",
+    "seats",
+    "selected",
+    "model",
+    "per-executor",
+    "way",
+    "select",
+    "claude",
+    "account",
+    "directory"
+  ],
+  "lastUpdated": "2026-07-16T16:26:57.162Z",
+  "specId": "012",
+  "folderSlug": "deep-loop-executor-config-dir",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

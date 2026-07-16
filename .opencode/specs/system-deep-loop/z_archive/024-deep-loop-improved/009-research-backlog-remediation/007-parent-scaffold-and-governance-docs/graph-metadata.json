@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent scaffold authoring",
+      "008 parent template scaffolds",
+      "missing ADR decision record",
+      "parent scaffold governance docs plan",
+      "parent scaffold governance docs tasks",
+      "parent scaffold governance docs implementation summary"
+    ],
+    "key_topics": [
+      "parent",
+      "scaffold",
+      "authoring",
+      "template",
+      "scaffolds",
+      "missing",
+      "adr",
+      "decision",
+      "record",
+      "governance",
+      "docs",
+      "plan"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Scaffold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Governance Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Rewrote",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`008-loop-systems-remediation/tasks.md` and `implementation-summary.md` are confirmed (direct read) to still be raw, unmodified templates — `tasks.md`'s title is literally `\"Tasks: Phase 1: loop-systems-remediation [template:level1/tasks.md]\"`, its continuity `packetpointer` is `\"scaffold/008-loop-systems-remediation\"`, `lastupdatedby: \"template-author\"` — despite the parent's own `spec.md` (already fixed during this remediation phase's own scaffolding) claiming `Status: Complete` and 7 completed children existing (`research/researcharchive/20260701T071133Z-gen1/research.md` §4.2, F-015)",
+    "created_at": "2026-07-01T07:24:47.296Z",
+    "last_save_at": "2026-07-16T16:32:11.260Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1bde90b6bc957ee6b436acb15ae71db3098436e46d289aed3f071198b90667e2",
+    "source_doc_hashes": {
+      "spec.md": "c2715365f58dd135526e99f82d186fea18a9e32e973ac7eaa63528cc8e722924",
+      "plan.md": "69862e789ea00a4ae928fd607c7e046f5cb9356c918a3e146bbee70599993ce5",
+      "tasks.md": "b6593521e15eb7514373a5849808c2fc573cc5dee32f98f1719c9ee8a3c4e452",
+      "implementation-summary.md": "e38f1b8287d95b6b27a4786b1dc047181140e3a9f2651c481e17742fc8fa7792"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

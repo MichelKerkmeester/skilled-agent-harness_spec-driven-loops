@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+  "description": "Plan a deterministic fan-in reducer that deduplicates surviving leaf results, balances contribution across source/model provenance, preserves every",
+  "keywords": [
+    "plan",
+    "deterministic",
+    "fan-in",
+    "reducer",
+    "deduplicates",
+    "surviving",
+    "leaf",
+    "results",
+    "balances",
+    "contribution",
+    "across",
+    "source",
+    "model",
+    "provenance",
+    "preserves",
+    "every"
+  ],
+  "lastUpdated": "2026-07-16T16:26:54.075Z",
+  "specId": "006",
+  "folderSlug": "provenance-balanced-reduction",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "009-fanout-fanin-durable-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

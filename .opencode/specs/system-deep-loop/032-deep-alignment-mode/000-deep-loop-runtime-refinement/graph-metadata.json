@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-deep-alignment-mode/000-deep-loop-runtime-refinement",
+  "spec_folder": "system-deep-loop/032-deep-alignment-mode/000-deep-loop-runtime-refinement",
+  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop remediation",
+      "dogfood findings remediation",
+      "deep-loop reducer bugs",
+      "system-deep-loop remediation plan",
+      "system-deep-loop remediation tasks",
+      "system-deep-loop remediation checklist",
+      "system-deep-loop remediation implementation summary"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "remediation",
+      "dogfood",
+      "findings",
+      "deep-loop",
+      "reducer",
+      "bugs",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      ".opencode/agents/deep-research.md",
+      ".claude/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-review.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Track Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Triage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Tier",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Once Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "what",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet `052-deep-loop-unification/008-divergent-mode-dogfood` ran two real, evidence-heavy 10-iteration loops (`/deep:research`, `/deep:review`) against `system-deep-loop`'s own runtime, four subskills, `deep/` commands, and agent definitions — discovery-only by design, so nothing found was fixed",
+    "created_at": "2026-07-11T10:45:36.945Z",
+    "last_save_at": "2026-07-16T16:33:19.731Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b7419e9d455e8b72e532fc99f4197978f3672d97c887961bd4e71019642c1825",
+    "source_doc_hashes": {
+      "spec.md": "76e5a34561b25d88ea1d55d6ca07f2e7b8ebb8439f598f5c92a38a16d26e94bd",
+      "plan.md": "b7d6145824280db067ba0a186428486efca3249f4c4b14a2caacb34a526a5e10",
+      "tasks.md": "10bfacb444ef802ea5072da28d1a1200c2c4b94784ed098cc751778b9fc96559",
+      "checklist.md": "c408c39b5028d79d8e988436eb0806800cb26be07b2ed5cce95250a7322cc21c",
+      "implementation-summary.md": "037ddd98d8f2d06e49eddfdd4cb2eed4d3070f9fc7e374a37c58842ebaa37b3f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

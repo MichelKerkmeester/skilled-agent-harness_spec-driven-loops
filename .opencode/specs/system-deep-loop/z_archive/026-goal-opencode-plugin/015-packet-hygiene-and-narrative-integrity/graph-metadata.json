@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity",
+  "spec_folder": "system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity",
+  "parent_id": "system-deep-loop/z_archive/026-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "packet hygiene and narrative integrity",
+      "032 spec folder bookkeeping fix",
+      "section counts validator recalibration",
+      "packet hygiene and narrative integrity plan",
+      "packet hygiene and narrative integrity tasks",
+      "packet hygiene narrative integrity complete",
+      "goal plugin archived cross references",
+      "goal plugin hook event documentation",
+      "goal plugin validation evidence"
+    ],
+    "key_topics": [
+      "packet",
+      "hygiene",
+      "narrative",
+      "integrity",
+      "spec",
+      "folder",
+      "bookkeeping",
+      "section",
+      "counts",
+      "validator",
+      "recalibration",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
+      "scripts/test-fixtures/053-template-compliant-level2/spec.md",
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/commands/goal_opencode.md",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/validation/orchestrator.js",
+      "mcp_server/dist/lib/validation/orchestrator.js",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+      "mcp_server/tests/validation-optional-anchors.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-section-counts.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal_opencode.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal_opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/validation/orchestrator.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validation-optional-anchors.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/validation-optional-anchors.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A four-reviewer audit (plugin code, documentation, spec packet, speckit integration) found that packet 032's own bookkeeping has drifted from reality across phases 007-014: three-way status disagreements, stale \"N of M\" phase-count labels contradicted by later phases, a false rename history repeated in four documents, an overstated \"packet-wide\" fingerprint fix, and dangling cross-references left behind when review/research folders were archived and their paths reused by later audits",
+    "created_at": "2026-07-03T07:30:47Z",
+    "last_save_at": "2026-07-16T16:32:43.161Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1dfcd173ecb66b11d1f8ebb98f19f07fe9164f5baabe5938da56924abd16d5ff",
+    "source_doc_hashes": {
+      "spec.md": "4ce75a0d71dc5afc1a016a557bb3b0690b80173caa36346c44b64d6e66bbecd7",
+      "plan.md": "8a7f93251ede010479133eb0f0aab6b851ce0861294c450855c24a42d6567093",
+      "tasks.md": "6def8518ad9d5106599c937d40f12d45c94c8f89b08d3b5b18bfc98afad12cc8",
+      "implementation-summary.md": "0a461596d9e40dab57ccb8d3f70c8dd3c083d2e6ecbe6316c956f0aaf364bff2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

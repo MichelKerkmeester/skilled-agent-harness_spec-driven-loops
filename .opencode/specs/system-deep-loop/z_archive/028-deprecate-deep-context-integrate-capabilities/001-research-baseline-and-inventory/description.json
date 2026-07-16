@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/001-research-baseline-and-inventory",
+  "description": "Standalone `deep-context` has many active and historical references",
+  "keywords": [
+    "standalone",
+    "deep-context",
+    "many",
+    "active",
+    "historical",
+    "references"
+  ],
+  "lastUpdated": "2026-07-16T16:27:02.544Z",
+  "specId": "001",
+  "folderSlug": "research-baseline-and-inventory",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "028-deprecate-deep-context-integrate-capabilities"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

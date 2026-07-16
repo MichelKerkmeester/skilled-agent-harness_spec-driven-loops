@@ -1,0 +1,35 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit",
+  "description": "The JSONL append test named \"keeps concurrent append records parseable at record boundaries\" ran two child writers with blocking `spawnSync` calls —",
+  "keywords": [
+    "jsonl",
+    "append",
+    "test",
+    "named",
+    "keeps",
+    "concurrent",
+    "records",
+    "parseable",
+    "record",
+    "boundaries",
+    "ran",
+    "two",
+    "child",
+    "writers",
+    "blocking",
+    "spawnsync",
+    "calls"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.712Z",
+  "specId": "006",
+  "folderSlug": "p2-test-adequacy-and-source-only-audit",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "008-loop-systems-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability",
+  "description": "GPT-backed OpenCode mis-handled deep-loop routing, dispatch, host identity, and orchestration — deep skills were mis-invoked, routes were mismatched,",
+  "keywords": [
+    "gpt-backed",
+    "opencode",
+    "mis-handled",
+    "deep-loop",
+    "routing",
+    "dispatch",
+    "host",
+    "identity",
+    "orchestration",
+    "deep",
+    "skills",
+    "mis-invoked",
+    "routes",
+    "mismatched"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.167Z",
+  "specId": "025",
+  "folderSlug": "deep-loop-gpt-reliability",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

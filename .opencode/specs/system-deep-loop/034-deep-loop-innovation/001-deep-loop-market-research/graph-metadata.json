@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/034-deep-loop-innovation/001-deep-loop-market-research",
+  "spec_folder": "system-deep-loop/034-deep-loop-innovation/001-deep-loop-market-research",
+  "parent_id": "system-deep-loop/034-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop market research",
+      "loop engineering landscape",
+      "45 iteration deep research",
+      "non-converging research run",
+      "loop engineering github repos",
+      "deep loop market research plan",
+      "45 iteration executor split",
+      "deep research fan-out recipe",
+      "non-converging flags",
+      "deep loop market research tasks",
+      "45 iteration task breakdown",
+      "deep loop market research checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "market",
+      "research",
+      "engineering",
+      "landscape",
+      "iteration",
+      "non-converging",
+      "run",
+      "github",
+      "repos",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "decision-record.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-dashboard.md",
+      "research/deep-research-config.json",
+      "scratch/deep-loop-driver.cjs",
+      "scratch/angle-schedule.json",
+      "scratch/synthesis-digest.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-driver.cjs",
+        "kind": "file",
+        "path": "scratch/deep-loop-driver.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "angle-schedule.json",
+        "kind": "config",
+        "path": "scratch/angle-schedule.json",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-digest.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-digest.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Market Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Engineering Landscape",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`system-deep-loop` improvements are currently sourced only from local incident experience; the repo has no systematic map of what the wider ecosystem has learned about running agentic/iterative loops (termination policy, evaluator loops, reflection, durable state, fan-out determinism, novelty-driven broadening, budget control, observability)",
+    "created_at": "2026-07-15T19:00:45.940Z",
+    "last_save_at": "2026-07-16T16:34:11.034Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:3035dc0e23cdb1bb8dc9ec8bf1ce10dc206f64e87a0522930e906aa17ee80180",
+    "source_doc_hashes": {
+      "spec.md": "f2b3ffb9d2e89bd7edd20cd343b46ceb9c03ae49ed811ec68235e861535fa905",
+      "plan.md": "827237456e2cb6443b6c51aed8c02dd27eb264f422b4828e9ba21220e613c423",
+      "tasks.md": "5d915aeae09037b2cfffead4190b0d973de2b5afe73ee0ad2cb4311eaac602df",
+      "checklist.md": "b76b43523cf89c83ebace6ef26b17654e8d766d23a23fd3b5d391dd6099d565b",
+      "decision-record.md": "21f65603ab5ba715c43a76042f90697b6c59de97ed340a77f1a253b89d84c60a",
+      "implementation-summary.md": "bd69700e31e2abcea0be7c0f1ee6f09e91457ac0fe3f6111b4fc21614fe7e794",
+      "research/research.md": "86b0e4a7a6702053149a4c06a3f607102edc58cb364d6493be5350bb10f14016"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

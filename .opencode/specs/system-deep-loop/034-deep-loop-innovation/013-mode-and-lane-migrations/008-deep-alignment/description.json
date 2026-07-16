@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment",
+  "description": "Migrate Deep Alignment's verify-first, named-authority conformance loop to the shared typed event-ledger substrate through seven independently gated",
+  "keywords": [
+    "migrate",
+    "deep",
+    "alignment",
+    "verify-first",
+    "named-authority",
+    "conformance",
+    "loop",
+    "shared",
+    "typed",
+    "event-ledger",
+    "substrate",
+    "seven",
+    "independently",
+    "gated"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.582Z",
+  "specId": "008",
+  "folderSlug": "deep-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

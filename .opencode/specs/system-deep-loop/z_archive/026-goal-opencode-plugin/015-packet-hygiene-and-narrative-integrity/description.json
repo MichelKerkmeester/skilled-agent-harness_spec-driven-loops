@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity",
+  "description": "A four-reviewer audit (plugin code, documentation, spec packet, speckit integration) found that packet 032's own bookkeeping has drifted from reality",
+  "keywords": [
+    "four-reviewer",
+    "audit",
+    "plugin",
+    "code",
+    "documentation",
+    "spec",
+    "packet",
+    "speckit",
+    "integration",
+    "found",
+    "own",
+    "bookkeeping",
+    "drifted",
+    "reality"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.736Z",
+  "specId": "015",
+  "folderSlug": "packet-hygiene-and-narrative-integrity",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "026-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

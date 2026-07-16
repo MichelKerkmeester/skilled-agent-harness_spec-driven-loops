@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
+  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
+  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp cli hub benchmark",
+      "mcp-tooling cli-external skill benchmark gold",
+      "mcp cli hub benchmark results",
+      "keyword router ceiling finding"
+    ],
+    "key_topics": [
+      "mcp",
+      "cli",
+      "hub",
+      "benchmark",
+      "mcp-tooling",
+      "cli-external",
+      "skill",
+      "gold",
+      "results",
+      "keyword",
+      "router",
+      "ceiling"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Genuine Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "honest",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "circularity",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Improvements",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-child",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "five Sonnet-authored",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Extends",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Sonnet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The two new parent hubs mcp-tooling (children: mcp-chrome-devtools, mcp-click-up, mcp-figma) and cli-external (children: cli-opencode, cli-claude-code) pass Mode-A Type-2 routing (92/89) but their 5 children return NO-SCENARIOS (prose-only playbooks, no expected_intent/expected_resources gold), mcp-figma's INTENT_MODEL tuple router is unparseable by the replay scorer, and Mode-B never genuinely dispatched a live model.",
+    "created_at": "2026-07-10T16:26:05.944Z",
+    "last_save_at": "2026-07-16T16:33:15.965Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:97a2941dbbbc5a1b9b3f923e4817d9f51fc254679a8093dd9fc7981fe86fbfdb",
+    "source_doc_hashes": {
+      "spec.md": "17879932eb1be76f99193a4fc919ed884271d1e839227cc3e403f00fd210f7a5",
+      "plan.md": "474fd6a6fea866a639e8358009e81023b8e8a5db89198fb48942ce33917b2f27",
+      "tasks.md": "bac09a76c6fa11c9bf2ced6e8de7536810f441670478632a9340fab0abb9139e",
+      "checklist.md": "be53a6af5266e0b02df5f509d37ddd523619d071caf8aea7c3b44ecd3bb6b07b",
+      "implementation-summary.md": "b72ea40207467df1ad818cba5100f67426fad913e3ec751ac6517132ff56bd1f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/z_archive/023-deep-loop-workflows/005-agent-mirror-repoint",
+  "description": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents",
+  "keywords": [
+    "five",
+    "deep",
+    "agents",
+    "deep-context",
+    "deep-research",
+    "deep-review",
+    "deep-improvement",
+    "ai-council",
+    "exist",
+    "real",
+    "three-file",
+    "mirrors",
+    "opencode"
+  ],
+  "lastUpdated": "2026-07-16T16:26:58.921Z",
+  "specId": "005",
+  "folderSlug": "agent-mirror-repoint",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "023-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

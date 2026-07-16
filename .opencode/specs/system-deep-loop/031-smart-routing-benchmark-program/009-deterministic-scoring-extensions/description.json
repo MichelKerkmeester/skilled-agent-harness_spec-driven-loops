@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/009-deterministic-scoring-extensions",
+  "description": "Two CI-safe deterministic harness extensions: an identity-scoped contamination lint that unblocks generic-keyword over-activation negatives (the",
+  "keywords": [
+    "two",
+    "ci-safe",
+    "deterministic",
+    "harness",
+    "extensions",
+    "identity-scoped",
+    "contamination",
+    "lint",
+    "unblocks",
+    "generic-keyword",
+    "over-activation",
+    "negatives"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.381Z",
+  "specId": "009",
+  "folderSlug": "deterministic-scoring-extensions",
+  "parentChain": [
+    "system-deep-loop",
+    "031-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-deep-alignment-mode/004-scoping-and-discovery",
+  "spec_folder": "system-deep-loop/032-deep-alignment-mode/004-scoping-and-discovery",
+  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment scoping question",
+      "alignment lane resolution",
+      "alignment discover contract",
+      "non-interactive alignment lanes",
+      "deep-alignment scoping plan",
+      "alignment lane resolution plan",
+      "alignment discover contract plan",
+      "deep-alignment scoping tasks",
+      "alignment discovery tasks",
+      "deep-alignment scoping checklist",
+      "alignment discovery checklist",
+      "deep-alignment scoping summary"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "scoping",
+      "question",
+      "alignment",
+      "lane",
+      "resolution",
+      "discover",
+      "contract",
+      "non-interactive",
+      "lanes",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-alignment/references/scoping_protocol.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+    ],
+    "entities": [
+      {
+        "name": "scoping_protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/scoping_protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "discover_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane_config_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoping.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "upsert.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Structured",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-alignment` needs to resolve \"what to check, against which standard, and where\" before it can discover any artifact",
+    "created_at": "2026-07-11T06:18:37.255Z",
+    "last_save_at": "2026-07-16T16:33:23.336Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:068468c3073ef9d312e738e4b7c371ba714b91871bf33056d840d23b862b8455",
+    "source_doc_hashes": {
+      "spec.md": "aa8eae0bb3cf8cfb20789bb06f2de466050a5eb59708dee044a6c52bdb665821",
+      "plan.md": "f7abe7cfd18e90200a6ffe50b90c95b99ecf93918efd8872080b1053f2a043f6",
+      "tasks.md": "640aea70c44ae02baeaec9f2ed5257f1b8fed67a96cfde576efd0f1c7c645841",
+      "checklist.md": "01754d097dda24e83e7fa66593027490bbd00547d6ccd44d48ec4b083948d4d9",
+      "implementation-summary.md": "d94288e495b35a820141e1e05f0766a2921ff020665993a001e9e24cf3309f4a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

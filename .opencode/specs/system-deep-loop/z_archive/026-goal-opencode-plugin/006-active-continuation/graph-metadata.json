@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/026-goal-opencode-plugin/006-active-continuation",
+  "spec_folder": "system-deep-loop/z_archive/026-goal-opencode-plugin/006-active-continuation",
+  "parent_id": "system-deep-loop/z_archive/026-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal active continuation",
+      "maybe continue goal",
+      "MK_GOAL_AUTONOMY",
+      "continuation log",
+      "goal continuation plan",
+      "active continuation gates",
+      "promptAsync continuation",
+      "goal continuation tasks",
+      "maybe continue goal tasks",
+      "goal continuation implementation",
+      "active continuation summary",
+      "MK_GOAL_AUTONOMY active"
+    ],
+    "key_topics": [
+      "goal",
+      "active",
+      "continuation",
+      "maybe",
+      "continue",
+      "log",
+      "plan",
+      "gates",
+      "promptasync",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+      ".opencode/skills/.goal-state/.continuation.log",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-continuation.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": ".continuation.log",
+        "kind": "file",
+        "path": ".opencode/skills/.goal-state/.continuation.log",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "ordered",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The goal plugin could verify goals on idle, but it could not continue active work after a `notmet` verifier result",
+    "created_at": "2026-06-28T20:44:11Z",
+    "last_save_at": "2026-07-16T16:32:45.348Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e6fce33e24ecf5427f246ec51ff3e4decaa45f3096b7dbfd0d41b5229b4e96ec",
+    "source_doc_hashes": {
+      "spec.md": "330619f0af173c06f58553ae9482acf1324b238a46df431c9ba23d6e69be5597",
+      "plan.md": "23a18c1b124cb666e09b3188ad06525ffb1d2c48531ea6cf0e819f1cc14476d4",
+      "tasks.md": "79db197588f921c30810b631bf89c1bd4a5c10cbe9a298fb7a744ed4d7f76061",
+      "implementation-summary.md": "a879d3de043b01406d9f5db1d05a05e6a0d1ef6d59d8f1e1211a53677e58fa11"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

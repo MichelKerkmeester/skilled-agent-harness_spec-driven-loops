@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/026-goal-opencode-plugin/018-test-architecture-restructure",
+  "spec_folder": "system-deep-loop/z_archive/026-goal-opencode-plugin/018-test-architecture-restructure",
+  "parent_id": "system-deep-loop/z_archive/026-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal plugin test architecture restructure",
+      "node test subtests conversion",
+      "export contract seam count reconciliation",
+      "goal plugin test architecture restructure plan",
+      "goal plugin test architecture restructure tasks",
+      "goal plugin test architecture restructure complete",
+      "mk-goal node test subtests complete",
+      "mk-goal 16 seams verification"
+    ],
+    "key_topics": [
+      "goal",
+      "plugin",
+      "test",
+      "architecture",
+      "restructure",
+      "node",
+      "subtests",
+      "conversion",
+      "export",
+      "contract",
+      "seam",
+      "count"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+      ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+      ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+      ".opencode/plugins/tests/helpers/continuation-log.cjs",
+      "implementation-summary.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal-continuation.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-tool-path.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-supervisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-export-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "continuation-log.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/helpers/continuation-log.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "All 6 goal-plugin test files under `.opencode/plugins/tests/` are monolithic single-`async function main()` scripts (confirmed: `mk-goal-continuation.test.cjs:42`, `mk-goal-export-contract.test.cjs:12`, `mk-goal-lifecycle.test.cjs:14`, `mk-goal-state.test.cjs:14`, `mk-goal-supervisor.test.cjs:26`, `mk-goal-tool-path.test.cjs:18`), so `node --test` reports exactly 1 test per file; the first `assert` failure inside `main()` throws and aborts the whole file, masking roughly 50 downstream scenarios per file",
+    "created_at": "2026-07-03T07:30:49Z",
+    "last_save_at": "2026-07-16T16:32:48.438Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:560f48c51191e077e3bd6c0e0f349c482b7b9a25b0ecbff49b54d4c487cdce22",
+    "source_doc_hashes": {
+      "spec.md": "5a5283914033ca892a76e477116a332010238e2839d1e73ea2f1b1b8bbc46788",
+      "plan.md": "0e4d51b455c894194ac2be98066aad4e6dc0e0b760ebfd0c4c2631a214e7ebad",
+      "tasks.md": "941b12d3099156d55fe3828b06998b3dc601c77f69f18d6ba4af7c957a3c98de",
+      "implementation-summary.md": "ea6a25d63e35bf80cb4de6013bebd616ce7e7ad62526b14ab95dc3d1579fc2f4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

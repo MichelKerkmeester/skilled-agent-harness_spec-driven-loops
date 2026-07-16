@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts",
+  "description": "Plan the Deep Review per-run certificate and per-transition receipt contract over the typed event-ledger substrate.",
+  "keywords": [
+    "plan",
+    "deep",
+    "review",
+    "per-run",
+    "certificate",
+    "per-transition",
+    "receipt",
+    "contract",
+    "typed",
+    "event-ledger",
+    "substrate"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.076Z",
+  "specId": "004",
+  "folderSlug": "certificates-and-receipts",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "002-deep-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

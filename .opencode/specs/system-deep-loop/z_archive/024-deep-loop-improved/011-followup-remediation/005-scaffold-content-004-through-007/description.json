@@ -1,0 +1,35 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/005-scaffold-content-004-through-007",
+  "description": "Ten leaf children across four phases still have `plan.md`/`tasks.md` whose BODY content is unmodified scaffold-template placeholder prose (`[Core",
+  "keywords": [
+    "ten",
+    "leaf",
+    "children",
+    "across",
+    "four",
+    "phases",
+    "still",
+    "plan",
+    "tasks",
+    "whose",
+    "body",
+    "content",
+    "unmodified",
+    "scaffold-template",
+    "placeholder",
+    "prose",
+    "core"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.525Z",
+  "specId": "005",
+  "folderSlug": "scaffold-content-004-through-007",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "011-followup-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

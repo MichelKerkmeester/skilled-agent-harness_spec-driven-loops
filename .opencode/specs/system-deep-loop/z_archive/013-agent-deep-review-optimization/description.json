@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-deep-loop/z_archive/013-agent-deep-review-optimization",
+  "description": "`@deep-review` (579 LOC) has not been through the sk-improve-agent v2 lens",
+  "keywords": [
+    "deep-review",
+    "loc",
+    "sk-improve-agent",
+    "lens"
+  ],
+  "lastUpdated": "2026-07-16T16:26:57.193Z",
+  "specId": "013",
+  "folderSlug": "agent-deep-review-optimization",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

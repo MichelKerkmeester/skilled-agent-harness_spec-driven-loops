@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures",
+  "description": "Backlog W1/W2/W6: enforce the command contract's behavioral invariants, not just section presence.",
+  "keywords": [
+    "backlog",
+    "enforce",
+    "command",
+    "contract",
+    "behavioral",
+    "invariants",
+    "just",
+    "section",
+    "presence"
+  ],
+  "lastUpdated": "2026-07-16T16:26:56.841Z",
+  "specId": "003",
+  "folderSlug": "semantic-validation-and-fixtures",
+  "parentChain": [
+    "system-deep-loop",
+    "035-command-surface-benchmark",
+    "013-command-canon-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-mode anti-convergence",
+      "antiConvergence contract ADR",
+      "optimizer invariant groups",
+      "stopPolicy fail-closed",
+      "cross-mode anti-convergence ADR",
+      "antiConvergence contract",
+      "optimizer invariant group",
+      "003-cross-mode-anti-convergence-adr summary",
+      "003-cross-mode-anti-convergence-adr"
+    ],
+    "key_topics": [
+      "cross-mode",
+      "anti-convergence",
+      "anticonvergence",
+      "contract",
+      "adr",
+      "optimizer",
+      "invariant",
+      "groups",
+      "stoppolicy",
+      "fail-closed",
+      "group",
+      "003-cross-mode-anti-convergence-adr"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "optimizer-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Anti",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Research",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Define",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migration Guide",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no cross-mode invariant group to catch this",
+    "created_at": "2026-06-28T14:02:08Z",
+    "last_save_at": "2026-07-16T16:32:13.146Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:845873e84d0a9e4809252eccde0cd618ce1323f7dcc63df1650b69aba991dd3d",
+    "source_doc_hashes": {
+      "spec.md": "daa68c4f52291238afa7dd3f29f468cb9be008ae03de1b97d9f0cc78cffc292e",
+      "plan.md": "f143383c774090b4664f6e1dd6b831528e7337caed26fdba334d166489c66c41",
+      "tasks.md": "c218fcf8067c30a122a6674c8a65c593d9083da0b40f612b3343c32dff91144e",
+      "decision-record.md": "728aa272ab42ac6274f7bec71b2b8818326c8389d2e88f2fb25769cfff6c285a",
+      "implementation-summary.md": "8c910ed5a908e275f8bd17290f71c1df5b250ea68e08b5f98fd84082091b532d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

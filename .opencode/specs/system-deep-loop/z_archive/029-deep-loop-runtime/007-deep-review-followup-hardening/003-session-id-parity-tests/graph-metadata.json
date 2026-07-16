@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/003-session-id-parity-tests",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/003-session-id-parity-tests",
+  "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "session id parity tests",
+      "cross mode parity",
+      "parity tests plan",
+      "parity tests tasks",
+      "parity tests checklist",
+      "parity tests decisions",
+      "session id parity implementation",
+      "workflow session id parity tests"
+    ],
+    "key_topics": [
+      "session",
+      "parity",
+      "tests",
+      "cross",
+      "mode",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "implementation",
+      "workflow",
+      "cross-mode"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Id Parity Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Encode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Cross-mode workflow parity is maintained by discipline, not tests",
+    "created_at": "2026-07-02T15:14:06.822Z",
+    "last_save_at": "2026-07-16T16:32:56.573Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b22974ecf82a206e9390abb917573ede1dd6c739144f5aedf393e67fcc05619d",
+    "source_doc_hashes": {
+      "spec.md": "b1540557f68feb91eb4189ace8bebd9d6db3f554171fe9379b13f5dc339bc085",
+      "plan.md": "06ac37538e8c878ae550e6bf089bc36273542553798f43ac64f6f07de0f44770",
+      "tasks.md": "9e9f66a193dfbf9bbd5387143189c7eb6262e645c406506b1b53f102955a1e58",
+      "checklist.md": "3add3c90d1cf97fb027152e44207dc16f7cf8a20ba3c178d6442f60708a9ddc3",
+      "decision-record.md": "859a1275ffa48ebf2f8a9a46bf72a38f0aab9da094ef998505851a60495561b0",
+      "implementation-summary.md": "e2c1ca1dbdbfc3cab5cadf8d27ae235905a80d7e1f2e6a85a5dfb305aebeeeae"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

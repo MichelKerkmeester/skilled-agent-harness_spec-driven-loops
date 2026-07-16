@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target",
+  "description": "Behavior-benchmark research runs need a deterministic toy target with a small,",
+  "keywords": [
+    "behavior-benchmark",
+    "research",
+    "runs",
+    "need",
+    "deterministic",
+    "toy",
+    "target",
+    "small"
+  ],
+  "lastUpdated": "2026-07-16T16:27:02.427Z",
+  "specId": "",
+  "folderSlug": "fx-002-research-target",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "027-deep-loop-behavior-benchmarks",
+    "fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

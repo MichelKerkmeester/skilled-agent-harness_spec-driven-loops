@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts",
+  "spec_folder": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts",
+  "parent_id": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context public redirect",
+      "deep-context replacement context contract",
+      "context snapshot in deep-research",
+      "context snapshot in deep-review",
+      "deep-context redirect plan",
+      "replacement context snapshot plan",
+      "deep-context command contract regeneration",
+      "deep-context redirect tasks",
+      "replacement context contract tasks",
+      "deep-context redirect checklist",
+      "replacement context verification",
+      "deep-context redirect decision"
+    ],
+    "key_topics": [
+      "deep-context",
+      "public",
+      "redirect",
+      "replacement",
+      "context",
+      "contract",
+      "snapshot",
+      "deep-research",
+      "deep-review",
+      "plan",
+      "command",
+      "regeneration"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/deep/assets/compiled/manifest.jsonl",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.jsonl",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Public Redirect And Replacement Context Contracts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Baseline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Standalone `deep-context` still has an executable asset chain: presentation text, auto YAML, confirm YAML, a compiled command contract, deep-context packet docs, and a dedicated agent",
+    "created_at": "2026-07-04T14:32:35Z",
+    "last_save_at": "2026-07-16T16:32:55.475Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c0b3aa4a0f677ce782c17835b597a30c1823420c0400c1b12e4ebcabcb8a083e",
+    "source_doc_hashes": {
+      "spec.md": "ffb74f1a1f92f77eb7754523c58dd8a4c79348249a12f80a70550b14508efb1e",
+      "plan.md": "ad9deda41ba82558347a3e6db3ba6bed61cc22fbe26a73e866976c8b59ffa374",
+      "tasks.md": "f0fb80bbbfd26b4960430288f71d0aca07919738bf8e98abaf148997ab7fa74c",
+      "checklist.md": "69e963659a4ce33f602c1cc7948808685acbae05ba1ffac69db9182acd2e95c9",
+      "decision-record.md": "56020881f0eb8241bd3b66b221c0824ab6477675d824b2029bbc358e41626ef4",
+      "implementation-summary.md": "a0dada74100841f4dc64c89d5e6d175c5f8b8cc45523fa5754dcedb3d4787895"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

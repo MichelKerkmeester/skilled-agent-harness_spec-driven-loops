@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command",
+  "description": "Ships the /deep:command-benchmark workflow-YAML router that composes the deterministic conformance axis through the deep-alignment peer adapter and",
+  "keywords": [
+    "ships",
+    "deep",
+    "command-benchmark",
+    "workflow-yaml",
+    "router",
+    "composes",
+    "deterministic",
+    "conformance",
+    "axis",
+    "deep-alignment",
+    "peer",
+    "adapter"
+  ],
+  "lastUpdated": "2026-07-16T16:26:56.724Z",
+  "specId": "009",
+  "folderSlug": "command-benchmark-command",
+  "parentChain": [
+    "system-deep-loop",
+    "035-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

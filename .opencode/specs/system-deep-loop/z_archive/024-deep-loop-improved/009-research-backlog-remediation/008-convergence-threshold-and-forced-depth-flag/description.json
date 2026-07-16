@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/008-convergence-threshold-and-forced-depth-flag",
+  "description": "`fanout-run.cjs:846` hardcodes `const convergenceThreshold = options.convergenceThreshold ??",
+  "keywords": [
+    "fanout-run",
+    "cjs",
+    "hardcodes",
+    "const",
+    "convergencethreshold",
+    "options"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.015Z",
+  "specId": "008",
+  "folderSlug": "convergence-threshold-and-forced-depth-flag",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "009-research-backlog-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

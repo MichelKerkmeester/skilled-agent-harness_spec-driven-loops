@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/032-deep-alignment-mode/005-adapter-sk-doc",
+  "description": "`deep-alignment` has no reference adapter yet",
+  "keywords": [
+    "deep-alignment",
+    "reference",
+    "adapter"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.689Z",
+  "specId": "005",
+  "folderSlug": "adapter-sk-doc",
+  "parentChain": [
+    "system-deep-loop",
+    "032-deep-alignment-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

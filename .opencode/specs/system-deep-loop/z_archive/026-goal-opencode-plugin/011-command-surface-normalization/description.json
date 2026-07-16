@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/026-goal-opencode-plugin/011-command-surface-normalization",
+  "description": "Phase 003's docs mandated `.opencode/commands/goal.md`",
+  "keywords": [
+    "phase",
+    "docs",
+    "mandated",
+    "opencode",
+    "commands",
+    "goal"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.662Z",
+  "specId": "011",
+  "folderSlug": "command-surface-normalization",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "026-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

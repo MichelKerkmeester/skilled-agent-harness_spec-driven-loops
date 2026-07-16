@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/006-deep-ai-council-canonical-router",
+  "description": "Convert deep-ai-council's INTENT_MODEL (per-keyword tuple weights, unparseable by the Mode-A harness → D5=0 from 10 dead_intent_keys) to canonical",
+  "keywords": [
+    "convert",
+    "deep-ai-council",
+    "per-keyword",
+    "tuple",
+    "weights",
+    "unparseable",
+    "mode-a",
+    "harness",
+    "canonical"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.385Z",
+  "specId": "006",
+  "folderSlug": "deep-ai-council-canonical-router",
+  "parentChain": [
+    "system-deep-loop",
+    "031-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

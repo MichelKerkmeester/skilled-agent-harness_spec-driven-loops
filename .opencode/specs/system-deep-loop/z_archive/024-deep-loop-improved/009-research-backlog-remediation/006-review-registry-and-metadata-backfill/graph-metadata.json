@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/006-review-registry-and-metadata-backfill",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/006-review-registry-and-metadata-backfill",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review registry disposition",
+      "graph metadata key_files backfill",
+      "description.json truncation fix",
+      "review registry metadata backfill plan",
+      "review registry metadata backfill tasks",
+      "review registry metadata backfill implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "registry",
+      "disposition",
+      "graph",
+      "metadata",
+      "backfill",
+      "description",
+      "json",
+      "truncation",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/description/packet-synopsis.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/generator-hardening.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts",
+      "plan.md",
+      ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "packet-synopsis.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/packet-synopsis.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generator-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/generator-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Registry",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Backfill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`review/lineages/glm/deep-review-findings-registry.json` has 9 findings whose `disposition` field still reads `\"active\"`, even though `008-loop-systems-remediation/007-fan-out-hardening` (shipped, 549-test-suite-verified) fixed 6 of the underlying P1s plus the P2 — the registry JSON was never updated to reflect the fix, only the prose implementation-summary was (`research/researcharchive/20260701T071133Z-gen1/research.md` §4.2, F-004/G-002)",
+    "created_at": "2026-07-01T07:23:17.795Z",
+    "last_save_at": "2026-07-16T16:32:10.617Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a446991786296130deff9aa454704766b582f7dd94d1232f6090c45871e4e726",
+    "source_doc_hashes": {
+      "spec.md": "eaafa5cec04c5794b92d3b4ad6b86367192e885f438d5403c7d9a3910927fd0d",
+      "plan.md": "5f4aa0bb2ebdadc0089ed188d765f2d9a820967142d3960a9e5e12163f7c0e97",
+      "tasks.md": "b065a83d448379e8ed374101b2adc325ab9ef6296ca9e1061a23140b08820389",
+      "implementation-summary.md": "ce810852ff2e0b89ef273e8422504661fa1eff61faa05bb337cf3a9a897466ba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime/005-stop-input-corroboration",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/005-stop-input-corroboration",
+  "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "newInfoRatio audit",
+      "stop input corroboration",
+      "graph novelty delta",
+      "lag ceiling backpressure",
+      "cross lineage contradiction",
+      "deep loop progress heartbeat",
+      "newInfoRatio corroboration plan",
+      "graph novelty gate sequencing",
+      "lag ceiling enforcement plan",
+      "deep loop stop hardening plan",
+      "newInfoRatio corroboration tasks",
+      "graph novelty gate tasks"
+    ],
+    "key_topics": [
+      "newinforatio",
+      "audit",
+      "stop",
+      "input",
+      "corroboration",
+      "graph",
+      "novelty",
+      "delta",
+      "lag",
+      "ceiling",
+      "backpressure",
+      "cross"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Input Corroboration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Validation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop convergence verdict decides STOP-vs-CONTINUE from a fixed set of structural graph signals",
+    "created_at": "2026-06-19T06:20:37.819Z",
+    "last_save_at": "2026-07-16T16:33:00.518Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a6124959520a68124531064e6d3800975ddc9ad92f517d599c593e8475d4d17b",
+    "source_doc_hashes": {
+      "spec.md": "d789274178aa426a49220d812a93857c8fe95148adab3e09f6477d06c82ccee2",
+      "plan.md": "1b548c6dde71edb731401375e150fc251151299c193d714bba06c5cfce2a1cee",
+      "tasks.md": "93c5ff40a20f4b1f8836b2ec5ec208e5f336614496b25d663a95960aa11a5476",
+      "checklist.md": "a8e9ff18c7e1155e5a03d3c0acb54747561fe2fe690577620140bb32ef773b75",
+      "implementation-summary.md": "73089493a034710cab4f8d242fbb0413a18fb0dafd4016750603ae5ded5ae169"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

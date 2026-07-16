@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/005-packet-identity-cleanup",
+  "description": "The packet was migrated from `skilled-agent-orchestration/123-agent-loops-improved` to `system-deep-loop/024-deep-loop-improved` (with an",
+  "keywords": [
+    "packet",
+    "migrated",
+    "skilled-agent-orchestration",
+    "123-agent-loops-improved",
+    "system-deep-loop",
+    "024-deep-loop-improved"
+  ],
+  "lastUpdated": "2026-07-16T16:26:59.884Z",
+  "specId": "005",
+  "folderSlug": "packet-identity-cleanup",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "009-research-backlog-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/015-sk-deep-rename/008-final-cleanup",
+  "spec_folder": "system-deep-loop/z_archive/015-sk-deep-rename/008-final-cleanup",
+  "parent_id": "system-deep-loop/z_archive/015-sk-deep-rename",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "070 phase 008",
+      "final cleanup",
+      "iterative review loop",
+      "deep-loop family",
+      "reference-category entity kind",
+      "070 phase 008 plan",
+      "final cleanup plan",
+      "deep-loop family plan",
+      "070 phase 008 tasks",
+      "final cleanup tasks",
+      "deep-loop family tasks",
+      "070 phase 008 checklist"
+    ],
+    "key_topics": [
+      "phase",
+      "final",
+      "cleanup",
+      "iterative",
+      "review",
+      "loop",
+      "deep-loop",
+      "family",
+      "reference-category",
+      "entity",
+      "kind",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "mcp_server/tool-schemas.ts",
+      "dist/tool-schemas.js",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "dist/schemas/tool-input-schemas.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.js",
+        "kind": "code",
+        "path": "dist/tool-schemas.js",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.js",
+        "kind": "code",
+        "path": "dist/schemas/tool-input-schemas.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Complete Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 070 still has three approved P1 cleanup gaps",
+    "created_at": "2026-05-05T17:45:00Z",
+    "last_save_at": "2026-07-16T16:31:35.723Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-05T17:45:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2a0e7ddea0a412562b6be363487d98f5924edc3b9c963cce7268b03ac59c5b29",
+    "source_doc_hashes": {
+      "spec.md": "10e0355e1214530a5fb1cb44ec5999f93de93619cf9bdb492616233d4b95cf16",
+      "plan.md": "5784ade1074c0aa5ae2745d4b648b9dee02d18da69172a72c9b32439c605e176",
+      "tasks.md": "1a0bb95efdef42e23499c3e0b02795adbc0d50477a16eaac1513931d0a5e13f2",
+      "checklist.md": "f0c7781f82a422feff37c4132aa98952c6ea57c4b11315234ce531453951657d",
+      "decision-record.md": "2afbf8b1b38a93814b5e6ab10414a5fd803723f1e2493ee18e4d6ff86b29e40c",
+      "implementation-summary.md": "efd7b7cb494e800fc10843eee3bed31c87edfba4b7694d1e4abb040bb0cd487c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sliding window convergence design",
+      "stall watchdog alerting",
+      "per lineage token cost budget",
+      "lag ceiling observability mapping",
+      "convergence design hardening plan",
+      "convergence design hardening tasks",
+      "sliding window convergence decision",
+      "denominator drag convergence",
+      "convergence mode follow-up",
+      "convergence design hardening implementation summary"
+    ],
+    "key_topics": [
+      "sliding",
+      "window",
+      "convergence",
+      "design",
+      "stall",
+      "watchdog",
+      "alerting",
+      "per",
+      "lineage",
+      "token",
+      "cost",
+      "budget"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "that",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Window Convergence Mode",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Window Convergence Mode For Long Loops",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Generation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two distinct, lower-severity items from `research/researcharchive/20260701T071133Z-gen1/research.md` §4.3-4.4:",
+    "created_at": "2026-07-01T07:27:21.117Z",
+    "last_save_at": "2026-07-16T16:32:11.725Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:afd4590d38308cf8228daf0dd16383f54f0c45edd7f7e3da08d8fb3c9e895830",
+    "source_doc_hashes": {
+      "spec.md": "8308c511b76421132257b8a1d6a3f7d3b957cbf5bd3139ccfda94f6507a063df",
+      "plan.md": "7308b928a5f3e27bf87154c9441db335016899427b7b2590e243662ebebb333c",
+      "tasks.md": "d9d47d78dffbe86be13ae66eb72aa0548c6bf667486b002454113f0da2a417c3",
+      "decision-record.md": "a55bca6c257132fe69020186de3abb1a8d83d0aac04c616e51721ce6954dc9e2",
+      "implementation-summary.md": "b4f4437c6706164a5c67cd732a16132e8e6e9ee5888fcecd412d66857e7b1502"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

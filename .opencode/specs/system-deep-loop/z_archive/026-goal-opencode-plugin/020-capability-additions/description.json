@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/026-goal-opencode-plugin/020-capability-additions",
+  "description": "The goal plugin works but is operationally opaque and one-way in places: archived goals in `<stateDir>/.archive/` (`mk-goal.js:635,828`) are invisible",
+  "keywords": [
+    "goal",
+    "plugin",
+    "works",
+    "operationally",
+    "opaque",
+    "one-way",
+    "places",
+    "archived",
+    "goals",
+    "statedir",
+    "archive",
+    "mk-goal",
+    "invisible"
+  ],
+  "lastUpdated": "2026-07-16T16:27:02.147Z",
+  "specId": "020",
+  "folderSlug": "capability-additions",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "026-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

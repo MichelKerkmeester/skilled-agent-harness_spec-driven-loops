@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync",
+  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync",
+  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "router-replay surface slice sync",
+      "skill-benchmark surface slicing",
+      "code-webflow code-opencode surface prefix",
+      "router replay surface slice plan",
+      "surface slice sync plan",
+      "code surface router replay plan",
+      "router replay surface slice tasks",
+      "surface slice sync tasks",
+      "code surface router replay tasks",
+      "router replay surface slice checklist",
+      "surface slice sync checklist",
+      "code surface router replay verification"
+    ],
+    "key_topics": [
+      "router-replay",
+      "surface",
+      "slice",
+      "sync",
+      "skill-benchmark",
+      "slicing",
+      "code-webflow",
+      "code-opencode",
+      "prefix",
+      "router",
+      "replay",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/spec.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/plan.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/tasks.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/checklist.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/implementation-summary.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/description.json",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/graph-metadata.json",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harness Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diagnose Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane-C deterministic router-replay (`deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs`) slices a single-surface sk-code task down to only its detected surface's resources, so the benchmark can measure route-time loading discipline (the D3 efficiency dimension)",
+    "created_at": "2026-07-05T18:13:11.174Z",
+    "last_save_at": "2026-07-16T16:33:14.314Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:794f8c550be2caa930ff1327c5353c9960c8d72be62908f3bfa4a66fb7202c71",
+    "source_doc_hashes": {
+      "spec.md": "2e0dd3934d3c6985b04c7e2086410bf621ad95530905cd18b4913af7083108bc",
+      "plan.md": "dac75cef746706f931d48f2735c1863457ea4153c36fd3878fd9efb1a4f0d536",
+      "tasks.md": "7e39a1aeba91f267ab401af52757b2db29fddeafa4553d8f4d532c998b27902d",
+      "checklist.md": "c59d4dc5ac03bf94d81476377d74d1e24c4e7942dd3c1ed75a6b48bda4104a77",
+      "implementation-summary.md": "71bbb59a2d32d86cfb80cfb81b30aa6bef8c122f681f5fc7bd38e72f586e094b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

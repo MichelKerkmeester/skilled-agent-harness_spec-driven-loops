@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes",
+  "description": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract",
+  "keywords": [
+    "implementation",
+    "packet",
+    "packet-034",
+    "research",
+    "synthesis",
+    "restructured",
+    "per",
+    "plan-review",
+    "verified",
+    "gaps",
+    "unified",
+    "command-contract"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.194Z",
+  "specId": "006",
+  "folderSlug": "reliability-fixes",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "025-deep-loop-gpt-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

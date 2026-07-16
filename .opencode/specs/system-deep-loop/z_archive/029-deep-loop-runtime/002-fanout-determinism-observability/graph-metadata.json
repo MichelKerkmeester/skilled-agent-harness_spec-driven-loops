@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability",
+  "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fanout determinism observability",
+      "deterministic merge total order",
+      "pool gauges lag pending failed",
+      "graceful self stop empty tick",
+      "order invariance property test",
+      "near-dup merge dedup",
+      "fanout determinism observability plan",
+      "order invariance property test sequencing",
+      "near-dup merge dedup plan",
+      "028 deep-loop determinism impl",
+      "tasks fanout determinism observability",
+      "order invariance property test task breakdown"
+    ],
+    "key_topics": [
+      "fanout",
+      "determinism",
+      "observability",
+      "deterministic",
+      "merge",
+      "total",
+      "order",
+      "pool",
+      "gauges",
+      "lag",
+      "pending",
+      "failed"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Wave",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Wave",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop fan-out runtime merges per-lineage finding registries and pools concurrent CLI lineages on three modules: `fanout-merge.cjs` (merge + dedup), `fanout-pool.cjs` (concurrent dispatch + gauges + summary) and `fanout-run.cjs` (the lineage worker + signal handling)",
+    "created_at": "2026-06-19T06:20:37.815Z",
+    "last_save_at": "2026-07-16T16:33:00.226Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a994ee3a8d503a3247685b9859ef19bc987a071679568e8bfad310ca36eeea52",
+    "source_doc_hashes": {
+      "spec.md": "d33085707c1e107eee45f9bbe2a55ca23d382498aef8970bde36d97c06c6af61",
+      "plan.md": "0a318be9ee84680dbad72424424dcb51a3c4d878173ddb5a1597e51d4af39574",
+      "tasks.md": "34d61ea356b8f1694773c8b3c29c667a840f506d94ae33503b2babcb56bfb817",
+      "checklist.md": "dd9acd4655dbb11c1bee6df63ead85e76424a59474152f4fb851136ecc7a5dea",
+      "implementation-summary.md": "46a365e86f4d5a06b4111e4e420b858ccbc8f276ef3e5ce41fb664ce9af4c153"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

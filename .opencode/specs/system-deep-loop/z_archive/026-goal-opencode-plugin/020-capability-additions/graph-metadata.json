@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/026-goal-opencode-plugin/020-capability-additions",
+  "spec_folder": "system-deep-loop/z_archive/026-goal-opencode-plugin/020-capability-additions",
+  "parent_id": "system-deep-loop/z_archive/026-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal plugin capability additions",
+      "goal history resume doctor budget",
+      "phase 020 capability additions",
+      "goal plugin capability additions plan",
+      "phase 020 plan",
+      "goal plugin capability additions tasks",
+      "phase 020 tasks",
+      "goal plugin capability additions implementation",
+      "history resume doctor health budget",
+      "retry-after recovery"
+    ],
+    "key_topics": [
+      "goal",
+      "plugin",
+      "capability",
+      "additions",
+      "history",
+      "resume",
+      "doctor",
+      "budget",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/commands/goal_opencode.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/plugins/tests/mk-goal-capabilities.test.cjs",
+      ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal_opencode.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal_opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-capabilities.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-capabilities.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal_plugin.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Seven",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Sync",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The goal plugin works but is operationally opaque and one-way in places: archived goals in `<stateDir>/.archive/` (`mk-goal.js:635,828`) are invisible to operators; there is no health/doctor introspection despite the dir-walk machinery already existing (`mk-goal.js:874-902`); `pause` is one-way from the command surface (`goalopencode.md` routes no resume, `GOALACTIONS` at `mk-goal.js:71` has none); the tool accepts `tokenBudget` (`mk-goal.js:1862`) but `goalopencode.md` never routes it; autonomy caps `DEFAULTMAXAUTOTURNS`/`DEFAULTMAXWALLMS` are hardcoded (`mk-goal.js:30,32`) while char caps",
+    "created_at": "2026-07-03T07:30:50Z",
+    "last_save_at": "2026-07-16T16:32:48.788Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9e3bc1d7b3d21be0de236df6ab33b1cee593ed56f5f33d455c7ba70a7399903a",
+    "source_doc_hashes": {
+      "spec.md": "6beea0258dea9378cc9823dd6f9153c3415be3f5db890433fe7cade671a36b2e",
+      "plan.md": "2d6337df8597d161d5f621a4f492e201bcdb8ea78d4d8264d349e1ed1d7ba20b",
+      "tasks.md": "b4bc4f0e4c6038634c223d2b218e3c79dee68b9f19e7fe62fb6cdd1d12af9091",
+      "implementation-summary.md": "5ef97ba192c94154e3e57632271919551c0c91fce6ecb8f6dde1433774640b03"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

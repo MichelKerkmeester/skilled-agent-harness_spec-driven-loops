@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/026-goal-opencode-plugin/021-completion-verifier-wiring",
+  "spec_folder": "system-deep-loop/z_archive/026-goal-opencode-plugin/021-completion-verifier-wiring",
+  "parent_id": "system-deep-loop/z_archive/026-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal completion verifier wiring",
+      "supervisor verifier design fork",
+      "phase 021 verifier",
+      "goal completion verifier wiring plan",
+      "supervisor verifier design fork plan",
+      "phase 021 plan",
+      "goal completion verifier wiring tasks",
+      "phase 021 tasks",
+      "completion verifier wiring summary",
+      "goal verifier provenance",
+      "MK_GOAL_VERIFIER"
+    ],
+    "key_topics": [
+      "goal",
+      "completion",
+      "verifier",
+      "wiring",
+      "supervisor",
+      "design",
+      "fork",
+      "phase",
+      "plan",
+      "tasks",
+      "summary",
+      "provenance"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+      ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-supervisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal_plugin.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement From",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Fork Sign",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Sequenced",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "From the dossier (e-3.1, verbatim): `supervisorVerifier` is options-injectable only (`mk-goal.js:128`, `1197-1199`); OpenCode loads plugins without options, so production verdicts are permanently not-configured -> `notmet`; goals can NEVER auto-complete in production; autonomy ends only via caps",
+    "created_at": "2026-07-03T07:30:51Z",
+    "last_save_at": "2026-07-16T16:32:49.908Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8026b9c8e9d70046682e6bb5fcc4771e156dcb02f760232b430ea01429135729",
+    "source_doc_hashes": {
+      "spec.md": "d0bcae1547d0297153b70171c74a2fee8549d4a9b51c9558c2fe7307b913a265",
+      "plan.md": "5f4a467b53ed16af013a757ef0dae5be28cd5d3b6ec91cc5c3a6dc2edfadb94f",
+      "tasks.md": "b385c8d3f7200a7a06bc43ef15327f99c861f6c55645c9c803e6f693616d3140",
+      "implementation-summary.md": "79341ef7289f091c5bda6e1bcae5465ea499fcc8668a04863ddfe5fa460bdcaf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

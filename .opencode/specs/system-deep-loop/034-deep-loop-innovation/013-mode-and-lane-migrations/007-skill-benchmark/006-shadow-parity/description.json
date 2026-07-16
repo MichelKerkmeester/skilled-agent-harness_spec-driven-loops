@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity",
+  "description": "Plan the Skill Benchmark shadow-parity harness for paired skill scenarios and scoring: run the typed ledger path beside the legacy emitter, compare",
+  "keywords": [
+    "plan",
+    "skill",
+    "benchmark",
+    "shadow-parity",
+    "harness",
+    "paired",
+    "scenarios",
+    "scoring",
+    "run",
+    "typed",
+    "ledger",
+    "path",
+    "beside",
+    "legacy",
+    "emitter",
+    "compare"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.788Z",
+  "specId": "006",
+  "folderSlug": "shadow-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "007-skill-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

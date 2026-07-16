@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-deep-loop-workflows/010-deep-loop-skill-system-review",
+  "spec_folder": "system-deep-loop/z_archive/023-deep-loop-workflows/010-deep-loop-skill-system-review",
+  "parent_id": "system-deep-loop/z_archive/023-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop skill-system trio review",
+      "152 153 155 comprehensive deep review",
+      "deep-loop review report remediation plan",
+      "deep-loop trio review plan",
+      "152 153 155 review plan",
+      "orchestrated-wave deep review plan",
+      "deep-loop trio review tasks",
+      "152 153 155 review tasks",
+      "orchestrated-wave deep review tasks",
+      "deep-loop trio review checklist",
+      "152 153 155 review verification",
+      "orchestrated-wave deep review checklist"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "skill-system",
+      "trio",
+      "review",
+      "comprehensive",
+      "deep",
+      "report",
+      "remediation",
+      "plan",
+      "orchestrated-wave",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "review/review-report.md",
+      "review/deep-review-config.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "review/deltas/verdicts.jsonl",
+      "review/iterations/iteration-000-scope-foundation.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": "review/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts.jsonl",
+        "kind": "file",
+        "path": "review/deltas/verdicts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-000-scope-foundation.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-000-scope-foundation.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Groups",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Split Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three sibling packets landed in close succession and need a release-readiness check before the trio is called \"done\": `147-deep-loop-workflows` (the 9-phase merge that folded the five deep-loop mode packets into one parent skill, including a destructive old-skill-deletion phase), `148-mcp-skill-install-doctor-standardization` (new install/doctor scripts), and `117-parent-nested-skill-pattern` (the parent-nested-skill formalization)",
+    "created_at": "2026-06-15T18:14:25.486Z",
+    "last_save_at": "2026-07-16T16:31:53.412Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9b1c305c0e7adc530dfc51caff7aee42d16cc944ef4ca70894b352f14f5fdb94",
+    "source_doc_hashes": {
+      "spec.md": "01e4e1cd6a70d7df1832184176c2bfda713642878c242ced19cb4dfc323ea9e8",
+      "plan.md": "8e644cf158b1cbbc03db035d852172c3c24f32b64944e36ebab8207e106b56b3",
+      "tasks.md": "0adef2ae5d99738f4cda024a58613e5119fda4ec3d37b75a03693c5eaae02b5b",
+      "checklist.md": "c448701934c18e703778bf5bff982e0e56de42c4884e8be2ee04ea4f4536a2c7",
+      "implementation-summary.md": "582359f8f3cd2c9f6c2896efbd044184d43ebed2ef3d39899114ad1f4fe98838"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation",
+  "description": "Deferred deep-review findings and MiMo-campaign recommendations identified gaps in rollback hash-guard integrity, promotion safety, benchmark ledger",
+  "keywords": [
+    "deferred",
+    "deep-review",
+    "findings",
+    "mimo-campaign",
+    "recommendations",
+    "identified",
+    "gaps",
+    "rollback",
+    "hash-guard",
+    "integrity",
+    "promotion",
+    "safety",
+    "benchmark",
+    "ledger"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.716Z",
+  "specId": "008",
+  "folderSlug": "loop-systems-remediation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

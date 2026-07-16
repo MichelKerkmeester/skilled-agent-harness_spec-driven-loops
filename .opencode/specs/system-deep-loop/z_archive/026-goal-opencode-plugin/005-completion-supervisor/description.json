@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/026-goal-opencode-plugin/005-completion-supervisor",
+  "description": "The plugin could store and track goals, but automatic completion still needed a verifier that did not trust assistant self-report",
+  "keywords": [
+    "plugin",
+    "store",
+    "track",
+    "goals",
+    "automatic",
+    "completion",
+    "still",
+    "needed",
+    "verifier",
+    "trust",
+    "assistant",
+    "self-report"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.804Z",
+  "specId": "005",
+  "folderSlug": "completion-supervisor",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "026-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

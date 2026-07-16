@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema",
+  "description": "Plan the Deep AI Council event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed multi-seat",
+  "keywords": [
+    "plan",
+    "deep",
+    "council",
+    "event",
+    "vocabulary",
+    "shared",
+    "typed",
+    "append-only",
+    "ledger",
+    "versioned",
+    "envelope",
+    "specialization",
+    "multi-seat"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.981Z",
+  "specId": "001",
+  "folderSlug": "typed-ledger-schema",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "003-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

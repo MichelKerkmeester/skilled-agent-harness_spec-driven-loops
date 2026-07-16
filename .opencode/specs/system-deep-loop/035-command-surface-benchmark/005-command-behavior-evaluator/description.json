@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator",
+  "description": "Adds shared behavior-benchmark framework schema v2 with direct-dispatch evidence, outcome probes, setup-misbind detection, and fixture-boundary",
+  "keywords": [
+    "shared",
+    "behavior-benchmark",
+    "framework",
+    "schema",
+    "direct-dispatch",
+    "evidence",
+    "outcome",
+    "probes",
+    "setup-misbind",
+    "detection",
+    "fixture-boundary"
+  ],
+  "lastUpdated": "2026-07-16T16:26:56.748Z",
+  "specId": "005",
+  "folderSlug": "command-behavior-evaluator",
+  "parentChain": [
+    "system-deep-loop",
+    "035-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "model benchmark rollback and mode gate",
+      "model benchmark authority rollback switch",
+      "model benchmark migration gate",
+      "model benchmark phase 014 readiness certificate",
+      "model benchmark rollback and mode gate implementation plan",
+      "model benchmark authority switch plan",
+      "model benchmark migration certificate plan",
+      "model benchmark rollback and mode gate tasks",
+      "model benchmark rollback switch tasks",
+      "model benchmark migration gate tasks",
+      "model benchmark rollback and mode gate checklist",
+      "model benchmark migration gate verification"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "rollback",
+      "mode",
+      "gate",
+      "authority",
+      "switch",
+      "migration",
+      "phase",
+      "readiness",
+      "certificate",
+      "implementation"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Model Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Model Benchmark",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant: multi-model runs, scoring matrices, sealed evidence, certificates, and phase-014 readiness over the shared Deep Improvement Common Services backbone.",
+    "created_at": "2026-07-16T03:43:40.820Z",
+    "last_save_at": "2026-07-16T16:34:02.406Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:46df9f07bed6080ed43f8faaa585d2ab5d3bc9edf6a0443b07d99d02ca611c6b",
+    "source_doc_hashes": {
+      "spec.md": "0f07e065bebe1a3239f24da29bcd2d457a52fdec9ad1370f124f214e454f99db",
+      "plan.md": "b7ef28c69d53055c5c68b8f52e3c47c39597c8f7c9bc2bd888eee8dd72043df7",
+      "tasks.md": "b97c604cca06e2b2f7d2de9c368ac285140ff27d0177790a3b4675eb18045245",
+      "checklist.md": "fee34e49b08812e64e7457b21940545b106e34fd42d4fe65b3b374be1bbbbbf7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

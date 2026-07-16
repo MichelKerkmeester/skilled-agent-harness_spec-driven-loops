@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/034-deep-loop-innovation/006-transition-authorized-ledger-core/002-typed-append-only-ledger",
+  "spec_folder": "system-deep-loop/034-deep-loop-innovation/006-transition-authorized-ledger-core/002-typed-append-only-ledger",
+  "parent_id": "system-deep-loop/034-deep-loop-innovation/006-transition-authorized-ledger-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "typed append-only ledger",
+      "deep-loop dark ledger",
+      "monotonic event append",
+      "typed append-only ledger implementation plan",
+      "deep-loop ledger writer reader plan",
+      "typed append-only ledger tasks",
+      "deep-loop dark ledger tasks",
+      "typed append-only ledger checklist",
+      "deep-loop ledger verification checklist"
+    ],
+    "key_topics": [
+      "typed",
+      "append-only",
+      "ledger",
+      "deep-loop",
+      "dark",
+      "monotonic",
+      "event",
+      "append",
+      "implementation",
+      "plan",
+      "writer",
+      "reader"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Typed Append",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Ledger",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "recovery",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "frame",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "ledger ID",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define the immutable typed ledger writer and reader over versioned envelope events, including monotonic ordering, idempotent append, hash-chain integrity, deterministic reduction, and additive-dark coexistence with the authoritative legacy JSONL path.",
+    "created_at": "2026-07-16T03:43:45.608Z",
+    "last_save_at": "2026-07-16T16:34:12.873Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:ae245440fc0f920e790b898b7827d7772e5672ae671620d3a679f897b7940c7f",
+    "source_doc_hashes": {
+      "spec.md": "fe3a3207fce01d3327b78065e6c8c50b97fd56998ab8e3ac573cb9a424a308a7",
+      "plan.md": "bc8cbd038e289f7e37c5c3038fa7bfba6309f2a85c88be553a1cbbe123b8d53a",
+      "tasks.md": "9e7a397264d2ed8e292391d37e5b0d3eb8d67f8ce253b02d905659f740ae8809",
+      "checklist.md": "025a6202fef941afde818a866898fd99e79eb184329d4af1575d76a95f8808ab"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

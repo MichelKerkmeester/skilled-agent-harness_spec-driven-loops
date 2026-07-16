@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-deep-alignment-mode/002-architecture-decision",
+  "spec_folder": "system-deep-loop/032-deep-alignment-mode/002-architecture-decision",
+  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment architecture decision",
+      "alignment adapter contract freeze",
+      "deep-alignment state machine",
+      "deep-alignment vs deep-review boundary",
+      "phase 002 architecture-decision",
+      "deep-alignment architecture plan",
+      "alignment state machine target",
+      "adapter contract target shape",
+      "deep-alignment boundary freeze",
+      "phase 002 plan",
+      "deep-alignment architecture tasks",
+      "adr authoring tasks"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "architecture",
+      "decision",
+      "alignment",
+      "adapter",
+      "contract",
+      "freeze",
+      "state",
+      "machine",
+      "deep-review",
+      "boundary",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/spec.md",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/decision-record.md",
+      "decision-record.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/plan.md",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/tasks.md",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/checklist.md",
+      "plan.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      ".opencode/skills/sk-design/shared/design_dispatch_boundary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_dispatch_boundary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/design_dispatch_boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-alignment-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lane_config_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoping.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The frozen design brief locks five architecture-level decision clusters for `deep-alignment` and names five open questions it explicitly defers rather than resolves",
+    "created_at": "2026-07-11T13:21:32.188Z",
+    "last_save_at": "2026-07-16T16:33:22.849Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:18b93f6b85692652c082028ee50054005002a8807a613b82296e80181713610a",
+    "source_doc_hashes": {
+      "spec.md": "389f622bb725741cf5b912b736ab96c35c5d75209ff3088da8afe09f83821a1f",
+      "plan.md": "24181147fd2824135085b1e584157daf2d555666f232fd82be8d3561964e1774",
+      "tasks.md": "659ab980ea9a55429e0bc7bb3b80236c4bc7ee1c3c239aca4b98291c4705191a",
+      "checklist.md": "506f9db393714a995aa342eea59c987446896a0181623c3a57c0b5e653961c3d",
+      "decision-record.md": "981db123ffb1b94a7ad81b3f89abba5e2935cfb0d7cc83400c25bb61bf809be8",
+      "implementation-summary.md": "8008e7ba7e5635fe2c38e07e75c4c07810ddb2a862f90840029c3222fe806caf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

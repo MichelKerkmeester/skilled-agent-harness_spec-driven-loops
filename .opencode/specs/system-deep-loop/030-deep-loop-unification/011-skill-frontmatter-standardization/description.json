@@ -1,0 +1,28 @@
+{
+  "level": "phase",
+  "specFolder": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization",
+  "description": "The deep-loop skill family has five completed frontmatter-alignment phases, each covering one deep-loop sub-skill and the same canonical",
+  "keywords": [
+    "deep-loop",
+    "skill",
+    "family",
+    "five",
+    "completed",
+    "frontmatter-alignment",
+    "phases",
+    "covering",
+    "one",
+    "sub-skill",
+    "same",
+    "canonical"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.053Z",
+  "specId": "011",
+  "folderSlug": "skill-frontmatter-standardization",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

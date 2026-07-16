@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks",
+  "spec_folder": "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks",
+  "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/033-deep-loop-behavior-benchmarks/001-framework-and-harness",
+    "system-deep-loop/033-deep-loop-behavior-benchmarks/002-pilot-deep-review",
+    "system-deep-loop/033-deep-loop-behavior-benchmarks/003-rollout-research-context",
+    "system-deep-loop/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement",
+    "system-deep-loop/033-deep-loop-behavior-benchmarks/005-scorecard-and-integration",
+    "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness",
+    "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review",
+    "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context",
+    "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement",
+    "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/005-scorecard-and-integration"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop behavior benchmark",
+      "behavioral benchmark per skill",
+      "gpt vs claude command behavior",
+      "vague prompt benchmark"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "behavior",
+      "benchmark",
+      "behavioral",
+      "per",
+      "skill",
+      "gpt",
+      "claude",
+      "command",
+      "vague",
+      "prompt"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "001-framework-and-harness/decision-record.md",
+      "spec.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Behavioral Benchmarks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "realistic",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unicode Handling",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "hyphens",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration 1 Synthesis",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Parent packet giving each of the five deep-loop-workflows sub-skills its own durable behavior_benchmark package: what an executor model actually outputs/presents when the command surface is triggered with realistic vague/concise user prompts, whether it dispatches the required sub-agents unprompted, whether it gets stuck, and how its latency compares to a Claude baseline. Measured executors: gpt-5.5-fast medium + high via cli-opencode.",
+    "created_at": "2026-07-02T05:41:36.143Z",
+    "last_save_at": "2026-07-16T16:32:51.910Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:820dd5a2dd8cdfa1d0f4824b12fe7e471b904d425c6c09fa2eac59ac73176ff4",
+    "source_doc_hashes": {
+      "spec.md": "f7ac5cc9f752962d534b43ed551af3a97872b98f5df95db834d9899360f08a9e",
+      "research/research.md": "54cc2a2b0fd07e117308b646559f37ac068b65e3b17c25ab6168d4e73336b85b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-02T21:33:41.031Z"
+  }
+}

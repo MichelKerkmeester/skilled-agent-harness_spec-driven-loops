@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/z_archive/023-deep-loop-workflows/009-old-skill-deletion-and-validation",
+  "description": "The five old skill directories must be deleted only after every surface (skill, commands, agents, advisor, governance, docs, runtime) is green, so",
+  "keywords": [
+    "five",
+    "old",
+    "skill",
+    "directories",
+    "must",
+    "deleted",
+    "only",
+    "every",
+    "surface",
+    "commands",
+    "agents",
+    "advisor",
+    "governance",
+    "docs",
+    "runtime",
+    "green"
+  ],
+  "lastUpdated": "2026-07-16T16:26:59.022Z",
+  "specId": "009",
+  "folderSlug": "old-skill-deletion-and-validation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "023-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/022-sk-deep-research-evolution/007-sk-deep-research-path-migration",
+  "description": "Deep research has an inconsistent packet contract",
+  "keywords": [
+    "deep",
+    "research",
+    "inconsistent",
+    "packet",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-16T16:26:58.559Z",
+  "specId": "007",
+  "folderSlug": "sk-deep-research-path-migration",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "022-sk-deep-research-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-deep-alignment-mode/001-research-and-context",
+  "spec_folder": "system-deep-loop/032-deep-alignment-mode/001-research-and-context",
+  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment research gate",
+      "deep-alignment prior art",
+      "deep-review runtime script inventory",
+      "parent-skill standards surface inventory",
+      "phase 001 research-and-context",
+      "deep-alignment research plan",
+      "deep-review runtime inventory plan",
+      "parent-skill standards inventory plan",
+      "130 131 reference read plan",
+      "phase 001 plan",
+      "deep-alignment research tasks",
+      "runtime inventory tasks"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "research",
+      "gate",
+      "prior",
+      "art",
+      "deep-review",
+      "runtime",
+      "script",
+      "inventory",
+      "parent-skill",
+      "standards",
+      "surface"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/decision-record.md",
+      ".opencode/skills/sk-code/shared/references/stack_detection.md",
+      "spec.md",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/spec.md",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/plan.md",
+      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/tasks.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "loop-lock.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stack_detection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/stack_detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Findings",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Contradictions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002's architecture freeze (adapter contract, state machine, reuse boundary) depends on accurate, current facts about the `deep-review` engine's real shape, the standards surfaces of four parent skills, and the one manual precedent (`130`/`131`) the whole mode-packet productizes",
+    "created_at": "2026-07-11T10:39:13.368Z",
+    "last_save_at": "2026-07-16T16:33:24.169Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f60abfc6ab676faf6336add367ebd8552a3fa84009fee77a27a18f3ff813c9dc",
+    "source_doc_hashes": {
+      "spec.md": "73164f148cd0fa72c7ec3a8a3a4a38a5494a6bcbcbbc562b0cb91fcb41f4e2b7",
+      "plan.md": "5769bb4b0fc4e8f32c769b571a1175e755ec7cea18ed7a1c279711809e909d6f",
+      "tasks.md": "629fda0e5379058b6581426b3d0ea971d27f2264fc10aadedb84c23e5eee8f47",
+      "implementation-summary.md": "5299ce10d9a614d092d83efb0af8ec84458b1bb308932f8177d0e68a39a4c105"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

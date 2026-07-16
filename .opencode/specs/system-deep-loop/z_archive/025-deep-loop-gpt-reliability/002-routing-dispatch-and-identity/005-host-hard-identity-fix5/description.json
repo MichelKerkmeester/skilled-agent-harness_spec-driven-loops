@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5",
+  "description": "The research (§8b) found that hard per-agent `subagenttype` identity requires a host-runtime dispatch-primitive change (bind `agentslug` at the Task",
+  "keywords": [
+    "research",
+    "found",
+    "hard",
+    "per-agent",
+    "subagenttype",
+    "identity",
+    "requires",
+    "host-runtime",
+    "dispatch-primitive",
+    "change",
+    "bind",
+    "agentslug",
+    "task"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.274Z",
+  "specId": "005",
+  "folderSlug": "host-hard-identity-fix5",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "025-deep-loop-gpt-reliability",
+    "002-routing-dispatch-and-identity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

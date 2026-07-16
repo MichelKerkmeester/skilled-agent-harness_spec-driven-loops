@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress",
+  "description": "Phase 004 of packet 035 (the last acute-fix phase).",
+  "keywords": [
+    "phase",
+    "packet",
+    "last",
+    "acute-fix"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.188Z",
+  "specId": "003",
+  "folderSlug": "dispatch-receipts-and-progress",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "025-deep-loop-gpt-reliability",
+    "006-reliability-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

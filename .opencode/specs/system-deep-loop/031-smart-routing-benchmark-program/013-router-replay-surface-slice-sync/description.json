@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync",
+  "description": "The Lane-C deterministic router-replay (`deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs`) slices a single-surface",
+  "keywords": [
+    "lane-c",
+    "deterministic",
+    "router-replay",
+    "deep-loop-workflows",
+    "deep-improvement",
+    "scripts",
+    "skill-benchmark",
+    "cjs",
+    "slices",
+    "single-surface"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.538Z",
+  "specId": "013",
+  "folderSlug": "router-replay-surface-slice-sync",
+  "parentChain": [
+    "system-deep-loop",
+    "031-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

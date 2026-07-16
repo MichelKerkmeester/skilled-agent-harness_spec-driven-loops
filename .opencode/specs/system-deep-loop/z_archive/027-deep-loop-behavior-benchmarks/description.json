@@ -1,0 +1,32 @@
+{
+  "level": "phase",
+  "specFolder": "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks",
+  "description": "Parent packet giving each of the five deep-loop-workflows sub-skills its own durable behavior_benchmark package: what an executor model actually",
+  "keywords": [
+    "parent",
+    "packet",
+    "giving",
+    "five",
+    "deep-loop-workflows",
+    "sub-skills",
+    "own",
+    "durable",
+    "package",
+    "executor",
+    "model",
+    "actually"
+  ],
+  "lastUpdated": "2026-07-16T16:27:02.469Z",
+  "specId": "027",
+  "folderSlug": "deep-loop-behavior-benchmarks",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "02-07-26_18-47__phase-003-marked-complete-in-parent-phase-map.md",
+    "02-07-26_22-28__phase-004-complete-30-run-council-improvement.md",
+    "02-07-26_22-33__packet-033-complete-cross-skill-scorecard.md"
+  ]
+}

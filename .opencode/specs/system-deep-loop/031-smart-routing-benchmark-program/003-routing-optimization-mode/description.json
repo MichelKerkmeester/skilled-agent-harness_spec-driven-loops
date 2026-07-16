@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/003-routing-optimization-mode",
+  "description": "The Lane C skill-benchmark (`/deep:skill-benchmark`) diagnoses routing quality but is diagnostic-only — it emits a ranked report and never proposes or",
+  "keywords": [
+    "lane",
+    "skill-benchmark",
+    "deep",
+    "diagnoses",
+    "routing",
+    "quality",
+    "diagnostic-only",
+    "emits",
+    "ranked",
+    "report",
+    "never",
+    "proposes"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.497Z",
+  "specId": "003",
+  "folderSlug": "routing-optimization-mode",
+  "parentChain": [
+    "system-deep-loop",
+    "031-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

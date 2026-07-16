@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime/003-fanout-failure-recovery",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/003-fanout-failure-recovery",
+  "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fan out recovery",
+      "fanout failure recovery",
+      "transient fatal retry",
+      "orphan lineage reset",
+      "deep loop resilience",
+      "fanout failure recovery plan",
+      "transient fatal retry sequencing",
+      "deep loop resilience plan",
+      "fanout failure recovery tasks",
+      "transient fatal retry tasks",
+      "orphan lineage reset tasks",
+      "deep loop resilience tasks"
+    ],
+    "key_topics": [
+      "fan",
+      "recovery",
+      "fanout",
+      "failure",
+      "transient",
+      "fatal",
+      "retry",
+      "orphan",
+      "lineage",
+      "reset",
+      "deep",
+      "loop"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failure Recovery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unit Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Validation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop fan-out runtime (`.opencode/skills/deep-loop-runtime/scripts/`) is a fire-and-exit BATCH orchestrator [CONFIRMED iter-12: `fanout-run.cjs` `process.exit` per run]",
+    "created_at": "2026-06-19T06:06:27.159Z",
+    "last_save_at": "2026-07-16T16:32:59.634Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f5c5de417ac01e3ac07f884e52edbcb19ddcfa1cc98764298af0ad921a54e101",
+    "source_doc_hashes": {
+      "spec.md": "d742b01cc9ca9d2f9c6e087fc862ae6bfc094e3467fe3a5a248ece2c9282e5b4",
+      "plan.md": "c638b80762c7a05b902dc225da65ac44e8c870cfc3b62039270e28b66b77d76a",
+      "tasks.md": "1b0ce5c2f9219f89d53cd4a051bfa20a3301a63b18cdf4d4caf9bb6063bd2e2c",
+      "checklist.md": "5b34d64cd8356665b3d0f3f58256f3d4d2ea14c336962eb19d689194fda48e93",
+      "implementation-summary.md": "15d16907583c77bd2b24c84e62e078424cb4be946f892e14a10e5e97a50579ad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

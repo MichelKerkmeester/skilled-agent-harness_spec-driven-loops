@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
+  "description": "Route the fixture corpus through the existing live executor seam (today the fixture path hardcodes the deterministic router) so T2 decontaminated",
+  "keywords": [
+    "route",
+    "fixture",
+    "corpus",
+    "existing",
+    "live",
+    "executor",
+    "seam",
+    "today",
+    "path",
+    "hardcodes",
+    "deterministic",
+    "router",
+    "decontaminated"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.520Z",
+  "specId": "010",
+  "folderSlug": "live-anti-overfit-lane",
+  "parentChain": [
+    "system-deep-loop",
+    "031-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

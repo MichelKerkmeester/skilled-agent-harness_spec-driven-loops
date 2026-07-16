@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved",
+  "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/030-deep-loop-improved/001-reference-research",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime",
+    "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows",
+    "system-deep-loop/030-deep-loop-improved/004-system-spec-kit",
+    "system-deep-loop/030-deep-loop-improved/005-skill-interconnection",
+    "system-deep-loop/030-deep-loop-improved/006-ux-observability-automation",
+    "system-deep-loop/030-deep-loop-improved/007-testing",
+    "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation",
+    "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation",
+    "system-deep-loop/030-deep-loop-improved/010-documentation-truth-audit",
+    "system-deep-loop/030-deep-loop-improved/011-followup-remediation",
+    "system-deep-loop/030-deep-loop-improved/012-deep-loop-divergent-mode",
+    "system-deep-loop/z_archive/024-deep-loop-improved/001-reference-research",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime",
+    "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows",
+    "system-deep-loop/z_archive/024-deep-loop-improved/004-system-spec-kit",
+    "system-deep-loop/z_archive/024-deep-loop-improved/005-skill-interconnection",
+    "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation",
+    "system-deep-loop/z_archive/024-deep-loop-improved/007-testing",
+    "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation",
+    "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation",
+    "system-deep-loop/z_archive/024-deep-loop-improved/010-documentation-truth-audit",
+    "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation",
+    "system-deep-loop/z_archive/024-deep-loop-improved/012-deep-loop-divergent-mode"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop improved",
+      "030 deep loop improved",
+      "agent loops improved",
+      "loop systems improvement",
+      "deep-loop improvements implementation",
+      "156 agent loops"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "improved",
+      "agent",
+      "loops",
+      "systems",
+      "improvement",
+      "deep-loop",
+      "improvements",
+      "implementation",
+      "loop-based",
+      "deep-loop-runtime"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "001-reference-research/research/research.md",
+      "research/research_archive/20260701T071133Z-gen1/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Loops Improved",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Our",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depth Fan",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle Decision",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
+    "created_at": "2026-06-30T10:32:21.634Z",
+    "last_save_at": "2026-07-16T16:32:08.047Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:69c4b596cb8f0b1f59a5996c8ef47a565e14baf36728f8645222f8d5bb074812",
+    "source_doc_hashes": {
+      "spec.md": "082106d7520077681b509f69ceef3d4ec26cb9abdd7ddbac1f8358fe0b7e056e",
+      "research/research.md": "593ff3a4953413e4456105d5cb406de665c7e486d4a1ff367eb2385a05394ac5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-01T12:49:29.053Z"
+  }
+}

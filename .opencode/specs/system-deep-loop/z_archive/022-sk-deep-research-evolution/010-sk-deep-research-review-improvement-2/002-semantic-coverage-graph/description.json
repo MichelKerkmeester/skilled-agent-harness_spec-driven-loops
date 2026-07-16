@@ -1,0 +1,34 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
+  "description": "Deep research and deep review currently know a great deal about iteration counts, novelty, and state transitions, but they still lack a first-class",
+  "keywords": [
+    "deep",
+    "research",
+    "review",
+    "currently",
+    "know",
+    "great",
+    "deal",
+    "about",
+    "iteration",
+    "counts",
+    "novelty",
+    "state",
+    "transitions",
+    "still",
+    "lack",
+    "first-class"
+  ],
+  "lastUpdated": "2026-07-16T16:26:58.059Z",
+  "specId": "002",
+  "folderSlug": "semantic-coverage-graph",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "022-sk-deep-research-evolution",
+    "010-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

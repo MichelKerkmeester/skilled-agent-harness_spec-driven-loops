@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime/001-reducer-anchor-fix",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/001-reducer-anchor-fix",
+  "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reducer anchor fix",
+      "deep research strategy template anchors",
+      "Q6 anchor",
+      "missing anchor section",
+      "reduce-state hard fail",
+      "reducer anchor fix plan",
+      "deep research strategy template plan",
+      "Q6 anchor plan",
+      "reducer anchor fix tasks",
+      "Q6 anchor tasks",
+      "deep research strategy template tasks",
+      "reducer anchor fix summary"
+    ],
+    "key_topics": [
+      "reducer",
+      "anchor",
+      "deep",
+      "research",
+      "strategy",
+      "template",
+      "anchors",
+      "missing",
+      "section",
+      "reduce-state",
+      "hard",
+      "fail"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Reducer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Anchor Template Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research loop folds cross-iteration state by rewriting anchored sections of a per-run strategy file",
+    "created_at": "2026-06-19T06:06:27.158Z",
+    "last_save_at": "2026-07-16T16:33:01.448Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0b7b5a2899d2ae76a40045e7a2f84fa53c48c7eec401258da1d665eca8319d59",
+    "source_doc_hashes": {
+      "spec.md": "cef265397ce156531c4060c0d5b35323a0b0d710e08328a0ea20b093b225252f",
+      "plan.md": "f41ff2df8c8f861eae0c3678ef7ac5bd27c8d8fa661f9658d5d85773be3f4245",
+      "tasks.md": "5a5c58aa5d1ff8f2ffbc8151a216d5407f30b64f45628bbd08fff2ef19e1f847",
+      "implementation-summary.md": "8bbd3932b4bf162342dc5e20fd2070e70cdbc8416f3debc92a67debbfb6045aa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

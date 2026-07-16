@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command",
+  "spec_folder": "system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command",
+  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command benchmark command",
+      "deep command-benchmark launcher",
+      "two-axis command benchmark launcher",
+      "run command surface benchmark",
+      "command benchmark launcher implementation",
+      "deep command-benchmark smoke",
+      "command benchmark instrument validity"
+    ],
+    "key_topics": [
+      "command",
+      "benchmark",
+      "deep",
+      "command-benchmark",
+      "launcher",
+      "two-axis",
+      "run",
+      "surface",
+      "implementation",
+      "smoke",
+      "instrument",
+      "validity"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/command-benchmark.md",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/commands/deep/assets/deep_command-benchmark_auto.yaml",
+      ".opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_command-benchmark_presentation.txt",
+      ".opencode/commands/scripts/smoke-command-benchmark.cjs",
+      ".codex/prompts/deep-command-benchmark.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "command-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/command-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_command-benchmark_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_command-benchmark_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_command-benchmark_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_command-benchmark_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep_command-benchmark_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-command-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/smoke-command-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-command-benchmark.md",
+        "kind": "doc",
+        "path": ".codex/prompts/deep-command-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generated Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generate Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "instrument",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "presentation",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ships the /deep:command-benchmark workflow-YAML router that composes the deterministic conformance axis through the deep-alignment peer adapter and the behavioral DAB axis through the matrix scheduler over the shared runner behind one command, generates the Codex mirror, and passes hermetic smoke verification, without implementing adapter, scoring, or scheduling logic itself.",
+    "created_at": "2026-07-15T04:42:13.560Z",
+    "last_save_at": "2026-07-16T16:34:16.721Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b262482ebd63cdb7b127ab81c1f3f9fd014d5e06fda1a016f66d784320bfd130",
+    "source_doc_hashes": {
+      "spec.md": "e5b5eadabe96f84e4541857c71e017d90b6d34a1ac4cf4f7ec524d7047089c52",
+      "plan.md": "2259e5ddea07bae079b0143928b8bae6b4e9ae4c4f654233f05d1d1a3df4ace6",
+      "tasks.md": "267a13553a094a1c6d8839de8ad23bce0939c9c08522a7969248309479095f13",
+      "implementation-summary.md": "1a12e4dcc299cd6e613f20c11a9f1c7d0fc9b73b57ab9adaacc91f94046374ba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

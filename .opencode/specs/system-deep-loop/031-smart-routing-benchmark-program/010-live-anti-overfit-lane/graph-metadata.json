@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
+  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
+  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live anti-overfit lane",
+      "circularity meter gate"
+    ],
+    "key_topics": [
+      "live",
+      "anti-overfit",
+      "lane",
+      "circularity",
+      "meter",
+      "gate",
+      "route",
+      "fixture",
+      "corpus",
+      "existing",
+      "executor",
+      "seam"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Decontaminated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Holdout Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Circularity Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sample-floor",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatchScenario",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Route the fixture corpus through the existing live executor seam (today the fixture path hardcodes the deterministic router) so T2 decontaminated holdouts get a real live resourceRecall, publish the T1↔T2 circularity meter as a real anti-overfit signal, and add an opt-in gate — advisory by default with sample-floor + repeat-median flakiness controls so Mode-A stays the only hard CI gate.",
+    "created_at": "2026-07-09T12:18:01.367Z",
+    "last_save_at": "2026-07-16T16:33:13.949Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:76a5fd73b2603845f14caa01c1ba2defa87e579466b6cb7209f1c9109b0415c7",
+    "source_doc_hashes": {
+      "spec.md": "96f166b39303b701c9a02e67c64c8cc56a74025ca006f2aa65612920bd3070aa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

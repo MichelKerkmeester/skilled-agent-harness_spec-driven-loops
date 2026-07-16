@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/012-deep-loop-divergent-mode",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/012-deep-loop-divergent-mode",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop divergent mode",
+      "divergent convergence",
+      "scope expansion pivot",
+      "non-converging deep research",
+      "non-converging deep review",
+      "saturated direction",
+      "divergent convergence implementation plan",
+      "deep research pivot plan",
+      "deep review scope expansion plan",
+      "divergent council adapter",
+      "divergent convergence tasks",
+      "pivot adapter tasks"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "divergent",
+      "mode",
+      "convergence",
+      "scope",
+      "expansion",
+      "pivot",
+      "non-converging",
+      "deep",
+      "research",
+      "review",
+      "saturated"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
+      "research/phase-0-baseline.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "ai-council/council-report.md",
+      "implementation-summary.md",
+      "spec.md",
+      "research/research.md",
+      "ai-council/ai-council-state.jsonl",
+      ".opencode/package.json",
+      "feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-deep-loop/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-0-baseline.md",
+        "kind": "doc",
+        "path": "research/phase-0-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council-state.jsonl",
+        "kind": "file",
+        "path": "ai-council/ai-council-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Divergent Convergence Mode",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep research and deep review are designed to converge",
+    "created_at": "2026-07-10T09:06:56Z",
+    "last_save_at": "2026-07-16T16:32:04.283Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:f12bd45f1b379a3b93e0c772fc46b6c200a53f4192d87e04ad978f525c5db5c2",
+    "source_doc_hashes": {
+      "spec.md": "974671b9e4590ecc9ee1c961009d1e01918efb9a151edb8349ce510124a2dc85",
+      "plan.md": "a03fc7596658c55a5912ce732e547d7c411275bd03c10148a50ec3d5152972a8",
+      "tasks.md": "d91a6b6391638b2546a156731a54c6b96c6e0f67facbfc077ef7327633ab48aa",
+      "checklist.md": "0bc4e31b16bc43eb3ec636bd077e39f03fbe826e9eb2fa2e9b5ba5b8d97b55f6",
+      "implementation-summary.md": "5e99ffaae0a2daa904fe2087fd2ac825b9e798fb68962324113e1748b7d0b265",
+      "research/research.md": "63bd64a0fbadd0544199d2f85d266532b3329d921f3f8abea818284f9eda026a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

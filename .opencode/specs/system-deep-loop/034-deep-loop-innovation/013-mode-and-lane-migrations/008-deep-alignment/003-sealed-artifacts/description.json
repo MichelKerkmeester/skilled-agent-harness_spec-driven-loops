@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts",
+  "description": "Plan the Deep Alignment mode binding for immutable, content-addressed reference artifacts across authority resolution, lane discovery, verify-first",
+  "keywords": [
+    "plan",
+    "deep",
+    "alignment",
+    "mode",
+    "binding",
+    "immutable",
+    "content-addressed",
+    "reference",
+    "artifacts",
+    "across",
+    "authority",
+    "resolution",
+    "lane",
+    "discovery",
+    "verify-first"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.608Z",
+  "specId": "003",
+  "folderSlug": "sealed-artifacts",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "008-deep-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

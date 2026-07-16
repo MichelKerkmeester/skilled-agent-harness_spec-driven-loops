@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/032-deep-alignment-mode/008-iterate-converge-report",
+  "description": "`deep-alignment` is specified to MAXIMALLY reuse the deep-review/runtime engine rather than rebuild a loop from scratch, but the runtime's convergence",
+  "keywords": [
+    "deep-alignment",
+    "specified",
+    "maximally",
+    "reuse",
+    "deep-review",
+    "runtime",
+    "engine",
+    "rather",
+    "rebuild",
+    "loop",
+    "scratch",
+    "convergence"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.992Z",
+  "specId": "008",
+  "folderSlug": "iterate-converge-report",
+  "parentChain": [
+    "system-deep-loop",
+    "032-deep-alignment-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

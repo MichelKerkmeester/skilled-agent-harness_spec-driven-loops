@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/034-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
+  "spec_folder": "system-deep-loop/034-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
+  "parent_id": "system-deep-loop/034-deep-loop-innovation/004-architecture-coverage-and-transition-contract",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spine architecture ADR",
+      "cross-mode deep-loop spine",
+      "six-primitive runtime architecture",
+      "spine architecture ADR implementation plan",
+      "cross-mode spine decision rationale",
+      "spine architecture ADR tasks",
+      "cross-mode spine ratification tasks",
+      "spine architecture ADR checklist",
+      "cross-mode spine ratification checklist"
+    ],
+    "key_topics": [
+      "spine",
+      "architecture",
+      "adr",
+      "cross-mode",
+      "deep-loop",
+      "six-primitive",
+      "runtime",
+      "implementation",
+      "plan",
+      "decision",
+      "rationale",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "checklist.md",
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/spec.md",
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/manifest/phase-tree.json",
+      ".opencode/specs/system-deep-loop/034-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "research-modes.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spine Architecture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Adopt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "failure-specific",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "raw",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ratify the single six-primitive cross-mode architecture spine that governs the later 006 implementation phases.",
+    "created_at": "2026-07-16T03:43:44.661Z",
+    "last_save_at": "2026-07-16T16:33:39.538Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:de437c753247a7a46eabe14417d405bca1ce0cec4162367ac2597eae3a8de105",
+    "source_doc_hashes": {
+      "spec.md": "17f37be5f90e44c3e5024dd2457d260cd236ae3731c9f8ff7b6ceb888f5c55cf",
+      "plan.md": "d6c056277a8a785079e341981cbe81cf3990abc23bace9d78621bccc25298ceb",
+      "tasks.md": "8bb7ad91cc9c5030f0457450c9cfe62756ba804e876b23aa432dfe849aa992d6",
+      "checklist.md": "ca9d5e9c6e60f1db90353d13e6e225d9486e6d26157008a904bf61df41d5a4ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

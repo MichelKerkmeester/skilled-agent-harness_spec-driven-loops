@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator",
+  "spec_folder": "system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator",
+  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command behavior evaluator",
+      "behavior framework schema v2",
+      "direct-dispatch evidence",
+      "boundary violation bucket",
+      "command behavior evaluator implementation",
+      "behavior benchmark schema v2 complete",
+      "DAB v1 golden regression"
+    ],
+    "key_topics": [
+      "command",
+      "behavior",
+      "evaluator",
+      "framework",
+      "schema",
+      "direct-dispatch",
+      "evidence",
+      "boundary",
+      "violation",
+      "bucket",
+      "implementation",
+      "benchmark"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/fixtures/dab-v1-golden.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dab-v1-golden.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/fixtures/dab-v1-golden.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Whether Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "direct-dispatch",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "allowlisted",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Parent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "expected",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "backward-compatible",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Adds shared behavior-benchmark framework schema v2 with direct-dispatch evidence, outcome probes, setup-misbind detection, and fixture-boundary evidence, while preserving the existing DAB-001 to 011 scores under backward-compatible v1 parsing.",
+    "created_at": "2026-07-14T20:36:59.716Z",
+    "last_save_at": "2026-07-16T16:34:17.188Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8dd0729d43a9b19d012c6b07be965a324764c2a8d31b022de04f157be5897694",
+    "source_doc_hashes": {
+      "spec.md": "7e313ba5ea62dd9aa3a68584c44e45c2b7fce5ec6f347c896d489e91d51f979f",
+      "plan.md": "9d96ccb67dec4f4d4bb68c9e5f06d9009e0a390a178060c4b7fa1cc244a22737",
+      "tasks.md": "63c9b6efda416bd14d8a3705bf952d11dac591e0edf43556f1d98d36ffedfe4b",
+      "implementation-summary.md": "153ee43f278789e37e3033b9454b81009d9f5ec4930711e927f1022a6588f6ff"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

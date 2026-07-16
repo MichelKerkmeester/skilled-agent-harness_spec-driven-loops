@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep",
+  "description": "The 003 audit flagged routing defects beyond code-review: orphan references (deep-improvement 18, deep-research/deep-review 4 each, deep-ai-council 1)",
+  "keywords": [
+    "audit",
+    "flagged",
+    "routing",
+    "defects",
+    "beyond",
+    "code-review",
+    "orphan",
+    "references",
+    "deep-improvement",
+    "deep-research",
+    "deep-review",
+    "deep-ai-council"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.517Z",
+  "specId": "004",
+  "folderSlug": "cross-skill-routing-sweep",
+  "parentChain": [
+    "system-deep-loop",
+    "031-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

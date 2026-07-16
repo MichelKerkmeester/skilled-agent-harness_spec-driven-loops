@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/035-command-surface-benchmark/004-command-lane-integration",
+  "description": "Registers and configures the sk-doc-command peer adapter as a lane, runs all canonical commands to convergence, and hard-gates raw-delta and reducer",
+  "keywords": [
+    "registers",
+    "configures",
+    "sk-doc-command",
+    "peer",
+    "adapter",
+    "lane",
+    "runs",
+    "canonical",
+    "commands",
+    "convergence",
+    "hard-gates",
+    "raw-delta",
+    "reducer"
+  ],
+  "lastUpdated": "2026-07-16T16:26:56.518Z",
+  "specId": "004",
+  "folderSlug": "command-lane-integration",
+  "parentChain": [
+    "system-deep-loop",
+    "035-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/026-goal-opencode-plugin/012-regression-test-backfill",
+  "description": "Research (F-018/019/021) found the `experimental.chat.system.transform` hook — the actual mechanism that injects `[activegoal]` into every turn — is",
+  "keywords": [
+    "research",
+    "f-018",
+    "found",
+    "experimental",
+    "chat",
+    "system",
+    "transform",
+    "hook",
+    "actual",
+    "mechanism",
+    "injects",
+    "activegoal",
+    "every",
+    "turn"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.634Z",
+  "specId": "012",
+  "folderSlug": "regression-test-backfill",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "026-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

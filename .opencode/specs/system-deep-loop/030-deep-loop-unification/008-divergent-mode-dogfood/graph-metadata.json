@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood",
+  "spec_folder": "system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood",
+  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "divergent mode dogfood",
+      "deep loop live dogfood run",
+      "divergent pivot live exercise",
+      "divergent mode dogfood plan",
+      "divergent mode dogfood tasks",
+      "divergent mode dogfood checklist",
+      "divergent mode dogfood implementation summary",
+      "divergent mode dogfood retry complete",
+      "system-deep-loop improvements",
+      "deep-loop runtime findings",
+      "council provenance defects",
+      "deep-loop cost and liveness defects"
+    ],
+    "key_topics": [
+      "divergent",
+      "mode",
+      "dogfood",
+      "deep",
+      "loop",
+      "live",
+      "run",
+      "pivot",
+      "exercise",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "review/deep-review-findings-registry.json",
+      "research/INCIDENT.md",
+      "review/INCIDENT.md",
+      ".opencode/agents/deep-research.md",
+      ".claude/agents/deep-research.md",
+      "research/deep-research-config.json",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "research/iterations/iteration-001.md",
+      ".claude/agents/deep-review.md",
+      "research/iterations/iteration-003.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-findings-registry.json",
+        "kind": "config",
+        "path": "review/deep-review-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "INCIDENT.md",
+        "kind": "doc",
+        "path": "research/INCIDENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "divergent-pivot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Live Dogfood",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Dispatch Launch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet `055-deep-loop-divergent-mode` shipped `convergenceMode: \"divergent\"` — an opt-in scope-expansion pivot where a legal STOP triggers a 3-seat native Council direction-selection instead of terminating",
+    "created_at": "2026-07-11T06:01:10.004Z",
+    "last_save_at": "2026-07-16T16:33:03.453Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:fffff54bf250440eae587c02f564179c2eb12a413139b08aee74d826abe54397",
+    "source_doc_hashes": {
+      "spec.md": "07f3027176c1298a4135b37d749d8187c3b76bdb385801b47c2daf371d0c620f",
+      "plan.md": "8a9cd4fd1ae3778275b04f36b6536439b9da14b744e1edcf0708374227f6d297",
+      "tasks.md": "76b577950504d6725774f654679021f3bc5c511d0f48f6a21c5ea2760ebea5c6",
+      "checklist.md": "1235443793eebe3302cf73ba93ae6ba9bdb283b44f458035634b67c062a685e3",
+      "implementation-summary.md": "22405c1544cad1697706b5dee816b256a580a424ed0090ce9ade008f0e7c0440",
+      "research/research.md": "3ed8c628eb637364b452696c1b2173c91f376e931589919577c97e5cdf996fc7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

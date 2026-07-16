@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-deep-alignment-mode/012-behavior-benchmark-capture",
+  "spec_folder": "system-deep-loop/032-deep-alignment-mode/012-behavior-benchmark-capture",
+  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment behavior benchmark capture",
+      "DAB baseline capture",
+      "alignment mode resolver P0",
+      "behavior benchmark framework registration",
+      "deep-alignment benchmark capture plan",
+      "DAB capture approach",
+      "resolver P0 fix plan",
+      "deep-alignment benchmark capture tasks",
+      "DAB capture task list",
+      "deep-alignment benchmark capture summary",
+      "DAB capture results",
+      "alignment resolver P0 outcome"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "behavior",
+      "benchmark",
+      "capture",
+      "dab",
+      "baseline",
+      "alignment",
+      "mode",
+      "resolver",
+      "framework",
+      "registration",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/baselines/claude-baseline.md",
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "claude-baseline.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/baselines/claude-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-alignment-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Register",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skeptic Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-alignment DAB benchmark existed only as scenario contracts and an all-pending `claude-baseline.md` — no leg had ever been captured, so nothing about the mode's real behavior (invocation, presentation, delegation, completion, latency) was measured",
+    "created_at": "2026-07-12T12:39:55.000Z",
+    "last_save_at": "2026-07-16T16:33:25.287Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:66b8148fded251bd496187c9341323ee872b0010fc980d558352d278aebb27de",
+    "source_doc_hashes": {
+      "spec.md": "93972ded3ee14c39658a23ab61606766194048c2da56bd9074f8f7e3c457fab6",
+      "plan.md": "19da4ea7f6c131bbd2638b7f927026b3456aaf76c5c7156e32f8ef37bd3502b6",
+      "tasks.md": "debab35e52d039aa0989c0e3c2f7980d3e30bb344985d4e5320fe402662fc11c",
+      "implementation-summary.md": "e9fb08eaacfa58f0534d07ff183c88c2fae39242611387a724beba29749abaf3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

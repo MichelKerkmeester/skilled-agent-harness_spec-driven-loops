@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements",
+  "spec_folder": "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements",
+  "parent_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008",
+      "further deep-loop improvements",
+      "graph wiring",
+      "blocked stop surfacing",
+      "sample quality",
+      "session isolation",
+      "phase 8 plan",
+      "graph wiring plan",
+      "phase 8 tasks",
+      "phase 8 checklist",
+      "phase 8 adr",
+      "phase 8 implementation summary"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "improvements",
+      "graph",
+      "wiring",
+      "blocked",
+      "stop",
+      "surfacing",
+      "sample",
+      "quality",
+      "session",
+      "isolation",
+      "phase"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "scratch/closing-review.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "closing-review.md",
+        "kind": "doc",
+        "path": "scratch/closing-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-aware-stop.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-isolation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Further Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Improvements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Skills",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Truth",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Phase 008 work started from a simple but high-impact gap: the repo already shipped richer stop-state, graph, and replay helpers than the visible workflows actually called",
+    "created_at": "2026-04-12T09:02:50.197Z",
+    "last_save_at": "2026-07-16T16:31:45.890Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:40ca153e75f9264c11adb623a33fb99e4cd29dae6206d2064051c7f1a22c480b",
+    "source_doc_hashes": {
+      "spec.md": "398723e3b1a4cde3d5267fe55e0156b93e5cb3d0318eb4166773fcfe472cfadb",
+      "plan.md": "bc718229ac8d0f2a26308364897ba5e38233469a0558b44da7eca1fbde156702",
+      "tasks.md": "172ce4918911107c5f87339b84b6198f35a36d2574003f6f87b15ab072f5dbcf",
+      "checklist.md": "4a761acc9ac992a611264c74ca4ad9e5def426f250ec98250b85fac17f901b3b",
+      "decision-record.md": "afc5ae985da37e2c71ae419eb4f77b73241d5aa7937309f0586cee7332de45d1",
+      "implementation-summary.md": "78306660bb3c768084405c68ce6c3d941f4e82ee70868fc2d5413a01cfc3a57b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

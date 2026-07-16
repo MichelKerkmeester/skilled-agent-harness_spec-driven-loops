@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/z_archive/023-deep-loop-workflows/008-framework-docs-sweep",
+  "description": "The cross-repo documentation is written around a five-skill model: the root README enumerates five loop skills (including a brittle slash-enumeration",
+  "keywords": [
+    "cross-repo",
+    "documentation",
+    "written",
+    "around",
+    "five-skill",
+    "model",
+    "root",
+    "readme",
+    "enumerates",
+    "five",
+    "loop",
+    "skills",
+    "including",
+    "brittle",
+    "slash-enumeration"
+  ],
+  "lastUpdated": "2026-07-16T16:26:58.748Z",
+  "specId": "008",
+  "folderSlug": "framework-docs-sweep",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "023-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution/003-sk-deep-research-testing-playbook",
+  "spec_folder": "system-deep-loop/z_archive/022-sk-deep-research-evolution/003-sk-deep-research-testing-playbook",
+  "parent_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-deep-research testing playbook",
+      "sk-deep-research manual testing playbook",
+      "deep research playbook",
+      "greenfield playbook creation",
+      "deep research playbook plan",
+      "manual testing playbook plan",
+      "sk-deep-research playbook",
+      "deep research playbook tasks",
+      "manual testing playbook tasks",
+      "deep research playbook checklist",
+      "manual testing playbook checklist",
+      "deep research playbook adr"
+    ],
+    "key_topics": [
+      "sk-deep-research",
+      "testing",
+      "playbook",
+      "manual",
+      "deep",
+      "research",
+      "greenfield",
+      "creation",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".codex/agents/deep-research.toml",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-deep-research` documents a rich operator-visible surface: the consolidated setup prompt, spec-folder choice, `:auto` and `:confirm` modes, initialization artifacts, state-discipline rules, convergence logic, recovery behavior, pause and resume flow, progressive synthesis, memory save, and LEAF-only guardrails",
+    "created_at": "2026-04-12T09:02:50.175Z",
+    "last_save_at": "2026-07-16T16:31:49.992Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d756531ba86ba0fa7cb0035da93b594b5e27e34aafa59b139c87123c24a72602",
+    "source_doc_hashes": {
+      "spec.md": "0d55182069ecadbf24386ef6395ffa79c978ff2650044c15c472d34d25d43b8c",
+      "plan.md": "e18ca55d915daba2c90ab30aa7e58af5b01b5c39f3af75894e781ecc70577122",
+      "tasks.md": "6b2d62f177cc49001642e6a9002cbcc6f067162e018211080c2dc372d99e065a",
+      "checklist.md": "d00a989c625084f5c88c81f7e0ffdb515ffc6b91d173a27f8cde1c920dd917b5",
+      "decision-record.md": "a35a59aec299d93446bd4dbc9f839977a3a9def3a26459aad78732b65774387f",
+      "implementation-summary.md": "d03c44b5b00fc304687d89d94f9a0dba1fac0aa32dd56336140d60d6fd04f2d0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

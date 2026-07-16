@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/003-discoverability-docs-mirrors-and-index",
+  "description": "Even after `/deep:context` is redirected, active discoverability surfaces can continue to tell users and routers that standalone `deep-context` is a",
+  "keywords": [
+    "even",
+    "deep",
+    "context",
+    "redirected",
+    "active",
+    "discoverability",
+    "surfaces",
+    "continue",
+    "tell",
+    "users",
+    "routers",
+    "standalone",
+    "deep-context"
+  ],
+  "lastUpdated": "2026-07-16T16:27:02.576Z",
+  "specId": "003",
+  "folderSlug": "discoverability-docs-mirrors-and-index",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "028-deprecate-deep-context-integrate-capabilities"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

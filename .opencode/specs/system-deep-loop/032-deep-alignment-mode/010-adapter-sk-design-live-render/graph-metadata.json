@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render",
+  "spec_folder": "system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render",
+  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment sk-design live-render adapter",
+      "chrome-devtools design audit alignment",
+      "design-mcp-open-design dispatch boundary adapter",
+      "live-render accessibility performance audit",
+      "phase 010 implementation plan",
+      "sk-design live-render adapter plan",
+      "design-mcp-open-design dispatch plan",
+      "chrome-devtools audit adapter plan",
+      "tasks",
+      "phase 010",
+      "adapter sk-design live-render",
+      "chrome-devtools audit"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "sk-design",
+      "live-render",
+      "adapter",
+      "chrome-devtools",
+      "design",
+      "audit",
+      "alignment",
+      "design-mcp-open-design",
+      "dispatch",
+      "boundary",
+      "accessibility"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs",
+      ".opencode/skills/sk-design/shared/design_dispatch_boundary.md",
+      ".opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
+      ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
+      ".opencode/skills/sk-design/design-audit/references/anti_patterns_production.md",
+      ".opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md",
+      "checklist.md",
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "sk_design_live_render_adapter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-design-live-render.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "design_dispatch_boundary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/design_dispatch_boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool_surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "accessibility_performance.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/accessibility_performance.md",
+        "source": "derived"
+      },
+      {
+        "name": "anti_patterns_production.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/anti_patterns_production.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai_fingerprint_tells.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/references/ai_fingerprint_tells.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_doc_adapter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "ADR-004 locked `sk-design`'s v1 adapter (phase 006) to static `DESIGN.md`/token checks only — live-render (chrome-devtools-driven) accessibility/performance/responsive audits were explicitly out of that phase's scope",
+    "created_at": "2026-07-11T09:41:59.522Z",
+    "last_save_at": "2026-07-16T16:33:24.525Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c91a581ffa04114c199d1dd46ff2cde2477b7766296e8857b6bd819bfa8417b5",
+    "source_doc_hashes": {
+      "spec.md": "856d95c5a5d794c5b8022e1829ef887fd046f18e84891da834693c4717abdf71",
+      "plan.md": "c086a941843bc9c34cefdfc04ff04878bb1619f8a1eda2ce40028995426f220d",
+      "tasks.md": "66ec654ffb61773df401df16118f6b3fe37e795084a3f9955ab305603d201ae3",
+      "checklist.md": "de797396a8817dd39e8316b8bda226c6ed3efb1f2e9792bbd60bbfec4147ece1",
+      "implementation-summary.md": "24544fb19d9ac4a1cb5d1efa9cc910ab338c15bf3552bf084e5c6f340e4d7e6d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

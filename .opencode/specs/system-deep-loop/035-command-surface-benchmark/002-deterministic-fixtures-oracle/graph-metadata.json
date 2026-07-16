@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
+  "spec_folder": "system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
+  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command benchmark fixtures",
+      "reference oracle",
+      "held-out fixtures",
+      "defect calibration corpus",
+      "command fixture oracle implementation",
+      "deterministic command fixtures complete",
+      "command surface frozen expectations"
+    ],
+    "key_topics": [
+      "command",
+      "benchmark",
+      "fixtures",
+      "reference",
+      "oracle",
+      "held-out",
+      "defect",
+      "calibration",
+      "corpus",
+      "fixture",
+      "implementation",
+      "deterministic"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      "oracle/reference-oracle.cjs",
+      "fixtures/build-fixtures.cjs",
+      "fixtures/mutation-manifest.json",
+      "expectations/index.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "scoping.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reference-oracle.cjs",
+        "kind": "file",
+        "path": "oracle/reference-oracle.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-fixtures.cjs",
+        "kind": "file",
+        "path": "fixtures/build-fixtures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-manifest.json",
+        "kind": "config",
+        "path": "fixtures/mutation-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "index.json",
+        "kind": "config",
+        "path": "expectations/index.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "public",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "only",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "expectations",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Builds and verifies the independent public and held-out fixture corpus plus a reference oracle, authored before any adapter code so the deterministic adapter cannot validate itself.",
+    "created_at": "2026-07-14T20:36:58.868Z",
+    "last_save_at": "2026-07-16T16:34:18.018Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:286fe6705060b8a5aa4dd0e4f34820cca863daad1bf6e36c1b3e0b83a5450a75",
+    "source_doc_hashes": {
+      "spec.md": "315305cdf25adc6ffb9af8cb39a44cef1f0ab91d6cddc6b9c75903f800d297ce",
+      "plan.md": "aa152d1e5366189e04a9b0cdc0ef609804c9228e267b7b63c15fed009228dd20",
+      "tasks.md": "53f79b81337371102ca14190b18c66c4003d09136852aab7d406b48f0da0e14c",
+      "implementation-summary.md": "14f7e2fca8b785de068b3c4411e85212bd9defc4737ca30c9019212a31e19070"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

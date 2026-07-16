@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+  "description": "Plan replay-stable conditional fan-in that awaits only enough durable results, stops on typed-budget floors or evidence sufficiency, disposes",
+  "keywords": [
+    "plan",
+    "replay-stable",
+    "conditional",
+    "fan-in",
+    "awaits",
+    "only",
+    "enough",
+    "durable",
+    "results",
+    "stops",
+    "typed-budget",
+    "floors",
+    "evidence",
+    "sufficiency",
+    "disposes"
+  ],
+  "lastUpdated": "2026-07-16T16:26:54.127Z",
+  "specId": "004",
+  "folderSlug": "conditional-budget-aware-fanin",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "009-fanout-fanin-durable-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

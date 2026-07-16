@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/005-skill-doc-hygiene",
+  "spec_folder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/005-skill-doc-hygiene",
+  "parent_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability",
+  "children_ids": [
+    "system-deep-loop/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit",
+    "system-deep-loop/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/002-skill-doc-drift-remediation",
+    "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit",
+    "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/005-skill-doc-hygiene/002-skill-doc-drift-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill doc drift audit",
+      "skill doc drift remediation",
+      "031 skill-doc hygiene"
+    ],
+    "key_topics": [
+      "skill",
+      "doc",
+      "drift",
+      "audit",
+      "remediation",
+      "skill-doc",
+      "hygiene",
+      "routing",
+      "identity",
+      "refactors",
+      "left",
+      "deep-loop"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "002-skill-doc-drift-remediation/implementation-summary.md",
+      "001-skill-doc-drift-audit/spec.md",
+      "002-skill-doc-drift-remediation/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Hygiene Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Hold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The routing and identity refactors left the deep-loop skill docs describing stale behavior",
+    "created_at": "2026-07-04T19:10:59.437Z",
+    "last_save_at": "2026-07-16T16:32:34.259Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:614bdefd5fd0a139a7a2ab4e2545a371405ac9c23b0697c44fd59561072b421e",
+    "source_doc_hashes": {
+      "spec.md": "13ac6c746927e74148555c994fb26f145a765a8add5f3c056b3a355e9b321f2f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-deep-alignment-mode",
+  "spec_folder": "system-deep-loop/032-deep-alignment-mode",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/059-deep-alignment-mode/000-deep-loop-runtime-refinement",
+    "system-deep-loop/059-deep-alignment-mode/001-research-and-context",
+    "system-deep-loop/059-deep-alignment-mode/002-architecture-decision",
+    "system-deep-loop/059-deep-alignment-mode/003-scaffold-mode-packet",
+    "system-deep-loop/059-deep-alignment-mode/004-scoping-and-discovery",
+    "system-deep-loop/059-deep-alignment-mode/005-adapter-sk-doc",
+    "system-deep-loop/059-deep-alignment-mode/006-adapter-sk-git-and-sk-design",
+    "system-deep-loop/059-deep-alignment-mode/007-adapter-sk-code",
+    "system-deep-loop/059-deep-alignment-mode/008-iterate-converge-report",
+    "system-deep-loop/059-deep-alignment-mode/009-command-agent-advisor-cutover",
+    "system-deep-loop/059-deep-alignment-mode/010-adapter-sk-design-live-render",
+    "system-deep-loop/059-deep-alignment-mode/011-skdoc-doc-conformance",
+    "system-deep-loop/059-deep-alignment-mode/012-behavior-benchmark-capture",
+    "system-deep-loop/059-deep-alignment-mode/013-review-remediation",
+    "system-deep-loop/059-deep-alignment-mode/014-skill-doc-template-conformance",
+    "system-deep-loop/059-deep-alignment-mode/015-headless-model-matrix-hardening",
+    "system-deep-loop/032-deep-alignment-mode/000-deep-loop-runtime-refinement",
+    "system-deep-loop/032-deep-alignment-mode/001-research-and-context",
+    "system-deep-loop/032-deep-alignment-mode/002-architecture-decision",
+    "system-deep-loop/032-deep-alignment-mode/003-scaffold-mode-packet",
+    "system-deep-loop/032-deep-alignment-mode/004-scoping-and-discovery",
+    "system-deep-loop/032-deep-alignment-mode/005-adapter-sk-doc",
+    "system-deep-loop/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design",
+    "system-deep-loop/032-deep-alignment-mode/007-adapter-sk-code",
+    "system-deep-loop/032-deep-alignment-mode/008-iterate-converge-report",
+    "system-deep-loop/032-deep-alignment-mode/009-command-agent-advisor-cutover",
+    "system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render",
+    "system-deep-loop/032-deep-alignment-mode/011-skdoc-doc-conformance",
+    "system-deep-loop/032-deep-alignment-mode/012-behavior-benchmark-capture",
+    "system-deep-loop/032-deep-alignment-mode/013-review-remediation",
+    "system-deep-loop/032-deep-alignment-mode/014-skill-doc-template-conformance",
+    "system-deep-loop/032-deep-alignment-mode/015-headless-model-matrix-hardening"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment mode",
+      "alignment lanes",
+      "conformance audit deep-loop",
+      "verify-first drift detection",
+      "sk-doc sk-git sk-design sk-code standards check"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "mode",
+      "alignment",
+      "lanes",
+      "conformance",
+      "audit",
+      "deep-loop",
+      "verify-first",
+      "drift",
+      "detection",
+      "sk-doc",
+      "sk-git"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".opencode/commands/deep/alignment.md",
+      "002-architecture-decision/decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "alignment.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repository defines conformance standards for its own artifacts — `sk-doc`'s document templates and DQI validators, `sk-git`'s commit and branch-naming rules, `sk-design`'s DESIGN.md and token structure, `sk-code`'s per-surface implementation patterns — but nothing checks a given artifact against the named standard it claims to follow, with reality-drift verification, in a repeatable loop",
+    "created_at": "2026-07-11T06:09:13.466Z",
+    "last_save_at": "2026-07-16T16:33:21.896Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0414083a5e3b182fe24e3eb1d8b56bd80d4c9e5cad2fd12c13ae607eea28488c",
+    "source_doc_hashes": {
+      "spec.md": "7345241c9ffe9a576d54fd26bfe0f6db7f75e6db4122bc6922465d0ed5121e39"
+    },
+    "last_active_child_id": "system-deep-loop/059-deep-alignment-mode/014-skill-doc-template-conformance",
+    "last_active_at": "2026-07-12T10:59:34.243Z"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na",
+  "description": "The stage-aware scorer (packet 061) added a fitted-vs-holdout split and a `generalizationGap`",
+  "keywords": [
+    "stage-aware",
+    "scorer",
+    "packet",
+    "fitted-vs-holdout",
+    "split",
+    "generalizationgap"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.596Z",
+  "specId": "018",
+  "folderSlug": "routed-nothing-efficiency-na",
+  "parentChain": [
+    "system-deep-loop",
+    "031-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

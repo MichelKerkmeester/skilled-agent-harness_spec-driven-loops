@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/021-multi-ai-council-write-protocol",
+  "spec_folder": "system-deep-loop/z_archive/021-multi-ai-council-write-protocol",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/001-multi-ai-council-output-protocol",
+    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/002-multi-ai-council-persistence",
+    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/003-multi-ai-council-deferrals",
+    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/004-multi-ai-council-write-authority",
+    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/005-multi-ai-council-main-agent-write-enforcement",
+    "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/001-multi-ai-council-output-protocol",
+    "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/002-multi-ai-council-persistence",
+    "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/003-multi-ai-council-deferrals",
+    "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/004-multi-ai-council-write-authority",
+    "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/005-multi-ai-council-main-agent-write-enforcement"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "multi-ai-council write protocol",
+      "council persistence write authority",
+      "ai-council artifact protocol"
+    ],
+    "key_topics": [
+      "multi-ai-council",
+      "write",
+      "protocol",
+      "council",
+      "persistence",
+      "authority",
+      "ai-council",
+      "artifact",
+      "multi-ai",
+      "spans",
+      "multiple",
+      "historical"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Multi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Group",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Multi-AI Council write protocol spans multiple historical phases: council deliberations need a stable output structure, persistence machinery, deferral handling, write authority, and main-agent enforcement so council runs can produce durable `ai-council/` artifacts rather than chat-only reports",
+    "created_at": "2026-07-08T05:55:51.548Z",
+    "last_save_at": "2026-07-16T16:31:42.688Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:faeb70a9f07524d0cbc3dadb19cb17a9ee7d43e55f82e0de644e63adfcc9377e",
+    "source_doc_hashes": {
+      "spec.md": "c353aa4e3ad5057ef89eda92df00716fd37cfe20b66eb6703417c2957fa90eff"
+    },
+    "last_active_child_id": "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/005-multi-ai-council-main-agent-write-enforcement",
+    "last_active_at": "2026-06-23T03:49:50.182Z"
+  }
+}

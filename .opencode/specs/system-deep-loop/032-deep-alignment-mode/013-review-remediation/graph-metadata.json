@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-deep-alignment-mode/013-review-remediation",
+  "spec_folder": "system-deep-loop/032-deep-alignment-mode/013-review-remediation",
+  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-alignment review remediation",
+      "deep-alignment false-pass fix",
+      "deep-alignment read-only boundary",
+      "deep-alignment F001 F002",
+      "deep-alignment remediation plan",
+      "deep-alignment fail-closed plan",
+      "deep-alignment remediation tasks",
+      "deep-alignment remediation checklist",
+      "deep-alignment remediation decision record",
+      "deep-alignment security boundary deferral",
+      "deep-alignment executor contract decision",
+      "deep-alignment remediation summary"
+    ],
+    "key_topics": [
+      "deep-alignment",
+      "review",
+      "remediation",
+      "false-pass",
+      "read-only",
+      "boundary",
+      "f001",
+      "f002",
+      "plan",
+      "fail-closed",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+      ".opencode/agents/deep-alignment.md",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/commands/deep/assets/deep_alignment_auto.yaml",
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "reduce-alignment-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "partition-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "scoping.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep_alignment_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_alignment_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remediate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A 10-iteration deep-review Pass A (executor `openai/gpt-5.6-sol-fast`, reasoning `xhigh`) of the whole 059 deep-alignment packet returned FAIL with 2 P0 and 8 P1 active findings",
+    "created_at": "2026-07-13T06:01:09.541Z",
+    "last_save_at": "2026-07-16T16:33:22.346Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:367fa206082d6e2f3dc63228c163a9978eb6a4160bd833cd1e4e22d093195642",
+    "source_doc_hashes": {
+      "spec.md": "aec8e098395acccb3f992c1da7dacba3b15478f318fe442a76d82f8aefcea51d",
+      "plan.md": "b3a2ae0a3d4793014d8fa5b4ac93f7feacef1b9ffd61f7898b873f502ccb2163",
+      "tasks.md": "7ec8536779f8f1657ec12e44ead22d5109d02af4b2ed5f769e85f4b18d72213a",
+      "checklist.md": "e80a03a703371b09b0f7d9df270bcebb54c959c295f242b1bd8e36195daf11d1",
+      "decision-record.md": "5836cd3d7373d0210cfe50bf8be839896b7ce46143d381fc2b9abe5449cad73a",
+      "implementation-summary.md": "e9954ae5d20dc5c0628ffda2b643d1d6c2fdfad0b3a10bfd23079ed6c0fd3a41"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/008-code-webflow-router-completion",
+  "description": "Land code-webflow's inline INTENT_SIGNALS/RESOURCE_MAP router on skilled/v4 (the parent already declares the webflow surface; the child block is",
+  "keywords": [
+    "land",
+    "code-webflow",
+    "inline",
+    "router",
+    "skilled",
+    "parent",
+    "already",
+    "declares",
+    "webflow",
+    "surface",
+    "child",
+    "block"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.604Z",
+  "specId": "008",
+  "folderSlug": "code-webflow-router-completion",
+  "parentChain": [
+    "system-deep-loop",
+    "031-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

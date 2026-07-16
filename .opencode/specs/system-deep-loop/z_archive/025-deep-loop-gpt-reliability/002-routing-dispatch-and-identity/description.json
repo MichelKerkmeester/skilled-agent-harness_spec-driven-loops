@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity",
+  "description": "GPT-backed OpenCode mis-routed and mis-dispatched deep-loop work and could not hold a hard host identity (the FIX-5 problem)",
+  "keywords": [
+    "gpt-backed",
+    "opencode",
+    "mis-routed",
+    "mis-dispatched",
+    "deep-loop",
+    "work",
+    "hold",
+    "hard",
+    "host",
+    "identity",
+    "fix-5",
+    "problem"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.418Z",
+  "specId": "002",
+  "folderSlug": "routing-dispatch-and-identity",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "025-deep-loop-gpt-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

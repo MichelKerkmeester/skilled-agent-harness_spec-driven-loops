@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-command-surface-benchmark/012-command-improvement-research",
+  "spec_folder": "system-deep-loop/035-command-surface-benchmark/012-command-improvement-research",
+  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-command improvement research",
+      "command surface improvement research",
+      "command canon improvements",
+      "command template logic research",
+      "066 command benchmark follow-on research",
+      "command improvement research summary",
+      "command surface fan-out synthesis",
+      "command canon improvement backlog"
+    ],
+    "key_topics": [
+      "create-command",
+      "improvement",
+      "research",
+      "command",
+      "surface",
+      "canon",
+      "improvements",
+      "template",
+      "logic",
+      "benchmark",
+      "follow-on",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      ".opencode/skills/sk-doc/create-command/SKILL.md",
+      ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
+      ".opencode/skills/sk-doc/create-command/assets/command_template.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "research/orchestration-summary.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "command_router_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "command_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/assets/command_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deciding Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Is Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "forced",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "target",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stopReason",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Both",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Parent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Runs a two-lineage deep-research fan-out over the 066 benchmark findings and the create-command authoring canon, producing a prioritized cross-model improvement backlog for create-command and every OpenCode command that uses the defined templates and routing logic, ready to seed follow-on remediation packets.",
+    "created_at": "2026-07-16T05:38:36.268Z",
+    "last_save_at": "2026-07-16T16:34:17.631Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:6b8556ebeda015dc9bfe61644c957c10b6fcf2e97eaa8054e220987ee4bdc4e4",
+    "source_doc_hashes": {
+      "spec.md": "78965a2579a5d921603aec9d3047ccdb79a6ff48efff06eca5895401f70b6a4c",
+      "plan.md": "31296b15b5fa42211a1b6a4f7c1d2c78a994b5763bc502caa5f5591967218ce1",
+      "tasks.md": "fb90c92827809d7714e4069d4b9b5546da4f66ac9d72e193294c5e7bdbd0c8d6",
+      "implementation-summary.md": "20e2592cf20a90cd47817b873422aff96d92a1c309f74ed041b2590fadd0ce75",
+      "research/research.md": "318083ff7c18fb9cbb0062764c429919cfbd80625bbaed2e93eed0608ce9eb03"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

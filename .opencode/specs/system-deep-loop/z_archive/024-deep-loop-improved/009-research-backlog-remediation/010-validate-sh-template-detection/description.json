@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/010-validate-sh-template-detection",
+  "description": "Several folders in this packet carried `Status: Complete` while their `plan.md`/`tasks.md`/`implementation-summary.md` were still byte-identical,",
+  "keywords": [
+    "several",
+    "folders",
+    "packet",
+    "carried",
+    "status",
+    "complete",
+    "while",
+    "plan",
+    "tasks",
+    "implementation-summary",
+    "still",
+    "byte-identical"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.037Z",
+  "specId": "010",
+  "folderSlug": "validate-sh-template-detection",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "009-research-backlog-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

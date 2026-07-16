@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/003-discoverability-docs-mirrors-and-index",
+  "spec_folder": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/003-discoverability-docs-mirrors-and-index",
+  "parent_id": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context discoverability cleanup",
+      "deep-context registry cleanup",
+      "deep-context advisor cleanup",
+      "deep-context mirror cleanup",
+      "deep-context registry cleanup plan",
+      "deep-context advisor cleanup plan",
+      "deep-context docs cleanup plan",
+      "deep-context discoverability tasks",
+      "deep-context advisor cleanup tasks",
+      "deep-context discoverability checklist",
+      "deep-context registry advisor verification",
+      "deep-context registry decision"
+    ],
+    "key_topics": [
+      "deep-context",
+      "discoverability",
+      "cleanup",
+      "registry",
+      "advisor",
+      "mirror",
+      "plan",
+      "docs",
+      "tasks",
+      "checklist",
+      "verification",
+      "decision"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".opencode/specs/descriptions.json",
+      "implementation-summary.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "aliases.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift-guard.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Discoverability Docs Mirrors And Index Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Even after `/deep:context` is redirected, active discoverability surfaces can continue to tell users and routers that standalone `deep-context` is a supported deep-loop mode",
+    "created_at": "2026-07-04T14:32:36Z",
+    "last_save_at": "2026-07-16T16:32:54.748Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b1cfeea96a992975854269b266a5a71d2fae537e80fc2a1692cb9b3115003217",
+    "source_doc_hashes": {
+      "spec.md": "a968387fa8ff36a3b9e5d032e6e920b62edb516c1b3ad3ea49c3283a7cda9010",
+      "plan.md": "c476c4197787ac335064348bac266f07e97139a16031a223c8de58324a491d3c",
+      "tasks.md": "975cd366eaa23cc1637a86a753bdfe9b03fcf5ab4ac5c7a62b726a0f3d0a2b54",
+      "checklist.md": "45c19ce2794e6de0b809b8eb4b61d474302f8a44df4c3adcd4453dfd59e0975d",
+      "decision-record.md": "9a0df7230621b4427bb15fe94626f3c287f363f296d4cbe61c081a366f9120e0",
+      "implementation-summary.md": "6e7d08c4e36a26d79187e5d18a491b8fd042df88fceecec996fda0ab59a7f1d6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

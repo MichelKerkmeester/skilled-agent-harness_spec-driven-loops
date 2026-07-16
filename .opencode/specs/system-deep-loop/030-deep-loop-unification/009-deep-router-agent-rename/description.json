@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/030-deep-loop-unification/009-deep-router-agent-rename",
+  "description": "The primary deep-loop router agent was named `deep`",
+  "keywords": [
+    "primary",
+    "deep-loop",
+    "router",
+    "agent",
+    "named",
+    "deep"
+  ],
+  "lastUpdated": "2026-07-16T16:26:52.806Z",
+  "specId": "009",
+  "folderSlug": "deep-router-agent-rename",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

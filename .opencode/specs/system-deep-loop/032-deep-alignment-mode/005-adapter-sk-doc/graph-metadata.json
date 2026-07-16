@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-deep-alignment-mode/005-adapter-sk-doc",
+  "spec_folder": "system-deep-loop/032-deep-alignment-mode/005-adapter-sk-doc",
+  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc alignment adapter",
+      "alignment reference adapter",
+      "deep-alignment sk-doc check",
+      "known deviation suppression list",
+      "sk-doc adapter plan",
+      "alignment reference adapter plan",
+      "verify-first check plan",
+      "sk-doc adapter tasks",
+      "alignment reference adapter tasks",
+      "sk-doc adapter checklist",
+      "alignment reference adapter checklist",
+      "sk-doc adapter summary"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "alignment",
+      "adapter",
+      "reference",
+      "deep-alignment",
+      "check",
+      "known",
+      "deviation",
+      "suppression",
+      "list",
+      "plan",
+      "verify-first"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/scripts/extract_structure.py",
+      ".opencode/skills/sk-doc/shared/references/core_standards.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md",
+      "plan.md",
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-cli/README.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "extract_structure.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/extract_structure.py",
+        "source": "derived"
+      },
+      {
+        "name": "core_standards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/core_standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_doc_adapter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_adapter.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk_doc_known_deviations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "discover_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-cli/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Specify",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-alignment` has no reference adapter yet",
+    "created_at": "2026-07-11T06:22:12.777Z",
+    "last_save_at": "2026-07-16T16:33:18.587Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ee80326f5a7c1b5bbc7106e81f5b3d825782294e4e8404358a5007e8e3fe5f8d",
+    "source_doc_hashes": {
+      "spec.md": "d4b70dc87aa0b0889077c8a5504ac504ed2bc566002b14b398b65ef1067be7fe",
+      "plan.md": "c382483b4890e384947e6ea3289acae91d9cf29ce317b086c1f52d5ab62303bf",
+      "tasks.md": "f913aa3ee740d30fd750fdb57c320b8ee6d5e16c0673be576463f7f2554a3b79",
+      "checklist.md": "a55b7e637b0f7f64000dc5cf37658649fbbfb8b855e65e5541e8729bc4d761f9",
+      "implementation-summary.md": "6c67028563c4004b24240f4d75f78b847d9d9b26db2d71fb224869f8c460c0dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

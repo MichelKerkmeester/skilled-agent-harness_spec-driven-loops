@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-unification/010-deep-loop-parent-skill-alignment",
+  "spec_folder": "system-deep-loop/030-deep-loop-unification/010-deep-loop-parent-skill-alignment",
+  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop parent skill alignment",
+      "deep-loop invokable hub routing",
+      "ai-council name folder mismatch",
+      "deep-loop feature catalog hygiene",
+      "align deep-loop with sk-design parent pattern",
+      "deep-loop alignment plan",
+      "deep-loop staged conversion",
+      "ai-council rename plan",
+      "deep-loop alignment tasks",
+      "ai-council rename tasks",
+      "deep-loop alignment checklist",
+      "deep-loop alignment acceptance"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "parent",
+      "skill",
+      "alignment",
+      "invokable",
+      "hub",
+      "routing",
+      "ai-council",
+      "name",
+      "folder",
+      "mismatch",
+      "feature"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Item Closeout",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-loop-workflows` was the canonical parent-skill example, but the sk-design conversion (spec 154) advanced the pattern beyond it",
+    "created_at": "2026-06-26T11:31:27.588Z",
+    "last_save_at": "2026-07-16T16:33:03.755Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:375b284d009d0ddd166a5397fc2054ae6058ca5c566c638707ef46fc440a3f7a",
+    "source_doc_hashes": {
+      "spec.md": "f5b4edb7faf2d2767e7ad426d6720b5984fb323bbfe22062567d4233941860bd",
+      "plan.md": "753810d8d288038e5ea91cf1c5d36c543ec2f45102864d1045afc5529ef5e830",
+      "tasks.md": "249b340ec19215723f04f1bd2d9cc4c8725d6951a4625c1d0ad1482859d45fff",
+      "checklist.md": "47e0ce63719517737ca9efef4242dd9e5fd8efc4e208bb70d6ef86c73e6abcb5",
+      "decision-record.md": "4929fc4fb36179a543dcc9654dbea67a965e87ddf46e58d459bc72bb7f53428d",
+      "implementation-summary.md": "e2af9f33b44fac2880624893921ae10c2bf1b13c9764e50109aa6eb27d43c73d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

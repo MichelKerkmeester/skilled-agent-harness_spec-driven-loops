@@ -1,0 +1,31 @@
+{
+  "level": 1,
+  "specFolder": "system-deep-loop/z_archive/026-goal-opencode-plugin/024-retention-tightening",
+  "description": "The operator wants a much tighter active-goal retention window than the shipped 30-day default, and wants the existing backlog reconciled to that new",
+  "keywords": [
+    "operator",
+    "wants",
+    "much",
+    "tighter",
+    "active-goal",
+    "retention",
+    "window",
+    "shipped",
+    "30-day",
+    "default",
+    "existing",
+    "backlog",
+    "reconciled",
+    "new"
+  ],
+  "lastUpdated": "2026-07-16T16:27:02.254Z",
+  "specId": "024",
+  "folderSlug": "retention-tightening",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "026-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

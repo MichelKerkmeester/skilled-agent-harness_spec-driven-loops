@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix",
+  "description": "Two independent, confirmed-by-code-trace defects, both cross-validated across research/research.md's 6 lineages:",
+  "keywords": [
+    "two",
+    "independent",
+    "confirmed-by-code-trace",
+    "defects",
+    "cross-validated",
+    "across",
+    "research",
+    "lineages"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.331Z",
+  "specId": "006",
+  "folderSlug": "mode-d-ai-council-identity-fix",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "025-deep-loop-gpt-reliability",
+    "002-routing-dispatch-and-identity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

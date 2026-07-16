@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/035-command-surface-benchmark/010-scorecard-and-closeout",
+  "description": "Publishes the two-axis scorecard and remediation backlog, reconciles all packet status metadata, and runs recursive strict validation so the benchmark",
+  "keywords": [
+    "publishes",
+    "two-axis",
+    "scorecard",
+    "remediation",
+    "backlog",
+    "reconciles",
+    "packet",
+    "status",
+    "metadata",
+    "runs",
+    "recursive",
+    "strict",
+    "validation",
+    "benchmark"
+  ],
+  "lastUpdated": "2026-07-16T16:26:56.815Z",
+  "specId": "010",
+  "folderSlug": "scorecard-and-closeout",
+  "parentChain": [
+    "system-deep-loop",
+    "035-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

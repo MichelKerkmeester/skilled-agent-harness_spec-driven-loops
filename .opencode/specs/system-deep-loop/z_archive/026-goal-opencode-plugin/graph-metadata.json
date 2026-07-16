@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/026-goal-opencode-plugin",
+  "spec_folder": "system-deep-loop/z_archive/026-goal-opencode-plugin",
+  "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/032-goal-opencode-plugin/001-state-store",
+    "system-deep-loop/032-goal-opencode-plugin/002-injection-plugin",
+    "system-deep-loop/032-goal-opencode-plugin/003-goal-command",
+    "system-deep-loop/032-goal-opencode-plugin/004-lifecycle-tracking",
+    "system-deep-loop/032-goal-opencode-plugin/005-completion-supervisor",
+    "system-deep-loop/032-goal-opencode-plugin/006-active-continuation",
+    "system-deep-loop/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement",
+    "system-deep-loop/032-goal-opencode-plugin/008-system-spec-kit-integration",
+    "system-deep-loop/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
+    "system-deep-loop/032-goal-opencode-plugin/010-security-and-correctness-fixes",
+    "system-deep-loop/032-goal-opencode-plugin/011-command-surface-normalization",
+    "system-deep-loop/032-goal-opencode-plugin/012-regression-test-backfill",
+    "system-deep-loop/032-goal-opencode-plugin/013-design-fidelity-and-polish",
+    "system-deep-loop/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive",
+    "system-deep-loop/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity",
+    "system-deep-loop/032-goal-opencode-plugin/016-plugin-correctness-fixes",
+    "system-deep-loop/032-goal-opencode-plugin/017-hot-path-optimization",
+    "system-deep-loop/032-goal-opencode-plugin/018-test-architecture-restructure",
+    "system-deep-loop/032-goal-opencode-plugin/019-code-refinements",
+    "system-deep-loop/032-goal-opencode-plugin/020-capability-additions",
+    "system-deep-loop/032-goal-opencode-plugin/021-completion-verifier-wiring",
+    "system-deep-loop/032-goal-opencode-plugin/022-review-remediation",
+    "system-deep-loop/032-goal-opencode-plugin/023-p2-hardening",
+    "system-deep-loop/032-goal-opencode-plugin/024-retention-tightening",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/001-state-store",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/002-injection-plugin",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/003-goal-command",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/004-lifecycle-tracking",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/005-completion-supervisor",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/006-active-continuation",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/007-sk-prompt-goal-enhancement",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/008-system-spec-kit-integration",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/010-security-and-correctness-fixes",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/011-command-surface-normalization",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/012-regression-test-backfill",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/013-design-fidelity-and-polish",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/014-goal-state-cleanup-and-archive",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/016-plugin-correctness-fixes",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/017-hot-path-optimization",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/018-test-architecture-restructure",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/019-code-refinements",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/020-capability-additions",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/021-completion-verifier-wiring",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/022-review-remediation",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/023-p2-hardening",
+    "system-deep-loop/z_archive/026-goal-opencode-plugin/024-retention-tightening"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal opencode plugin",
+      "slash goal command",
+      "session goal injection",
+      "thread goals opencode",
+      "goal plugin documentation staleness",
+      "goal opencode plugin doc audit",
+      "mk-goal.js documentation gaps",
+      "goal_opencode.md filename references"
+    ],
+    "key_topics": [
+      "goal",
+      "opencode",
+      "plugin",
+      "slash",
+      "command",
+      "session",
+      "injection",
+      "thread",
+      "goals",
+      "documentation",
+      "staleness",
+      "doc"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/commands/goal_opencode.md",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
+      ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      "research/research.md",
+      ".opencode/plugins/mk-spec-memory.js",
+      ".opencode/commands/memory/learn.md",
+      "references/hooks/goal_plugin.md",
+      ".opencode/plugins/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "constitutional/goal-prompting-runtime-specific.md",
+      ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
+      "spec.md",
+      "plugin_bridges/README.md",
+      "research/resource-map.md",
+      ".opencode/skills/system-skill-advisor/README.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal_opencode.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal_opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal_plugin.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-memory.js",
+        "source": "derived"
+      },
+      {
+        "name": "learn.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/learn.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-prompting-runtime-specific.md",
+        "kind": "doc",
+        "path": "constitutional/goal-prompting-runtime-specific.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Documentation Staleness Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Post Phases",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode has no goal/completion-condition system",
+    "created_at": "2026-06-28T14:00:33Z",
+    "last_save_at": "2026-07-16T16:32:46.735Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:47e5f4f25fdf8b1ab9d24271d6a44473e5e59cc8a240707fea6437ce3f08d0f0",
+    "source_doc_hashes": {
+      "spec.md": "bd8b339d48d6daf78e223ca3bb5c6ba39ac58e9296decedbdb6e90263b348691",
+      "research/research.md": "f4fa54e1ec758ad1c45538f80fc1615f76b1b654a2ae6ad62e0c9a505f764cc5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-04T06:58:43.153Z"
+  }
+}

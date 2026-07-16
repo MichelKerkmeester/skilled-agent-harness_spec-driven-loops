@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/004-multi-ai-council-write-authority",
+  "spec_folder": "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/004-multi-ai-council-write-authority",
+  "parent_id": "system-deep-loop/z_archive/021-multi-ai-council-write-protocol",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+        "reason": "Predecessor packet (migrated from legacy string-array; original reason not preserved)",
+        "source": "manual"
+      },
+      {
+        "packet_id": "skilled-agent-orchestration/089-multi-ai-council-persistence",
+        "reason": "Predecessor packet (migrated from legacy string-array; original reason not preserved)",
+        "source": "manual"
+      },
+      {
+        "packet_id": "skilled-agent-orchestration/092-multi-ai-council-deferrals",
+        "reason": "Predecessor packet (migrated from legacy string-array; original reason not preserved)",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "multi-ai-council write authority",
+      "council write authority",
+      "council ai-council folder writes",
+      "council artifact_written audit",
+      "098 multi-ai-council writes",
+      "council write authority plan",
+      "098 plan",
+      "council write authority tasks",
+      "098 tasks",
+      "council write authority checklist",
+      "098 checklist",
+      "council write authority ADRs"
+    ],
+    "key_topics": [
+      "multi-ai-council",
+      "write",
+      "authority",
+      "council",
+      "ai-council",
+      "folder",
+      "writes",
+      "audit",
+      "plan",
+      "tasks",
+      "checklist",
+      "adrs"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-permission-scope.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-audit-trail.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-rollback.vitest.ts",
+      "decision-record.md",
+      "research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "multi-ai-council-permission-scope.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-permission-scope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-runtime-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-audit-trail.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-audit-trail.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-rollback.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-rollback.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scoped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Council",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The multi-ai-council agent is intentionally planning-only as of v3.4.1.0",
+    "created_at": "2026-05-08T21:45:00Z",
+    "last_save_at": "2026-07-16T16:31:41.943Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:7b197a7da35f0bb1244ec9ade5d88cab7d01c27436ea752de29340b13e889d8d",
+    "source_doc_hashes": {
+      "spec.md": "6984baf62d99b4bdfb455bca3d0ad91abf2b30fe4bc984698f666c1e7e8d1da3",
+      "plan.md": "a03fcf0c0696a83992f38c67334bbc88f2c2721be3eca4a3ab52b1a0bdfa448e",
+      "tasks.md": "5890fe0a5fedef498dbeeee3c61d95065a67973dbc8dd23ed7b39cd9538680e6",
+      "checklist.md": "79f528fd22960c982b9f10d85402534e7e617f36ed84fc01adbcdd0bf331972f",
+      "decision-record.md": "b4a0fb665cfe8f9a6c2f771aaba2fe14c30dcf50c8f0d70b01684ba13293f546",
+      "implementation-summary.md": "fc580d63f820ea2f68383eebd69367eefc06d1b7d08bbc0684e615b994f3cac5",
+      "research.md": "1159e527965ccbf90038570f86f52dc9a4b4e6a3bab71a56a8927234de79e825",
+      "resource-map.md": "9c328036bbfd1559fab5783a7f47b3c9b1f25f2146b52b93b67808dd915f841f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

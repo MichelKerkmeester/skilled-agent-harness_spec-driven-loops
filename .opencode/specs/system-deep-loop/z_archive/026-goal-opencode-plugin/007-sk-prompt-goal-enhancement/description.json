@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/026-goal-opencode-plugin/007-sk-prompt-goal-enhancement",
+  "description": "`/goal set` currently stores and injects the sanitized raw user objective",
+  "keywords": [
+    "goal",
+    "set",
+    "currently",
+    "stores",
+    "injects",
+    "sanitized",
+    "raw",
+    "user",
+    "objective"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.758Z",
+  "specId": "007",
+  "folderSlug": "sk-prompt-goal-enhancement",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "026-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

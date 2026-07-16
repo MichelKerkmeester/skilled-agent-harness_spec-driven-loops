@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness",
+  "spec_folder": "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness",
+  "parent_id": "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "behavior benchmark framework",
+      "behavior bench harness",
+      "benchmark runner watchdog",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "decision record",
+      "deep loop behavior benchmark decisions",
+      "summary"
+    ],
+    "key_topics": [
+      "behavior",
+      "benchmark",
+      "framework",
+      "bench",
+      "harness",
+      "runner",
+      "watchdog",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "runs/SMOKE-001-claude-cli.result.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "SMOKE-001-claude-cli.result.json",
+        "kind": "config",
+        "path": "runs/SMOKE-001-claude-cli.result.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Framework",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Harness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Probe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exactly",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five per-skill benchmark packages (phases 002-004) need one shared, trustworthy measurement substrate",
+    "created_at": "2026-07-02T05:53:05.516Z",
+    "last_save_at": "2026-07-16T16:32:53.677Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:54bc1b47c5ab8acdd0add128b704c1fab729f46347e7c31fa57740c3151dfb80",
+    "source_doc_hashes": {
+      "spec.md": "520b91971e93461d2918f72723d63f2936e22f2f368644672749883596cf6160",
+      "plan.md": "021aca075b6f4944d66c51d1f7f2579e71b5335a9699baafa99a332ffa70092d",
+      "tasks.md": "0cc726480f2e2e5ee348a0f5b1700c3f9d0fd18e50abc03d158b30a6fb808358",
+      "checklist.md": "c62fd25be85fd83b1bf07fa60a12ca10b033c04340c63d21dc478487765c5e63",
+      "decision-record.md": "eecf35f1fd6810f905b23ebf019d94ec8738d6ceb3b21fef6279dd45deb22c35",
+      "implementation-summary.md": "7e91ffdd5f4d9ae9b6b866dafdd37cfc306623591d48a3d50c28bf0451d694d0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

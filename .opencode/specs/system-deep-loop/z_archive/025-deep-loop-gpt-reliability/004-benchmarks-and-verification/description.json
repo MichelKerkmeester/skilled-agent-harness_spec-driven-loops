@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/004-benchmarks-and-verification",
+  "description": "The routing, dispatch, and identity fixes needed empirical confirmation",
+  "keywords": [
+    "routing",
+    "dispatch",
+    "identity",
+    "needed",
+    "empirical",
+    "confirmation"
+  ],
+  "lastUpdated": "2026-07-16T16:27:01.560Z",
+  "specId": "004",
+  "folderSlug": "benchmarks-and-verification",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "025-deep-loop-gpt-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

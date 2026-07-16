@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime",
+  "description": "The deep-loop-runtime core library and scripts carry known structural gaps across four dimensions: (1) resilience — atomic state writes are unguarded",
+  "keywords": [
+    "deep-loop-runtime",
+    "core",
+    "library",
+    "scripts",
+    "carry",
+    "known",
+    "structural",
+    "gaps",
+    "across",
+    "four",
+    "dimensions",
+    "resilience",
+    "atomic",
+    "state",
+    "writes",
+    "unguarded"
+  ],
+  "lastUpdated": "2026-07-16T16:26:59.395Z",
+  "specId": "002",
+  "folderSlug": "deep-loop-runtime",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

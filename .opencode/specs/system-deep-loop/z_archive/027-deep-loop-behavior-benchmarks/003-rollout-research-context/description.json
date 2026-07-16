@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context",
+  "description": "Roll the calibrated framework out to the two remaining runtime-loop modes",
+  "keywords": [
+    "roll",
+    "calibrated",
+    "framework",
+    "two",
+    "remaining",
+    "runtime-loop",
+    "modes"
+  ],
+  "lastUpdated": "2026-07-16T16:27:02.309Z",
+  "specId": "003",
+  "folderSlug": "rollout-research-context",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "027-deep-loop-behavior-benchmarks"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-07-26_18-46__phase-003-complete-42-run-3-leg-rollout-of-deep.md"
+  ]
+}

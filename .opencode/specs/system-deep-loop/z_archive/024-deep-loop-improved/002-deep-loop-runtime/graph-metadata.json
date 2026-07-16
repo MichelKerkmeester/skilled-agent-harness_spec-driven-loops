@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved",
+  "children_ids": [
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/002-atomic-state-integrity-helpers",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/003-atomic-state-deferred-writer",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/009-byte-offset-log-regions",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/011-convergence-score-delta",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/012-observation-threshold-guard",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/013-coverage-graph-time-decay",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/016-llm-judge-hardening",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog",
+    "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/002-atomic-state-integrity-helpers",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/003-atomic-state-deferred-writer",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/009-byte-offset-log-regions",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/011-convergence-score-delta",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/012-observation-threshold-guard",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/013-coverage-graph-time-decay",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/016-llm-judge-hardening",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog",
+    "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-runtime improvements",
+      "atomic state hardening",
+      "convergence signal improvements",
+      "loop resilience improvements",
+      "002 deep-loop-runtime"
+    ],
+    "key_topics": [
+      "deep-loop-runtime",
+      "improvements",
+      "atomic",
+      "state",
+      "hardening",
+      "convergence",
+      "signal",
+      "loop",
+      "resilience",
+      "core",
+      "library",
+      "scripts"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop-runtime core library and scripts carry known structural gaps across four dimensions: (1) resilience — atomic state writes are unguarded for integrity and redundancy, the loop lock has no heartbeat during long dispatch, and there is no crash-resume for killed wait-boundary processes; (2) convergence quality — the convergence signal has no improvement-effect delta, no observation-threshold guard, and no time-decay on stale evidence; (3) observability — log transcript navigation requires full-file scanning and there is no byte-offset indexing; (4) robustness — the fallback router",
+    "created_at": "2026-06-28T14:00:34Z",
+    "last_save_at": "2026-07-16T16:31:59.734Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a32a04352cedaeeb4c507815cafce45950edeff4dc8f7f57f150c7878037202e",
+    "source_doc_hashes": {
+      "spec.md": "7dde565cc243ebf87e0486f848ddc7b21a9afc75c2b7c908e70aa71c6d4ee901"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

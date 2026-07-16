@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/030-deep-loop-unification/002-hub-rename-and-runtime-nesting",
+  "description": "`deep-loop-workflows` is already Option-E-hub-shaped but carries the wrong top-level name; `deep-loop-runtime` is a separate skill folder that",
+  "keywords": [
+    "deep-loop-workflows",
+    "already",
+    "option-e-hub-shaped",
+    "carries",
+    "wrong",
+    "top-level",
+    "name",
+    "deep-loop-runtime",
+    "separate",
+    "skill",
+    "folder"
+  ],
+  "lastUpdated": "2026-07-16T16:26:53.253Z",
+  "specId": "002",
+  "folderSlug": "hub-rename-and-runtime-nesting",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

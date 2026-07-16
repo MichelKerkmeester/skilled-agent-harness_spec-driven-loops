@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
+  "description": "Plan the shadow-parity harness for the shared Deep Improvement Common Services backbone: run the typed ledger path beside the legacy emitter, compare",
+  "keywords": [
+    "plan",
+    "shadow-parity",
+    "harness",
+    "shared",
+    "deep",
+    "improvement",
+    "common",
+    "services",
+    "backbone",
+    "run",
+    "typed",
+    "ledger",
+    "path",
+    "beside",
+    "legacy",
+    "emitter",
+    "compare"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.259Z",
+  "specId": "006",
+  "folderSlug": "shadow-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "004-deep-improvement-common"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

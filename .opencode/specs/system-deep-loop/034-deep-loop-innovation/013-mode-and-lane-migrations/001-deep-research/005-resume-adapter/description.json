@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+  "description": "Plan the Deep Research resume adapter over the sealed typed event ledger: rebuild interrupted live state through the mode reducers, map the continuity",
+  "keywords": [
+    "plan",
+    "deep",
+    "research",
+    "resume",
+    "adapter",
+    "sealed",
+    "typed",
+    "event",
+    "ledger",
+    "rebuild",
+    "interrupted",
+    "live",
+    "state",
+    "mode",
+    "reducers",
+    "map",
+    "continuity"
+  ],
+  "lastUpdated": "2026-07-16T16:26:55.403Z",
+  "specId": "005",
+  "folderSlug": "resume-adapter",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "001-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

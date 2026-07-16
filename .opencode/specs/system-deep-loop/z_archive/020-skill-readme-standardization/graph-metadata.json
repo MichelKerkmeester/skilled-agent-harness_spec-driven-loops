@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/020-skill-readme-standardization",
+  "spec_folder": "system-deep-loop/z_archive/020-skill-readme-standardization",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/z_archive/021-skill-readme-standardization/001-deep-ai-council-readme",
+    "system-deep-loop/z_archive/021-skill-readme-standardization/002-deep-context-readme",
+    "system-deep-loop/z_archive/021-skill-readme-standardization/003-deep-improvement-readme",
+    "system-deep-loop/z_archive/021-skill-readme-standardization/004-deep-loop-runtime-readme",
+    "system-deep-loop/z_archive/021-skill-readme-standardization/005-deep-research-readme",
+    "system-deep-loop/z_archive/021-skill-readme-standardization/006-deep-review-readme",
+    "system-deep-loop/z_archive/020-skill-readme-standardization/001-deep-ai-council-readme",
+    "system-deep-loop/z_archive/020-skill-readme-standardization/002-deep-context-readme",
+    "system-deep-loop/z_archive/020-skill-readme-standardization/003-deep-improvement-readme",
+    "system-deep-loop/z_archive/020-skill-readme-standardization/004-deep-loop-runtime-readme",
+    "system-deep-loop/z_archive/020-skill-readme-standardization/005-deep-research-readme",
+    "system-deep-loop/z_archive/020-skill-readme-standardization/006-deep-review-readme"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop readme standardization",
+      "skill readme standardization campaign",
+      "deep skill readme batch"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "readme",
+      "standardization",
+      "skill",
+      "campaign",
+      "deep",
+      "batch",
+      "archived",
+      "work",
+      "spans",
+      "six",
+      "completed"
+    ],
+    "importance_tier": "archived",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Group",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The archived deep-loop skill README standardization work spans six completed child phases, one for each deep-loop sub-skill README that needed a problem-first narrative entry point instead of a tabular reference-card presentation",
+    "created_at": "2026-07-08T05:56:44.284Z",
+    "last_save_at": "2026-07-16T16:31:39.220Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1bffbee6fabe5e74fb0c7cf08e7ebe0746594f4157534f582c2a6213aaf40b0a",
+    "source_doc_hashes": {
+      "spec.md": "8c1429d601de88fe3c52a18ae2a22d1525d665bdbd6fe3a9ab254196a943259d"
+    },
+    "last_active_child_id": "system-deep-loop/z_archive/021-skill-readme-standardization/006-deep-review-readme",
+    "last_active_at": "2026-06-07T12:18:52Z"
+  }
+}

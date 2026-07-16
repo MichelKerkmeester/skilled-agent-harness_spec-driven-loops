@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime/008-deep-loop-finding-dedup",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/008-deep-loop-finding-dedup",
+  "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop finding dedup benchmark",
+      "fanout near dup dedup graduation",
+      "SPECKIT_FANOUT_NEAR_DUP_DEDUP benchmark",
+      "lag ceiling progress heartbeat gauges",
+      "fanout finding noise dedup precision recall",
+      "fanout near dup dedup harness",
+      "SPECKIT_FANOUT_NEAR_DUP_DEDUP plan",
+      "lag ceiling progress heartbeat harness",
+      "fanout merge exports benchmark plan",
+      "fanout near dup dedup tasks",
+      "SPECKIT_FANOUT_NEAR_DUP_DEDUP tasks",
+      "lag ceiling progress heartbeat tasks"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "finding",
+      "dedup",
+      "benchmark",
+      "fanout",
+      "near",
+      "dup",
+      "graduation",
+      "lag",
+      "ceiling",
+      "progress"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/dedup-benchmark.mjs",
+      "scripts/gauge-benchmark.mjs",
+      "results/dedup-metrics.json",
+      "results/gauge-metrics.json",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "dedup-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/dedup-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "gauge-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/gauge-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dedup-metrics.json",
+        "kind": "config",
+        "path": "results/dedup-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "gauge-metrics.json",
+        "kind": "config",
+        "path": "results/gauge-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Finding Dedup Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Measure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop fan-out merge ships three finished, default-off capabilities behind no measured verdict",
+    "created_at": "2026-06-24T04:53:47.796Z",
+    "last_save_at": "2026-07-16T16:33:02.470Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7dc00b4ce2e0e5cb90e5fd853614bcde20b3a26df06a52b9a8e09843212594d5",
+    "source_doc_hashes": {
+      "spec.md": "06f1c2a4216d3e019716bdc65417b0ddf7138817e9e4fada9fe736018d38812c",
+      "plan.md": "346c0061d3687f9543130c0337958c5ea67a1f0aaaac78ff7fe737924614a37f",
+      "tasks.md": "6b86a5e5e217ec31bcb5083253e15062dac30ffdd54b6daed5520adc689b5acf",
+      "checklist.md": "b6629fa22bb9120d2b4bfa36271f37fe619a33c271183d34ecc49f1d39d6310f",
+      "implementation-summary.md": "efd40801b0b2d7dfb06e3136baf30afb50f1a1e319bb4d5f2f7b87032aae65c6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

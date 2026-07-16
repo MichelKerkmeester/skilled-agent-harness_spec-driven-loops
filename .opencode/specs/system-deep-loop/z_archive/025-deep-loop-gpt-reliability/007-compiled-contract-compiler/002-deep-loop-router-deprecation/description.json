@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation",
+  "description": "Phase 002 of packet 036 (command contract compiler).",
+  "keywords": [
+    "phase",
+    "packet",
+    "command",
+    "contract",
+    "compiler"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.816Z",
+  "specId": "002",
+  "folderSlug": "deep-loop-router-deprecation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "025-deep-loop-gpt-reliability",
+    "007-compiled-contract-compiler"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

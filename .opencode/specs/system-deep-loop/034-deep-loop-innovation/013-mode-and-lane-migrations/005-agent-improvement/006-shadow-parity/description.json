@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/034-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity",
+  "description": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate.",
+  "keywords": [
+    "plan",
+    "agent",
+    "improvement",
+    "mode",
+    "shadow-parity",
+    "harness",
+    "typed",
+    "event-ledger",
+    "substrate"
+  ],
+  "lastUpdated": "2026-07-16T16:26:56.262Z",
+  "specId": "006",
+  "folderSlug": "shadow-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "034-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "005-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

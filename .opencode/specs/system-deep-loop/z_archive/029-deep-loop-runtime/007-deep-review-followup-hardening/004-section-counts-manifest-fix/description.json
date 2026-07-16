@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/004-section-counts-manifest-fix",
+  "description": "In `check-section-counts.sh`, `sectionexpectedspech2` counts every `sectionGates` entry active at the declared level from `template-structure.js",
+  "keywords": [
+    "check-section-counts",
+    "sectionexpectedspech2",
+    "counts",
+    "every",
+    "sectiongates",
+    "entry",
+    "active",
+    "declared",
+    "level",
+    "template-structure"
+  ],
+  "lastUpdated": "2026-07-16T16:27:02.837Z",
+  "specId": "004",
+  "folderSlug": "section-counts-manifest-fix",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "029-deep-loop-runtime",
+    "007-deep-review-followup-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

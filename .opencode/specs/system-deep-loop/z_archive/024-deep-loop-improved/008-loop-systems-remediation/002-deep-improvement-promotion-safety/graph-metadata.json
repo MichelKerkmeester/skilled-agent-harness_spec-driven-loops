@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement promotion safety",
+      "mirror sync gate canonical baseline",
+      "promote candidate agent definition mirror sync",
+      "deep improvement promotion safety plan",
+      "mirror sync gate canonical baseline plan",
+      "promote candidate mirror sync plan",
+      "deep improvement promotion safety tasks",
+      "mirror sync gate canonical baseline tasks",
+      "promote candidate mirror sync tasks",
+      "deep improvement promotion safety summary",
+      "mirror sync gate canonical baseline summary",
+      "promote candidate mirror sync summary"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "promotion",
+      "safety",
+      "mirror",
+      "sync",
+      "gate",
+      "canonical",
+      "baseline",
+      "promote",
+      "candidate",
+      "agent"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Promotion Safety",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Corrected",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sync Baseline In",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Regression Coverage",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The pre-mutation 4-runtime mirror-sync gate in `promote-candidate.cjs` read the candidate body and called `verifyMirrorSync(agentName, candidateContent, …)`, comparing each runtime mirror against the candidate",
+    "created_at": "2026-06-29T10:43:18Z",
+    "last_save_at": "2026-07-16T16:32:22.805Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eda27befdbc68c93bbeb5ea138f82762608d8596b38176e8ab626b670fe7007a",
+    "source_doc_hashes": {
+      "spec.md": "9275223e2ecf2ea18699ffb5b8be87d7210abc42d2e1cd2e5dc5783e3eb19c7f",
+      "plan.md": "20bb2a7ceedbabfad6ad41404e5b87eee2ab16b624e534a3c302a781d095c775",
+      "tasks.md": "c06e07d94a2ff45651452d506eac18f017fb1fa08c9efb9f0929968c87b920b3",
+      "implementation-summary.md": "371255018ea10dc50de101a7a9fe46983aad5b049b24d774deab16c4a0746b4f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

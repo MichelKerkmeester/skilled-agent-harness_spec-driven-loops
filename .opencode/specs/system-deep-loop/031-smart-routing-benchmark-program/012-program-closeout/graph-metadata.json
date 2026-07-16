@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/012-program-closeout",
+  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/012-program-closeout",
+  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "054 program closeout",
+      "smart-routing benchmark CI"
+    ],
+    "key_topics": [
+      "program",
+      "closeout",
+      "smart-routing",
+      "benchmark",
+      "converge",
+      "reconcile",
+      "stale",
+      "child",
+      "statuses",
+      "refresh",
+      "parent",
+      "rollup"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Reindex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Converge the 054 program: reconcile stale child statuses and refresh the parent rollup (children_ids + last_active_child_id), wire a Mode-A + drift-guard CI job (the named only-remaining follow-up), and run a daemon-health-gated canonical memory reindex of the renamed trees — strictly last, after the migration lands.",
+    "created_at": "2026-07-09T12:18:01.999Z",
+    "last_save_at": "2026-07-16T16:33:15.132Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:929dffd617f8f68c840419a25a55ba96bd399014cb5b3cebd5c0fc47dbc4eb07",
+    "source_doc_hashes": {
+      "spec.md": "23587225fa18961ccb382651697d702a285f553ecbc10b4adf5df77f88894132"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

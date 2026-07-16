@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress",
+  "spec_folder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress",
+  "parent_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 phase 004",
+      "dispatch receipts progress records",
+      "hmac dispatch receipt",
+      "plan",
+      "035 004 plan",
+      "tasks",
+      "035 004 tasks",
+      "implementation",
+      "summary",
+      "031 006 003"
+    ],
+    "key_topics": [
+      "phase",
+      "dispatch",
+      "receipts",
+      "progress",
+      "records",
+      "hmac",
+      "receipt",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "packet"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Receipts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Progress Records",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "step-transition-only",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Six",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Orchestrator",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 of packet 035 (the last acute-fix phase). Two standalone dispatch-integrity mechanisms (packet 036's compiled contract will reference them): engine-held HMAC dispatch receipts (the key never leaves the engine process — plan-review GAP-23 blocker) and step-transition progress records with a work-anchored schema. Closes F-010/011/012/013/041 (receipts) and F-015/016/017/031/043 (progress). Absorbs GAP-13/15/23/24/25/26/27/28/29/30/31/32/34/35/36.",
+    "created_at": "2026-07-03T14:05:28.547Z",
+    "last_save_at": "2026-07-16T16:32:35.060Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c112054884fdae0d8527ae86f5d5c56df1d9f04bd32c41b8fcf2e9a0d8762697",
+    "source_doc_hashes": {
+      "spec.md": "49fcd3f4639e6995bac5a6b1c66b2a63c51078bccb006a9220f5ff3a3e3c8035",
+      "plan.md": "c7173e50703e75eb523eb6218e1e5b7ac121c0e5840205daaec74608fe7dbf41",
+      "tasks.md": "ccd9f1cbb32ca918a4953317b710546a02db13ac9a39bc2748ffaaabd1004126",
+      "implementation-summary.md": "530053f92e02b9ff458283eb13e877012e514e729727130e7ac4ba7e3e226c61"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

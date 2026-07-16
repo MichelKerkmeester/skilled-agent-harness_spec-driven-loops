@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows/009-loop-quality-benchmark",
+  "description": "The deep-improvement benchmark currently gates on benchmark-pass (did the run succeed?) rather than improvement-over-baseline (is the candidate better",
+  "keywords": [
+    "deep-improvement",
+    "benchmark",
+    "currently",
+    "gates",
+    "benchmark-pass",
+    "run",
+    "succeed",
+    "rather",
+    "improvement-over-baseline",
+    "candidate",
+    "better"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.108Z",
+  "specId": "009",
+  "folderSlug": "loop-quality-benchmark",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

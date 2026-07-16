@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/002-direct-dispatch-to-yaml",
+  "spec_folder": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/002-direct-dispatch-to-yaml",
+  "parent_id": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep direct dispatch to yaml",
+      "skill-benchmark yaml-backed",
+      "deep command workflow yaml conversion",
+      "byte identical loop-host dispatch"
+    ],
+    "key_topics": [
+      "deep",
+      "direct",
+      "dispatch",
+      "yaml",
+      "skill-benchmark",
+      "yaml-backed",
+      "command",
+      "workflow",
+      "conversion",
+      "byte",
+      "identical",
+      "loop-host"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_skill-benchmark_auto.yaml",
+      ".opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_skill-benchmark_presentation.txt",
+      ".opencode/commands/deep/skill-benchmark.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_skill-benchmark_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_skill-benchmark_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_skill-benchmark_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_skill-benchmark_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep_skill-benchmark_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/skill-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mandatory Input Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Clone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Startup Presentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Documents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/deep:skill-benchmark` (Lane C) was the remaining deep command that dispatched its loop host inline: its `command.md` declared \"direct-router family — no workflow YAML\" with an inline `§5 PRESENTATION BOUNDARY` instead of a presentation asset",
+    "created_at": "2026-07-13T14:07:04.711Z",
+    "last_save_at": "2026-07-16T16:33:06.904Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:36dc7e2e84bfee0c7c8bd6754e4e680b5fb747533fb7c8f0ecb7344e6eb9afad",
+    "source_doc_hashes": {
+      "spec.md": "01d9fd38df165977a78bc27702c610c445cfca79e4ed2f0dfe98d7ecb28fd0b2",
+      "plan.md": "bf80503cba2ee86f2474eca71b09874ba50bfc309b037ef26e72395bb9e5bcb9",
+      "tasks.md": "63dc0eb76b7e6e3145f8c8c8b49b09022871400e0ab6cdac1d4670694023bb2a",
+      "checklist.md": "c428f94a613a082d657b08782341e889a5f8d3f63a47bda445f7a2987b90474b",
+      "implementation-summary.md": "a01a5efdb9a85b1bf491d9b7da200b70bc5dc3c474f3dfb9620078ce80f20036"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

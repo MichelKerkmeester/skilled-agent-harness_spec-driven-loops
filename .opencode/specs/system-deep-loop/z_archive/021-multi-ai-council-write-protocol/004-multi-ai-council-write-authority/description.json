@@ -1,0 +1,50 @@
+{
+  "title": "Multi-AI Council write authority",
+  "trigger_phrases": [
+    "multi-ai-council write authority",
+    "council write authority",
+    "council ai-council folder writes",
+    "council artifact_written audit",
+    "098 multi-ai-council writes"
+  ],
+  "level": 3,
+  "importance_tier": "critical",
+  "contextType": "implementation",
+  "status": "complete",
+  "priority": "P1",
+  "createdAt": "2026-05-08T21:45:00Z",
+  "branch": "main",
+  "parent_track": "skilled-agent-orchestration",
+  "parent_id": "system-deep-loop/z_archive/022-multi-ai-council-write-protocol",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+      "skilled-agent-orchestration/089-multi-ai-council-persistence",
+      "skilled-agent-orchestration/092-multi-ai-council-deferrals"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null
+  },
+  "lastUpdatedAt": null,
+  "specFolder": "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/004-multi-ai-council-write-authority",
+  "description": "The multi-ai-council agent is intentionally planning-only as of v3.4.1.0",
+  "keywords": [
+    "multi-ai-council",
+    "agent",
+    "intentionally",
+    "planning-only"
+  ],
+  "lastUpdated": "2026-07-16T16:26:57.985Z",
+  "specId": "004",
+  "folderSlug": "multi-ai-council-write-authority",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "021-multi-ai-council-write-protocol"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

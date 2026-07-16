@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation/005-per-iteration-memory-upsert",
+  "description": "Deep-loop findings only land in Spec Kit Memory at the final `memorysave` call after a run completes",
+  "keywords": [
+    "deep-loop",
+    "findings",
+    "only",
+    "land",
+    "spec",
+    "kit",
+    "memory",
+    "final",
+    "memorysave",
+    "call",
+    "run",
+    "completes"
+  ],
+  "lastUpdated": "2026-07-16T16:26:59.635Z",
+  "specId": "005",
+  "folderSlug": "per-iteration-memory-upsert",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "006-ux-observability-automation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

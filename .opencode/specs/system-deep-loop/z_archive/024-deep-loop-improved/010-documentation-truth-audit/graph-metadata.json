@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/024-deep-loop-improved/010-documentation-truth-audit",
+  "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/010-documentation-truth-audit",
+  "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "030 documentation truth audit",
+      "packet 030 readme agents drift",
+      "goal plugin readme integration",
+      "030 documentation truth audit implementation summary"
+    ],
+    "key_topics": [
+      "documentation",
+      "truth",
+      "audit",
+      "packet",
+      "readme",
+      "agents",
+      "drift",
+      "goal",
+      "plugin",
+      "integration",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "review/review-report.md",
+      "review/iterations/iteration-5.md",
+      "spec.md",
+      "tasks.md",
+      ".opencode/plugins/README.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-5.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-5.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Truth Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dispatched",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Plugin",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 030 shipped nine phases of loop-system work, most recently an 11-child research-backlog remediation phase that changed fan-out merge behavior, per-lineage timeout handling, convergence-threshold defaults, a new `SCAFFOLDNEVERTOUCHED` validate.sh rule, and fan-out safety hardening (stall watchdog, cost cap)",
+    "created_at": "2026-07-01T16:29:13.826Z",
+    "last_save_at": "2026-07-16T16:32:04.755Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5ebb3c96e864f6ca9c2e0f0160f76efc64beb7314b7eb03cc22fe25d01546b89",
+    "source_doc_hashes": {
+      "spec.md": "a30ba1c0f6a56f44fa25095e1294abfe24023725ba28c94578148aad8e60ac57",
+      "plan.md": "03e4f59cca055400490682272138c6675461f1c158f0f21334a4487fa7622f07",
+      "tasks.md": "b4a35c402c8f2f39dfe37e9fbbe79f372ad2a69fe2a455c5d577bde49d75f39f",
+      "checklist.md": "49c45ca4822fcba5ce7f5c37e2965b87d9df345886ca75e3cdd76f9adef67d1a",
+      "implementation-summary.md": "6fa38d5a232f3a5750941da4ba361b8a3c8132c248dbf58caf6a5c98e6938eb2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

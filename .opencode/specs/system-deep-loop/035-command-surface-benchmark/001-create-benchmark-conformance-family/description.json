@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family",
+  "description": "Adds a fifth authored create-benchmark family, conformance_benchmark, that templates the input scaffolding for deterministic artifact-conformance",
+  "keywords": [
+    "fifth",
+    "authored",
+    "create-benchmark",
+    "family",
+    "templates",
+    "input",
+    "scaffolding",
+    "deterministic",
+    "artifact-conformance"
+  ],
+  "lastUpdated": "2026-07-16T16:26:56.580Z",
+  "specId": "001",
+  "folderSlug": "create-benchmark-conformance-family",
+  "parentChain": [
+    "system-deep-loop",
+    "035-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

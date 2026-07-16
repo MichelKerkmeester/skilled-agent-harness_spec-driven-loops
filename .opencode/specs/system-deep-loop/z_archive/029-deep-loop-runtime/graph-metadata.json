@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime",
+  "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/038-deep-loop-runtime/001-reducer-anchor-fix",
+    "system-deep-loop/038-deep-loop-runtime/002-fanout-determinism-observability",
+    "system-deep-loop/038-deep-loop-runtime/003-fanout-failure-recovery",
+    "system-deep-loop/038-deep-loop-runtime/004-reliability-weighted-convergence",
+    "system-deep-loop/038-deep-loop-runtime/005-stop-input-corroboration",
+    "system-deep-loop/038-deep-loop-runtime/006-continuity-threading",
+    "system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening",
+    "system-deep-loop/038-deep-loop-runtime/008-deep-loop-finding-dedup",
+    "system-deep-loop/038-deep-loop-runtime/009-deep-loop-gauges-dedup-scale",
+    "system-deep-loop/038-deep-loop-runtime/010-deep-loop-fanout-reliability",
+    "system-deep-loop/038-deep-loop-runtime/011-deep-research-loop-instrumentation",
+    "system-deep-loop/038-deep-loop-runtime/012-fix-deep-loop-workflow-state",
+    "system-deep-loop/038-deep-loop-runtime/013-deep-loop-workflow-integrity-audit",
+    "system-deep-loop/038-deep-loop-runtime/014-deep-loop-locks-state-and-recovery",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/001-reducer-anchor-fix",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/003-fanout-failure-recovery",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/004-reliability-weighted-convergence",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/005-stop-input-corroboration",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/006-continuity-threading",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/008-deep-loop-finding-dedup",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/009-deep-loop-gauges-dedup-scale",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/010-deep-loop-fanout-reliability",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/011-deep-research-loop-instrumentation",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/012-fix-deep-loop-workflow-state",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/013-deep-loop-workflow-integrity-audit",
+    "system-deep-loop/z_archive/029-deep-loop-runtime/014-deep-loop-locks-state-and-recovery"
+  ],
+  "migrated": true,
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 deep loop implementation parent",
+      "deep loop child phase map",
+      "deep loop implementation planning",
+      "028 deep loop candidate tail",
+      "deep loop research to implementation"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "implementation",
+      "parent",
+      "child",
+      "phase",
+      "map",
+      "planning",
+      "candidate",
+      "tail",
+      "research",
+      "runtime"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "001-reducer-anchor-fix/spec.md",
+      "006-continuity-threading/spec.md",
+      "research/deep-research-strategy.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop Runtime Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wired Deep Loop Runtime",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Deep Loop Runtime",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop Runtime",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Mining",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Baseline",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unwired Beta",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Deep Loop Runtime research surfaced candidate work across reducer anchoring, fanout determinism, failure recovery, convergence scoring, stop-input checks and continuity threading",
+    "created_at": "2026-06-16T14:27:21.652Z",
+    "last_save_at": "2026-07-16T16:33:00.868Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:b4fae587cc92ce8f804a1be850465ca27965e7eea98a08743612f1be467f73d3",
+    "source_doc_hashes": {
+      "spec.md": "d69ac28b04a16c0c9f58fd3f3259c694521e0a82d0c95f2805dcccc8d407c53f",
+      "research/research.md": "1f7ab2f75078bec1d1f088d68fdc9d0078402dada5931396c5a8ffd962bbef54"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

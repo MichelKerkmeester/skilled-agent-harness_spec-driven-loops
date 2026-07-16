@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/003-generalization-probes",
+  "description": "Phase 003 of packet 036.",
+  "keywords": [
+    "phase",
+    "packet"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.834Z",
+  "specId": "003",
+  "folderSlug": "generalization-probes",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "025-deep-loop-gpt-reliability",
+    "007-compiled-contract-compiler"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

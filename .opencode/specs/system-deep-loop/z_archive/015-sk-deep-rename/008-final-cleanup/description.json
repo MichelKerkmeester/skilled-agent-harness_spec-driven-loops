@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-deep-loop/z_archive/015-sk-deep-rename/008-final-cleanup",
+  "description": "Packet 070 still has three approved P1 cleanup gaps",
+  "keywords": [
+    "packet",
+    "still",
+    "three",
+    "approved",
+    "cleanup",
+    "gaps"
+  ],
+  "lastUpdated": "2026-07-16T16:26:57.475Z",
+  "specId": "008",
+  "folderSlug": "final-cleanup",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "015-sk-deep-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

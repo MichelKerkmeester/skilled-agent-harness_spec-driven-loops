@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/026-goal-opencode-plugin/021-completion-verifier-wiring",
+  "description": "From the dossier (e-3.1, verbatim): `supervisorVerifier` is options-injectable only (`mk-goal.js:128`, `1197-1199`); OpenCode loads plugins without",
+  "keywords": [
+    "dossier",
+    "e-3",
+    "verbatim",
+    "supervisorverifier",
+    "options-injectable",
+    "only",
+    "mk-goal",
+    "opencode",
+    "loads",
+    "plugins",
+    "without"
+  ],
+  "lastUpdated": "2026-07-16T16:27:02.232Z",
+  "specId": "021",
+  "folderSlug": "completion-verifier-wiring",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "026-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

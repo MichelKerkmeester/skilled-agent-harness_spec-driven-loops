@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/012-deep-loop-divergent-mode",
+  "description": "Deep research and deep review are designed to converge",
+  "keywords": [
+    "deep",
+    "research",
+    "review",
+    "designed",
+    "converge"
+  ],
+  "lastUpdated": "2026-07-16T16:26:59.580Z",
+  "specId": "012",
+  "folderSlug": "deep-loop-divergent-mode",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "10-07-26_10-52__created-a-level-2-planning-packet-only-no-runtime.md",
+    "11-07-26_04-55__implemented-the-divergent-convergence-mode-for.md",
+    "11-07-26_04-56__implemented-the-divergent-convergence-mode-for.md",
+    "11-07-26_04-57__implemented-the-divergent-convergence-mode-for.md"
+  ]
+}

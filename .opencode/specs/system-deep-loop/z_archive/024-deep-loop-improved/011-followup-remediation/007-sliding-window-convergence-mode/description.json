@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode",
+  "description": "`ADR-001: Sliding-Window Convergence Mode For Long Loops`",
+  "keywords": [
+    "adr-001",
+    "sliding-window",
+    "convergence",
+    "mode",
+    "long",
+    "loops"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.506Z",
+  "specId": "007",
+  "folderSlug": "sliding-window-convergence-mode",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "011-followup-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

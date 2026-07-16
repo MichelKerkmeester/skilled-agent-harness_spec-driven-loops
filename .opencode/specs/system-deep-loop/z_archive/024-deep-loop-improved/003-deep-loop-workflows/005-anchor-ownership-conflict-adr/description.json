@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows/005-anchor-ownership-conflict-adr",
+  "description": "When an injected question from `research/inbox.jsonl` disagrees with the reducer's `key-questions` rewrite, the current system has an unresolved",
+  "keywords": [
+    "injected",
+    "question",
+    "research",
+    "inbox",
+    "jsonl",
+    "disagrees",
+    "reducer",
+    "key-questions",
+    "rewrite",
+    "current",
+    "system",
+    "unresolved"
+  ],
+  "lastUpdated": "2026-07-16T16:27:00.215Z",
+  "specId": "005",
+  "folderSlug": "anchor-ownership-conflict-adr",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "024-deep-loop-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
