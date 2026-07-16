@@ -33,15 +33,15 @@
       "composes"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
       ".opencode/skills/sk-doc/shared/scripts/quick_validate.py",
       ".opencode/skills/sk-doc/shared/assets/template_rules.json",
-      "spec.md",
-      "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
     ],
     "entities": [
       {
@@ -63,18 +63,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -87,13 +75,19 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
+        "name": "spec.md",
+        "kind": "doc",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -118,6 +112,12 @@
       },
       {
         "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -159,7 +159,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria The",
+        "name": "Completion Criteria Met",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -171,14 +171,14 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "sections",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Composes the frontmatter and behavioral checks that today live only in quick_validate.py into the canonical validate_document.py --type command path, keyed by template_rules.json, so every canon frontmatter rule fires on the one path command authors validate against while section-presence behavior and every currently-conformant command are preserved.",
     "created_at": "2026-07-16T07:51:58.280Z",
-    "last_save_at": "2026-07-16T08:05:35.660Z",
+    "last_save_at": "2026-07-16T09:34:08.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c5ef4077b4f0d88a609d55ea80ce225f3f7c9bdd5404ecf6f982057e96941c2",
+    "source_fingerprint": "sha256:16fe4a1dafebea7b2becfb38564f13f5318b9d380187ce7496f275b7f8eb01f6",
     "source_doc_hashes": {
-      "spec.md": "564cffe9937132394104263892b9c5ff0498b34568ba2525e83ad48f2131e4e3",
-      "plan.md": "fd40afe01b887a24aec9f7b5679d6e4a676021f6a861994acf3996c45cbcf87a",
-      "tasks.md": "5bd70e87fc1fc32d6ec8e039e66d3af593b55cfe1e2f72c54acbd9eb5bf691d0",
-      "implementation-summary.md": "2eb90f18f955f2f7c717eca15b918fc2c0904a01fc3710a894a8a24675f0cfc5"
+      "spec.md": "231ac231da4bd2770b1c4fb3da9e528018beefd289a0596dbfde264bd46f6ce0",
+      "plan.md": "c63e71cb808cfbc8311187c25053ece717445c75f7f221fb1082ee1451e96501",
+      "tasks.md": "b2632248621ebd22c0b4ec49588782dadd2b8de6e29e2af5ddc547c495ca50ca",
+      "implementation-summary.md": "647746741053310de1ca7cc58ca933066775d66185c8b5f900313ae5f95ba452"
     },
     "last_active_child_id": null,
     "last_active_at": null

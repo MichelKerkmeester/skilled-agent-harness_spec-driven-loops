@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: keystone — compose frontmatter validation into --type command"
 description: "Composes the frontmatter and behavioral checks that today live only in quick_validate.py into the canonical validate_document.py --type command path, keyed by template_rules.json, so every canon frontmatter rule fires on the one path command authors validate against while section-presence behavior and every currently-conformant command are preserved."
-status: in_progress
+status: complete
 trigger_phrases:
   - "keystone validator compose"
   - "frontmatter validation type command"
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-16 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->

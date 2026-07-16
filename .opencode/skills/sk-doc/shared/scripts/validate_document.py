@@ -35,6 +35,60 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 
+# Command frontmatter shares its description-budget, quote handling, and MCP-token
+# rules with the sibling skill validator so the two never diverge on the same
+# frontmatter. The sibling lives next to this file; fall back to local copies only if
+# it cannot be imported, so this validator always stays runnable on its own.
+try:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from quick_validate import (  # type: ignore
+        check_description_length as _check_description_length,
+        strip_matching_quotes as _strip_matching_quotes,
+        is_non_fq_mcp_token as _is_non_fq_mcp_token,
+        iter_allowed_tools as _iter_allowed_tools,
+        DESCRIPTION_SOFT_TARGET_COMMAND as _DESC_SOFT_COMMAND,
+        DESCRIPTION_HARD_CAP as _DESC_HARD_CAP,
+    )
+except Exception:  # pragma: no cover - defensive fallback if the sibling is unavailable
+    _DESC_SOFT_COMMAND, _DESC_HARD_CAP = 110, 1536
+
+    def _strip_matching_quotes(value: str) -> str:
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in ('"', "'"):
+            return value[1:-1]
+        return value
+
+    def _check_description_length(description, soft_target, hard_cap=_DESC_HARD_CAP):
+        length = len(description)
+        if length > hard_cap:
+            return (
+                f"Description is {length} chars, exceeds hard cap of {hard_cap} chars.",
+                None,
+            )
+        if length > soft_target:
+            return (None, f"Description is {length} chars, exceeds soft target of {soft_target}.")
+        return (None, None)
+
+    _MCP_NAMESPACE_RE = re.compile(r'^mcp_', re.IGNORECASE)
+    _MCP_FQ_RE = re.compile(
+        r'^mcp__[a-z0-9]+(?:[_-][a-z0-9]+)*__(?:\*|[a-z0-9]+(?:[_-][a-z0-9]+)*)$',
+        re.IGNORECASE,
+    )
+
+    def _is_non_fq_mcp_token(token: str) -> bool:
+        token = token.strip()
+        return bool(_MCP_NAMESPACE_RE.match(token)) and not bool(_MCP_FQ_RE.match(token))
+
+    def _iter_allowed_tools(tools_value: str):
+        value = tools_value.strip()
+        if value.startswith('[') and value.endswith(']'):
+            value = value[1:-1]
+        for token in value.split(','):
+            token = token.strip()
+            if token:
+                yield token
+
+
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
@@ -720,6 +774,109 @@ def validate_agent_frontmatter(content: str, file_path: str) -> List[Dict[str, A
     return errors
 
 
+def validate_command_frontmatter(
+    content: str,
+    file_path: str,
+    doc_type_rules: Dict[str, Any],
+) -> List[Dict[str, Any]]:
+    """Validate a command file's YAML frontmatter (description budget + tool permissions).
+
+    Presence-conditional: files that resolve to the command type but carry no
+    frontmatter block — compiled contract artifacts, legacy bodies, folder READMEs —
+    are not command entry docs, so their own structural rules govern them and this
+    check stays silent. Only a real frontmatter block is inspected.
+
+    The description-budget, quote handling, and MCP-token rules are the same primitives
+    the sibling skill validator uses, so the two agree on any command frontmatter. The
+    command surface uses a comma-separated allowed-tools list and may carry <arg>
+    placeholder notation in its description; both are accepted here by design.
+    """
+    errors: List[Dict[str, Any]] = []
+
+    if not content.startswith('---'):
+        return errors
+
+    match = re.match(r'^---\n(.*?)\n---', content, re.DOTALL)
+    if not match:
+        errors.append({
+            'type': 'command_frontmatter_unclosed',
+            'severity': 'blocking',
+            'message': 'Command frontmatter is not closed (missing closing ---)',
+            'fix_hint': 'Close the frontmatter block with a trailing ---',
+        })
+        return errors
+
+    frontmatter = match.group(1)
+
+    required_fields = doc_type_rules.get('frontmatterFields', {}).get('required', ['description'])
+    for field in required_fields:
+        if not re.search(rf'^{re.escape(field)}:\s*\S', frontmatter, re.MULTILINE):
+            errors.append({
+                'type': 'command_frontmatter_missing_field',
+                'severity': 'blocking',
+                'message': f"Command frontmatter is missing required field '{field}'",
+                'fix_hint': f"Add a single-line '{field}:' entry to the frontmatter",
+            })
+
+    # Description: reject YAML multiline block form first, then measure the user-visible value.
+    if re.search(r'description:\s*\n\s+', frontmatter) or re.search(r'^description:\s*[|>]\s*$', frontmatter, flags=re.MULTILINE):
+        errors.append({
+            'type': 'command_description_multiline',
+            'severity': 'blocking',
+            'message': 'Command description uses YAML multiline block format (must be single line after colon)',
+            'fix_hint': 'Collapse the description onto one line after the colon',
+        })
+    else:
+        desc_match = re.search(r'description:\s*(.+)', frontmatter)
+        if desc_match:
+            description = _strip_matching_quotes(desc_match.group(1))
+            length_error, length_warning = _check_description_length(description, _DESC_SOFT_COMMAND)
+            if length_error:
+                errors.append({
+                    'type': 'command_description_over_hard_cap',
+                    'severity': 'blocking',
+                    'message': length_error,
+                    'fix_hint': 'Trim the description below the hard cap so the command registers',
+                })
+            elif length_warning:
+                errors.append({
+                    'type': 'command_description_over_soft_target',
+                    'severity': 'warning',
+                    'message': length_warning,
+                    'fix_hint': 'Trim the description toward the soft target',
+                })
+            if '<' in description or '>' in description:
+                errors.append({
+                    'type': 'command_description_angle_brackets',
+                    'severity': 'warning',
+                    'message': 'Command description contains angle brackets (< or >) — allowed as <arg> placeholder notation; confirm it is not stray markup',
+                    'fix_hint': 'If the brackets are not intentional <arg> notation, remove them',
+                })
+            if 'TODO' in description.upper():
+                errors.append({
+                    'type': 'command_description_todo',
+                    'severity': 'warning',
+                    'message': 'Command description contains a TODO placeholder — please complete it',
+                    'fix_hint': 'Replace the TODO with the real description',
+                })
+
+    # allowed-tools: any token in the mcp_ namespace must be a fully-qualified
+    # mcp__<server>__<tool> reference; a bare or server-only token is an
+    # under-specified permission. Native tools and non-namespaced plugin tools pass.
+    tools_match = re.search(r'^allowed-tools:\s*(.+)$', frontmatter, re.MULTILINE)
+    if tools_match:
+        for token in _iter_allowed_tools(tools_match.group(1)):
+            if _is_non_fq_mcp_token(token):
+                errors.append({
+                    'type': 'command_allowed_tools_non_fq_mcp',
+                    'severity': 'blocking',
+                    'message': f"allowed-tools entry '{token}' is a non-fully-qualified MCP tool token — use mcp__<server>__<tool>",
+                    'fix_hint': f"Replace '{token}' with its fully-qualified mcp__<server>__<tool> form",
+                })
+
+    return errors
+
+
 def validate_document(
     file_path: str,
     doc_type: Optional[str] = None,
@@ -796,6 +953,8 @@ def validate_document(
         all_errors.extend(validate_feature_catalog_table(content, doc_type_rules))
     if doc_type == 'agent':
         all_errors.extend(validate_agent_frontmatter(content, file_path))
+    if doc_type == 'command':
+        all_errors.extend(validate_command_frontmatter(content, file_path, doc_type_rules))
 
     blocking_errors = [e for e in all_errors if e.get('severity') == 'blocking']
     warnings = [e for e in all_errors if e.get('severity') == 'warning']

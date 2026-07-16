@@ -1,16 +1,16 @@
 ---
 title: "Tasks: keystone frontmatter-validation composition"
 description: "Task breakdown for composing the quick_validate.py frontmatter checks into the canonical validate_document.py --type command path keyed by template_rules.json."
-status: in_progress
+status: complete
 importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose"
-    last_updated_at: "2026-07-16T08:00:35Z"
+    last_updated_at: "2026-07-16T11:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored keystone phase spec, plan, tasks, and scaffold docs"
-    next_safe_action: "Read validate_document.py and quick_validate.py to plan composition"
+    recent_action: "Composed frontmatter checks onto --type command; all six tasks verified"
+    next_safe_action: "Open 001-versioned-command-contract"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
@@ -26,34 +26,34 @@ _memory:
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-`[ ]` open · `[x]` complete. Each task lists the verification evidence it will carry when done. All tasks are open: this phase is scaffolded but not yet implemented — the plan and gates are defined, and no composition code has been written or run.
+`[ ]` open · `[x]` complete. Each task carries its verification evidence. All six tasks are complete: the frontmatter checks now fire on the canonical `--type command` path, both negative fixtures fail, the conformant corpus is unchanged, and the two validators agree.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 — Read `validate_document.py` and `quick_validate.py` in full and map which frontmatter checks quick-validate runs and how they are keyed by `template_rules.json`. Evidence: a written inventory of the frontmatter checks and their `template_rules.json` keys.
-- [ ] T002 — Capture the current pass/fail baseline of `validate_document.py --type command` across the command corpus. Evidence: the baseline verdict list, recorded before any code change.
+- [x] T001 — Read `validate_document.py` and `quick_validate.py` in full and mapped which frontmatter checks quick-validate runs and how they key on `template_rules.json`. Evidence: the `command` block in `template_rules.json` already declared `frontmatterRequired: true` + `frontmatterFields.required: [description]`, but `validate_document()` had no `command` dispatch branch — the config was dead. quick_validate owns description-budget (soft 110 / hard 1536), angle-bracket, TODO, YAML-multiline, and allowed-tools checks.
+- [x] T002 — Captured the pre-change baseline of `--type command` across the command corpus. Evidence: 42 exit-0 / 9 exit-1 over the corpus; the 9 failures are pre-existing section-structure failures under `deep/assets/compiled|legacy/` and `*/scripts*/README.md`. No real command carries an over-cap or multiline description, and every `mcp__` token in the corpus is already fully qualified.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 — Compose the frontmatter checks onto the `--type command` path — preferably via a shared module both entrypoints import — keyed by `template_rules.json`, so a failing invariant fails the run with a clear message. Evidence: the composition seam in `validate_document.py` and, if used, the shared module.
-- [ ] T004 — Preserve the existing section-presence behavior and every other `--type` document class. Evidence: unchanged section-presence verdicts on the corpus and unchanged behavior for non-command `--type` classes.
+- [x] T003 — Composed the frontmatter checks onto the `--type command` path via a shared-leaf import: `quick_validate.py` gained `is_non_fq_mcp_token` / `iter_allowed_tools` and the description-budget helpers, and `validate_document.py` imports them into a new `validate_command_frontmatter()` dispatched under `if doc_type == 'command'`, keyed on the `frontmatterFields.required` list. Evidence: the import block + `validate_command_frontmatter()` in `validate_document.py`; the two validators share one primitive set so they cannot drift.
+- [x] T004 — Preserved section-presence behavior and every other `--type` class: the new branch is presence-conditional (no frontmatter ⇒ skip), so compiled/legacy artifacts under commands/ do not newly block; the command surface's comma-form allowed-tools and `<arg>` description notation are accepted by design. Evidence: skill/agent/readme/asset smoke runs unchanged; skills still hard-fail angle brackets and still require name/version.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 — Prove the two success cases fail on the canonical path: a 2000-char `description` and a bare, non-fully-qualified MCP tool token. Evidence: both negative fixtures return non-zero on `validate_document.py --type command`.
-- [ ] T006 — Prove no regression and no disagreement: every currently-conformant command still exits 0, and `quick_validate.py` and `--type command` agree on frontmatter for the same file. Evidence: the post-change corpus verdicts match the baseline for conformant commands and the two paths' frontmatter verdicts are identical.
+- [x] T005 — Both negative fixtures fail on the canonical path. Evidence: a 2000-char description returns exit 1 (`command_description_over_hard_cap`); a bare `mcp__mk_goal` token returns exit 1 (`command_allowed_tools_non_fq_mcp`). A non-namespaced plugin token (`mk_goal`) and every fully-qualified `mcp__server__tool` still pass.
+- [x] T006 — No regression, no disagreement. Evidence: post-change corpus is 42/9 with the identical failing set (zero conformant regression); with sections held constant, `quick_validate.py` and `--type command` both return VALID on a clean command and both return INVALID citing the same non-FQ-MCP reason on a bad one. `test_quick_validate_086.py` passes; the two changelog/validator suite failures reproduce identically on HEAD (the pre-existing `scripts/`-symlink entrypoint bug, out of this phase's scope).
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-The `--type command` path runs the composed frontmatter checks keyed by `template_rules.json`, both negative fixtures fail, every currently-conformant command still exits 0, and `quick_validate.py` and `--type command` no longer disagree on frontmatter for the same file.
+Met. The `--type command` path runs the composed frontmatter checks keyed by `template_rules.json`, both negative fixtures fail, every currently-conformant command still exits 0, and `quick_validate.py` and `--type command` agree on frontmatter for the same file.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

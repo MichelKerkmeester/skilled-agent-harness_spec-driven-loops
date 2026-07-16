@@ -1,7 +1,7 @@
 ---
 title: "Implementation Plan: keystone frontmatter-validation composition"
 description: "Plan to compose the frontmatter checks in quick_validate.py into the canonical validate_document.py --type command path, keyed by template_rules.json, preserving section-presence behavior and every currently-conformant command."
-status: in_progress
+status: complete
 importance_tier: "critical"
 contextType: "planning"
 _memory:

@@ -108,6 +108,38 @@ def strip_matching_quotes(value: str) -> str:
     return value
 
 
+# Fully-qualified MCP tool reference: mcp__<server>__<tool>. Server and tool segments
+# may carry single underscores/hyphens (mk_spec_memory, code_graph_query) and the tool
+# may be a bare "*" wildcard. A token in the mcp_ namespace that does not complete this
+# form (a server-only mcp__server grant, or a bare mcp_ token) is an under-specified
+# permission. A native tool (Read) or a non-namespaced plugin tool (mk_goal) never
+# begins with mcp_, so neither is matched.
+_MCP_NAMESPACE_RE = re.compile(r'^mcp_', re.IGNORECASE)
+_MCP_FULLY_QUALIFIED_RE = re.compile(
+    r'^mcp__[a-z0-9]+(?:[_-][a-z0-9]+)*__(?:\*|[a-z0-9]+(?:[_-][a-z0-9]+)*)$',
+    re.IGNORECASE,
+)
+
+
+def is_non_fq_mcp_token(token: str) -> bool:
+    """True when a token is in the mcp_ namespace but is not a fully-qualified
+    mcp__<server>__<tool> reference."""
+    token = token.strip()
+    return bool(_MCP_NAMESPACE_RE.match(token)) and not bool(_MCP_FULLY_QUALIFIED_RE.match(token))
+
+
+def iter_allowed_tools(tools_value: str):
+    """Yield individual tool tokens from an allowed-tools value, accepting both the
+    command-surface comma list and the skill-surface [array] form."""
+    value = tools_value.strip()
+    if value.startswith('[') and value.endswith(']'):
+        value = value[1:-1]
+    for token in value.split(','):
+        token = token.strip()
+        if token:
+            yield token
+
+
 def validate_skill(
     skill_path: Union[str, Path],
     description_soft_target: Optional[int] = None,
@@ -150,7 +182,10 @@ def validate_skill(
 
     frontmatter = match.group(1)
 
-    if 'name:' not in frontmatter:
+    # Skills require name (it must equal the folder); command frontmatter derives its
+    # name from the filename, so name is optional there. When a command does declare a
+    # name, the hyphen-case format check below still applies.
+    if 'name:' not in frontmatter and kind != 'command':
         return False, "Missing 'name' in frontmatter", warnings
     if 'description:' not in frontmatter:
         return False, "Missing 'description' in frontmatter", warnings
@@ -175,7 +210,13 @@ def validate_skill(
         description = strip_matching_quotes(desc_match.group(1))
 
         if '<' in description or '>' in description:
-            return False, "Description cannot contain angle brackets (< or >)", warnings
+            # Command descriptions legitimately carry <arg> placeholder notation
+            # (e.g. /doctor <target>); a skill description with angle brackets
+            # breaks registration, so it stays a hard failure there.
+            if kind == 'command':
+                warnings.append("Description contains angle brackets (< or >) — allowed as <arg> placeholder notation for commands")
+            else:
+                return False, "Description cannot contain angle brackets (< or >)", warnings
 
         if 'TODO' in description.upper():
             warnings.append("Description contains TODO placeholder - please complete it")
@@ -193,13 +234,21 @@ def validate_skill(
     else:
         return False, "Description appears to be empty or multiline (must be single line after colon)", warnings
 
-    # allowed-tools is optional but must use array format if present
+    # allowed-tools is optional. Skills use the [array] form; commands use a bare
+    # comma-separated list (the whole command corpus does), so the array-form
+    # requirement applies to skills only. Either surface must fully-qualify any MCP
+    # tool token as mcp__<server>__<tool>.
     tools_match = re.search(r'allowed-tools:\s*(.+)', frontmatter)
     if tools_match:
         tools_value = tools_match.group(1).strip()
-        if tools_value and not tools_value.startswith('['):
+        if kind != 'command' and tools_value and not tools_value.startswith('['):
             if ',' in tools_value:
                 return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings
+        for token in iter_allowed_tools(tools_value):
+            if is_non_fq_mcp_token(token):
+                if kind == 'command':
+                    return False, f"allowed-tools entry '{token}' is a non-fully-qualified MCP tool token — use mcp__<server>__<tool>", warnings
+                warnings.append(f"allowed-tools entry '{token}' is a non-fully-qualified MCP tool token — prefer mcp__<server>__<tool>")
 
     # version is REQUIRED for skills (4-part X.Y.Z.W); commands keep it optional.
     # See references/frontmatter_versioning.md.
