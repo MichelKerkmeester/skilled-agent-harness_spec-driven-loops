@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "037-006-readme-cascade-refresh",
+      "README cascade",
+      "README refresh",
+      "mcp_server README update",
+      "parent skill README",
+      "README cascade plan",
+      "README cascade tasks",
+      "README cascade checklist",
+      "037/006-readme-cascade-refresh resource map",
+      "readme cascade refresh file ledger"
+    ],
+    "key_topics": [
+      "037-006-readme-cascade-refresh",
+      "readme",
+      "cascade",
+      "refresh",
+      "parent",
+      "skill",
+      "plan",
+      "tasks",
+      "checklist",
+      "006-readme-cascade-refresh",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/enrichment/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/README.md",
+      "mcp_server/package.json",
+      "mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cascade Refresh",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Refresh",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packets 031-036 and 037/001-005 changed the current documentation surface: the MCP registry is now 54 tools, `matrixrunners/` and `stresstest/` are live folders, `advisorrebuild` is a public Skill Advisor tool, and the stress suites moved out of `tests/`",
+    "created_at": "2026-04-29T16:19:08.000Z",
+    "last_save_at": "2026-07-10T06:21:49.086Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:f3d8a2dc208c582932316db8ae4ce255cd5dfddfb140f8d36380b0e26f54575c",
+    "source_doc_hashes": {
+      "spec.md": "0dde27e3c42464ffbdd1c5f5a9d4ddd5ac9ae297fed93ace24d6c6248092824e",
+      "plan.md": "19145482ea13b85eed5d065cf5fa33540cc224dfdf92d039302aa2f003cb4cde",
+      "tasks.md": "a297332523b344d8cd3ed3e8cfdc2c1601b95d0bef67f6633566a94b718d172e",
+      "checklist.md": "bb0fc0499617c7a7c48417c55e848855879a5f76192c78ee29132222d41acd3c",
+      "implementation-summary.md": "b909225542d95222f935b77ce087bd6938d8110457c0b271afd234dc27381c8c",
+      "resource-map.md": "8db3c726278ce61979f6797f3b5dff70eaedbac6e09db2753b5551d9f7933ae7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

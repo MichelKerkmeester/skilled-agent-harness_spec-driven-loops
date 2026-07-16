@@ -1,0 +1,37 @@
+{
+  "title": "Feature Specification: Research and Doctrine (Phase Parent)",
+  "type": "coordination-parent",
+  "level": "2",
+  "status": "phase-parent",
+  "is_phase_parent": true,
+  "childTopology": [
+    "001-peck-teachings-adoption",
+    "002-gem-team-adoption"
+  ],
+  "specFolder": "system-speckit/028-xce-research-based-refinement/001-research-and-doctrine",
+  "description": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces",
+  "keywords": [
+    "program",
+    "drew",
+    "external",
+    "research",
+    "sources",
+    "whose",
+    "doctrine",
+    "adopted",
+    "spec",
+    "kit",
+    "process",
+    "agent",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-07-10T06:22:46.819Z",
+  "specId": "001",
+  "folderSlug": "research-and-doctrine",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

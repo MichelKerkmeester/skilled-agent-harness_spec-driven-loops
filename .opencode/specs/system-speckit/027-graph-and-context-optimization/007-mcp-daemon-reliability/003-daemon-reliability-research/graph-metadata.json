@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp daemon reliability spec",
+      "daemon disconnect oom root cause",
+      "mcp auto-respawn watchdog spec",
+      "mcp daemon reliability plan",
+      "daemon durable fix roadmap",
+      "mcp daemon reliability tasks",
+      "daemon durable fix tasks",
+      "mcp daemon reliability summary",
+      "daemon oom root cause summary",
+      "daemon durable fix roadmap summary",
+      "mcp daemon reliability",
+      "mk-spec-memory OOM 1-2GB RSS"
+    ],
+    "key_topics": [
+      "mcp",
+      "daemon",
+      "reliability",
+      "spec",
+      "disconnect",
+      "oom",
+      "root",
+      "cause",
+      "auto-respawn",
+      "watchdog",
+      "plan",
+      "durable"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "shared/embeddings.ts",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "shared/embeddings/providers/hf-local.ts"
+    ],
+    "entities": [
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement During",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Root",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Hybrid",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Investigation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "During sessions the MCP daemons repeatedly die or disconnect, forcing constant `/mcp` reconnects: mk-spec-memory grows to ~1–2 GB RSS and gets OOM-killed, nothing auto-restarts it, reconnects \"succeed\" into a dead socket, and rebuilding the server crashes the running daemon",
+    "created_at": "2026-05-28T17:34:16Z",
+    "last_save_at": "2026-07-02T05:31:12.852Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ee3caaf5e47e6b40d40fde9f54c3bf80b8a51d643cce7c7a27fdadbe0b47d54d",
+    "source_doc_hashes": {
+      "spec.md": "a9d15b620f0ad311d01acb83b2f824b3337fc320d265d51971f487c7d30d3b10",
+      "plan.md": "fe72c235ceb2c21fb9d32ece724f13f9b14a481734abf1a0a96a509cdd10a942",
+      "tasks.md": "ae6aa31c1b6f875b713a7ae05354d4425aa3d363c2c1a11fa21b6d29e67c846e",
+      "implementation-summary.md": "0c79c4a8145bee46aca27abb78e67e11d08c8bd57a49c7b1ad32be8e00ed961d",
+      "research/research.md": "09917f9cdf07dc245e74cac7cbb852804c9ed0bb94424e053669abb5ac907a74"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/006-operator-tooling/010-background-enrichment-concurrency-cap",
+  "description": "`scheduleBackgroundEnrichment` (`handlers/memory-save.ts`) incremented `activeBackgroundEnrichments` inside the deferred `run` callback (executed",
+  "keywords": [
+    "schedulebackgroundenrichment",
+    "handlers",
+    "memory-save",
+    "incremented",
+    "activebackgroundenrichments",
+    "inside",
+    "deferred",
+    "run",
+    "callback",
+    "executed"
+  ],
+  "lastUpdated": "2026-07-10T06:22:50.807Z",
+  "specId": "010",
+  "folderSlug": "background-enrichment-concurrency-cap",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

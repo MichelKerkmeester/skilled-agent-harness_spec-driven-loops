@@ -1,0 +1,7 @@
+specs/system-speckit/029-memory-search-intelligence/
+  0.92  #1  Memory search intelligence overview
+  0.81  #2  Verdict path confidence scoring
+
+citationPolicy cite_results
+
+STATUS=OK RESULTS=2 INTENT=understand

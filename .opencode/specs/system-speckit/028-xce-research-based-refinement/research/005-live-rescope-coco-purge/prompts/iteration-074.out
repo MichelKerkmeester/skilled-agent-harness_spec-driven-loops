@@ -1,0 +1,57 @@
+I’ll keep this read-only and limit the pass to the requested structural metadata files, using direct reads and line citations only.
+SKILL ROUTING: User directed → `deep-research`. I’m checking only the requested packet files for structural references and parent-map references to `002-coco`.
+The primary 008 parent metadata still contains the deleted child in both `children` and `children_ids`; the closeout child also names it as a dependency. I’m reading the phase-map section and parent context-index lines now to pin the remaining edits and renumber choice.
+The 027 parent control files do not point at the nested `002-coco` child; the stale references are inside the 008 family and 005 closeout metadata/prose. I’m checking the naming rule line for the renumber recommendation.
+### FINDINGS
+
+[F-074-01] `008` parent child lists still include deleted `002-coco-rerank-consumer`: `description.json` `manual.children` and `graph-metadata.json` `children_ids` must remove that child. `008-learning-feedback-reducers/description.json:23-29`, `008-learning-feedback-reducers/graph-metadata.json:6-12`
+
+[F-074-02] `008/spec.md` still encodes the deleted phase in the phase map, execution order, and counts: remove the `002` row, change `005` dependency from `001,002,003,004` to `001,003,004`, and rewrite five-child / three-consumer language to four-child / two-consumer topology. `008-learning-feedback-reducers/spec.md:47-49`, `008-learning-feedback-reducers/spec.md:57-65`, `008-learning-feedback-reducers/spec.md:73-78`, `008-learning-feedback-reducers/spec.md:86-94`
+
+[F-074-03] Coco-only soft dependency remains at the `008` parent level and should be removed with the deleted coco child: `028/006-coco-intent-steering` in metadata/spec soft deps. `008-learning-feedback-reducers/description.json:31-34`, `008-learning-feedback-reducers/spec.md:38`
+
+[F-074-04] `005-env-tests-integration/description.json` has a real manual dependency edge to deleted `002`; `005` graph metadata has no manual dependency/child edge, but its derived metadata is stale and should regenerate after docs edits. `005-env-tests-integration/description.json:17-23`, `005-env-tests-integration/graph-metadata.json:6-13`, `005-env-tests-integration/graph-metadata.json:141-144`, `005-env-tests-integration/graph-metadata.json:171`
+
+[F-074-05] `005/spec.md` also has structural dependency/handoff refs to deleted `002`: metadata `Depends On`, coco flag scope, consumer count, children `002-004`, open question, and related-doc link. `005-env-tests-integration/spec.md:38`, `005-env-tests-integration/spec.md:48`, `005-env-tests-integration/spec.md:57-64`, `005-env-tests-integration/spec.md:76-79`, `005-env-tests-integration/spec.md:100`, `005-env-tests-integration/spec.md:131`, `005-env-tests-integration/spec.md:147-150`
+
+[F-074-06] No nested `002-coco` edit is required in the 027 parent or `001-aggregator/graph-metadata.json`: 027 lists only `008` as the child phase, and `001` has no downstream/manual edge. `028-xce-research-based-refinement/graph-metadata.json:6-16`, `028-xce-research-based-refinement/description.json:27-36`, `028-xce-research-based-refinement/context-index.md:35-40`, `001-aggregator/graph-metadata.json:6-13`
+
+### STRUCTURAL_EDIT_LIST
+
+| file | what to change | class |
+|---|---|---|
+| `008-learning-feedback-reducers/description.json:23-29` | Remove `.../002-coco-rerank-consumer` from `manual.children`; leave `001,003,004,005`. | remove edge / no renumber |
+| `008-learning-feedback-reducers/description.json:31-34` | Remove coco-only `028/006-coco-intent-steering` soft dependency. | remove edge |
+| `008-learning-feedback-reducers/graph-metadata.json:6-12` | Remove `.../002-coco-rerank-consumer` from `children_ids`. | remove edge / no renumber |
+| `008-learning-feedback-reducers/graph-metadata.json:91-99` | Regenerate/update derived summary/counts so it no longer says five child packets. | fix count |
+| `008-learning-feedback-reducers/spec.md:47-49` | Change “five child packets” / “three consumers” to four children / two consumers. | fix count |
+| `008-learning-feedback-reducers/spec.md:57-65` | Delete `002-coco-rerank-consumer` row; change `005` dependency to `001,003,004`. | remove phase row / fix dependency |
+| `008-learning-feedback-reducers/spec.md:73-78` | Execution order becomes `001 -> {003,004} -> 005`; remove `002`. | fix handoff |
+| `005-env-tests-integration/description.json:17-23` | Remove `.../002-coco-rerank-consumer` from `manual.depends_on`. | remove edge |
+| `005-env-tests-integration/graph-metadata.json:6-13` | No direct child/dependency edge to remove. | no edit |
+| `005-env-tests-integration/graph-metadata.json:141-144,171` | Regenerate stale derived coco/three-consumer metadata after source docs are rewritten. | fix count / regenerate |
+| `005-env-tests-integration/spec.md:38,147-150` | Remove `002` dependency and related-doc link. | remove dependency/link |
+| `027 parent graph/description/context-index` | No nested `002-coco` reference found. | no edit |
+
+### RENUMBER_DECISION
+
+Keep numbering with the `002` gap.
+
+Renumbering `003/004/005 -> 002/003/004` is not forced for validator or graph traversal if `children_ids`, `manual.children`, and dependency edges are updated to existing folders. Closing the gap would create a large rename cascade across packet IDs, spec folders, `packet_pointer`, validation commands, child metadata, related-doc links, and research citations. If renumbering is chosen anyway, it must be done as `git mv`, not delete/recreate. `.opencode/skills/system-spec-kit/constitutional/spec-folder-naming.md:31-33`
+
+### VERDICT
+
+008 structural = remove deleted `002-coco` from 008 parent `description.json` + `graph-metadata.json`, remove coco-only soft dep, rewrite 008 phase map/execution/counts to `001 -> {003,004} -> 005`, remove `002` from `005` manual dependencies and closeout dependency prose, regenerate stale derived metadata. Recommendation: keep `003/004/005` numbered as-is with a gap.
+
+### RULED_OUT
+
+- No 027 parent `graph-metadata.json`, `description.json`, or `context-index.md` nested `002-coco` edit.
+- No `001-aggregator/graph-metadata.json` downstream edge to remove.
+- No `005-env-tests-integration/graph-metadata.json` manual dependency/child edge to remove; only stale derived strings.
+
+### METRICS
+
+newInfoRatio: 0.46  
+novelty: Identifies exact metadata edges and confirms gap-preserving deletion is structurally sufficient.  
+status: complete  
+sources: `008-learning-feedback-reducers/description.json:23-34`, `008-learning-feedback-reducers/graph-metadata.json:6-12`, `008-learning-feedback-reducers/spec.md:47-94`, `005-env-tests-integration/description.json:17-23`, `005-env-tests-integration/graph-metadata.json:6-13`, `005-env-tests-integration/spec.md:38-150`, `001-aggregator/graph-metadata.json:6-13`, `028-xce-research-based-refinement/graph-metadata.json:6-16`, `028-xce-research-based-refinement/description.json:27-36`, `028-xce-research-based-refinement/context-index.md:35-40`, `.opencode/skills/system-spec-kit/constitutional/spec-folder-naming.md:31-33`

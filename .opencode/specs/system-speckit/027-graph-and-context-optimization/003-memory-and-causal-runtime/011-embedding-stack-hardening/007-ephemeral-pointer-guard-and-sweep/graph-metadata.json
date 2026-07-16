@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ephemeral pointer guard and sweep",
+      "ephemeral-pointer-audit.mjs lint guard",
+      "comprehensive comment ephemeral pointer cleanup",
+      "ephemeral pointer guard sweep plan",
+      "comment lint guard implementation plan",
+      "ephemeral pointer guard sweep tasks",
+      "ephemeral pointer guard sweep summary"
+    ],
+    "key_topics": [
+      "ephemeral",
+      "pointer",
+      "guard",
+      "sweep",
+      "ephemeral-pointer-audit",
+      "mjs",
+      "lint",
+      "comprehensive",
+      "comment",
+      "cleanup",
+      "plan",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/validation/ephemeral-pointer-audit.mjs",
+      "scripts/validation/ephemeral-pointer-audit.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "ephemeral-pointer-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/validation/ephemeral-pointer-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Comment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 006 cleaned ephemeral-artifact pointers from code comments using hand-rolled grep patterns",
+    "created_at": "2026-05-29T20:35:49.807Z",
+    "last_save_at": "2026-07-02T05:31:12.403Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f5349362534a41608bb0641ea5026d726c2ea0f848058021752bd06f14898716",
+    "source_doc_hashes": {
+      "spec.md": "ee71f9d7893d91fd90cb1ea752219fc0772e02779a9ac4686b671968b798d941",
+      "plan.md": "46d25ea0e4fd8587d2f1cb88c230133218ec2ef77c701642c2d95bdabf35e349",
+      "tasks.md": "3e12ed0c559806a8eb048fe189f3696933e64f37a98a80e4ca056859e791446a",
+      "implementation-summary.md": "ffd58556bafeae5b98db585aa29ee6996993b79f4d5162d345a4abadb273cd7e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

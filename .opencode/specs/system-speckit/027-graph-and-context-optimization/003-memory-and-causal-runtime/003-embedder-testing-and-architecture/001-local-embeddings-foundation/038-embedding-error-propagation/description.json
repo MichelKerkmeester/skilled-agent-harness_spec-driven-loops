@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/038-embedding-error-propagation",
+  "description": "`generateDocumentEmbedding` catches real provider failures, records a circuit-breaker failure, logs a warning, and returns `null`",
+  "keywords": [
+    "generatedocumentembedding",
+    "catches",
+    "real",
+    "provider",
+    "failures",
+    "records",
+    "circuit-breaker",
+    "failure",
+    "logs",
+    "warning",
+    "returns",
+    "null"
+  ],
+  "lastUpdated": "2026-07-10T06:23:46.606Z",
+  "specId": "038",
+  "folderSlug": "embedding-error-propagation",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-05-26_15-34__manual-context-save.md"
+  ]
+}

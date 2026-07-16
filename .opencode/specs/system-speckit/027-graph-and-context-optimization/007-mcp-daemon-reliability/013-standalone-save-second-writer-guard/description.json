@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
+  "description": "`generate-context.js` Step 11.5 unconditionally imported `@spec-kit/mcp-server/api/indexing`, called `initializeIndexingRuntime()`, and then ran",
+  "keywords": [
+    "generate-context",
+    "step",
+    "unconditionally",
+    "imported",
+    "spec-kit",
+    "mcp-server",
+    "api",
+    "indexing",
+    "called",
+    "initializeindexingruntime",
+    "ran"
+  ],
+  "lastUpdated": "2026-07-10T06:21:56.797Z",
+  "specId": "013",
+  "folderSlug": "standalone-save-second-writer-guard",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

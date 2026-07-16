@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+  "spec_folder": "system-speckit/028-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+  "parent_id": "system-speckit/028-xce-research-based-refinement/000-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill feature catalog",
+      "027 release cleanup 003-skill-feature-catalog",
+      "shipped 027 alignment",
+      "skill feature catalog plan",
+      "027 release cleanup plan",
+      "skill feature catalog tasks",
+      "027 release cleanup tasks",
+      "skill feature catalog implementation summary",
+      "release cleanup feature catalog complete",
+      "feature catalog source traceability"
+    ],
+    "key_topics": [
+      "skill",
+      "feature",
+      "catalog",
+      "release",
+      "cleanup",
+      "003-skill-feature-catalog",
+      "shipped",
+      "alignment",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/trigger-embedding-backfill.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/provenance-source-kind-write-ingress-guard-and-mutation-audit.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/memory-idempotency-receipts-and-near-duplicate-hints.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/causal-tombstone-sweep-and-metadata-edge-promoter.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/learning-feedback-reducers.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/retrieval-observability-diagnostics.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/completion-verdict-freshness-validation.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/code-index-cli-daemon-backed-surface.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/stale-exclusion-audit-and-tool-ownership-lint.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/17--governance/entity-cooccurrence-is-not-causal-constitutional-rule.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/openltm-continuity-resilience.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-trigger-shadow-matcher-and-hybrid-handler.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-embedding-backfill.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/trigger-embedding-backfill.md",
+        "source": "derived"
+      },
+      {
+        "name": "provenance-source-kind-write-ingress-guard-and-mutation-audit.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/provenance-source-kind-write-ingress-guard-and-mutation-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-idempotency-receipts-and-near-duplicate-hints.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/memory-idempotency-receipts-and-near-duplicate-hints.md",
+        "source": "derived"
+      },
+      {
+        "name": "soft-delete-tombstones-and-active-purgeable-partitions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-tombstone-sweep-and-metadata-edge-promoter.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/causal-tombstone-sweep-and-metadata-edge-promoter.md",
+        "source": "derived"
+      },
+      {
+        "name": "learning-feedback-reducers.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/learning-feedback-reducers.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-observability-diagnostics.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/retrieval-observability-diagnostics.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-verdict-freshness-validation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/completion-verdict-freshness-validation.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-index-cli-daemon-backed-surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/code-index-cli-daemon-backed-surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-daemon-backed-surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "stale-exclusion-audit-and-tool-ownership-lint.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/stale-exclusion-audit-and-tool-ownership-lint.md",
+        "source": "derived"
+      },
+      {
+        "name": "automated-writers-never-overwrite-manual-constitutional-rule.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md",
+        "source": "derived"
+      },
+      {
+        "name": "entity-cooccurrence-is-not-causal-constitutional-rule.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/17--governance/entity-cooccurrence-is-not-causal-constitutional-rule.md",
+        "source": "derived"
+      },
+      {
+        "name": "openltm-continuity-resilience.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/openltm-continuity-resilience.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli-daemon-backed-surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Feature Catalog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add one featurecatalog entry per new 027 feature, bump hand-maintained count self-checks, and keep SOURCE-FILES paths grep-traceable",
+    "created_at": "2026-06-10T00:00:00Z",
+    "last_save_at": "2026-07-10T06:21:51.247Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5a904a4dbb65ec45bb2ee8414d2647bfb99de11f48691262b4765015bcbf9cb2",
+    "source_doc_hashes": {
+      "spec.md": "3b81a46ce61c65e82fc8d0bd39d5038e551616856822d591e6001ab7378623c1",
+      "plan.md": "afa21bb528115d9e91ea151fd61f522f2ae8a8b67f5ca7921bb98d7762864993",
+      "tasks.md": "10385b1f2a02ca17e8ffff3b2bf442972f2ad8dbc6ad27912f12484b6baf0c35",
+      "implementation-summary.md": "df2aaf78d0b229ab9e63ee7ce75146ef0f3490748ef13959a3eb188d6eebd1a2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

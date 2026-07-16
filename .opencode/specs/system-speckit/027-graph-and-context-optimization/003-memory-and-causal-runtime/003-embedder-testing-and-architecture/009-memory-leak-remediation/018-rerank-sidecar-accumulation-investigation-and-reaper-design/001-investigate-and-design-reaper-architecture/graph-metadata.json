@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rerank sidecar reaper investigation",
+      "owner-liveness gc design",
+      "sidecar identity-verified pid check",
+      "arc 010 004 001 plan",
+      "rerank sidecar reaper design plan",
+      "arc 010 004 001 tasks",
+      "rerank sidecar reaper design tasks",
+      "arc 010 004 001 checklist",
+      "rerank sidecar reaper checklist",
+      "arc 010 004 001 decision record",
+      "rerank sidecar reaper ADRs",
+      "arc 010 004 001 implementation summary"
+    ],
+    "key_topics": [
+      "rerank",
+      "sidecar",
+      "reaper",
+      "investigation",
+      "owner-liveness",
+      "design",
+      "identity-verified",
+      "pid",
+      "check",
+      "arc",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "research/iter-001.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "iter-001.md",
+        "kind": "doc",
+        "path": "research/iter-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Investigate Rerank",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sidecar Accumulation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Layer Reaper Architecture",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sidecar Accumulation Investigation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reaper Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Invariants Enforced",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Map",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evaluate Layer",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "25 stale reranksidecar workers accumulated on this machine consuming ~16 GB RAM",
+    "created_at": "2026-05-26T16:49:55.587Z",
+    "last_save_at": "2026-07-10T06:22:55.399Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ee530052f736c1341168cb079f998831e5bdecca3062ce6fb844f07aaf977395",
+    "source_doc_hashes": {
+      "spec.md": "97123a1a6e52d26720041273f357c77a5ab451af79bbbd5e14b62538caa5ffb7",
+      "plan.md": "24f13c130848ea3ee89ab2896f7d5f002e23a432c3b13109a2a0156cf034dd2e",
+      "tasks.md": "de7a2cc7ce935213336d51f0cefda7ed6db6cb55463b0641ba43d4519dd983e1",
+      "checklist.md": "7329028a484b44e0dbc31b731d1eb523e24d716929ec312a5a8dccef4c56da55",
+      "decision-record.md": "113859204b5566d5f4fd85b7be4fc19ce0e618ecb47d49edfb7ff5b2407db0ad",
+      "implementation-summary.md": "3526d438fa510a75966f41ce168343e4aa1d5edd6501818bc29e1382bef4041f",
+      "research/research.md": "93d0fa1b5ef08f8f652a3f54818b16d54f000bb9f3e3ab42ec74a47834d1d651"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

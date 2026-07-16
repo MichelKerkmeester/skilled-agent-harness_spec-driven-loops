@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/008-spec-memory-mcp-stress-test",
+  "description": "Exercise all 39 mk-spec-memory MCP tools and execute all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 to validate behavior post-113",
+  "keywords": [
+    "exercise",
+    "mk-spec-memory",
+    "mcp",
+    "tools",
+    "execute",
+    "scenarios",
+    "via",
+    "cli-devin",
+    "swe-1",
+    "validate",
+    "behavior",
+    "post-113"
+  ],
+  "lastUpdated": "2026-07-10T06:23:21.461Z",
+  "specId": "008",
+  "folderSlug": "spec-memory-mcp-stress-test",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "005-stress-test"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-05-26_15-18__resumed-the-008-spec-memory-mcp-stress-test-packet.md"
+  ]
+}

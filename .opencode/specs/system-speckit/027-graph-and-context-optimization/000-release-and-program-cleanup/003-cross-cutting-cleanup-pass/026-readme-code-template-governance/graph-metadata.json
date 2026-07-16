@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/026-readme-code-template-governance",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/026-readme-code-template-governance",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme code template",
+      "readme template governance",
+      "sk-doc readme template",
+      "documentation template verification",
+      "diagram styling correction",
+      "readme code template plan",
+      "readme template verification",
+      "sk-doc template governance",
+      "diagram styling correction plan",
+      "readme code template tasks",
+      "task 2b evidence",
+      "task 2c phase docs"
+    ],
+    "key_topics": [
+      "readme",
+      "code",
+      "template",
+      "governance",
+      "sk-doc",
+      "documentation",
+      "verification",
+      "diagram",
+      "styling",
+      "correction",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/README.md",
+      "templates/scratch/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/README.md",
+      ".opencode/skills/system-spec-kit/scripts/README.md",
+      ".opencode/skills/system-spec-kit/scripts/lib/README.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/README.md",
+      ".opencode/skills/system-spec-kit/scripts/memory/README.md",
+      ".opencode/skills/system-spec-kit/templates/README.md",
+      ".opencode/skills/system-spec-kit/templates/scratch/README.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Task",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Task",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recorded Task",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Record Task",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delivery Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The README template work changed two `sk-doc` documentation templates and needed packet-local status, checklist, and verification evidence before release cleanup could treat the work as complete",
+    "created_at": "2026-05-02T11:03:13Z",
+    "last_save_at": "2026-07-02T05:31:10.640Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:566fe95bd033af417f591af802b1a9693f01a27d4671e90d2820b0fadcb34385",
+    "source_doc_hashes": {
+      "spec.md": "c025d19f3805eb2b2fdc40e8267d3cfb5a91f44def003e1a9176f9508a35f6e5",
+      "plan.md": "80fb5c4b9157fc0fb94553788e7ab77c18975753d0c32281bb71c51bcb9b1b3d",
+      "tasks.md": "0e63eabc6157b0bbcc807a6b6ccd297d629d45667b0d21295e1a663565e105ee",
+      "checklist.md": "d3dcb37c37048fe6868eaa779c2d57578e35f1a5ecfb86b6a686336bc0de2580",
+      "implementation-summary.md": "3aca3c6e0d690823eaa03c1682cb82a44f247a8586f8f565eb6df36f90e2d696"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

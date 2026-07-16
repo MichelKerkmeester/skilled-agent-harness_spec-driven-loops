@@ -1,0 +1,202 @@
+[
+  {
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-findings-synthesis-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-release-readiness-findings-synthesis-remediation Status:",
+    "target_doc_id": "2299"
+  },
+  {
+    "query": "--- title: \"Tasks: 101/004 Deep AI Council Reference Expansion\" description: \"Task list for deep-ai-council reference expansion, playbook coverage, SKILL. md routing, and Level 1 packet metadata.",
+    "target_doc_id": "479"
+  },
+  {
+    "query": "--- title: \"Implementation Summary: Live Handler Envelope Capture Seam\" template_source: \"SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2. 2\" description: \"Created the live handleMemorySearch envelope/audit behavioral test that closes the deterministic capture seam for v1.",
+    "target_doc_id": "811"
+  },
+  {
+    "query": "--- title: \"Implementation Plan: Stress Test Folder Completion\" template_source: \"SPECKIT_TEMPLATE_SOURCE: plan-core | v2. 2\" description: \"Plan for content-based stress-test discovery, subsystem moves, config updates, docs refresh, and verification.",
+    "target_doc_id": "959"
+  },
+  {
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/005-stress-test-folder-migration Spec Folder:",
+    "target_doc_id": "2278"
+  },
+  {
+    "query": "--- title: \"Implementation Plan: 050 Feature Catalog Shape Realignment\" description: \"Audit the six real feature catalog roots, mechanically realign drifted per-feature files to the sk-doc snippet shape, and verify zero remaining catalog drift. \" template_source: \"SPECKIT_TEMPLATE_SOURCE: plan-core | v2.",
+    "target_doc_id": "1100"
+  },
+  {
+    "query": "--- # SPECKIT_TEMPLATE_SOURCE: plan-core | v2. 2 title: \"Implementation Plan: CocoIndex over-fetch + canonical-identity dedup + path-class rerank [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-mcp-runtime-stress-remediation/004-cocoindex-overfetch-dedup-rerank/plan]\"",
+    "target_doc_id": "139"
+  },
+  {
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery Status: complete Importance Tier: important Summary: Feature Specification: Vitest baseline",
+    "target_doc_id": "2219"
+  },
+  {
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite Spec Folder: system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite Status: complete Importance Tier: important Summary: This packet delivers the end state",
+    "target_doc_id": "2348"
+  },
+  {
+    "query": "--- title: \"Feature Specification [system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify/spec]\" description: \"Read-only research investigation of the graphify external Python skill to identify two-pass AST+LLM extraction, Leiden clustering, evidence-tagging, multimodal, and",
+    "target_doc_id": "1305"
+  },
+  {
+    "query": "--- title: \"Research Charter: memory_context Structural Channel Routing\" template_source: \"SPECKIT_TEMPLATE_SOURCE: spec-core | v2. 2\" description: \"5-iteration deep research on extending memory_context's intent-aware routing to include code_graph_query as a structural retrieval channel.",
+    "target_doc_id": "840"
+  },
+  {
+    "query": "--- # SPECKIT_TEMPLATE_SOURCE: spec-core | v2. 2 title: \"Feature Specification: Stress-Test v1.",
+    "target_doc_id": "802"
+  },
+  {
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs",
+    "target_doc_id": "2228"
+  },
+  {
+    "query": "--- title: \"Feature Specification: Graph and [system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/spec]\" description: \"Level 3 coordination packet for the v2 cross-phase synthesis, adoption decisions, and downstream sequencing for graph and context optimization in Public. \" trigger_phrases: -",
+    "target_doc_id": "1322"
+  },
+  {
+    "query": "Spec folder: system-spec-kit/027-xce-research-based-refinement Description: Phase parent for the XCE adoption work.  Phase 001 now plans the complete local fork of the cocoindex-code MCP wrapper at upstream v0.",
+    "target_doc_id": "2128"
+  },
+  {
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass Spec Folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass Status: planned Importance Tier: important Summary:",
+    "target_doc_id": "2280"
+  },
+  {
+    "query": "--- title: \"... 027-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings/implementation-summary]\" description: \"Delivery summary for the 13-iteration deep-research run: 24 findings, 11 adopt-now / 11 prototype-later / 2 reject, convergence trajectory, and next-ownership boundaries.",
+    "target_doc_id": "1282"
+  },
+  {
+    "query": "--- title: \"Implementation Plan: fleet-marker-validation-sweep [template:level_3/plan. md]\" description: \"[2-3 sentences: what this implements and the technical approach]\" trigger_phrases: - \"implementation\" - \"plan\" - \"name\" - \"template\" - \"plan core\" importance_tier: \"normal\" contextType: \"general\" _memory:",
+    "target_doc_id": "1767"
+  },
+  {
+    "query": "--- title: \"Implementation Plan: MCP Stress-Cycle Doc Cleanup\" template_source: \"SPECKIT_TEMPLATE_SOURCE: plan-core | v2. 2\" description: \"Single-batch doc cleanup.",
+    "target_doc_id": "591"
+  },
+  {
+    "query": "--- title: \"Implementation Summary: 042 root README refresh\" template_source: \"SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2. 2\" description: \"Completion summary for the root README refresh, count verification, and evergreen audit.",
+    "target_doc_id": "986"
+  },
+  {
+    "query": "--- title: \"Task Breakdown: Architecture Diagrams & Topology\" template_source: \"SPECKIT_TEMPLATE_SOURCE: tasks-core | v2. 2\" description: \"17 files need diagrams/trees.",
+    "target_doc_id": "1237"
+  },
+  {
+    "query": "--- title: \"Feature Specification: Link card collapse expand interaction\" description: \"CSS/JS hybrid desktop interaction for sector menu cards: CSS owns layout and fallback states, JavaScript owns active-card state and Motion. dev visual transitions.",
+    "target_doc_id": "249"
+  },
+  {
+    "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/001-claude-optimization-settings Description: Spec: Phase 001 - Claude Optimization Settings (Reddit field-report audit) Spec id: 001 Folder slug: claude-optimization-settings Parent chain: system-spec-kit >",
+    "target_doc_id": "1281"
+  },
+  {
+    "query": "--- template_source_hint: \"<! -- SPECKIT_TEMPLATE_SOURCE: checklist | v2.",
+    "target_doc_id": "163"
+  },
+  {
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-claude-freshness-schema-harness-fixes Spec Folder: system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-claude-freshness-schema-harness-fixes Status: complete Importance Tier: important Summary: End-to-end hook testing on 2026-04-23",
+    "target_doc_id": "2403"
+  },
+  {
+    "query": "--- title: \"Implementation Summary: sk-doc playbook markdown-agent coverage\" description: \"Added 06--agent-dispatch section with 3 @markdown × CLI scenarios; executed all three; ran 5-iter deep-review (converged early). \" trigger_phrases: - \"sk-doc playbook markdown agent\" importance_tier: \"important\" contextType:",
+    "target_doc_id": "549"
+  },
+  {
+    "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/022-stress-test-results-deep-research Description: Research Charter: Stress Test Results Deep Research (v1. 0.",
+    "target_doc_id": "804"
+  },
+  {
+    "query": "Spec folder: system-spec-kit/027-xce-research-based-refinement/001-cocoindex-complete-fork/004-docs Description: Author skill, README, install guide, and reference docs for the complete local fork.",
+    "target_doc_id": "1924"
+  },
+  {
+    "query": "Packet: skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios Spec Folder: skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios Status: in_progress Importance Tier: normal Summary: Fix 2 pre-existing",
+    "target_doc_id": "2198"
+  },
+  {
+    "query": "--- title: \"Feature Specification: Sales Process [00--ai-systems/003-sales-process-automation/001-initial-creation/spec]\" description: \"Normalizes the Level 2 phase packet for the initial System 7 sales process automation documentation set. \" trigger_phrases: - \"sales process automation\" - \"hubspot sequences\" -",
+    "target_doc_id": "121"
+  },
+  {
+    "query": "--- title: \"Feature Specification: Phase 007 - P2 doc drift\" description: \"Sweep remaining P2 documentation drift, stale skill inventory, dead Copilot guard branch, and nested-backtick playbook prompts. \" trigger_phrases: - \"p2 doc drift\" - \"098 phase 007\" - \"097 remediation\" - \"infrastructure quality\"",
+    "target_doc_id": "373"
+  },
+  {
+    "query": "Spec folder: 00--barter/004-spec-migration Description: Feature Specification: Barter Legacy Specs → spec-kit 3. 4.",
+    "target_doc_id": "274"
+  },
+  {
+    "query": "--- title: \"Implementation Plan: command-md-yaml-alignment\" description: \"Three-phase audit plan for spec_kit command Markdown files, YAML workflow assets, and verification gates. \" trigger_phrases: - \"command md yaml plan\" - \"workflow yaml audit plan\" - \"template levels packet 006 plan\" importance_tier: \"high\"",
+    "target_doc_id": "1761"
+  },
+  {
+    "query": "--- title: \"Verification Checklist: Author Fork Documentation\" description: \"Verification checklist for Author skill, README, install guide, and reference docs for the complete local fork. \" trigger_phrases: - \"027 phase 004\" - \"cocoindex docs\" - \"004-docs\" importance_tier: \"important\" contextType: \"checklist\"",
+    "target_doc_id": "1920"
+  },
+  {
+    "query": "--- title: \"Resource Map: 013 Doctor Update Orchestrator\" description: \"Path catalog for the 013 packet: 5 new commands, 10 YAML assets, 1 migration manifest, 8 packet docs, plus existing pattern sources (read-only references). \" trigger_phrases: - \"013 resource map\" - \"doctor update paths\" importance_tier:",
+    "target_doc_id": "1809"
+  },
+  {
+    "query": "--- title: \"Feature Specification: 101/007 Council Infrastructure Hardening\" description: \"Close the residual gaps from 101/001.. 006: add a runnable council test gate, build the 32-entry feature catalog, ship a reverse-anchor meta-test, write the DAC-025 replay helper, broaden Codex TOML mirror parity, and document",
+    "target_doc_id": "509"
+  },
+  {
+    "query": "Spec folder: 00--barter/002-skill-doc-template-alignment Description: Feature Specification: Skill Doc Template Alignment — sk-bartender-endpoint-interpreter + sk-bo-notifications-templates Spec id: 002 Folder slug: skill-doc-template-alignment Parent chain: 00--barter Keywords: feature, specification, skill, doc,",
+    "target_doc_id": "262"
+  },
+  {
+    "query": "--- title: \"Verification Checklist: 027/003/004 Trace Tests\" description: \"Checklist scaffold for code_graph_trace test verification. \" trigger_phrases: - \"027 003 004 checklist\" - \"trace test checklist\" importance_tier: \"important\" contextType: \"implementation\" _memory: continuity: packet_pointer:",
+    "target_doc_id": "503"
+  },
+  {
+    "query": "Spec folder: 00--ai-systems/001-global-shared/004-hvr-multi-lingual Description: Feature Specification: HVR Multi-Lingual - Dutch NL (004) Spec id: 004 Folder slug: hvr-multi-lingual Parent chain: 00--ai-systems > 001-global-shared Keywords: feature, specification, hvr, multi-lingual, dutch, 004 Memory name history:",
+    "target_doc_id": "74"
+  },
+  {
+    "query": "--- title: \"Imple [system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest/implementation-summary]\" description: \"20-iteration deep-research audit of the Claudest external Claude Code plugin marketplace and the claude-memory plugin produced a completed continuation packet with 162",
+    "target_doc_id": "1310"
+  },
+  {
+    "query": "--- title: \"Implementation Summary: Tier 2 Remediation\" template_source: \"SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2. 2\" description: \"Closed Tier 2 D/E/F/G findings; H remains deferred for human license verification.",
+    "target_doc_id": "602"
+  },
+  {
+    "query": "--- title: \"Implementation Plan: 001 Contract\" description: \"Plan for publishing the TypeScript contract that unblocks HLD/LLD child phases. \" trigger_phrases: - \"027 phase 002 contract plan\" - \"hld lld contract plan\" importance_tier: \"important\" contextType: \"plan\" _memory: continuity: packet_pointer: \".",
+    "target_doc_id": "1945"
+  },
+  {
+    "query": "Spec folder: skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/005-remediation Description: Feature Specification: 100 - 099 deep-review remediation Spec id: 005 Folder slug: remediation Parent chain: skilled-agent-orchestration > 096-rename-opencode-dirs-to-plural Keywords: feature, specification, 100,",
+    "target_doc_id": "387"
+  },
+  {
+    "query": "Packet: system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation Spec Folder: system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation Status: complete Importance Tier: important Summary: The original research",
+    "target_doc_id": "2346"
+  },
+  {
+    "query": "--- title: \"Implementation Summary — 003 Session-Trace Causal Reducer\" description: \"Scaffolded implementation summary for the causal reducer. \" trigger_phrases: - \"009 causal reducer implementation summary\" importance_tier: \"normal\" contextType: \"implementation\" _memory: continuity: packet_pointer: \".",
+    "target_doc_id": "2069"
+  },
+  {
+    "query": "--- title: \"Implementation Plan: 101/004 Deep AI Council Playbook Graph Coverage\" description: \"Mechanical doc remediation: rename one stale file, refresh root playbook header/TOC/cross-refs, author 8 templated scenarios under new 08--council-graph-integration/ category. \" trigger_phrases: - \"101/004 plan\" -",
+    "target_doc_id": "491"
+  },
+  {
+    "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite Description: Feature Specification: /memory:save Planner-First Default Spec id: 004 Folder slug: memory-save-rewrite Parent chain: system-spec-kit > 027-graph-and-context-optimization >",
+    "target_doc_id": "1367"
+  },
+  {
+    "query": "Spec folder: system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/010-half-auto-upgrade-doc-alignment Description: Spec: Half-Auto Upgrades Spec id: 021 Folder slug: half-auto-upgrades Parent chain: system-spec-kit > 027-graph-and-context-optimization > 000-release-cleanup Keywords: spec, half-auto, upgrades",
+    "target_doc_id": "892"
+  },
+  {
+    "query": "--- title: \"Resource Map: Template Greenfield Implementation — All Affected system-spec-kit Files\" description: \"Comprehensive blast-radius inventory for the C+F hybrid manifest-driven greenfield implementation per packet 002's recommendation.  Lists every file in .",
+    "target_doc_id": "407"
+  },
+  {
+    "query": "--- speckit_template_source: \"SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2. 2\" title: \"Decision Record: Clean-Room License Audit (012/001)\" description: \"Sub-phase-local ADR holding the verbatim LICENSE quote, allow-list classification table, and fail-closed enforcement rule for phase 012.",
+    "target_doc_id": "1413"
+  }
+]

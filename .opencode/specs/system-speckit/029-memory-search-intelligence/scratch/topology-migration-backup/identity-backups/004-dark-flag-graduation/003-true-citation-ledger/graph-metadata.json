@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/004-dark-flag-graduation/003-true-citation-ledger",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/004-dark-flag-graduation/003-true-citation-ledger",
+  "parent_id": "system-speckit/029-memory-search-intelligence/004-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "true citation ledger benchmark",
+      "SPECKIT_TRUE_CITATION_EMITTER density",
+      "citation ledger feasibility",
+      "used vs unused citation signal separation",
+      "true citation emitter firing trigger",
+      "citation ledger feasibility harness",
+      "session scoped firing trigger ceiling",
+      "bare integer reference hit rate",
+      "citation ledger feasibility tasks",
+      "citation ledger verification",
+      "citation ledger REFINE verdict",
+      "session id firing trigger refinement"
+    ],
+    "key_topics": [
+      "true",
+      "citation",
+      "ledger",
+      "benchmark",
+      "density",
+      "feasibility",
+      "unused",
+      "signal",
+      "separation",
+      "emitter",
+      "firing",
+      "trigger"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/citation-ledger-feasibility.mjs",
+      "results/metrics.json",
+      "handlers/memory-search.ts",
+      "lib/feedback/true-citation-emitter.ts",
+      "lib/feedback/feedback-ledger.ts",
+      "hooks/claude/claude-transcript.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "citation-ledger-feasibility.mjs",
+        "kind": "file",
+        "path": "scripts/citation-ledger-feasibility.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "true-citation-emitter.ts",
+        "kind": "code",
+        "path": "lib/feedback/true-citation-emitter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-ledger.ts",
+        "kind": "code",
+        "path": "lib/feedback/feedback-ledger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "claude-transcript.ts",
+        "kind": "code",
+        "path": "hooks/claude/claude-transcript.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Citation Ledger Density Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Measure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 028 packet ships the true-citation emitter dark behind a default-off flag",
+    "created_at": "2026-06-24T04:52:32.182Z",
+    "last_save_at": "2026-07-10T06:21:45.948Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8faf3d5a97f2e56526ec3b691a8c5188dbd12230c69ec7a993f6b8cae6f5f62c",
+    "source_doc_hashes": {
+      "spec.md": "09cbb7732d858d3450c63471ac7fb4cd4443662a0b18b91d1263a5bfe3d2743e",
+      "plan.md": "ff5e9b4c466032b3de453f9e65f474e0d64072c2891018855d108d94c895a4c6",
+      "tasks.md": "0b988ae9570e0dc0205c36c323c1c34589f77dfe7eea51c3f5aae6cfc875aa12",
+      "checklist.md": "19f20767a7c8de9f69aac7d40efa94e8dfc0d1520dae66da37fc86157bc9862a",
+      "implementation-summary.md": "e6dd9fb3df7bd62aa5e38a367b42780d4a791ebeaa49d9fbfec09f6bb21554a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit",
+  "description": "Inventory predicate type, stale fixed ground truth, aspirational thresholds, and orphan-row dependencies for every pre-expansion scenario.",
+  "keywords": [
+    "inventory",
+    "predicate",
+    "type",
+    "stale",
+    "ground",
+    "truth",
+    "aspirational",
+    "thresholds",
+    "orphan-row",
+    "dependencies",
+    "every",
+    "pre-expansion",
+    "scenario"
+  ],
+  "lastUpdated": "2026-07-10T06:23:18.958Z",
+  "specId": "001",
+  "folderSlug": "fairness-audit",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "005-cross-cutting-quality",
+    "001-playbook-quality-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

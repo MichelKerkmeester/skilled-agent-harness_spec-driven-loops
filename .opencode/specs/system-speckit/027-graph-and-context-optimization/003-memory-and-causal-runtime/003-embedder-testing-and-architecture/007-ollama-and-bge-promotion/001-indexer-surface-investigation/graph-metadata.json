@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/013/001 indexer investigation",
+      "what does AI council index",
+      "deep loop indexer surface",
+      "system to embedder mapping",
+      "indexer surface investigation plan",
+      "016 retrieval surface plan",
+      "ollama bge promotion indexer plan",
+      "indexer surface investigation tasks",
+      "016 retrieval surface tasks",
+      "ollama bge promotion indexer tasks",
+      "indexer surface investigation summary",
+      "016 retrieval surface summary"
+    ],
+    "key_topics": [
+      "indexer",
+      "investigation",
+      "council",
+      "index",
+      "deep",
+      "loop",
+      "surface",
+      "system",
+      "embedder",
+      "mapping",
+      "plan",
+      "retrieval"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "lib/utils/index-scope.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Indexer Surface Investigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "columns",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "intended",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Added Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Map",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Map each retrieval/dispatch system (CocoIndex, mk-spec-memory, code-graph, AI council, deep-research, deep-review, sk-doc, skill-advisor) to its indexer + content type (code / text / both / none). Read-only research packet producing a single research.md table + per-system evidence.",
+    "created_at": "2026-05-18T16:52:17.344Z",
+    "last_save_at": "2026-07-10T06:21:50.607Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:6a3850d57e2abe10c47c13353dcec1ed708ed367025e6389901c23c7d50876ba",
+    "source_doc_hashes": {
+      "spec.md": "5519fb2e42a9cfb895aeecbbc3728c74e5ad89ce7c6771c30db3656b5b570016",
+      "plan.md": "01b652394e5efa55cd068797116904c5d75a40c6a4924479de2733de45aaaf55",
+      "tasks.md": "858d8c23c19391610c34d98cc9c20063c156bb772e7277e912fe7e2423b59113",
+      "implementation-summary.md": "b870a9f57af6ff76dc23bd9093758f232f1b7d559e301a67bde203339ebceb4a",
+      "research.md": "3781e807fb30c88174a0f0997448ee2ab04f2cfa856859e2311ed76c549e98fc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

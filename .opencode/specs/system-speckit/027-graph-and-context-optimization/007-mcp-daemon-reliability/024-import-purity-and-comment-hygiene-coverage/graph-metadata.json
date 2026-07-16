@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "import purity hardening",
+      "comment hygiene checker coverage",
+      "mk-code-index require side effect",
+      "RC DR phase label gap",
+      "import purity plan",
+      "comment hygiene checker plan",
+      "import purity tasks",
+      "comment hygiene checker tasks",
+      "verification",
+      "checklist",
+      "name",
+      "template"
+    ],
+    "key_topics": [
+      "import",
+      "purity",
+      "hardening",
+      "comment",
+      "hygiene",
+      "checker",
+      "coverage",
+      "mk-code-index",
+      "require",
+      "side",
+      "effect",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-code-index-import-purity.vitest.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-watchdog.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-code-index-import-purity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-code-index-import-purity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-watchdog.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-watchdog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The post-merge gpt-5.5 cross-check of the daemon-reliability work surfaced two follow-ups",
+    "created_at": "2026-06-07T17:55:39Z",
+    "last_save_at": "2026-07-10T06:22:56.277Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4225ed2144535b97229c0fe668da9310bb537ab7be6c53315ac5a7d2980aeb22",
+    "source_doc_hashes": {
+      "spec.md": "1efd95214c4124de3d973ce1347f8b0d234d24e044836d527b7830f69a1dd44c",
+      "plan.md": "cb519f84d19930807c93b6b5e200a564500994c180476c7c67bda97d6da0e020",
+      "tasks.md": "847a0dfa8478bfb5c3959e49e6e69d615b37b4a098efe5e6add0679c8d35397e",
+      "checklist.md": "398b81c91434b4e413eb014ea9e0b5b1258f5ef4ee2a4e9786cd0c3b265c839e",
+      "implementation-summary.md": "32001fd5c3f0116c94c3a2361e52ffb03d6b12f6418f84fc1f26a587c4e73352"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep",
+  "description": "The skill docs have accumulated mixed current-state language across recent restructures: standalone `systemskilladvisor`, the `mk-code-index`",
+  "keywords": [
+    "skill",
+    "docs",
+    "accumulated",
+    "mixed",
+    "current-state",
+    "language",
+    "across",
+    "recent",
+    "restructures",
+    "standalone",
+    "systemskilladvisor",
+    "mk-code-index"
+  ],
+  "lastUpdated": "2026-07-10T06:22:15.344Z",
+  "specId": "050",
+  "folderSlug": "all-skills-alignment-sweep",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "status": "complete",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
+  "description": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped … (exit=75)` banner empirically: the shared daemon IPC socket",
+  "keywords": [
+    "fresh",
+    "fable",
+    "debug",
+    "seat",
+    "root-caused",
+    "persistent",
+    "mk-code-graph",
+    "bridge",
+    "skipped",
+    "exit",
+    "banner",
+    "empirically",
+    "shared",
+    "daemon",
+    "ipc",
+    "socket"
+  ],
+  "lastUpdated": "2026-07-10T06:21:10.591Z",
+  "specId": "007",
+  "folderSlug": "ipc-client-cap-hardening",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

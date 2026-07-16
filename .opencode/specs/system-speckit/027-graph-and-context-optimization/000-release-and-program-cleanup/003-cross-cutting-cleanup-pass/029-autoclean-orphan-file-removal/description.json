@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal",
+  "description": "`verifyintegrity({ autoClean: true })` only auto-cleans orphan vectors and orphan chunks — it never deletes memoryindex rows whose `filepath` is",
+  "keywords": [
+    "verifyintegrity",
+    "autoclean",
+    "true",
+    "only",
+    "auto-cleans",
+    "orphan",
+    "vectors",
+    "chunks",
+    "never",
+    "deletes",
+    "memoryindex",
+    "rows",
+    "whose",
+    "filepath"
+  ],
+  "lastUpdated": "2026-07-10T06:22:17.484Z",
+  "specId": "029",
+  "folderSlug": "autoclean-orphan-file-removal",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

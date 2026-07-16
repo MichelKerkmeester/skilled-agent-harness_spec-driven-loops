@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core",
+  "description": "The mk-spec-memory daemon already speaks JSON-RPC over its IPC socket, but the only client surface was the MCP protocol layer — which dies permanently",
+  "keywords": [
+    "mk-spec-memory",
+    "daemon",
+    "already",
+    "speaks",
+    "json-rpc",
+    "ipc",
+    "socket",
+    "only",
+    "client",
+    "surface",
+    "mcp",
+    "protocol",
+    "layer",
+    "dies",
+    "permanently"
+  ],
+  "lastUpdated": "2026-07-10T06:23:35.067Z",
+  "specId": "001",
+  "folderSlug": "cli-core",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "001-mcp-to-cli-tool-transition",
+    "001-spec-memory-cli"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

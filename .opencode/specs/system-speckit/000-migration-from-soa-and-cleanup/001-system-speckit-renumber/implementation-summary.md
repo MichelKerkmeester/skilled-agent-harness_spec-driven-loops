@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Renumber system-speckit active packets above the archive ceiling"
-description: "Planning-only scaffold for the system-speckit 001-016 -> 026-041 renumber and 026-029 stub removal. No execution has run."
+description: "Executed the system-speckit 001-016 -> 026-041 renumber (16 git mv renames + self-referential ref-repair + metadata regen) and the 026-029 untracked-stub removal. Validation error-count delta vs pre-rename baseline is 0."
 trigger_phrases:
   - "system-speckit renumber active packets"
   - "system-speckit archive ceiling overlap"
@@ -13,22 +13,22 @@ _memory:
     packet_pointer: "system-speckit/000-migration-from-soa-and-cleanup/001-system-speckit-renumber"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored planning-stub implementation-summary"
-    next_safe_action: "Await operator stub-deletion approval, then execute"
-    blockers:
-      - "The 4 untracked stub directories (026-029) contain ~281M of git-unrecoverable content. Operator must confirm rm -rf is safe (or approve a snapshot-first alternative) before Phase 2 executes it."
+    recent_action: "Executed 001-016 to 026-041 renumber"
+    next_safe_action: "Commit and FF-push renumber to v4"
+    blockers: []
     key_files:
       - ".opencode/specs/system-speckit/z_archive/"
-      - ".opencode/specs/system-speckit/001-cmd-memory-output/"
-      - ".opencode/specs/system-speckit/026-graph-and-context-optimization/"
+      - ".opencode/specs/system-speckit/026-cmd-memory-output/"
+      - ".opencode/specs/system-speckit/041-cmd-speckit-family-rename/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "001-system-speckit-renumber-impl-summary-scaffold"
+      session_id: "001-system-speckit-renumber-executed"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Should the 4 untracked stub directories be snapshotted to scratch before rm -rf, given ~281M of unrecoverable content, or is operator confirmation of abandoned-attempt status sufficient to delete outright?"
-    answered_questions: []
+    completion_pct: 90
+    open_questions: []
+    answered_questions:
+      - "Stub handling (REQ-001): operator approved delete-outright; the 4 untracked stubs (026-029, ~281M) were removed."
+      - "Executor: ran a deterministic git mv + perl ref-repair script directly (not cli-codex) — see Key Decisions for the verified sandbox reason."
 ---
 # Implementation Summary
 
@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-system-speckit-renumber |
-| **Completed** | Pending (scaffold only, not executed) |
+| **Completed** | Executed in worktree; pending commit + FF-push |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -53,17 +53,23 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet plans the removal of four stale, mismatched-slug stub directories (`026`-`029`) and the order-preserving renumbering of the 16 active system-speckit packets (`001`-`016`) to `026`-`041`, so the active range starts cleanly above the archive's `001`-`025` ceiling. No file has been moved, deleted, or edited outside this packet's own four planning docs. Execution is gated on an explicit operator decision about how to handle the ~281M of unrecoverable content sitting in the stub directories.
+The 16 active system-speckit packets were renumbered from `001`-`016` to `026`-`041` (each keeping its own slug), so the active range now starts cleanly above the archive's `001`-`025` ceiling. The 4 stale untracked stub directories that squatted on the `026`-`029` prefixes were removed first. All work ran inside an isolated worktree off clean origin; nothing was touched outside `.opencode/specs/system-speckit/`.
 
-### Renumber Plan (026-041) and Stub Removal
+### Executed Renumber (026-041) and Stub Removal
 
-The plan enumerates the exact 16-row `git mv` map (source slug to target number, each packet keeping its own slug), the ref-repair surface (~7,164 files matching the qualified `system-speckit/<old-basename>` token), and the metadata-regen-plus-strict-validation steps that follow. Execution is gated on the operator resolving the stub-content blocker (direct `rm -rf` vs. snapshot-first) named in this packet's continuity blockers before Phase 2 of `plan.md` can run.
+- **Stub removal (main tree):** the 4 untracked, mismatched-slug stub directories (`026`-`029`, ~281M of git-unrecoverable content) were deleted outright after explicit operator approval.
+- **16 renames (worktree):** directory-level `git mv` for every row of the `001-016 -> 026-041` map, ascending-target order, each target slot confirmed empty first. `git status` shows 18,359 staged `R` renames.
+- **Ref-repair:** every self-referential old-basename token (qualified `system-speckit/<old>` paths, bare `| **Spec Folder** |` rows, relative cross-packet links, `packet_pointer` values) rewritten to the new basename across `system-speckit/**`, excluding the `000` migration packet (which documents the map itself). 7,531 files edited; 0 qualified old-tokens remain.
+- **Metadata regen:** `generate-description.js` + `backfill-graph-metadata.js` re-run for the 16 top-level packets (offline, root = worktree), clearing the `GENERATED_METADATA_INTEGRITY` signature invalidated by the in-place edits. No absolute paths leaked.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| (none yet) | Planned | Remove 4 stale stub dirs (026-029), `git mv` 16 active packets to 026-041, repair self-referential path tokens, regenerate `description.json`/`graph-metadata.json`, run `validate.sh --recursive --strict` |
+| `001-016 -> 026-041` (16 dirs) | `git mv` | Move active packets above archive ceiling; preserve rename history |
+| ~7,531 files under `system-speckit/**` | Edit (ref-repair) | Rewrite self-referential old-basename tokens to new numbers |
+| 16 `description.json` + 16 `graph-metadata.json` | Regenerate | Refresh generated metadata + integrity signature for new paths |
+| 4 stub dirs (`026`-`029`) | `rm -rf` (main tree) | Remove untracked mismatched-slug residue occupying target range |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +77,7 @@ The plan enumerates the exact 16-row `git mv` map (source slug to target number,
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. Execution is pending per plan.md / checklist.md.
+Deterministic scripted execution in the isolated worktree `.worktrees/0055-skilled-migration-000-scaffold` (branch `skilled/0055-migration-000-scaffold`, based off clean origin). Phase A `git mv` (16 rows), Phase B `perl -i` full-basename ref-repair (file list from `grep -rlFI`, `000` packet excluded), Phase C metadata regen from the main tree's `dist/`. Verification ran from the main tree against the worktree paths (the worktree lacks `node_modules`/`dist`).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,9 +87,10 @@ Not yet delivered. Execution is pending per plan.md / checklist.md.
 
 | Decision | Why |
 |----------|-----|
-| Execute the 16 `git mv` renames in ascending target-number order | Two directories colliding mid-sequence on the same numeric prefix would corrupt rename detection; running low-target-first guarantees each target slot is empty when its row runs. |
-| Anchor ref-repair to the qualified `system-speckit/<old-basename>` token, never bare digits | A bare `00N-`/`01N-` regex would false-positive on requirement IDs like `REQ-001` inside spec bodies; anchoring on the full qualified path keeps the ~7,164-file repair surgical. |
-| Gate stub deletion on explicit operator approval | The 4 untracked stub directories hold ~281M of content git cannot recover, so the plan refuses to run `rm -rf` without an operator decision between direct delete and a snapshot-first alternative. |
+| Execute the 16 `git mv` renames in ascending target-number order | Sources (`001`-`016`) and targets (`026`-`041`) are disjoint ranges, so no target slot is ever double-occupied mid-sequence; rename detection stays clean. |
+| Repair by full old-basename string, not just the qualified `system-speckit/<old>` token | A collision check proved all 16 basenames are unique prefixes, so a full-string replace safely supersets qualified paths, bare `Spec Folder` rows, and relative cross-packet links in one pass — the qualified-only pass would have left bare rows and relative links stale. |
+| Exclude the `000` migration packet from ref-repair | Its `plan.md` documents the old→new map verbatim; rewriting old tokens there would corrupt the map. |
+| Ran a deterministic local script instead of the plan-named cli-codex/GPT-5.6 executor | Verified friction, not assumed: the renumber requires the isolated linked worktree for concurrency safety, but a linked worktree's git index lives under the main repo's `.git/worktrees/…` — outside cli-codex's `--sandbox workspace-write` boundary, so `git mv` would be blocked; the only workaround (pointing codex at the main tree) would expose the live, dirty concurrent sk-doc migration to a semi-autonomous agent. The operation is fully deterministic (a `git mv` map + a scoped `perl` replace), so GPT-5.6 adds no reasoning value here. GPT-5.6/cli-codex is reserved for the authoring-heavy phases (005 sk-design reconstruction, 006 deep-research). |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -93,7 +100,12 @@ Not yet delivered. Execution is pending per plan.md / checklist.md.
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --recursive --strict` | Not yet run (acceptance criteria in checklist.md) |
+| Renames staged as `R` | 18,359 `R` entries in `git status --porcelain` |
+| Remaining qualified old-tokens (`system-speckit/(001-016)`, excl `000`) | 0 |
+| Any file still containing an old top-level slug (excl `000`) | 0 |
+| Number-line invariant | archive max `025` immediately followed by active min `026`; no `001-016` remaining; no gap |
+| `validate.sh --recursive --strict` error-count delta vs pre-rename baseline | 0 (baseline 46 → post-rename 46 across the 16 packets) |
+| Absolute-path leak in regenerated metadata | 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -101,9 +113,9 @@ Not yet delivered. Execution is pending per plan.md / checklist.md.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Scaffold only.** No `git mv`, `rm`, or ref-repair has executed; every claim in `plan.md`/`tasks.md` is a planned step, not a completed one.
-2. **Destructive-delete gate.** Phase 2 (removing the 4 stub directories) cannot start until the operator explicitly approves handling of ~281M of untracked, unrecoverable content. See REQ-001 and the open question in `spec.md`.
-3. **Large ref-repair surface.** The self-referential path-token repair touches ~7,164 files; execution must re-run `validate.sh --recursive --strict` per renamed packet and compare against a pre-rename baseline (delta <= 0) rather than assume zero regressions.
+1. **Deferred pre-existing drift (REQ-008).** `040-base-files-renumbering-name-cleanup` (was `015`) carries a `packet_pointer` to a deleted `skilled-agent-orchestration/z_archive/090-...` path — drift that predates this rename. It is part of the baseline's 46 errors (not a regression), so it was left untouched; its canonical pointer target is a separate decision. Flagged for follow-up.
+2. **Metadata regen scoped to the 16 top-level packets.** Child folders' generated metadata was not regenerated because recursive validation showed children contribute 0 error-count delta (the integrity signature is enforced only at packet top level here).
+3. **Not yet committed/pushed at time of writing.** The worktree holds the executed renumber; commit + FF-push to `skilled/v4.0.0.0` (rebase-on-race) is the next step.
 <!-- /ANCHOR:limitations -->
 
 ---

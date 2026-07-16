@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/002-speckit-memory/006-redteam-probe-gate",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/002-speckit-memory/006-redteam-probe-gate",
+  "parent_id": "system-speckit/029-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "red-team probe gate",
+      "poisoned rag probe",
+      "query only injection probe",
+      "wrapper breakout probe",
+      "exfil audit no querytext",
+      "memory security ci gate",
+      "red-team probe gate plan",
+      "memory injection ci gate plan",
+      "prompt-pack render probe",
+      "zero success ceiling gate",
+      "red-team probe gate tasks",
+      "memory injection ci gate tasks"
+    ],
+    "key_topics": [
+      "red-team",
+      "probe",
+      "gate",
+      "poisoned",
+      "rag",
+      "query",
+      "only",
+      "injection",
+      "wrapper",
+      "breakout",
+      "exfil",
+      "audit"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "lib/governance/scope-governance.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/run-tests.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-probe-gate.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-fixtures/probe-payloads.json",
+      "lib/utils/skill-label-sanitizer.ts",
+      "tests/security/adversarial-unicode.vitest.ts",
+      "tests/advisor-fixtures/promptPoisoningAdversarial.json",
+      "tests/security/redteam-probe-gate.vitest.ts",
+      "scripts/run-tests.mjs",
+      "tests/architecture-seam.vitest.ts",
+      "tests/bm25-security.vitest.ts",
+      "tests/advisor-fixtures/unicodeInstructionalSkillLabel.json",
+      "formatters/search-results.ts",
+      "handlers/memory-triggers.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-governance.ts",
+        "kind": "code",
+        "path": "lib/governance/scope-governance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-tests.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/run-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "redteam-probe-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-probe-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "probe-payloads.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-fixtures/probe-payloads.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-label-sanitizer.ts",
+        "kind": "code",
+        "path": "lib/utils/skill-label-sanitizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial-unicode.vitest.ts",
+        "kind": "test",
+        "path": "tests/security/adversarial-unicode.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "promptPoisoningAdversarial.json",
+        "kind": "config",
+        "path": "tests/advisor-fixtures/promptPoisoningAdversarial.json",
+        "source": "derived"
+      },
+      {
+        "name": "architecture-seam.vitest.ts",
+        "kind": "test",
+        "path": "tests/architecture-seam.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-security.vitest.ts",
+        "kind": "test",
+        "path": "tests/bm25-security.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "unicodeInstructionalSkillLabel.json",
+        "kind": "config",
+        "path": "tests/advisor-fixtures/unicodeInstructionalSkillLabel.json",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": "handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Team Probe Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Stand",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds",
+    "created_at": "2026-06-19T05:40:37.443Z",
+    "last_save_at": "2026-07-11T18:40:35.822Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4851d903b7587ed9efc4e34ff397cc0404cede9bedecfef426f6bd8dc9ff9b61",
+    "source_doc_hashes": {
+      "spec.md": "3ffec1d3e36ddbeed96a727756a0b52ec016940a51f27781ace4048d7c78888d",
+      "plan.md": "4d471b2343aa23d3d967d98862bf97b3a9557d90acff2b5e18916b440dc81ec3",
+      "tasks.md": "1f55cf5ac7848f9979ce765972039e63d5371a0ab6d1f8565e12e45e8d795558",
+      "checklist.md": "094c16e3afd7e8128ee43795425ed1c9bf9331f785b966b8560b6b5d36442b2e",
+      "implementation-summary.md": "950a2757246174dd49abbf7d4de1ba38d90c54c9cc247a7d1ec73e91b664a8db"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

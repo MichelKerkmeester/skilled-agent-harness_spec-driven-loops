@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "comment ephemeral pointer cleanup",
+      "remove spec folder refs from code comments",
+      "sk-code no ephemeral-artifact pointers fix",
+      "comment ephemeral pointer cleanup plan",
+      "sk-code ephemeral pointer remediation plan",
+      "comment ephemeral pointer cleanup tasks",
+      "ephemeral pointer sweep file list",
+      "comment ephemeral pointer cleanup summary",
+      "sk-code ephemeral pointer remediation result"
+    ],
+    "key_topics": [
+      "comment",
+      "ephemeral",
+      "pointer",
+      "cleanup",
+      "remove",
+      "spec",
+      "folder",
+      "refs",
+      "code",
+      "comments",
+      "sk-code",
+      "ephemeral-artifact"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Embedding",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "safe",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code canonical rule `codestyleguide.md` §4 \"No ephemeral-artifact pointers\" forbids code comments from embedding a spec folder/number, a packet/phase/task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), a feature-catalog entry, an ADR id, a review-finding id, or a ticket id",
+    "created_at": "2026-05-29T19:34:18.681Z",
+    "last_save_at": "2026-07-02T05:31:12.400Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2c48c52c7bfb7ea9fc3fa9db33bb7e34e1ea7a43e1a840d26cc4727f883bcb60",
+    "source_doc_hashes": {
+      "spec.md": "1f345b1553555b7dca10284f87ce3190cbdf25bda38052a85012925aa44e3f54",
+      "plan.md": "3ba6d4574a7477069451245f8ae528baadd9657a4070f92eba687cc476c5f70a",
+      "tasks.md": "69275227a679334a025a7cb8fb128378ca25ee1dc86db24eb70155b083b817ca",
+      "implementation-summary.md": "caa915f967de6cc2060c843730790a1f92d9187201017626473d3d60b27a0477"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

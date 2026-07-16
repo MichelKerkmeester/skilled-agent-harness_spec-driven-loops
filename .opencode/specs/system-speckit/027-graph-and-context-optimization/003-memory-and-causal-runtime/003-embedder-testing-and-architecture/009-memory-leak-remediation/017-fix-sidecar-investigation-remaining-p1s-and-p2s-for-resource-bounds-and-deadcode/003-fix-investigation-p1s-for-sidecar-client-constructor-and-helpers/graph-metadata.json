@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "arc 010 003 003 sidecar-client p1",
+      "F18 F20 F25 F57 F62 F73 F91 remediation",
+      "arc 010 003 003 plan",
+      "sidecar-client p1 constructor helpers plan",
+      "arc 010 003 003 tasks",
+      "sidecar-client p1 constructor helpers tasks",
+      "arc 010 003 003 checklist",
+      "sidecar-client p1 constructor helpers checklist",
+      "arc 010 003 003 decision record",
+      "arc 010 003 003 summary",
+      "sidecar-client p1 implementation summary"
+    ],
+    "key_topics": [
+      "arc",
+      "sidecar-client",
+      "f18",
+      "f20",
+      "f25",
+      "f57",
+      "f62",
+      "f73",
+      "f91",
+      "remediation",
+      "plan",
+      "constructor"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Client Constructor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Invariants Enforced",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Scaffold",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Registry",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sidecar-client.ts` retained several P1 issues from arc 010/001 deep research: production constructor options still blurred into test-only knobs (F18), `EmbedOptions` existed twice (F20), trivial single-call helper indirection hid the flow (F25), termination still split signal/exit sequencing across duplicate paths (F57), response handling used unsafe post-parse assertions instead of discriminator narrowing (F62), `ready()` had no production role in the sidecar execution path (F73), and `embed()` validation was a nested cascade (F91)",
+    "created_at": "2026-05-26T16:49:55.587Z",
+    "last_save_at": "2026-07-10T06:21:11.295Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9957a32b1105a3e0add14cd4c4c22deddf0d60568502df717bb989a7418fc6a8",
+    "source_doc_hashes": {
+      "spec.md": "65b325359c5e8dcc14ef95eafb3bcc8815e5c7033a55dec51d3dc71bae0bd942",
+      "plan.md": "7a462f6901de1253059f3b6f1953e3a1c291e70d60ce482ed635f2b9f42f1a08",
+      "tasks.md": "d11e6b247c0cd8f5e931a24573b9339d577bbdde88e241a50141845ac19666cf",
+      "checklist.md": "57149aeec1cdce9031885da91503abc69a580cc5612ae431f0b1e8441b0444b4",
+      "decision-record.md": "99793d8c7ed10e6bc93e079d0700e4e837b24c3dd5735d6da4b8282903741dd1",
+      "implementation-summary.md": "31515710e7ff90ebdc0a8ec17be173b474616962745645625a04ab5d1db12f70"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

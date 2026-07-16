@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
+  "description": "Implement Option B from packet 013: make SQLite FTS5 the default lexical BM25 provider while preserving legacy fallback and adding golden-query",
+  "keywords": [
+    "implement",
+    "option",
+    "packet",
+    "sqlite",
+    "fts5",
+    "default",
+    "lexical",
+    "bm25",
+    "provider",
+    "while",
+    "preserving",
+    "legacy",
+    "fallback",
+    "golden-query"
+  ],
+  "lastUpdated": "2026-07-10T06:24:44.675Z",
+  "specId": "014",
+  "folderSlug": "fts5-default-lexical-with-guardrails",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

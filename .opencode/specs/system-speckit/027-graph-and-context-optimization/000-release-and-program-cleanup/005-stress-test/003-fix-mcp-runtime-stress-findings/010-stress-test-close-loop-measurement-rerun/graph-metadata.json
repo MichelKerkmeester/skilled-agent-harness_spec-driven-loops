@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "010-stress-test-close-loop-measurement-rerun",
+      "v1.0.2 stress test rerun",
+      "post-fix sweep",
+      "close-the-loop measurement",
+      "30-cell rerun",
+      "per-packet verdict",
+      "010 stress-test rerun plan",
+      "v1.0.2 sweep plan",
+      "stress-test rerun architecture",
+      "010 stress-test rerun tasks",
+      "v1.0.2 sweep tasks",
+      "T001 daemon attestation"
+    ],
+    "key_topics": [
+      "010-stress-test-close-loop-measurement-rerun",
+      "stress",
+      "test",
+      "rerun",
+      "post-fix",
+      "sweep",
+      "close-the-loop",
+      "measurement",
+      "30-cell",
+      "per-packet",
+      "verdict",
+      "stress-test"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "description.json",
+      "graph-metadata.json",
+      "findings.md",
+      "implementation-summary.md",
+      "scripts/prompts/I2.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "I2.md",
+        "kind": "doc",
+        "path": "scripts/prompts/I2.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Rerun",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Telemetry Assertions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Selection",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Search",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "fork-telemetry",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v1.0.1 stress-test sweep (`../001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md`) baselined the four MCP-runtime surfaces against a 30-cell scenario matrix on 2026-04-26 and surfaced the regressions that drove the eight remediation packets shipped earlier this session (003-009 in the renumbered phase tree, originally tracked as 008-014)",
+    "created_at": "2026-04-27T15:00:00Z",
+    "last_save_at": "2026-07-10T06:21:43.899Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:de9a2ff3f1644d21e20b4421049dee7d65e318250983787d2f7730748475a9fd",
+    "source_doc_hashes": {
+      "spec.md": "50ab740aa3d229bf233765f6d5c3f0c2d5d498909170e0758218ff5a013ccc70",
+      "plan.md": "b291a641c3b2e37eb7dcce38ae4fecc74da03b591f44dcede326b3f311904c50",
+      "tasks.md": "285985e27b955dadbf4449cb4159a4bb7295d07c68b5bba31ab0a80d5cee3528",
+      "checklist.md": "d7ba7ad38dddd97b2e3ff63aa5f94457e78f2b01bfcd0a056b2fff3e0d492f8c",
+      "implementation-summary.md": "3fb454748b21682da4625c4f9265e837e7ddec7e8b042e11edbb936d562494d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

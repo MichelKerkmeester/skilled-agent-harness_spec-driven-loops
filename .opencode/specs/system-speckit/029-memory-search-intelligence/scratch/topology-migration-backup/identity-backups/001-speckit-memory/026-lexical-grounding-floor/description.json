@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
+  "description": "The `/memory:search` verdict cites an off-corpus term with confidence",
+  "keywords": [
+    "memory",
+    "search",
+    "verdict",
+    "cites",
+    "off-corpus",
+    "term",
+    "confidence"
+  ],
+  "lastUpdated": "2026-07-07T04:34:47.367Z",
+  "specId": "026",
+  "folderSlug": "lexical-grounding-floor",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/034-rebuild-sentinel-corruption-handling",
+  "description": "The needs-rebuild sentinel file conflates two failure classes: half-finished checkpoint restores, safely auto-repaired, and physical page corruption,",
+  "keywords": [
+    "needs-rebuild",
+    "sentinel",
+    "file",
+    "conflates",
+    "two",
+    "failure",
+    "classes",
+    "half-finished",
+    "checkpoint",
+    "restores",
+    "safely",
+    "auto-repaired",
+    "physical",
+    "page",
+    "corruption"
+  ],
+  "lastUpdated": "2026-07-08T18:05:02.598Z",
+  "specId": "034",
+  "folderSlug": "rebuild-sentinel-corruption-handling",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

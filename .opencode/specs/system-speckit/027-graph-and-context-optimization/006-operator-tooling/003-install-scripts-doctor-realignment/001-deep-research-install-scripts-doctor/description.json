@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/001-deep-research-install-scripts-doctor",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-07-10T06:24:50.183Z",
+  "specId": "001",
+  "folderSlug": "deep-research-install-scripts-doctor",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "006-operator-tooling",
+    "003-install-scripts-doctor-realignment"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_07-35__new-phased-spec.md"
+  ]
+}

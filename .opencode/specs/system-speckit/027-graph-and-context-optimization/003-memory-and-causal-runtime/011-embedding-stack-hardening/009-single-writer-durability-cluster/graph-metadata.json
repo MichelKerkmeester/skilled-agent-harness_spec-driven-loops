@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "single writer durability cluster",
+      "respawn lock idle eviction reap root concurrency test",
+      "coordinated launcher WAL durability remediation",
+      "single writer durability cluster plan",
+      "harness A harness B concurrency test design",
+      "single writer durability cluster tasks",
+      "single writer durability cluster status"
+    ],
+    "key_topics": [
+      "single",
+      "writer",
+      "durability",
+      "cluster",
+      "respawn",
+      "lock",
+      "idle",
+      "eviction",
+      "reap",
+      "root",
+      "concurrency",
+      "test"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/bin/hf-model-server.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "plan.md",
+      "tasks.md",
+      "mcp_server/lib/search/vector-index-store.ts",
+      "mcp_server/lib/embedders/reindex.ts",
+      "scripts/core/workflow.ts",
+      "scripts/core/daemon-detect.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-detect.ts",
+        "kind": "code",
+        "path": "scripts/core/daemon-detect.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Launcher",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep review found a cluster of single-writer / durability defects across the embedding-stack launcher + supervision + WAL surfaces",
+    "created_at": "2026-05-29T21:10:00.586Z",
+    "last_save_at": "2026-07-02T05:31:12.408Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:25ff6af65066753257aa62849b990c4519b57996708f92228fdfee98b1bd3e5f",
+    "source_doc_hashes": {
+      "spec.md": "4f0d01718bcadabcb76fba46d63297ec9c7cd71f1263a88dc2fc87b107b884b5",
+      "plan.md": "c627a84b7edce3e977bc4ca8d9294d1cea54edbb8470ee2acac8487b78d703f8",
+      "tasks.md": "ad6dc5e5c161ce0e3176583943065afe3dcf04e1eea4567ae7ae3c3b6b94502f",
+      "implementation-summary.md": "db0d4ef31119e58f3942e2def94e20a3375f2ee1dcecd6c75cca87ff005b36fe"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

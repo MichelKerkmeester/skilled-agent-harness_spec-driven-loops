@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup",
+  "children_ids": [
+    "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings",
+    "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits",
+    "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-fix-release-readiness-findings-synthesis",
+    "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings",
+    "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/005-fix-stress-test-coverage-gap"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "000-release-cleanup/001-release-readiness",
+      "release-readiness",
+      "release readiness validation"
+    ],
+    "key_topics": [
+      "000-release-cleanup",
+      "001-release-readiness",
+      "release-readiness",
+      "release",
+      "readiness",
+      "validation",
+      "phase",
+      "parent",
+      "across",
+      "children",
+      "coordinates",
+      "deep"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Readiness Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Release Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Readiness Synthesis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for release readiness validation across 6 children. Coordinates deep review programs, synthesis of readiness findings, and P1/P2 remediation including stress-test coverage gaps and tier2 issues.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-07-02T05:31:10.441Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e27aa9da6ee56d978519664d6dd3f0ba67390c01be237dc30a909eec4f033c86",
+    "source_doc_hashes": {
+      "spec.md": "e6d2ae5afffeea250fa70f3e1f7111e68bb2a347611f3a78fd8d4f4b7885a8f0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

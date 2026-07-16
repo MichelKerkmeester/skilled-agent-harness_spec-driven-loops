@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy",
+  "description": "Under memory pressure the daemon recycles by exiting the launcher process",
+  "keywords": [
+    "memory",
+    "pressure",
+    "daemon",
+    "recycles",
+    "exiting",
+    "launcher",
+    "process"
+  ],
+  "lastUpdated": "2026-07-10T06:23:24.046Z",
+  "specId": "003",
+  "folderSlug": "mcp-front-proxy",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "013-memory-index-scan-implementation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "01-06-26_22-32__e-phase-2-is-building-in-the-background-frame.md"
+  ]
+}

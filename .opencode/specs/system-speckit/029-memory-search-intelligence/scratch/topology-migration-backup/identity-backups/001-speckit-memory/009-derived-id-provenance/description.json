@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance",
+  "description": "Generated (DERIVED) causal edges have no content-addressed identity",
+  "keywords": [
+    "derived",
+    "causal",
+    "edges",
+    "content-addressed",
+    "identity"
+  ],
+  "lastUpdated": "2026-07-09T10:02:56.122Z",
+  "specId": "009",
+  "folderSlug": "derived-id-provenance",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation",
+  "description": "The 485-scenario manual testing playbook sweep (packet `031-manual-playbook-execution-sweep`) is confirming real, reproducible bugs across the",
+  "keywords": [
+    "485-scenario",
+    "manual",
+    "testing",
+    "playbook",
+    "sweep",
+    "packet",
+    "031-manual-playbook-execution-sweep",
+    "confirming",
+    "real",
+    "reproducible",
+    "bugs",
+    "across"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.576Z",
+  "specId": "001",
+  "folderSlug": "findings-remediation",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "001-release-cleanup",
+    "015-manual-playbook-execution-sweep"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "03-07-26_14-39__closed-out-the-two-remaining-b-blocked-findings.md"
+  ]
+}

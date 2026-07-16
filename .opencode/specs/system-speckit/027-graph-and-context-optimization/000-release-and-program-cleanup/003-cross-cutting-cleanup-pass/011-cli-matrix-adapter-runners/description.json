@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners",
+  "description": "Packet 035 signed off a CONDITIONAL baseline because the full Option C design was not executable: 42 cells were `RUNNERMISSING`, and no complete",
+  "keywords": [
+    "packet",
+    "signed",
+    "conditional",
+    "baseline",
+    "because",
+    "full",
+    "option",
+    "design",
+    "executable",
+    "cells",
+    "runnermissing",
+    "complete"
+  ],
+  "lastUpdated": "2026-07-10T06:23:39.000Z",
+  "specId": "011",
+  "folderSlug": "cli-matrix-adapter-runners",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "29-04-26_19-37__resource-map-authored-and-memory-finalization.md"
+  ]
+}

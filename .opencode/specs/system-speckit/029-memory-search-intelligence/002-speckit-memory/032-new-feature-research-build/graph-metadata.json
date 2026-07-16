@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/002-speckit-memory/032-new-feature-research-build",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/002-speckit-memory/032-new-feature-research-build",
+  "parent_id": "system-speckit/029-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 new feature research build",
+      "028 track b new feature outcome",
+      "028 eval-v2 measurability gate",
+      "028 append not displace truncation finding",
+      "028 new feature build plan",
+      "028 eval-v2 build method",
+      "028 research to hold method",
+      "028 new feature build tasks",
+      "028 track b tasks",
+      "028 new feature build checklist",
+      "028 track b checklist",
+      "028 new feature research build summary"
+    ],
+    "key_topics": [
+      "new",
+      "feature",
+      "research",
+      "track",
+      "outcome",
+      "eval-v2",
+      "measurability",
+      "gate",
+      "append",
+      "displace",
+      "truncation",
+      "finding"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The flag-resolution reckoning deleted ten default-off switches, and each deletion taught something specific about why a lever fails to move live recall",
+    "created_at": "2026-06-20T00:00:00Z",
+    "last_save_at": "2026-07-11T18:40:35.970Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9923ffc449daf2b71637775afaacd4fa5bcb5d26aea0fa8e70014edbaf768db8",
+    "source_doc_hashes": {
+      "spec.md": "0f9bdd121ca1c6d7ea7ec5272f98088f6dd45c4d6c0e67c0bfdf01ffcf353c7a",
+      "plan.md": "1b3d21506231890656453b9d5b5a27c129ee2e675164003399151c261b9899a5",
+      "tasks.md": "b440a5e6c649db983655f95187a952e77be6f79696c71e742c6d065bf4a9b7ee",
+      "checklist.md": "d486ca21bc0e00e2b594004260ca66c53115baa25baf2c9bc1d40422e90f215e",
+      "implementation-summary.md": "46f7a949c3e7c6b860f79b452cc92ef289fa0d4aaafc291e1fbc80ace36a2cfb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

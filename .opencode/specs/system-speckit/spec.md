@@ -91,22 +91,22 @@ One track holds every system-speckit-scoped spec folder, numbered in true chrono
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-cmd-memory-output/` | Memory command surface + dashboard visual design | Phase parent |
-| 002 | `002-graph-and-context-optimization/` | Graph and context optimization research | Phase parent |
-| 003 | `003-xce-research-based-refinement/` | XCE research-based refinement | Phase parent |
-| 004 | `004-memory-search-intelligence/` | Memory-search intelligence | Phase parent |
-| 005 | `005-rust-backend-rewrite-research/` | Rust-backend rewrite research | Phase parent |
-| 006 | `006-spec-gate-enforce-readiness/` | Spec-mutation gate enforce-readiness fixes | Phase parent |
-| 007 | `007-phased-spec-preference/` | Phased-spec preference | Phase parent |
-| 008 | `008-vitest-invariance-maintenance/` | Vitest invariance maintenance | Phase parent |
-| 009 | `009-cmd-merge-spec-kit-phase/` | `/speckit:phase` merge workflow | Phase parent |
-| 010 | `010-cmd-spec-kit-ux-upgrade/` | Spec-kit UX upgrade | Phase parent |
-| 011 | `011-spec-kit-ux-adoptions/` | Spec-kit UX adoptions (SPAR-Kit findings) | Phase parent |
-| 012 | `012-spec-kit-coco-sk-code-research/` | Spec-kit + coco-index + sk-code integration research | Phase parent |
-| 013 | `013-spec-kit-auto-mode-noninteractive-contract/` | Auto-mode non-interactive contract | Phase parent |
-| 014 | `014-subphase-recatalog-and-archive/` | Sub-phase recatalog and archive | Phase parent |
-| 015 | `015-base-files-renumbering-name-cleanup/` | Base-files renumbering and name cleanup | Phase parent |
-| 016 | `016-cmd-speckit-family-rename/` | Speckit command-family rename | Phase parent |
+| 001 | `026-cmd-memory-output/` | Memory command surface + dashboard visual design | Phase parent |
+| 002 | `027-graph-and-context-optimization/` | Graph and context optimization research | Phase parent |
+| 003 | `028-xce-research-based-refinement/` | XCE research-based refinement | Phase parent |
+| 004 | `029-memory-search-intelligence/` | Memory-search intelligence | Phase parent |
+| 005 | `030-rust-backend-rewrite-research/` | Rust-backend rewrite research | Phase parent |
+| 006 | `031-spec-gate-enforce-readiness/` | Spec-mutation gate enforce-readiness fixes | Phase parent |
+| 007 | `032-phased-spec-preference/` | Phased-spec preference | Phase parent |
+| 008 | `033-vitest-invariance-maintenance/` | Vitest invariance maintenance | Phase parent |
+| 009 | `034-cmd-merge-spec-kit-phase/` | `/speckit:phase` merge workflow | Phase parent |
+| 010 | `035-cmd-spec-kit-ux-upgrade/` | Spec-kit UX upgrade | Phase parent |
+| 011 | `036-spec-kit-ux-adoptions/` | Spec-kit UX adoptions (SPAR-Kit findings) | Phase parent |
+| 012 | `037-spec-kit-coco-sk-code-research/` | Spec-kit + coco-index + sk-code integration research | Phase parent |
+| 013 | `038-spec-kit-auto-mode-noninteractive-contract/` | Auto-mode non-interactive contract | Phase parent |
+| 014 | `039-subphase-recatalog-and-archive/` | Sub-phase recatalog and archive | Phase parent |
+| 015 | `040-base-files-renumbering-name-cleanup/` | Base-files renumbering and name cleanup | Phase parent |
+| 016 | `041-cmd-speckit-family-rename/` | Speckit command-family rename | Phase parent |
 | z_archive | `z_archive/` | Archived spec-kit history | Archive |
 
 ### Phase Transition Rules
@@ -119,7 +119,7 @@ One track holds every system-speckit-scoped spec folder, numbered in true chrono
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| `001-cmd-memory-output` | `016-cmd-speckit-family-rename` | Each phase ships and validates independently | Per-phase strict validation evidence |
+| `026-cmd-memory-output` | `041-cmd-speckit-family-rename` | Each phase ships and validates independently | Per-phase strict validation evidence |
 <!-- /ANCHOR:phase-map -->
 
 ---

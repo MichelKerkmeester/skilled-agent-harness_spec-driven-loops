@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation",
+  "description": "`collectSupersessionEdges` emits `contradicts` for predecessor->successor, and `collectLineageEdges` emits `caused` for the SAME directed pair because",
+  "keywords": [
+    "collectsupersessionedges",
+    "emits",
+    "contradicts",
+    "predecessor",
+    "successor",
+    "collectlineageedges",
+    "caused",
+    "same",
+    "directed",
+    "pair",
+    "because"
+  ],
+  "lastUpdated": "2026-07-10T06:21:48.640Z",
+  "specId": "026",
+  "folderSlug": "relation-backfill-review-remediation",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "04-06-26_14-09__post-implementation-deep-review-of-the-relation.md"
+  ]
+}

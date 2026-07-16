@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate",
+  "parent_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "off corpus eval fixture",
+      "false confirm gate",
+      "kubernetes regression anchor",
+      "false good on hard negatives",
+      "off corpus hard negative class"
+    ],
+    "key_topics": [
+      "corpus",
+      "eval",
+      "fixture",
+      "false",
+      "confirm",
+      "gate",
+      "kubernetes",
+      "regression",
+      "anchor",
+      "good",
+      "hard",
+      "negatives"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/false-confirm-eval.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts",
+      "lib/eval/data/ground-truth.json",
+      "dist/lib/eval/eval-metrics.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/ground-truth-data.js",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "eval-metrics.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth-data.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth-generator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-false-confirm-eval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "false-confirm-eval.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/false-confirm-eval.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth-data.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/ground-truth-data.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Eval Fixture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fixture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 029 model benchmark found that `/memory:search` confidently cited an off-corpus term",
+    "created_at": "2026-06-22T00:00:00Z",
+    "last_save_at": "2026-07-09T10:02:56.205Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e0881983cf01d45a14db92c82b32b5365f0a898536489d8b9c889623097dc3f9",
+    "source_doc_hashes": {
+      "spec.md": "5147c12f9de2caa43edce41110d41291f01dc6d1109ce1504668f89f8646be5d",
+      "plan.md": "8649b6282ad5b86e346ef369da36c3fd269930580a70109a929aef16399b7ad2",
+      "tasks.md": "04237da51326dcff25ee0f9b993513a2e6262c862912d8f8077ff54a9a8f8bb1",
+      "checklist.md": "084dd51907f9761eff7baec04398e107b8265ebc408a895a8e7f352a7529d4be",
+      "implementation-summary.md": "ec50fd9ee53219358b77b4ac3675f38959324d3ab7fd7f2c94cdf83aa99f71ea"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

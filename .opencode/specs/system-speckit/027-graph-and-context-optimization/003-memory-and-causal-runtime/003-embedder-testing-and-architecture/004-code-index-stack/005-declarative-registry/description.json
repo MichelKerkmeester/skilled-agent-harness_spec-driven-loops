@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry",
+  "description": "Catalog of vetted code-embedder candidates with metadata for new-user selection",
+  "keywords": [
+    "catalog",
+    "vetted",
+    "code-embedder",
+    "candidates",
+    "metadata",
+    "new-user",
+    "selection"
+  ],
+  "lastUpdated": "2026-07-10T06:22:24.543Z",
+  "specId": "005",
+  "folderSlug": "declarative-registry",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

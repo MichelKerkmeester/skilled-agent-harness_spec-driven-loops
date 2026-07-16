@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
+  "description": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds",
+  "keywords": [
+    "spec-kit",
+    "memory",
+    "mcp",
+    "already",
+    "defends",
+    "individual",
+    "injection",
+    "seams",
+    "single",
+    "gate",
+    "proves",
+    "whole",
+    "surface",
+    "holds"
+  ],
+  "lastUpdated": "2026-07-04T17:51:05.819Z",
+  "specId": "006",
+  "folderSlug": "redteam-probe-gate",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
