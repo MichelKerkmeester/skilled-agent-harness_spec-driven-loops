@@ -46,7 +46,7 @@ This parent documents root purpose only. Each phase child carries its own scope,
 | `000-keystone-validator-compose` | Compose frontmatter validation into the canonical `validate_document.py --type command` path | K1 | Materialized |
 | `001-versioned-command-contract` | Define the versioned command contract (topology, gate owner, execution targets, mode matrix, owned assets, loader reqs, presentation ownership + typed exceptions, destructive policy, runtime aliases); fix required-input contradiction + stale template refs | K2 | Materialized (014 asset detail delivered) |
 | `002-executable-edge-route-parsing` | Schema-aware executable-edge route parsing instead of raw-text inference; clear the false P0 cycles | K3 | Materialized |
-| `003-semantic-validation-and-fixtures` | Router-gate alternative + `gate_obligation`; semantic invariant checks + mutation fixtures; mode-completeness check across all families | W1, W2, W6 | Planned |
+| `003-semantic-validation-and-fixtures` | Router-gate alternative + `gate_obligation`; semantic invariant checks + mutation fixtures; mode-completeness check across all families | W1, W2, W6 | Materialized |
 | `004-census-runtime-taxonomy` | Freeze command census; normalize cross-runtime invocation + split host/leaf roles; shape-based topology taxonomy incl. route-manifest variant | W3, W4, W5 | Planned |
 | `005-generation-and-cleanup` | Generate thin routers + asset tables from the contract; command-local mismatch fixes; hint budget; loader/subaction ergonomics | G1, G2, G3, G4 | Planned |
 | `006-claude-parity-decision` | Decide Claude command parity explicitly — wire the mirror or re-scope canon/benchmark to opencode+codex | D1 | Planned (decision gate) |
