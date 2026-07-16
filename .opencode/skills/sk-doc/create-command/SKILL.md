@@ -344,11 +344,11 @@ Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Executi
 
 **Variants (one type, differing only by hand-off — not by required sections):**
 
-- Workflow-YAML-backed — routes execution into `_auto.yaml` / `_confirm.yaml` workflow assets (for example the deep-large and speckit families).
-- Direct-dispatch-script — dispatches directly to tools or scripts, no workflow YAML (for example the skill-benchmark, doctor, and memory families).
-- Compiled-stub — a generated stub carrying the `render-command-contract` marker whose contract is rendered at invocation; exempt from authored section requirements (retained variant; no command currently uses it — the deep commands are full authored routers).
+- Workflow-YAML-backed — routes execution into `_auto.yaml` / `_confirm.yaml` workflow assets.
+- Direct-dispatch-script — dispatches directly to tools or scripts, no workflow YAML.
+- Compiled-stub — a generated stub carrying the `render-command-contract` marker whose contract is rendered at invocation; exempt from authored section requirements (retained variant; no command currently uses it).
 
-Use `assets/command_router_template.md` for the canonical numbered router skeleton, and `assets/command_presentation_template.md` for the full presentation asset skeleton.
+Which family uses which topology is defined by the machine-readable command contract (`assets/command_contract.json`, validated by `assets/command_contract.schema.json`); consult it rather than a hand-maintained family list. Use `assets/command_router_template.md` for the canonical numbered router skeleton, and `assets/command_presentation_template.md` for the full presentation asset skeleton.
 
 ### Step 12: Add Destructive-Action Safety
 
@@ -458,6 +458,7 @@ Use these only for overflow detail, long examples, and exact skeletons:
 - `assets/command_template.md` - exhaustive command type templates, examples, vocabulary, and validation checklist.
 - `assets/command_router_template.md` - canonical numbered router skeleton with variant call-outs.
 - `assets/command_presentation_template.md` - full `_presentation.txt` skeleton for split command families.
+- `assets/command_contract.json` / `assets/command_contract.schema.json` - machine-readable behavioral contract for the command families and its schema.
 - `../shared/references/core_standards.md` - shared document quality standards.
 - `../shared/references/validation.md` - shared validation expectations.
 - `../shared/scripts/validate_document.py` - blocking structure validation.

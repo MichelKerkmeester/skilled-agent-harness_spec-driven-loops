@@ -17,7 +17,7 @@
       "presentation ownership typed exceptions",
       "versioned command contract implementation",
       "command contract sidecar schema",
-      "command contract scaffold status"
+      "command contract shipped status"
     ],
     "key_topics": [
       "versioned",
@@ -34,7 +34,7 @@
       "sidecar"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/create-command/SKILL.md",
       ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
@@ -94,12 +94,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -119,6 +113,12 @@
       },
       {
         "name": "stale",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -160,7 +160,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria Both",
+        "name": "Completion Criteria Met",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -168,6 +168,12 @@
       {
         "name": "References Parent",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -182,17 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Nothing",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define a versioned, machine-readable command contract as the single source of behavioral truth for the six command families. Populate topology, input and gate owner, execution targets, mode matrix, owned assets, loader requirements, presentation ownership with typed exceptions, destructive policy, timeout bounds, and runtime invocation aliases; align both templates and the skill to consume it; and resolve the required-input contradiction and stale template references.",
     "created_at": "2026-07-16T07:51:58.533Z",
-    "last_save_at": "2026-07-16T08:32:00.049Z",
+    "last_save_at": "2026-07-16T10:16:38.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4431067d51341fbe0bac3ef3a03bea78579624db9992be70ee1544018cf2fa40",
+    "source_fingerprint": "sha256:b2fae52c45997763443c21329a0bbeb905cd05039a7925b87b67f053cdafdeaa",
     "source_doc_hashes": {
-      "spec.md": "59d67fe89342396c390beae4f787aa24cd71ce28dbcdd3527843677394e7fb65",
-      "plan.md": "0ad22ce9c6471e70935cae88f4091116d6083a672b80cbe149401b013c80f8d5",
-      "tasks.md": "9a63b0a0259a866f20e5e9f30c4fb39f451f82ed16f26677986af4914c1e7a02",
-      "implementation-summary.md": "84ab2e2392591f3667a8b87d1d4be67f0d97c2957e14115aee4de27b8316fc5e"
+      "spec.md": "dd157e3fb57f5e676639322585336b830d5ab074edcd42afe1ef593a7b6d3674",
+      "plan.md": "e636fb4247c58a617f7fff3b7fd79e530ab81a470c7ac83e9301ce6ebb456b93",
+      "tasks.md": "0c70f51f3e0599fc3e42b6f4a96ca0e7e8d004e1e194073ccaa7673c54a4fefa",
+      "implementation-summary.md": "bae15410a5246ce71c2abd4a68f7a2ca2583c5e207d3e501a0c3a20e969c7bce"
     },
     "last_active_child_id": null,
     "last_active_at": null

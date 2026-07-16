@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: versioned command contract"
 description: "Define a versioned, machine-readable command contract as the single source of behavioral truth for the six command families. Populate topology, input and gate owner, execution targets, mode matrix, owned assets, loader requirements, presentation ownership with typed exceptions, destructive policy, timeout bounds, and runtime invocation aliases; align both templates and the skill to consume it; and resolve the required-input contradiction and stale template references."
-status: in_progress
+status: complete
 trigger_phrases:
   - "versioned command contract"
   - "command contract schema"
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-16 |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->

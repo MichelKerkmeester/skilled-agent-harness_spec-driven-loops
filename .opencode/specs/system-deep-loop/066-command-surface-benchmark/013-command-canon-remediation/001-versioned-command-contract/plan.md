@@ -1,7 +1,7 @@
 ---
 title: "Implementation Plan: versioned command contract"
 description: "Plan for the versioned command-contract sidecar schema: define it under create-command/assets/, populate all six families, align both templates and the skill to consume it, and resolve the required-input contradiction and stale template references, with asset-layer fields finalized after the 014 research."
-status: in_progress
+status: complete
 importance_tier: "critical"
 contextType: "planning"
 _memory:

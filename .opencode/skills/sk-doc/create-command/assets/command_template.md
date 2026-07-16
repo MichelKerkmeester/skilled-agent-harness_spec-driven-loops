@@ -156,14 +156,14 @@ Is this a repeatable workflow with defined steps?
 
 ### Overview
 
-| Type                  | Complexity | Use When                      | Template Section |
-| --------------------- | ---------- | ----------------------------- | ---------------- |
-| **Simple**            | Low        | Single action, few args       | Section 10       |
-| **Workflow**          | Medium     | Multi-step process            | Section 11       |
-| **Mode-Based**        | Medium     | `:auto`/`:confirm` variants   | Section 12       |
-| **Argument Dispatch** | Medium     | Multiple entry points/actions | Section 13       |
-| **Destructive**       | Medium     | Requires confirmation         | Section 14       |
-| **Namespace**         | Varies     | Grouped related commands      | Section 15       |
+| Type                  | Complexity | Use When                      | Template                     |
+| --------------------- | ---------- | ----------------------------- | ---------------------------- |
+| **Simple**            | Low        | Single action, few args       | Simple Command Template      |
+| **Workflow**          | Medium     | Multi-step process            | Workflow Command Template    |
+| **Mode-Based**        | Medium     | `:auto`/`:confirm` variants   | Mode-Based Command Template  |
+| **Argument Dispatch** | Medium     | Multiple entry points/actions | Argument Dispatch Pattern    |
+| **Destructive**       | Medium     | Requires confirmation         | Destructive Command Template |
+| **Namespace**         | Varies     | Grouped related commands      | Namespace Command Pattern    |
 
 ### Choosing the Right Type
 
@@ -603,7 +603,7 @@ allowed-tools: Read, Write, Edit, Bash, Task
 
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
 
-[Include mandatory gate pattern from Section 6]
+[Include the Mandatory Gate Pattern]
 
 ---
 
@@ -720,7 +720,7 @@ allowed-tools: Read, Write, Edit, Bash, Task
 
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
 
-[Include mandatory gate pattern from Section 6]
+[Include the Mandatory Gate Pattern]
 
 ---
 
@@ -838,9 +838,11 @@ The **memory** and **doctor** families have NO workflow YAML — their routers d
 
 **Canonical router shape (first-class standard).** Every router uses one canonical, numbered section vocabulary — full integers, in this order: **`## 1. ROUTER CONTRACT`**, **`## 2. OWNED ASSETS`**, **`## 3. MODE ROUTING`**, **`## 4. EXECUTION TARGETS`**, **`## 5. PRESENTATION BOUNDARY`**, **`## 6. WORKFLOW SUMMARY`**. The blocking core is only `Owned Assets` + `Presentation Boundary`; the other four are recommended and surface as non-blocking warnings when absent. Variants differ by hand-off only, not by required sections:
 
-- **Workflow-YAML-backed** (speckit, create, deep-large) route modes into `_auto.yaml` / `_confirm.yaml`.
-- **Direct-dispatch-script** (memory, doctor, skill-benchmark) dispatch straight to tools and scripts and may leave the recommended sections as warnings.
-- **Compiled-stub** commands carry a `render-command-contract` marker and are exempt from section requirements (retained variant; no command currently uses it — the deep commands are full routers).
+- **Workflow-YAML-backed** routers route modes into `_auto.yaml` / `_confirm.yaml`.
+- **Direct-dispatch-script** routers dispatch straight to tools and scripts and may leave the recommended sections as warnings.
+- **Compiled-stub** commands carry a `render-command-contract` marker and are exempt from section requirements (retained variant; no command currently uses it).
+
+Which family uses which topology is defined by the machine-readable command contract ([`command_contract.json`](command_contract.json), validated by [`command_contract.schema.json`](command_contract.schema.json)); read it rather than hand-maintaining a family list here.
 
 Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Execution Order`); the validator alias-normalizes those as a safety net, but the authored end state is the canonical names above. Reference shape: `.opencode/commands/speckit/plan.md` (router) + `speckit_plan_presentation.txt` (contract). Skeletons: [`command_router_template.md`](command_router_template.md), [`command_presentation_template.md`](command_presentation_template.md).
 
@@ -1136,7 +1138,7 @@ Before publishing a command, verify:
 ### Structure
 
 - [ ] H1 title matches command purpose
-- [ ] H2 sections use format: `## N. SECTION-NAME` (see Section 6 for section vocabulary)
+- [ ] H2 sections use format: `## N. SECTION-NAME` (see the Section Vocabulary)
 - [ ] H3 subsections: `### Step N: Description`
 - [ ] Dividers (`---`) between major sections
 - [ ] Instructions are numbered and actionable
@@ -1149,7 +1151,7 @@ Before publishing a command, verify:
 - [ ] H2: Numbered + SECTION-NAME (`## 1. PURPOSE`)
 - [ ] H3/H4: Title case (`### Step 1: Description`)
 - [ ] Consistent numbering (1, 2, 3...)
-- [ ] Section names from approved vocabulary (Section 6)
+- [ ] Section names from approved vocabulary (see the Section Vocabulary)
 
 **Blocking Phase Pattern:**
 Commands with mandatory input phases use these semantic markers:
@@ -1230,3 +1232,36 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
 ### Standards
 - [core_standards.md](../../../shared/references/core_standards.md) - Document type rules
 - [validation.md](../../../shared/references/validation.md) - Quality scoring
+- [command_contract.json](command_contract.json) / [command_contract.schema.json](command_contract.schema.json) - Machine-readable behavioral contract and its schema
+
+---
+
+## 20. COMMAND CONTRACT
+
+Behavioral truth per family — topology, input and gate owner, execution targets, mode matrix,
+owned assets, presentation ownership with typed exceptions, destructive policy, timeout bounds,
+and invocation aliases — is defined once in the machine-readable contract
+[`command_contract.json`](command_contract.json), validated against
+[`command_contract.schema.json`](command_contract.schema.json). This template's prose describes
+how to author a command; the contract is the source of truth for what each family does. Read the
+contract for a family's authoritative topology and mode default rather than re-deriving it from a
+hand-maintained list. A single family entry validates as one `familyContract`:
+
+<!-- contract-example -->
+```json
+{
+  "topology": "direct-dispatch",
+  "router_path": ".opencode/commands/<ns>/<action>.md",
+  "input": { "required": false, "gate_owner": "router", "argument_hint": "<query> | <sub-action>" },
+  "execution_targets": [
+    { "selector": "<sub-action>", "target": "the tool, script, or MCP call the router dispatches" }
+  ],
+  "mode_matrix": { "default_policy": "non-mutating-default", "supported_modes": [] },
+  "owned_assets": [
+    { "purpose": "presentation", "path": ".opencode/commands/<ns>/assets/<action>_presentation.txt" }
+  ],
+  "presentation": { "owner": "presentation-asset", "exceptions": [] },
+  "destructive_policy": { "has_destructive_ops": true, "gated": true, "operations": ["names the destructive operations and confirms they are gated"] },
+  "invocation_aliases": ["/<ns>:<action>"]
+}
+```
