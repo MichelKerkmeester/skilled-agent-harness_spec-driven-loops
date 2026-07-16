@@ -1309,7 +1309,19 @@ function scoreScenario(arg) {
     ? [...new Set([...(routerResult.resources || []), ...((obs && obs.observedAssets) || [])])]
     : routerResult.resources;
   const intentRecall = setRecall(expected && expected.intentKeys, routerResult.intents);
-  const resourceRecall = setRecall(expected && expected.resources, observedForRecall);
+  // A manifest-bearing skill's canonical (mode, leaf) recall is the ACCURATE
+  // resource-routing measure. The flat-string proxy structurally undercounts it,
+  // because gold root-relative paths (references/...) never string-match the
+  // router's packet-qualified emissions (create-skill/references/...). When valid
+  // typed gold exists it supersedes the flat proxy for recall (D1-intra + D2) and
+  // its precision drives D3 over-routing; a skill with no manifest or no typed
+  // gold keeps the flat-string proxy byte-for-byte.
+  const typedRecall = (typedGoldVerdict && typedGoldVerdict.status === 'valid')
+    ? scoreTypedPairRecall({ expectedPairs: expected.leafResources, routerResult })
+    : null;
+  const typedResourceScore = typedRecall && typedRecall.score != null ? typedRecall.score : null;
+  const flatResourceRecall = setRecall(expected && expected.resources, observedForRecall);
+  const resourceRecall = typedResourceScore != null ? typedResourceScore : flatResourceRecall;
   dims.d1intra = scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRecall, resourceRecall, liveTier });
 
   // Command recipe validity is gold-gated. Without recipe gold it is inert; when
@@ -1328,6 +1340,21 @@ function scoreScenario(arg) {
   // be routed, so the over-routing math inverts (routing them reads as zero
   // waste). Couple D3 to the suppression outcome instead, mirroring D2.
   dims.d3 = scoreD3({ negative, d1intra: dims.d1intra, routerResult, expected });
+  // For a manifest-bearing skill the flat-string D3 counts every packet-qualified
+  // emission as waste (none string-matches the root-relative gold), collapsing to
+  // a spurious zero. Measure over-routing on canonical pairs instead: precision =
+  // hit / observed, so an exact bundle scores 1 and an over-bundled one is
+  // penalized in proportion to the wasted pairs.
+  if (typedRecall && !negative && typedRecall.observedCount > 0) {
+    const precision = typedRecall.hit / typedRecall.observedCount;
+    dims.d3 = {
+      score: precision,
+      routedCount: typedRecall.observedCount,
+      wastedCount: typedRecall.observedCount - typedRecall.hit,
+      proxy: 'typed-pair-precision',
+      note: 'manifest-bearing: over-routing measured on canonical typed pairs',
+    };
+  }
   const recipeCapped = dims.commandRecipe.applicable && !dims.commandRecipe.valid;
   if (recipeCapped) {
     dims.d2.uncappedScore = dims.d2.score;
@@ -1392,12 +1419,11 @@ function scoreScenario(arg) {
   // actually did) without bloating the JSON with full transcripts.
   const liveEvidence = buildLiveEvidence(obs);
 
-  // Typed-pair recall rides alongside the existing flat-string dims rather
-  // than replacing them, so a gated row's D1-D5 math stays byte-identical to
-  // an ungated one; only this extra field and the row-level errorClass differ.
-  const typedPairRecall = typedGoldVerdict && typedGoldVerdict.status === 'valid'
-    ? scoreTypedPairRecall({ expectedPairs: expected.leafResources, routerResult })
-    : null;
+  // Typed-pair recall is surfaced as its own diagnostic field in addition to
+  // feeding D1-intra/D2 (recall) and D3 (precision) above. Reuse the value
+  // already computed for the score so the reported breakdown and the scored
+  // dims can never disagree; a row with no valid typed gold carries neither.
+  const typedPairRecall = typedRecall;
   if (typedPairRecall) dims.typedPairRecall = typedPairRecall;
 
   return {
