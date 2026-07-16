@@ -300,6 +300,10 @@ Route by:
 
 Then define one handler section per action. Show example routing in a table so future maintainers can verify behavior quickly.
 
+**Argument-echo deprecation.** Do not end a command with a bare `User request: $ARGUMENTS` line. The command already receives `$ARGUMENTS`; echoing it verbatim adds no routing behavior and duplicates the argument surface the router resolves. Resolve arguments in the router body — the validator warns on the raw-echo idiom.
+
+**Loader gating.** Frontmatter is the load gate: `allowed-tools` authorizes exactly the tools and MCP surfaces a command may use, and any agent the router dispatches must both be admitted by that gate and resolve to a real agent definition in the active runtime's agent directory. Do not dispatch a handle the frontmatter does not admit or that does not exist.
+
 ### Step 10: Implement Mode Routing When Needed
 
 For commands supporting `:auto` and `:confirm`, document mode detection:
@@ -352,6 +356,8 @@ Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Executi
 - Compiled-stub — a generated stub carrying the `render-command-contract` marker whose contract is rendered at invocation; exempt from authored section requirements (retained variant; no command currently uses it).
 
 Which family uses which topology is defined by the machine-readable command contract (`assets/command_contract.json`, validated by `assets/command_contract.schema.json`); consult it rather than a hand-maintained family list. Use `assets/command_router_template.md` for the canonical numbered router skeleton, and `assets/command_presentation_template.md` for the full presentation asset skeleton.
+
+**Template self-sufficiency.** Each router variant must be authorable from its template alone — `command_router_template.md` plus the family's `command_contract.json` entry carry every section, vocabulary, and asset-path shape a new router needs. If a required shape is not derivable from the template and the contract, the template is incomplete: fix the template rather than copying a sibling command. This keeps the contract the single source and lets `generate-command-routers.cjs --check` detect drift instead of it hiding in hand-copied prose.
 
 ### Step 12: Add Destructive-Action Safety
 

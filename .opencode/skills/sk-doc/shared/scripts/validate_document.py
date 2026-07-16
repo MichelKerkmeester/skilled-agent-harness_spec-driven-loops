@@ -897,6 +897,19 @@ def validate_command_frontmatter(
                     'fix_hint': f"Replace '{token}' with its fully-qualified mcp__<server>__<tool> form",
                 })
 
+    # Ergonomics: a trailing `User request: $ARGUMENTS` raw-echo is a deprecated
+    # idiom. The command already receives $ARGUMENTS; echoing it verbatim adds no
+    # routing behavior and duplicates the argument surface the router resolves.
+    # Warn, never block — it is harmless, just legacy.
+    body = content[match.end():]
+    if re.search(r'^User request:\s*\$ARGUMENTS\s*$', body, re.MULTILINE):
+        errors.append({
+            'type': 'command_raw_argument_echo',
+            'severity': 'warning',
+            'message': 'Command carries the deprecated `User request: $ARGUMENTS` raw-echo — the command already receives $ARGUMENTS; the echo adds no routing behavior',
+            'fix_hint': 'Remove the raw-echo line; the router body resolves $ARGUMENTS directly',
+        })
+
     return errors
 
 
