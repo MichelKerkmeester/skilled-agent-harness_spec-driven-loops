@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/z_archive/009-playbook-run-and-remediation",
+  "spec_folder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-skill-advisor/009-playbook-run-and-remediation/001-preconditions-and-build",
+    "system-skill-advisor/009-playbook-run-and-remediation/002-mcp-native-scenarios",
+    "system-skill-advisor/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+    "system-skill-advisor/009-playbook-run-and-remediation/004-shell-python-daemon",
+    "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation",
+    "system-skill-advisor/009-playbook-run-and-remediation/006-p1-routing-tuning",
+    "system-skill-advisor/z_archive/009-playbook-run-and-remediation/001-preconditions-and-build",
+    "system-skill-advisor/z_archive/009-playbook-run-and-remediation/002-mcp-native-scenarios",
+    "system-skill-advisor/z_archive/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+    "system-skill-advisor/z_archive/009-playbook-run-and-remediation/004-shell-python-daemon",
+    "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation",
+    "system-skill-advisor/z_archive/009-playbook-run-and-remediation/006-p1-routing-tuning"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor playbook run",
+      "skill-advisor manual testing playbook",
+      "028 skill advisor playbook"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "playbook",
+      "run",
+      "skill-advisor",
+      "manual",
+      "testing",
+      "system-skill-advisor",
+      "ships",
+      "46-scenario",
+      "manualtestingplaybook",
+      "spanning"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Manual Testing Playbook Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-skill-advisor` skill ships a 46-scenario manual testing playbook (`manualtestingplaybook/`) spanning native MCP tools, CLI runtime hooks, compatibility shims, auto-update daemon state, auto-indexing, lifecycle routing, scorer fusion and Python compatibility",
+    "created_at": "2026-05-26T20:09:07.489Z",
+    "last_save_at": "2026-07-16T16:06:00.872Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e4eb5c0848512cc3838ba1dd1572dcc97b1e15d4f297c7a3103b508c1276c4ac",
+    "source_doc_hashes": {
+      "spec.md": "94f6c0ec79694cc0b3b5f619c46e3892979bc7b3bce376a0349c712b77c88482"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

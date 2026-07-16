@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation",
+  "description": "Phase parent for skill-advisor documentation work across 3 children: docs/code alignment, code-folder READMEs, and doc/config drift fixes.",
+  "keywords": [
+    "phase",
+    "parent",
+    "skill-advisor",
+    "documentation",
+    "work",
+    "across",
+    "children",
+    "docs",
+    "code",
+    "alignment",
+    "code-folder",
+    "readmes",
+    "doc",
+    "config",
+    "drift"
+  ],
+  "lastUpdated": "2026-07-15T15:48:37.734Z",
+  "specId": "008",
+  "folderSlug": "skill-advisor-documentation",
+  "parentChain": [
+    "system-skill-advisor",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/z_archive/001-skill-advisor-refinement",
+  "spec_folder": "system-skill-advisor/z_archive/001-skill-advisor-refinement",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor",
+      "routing quality",
+      "confidence uncertainty",
+      "intent normalization",
+      "latency benchmark",
+      "skill advisor plan",
+      "regression harness",
+      "skill advisor tasks",
+      "routing quality gates",
+      "latency benchmark tasks",
+      "skill advisor verification",
+      "regression gate"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "routing",
+      "quality",
+      "confidence",
+      "uncertainty",
+      "intent",
+      "normalization",
+      "latency",
+      "benchmark",
+      "plan",
+      "regression"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Refinement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Functional",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Decisions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current advisor mixes command bridges and real skills in a single ranking path, applies confidence-only behavior when `--threshold` is explicitly passed, and performs repeated expensive discovery/parsing work per process",
+    "created_at": "2026-04-12T09:02:50.201Z",
+    "last_save_at": "2026-07-16T16:05:58.086Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5c23a8b1b14a36ff43ecefd027df030908b041423b7d1bdb0a9bb0f186a9bc36",
+    "source_doc_hashes": {
+      "spec.md": "ff95a098b17062a9c2bd8eaa819160e1512c18e02e6f89d1c7131fd96fc4f1c8",
+      "plan.md": "7485aa50128275baf6eef5d5a2d31f73ebe1c0e9f2a4b68a86215192c0c7c153",
+      "tasks.md": "3a93597ccc1162ec57e7ca8ddd41edc79d331eb72b2000992be63ddf0e182775",
+      "checklist.md": "05bc68395c1499683940765e2889526db729af390bff80df62d710c26a85cd39",
+      "decision-record.md": "34a8f1653dfe93a34409bbdf48c0e362e9cfc811fe63eb027ee2b49c5f76c31b",
+      "implementation-summary.md": "b5093b90557c815cefde5b817d0aa2a231896a50e6c3c02c8f1fedb1b4dbd686"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

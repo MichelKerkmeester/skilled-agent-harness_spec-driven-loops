@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/z_archive/015-skill-advisor-phase-parent",
+  "description": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and",
+  "keywords": [
+    "skill",
+    "advisor",
+    "research",
+    "surfaced",
+    "candidate",
+    "work",
+    "across",
+    "deterministic",
+    "fusion",
+    "lane",
+    "health",
+    "embedding",
+    "freshness",
+    "query",
+    "routing",
+    "drift",
+    "metrics"
+  ],
+  "lastUpdated": "2026-07-15T15:48:37.915Z",
+  "specId": "015",
+  "folderSlug": "skill-advisor-phase-parent",
+  "parentChain": [
+    "system-skill-advisor",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

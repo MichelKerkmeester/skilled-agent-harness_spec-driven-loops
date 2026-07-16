@@ -1,0 +1,26 @@
+{
+  "level": "phase",
+  "specFolder": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack",
+  "description": "Skill-advisor embedder work delivered the pluggable architecture, registry, schema, and writer wiring.",
+  "keywords": [
+    "skill-advisor",
+    "embedder",
+    "work",
+    "delivered",
+    "pluggable",
+    "architecture",
+    "registry",
+    "schema",
+    "writer",
+    "wiring"
+  ],
+  "lastUpdated": "2026-07-15T15:48:37.832Z",
+  "specId": "010",
+  "folderSlug": "skill-advisor-embedder-stack",
+  "parentChain": [
+    "system-skill-advisor",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

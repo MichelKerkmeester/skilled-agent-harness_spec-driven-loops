@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine",
+  "spec_folder": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-skill-advisor/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
+    "system-skill-advisor/005-skill-advisor-scoring-engine/002-semantic-routing-lane",
+    "system-skill-advisor/005-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
+    "system-skill-advisor/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
+    "system-skill-advisor/005-skill-advisor-scoring-engine/005-routing-weight-sweep-harness",
+    "system-skill-advisor/005-skill-advisor-scoring-engine/006-seeded-corpus-evaluation-sweep",
+    "system-skill-advisor/005-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep",
+    "system-skill-advisor/005-skill-advisor-scoring-engine/008-routing-confidence-calibration",
+    "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
+    "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/002-semantic-routing-lane",
+    "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
+    "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
+    "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/005-routing-weight-sweep-harness",
+    "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/006-seeded-corpus-evaluation-sweep",
+    "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep",
+    "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/008-routing-confidence-calibration"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-skill-advisor/005-skill-advisor-scoring-engine",
+      "scorer",
+      "skill-advisor scoring"
+    ],
+    "key_topics": [
+      "006-skill-advisor",
+      "005-skill-advisor-scoring-engine",
+      "scorer",
+      "skill-advisor",
+      "scoring",
+      "phase",
+      "parent",
+      "skill",
+      "advisor",
+      "optimization",
+      "across",
+      "children"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoring System",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Hook Improvements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cosine",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "eval_run_ablation",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "laneWeightsOverride",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for skill advisor scoring optimization across 8 children: embed cache, cosine wiring, ablation/weight/corpus sweeps, and routing calibration to activate semantic similarity lanes.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-07-16T16:05:59.535Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5987a69d8b08a794be3556269e3446a465dcb934e2816150101f141c38cb7cf7",
+    "source_doc_hashes": {
+      "spec.md": "8cf9f8c598c0e84c54d3b23c56632f13df5d31679060bf4d6a179873631e6158"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

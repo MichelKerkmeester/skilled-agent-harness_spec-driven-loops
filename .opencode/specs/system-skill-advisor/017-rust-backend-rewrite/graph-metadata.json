@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/017-rust-backend-rewrite",
+  "spec_folder": "system-skill-advisor/017-rust-backend-rewrite",
+  "parent_id": null,
+  "children_ids": [
+    "system-skill-advisor/017-rust-backend-rewrite-research/001-research",
+    "system-skill-advisor/017-rust-backend-rewrite-research/002-research",
+    "system-skill-advisor/017-rust-backend-rewrite/001-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "013 rust skill advisor rewrite",
+      "rust rewrite skill advisor",
+      "skill advisor rust backend research",
+      "rust vs typescript skill advisor",
+      "skill advisor rust deep research"
+    ],
+    "key_topics": [
+      "rust",
+      "skill",
+      "advisor",
+      "rewrite",
+      "backend",
+      "research",
+      "typescript",
+      "deep",
+      "system-skill-advisor",
+      "51k",
+      "loc",
+      "authored"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-research/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Backend Rewrite Research Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-skill-advisor` backend is ~51K LOC of authored TypeScript across ~268 files (`mcpserver/`), run as a long-lived MCP server (plus a daemon-backed CLI front door) that routes a request to the matching skill",
+    "created_at": "2026-07-11T06:42:41.171Z",
+    "last_save_at": "2026-07-16T16:06:03.713Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ddf4409b0a188cd3e17b7010fb6451a4c322ce0e074c1879ac0f11fb33a7822b",
+    "source_doc_hashes": {
+      "spec.md": "0f85b6d69105a659144d55fcd0a71ca595980802acc0005fb9fecfcd8b117eb8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

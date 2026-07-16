@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-skill-advisor/z_archive/003-ambiguity-window-confidence-fix",
+  "description": "SAD-002 (manual playbook) verified the ambiguity contract but exposed a calibration gap: the scorer flagged the cross-domain prompt \"Review the",
+  "keywords": [
+    "sad-002",
+    "manual",
+    "playbook",
+    "verified",
+    "ambiguity",
+    "contract",
+    "exposed",
+    "calibration",
+    "gap",
+    "scorer",
+    "flagged",
+    "cross-domain",
+    "prompt",
+    "review"
+  ],
+  "lastUpdated": "2026-07-15T15:48:37.273Z",
+  "specId": "003",
+  "folderSlug": "ambiguity-window-confidence-fix",
+  "parentChain": [
+    "system-skill-advisor",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_14-05__manual-context-save.md"
+  ]
+}

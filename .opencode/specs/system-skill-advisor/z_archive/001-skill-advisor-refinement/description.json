@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-skill-advisor/z_archive/001-skill-advisor-refinement",
+  "description": "The current advisor mixes command bridges and real skills in a single ranking path, applies confidence-only behavior when `--threshold` is explicitly",
+  "keywords": [
+    "current",
+    "advisor",
+    "mixes",
+    "command",
+    "bridges",
+    "real",
+    "skills",
+    "single",
+    "ranking",
+    "path",
+    "applies",
+    "confidence-only",
+    "behavior",
+    "threshold",
+    "explicitly"
+  ],
+  "lastUpdated": "2026-07-15T15:48:37.241Z",
+  "specId": "001",
+  "folderSlug": "skill-advisor-refinement",
+  "parentChain": [
+    "system-skill-advisor",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

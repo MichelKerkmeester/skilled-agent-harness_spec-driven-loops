@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation",
+  "spec_folder": "system-skill-advisor/z_archive/008-skill-advisor-documentation",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-skill-advisor/008-skill-advisor-documentation/001-documentation-code-alignment",
+    "system-skill-advisor/008-skill-advisor-documentation/002-code-folder-readme-coverage",
+    "system-skill-advisor/008-skill-advisor-documentation/003-fix-documentation-config-drift",
+    "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor",
+    "system-skill-advisor/008-skill-advisor-documentation/005-cross-skill-documentation-decoupling",
+    "system-skill-advisor/008-skill-advisor-documentation/006-skill-readme-refinement-survey",
+    "system-skill-advisor/008-skill-advisor-documentation/007-reference-template-alignment",
+    "system-skill-advisor/z_archive/008-skill-advisor-documentation/001-documentation-code-alignment",
+    "system-skill-advisor/z_archive/008-skill-advisor-documentation/002-code-folder-readme-coverage",
+    "system-skill-advisor/z_archive/008-skill-advisor-documentation/003-fix-documentation-config-drift",
+    "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor",
+    "system-skill-advisor/z_archive/008-skill-advisor-documentation/005-cross-skill-documentation-decoupling",
+    "system-skill-advisor/z_archive/008-skill-advisor-documentation/006-skill-readme-refinement-survey",
+    "system-skill-advisor/z_archive/008-skill-advisor-documentation/007-reference-template-alignment"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-skill-advisor/008-skill-advisor-documentation",
+      "skill-advisor-docs",
+      "code-folder-readmes"
+    ],
+    "key_topics": [
+      "006-skill-advisor",
+      "008-skill-advisor-documentation",
+      "skill-advisor-docs",
+      "code-folder-readmes",
+      "phase",
+      "parent",
+      "skill-advisor",
+      "documentation",
+      "work",
+      "across",
+      "children",
+      "docs"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for skill-advisor documentation work across 3 children: docs/code alignment, code-folder READMEs, and doc/config drift fixes.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-07-16T16:06:00.518Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9a75e0c9550dd23e373f7dbec2ad402b2ccfe614c0c945b87f7bd05e2fa96188",
+    "source_doc_hashes": {
+      "spec.md": "0584b729345856c2007b97ec27e2e2ab5bd7993297eb92db90c27f35594f0d9c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation",
+  "description": "The `system-skill-advisor` skill ships a 46-scenario manual testing playbook (`manualtestingplaybook/`) spanning native MCP tools, CLI runtime hooks,",
+  "keywords": [
+    "system-skill-advisor",
+    "skill",
+    "ships",
+    "46-scenario",
+    "manual",
+    "testing",
+    "playbook",
+    "manualtestingplaybook",
+    "spanning",
+    "native",
+    "mcp",
+    "tools",
+    "cli",
+    "runtime",
+    "hooks"
+  ],
+  "lastUpdated": "2026-07-15T15:48:37.778Z",
+  "specId": "009",
+  "folderSlug": "playbook-run-and-remediation",
+  "parentChain": [
+    "system-skill-advisor",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_21-09__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

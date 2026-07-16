@@ -1,1 +1,0 @@
-{"type":"iteration","iteration":16,"run":16,"mode":"review","status":"complete","focus":"security","dimensions":["security"],"filesReviewed":[".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/plan.md"],"findingsCount":0,"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"newFindingsRatio":0.0,"timestamp":"2026-07-07T15:51:00Z"}

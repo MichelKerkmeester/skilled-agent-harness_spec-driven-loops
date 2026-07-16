@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening",
+  "description": "Phase parent for skill-advisor hardening and safety improvements across 4 child packets.",
+  "keywords": [
+    "phase",
+    "parent",
+    "skill-advisor",
+    "hardening",
+    "safety",
+    "improvements",
+    "across",
+    "child",
+    "packets"
+  ],
+  "lastUpdated": "2026-07-15T15:48:37.678Z",
+  "specId": "007",
+  "folderSlug": "skill-advisor-production-hardening",
+  "parentChain": [
+    "system-skill-advisor",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}
