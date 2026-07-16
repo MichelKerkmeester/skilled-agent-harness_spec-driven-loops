@@ -6,14 +6,34 @@
   "traceMode": "router",
   "targetSkill": {
     "id": "sk-code",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/skills/sk-code"
   },
-  "verdict": "BLOCKED-BY-STRUCTURE",
-  "aggregateScore": null,
+  "verdict": "CONDITIONAL",
+  "aggregateScore": 83,
+  "generalization": {
+    "fittedScore": 83,
+    "holdoutScore": null,
+    "generalizationGap": null,
+    "fittedCount": 23,
+    "holdoutCount": 0,
+    "negativeCount": 6,
+    "note": "no holdout-staged scenarios; fitted aggregate equals the overall score (score-preserving)"
+  },
   "gate": {
-    "d5Score": 0,
-    "gateFailed": true,
-    "reason": "D5 structural hard-gate failure"
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null,
+    "hubRoute": {
+      "failed": false,
+      "regressions": 0,
+      "knownGaps": 0,
+      "reason": null
+    },
+    "toolSurface": {
+      "failed": false,
+      "violations": [],
+      "reason": null
+    }
   },
   "dimensionScores": {
     "D1inter": {
@@ -23,15 +43,15 @@
     },
     "D1intra": {
       "points": 13,
-      "score": null
+      "score": 90
     },
     "D2": {
       "points": 20,
-      "score": null
+      "score": 84
     },
     "D3": {
       "points": 15,
-      "score": null
+      "score": 66
     },
     "D4": {
       "points": 25,
@@ -40,7 +60,7 @@
     },
     "D5": {
       "points": 15,
-      "score": 0,
+      "score": 100,
       "hardGate": true
     }
   },
@@ -48,583 +68,3051 @@
     "D1inter",
     "D4"
   ],
-  "funnel": {},
-  "headlineBottleneck": null,
+  "excludedDimensions": [],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": null,
+      "status": "deferred (router) or no asset gold",
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    },
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    }
+  },
+  "funnel": {
+    "discovered": 1,
+    "passed": 22
+  },
+  "headlineBottleneck": "discovered",
   "bottlenecks": [
     {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/phase_detection.md",
-      "detail": "references/phase_detection.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/smart_routing.md",
-      "detail": "references/smart_routing.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/stack_detection.md",
-      "detail": "references/stack_detection.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/verification/performance_checklist.md",
-      "detail": "references/webflow/verification/performance_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/verification/verification_workflows.md",
-      "detail": "references/webflow/verification/verification_workflows.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/shared/cross_language_rules.md",
-      "detail": "references/webflow/shared/cross_language_rules.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/shared/dev_workflow.md",
-      "detail": "references/webflow/shared/dev_workflow.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/shared/enforcement.md",
-      "detail": "references/webflow/shared/enforcement.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/performance/cwv_remediation.md",
-      "detail": "references/webflow/performance/cwv_remediation.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/performance/interaction_gated_loading.md",
-      "detail": "references/webflow/performance/interaction_gated_loading.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/performance/resource_loading.md",
-      "detail": "references/webflow/performance/resource_loading.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/performance/third_party.md",
-      "detail": "references/webflow/performance/third_party.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/performance/webflow_constraints.md",
-      "detail": "references/webflow/performance/webflow_constraints.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/javascript/quality_standards.md",
-      "detail": "references/webflow/javascript/quality_standards.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/javascript/quick_reference.md",
-      "detail": "references/webflow/javascript/quick_reference.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/javascript/style_guide.md",
-      "detail": "references/webflow/javascript/style_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/animation_workflows.md",
-      "detail": "references/webflow/implementation/animation_workflows.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/async_patterns.md",
-      "detail": "references/webflow/implementation/async_patterns.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/focus_management.md",
-      "detail": "references/webflow/implementation/focus_management.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/form_upload_workflows.md",
-      "detail": "references/webflow/implementation/form_upload_workflows.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/implementation_workflows.md",
-      "detail": "references/webflow/implementation/implementation_workflows.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/observer_patterns.md",
-      "detail": "references/webflow/implementation/observer_patterns.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/performance_patterns.md",
-      "detail": "references/webflow/implementation/performance_patterns.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/security_patterns.md",
-      "detail": "references/webflow/implementation/security_patterns.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/swiper_patterns.md",
-      "detail": "references/webflow/implementation/swiper_patterns.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/third_party_integrations.md",
-      "detail": "references/webflow/implementation/third_party_integrations.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/implementation/webflow_patterns.md",
-      "detail": "references/webflow/implementation/webflow_patterns.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/html/quality_standards.md",
-      "detail": "references/webflow/html/quality_standards.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/html/style_guide.md",
-      "detail": "references/webflow/html/style_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/deployment/cdn_deployment.md",
-      "detail": "references/webflow/deployment/cdn_deployment.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/deployment/minification_guide.md",
-      "detail": "references/webflow/deployment/minification_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/deployment/webflow_staging_production.md",
-      "detail": "references/webflow/deployment/webflow_staging_production.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/debugging/debugging_workflows.md",
-      "detail": "references/webflow/debugging/debugging_workflows.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/debugging/error_recovery.md",
-      "detail": "references/webflow/debugging/error_recovery.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/css/patterns.md",
-      "detail": "references/webflow/css/patterns.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/css/quality_standards.md",
-      "detail": "references/webflow/css/quality_standards.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/css/quick_reference.md",
-      "detail": "references/webflow/css/quick_reference.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/webflow/css/style_guide.md",
-      "detail": "references/webflow/css/style_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/universal/code_quality_standards.md",
-      "detail": "references/universal/code_quality_standards.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/universal/code_style_guide.md",
-      "detail": "references/universal/code_style_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/universal/error_recovery.md",
-      "detail": "references/universal/error_recovery.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/universal/multi_agent_research.md",
-      "detail": "references/universal/multi_agent_research.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/typescript/quality_standards.md",
-      "detail": "references/opencode/typescript/quality_standards.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/typescript/quick_reference.md",
-      "detail": "references/opencode/typescript/quick_reference.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/typescript/style_guide.md",
-      "detail": "references/opencode/typescript/style_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/shell/quality_standards.md",
-      "detail": "references/opencode/shell/quality_standards.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/shell/quick_reference.md",
-      "detail": "references/opencode/shell/quick_reference.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/shell/style_guide.md",
-      "detail": "references/opencode/shell/style_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/shared/alignment_verification_automation.md",
-      "detail": "references/opencode/shared/alignment_verification_automation.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/shared/code_organization.md",
-      "detail": "references/opencode/shared/code_organization.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/shared/hooks.md",
-      "detail": "references/opencode/shared/hooks.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/shared/universal_patterns.md",
-      "detail": "references/opencode/shared/universal_patterns.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/python/quality_standards.md",
-      "detail": "references/opencode/python/quality_standards.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/python/quick_reference.md",
-      "detail": "references/opencode/python/quick_reference.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/python/style_guide.md",
-      "detail": "references/opencode/python/style_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/javascript/quality_standards.md",
-      "detail": "references/opencode/javascript/quality_standards.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/javascript/quick_reference.md",
-      "detail": "references/opencode/javascript/quick_reference.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/javascript/style_guide.md",
-      "detail": "references/opencode/javascript/style_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/config/quality_standards.md",
-      "detail": "references/opencode/config/quality_standards.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/config/quick_reference.md",
-      "detail": "references/opencode/config/quick_reference.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/opencode/config/style_guide.md",
-      "detail": "references/opencode/config/style_guide.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/motion_dev/animate_and_timelines.md",
-      "detail": "references/motion_dev/animate_and_timelines.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/motion_dev/decision_matrix.md",
-      "detail": "references/motion_dev/decision_matrix.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/motion_dev/integration_patterns.md",
-      "detail": "references/motion_dev/integration_patterns.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/motion_dev/performance_and_pitfalls.md",
-      "detail": "references/motion_dev/performance_and_pitfalls.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/motion_dev/quick_start.md",
-      "detail": "references/motion_dev/quick_start.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "references/motion_dev/scroll_and_gestures.md",
-      "detail": "references/motion_dev/scroll_and_gestures.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/webflow/templates/README.md",
-      "detail": "assets/webflow/templates/README.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/webflow/scripts/README.md",
-      "detail": "assets/webflow/scripts/README.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/webflow/patterns/README.md",
-      "detail": "assets/webflow/patterns/README.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/webflow/integrations/README.md",
-      "detail": "assets/webflow/integrations/README.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/webflow/checklists/code_quality_checklist.md",
-      "detail": "assets/webflow/checklists/code_quality_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/webflow/checklists/debugging_checklist.md",
-      "detail": "assets/webflow/checklists/debugging_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/webflow/checklists/performance_loading_checklist.md",
-      "detail": "assets/webflow/checklists/performance_loading_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/webflow/checklists/verification_checklist.md",
-      "detail": "assets/webflow/checklists/verification_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/universal/patterns/README.md",
-      "detail": "assets/universal/patterns/README.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/universal/checklists/debugging_checklist.md",
-      "detail": "assets/universal/checklists/debugging_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/universal/checklists/verification_checklist.md",
-      "detail": "assets/universal/checklists/verification_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/scripts/README.md",
-      "detail": "assets/scripts/README.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/recipes/spec_folder_write.md",
-      "detail": "assets/opencode/recipes/spec_folder_write.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/agent_authoring.md",
-      "detail": "assets/opencode/checklists/agent_authoring.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/command_authoring.md",
-      "detail": "assets/opencode/checklists/command_authoring.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/config_checklist.md",
-      "detail": "assets/opencode/checklists/config_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/javascript_checklist.md",
-      "detail": "assets/opencode/checklists/javascript_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/mcp_server_authoring.md",
-      "detail": "assets/opencode/checklists/mcp_server_authoring.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/python_checklist.md",
-      "detail": "assets/opencode/checklists/python_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/shell_checklist.md",
-      "detail": "assets/opencode/checklists/shell_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/skill_authoring.md",
-      "detail": "assets/opencode/checklists/skill_authoring.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/spec_folder_authoring.md",
-      "detail": "assets/opencode/checklists/spec_folder_authoring.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/typescript_checklist.md",
-      "detail": "assets/opencode/checklists/typescript_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/opencode/checklists/universal_checklist.md",
-      "detail": "assets/opencode/checklists/universal_checklist.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/motion_dev/install_card.md",
-      "detail": "assets/motion_dev/install_card.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/motion_dev/playbook_entries.md",
-      "detail": "assets/motion_dev/playbook_entries.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "orphan_reference",
-      "severity": "P2",
-      "locus": "assets/motion_dev/snippets/README.md",
-      "detail": "assets/motion_dev/snippets/README.md is not reachable from any RESOURCE_MAP intent"
-    },
-    {
-      "class": "router_unparseable",
-      "severity": "P0",
-      "detail": "INTENT_SIGNALS / RESOURCE_MAP could not be parsed from SKILL.md"
+      "class": "funnel_attrition",
+      "severity": "P1",
+      "stage": "discovered",
+      "detail": "1 scenario(s) first fail at stage 'discovered'"
     }
   ],
-  "scenarioRows": [],
+  "coverage": {
+    "routing": 21,
+    "advisor": 2,
+    "browser": 7,
+    "routedOut": 7,
+    "scored": 23,
+    "holdout": 0,
+    "negative": 6
+  },
+  "divergence": [],
+  "lintFindings": [
+    {
+      "scenarioId": "SD-001",
+      "leaks": [
+        "src/2_javascript",
+        "javascript",
+        "lenis",
+        "intersectionobserver"
+      ]
+    },
+    {
+      "scenarioId": "SD-002",
+      "leaks": [
+        "opencode",
+        "mcp",
+        "typescript",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "LS-001",
+      "leaks": [
+        "opencode",
+        "mcp",
+        "config",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "LS-002",
+      "leaks": [
+        "opencode",
+        "mcp",
+        "json",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "LS-003",
+      "leaks": [
+        "add set -euo pipefail",
+        "opencode",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "LS-004",
+      "leaks": [
+        "json"
+      ]
+    },
+    {
+      "scenarioId": "RD-001",
+      "leaks": [
+        "review",
+        "lenis",
+        "opencode",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "RD-002",
+      "leaks": [
+        "sk-code",
+        "skill.md",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "CS-001",
+      "leaks": [
+        "webflow",
+        "src/2_javascript",
+        "javascript",
+        "cdn",
+        "animation"
+      ]
+    },
+    {
+      "scenarioId": "CS-002",
+      "leaks": [
+        "sk-code",
+        "webflow",
+        "references"
+      ]
+    },
+    {
+      "scenarioId": "CS-003",
+      "leaks": [
+        "sk-code",
+        "review",
+        "opencode",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "CS-004",
+      "leaks": [
+        "css",
+        "references"
+      ]
+    },
+    {
+      "scenarioId": "CS-005",
+      "leaks": [
+        "sk-code",
+        "webflow",
+        "references"
+      ]
+    },
+    {
+      "scenarioId": "CS-006",
+      "leaks": [
+        "sk-code",
+        "webflow",
+        "src/2_javascript",
+        "javascript",
+        "references"
+      ]
+    },
+    {
+      "scenarioId": "CS-007",
+      "leaks": [
+        "sk-code",
+        "webflow",
+        "src/2_javascript",
+        "javascript"
+      ]
+    },
+    {
+      "scenarioId": "DR-001",
+      "leaks": [
+        "opencode",
+        "mcp",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "DR-002",
+      "leaks": [
+        "opencode",
+        "mcp",
+        "config",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "DR-003",
+      "leaks": [
+        "review",
+        "opencode",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "TH-001",
+      "leaks": [
+        "validation",
+        "opencode",
+        "mcp",
+        "skill"
+      ]
+    },
+    {
+      "scenarioId": "TH-002",
+      "leaks": [
+        "comment hygiene"
+      ]
+    }
+  ],
+  "scenarioRows": [
+    {
+      "scenarioId": "SD-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.6571428571428571,
+          "intentRecall": null,
+          "resourceRecall": 0.42857142857142855,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.42857142857142855,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.11538461538461539,
+          "routedCount": 26,
+          "wastedCount": 23,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-webflow/assets/webflow_verification_checklist.md",
+            "code-webflow/assets/patterns/interaction_gate_patterns.js"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.42857142857142855,
+          "hit": 3,
+          "expectedCount": 7,
+          "observedCount": 26,
+          "unresolvedCount": 5,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": "discovered",
+      "modeAScore": 39,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-webflow",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-webflow"
+        ],
+        "matchedAliases": [
+          "src/2_javascript",
+          "javascript",
+          "lenis",
+          "intersectionobserver"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-webflow"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "SD-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.42857142857142855,
+          "routedCount": 7,
+          "wastedCount": 4,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.6,
+          "hit": 3,
+          "expectedCount": 5,
+          "observedCount": 7,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 59,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-opencode",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "mcp",
+          "typescript"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "SD-003",
+      "tier": "playbook",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 4,
+          "wastedCount": 4,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      }
+    },
+    {
+      "scenarioId": "LS-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.42857142857142855,
+          "routedCount": 7,
+          "wastedCount": 4,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.6,
+          "hit": 3,
+          "expectedCount": 5,
+          "observedCount": 7,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 59,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-opencode",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "mcp",
+          "config"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "LS-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/python_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.6,
+          "hit": 3,
+          "expectedCount": 5,
+          "observedCount": 3,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 77,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-opencode",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "mcp",
+          "json"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "LS-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5,
+          "routedCount": 6,
+          "wastedCount": 3,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/shell_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.6,
+          "hit": 3,
+          "expectedCount": 5,
+          "observedCount": 6,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 61,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-opencode",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "quality",
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "add set -euo pipefail",
+          "opencode"
+        ],
+        "defaultApplied": false,
+        "deferReason": "ambiguous-multi-axis",
+        "backendKind": [
+          "surface-router",
+          "evidence-base"
+        ],
+        "packet": [
+          "code-quality",
+          "code-opencode"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "LS-004",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 3,
+          "wastedCount": 0,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/config_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.6,
+          "hit": 3,
+          "expectedCount": 5,
+          "observedCount": 3,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 77,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-opencode",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "json"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "RD-001",
+      "tier": "playbook",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 14,
+          "wastedCount": 14,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-webflow",
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "lenis",
+          "opencode"
+        ],
+        "defaultApplied": false,
+        "deferReason": "ambiguous-multi-axis",
+        "backendKind": [
+          "evidence-base",
+          "evidence-base"
+        ],
+        "packet": [
+          "code-webflow",
+          "code-opencode"
+        ]
+      }
+    },
+    {
+      "scenarioId": "RD-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 4,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "advisor",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "quality",
+          "code-review",
+          "code-webflow",
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "sk-code"
+        ],
+        "defaultApplied": false,
+        "deferReason": "ambiguous-multi-axis",
+        "backendKind": [
+          "surface-router",
+          "review-cache",
+          "evidence-base",
+          "evidence-base"
+        ],
+        "packet": [
+          "code-quality",
+          "code-review",
+          "code-webflow",
+          "code-opencode"
+        ]
+      }
+    },
+    {
+      "scenarioId": "SA-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 4,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "advisor",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      }
+    },
+    {
+      "scenarioId": "MR-001",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "MR-002",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "MR-003",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "MR-004",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "CB-001",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "CB-002",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "CB-003",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "CS-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.775,
+          "intentRecall": null,
+          "resourceRecall": 0.625,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.625,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.2631578947368421,
+          "routedCount": 19,
+          "wastedCount": 14,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-webflow/assets/checklists/code_quality_checklist.md",
+            "code-webflow/assets/checklists/verification_checklist.md",
+            "code-webflow/assets/animation/install_card.md",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/snippets/cdn_bootstrap.js"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.625,
+          "hit": 5,
+          "expectedCount": 8,
+          "observedCount": 19,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 55,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-webflow",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-webflow"
+        ],
+        "matchedAliases": [
+          "webflow",
+          "src/2_javascript",
+          "javascript",
+          "cdn"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-webflow"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "CS-002",
+      "tier": "playbook",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 11,
+          "wastedCount": 11,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-webflow/assets/animation/snippets/hover_gesture.js",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/install_card.md"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 4,
+          "expectedCount": 4,
+          "observedCount": 7,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-webflow",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-webflow"
+        ],
+        "matchedAliases": [
+          "webflow",
+          "sk-code"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-webflow"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "CS-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.42857142857142855,
+          "routedCount": 7,
+          "wastedCount": 4,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/universal_checklist.md",
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-webflow/assets/animation/snippets/es_module_bootstrap.js"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.6,
+          "hit": 3,
+          "expectedCount": 5,
+          "observedCount": 7,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 59,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-opencode",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "sk-code"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "CS-004",
+      "tier": "playbook",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 12,
+          "wastedCount": 12,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-webflow/assets/animation/snippets/hover_gesture.js"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 3,
+          "expectedCount": 3,
+          "observedCount": 7,
+          "unresolvedCount": 5,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-webflow",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-webflow"
+        ],
+        "matchedAliases": [
+          "css"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-webflow"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "CS-005",
+      "tier": "playbook",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 0.75,
+          "intentRecall": null,
+          "resourceRecall": 0.75,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.75,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.75,
+          "routedCount": 14,
+          "wastedCount": 14,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/snippets/animate_on_scroll.js"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.75,
+          "hit": 3,
+          "expectedCount": 4,
+          "observedCount": 9,
+          "unresolvedCount": 5,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 75,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-webflow",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-webflow"
+        ],
+        "matchedAliases": [
+          "webflow",
+          "sk-code"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-webflow"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "CS-006",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.4,
+          "routedCount": 15,
+          "wastedCount": 9,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "references/performance_loading_checklist.md",
+            "code-webflow/assets/patterns/performance_patterns.js"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 6,
+          "expectedCount": 6,
+          "observedCount": 15,
+          "unresolvedCount": 5,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 81,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-webflow",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-webflow"
+        ],
+        "matchedAliases": [
+          "webflow",
+          "src/2_javascript",
+          "javascript",
+          "sk-code"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-webflow"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "CS-007",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.88,
+          "intentRecall": null,
+          "resourceRecall": 0.8,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.8,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.3076923076923077,
+          "routedCount": 13,
+          "wastedCount": 9,
+          "proxy": "typed-pair-precision",
+          "note": "manifest-bearing: over-routing measured on canonical typed pairs"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-review/assets/code_quality_checklist.md",
+            "code-webflow/assets/webflow_verification_checklist.md",
+            "code-webflow/assets/animation/snippets/hover_gesture.js",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 0.8,
+          "hit": 4,
+          "expectedCount": 5,
+          "observedCount": 13,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 67,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-webflow",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-webflow"
+        ],
+        "matchedAliases": [
+          "webflow",
+          "src/2_javascript",
+          "javascript",
+          "sk-code"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-webflow"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "DR-001",
+      "tier": "playbook",
+      "stage": "negative",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": true,
+          "forbiddenLeaked": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 11,
+          "wastedCount": 11,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": 1,
+          "hit": 1,
+          "expectedCount": 1,
+          "observedCount": 7,
+          "unresolvedCount": 4,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "code-opencode",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "mcp"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      },
+      "errorClass": "routing_contract_error"
+    },
+    {
+      "scenarioId": "DR-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 11,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "mcp",
+          "config"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      }
+    },
+    {
+      "scenarioId": "DR-003",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 11,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "opencode"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      }
+    },
+    {
+      "scenarioId": "DR-004",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 4,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": null,
+        "matchedAliases": [],
+        "defaultApplied": false,
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
+      }
+    },
+    {
+      "scenarioId": "TH-001",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 17,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "mcp"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      }
+    },
+    {
+      "scenarioId": "TH-002",
+      "tier": "playbook",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 10,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "quality"
+        ],
+        "matchedAliases": [
+          "comment hygiene"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "surface-router"
+        ],
+        "packet": [
+          "code-quality"
+        ]
+      }
+    }
+  ],
+  "excludedRows": [],
   "runQuality": {
-    "scenarioCount": 0,
+    "scenarioCount": 30,
     "traceMode": "router",
-    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode."
-  }
+    "hubRouteKnownGaps": 0,
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    },
+    "recipeGoldRows": 0,
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0)."
+  },
+  "topologyDigest": "00259b9eb82e5159428fe06d9f551c60d77014035943b1dd5a8d0382fc3c3db2",
+  "parseWarnings": [
+    "SA-001: missing-exact-prompt"
+  ]
 }

@@ -424,6 +424,57 @@ function loadYamlFrontmatterScenarios(playbookDir) {
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Derive typed (workflowMode, leafResourceId) gold for an index-table skill
+// whose hub carries a generated leaf-manifest.json. The body-gold "Expected
+// references loaded" block already lists packet-qualified surface resources, so
+// splitting the leading packet segment recovers the canonical typed pair; this
+// types the same independent gold the flat lane already scores, rather than
+// re-deriving it from router output. Pairs are filtered to the scenario's
+// dominant surface mode and to leaves the manifest actually registers, keeping
+// the typed-gold oracle inside its single-selected-map cap. A skill without a
+// manifest returns null and its scenarios stay byte-identical to the untyped
+// shape, so this is dormant for every hub that has not generated one.
+function loadManifestModeLeaves(skillRoot) {
+  if (!skillRoot) return null;
+  try {
+    const manifestPath = path.join(skillRoot, 'leaf-manifest.json');
+    if (!fs.existsSync(manifestPath)) return null;
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    const byMode = new Map();
+    for (const mode of manifest.modes || []) {
+      if (mode && mode.workflowMode) byMode.set(mode.workflowMode, new Set(mode.leaves || []));
+    }
+    return byMode.size ? byMode : null;
+  } catch {
+    return null;
+  }
+}
+
+function deriveTypedGoldFromBodyGold(expectedResources, byMode) {
+  const resolved = [];
+  for (const raw of expectedResources || []) {
+    const slash = raw.indexOf('/');
+    if (slash === -1) continue;
+    const workflowMode = raw.slice(0, slash);
+    const leafResourceId = raw.slice(slash + 1);
+    const leaves = byMode.get(workflowMode);
+    if (leaves && leaves.has(leafResourceId)) resolved.push({ workflowMode, leafResourceId });
+  }
+  if (!resolved.length) return null;
+  // Dominant surface mode = the mode contributing the most resolvable leaves.
+  // Restricting the gold to that one mode keeps the pair set within the oracle's
+  // simultaneous-mode cap while still measuring surface-routing recall.
+  const counts = new Map();
+  for (const pair of resolved) counts.set(pair.workflowMode, (counts.get(pair.workflowMode) || 0) + 1);
+  let dominant = null;
+  let best = -1;
+  for (const [mode, count] of counts) {
+    if (count > best) { best = count; dominant = mode; }
+  }
+  const pairs = resolved.filter((pair) => pair.workflowMode === dominant);
+  return { pairs, workflowMode: dominant };
+}
+
 /**
  * Parse a skill's manual_testing_playbook into normalized benchmark scenarios.
  *
@@ -455,6 +506,16 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
         warnings.push(`${row.scenarioId}: feature file unreadable (${row.featureFile})`);
       }
     }
+    const byMode = loadManifestModeLeaves(skillRoot);
+    if (byMode) {
+      for (const sc of scenarios) {
+        const gold = deriveTypedGoldFromBodyGold(sc.expectedResources, byMode);
+        if (gold) {
+          sc.expected_leaf_resources = gold.pairs;
+          sc.expected = { ...(sc.expected || {}), workflowMode: gold.workflowMode };
+        }
+      }
+    }
     return { scenarios, shape: 'sk-code', warnings };
   }
 
@@ -467,7 +528,15 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { loadPlaybookScenarios, classifyKind, extractPaths, extractForbiddenPrefixes, parseRootIndex };
+module.exports = {
+  loadPlaybookScenarios,
+  classifyKind,
+  extractPaths,
+  extractForbiddenPrefixes,
+  parseRootIndex,
+  loadManifestModeLeaves,
+  deriveTypedGoldFromBodyGold,
+};
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));

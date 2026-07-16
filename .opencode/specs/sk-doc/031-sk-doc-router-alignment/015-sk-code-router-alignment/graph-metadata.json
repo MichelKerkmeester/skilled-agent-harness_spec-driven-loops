@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment",
+  "spec_folder": "sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment",
+  "parent_id": "sk-doc/031-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code router typed gold",
+      "sk-code stale baseline refresh",
+      "wave 2 pilot sk-code",
+      "sk-code live mode routing sample",
+      "sk-code router typed gold plan",
+      "wave 2 sk-code pilot phases",
+      "manifest-gated typed-gold derivation",
+      "sk-code router typed gold tasks",
+      "wave 2 sk-code pilot task breakdown",
+      "sk-code baseline refresh tasks"
+    ],
+    "key_topics": [
+      "sk-code",
+      "router",
+      "typed",
+      "gold",
+      "stale",
+      "baseline",
+      "refresh",
+      "wave",
+      "pilot",
+      "live",
+      "mode",
+      "routing"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json",
+      ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gold Instrumentation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Measurement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "absent",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
+    "created_at": "2026-07-16T19:43:16.256Z",
+    "last_save_at": "2026-07-16T20:07:28.162Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c1f7ffd8bfab308179965a209ed04317f4965af1926e22787e48dd300b4b3db2",
+    "source_doc_hashes": {
+      "spec.md": "9535e50530f2aeef6b42381b4691f3f3a2b94938b0a9421c54d394351fd9c36e",
+      "plan.md": "56d63fcf2e61100f9da80f92dd03e56f5d83b05d134fb5ce05734549dcf004d2",
+      "tasks.md": "913138684222254740f5235a814bf37af0b1dfc62b5861b2aaef0becf9814867",
+      "checklist.md": "ad4c4f6d582111a60840997d474a1e2cfcaca34aa8550bbcd201e86fe1789d5b",
+      "implementation-summary.md": "2df5448237bb7fe5af5a4c35f1def3b91f66688047eb6aa74741b8d34766a10d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
