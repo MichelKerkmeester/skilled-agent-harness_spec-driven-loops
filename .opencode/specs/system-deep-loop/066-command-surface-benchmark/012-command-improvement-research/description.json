@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/066-command-surface-benchmark/012-command-improvement-research",
+  "description": "Runs a two-lineage deep-research fan-out over the 066 benchmark findings and the create-command authoring canon, producing a prioritized cross-model",
+  "keywords": [
+    "runs",
+    "two-lineage",
+    "deep-research",
+    "fan-out",
+    "benchmark",
+    "findings",
+    "create-command",
+    "authoring",
+    "canon",
+    "producing",
+    "prioritized",
+    "cross-model"
+  ],
+  "lastUpdated": "2026-07-16T08:34:32.739Z",
+  "specId": "012",
+  "folderSlug": "command-improvement-research",
+  "parentChain": [
+    "system-deep-loop",
+    "066-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

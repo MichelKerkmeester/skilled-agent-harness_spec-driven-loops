@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
+  "description": "Composes the frontmatter and behavioral checks that today live only in quick_validate.py into the canonical validate_document.py --type command path,",
+  "keywords": [
+    "composes",
+    "frontmatter",
+    "behavioral",
+    "checks",
+    "today",
+    "live",
+    "only",
+    "canonical",
+    "type",
+    "command",
+    "path"
+  ],
+  "lastUpdated": "2026-07-16T08:05:22.776Z",
+  "specId": "000",
+  "folderSlug": "keystone-validator-compose",
+  "parentChain": [
+    "system-deep-loop",
+    "066-command-surface-benchmark",
+    "013-command-canon-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

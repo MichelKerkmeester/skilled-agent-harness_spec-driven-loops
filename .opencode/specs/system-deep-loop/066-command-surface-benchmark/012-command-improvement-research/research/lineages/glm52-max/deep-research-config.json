@@ -1,0 +1,69 @@
+{
+  "topic": "Identify concrete, prioritized improvements to the create-command authoring canon (SKILL.md + command_router_template.md + command_template.md) and to every OpenCode command that uses those templates and routing logic (create/*, design/*, speckit/*, memory/*, doctor/*, deep/*), grounded in the 066 command-surface benchmark findings and the create-benchmark completeness work. Investigate RQ1-RQ5 and propose candidate deltas (target path + acceptance criterion) per finding. Research and synthesis only; do not implement changes or touch shipped runtime.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/012-command-improvement-research",
+  "fanoutLineageArtifactDir": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/012-command-improvement-research/research/lineages/glm52-max",
+  "artifactDir": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/012-command-improvement-research/research/lineages/glm52-max",
+  "createdAt": "2026-07-16T07:45:00Z",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "executionMode": "auto",
+  "loopType": "research",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm52-max-1784180432117-cecmvf",
+    "parentSessionId": "fanout-glm52-max-1784180432117-cecmvf",
+    "lineageMode": "new",
+    "lineageLabel": "glm52-max",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map_present": false,
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

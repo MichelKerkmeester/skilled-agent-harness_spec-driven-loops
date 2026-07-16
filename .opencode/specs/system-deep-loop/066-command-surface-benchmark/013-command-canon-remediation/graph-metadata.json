@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation",
+  "parent_id": "system-deep-loop/066-command-surface-benchmark",
+  "children_ids": [
+    "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
+    "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract",
+    "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command canon remediation",
+      "versioned command contract",
+      "command validator compose",
+      "command surface remediation phases"
+    ],
+    "key_topics": [
+      "command",
+      "canon",
+      "remediation",
+      "versioned",
+      "contract",
+      "validator",
+      "compose",
+      "surface",
+      "phases",
+      "phase",
+      "parent",
+      "implementing"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-command/SKILL.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-command.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decide Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE DOCUMENTATION MAP",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SOURCE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent implementing the 012 command-improvement backlog via a versioned machine-readable command contract. The contract is the single source for templates, routers, loaders, mirrors, semantic validation, and benchmark discovery, instead of prose duplicated across seven surfaces and per-command patching. Sequenced keystone-first (compose frontmatter validation) then contract, semantic validation, generation, and command-local cleanup last. Asset-layer phases are refined by the 014 asset-layer research.",
+    "created_at": "2026-07-16T07:51:59.043Z",
+    "last_save_at": "2026-07-16T08:32:00.268Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:eb40eaab2a19c1c2f639b813382b7e626355f557a92df183855637284cae8a29",
+    "source_doc_hashes": {
+      "spec.md": "42ea246f599515cf663183a330a3d16d80cca9bb3a8d9b9ddec9a3b3c5df17c6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

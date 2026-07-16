@@ -1,0 +1,69 @@
+{
+  "topic": "Deep-dive the command asset layer: the _auto.yaml / _confirm.yaml workflow YAMLs, the _presentation.txt display assets, and the doctor route-manifest _routes.yaml plus per-route YAMLs, across all command families (create/*, design/*, speckit/*, memory/*, doctor/*, deep/*). Ground findings in the 012 asset-layer results (asset STRUCTURE is the strongest layer at 35/35; six known defects). Investigate RQ1-RQ5 and propose candidate deltas (target path + acceptance criterion) per finding. Research and synthesis only; do not implement changes or touch shipped runtime.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/014-command-asset-layer-research",
+  "fanoutLineageArtifactDir": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/014-command-asset-layer-research/research/lineages/glm52-max",
+  "artifactDir": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/014-command-asset-layer-research/research/lineages/glm52-max",
+  "createdAt": "2026-07-16T10:03:00Z",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "executionMode": "auto",
+  "loopType": "research",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm52-max-1784188142801-1m6wjy",
+    "parentSessionId": "fanout-glm52-max-1784188142801-1m6wjy",
+    "lineageMode": "new",
+    "lineageLabel": "glm52-max",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map_present": false,
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

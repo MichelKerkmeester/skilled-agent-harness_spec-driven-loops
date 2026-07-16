@@ -1,0 +1,36 @@
+{
+  "specFolder": "066-command-surface-benchmark/012-command-improvement-research",
+  "lineageLabel": "glm52-max",
+  "sessionId": "fanout-glm52-max-1784180432117-cecmvf",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "rq1", "text": "RQ1 — Canon completeness gaps", "status": "resolved", "answeredIn": [1,2]},
+    {"id": "rq2", "text": "RQ2 — Per-family conformance divergences", "status": "resolved", "answeredIn": [2]},
+    {"id": "rq3", "text": "RQ3 — Validator + benchmark coverage defects", "status": "resolved", "answeredIn": [3]},
+    {"id": "rq4", "text": "RQ4 — Router/dispatch logic", "status": "resolved", "answeredIn": [4]},
+    {"id": "rq5", "text": "RQ5 — Authoring ergonomics", "status": "resolved", "answeredIn": [5]}
+  ],
+  "keyFindings": [
+    {"id": "kf1", "text": "Mandatory-gate rule omitted by 35/37 commands; router-gate alternative needed not 35 inline gates", "evidence": "memory/save.md:3; SKILL.md:219-240"},
+    {"id": "kf2", "text": "validate_document.py --type command runs ZERO frontmatter checks (keystone gap C3.6)", "evidence": "validate_document.py:417-515; quick_validate.py:186-204"},
+    {"id": "kf3", "text": "doctor family is route-manifest argv-router topology canon never names", "evidence": "doctor/_routes.yaml:1-30; command_router_template.md:108-116"},
+    {"id": "kf4", "text": "Three-runtime parity is two-runtime: .claude/commands empty (0), .codex/prompts synced (38)", "evidence": ".codex/prompts; .claude/commands; sync-prompts.cjs:12"},
+    {"id": "kf5", "text": "create-benchmark broken-DEFAULT_RESOURCE P0 generalizes to missing reference-integrity delivery check", "evidence": "066/011/spec.md:56,72,83"},
+    {"id": "kf6", "text": "Router blocking core (OWNED ASSETS+PRESENTATION BOUNDARY) is universal 35/35; build on this", "evidence": "corpus scan 2026-07-16"}
+  ],
+  "candidateDeltaCount": 16,
+  "keystoneDelta": "C3.6",
+  "ruledOutDirections": [
+    "Rewrite canon from validator",
+    "Add 35 inline mandatory gates",
+    "Regex presentation-leak blocker in adapter",
+    "$1..$N positional support",
+    "New command-lint engine"
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {},
+  "suppressedCandidates": [],
+  "promotedIdeas": []
+}

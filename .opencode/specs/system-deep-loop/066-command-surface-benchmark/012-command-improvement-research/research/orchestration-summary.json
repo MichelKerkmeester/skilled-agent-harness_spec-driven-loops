@@ -1,0 +1,71 @@
+{
+  "run_id": "1784180432117-cecmvf",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/012-command-improvement-research",
+  "base_artifact_dir": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/012-command-improvement-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm52-max",
+      "state_log": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/012-command-improvement-research/research/lineages/glm52-max/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-16T05:40:32.121Z",
+        "end_at_iso": "2026-07-16T06:09:06.959Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 13,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 14
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-16T07:45:00Z",
+          "deltaMs": 5633041
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-16T07:52:00Z",
+          "deltaMs": 6053041
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-16T07:52:00Z",
+          "deltaMs": 6053041
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-16T08:00:00Z",
+          "deltaMs": 6533041
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-16T08:00:00Z",
+          "deltaMs": 6533041
+        }
+      ]
+    }
+  ]
+}

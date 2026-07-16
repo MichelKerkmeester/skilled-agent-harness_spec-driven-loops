@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "sessionId": "fanout-gpt56-sol-high-fast-1784180432117-cecmvf",
+  "status": "synthesized",
+  "resolvedQuestions": [
+    "RQ1 create-command canon completeness gaps",
+    "RQ2 recurring per-family conformance divergences",
+    "RQ3 validator and benchmark blind spots",
+    "RQ4 router and dispatch parity",
+    "RQ5 authoring ergonomics and template logic"
+  ],
+  "openQuestions": [],
+  "keyFindingIds": [
+    "F01-gate-contract-contradiction",
+    "F02-stale-canon-references",
+    "F03-thin-router-violations",
+    "F04-family-mode-policy-implicit",
+    "F05-comment-derived-route-cycles",
+    "F06-incomplete-reference-family-coverage",
+    "F07-unfrozen-command-census",
+    "F08-cross-runtime-invocation-gap",
+    "F09-host-leaf-executor-ambiguity",
+    "F10-prose-runtime-drift",
+    "F11-loader-contract-ergonomics"
+  ],
+  "ruledOutDirections": [
+    "Treat all benchmark route-cycle findings as executable cycles",
+    "Normalize every family to one default mode",
+    "Fix recurring template defects command by command",
+    "Add more prose without machine-readable contracts",
+    "Preserve unsupported positional placeholders as a documented promise"
+  ]
+}

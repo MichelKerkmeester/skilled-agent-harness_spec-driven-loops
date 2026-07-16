@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation",
+  "description": "Phase parent implementing the 012 command-improvement backlog via a versioned machine-readable command contract.",
+  "keywords": [
+    "phase",
+    "parent",
+    "implementing",
+    "command-improvement",
+    "backlog",
+    "via",
+    "versioned",
+    "machine-readable",
+    "command",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-16T07:58:52.194Z",
+  "specId": "013",
+  "folderSlug": "command-canon-remediation",
+  "parentChain": [
+    "system-deep-loop",
+    "066-command-surface-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
+  "spec_folder": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
+  "parent_id": "system-deep-loop/066-command-surface-benchmark/013-command-canon-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "keystone validator compose",
+      "frontmatter validation type command",
+      "quick_validate compose",
+      "keystone composition implementation",
+      "frontmatter validation compose status",
+      "type command frontmatter checks"
+    ],
+    "key_topics": [
+      "keystone",
+      "validator",
+      "compose",
+      "frontmatter",
+      "validation",
+      "type",
+      "command",
+      "composition",
+      "implementation",
+      "status",
+      "checks",
+      "composes"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/shared/scripts/quick_validate.py",
+      ".opencode/skills/sk-doc/shared/assets/template_rules.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "template_rules.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/shared/assets/template_rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Parent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Composes the frontmatter and behavioral checks that today live only in quick_validate.py into the canonical validate_document.py --type command path, keyed by template_rules.json, so every canon frontmatter rule fires on the one path command authors validate against while section-presence behavior and every currently-conformant command are preserved.",
+    "created_at": "2026-07-16T07:51:58.280Z",
+    "last_save_at": "2026-07-16T08:05:35.660Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8c5ef4077b4f0d88a609d55ea80ce225f3f7c9bdd5404ecf6f982057e96941c2",
+    "source_doc_hashes": {
+      "spec.md": "564cffe9937132394104263892b9c5ff0498b34568ba2525e83ad48f2131e4e3",
+      "plan.md": "fd40afe01b887a24aec9f7b5679d6e4a676021f6a861994acf3996c45cbcf87a",
+      "tasks.md": "5bd70e87fc1fc32d6ec8e039e66d3af593b55cfe1e2f72c54acbd9eb5bf691d0",
+      "implementation-summary.md": "2eb90f18f955f2f7c717eca15b918fc2c0904a01fc3710a894a8a24675f0cfc5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

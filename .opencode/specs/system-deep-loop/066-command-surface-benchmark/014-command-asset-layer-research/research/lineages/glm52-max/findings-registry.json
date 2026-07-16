@@ -1,0 +1,50 @@
+{
+  "specFolder": "066-command-surface-benchmark/014-command-asset-layer-research",
+  "lineageLabel": "glm52-max",
+  "sessionId": "fanout-glm52-max-1784188142801-1m6wjy",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "openQuestions": [
+    "Is the mode_matrix.default_policy enum exhaustive, or do speckit/* and remaining deep/* introduce a fifth policy?",
+    "Does the route-manifest topology need its own blocking core beyond OWNED ASSETS + PRESENTATION BOUNDARY?",
+    "Are any deep/* inlined autonomous-directive fragments genuinely render contracts rather than display content?"
+  ],
+  "resolvedQuestions": [
+    {"id": "rq1", "text": "RQ1 — Workflow-YAML canonical schema + corpus divergence", "status": "resolved", "answeredIn": [1]},
+    {"id": "rq2", "text": "RQ2 — Presentation ownership + typed inline-exception", "status": "resolved", "answeredIn": [2]},
+    {"id": "rq3", "text": "RQ3 — Mode completeness check + mode matrix", "status": "resolved", "answeredIn": [3]},
+    {"id": "rq4", "text": "RQ4 — Route-manifest YAMLs + executable-edge cycle parsing", "status": "resolved", "answeredIn": [4]},
+    {"id": "rq5", "text": "RQ5 — Generation + ergonomics + fat-router decomposition", "status": "resolved", "answeredIn": [5]}
+  ],
+  "keyFindings": [
+    {"id": "kf1", "text": "AL4 PROVEN (not hypothesized): extractCommandTargets runs COMMAND_TARGET raw-text regex with no comment stripping; comment lines _routes.yaml:5,240 and create_readme_auto.yaml:37 / create_readme_confirm.yaml:9,40 match it; the create/readme.md <-> create_readme_auto.yaml:37 pair fires a false CMD-S3-ROUTE-CYCLE P0 today", "evidence": "validate-command-references.cjs:55,185-193; doctor/_routes.yaml:5,240; create_readme_auto.yaml:37"},
+    {"id": "kf2", "text": "Workflow-YAML schema is observable + stable (confirm==auto+checkpoints invariant) but absent from canon AND validator - the strongest layer has no machine contract", "evidence": "create_command_auto.yaml:8-38,200-261; create_command_confirm.yaml:29-38,185-194,301-309"},
+    {"id": "kf3", "text": "Adapter checks reachability only, never completeness: no checkModeCompleteness; inspectCommandSurface flags missing files, never missing mode declarations; corpus accidentally complete (28 :auto routers, 28 _auto.yaml)", "evidence": "sk-doc-command.cjs:365-385,423-454; validate-command-references.cjs:262-351"},
+    {"id": "kf4", "text": "OWNED ASSETS table split 20 (2-col | Purpose | Asset |) vs 15 (3-col | Asset | Path | Purpose |); create family disagrees with the create-command canon's own template inside the strongest layer", "evidence": "command_router_template.md:63-67; create/command.md:20; corpus census 2026-07-16"},
+    {"id": "kf5", "text": "doctor route-manifest (_routes.yaml schema_version + routes[] + mcp_subroutes[] + standalone[] + 13 per-route YAML) is a distinct route-manifest argv-router topology the canon misclassifies as direct-dispatch/No-workflow-YAML; also not harvested by either advisor", "evidence": "doctor/_routes.yaml:33-252,6-14; command_router_template.md:112-116"},
+    {"id": "kf6", "text": "memory/search inline render envelope is a legitimate render-fidelity exception (machine-emit, deterministic) captured only by prose 'hard render reminder'; needs typed presentation.exceptions[] so an intent-aware leak check can sanction it without an allowlist", "evidence": "memory/search.md:68-95,139"},
+    {"id": "kf7", "text": "AL6 'wrong .txt ownership labels' is the visible symptom of triple-path drift (path hand-copied into OWNED ASSETS + EXECUTION TARGETS + PRESENTATION BOUNDARY); fix = single typed presentation.owner + projection invariant, no per-command relabeling", "evidence": "create/command.md:22,33,44; doctor/mcp.md:22"},
+    {"id": "kf8", "text": "deep/research.md is a fat router (184 lines vs create/command.md 54 for same topology): inlines a human-audience display box (DIRECT INVOCATION REQUIRED) + autonomous directive that its OWN PRESENTATION BOUNDARY says belongs in the .txt/YAML - a leak, not a sanctioned exception", "evidence": "deep/research.md:40-80,104-116,168-176"}
+  ],
+  "candidateDeltaCount": 16,
+  "keystoneDeltas": ["A-K1", "A-K2"],
+  "alCoverage": {
+    "AL1": "A-W1",
+    "AL2": "A-K2/A-W4",
+    "AL3": "A-K2/A-W3",
+    "AL4": "A-K1",
+    "AL5": "A-W2",
+    "AL6": "A-G3"
+  },
+  "ruledOutDirections": [
+    "Rewrite the YAMLs to a new schema (triad is validated-good; capture existing schema)",
+    "Hardcode an allowlist of inline-tolerant commands (preserves regeneration defect; rots)",
+    "Force every router to support both :auto and :confirm (contradicts legitimate zero/single-mode topologies)",
+    "Strip all # globally before extraction (too blunt; corrupts code anchors/prose)",
+    "Slim deep/* routers by hand before the contract (012 A7 anti-pattern)"
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {},
+  "suppressedCandidates": [],
+  "promotedIdeas": []
+}

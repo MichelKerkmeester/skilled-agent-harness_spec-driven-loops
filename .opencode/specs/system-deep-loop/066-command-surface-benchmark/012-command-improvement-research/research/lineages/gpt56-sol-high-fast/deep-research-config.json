@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "loopType": "research",
+  "topic": "Identify concrete, prioritized improvements to the create-command authoring canon and every OpenCode command that uses its templates and routing logic, grounded in the 066 command-surface benchmark and create-benchmark completeness work.",
+  "specFolder": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/012-command-improvement-research",
+  "artifactDir": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/012-command-improvement-research/research/lineages/gpt56-sol-high-fast",
+  "sessionId": "fanout-gpt56-sol-high-fast-1784180432117-cecmvf",
+  "status": "complete",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 5,
+  "completedIterations": 5,
+  "stopReason": "maxIterationsReached",
+  "executor": {
+    "type": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "serviceTier": "fast"
+  },
+  "lineage": {
+    "mode": "detached-fanout",
+    "generation": 1,
+    "artifactRootSource": "config.fanout_lineage_artifact_dir"
+  },
+  "constraints": {
+    "researchAndSynthesisOnly": true,
+    "runtimeMutationAllowed": false,
+    "convergenceIsTelemetryBeforeMaxIterations": true
+  }
+}
