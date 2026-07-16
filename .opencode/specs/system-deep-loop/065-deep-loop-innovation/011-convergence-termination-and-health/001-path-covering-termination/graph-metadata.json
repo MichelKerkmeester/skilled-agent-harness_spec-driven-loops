@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "path-covering termination",
       "coverage-based deep-loop stopping",
-      "deep-loop phase 008 child 001",
+      "deep-loop phase 011 child 001",
       "path-covering termination implementation plan",
       "coverage certificate plan",
-      "deep-loop phase 008 child 001 plan",
+      "deep-loop phase 011 child 001 plan",
       "path-covering termination tasks",
       "coverage certificate tasks",
-      "deep-loop phase 008 child 001 tasks",
+      "deep-loop phase 011 child 001 tasks",
       "path-covering termination checklist",
       "coverage certificate checklist",
-      "deep-loop phase 008 child 001 checklist"
+      "deep-loop phase 011 child 001 checklist"
     ],
     "key_topics": [
       "path-covering",
@@ -197,8 +197,8 @@
       }
     ],
     "causal_summary": "Plan replay-stable termination on proven, mode-specific search-space coverage: every major path or semantic community is addressed, required contradictions are resolved, and partial coverage remains explicit instead of being hidden by an iteration cap.",
-    "created_at": "2026-07-15T19:00:42.085Z",
-    "last_save_at": "2026-07-15T19:00:42.085Z",
+    "created_at": "2026-07-16T03:43:52.736Z",
+    "last_save_at": "2026-07-16T03:43:52.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:40ab8cb82c34da39051dac1aa1883f19889e29c3e89b38a0f7b94a7499ac42ab",
+    "source_fingerprint": "sha256:603eb6f241f0f246523d77eff6c2fae9017740ea49d49701cbc91c6fcf8c8dfd",
     "source_doc_hashes": {
-      "spec.md": "627729a05909136d90c19481e992ef94e47a60d129b624bf50d41206fa8c877f",
-      "plan.md": "254baa3e9c58eb0cd05cb02c1c3c25d6b6979a91a2124bfb0a0fb5423972c378",
-      "tasks.md": "002dae5264d79aff157a94e9acee81cf2d249ee7b89fb87fb4d120e121a5c9ed",
-      "checklist.md": "5ee1fad3a0ee51e2420145ab3e45bd1febbf1e61077404d32302c5a26441d0b0"
+      "spec.md": "956e6529d02a10cf31d62f6fad2c6ce6912601311b4119acd4f8159267a3b1ae",
+      "plan.md": "6b8112cfa07e035bdc10755f2f2e49cb9c7d877e59de8a5f1d03dbf717fd8d05",
+      "tasks.md": "4fec196730a816bd4653c4795b5d3067f5c4b50e13972776d35758426f7fe534",
+      "checklist.md": "eefd0890d0ab27459926422235a784d7a4121fe98f97e91230055e3f1e56a7c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

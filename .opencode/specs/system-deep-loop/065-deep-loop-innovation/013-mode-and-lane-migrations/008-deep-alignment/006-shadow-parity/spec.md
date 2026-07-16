@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Deep Alignment shadow parity (phase 013 mode 008 concern 006)"
-description: "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-011 shadow framework and reuses the shared review-loop contract frozen in phase 009."
+title: "Feature Specification: Deep Alignment shadow parity"
+description: "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-014 shadow framework and reuses the shared review-loop contract frozen in phase 012."
 trigger_phrases:
   - "Deep Alignment shadow parity"
   - "deep-alignment ledger migration parity"
@@ -41,8 +41,8 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
-| **Origin** | Phase 006 of the Deep Alignment mode migration: shadow parity before authority cutover |
-| **Inputs** | Parent program spec; phase tree; phase-011 shadow framework; shared review-loop contract frozen in phase 009; mode research registries for authority capsules, proof-carrying findings, applicability, deviations, receipts, and cross-epoch replay |
+| **Origin** | Phase 009 of the Deep Alignment mode migration: shadow parity before authority cutover |
+| **Inputs** | Parent program spec; phase tree; phase-014 shadow framework; shared review-loop contract frozen in phase 012; mode research registries for authority capsules, proof-carrying findings, applicability, deviations, receipts, and cross-epoch replay |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -50,7 +50,7 @@ _memory:
 
 Deep Alignment performs per-lane conformance checks against a named authority and emits verify-first findings. Its migration cannot replace the legacy emitter in place: the typed ledger path, reducers, authority capsule, certificates, receipts, and resume adapter are being introduced as an additive substrate while legacy remains authoritative. A mode-specific parity harness is therefore needed to prove that the new path preserves the observable behavior of the existing loop before the later mode gate can consider a cutover.
 
-The harness must run the new ledger path in shadow alongside the legacy emitter on the same frozen run inputs, authority material, lane assignments, and review-loop decisions. It must compare the resulting event streams and projections event-for-event, not merely compare final counts or a terminal pass bit. The comparison must expose missing, extra, reordered, stale, authority-mismatched, applicability-mismatched, and semantically changed observations as blocking parity failures. The phase-011 shadow framework supplies the paired execution boundary; this phase defines Deep Alignment's mode contract over that framework and reuses the shared review-loop contract frozen in phase 009.
+The harness must run the new ledger path in shadow alongside the legacy emitter on the same frozen run inputs, authority material, lane assignments, and review-loop decisions. It must compare the resulting event streams and projections event-for-event, not merely compare final counts or a terminal pass bit. The comparison must expose missing, extra, reordered, stale, authority-mismatched, applicability-mismatched, and semantically changed observations as blocking parity failures. The phase-014 shadow framework supplies the paired execution boundary; this phase defines Deep Alignment's mode contract over that framework and reuses the shared review-loop contract frozen in phase 012.
 
 The parity result is evidence for a future authority decision, not an authority decision itself. This phase plans no cutover, no rollback implementation, and no mutation of the legacy emitter. It establishes the acceptance evidence that `007-rollback-and-mode-gate` must consume and that the later staged cutover must require.
 <!-- /ANCHOR:problem -->
@@ -59,7 +59,7 @@ The parity result is evidence for a future authority decision, not an authority 
 ## 3. SCOPE
 
 ### In Scope
-- A Deep Alignment shadow runner contract over the phase-011 shadow framework: identical run manifest, target digest, authority capsule reference, lane configuration, review-loop contract, executor capabilities, and budget inputs for both paths.
+- A Deep Alignment shadow runner contract over the phase-014 shadow framework: identical run manifest, target digest, authority capsule reference, lane configuration, review-loop contract, executor capabilities, and budget inputs for both paths.
 - A canonical event comparator that pairs legacy and ledger events by stable logical identity, event type, causal parent, sequence position, authority epoch, lane, subject digest, and semantic payload; non-semantic fields are normalized only through a declared allowlist.
 - Projection comparison for per-lane findings, applicability outcomes, evidence bindings, known-deviation dispositions, authority conflicts, terminal status, gauges, and other public mode outputs owned by this migration.
 - Shadow capture, deterministic replay, late-event and retry fixtures, crash-boundary fixtures supplied by the shared framework, and mismatch reports with enough evidence to reproduce the first divergence.
@@ -68,7 +68,7 @@ The parity result is evidence for a future authority decision, not an authority 
 
 ### Out of Scope
 - Implementing the typed ledger schema, Deep Alignment reducers, sealed artifacts, certificates, receipts, or resume adapter; those are sibling concerns `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`, `004-certificates-and-receipts`, and `005-resume-adapter`.
-- Changing the shared review-loop contract or the phase-011 shadow framework; this phase consumes those contracts and adds the Deep Alignment comparator and acceptance policy.
+- Changing the shared review-loop contract or the phase-014 shadow framework; this phase consumes those contracts and adds the Deep Alignment comparator and acceptance policy.
 - Flipping authority, deleting legacy writers, changing production defaults, or implementing rollback; authority cutover belongs to the staged cutover program and rollback behavior belongs to `007-rollback-and-mode-gate`.
 - Treating a matching terminal verdict, aggregate score, or artifact count as sufficient parity without event and projection evidence.
 - Re-authoring the named authority, silently accepting an invalid or stale authority capsule, or suppressing raw findings to make the shadow result match.
@@ -93,7 +93,7 @@ The parity result is evidence for a future authority decision, not an authority 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The phase-011 shadow framework can execute Deep Alignment legacy and ledger paths from one frozen paired-run manifest without changing the legacy result path.
+- **SC-001**: The phase-014 shadow framework can execute Deep Alignment legacy and ledger paths from one frozen paired-run manifest without changing the legacy result path.
 - **SC-002**: Event-for-event comparison is green across deterministic, replay, retry, late-completion, authority-change, applicability, known-deviation, and authority-conflict fixtures; no unexplained missing, extra, duplicate, or reordered event remains.
 - **SC-003**: Projection parity is green for every Deep Alignment lane and public output, including verify-first finding lifecycle, authority validity, applicability, evidence, deviations, conflicts, terminal state, and gauges.
 - **SC-004**: The harness rejects invalid or mixed authority capsules and distinguishes `PARITY_BLOCKED` from a clean parity result.
@@ -109,15 +109,15 @@ The parity result is evidence for a future authority decision, not an authority 
 - **Ordering noise mistaken for semantic drift** — concurrent lane completion can differ while causal semantics remain equal. Mitigation: compare stable logical identity and declared causal/barrier order, with no silent order relaxation outside the versioned comparator policy.
 - **Comparator normalization hides a real change** — broad ignored-field lists can turn a regression into a pass. Mitigation: keep an explicit small allowlist, reject unknown fields, and test allowlist expansion as a parity-contract change.
 - **Known-deviation suppression masks a regression** — treating an exception as a filter removes the evidence needed to detect changed scope or authority. Mitigation: compare the raw finding and the appended deviation/adjudication event separately.
-- **Shared review-loop drift** — Deep Alignment and deep-review may stop producing comparable execution events if the shared contract changes. Mitigation: pin the phase-009 contract version and include it in the paired-run manifest and receipt.
-- **Dependencies**: phase-011 shadow framework; phase-009 shared review-loop contract; sibling Deep Alignment outputs for typed schema, reducers, sealed artifacts, certificates, and resume; the legacy Deep Alignment emitter; the spec-kit validator; and the later `007-rollback-and-mode-gate` handoff.
+- **Shared review-loop drift** — Deep Alignment and deep-review may stop producing comparable execution events if the shared contract changes. Mitigation: pin the phase-012 contract version and include it in the paired-run manifest and receipt.
+- **Dependencies**: phase-014 shadow framework; phase-012 shared review-loop contract; sibling Deep Alignment outputs for typed schema, reducers, sealed artifacts, certificates, and resume; the legacy Deep Alignment emitter; the spec-kit validator; and the later `007-rollback-and-mode-gate` handoff.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - Which Deep Alignment event fields are semantically observable versus transport metadata, and what is the initial versioned normalization allowlist?
-- Which public gauges are required in the projection parity set, and which are explicitly diagnostic-only in the phase-011 framework?
+- Which public gauges are required in the projection parity set, and which are explicitly diagnostic-only in the phase-014 framework?
 - What minimum fixture count and confidence rule make a green shadow sample representative of every active lane and authority disposition?
 - Which cross-epoch authority changes must be replayed in this phase versus deferred to `007-rollback-and-mode-gate`?
 - What receipt schema and expiry window does the later mode gate require from this phase's parity evidence?

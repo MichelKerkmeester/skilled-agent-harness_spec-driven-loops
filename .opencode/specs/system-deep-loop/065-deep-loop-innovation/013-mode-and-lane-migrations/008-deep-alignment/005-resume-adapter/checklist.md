@@ -39,7 +39,7 @@ or unexpected tracked mutation.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-009 shared review-loop contract is frozen with sealed-frontier, reducer, replay, and terminal bindings
+- [ ] CHK-001 [P0] Phase-012 shared review-loop contract is frozen with sealed-frontier, reducer, replay, and terminal bindings
 - [ ] CHK-002 [P0] Shared mode contract and write-set conflict graph are pinned for same-lineage and independent-lineage resume
 - [ ] CHK-003 [P1] Interruption boundary matrix covers authority, lane, applicability, observation, proof, adjudication, deviation, convergence, and handoff states
 - [ ] CHK-004 [P1] Continuity-ladder state table identifies one owning logical ID, evidence frontier, and next safe action for every fixture
@@ -73,7 +73,7 @@ or unexpected tracked mutation.
 - [ ] CHK-022 [P1] Lane and mode convergence cannot project terminal success while required authority, applicability, evidence, proof, or closure obligations remain unresolved
 - [ ] CHK-023 [P1] Report or terminal projection is idempotent for one folded frontier and creates a new immutable projection for a changed frontier
 - [ ] CHK-024 [P1] Same-lineage and independent-lineage concurrency cases agree with the shared write-set conflict graph
-- [ ] CHK-025 [P1] Deep Alignment lifecycle shape matches phase-009 and Deep Review mode 002 fixtures without exercising a local transition path
+- [ ] CHK-025 [P1] Deep Alignment lifecycle shape matches phase-012 and Deep Review mode 002 fixtures without exercising a local transition path
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -110,7 +110,7 @@ or unexpected tracked mutation.
 
 The phase is complete when every P0 verifier check passes, deterministic folding agrees across all authority and interruption
 fixtures, duplicate and unsafe re-entry cases fail closed, verify-first and deviation semantics remain visible, and the adapter
-is proven to consume the phase-009 shared review-loop contract and write-set graph without authority movement.
+is proven to consume the phase-012 shared review-loop contract and write-set graph without authority movement.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

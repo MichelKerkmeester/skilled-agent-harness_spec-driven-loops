@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Improvement Common Services - Resume Adapter (013 phase 005)"
+title: "Implementation Plan: Deep Improvement Common Services - Resume Adapter"
 description: "Implementation plan for the sealed-ledger resume adapter, continuity-ladder reducers, idempotent re-entry contract, and shared evaluator, canary, and guarded-promotion services in deep-improvement common."
 trigger_phrases:
   - "deep improvement resume adapter implementation plan"
@@ -78,7 +78,7 @@ receipts, and promotion evidence remain immutable inputs; live projections are r
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-012 interface and conflict-graph handoff, the typed ledger/reducer contracts, and the `004-certificates-and-receipts` navigation contract without treating sibling ordering as a new runtime dependency.
+- Confirm the phase-015 interface and conflict-graph handoff, the typed ledger/reducer contracts, and the `004-certificates-and-receipts` navigation contract without treating sibling ordering as a new runtime dependency.
 - Inventory the deep-improvement common event types, sealed artifacts, receipts, evaluator inputs, and existing interruption points; record the source-to-projection matrix.
 - Freeze the continuity ladder, supported state transitions, replay-fingerprint inputs, and fixture corpus before implementing re-entry.
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Replay Fingerprints (003 phase 003)"
+title: "Implementation Plan: Replay Fingerprints"
 description: "Implementation plan for independently versioned replay fingerprint derivation, immutable ledger attestation, and fail-closed verification over typed-ledger ranges."
 trigger_phrases:
   - "replay fingerprints implementation plan"
@@ -30,12 +30,12 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop typed-ledger replay boundary (phase 003 child 003) |
+| **Surface** | system-deep-loop typed-ledger replay boundary |
 | **Change class** | Deterministic derivation, typed attestation, and verification logic |
 | **Execution** | Additive-dark; legacy execution remains authoritative |
 
 ### Overview
-Implement one versioned replay-fingerprint registry and canonical descriptor pipeline over the verified stream from `../002-typed-append-only-ledger/spec.md`. The pipeline commits immutable record bytes, effective upcast events, registered replay dependencies, and canonical projection bytes; appends a typed attestation after the covered range; and exposes one fail-closed verifier for the phase-005 shadow-parity harness and phase-013 whole-system gate named in `../../manifest/phase-tree.json`.
+Implement one versioned replay-fingerprint registry and canonical descriptor pipeline over the verified stream from `../002-typed-append-only-ledger/spec.md`. The pipeline commits immutable record bytes, effective upcast events, registered replay dependencies, and canonical projection bytes; appends a typed attestation after the covered range; and exposes one fail-closed verifier for the phase-008 shadow-parity harness and phase-016 whole-system gate named in `../../manifest/phase-tree.json`.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -52,7 +52,7 @@ Implement one versioned replay-fingerprint registry and canonical descriptor pip
 - [ ] Identical verified inputs reproduce byte-identical component and final digests across supported platforms
 - [ ] The typed attestation is immutable, idempotent, after-range, and excluded from its own fingerprint
 - [ ] Every corruption, version, contract, effective-event, and projection mismatch fails closed with bounded diagnostics
-- [ ] Phase 005 and phase 013 fixtures consume the same verifier and cannot rebaseline during comparison
+- [ ] Phase 008 and phase 016 fixtures consume the same verifier and cannot rebaseline during comparison
 - [ ] Dark-path failure changes no legacy output, state, schema, or authority
 <!-- /ANCHOR:quality-gates -->
 
@@ -66,7 +66,7 @@ Implement one versioned replay-fingerprint registry and canonical descriptor pip
 - **Attestation writer**: appends `deep-loop.replay.fingerprint-recorded` after the inclusive covered range through the authorized typed-ledger boundary. The attestation names the range and cannot be included in the fingerprint it records.
 - **Verifier**: resolves the recorded historical fingerprint version, validates the ledger range and replay dependencies, recomputes component/final digests, compares them, and returns either a trusted replay result or a typed non-zero mismatch with no partial success.
 - **Diagnostic boundary**: reports bounded expected/actual digests and the earliest determinable divergent sequence or replay stage without modifying a corrupted ledger or promoting a new baseline.
-- **Consumer seam**: exposes one verified-result API to phase 005 shadow parity and phase 013 whole-system replay; caches and indexes remain rebuildable and non-authoritative.
+- **Consumer seam**: exposes one verified-result API to phase 008 shadow parity and phase 016 whole-system replay; caches and indexes remain rebuildable and non-authoritative.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
@@ -83,7 +83,7 @@ Implement one versioned replay-fingerprint registry and canonical descriptor pip
 - Implement canonical descriptor serialization and final digest derivation with deterministic fixtures.
 - Implement the authorized after-range attestation append and exact-repeat idempotency/conflict behavior.
 - Implement fail-closed verification, component comparison, earliest-divergence diagnostics, and the trusted-result type.
-- Wire one read-only verification seam for phase 005 and phase 013 consumers while preserving dark non-authority.
+- Wire one read-only verification seam for phase 008 and phase 016 consumers while preserving dark non-authority.
 
 ### Phase 3: Verification
 - Prove same-input byte parity across repeated processes and supported platforms.
@@ -108,14 +108,14 @@ Implement one versioned replay-fingerprint registry and canonical descriptor pip
 | REQ-007 | Fault matrices assert a typed non-zero result and absence of all trusted downstream evidence |
 | REQ-008 | Diagnostics identify the earliest determinable sequence/stage without ledger or attestation mutation |
 | REQ-009 | Uncommitted configuration/artifact inputs block derivation; ledger-addressed digests restore determinism |
-| REQ-010 | Phase-005 and phase-013 contract fixtures call the same verifier and reject alternate digest paths |
+| REQ-010 | Phase-008 and phase-016 contract fixtures call the same verifier and reject alternate digest paths |
 | REQ-011 | Dark coexistence tests compare legacy outputs/state before and after every fingerprint-path failure |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase declares no hard dependency (`depends_on: []`), while implementation composes at the phase-003 parent gate with `../001-versioned-event-envelope/spec.md`, `../002-typed-append-only-ledger/spec.md`, and the successor authorization gateway. The upstream transition/versioning policy fixes registered historical compatibility. Downstream, the phase-tree makes phase 005 the first shadow-parity consumer and phase 013 the whole-system replay consumer; both depend on this verifier's exact contract rather than a sibling-specific digest.
+The phase declares no hard dependency (`depends_on: []`), while implementation composes at the phase-006 parent gate with `../001-versioned-event-envelope/spec.md`, `../002-typed-append-only-ledger/spec.md`, and the successor authorization gateway. The upstream transition/versioning policy fixes registered historical compatibility. Downstream, the phase-tree makes phase 008 the first shadow-parity consumer and phase 016 the whole-system replay consumer; both depend on this verifier's exact contract rather than a sibling-specific digest.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

@@ -20,7 +20,7 @@
   "derived": {
     "trigger_phrases": [
       "shared evidence and control services",
-      "deep-loop phase 004 shared services",
+      "deep-loop phase 007 shared services",
       "receipts seals adjudication budgets gauges locks continuity"
     ],
     "key_topics": [
@@ -103,16 +103,16 @@
       }
     ],
     "causal_summary": "Plan the seven shared evidence and control services that make the transition-authorized ledger usable by the compatibility bridge and every deep-loop mode.",
-    "created_at": "2026-07-15T19:00:47.889Z",
-    "last_save_at": "2026-07-15T19:00:47.889Z",
+    "created_at": "2026-07-16T03:43:58.919Z",
+    "last_save_at": "2026-07-16T03:43:58.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8b9fe51c9c43579eafce186ccda75a8afebcbbcf331c89bdc87db306b807b57d",
+    "source_fingerprint": "sha256:0b06de4433b30baddcb85c9c68bd9896f4cf7886f1af26e9342897fad929e29c",
     "source_doc_hashes": {
-      "spec.md": "74a323af1cc3a7ebe13487a16eee3bc9d97e132bd850f21fa78b9d31cc868299"
+      "spec.md": "5b225fb295e35ca8d95fbddefc27382c5d3b61d9fd66b29f621de8f9a00abcff"
     },
     "last_active_child_id": null,
     "last_active_at": null

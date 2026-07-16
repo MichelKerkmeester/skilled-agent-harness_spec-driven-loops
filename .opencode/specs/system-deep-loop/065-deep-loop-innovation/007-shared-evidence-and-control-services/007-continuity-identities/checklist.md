@@ -1,5 +1,5 @@
 ---
-title: "Checklist: continuity identities (065/006 phase 004/007)"
+title: "Checklist: continuity identities"
 description: "Blocking verifier contract for stable continuity identities across minting, resume, handover, replay, and cross-mode references."
 trigger_phrases:
   - "continuity identities checklist"
@@ -28,13 +28,13 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for the continuity-identities child. Every implementation item remains unchecked until the paired verifier runs it against the exact candidate SHA. The report must pin BASE and candidate SHAs, the phase-003 ledger schema/version, identity-fixture digest, commands and exit codes, replay fingerprints, event and entity counts, and tracked-mutation checks. Zero discovered fixtures, silently regenerated IDs, unresolved aliases, or legacy-authority changes fail the phase.
+This checklist is the blocking SOL verifier contract for the continuity-identities child. Every implementation item remains unchecked until the paired verifier runs it against the exact candidate SHA. The report must pin BASE and candidate SHAs, the phase-006 ledger schema/version, identity-fixture digest, commands and exit codes, replay fingerprints, event and entity counts, and tracked-mutation checks. Zero discovered fixtures, silently regenerated IDs, unresolved aliases, or legacy-authority changes fail the phase.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-003 event envelope, transition gate, append idempotency, schema-version, and replay-cursor contracts are pinned to exact source anchors
+- [ ] CHK-001 [P0] The phase-006 event envelope, transition gate, append idempotency, schema-version, and replay-cursor contracts are pinned to exact source anchors
 - [ ] CHK-002 [P0] The runtime identity census covers continuity threading, state reduction, council hierarchy, fan-out, JSONL repair, coverage graph, resume, and handover paths
 - [ ] CHK-003 [P1] The lifecycle decision table distinguishes new, retry, resume, handover, restart, fork, and cross-mode reference for all four identity kinds
 - [ ] CHK-004 [P2] The report records `depends_on: []` and treats `006-locks-and-fencing` as adjacency only
@@ -46,7 +46,7 @@ This checklist is the blocking SOL verifier contract for the continuity-identiti
 - [ ] CHK-005 [P0] No stable identity derives from array position, iteration, mutable text/content, label, path, timestamp, process ID, or mode-local coordinate
 - [ ] CHK-006 [P0] Unknown versions/kinds, wrong-kind references, ambiguous aliases, token reuse with different provenance, and unauthorized writes fail closed
 - [ ] CHK-007 [P1] Identity, attempt, alias, relationship, provenance, and projection types remain separate and have one runtime owner
-- [ ] CHK-008 [P1] The implementation is additive and dark; it does not duplicate phase-003 ledger mechanics or phase-005 compatibility authority
+- [ ] CHK-008 [P1] The implementation is additive and dark; it does not duplicate phase-006 ledger mechanics or phase-008 compatibility authority
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -82,7 +82,7 @@ This checklist is the blocking SOL verifier contract for the continuity-identiti
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-024 [P2] Runtime contracts document mint, resume, handover, fork, alias, cross-mode reference, replay, and rollback semantics without claiming phase-007 or phase-011 behavior
+- [ ] CHK-024 [P2] Runtime contracts document mint, resume, handover, fork, alias, cross-mode reference, replay, and rollback semantics without claiming phase-010 or phase-014 behavior
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
@@ -94,7 +94,7 @@ This checklist is the blocking SOL verifier contract for the continuity-identiti
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete when every P0 check passes, the verifier report binds the candidate SHA and identity-fixture digest, replay reproduces the same registry and relationships, resume/handover/cross-mode fixtures preserve original IDs, dark alias telemetry is unambiguous, and no legacy authority or output changes before phase 005.
+The phase is complete when every P0 check passes, the verifier report binds the candidate SHA and identity-fixture digest, replay reproduces the same registry and relationships, resume/handover/cross-mode fixtures preserve original IDs, dark alias telemetry is unambiguous, and no legacy authority or output changes before phase 008.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

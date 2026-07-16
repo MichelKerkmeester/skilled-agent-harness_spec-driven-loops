@@ -1,10 +1,10 @@
 ---
 title: "Tasks: Deep AI Council — Shadow Parity"
-description: "Tasks for phase 006 of the Deep AI Council migration: establish paired legacy-ledger execution, canonical event-for-event projection diffing, and a blocking shadow-parity receipt."
+description: "Tasks for phase 009 of the Deep AI Council migration: establish paired legacy-ledger execution, canonical event-for-event projection diffing, and a blocking shadow-parity receipt."
 trigger_phrases:
   - "deep ai council shadow parity tasks"
   - "council ledger parity tasks"
-  - "phase 006 council shadow tasks"
+  - "phase 009 council shadow tasks"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm predecessor `005-resume-adapter`, phase-011 shadow framework, phase 012 shared contracts, and the pinned BASE/candidate boundary
+- [ ] T001 Confirm predecessor `005-resume-adapter`, phase-014 shadow framework, phase 015 shared contracts, and the pinned BASE/candidate boundary
 - [ ] T002 Inventory legacy `ai-council-state.jsonl` events, packet-local artifacts, terminal outcomes, failure rows, rollback rows, and resume boundaries requiring canonical mapping
 - [ ] T003 Freeze the input envelope, recorded seat/tool outputs, target version, configuration digest, and versioned normalization profile
 - [ ] T004 [P] Assemble deterministic fixtures for normal completion, multiple rounds, timeout/error, contradiction, non-convergence, partial persistence, rollback, resume, and council-specific evidence
@@ -83,7 +83,7 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Shared shadow input**: Phase-011 shadow framework named by the phase brief
+- **Shared shadow input**: Phase-014 shadow framework named by the phase brief
 - **Mode state contract**: `deep-ai-council/references/structure/state_format.md`
 - **Mode workflow contract**: `deep-ai-council/references/integration/loop_protocol.md`
 <!-- /ANCHOR:cross-refs -->

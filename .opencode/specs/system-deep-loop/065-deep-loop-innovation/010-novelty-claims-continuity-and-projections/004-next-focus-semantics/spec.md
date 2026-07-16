@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: next-focus semantics (recommendations implementation phase 007 child 004)"
+title: "Feature Specification: next-focus semantics (recommendations implementation phase 010 child 004)"
 description: "Plan typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from ledger-derived novelty signals, then record the selected region and complete decision basis for replay."
 trigger_phrases:
   - "next-focus semantics"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Phase 004 of the 007 novelty, claims, continuity, and projections intelligence layer |
+| **Origin** | Phase 007 of the 007 novelty, claims, continuity, and projections intelligence layer |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -49,7 +49,7 @@ _memory:
 
 The loop currently carries a focus largely as prompt/runtime context. The shipped divergent-pivot path makes a new direction durable only when anti-convergence activates near a legal stop: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts` validates a generic `PivotCandidate`, rejects duplicate IDs, exact fingerprints, and materially similar title/focus pairs, while `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` asks three fixed Council seats to endorse the surviving frontier, requires two-of-three agreement with no high-severity blocker, and records `pivot_selected` plus `pivot_completed` events that restore `currentFocus`. That is a strong transaction and replay precedent, but it does not routinely derive or score the next region from coverage, novelty, and contradiction state.
 
-This phase plans the generalized decision contract: each iteration can derive typed focus candidates for a coverage gap, an open contradiction, or an under-covered semantic community; normalize the candidate's coverage gap, novelty decay, and contradiction urgency into deterministic basis-point inputs; choose one candidate with a fixed score and tie-break order; and append the selected focus, ranked frontier, scoring-policy version, source projection watermark, and candidate-set fingerprint to the typed ledger. Replay consumes the recorded decision rather than repeating prompt judgment. The outer ordering and additive-dark constraints come from `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`: phase 007 follows the compatibility bridge and durable fan-in, remains non-authoritative until staged cutover, and supplies phase 008 with stable semantic signals.
+This phase plans the generalized decision contract: each iteration can derive typed focus candidates for a coverage gap, an open contradiction, or an under-covered semantic community; normalize the candidate's coverage gap, novelty decay, and contradiction urgency into deterministic basis-point inputs; choose one candidate with a fixed score and tie-break order; and append the selected focus, ranked frontier, scoring-policy version, source projection watermark, and candidate-set fingerprint to the typed ledger. Replay consumes the recorded decision rather than repeating prompt judgment. The outer ordering and additive-dark constraints come from `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`: phase 010 follows the compatibility bridge and durable fan-in, remains non-authoritative until staged cutover, and supplies phase 011 with stable semantic signals.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -66,7 +66,7 @@ This phase plans the generalized decision contract: each iteration can derive ty
 ### Out of Scope
 - Replacing the divergent Council transaction or changing its two-of-three endorsement, blocker veto, recursion guard, budgets, or artifact layout.
 - Defining semantic-community clustering, contradiction/supersession event semantics, or claim-continuity identity; adjacent children own those independent planning contracts.
-- Implementing the transactional projection engine or convergence/termination policy; phase 005 projects the recorded events and outer phase 008 consumes their signals.
+- Implementing the transactional projection engine or convergence/termination policy; phase 008 projects the recorded events and outer phase 011 consumes their signals.
 - Calibrating mode-specific authority or enabling next-focus decisions as authoritative before shadow parity and staged cutover.
 <!-- /ANCHOR:scope -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Skill Benchmark shadow parity (013 phase 007 child 006)"
+title: "Implementation Plan: Skill Benchmark shadow parity"
 description: "Implementation Plan for the Skill Benchmark shadow-parity child: pair legacy and typed-ledger scenario runs, compare canonical event projections, and preserve fail-closed scoring parity."
 trigger_phrases:
   - "Skill Benchmark shadow parity implementation plan"
@@ -35,19 +35,19 @@ _memory:
 | **Execution** | Additive shadow path; legacy emitter remains authoritative |
 
 ### Overview
-The Skill Benchmark child must prove that its typed-ledger scenario and scoring path preserves the legacy behavior before any authority can move. The implementation uses the phase-011 shadow framework and mode-004 deep-improvement-common services for paired execution, ledger writes, receipts, budgets, replay, sealing, and generic projections. Skill Benchmark contributes only its treatment lattice, resource canaries, gold policy, causal-stage score projection, and canonical parity comparator. The downstream 010 migration fan-out is not authorized until the local phase-009 shared contracts and write-set conflict graph are frozen.
+The Skill Benchmark child must prove that its typed-ledger scenario and scoring path preserves the legacy behavior before any authority can move. The implementation uses the phase-014 shadow framework and mode-004 deep-improvement-common services for paired execution, ledger writes, receipts, budgets, replay, sealing, and generic projections. Skill Benchmark contributes only its treatment lattice, resource canaries, gold policy, causal-stage score projection, and canonical parity comparator. The downstream 010 migration fan-out is not authorized until the local phase-012 shared contracts and write-set conflict graph are frozen.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-011 shadow framework interface and mode-004 deep-improvement-common service versions are pinned
+- [ ] The phase-014 shadow framework interface and mode-004 deep-improvement-common service versions are pinned
 - [ ] The legacy scenario runner, emitter, and scorer are inventoried without changing their authority path
 - [ ] The Skill Benchmark treatment matrix and negative controls have stable IDs and bounded repetition rules
 - [ ] Paired-run identity binds task, bundle, executor, environment, tools, permissions, dependencies, gold, registry, and seed
 - [ ] The canonical event tuple and explicit volatile-field exclusions are reviewed
-- [ ] The local phase-009 shared-contract freeze and write-set conflict graph are available before 010 implementation fan-out
+- [ ] The local phase-012 shared-contract freeze and write-set conflict graph are available before 010 implementation fan-out
 
 ### Definition of Done
 - [ ] Legacy and ledger projections match event-for-event for the required paired corpus
@@ -59,7 +59,7 @@ The Skill Benchmark child must prove that its typed-ledger scenario and scoring 
 ## 3. ARCHITECTURE
 
 - `deep-improvement-common` remains the single owner of typed event envelopes, ledger writes, transition authorization, replay fingerprints, effect receipts, hierarchical budgets, artifact sealing, and shared projection plumbing.
-- The phase-011 shadow framework owns matched execution scheduling, isolation, sampling, generic health, and shadow receipt lifecycle; this child supplies the Skill Benchmark adapter and comparator inputs.
+- The phase-014 shadow framework owns matched execution scheduling, isolation, sampling, generic health, and shadow receipt lifecycle; this child supplies the Skill Benchmark adapter and comparator inputs.
 - The Skill Benchmark adapter owns versioned scenario definitions, treatment arms, skill bundle and resource canary descriptors, gold policy, and executor-facing scenario inputs.
 - A paired-run envelope binds both paths to the same logical scenario ID, treatment arm, task and bundle digests, executor descriptor, registry and dependency state, tool and permission surface, gold snapshot, seed, and common-service versions.
 - Skill-specific scoring projects availability, invocation, exposure, trajectory/key-point coverage, milestone diagnostics, final-state result, cost, and controlled security probes separately; intention-to-treat lift is the primary causal result.
@@ -78,7 +78,7 @@ The Skill Benchmark child must prove that its typed-ledger scenario and scoring 
 
 ### Phase 2: Implementation
 - Define the Skill Benchmark scenario and treatment schemas over the shared mode contract; keep common ledger, receipt, budget, replay, and projection construction in deep-improvement-common.
-- Add the phase-011 shadow adapter that dispatches legacy and ledger paths against the same immutable scenario input and records their source event references.
+- Add the phase-014 shadow adapter that dispatches legacy and ledger paths against the same immutable scenario input and records their source event references.
 - Add skill-specific gold-integrity and scoring projections, including causal-stage events, deterministic final-state checks, non-binding milestone diagnostics, dynamic reference functions, cost, and security-probe outcomes.
 - Add canonical projection normalization and an event-for-event comparator with stable ordering, digest checks, explicit volatile-field policy, and typed mismatch classes.
 - Add parity evidence emission: paired run record, projection diff, command and exit-code receipt, scenario/gold/evaluator digests, and a withheld status for every non-green comparison.
@@ -98,7 +98,7 @@ The Skill Benchmark child must prove that its typed-ledger scenario and scoring 
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Contract and ownership test proves the adapter calls phase-011 and mode-004 services and does not construct duplicate ledger, receipt, budget, replay, or projection services |
+| REQ-001 | Contract and ownership test proves the adapter calls phase-014 and mode-004 services and does not construct duplicate ledger, receipt, budget, replay, or projection services |
 | REQ-002 | Pair-integrity test compares task, treatment, bundle, executor, environment, registry, tool, permission, dependency, gold, seed, and common-service digests before scoring |
 | REQ-003 | Matrix test runs no-skill, full-skill, distractor, component-ablation, compatibility, and diagnostic treatment arms with stable scenario IDs and bounded repeats |
 | REQ-004 | Canonical event comparator asserts event kind, logical ID, causal order, payload digest, status, score contribution, and receipt reference; an unlisted field drift fails |
@@ -111,7 +111,7 @@ The Skill Benchmark child must prove that its typed-ledger scenario and scoring 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The plan consumes the generic phase-011 shadow framework and the deep-improvement-common contracts from mode 004. It also consumes the frozen shared-mode contract and write-set conflict graph at the local phase-009 gate before the 010 per-mode implementation fan-out. The Skill Benchmark child does not own resume, rollback, certificate issuance, registry-composition analysis, or authority cutover. The parent packet's spec-kit strict validator remains the documentation gate.
+The plan consumes the generic phase-014 shadow framework and the deep-improvement-common contracts from mode 004. It also consumes the frozen shared-mode contract and write-set conflict graph at the local phase-012 gate before the 010 per-mode implementation fan-out. The Skill Benchmark child does not own resume, rollback, certificate issuance, registry-composition analysis, or authority cutover. The parent packet's spec-kit strict validator remains the documentation gate.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

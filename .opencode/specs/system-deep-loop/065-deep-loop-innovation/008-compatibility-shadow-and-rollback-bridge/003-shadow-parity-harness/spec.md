@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Shadow-Parity Harness"
-description: "Plan the fail-closed harness that runs legacy and dark deep-loop paths on identical sealed inputs, compares verified replay-fingerprint components and projected legacy bytes, triages every divergence, and emits the parity certificate required before phase-011 authority cutover."
+description: "Plan the fail-closed harness that runs legacy and dark deep-loop paths on identical sealed inputs, compares verified replay-fingerprint components and projected legacy bytes, triages every divergence, and emits the parity certificate required before phase-014 authority cutover."
 trigger_phrases:
   - "shadow parity harness"
   - "deep-loop legacy dark parity"
@@ -41,9 +41,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Shadow-parity child of the phase-005 compatibility, shadow, and rollback bridge |
-| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-005 parent gate |
-| **Cutover role** | Hard precondition for every mode before phase-011 authority cutover |
+| **Origin** | Shadow-parity child of the phase-008 compatibility, shadow, and rollback bridge |
+| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-008 parent gate |
+| **Cutover role** | Hard precondition for every mode before phase-014 authority cutover |
 | **Authority posture** | Shadow-only; legacy remains authoritative and this phase emits no cutover action |
 <!-- /ANCHOR:metadata -->
 
@@ -53,15 +53,15 @@ _memory:
 The dark spine can append authorized events, replay deterministically, and render legacy-shaped artifacts while still
 being behaviorally wrong. A valid ledger proves integrity, not equivalence with the shipped runtime. Conversely, two
 paths can appear equivalent when they consumed different prompts, fixtures, configuration, evaluator material, or
-prior state. The [phase-000 baseline](../../003-baseline-taxonomy-and-state-census/spec.md) defines the protected
+prior state. The [phase-003 baseline](../../003-baseline-taxonomy-and-state-census/spec.md) defines the protected
 behavior and known-defect census that supplies the oracle, and the [program phase tree](../../manifest/phase-tree.json)
-requires phase 005 to prove shadow parity while legacy authority remains unchanged.
+requires phase 008 to prove shadow parity while legacy authority remains unchanged.
 
 This phase plans a closed parity protocol. Each case binds one BASE scenario and initial-state fixture to the same
-ordered, verified artifact-reference set from the [phase-004 sealed-reference-artifact contract](../../007-shared-evidence-and-control-services/002-sealed-reference-artifacts/spec.md).
+ordered, verified artifact-reference set from the [phase-007 sealed-reference-artifact contract](../../007-shared-evidence-and-control-services/002-sealed-reference-artifacts/spec.md).
 The harness clones that case into isolated legacy and dark execution roots, runs both paths without sharing mutable
 outputs, captures the same declared observable boundary, and verifies each comparison through the
-[phase-003 replay-fingerprint API](../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md).
+[phase-006 replay-fingerprint API](../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md).
 Because complete replay descriptors include run- and ledger-specific identity, parity compares their verified
 replay-contract identities and observable component digests rather than pretending the final descriptor digests must
 be equal. It also compares the dark path's projected bytes against the exact legacy bytes defined by sibling
@@ -70,7 +70,7 @@ be equal. It also compares the dark path's projected bytes against the exact leg
 Any input mismatch, unverifiable fingerprint, semantic difference, byte difference, missing observation, crash,
 timeout, side-effect-intent difference, or nondeterministic rerun is a blocking divergence. The harness records and
 routes the first determinable mismatch without rewriting either result or promoting the new value. Only a closed,
-mode-scoped case set with zero open divergences may emit an immutable parity certificate. Phase 011 must verify that
+mode-scoped case set with zero open divergences may emit an immutable parity certificate. Phase 014 must verify that
 certificate and its bound code, contract, BASE, and sealed-input identities before moving authority: **no parity, no
 cutover**.
 <!-- /ANCHOR:problem -->
@@ -79,7 +79,7 @@ cutover**.
 ## 3. SCOPE
 
 ### In Scope
-- A closed parity-case manifest derived from the phase-000 behavior baseline. Each row identifies mode/workstream,
+- A closed parity-case manifest derived from the phase-003 behavior baseline. Each row identifies mode/workstream,
   stable scenario ID, protected observable contract, initial-state fixture, sealed artifact set, legacy entry point,
   dark entry point, timeout/termination contract, replay contract, and legacy projection rows.
 - A preflight that verifies identical ordered sealed-artifact references, descriptor versions, BASE anchor, initial
@@ -89,8 +89,8 @@ cutover**.
   are suppressed or routed through shadow-only sinks, and neither path may read the other's mutable output.
 - A declared observable transcript covering terminal status, returned values, error and halt semantics, ordered state
   transitions, side-effect intents and receipts, budget/accounting observations, emitted artifacts, and reader-facing
-  legacy JSONL/JSON surfaces named by the phase-000 census.
-- Replay verification through the phase-003 registered API. Both paths must have verifiable comparison transcripts;
+  legacy JSONL/JSON surfaces named by the phase-003 census.
+- Replay verification through the phase-006 registered API. Both paths must have verifiable comparison transcripts;
   parity requires matching replay-contract identity plus matching effective-event and canonical projection component
   digests at the declared observable boundary.
 - Byte comparison of authoritative legacy artifacts against sibling-002 shadow projections, including field presence,
@@ -100,19 +100,19 @@ cutover**.
   triage lifecycle that preserves expected and actual evidence without auto-rebaseline or comparison-time waivers.
 - An immutable parity certificate bound to the mode, complete required case-set digest, BASE, code/build identity,
   sealed inputs, contract versions, fingerprint attestations, projection digests, and zero-divergence result.
-- A machine-verifiable precondition consumed by each phase-010 mode gate and rechecked by phase 011 immediately before
+- A machine-verifiable precondition consumed by each phase-013 mode gate and rechecked by phase 014 immediately before
   that mode's authority flip.
 
 ### Out of Scope
 - Defining sealed artifact identity or retention, replay-fingerprint formats, upcasters, dual-read adapters, legacy
-  projection algorithms, or in-flight-state dispositions owned by phases 004, 003, and adjacent phase-005 children.
+  projection algorithms, or in-flight-state dispositions owned by phases 004, 003, and adjacent phase-008 children.
 - Fixing a dark-path or legacy-path divergence. This phase surfaces and routes evidence; the owning implementation
   phase changes behavior and must rerun the affected parity closure.
 - Waiving known defects, weakening protected behavior, inventing tolerance bands, or dropping scenarios at comparison
   time. A baseline change requires the owning program contract to authorize and version it before parity reruns.
 - Running both paths against live mutable state, duplicating external side effects, overwriting authoritative legacy
   files, or treating a shared cache as sealed input.
-- Classifying or migrating in-flight state, executing rollback drills, flipping authority, issuing a phase-011 cutover
+- Classifying or migrating in-flight state, executing rollback drills, flipping authority, issuing a phase-014 cutover
   certificate, or retiring legacy writers.
 <!-- /ANCHOR:scope -->
 
@@ -121,19 +121,19 @@ cutover**.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The parity case set is closed against the phase-000 baseline | Every protected behavior scenario, mode/workstream, observable surface, and legacy reader named by the executed baseline maps to a parity row or an explicit blocking gap; zero required rows are silently omitted |
+| REQ-001 | The parity case set is closed against the phase-003 baseline | Every protected behavior scenario, mode/workstream, observable surface, and legacy reader named by the executed baseline maps to a parity row or an explicit blocking gap; zero required rows are silently omitted |
 | REQ-002 | Both paths consume exactly the same verified inputs | Before execution, the harness proves equality of BASE, initial-state digest, ordered sealed-artifact references, canonicalization versions, and ledger-addressed configuration; missing, mutable, reordered, or unverifiable input blocks the case |
 | REQ-003 | Executions are isolated and non-authoritative | Legacy and dark runs start from independent clones of one case capsule, share no mutable outputs, duplicate no live effects, write only to declared test/shadow roots, and cannot change runtime authority |
 | REQ-004 | Observable behavior is explicit and census-grounded | Each case declares terminal, value, error/halt, transition, effect/receipt, budget, artifact, and legacy-shape observations that apply; the harness rejects undeclared or missing observations rather than comparing an incomplete subset |
-| REQ-005 | Replay comparison uses the phase-003 verification contract | Both comparison transcripts verify under registered fingerprint and replay-contract versions; parity requires equal declared effective-event and canonical-projection component digests, while final run-specific descriptor identities remain separately attested |
+| REQ-005 | Replay comparison uses the phase-006 verification contract | Both comparison transcripts verify under registered fingerprint and replay-contract versions; parity requires equal declared effective-event and canonical-projection component digests, while final run-specific descriptor identities remain separately attested |
 | REQ-006 | Projected legacy shapes are byte-identical | For every sibling-002 projection row, authoritative legacy bytes and shadow-projected bytes match the declared serializer, ordering, newline, suppression, integrity, timing, watermark, and unchanged-reader contract |
 | REQ-007 | Divergence is fail closed and exhaustively classified | Input inequivalence, harness invalidity, replay-contract drift, execution outcome, effective-event, projection semantic, legacy-byte, side-effect, timing/termination, missing-observation, and nondeterminism failures each produce a typed blocking result |
 | REQ-008 | Divergence evidence is immutable, bounded, and actionable | A record binds case ID, mode, BASE, code/build IDs, sealed inputs, ledger ranges, expected/actual component digests, legacy/projected artifact digests, mismatch class, earliest deterministic divergence point, and owning contract without mutating source evidence |
 | REQ-009 | Triage cannot convert failure into parity | Triage may assign ownership, reproduce, fix, and close a divergence only after the affected case set reruns green; no suppression, ad hoc tolerance, skipped rerun, or auto-accepted baseline can produce a certificate |
 | REQ-010 | Nondeterminism is itself a divergence | Required deterministic reruns over the same sealed case reproduce the same per-path transcripts, verified component digests, legacy bytes, projected bytes, and classification; inconsistent reruns block certification |
 | REQ-011 | Certificates prove complete, current parity | A certificate is emitted only when every required case in the closed manifest passes and zero divergences remain; it binds the complete manifest digest, evidence set, contract versions, and all relevant build and artifact identities |
-| REQ-012 | Certificate drift blocks cutover | Phase 011 rejects a missing, partial, superseded, unverifiable, wrong-mode, or stale certificate whenever code, BASE, case manifest, sealed inputs, replay contract, reducer, projection, adapter, or comparator identity differs |
-| REQ-013 | Phase 005 never moves authority | Harness success creates parity evidence only; the legacy path remains authoritative and no flag, writer, reader, state, or cutover control is changed by this phase |
+| REQ-012 | Certificate drift blocks cutover | Phase 014 rejects a missing, partial, superseded, unverifiable, wrong-mode, or stale certificate whenever code, BASE, case manifest, sealed inputs, replay contract, reducer, projection, adapter, or comparator identity differs |
+| REQ-013 | Phase 008 never moves authority | Harness success creates parity evidence only; the legacy path remains authoritative and no flag, writer, reader, state, or cutover control is changed by this phase |
 
 ### Divergence taxonomy
 
@@ -157,13 +157,13 @@ expected attestation, source ledger, sealed artifacts, or authoritative legacy o
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The phase-000 baseline closes to a mode-addressable parity manifest with zero unexplained coverage gaps.
+- **SC-001**: The phase-003 baseline closes to a mode-addressable parity manifest with zero unexplained coverage gaps.
 - **SC-002**: Every parity case proves input equivalence before isolated legacy and dark execution begins.
 - **SC-003**: Verified replay component digests and sibling-002 legacy-shaped bytes match for every declared observable.
 - **SC-004**: Each mismatch produces one typed, reproducible divergence record with an owner and no evidence mutation.
 - **SC-005**: Deterministic reruns reproduce the same transcripts, component digests, bytes, and classification.
 - **SC-006**: A certificate is emitted only for a complete mode case set with zero open divergences.
-- **SC-007**: Phase 011 rejects absent or stale parity evidence and cannot move authority on a failed mode.
+- **SC-007**: Phase 014 rejects absent or stale parity evidence and cannot move authority on a failed mode.
 
 **Given** two path executions cite the same BASE, initial-state digest, and ordered verified sealed-artifact set, **When**
 the parity coordinator starts them in independent roots, **Then** both consume identical immutable inputs without
@@ -178,7 +178,7 @@ artifact, **Then** bytes, ordering, formatting, suppression, integrity, watermar
 **Given** any required case fails, is skipped, is unverifiable, or changes across deterministic reruns, **When**
 certificate issuance is requested, **Then** issuance fails and preserves the mismatch evidence without rebaselining.
 
-**Given** a mode has a complete parity certificate, **When** phase 011 observes drift in any bound code, contract,
+**Given** a mode has a complete parity certificate, **When** phase 014 observes drift in any bound code, contract,
 manifest, BASE, or artifact identity, **Then** the certificate is stale and authority remains on the legacy path.
 <!-- /ANCHOR:success-criteria -->
 
@@ -186,12 +186,12 @@ manifest, BASE, or artifact identity, **Then** the certificate is stale and auth
 ## 6. RISKS & DEPENDENCIES
 
 The child declares `depends_on: []` as an independent sibling planning contract, but execution consumes the frozen
-phase-000 behavior baseline, phase-003 replay-fingerprint verifier, phase-004 sealed-reference-artifact service, and
+phase-003 behavior baseline, phase-006 replay-fingerprint verifier, phase-007 sealed-reference-artifact service, and
 sibling-002 legacy projections. The highest risk is false parity from unequal inputs or an incomplete observable
 boundary. The protocol therefore verifies the ordered sealed-input set first and treats missing observations as a
 failure rather than comparing the available subset.
 
-Replay identity also needs precision. Phase-003 final descriptors bind ledger and run identity, so blindly requiring
+Replay identity also needs precision. Phase-006 final descriptors bind ledger and run identity, so blindly requiring
 their final digests to match would reject valid isolated executions. Comparing only a final state would miss trace or
 effect differences. The harness instead verifies both complete descriptors and compares the registered observable
 component digests declared by the case, retaining each run-specific attestation for audit.
@@ -199,7 +199,7 @@ component digests declared by the case, retaining each run-specific attestation 
 Other risks are duplicate live effects, shadow writes colliding with authoritative paths, timeout races, dynamic
 configuration escaping the seal set, known defects being silently normalized away, stale certificates surviving code
 drift, and triage turning an unexplained difference into a waiver. Isolation guards, census closure, immutable evidence,
-zero-tolerance certification, and phase-011 freshness checks are mandatory mitigations. The controlling sources are
+zero-tolerance certification, and phase-014 freshness checks are mandatory mitigations. The controlling sources are
 `../../003-baseline-taxonomy-and-state-census/spec.md`,
 `../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`,
 `../../007-shared-evidence-and-control-services/002-sealed-reference-artifacts/spec.md`,
@@ -210,7 +210,7 @@ zero-tolerance certification, and phase-011 freshness checks are mandatory mitig
 ## 7. OPEN QUESTIONS
 
 None blocking for planning. Execution must close concrete module names, case-manifest rows, supported deterministic
-rerun cardinality, bounded diagnostic payloads, and mode-certificate storage from the executed phase-000 census and
+rerun cardinality, bounded diagnostic payloads, and mode-certificate storage from the executed phase-003 census and
 registered runtime contracts. Those choices may not weaken sealed-input equality, comparison completeness,
-zero-divergence certification, certificate freshness, or the rule that phase 005 never moves authority.
+zero-divergence certification, certificate freshness, or the rule that phase 008 never moves authority.
 <!-- /ANCHOR:questions -->

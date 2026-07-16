@@ -41,7 +41,7 @@ _memory:
 
 - [ ] T001 Extract the parent program's additive-dark, per-mode, rollback, and no-retirement invariants and cite `manifest/phase-tree.json`
 - [ ] T002 Freeze the eight canonical workstream IDs and manifest order, including deep-improvement common before its three variants
-- [ ] T003 Confirm `depends_on: []`, Level 2 planning scope, phase-005 evidence ownership, and phase-001 policy ownership
+- [ ] T003 Confirm `depends_on: []`, Level 2 planning scope, phase-008 evidence ownership, and phase-004 policy ownership
 - [ ] T004 Define the mode-keyed authority-record schema, selector response, authority states, epochs, writer identities, and record digest
 - [ ] T005 Define the parity, rollback-drill, state-migration, mode-gate, candidate, policy, and rollback-asset preflight matrix
 - [ ] T006 Define the canonical authority-transition ledger event, complete binding fields, idempotency key, and denial evidence
@@ -55,11 +55,11 @@ _memory:
 - [ ] T009 Implement one durable authority record for each canonical mode/workstream with monotonic epoch enforcement
 - [ ] T010 Implement the canonical selector at every mode persistence boundary with mode, epoch, policy, record, and writer validation
 - [ ] T011 Implement fail-closed responses for missing, malformed, stale, unknown, wrong-mode, and drifted selector state
-- [ ] T012 Implement freshness verification for the phase-005 shadow-parity certificate and zero-divergence case set
-- [ ] T013 Implement freshness verification for the phase-005 rollback-drill certificate and complete forward-detect-rollback evidence
+- [ ] T012 Implement freshness verification for the phase-008 shadow-parity certificate and zero-divergence case set
+- [ ] T013 Implement freshness verification for the phase-008 rollback-drill certificate and complete forward-detect-rollback evidence
 - [ ] T014 Integrate state classification and migration evidence as a hard pre-flip gate without inventing a new disposition
-- [ ] T015 Integrate the phase-010 mode gate, exact candidate and BASE identities, contract versions, and rollback assets
-- [ ] T016 Implement the phase-001 authorization request with expected mode, state, epoch, request digest, actor, and evidence
+- [ ] T015 Integrate the phase-013 mode gate, exact candidate and BASE identities, contract versions, and rollback assets
+- [ ] T016 Implement the phase-004 authorization request with expected mode, state, epoch, request digest, actor, and evidence
 - [ ] T017 Implement atomic compare-and-swap, authority-transition ledger append, selector publication, and idempotent transition receipt
 - [ ] T018 Implement stale legacy-writer denial, dark canonical routing, retained legacy projections, and rollback-anchor access
 - [ ] T019 Implement serialized manifest-order coordination and reject multi-mode or out-of-order cutover requests
@@ -77,7 +77,7 @@ _memory:
 - [ ] T026 Verify one successful cutover changes only the selected mode and emits the complete authority-transition event
 - [ ] T027 Verify `004-deep-improvement-common` precedes `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`
 - [ ] T028 Verify reversible dark authority routes canonical writes to the spine and rejects stale legacy writes
-- [ ] T029 Verify the phase-001 rollback window opens with retained assets and the later-of-14-days-and-five-runs rule
+- [ ] T029 Verify the phase-004 rollback window opens with retained assets and the later-of-14-days-and-five-runs rule
 - [ ] T030 Verify crash recovery, idempotent retries, no multi-mode transaction, successor handoff evidence, and strict validation
 <!-- /ANCHOR:phase-3 -->
 

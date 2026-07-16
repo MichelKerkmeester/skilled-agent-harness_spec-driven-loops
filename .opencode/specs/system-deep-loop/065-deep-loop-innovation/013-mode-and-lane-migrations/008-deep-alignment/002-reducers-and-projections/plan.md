@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Alignment - Reducers & Projections (013 phase 002)"
+title: "Implementation Plan: Deep Alignment - Reducers & Projections"
 description: "Implementation Plan for the Deep Alignment reducers and projections phase: define a pure typed-event fold, lane-aware convergence state, an immutable artifact and evidence index, per-mode status, derived verdicts, replay failure behavior, and shadow parity against the legacy loop."
 trigger_phrases:
   - "Deep Alignment reducers and projections implementation plan"
@@ -30,12 +30,12 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / deep-alignment mode migration (013 phase 002) |
+| **Surface** | system-deep-loop / deep-alignment mode migration |
 | **Change class** | Pure reducer and projection design over typed ledger events |
 | **Execution** | Contract-first planning; implementation remains additive, dark, read-only, and non-authoritative |
 
 ### Overview
-The phase will specify one deterministic fold over the typed Deep Alignment event stream and three live projection families: lane iteration/convergence state, an immutable artifact and evidence index, and per-mode status. A separate derived projection will expose per-lane verdicts and the overall worst-verdict rollup while retaining authority snapshots, applicability outcomes, raw observations, re-probe receipts, and deviation adjudications as source data. The fold will reuse the phase-009 shared review-loop contract also consumed by Deep Review mode 002, and it will prove shadow parity before any authority can move.
+The phase will specify one deterministic fold over the typed Deep Alignment event stream and three live projection families: lane iteration/convergence state, an immutable artifact and evidence index, and per-mode status. A separate derived projection will expose per-lane verdicts and the overall worst-verdict rollup while retaining authority snapshots, applicability outcomes, raw observations, re-probe receipts, and deviation adjudications as source data. The fold will reuse the phase-012 shared review-loop contract also consumed by Deep Review mode 002, and it will prove shadow parity before any authority can move.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -43,7 +43,7 @@ The phase will specify one deterministic fold over the typed Deep Alignment even
 
 ### Definition of Ready
 - [ ] The `001-typed-ledger-schema` event contract and version policy are available as read-only inputs.
-- [ ] The phase-009 shared review-loop contract and the Deep Review reuse boundary are identified.
+- [ ] The phase-012 shared review-loop contract and the Deep Review reuse boundary are identified.
 - [ ] The 013 write-set conflict graph is available for projection ownership and persistence boundaries.
 - [ ] The legacy Deep Alignment state, lane fixtures, authority epochs, known-deviation cases, and protected-vs-known-defect decisions are pinned for shadow comparison.
 - [ ] The reducer input, initial state, output state, error result, and projection fingerprint are specified without side effects.
@@ -74,7 +74,7 @@ The phase will specify one deterministic fold over the typed Deep Alignment even
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Read the predecessor event schema, phase-009 review-loop contract, Deep Review mode-002 boundary, 013 conflict graph, legacy Deep Alignment state and replay fixtures, and the authority adapter/known-deviation rules.
+- Read the predecessor event schema, phase-012 review-loop contract, Deep Review mode-002 boundary, 013 conflict graph, legacy Deep Alignment state and replay fixtures, and the authority adapter/known-deviation rules.
 - Freeze the reducer input/output vocabulary and record which fields are source observations, derived verdicts, authority compatibility metadata, deviation overlays, or projection health.
 - Confirm the planning boundary: no new event schema, authority compiler, sealed-artifact writer, re-probe executor, rollback switch, authority cutover, or sibling concern is introduced here.
 
@@ -114,7 +114,7 @@ The phase will specify one deterministic fold over the typed Deep Alignment even
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The plan consumes the typed event schema from `001-typed-ledger-schema`, the shared review-loop contract frozen in phase 009, the 013 write-set conflict graph, and the legacy Deep Alignment replay corpus. It also consumes the mode contract in `deep-alignment/SKILL.md:251-269` and `322-345`, including lane state, verify-first, known-deviation, read-only, convergence, and report invariants. `003-sealed-artifacts` is a downstream adjacency boundary for sealing and certification, not a dependency for defining the index.
+The plan consumes the typed event schema from `001-typed-ledger-schema`, the shared review-loop contract frozen in phase 012, the 013 write-set conflict graph, and the legacy Deep Alignment replay corpus. It also consumes the mode contract in `deep-alignment/SKILL.md:251-269` and `322-345`, including lane state, verify-first, known-deviation, read-only, convergence, and report invariants. `003-sealed-artifacts` is a downstream adjacency boundary for sealing and certification, not a dependency for defining the index.
 
 The research inputs are the five-role Deep Alignment recommendation in `findings-registry.json:2770-2777`, the authority-validity, typed-rule, deviation, cross-epoch, applicability, proof-carrying, and receipt findings in `findings-registry-modes.json:3434-3659`, and the counterclaims requiring pinned authority, observable deviations, preserved raw facts, verifier provenance, and declared applicability in `findings-registry-modes.json:4667-4734`. The migration remains additive and dark. Legacy projections remain authoritative until the shared adapters, shadow parity, in-flight classification, and later staged cutover phases authorize a change.
 <!-- /ANCHOR:dependencies -->

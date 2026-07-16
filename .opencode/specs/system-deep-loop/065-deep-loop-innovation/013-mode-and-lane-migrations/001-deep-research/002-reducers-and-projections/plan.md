@@ -31,7 +31,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / deep-research mode migration (010 phase 001 child 002) |
+| **Surface** | system-deep-loop / deep-research mode migration |
 | **Change class** | Pure reducer and projection contract over typed events |
 | **Execution** | After the shared mode contract and typed ledger schema are frozen; ledger remains dark and legacy remains authoritative |
 
@@ -49,8 +49,8 @@ state. The existing reducer and heartbeat behavior are treated as parity baselin
 
 ### Definition of Ready
 - [ ] `001-typed-ledger-schema` has a frozen event envelope, ordering inputs, schema-version policy, and deep-research event inventory
-- [ ] Phase-009 shared mode interfaces identify reducer ownership, replay identity, continuity, and legacy-projection ports
-- [ ] The phase-010 write-set graph identifies the reducer/projection resource boundary and any shared gauge-store fence
+- [ ] Phase-012 shared mode interfaces identify reducer ownership, replay identity, continuity, and legacy-projection ports
+- [ ] The phase-013 write-set graph identifies the reducer/projection resource boundary and any shared gauge-store fence
 - [ ] A field-level reducer ownership matrix names every projected field, input event family, fold operation, and invalid-state outcome
 - [ ] Fixtures cover valid lifecycle, evidence admission, claim revision, contradiction, artifact reference, convergence witness, and status events
 - [ ] The planned projection fingerprint and rebuild policy are compatible with the shared replay contract
@@ -81,7 +81,7 @@ state. The existing reducer and heartbeat behavior are treated as parity baselin
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the typed-ledger and shared-mode contracts, the deep-research event inventory, reducer resource boundary, and phase-010 write-set evidence.
+- Pin the typed-ledger and shared-mode contracts, the deep-research event inventory, reducer resource boundary, and phase-013 write-set evidence.
 - Build the field ownership matrix and state algebra before writing reducer code; identify required, optional, ignored, and rejected event fields.
 - Capture current legacy reducer and heartbeat outputs as comparison fixtures, including full-history rescans and iteration Markdown parsing behavior.
 
@@ -119,14 +119,14 @@ state. The existing reducer and heartbeat behavior are treated as parity baselin
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase consumes the planned `001-typed-ledger-schema` event contract and the phase-009 shared mode interface and
+The phase consumes the planned `001-typed-ledger-schema` event contract and the phase-012 shared mode interface and
 write-set declarations. It also consumes the shared event sources for evidence admission, claim lifecycle, community
-snapshots, convergence witnesses, receipts, budgets, continuity, and health. The parent phase tree places phase 009
-before phase 010, but this child remains `depends_on: []` in the manifest and treats sibling adjacency as navigation.
+snapshots, convergence witnesses, receipts, budgets, continuity, and health. The parent phase tree places phase 012
+before phase 013, but this child remains `depends_on: []` in the manifest and treats sibling adjacency as navigation.
 
 Research inputs are the deep-research mode findings in
 `002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json`, the runtime reducer/projection findings
-in `findings-registry.json`, the phase-010 parent `spec.md`, and `manifest/phase-tree.json`. Successor
+in `findings-registry.json`, the phase-013 parent `spec.md`, and `manifest/phase-tree.json`. Successor
 `003-sealed-artifacts` consumes the artifact-index contract; it does not delegate artifact construction to this phase.
 <!-- /ANCHOR:dependencies -->
 

@@ -162,9 +162,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the Deep Alignment rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, per-lane shadow parity, sealed conformance evidence, certificate closure, and the phase-011 handoff without moving runtime authority.",
-    "created_at": "2026-07-15T21:45:54.776Z",
-    "last_save_at": "2026-07-15T21:45:54.776Z",
+    "causal_summary": "Plan the Deep Alignment rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, per-lane shadow parity, sealed conformance evidence, certificate closure, and the phase-014 handoff without moving runtime authority.",
+    "created_at": "2026-07-16T03:43:44.407Z",
+    "last_save_at": "2026-07-16T03:43:44.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -173,12 +173,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:20db0592a36cece2dbf9eb12388c3b4b8f08317649d2bb4c700b9cc021363352",
+    "source_fingerprint": "sha256:4930c10528d4d0208d26706e7d55a2e0bbc3d771691b0555c761540dcd3a05ee",
     "source_doc_hashes": {
-      "spec.md": "5955cd9fd24e13c0a12ad989bf50be3d1c0d787c7a9358aeeb7407cef93b6f6c",
-      "plan.md": "42e3b7ac1a7c9c862b291f12b258447bc808004eee5309c25aee3755e8efb158",
-      "tasks.md": "9e8f3f2392b70f0ae8afb342ce32352f172b2380a3dc6fcda99e8007f6586772",
-      "checklist.md": "faca6a74ac75bec28dcb5e1a647349eb3d8d723c3b9e8a0bef5877b2455a4a0e"
+      "spec.md": "acabd6be6a1b7dc68b9742b89ace82af157e5309c927f96db8b968261f43dcdb",
+      "plan.md": "9444f24cc0f7a4b124f587438831ad6a1d008dea7e2561150ff10b156d7a0d9e",
+      "tasks.md": "f6ca269fe6db5a4e9db8aaeb4fb3472a4fe90d6f4cb1047f9927f03823dfe4cc",
+      "checklist.md": "1697a33f6eec1aa3c2dc076813833c8a5eade2cd76a3b09ae6a89d3f3a009bfe"
     },
     "last_active_child_id": null,
     "last_active_at": null

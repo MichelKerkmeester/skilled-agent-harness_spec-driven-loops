@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Research - Sealed Reference Artifacts (010 phase 001 child 003)"
+title: "Tasks: Deep Research - Sealed Reference Artifacts"
 description: "Tasks for binding Deep Research lifecycle inputs, evidence, outputs, resume deltas, and memory-save handoff to the shared sealed-artifact contract."
 trigger_phrases:
   - "deep research sealed artifacts tasks"
@@ -39,11 +39,11 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-009 mode contract and write-set conflict graph, and verify predecessor `002-reducers-and-projections` owns the reducer/projection boundary
+- [ ] T001 Confirm the phase-012 mode contract and write-set conflict graph, and verify predecessor `002-reducers-and-projections` owns the reducer/projection boundary
 - [ ] T002 Inventory Deep Research init, gather, analyze, convergence, synthesis, resume, and memory-save state and output shapes against the pinned baseline
 - [ ] T003 Freeze the mode artifact-kind matrix, shared descriptor fields, canonicalization profiles, media types, digest-reference roles, and deterministic reference ordering
 - [ ] T004 Define typed seal/read failures, source-refresh dispositions, append-only supersession, handoff refusal, and the additive-dark rollback switch
-- [ ] T005 Confirm the mode consumes the phase-003 sealing primitives and does not introduce a mode-local digest, blob store, or verification path
+- [ ] T005 Confirm the mode consumes the phase-006 sealing primitives and does not introduce a mode-local digest, blob store, or verification path
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->

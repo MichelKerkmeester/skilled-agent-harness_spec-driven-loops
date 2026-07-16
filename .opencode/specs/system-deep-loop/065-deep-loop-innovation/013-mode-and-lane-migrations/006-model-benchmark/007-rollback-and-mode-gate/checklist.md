@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Model Benchmark - Rollback & Mode Gate"
-description: "Blocking verification checklist for the Model Benchmark fail-closed rollback switch, bounded rollback window, independent scoring-matrix shadow-parity gate, shared-service ownership, and phase-011 readiness certificate."
+description: "Blocking verification checklist for the Model Benchmark fail-closed rollback switch, bounded rollback window, independent scoring-matrix shadow-parity gate, shared-service ownership, and phase-014 readiness certificate."
 trigger_phrases:
   - "model benchmark rollback and mode gate checklist"
   - "model benchmark migration gate verification"
@@ -41,7 +41,7 @@ underpowered coverage, or an empty eligible matrix is blocking.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase 009 contract digest, write-set graph digest, and phase-011 handoff version are recorded
+- [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase 012 contract digest, write-set graph digest, and phase-014 handoff version are recorded
 - [ ] CHK-002 [P0] Model Benchmark siblings `001` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and shadow-parity references
 - [ ] CHK-003 [P0] The shared-service ownership matrix identifies evaluator, canary, calibration, promotion, certificate, receipt, fingerprint, veto, budget, and rollback owners
 - [ ] CHK-004 [P1] The legacy anchor, typed frontier, matrix frontier, evaluator epoch, canary epoch, and required fixture manifest are recorded for every gate boundary
@@ -78,7 +78,7 @@ underpowered coverage, or an empty eligible matrix is blocking.
 - [ ] CHK-025 [P0] The rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations
 - [ ] CHK-026 [P0] Model Benchmark consumes the same evaluator, canary, calibration, promotion, certificate, receipt, fingerprint, veto, budget, and rollback fixtures through namespaced adapters
 - [ ] CHK-027 [P0] Repeated evaluation of the same sealed matrix frontier emits the same gate disposition and certificate body digest; a changed semantic input invalidates the result
-- [ ] CHK-028 [P0] Phase-011 receives a readiness certificate only; any certificate claiming authority moved, the rollback window closed, a model was globally selected, or legacy writers retired is rejected
+- [ ] CHK-028 [P0] Phase-014 receives a readiness certificate only; any certificate claiming authority moved, the rollback window closed, a model was globally selected, or legacy writers retired is rejected
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -101,7 +101,7 @@ underpowered coverage, or an empty eligible matrix is blocking.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-036 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Model Benchmark gate, mode-migration certificate, phase-011 readiness handoff, and later authority-cutover certificate
+- [ ] CHK-036 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Model Benchmark gate, mode-migration certificate, phase-014 readiness handoff, and later authority-cutover certificate
 - [ ] CHK-037 [P1] The shared-service reuse boundary names Deep Improvement Common Services and records that Model Benchmark consumes its evaluator, canary, calibration, promotion, receipt, certificate, veto, budget, and recovery source
 - [ ] CHK-038 [P2] Research traceability cites the 065/002 findings on model/path confounding, adaptive anchors, candidate-specific calibration, contamination lineage, operational workload, cost, and false-green ranking claims
 <!-- /ANCHOR:docs -->
@@ -111,7 +111,7 @@ underpowered coverage, or an empty eligible matrix is blocking.
 
 - [ ] CHK-039 [P0] Authored changes remain limited to this target phase folder and use the prescribed four-document Level 2 structure
 - [ ] CHK-040 [P1] No `description.json` or `graph-metadata.json` is hand-written; deterministic tooling owns generated metadata
-- [ ] CHK-041 [P1] Any later implementation remains path-scoped, additive-dark, dependency-closed, and ordered after the phase 009 contract freeze without adjacent sibling cleanup
+- [ ] CHK-041 [P1] Any later implementation remains path-scoped, additive-dark, dependency-closed, and ordered after the phase 012 contract freeze without adjacent sibling cleanup
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
@@ -120,7 +120,7 @@ underpowered coverage, or an empty eligible matrix is blocking.
 The phase passes only when every P0 verifier item is green, the independent gate has no unexplained evidence gap, shadow
 parity is complete for the Model Benchmark lifecycle and shared-service adapters, seals and receipt chains verify, the matrix
 fingerprint and replay are deterministic, the rollback window contract is intact, rollback rehearsal restores the legacy
-anchor without data loss, and the exact-SHA certificate hands phase-011 readiness without an authority claim. A passing result
+anchor without data loss, and the exact-SHA certificate hands phase-014 readiness without an authority claim. A passing result
 does not authorize cutover, model deployment, or legacy-writer retirement.
 <!-- /ANCHOR:summary -->
 

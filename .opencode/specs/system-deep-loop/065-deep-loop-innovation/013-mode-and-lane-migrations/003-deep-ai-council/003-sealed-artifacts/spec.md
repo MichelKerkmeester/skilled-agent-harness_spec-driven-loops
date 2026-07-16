@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Deep AI Council - Sealed Reference Artifacts (013 phase 003)"
-description: "Plan the Deep AI Council sealing boundary for immutable inputs and outputs across seats deliberate, critique rounds, convergence, ai-council artifacts, and the council test gate. Reuse the phase-003 sealing primitives and phase-009 shared contracts for content-addressed digests, seal-on-write, replay identity, and tamper-evident reads; do not create a second sealing scheme."
+title: "Feature Specification: Deep AI Council - Sealed Reference Artifacts"
+description: "Plan the Deep AI Council sealing boundary for immutable inputs and outputs across seats deliberate, critique rounds, convergence, ai-council artifacts, and the council test gate. Reuse the phase-006 sealing primitives and phase-012 shared contracts for content-addressed digests, seal-on-write, replay identity, and tamper-evident reads; do not create a second sealing scheme."
 trigger_phrases:
   - "Deep AI Council sealed reference artifacts"
   - "deep-ai-council seal-on-write"
@@ -20,9 +20,9 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact phase-003 seal record and verification receipt fields are frozen?"
+      - "Which exact phase-006 seal record and verification receipt fields are frozen?"
       - "Which council inputs require private sealed access versus public digest references?"
-      - "Which artifact read failures emit shared tamper evidence before phase 004 certification?"
+      - "Which artifact read failures emit shared tamper evidence before phase 007 certification?"
     answered_questions: []
 ---
 
@@ -44,7 +44,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-ai-council |
-| **Origin** | Phase 003 of the 013 per-mode migration program; sealed reference artifacts concern |
+| **Origin** | Phase 006 of the 013 per-mode migration program; sealed reference artifacts concern |
 | **Depends on** | `[]` in the phase manifest; sibling references are navigation only |
 | **Output** | A mode-specific sealing contract and verification plan; no certificate or authority-cutover implementation |
 <!-- /ANCHOR:metadata -->
@@ -59,8 +59,8 @@ outputs, minority records, and the council test-gate evidence. The current packe
 or how a reader proves that a path still contains the bytes that were admitted to deliberation. A mutable path, a replaced
 report, or a stale prompt/configuration can therefore look like the original council result during replay or audit.
 
-This phase plans the Deep AI Council sealing boundary over the shared substrate. It consumes the phase-003 content-addressed
-sealing primitives and the phase-009 identity, artifact-reference, replay, receipt, authorization, and write-set contracts.
+This phase plans the Deep AI Council sealing boundary over the shared substrate. It consumes the phase-006 content-addressed
+sealing primitives and the phase-012 identity, artifact-reference, replay, receipt, authorization, and write-set contracts.
 The plan defines seal-on-write for the immutable input and output reference sets, then defines a read path that verifies the
 content digest and seal linkage before a reducer, resume adapter, test gate, or later certificate can use the bytes. The
 sealing boundary must reproduce the multi-seat lifecycle without making a second mode-local cryptographic or persistence
@@ -87,8 +87,8 @@ scheme. Sealing is evidence integrity; certification and authority remain later 
   additive, dark, and non-authoritative.
 
 ### Out of Scope
-- Defining or changing the phase-003 sealing primitives, digest algorithm, shared storage protocol, transition gateway, or
-  phase-009 envelope, receipt, artifact-reference, replay, or write-set contracts.
+- Defining or changing the phase-006 sealing primitives, digest algorithm, shared storage protocol, transition gateway, or
+  phase-012 envelope, receipt, artifact-reference, replay, or write-set contracts.
 - Reducers, projections, artifact-index ownership, deliberation state, independence calculations, plural outcomes, or status
   folds owned by `002-reducers-and-projections`.
 - Seat execution, critique generation, judge calibration, pairwise adjudication, synthesis, convergence policy, or council
@@ -104,7 +104,7 @@ scheme. Sealing is evidence integrity; certification and authority remain later 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The mode reuses the phase-003 sealing primitives and phase-009 shared contracts | A contract map names inherited digest, seal, reference, replay, authorization, receipt, and write-set fields; no duplicate seal scheme or mode-local authority path exists |
+| REQ-001 | The mode reuses the phase-006 sealing primitives and phase-012 shared contracts | A contract map names inherited digest, seal, reference, replay, authorization, receipt, and write-set fields; no duplicate seal scheme or mode-local authority path exists |
 | REQ-002 | Every reproducibility-critical council input is identified and sealed before dependent work consumes it | An inventory covers target, task class, strategy, prompt/tool/model capability, seat roster, policy, fixture, budget, contract, and control-arm inputs with scope and digest rules |
 | REQ-003 | Every reproducibility-critical council output is sealed on write | Seat, critique, blinded candidate, judgment, convergence, synthesis, minority, council, and test-gate outputs have content-addressed objects and authorized seal references |
 | REQ-004 | Seal-on-write is immutable and idempotent | A repeated write for the same canonical bytes returns the same digest and does not mutate the original object; changed bytes create a new digest and append lineage |
@@ -134,7 +134,7 @@ available for replay.
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The phase has a complete artifact inventory for the `seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate` lifecycle, including immutable inputs and outputs.
-- **SC-002**: Every inventory row maps to the phase-003 seal primitive and phase-009 shared reference, identity, replay, receipt, and authorization contracts without introducing a second scheme.
+- **SC-002**: Every inventory row maps to the phase-006 seal primitive and phase-012 shared reference, identity, replay, receipt, and authorization contracts without introducing a second scheme.
 - **SC-003**: Seal-on-write is idempotent for identical canonical bytes, creates a new digest for changed bytes, preserves supersession lineage, and never overwrites an earlier seal.
 - **SC-004**: A tamper-evident reader verifies digest, manifest, scope, and replay compatibility before returning bytes; missing, changed, unsafe, or stale data produces an explicit blocked result.
 - **SC-005**: Private seat evidence, blinded candidate identity, judge inputs, minority records, and test-gate inputs retain their declared information boundaries through sealing and reads.
@@ -146,7 +146,7 @@ available for replay.
 ## 6. RISKS & DEPENDENCIES
 
 - **Second sealing scheme** - a mode-local digest, manifest, or read verifier could diverge from the shared substrate. Mitigation:
-  treat phase-003 sealing primitives and phase-009 contracts as the sole authority and reject local aliases in the contract map.
+  treat phase-006 sealing primitives and phase-012 contracts as the sole authority and reject local aliases in the contract map.
 - **Mutable-path substitution** - a current packet file could replace the originally sealed bytes during resume or verification.
   Mitigation: resolve by content digest, verify the seal manifest and scope, and fail closed without path fallback.
 - **Incomplete input capture** - a council output can be digest-stable while its prompt, tool policy, model capability, or fixture
@@ -156,10 +156,10 @@ available for replay.
 - **Seal mistaken for certificate** - downstream code could treat an integrity-verified object as a certified or authoritative
   outcome. Mitigation: keep certificate references, test-gate sign-off, and authority transitions outside this phase.
 - **Concurrent writer collision** - seats, critiques, or gates may attempt to seal related objects concurrently. Mitigation: use the
-  phase-009 write-set conflict graph and shared atomic seal-on-write operation; do not coordinate through a local global lock.
+  phase-012 write-set conflict graph and shared atomic seal-on-write operation; do not coordinate through a local global lock.
 - **Late or superseding evidence** - a later critique or gate result may make a prior artifact stale without invalidating history.
   Mitigation: append supersession or quarantine lineage and preserve the earlier verified object for as-of replay.
-- **Dependencies**: phase-003 sealing and transition-authorized ledger primitives, phase-009 shared artifact/reference and write-set
+- **Dependencies**: phase-006 sealing and transition-authorized ledger primitives, phase-012 shared artifact/reference and write-set
   contracts, `001-typed-ledger-schema`, `002-reducers-and-projections`, the Deep AI Council findings registries, legacy artifact
   fixtures, the shared replay and resume contract, and successor `004-certificates-and-receipts`.
 <!-- /ANCHOR:risks -->
@@ -167,7 +167,7 @@ available for replay.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-003 seal record, canonicalization metadata, digest algorithm, and verification receipt fields are frozen for
+- Which exact phase-006 seal record, canonicalization metadata, digest algorithm, and verification receipt fields are frozen for
   mode adapters, and which are intentionally opaque shared primitives?
 - Which private input objects require access-controlled sealed storage, and which can be represented as public digest-only
   references without weakening reproducibility or auditability?
@@ -175,7 +175,7 @@ available for replay.
 - Which artifact kinds are required for a successful Deep AI Council mode gate, and which are diagnostic sealed outputs that may be
   absent without blocking a non-authoritative shadow run?
 - How does phase `004-certificates-and-receipts` consume the sealed manifest without rehashing, recertifying, or replacing the
-  phase-003 sealing authority?
+  phase-006 sealing authority?
 
 These questions are contract-ratification inputs. They do not authorize a local digest format, artifact store, certificate,
 authority cutover, or mutable repair path in this Planned phase.

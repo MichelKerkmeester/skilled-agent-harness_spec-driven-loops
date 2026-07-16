@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: Deep AI Council — Shadow Parity"
-description: "Implementation Plan for phase 006 of the Deep AI Council migration: run the typed ledger path beside the legacy emitter, compare canonical council projections event-for-event, and issue a cutover-blocking parity receipt."
+description: "Implementation Plan for phase 009 of the Deep AI Council migration: run the typed ledger path beside the legacy emitter, compare canonical council projections event-for-event, and issue a cutover-blocking parity receipt."
 trigger_phrases:
   - "deep ai council shadow parity implementation plan"
   - "council ledger projection diff plan"
-  - "phase 006 council parity harness"
+  - "phase 009 council parity harness"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity"
@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop/deep-ai-council + shared ledger shadow substrate |
 | **Change class** | Planning-only parity contract; dark non-authoritative migration evidence |
-| **Execution** | Paired shadow runs from frozen BASE/candidate inputs under the phase-011 shadow framework |
+| **Execution** | Paired shadow runs from frozen BASE/candidate inputs under the phase-014 shadow framework |
 
 ### Overview
 The current council lifecycle is observable through append-only state and packet-local artifacts: seats return, deliberation is synthesized, rounds close, completion is emitted, and failures preserve rollback evidence. The migration must prove that the typed ledger path produces the same canonical behavior history and projections before the mode can approach authority cutover. The plan therefore separates behavior-event parity from ledger control-plane validation, binds both to one frozen input boundary, and emits a receipt that fails closed on any unexplained difference.
@@ -43,7 +43,7 @@ The current council lifecycle is observable through append-only state and packet
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-011 shadow framework contract, phase 012 shared mode contract, and the sibling `001-typed-ledger-schema` through `005-resume-adapter` interfaces are pinned
+- [ ] The phase-014 shadow framework contract, phase 012 shared mode contract, and the sibling `001-typed-ledger-schema` through `005-resume-adapter` interfaces are pinned
 - [ ] A frozen input boundary includes BASE/candidate SHAs, council config, target version, seat manifests, recorded outputs, tool receipts, and fixture digests
 - [ ] The canonical legacy-to-ledger event mapping and the versioned normalization profile are reviewed
 - [ ] The parity matrix covers completion, multiple rounds, timeout/error, contradiction, non-convergence, rollback, resume, and mode-specific evidence fields
@@ -73,7 +73,7 @@ The current council lifecycle is observable through append-only state and packet
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the predecessor `005-resume-adapter` and phase-011 shadow framework contracts, while preserving the phase tree's independent-sibling planning relationship.
+- Confirm the predecessor `005-resume-adapter` and phase-014 shadow framework contracts, while preserving the phase tree's independent-sibling planning relationship.
 - Pin BASE and candidate identities, define the input envelope, freeze the normalization profile, and inventory the legacy state/output/failure/rollback events that require mapping.
 - Assemble deterministic fixtures for normal completion, multiple rounds, seat timeout/error, contradictory high-confidence recommendations, max-round non-convergence, partial persistence, rollback, resume checkpoints, and council-specific independence/blinding/control evidence.
 
@@ -107,7 +107,7 @@ The current council lifecycle is observable through append-only state and packet
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The execution consumes the phase-011 shadow framework named by the phase brief, the phase 012 shared mode contracts and write-set conflict graph, the shared compatibility/shadow bridge, and the Deep AI Council sibling contracts for typed ledger schema, reducers, sealed artifacts, certificates, and resume. It also relies on the existing `deep-ai-council` state format, output schema, failure handling, one-CLI-per-round invariant, packet-local artifact boundary, and derived-graph rule. The phase-tree entry declares `depends_on: []`; this plan records the named contract inputs without adding a hard dependency edge or changing sibling sequencing.
+The execution consumes the phase-014 shadow framework named by the phase brief, the phase 012 shared mode contracts and write-set conflict graph, the shared compatibility/shadow bridge, and the Deep AI Council sibling contracts for typed ledger schema, reducers, sealed artifacts, certificates, and resume. It also relies on the existing `deep-ai-council` state format, output schema, failure handling, one-CLI-per-round invariant, packet-local artifact boundary, and derived-graph rule. The phase-tree entry declares `depends_on: []`; this plan records the named contract inputs without adding a hard dependency edge or changing sibling sequencing.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

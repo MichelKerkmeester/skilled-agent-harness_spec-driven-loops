@@ -5,7 +5,7 @@ trigger_phrases:
   - "agent improvement rollback and mode gate"
   - "agent improvement authority rollback switch"
   - "agent loop migration gate"
-  - "agent improvement phase 011 readiness"
+  - "agent improvement phase 014 readiness"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate"
@@ -67,7 +67,7 @@ The phase builds on `004-deep-improvement-common`. Its evaluator, canary, promot
 recovery services remain the single source of truth. Agent Improvement contributes only namespaced agent-loop evidence:
 AgentIR and mutation lineage, behavior-family and authority-conflict coverage, causal failure localization, profile-scoped
 transfer evidence, and the agent-specific gate predicates that consume those common results. This is planning only. A
-green gate emits readiness for the phase-011 handoff; it does not move authority, close the rollback window, or retire a
+green gate emits readiness for the phase-014 handoff; it does not move authority, close the rollback window, or retire a
 legacy writer.
 <!-- /ANCHOR:problem -->
 
@@ -81,7 +81,7 @@ legacy writer.
 - A non-destructive Agent Improvement rollback runbook: freeze typed-authoritative admission, fence stale writers, classify in-flight proposal/evaluation/canary/promotion work through the resume contract, recover effects by stable identity, restore the legacy path at a new epoch through the shared gateway, retain all evidence, and emit a rollback certificate.
 - An independent Agent Improvement gate matrix over `006-shadow-parity`, typed AgentIR and candidate projections, sealed inputs and outputs, common evaluator/canary/promotion evidence, certificates and receipts, deterministic replay, resume fixtures, transfer coverage, and rollback rehearsal.
 - Agent-specific predicates for clause and behavior-family coverage, act/refuse/clarify behavior, authority conflicts, side effects, perturbations, untouched-family sentinels, executor portability, profile-scoped promotion, candidate-blind evidence, and critical-invariant vetoes.
-- An exact-SHA mode-migration certificate and phase-011 readiness handoff that identify the mode, BASE, candidate SHA, shared-contract and write-set digests, reducer and event versions, evaluator and canary epochs, evidence manifests, rollback anchor, window state, verifier, and every gate disposition.
+- An exact-SHA mode-migration certificate and phase-014 readiness handoff that identify the mode, BASE, candidate SHA, shared-contract and write-set digests, reducer and event versions, evaluator and canary epochs, evidence manifests, rollback anchor, window state, verifier, and every gate disposition.
 - A reuse matrix proving that `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` consume the common evaluator, canary, promotion, receipt, certificate, fingerprint, veto, and rollback semantics rather than copying them.
 
 ### Out of Scope
@@ -89,7 +89,7 @@ legacy writer.
 - Implementing Agent Improvement proposal operators, AgentIR mutation execution, scoring execution, canary execution, promotion effects, or the predecessor event/reducer/sealed-artifact contracts.
 - Flipping live authority, migrating arbitrary in-flight packets, closing a global rollback window, retiring legacy writers, or issuing the phase-014 authority-cutover certificate.
 - Changing common evaluator thresholds, canary contents, promotion policy, convergence policy, or the 178-recommendation disposition; this phase binds their versions and consumes their evidence.
-- Implementing the 010 per-mode fan-out or adding cross-mode behavior before phase 009 freezes shared contracts and emits the write-set conflict graph.
+- Implementing the 010 per-mode fan-out or adding cross-mode behavior before phase 012 freezes shared contracts and emits the write-set conflict graph.
 - Treating a terminal score, mutable report, process exit, or this readiness certificate as proof of universal Agent Improvement quality or as permission to bypass the transition gateway.
 <!-- /ANCHOR:scope -->
 
@@ -108,7 +108,7 @@ legacy writer.
 | REQ-008 | Agent-specific behavior evidence is stronger than aggregate score | Critical invariants use repeated zero-tolerance evidence; broad families use paired lower bounds and uncertainty; clause, authority-conflict, act/refuse/clarify, side-effect, perturbation, untouched-family, and executor coverage remain addressable |
 | REQ-009 | Uncertainty never becomes migration readiness | Missing, stale, contradictory, malformed, unsupported, `UNKNOWN`, `INCONCLUSIVE`, `INSUFFICIENT_EVIDENCE`, telemetry-gap, evaluator-integrity, canary-leak, or unknown-effect inputs produce `blocked`, `incomplete`, `not_ready`, or `rollback_required` |
 | REQ-010 | The certificate is exact-SHA and evidence bound | The certificate names this mode, BASE, candidate SHA, shared contracts, write-set graph, event/reducer versions, AgentIR frontier, evaluator/canary epochs, fixture IDs, artifact and receipt digests, rollback anchor, window state, verifier, and dispositions |
-| REQ-011 | The gate is independent of authority and hands off deterministically | Re-evaluating the same sealed frontier yields the same gate result and certificate body digest; `gate_passed` emits phase-011 readiness only, and certificates for another mode, frontier, epoch, or contract are rejected |
+| REQ-011 | The gate is independent of authority and hands off deterministically | Re-evaluating the same sealed frontier yields the same gate result and certificate body digest; `gate_passed` emits phase-014 readiness only, and certificates for another mode, frontier, epoch, or contract are rejected |
 <!-- /ANCHOR:requirements -->
 
 ### Agent Improvement rollback and mode-gate acceptance contract
@@ -135,7 +135,7 @@ effect, transfer failure, and promotion decision as distinct facts. A score-only
 | Handoff identity | Exact SHA, BASE, shared-contract digest, write-set graph digest, event/reducer versions, evaluator/canary epochs, mode identity, and verifier receipt | `blocked` on cross-mode, cross-frontier, stale, or mutable certificate inputs |
 
 The emitted result is `gate_passed`, `gate_blocked`, `gate_incomplete`, or `rollback_required`. `gate_passed` means this
-Agent Improvement migration has evidence ready for the phase-011 handoff. It does not mean live authority moved, that the
+Agent Improvement migration has evidence ready for the phase-014 handoff. It does not mean live authority moved, that the
 rollback window closed, that a candidate is universally correct, or that a legacy writer may be retired.
 
 <!-- ANCHOR:success-criteria -->
@@ -146,7 +146,7 @@ rollback window closed, that a candidate is universally correct, or that a legac
 - **SC-003**: The independent gate is green only with Agent Improvement shadow parity, sealed AgentIR and trial evidence, complete certificates and receipts, deterministic replay, resume coverage, common-service reuse, and rollback rehearsal.
 - **SC-004**: Missing, stale, contradictory, malformed, unsupported, unknown, evaluator-integrity, canary-leak, transfer-failure, or nondeterministic inputs fail closed and leave legacy authority selected.
 - **SC-005**: Agent Improvement adds only its agent-loop evidence and gate predicates while consuming the deep-improvement-common evaluator, canary, promotion, certificate, receipt, fingerprint, veto, and recovery semantics unchanged.
-- **SC-006**: The exact-SHA mode certificate is independently verifiable and hands phase-011 readiness without claiming authority cutover, rollback-window closure, or legacy-writer retirement.
+- **SC-006**: The exact-SHA mode certificate is independently verifiable and hands phase-014 readiness without claiming authority cutover, rollback-window closure, or legacy-writer retirement.
 
 **Given** a candidate AgentIR, its raw trajectories, evaluator observations, canary results, and promotion evidence, **When**
 the mode gate verifies the run, **Then** it checks the complete sealed and receipt graph and refuses an aggregate-score or
@@ -186,7 +186,7 @@ typed evidence remains readable.
   Mitigation: use the mode-004 ownership matrix, shared fixtures, namespaced adapters, and one common certificate subject.
 - **Dependencies**: Agent Improvement siblings `001-typed-ledger-schema` through `006-shadow-parity`; the
   `004-deep-improvement-common` evaluator/canary/promotion and rollback contract; phase 012 shared mode interfaces and
-  write-set conflict graph; phase 011 readiness consumer; phase 014 authority-cutover contract; the 065/002 findings
+  write-set conflict graph; phase 014 readiness consumer; phase 014 authority-cutover contract; the 065/002 findings
   registries; existing Agent Improvement scripts and fixtures; and the spec-kit validator. Phase manifest `depends_on: []`
   remains the planning authority; implementation readiness is established by the parent handoff.
 <!-- /ANCHOR:risks -->
@@ -194,7 +194,7 @@ typed evidence remains readable.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which shared authority-record fields and transition token does the phase-011 consumer expose for the Agent Improvement
+- Which shared authority-record fields and transition token does the phase-014 consumer expose for the Agent Improvement
   switch without creating a mode-local authority source?
 - What counts as a successful authoritative Agent Improvement execution for the five-run minimum when a candidate is
   profile-scoped, routed to a specialist, or returns typed abstention or incomplete evidence?
@@ -204,7 +204,7 @@ typed evidence remains readable.
   valid but not promotable?
 - Which failure-derived evidence may be returned to the proposal generator as bounded redacted classes, and which remains
   hidden until terminal verification to prevent evaluator-surface extraction?
-- What exact phase-011 acceptance endpoint consumes the Agent Improvement readiness certificate while preserving the later
+- What exact phase-014 acceptance endpoint consumes the Agent Improvement readiness certificate while preserving the later
   phase-014 authority-cutover boundary?
 
 These questions are resolved against the frozen predecessor and common-service contracts before implementation. They do not

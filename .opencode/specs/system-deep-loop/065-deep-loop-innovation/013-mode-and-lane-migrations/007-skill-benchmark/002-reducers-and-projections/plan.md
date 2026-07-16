@@ -73,7 +73,7 @@ This phase defines the reducer boundary for the skill-benchmark variant. The imp
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm `001-typed-ledger-schema`, phase 012 shared contracts, and deep-improvement-common interfaces are available; record the exact inputs used by the implementation lane.
+- Confirm `001-typed-ledger-schema`, phase 015 shared contracts, and deep-improvement-common interfaces are available; record the exact inputs used by the implementation lane.
 - Inventory skill-benchmark event types, scenario identities, treatment arms, evaluator observations, gold states, and downstream artifact references without changing their owning contracts.
 - Establish the reducer ownership matrix: shared service calls versus skill-specific fold and projection logic.
 
@@ -109,7 +109,7 @@ This phase defines the reducer boundary for the skill-benchmark variant. The imp
 ## 6. DEPENDENCIES
 
 This child depends on the typed event and replay contract from `001-typed-ledger-schema`, the shared mode interfaces and
-fixtures from phase 012, and the deep-improvement-common services from mode 004. It consumes the shared ledger, transition,
+fixtures from phase 015, and the deep-improvement-common services from mode 004. It consumes the shared ledger, transition,
 receipt, budget, continuity, compatibility, fan-in, novelty, and convergence contracts established in phases 006-011. It
 must hand a stable projection contract to successor `003-sealed-artifacts` and the parent 007 mode gate without moving
 authority or duplicating common services.

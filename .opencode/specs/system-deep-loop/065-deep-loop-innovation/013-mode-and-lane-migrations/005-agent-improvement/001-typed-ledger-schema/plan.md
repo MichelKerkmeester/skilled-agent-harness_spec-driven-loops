@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / Agent Improvement variant |
 | **Change class** | Typed event schema and variant event vocabulary |
-| **Execution** | Planning-only child; implementation follows phase-003, phase-009, and mode-004 contract freeze |
+| **Execution** | Planning-only child; implementation follows phase-006, phase-012, and mode-004 contract freeze |
 
 ### Overview
 The phase defines one Agent Improvement event contract over the mode-004 Deep Improvement Common Services backbone.
@@ -48,8 +48,8 @@ authorization events, preserves raw evidence, and leaves reducers and projection
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-003 envelope, authorization, sequence, receipt, and replay contracts are available for direct type alignment
-- [ ] Phase-009 shared event contracts and naming rules are available for specialization
+- [ ] Phase-006 envelope, authorization, sequence, receipt, and replay contracts are available for direct type alignment
+- [ ] Phase-012 shared event contracts and naming rules are available for specialization
 - [ ] Mode-004 common evaluator, canary, promotion, and receipt ownership is available for reuse
 - [ ] The Agent Improvement event catalog covers AgentIR compilation, mutation lineage, causal experiments, behavior coverage, manifest exposure, transfer, and terminal paths
 - [ ] Every event payload has explicit field types, identity references, and independent envelope/payload version policy
@@ -105,7 +105,7 @@ authorization events, preserves raw evidence, and leaves reducers and projection
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-003 transition-authorized ledger core, phase-009 shared event contracts, and mode-004 common-service vocabulary are the authoritative inputs.
+- Confirm the phase-006 transition-authorized ledger core, phase-012 shared event contracts, and mode-004 common-service vocabulary are the authoritative inputs.
 - Inventory the Agent Improvement run boundaries and identify which identities, fields, and event types must be imported from mode 004 versus added as namespaced variant extensions.
 - Freeze the phase boundary: no reducer, projection, frontier, read-model, mode-gate, certificate, authority-cutover, or common-service reimplementation enters this child.
 
@@ -141,7 +141,7 @@ authorization events, preserves raw evidence, and leaves reducers and projection
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The direct inputs are the phase-003 transition-authorized ledger core, phase-009 shared event contracts, and mode-004
+The direct inputs are the phase-006 transition-authorized ledger core, phase-012 shared event contracts, and mode-004
 Deep Improvement Common Services typed vocabulary. The planning evidence is
 `002-deep-loop-effectiveness-and-fanout/research/findings-registry.json` and
 `findings-registry-modes.json`, especially the findings on typed AgentIR, causal slicing, Pareto candidate lineages,
@@ -158,8 +158,8 @@ the next sibling, or later migration gates.
 ## 7. ROLLBACK PLAN
 
 This child changes planning artifacts only and has no runtime write or data migration. If the proposed schema fails
-review, discard or revert the four phase documents and reopen the planning contract without touching the phase-003
-core, phase-009 contracts, mode-004 services, or downstream variants. During later implementation, keep the variant
+review, discard or revert the four phase documents and reopen the planning contract without touching the phase-006
+core, phase-012 contracts, mode-004 services, or downstream variants. During later implementation, keep the variant
 writer additive and dark behind the existing authorization and compatibility bridge; reject an incompatible event
 version rather than emitting a guessed AgentIR, trace, manifest, or outcome. No reducer or projection rollback is
 defined here because those are owned by `002-reducers-and-projections`.

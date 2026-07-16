@@ -1,6 +1,6 @@
 {
   "specFolder": "system-deep-loop/065-deep-loop-innovation/017-integrate-latest-and-closeout",
-  "description": "Phase 014 lands the system-deep-loop recommendations program on the moving mainline: integrate the latest origin in a clean worktree, re-census",
+  "description": "Phase 017 lands the system-deep-loop recommendations program on the moving mainline: integrate the latest origin in a clean worktree, re-census",
   "keywords": [
     "phase",
     "lands",
@@ -16,7 +16,7 @@
     "worktree",
     "re-census"
   ],
-  "lastUpdated": "2026-07-15T18:33:27.344Z",
+  "lastUpdated": "2026-07-16T03:26:42.534Z",
   "specId": "017",
   "folderSlug": "integrate-latest-and-closeout",
   "parentChain": [

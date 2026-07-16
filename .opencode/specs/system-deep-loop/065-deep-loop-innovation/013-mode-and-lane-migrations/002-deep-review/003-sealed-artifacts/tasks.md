@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep Review - Sealed Reference Artifacts (013 phase 002 child 003)"
+title: "Tasks: Deep Review - Sealed Reference Artifacts"
 description: "Tasks for binding Deep Review scope, per-dimension evidence, convergence witnesses, review-report outputs, resume references, and save handoffs to the shared sealed-artifact contract."
 trigger_phrases:
   - "deep review sealed artifacts tasks"
@@ -39,11 +39,11 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-009 shared review-loop contract and write-set conflict graph, and verify predecessor `002-reducers-and-projections` owns findings and report projections
+- [ ] T001 Confirm the phase-012 shared review-loop contract and write-set conflict graph, and verify predecessor `002-reducers-and-projections` owns findings and report projections
 - [ ] T002 Inventory Deep Review scope, target, context, dimension, candidate, convergence, synthesis, resume, and save state and output shapes against the pinned baseline
 - [ ] T003 Freeze the mode artifact-kind matrix, shared descriptor fields, canonicalization profiles, media types, digest-reference roles, and deterministic reference ordering
 - [ ] T004 Define typed seal/read failures, target-drift dispositions, append-only supersession, report/handoff refusal, and the additive-dark rollback switch
-- [ ] T005 Confirm the mode consumes the phase-003 sealing primitives and does not introduce a mode-local digest, blob store, or verification path
+- [ ] T005 Confirm the mode consumes the phase-006 sealing primitives and does not introduce a mode-local digest, blob store, or verification path
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -58,7 +58,7 @@ _memory:
 - [ ] T012 Add resume-facing comparison over target, contract, and evidence digests, preserving old references and naming affected finding/report views without silent rebaseline
 - [ ] T013 Add the verified continuity-save or handoff reference package and refuse trusted output when any referenced artifact fails verification
 - [ ] T014 Bind mode artifact references into typed events, predecessor reducers and projections, replay fingerprints, compatibility adapters, shadow parity, and rollback handling
-- [ ] T015 Preserve the phase-009 shared review-loop contract and ensure Deep Review adds no mode-local scope, lineage, convergence, or report fork
+- [ ] T015 Preserve the phase-012 shared review-loop contract and ensure Deep Review adds no mode-local scope, lineage, convergence, or report fork
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->

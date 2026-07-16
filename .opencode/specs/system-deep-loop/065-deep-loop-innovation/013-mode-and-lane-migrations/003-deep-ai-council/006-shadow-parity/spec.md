@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Deep AI Council — Shadow Parity"
-description: "Plan the dark shadow-parity harness for the Deep AI Council migration. The harness runs the typed event-ledger path beside the legacy council emitter against the same frozen execution, compares canonical behavior projections event-for-event, and blocks authority cutover on any unexplained mismatch. It consumes the phase-011 shadow framework while keeping this phase limited to parity evidence for the council mode."
+description: "Plan the dark shadow-parity harness for the Deep AI Council migration. The harness runs the typed event-ledger path beside the legacy council emitter against the same frozen execution, compares canonical behavior projections event-for-event, and blocks authority cutover on any unexplained mismatch. It consumes the phase-014 shadow framework while keeping this phase limited to parity evidence for the council mode."
 trigger_phrases:
   - "deep ai council shadow parity"
   - "council ledger shadow harness"
@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped council shadow parity to projection diffing before authority cutover"
-    next_safe_action: "Define event mapping and parity fixtures against the phase-011 shadow contract"
+    next_safe_action: "Define event mapping and parity fixtures against the phase-014 shadow contract"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (owns the Deep AI Council workflow, typed runtime migration, and shadow evidence) |
-| **Origin** | Phase 006 of the Deep AI Council migration: prove ledger projection parity before any authority cutover |
+| **Origin** | Phase 009 of the Deep AI Council migration: prove ledger projection parity before any authority cutover |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -51,7 +51,7 @@ The current Deep AI Council path is a planning-only multi-seat workflow: seats d
 
 This phase plans a shadow harness that executes the legacy emitter and the new ledger path beside one another from the same frozen council input, seat results, runtime configuration, and target version. The harness maps both histories into one canonical behavior projection, compares the projection event-for-event, compares the derived artifacts and convergence outcome, and records every mismatch as a blocking parity result. Ledger-only authorization, receipt, and audit events are checked separately as required control-plane evidence; they must not hide a missing or changed council behavior event.
 
-The mode-specific research makes the comparison substantive rather than a line-count check. CouncilBrief assignments, private evidence boundaries, typed belief and challenge messages, effective-independence observations, blinded adjudication, minority retention, and comparative control arms are behavior-bearing fields when present in the frozen fixture. A green shadow result therefore proves that the migration preserves the existing council contract while exposing the richer evidence needed by the new ledger. This phase consumes the phase-011 shadow framework named in the phase brief and remains planning-only.
+The mode-specific research makes the comparison substantive rather than a line-count check. CouncilBrief assignments, private evidence boundaries, typed belief and challenge messages, effective-independence observations, blinded adjudication, minority retention, and comparative control arms are behavior-bearing fields when present in the frozen fixture. A green shadow result therefore proves that the migration preserves the existing council contract while exposing the richer evidence needed by the new ledger. This phase consumes the phase-014 shadow framework named in the phase brief and remains planning-only.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -64,7 +64,7 @@ The mode-specific research makes the comparison substantive rather than a line-c
 - An explicit normalization profile for non-semantic metadata such as wall-clock timestamps or byte counts. The profile is versioned and digest-bound; fields outside it are compared, not ignored.
 - Separate checks for ledger authorization, receipt references, control-plane audit events, duplicate side effects, and legacy-authority preservation. Shadow writes are non-authoritative and must not dispatch seats or persist a second external effect.
 - A mismatch taxonomy, parity report, and cutover-blocking receipt that identifies the first divergent event, both source locations, the normalized field diff, the affected projection, and the required remediation owner.
-- A fixture and replay matrix derived from the phase-011 shadow framework and the existing Deep AI Council state, output, failure, rollback, and artifact contracts.
+- A fixture and replay matrix derived from the phase-014 shadow framework and the existing Deep AI Council state, output, failure, rollback, and artifact contracts.
 
 ### Out of Scope
 - Implementing or changing the typed ledger envelope, event schemas, reducers, projections, sealed artifacts, certificates, receipts, resume adapter, or rollback switch; those are sibling concerns in `001-typed-ledger-schema` through `005-resume-adapter` and the shared contracts.
@@ -111,13 +111,13 @@ The minimum parity matrix includes: a three-seat successful council with `counci
 - **Vocabulary mismatch** - Typed ledger events may have finer granularity than legacy rows. Mitigation: compare a documented canonical behavior tuple and separately audit ledger control-plane events; do not compare raw line names alone or collapse multiple behavior events into one.
 - **Projection order drift** - Concurrent seat completion can reorder raw rows while the council contract depends on logical IDs. Mitigation: compare both append order and deterministic logical order, require the shared framework's completion-order fixtures, and record the first divergent sequence.
 - **In-flight state inconsistency** - Resume or rollback can read one path's state and another path's projection. Mitigation: run paired checkpoints through the `005-resume-adapter` contract and block parity when either path lacks a complete recovery classification.
-- **Dependencies**: phase-011 shadow framework from the phase brief; phase 012 shared mode contracts and write-set conflict graph; the sibling Deep AI Council concerns `001-typed-ledger-schema` through `005-resume-adapter`; the shared compatibility/shadow bridge; and the existing `deep-ai-council` state, output, failure, rollback, and artifact contracts. The phase-tree entry intentionally declares `depends_on: []`; these are planning inputs and execution sequencing constraints, not a new hard child edge.
+- **Dependencies**: phase-014 shadow framework from the phase brief; phase 012 shared mode contracts and write-set conflict graph; the sibling Deep AI Council concerns `001-typed-ledger-schema` through `005-resume-adapter`; the shared compatibility/shadow bridge; and the existing `deep-ai-council` state, output, failure, rollback, and artifact contracts. The phase-tree entry intentionally declares `depends_on: []`; these are planning inputs and execution sequencing constraints, not a new hard child edge.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which phase-011 normalization profile is authoritative for timestamps, transport metadata, generated IDs, and byte counts, and which fields must remain exact?
+- Which phase-014 normalization profile is authoritative for timestamps, transport metadata, generated IDs, and byte counts, and which fields must remain exact?
 - What is the canonical event mapping from `round_start`, `seat_returned`, `deliberation_synthesized`, `round_end`, `council_complete`, rollback, and artifact audit rows to the typed ledger event namespace?
 - Which ledger-only authorization, receipt, gauge, and audit events are required for a green control-plane result without entering the behavior projection?
 - Which recorded council fixtures are the minimum protected contract, and which known legacy defects must remain visible as mismatches rather than being blessed as parity?

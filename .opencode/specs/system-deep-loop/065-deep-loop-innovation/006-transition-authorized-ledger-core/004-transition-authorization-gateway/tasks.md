@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Freeze the authorization input, policy, verdict, reason-code, and linkage vocabulary against the phase-001 contracts
+- [ ] T001 Freeze the authorization input, policy, verdict, reason-code, and linkage vocabulary against the phase-004 contracts
 - [ ] T002 Confirm the envelope exposes canonical request bytes and the ledger exposes no proof-free domain append
 - [ ] T003 Define the gateway-only non-domain decision-event capability and its prohibition on domain types, reducers, effects, and recursive authorization
 - [ ] T004 Inventory every dark state-transition emission boundary and map it to the authoritative legacy behavior that must remain unchanged
@@ -73,8 +73,8 @@ _memory:
 - [ ] T022 Verify direct, missing, deny, stale, mismatched, reused, tampered, and unknown-policy proofs fail closed
 - [ ] T023 Verify decision-audit storage failure prevents domain append and post-allow crash replay reports an unapplied authorization
 - [ ] T024 Verify replay reproduces decision order and detects request, policy, verdict, head, epoch, or linkage drift
-- [ ] T025 Verify gateway allow, deny, and failure cases leave authoritative legacy outputs and effects unchanged through phase 010
-- [ ] T026 Run the phase-003 parent co-landing gate and prove no typed writer can ship before the gateway
+- [ ] T025 Verify gateway allow, deny, and failure cases leave authoritative legacy outputs and effects unchanged through phase 013
+- [ ] T026 Run the phase-006 parent co-landing gate and prove no typed writer can ship before the gateway
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

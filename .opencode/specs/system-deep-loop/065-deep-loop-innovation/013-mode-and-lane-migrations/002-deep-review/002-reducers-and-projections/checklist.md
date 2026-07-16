@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep Review - Reducers & Projections (013 phase 002)"
+title: "Checklist: Deep Review - Reducers & Projections"
 description: "Checklist for the Deep Review reducers and projections phase: deterministic typed-event replay, coverage-aware convergence, immutable artifact indexing, status projection, shared review-loop parity, and dark shadow verification."
 trigger_phrases:
   - "Deep Review reducers and projections checklist"
@@ -28,14 +28,14 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 002. The verifier replays the exact typed event sequence from a pinned fixture, records the schema and projection versions, compares canonical projection fingerprints, and reports field-level parity against the legacy Deep Review path. It must fail on hidden side effects, invalid transitions, missing required coverage, zero or skipped fixtures, unexpected authority changes, or unscoped tracked mutation.
+This checklist is the blocking verifier contract for phase 005. The verifier replays the exact typed event sequence from a pinned fixture, records the schema and projection versions, compares canonical projection fingerprints, and reports field-level parity against the legacy Deep Review path. It must fail on hidden side effects, invalid transitions, missing required coverage, zero or skipped fixtures, unexpected authority changes, or unscoped tracked mutation.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] The predecessor event schema and version policy are pinned as read-only inputs; this phase does not redefine the event envelope
-- [ ] CHK-002 [P0] The phase-009 shared review-loop contract and the Deep Alignment reuse boundary are identified; no local loop fork is introduced
+- [ ] CHK-002 [P0] The phase-012 shared review-loop contract and the Deep Alignment reuse boundary are identified; no local loop fork is introduced
 - [ ] CHK-003 [P1] The 013 write-set conflict graph and projection ownership boundary are recorded before any projection persistence is planned
 - [ ] CHK-004 [P1] The legacy Deep Review replay corpus and protected-vs-known-defect baseline are available for shadow comparison
 <!-- /ANCHOR:pre-impl -->

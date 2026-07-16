@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Model Benchmark - Resume Adapter (013 mode migration, 006 child 005)"
+title: "Implementation Plan: Model Benchmark - Resume Adapter"
 description: "Implementation Plan for the Model Benchmark resume adapter: reconstruct sealed-ledger run and scoring-matrix state through reducers, map continuity-ladder layers, and produce idempotent re-entry decisions without duplicating deep-improvement-common evaluator, canary, or promotion services."
 trigger_phrases:
   - "Model Benchmark resume adapter implementation plan"
@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / deep-improvement / model-benchmark child phase |
 | **Change class** | Planning contract: sealed-ledger reconstruction and idempotent re-entry |
-| **Execution** | Plan against the frozen ledger, reducer, shared-service, and phase-012 contracts; no authority cutover or runtime implementation in this phase |
+| **Execution** | Plan against the frozen ledger, reducer, shared-service, and phase-015 contracts; no authority cutover or runtime implementation in this phase |
 
 ### Overview
 
@@ -55,7 +55,7 @@ budget, effect-recovery, and authority semantics are referenced, not reimplement
 - [ ] Deep-improvement-common mode 004 ownership is recorded for evaluator, canary, promotion, receipt, budget, lock, and effect-recovery services
 - [ ] The continuity-ladder mapping names every source layer and the state each layer contributes to re-entry
 - [ ] The matrix-cell action table distinguishes reuse, reconcile, re-execute, compensate, unknown, and block without relying on labels or file presence
-- [ ] The phase remains planning-only and scoped to this target folder; phase 010 migration work and the six sibling concerns remain excluded
+- [ ] The phase remains planning-only and scoped to this target folder; phase 013 migration work and the six sibling concerns remain excluded
 
 ### Definition of Done
 
@@ -101,7 +101,7 @@ budget, effect-recovery, and authority semantics are referenced, not reimplement
 
 - Reconcile the parent program sequencing invariants, the phase-tree outcome, and the required adjacency to
   `004-certificates-and-receipts` and `006-shadow-parity`.
-- Pin the phase-003 ledger seal and replay rules, phase-009 shared event contracts, Model Benchmark schema and reducer
+- Pin the phase-006 ledger seal and replay rules, phase-012 shared event contracts, Model Benchmark schema and reducer
   inputs, and mode-004 common-service ownership. Record them as versioned contract inputs rather than new authorities.
 - Inventory the projection fields needed to resume a model run: run and iteration lifecycle, matrix waves, task and family
   coverage, adaptive selections, logical cells, attempts, raw evidence, score observations, usage, latency, validity,
@@ -168,10 +168,10 @@ budget, effect-recovery, and authority semantics are referenced, not reimplement
 ## 6. DEPENDENCIES
 
 The direct contract inputs are Model Benchmark `001-typed-ledger-schema` and `002-reducers-and-projections`, the shared
-phase-003 ledger and phase-009 event contracts, and the deep-improvement-common mode-004 services. The predecessor
+phase-006 ledger and phase-012 event contracts, and the deep-improvement-common mode-004 services. The predecessor
 `004-certificates-and-receipts` and successor `006-shadow-parity` provide adjacent planning boundaries, not a hard runtime
-dependency for this child. Phase 012 supplies the shared mode contracts and write-set conflict graph before implementation
-integration; phase 010 migrations consume the frozen shared contracts afterward.
+dependency for this child. Phase 015 supplies the shared mode contracts and write-set conflict graph before implementation
+integration; phase 013 migrations consume the frozen shared contracts afterward.
 
 The research evidence is `002-deep-loop-effectiveness-and-fanout/research/findings-registry.json` for replay fingerprints,
 logical versus attempt identity, branch-local success, and effect uncertainty, plus

@@ -181,8 +181,8 @@
       }
     ],
     "causal_summary": "Plan the Skill Benchmark event vocabulary over the deep-improvement-common backbone: a typed append-only envelope for paired scenario treatments, progressive skill exposure, trajectory evidence, gold integrity, raw scoring observations, and versioned contribution-certificate lifecycle facts. This phase defines event types and upcaster hooks only; reducers and projections belong to the next sibling.",
-    "created_at": "2026-07-15T21:45:15.763Z",
-    "last_save_at": "2026-07-15T21:45:15.763Z",
+    "created_at": "2026-07-16T03:43:41.092Z",
+    "last_save_at": "2026-07-16T03:43:41.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:14030dd63a1c2156c180183b49977320fe86b08f33822c70be3bfed258011b5c",
+    "source_fingerprint": "sha256:4c86fadb6c4c05440bb14cf2d09df76e7d55f9212bd7d0df8612007f7eca5770",
     "source_doc_hashes": {
-      "spec.md": "9f86fdb23b0da02944c388a493795935b3a5ad564dfe5ad0dbc4bd38f2f409cb",
-      "plan.md": "0bb8445d39bdff09d7fb78598cceed3df1ed67282f647ca73de8e498c6387d6a",
-      "tasks.md": "6bb06761a1379a983064bff852960fcb047799ccf828a2e51d38a5f52897511a",
-      "checklist.md": "a1fafbd73e50c4af0dfb7b3f30b4f2a0a8cf7177cc508b14d0d83ad1125d4c28"
+      "spec.md": "cb41e9af657b466f2c4a6cb9cf76d60e2323ee18a197399a8a33c218f67e60c7",
+      "plan.md": "12ffb8fbf92ab58b266beccc21a0d65d3bfc202dc9ac2462278b50833ff3ba7b",
+      "tasks.md": "109f0029221edde9a28943799ae552f70d3025909048efed6cea369dc04b05a0",
+      "checklist.md": "35c97f8e7c4881799889e8eb2b4d30077651cbf5d4c5c552553de777458ad979"
     },
     "last_active_child_id": null,
     "last_active_at": null

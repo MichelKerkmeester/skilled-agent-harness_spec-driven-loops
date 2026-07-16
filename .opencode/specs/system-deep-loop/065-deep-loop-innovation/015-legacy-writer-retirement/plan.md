@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Legacy Writer Retirement (006 phase 012)"
-description: "Implementation Plan for phase 012 of the 006 recommendations-implementation program: gated removal of legacy live emitters and replaced logic with archival readers retained."
+title: "Implementation Plan: Legacy Writer Retirement"
+description: "Implementation Plan for phase 015 of the 006 recommendations-implementation program: gated removal of legacy live emitters and replaced logic with archival readers retained."
 trigger_phrases:
   - "legacy writer retirement implementation plan"
   - "deep-loop legacy emitter deletion"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined the delete-retain boundary and mode-ordered retirement gates"
-    next_safe_action: "Reconcile phase-000 census rows with phase-011 closure evidence"
+    next_safe_action: "Reconcile phase-003 census rows with phase-014 closure evidence"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -30,25 +30,25 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime (phase 012) |
+| **Surface** | system-deep-loop runtime |
 | **Change class** | Gated deletion with retained archival-read paths |
-| **Execution** | Isolated worktree pinned to the phase-000 BASE and candidate evidence |
+| **Execution** | Isolated worktree pinned to the phase-003 BASE and candidate evidence |
 
 ### Overview
-Phase 012 is the last and only deletion phase for the old live path. It reconciles the phase-000 reader/writer census,
-the phase-011 per-mode cutover certificates and clean rollback-window closures, and a measured zero-use report before
-freezing a delete/retain manifest. The implementation retires one mode at a time in phase-011 order, removes that
+Phase 015 is the last and only deletion phase for the old live path. It reconciles the phase-003 reader/writer census,
+the phase-014 per-mode cutover certificates and clean rollback-window closures, and a measured zero-use report before
+freezing a delete/retain manifest. The implementation retires one mode at a time in phase-014 order, removes that
 mode's live writers before replaced helpers, removes shared legacy emitters only after all modes pass, and retains
 archival readers, decoders, upcasters, schemas, projections, and historical fixtures. The deletion candidate stays
-reversible until the first delete operation and preserves the evidence required by phase 013.
+reversible until the first delete operation and preserves the evidence required by phase 016.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-000 census is reconciled with the exact candidate and every legacy producer/consumer is classified
-- [ ] All eight modes have phase-011 cutover certificates and clean rollback-window closure evidence
+- [ ] The phase-003 census is reconciled with the exact candidate and every legacy producer/consumer is classified
+- [ ] All eight modes have phase-014 cutover certificates and clean rollback-window closure evidence
 - [ ] The telemetry contract covers every live writer and live reader boundary, including dynamic and shared paths
 - [ ] Positive controls prove telemetry detects known legacy activity before the zero-use window is evaluated
 - [ ] The observation window covers every mode and declared resume, retry, restart, replay, and rollback path
@@ -60,13 +60,13 @@ reversible until the first delete operation and preserves the evidence required 
 - [ ] The eight modes retire in manifest order with writers removed before shared legacy logic
 - [ ] Historical completed-packet fixtures read through retained archival readers without canonical writes
 - [ ] The deletion diff matches the approved manifest and contains no ephemeral identifiers in runtime comments
-- [ ] Phase 013 receives the exact candidate SHA, evidence bundle, retention manifest, and verification results
+- [ ] Phase 016 receives the exact candidate SHA, evidence bundle, retention manifest, and verification results
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- The phase-000 census is the authoritative input inventory. Reconcile each reader, writer, schema, reducer, backend,
+- The phase-003 census is the authoritative input inventory. Reconcile each reader, writer, schema, reducer, backend,
   repair path, dynamic route, and historical-read obligation before generating the delete/retain manifest.
 - A zero-use telemetry boundary records mode/workstream, operation class, authority epoch, candidate identity,
   run/packet identity, result, and bounded source reference. It has no secrets or unrestricted payloads. Live writes and
@@ -74,7 +74,7 @@ reversible until the first delete operation and preserves the evidence required 
 - The zero-use gate requires static inventory closure, runtime instrumentation coverage, positive-control observations,
   a declared observation window, zero qualifying live events, and zero uninstrumented or unknown paths. A quiet counter
   without coverage is a failed gate.
-- Phase-011 evidence is consumed, not recreated: each mode must provide the cutover certificate, final authority epoch,
+- Phase-014 evidence is consumed, not recreated: each mode must provide the cutover certificate, final authority epoch,
   clean later-of-14-days-and-five-runs window closure, rollback assets, and no unresolved revert signal.
 - Retire in this exact order: `001-deep-research`, `002-deep-review`, `003-deep-ai-council`,
   `004-deep-improvement-common`, `005-agent-improvement`, `006-model-benchmark`, `007-skill-benchmark`, and
@@ -91,8 +91,8 @@ reversible until the first delete operation and preserves the evidence required 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the exact phase-000 BASE and clean isolated worktree; reconcile current source and generated paths with the census.
-- Collect every phase-011 mode certificate, authority epoch, closed rollback-window record, and retained rollback asset.
+- Pin the exact phase-003 BASE and clean isolated worktree; reconcile current source and generated paths with the census.
+- Collect every phase-014 mode certificate, authority epoch, closed rollback-window record, and retained rollback asset.
 - Freeze the telemetry schema, observation-window rule, positive controls, coverage report, and delete/retain manifest.
 - Confirm the manifest order and the pre-delete restoration anchor before changing runtime files.
 
@@ -116,10 +116,10 @@ reversible until the first delete operation and preserves the evidence required 
   paths for the exact candidate.
 - Verify the eight mode rows and shared-last order, then compare the deletion diff against the frozen manifest.
 - Read representative completed legacy packets for every retained schema family, including restart/resume and malformed
-  historical cases where phase 000 recorded a repair obligation.
+  historical cases where phase 003 recorded a repair obligation.
 - Verify rollback evidence, cutover certificates, window-closure records, and the pre-delete restoration anchor remain
   retained and content-bound after deletion.
-- Run scoped runtime checks and strict spec validation; package the candidate SHA and all evidence for phase 013.
+- Run scoped runtime checks and strict spec validation; package the candidate SHA and all evidence for phase 016.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -127,8 +127,8 @@ reversible until the first delete operation and preserves the evidence required 
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Compare the phase-000 census and current static/runtime inventory; every row is delete, retain, or blocked with no unknown classification |
-| REQ-002 | Verify all eight phase-011 certificates, final epochs, clean window closures, retained rollback assets, and candidate bindings |
+| REQ-001 | Compare the phase-003 census and current static/runtime inventory; every row is delete, retain, or blocked with no unknown classification |
+| REQ-002 | Verify all eight phase-014 certificates, final epochs, clean window closures, retained rollback assets, and candidate bindings |
 | REQ-003 | Run positive-control writer/reader events, verify instrumentation coverage, evaluate the declared observation window, and require zero qualifying live events |
 | REQ-004 | Replay historical completed packets through retained archival readers; assert archival classification, read-only behavior, schema identity, and no canonical write |
 | REQ-005 | Inspect the ordered deletion log: each mode's writers precede its replaced helpers, and shared legacy emitters are last |
@@ -136,24 +136,24 @@ reversible until the first delete operation and preserves the evidence required 
 | REQ-007 | Review the final delete/retain manifest against every census row and the candidate diff; retained paths have historical fixtures |
 | REQ-008 | Verify pre-delete restore from the retained anchor and confirm rollback evidence remains content-bound through the deletion candidate |
 | REQ-009 | Scan changed runtime comments for ephemeral spec/task/phase/packet/finding identifiers and reject any match |
-| REQ-010 | Produce the phase-013 handoff with candidate SHA, telemetry report, closure evidence, deletion diff, retention manifest, archival-read results, and commands |
+| REQ-010 | Produce the phase-016 handoff with candidate SHA, telemetry report, closure evidence, deletion diff, retention manifest, archival-read results, and commands |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 The controlling dependencies are the 006 parent sequencing invariants and success criteria, `manifest/phase-tree.json`,
-the phase-000 baseline/census contract, phase-011 `002-per-mode-authority-flip` for per-mode authority and ordering,
-phase-011 `003-cutover-certificate-and-rollback-window` for clean closure and retained rollback assets, phase-004
-receipt semantics for durable evidence, and the phase-013 whole-system gate. The spec-kit validator and isolated git
-worktree provide the documentation and candidate boundaries. Phase 012 must not duplicate authority-cutover or
+the phase-003 baseline/census contract, phase-014 `002-per-mode-authority-flip` for per-mode authority and ordering,
+phase-014 `003-cutover-certificate-and-rollback-window` for clean closure and retained rollback assets, phase-007
+receipt semantics for durable evidence, and the phase-016 whole-system gate. The spec-kit validator and isolated git
+worktree provide the documentation and candidate boundaries. Phase 015 must not duplicate authority-cutover or
 rollback-window ownership.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Before any deletion, retain the phase-000 BASE, the exact candidate diff, the delete/retain manifest, all phase-011
+Before any deletion, retain the phase-003 BASE, the exact candidate diff, the delete/retain manifest, all phase-014
 certificates and closure records, telemetry reports, archival fixtures, and a pre-delete restoration anchor. If
 telemetry is incomplete, a live-use event appears, a window is open, historical reads fail, or candidate drift is found,
 stop before deletion and restore the candidate worktree to the pre-delete state. If a scoped deletion check fails before

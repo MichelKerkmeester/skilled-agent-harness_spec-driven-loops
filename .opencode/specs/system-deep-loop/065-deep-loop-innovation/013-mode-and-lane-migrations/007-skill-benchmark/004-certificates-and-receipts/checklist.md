@@ -41,7 +41,7 @@ incomplete or unsupported; it must never silently become a passing skill effect.
 
 - [ ] CHK-001 [P0] Skill Benchmark siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`, and common mode-004 certificate/receipt services are pinned by version and digest
 - [ ] CHK-002 [P0] The shared-service ownership matrix records one owner for certificate, receipt, fingerprint, evaluator, canary, budget, sealing, effect-recovery, promotion, and offline-verifier behavior
-- [ ] CHK-003 [P1] The phase-009 contract-freeze and executable write-set conflict graph handoff are recorded before the 010 fan-out
+- [ ] CHK-003 [P1] The phase-012 contract-freeze and executable write-set conflict graph handoff are recorded before the 010 fan-out
 - [ ] CHK-004 [P1] Skill Benchmark scenario, treatment, exposure, trajectory, gold, scoring, compatibility, risk, and validity inputs are mapped to certificate or receipt evidence
 - [ ] CHK-005 [P2] Candidate SHA, BASE SHA, mode schema/reducer versions, evaluator/canary digests, and mode fingerprint inputs are recorded in the verifier report
 <!-- /ANCHOR:pre-impl -->
@@ -92,7 +92,7 @@ incomplete or unsupported; it must never silently become a passing skill effect.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-029 [P1] The phase docs reflect the shared-versus-mode ownership matrix, certificate and receipt evidence boundary, fingerprint inputs, offline verifier sequence, validity domain, phase-009 handoff, and successor resume boundary
+- [ ] CHK-029 [P1] The phase docs reflect the shared-versus-mode ownership matrix, certificate and receipt evidence boundary, fingerprint inputs, offline verifier sequence, validity domain, phase-012 handoff, and successor resume boundary
 - [ ] CHK-030 [P2] Open questions are assigned to the sealed-artifact, common-service, reducer, resume, mode-gate, or 009/010 owning phase before implementation begins
 <!-- /ANCHOR:docs -->
 

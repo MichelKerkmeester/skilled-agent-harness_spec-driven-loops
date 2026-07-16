@@ -20,7 +20,7 @@
       "typed ledger legacy benchmark comparison",
       "Model Benchmark shadow parity tasks",
       "model benchmark scoring matrix parity tasks",
-      "model benchmark phase 006 tasks",
+      "model benchmark phase 009 tasks",
       "Model Benchmark shadow parity checklist",
       "model benchmark parity gate"
     ],
@@ -169,8 +169,8 @@
       }
     ],
     "causal_summary": "Plan the Model Benchmark variant's shadow-parity harness over the typed event-ledger substrate: run multi-model benchmark executions and scoring-matrix reductions beside the legacy emitter, compare projections event-for-event, and block authority cutover on any unexplained semantic difference while reusing deep-improvement-common services.",
-    "created_at": "2026-07-15T21:45:09.753Z",
-    "last_save_at": "2026-07-15T21:45:09.753Z",
+    "created_at": "2026-07-16T03:43:40.543Z",
+    "last_save_at": "2026-07-16T03:43:40.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,12 +179,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7b4869837463327f5e6e9e972a085aeb089a101dbaa0de60cafc235a0d3b4652",
+    "source_fingerprint": "sha256:40c7343997a9b1ca9f75f2956fef3a51ca6177bde431b15ba8211f304950f535",
     "source_doc_hashes": {
-      "spec.md": "a78af89cfb7fd4cf4f17cbdcc8c58b9cc61f01e4a77c47afc238e5581f093165",
-      "plan.md": "7347f84de3e70e793bffa444f1256a6d6ee4ef8819041d5b0774182b83dc0f35",
-      "tasks.md": "e3c739d1ecf5aa9c3044736a9bb50a11ce1f41b6696d8fa50a6c69f711ff89f9",
-      "checklist.md": "afbe50230369a7a5228df81dd54c2ad4d17d9705190ccc8056994cc12f7e09a1"
+      "spec.md": "9c4794b2aa9f19791c9fcf1b65e1cac3d0960fcee86828983f6ab2eb8b37e8aa",
+      "plan.md": "1ba5d9206012878ec1a1a2da9c5de9e77501a00c46e69bd68a45fd57a95ed912",
+      "tasks.md": "5312a0506b7d8b3aadb6a31a8fa96573e7e08a0615672949554be1dee8c0b730",
+      "checklist.md": "c92879443bac3bbf5f1e346da67061ab49f9790a0e7186898cf377319011b666"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: fan-out live-tools unblock (065/006 phase 002)"
+title: "Tasks: fan-out live-tools unblock"
 description: "Tasks for the early dispatch-only fan-out live-tools unblock: policy, capabilities, adapters, fingerprints, manifest expansion, and backward-compatibility verification."
 trigger_phrases:
   - "fan-out live-tools tasks"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 001 is complete and record its frozen executor/transition vocabulary
+- [ ] T001 Confirm phase 004 is complete and record its frozen executor/transition vocabulary
 - [ ] T002 Capture green baseline fixtures for legacy config parsing, lineage expansion, cli-codex argv, pool behavior, and persisted artifacts
 - [ ] T003 Inventory all consumers of `ExecutorConfig`, `FanoutConfig`, `expandLineages`, and `buildLineageCommand` before changing their return shapes
 <!-- /ANCHOR:phase-1 -->
@@ -65,7 +65,7 @@ _memory:
 - [ ] T014 Verify: omitted `liveTools` and legacy `executors[]` + `count` produce baseline-equivalent argv, IDs, scheduling, retries, budgets, summaries, and artifacts
 - [ ] T015 Verify: models × branches × replicas expansion is deterministic, collision-free, ceiling-aware, and stable across repeated runs
 - [ ] T016 Verify: invocation fingerprints are deterministic, input-sensitive, version-aware, and exclude prompts, credentials, and raw environment values
-- [ ] T017 Verify: no canonical state/event/checkpoint/status-ledger/fan-in schema changed; durable receipts remain phase-006 work
+- [ ] T017 Verify: no canonical state/event/checkpoint/status-ledger/fan-in schema changed; durable receipts remain phase-009 work
 - [ ] T018 Run the targeted Vitest suites, relevant full runtime gate, and phase `validate.sh --strict`
 <!-- /ANCHOR:phase-3 -->
 

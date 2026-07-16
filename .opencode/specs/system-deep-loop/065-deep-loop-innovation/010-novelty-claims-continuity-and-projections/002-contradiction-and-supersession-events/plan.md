@@ -30,15 +30,15 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop shared claim intelligence (phase 007 child 002) |
+| **Surface** | system-deep-loop shared claim intelligence |
 | **Change class** | Typed event schemas, authorization invariants, reducer, and replay/audit contracts |
-| **Execution** | Additive-dark on the phase-003 ledger; legacy behavior remains authoritative |
+| **Execution** | Additive-dark on the phase-006 ledger; legacy behavior remains authoritative |
 
 ### Overview
 Implement two relationship events over the versioned append-only ledger: symmetric `CONTRADICTION` and directional
 `SUPERSESSION`. Candidate detection consumes semantic-community assignments plus evidence, but only the authorization
 gateway may admit an event. A pure reducer folds assertions and withdrawals into active relations, derives effective
-claim status, and emits audit-ready projections reproducible under the phase-003 fingerprint. The work preserves all
+claim status, and emits audit-ready projections reproducible under the phase-006 fingerprint. The work preserves all
 history and exposes typed inputs to sibling claim continuity and transactional projections.
 <!-- /ANCHOR:summary -->
 
@@ -46,7 +46,7 @@ history and exposes typed inputs to sibling claim continuity and transactional p
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-003 envelope type registry, append API, authorization proof, verified reader, and replay-fingerprint interfaces are available or pinned as executable contracts.
+- [ ] The phase-006 envelope type registry, append API, authorization proof, verified reader, and replay-fingerprint interfaces are available or pinned as executable contracts.
 - [ ] The `001-semantic-communities` output contract identifies claims, community IDs, assignment provenance, and versioned snapshots without making relation decisions authoritative.
 - [ ] Claim and evidence references have stable IDs, exact locators, provenance/independence metadata, and resolvable evidence snapshots.
 - [ ] The two event payloads and assertion/withdrawal rules are registered with explicit versions and canonical serialization.
@@ -63,14 +63,14 @@ history and exposes typed inputs to sibling claim continuity and transactional p
 
 - **Detection input adapter**: reads versioned semantic-community assignments from sibling 001, claim evidence edges, exact evidence locators, provenance/independence clusters, and the evidence snapshot digest. It emits candidates only.
 - **Relationship validator**: canonicalizes contradiction pairs; validates claim/evidence existence and scope; rejects self-relations, supersession cycles, competing active successors, and ambiguous withdrawals; requires a typed incompatibility or strength rationale.
-- **Event constructors**: build `deep-loop.claim.contradiction-recorded` and `deep-loop.claim.supersession-recorded` payloads under the phase-003 envelope, including detector version, snapshot reference, action, and withdrawal linkage.
+- **Event constructors**: build `deep-loop.claim.contradiction-recorded` and `deep-loop.claim.supersession-recorded` payloads under the phase-006 envelope, including detector version, snapshot reference, action, and withdrawal linkage.
 - **Authorization and append boundary**: sends canonical bytes through the fail-closed transition gateway, then the locked append-only writer. Sequence and receipt are issued only after authorization and durable append.
 - **Relationship reducer**: consumes the verified ledger in sequence order, folds `assert`/`withdraw`, resolves acyclic supersession chains, applies status precedence, and returns typed active/historical relation sets.
 - **Audit/replay surface**: explains status using event IDs, ledger sequences, evidence locators, authorization references, relation actions, reducer version, and the covering replay fingerprint. Rebuildable indexes remain caches.
 - **Downstream projection adapter**: publishes typed relation/state output to claim continuity and transactional gauges; no consumer recomputes meaning from raw prose or scalar contradiction counts.
 
 Source contracts are the program parent `../../spec.md`, `../../manifest/phase-tree.json`, sibling
-`../001-semantic-communities/spec.md`, phase-003
+`../001-semantic-communities/spec.md`, phase-006
 `../../006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md` and
 `../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`, plus run-2
 `../../../../002-deep-loop-effectiveness-and-fanout/research/research-modes.md`.
@@ -80,7 +80,7 @@ Source contracts are the program parent `../../spec.md`, `../../manifest/phase-t
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the phase-003 registry/ledger/gateway/fingerprint interfaces and the phase-007 sibling claim/community interfaces.
+- Pin the phase-006 registry/ledger/gateway/fingerprint interfaces and the phase-010 sibling claim/community interfaces.
 - Freeze canonical event names, positive schema versions, required evidence references, relation actions, status enum, and typed error codes.
 - Build a fixture matrix from run-2 additions, corrections, retractions, duplicate sources, unresolved contradictions, and supersession-link recommendations.
 
@@ -118,17 +118,17 @@ Source contracts are the program parent `../../spec.md`, `../../manifest/phase-t
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This planning leaf has no hard child dependency (`depends_on: []`). At the phase-007 composition gate it consumes the
-prospective semantic-community contract from sibling 001, the phase-003 versioned envelope/typed ledger/authorization/
+This planning leaf has no hard child dependency (`depends_on: []`). At the phase-010 composition gate it consumes the
+prospective semantic-community contract from sibling 001, the phase-006 versioned envelope/typed ledger/authorization/
 fingerprint APIs, stable evidence references from shared services, and stable claim identities consumed by sibling
-003. The program manifest places phase 007 after the compatibility and fan-in parents and before convergence; this
+003. The program manifest places phase 010 after the compatibility and fan-in parents and before convergence; this
 work must not move authority or absorb downstream convergence policy.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Implementation lands additively behind the dark-ledger path. Before phase 011, disabling the relationship writer and
+Implementation lands additively behind the dark-ledger path. Before phase 014, disabling the relationship writer and
 its projections restores the prior authoritative behavior without migrating or rewriting legacy state. Code and
 registry changes are reverted by path-scoped commit reversal. Already appended relationship events are never deleted;
 an erroneous active relation is counteracted by an authorized withdrawal event, and historical readers retain the

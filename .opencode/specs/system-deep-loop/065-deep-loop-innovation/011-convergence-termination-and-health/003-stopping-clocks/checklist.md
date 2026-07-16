@@ -1,5 +1,5 @@
 ---
-title: "Checklist: stopping clocks (006 phase 008 child 003)"
+title: "Checklist: stopping clocks"
 description: "Blocking verification checklist for independent stopping-clock conditions, deterministic arbitration, per-mode configuration, and termination-cause recording."
 trigger_phrases:
   - "stopping clocks checklist"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 008 child 003. Every item is a check the paired verifier runs
+This checklist is the blocking SOL verifier contract for phase 011 child 003. Every item is a check the paired verifier runs
 before authority can move. The report pins candidate and BASE SHAs, source-interface and mode-profile versions, replay
 fingerprints, fixture manifests, commands, exit codes, and discovery counts; zero discovered tests or clock cases fails the gate.
 <!-- /ANCHOR:protocol -->
@@ -36,7 +36,7 @@ fingerprints, fixture manifests, commands, exit codes, and discovery counts; zer
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-004 budget, phase-007 novelty, sibling-001 coverage, sibling-002 cycle, ledger, and durable-dispatch source interfaces are versioned and pinned
+- [ ] CHK-001 [P0] Phase-007 budget, phase-010 novelty, sibling-001 coverage, sibling-002 cycle, ledger, and durable-dispatch source interfaces are versioned and pinned
 - [ ] CHK-002 [P0] The supported-mode inventory, five clock kinds, termination taxonomy, evaluation boundaries, same-batch rank, and event namespace are frozen
 - [ ] CHK-003 [P1] The candidate worktree is clean and pinned to BASE; the additive-dark authority boundary and rollback switch are recorded
 <!-- /ANCHOR:pre-impl -->

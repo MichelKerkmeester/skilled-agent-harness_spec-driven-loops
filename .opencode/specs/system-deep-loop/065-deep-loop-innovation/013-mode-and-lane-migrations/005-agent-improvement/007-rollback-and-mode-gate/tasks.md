@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Agent Improvement - Rollback & Mode Gate"
-description: "Tasks for planning and verifying the Agent Improvement fail-closed rollback switch, bounded rollback window, independent mode gate, deep-improvement-common service reuse, and phase-011 readiness certificate."
+description: "Tasks for planning and verifying the Agent Improvement fail-closed rollback switch, bounded rollback window, independent mode gate, deep-improvement-common service reuse, and phase-014 readiness certificate."
 trigger_phrases:
   - "agent improvement rollback and mode gate tasks"
   - "agent loop rollback switch tasks"
@@ -42,7 +42,7 @@ _memory:
 
 - [ ] T001 Confirm the phase remains planning-only, the legacy path remains authoritative, and the gate has no direct cutover capability
 - [ ] T002 [P] Pin BASE and the shared transition/versioning/rollback policy, including the 14-day and five-successful-authoritative-execution minimum
-- [ ] T003 [P] Record the phase-009 contract freeze, phase-012 shared mode contract, write-set graph, and phase-011 handoff fingerprints
+- [ ] T003 [P] Record the phase-012 contract freeze, phase-012 shared mode contract, write-set graph, and phase-014 handoff fingerprints
 - [ ] T004 Inventory Agent Improvement sibling outputs `001` through `006`: event, reducer, seal, certificate, receipt, replay, resume, and parity boundaries
 - [ ] T005 [P] Inventory Agent Improvement proposal, scoring, evaluator, canary, promotion, legacy projection, and authority-sensitive effect boundaries
 - [ ] T006 Build the Agent Improvement gate input manifest and the common-service reuse matrix for `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`
@@ -60,7 +60,7 @@ _memory:
 - [ ] T013 Define the Agent Improvement evidence rules that retain raw observations separately from normalization, calibration, reduction, promotion, and causal claims
 - [ ] T014 Define the behavior-family gate for clauses, authority conflicts, act/refuse/clarify, side effects, perturbations, untouched families, executor portability, profile scope, and critical invariants
 - [ ] T015 Define the common-service reuse contract and reject Agent Improvement-local copies or weakened evaluator, canary, promotion, receipt, certificate, fingerprint, veto, or recovery semantics
-- [ ] T016 Define the exact-SHA mode certificate, verifier receipt, failed-predicate list, unresolved obligations, rollback anchor, window state, AgentIR frontier, and phase-011 handoff
+- [ ] T016 Define the exact-SHA mode certificate, verifier receipt, failed-predicate list, unresolved obligations, rollback anchor, window state, AgentIR frontier, and phase-014 handoff
 - [ ] T017 [P] Define deterministic `gate_passed`, `gate_blocked`, `gate_incomplete`, and `rollback_required` semantics without implicit fallback to pass
 <!-- /ANCHOR:phase-2 -->
 
@@ -77,7 +77,7 @@ _memory:
 - [ ] T025 Verify missing observations, changed policies, unknown effects, telemetry gaps, unsupported versions, evaluator or canary epoch mismatch, leak evidence, transfer failure, and nondeterministic replay remain non-green
 - [ ] T026 Verify all three downstream variants consume identical common-service decisions and cannot pass with private evaluator, canary, promotion, receipt, certificate, fingerprint, veto, or rollback semantics
 - [ ] T027 Verify repeated evaluation of one sealed Agent Improvement frontier produces the same gate disposition and certificate body digest; mutate semantic inputs and require rejection
-- [ ] T028 Verify phase 011 receives readiness evidence only and rejects any certificate claiming authority moved, the rollback window closed, or legacy writers retired
+- [ ] T028 Verify phase 014 receives readiness evidence only and rejects any certificate claiming authority moved, the rollback window closed, or legacy writers retired
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
@@ -85,7 +85,7 @@ _memory:
 
 - [ ] All tasks complete
 - [ ] All requirements in spec.md met with evidence
-- [ ] Independent Agent Improvement mode gate green and phase-011 readiness certificate emitted
+- [ ] Independent Agent Improvement mode gate green and phase-014 readiness certificate emitted
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->
@@ -96,5 +96,5 @@ _memory:
 - **Predecessor parity contract**: `../006-shadow-parity`
 - **Shared rollback and common-service contract**: `../../004-deep-improvement-common/007-rollback-and-mode-gate`
 - **Agent Improvement inputs**: `../001-typed-ledger-schema`, `../002-reducers-and-projections`, and `../003-sealed-artifacts`
-- **Phase-011 readiness handoff**: See the staged cutover and authority handoff contract
+- **Phase-014 readiness handoff**: See the staged cutover and authority handoff contract
 <!-- /ANCHOR:cross-refs -->

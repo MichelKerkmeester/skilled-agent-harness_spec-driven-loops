@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T19:30:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined resume decision algebra and continuity-ladder ownership boundaries"
-    next_safe_action: "Freeze compatibility outcomes and crash-window fixtures against phase-009 contracts"
+    next_safe_action: "Freeze compatibility outcomes and crash-window fixtures against phase-012 contracts"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -30,19 +30,19 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / deep-research mode migration (phase 010) |
+| **Surface** | system-deep-loop / deep-research mode migration |
 | **Change class** | Planning contract for recovery and re-entry |
-| **Execution** | Isolated worktree pinned to the phase-000 BASE; ledger remains additive-dark |
+| **Execution** | Isolated worktree pinned to the phase-003 BASE; ledger remains additive-dark |
 
 ### Overview
-Deep Research resume must rebuild the live loop from the sealed event-ledger substrate rather than choosing the newest mutable iteration or continuity file. The adapter folds the persisted ledger through the mode reducers, verifies the checkpoint and replay fingerprint, maps the reconstructed state to the continuity ladder, then persists one recovery decision per logical branch and effect before re-entry. The implementation must distinguish original-manifest replay from changed-manifest execution, reuse the root lease, and preserve claim, source, synthesis, and memory-handoff lineage. Detailed field names and event identities remain subordinate to the phase-009 shared contracts and the preceding Deep Research sibling plans.
+Deep Research resume must rebuild the live loop from the sealed event-ledger substrate rather than choosing the newest mutable iteration or continuity file. The adapter folds the persisted ledger through the mode reducers, verifies the checkpoint and replay fingerprint, maps the reconstructed state to the continuity ladder, then persists one recovery decision per logical branch and effect before re-entry. The implementation must distinguish original-manifest replay from changed-manifest execution, reuse the root lease, and preserve claim, source, synthesis, and memory-handoff lineage. Detailed field names and event identities remain subordinate to the phase-012 shared contracts and the preceding Deep Research sibling plans.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-009 shared envelope, replay fingerprint, idempotency, and conflict contracts are frozen and available to the adapter.
+- [ ] Phase-012 shared envelope, replay fingerprint, idempotency, and conflict contracts are frozen and available to the adapter.
 - [ ] The typed Deep Research event union, reducer projection fields, sealed reference set, and certificate/receipt references are reviewed at their sibling boundaries.
 - [ ] The continuity-ladder matrix names each lifecycle state, reducer field, required sealed reference, and allowed re-entry action.
 - [ ] The recovery decision algebra covers branch reuse/re-execution, effect reconciliation/compensation, compatibility outcomes, source invalidation, and memory-save retry.
@@ -72,7 +72,7 @@ Deep Research resume must rebuild the live loop from the sealed event-ledger sub
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-009 shared contracts and the Deep Research sibling boundaries are frozen; verify the worktree is clean, pinned to BASE, and path-scoped.
+- Confirm the phase-012 shared contracts and the Deep Research sibling boundaries are frozen; verify the worktree is clean, pinned to BASE, and path-scoped.
 - Inventory the current continuity ladder and legacy resume entry points without changing them; identify every mutable source that must be demoted from authority.
 - Define the canonical resume request identity, ledger-tail input, reducer checkpoint, sealed-reference set, manifest revision, and root lease inputs.
 
@@ -113,7 +113,7 @@ Deep Research resume must rebuild the live loop from the sealed event-ledger sub
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase consumes the shared phase-003 typed ledger, transition authorization, effect, and replay primitives; phase-009 shared mode contracts and write-set conflict graph; and the Deep Research sibling contracts for typed events, reducers/projections, sealed artifacts, and certificates/receipts. The current Deep Research runtime and continuity files are read as compatibility inputs only. The research registries provide the resume decision algebra, root lease, effect unknown-state, replay-compatibility, claim-continuity, living-resume, and evidence-admission requirements. The manifest declares `depends_on: []`, so sibling adjacency names navigation order rather than a hard runtime dependency.
+The phase consumes the shared phase-006 typed ledger, transition authorization, effect, and replay primitives; phase-012 shared mode contracts and write-set conflict graph; and the Deep Research sibling contracts for typed events, reducers/projections, sealed artifacts, and certificates/receipts. The current Deep Research runtime and continuity files are read as compatibility inputs only. The research registries provide the resume decision algebra, root lease, effect unknown-state, replay-compatibility, claim-continuity, living-resume, and evidence-admission requirements. The manifest declares `depends_on: []`, so sibling adjacency names navigation order rather than a hard runtime dependency.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: baseline, taxonomy, and state census (006 phase 000)"
-description: "Implementation Plan for phase 000 of the 006 recommendations-implementation program: freeze BASE, normalize taxonomy, census runtime state, and establish replayable no-regression evidence."
+title: "Implementation Plan: baseline, taxonomy, and state census"
+description: "Implementation Plan for phase 003 of the 006 recommendations-implementation program: freeze BASE, normalize taxonomy, census runtime state, and establish replayable no-regression evidence."
 trigger_phrases:
   - "baseline taxonomy and state census implementation plan"
-  - "deep-loop recommendations phase 000 plan"
+  - "deep-loop recommendations phase 003 plan"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-deep-loop/065-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Authored the phase-000 execution plan"
+    recent_action: "Authored the phase-003 execution plan"
     next_safe_action: "Pin BASE before collecting census or benchmark evidence"
     blockers: []
     key_files: []
@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime + five mode packets + behavior benchmarks (phase 000) |
+| **Surface** | system-deep-loop runtime + five mode packets + behavior benchmarks |
 | **Change class** | Baseline capture / taxonomy normalization / state census / benchmark extension |
 | **Execution** | Read-first inventory and deterministic fixture capture pinned to one immutable BASE |
 
@@ -58,7 +58,7 @@ fixtures plus rollback anchors prove the evidence can be reconstructed without m
 - [ ] Every behavior row is either a protected contract or a known defect with a disposition
 - [ ] The 5-package/53-scenario benchmark inventory is frozen and all eight workstreams have semantic BASE evidence
 - [ ] Replay fixtures and rollback procedures pass from clean temporary state
-- [ ] The phase-001 handoff manifest has zero unresolved rows and stable digests
+- [ ] The phase-004 handoff manifest has zero unresolved rows and stable digests
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -124,7 +124,7 @@ surface not named here; this list is a starting set, not an allowlist.
   independent BASE evidence.
 - Replay every fixture twice from clean temporary state and compare normalized outputs, reducer projections, and hashes.
 - Execute every rollback procedure against temporary copies and prove live tracked runtime/database state is unchanged.
-- Freeze the phase-001 handoff manifest only after the contract/defect ledger contains no unknown classification.
+- Freeze the phase-004 handoff manifest only after the contract/defect ledger contains no unknown classification.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -151,7 +151,7 @@ This phase has no predecessor (`depends_on: []`). It depends on read access to t
 shipped `.opencode/skills/system-deep-loop/runtime/` implementation and integration consumers, the hub
 `mode-registry.json`, the five current mode packets, and all five behavior-benchmark packages under
 `.opencode/skills/system-deep-loop/*/behavior_benchmark/`. Research truth for the eight-workstream layer comes from
-`002-deep-loop-effectiveness-and-fanout/research/research-modes.md`. Phase 001 is blocked until this phase's BASE,
+`002-deep-loop-effectiveness-and-fanout/research/research-modes.md`. Phase 004 is blocked until this phase's BASE,
 taxonomy, census, behavior baseline, fixtures, and rollback anchors are frozen.
 <!-- /ANCHOR:dependencies -->
 
@@ -162,6 +162,6 @@ Baseline capture is additive. Generated census and fixture artifacts are regener
 BASE. Benchmark extensions preserve existing scenario IDs and are reverted as path-scoped changes if their semantic
 oracles are wrong. SQLite and JSONL verification always runs on copies or freshly created temporary backends; rollback
 restores the copied snapshot or rebuilds a derived projection from the frozen fixture. If BASE itself is incorrect or
-drifts, stop the program and invalidate dependent artifacts explicitly; never silently repoint BASE after phase 001
+drifts, stop the program and invalidate dependent artifacts explicitly; never silently repoint BASE after phase 004
 starts. The final rollback check is a clean tracked tree plus byte/digest parity for every protected source artifact.
 <!-- /ANCHOR:rollback -->

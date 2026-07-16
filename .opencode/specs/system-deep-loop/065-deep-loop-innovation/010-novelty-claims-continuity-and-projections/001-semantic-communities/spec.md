@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: semantic communities (007 phase 001)"
+title: "Feature Specification: semantic communities"
 description: "Plan a deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept and novelty measures new ideas rather than new strings."
 trigger_phrases:
   - "semantic communities"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | First child of phase 007; the program manifest assigns semantic communities to novelty, claims, continuity, and projections |
+| **Origin** | First child of phase 010; the program manifest assigns semantic communities to novelty, claims, continuity, and projections |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -57,7 +57,7 @@ dedup counts, and keep later convergence logic active without adding a new conce
 
 Run-2 research identifies the durable unit as a living claim-evidence ledger with stable claim identity and dependency edges,
 not a terminal string list (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md:67`,
-`:74`, and `:219`). The program manifest places semantic communities in phase 007 before convergence consumes novelty
+`:74`, and `:219`). The program manifest places semantic communities in phase 010 before convergence consumes novelty
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json:16`).
 This phase plans the missing concept layer: immutable claim nodes connected by versioned semantic-equivalence edges, grouped
 into deterministic communities, and projected into a concept-level novelty signal while retaining evidence-level growth as a
@@ -79,7 +79,7 @@ separate observation.
 
 ### Out of Scope
 - Contradiction, qualification, and supersession event semantics; owned by successor `002-contradiction-and-supersession-events`.
-- Claim lifecycle continuity, next-focus scheduling, transactional projection plumbing, or convergence/termination thresholds owned by later phase-007 children and program phase 008.
+- Claim lifecycle continuity, next-focus scheduling, transactional projection plumbing, or convergence/termination thresholds owned by later phase-010 children and program phase 011.
 - Replacing claim identity with community identity; raw claims, evidence locators, and event history remain independently addressable.
 - Treating generic embedding proximity as proof of equivalence, or merging communities from a single uncalibrated nearest neighbor.
 - Selecting a hosted embedding vendor, changing runtime authority, migrating historical packets, or removing the existing graph novelty metrics in this planning phase.

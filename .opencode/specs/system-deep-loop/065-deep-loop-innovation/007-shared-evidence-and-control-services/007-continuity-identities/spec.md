@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: continuity identities (065/006 phase 004/007)"
+title: "Feature Specification: continuity identities"
 description: "Plan stable lineage, claim, candidate, and mode-session identities that persist across resume, handover, replay, and cross-mode boundaries and are recorded on the typed event ledger."
 trigger_phrases:
   - "continuity identities"
@@ -62,7 +62,7 @@ Those mechanisms are valid local coordinates, but they are not durable logical i
 - Stable resume semantics: a logical session or lineage keeps its identity; a true restart or fork mints a new identity linked to the prior one.
 - A handover identity frontier containing active typed references plus the ledger cursor and replay fingerprint needed to resolve them.
 - Cross-mode typed references that preserve the referenced ID and record the source/target mode boundary without copying or reminting the entity.
-- Ledger records for minting, alias binding, relationship binding, and identity-bearing domain events, all guarded by the phase-003 transition-authorized write path.
+- Ledger records for minting, alias binding, relationship binding, and identity-bearing domain events, all guarded by the phase-006 transition-authorized write path.
 - A dark compatibility observer for existing session IDs, lineage labels, graph-node IDs, synthesized finding IDs, and candidate IDs; it records aliases without changing legacy authority.
 - Runtime fixtures proving stability across resume, handover, replay, reorder, rename, crash/retry, and cross-mode transfer.
 
@@ -103,11 +103,11 @@ Those mechanisms are valid local coordinates, but they are not durable logical i
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-This child has no sibling hard dependency (`depends_on: []`); the predecessor reference is adjacency only. It inherits the 004 parent program dependency on the dark transition-authorized ledger core. The main risks are accidental identity reminting during resume, alias collisions across modes, conflating a retry with a fork, leaking mode-local semantics into the shared schema, and making the dark registry authoritative before phase 005 proves compatibility. The implementation must keep identity writes additive, fail closed on ambiguity, and retain legacy coordinates as namespaced metadata. Downstream program phases 007 and 011 are contract consumers, not owners of identity minting.
+This child has no sibling hard dependency (`depends_on: []`); the predecessor reference is adjacency only. It inherits the 004 parent program dependency on the dark transition-authorized ledger core. The main risks are accidental identity reminting during resume, alias collisions across modes, conflating a retry with a fork, leaking mode-local semantics into the shared schema, and making the dark registry authoritative before phase 008 proves compatibility. The implementation must keep identity writes additive, fail closed on ambiguity, and retain legacy coordinates as namespaced metadata. Downstream program phases 007 and 011 are contract consumers, not owners of identity minting.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking. Execution must bind the planned identity event names and ledger cursor fields to the exact phase-003 event-envelope contract without changing the stable semantics in this specification.
+None blocking. Execution must bind the planned identity event names and ledger cursor fields to the exact phase-006 event-envelope contract without changing the stable semantics in this specification.
 <!-- /ANCHOR:questions -->

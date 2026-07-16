@@ -14,12 +14,12 @@ _memory:
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped Deep AI Council event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-009 shared contracts"
+    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
     blockers: []
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact shared envelope fields and transition tokens does phase-009 freeze?"
+      - "Which exact shared envelope fields and transition tokens does phase-012 freeze?"
     answered_questions:
       - "This planned phase defines vocabulary and compatibility hooks only"
 ---
@@ -32,7 +32,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking SOL verifier contract for the planned Deep AI Council schema phase. The verifier pins the
-candidate SHA, phase-003 and phase-009 contract revisions, event-vocabulary revision, fixture manifest hash, commands, and
+candidate SHA, phase-006 and phase-012 contract revisions, event-vocabulary revision, fixture manifest hash, commands, and
 exit codes. It fails on an unauthorized append, an unknown event/version that does not block, mutable proposal or artifact
 replacement, role-information leakage, missing raw observations, reducer-owned scope, or unexpected tracked mutation.
 <!-- /ANCHOR:protocol -->
@@ -40,10 +40,10 @@ replacement, role-information leakage, missing raw observations, reducer-owned s
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 003 publishes the transition-authorized envelope and append boundary; phase 009 publishes the shared event, branch, receipt, artifact, and replay contracts
+- [ ] CHK-001 [P0] Phase 006 publishes the transition-authorized envelope and append boundary; phase 012 publishes the shared event, branch, receipt, artifact, and replay contracts
 - [ ] CHK-002 [P0] Current Deep AI Council state, artifact, output, seat, convergence, rollback, resume, and test-gate obligations are inventoried from the mode references
 - [ ] CHK-003 [P1] The event ownership matrix names one owner for every shared, council, artifact, test-gate, reducer, projection, and certificate concern
-- [ ] CHK-004 [P2] The candidate report records phase-003 and phase-009 contract revisions plus the event-vocabulary manifest hash
+- [ ] CHK-004 [P2] The candidate report records phase-006 and phase-012 contract revisions plus the event-vocabulary manifest hash
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -69,7 +69,7 @@ replacement, role-information leakage, missing raw observations, reducer-owned s
 - [ ] CHK-017 [P0] Convergence fixtures distinguish continue, recover, converged, non-converged, incomplete, and blocked outcomes and retain raw agreement, stability, minority, veto, witness, and budget signals
 - [ ] CHK-018 [P0] Artifact and test-gate fixtures retain safe paths, schema versions, digests, required-section results, suite/fixture manifests, critical failures, and source event ranges without embedding bodies
 - [ ] CHK-019 [P0] Legacy `ai-council-state.jsonl` and artifact-audit fixtures pass exact, compatible, migrate, pin-old-runtime, and blocked outcomes; unknown types and versions fail closed
-- [ ] CHK-020 [P0] Every event append is rejected when phase-003 authorization metadata is absent, stale, or inconsistent with the transition
+- [ ] CHK-020 [P0] Every event append is rejected when phase-006 authorization metadata is absent, stale, or inconsistent with the transition
 - [ ] CHK-021 [P1] A replay fixture produces stable event identities and fingerprints after resume, restart, retry, late seat return, artifact supersession, rollback, and test-gate failure
 <!-- /ANCHOR:testing -->
 
@@ -114,7 +114,7 @@ into this phase.
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the SOL verifier confirms the typed Deep AI Council event vocabulary, phase-003 authorization coverage,
-phase-009 contract alignment, fail-closed upcaster behavior, role and blinding boundaries, and `git diff-index --quiet HEAD --`
+Signed off when the SOL verifier confirms the typed Deep AI Council event vocabulary, phase-006 authorization coverage,
+phase-012 contract alignment, fail-closed upcaster behavior, role and blinding boundaries, and `git diff-index --quiet HEAD --`
 shows no unexpected tracked mutation after verification.
 <!-- /ANCHOR:sign-off -->

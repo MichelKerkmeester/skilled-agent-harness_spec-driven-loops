@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Skill Benchmark shadow parity (013 phase 007 child 006)"
+title: "Checklist: Skill Benchmark shadow parity"
 description: "Blocking checklist for the Skill Benchmark shadow-parity child: paired scenario runs, skill-specific scoring, event-level projection parity, gold integrity, and fail-closed evidence."
 trigger_phrases:
   - "Skill Benchmark shadow parity checklist"
@@ -34,7 +34,7 @@ This checklist is the blocking SOL verifier contract for the Skill Benchmark sha
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-006 [P0] Phase-011 shadow and mode-004 deep-improvement-common contracts are pinned, and the local phase-009 shared-contract freeze plus write-set conflict graph is available
+- [ ] CHK-006 [P0] Phase-014 shadow and mode-004 deep-improvement-common contracts are pinned, and the local phase-012 shared-contract freeze plus write-set conflict graph is available
 - [ ] CHK-007 [P2] Candidate SHA, BASE SHA, scenario-manifest hash, service versions, shadow-framework version, and fixture digests are recorded in the candidate report
 - [ ] CHK-008 [P0] Legacy scenario runner, emitter, scorer, gold sources, skill loader, and authority boundary are inventoried before the shadow adapter is enabled
 <!-- /ANCHOR:pre-impl -->
@@ -43,7 +43,7 @@ This checklist is the blocking SOL verifier contract for the Skill Benchmark sha
 ## Code Quality
 
 - [ ] CHK-009 [P1] Changes are scoped to Skill Benchmark scenario/scoring parity; no sibling concern, shared-service rewrite, or authority cutover is included
-- [ ] CHK-010 [P1] The adapter reuses deep-improvement-common and phase-011 services; no duplicate ledger, receipt, budget, replay, sealing, or generic projection implementation exists
+- [ ] CHK-010 [P1] The adapter reuses deep-improvement-common and phase-014 services; no duplicate ledger, receipt, budget, replay, sealing, or generic projection implementation exists
 - [ ] CHK-011 [P2] Canonical event comparison excludes only fields named by the versioned volatile-field allowlist; no broad timing or payload tolerance hides semantic drift
 <!-- /ANCHOR:code-quality -->
 

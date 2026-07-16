@@ -14,7 +14,7 @@
       "agent improvement rollback and mode gate",
       "agent improvement authority rollback switch",
       "agent loop migration gate",
-      "agent improvement phase 011 readiness",
+      "agent improvement phase 014 readiness",
       "agent improvement rollback and mode gate implementation plan",
       "agent loop authority switch plan",
       "agent improvement migration certificate plan",
@@ -157,8 +157,8 @@
       }
     ],
     "causal_summary": "Plan the fail-closed Agent Improvement rollback switch and independent migration gate for the agent-loop proposal-generation and scoring variant. Reuse the deep-improvement-common evaluator, canary, and promotion services; certify this mode only after shadow parity, sealed evidence, replay/resume integrity, and rollback readiness pass.",
-    "created_at": "2026-07-15T21:44:51.589Z",
-    "last_save_at": "2026-07-15T21:44:51.589Z",
+    "created_at": "2026-07-16T03:43:39.029Z",
+    "last_save_at": "2026-07-16T03:43:39.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,12 +167,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:403b59b09fd5375c8e155dd2559c23b4246aec9bf9bde11de50040c4cc722d63",
+    "source_fingerprint": "sha256:29b4649842aa4a0e655b52cde8083882baa0549cb3db3d14eeb51cafb34d3d62",
     "source_doc_hashes": {
-      "spec.md": "d8838324e7891745c65a8e7d28fe6f38914cb3f74f7a2a738c511eb49c1bcc9e",
-      "plan.md": "9d252b912f8082fe11228bad5ff6f95ff0d09fc3f7accbac9715c57956bee7c4",
-      "tasks.md": "410f58959d6114d5d69bbf484fb4ad52aec6e23a46da0bc9fdb603617adac8d3",
-      "checklist.md": "54b58f08f59125e9e069a2279db1e2e1e9e61fbcb26b0ff34b8018bee0172573"
+      "spec.md": "afe3cd7418df3867cf58ae2f3b81c44d7af1113a9ba716bd53570b6e134a90e7",
+      "plan.md": "c753f2fcf8e4e03f87e017fd69166ac9a8eb9a0e63802de31222c565dd4eb8d1",
+      "tasks.md": "4bb4dc21884238e37be90dea47a799179563e42a86d715b24da89d589b0c2cc5",
+      "checklist.md": "d62cab05f67ac0d415008d5e252125e4d89e9a63f407f8ddbf43a87801012565"
     },
     "last_active_child_id": null,
     "last_active_at": null

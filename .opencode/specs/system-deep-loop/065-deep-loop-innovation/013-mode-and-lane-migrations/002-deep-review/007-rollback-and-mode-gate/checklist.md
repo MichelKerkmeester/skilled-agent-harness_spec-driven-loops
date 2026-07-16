@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Deep Review - Rollback & Mode Gate"
-description: "Checklist for the Deep Review rollback switch and independent mode gate: verify fail-closed authority control, bounded rollback, full lifecycle shadow parity, sealed artifacts, certificate closure, and a non-authoritative phase-011 handoff."
+description: "Checklist for the Deep Review rollback switch and independent mode gate: verify fail-closed authority control, bounded rollback, full lifecycle shadow parity, sealed artifacts, certificate closure, and a non-authoritative phase-014 handoff."
 trigger_phrases:
   - "Deep Review rollback and mode gate checklist"
   - "deep-review rollback readiness checklist"
@@ -30,7 +30,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking verifier contract for the Deep Review mode gate. Every item is checked against a pinned BASE,
-phase-009 shared-contract digest, write-set fence, mode-contract digest, fixture manifest, event and reducer versions, artifact
+phase-012 shared-contract digest, write-set fence, mode-contract digest, fixture manifest, event and reducer versions, artifact
 seal manifest, parity receipt, run certificate, receipt root, replay fingerprint, rollback-window record, and candidate SHA. The
 report records commands, exit codes, fixture counts, stream and projection fingerprints, gate decisions, rollback reasons, and
 unexpected tracked mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` only; it never authorizes authority cutover.
@@ -39,10 +39,10 @@ unexpected tracked mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] BASE, the parent 065 invariant, `manifest/phase-tree.json`, phase-009 shared review-loop digest, write-set fence, and phase-003 authorization digest are pinned in the candidate report
+- [ ] CHK-001 [P0] BASE, the parent 065 invariant, `manifest/phase-tree.json`, phase-012 shared review-loop digest, write-set fence, and phase-006 authorization digest are pinned in the candidate report
 - [ ] CHK-002 [P0] The six Deep Review sibling contracts and their evidence ownership boundaries are present; no sibling responsibility is redefined in this phase
 - [ ] CHK-003 [P0] The legacy Deep Review lifecycle is inventoried for scope, each dimension pass, candidate/evidence/adjudication, convergence, blocked stop, synthesis, report, resume, and continuity handoff
-- [ ] CHK-004 [P1] The authority-control schema, rollback trigger matrix, healthy anchor, dual window bounds, expiry rule, and phase-011 handoff fields are frozen before fixture execution
+- [ ] CHK-004 [P1] The authority-control schema, rollback trigger matrix, healthy anchor, dual window bounds, expiry rule, and phase-014 handoff fields are frozen before fixture execution
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -51,7 +51,7 @@ unexpected tracked mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` 
 - [ ] CHK-005 [P0] The authority resolver fails closed to `legacy_authoritative` for missing, malformed, stale, unauthorized, or digest-mismatched control evidence
 - [ ] CHK-006 [P0] Rollback is an externally authorized `ledger -> legacy` transition with an authority epoch, healthy anchor, legacy checkpoint, reason, observed tail, and restoration receipt
 - [ ] CHK-007 [P1] The rollback window has both a deadline and logical-operation or attempt bound; expiry and renewal cannot silently widen the window
-- [ ] CHK-008 [P0] Deep Review consumes the phase-009 shared review-loop and deep-alignment fence without a local scope, lineage, convergence, report, or write-set fork
+- [ ] CHK-008 [P0] Deep Review consumes the phase-012 shared review-loop and deep-alignment fence without a local scope, lineage, convergence, report, or write-set fork
 - [ ] CHK-009 [P0] The phase emits no authority flip, self-clearing rollback, window close, legacy-writer removal, or canonical state mutation
 <!-- /ANCHOR:code-quality -->
 
@@ -91,7 +91,7 @@ unexpected tracked mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-028 [P1] The phase docs identify the shared phase-009 contract, six sibling ownership boundaries, rollback switch, dual bounds, gate evidence, and phase-011 handoff
+- [ ] CHK-028 [P1] The phase docs identify the shared phase-012 contract, six sibling ownership boundaries, rollback switch, dual bounds, gate evidence, and phase-014 handoff
 - [ ] CHK-029 [P2] Every tolerated volatility exception and every approved non-PASS disposition has a durable owner, reason, expiry, and invalidation condition
 <!-- /ANCHOR:docs -->
 

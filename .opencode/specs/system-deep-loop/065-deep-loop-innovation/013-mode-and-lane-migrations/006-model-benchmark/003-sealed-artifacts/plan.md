@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Model Benchmark - Sealed Reference Artifacts"
-description: "Implementation Plan for the model-benchmark sealed reference-artifacts phase. The plan adapts the common phase-003 sealing primitive to benchmark recipes, multi-model matrices, raw cell observations, scoring evidence, contamination lineage, and workload-aware selection without reimplementing deep-improvement-common services."
+description: "Implementation Plan for the model-benchmark sealed reference-artifacts phase. The plan adapts the common phase-006 sealing primitive to benchmark recipes, multi-model matrices, raw cell observations, scoring evidence, contamination lineage, and workload-aware selection without reimplementing deep-improvement-common services."
 trigger_phrases:
   - "model benchmark sealed artifacts implementation plan"
   - "model benchmark scoring matrix plan"
@@ -36,7 +36,7 @@ _memory:
 
 ### Overview
 
-This phase makes the model-benchmark experiment reproducible at its evidence boundaries. It adapts the phase-003 sealing primitive already established by deep-improvement-common into one model-specific contract: a benchmark recipe is sealed before matrix expansion, every resolved model cell binds its exact executor and workload inputs, raw outputs remain immutable, and the scoring matrix derives new references without rewriting observations. Common evaluator, canary, and promotion services remain the single shared implementation; Model Benchmark contributes only matrix execution, model comparison, statistical scoring, contamination/workload evidence, and selection views. The successor `004-certificates-and-receipts` binds eligible sealed evidence into attestations.
+This phase makes the model-benchmark experiment reproducible at its evidence boundaries. It adapts the phase-006 sealing primitive already established by deep-improvement-common into one model-specific contract: a benchmark recipe is sealed before matrix expansion, every resolved model cell binds its exact executor and workload inputs, raw outputs remain immutable, and the scoring matrix derives new references without rewriting observations. Common evaluator, canary, and promotion services remain the single shared implementation; Model Benchmark contributes only matrix execution, model comparison, statistical scoring, contamination/workload evidence, and selection views. The successor `004-certificates-and-receipts` binds eligible sealed evidence into attestations.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -54,7 +54,7 @@ This phase makes the model-benchmark experiment reproducible at its evidence bou
 
 ### Definition of Done
 
-- [ ] Benchmark recipes, runs, cells, raw observations, scoring matrices, and operational evidence are content-addressed, sealed on write, immutable after publication, and verified on read through the common phase-003 primitive
+- [ ] Benchmark recipes, runs, cells, raw observations, scoring matrices, and operational evidence are content-addressed, sealed on write, immutable after publication, and verified on read through the common phase-006 primitive
 - [ ] Common anchors and adaptive diagnostic evidence are separated, with family coverage and statistical assumptions retained in the sealed matrix
 - [ ] Judge, rubric, contamination, workload, quality, cost, and latency evidence remain reproducible after reducer or scoring-policy changes
 - [ ] The model-benchmark adapter consumes common evaluator, canary, promotion, veto, and read-failure contracts without semantic forks
@@ -64,7 +64,7 @@ This phase makes the model-benchmark experiment reproducible at its evidence bou
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Single sealing adapter**: expose one model-benchmark API over the common phase-003 primitive for canonicalize, digest, seal, publish, inspect, and verify. The adapter owns no alternate hash, signature, chain, storage, or trust-root behavior.
+- **Single sealing adapter**: expose one model-benchmark API over the common phase-006 primitive for canonicalize, digest, seal, publish, inspect, and verify. The adapter owns no alternate hash, signature, chain, storage, or trust-root behavior.
 - **Benchmark recipe**: seal profile version, mode, matrix axes and order, model/executor descriptors, framework or prompt references, fixture and task-family manifests, sample and seed policy, scoring recipe, correctness gates, reporting group, visibility policy, and deployment workload profile as one dependency-closed identity.
 - **Run manifest**: expand the recipe into stable model-cell identities before dispatch. Record requested and resolved model/provider/build/variant, executor kind, capability and permission fingerprint, framework, fixture, sample, seed, workload, and prerequisite references; retries reuse the same cell identity and distinguish attempt identity.
 - **Frozen cell input**: bind the workflow prefix and environment snapshot where the experiment claims model-only intervention, plus prompt/framework digest, fixture/task digest, model configuration, tools, visibility, seed, and sample. A changed treatment or environment creates a new cell input.
@@ -84,14 +84,14 @@ This phase makes the model-benchmark experiment reproducible at its evidence bou
 ### Phase 1: Setup
 
 - Confirm `002-reducers-and-projections` publishes the artifact index, evaluator epoch, status, and projection fingerprints required for model-benchmark references.
-- Read the common phase-003 sealing contract and record its canonicalization, digest coverage, dependency closure, seal-on-write, publication, verification, and failure semantics; reject any model-local replacement.
+- Read the common phase-006 sealing contract and record its canonicalization, digest coverage, dependency closure, seal-on-write, publication, verification, and failure semantics; reject any model-local replacement.
 - Inventory `MODES.md`, `dispatch-model.cjs`, `sweep-benchmark.cjs`, `sweep-reporter.cjs`, profile validation, benchmark fixtures, and output history; classify each input or output as shared service, model adapter, immutable evidence, or derived projection.
 - Build the recipe, run, cell, raw-observation, scoring, validity, contamination, and workload field/dependency matrix, including hidden versus candidate-visible fields and common versus model-owned fields.
 - Pin representative fixtures for a complete model-vs-model run, crossed model/executor run, partial matrix, common-anchor/adaptive split, judge calibration failure, contaminated case, missing usage, workload mismatch, and eligible or blocked selection.
 
 ### Phase 2: Implementation
 
-- Define the single phase-003-backed model-benchmark sealing adapter and typed artifact references, dependency manifests, lifecycle states, verification results, and failure vocabulary.
+- Define the single phase-006-backed model-benchmark sealing adapter and typed artifact references, dependency manifests, lifecycle states, verification results, and failure vocabulary.
 - Define canonical serialization and digest coverage for benchmark recipes, ordered matrix cells, model/executor descriptors, workload profiles, fixtures, task families, samples, and nested scoring policies.
 - Define seal-on-write validation, atomic publication, read-back verification, immutable overwrite refusal, retry identity, and incomplete-cell handling.
 - Define the sealed benchmark recipe and run manifest, including profile version, mode, model set, executor set, framework, fixture, sample, seed, visibility, scoring, reporting, and workload dependencies.
@@ -123,7 +123,7 @@ This phase makes the model-benchmark experiment reproducible at its evidence bou
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Contract tests route every model-benchmark artifact through the phase-003 adapter and reject alternate seal metadata or verification paths |
+| REQ-001 | Contract tests route every model-benchmark artifact through the phase-006 adapter and reject alternate seal metadata or verification paths |
 | REQ-002 | Canonicalization and property tests mutate profile, matrix, model, executor, fixture, scoring, visibility, workload, and each dependency to prove stable identity and change detection |
 | REQ-003 | Crash, retry, duplicate, and concurrent-publication fixtures cover validation, seal, write, read-back, immutable overwrite refusal, and partial-cell rejection |
 | REQ-004 | Tamper, missing, truncation, unsupported-schema, matrix, epoch, visibility, contamination, calibration, workload, stale, and quarantine fixtures return typed refusal without fallback bytes |
@@ -140,7 +140,7 @@ This phase makes the model-benchmark experiment reproducible at its evidence bou
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The primary inputs are `004-deep-improvement-common/002-reducers-and-projections` for artifact indexes, evaluator epochs, status projections, and score references, and `004-deep-improvement-common/003-sealed-artifacts` for all canonicalization, digest, publication, lifecycle, and verification behavior. The successor `004-certificates-and-receipts` consumes the model-benchmark sealed run, cell, observation, scoring, validity, and workload references. The phase also depends on the phase 012 shared mode contracts, the phase 009 shared-contract freeze and write-set conflict graph before later 010 fan-out, the existing model-benchmark profile validator, dispatcher, sweep, reporter, fixtures, and the spec-kit validator. Deep-improvement-common evaluator, canary, promotion, and veto services are consumers of this adapter boundary, not implementations to duplicate here.
+The primary inputs are `004-deep-improvement-common/002-reducers-and-projections` for artifact indexes, evaluator epochs, status projections, and score references, and `004-deep-improvement-common/003-sealed-artifacts` for all canonicalization, digest, publication, lifecycle, and verification behavior. The successor `004-certificates-and-receipts` consumes the model-benchmark sealed run, cell, observation, scoring, validity, and workload references. The phase also depends on the phase 012 shared mode contracts, the phase 012 shared-contract freeze and write-set conflict graph before later 010 fan-out, the existing model-benchmark profile validator, dispatcher, sweep, reporter, fixtures, and the spec-kit validator. Deep-improvement-common evaluator, canary, promotion, and veto services are consumers of this adapter boundary, not implementations to duplicate here.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

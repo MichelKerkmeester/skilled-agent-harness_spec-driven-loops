@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T21:30:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped Deep Alignment event ownership and shared review-loop handoff"
-    next_safe_action: "Freeze authority, lane, and finding events against phase-009 contracts"
+    next_safe_action: "Freeze authority, lane, and finding events against phase-012 contracts"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -29,7 +29,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking SOL verifier contract for the Deep Alignment typed-schema child. Every item is a check the
-paired verifier runs before the schema is accepted; each report pins the candidate SHA, phase-003 and phase-009 contract
+paired verifier runs before the schema is accepted; each report pins the candidate SHA, phase-006 and phase-012 contract
 digests, event-catalog digest, compatibility-matrix digest, commands, exit codes, and unexpected tracked mutation status.
 The verifier must fail on an untyped event, missing authority or subject binding, implicit PASS from unknown coverage, or
 reducer-owned state hidden in an event payload.
@@ -38,7 +38,7 @@ reducer-owned state hidden in an event payload.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-003 transition authorization, phase-009 shared event contracts, and the Deep Review shared review-loop boundary are pinned in the candidate report
+- [ ] CHK-001 [P0] Phase-006 transition authorization, phase-012 shared event contracts, and the Deep Review shared review-loop boundary are pinned in the candidate report
 - [ ] CHK-002 [P2] The candidate report records the event-catalog digest, compatibility-matrix digest, and shared-contract comparison digest
 <!-- /ANCHOR:pre-impl -->
 
@@ -46,7 +46,7 @@ reducer-owned state hidden in an event payload.
 ## Code Quality
 
 - [ ] CHK-003 [P1] Changes are scoped to this phase's four planning documents; no adjacent mode child, shared contract, or runtime implementation is changed
-- [ ] CHK-004 [P1] The event vocabulary keeps shared review-loop ownership in phase-009 and does not duplicate Deep Review lifecycle definitions
+- [ ] CHK-004 [P1] The event vocabulary keeps shared review-loop ownership in phase-012 and does not duplicate Deep Review lifecycle definitions
 - [ ] CHK-005 [P2] No event payload embeds mutable authority prose, subject bodies, source trees, transcripts, reports, or reducer-owned materialized state
 <!-- /ANCHOR:code-quality -->
 

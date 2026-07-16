@@ -18,7 +18,7 @@
   "derived": {
     "trigger_phrases": [
       "compatibility shadow and rollback bridge",
-      "deep-loop recommendations phase 005",
+      "deep-loop recommendations phase 008",
       "shadow parity before authority cutover"
     ],
     "key_topics": [
@@ -85,16 +85,16 @@
       }
     ],
     "causal_summary": "Define the five compatibility, shadow-parity, in-flight-state, and rollback child contracts that make the dark deep-loop substrate provably safe for a later authority cutover without moving authority in this phase.",
-    "created_at": "2026-07-15T19:00:48.178Z",
-    "last_save_at": "2026-07-15T19:00:48.178Z",
+    "created_at": "2026-07-16T03:43:59.162Z",
+    "last_save_at": "2026-07-16T03:43:59.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:22ee20018897815fc609910ca6635b38c634b10bd2a43d39994692efc09ace74",
+    "source_fingerprint": "sha256:f1efed9da1c43373853a30581dee46e4a389c922d6b8f63888a0e089ae323714",
     "source_doc_hashes": {
-      "spec.md": "a8776462fcd58d9ae6dd738c3a5d6cccb61ca356dfb014cfa80c4dcb60ee3790"
+      "spec.md": "567fd06289a890b5ab2ce624d59c1e7d745716c423e8bbd5768b3f689e009802"
     },
     "last_active_child_id": null,
     "last_active_at": null

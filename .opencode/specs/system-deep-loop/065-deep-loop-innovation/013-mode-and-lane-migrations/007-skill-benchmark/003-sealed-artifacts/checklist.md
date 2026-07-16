@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Skill Benchmark - Sealed Reference Artifacts"
-description: "Blocking verification checklist for the Skill Benchmark phase-003-backed sealed treatment, bundle, scenario, gold, exposure, scoring, and contribution-certificate input references."
+description: "Blocking verification checklist for the Skill Benchmark phase-006-backed sealed treatment, bundle, scenario, gold, exposure, scoring, and contribution-certificate input references."
 trigger_phrases:
   - "Skill Benchmark sealed artifacts checklist"
   - "skill benchmark tamper evident verification"
@@ -30,7 +30,7 @@ _memory:
 
 This checklist is the blocking verifier contract for the Skill Benchmark sealed-reference phase. Every item is a check the
 paired verifier runs before the candidate implementation lands; each report pins the candidate SHA, predecessor reducer
-fingerprint, phase-003 sealing fingerprint, common evaluator and canary fingerprints, artifact-fixture digest, commands, exit
+fingerprint, phase-006 sealing fingerprint, common evaluator and canary fingerprints, artifact-fixture digest, commands, exit
 codes, reference counts, gold outcomes, and read or certificate-input results. Any alternate sealing scheme, mutable
 overwrite, accepted tampered read, inert gold, hidden-evidence leak, missing dependency, or common-service fork fails the gate.
 <!-- /ANCHOR:protocol -->
@@ -39,7 +39,7 @@ overwrite, accepted tampered read, inert gold, hidden-evidence leak, missing dep
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] `002-reducers-and-projections` treatment-cell, artifact-reference, gold-policy, and projection-fingerprint inputs are frozen
-- [ ] CHK-002 [P0] The phase-003 sealing primitive records canonicalization, digest, dependency, seal-on-write, publication, lifecycle, verification, and failure semantics
+- [ ] CHK-002 [P0] The phase-006 sealing primitive records canonicalization, digest, dependency, seal-on-write, publication, lifecycle, verification, and failure semantics
 - [ ] CHK-003 [P0] Deep-improvement-common mode-004 evaluator, canary, replay, budget, receipt, visibility, and common read contracts are frozen
 - [ ] CHK-004 [P1] The artifact field and dependency matrix names every sealed design, bundle, task, gold, assignment, exposure, scoring, and certificate-input field, producer, consumer, visibility rule, and lifecycle state
 - [ ] CHK-005 [P1] Valid paired, ablation, empty/pending-gold, changed-gold, canary, compatibility, composition, leak, partial-write, and mixed-version fixtures are pinned
@@ -48,7 +48,7 @@ overwrite, accepted tampered read, inert gold, hidden-evidence leak, missing dep
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-006 [P0] Every Skill Benchmark artifact uses the phase-003 sealing adapter; no second digest, signature, chain, manifest, storage, canonicalization, or verification scheme exists
+- [ ] CHK-006 [P0] Every Skill Benchmark artifact uses the phase-006 sealing adapter; no second digest, signature, chain, manifest, storage, canonicalization, or verification scheme exists
 - [ ] CHK-007 [P0] Digest coverage includes canonical bytes, artifact kind, schema version, and ordered dependency closure; bundle, task, gold, evaluator, executor, environment, registry, tool, permission, dependency, and workload omissions are rejected
 - [ ] CHK-008 [P0] Sealed bytes are immutable, writes are atomic, incomplete artifacts are unreadable, and every content or dependency change requires a new reference or explicit expiry
 - [ ] CHK-009 [P1] Scope is limited to Skill Benchmark sealed references, scenario and scoring evidence, common service boundaries, fixtures, and verification; no adjacent cleanup or authority cutover is included
@@ -97,7 +97,7 @@ overwrite, accepted tampered read, inert gold, hidden-evidence leak, missing dep
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-030 [P1] Implementation and fixture changes land in dependency-closed, path-scoped commits after the reducer, phase-003 sealing, and mode-004 common-service contracts are pinned
+- [ ] CHK-030 [P1] Implementation and fixture changes land in dependency-closed, path-scoped commits after the reducer, phase-006 sealing, and mode-004 common-service contracts are pinned
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

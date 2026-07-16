@@ -87,16 +87,16 @@
       }
     ],
     "causal_summary": "Migrate the skill-benchmark variant's scenario runs and scoring onto the typed event-ledger substrate while reusing the deep-improvement-common backbone and ending in an independent mode gate.",
-    "created_at": "2026-07-15T21:58:51.281Z",
-    "last_save_at": "2026-07-15T21:58:51.281Z",
+    "created_at": "2026-07-16T03:43:56.577Z",
+    "last_save_at": "2026-07-16T03:43:56.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f72e3ac685d73fce891617b658f97ce154e9eaa0a1906347cfde0b113b1bfeda",
+    "source_fingerprint": "sha256:1b12b7027ebbe3b427b0df297a266b923dd2caa455f74942981bca312d317197",
     "source_doc_hashes": {
-      "spec.md": "9a07a875b2c59f30e99a9cbb02fdc286687b9bf1a991708b7226e5f3fb0ebdcc"
+      "spec.md": "626becfe203395008a9cd8d5521288bc6a2b6190a48fd9a1e22fbd82d7fa5c23"
     },
     "last_active_child_id": null,
     "last_active_at": null

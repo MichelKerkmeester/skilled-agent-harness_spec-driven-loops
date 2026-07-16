@@ -20,8 +20,8 @@ _memory:
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which phase-003 primitive seals the Deep Alignment run certificate?"
-      - "Which phase-009 receipt fields are inherited by each alignment transition?"
+      - "Which phase-006 primitive seals the Deep Alignment run certificate?"
+      - "Which phase-012 receipt fields are inherited by each alignment transition?"
       - "Which authority-epoch changes require witness replay versus a fresh lane run?"
       - "Does the verifier pin a finalized frontier, a contiguous range, or both?"
     answered_questions:
@@ -51,7 +51,7 @@ _memory:
 | **Owner skill** | system-deep-loop / deep-alignment |
 | **Formal depends_on** | [] |
 | **Origin** | Deep Alignment mode migration after the shared ledger, sealed-artifact, and review-loop contracts are frozen |
-| **Inputs** | `065-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, the Deep Alignment typed-ledger sibling, `findings-registry*.json`, phase `003-sealed-artifacts`, and the shared review-loop contract from phase 009 |
+| **Inputs** | `065-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, the Deep Alignment typed-ledger sibling, `findings-registry*.json`, phase `003-sealed-artifacts`, and the shared review-loop contract from phase 012 |
 | **Output** | A ratifiable per-run certificate, per-transition receipt, replay-fingerprint input, and independent offline-verifier plan; no authority cutover |
 <!-- /ANCHOR:metadata -->
 
@@ -68,7 +68,7 @@ a successful check.
 
 The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts,
 versioned replay fingerprints, and receipts/certificates before authority moves. Phase `003-sealed-artifacts` supplies the
-receipt and certificate primitives consumed here. Phase 009 freezes the shared review-loop backbone used by Deep Alignment
+receipt and certificate primitives consumed here. Phase 012 freezes the shared review-loop backbone used by Deep Alignment
 and Deep Review; this phase specializes that contract rather than forking it. The research inputs require authority validity
 before artifact conformance, typed rule obligations, first-class applicability and unresolved outcomes, digest-bound evidence,
 direction-sensitive authority-epoch replay, chronological deviations, and proof-carrying findings. They also require
@@ -90,19 +90,19 @@ it; the evidence and independent verification boundary remains explicit.
 - A versioned Deep Alignment `run_certificate` contract binding run identity, named authority and epoch, authority validity, target and subject scope, lane and rule coverage, finalized ledger range, receipt-set root, replay fingerprint, terminal or incomplete outcome, deviation state, and verifier result.
 - A versioned `transition_receipt` contract for every authorized shared review-loop and Deep Alignment transition from authority binding and validation through lane planning, subject snapshot, applicability, observations, evidence, candidate findings, independent verification, proof, adjudication, deviation, witness replay, coverage, convergence, blocked stops, continuity, and terminal handoff.
 - A receipt coverage matrix separating transition identity, authorization, event integrity, authority and subject references, applicability, observation/evidence, proof, adjudication, deviation, and materialized handoff; retries and late results receive new immutable receipts rather than in-place updates.
-- A canonical replay-fingerprint input registry covering the shared envelope, phase-009 review-loop and mode contracts, authority capsule and epoch, compiler and rule-IR digests, profile and applicability policy, ordered lanes and rules, subject snapshots, verifier and analyzer versions, event payload digests, proof witnesses, deviation assertions, reducer or projection contract revisions, and certificate policy.
+- A canonical replay-fingerprint input registry covering the shared envelope, phase-012 review-loop and mode contracts, authority capsule and epoch, compiler and rule-IR digests, profile and applicability policy, ordered lanes and rules, subject snapshots, verifier and analyzer versions, event payload digests, proof witnesses, deviation assertions, reducer or projection contract revisions, and certificate policy.
 - Direction-sensitive authority-epoch replay that compares old-authority witnesses against a new authority capsule, identifies deleted, weakened, narrowed, broadened, or newly introduced obligations, and preserves exact, compatible, migrate, degraded, or blocked outcomes.
 - An independent offline verifier that reads only certificate-pinned ledger events and content-addressed references, recomputes hashes and fingerprints, checks authority validity and receipt closure, verifies applicability and proof-carrying findings, and returns explicit valid, invalid, incomplete, or blocked outcomes.
 - Fixtures for valid and invalid authority material, applicable and not-applicable rules, unresolved scope, raw observations, candidate-to-verification promotion, proof witnesses, known deviations, epoch changes, late evidence, retry and unknown-effect states, blocked convergence, incomplete terminal runs, and unchanged offline replay.
 
 ### Out of Scope
-- The shared envelope, transition vocabulary, append API, authorization semantics, generic effect recovery, and phase-009 review-loop lifecycle. This phase consumes those contracts.
+- The shared envelope, transition vocabulary, append API, authorization semantics, generic effect recovery, and phase-012 review-loop lifecycle. This phase consumes those contracts.
 - Sealed-artifact storage, authority-capsule compilation, signing, and seal primitives owned by phase `003-sealed-artifacts`; this phase consumes their typed references and verification hooks.
 - Deep Alignment event vocabulary owned by `001-typed-ledger-schema`, applicability and finding reducers or projections owned by the reducer sibling, and dashboards, reports, or materialized gauges.
 - Resume planning, reuse and re-execution decisions owned by `005-resume-adapter`; this phase specifies receipt and certificate references required for later recovery only.
 - Shadow parity, rollback switching, the independent mode gate, authority cutover, legacy-writer retirement, and any change to the legacy authority path.
 - New authorities, conformance policy, remediation behavior, or verifier algorithms beyond the Deep Alignment lifecycle and the cited research recommendations.
-- The other six sibling concerns and their mode-gate integration. The 010 migrations are the later per-mode fan-out after phase 009 freezes shared contracts and emits the write-set conflict graph.
+- The other six sibling concerns and their mode-gate integration. The 010 migrations are the later per-mode fan-out after phase 012 freezes shared contracts and emits the write-set conflict graph.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -148,7 +148,7 @@ versions, profile and applicability policy, ordered lane and rule plans, verifie
 generator and minimizer versions, deviation policy, reducer and handoff codec versions, and the exact included receipt set.
 A verifier must report the first mismatching input class rather than returning a generic replay failure.
 
-The offline verifier follows this order: load the trusted contract and phase-003 certificate primitive registry; validate the
+The offline verifier follows this order: load the trusted contract and phase-006 certificate primitive registry; validate the
 certificate schema, seal, and immutable reference bundle; load the certificate-pinned event range; verify event hashes, causal
 links, transition authorization, receipt sequence, authority validity, and effect states; recompute the run and transition
 fingerprints; resolve applicability and coverage; verify observation, candidate, proof, verification, adjudication, deviation,
@@ -165,7 +165,7 @@ or `invalid`, never as a passing certificate.
 - **SC-003**: Replay fingerprints include all declared identity and behavior classes, distinguish exact, compatible, migrate, degraded, and blocked reuse, and identify the first mismatch offline.
 - **SC-004**: Authority validation, applicability, observation, candidate, proof, verification, adjudication, deviation, conformance, convergence, and handoff remain separate attestable stages with raw observations preserved.
 - **SC-005**: An independent verifier can validate a copied ledger and referenced artifacts without model execution, network access, or mutable source access; tampering, invalid authority, unknown versions, and unresolved references fail closed.
-- **SC-006**: The certificate and receipt contract consumes phase `003-sealed-artifacts` primitives and phase 009 shared review-loop contracts without duplicating shared mode behavior or preempting `005-resume-adapter`.
+- **SC-006**: The certificate and receipt contract consumes phase `003-sealed-artifacts` primitives and phase 012 shared review-loop contracts without duplicating shared mode behavior or preempting `005-resume-adapter`.
 - **SC-007**: Direction-sensitive authority replay detects weakened or deleted obligations, while known deviations remain chronological, scoped, visible, and reactivatable.
 - **SC-008**: The planning packet is complete enough for implementation and later mode-gate work while containing no authority-cutover, rollback, reducer, projection, shadow, or resume implementation.
 
@@ -199,16 +199,16 @@ verifier checks the chain, **then** it returns invalid or blocked with the first
 - **Applicability collapse** - missing target facts or broken discovery can appear as complete conformance. Mitigation: preserve applicable, not-applicable, unresolved, untested, and blocked states separately from observed artifacts.
 - **Candidate/verdict conflation** - detector output can be mistaken for verified non-conformance. Mitigation: require independent verifier identity, proof witnesses, evidence receipts, and a typed adjudication event before a blocking disposition.
 - **Deviation erasure** - an exception may hide the original failure and prevent reactivation after drift. Mitigation: append chronological deviations bound to authority, verifier, subject, scope, issuer, and expiry.
-- **Shared-backbone divergence** - Deep Alignment may invent a local certificate path that Deep Review cannot consume. Mitigation: compare inherited phase-009 fields and event transitions before accepting mode extensions.
+- **Shared-backbone divergence** - Deep Alignment may invent a local certificate path that Deep Review cannot consume. Mitigation: compare inherited phase-012 fields and event transitions before accepting mode extensions.
 - **Scope expansion** - certificate work may absorb reducers, resume, shadow, rollback, or authority concerns. Mitigation: keep the ownership table, adjacency line, and planning-only requirement as blocking boundaries.
-- **Dependencies**: phase `003-sealed-artifacts` receipt/certificate primitives; phase 009 shared review-loop and replay contracts; `001-typed-ledger-schema`; the Deep Alignment reducer/projection sibling; later `005-resume-adapter`, shadow-parity, rollback, and mode-gate concerns; the Deep Review shared-backbone contract; and the two effectiveness/fan-out findings registries.
+- **Dependencies**: phase `003-sealed-artifacts` receipt/certificate primitives; phase 012 shared review-loop and replay contracts; `001-typed-ledger-schema`; the Deep Alignment reducer/projection sibling; later `005-resume-adapter`, shadow-parity, rollback, and mode-gate concerns; the Deep Review shared-backbone contract; and the two effectiveness/fan-out findings registries.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-003 primitive represents a run certificate seal, and does the verifier receive a signature, Merkle root, transparency reference, or another typed proof?
-- Which phase-009 transition result, authorization, event-tail, effect, lineage, and report fields are inherited directly by Deep Alignment receipts?
+- Which exact phase-006 primitive represents a run certificate seal, and does the verifier receive a signature, Merkle root, transparency reference, or another typed proof?
+- Which phase-012 transition result, authorization, event-tail, effect, lineage, and report fields are inherited directly by Deep Alignment receipts?
 - Is the certificate pinned to a finalized ledger frontier, a contiguous event range, or both when late evidence and deviation receipts arrive after terminal assessment?
 - Which authority-epoch compatibility outcomes are exact, compatible, migrate, degraded, pin-old-runtime, or blocked for each witness and proof type?
 - Which applicability and coverage gaps make a run `incomplete` versus `blocked`, and which must prevent certificate issuance entirely?

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Conditional Budget-Aware Fan-in (006 phase 004)"
+title: "Tasks: Conditional Budget-Aware Fan-in"
 description: "Tasks for conditional fan-in over durable results, typed budget floors, evidence sufficiency, outstanding-leaf disposition, and replay-stable reduction handoff."
 trigger_phrases:
   - "conditional budget-aware fan-in tasks"
@@ -42,7 +42,7 @@ _memory:
 - [ ] T001 Pin current \`fanout-run.cjs\` wait-for-all, static budget-cap, pool-summary, termination, and salvage fixtures
 - [ ] T002 Freeze versioned interfaces for typed budgets, result envelopes, logical branches, dispatch attempts, leases, waves, partial-failure eligibility, and reduction handoff
 - [ ] T003 Define \`FanInPolicy\`, decision event, stop taxonomy, simultaneous-trigger precedence, event-cut semantics, and deterministic result ordering
-- [ ] T004 Define the phase-008 value-of-computation extension slot and its deterministic no-signal default
+- [ ] T004 Define the phase-011 value-of-computation extension slot and its deterministic no-signal default
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -69,7 +69,7 @@ _memory:
 - [ ] T018 Verify cancel/complete, release/settle, lease-expiry, and decision/late-result races preserve spend and salvage evidence
 - [ ] T019 Verify replay under equivalent event delivery reconstructs identical stop reasons, leaf dispositions, included IDs, and reducer digest
 - [ ] T020 Verify partial-failure policy variants feed one stable fan-in schema without taking ownership of finalization
-- [ ] T021 Verify the phase-008 extension cannot bypass typed admission, mutate a finalized decision, or redefine budget exhaustion
+- [ ] T021 Verify the phase-011 extension cannot bypass typed admission, mutate a finalized decision, or redefine budget exhaustion
 - [ ] T022 Verify shadow mode leaves current \`fanout-run.cjs\` wait-for-all output authoritative and records comparison evidence
 - [ ] T023 Run strict spec validation and the bounded runtime test/build/typecheck gates selected by the parent packet
 <!-- /ANCHOR:phase-3 -->

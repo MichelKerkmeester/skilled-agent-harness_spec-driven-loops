@@ -61,9 +61,9 @@ This checklist is the blocking verifier contract for the policy phase. Items rem
 - [ ] CHK-015 [P0] Window cases prove rollback remains available until both 14 calendar days and five successful authoritative executions are complete
 - [ ] CHK-016 [P0] Low-traffic, anomaly, replay-mismatch, authorization-bypass, missing-receipt, budget-breach, and state-reconciliation cases extend or trigger rollback
 - [ ] CHK-017 [P0] Rollback tabletop freezes admissions, fences the spine, reconciles in-flight work, restores legacy at a new epoch, preserves events, and emits a certificate
-- [ ] CHK-018 [P0] Phase 005 proves adapters, mixed replay, parity, state classification, and drills without moving authority
-- [ ] CHK-019 [P0] Phase 011 alone performs one-mode-at-a-time authority flips and cannot close a window early
-- [ ] CHK-020 [P0] Phase 012 cannot retire legacy live writers until every mode closes its window with zero-use and archival-read evidence
+- [ ] CHK-018 [P0] Phase 008 proves adapters, mixed replay, parity, state classification, and drills without moving authority
+- [ ] CHK-019 [P0] Phase 014 alone performs one-mode-at-a-time authority flips and cannot close a window early
+- [ ] CHK-020 [P0] Phase 015 cannot retire legacy live writers until every mode closes its window with zero-use and archival-read evidence
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -84,7 +84,7 @@ This checklist is the blocking verifier contract for the policy phase. Items rem
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-026 [P1] spec.md, plan.md, tasks.md, and checklist.md agree on the 14-day/five-run window and the phase 003-012 ownership map
+- [ ] CHK-026 [P1] spec.md, plan.md, tasks.md, and checklist.md agree on the 14-day/five-run window and the phase 006-012 ownership map
 - [ ] CHK-027 [P1] Cross-references resolve to the parent program spec, phase-tree manifest, and sibling packet documents
 - [ ] CHK-028 [P2] Deterministic metadata generation is deferred exactly as instructed and no metadata file is hand-authored
 <!-- /ANCHOR:docs -->
@@ -105,5 +105,5 @@ The phase may be ratified only when every P0 check has evidence, every P1 check 
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the architecture-parent verifier confirms the event-version, upcaster, authorization, cutover, and rollback clauses are frozen and records that program phase 003 may build the first writer only against this contract.
+Signed off when the architecture-parent verifier confirms the event-version, upcaster, authorization, cutover, and rollback clauses are frozen and records that program phase 006 may build the first writer only against this contract.
 <!-- /ANCHOR:sign-off -->

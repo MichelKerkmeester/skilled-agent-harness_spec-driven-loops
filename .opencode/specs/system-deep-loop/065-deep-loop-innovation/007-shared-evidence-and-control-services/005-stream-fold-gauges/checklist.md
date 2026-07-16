@@ -37,7 +37,7 @@ bytes is a failed verification rather than a vacuous pass.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-003 fixtures expose a verified ordered stream with ledger ID, canonical event bytes, sequence/hash head, authorization linkage, and explicit schema/version data
+- [ ] CHK-001 [P0] Phase-006 fixtures expose a verified ordered stream with ledger ID, canonical event bytes, sequence/hash head, authorization linkage, and explicit schema/version data
 - [ ] CHK-002 [P0] The standard manifest contains progress, novelty, cost, and health-input gauges with source events, typed units, missing-value semantics, versions, and downstream ownership
 - [ ] CHK-003 [P1] Pinned fixtures capture shipped fan-out, convergence, coverage-signal/snapshot, and observability behavior before dark integration
 - [ ] CHK-004 [P2] Candidate commit, fixture digests, gauge registry digest, supported platform matrix, and replay cutoffs are recorded in the verifier report
@@ -74,7 +74,7 @@ bytes is a failed verification rather than a vacuous pass.
 ## Fix Completeness
 
 - [ ] CHK-022 [P1] The reviewed runtime inventory maps every existing gauge/metric producer and consumer either to a standard fold, a named mode extension, or an explicit out-of-scope owner
-- [ ] CHK-023 [P1] Every run-2 finding mapped to `runtime/gauges-observability` has a traceable disposition in the phase-001 recommendation ledger and an owning gauge or later phase
+- [ ] CHK-023 [P1] Every run-2 finding mapped to `runtime/gauges-observability` has a traceable disposition in the phase-004 recommendation ledger and an owning gauge or later phase
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->

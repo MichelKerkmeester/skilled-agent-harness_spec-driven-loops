@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Model Benchmark typed ledger schema (013 mode migration, 006 child)"
+title: "Checklist: Model Benchmark typed ledger schema"
 description: "Checklist for the Model Benchmark typed ledger schema phase: verify the shared envelope specialization, event vocabulary, field-level types, immutable evidence lineage, compatibility hooks, and the reducer handoff boundary."
 trigger_phrases:
   - "Model Benchmark typed ledger schema checklist"
@@ -37,7 +37,7 @@ versions, candidate SHA, event-union revision, schema hashes, commands, exit cod
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-003 transition authorization and phase-009 shared event contracts are identified with frozen version references
+- [ ] CHK-001 [P0] Phase-006 transition authorization and phase-012 shared event contracts are identified with frozen version references
 - [ ] CHK-002 [P0] The mode-004 deep-improvement-common ownership boundary is recorded for evaluator, canary, calibration, receipt, budget, and promotion services
 - [ ] CHK-003 [P1] The exact phase adjacency line names predecessor `none` and successor `002-reducers-and-projections`
 - [ ] CHK-004 [P1] The authored contract remains limited to the target folder and the four requested files

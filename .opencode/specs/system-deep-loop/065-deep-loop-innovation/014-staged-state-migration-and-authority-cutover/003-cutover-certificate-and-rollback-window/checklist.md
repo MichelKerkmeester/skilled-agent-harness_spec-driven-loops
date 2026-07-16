@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Cutover Certificate & Rollback Window"
-description: "Blocking verifier contract for the cutover evidence bundle, monitored rollback window, fail-safe revert path, and phase-012 closure handoff."
+description: "Blocking verifier contract for the cutover evidence bundle, monitored rollback window, fail-safe revert path, and phase-015 closure handoff."
 trigger_phrases:
   - "cutover certificate rollback checklist"
   - "rollback window verification"
@@ -29,15 +29,15 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for the planned certificate and rollback-window phase. Items remain unchecked while status is Planned. Completion evidence must bind the reviewed candidate SHA or document hash, the exact certificate/window clause or requirement ID, the reviewer or tool result, and the mode/epoch under test. Evidence fails on incomplete proof, mutable references, permissive fallback, split-brain authority, early closure, unbounded monitoring, or ownership drift into sibling 002 or phase 012.
+This checklist is the blocking verifier contract for the planned certificate and rollback-window phase. Items remain unchecked while status is Planned. Completion evidence must bind the reviewed candidate SHA or document hash, the exact certificate/window clause or requirement ID, the reviewer or tool result, and the mode/epoch under test. Evidence fails on incomplete proof, mutable references, permissive fallback, split-brain authority, early closure, unbounded monitoring, or ownership drift into sibling 002 or phase 015.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Parent phase-011 handoff, manifest outcome, and staged additive-to-cutover model are cited
-- [ ] CHK-002 [P0] Phase-001 policy is cited for certificate preconditions, authority states, and the 14-day/five-run later-of window rule
-- [ ] CHK-003 [P0] Phase-004 receipts and certification semantics are cited as required evidence inputs
+- [ ] CHK-001 [P0] Parent phase-014 handoff, manifest outcome, and staged additive-to-cutover model are cited
+- [ ] CHK-002 [P0] Phase-004 policy is cited for certificate preconditions, authority states, and the 14-day/five-run later-of window rule
+- [ ] CHK-003 [P0] Phase-007 receipts and certification semantics are cited as required evidence inputs
 - [ ] CHK-004 [P0] Sibling `002-per-mode-authority-flip` is named as the CAS flip owner and this child is limited to certificate/window enforcement
 - [ ] CHK-005 [P1] `depends_on: []`, Planned status, Level 2 structure, and last-sibling adjacency are explicit
 <!-- /ANCHOR:pre-impl -->
@@ -64,7 +64,7 @@ This checklist is the blocking verifier contract for the planned certificate and
 - [ ] CHK-017 [P0] Health regressions and parity drift have separate monitored signals with ratified thresholds and deterministic severity
 - [ ] CHK-018 [P0] Replay mismatch, authorization failure, receipt gap, budget breach, and state-reconciliation failure extend or trigger rollback
 - [ ] CHK-019 [P0] Mid-window rollback freezes admissions, fences the spine, reconciles in-flight work, restores legacy at a new epoch, preserves events, and emits a rollback certificate
-- [ ] CHK-020 [P0] Clean closure appends durable evidence for phase 012 without authorizing legacy-writer retirement by itself
+- [ ] CHK-020 [P0] Clean closure appends durable evidence for phase 015 without authorizing legacy-writer retirement by itself
 - [ ] CHK-021 [P0] Multi-mode flips, stale monitor decisions, conflicting certificates, and stale writers fail closed
 <!-- /ANCHOR:testing -->
 
@@ -74,7 +74,7 @@ This checklist is the blocking verifier contract for the planned certificate and
 - [ ] CHK-022 [P0] Every certificate field and window state has one owning requirement and one verification fixture or review record
 - [ ] CHK-023 [P0] Every monitored signal has a source, threshold/condition, extension action, revert action, and durable evidence output
 - [ ] CHK-024 [P1] Crash cut points cover certificate append, window checkpoint, monitor decision, rollback fence, reconciliation, and closure evidence
-- [ ] CHK-025 [P1] The ownership matrix proves phase 005 supplies readiness evidence, sibling 002 flips, this child certifies/monitors, and phase 012 retires
+- [ ] CHK-025 [P1] The ownership matrix proves phase 008 supplies readiness evidence, sibling 002 flips, this child certifies/monitors, and phase 015 retires
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -90,7 +90,7 @@ This checklist is the blocking verifier contract for the planned certificate and
 ## Documentation
 
 - [ ] CHK-030 [P1] spec.md, plan.md, tasks.md, and checklist.md agree on certificate contents, signal families, ownership, and the 14-day/five-run window
-- [ ] CHK-031 [P1] Cross-references resolve to the parent phase, manifest, phase-001 policy, phase-004 receipts, and sibling 002 contract
+- [ ] CHK-031 [P1] Cross-references resolve to the parent phase, manifest, phase-004 policy, phase-007 receipts, and sibling 002 contract
 - [ ] CHK-032 [P2] Deterministic metadata generation is deferred exactly as instructed and no metadata file is hand-authored
 <!-- /ANCHOR:docs -->
 
@@ -104,11 +104,11 @@ This checklist is the blocking verifier contract for the planned certificate and
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase may be ratified only when every P0 check has evidence, every P1 check is complete or explicitly approved for deferral, certificate facts are bound to the exact flip, window closure uses the later-of policy, every revert path preserves events and authority epochs, and phase 012 receives durable closure evidence without inheriting a hidden retirement decision.
+The phase may be ratified only when every P0 check has evidence, every P1 check is complete or explicitly approved for deferral, certificate facts are bound to the exact flip, window closure uses the later-of policy, every revert path preserves events and authority epochs, and phase 015 receives durable closure evidence without inheriting a hidden retirement decision.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the phase-011 parent verifier confirms that each mode's authority flip is certificate-backed, its rollback window is actively monitored, any revert is non-destructive and epoch-safe, and clean closure is recorded before phase 012 evaluates legacy-writer retirement.
+Signed off when the phase-014 parent verifier confirms that each mode's authority flip is certificate-backed, its rollback window is actively monitored, any revert is non-destructive and epoch-safe, and clean closure is recorded before phase 015 evaluates legacy-writer retirement.
 <!-- /ANCHOR:sign-off -->

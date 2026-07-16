@@ -37,9 +37,9 @@ mutation fails the phase. Budget-exhaustion fixtures must prove absence of dispa
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-000 BASE and current council/fan-out guard behavior are pinned with fixture digests
-- [ ] CHK-002 [P0] Phase-003 envelope/replay plus sibling receipt/fencing interfaces are frozen or any contradiction is resolved through a packet amendment
-- [ ] CHK-003 [P1] Program phase 006 and phase 008 consumer fields and denial semantics are mapped without transferring budget arithmetic to those consumers
+- [ ] CHK-001 [P0] The phase-003 BASE and current council/fan-out guard behavior are pinned with fixture digests
+- [ ] CHK-002 [P0] Phase-006 envelope/replay plus sibling receipt/fencing interfaces are frozen or any contradiction is resolved through a packet amendment
+- [ ] CHK-003 [P1] Program phase 009 and phase 011 consumer fields and denial semantics are mapped without transferring budget arithmetic to those consumers
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -88,7 +88,7 @@ mutation fails the phase. Budget-exhaustion fixtures must prove absence of dispa
 ## Documentation
 
 - [ ] CHK-026 [P1] Runtime references document typed units, scope nesting, reservation/settlement states, exhaustion taxonomy, and migration authority
-- [ ] CHK-027 [P2] Program phase 006 and phase 008 docs reference this service as the sole budget admission contract
+- [ ] CHK-027 [P2] Program phase 009 and phase 011 docs reference this service as the sole budget admission contract
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

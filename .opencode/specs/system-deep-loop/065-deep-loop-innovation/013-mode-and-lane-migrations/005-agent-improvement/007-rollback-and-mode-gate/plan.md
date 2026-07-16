@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Agent Improvement - Rollback & Mode Gate"
-description: "Planning workflow for the Agent Improvement fail-closed rollback switch, bounded rollback window, independent mode gate, deep-improvement-common service reuse, and phase-011 readiness certificate."
+description: "Planning workflow for the Agent Improvement fail-closed rollback switch, bounded rollback window, independent mode gate, deep-improvement-common service reuse, and phase-014 readiness certificate."
 trigger_phrases:
   - "agent improvement rollback and mode gate implementation plan"
   - "agent loop authority switch plan"
@@ -41,7 +41,7 @@ and scoring variant. The switch is a default-deny adapter over the shared author
 path, and an authorized rollback freezes typed admission, fences stale writers, classifies in-flight work, and restores the
 legacy anchor at a new epoch without deleting evidence. The gate composes `006-shadow-parity`, AgentIR and trajectory seals,
 common evaluator/canary/promotion receipts, replay and resume evidence, behavior-family coverage, transfer evidence, and a
-rollback rehearsal. It emits an exact-SHA readiness certificate for phase 011. It does not execute cutover, alter common
+rollback rehearsal. It emits an exact-SHA readiness certificate for phase 014. It does not execute cutover, alter common
 service semantics, close the rollback window, or retire a legacy writer.
 <!-- /ANCHOR:summary -->
 
@@ -51,18 +51,18 @@ service semantics, close the rollback window, or retire a legacy writer.
 ### Definition of Ready
 - [ ] The shared transition/versioning/rollback policy is pinned, including deny-by-default authorization, monotonic epochs, one-writer ownership, and the 14-day/five-successful-authoritative-execution minimum.
 - [ ] Agent Improvement siblings `001-typed-ledger-schema` through `006-shadow-parity` expose event, projection, seal, certificate, receipt, replay, resume, and parity evidence boundaries.
-- [ ] Phase 012 shared mode interfaces and the executable write-set conflict graph are available; phase 009 remains the contract-freeze boundary for the per-mode fan-out.
+- [ ] Phase 012 shared mode interfaces and the executable write-set conflict graph are available; phase 012 remains the contract-freeze boundary for the per-mode fan-out.
 - [ ] The switch states, request fields, trigger classes, fencing behavior, and external authorization boundary are reviewed for Agent Improvement-specific proposal, evaluation, canary, and promotion work.
 - [ ] The gate matrix names every AgentIR, lineage, behavior-family, evaluator, canary, promotion, replay, resume, transfer, failure, and rollback fixture.
 - [ ] Agent Improvement consumes one mode-004 evaluator, canary, promotion, receipt, certificate, fingerprint, veto, and rollback contract through a namespaced adapter.
-- [ ] The phase-011 handoff distinguishes migration readiness from phase-014 authority cutover and legacy-writer retirement.
+- [ ] The phase-014 handoff distinguishes migration readiness from phase-014 authority cutover and legacy-writer retirement.
 
 ### Definition of Done
 - [ ] The switch rejects absent, stale, malformed, unauthorized, mixed-version, and wrong-mode inputs without semantic change.
 - [ ] The rollback window is bounded, observable, extension-safe, and restorable to the pinned legacy anchor.
 - [ ] The independent gate is green only with Agent Improvement shadow parity, sealed evidence, complete receipts and certificates, deterministic replay, resume coverage, behavior-family and transfer evidence, common-service reuse, and rollback rehearsal.
 - [ ] The mode certificate is exact-SHA bound, independently verifiable, and explicit about unresolved obligations.
-- [ ] Phase 011 receives readiness evidence without an authority transition, rollback-window closure, or legacy-writer retirement claim.
+- [ ] Phase 014 receives readiness evidence without an authority transition, rollback-window closure, or legacy-writer retirement claim.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -70,19 +70,19 @@ service semantics, close the rollback window, or retire a legacy writer.
 
 - **Common-service owner**: keep evaluator capsule construction, raw observation capture, normalization, canary freshness and leak checks, hard veto ordering, guarded promotion, receipts, certificates, and recovery in `004-deep-improvement-common`. Agent Improvement supplies namespaced AgentIR, candidate-lineage, causal-analysis, coverage, and transfer adapters only.
 - **Switch boundary**: maintain one Agent Improvement policy adapter over the shared authority record. Its safe default is `legacy_authoritative`; invalid or stale state becomes legacy authority plus typed refusal evidence.
-- **State progression**: `legacy_authoritative -> shadowing -> cutover_ready -> new_authoritative_reversible`. Failure paths move through `rollback_pending` to `legacy_restored`; `window_closed` is terminal until a new authorized gate and window. This phase defines admissibility, while phase 014 performs authority movement.
+- **State progression**: `legacy_authoritative -> shadowing -> cutover_ready -> new_authoritative_reversible`. Failure paths move through `rollback_pending` to `legacy_restored`; `window_closed` is terminal until a new authorized gate and window. This phase defines admissibility, while phase 017 performs authority movement.
 - **Fail-closed admission**: every authority-sensitive request requires mode, policy version, authority epoch, gate certificate digest, Agent Improvement frontier digest, request digest, evidence digest, actor capability, and current transition authorization. Missing or stale data denies before append, projection, effect, or authority change.
 - **Window record**: bind window ID, mode ID, legacy anchor, typed AgentIR frontier, candidate and evaluator evidence references, opening and expiry policy, trigger classes, fencing token, valid successful-run count, unresolved obligations, and close or rollback receipt. Inherit the shared 14-day/five-success minimum rather than creating a variant rule.
 - **Independent gate**: verify immutable parity, AgentIR and trajectory seals, common-service references, certificate and receipt chains, replay and resume fingerprints, family/transfer coverage, lifecycle fixtures, and rollback rehearsal outside the live Agent Improvement process.
 - **Rollback path**: freeze typed-authoritative proposal/evaluation/promotion admission, fence writers, classify in-flight work through the resume adapter, resolve known effects by stable identity, restore the legacy anchor at a new epoch, preserve both histories, and issue a rollback certificate.
-- **Certificate handoff**: emit `gate_passed`, `gate_blocked`, `gate_incomplete`, or `rollback_required` with exact digests. Only `gate_passed` can be consumed as phase-011 readiness; none of these results flips authority or authorizes phase-014 cutover.
+- **Certificate handoff**: emit `gate_passed`, `gate_blocked`, `gate_incomplete`, or `rollback_required` with exact digests. Only `gate_passed` can be consumed as phase-014 readiness; none of these results flips authority or authorizes phase-017 cutover.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin BASE, the shared transition/versioning/rollback policy, phase-009 contract freeze, phase-012 mode interfaces and write-set graph, and the phase-011 handoff schema.
+- Pin BASE, the shared transition/versioning/rollback policy, phase-012 contract freeze, phase-015 mode interfaces and write-set graph, and the phase-014 handoff schema.
 - Inventory Agent Improvement siblings `001` through `006`: event and reducer versions, sealed artifact kinds, certificate and receipt classes, replay inputs, resume decisions, parity predicates, mismatch classes, and retained rollback anchors.
 - Inventory Agent Improvement proposal, scoring, evaluator, canary, promotion, and legacy projection boundaries; classify common ownership, variant adapters, persisted evidence, and authority-sensitive effects.
 - Freeze the agent gate input manifest, switch vocabulary, refusal taxonomy, inherited window minimum, successful-run definition, agent-specific extension triggers, and zero-authority-write assertion.
@@ -97,7 +97,7 @@ service semantics, close the rollback window, or retire a legacy writer.
 ### Phase 3: Gate Integration
 - Define mode-gate predicates over `006-shadow-parity`, AgentIR and candidate lineage seals, common evaluator/canary/promotion evidence, certificates, receipts, replay, resume, behavior-family coverage, transfer, rollback, and zero authority writes.
 - Compare raw per-case observations before normalized scores and preserve target reward, evaluator integrity, critical invariants, act/refuse/clarify outcomes, profile scope, transfer uncertainty, `UNKNOWN`, `INCONCLUSIVE`, `INSUFFICIENT_EVIDENCE`, veto, abort, restore, and promotion dispositions.
-- Define the exact-SHA mode-migration certificate, verifier receipt, failed-predicate list, unresolved obligations, Agent Improvement rollback anchor, window state, and phase-011 acceptance handoff.
+- Define the exact-SHA mode-migration certificate, verifier receipt, failed-predicate list, unresolved obligations, Agent Improvement rollback anchor, window state, and phase-014 acceptance handoff.
 - Define deterministic repeated evaluation over the same sealed frontier and reject certificates with another mode, contract, write-set graph, evaluator epoch, canary epoch, reducer, or AgentIR frontier digest.
 
 ### Phase 4: Verification
@@ -105,7 +105,7 @@ service semantics, close the rollback window, or retire a legacy writer.
 - Run rollback drills at proposal, evaluation, canary, promotion, crash-before-receipt, unknown-effect, stale-writer, and unsafe-resume boundaries; prove fencing, new-epoch restoration, evidence retention, and rollback certification.
 - Run the full Agent Improvement gate matrix and require green event/projection parity, valid AgentIR and trajectory seals, complete common-service receipts and certificates, deterministic replay, resume safety, behavior-family and transfer evidence, and zero unexplained semantic differences.
 - Run shared fixtures through Agent Improvement, model-benchmark, and skill-benchmark adapters and reject any variant-local common-service or gate fork.
-- Repeat the gate on the same sealed frontier, then mutate each semantic input class to prove certificate invalidation and phase-011 handoff rejection.
+- Repeat the gate on the same sealed frontier, then mutate each semantic input class to prove certificate invalidation and phase-014 handoff rejection.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -133,8 +133,8 @@ The plan consumes the parent program's additive-dark migration model and shared 
 uses Agent Improvement siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`,
 `004-certificates-and-receipts`, `005-resume-adapter`, and `006-shadow-parity`. Mode `004-deep-improvement-common` supplies
 the shared evaluator, canary, promotion, certificate, receipt, fingerprint, veto, sealing, and recovery contracts. Phase
-009 freezes the shared event contracts; phase 012 supplies the executable mode interfaces and write-set conflict graph; the
-phase-011 consumer receives readiness; phase 014 owns authority movement. The research basis is the Agent Improvement
+009 freezes the shared event contracts; phase 015 supplies the executable mode interfaces and write-set conflict graph; the
+phase-014 consumer receives readiness; phase 017 owns authority movement. The research basis is the Agent Improvement
 section of `findings-registry-modes.json` and the evaluator, receipt, authorization, degeneration, and rollback findings in
 `findings-registry.json`.
 <!-- /ANCHOR:dependencies -->

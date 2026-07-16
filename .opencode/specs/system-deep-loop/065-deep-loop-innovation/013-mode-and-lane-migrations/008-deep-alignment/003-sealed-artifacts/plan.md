@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Alignment - Sealed Reference Artifacts (013 phase 008 child 003)"
+title: "Implementation Plan: Deep Alignment - Sealed Reference Artifacts"
 description: "Implementation plan for binding Deep Alignment authority capsules, lane inputs, verify-first evidence, witness matrices, exception assertions, convergence outputs, reports, and resume references to the shared seal-on-write and tamper-evident read contract."
 trigger_phrases:
   - "deep alignment sealed artifacts implementation plan"
@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-15T21:30:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined Deep Alignment authority and evidence seal boundaries"
-    next_safe_action: "Inventory Deep Alignment artifacts against the phase-009 shared contract"
+    next_safe_action: "Inventory Deep Alignment artifacts against the phase-012 shared contract"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -31,14 +31,14 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / deep-alignment (mode 008, child 003) |
+| **Surface** | system-deep-loop / deep-alignment |
 | **Change class** | Mode-specific artifact registration and seal/read integration |
 | **Execution** | Seal-on-write references across authority resolution, lane discovery, verify-first checks, witness and exception evidence, convergence, report, resume, and save; additive-dark |
 
 ### Overview
-Plan one Deep Alignment adapter over the shared phase-003 sealing primitives. The adapter maps the existing alignment
+Plan one Deep Alignment adapter over the shared phase-006 sealing primitives. The adapter maps the existing alignment
 lifecycle to registered artifact kinds, seals exact canonical bytes at each boundary, binds ordered digest references into
-the shared phase-009 review-loop contract, typed events, predecessor reducers, replay fingerprints, convergence evidence,
+the shared phase-012 review-loop contract, typed events, predecessor reducers, replay fingerprints, convergence evidence,
 and per-lane report views, and verifies every reference before release to a consumer. The plan preserves lane resolution,
 authority-specific discovery, applicability-before-verification, verify-first re-probes, known-deviation visibility, the
 read-only default, the `coverage AND stability` convergence rule, and one report per lane. It consumes the shared sealed
@@ -50,7 +50,7 @@ shadow parity, remediation, or authority cutover.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-009 shared review-loop contracts and the executable write-set conflict graph are frozen for the Deep Alignment lane
+- [ ] Phase-012 shared review-loop contracts and the executable write-set conflict graph are frozen for the Deep Alignment lane
 - [ ] The mode artifact matrix names every `init/scope`, `discover`, `iterate/check`, `witness/exception`, `convergence/report`, and `resume/save` input/output
 - [ ] Each matrix row identifies a shared artifact kind, canonicalization version, media type, and ordered reference role
 - [ ] Shared seal-on-write and verified-read seams are available without changing the legacy authoritative loop
@@ -66,7 +66,7 @@ shadow parity, remediation, or authority cutover.
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Shared seal adapter**: accepts a typed Deep Alignment artifact request, delegates canonicalization, atomic publication, digest derivation, lifecycle handling, and verified reads to the phase-003 primitive, and exposes no alternate hash or blob identity.
+- **Shared seal adapter**: accepts a typed Deep Alignment artifact request, delegates canonicalization, atomic publication, digest derivation, lifecycle handling, and verified reads to the phase-006 primitive, and exposes no alternate hash or blob identity.
 - **Authority capsule binder**: seals the named authority source, compiled rule IR and manifest, publisher, epoch, capability and coverage results, applicability policy, and authority digest before `DISCOVER`; invalid authority yields a typed blocked result rather than an artifact pass.
 - **Mode artifact registry**: registers lane configuration, scope and discovery manifest, target snapshot, rule/applicability result, detector and re-probe evidence, witness matrix, governed exception, convergence snapshot, report view, and resume/save handoff as Deep Alignment specializations of the shared descriptor.
 - **Lane and discovery seal boundaries**: seal selected lane inputs, adapter contract, selected and omitted artifact identities, discovery watermarks, target bytes, rule inputs, and not-applicable or unresolved scope before checker or reducer consumption.
@@ -81,9 +81,9 @@ shadow parity, remediation, or authority cutover.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-009 shared review-loop contract and write-set conflict graph; verify predecessor `002-reducers-and-projections` owns findings, lane verdict, registry, and report projections.
+- Confirm the phase-012 shared review-loop contract and write-set conflict graph; verify predecessor `002-reducers-and-projections` owns findings, lane verdict, registry, and report projections.
 - Inventory current Deep Alignment lane config, authority and adapter references, `deep-alignment-state.jsonl`, delta files, discovered artifact manifests, rule outputs, live re-probe evidence, known-deviation records, witness or replay fixtures, convergence gates, `alignment-report.md`, resume state, and continuity-save handoffs against the pinned baseline.
-- Freeze the mode artifact-kind matrix, reference roles, canonicalization profiles, media types, authority publisher and epoch identities, stable lane/artifact/rule/finding/witness/iteration identities, and ordered reference-set rules using the shared phase-003 primitive.
+- Freeze the mode artifact-kind matrix, reference roles, canonicalization profiles, media types, authority publisher and epoch identities, stable lane/artifact/rule/finding/witness/iteration identities, and ordered reference-set rules using the shared phase-006 primitive.
 - Define typed seal/read failures, invalid-authority and expired-exception dispositions, mutable-target and authority-drift handling, append-only supersession, report/handoff refusal, and the additive-dark rollback switch.
 
 ### Phase 2: Implementation
@@ -96,7 +96,7 @@ shadow parity, remediation, or authority cutover.
 - Add governed exception sealing for subject, rule or claim, lane, authority digest, owner, justification, issuer, scope, issued time, expiry, and invalidation reason without deleting the original failure or suppressing future verification.
 - Seal the findings and exception materialized views, coverage and stability inputs, unresolved or inconclusive obligations, per-lane `alignment-report.md`, overall verdict metadata, and ordered input digest set after projection.
 - Add resume-facing authority, subject, witness, and exception drift comparison plus save/handoff references that preserve prior seals, identify affected lanes and findings, and refuse trusted output on failed reads.
-- Bind mode references into existing typed events, predecessor reducers and projections, replay fingerprints, compatibility adapters, shadow parity, and rollback handling without changing shared primitive ownership, phase-009 review-loop semantics, or read-only defaults.
+- Bind mode references into existing typed events, predecessor reducers and projections, replay fingerprints, compatibility adapters, shadow parity, and rollback handling without changing shared primitive ownership, phase-012 review-loop semantics, or read-only defaults.
 
 ### Phase 3: Verification
 - Prove equivalent authority, lane, scope, rule, adapter, target, witness, and exception representations produce identical shared canonical bytes and algorithm-qualified digest references for each mode artifact kind.
@@ -132,9 +132,9 @@ shadow parity, remediation, or authority cutover.
 ## 6. DEPENDENCIES
 
 This child declares `depends_on: []` as an independent planning contract, while its implementation composes with the
-phase-009 shared review-loop interfaces and write-set conflict graph. The shared phase-003 sealing primitive owns the
+phase-012 shared review-loop interfaces and write-set conflict graph. The shared phase-006 sealing primitive owns the
 descriptor, canonicalization, content addressing, atomic publication, verified reads, lifecycle retention, and corruption
-handling. The phase-003 event and replay contracts own outer envelopes and fingerprint derivation. Phase 009 owns the shared
+handling. The phase-006 event and replay contracts own outer envelopes and fingerprint derivation. Phase 012 owns the shared
 review-loop lane, target, dimension, lineage, convergence, report, and cross-mode compatibility semantics. Predecessor
 `002-reducers-and-projections` owns findings, coverage, exception, lane-verdict, and report projections. The compatibility
 and shadow bridge supplies the parity boundary. Successor `004-certificates-and-receipts` consumes the verified reference

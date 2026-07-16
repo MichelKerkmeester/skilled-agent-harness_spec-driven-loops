@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: In-Flight State Migration"
-description: "Implementation Plan for the first phase-011 sibling: guarded, integrity-checked, fenced, atomic, and resumable migration of eligible in-flight deep-loop state before per-mode authority flips."
+description: "Implementation Plan for the first phase-014 sibling: guarded, integrity-checked, fenced, atomic, and resumable migration of eligible in-flight deep-loop state before per-mode authority flips."
 trigger_phrases:
   - "in-flight state migration implementation plan"
   - "deep-loop migration guards"
@@ -31,13 +31,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime state migration (phase-011 sibling 001) |
+| **Surface** | system-deep-loop runtime state migration (phase-014 sibling 001) |
 | **Change class** | Guarded state transformation and migration orchestration |
-| **Execution** | Frozen phase-000 census and phase-005 classification manifest; legacy remains authoritative until handoff |
+| **Execution** | Frozen phase-003 census and phase-008 classification manifest; legacy remains authoritative until handoff |
 
 ### Overview
 The coordinator consumes one classified row at a time, verifies that its state has not drifted, acquires the canonical
-phase-004 resource lease, and records a durable migration receipt before touching state. It then executes exactly one
+phase-007 resource lease, and records a durable migration receipt before touching state. It then executes exactly one
 operation: logical `UPCAST`, isolated `FORK`, checkpointed `MIGRATE`, legacy `PIN`, or fail-closed `BLOCK`. Every
 operation records before/after integrity evidence and a resumable status. The coordinator never interprets a successful
 migration as authority movement; it produces the evidence consumed by `002-per-mode-authority-flip`.
@@ -47,8 +47,8 @@ migration as authority movement; it produces the evidence consumed by `002-per-m
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The frozen phase-000 census and phase-005 row classification manifest are available with stable digests
-- [ ] The phase-004 canonical resource key, lease, fencing token, and atomic mutation boundary are available to callers
+- [ ] The frozen phase-003 census and phase-008 row classification manifest are available with stable digests
+- [ ] The phase-007 canonical resource key, lease, fencing token, and atomic mutation boundary are available to callers
 - [ ] The migration receipt, idempotency key, commit marker, and rollback-anchor shapes are frozen
 - [ ] Every state family has a declared source reader, integrity input, operation handler, verifier, and abort path
 - [ ] The ledger import transaction and the bundle-level state snapshot boundary are explicit
@@ -63,10 +63,10 @@ migration as authority movement; it produces the evidence consumed by `002-per-m
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Selection and envelope**: load the phase-005 row, classification-manifest digest, source locator, authority epoch,
+- **Selection and envelope**: load the phase-008 row, classification-manifest digest, source locator, authority epoch,
   pending-effect/lease set, and rollback anchor. Generate a stable migration ID and operation idempotency key. Reject
   duplicate or unknown rows before acquiring a lease.
-- **Preflight fence**: resolve one canonical resource key from packet/run/lineage identity, acquire the phase-004
+- **Preflight fence**: resolve one canonical resource key from packet/run/lineage identity, acquire the phase-007
   lease, capture the durable monotonic fencing token, then re-read the source and compare digest, epoch, schema,
   effects, locks, prerequisites, and anchor. Any mismatch becomes `BLOCK`.
 - **Integrity boundary**: compute a deterministic pre-operation digest with `computeIntegrityHash`; retain the exact
@@ -96,15 +96,15 @@ migration as authority movement; it produces the evidence consumed by `002-per-m
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-005 classification manifest, the phase-004 locks/fencing contract, the phase-011 manifest entry,
-  and the frozen phase-000 state corpus are available and digest-addressed.
+- Confirm the phase-008 classification manifest, the phase-007 locks/fencing contract, the phase-014 manifest entry,
+  and the frozen phase-003 state corpus are available and digest-addressed.
 - Pin the migration receipt schema, operation status machine, canonical resource-key encoder, idempotency key, and
   coordinator atomicity domain before touching a live row.
 - Build a fixture matrix for each state family and each crash/fence/integrity boundary; include a live mid-iteration,
   active lease, pending effect, paused checkpoint, and partially written bundle case.
 
 ### Phase 2: Implementation
-- Add the preflight envelope and guarded lease/fence acquisition. Recheck all phase-005 freshness fields immediately
+- Add the preflight envelope and guarded lease/fence acquisition. Recheck all phase-008 freshness fields immediately
   before each protected mutation and convert drift to `BLOCK`.
 - Implement the integrity snapshot and postcheck path around `computeIntegrityHash`, `verifyIntegrity`,
   `writeStateAtomic`, and `writeTextAtomic`; add bundle-level commit evidence where file atomicity is insufficient.
@@ -148,15 +148,15 @@ migration as authority movement; it produces the evidence consumed by `002-per-m
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase consumes the [phase-005 in-flight classification](../../008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification/spec.md),
-the [phase-004 locks and fencing contract](../../007-shared-evidence-and-control-services/006-locks-and-fencing/spec.md),
-the transition and rollback policy owned by phase-001, the [phase tree manifest](../../manifest/phase-tree.json), and the
-frozen phase-000 state census. Runtime integrity and file atomicity are supplied by
+The phase consumes the [phase-008 in-flight classification](../../008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification/spec.md),
+the [phase-007 locks and fencing contract](../../007-shared-evidence-and-control-services/006-locks-and-fencing/spec.md),
+the transition and rollback policy owned by phase-004, the [phase tree manifest](../../manifest/phase-tree.json), and the
+frozen phase-003 state census. Runtime integrity and file atomicity are supplied by
 `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts`; its `computeIntegrityHash`,
 `verifyIntegrity`, `writeStateAtomic`, and `writeTextAtomic` behavior is part of the implementation boundary.
 
 The successor `002-per-mode-authority-flip` consumes this phase's handoff but owns authority movement, cutover windows,
-and cutover certificates. Phase-012 consumes later zero-use and rollback evidence for legacy-writer retirement. No
+and cutover certificates. Phase-015 consumes later zero-use and rollback evidence for legacy-writer retirement. No
 dependency may authorize a cutover when a row is `BLOCK`, has an unresolved `PIN`, or lacks a verified migration receipt.
 <!-- /ANCHOR:dependencies -->
 

@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Cross-Mode Closures (009 phase 002)"
-description: "Tasks for phase 002 of the 009 shared-mode-contracts-and-fixtures parent: define, implement, adapt, and verify reusable cross-mode closures before phase 010."
+title: "Tasks: Cross-Mode Closures"
+description: "Tasks for phase 005 of the 009 shared-mode-contracts-and-fixtures parent: define, implement, adapt, and verify reusable cross-mode closures before phase 013."
 trigger_phrases:
   - "cross-mode closures tasks"
   - "deep-loop shared closure tasks"
-  - "phase 009 closure fixtures"
+  - "phase 012 closure fixtures"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/002-cross-mode-closures"
@@ -41,8 +41,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the phase parent, `manifest/phase-tree.json`, `001-shared-mode-interfaces/spec.md`, and the phase-004 parent and child service contracts; record the shared invariants and `depends_on: []` posture
-- [ ] T002 [P] Derive the eight phase-010 adapter rows directly from `mode_workstreams_phase_010`, including `004-deep-improvement-common` before its three variants
+- [ ] T001 Read the phase parent, `manifest/phase-tree.json`, `001-shared-mode-interfaces/spec.md`, and the phase-007 parent and child service contracts; record the shared invariants and `depends_on: []` posture
+- [ ] T002 [P] Derive the eight phase-013 adapter rows directly from `mode_workstreams_phase_010`, including `004-deep-improvement-common` before its three variants
 - [ ] T003 [P] Inventory repeated evidence, receipt/effect, adjudication, budget, and projection paths across the mode packets, shipped runtime, council helpers, shared synthesis, and deep-improvement library
 - [ ] T004 Build the recurrence matrix with one shared owner, service port, inputs, outputs, write set, failure result, parity source, and allowed mode override for every repeated behavior
 - [ ] T005 Record the boundary with `001-shared-mode-interfaces`, `003-mixed-version-fixtures`, and `004-write-set-conflict-graph`; preserve intentional parser and convergence-policy divergence
@@ -75,9 +75,9 @@ _memory:
 - [ ] T022 Verify: Budget checks use one typed admission closure — all dimensions reserve atomically, settlement is receipt-backed, and uncertainty or exhaustion denies work
 - [ ] T023 Verify: Projection updates use one deterministic closure — full and incremental replay, fencing, mode reducer fields, and provenance agree byte-for-byte
 - [ ] T024 Verify: Mode overrides preserve ownership — bypass attempts fail closed and valid strategy inputs cannot change shared safety invariants
-- [ ] T025 Verify: All eight phase-010 workstreams reuse the closures — common-before-variant ordering holds and no private duplicate implementation remains
+- [ ] T025 Verify: All eight phase-013 workstreams reuse the closures — common-before-variant ordering holds and no private duplicate implementation remains
 - [ ] T026 Verify: Additive-dark parity is preserved — shipped council/deep-loop outputs and legacy projections remain authoritative and differences are observable
-- [ ] T027 Verify: The phase-010 handoff is complete — catalog, override matrix, call-path inventory, fixture names, and write-set inputs are deterministic and documented
+- [ ] T027 Verify: The phase-013 handoff is complete — catalog, override matrix, call-path inventory, fixture names, and write-set inputs are deterministic and documented
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
@@ -95,6 +95,6 @@ _memory:
 - **Plan**: See `plan.md`
 - **Parent outcome**: See `../spec.md` and `../manifest/phase-tree.json`
 - **Interface contract**: See `../001-shared-mode-interfaces/spec.md`
-- **Phase-004 service contracts**: See `../../007-shared-evidence-and-control-services/spec.md` and its child service specs
+- **Phase-007 service contracts**: See `../../007-shared-evidence-and-control-services/spec.md` and its child service specs
 - **Successor fixture handoff**: See `../003-mixed-version-fixtures/spec.md`
 <!-- /ANCHOR:cross-refs -->

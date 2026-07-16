@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored the transition, versioning, cutover, and rollback policy contract"
-    next_safe_action: "Ratify this contract before phase 003 builds the first typed event writer"
+    next_safe_action: "Ratify this contract before phase 006 builds the first typed event writer"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The parent program's Sequencing Invariants require the transition-authority and event-compatibility contract to be frozen before the first typed writer lands, require the new substrate to remain additive, dark, and non-authoritative through compatibility and shadow parity, reserve authority changes for per-mode cutover, and prohibit legacy-writer retirement until rollback and mixed-version evidence exist (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`). The phase-tree manifest states the migration model as additive-dark substrate, compatibility adapters and shadow parity, staged per-mode cutover behind a rollback window, then gated legacy retirement. It assigns the first writer to phase 003, compatibility and upcasters to phase 005, and authority cutover to phase 011 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`).
+The parent program's Sequencing Invariants require the transition-authority and event-compatibility contract to be frozen before the first typed writer lands, require the new substrate to remain additive, dark, and non-authoritative through compatibility and shadow parity, reserve authority changes for per-mode cutover, and prohibit legacy-writer retirement until rollback and mixed-version evidence exist (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`). The phase-tree manifest states the migration model as additive-dark substrate, compatibility adapters and shadow parity, staged per-mode cutover behind a rollback window, then gated legacy retirement. It assigns the first writer to phase 006, compatibility and upcasters to phase 008, and authority cutover to phase 014 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`).
 
 Without one policy fixed before those phases begin, each writer could invent its own version field, compatibility behavior, authorization evidence, cutover switch, or rollback clock. That would make mixed-version replay non-deterministic, permit unknown transitions to slip through permissive fallbacks, and create split-brain risk during mode migration.
 
@@ -63,15 +63,15 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 - Compatibility semantics: current writers emit only the latest registered version; current readers upcast every supported older version; old readers never guess at newer versions; mixed-version replay either resolves through a complete registered chain or fails closed.
 - Upcaster rules: pure, deterministic, side-effect-free, one-version-at-a-time transforms that preserve source bytes and immutable envelope identity, emit no events, perform no I/O, and reject unknown types, unsupported future versions, missing links, lossy conversions, or ambiguous defaults.
 - A deny-by-default transition-authorization gateway, the complete authorization-decision record, and a non-domain rejection receipt for every denied request.
-- A per-mode authority state machine with exactly one authoritative writer, shadow-parity prerequisites, compare-and-swap authority epochs, and cutover certificates consumed by phase 011.
+- A per-mode authority state machine with exactly one authoritative writer, shadow-parity prerequisites, compare-and-swap authority epochs, and cutover certificates consumed by phase 014.
 - A rollback window that remains open for at least 14 calendar days and five successful authoritative executions, whichever completes later, with explicit flip evidence, rollback triggers, execution steps, and closure evidence.
 - A downstream conformance matrix binding phases 003-012 to the parts of this contract they implement, exercise, consume, or prove.
 
 ### Out of Scope
 - Implementing the ledger, gateway, upcasters, adapters, parity harness, cutover switch, or retirement logic; those belong to program phases 003-012.
 - Choosing per-event payload schemas beyond the mandatory envelope and version-registration rules.
-- Moving authority in this phase. Phase 005 proves compatibility and shadow parity without cutover; phase 011 alone changes authority.
-- Removing legacy writers or archival readers. Phase 012 owns retirement after the rollback window and zero-use evidence.
+- Moving authority in this phase. Phase 008 proves compatibility and shadow parity without cutover; phase 014 alone changes authority.
+- Removing legacy writers or archival readers. Phase 015 owns retirement after the rollback window and zero-use evidence.
 - Shortening the minimum rollback window for a mode. A mode may extend the window when traffic, anomalies, or evidence coverage require it.
 <!-- /ANCHOR:scope -->
 
@@ -90,7 +90,7 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 | REQ-008 | Shadow parity is a hard cutover precondition | No mode enters `new_authoritative_reversible` until its certificate binds the exact candidate SHA, supported version range, classified in-flight state, mixed-version replay, live shadow window, zero unresolved divergences, mode gate, and successful rollback rehearsal |
 | REQ-009 | Every cutover remains reversibly governed | The legacy rollback path, adapters, rollback anchor, and retained state remain usable for at least 14 days and five successful authoritative runs, whichever completes later |
 | REQ-010 | Rollback is non-destructive and certificate-backed | Rollback freezes admission, fences the spine writer, reconciles in-flight work under the declared policy, restores legacy authority at a new epoch, preserves all events, and emits a rollback certificate |
-| REQ-011 | Contract ownership is traceable through retirement | A conformance matrix shows how phases 003-012 consume this policy and blocks phase 012 until every mode exits its rollback window with zero-use telemetry and archival-read evidence |
+| REQ-011 | Contract ownership is traceable through retirement | A conformance matrix shows how phases 003-012 consume this policy and blocks phase 015 until every mode exits its rollback window with zero-use telemetry and archival-read evidence |
 <!-- /ANCHOR:requirements -->
 
 ### Frozen contract vocabulary
@@ -120,7 +120,7 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: One canonical envelope and compatibility matrix is frozen before phase 003 authors a writer.
+- **SC-001**: One canonical envelope and compatibility matrix is frozen before phase 006 authors a writer.
 - **SC-002**: One deny-by-default decision contract covers allow, deny, stale epoch, unknown type/version, and gateway-failure paths.
 - **SC-003**: One per-mode authority state machine names every legal transition, precondition, certificate, and rollback edge.
 - **SC-004**: One rollback policy fixes the minimum reversible duration, retained assets, trigger evidence, runbook, and closure gate.
@@ -130,7 +130,7 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 
 **Given** an event with an unknown type, future version, missing upcaster link, stale authority epoch, or incomplete authorization input, **When** a writer or reader evaluates it, **Then** the operation fails closed without a domain append, sequence advance, projection, or side effect.
 
-**Given** a mode whose shadow output has any unresolved divergence or incomplete in-flight-state classification, **When** phase 011 requests cutover, **Then** the compare-and-swap is denied and legacy remains authoritative.
+**Given** a mode whose shadow output has any unresolved divergence or incomplete in-flight-state classification, **When** phase 014 requests cutover, **Then** the compare-and-swap is denied and legacy remains authoritative.
 
 **Given** a mode in `new_authoritative_reversible`, **When** a rollback trigger fires inside the open window, **Then** admissions freeze, the spine writer is fenced, legacy authority resumes at a new epoch, no event is deleted, and a rollback certificate records the reconciliation.
 
@@ -140,7 +140,7 @@ This phase writes the governing contract only; it implements no runtime code. Ph
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Policy drift before implementation** — phase 003 could encode a convenient local rule. Mitigation: this packet is a P0 handoff gate and every downstream phase must trace conformance to its requirement IDs.
+- **Policy drift before implementation** — phase 006 could encode a convenient local rule. Mitigation: this packet is a P0 handoff gate and every downstream phase must trace conformance to its requirement IDs.
 - **Compatibility overclaim** — “forward compatible” can be misread as old code understanding new payloads. Mitigation: forward safety is refusal or compatible-reader routing; only backward reads are guaranteed through upcasters.
 - **Authorization/audit recursion** — recording a denial as a domain event could itself mutate the protected stream. Mitigation: rejection receipts live in a non-domain decision log and never advance domain state.
 - **Split-brain authority** — legacy and spine writers could both accept. Mitigation: one per-mode authority record, monotonic epochs, compare-and-swap flips, and stale-epoch rejection at the gateway.

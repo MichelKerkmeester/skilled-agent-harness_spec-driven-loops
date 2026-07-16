@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: partial-failure policy (065 phase 006/005)"
+title: "Feature Specification: partial-failure policy"
 description: "Define the typed failure taxonomy, deterministic tolerance thresholds, degraded-result contract, and ledger verdict that decide whether durable fan-in proceeds or aborts after leaf failures."
 trigger_phrases:
   - "partial-failure policy"
@@ -82,11 +82,11 @@ await set and decision boundary, then hands only eligible successful envelopes p
 - Deterministic replay, boundary-matrix, retry-exhaustion, deadline, and crash/restart verification.
 
 ### Out of Scope
-- Selecting the await set, stopping early for sufficiency, or charging budget (child 004).
-- Weighting successful leaves, compensating for correlated provenance, or synthesizing content (child 006).
-- Replacing the phase-003 event envelope, transition-authorization gateway, or replay fingerprint.
-- Changing executor selection, live-tools capability, or dispatch adapters established by program phase 002.
-- Treating a known defect as a protected contract: phase 000's defect-versus-contract ledger remains authoritative.
+- Selecting the await set, stopping early for sufficiency, or charging budget.
+- Weighting successful leaves, compensating for correlated provenance, or synthesizing content.
+- Replacing the phase-006 event envelope, transition-authorization gateway, or replay fingerprint.
+- Changing executor selection, live-tools capability, or dispatch adapters established by program phase 005.
+- Treating a known defect as a protected contract: phase 003's defect-versus-contract ledger remains authoritative.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -134,12 +134,12 @@ and replay fingerprint, making the verdict reproducible without reading process-
 ## 6. RISKS & DEPENDENCIES
 
 This child has no hard sibling dependency in `manifest/phase-tree.json`, but its contract composes with child 004's
-await-set and decision-boundary output and child 006's reduction input. It also consumes the phase-003 canonical ledger
-and transition authorization, phase-004 budget/receipt services, and phase-005 compatibility bridge named by the 006
+await-set and decision-boundary output and child 006's reduction input. It also consumes the phase-006 canonical ledger
+and transition authorization, phase-007 budget/receipt services, and phase-008 compatibility bridge named by the 006
 program parent. The main risks are counting retries as separate failed leaves, changing the denominator after dispatch,
 mistaking a pre-admission budget omission for executor failure, letting one integrity failure hide inside a quorum,
 finalizing progressive output too early, leaking unbounded executor error text, and preserving current ad-hoc `partial`
-behavior even if phase 000 classifies it as a defect. Verification must distinguish protected runtime behavior from
+behavior even if phase 003 classifies it as a defect. Verification must distinguish protected runtime behavior from
 known defects before setting compatibility expectations.
 <!-- /ANCHOR:risks -->
 
@@ -147,6 +147,6 @@ known defects before setting compatibility expectations.
 ## 7. OPEN QUESTIONS
 
 None blocking for planning. The default is the two-thirds quorum above; named mode overrides must be explicit,
-versioned, and bound into the policy receipt. Exact canonical event names may be conformed to phase 001's frozen event
+versioned, and bound into the policy receipt. Exact canonical event names may be conformed to phase 004's frozen event
 namespace during implementation without changing the payload, verdict, threshold, or ledger-evidence contract here.
 <!-- /ANCHOR:questions -->

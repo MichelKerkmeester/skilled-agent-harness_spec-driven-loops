@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Value-of-Computation Allocation (008 phase 004)"
+title: "Implementation Plan: Value-of-Computation Allocation"
 description: "Implementation plan for replay-stable VOC scoring, adaptive allocation, bounded fairness, typed-budget admission, and conditional-fan-in handoff."
 trigger_phrases:
   - "value of computation allocation implementation plan"
@@ -37,7 +37,7 @@ _memory:
 ### Overview
 Implement a deterministic shadow allocator that converts durable coverage, contradiction, blocker, uncertainty, and
 receipt evidence into versioned VOC assessments, applies greedy or proportional policy with bounded fairness, requests
-complete typed reservations, and records the exact allocation decision. The implementation feeds the phase-006
+complete typed reservations, and records the exact allocation decision. The implementation feeds the phase-009
 conditional-fan-in usefulness slot but cannot bypass its eligibility rules or mutate frozen reducer input. Detailed
 weights and thresholds are frozen during execution against upstream schema versions and the pinned baseline.
 <!-- /ANCHOR:summary -->
@@ -56,7 +56,7 @@ weights and thresholds are frozen during execution against upstream schema versi
 - [ ] VOC assessments preserve typed costs, expose uncertainty, and calibrate predicted value against durable outcomes
 - [ ] Greedy and proportional allocation replay deterministically with stable tie-breaking and rounding
 - [ ] Fairness prevents starvation within declared bounds and never bypasses value, health, fan-in, or budget gates
-- [ ] Every dispatchable selection has one complete phase-004 reservation; exhaustion remains incomplete/budget-exhausted
+- [ ] Every dispatchable selection has one complete phase-007 reservation; exhaustion remains incomplete/budget-exhausted
 - [ ] Conditional fan-in consumes VOC usefulness without changing finalized decisions or reducer-input digests
 - [ ] Shadow comparisons and strict validation are green on the exact candidate SHA
 <!-- /ANCHOR:quality-gates -->
@@ -79,7 +79,7 @@ weights and thresholds are frozen during execution against upstream schema versi
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the candidate and baseline SHAs; inventory the frozen phase-004 budget, phase-006 fan-in, phase-007 evidence, and phase-008 stop/health schemas.
+- Pin the candidate and baseline SHAs; inventory the frozen phase-007 budget, phase-009 fan-in, phase-010 evidence, and phase-011 stop/health schemas.
 - Capture current uniform/static allocation, result, spend, starvation, and fan-in behavior on named replay fixtures.
 - Freeze estimator, policy, calibration, pricing, and event-schema version identifiers before generating shadow decisions.
 
@@ -120,9 +120,9 @@ weights and thresholds are frozen during execution against upstream schema versi
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The implementation consumes the phase-004 hierarchical typed-budget admission and settlement contract, the phase-006
-conditional fan-in usefulness extension and immutable decision contract, phase-007 stable evidence identities, and the
-other phase-008 stopping/health signals. Planning is grounded in
+The implementation consumes the phase-007 hierarchical typed-budget admission and settlement contract, the phase-009
+conditional fan-in usefulness extension and immutable decision contract, phase-010 stable evidence identities, and the
+other phase-011 stopping/health signals. Planning is grounded in
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets/spec.md`,
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin/spec.md`,
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md`,

@@ -32,11 +32,11 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop policy contract (architecture child 003) |
 | **Change class** | Planning and governance only; no runtime implementation |
-| **Execution** | Author, challenge, trace, and ratify one frozen contract before program phase 003 |
+| **Execution** | Author, challenge, trace, and ratify one frozen contract before program phase 006 |
 | **Dependency posture** | No child dependency; normative sources are the parent program spec and phase-tree manifest |
 
 ### Overview
-This phase converts the parent program's sequencing invariants and manifest migration model into an executable policy contract. The work fixes the canonical envelope and compatibility semantics, defines a complete fail-closed authorization decision, constrains authority to one mode and one writer at a time, and makes rollback duration and evidence non-negotiable. The result is consumed unchanged by the first writer in phase 003, the compatibility bridge in phase 005, the per-mode cutover in phase 011, and the intervening producers and consumers.
+This phase converts the parent program's sequencing invariants and manifest migration model into an executable policy contract. The work fixes the canonical envelope and compatibility semantics, defines a complete fail-closed authorization decision, constrains authority to one mode and one writer at a time, and makes rollback duration and evidence non-negotiable. The result is consumed unchanged by the first writer in phase 006, the compatibility bridge in phase 008, the per-mode cutover in phase 014, and the intervening producers and consumers.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -88,7 +88,7 @@ The deliverable is one policy contract with four coupled domains and one traceab
 ### Phase 3: Verification
 - Challenge the contract with supported-old, unknown-future, missing-upcaster, lossy-upcaster, stale-epoch, gateway-outage, duplicate-request, split-brain, unresolved-parity, low-traffic, and mid-window rollback cases.
 - Verify every failure path denies mutation and yields bounded audit evidence without becoming domain history.
-- Verify phase 005 cannot cut authority, phase 011 cannot bypass parity or shorten the window, and phase 012 cannot retire a writer inside an open window.
+- Verify phase 008 cannot cut authority, phase 014 cannot bypass parity or shorten the window, and phase 015 cannot retire a writer inside an open window.
 - Run strict spec-kit validation and preserve only the expected missing deterministic-metadata findings.
 <!-- /ANCHOR:phases -->
 
@@ -113,7 +113,7 @@ The deliverable is one policy contract with four coupled domains and one traceab
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This planning child has no predecessor dependency. It consumes two normative sources: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md` for sequencing invariants and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json` for the migration model and phase outcomes. The immediate architecture parent joins this policy with the spine ADR and 178-row recommendation ledger before program phase 003 begins. Downstream phases 003-012 depend on the frozen clauses, but they do not redefine them.
+This planning child has no predecessor dependency. It consumes two normative sources: `.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md` for sequencing invariants and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json` for the migration model and phase outcomes. The immediate architecture parent joins this policy with the spine ADR and 178-row recommendation ledger before program phase 006 begins. Downstream phases 003-012 depend on the frozen clauses, but they do not redefine them.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

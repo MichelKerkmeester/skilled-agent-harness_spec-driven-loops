@@ -30,16 +30,16 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime shared services (phase 004 child 004) |
+| **Surface** | system-deep-loop runtime shared services |
 | **Change class** | Additive control-plane logic and typed ledger schema |
-| **Execution** | Isolated worktree pinned to the phase-000 BASE; dark/non-authoritative until later cutover |
+| **Execution** | Isolated worktree pinned to the phase-003 BASE; dark/non-authoritative until later cutover |
 
 ### Overview
 Replace disconnected advisory counters and static cost-unit estimates with a single typed authority. The implementation
 will model four budget dimensions, reduce their lifecycle from append-only events, reserve atomically across the full
 `program > mode > lineage > iteration` ancestor chain, settle actual receipt-backed spend, and deny dispatch on any
 exhausted or uncertain dimension. It preserves current `cost-guards.cjs` and `fanout-run.cjs` behavior behind adapters
-during shadow parity; program phase 006 fan-out and phase 008 convergence consume the new admission interface only after
+during shadow parity; program phase 009 fan-out and phase 011 convergence consume the new admission interface only after
 their migration gates authorize it.
 <!-- /ANCHOR:summary -->
 
@@ -47,12 +47,12 @@ their migration gates authorize it.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-003 event envelope, transition vocabulary, replay fingerprint, and dark-writer contract are frozen
+- [ ] The phase-006 event envelope, transition vocabulary, replay fingerprint, and dark-writer contract are frozen
 - [ ] Receipt normalization defines actual token, cost, attempt, and elapsed-time evidence plus pinned pricing identity
 - [ ] Scope identities for program, mode, lineage, and iteration are stable and replayable
 - [ ] The current council guard, lineage cap, aggregate cap, retry estimate, and timeout behavior are captured as baseline fixtures
 - [ ] Atomic ledger mutation and fencing interfaces are available or represented by a test double with the same conflict semantics
-- [ ] Program phase 006 and phase 008 caller contracts identify required reservation and denial fields
+- [ ] Program phase 009 and phase 011 caller contracts identify required reservation and denial fields
 
 ### Definition of Done
 - [ ] All four budget types validate, serialize, and reject cross-unit operations
@@ -73,18 +73,18 @@ their migration gates authorize it.
 - **Settlement gateway**: joins executor/effect receipts, commits actual spend, charges attempts and failures, releases only proven unused capacity, and quarantines unknown or contradictory usage.
 - **Exhaustion classifier**: emits typed reasons by scope and dimension; distinguishes budget exhaustion from convergence, cancellation, timeout, and infrastructure error.
 - **Fan-out adapter**: reserves program/mode/lineage capacity per authorized wave or dispatch and preserves the existing aggregate/per-lineage guard as a shadow baseline.
-- **Value-of-computation adapter**: exposes eligible remaining budgets and reservation decisions to program phase 008 without letting the allocator mint or borrow capacity.
+- **Value-of-computation adapter**: exposes eligible remaining budgets and reservation decisions to program phase 011 without letting the allocator mint or borrow capacity.
 - **Projection interface**: read-only balances, reservation age, settlement lag, and denial reasons; sibling stream-fold gauges may derive observability but cannot mutate authority.
-- **Migration boundary**: new events remain additive and dark until phase 005 compatibility/shadow gates and phase 011 authority cutover authorize enforcement for a mode.
+- **Migration boundary**: new events remain additive and dark until phase 008 compatibility/shadow gates and phase 014 authority cutover authorize enforcement for a mode.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the phase-000 BASE and inventory current council/fan-out guard inputs, defaults, aliases, stop reasons, ledger events, retry accounting, and wall-time ceilings.
+- Pin the phase-003 BASE and inventory current council/fan-out guard inputs, defaults, aliases, stop reasons, ledger events, retry accounting, and wall-time ceilings.
 - Freeze adapter fixtures for at-cap, one-over-cap, aggregate-only exhaustion, retry multiplication, failure-before-spawn, timeout, and missing-usage behavior.
-- Confirm the phase-003 envelope plus sibling receipt and fencing contracts; record any interface mismatch as a spec amendment rather than a local workaround.
+- Confirm the phase-006 envelope plus sibling receipt and fencing contracts; record any interface mismatch as a spec amendment rather than a local workaround.
 
 ### Phase 2: Implementation
 - Add typed budget values and versioned envelopes with strict unit, currency/pricing, duration, scope, and parent validation.
@@ -129,10 +129,10 @@ their migration gates authorize it.
 ## 6. DEPENDENCIES
 
 The planning child declares no sibling hard dependency (`depends_on: []`). Implementation integrates with the
-phase-003 authorized ledger envelope and replay fingerprint, sibling 001 receipt normalization, sibling 006 atomic
-fencing, and sibling 005 read-only gauge consumption. Program phase 006 durable fan-out/fan-in and program phase 008
-convergence/value-of-computation are downstream consumers, not owners of budget arithmetic. Phase 005 compatibility
-and shadow parity plus phase 011 mode cutover govern authority; legacy writers remain authoritative beforehand.
+phase-006 authorized ledger envelope and replay fingerprint, sibling 001 receipt normalization, sibling 006 atomic
+fencing, and sibling 005 read-only gauge consumption. Program phase 009 durable fan-out/fan-in and program phase 011
+convergence/value-of-computation are downstream consumers, not owners of budget arithmetic. Phase 008 compatibility
+and shadow parity plus phase 014 mode cutover govern authority; legacy writers remain authoritative beforehand.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

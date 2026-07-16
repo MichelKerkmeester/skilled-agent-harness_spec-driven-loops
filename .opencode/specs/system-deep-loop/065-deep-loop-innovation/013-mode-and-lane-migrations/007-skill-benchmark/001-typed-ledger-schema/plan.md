@@ -47,7 +47,7 @@ sibling's projections possible without changing the meaning of raw evidence.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-003 transition-authorized ledger core and phase-009 shared event contracts are pinned by version and digest
+- [ ] The phase-006 transition-authorized ledger core and phase-012 shared event contracts are pinned by version and digest
 - [ ] The deep-improvement-common service boundary is listed, with no duplicated run, receipt, budget, lock, or replay code
 - [ ] The Skill Benchmark treatment lattice and scenario lifecycle are explicit
 - [ ] The typed envelope specialization and event namespace cover every required causal stage
@@ -87,7 +87,7 @@ sibling's projections possible without changing the meaning of raw evidence.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-003 ledger-core and phase-009 shared-contract versions, schema hashes, authorization boundary, and
+- Confirm the phase-006 ledger-core and phase-012 shared-contract versions, schema hashes, authorization boundary, and
   replay policy used as inputs.
 - Read the deep-improvement-common service contracts and the phase-013 write-set conflict graph; record the Skill Benchmark
   write set without expanding into sibling concerns.
@@ -141,7 +141,7 @@ sibling's projections possible without changing the meaning of raw evidence.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This phase consumes the phase-003 transition-authorized ledger core and the phase-009 shared event contracts named by the
+This phase consumes the phase-006 transition-authorized ledger core and the phase-012 shared event contracts named by the
 mode migration brief. It also consumes the deep-improvement-common services from mode 004, the parent phase's executable
 dependency/write-set conflict graph, and the existing Skill Benchmark scenario/scoring inputs. The schema must respect the
 parent program's additive-dark migration model: it cannot assume authority cutover, legacy-writer retirement, or a completed

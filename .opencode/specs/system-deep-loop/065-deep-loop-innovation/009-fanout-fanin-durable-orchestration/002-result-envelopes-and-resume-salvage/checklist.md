@@ -28,14 +28,14 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verification contract for phase 002. Implementation evidence must pin the candidate SHA, ledger/reducer/event-schema versions, replay head, fixture corpus digest, and commands with exit codes. Repeated resume runs must report execution counts per leaf, and every checked item must carry machine-detectable evidence before phase completion is claimed.
+This checklist is the blocking verification contract for phase 005. Implementation evidence must pin the candidate SHA, ledger/reducer/event-schema versions, replay head, fixture corpus digest, and commands with exit codes. Repeated resume runs must report execution counts per leaf, and every checked item must carry machine-detectable evidence before phase completion is claimed.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Sibling-001 dispatch-receipt identity and phase-003 envelope/ledger interfaces are frozen for this implementation
-- [ ] CHK-002 [P0] Phase-004 effect-recovery outcomes and stable idempotency inputs are available to the recovery coordinator
+- [ ] CHK-001 [P0] Sibling-001 dispatch-receipt identity and phase-006 envelope/ledger interfaces are frozen for this implementation
+- [ ] CHK-002 [P0] Phase-007 effect-recovery outcomes and stable idempotency inputs are available to the recovery coordinator
 - [ ] CHK-003 [P1] Golden legacy fixtures cover every result, retry, orphan, artifact, salvage, merge-reconstruction, and exit-classification path
 - [ ] CHK-004 [P2] Candidate SHA, fixture digest, registry version, reducer version, and replay head are recorded before execution
 <!-- /ANCHOR:pre-impl -->
@@ -43,7 +43,7 @@ This checklist is the blocking verification contract for phase 002. Implementati
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] Result and salvage events append only through validated phase-003 envelope, authorization, and typed-ledger boundaries
+- [ ] CHK-005 [P0] Result and salvage events append only through validated phase-006 envelope, authorization, and typed-ledger boundaries
 - [ ] CHK-006 [P1] Resume reduction is pure, deterministic, side-effect-free, and rebuildable from a verified ledger
 - [ ] CHK-007 [P1] Recovery orchestration separates observation/reconciliation from dispatch and cannot retry an in-doubt or conflicted effect
 - [ ] CHK-008 [P1] Large/raw output and credentials remain outside ledger payloads; bounded references carry content digests

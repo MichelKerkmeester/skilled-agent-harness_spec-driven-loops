@@ -181,8 +181,8 @@
       }
     ],
     "causal_summary": "Plan the shadow-parity harness for the shared Deep Improvement Common Services backbone: run the typed ledger path beside the legacy emitter, compare projections event-for-event, and block authority cutover until evaluator, canary, and promotion parity is proven.",
-    "created_at": "2026-07-15T21:44:27.560Z",
-    "last_save_at": "2026-07-15T21:44:27.560Z",
+    "created_at": "2026-07-16T03:43:37.046Z",
+    "last_save_at": "2026-07-16T03:43:37.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:42523b626013cc0b44a5591084d55aa7cc26edd524754eb8c486797cab159538",
+    "source_fingerprint": "sha256:601a3aaf70b9301fe186bcddbcb6f9a08891d8059038caf203fd2cd82e95d709",
     "source_doc_hashes": {
-      "spec.md": "89c7259deec5d6a80d2a29e14c0e6d0bb49de16dc0c9bd518a73b21800ecaafa",
-      "plan.md": "34c2332342728f5d9c8400003c22fe81aefa79316a6f5283a546738b0283d90a",
-      "tasks.md": "457cdd79e9ee41452ad7654ed1682fc5a1063979907f0472408efeaafa65acd2",
-      "checklist.md": "b0a5434cb99d8d561132046e30fe77f5c4162a3ce91be4c1e797d961ceb82acc"
+      "spec.md": "6dc77b6c861605c4f208b4d5d03e9914a8b33daf10d37ac4fb3866e264f4b891",
+      "plan.md": "710378a31751d7016b99c66a52621437e7320db64f43192d1d4f129a62cf520a",
+      "tasks.md": "7567df1b5b49177d380052bf5faeeb0d19a1577c23f91bfbbd6da481f3d6b08b",
+      "checklist.md": "87c2958ba8ee8150cc25b83437b200ad94b2102fac18e16b2e57de27e752a501"
     },
     "last_active_child_id": null,
     "last_active_at": null

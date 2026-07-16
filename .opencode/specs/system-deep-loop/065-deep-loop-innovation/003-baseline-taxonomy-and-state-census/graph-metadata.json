@@ -12,14 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "baseline taxonomy and state census",
-      "deep-loop recommendations phase 000",
+      "deep-loop recommendations phase 003",
       "deep-loop immutable BASE census",
       "baseline taxonomy and state census implementation plan",
-      "deep-loop recommendations phase 000 plan",
+      "deep-loop recommendations phase 003 plan",
       "baseline taxonomy and state census tasks",
-      "deep-loop recommendations phase 000 tasks",
+      "deep-loop recommendations phase 003 tasks",
       "baseline taxonomy and state census checklist",
-      "deep-loop recommendations phase 000 checklist"
+      "deep-loop recommendations phase 003 checklist"
     ],
     "key_topics": [
       "baseline",
@@ -191,8 +191,8 @@
       }
     ],
     "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 006 phase must preserve.",
-    "created_at": "2026-07-15T19:00:46.608Z",
-    "last_save_at": "2026-07-15T19:00:46.608Z",
+    "created_at": "2026-07-16T03:43:57.879Z",
+    "last_save_at": "2026-07-16T03:43:57.879Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:441ae6158151caccfa408112e90ca3dd22d05a77d7ddf30ef914228e104d4160",
+    "source_fingerprint": "sha256:7fc3973952e1752511b2fa9ca6fb75759ee2f2d8acf03a170768448e8d6413f5",
     "source_doc_hashes": {
-      "spec.md": "a88433bd59e780148e4ce446cb0885d3d1ad0fef6e2004e4cd2443252dacda78",
-      "plan.md": "e62511d5210b0947c152e5f4b0fb7f6f7aa7b9ad1a47f96e9d857d109ecdb44a",
-      "tasks.md": "c7b58347acf703b5e41017d9b492a15d9a3a1c392791ecfc637f35636696be98",
-      "checklist.md": "7eada97ab221869b8a0a855b5bed2f506069b4b38e08cb6b2e5bc4bb1553f581"
+      "spec.md": "aee7e51ce29a78824e24349e4826deff3c9d87b26622697ea5bcb18fa7989aff",
+      "plan.md": "bca3648362b72db40c3e9049396deb57c8d0b3aa0816f92b61378229df751e80",
+      "tasks.md": "813e5c380bad2065b6325fc1f16d7f5548df9423fb13bb2cfff576073a63de3f",
+      "checklist.md": "0ee53163199a70931b70c52faa83f8993708641d1cf4bad9d32660ca345b7311"
     },
     "last_active_child_id": null,
     "last_active_at": null

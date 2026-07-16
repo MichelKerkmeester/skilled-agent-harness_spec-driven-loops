@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / Deep Improvement Common Services |
 | **Change class** | Typed event schema and shared service vocabulary |
-| **Execution** | Planning-only child; implementation follows phase-003 and phase-009 contract freeze |
+| **Execution** | Planning-only child; implementation follows phase-006 and phase-012 contract freeze |
 
 ### Overview
 The phase defines one append-only event contract for the shared evaluator-first loop: run lifecycle, candidate lineage
@@ -47,8 +47,8 @@ must be additive over the imported ledger core, preserve raw evidence, and leave
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-003 envelope, authorization, sequence, receipt, and replay contracts are available for direct type alignment
-- [ ] Phase-009 shared event contracts and naming rules are available for specialization
+- [ ] Phase-006 envelope, authorization, sequence, receipt, and replay contracts are available for direct type alignment
+- [ ] Phase-012 shared event contracts and naming rules are available for specialization
 - [ ] Common-service ownership is separated from downstream variant extensions
 - [ ] The event catalog covers evaluator-first run behavior, canaries, guarded promotion, abstention, and quarantine
 - [ ] Every event payload has explicit field types, identity references, and version policy
@@ -99,7 +99,7 @@ must be additive over the imported ledger core, preserve raw evidence, and leave
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-003 transition-authorized ledger core and phase-009 shared event contracts, recording their envelope fields and compatibility obligations.
+- Confirm the phase-006 transition-authorized ledger core and phase-012 shared event contracts, recording their envelope fields and compatibility obligations.
 - Inventory the shared evaluator, canary, and promotion service boundaries and identify which fields must be common across the three downstream variants.
 - Freeze the phase boundary: no reducer, projection, read-model, authority-cutover, or variant-only event work enters this child.
 
@@ -134,7 +134,7 @@ must be additive over the imported ledger core, preserve raw evidence, and leave
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The direct inputs are the phase-003 transition-authorized ledger core and phase-009 shared event contracts. The
+The direct inputs are the phase-006 transition-authorized ledger core and phase-012 shared event contracts. The
 planning evidence is `002-deep-loop-effectiveness-and-fanout/research/findings-registry.json` and
 `findings-registry-modes.json`, especially the findings on raw evaluator artifacts, evaluator capsules, versioned
 canary epochs, metamorphic checks, conservative promotion, and independent oversight. The downstream consumers are

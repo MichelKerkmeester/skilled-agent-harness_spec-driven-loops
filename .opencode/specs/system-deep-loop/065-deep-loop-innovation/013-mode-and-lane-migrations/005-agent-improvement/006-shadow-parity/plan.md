@@ -4,7 +4,7 @@ description: "Implementation Plan for the Agent Improvement shadow-parity phase:
 trigger_phrases:
   - "Agent Improvement shadow parity implementation plan"
   - "agent proposal event parity implementation"
-  - "agent-improvement phase 006 implementation plan"
+  - "agent-improvement phase 009 implementation plan"
 importance_tier: "high"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity"
@@ -31,7 +31,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / Agent Improvement mode (013 mode 005, phase 006) |
+| **Surface** | system-deep-loop / Agent Improvement mode |
 | **Change class** | Shadow verification harness and agent-specific parity contract |
 | **Execution** | Planning-only child; legacy emitter remains authoritative and common services are reused |
 
@@ -48,7 +48,7 @@ Improvement extensions. A parity receipt is the only handoff artifact; authority
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Shared mode contracts, event-version rules, write-set ownership, and phase-011 shadow interfaces are available as pinned inputs
+- [ ] Shared mode contracts, event-version rules, write-set ownership, and phase-014 shadow interfaces are available as pinned inputs
 - [ ] Deep Improvement Common Services exposes the evaluator, canary, promotion, health, and generic parity ports without a variant-local reimplementation
 - [ ] The legacy Agent Improvement proposal, scoring, trace, resume, and promotion-preparation boundaries are inventoried
 - [ ] The canonical event tuple, protected AgentIR fields, mismatch taxonomy, and volatility allowlist are reviewed before fixture results are accepted
@@ -94,7 +94,7 @@ Improvement extensions. A parity receipt is the only handoff artifact; authority
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-012 shared contracts, phase-011 shadow framework, parent compatibility bridge, and mode 004 common-service
+- Confirm the phase-015 shared contracts, phase-014 shadow framework, parent compatibility bridge, and mode 004 common-service
   ports are pinned inputs; sibling adjacency remains navigation, not a hard runtime dependency for this planning document.
 - Inventory actual legacy Agent Improvement boundaries from AgentIR/package generation, proposal and mutation records, profile and
   score generation, trace and failure reduction, frontier selection, resume, and promotion preparation.
@@ -149,7 +149,7 @@ Improvement extensions. A parity receipt is the only handoff artifact; authority
 ## 6. DEPENDENCIES
 
 The phase depends on the parent program's typed event and transition contracts, compatibility bridge, and shared mode contracts. It
-consumes the phase-011 shadow framework and phase-012 write-set conflict graph as interface inputs. It reuses the Deep Improvement
+consumes the phase-014 shadow framework and phase-012 write-set conflict graph as interface inputs. It reuses the Deep Improvement
 Common Services harness and evaluator, canary, promotion, health, receipt, and mismatch contracts from mode 004. Agent Improvement
 sibling concerns `001-typed-ledger-schema` through `005-resume-adapter` supply the mode event and state boundaries; the existing
 agent-loop proposal, scoring, trace, executor, and promotion fixtures supply the behavioral oracle. The successor mode gate consumes

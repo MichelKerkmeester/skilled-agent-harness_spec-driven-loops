@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep Improvement Common Services - Resume Adapter (013 phase 005)"
+title: "Checklist: Deep Improvement Common Services - Resume Adapter"
 description: "Blocking verification checklist for the sealed-ledger resume adapter, continuity-ladder reducers, idempotent re-entry, and common evaluator, canary, and guarded-promotion services."
 trigger_phrases:
   - "deep improvement resume adapter checklist"
@@ -29,7 +29,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 005. Every item is a check the paired verifier runs BEFORE the
+This checklist is the blocking SOL verifier contract for phase 008. Every item is a check the paired verifier runs BEFORE the
 candidate commit lands; each report pins the candidate SHA, BASE SHA, sealed-ledger range and digest, event-registry/upcaster
 identity, reducer-set identity, fixture digest, commands, exit codes, replay fingerprints, and shadow-authority result. The gate
 fails on missing evidence, zero exercised transitions, silent fallback, mutated sealed history, or unexpected tracked mutation.
@@ -64,7 +64,7 @@ fails on missing evidence, zero exercised transitions, silent fallback, mutated 
 - [ ] CHK-017 [P0] `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` consume the same evaluator, canary, promotion, and resume result contracts
 - [ ] CHK-018 [P0] Changed manifests cannot inherit prior success by label; the adapter returns explicit reuse, reexecution, fork, compensation, or rejection evidence
 - [ ] CHK-019 [P1] Incomplete evaluator, canary, and promotion work preserves immutable evidence and does not convert `UNKNOWN` or `INCONCLUSIVE` into pass
-- [ ] CHK-020 [P1] Shadow resume and promotion leave legacy state, live control flow, user-visible authority, and authority epochs unchanged before phase 014
+- [ ] CHK-020 [P1] Shadow resume and promotion leave legacy state, live control flow, user-visible authority, and authority epochs unchanged before phase 017
 - [ ] CHK-021 [P1] Re-entry receipts bind stable logical effect identity and idempotency key while preserving distinct attempt history across retries and process restarts
 <!-- /ANCHOR:testing -->
 

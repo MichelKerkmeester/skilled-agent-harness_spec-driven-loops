@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Model Benchmark - certificates and receipts (013 phase 006)"
+title: "Tasks: Model Benchmark - certificates and receipts"
 description: "Tasks for planning and implementing model-benchmark run certificates, transition receipts, scoring-matrix replay fingerprints, offline verification, and the thin adapter over deep-improvement-common services."
 trigger_phrases:
   - "model benchmark certificates and receipts tasks"
@@ -42,7 +42,7 @@ _memory:
 - [ ] T001 Confirm the `003-sealed-artifacts` primitives, typed ledger interfaces, reducer boundaries, and common service ports before defining variant fields
 - [ ] T002 [P] Inventory model-benchmark dispatch, sweep, reporter, router, workload, scoring, and legacy projection paths and classify their ownership
 - [ ] T003 [P] Extract model-benchmark validity inputs from `findings-registry-modes.json`: adaptive coverage, calibration, contamination, protocol strata, operational cost, and clustered uncertainty
-- [ ] T004 Record the additive-dark boundary, `depends_on: []` planning posture, phase-009 freeze handoff, later 010 consumer, and `005-resume-adapter` boundary
+- [ ] T004 Record the additive-dark boundary, `depends_on: []` planning posture, phase-012 freeze handoff, later 010 consumer, and `005-resume-adapter` boundary
 - [ ] T005 Define the shared-versus-variant ownership matrix for certificate, receipt, fingerprint, evaluator, canary, promotion, matrix, and scoring behavior
 <!-- /ANCHOR:phase-1 -->
 
@@ -73,7 +73,7 @@ _memory:
 - [ ] T022 Verify calibration, model-build independence, rubric-axis isolation, contamination lineage, fresh-suite inflation, and protocol-strata fixtures return the required validity result
 - [ ] T023 Verify all three benchmark variants consume identical common evaluator, canary, promotion, certificate, receipt, fingerprint, and hard-veto fixtures through adapters
 - [ ] T024 Verify dark-path emissions do not change authority and rollback leaves legacy projections and archival evidence readable
-- [ ] T025 Verify `005-resume-adapter` receives replay, salvage, uncertain-effect, changed-matrix, unsupported-version, and block cases and that later 010 acceptance is gated on the phase-009 freeze and write-set graph
+- [ ] T025 Verify `005-resume-adapter` receives replay, salvage, uncertain-effect, changed-matrix, unsupported-version, and block cases and that later 010 acceptance is gated on the phase-012 freeze and write-set graph
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

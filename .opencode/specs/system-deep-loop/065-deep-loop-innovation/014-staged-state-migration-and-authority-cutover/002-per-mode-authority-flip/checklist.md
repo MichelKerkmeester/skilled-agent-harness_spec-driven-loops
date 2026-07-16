@@ -39,9 +39,9 @@ mutation, or evidence drift fails the gate. No parity or rollback proof means no
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Parent sequencing invariants and `manifest/phase-tree.json` establish additive-dark migration, phase-011 ownership, and eight-mode order
-- [ ] CHK-002 [P0] Phase-001 policy exposes deny-by-default authorization, per-mode epochs, authority states, transition evidence, and the later-of-14-days-and-five-runs window
-- [ ] CHK-003 [P0] Phase-005 parity and rollback-drill contracts expose current mode-scoped freshness verification without changing authority
+- [ ] CHK-001 [P0] Parent sequencing invariants and `manifest/phase-tree.json` establish additive-dark migration, phase-014 ownership, and eight-mode order
+- [ ] CHK-002 [P0] Phase-004 policy exposes deny-by-default authorization, per-mode epochs, authority states, transition evidence, and the later-of-14-days-and-five-runs window
+- [ ] CHK-003 [P0] Phase-008 parity and rollback-drill contracts expose current mode-scoped freshness verification without changing authority
 - [ ] CHK-004 [P0] State-migration evidence identifies every selected mode's eligible, migrated, pinned, forked, blocked, or otherwise governed in-flight state
 - [ ] CHK-005 [P1] Authority record, selector, cutover request, ledger event, handoff bundle, and mode-order schemas are versioned
 <!-- /ANCHOR:pre-impl -->
@@ -71,8 +71,8 @@ mutation, or evidence drift fails the gate. No parity or rollback proof means no
 - [ ] CHK-020 [P0] One mode flip changes only its authority record, writer route, mode streams, projections, and telemetry; every other mode remains legacy-authoritative
 - [ ] CHK-021 [P0] Multi-mode and out-of-order requests fail, and `004-deep-improvement-common` precedes the three benchmark variants
 - [ ] CHK-022 [P0] Reversible dark authority routes canonical writes to dark, retains legacy rollback assets, and denies stale legacy writes
-- [ ] CHK-023 [P0] The phase-001 rollback window opens with the later-of-14-days-and-five-successful-authoritative-runs rule and remains independently mode-scoped
-- [ ] CHK-024 [P0] Rollback-trigger, admission-freeze, writer-fence, new-epoch legacy restoration, event-preservation, and stale-writer cases remain governed by phase-001 and phase-005 evidence
+- [ ] CHK-023 [P0] The phase-004 rollback window opens with the later-of-14-days-and-five-successful-authoritative-runs rule and remains independently mode-scoped
+- [ ] CHK-024 [P0] Rollback-trigger, admission-freeze, writer-fence, new-epoch legacy restoration, event-preservation, and stale-writer cases remain governed by phase-004 and phase-008 evidence
 - [ ] CHK-025 [P1] Successor handoff evidence is immutable, complete, and independently verifiable without process-local selector state
 <!-- /ANCHOR:testing -->
 
@@ -90,14 +90,14 @@ mutation, or evidence drift fails the gate. No parity or rollback proof means no
 - [ ] CHK-029 [P0] Authority records and selector inputs cannot be supplied by untrusted process-local flags, environment values, or cross-mode aliases
 - [ ] CHK-030 [P0] Stale epochs, stale writer leases, duplicate conflicting requests, and missing authorization evidence cannot append domain events or effects
 - [ ] CHK-031 [P1] Cutover and denial diagnostics are bounded and redact protected payloads while retaining digests and identities needed for verification
-- [ ] CHK-032 [P0] The cutover coordinator cannot close a rollback window, remove legacy writers, delete events, or bypass phase-005 evidence
+- [ ] CHK-032 [P0] The cutover coordinator cannot close a rollback window, remove legacy writers, delete events, or bypass phase-008 evidence
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
 - [ ] CHK-033 [P1] spec.md, plan.md, tasks.md, and checklist.md agree on selector states, gate inputs, ledger evidence, mode order, and rollback policy
-- [ ] CHK-034 [P1] Verification evidence cites the parent program, `manifest/phase-tree.json`, phase-001 transition policy, phase-005 parity, and phase-005 rollback drills
+- [ ] CHK-034 [P1] Verification evidence cites the parent program, `manifest/phase-tree.json`, phase-004 transition policy, phase-008 parity, and phase-008 rollback drills
 - [ ] CHK-035 [P2] Operator diagnostics identify the mode, epoch, first failed gate, certificate identity, and rerun command without suggesting a waiver
 <!-- /ANCHOR:docs -->
 
@@ -121,7 +121,7 @@ checklist item stays unchecked.
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the phase-011 verifier confirms the ordered per-mode flips, complete transition events, unchanged
+Signed off when the phase-014 verifier confirms the ordered per-mode flips, complete transition events, unchanged
 non-selected authority records, current rollback windows, and a handoff bundle that the successor can verify without
 mutable selector state.
 <!-- /ANCHOR:sign-off -->

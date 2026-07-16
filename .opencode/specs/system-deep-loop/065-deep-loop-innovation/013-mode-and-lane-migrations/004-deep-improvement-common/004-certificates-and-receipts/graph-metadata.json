@@ -190,8 +190,8 @@
       }
     ],
     "causal_summary": "Plan the shared Deep Improvement Common Services certificate and receipt contract over the typed event-ledger substrate: per-run certificates, per-transition receipts, replay fingerprints, independent offline verification, and the evaluator, canary, and promotion services reused by agent-improvement, model-benchmark, and skill-benchmark.",
-    "created_at": "2026-07-15T21:44:21.554Z",
-    "last_save_at": "2026-07-15T21:44:21.554Z",
+    "created_at": "2026-07-16T03:43:36.562Z",
+    "last_save_at": "2026-07-16T03:43:36.562Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a0a95e0045b72237320370694db31432f18c354721ad7e785e517a313599322d",
+    "source_fingerprint": "sha256:19c73a4cf191969ce3ccb09a1002bb0e3d7d3fe15183ea1b83ac5bc6b3dea06b",
     "source_doc_hashes": {
-      "spec.md": "f348b8dfb7a115410e5ab884d86d294abd6712be792dd8066bac776e658af2ba",
-      "plan.md": "031b45f7c9430948318b49fd451de078fcb1ed090dc41797d419c214c611d10b",
-      "tasks.md": "c8b774cc47fb214ee91a7c1e61bdd0ad4353512c0ea98d9e61bcd7b3fcb49c9c",
-      "checklist.md": "f6749906e5f49fa3672ada233ccceef379c6b00f07003f39742c3729bbd94c40"
+      "spec.md": "ef77aa75a81a455af27c2753ad04308199f1b0a5316a99bb171c8c0ddaabcee1",
+      "plan.md": "d134fa88e28957a5820e5f52492a60ff10ba35fd3e6a085ba56d85c52f97b3fb",
+      "tasks.md": "7ac659224e9c2309eab458db2f9340330090f8bc6457fccc90032e4bb4ee85cd",
+      "checklist.md": "39902d91f95c03f8caf13140d30cfbd0275071b62afaae8d28722e94af1dc581"
     },
     "last_active_child_id": null,
     "last_active_at": null

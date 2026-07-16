@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Skill Benchmark shadow parity (013 phase 007 child 006)"
+title: "Tasks: Skill Benchmark shadow parity"
 description: "Tasks for the Skill Benchmark shadow-parity child: define paired scenario and scoring projections, compare legacy and typed-ledger events, and fail closed on drift."
 trigger_phrases:
   - "Skill Benchmark shadow parity tasks"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-011 shadow contract, mode-004 deep-improvement-common versions, local phase-009 shared-contract freeze, and scoped worktree state
+- [ ] T001 Confirm the phase-014 shadow contract, mode-004 deep-improvement-common versions, local phase-012 shared-contract freeze, and scoped worktree state
 - [ ] T002 Inventory the legacy Skill Benchmark scenario runner, skill loader, emitter, scorer, gold sources, fixtures, and known behavior without changing authority
 - [ ] T003 Freeze stable scenario IDs, treatment arms, executor/environment descriptors, seeds, bundle and registry digests, tool and permission surfaces, and repetition bounds
 - [ ] T004 Define the paired-run identity and canonical event tuple, including the explicit volatile-field allowlist
@@ -49,7 +49,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T005 [P] Define versioned Skill Benchmark scenario and treatment schemas over deep-improvement-common contracts
-- [ ] T006 Add the phase-011 shadow adapter that runs legacy and ledger paths against one immutable paired input
+- [ ] T006 Add the phase-014 shadow adapter that runs legacy and ledger paths against one immutable paired input
 - [ ] T007 Add skill-specific resource canaries, gold policy, causal-stage events, and score projections
 - [ ] T008 Add canonical projection normalization and event-for-event comparison with typed mismatch classes
 - [ ] T009 Add paired parity reports, digest-bound receipts, replay inputs, command and exit-code evidence, and withheld-result handling

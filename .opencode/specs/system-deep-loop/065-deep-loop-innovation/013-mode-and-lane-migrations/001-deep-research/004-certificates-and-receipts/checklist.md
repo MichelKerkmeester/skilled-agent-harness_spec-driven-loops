@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep Research - Certificates & Receipts (010 phase 001 child 004)"
+title: "Checklist: Deep Research - Certificates & Receipts"
 description: "Blocking verification checklist for Deep Research run certificates, transition receipts, replay-fingerprint stability, offline verification, drift handling, and additive-dark authority preservation."
 trigger_phrases:
   - "deep research certificates and receipts checklist"
@@ -29,7 +29,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking verifier contract for the Deep Research certificate and receipt child. The candidate
-report pins the candidate SHA, shared phase-003 contract and certification-policy digests, transition registry, sealed
+report pins the candidate SHA, shared phase-006 contract and certification-policy digests, transition registry, sealed
 artifact/reference-set manifest, receipt-chain digest, replay-fingerprint inputs, offline-bundle digest, and commands
 with exit codes and discovered-case counts. Verification fails on zero transitions, an unverifiable required reference,
 a receipt before its result, a certificate without complete chain coverage, semantic fingerprint drift, automatic replay of
@@ -39,7 +39,7 @@ a receipt before its result, a certificate without complete chain coverage, sema
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-003 receipt/certificate, event, ledger, authorization, certification-provider, and replay contracts are frozen for this candidate
+- [ ] CHK-001 [P0] Phase-006 receipt/certificate, event, ledger, authorization, certification-provider, and replay contracts are frozen for this candidate
 - [ ] CHK-002 [P0] The Deep Research transition registry covers `init`, `gather`, `analyze`, convergence, synthesis, memory-save, and resume/recovery
 - [ ] CHK-003 [P0] The mode consumes `003-sealed-artifacts` references and names no alternate digest, certificate, signer, trust root, or verifier
 - [ ] CHK-004 [P1] Logical transition IDs, attempt IDs, idempotency keys, receipt-chain ordering, and result dispositions are explicit

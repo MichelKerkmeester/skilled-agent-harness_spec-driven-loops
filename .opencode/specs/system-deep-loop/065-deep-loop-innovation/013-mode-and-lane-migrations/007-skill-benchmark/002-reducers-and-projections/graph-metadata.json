@@ -190,8 +190,8 @@
       }
     ],
     "causal_summary": "Plan the pure reducers and live projections for the skill-benchmark migration: replay the typed skill event ledger into deterministic iteration/convergence state, artifact indexes, and per-mode status while consuming deep-improvement-common services and preserving raw scenario and scoring evidence.",
-    "created_at": "2026-07-15T21:45:18.744Z",
-    "last_save_at": "2026-07-15T21:45:18.744Z",
+    "created_at": "2026-07-16T03:43:41.343Z",
+    "last_save_at": "2026-07-16T03:43:41.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +200,11 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:745ba87c8903902bcc5c9fad308f36c1899fdd53b76018bd37b628193f32df3c",
+    "source_fingerprint": "sha256:229a7634eb8477bc0862b0ad2d13fbd356a7ca0a934e836ff093faac8cf0e5c2",
     "source_doc_hashes": {
-      "spec.md": "c7795c2a34e0d514bdd2ee2c7f9410eb4f43b4ace1242868c01dde7f87f62824",
-      "plan.md": "2a5521b71909408ca3e6f44adf544684b49d92b6a6d51a7e12c8e6f9a19d3ab9",
-      "tasks.md": "87555d2253c87432564ea0c3c3b6d8fbfb3722102afb484dd0291af645d2ff84",
+      "spec.md": "0e133632103e77cf76a22bd94caf79ab12b9d2dba9e541186684984196051f0e",
+      "plan.md": "6c1d5d55be1bbf0211613898c892b76b2c86d987d3d2dfaf4e56b2576741f184",
+      "tasks.md": "b9c97a9167072f2b6b7e4f634d4f221ff24436e14c6070fec3c90776e7da0bc7",
       "checklist.md": "975279f134431cfd2b5f0f8c7b9bf6d033bf9f3d41d7f373fb535a1ffc839651"
     },
     "last_active_child_id": null,

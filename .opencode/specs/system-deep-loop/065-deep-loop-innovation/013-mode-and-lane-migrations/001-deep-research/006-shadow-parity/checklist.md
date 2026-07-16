@@ -1,10 +1,10 @@
 ---
-title: "Checklist: Deep Research shadow parity (010 phase 006)"
+title: "Checklist: Deep Research shadow parity"
 description: "Checklist for the Deep Research shadow-parity phase: prove event-for-event and projection parity between the typed ledger path and legacy emitter across fresh, failure, resume, synthesis, and memory-save lifecycles before any authority cutover."
 trigger_phrases:
   - "Deep Research shadow parity checklist"
   - "deep-research parity gate"
-  - "mode 010 phase 006 checklist"
+  - "mode 010 phase 009 checklist"
 importance_tier: "high"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity"
@@ -29,7 +29,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking shadow-parity verifier contract for Deep Research phase 006. Every item is a check the paired
+This checklist is the blocking shadow-parity verifier contract for Deep Research phase 009. Every item is a check the paired
 verify agent runs before the candidate can hand parity evidence to `007-rollback-and-mode-gate`; each report pins BASE,
 contract and schema digests, fixture IDs, both stream digests, projection fingerprints, commands, exit codes, and diff
 dispositions. A shadow result never authorizes an authority cutover. Any unexplained semantic difference, missing receipt,
@@ -39,7 +39,7 @@ nondeterministic replay, or unexpected tracked mutation fails the gate.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-009 shared mode-contract digest, phase-011 shadow-framework interface, and parent compatibility-bridge contract are pinned in the candidate report
+- [ ] CHK-001 [P0] The phase-012 shared mode-contract digest, phase-014 shadow-framework interface, and parent compatibility-bridge contract are pinned in the candidate report
 - [ ] CHK-002 [P0] The legacy Deep Research lifecycle and reducer boundaries are inventoried for init, gather/analyze, convergence, synthesis, resume, and memory-save handoff
 - [ ] CHK-003 [P1] BASE, run manifest, source snapshots, model/tool fingerprints, input state, budget lease, fixture IDs, and output paths are frozen before dual execution
 - [ ] CHK-004 [P1] The canonical event tuple, diff taxonomy, receipt schema, and volatility allowlist are reviewed before any difference is classified as tolerated

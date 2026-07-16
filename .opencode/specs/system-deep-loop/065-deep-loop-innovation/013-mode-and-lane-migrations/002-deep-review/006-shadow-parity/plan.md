@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Review shadow parity (013 phase 006)"
+title: "Implementation Plan: Deep Review shadow parity"
 description: "Implementation Plan for the Deep Review shadow-parity phase: pair the legacy emitter with the typed event-ledger path, compare event streams and projections, and produce a fail-closed parity certificate for the later mode gate."
 trigger_phrases:
   - "Deep Review shadow parity implementation plan"
@@ -30,9 +30,9 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / deep-review mode (013 phase 006) |
+| **Surface** | system-deep-loop / deep-review mode |
 | **Change class** | Shadow migration and parity verification |
-| **Execution** | Paired legacy + typed-ledger runs under the phase-011 shadow framework; legacy remains authoritative |
+| **Execution** | Paired legacy + typed-ledger runs under the phase-014 shadow framework; legacy remains authoritative |
 
 ### Overview
 Deep Review must migrate its existing scope -> dimension passes -> P0/P1/P2 findings -> convergence -> review-report lifecycle without changing the shared review-loop backbone or publishing authority. The plan establishes a mode adapter, a lossless event mapping, an allowlisted normalizer, an event comparator, projection diffs, replay/resume checks, and a content-addressed parity certificate. The later mode gate may accept only a green certificate; this phase never flips authority.
@@ -42,7 +42,7 @@ Deep Review must migrate its existing scope -> dimension passes -> P0/P1/P2 find
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-009 shared review-loop contract, phase-011 shadow framework, typed event envelope, replay fingerprint, and projection contracts are frozen and addressable.
+- [ ] The phase-012 shared review-loop contract, phase-014 shadow framework, typed event envelope, replay fingerprint, and projection contracts are frozen and addressable.
 - [ ] The legacy Deep Review emitter and its scope, dimension, finding, convergence, and report boundaries are inventoried against the pinned baseline.
 - [ ] The paired-run envelope can bind both paths to the same source revision, execution manifest, contract versions, and budget snapshot.
 - [ ] The event normalization allowlist distinguishes non-semantic transport values from identity, ordering, evidence, and decision values.
@@ -57,7 +57,7 @@ Deep Review must migrate its existing scope -> dimension passes -> P0/P1/P2 find
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Shared loop contract**: invoke the phase-009 review-loop state transitions used by Deep Review and deep-alignment; the mode adapter supplies only Deep Review payloads and finding semantics.
+- **Shared loop contract**: invoke the phase-012 review-loop state transitions used by Deep Review and deep-alignment; the mode adapter supplies only Deep Review payloads and finding semantics.
 - **Paired-run envelope**: freeze source revision, diff or artifact identity, review scope, dimension manifest, prompt/model/tool hashes, budget snapshot, replay fingerprint, and comparator version before either path starts.
 - **Legacy adapter**: observe and capture the legacy emitter's append boundaries and publication projection without modifying its authority or rewriting its records.
 - **Ledger adapter**: translate the same lifecycle into typed events through the transition-authorization gateway, recording candidate, validation, impact, evidence, convergence, and report-projection lineage separately.
@@ -71,7 +71,7 @@ Deep Review must migrate its existing scope -> dimension passes -> P0/P1/P2 find
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-009 and phase-011 contracts are frozen and record their fingerprints.
+- Confirm the phase-012 and phase-014 contracts are frozen and record their fingerprints.
 - Capture the pinned legacy Deep Review lifecycle, including all event and projection boundaries, without changing runtime files outside the implementation scope.
 - Define the paired-run envelope, shadow storage boundary, authority assertion, and fixture identifiers.
 
@@ -80,7 +80,7 @@ Deep Review must migrate its existing scope -> dimension passes -> P0/P1/P2 find
 - Define stable finding identity from versioned semantic anchors, normalized source context, program slices, rename mapping, and introduced/fixed/pre-existing lineage.
 - Implement the versioned normalization allowlist and preserve raw legacy and ledger events for mismatch diagnosis.
 - Implement event-for-event comparison and projection comparison with explicit discrepancy classes and deterministic ordering.
-- Add paired replay and checkpoint-resume execution, including invalid-transition and fault-injection cases from the phase-011 framework.
+- Add paired replay and checkpoint-resume execution, including invalid-transition and fault-injection cases from the phase-014 framework.
 - Produce a fail-closed parity certificate only after all required verdicts are green; make the certificate consumable by `007-rollback-and-mode-gate`.
 
 ### Phase 3: Verification
@@ -96,7 +96,7 @@ Deep Review must migrate its existing scope -> dimension passes -> P0/P1/P2 find
 | Requirement | Verification |
 |-------------|--------------|
 | REQ-001 | Paired-run envelope assertions compare source, scope, dimensions, execution, budget, and contract fingerprints before dispatch |
-| REQ-002 | Contract conformance fixture proves Deep Review and deep-alignment consume the same phase-009 lifecycle and phase-011 shadow runner |
+| REQ-002 | Contract conformance fixture proves Deep Review and deep-alignment consume the same phase-012 lifecycle and phase-014 shadow runner |
 | REQ-003 | Lifecycle fixture covers scope, dimension pass, candidate, validation, impact, convergence, and report projection events |
 | REQ-004 | Rename, line-move, update, fix, and pre-existing fixtures compare stable finding fingerprints and lineage |
 | REQ-005 | Severity/confidence/evidence fixture proves P0/P1/P2 remains impact and does not absorb independent epistemic attributes |
@@ -111,7 +111,7 @@ Deep Review must migrate its existing scope -> dimension passes -> P0/P1/P2 find
 ## 6. DEPENDENCIES
 
 The plan inherits the 065 program's typed ledger, transition authorization, receipts, replay fingerprint, projection, and
-strict-validation contracts. It consumes the phase-009 shared review-loop contract and phase-011 generic shadow framework.
+strict-validation contracts. It consumes the phase-012 shared review-loop contract and phase-014 generic shadow framework.
 The `005-resume-adapter` and `007-rollback-and-mode-gate` siblings provide navigation and handoff context; this planning
 contract does not turn that adjacency into an unrecorded runtime dependency.
 <!-- /ANCHOR:dependencies -->

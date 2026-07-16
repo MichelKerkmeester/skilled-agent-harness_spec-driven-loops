@@ -1,6 +1,6 @@
 ---
-title: "Checklist: semantic communities (007 phase 001)"
-description: "Blocking verifier checklist for semantic communities and concept-level novelty in phase 007 child 001."
+title: "Checklist: semantic communities"
+description: "Blocking verifier checklist for semantic communities and concept-level novelty in phase 010 child 001."
 trigger_phrases:
   - "semantic communities checklist"
   - "concept-level novelty checklist"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 007 child 001. The implementation verifier binds results to the exact
+This checklist is the blocking verifier contract for phase 010 child 001. The implementation verifier binds results to the exact
 candidate and baseline revisions, projection model/config version, fixture-corpus digest, threshold policy, and replay fingerprint.
 Every completed item records the command, exit code, observed counts or metric, and artifact path; zero fixtures, zero candidate
 comparisons, silent embedding fallback, or unversioned membership is a failure.

@@ -193,8 +193,8 @@
       }
     ],
     "causal_summary": "Plan a deterministic fan-in reducer that deduplicates surviving leaf results, balances contribution across source/model provenance, preserves every item's lineage, and escalates contested merges without allowing one prolific source to dominate.",
-    "created_at": "2026-07-15T19:00:40.275Z",
-    "last_save_at": "2026-07-15T19:00:40.275Z",
+    "created_at": "2026-07-16T03:43:51.149Z",
+    "last_save_at": "2026-07-16T03:43:51.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:035bd6144577ea7707df23141822356014fb78f8277191a6d231e2455cdbb88c",
+    "source_fingerprint": "sha256:23ecb6871f862568ddf98ce859efb4446574499ba67655921dc75428f9a07a88",
     "source_doc_hashes": {
-      "spec.md": "f3c26224a2e10ebce9eda97e084cf4889f105c5a53c526210216acfd168516c5",
-      "plan.md": "92700da5c056df43944b7269445b6eb188d22028aab82901b156bc93df3afbd0",
+      "spec.md": "463cccfbb64bfbb8c38dfda1f807a7c71bcea11912d9433b2d8c22cef8a1306b",
+      "plan.md": "937f6de2b585c7aa4e1972fd5f9a46248891db18b2a6bf450631a787f5739334",
       "tasks.md": "e0195ac21d5c1ebd07203ca9e9483746982e33fe90d192eeefa446547736bc44",
       "checklist.md": "eac4d7db4947d65746067ae1c7b36cb69af3ba4909eebddc10bda882772cf93d"
     },

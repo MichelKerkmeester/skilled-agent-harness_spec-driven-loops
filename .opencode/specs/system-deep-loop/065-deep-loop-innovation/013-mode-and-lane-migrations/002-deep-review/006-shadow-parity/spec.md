@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Review shadow parity (013 phase 006)"
+title: "Feature Specification: Deep Review shadow parity"
 description: "Plan the Deep Review migration from the legacy scope -> per-dimension passes -> P0/P1/P2 findings -> convergence -> review-report flow to the typed event-ledger substrate. The new path runs in shadow beside the legacy emitter, compares normalized projections event-for-event, and remains non-authoritative until every parity and fail-closed cutover criterion is green."
 trigger_phrases:
   - "Deep Review shadow parity"
@@ -40,8 +40,8 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Review mode migration) |
-| **Origin** | Phase 006 of the 013 per-mode migration workstream; operator brief for typed-ledger shadow parity |
-| **Inputs** | Parent program spec; phase tree; phase-009 shared review-loop contract; phase-011 shadow framework; the two effectiveness/fan-out findings registries |
+| **Origin** | Phase 009 of the 013 per-mode migration workstream; operator brief for typed-ledger shadow parity |
+| **Inputs** | Parent program spec; phase tree; phase-012 shared review-loop contract; phase-014 shadow framework; the two effectiveness/fan-out findings registries |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -51,7 +51,7 @@ Deep Review currently follows a recognizable loop: establish review scope, run p
 
 This phase plans a **shadow-parity harness**, not an authority cutover. For the same frozen input, contract versions, source revision, dimension set, and execution manifest, the legacy emitter remains authoritative while the new ledger path records its typed events and projections beside it. A comparator normalizes only explicitly non-semantic fields and then diffs the two paths event-for-event and projection-for-projection. Every mismatch is retained as evidence and blocks promotion until classified and resolved.
 
-The mode shares its loop backbone with deep-alignment (mode 008). It must consume the shared review-loop contract frozen in phase 009 rather than fork a Deep Review-specific loop state machine. It also consumes the generic shadow framework from phase 011 for paired execution, replay, health evidence, and degeneration handling. Deep Review-specific work is limited to its finding lifecycle, severity/confidence separation, review-report projection, and parity gate.
+The mode shares its loop backbone with deep-alignment. It must consume the shared review-loop contract frozen in phase 012 rather than fork a Deep Review-specific loop state machine. It also consumes the generic shadow framework from phase 014 for paired execution, replay, health evidence, and degeneration handling. Deep Review-specific work is limited to its finding lifecycle, severity/confidence separation, review-report projection, and parity gate.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -80,7 +80,7 @@ The mode shares its loop backbone with deep-alignment (mode 008). It must consum
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Paired execution uses one frozen input and contract envelope | Legacy and shadow paths receive identical source revision, scope, dimension manifest, prompt/model/tool fingerprints, budget snapshot, and replay-compatibility fingerprint |
-| REQ-002 | Deep Review transitions use the shared review-loop contract | The adapter consumes the phase-009 vocabulary and shared phase-011 shadow runner; no mode-local substitute state machine is introduced |
+| REQ-002 | Deep Review transitions use the shared review-loop contract | The adapter consumes the phase-012 vocabulary and shared phase-014 shadow runner; no mode-local substitute state machine is introduced |
 | REQ-003 | The full Deep Review lifecycle is represented | Scope, per-dimension pass, candidate, validation, impact classification, convergence, and review-report projection have typed lineage-preserving events |
 | REQ-004 | Finding identity survives cross-pass and cross-revision comparison | The comparator uses versioned partial fingerprints from stable semantic anchors, normalized source context, program slices, and rename mapping; absolute line movement alone does not create a new finding |
 | REQ-005 | Severity and evidence remain orthogonal | P0/P1/P2 is compared as impact; confidence, reachability, exploitability, evidence strength, evidence scope, and validation disposition are compared independently |
@@ -113,10 +113,10 @@ The comparator reports four separate verdicts: event-stream parity, projection p
 - **False parity through over-normalization** — removing timestamps or IDs can accidentally hide causal or identity changes. Mitigation: maintain an allowlisted normalization schema and compare raw evidence references, fingerprints, sequence positions, and payload hashes separately.
 - **Finding identity drift** — line movement, renames, or reformatted context can split one finding or merge two findings. Mitigation: use versioned partial fingerprints, program-slice anchors, and explicit introduced/fixed/pre-existing lineage fixtures.
 - **Candidate/verdict collapse** — a review pass can emit a candidate before independent validation. Mitigation: preserve candidate, validation, impact, confidence, and publication dispositions as separate events and projections.
-- **Shared-loop divergence** — Deep Review and deep-alignment could silently acquire different lifecycle semantics. Mitigation: consume the phase-009 shared review-loop contract and reject mode-local event vocabulary additions unless the shared contract owns them.
+- **Shared-loop divergence** — Deep Review and deep-alignment could silently acquire different lifecycle semantics. Mitigation: consume the phase-012 shared review-loop contract and reject mode-local event vocabulary additions unless the shared contract owns them.
 - **Shadow path becomes authoritative by accident** — a parity writer might publish a report or mutate legacy state. Mitigation: separate shadow output storage, deny publication capabilities, and assert legacy authority in every fixture.
-- **Incomplete parity corpus** — happy-path equality can miss resume, duplicate, stale, or invalid-transition differences. Mitigation: make the phase-011 fault and replay matrix a required input and fail the certificate on missing fixture classes.
-- **Dependencies**: phase-009 shared review-loop contract; phase-011 shadow framework; typed ledger, authorization, receipts, fingerprints, and projection contracts from the shared program; the adjacent `005-resume-adapter` and `007-rollback-and-mode-gate` folders are navigation points, not hard runtime dependencies for this planning contract.
+- **Incomplete parity corpus** — happy-path equality can miss resume, duplicate, stale, or invalid-transition differences. Mitigation: make the phase-014 fault and replay matrix a required input and fail the certificate on missing fixture classes.
+- **Dependencies**: phase-012 shared review-loop contract; phase-014 shadow framework; typed ledger, authorization, receipts, fingerprints, and projection contracts from the shared program; the adjacent `005-resume-adapter` and `007-rollback-and-mode-gate` folders are navigation points, not hard runtime dependencies for this planning contract.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
@@ -124,7 +124,7 @@ The comparator reports four separate verdicts: event-stream parity, projection p
 
 - Which legacy transport fields are formally non-semantic and may be normalized, and which generated identifiers must remain comparable through a stable mapping?
 - Does the shared event namespace require one Deep Review event per legacy emission, or may several legacy emissions map to one typed event when the projection retains a lossless source span?
-- What exact fixture minimum does phase 011 require for mode-level shadow certificates, and which additional Deep Review cases are mandatory for P0/P1 evidence?
+- What exact fixture minimum does phase 014 require for mode-level shadow certificates, and which additional Deep Review cases are mandatory for P0/P1 evidence?
 - Which report serialization fields are contractually ordered, and which may be compared as keyed sets while retaining a separate ordering check?
 - What certificate signer or content-addressing mechanism is selected by the shared mode gate, and how is an invalidated comparator version represented?
 <!-- /ANCHOR:questions -->

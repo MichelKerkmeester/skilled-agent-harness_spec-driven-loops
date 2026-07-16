@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-15T18:00:00Z"
     last_updated_by: "codex"
     recent_action: "Defined the planned ADR scope and six-primitive ratification contract"
-    next_safe_action: "Ratify the spine before phase 003 introduces any typed writer"
+    next_safe_action: "Ratify the spine before phase 006 introduces any typed writer"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Spine Architecture ADR
 
-> Phase adjacency inside the architecture contract: `depends_on: []`; sibling planning contracts are `002-recommendation-ledger-bijective-map` and `003-transition-versioning-and-rollback-policy` (independent, parallel); downstream consumers are phase 003 (ledger core), phase 004 (shared services), and phase 005 (compatibility bridge).
+> Phase adjacency inside the architecture contract: `depends_on: []`; sibling planning contracts are `002-recommendation-ledger-bijective-map` and `003-transition-versioning-and-rollback-policy` (independent, parallel); downstream consumers are phase 006 (ledger core), phase 007 (shared services), and phase 008 (compatibility bridge).
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | First child of the phase-001 architecture, coverage, and transition-contract parent |
+| **Origin** | First child of the phase-004 architecture, coverage, and transition-contract parent |
 | **Depends on** | None (`[]`) |
 | **Decision consumers** | 006-transition-authorized-ledger-core; 007-shared-evidence-and-control-services; 008-compatibility-shadow-and-rollback-bridge |
 <!-- /ANCHOR:metadata -->
@@ -70,14 +70,14 @@ compatibility adapters, shadow parity, rollback evidence, and later per-mode cut
 - Define the problem each primitive solves and the invariant it imposes on later phases.
 - Record the rejected alternatives: per-mode JSONL, mutable state, unversioned events, ungated writers, mutable reference inputs, optional receipts, self-scoring, and big-bang replacement.
 - Record positive, negative, and operational consequences of the decision.
-- Bind phase 003 to the ledger, replay, and authorization core; phase 004 to seals, receipts, and adjudication; and phase 005 to compatibility, shadow-parity, and rollback preservation of the spine.
+- Bind phase 006 to the ledger, replay, and authorization core; phase 007 to seals, receipts, and adjudication; and phase 008 to compatibility, shadow-parity, and rollback preservation of the spine.
 - Ground the decision in the 006 parent `spec.md`, `manifest/phase-tree.json` architecture and migration-model fields, and run-2 `research/research-modes.md` section 12.
 
 ### Out of Scope
-- Event-envelope field names, storage engine selection, serialization format, or schema-registry implementation details owned by phase 003.
-- Cryptographic signature, access-control, receipt recovery, budget, gauge, lock, or adjudicator implementation details owned by phase 004.
-- Upcaster, adapter, shadow-comparison, in-flight-state classification, and rollback mechanics owned by phase 005.
-- The bijective 178-row recommendation ledger and the broader transition vocabulary owned by sibling children of the phase-001 parent.
+- Event-envelope field names, storage engine selection, serialization format, or schema-registry implementation details owned by phase 006.
+- Cryptographic signature, access-control, receipt recovery, budget, gauge, lock, or adjudicator implementation details owned by phase 007.
+- Upcaster, adapter, shadow-comparison, in-flight-state classification, and rollback mechanics owned by phase 008.
+- The bijective 178-row recommendation ledger and the broader transition vocabulary owned by sibling children of the phase-004 parent.
 - Runtime code, authority cutover, or legacy-writer retirement.
 <!-- /ANCHOR:scope -->
 
@@ -93,7 +93,7 @@ compatibility adapters, shadow parity, rollback evidence, and later per-mode cut
 | REQ-005 | Preserve independently checkable boundary evidence | Phase and mode boundaries emit typed receipts or certificates linked to the governing events, fingerprints, and sealed inputs |
 | REQ-006 | Separate scoring authority from the candidate or process being scored | Adjudication supports blinded provenance, mirrored-order or equivalent counterfactual checks, and retention of raw pre-reduction evidence |
 | REQ-007 | Record alternatives and consequences | Each rejected alternative has a concrete failure mode, and the accepted decision records costs, constraints, and migration consequences |
-| REQ-008 | Establish downstream ownership without duplicating implementation | Phase 003, 004, and 005 responsibilities are explicit and collectively preserve the complete spine |
+| REQ-008 | Establish downstream ownership without duplicating implementation | Phase 006, 004, and 005 responsibilities are explicit and collectively preserve the complete spine |
 | REQ-009 | Remain consistent with the program migration model | The ADR prohibits big-bang authority transfer and preserves additive-dark, compatibility, shadow-parity, rollback-window, and gated-retirement sequencing |
 | REQ-010 | Maintain source traceability | Each load-bearing decision cites the parent spec, phase-tree manifest, or run-2 synthesis section 12 |
 <!-- /ANCHOR:requirements -->
@@ -118,7 +118,7 @@ invariants; the plan therefore defines default-deny behavior, digest binding, ve
 adjudication separation explicitly. A second risk is allowing implementation detail to leak into this decision and
 prematurely constrain phases 003-005; storage, cryptography, transport, and adapter mechanics remain delegated.
 
-Downstream risk is asymmetric: phase 003 cannot safely introduce a typed writer without authorization, while phases
+Downstream risk is asymmetric: phase 006 cannot safely introduce a typed writer without authorization, while phases
 004 and 005 may elaborate services and migration mechanics without weakening the ratified primitives. Any later need
 to change the topology requires an explicit superseding ADR and consumer impact analysis, not an implicit schema edit.
 <!-- /ANCHOR:risks -->

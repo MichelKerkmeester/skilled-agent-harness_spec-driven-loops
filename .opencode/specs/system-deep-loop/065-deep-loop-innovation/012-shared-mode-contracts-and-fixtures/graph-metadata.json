@@ -17,7 +17,7 @@
   "derived": {
     "trigger_phrases": [
       "shared mode contracts and fixtures",
-      "deep-loop phase 009",
+      "deep-loop phase 012",
       "mode write-set conflict graph",
       "mixed-version mode fixtures"
     ],
@@ -84,17 +84,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Freeze the shared mode boundary before the eight phase-010 migrations: common interfaces, hoisted cross-mode closures, mixed-version fixtures, and an executable dependency plus write-set conflict graph for parallel-safe work.",
-    "created_at": "2026-07-15T19:00:49.358Z",
-    "last_save_at": "2026-07-15T19:00:49.358Z",
+    "causal_summary": "Freeze the shared mode boundary before the eight phase-013 migrations: common interfaces, hoisted cross-mode closures, mixed-version fixtures, and an executable dependency plus write-set conflict graph for parallel-safe work.",
+    "created_at": "2026-07-16T03:44:00.135Z",
+    "last_save_at": "2026-07-16T03:44:00.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0003c85ceda5842fb18dc447f4dcffb5b0dbe46cb821a50bd0d63b9db651d33d",
+    "source_fingerprint": "sha256:65a6a5c126347d9a4702fdeae93e75a09df3b3c2983bca75feb6f68e390235fd",
     "source_doc_hashes": {
-      "spec.md": "025def0674585185fb12236969d4fc2c5631e282db4372fd12c822af61ad538c"
+      "spec.md": "a2b92d2eaff2937eb006e56c05b0b23b6fa1bfcf417c36b875c428c24c8de1bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

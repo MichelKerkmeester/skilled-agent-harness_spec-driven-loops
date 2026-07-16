@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Defined implementation and verification tasks for legacy projection parity"
-    next_safe_action: "Materialize the projection registry from the phase-000 census"
+    next_safe_action: "Materialize the projection registry from the phase-003 census"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Freeze the phase-000 census and BASE fixtures; close every JSONL/JSON writer-reader row before implementation
+- [ ] T001 Freeze the phase-003 census and BASE fixtures; close every JSONL/JSON writer-reader row before implementation
 - [ ] T002 Define the versioned projection-registry, watermark, shadow-root, fixture, and typed-failure schemas
 - [ ] T003 Record serializer and refresh semantics for each manifest row, including `atomic-state.ts` JSONL/snapshot differences
 <!-- /ANCHOR:phase-1 -->
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Implement pure full-rebuild folds from verified phase-003 ledger heads for every projection-manifest row
+- [ ] T004 Implement pure full-rebuild folds from verified phase-006 ledger heads for every projection-manifest row
 - [ ] T005 Reuse or extract exact legacy serializers for JSONL rows, snapshots, dashboards, registries, and resume inputs
 - [ ] T006 Implement incremental folds with expected-head checks and byte equivalence to full rebuild
 - [ ] T007 Implement immediate fsynced JSONL projection with exact ordering, separator, newline, fingerprint, and no-op behavior

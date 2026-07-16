@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Skill Benchmark - Resume Adapter (013 mode migration, 007 child 005)"
+title: "Implementation Plan: Skill Benchmark - Resume Adapter"
 description: "Implementation plan for the Skill Benchmark sealed-ledger resume adapter: deterministic scenario-cell and scoring reconstruction, continuity-ladder mapping, idempotent re-entry, and strict reuse of deep-improvement-common services."
 trigger_phrases:
   - "Skill Benchmark resume adapter implementation plan"
@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / deep-improvement / skill-benchmark child phase |
 | **Change class** | Planning contract: sealed-ledger reconstruction and idempotent scenario re-entry |
-| **Execution** | Plan against frozen ledger, reducer, common-service, and phase-012 contracts; no authority cutover or runtime implementation in this phase |
+| **Execution** | Plan against frozen ledger, reducer, common-service, and phase-015 contracts; no authority cutover or runtime implementation in this phase |
 
 ### Overview
 
@@ -57,7 +57,7 @@ reimplemented.
 - [ ] The continuity ladder names every state from design and treatment assignment through scenario closure, scoring, shared status, and the resumable frontier
 - [ ] The scenario-cell action table distinguishes reuse, reconcile, re-execute, compensate, unknown, and block without relying on labels or file presence
 - [ ] Skill-specific score restoration preserves stage mediation, raw observations, gold integrity, constraint coverage, validity, and uncertainty
-- [ ] The phase remains planning-only and scoped to this target folder; phase 010 migration work and the six sibling concerns remain excluded
+- [ ] The phase remains planning-only and scoped to this target folder; phase 013 migration work and the six sibling concerns remain excluded
 
 ### Definition of Done
 
@@ -104,7 +104,7 @@ reimplemented.
 
 - Reconcile the parent program sequencing invariants, the phase-tree outcome, and the required adjacency to
   `004-certificates-and-receipts` and `006-shadow-parity`.
-- Pin the phase-003 ledger seal and phase-009 shared event rules, Skill Benchmark schema and reducer inputs, mode-004
+- Pin the phase-006 ledger seal and phase-012 shared event rules, Skill Benchmark schema and reducer inputs, mode-004
   common-service ownership, and phase-012 write-set conflict graph as versioned contract inputs.
 - Inventory the projection fields needed to resume a skill run: design and treatment cells, scenario lifecycle, discovery,
   loading, invocation, resources, milestones, outcomes, gold, raw observations, scores, usage, latency, validity, and common status.
@@ -167,11 +167,11 @@ reimplemented.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The direct contract inputs are Skill Benchmark `001-typed-ledger-schema` and `002-reducers-and-projections`, the phase-003
-ledger and phase-009 event contracts, and the deep-improvement-common mode-004 services. The predecessor
+The direct contract inputs are Skill Benchmark `001-typed-ledger-schema` and `002-reducers-and-projections`, the phase-006
+ledger and phase-012 event contracts, and the deep-improvement-common mode-004 services. The predecessor
 `004-certificates-and-receipts` and successor `006-shadow-parity` provide adjacent planning boundaries, not a hard runtime
-dependency for this child. Phase 012 supplies shared mode contracts and the write-set conflict graph before implementation
-integration; phase 010 consumes the frozen shared contracts afterward.
+dependency for this child. Phase 015 supplies shared mode contracts and the write-set conflict graph before implementation
+integration; phase 013 consumes the frozen shared contracts afterward.
 
 The research evidence is `002-deep-loop-effectiveness-and-fanout/research/findings-registry.json` for receipt completion versus
 workflow completion, logical versus attempt identity, branch-local success, and the versioned resume planner, plus

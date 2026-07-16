@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: next-focus semantics (recommendations implementation phase 007 child 004)"
+title: "Implementation Plan: next-focus semantics (recommendations implementation phase 010 child 004)"
 description: "Implementation plan for typed candidate derivation, deterministic scoring and tie-breaking, and replayable next-focus ledger decisions."
 trigger_phrases:
   - "next-focus semantics implementation plan"
@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime (phase 007 child 004) |
+| **Surface** | system-deep-loop runtime |
 | **Change class** | Typed decision logic + append-only ledger event |
 | **Execution** | Isolated worktree pinned to BASE; additive-dark and non-authoritative |
 
@@ -73,7 +73,7 @@ Generalize the shipped divergent-pivot candidate and transaction semantics into 
 
 ### Phase 1: Setup
 - Pin BASE; locate the canonical typed-ledger writer, transition gateway, replay fingerprint, projection watermark, and current-focus compatibility seams.
-- Capture the existing pivot candidate/dedup and divergent-pivot transaction tests as protected behavior; confirm the phase-007 placement in `manifest/phase-tree.json`.
+- Capture the existing pivot candidate/dedup and divergent-pivot transaction tests as protected behavior; confirm the phase-010 placement in `manifest/phase-tree.json`.
 
 ### Phase 2: Implementation
 - Add the focus-candidate union, normalized signal snapshot, validation errors, selected/no-eligible outcome, and versioned scoring-policy types.

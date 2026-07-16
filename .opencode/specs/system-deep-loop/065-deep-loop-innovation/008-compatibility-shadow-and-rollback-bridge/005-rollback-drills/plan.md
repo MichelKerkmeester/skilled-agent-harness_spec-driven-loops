@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Rollback Drills"
-description: "Implementation plan for hermetic, mode-scoped rollback rehearsals that prove legacy authority can be restored with intact replay, projection, state, epoch, and receipt evidence before phase 011."
+description: "Implementation plan for hermetic, mode-scoped rollback rehearsals that prove legacy authority can be restored with intact replay, projection, state, epoch, and receipt evidence before phase 014."
 trigger_phrases:
   - "rollback drills implementation plan"
   - "deep-loop rollback rehearsal runner"
@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop migration safety bridge (phase 005 child 005) |
+| **Surface** | system-deep-loop migration safety bridge |
 | **Change class** | Test-lane rollback orchestration, integrity verification, and evidence certification |
 | **Execution** | Hermetic per-mode drill; real legacy authority remains unchanged |
 
@@ -38,8 +38,8 @@ _memory:
 Implement one reusable rollback-drill runner driven by a versioned mode manifest. The runner preflights current parity,
 classification, rollback, projection, fingerprint, and receipt inputs; forks control and cutover lanes from one sealed
 capsule; performs a simulated test-lane authority flip; injects and detects a declared regression; executes the exact
-phase-001 rollback sequence; resumes legacy; verifies replay components, projected legacy bytes, state/effect counts,
-epochs, and receipts; then emits an immutable drill certificate. Phase 011 accepts that certificate only while every
+phase-004 rollback sequence; resumes legacy; verifies replay components, projected legacy bytes, state/effect counts,
+epochs, and receipts; then emits an immutable drill certificate. Phase 014 accepts that certificate only while every
 bound input remains current.
 <!-- /ANCHOR:summary -->
 
@@ -47,19 +47,19 @@ bound input remains current.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-001 rollback policy and `../../manifest/phase-tree.json` are pinned by digest and policy version
+- [ ] The phase-004 rollback policy and `../../manifest/phase-tree.json` are pinned by digest and policy version
 - [ ] The mode has a current sibling-003 parity certificate with zero unresolved divergences
 - [ ] Every in-flight shape in the drill capsule has one predecessor-004 disposition
 - [ ] The rollback anchor, legacy writer, adapters, projections, fingerprint verifier, and authority epochs are available
-- [ ] Phase-004 receipt/effect adapters have hermetic targets or cassettes and no unresolved intent
+- [ ] Phase-007 receipt/effect adapters have hermetic targets or cassettes and no unresolved intent
 - [ ] The runner can prove its authority store, state roots, effect sinks, clock, and evidence paths are test-only
 
 ### Definition of Done
 - [ ] The complete forward-detect-rollback-resume sequence executes for every cutover-eligible mode
-- [ ] Rollback finishes within the phase-001 window and any stricter declared mode deadline
+- [ ] Rollback finishes within the phase-004 window and any stricter declared mode deadline
 - [ ] Fingerprint components and legacy projections match the control after legacy resumes
 - [ ] State, artifacts, events, effects, receipts, epochs, and stale-writer denials reconcile without ambiguity
-- [ ] A current mode-scoped drill certificate is machine-verifiable by the phase-011 cutover preflight
+- [ ] A current mode-scoped drill certificate is machine-verifiable by the phase-014 cutover preflight
 - [ ] No drill changes real authority, live packet state, or an irreversible external effect
 <!-- /ANCHOR:quality-gates -->
 
@@ -81,10 +81,10 @@ bound input remains current.
 - **Rollback executor** freezes admission, fences the spine writer, drains or classifies in-flight work using only the
   predecessor-004 disposition, reconciles unresolved effect intents, restores legacy authority by compare-and-swap,
   denies stale writers, and resumes from the rollback anchor without deleting cutover-lane events.
-- **Integrity verifier** uses sibling-003 replay comparison semantics, sibling-002 legacy projection rules, phase-004
+- **Integrity verifier** uses sibling-003 replay comparison semantics, sibling-002 legacy projection rules, phase-007
   receipts/effect recovery, and exact state/artifact accounting. It compares verified observable components rather
   than requiring run-specific final descriptor digests to be equal.
-- **Certificate issuer** writes an immutable pass/fail record bound to all inputs and evidence. The phase-011 verifier
+- **Certificate issuer** writes an immutable pass/fail record bound to all inputs and evidence. The phase-014 verifier
   recomputes freshness and refuses partial, failed, stale, wrong-mode, or unverifiable evidence.
 <!-- /ANCHOR:architecture -->
 
@@ -106,14 +106,14 @@ bound input remains current.
   stale-writer denial, and resumed legacy continuation.
 - Implement fingerprint-component, projection-byte/reader, state/artifact/event, receipt/effect, epoch, timing, and
   isolation verifiers plus immutable drill-certificate issuance.
-- Implement the phase-011 consumer that checks certificate signature/receipt chain, complete evidence, mode identity,
+- Implement the phase-014 consumer that checks certificate signature/receipt chain, complete evidence, mode identity,
   policy compatibility, and drift across every bound input before a real flip.
 
 ### Phase 3: Verification
 - Run one clean pass per cutover-eligible mode and one negative case for every declared regression class.
 - Prove injected failures are detected, rollback completes before closure, legacy resumes correctly, cutover-lane
   events remain auditable, and real authority/effects remain unchanged.
-- Mutate each bound identity independently and verify the phase-011 preflight rejects the stale certificate.
+- Mutate each bound identity independently and verify the phase-014 preflight rejects the stale certificate.
 - Run crash injection at the authority/effect cut points and verify recovery produces one terminal receipt outcome,
   no double application, and no automatic success for `in_doubt`.
 - Run strict packet validation and the blocking SOL verifier against the exact candidate evidence set.
@@ -133,7 +133,7 @@ bound input remains current.
 | REQ-007 | Compare legacy bytes, ordering, formatting, watermarks, integrity fields, and unchanged-reader results to control |
 | REQ-008 | Reconcile state/artifact/event counts and every effect intent to one confirmed/reconciled result; reject conflict or `in_doubt` |
 | REQ-009 | Verify certificate bindings, evidence receipts, immutable ranges, reason codes, and verifier identity; tampering fails verification |
-| REQ-010 | Drift code, BASE, policy, parity, classification, adapter, projection, comparator, or rollback assets and require phase-011 refusal |
+| REQ-010 | Drift code, BASE, policy, parity, classification, adapter, projection, comparator, or rollback assets and require phase-014 refusal |
 | REQ-011 | Compare real authority and live-effect snapshots before and after every pass/failure; any mutation fails and quarantines the run |
 <!-- /ANCHOR:testing -->
 
@@ -142,10 +142,10 @@ bound input remains current.
 
 The phase declares no hard graph dependency (`depends_on: []`). Its execution inputs are the governing
 `../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`,
-the sibling `../003-shadow-parity-harness/spec.md`, predecessor `004-inflight-state-classification`, the phase-004
+the sibling `../003-shadow-parity-harness/spec.md`, predecessor `004-inflight-state-classification`, the phase-007
 `../../007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md`, and
 `../../manifest/phase-tree.json`. It also consumes the registered replay-fingerprint verifier and sibling legacy
-projection contract. Phase 010 mode gates and phase 011 cutover preflight consume the resulting certificate; phase 012
+projection contract. Phase 013 mode gates and phase 014 cutover preflight consume the resulting certificate; phase 015
 may not treat a rehearsal as live zero-use or retirement evidence.
 <!-- /ANCHOR:dependencies -->
 
@@ -156,5 +156,5 @@ Implementation of the drill machinery remains additive and disabled by default. 
 disable its test-only registration, invalidate certificates produced by the affected version, and retain all drill
 evidence for diagnosis. No real authority or live effect must need restoration because isolation preflight blocks those
 targets. Re-enable only after the affected manifests and complete mode closure rerun with a corrected runner version;
-phase 011 continues to reject cutover while evidence is absent or invalid.
+phase 014 continues to reject cutover while evidence is absent or invalid.
 <!-- /ANCHOR:rollback -->

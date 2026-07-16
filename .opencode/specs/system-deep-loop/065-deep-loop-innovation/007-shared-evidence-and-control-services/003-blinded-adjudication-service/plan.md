@@ -32,22 +32,22 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop shared runtime + five mode adapters |
 | **Change class** | New typed evidence/control service, additive-dark |
-| **Execution** | Implement behind the phase-003 event envelope; legacy decisions remain authoritative |
+| **Execution** | Implement behind the phase-006 event envelope; legacy decisions remain authoritative |
 
 ### Overview
 Implement a shared adjudication pipeline with four separated roles: registration owns identity-bearing inputs; the
 blinding registrar creates content-linked opaque presentations; judges emit raw pairwise or rubric judgments without
 identity access; and a versioned reducer evaluates mirrored-order and counterfactual stability. Append every stage to
 the authorized ledger and expose typed adapter results to deep-review, deep-ai-council, deep-improvement,
-model-benchmark, and skill-benchmark. Detailed field and storage choices are finalized against the landed phase-003
-envelope, while the phase-001 ADR's scoring separation and raw-evidence retention remain fixed.
+model-benchmark, and skill-benchmark. Detailed field and storage choices are finalized against the landed phase-006
+envelope, while the phase-004 ADR's scoring separation and raw-evidence retention remain fixed.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-003 event envelope, transition authorization, and replay-fingerprint contracts are available for typed event integration
+- [ ] The phase-006 event envelope, transition authorization, and replay-fingerprint contracts are available for typed event integration
 - [ ] The request, blinded-presentation, raw-score, counterfactual, reduction, verdict, invalidation, and deblinding event schemas are reviewed
 - [ ] Identity-bearing fields and permitted presentation transformations are enumerated with fail-closed defaults
 - [ ] A/B and B/A policy, tie/cycle handling, probe matrix, and stable/unstable/inconclusive semantics are frozen
@@ -77,7 +77,7 @@ envelope, while the phase-001 ADR's scoring separation and raw-evidence retentio
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-001 ADR and manifest invariants, bind to the landed phase-003 envelope/fingerprint contracts, and inventory every identity-bearing or position-bearing field.
+- Confirm the phase-004 ADR and manifest invariants, bind to the landed phase-006 envelope/fingerprint contracts, and inventory every identity-bearing or position-bearing field.
 - Freeze event vocabulary, counterfactual policy, mode adapter boundary, and the dark/non-authoritative migration flag.
 
 ### Phase 2: Implementation
@@ -114,7 +114,7 @@ envelope, while the phase-001 ADR's scoring separation and raw-evidence retentio
 | REQ-011 | Contract tests cover deep-review, deep-ai-council, deep-improvement, model-benchmark, and skill-benchmark adapters |
 | REQ-012 | Shadow tests compare service output to legacy output while asserting legacy remains the only authority |
 | REQ-013 | Pre-verdict and unauthorized deblinding fail; authorized post-verdict deblinding emits a complete audit event |
-| REQ-014 | Source-reference checks cover `research-modes.md`, the phase-001 ADR, and `manifest/phase-tree.json` |
+| REQ-014 | Source-reference checks cover `research-modes.md`, the phase-004 ADR, and `manifest/phase-tree.json` |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
@@ -124,7 +124,7 @@ The phase declares no hard sibling dependency (`depends_on: []`). Its architectu
 `.opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`
 and `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`.
 Its research basis is `.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md`.
-Implementation integrates with the phase-003 authorized event envelope and later with the sealed-reference service, but
+Implementation integrates with the phase-006 authorized event envelope and later with the sealed-reference service, but
 the sibling adjacency does not create a planning-time runtime dependency.
 <!-- /ANCHOR:dependencies -->
 
@@ -135,5 +135,5 @@ The service lands additive-dark. Rollback disables new request admission and mod
 already appended raw-score, probe, verdict, invalidation, and deblinding events readable, and returns consumers to the
 unchanged legacy decision path. No rollback deletes or rewrites evidence. A reducer defect is corrected by appending an
 invalidation and a new versioned reduction linked to the same raw events; identity mappings remain sealed under their
-original access policy. Later authority-cutover rollback remains owned by phase 011.
+original access policy. Later authority-cutover rollback remains owned by phase 014.
 <!-- /ANCHOR:rollback -->

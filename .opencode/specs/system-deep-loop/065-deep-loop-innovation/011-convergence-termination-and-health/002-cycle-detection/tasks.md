@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cycle detection (008 phase 002)"
+title: "Tasks: cycle detection"
 description: "Tasks for planning and verifying canonical cycle signatures, bounded ledger history, sensitivity thresholds, progress gating, health events, and stopping-clock integration."
 trigger_phrases:
   - "cycle detection tasks"

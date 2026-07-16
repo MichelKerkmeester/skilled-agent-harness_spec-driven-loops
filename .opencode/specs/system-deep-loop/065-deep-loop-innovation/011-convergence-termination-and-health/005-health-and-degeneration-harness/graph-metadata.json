@@ -194,8 +194,8 @@
       }
     ],
     "causal_summary": "Plan a generic, mode-agnostic health and degeneration harness that turns mode collapse, repetition, novelty starvation, quality decay, budget thrash, and unusable telemetry into typed signals and bounded pause, re-seed, or stop requests without taking stop authority.",
-    "created_at": "2026-07-15T19:00:43.254Z",
-    "last_save_at": "2026-07-15T19:00:43.254Z",
+    "created_at": "2026-07-16T03:43:53.754Z",
+    "last_save_at": "2026-07-16T03:43:53.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:32bcf296e950aaae0c4e5b1498a324292e6d9a3a2168306a67cc0c8c3c278d4c",
+    "source_fingerprint": "sha256:397389dea6ed58af9d2423598b43d36885aa88807574f16fa7b13a14fcea01cc",
     "source_doc_hashes": {
-      "spec.md": "b62622d2baffa299c045dd5c987deaa666fa853da33429491d5f4c0633938df0",
-      "plan.md": "8957f2299ee8159b5fde15cb8cd880999a695698e53ed70ace89ebcfabbc5930",
-      "tasks.md": "9bbf906320b2c8e95c97331b63b5d7eb27613d3f873b7913e5c3784def76692c",
-      "checklist.md": "aaebe330260b63acfe1d3d1aa81b7c60e4738ed637c4794f5782f033bd27da3b"
+      "spec.md": "d0570905999b084ba237ab5efd44cec32bdb510952f90bc810dfa5ad2141163e",
+      "plan.md": "edb085c0c5ca93068f9003a63c5cec7671e3408c70796cf5240bf6983574c347",
+      "tasks.md": "c4010088ca1c79ecb0a4f8fa169982a569d2a0e5e77c0f2cc88f15e18d96ccaf",
+      "checklist.md": "3d03da6f656b0eee7b6996935eca47ad6c560a6cfc8a46ac1ec1c56512557009"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,15 +28,15 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for the canonical-dispatch-receipts phase. The verifier pins the candidate and baseline revisions, records the phase-002 adapter/fingerprint and phase-003/004 interface versions, captures commands plus exit codes and discovered-test counts, and fails on zero tests, unexpected tracked mutation, any spawn before durable receipt append, any blind respawn of an unresolved receipt, or any unverified completion claim.
+This checklist is the blocking verifier contract for the canonical-dispatch-receipts phase. The verifier pins the candidate and baseline revisions, records the phase-005 adapter/fingerprint and phase-006/004 interface versions, captures commands plus exit codes and discovered-test counts, and fails on zero tests, unexpected tracked mutation, any spawn before durable receipt append, any blind respawn of an unresolved receipt, or any unverified completion claim.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-002 adapter/fingerprint behavior and legacy dispatch baselines are pinned before integration
-- [ ] CHK-002 [P0] Phase-003 envelope, authorization, ledger append, and append-receipt interfaces are versioned and available
-- [ ] CHK-003 [P0] Phase-004 receipt/effect-recovery trust and unresolved-effect contracts are versioned and available
+- [ ] CHK-001 [P0] Phase-005 adapter/fingerprint behavior and legacy dispatch baselines are pinned before integration
+- [ ] CHK-002 [P0] Phase-006 envelope, authorization, ledger append, and append-receipt interfaces are versioned and available
+- [ ] CHK-003 [P0] Phase-007 receipt/effect-recovery trust and unresolved-effect contracts are versioned and available
 - [ ] CHK-004 [P1] The fan-out path inventory names the final pre-pool and pre-spawn boundaries where the durability barrier applies
 - [ ] CHK-005 [P2] Candidate SHA, baseline SHA, event schema version, and interface versions are recorded in the verifier report
 <!-- /ANCHOR:pre-impl -->
@@ -68,7 +68,7 @@ This checklist is the blocking verifier contract for the canonical-dispatch-rece
 - [ ] CHK-022 [P0] Restart without a registered durable key provider does not promote a process-local HMAC to restart-verifiable authority
 - [ ] CHK-023 [P0] Credential, raw-prompt, environment-secret, and run-master-secret canaries are absent from event payloads, canonicalization diagnostics, and logs
 - [ ] CHK-024 [P0] Replaying the same verified ledger range rebuilds byte-identical dispatch projections and detects fingerprint conflicts deterministically
-- [ ] CHK-025 [P0] Phase-002 command argv, manifest expansion, capped-pool behavior, retries, budgets, checkpoints, and persisted artifacts retain baseline parity in dark mode
+- [ ] CHK-025 [P0] Phase-005 command argv, manifest expansion, capped-pool behavior, retries, budgets, checkpoints, and persisted artifacts retain baseline parity in dark mode
 - [ ] CHK-026 [P1] Targeted tests assert non-zero discovery counts and cover every receipt/spawn/result crash cut
 <!-- /ANCHOR:testing -->
 
@@ -105,7 +105,7 @@ This checklist is the blocking verifier contract for the canonical-dispatch-rece
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete only when every P0 check has evidence, each subprocess launch is gated by a durable authorized receipt containing the exact phase-002 invocation fingerprint, exact retries are idempotent, conflicting retries fail before spawn, receipt-only crashes remain unresolved, secret and verifier-trust boundaries hold, legacy dispatch stays authoritative and behaviorally unchanged, and strict validation plus targeted runtime gates are green with non-zero discovery.
+The phase is complete only when every P0 check has evidence, each subprocess launch is gated by a durable authorized receipt containing the exact phase-005 invocation fingerprint, exact retries are idempotent, conflicting retries fail before spawn, receipt-only crashes remain unresolved, secret and verifier-trust boundaries hold, legacy dispatch stays authoritative and behaviorally unchanged, and strict validation plus targeted runtime gates are green with non-zero discovery.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

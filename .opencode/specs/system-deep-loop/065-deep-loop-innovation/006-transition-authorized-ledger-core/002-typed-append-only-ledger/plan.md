@@ -30,7 +30,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop shared runtime (phase 003 child 002) |
+| **Surface** | system-deep-loop shared runtime |
 | **Change class** | Additive-dark persistence core; no authority cutover |
 | **Execution** | Path-scoped runtime modules and tests on the phase program's pinned BASE |
 
@@ -48,7 +48,7 @@ dark adapters mirror successful legacy-domain events into the new ledger for lat
 
 ### Definition of Ready
 - [ ] The sibling `001-versioned-event-envelope` contract supplies canonical bytes, stable `event_id`, schema version, event type, stream/subject identity, and authorization binding fields.
-- [ ] The phase-003 parent identifies the authorization-proof interface that the ledger must validate before append.
+- [ ] The phase-006 parent identifies the authorization-proof interface that the ledger must validate before append.
 - [ ] The state census pins every legacy JSONL/state/checkpoint writer and reducer that will receive a dark adapter.
 - [ ] The ledger storage root, file permissions, lock scope, ledger identity, segment naming, and error taxonomy are fixed before implementation.
 - [ ] Legacy authority and dark failure-isolation behavior are encoded as tests before any integration hook is added.
@@ -118,10 +118,10 @@ dark adapters mirror successful legacy-domain events into the new ledger for lat
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-`depends_on: []` applies to this planning contract. Runtime integration composes at the phase-003 parent with predecessor
+`depends_on: []` applies to this planning contract. Runtime integration composes at the phase-006 parent with predecessor
 folder `001-versioned-event-envelope`, successor `003-replay-fingerprints`, and the authorization-gateway sibling; none
 is treated as a hidden planning dependency. Evidence sources are the program `spec.md`, `manifest/phase-tree.json`, the
-phase-001 spine ADR, and shipped runtime files under `.opencode/skills/system-deep-loop/runtime/`, especially
+phase-004 spine ADR, and shipped runtime files under `.opencode/skills/system-deep-loop/runtime/`, especially
 `atomic-state.ts`, `jsonl-repair.ts`, `round-state-jsonl.cjs`, `fanout-run.cjs`, `fanout-pool.cjs`,
 `observability-events.cjs`, `reduce-state.cjs`, `reduce-alignment-state.cjs`, and `verify-iteration.cjs`.
 <!-- /ANCHOR:dependencies -->

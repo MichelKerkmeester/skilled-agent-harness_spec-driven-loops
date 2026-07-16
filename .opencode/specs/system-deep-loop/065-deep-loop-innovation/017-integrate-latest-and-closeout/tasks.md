@@ -1,9 +1,9 @@
 ---
-title: "Tasks: Integrate Latest & Closeout (065 phase 014)"
-description: "Tasks for phase 014 of the system-deep-loop recommendations implementation: final integration, drift reopening, whole-system gate rerun, and packet closeout."
+title: "Tasks: Integrate Latest & Closeout"
+description: "Tasks for phase 017 of the system-deep-loop recommendations implementation: final integration, drift reopening, whole-system gate rerun, and packet closeout."
 trigger_phrases:
   - "integrate latest and closeout tasks"
-  - "deep-loop phase 014 tasks"
+  - "deep-loop phase 017 tasks"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/017-integrate-latest-and-closeout"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T16:30:00Z"
     last_updated_by: "opencode"
     recent_action: "Mapped integrate, recensus, reopen, gate, and closeout work into tasks"
-    next_safe_action: "Confirm phase-013 evidence and start the final integration preflight"
+    next_safe_action: "Confirm phase-016 evidence and start the final integration preflight"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -59,14 +59,14 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Rerun the complete phase-013 whole-system gate on the exact final SHA (`016-whole-system-gate` gate commands) [2-4h]
+- [ ] T011 Rerun the complete phase-016 whole-system gate on the exact final SHA (`016-whole-system-gate` gate commands) [2-4h]
 - [ ] T012 Verify exact-SHA behavior and mode baselines, mixed-version replay, crash injection, counterfactual and degeneration tests, and parity against 000 (`016-whole-system-gate` evidence) [2h]
 - [ ] T013 Obtain the blocking SOL receipt bound to the final SHA and record all gate commands and exit codes (`SOL receipt`) [1h]
 - [ ] T014 Run recursive `validate.sh --strict` and confirm no stale pre-integration receipt is presented as final (`validate.sh`) [30m]
 - [ ] T015 Regenerate `description.json` and `graph-metadata.json` through deterministic tooling across the affected packet tree (`metadata tooling`) [45m]
 - [ ] T016 Reconcile parent phase-map status, child status fields, completion percentages, changelogs, and open-item dispositions (`065-deep-loop-innovation/`) [1h]
 - [ ] T017 Record any approved carry-forward items with owner and next action; do not delete historical open-item entries (`065 open-item ledger`) [30m]
-- [ ] T018 Publish the final closeout record with reviewed drift set, reopen set, final SHA, gate result, metadata result, and rollback point (`phase 014 evidence`) [45m]
+- [ ] T018 Publish the final closeout record with reviewed drift set, reopen set, final SHA, gate result, metadata result, and rollback point (`phase 017 evidence`) [45m]
 - [ ] T019 Merge or hand off the final candidate only after the closeout checklist is green and the worktree mutation scope is reconciled (`sk-git`) [30m]
 <!-- /ANCHOR:phase-3 -->
 
@@ -75,7 +75,7 @@ _memory:
 
 - [ ] All tasks complete
 - [ ] All requirements in spec.md met with evidence
-- [ ] Phase-013 whole-system gate is green on the exact final SHA
+- [ ] Phase-016 whole-system gate is green on the exact final SHA
 - [ ] Relevant drift has no unreopened owning phase
 - [ ] Parent rollup, changelogs, open items, and generated metadata are consistent
 <!-- /ANCHOR:completion -->

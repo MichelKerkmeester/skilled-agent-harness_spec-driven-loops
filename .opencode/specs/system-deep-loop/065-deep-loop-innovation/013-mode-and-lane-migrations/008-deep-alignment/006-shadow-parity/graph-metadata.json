@@ -168,9 +168,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-011 shadow framework and reuses the shared review-loop contract frozen in phase 009.",
-    "created_at": "2026-07-15T21:45:51.773Z",
-    "last_save_at": "2026-07-15T21:45:51.773Z",
+    "causal_summary": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-014 shadow framework and reuses the shared review-loop contract frozen in phase 012.",
+    "created_at": "2026-07-16T03:43:44.129Z",
+    "last_save_at": "2026-07-16T03:43:44.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,12 +179,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:fba5ce5f2220946b79580c20abc287ac9cad622127047afed4b2e02acbe6db71",
+    "source_fingerprint": "sha256:861a4f60bb868fc8a915fbebd35ecd73ae34b92ea5ca89e25400ddc82948223d",
     "source_doc_hashes": {
-      "spec.md": "f45dcc723e3668db2967656153e282917963413ec4722a30644c5e30ac2e51c4",
-      "plan.md": "8d034f65fb79025659061222905c43e21aa1e78fee148c420be540f2bed321fd",
-      "tasks.md": "6bda3b3bc2d1f76442802b72540daa015dd8d950f2a781417a12f89a9168f9ec",
-      "checklist.md": "dbb6852ea5dd36808380a44a7b6cf1de97f0d7871376a6a995a33c64e83af798"
+      "spec.md": "a5668beaa5871dbe8495b3a575394b2f5b4e36728e51ae173326f6f72a071d03",
+      "plan.md": "57f023213c7b44ce8b1140b6e4cb4ec7a3858a06d7b0796071a39ce4907d6454",
+      "tasks.md": "049e8851f4e91f9c85ce2b09eac3b229436589e2edd61357bb3ae7bb2460d67a",
+      "checklist.md": "e627e65d9762536a61e21c1c5ca626755dd375390a9cb132457bf2c28b2a7aca"
     },
     "last_active_child_id": null,
     "last_active_at": null

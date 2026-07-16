@@ -65,7 +65,7 @@ predecessor evidence, effect identity, replay fingerprint, and outcome.
 The implementation builds on deep-improvement-common services from mode 004 for run identity, executor descriptors, sealed
 references, evaluator/canary/promotion behavior, budgets, effect recovery, receipt persistence, and offline verification.
 Only Skill Benchmark scenario and scoring logic is added here. This is planning only: the 010 migrations are the per-mode
-fan-out after phase 009 freezes shared contracts and emits the executable dependency and write-set conflict graph.
+fan-out after phase 012 freezes shared contracts and emits the executable dependency and write-set conflict graph.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -83,9 +83,9 @@ fan-out after phase 009 freezes shared contracts and emits the executable depend
 ### Out of Scope
 - Reimplementing deep-improvement-common run identity, dispatch, evaluator, canary, promotion, budget, lock, effect-recovery, receipt storage, sealed-artifact, fingerprint serialization, or offline-verifier services.
 - Defining the typed event envelope, reducers, projections, treatment event vocabulary, or canonical score reducers owned by Skill Benchmark siblings `001-typed-ledger-schema` and `002-reducers-and-projections`.
-- Creating or changing the phase-003 sealing primitive; this phase consumes `003-sealed-artifacts` references and its certificate/receipt primitive bindings.
+- Creating or changing the phase-006 sealing primitive; this phase consumes `003-sealed-artifacts` references and its certificate/receipt primitive bindings.
 - New benchmark tasks, executor providers, authority cutover, legacy-writer retirement, in-flight state migration, or live promotion.
-- The 010 per-mode implementation fan-out before phase 009 freezes shared contracts and publishes the write-set conflict graph.
+- The 010 per-mode implementation fan-out before phase 012 freezes shared contracts and publishes the write-set conflict graph.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -158,7 +158,7 @@ emits a verifier receipt bound to the certificate fingerprint, verifier version,
 - **Shared-service duplication** - A variant-local verifier or receipt schema can diverge from agent-improvement and model-benchmark. Mitigation: adapter-only ownership tests and semantic parity fixtures through the mode-004 common services.
 - **Offline replay is falsely deterministic** - Stable sorting does not capture treatment assignment, evidence admission, retries, budgets, or evaluator drift. Mitigation: include every declared semantic decision in the fingerprint and retain its receipt.
 - **Unknown effect outcome is mistaken for success** - A crash before a receipt commit can leave an invocation or scoring effect ambiguous. Mitigation: preserve `uncertain` and require the common effect-recovery policy before retry, issue, expire, or restore.
-- **Dependencies**: Skill Benchmark siblings `001-typed-ledger-schema` and `002-reducers-and-projections`; `003-sealed-artifacts` primitives; deep-improvement-common mode-004 certificate, receipt, fingerprint, evaluator, canary, promotion, budget, and verifier services; phase 012 shared mode contracts; phase 009 freeze and write-set graph; successor `005-resume-adapter`; and the existing benchmark harness for behavior baselines. The manifest `depends_on` is empty by design; implementation must fail closed if consumed contracts are unavailable.
+- **Dependencies**: Skill Benchmark siblings `001-typed-ledger-schema` and `002-reducers-and-projections`; `003-sealed-artifacts` primitives; deep-improvement-common mode-004 certificate, receipt, fingerprint, evaluator, canary, promotion, budget, and verifier services; phase 012 shared mode contracts; phase 012 freeze and write-set graph; successor `005-resume-adapter`; and the existing benchmark harness for behavior baselines. The manifest `depends_on` is empty by design; implementation must fail closed if consumed contracts are unavailable.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

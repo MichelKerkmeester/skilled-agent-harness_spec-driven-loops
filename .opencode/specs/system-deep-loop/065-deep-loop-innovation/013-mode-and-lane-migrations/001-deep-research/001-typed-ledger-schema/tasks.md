@@ -14,12 +14,12 @@ _memory:
     last_updated_at: "2026-07-15T17:20:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped the Deep Research event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-009 shared contracts"
+    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
     blockers: []
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact shared envelope field names and transition tokens does phase 009 freeze?"
+      - "Which exact shared envelope field names and transition tokens does phase 012 freeze?"
     answered_questions:
       - "Reducers and projections are owned by the next sibling"
 ---
@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 003 transition authorization and phase 009 shared event contracts are frozen before naming mode fields
+- [ ] T001 Confirm phase 006 transition authorization and phase 012 shared event contracts are frozen before naming mode fields
 - [ ] T002 Inventory current Deep Research JSONL records, iteration outputs, lifecycle modes, reducer-owned files, and memory-save handoff points
 - [ ] T003 Build the event ownership matrix separating shared ledger events, Deep Research events, and the next sibling's reducer/projection outputs
 <!-- /ANCHOR:phase-1 -->
@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Verify every event payload conforms to the phase-009 envelope and every append request carries phase-003 authorization metadata
+- [ ] T009 Verify every event payload conforms to the phase-012 envelope and every append request carries phase-006 authorization metadata
 - [ ] T010 Verify the event union covers `init -> iterate: gather/analyze -> convergence -> synthesize -> memory-save` without assigning reducer ownership
 - [ ] T011 Verify deterministic IDs, causal links, previous-tail hashes, payload digests, immutable evidence references, and supersession-only revisions
 - [ ] T012 Verify raw observations remain separate from trusted or derived decisions, including `newInfoRatio`, evidence yield, admission, claim status, and convergence outcome

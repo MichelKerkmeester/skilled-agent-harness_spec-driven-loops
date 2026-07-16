@@ -181,8 +181,8 @@
       }
     ],
     "causal_summary": "Plan the typed append-only event vocabulary for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. This phase defines the event-envelope specialization, concrete payloads, field types, schema versions, and upcaster hooks consumed by agent-improvement, model-benchmark, and skill-benchmark; reducers and projections belong to the next sibling.",
-    "created_at": "2026-07-15T21:44:12.448Z",
-    "last_save_at": "2026-07-15T21:44:12.448Z",
+    "created_at": "2026-07-16T03:43:35.741Z",
+    "last_save_at": "2026-07-16T03:43:35.741Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:ed647f06335560293cfdfdea0a7945c03ccc960a0f5bb3ed08aa5315978578aa",
+    "source_fingerprint": "sha256:3c1413d1f177e7067df6e1a59815cebafc98bc8857c83dbaed2464dc8f20e730",
     "source_doc_hashes": {
-      "spec.md": "532d04a238a2fc2eae55804fdc0f6c15f6fe7f7cc2eb8ff95022c01703b2b96f",
-      "plan.md": "dec3a450d9d4adefac4691aa47eb2f7470ad9c773b32932b3252258c10b2c934",
-      "tasks.md": "8553a7da416efff6dcdc2a9fe88ee0b678ed2d2b9f8ebe7127a0704941608c1a",
-      "checklist.md": "e06797f59471ef08d52f23e5ab863cf708050ddfac9fdfef279bae97b8bc6715"
+      "spec.md": "a92ebc1d5210a89a3d581938884bf00f60d539a3015d30de461f76b5a8e45ecb",
+      "plan.md": "9a12ba691fe5e0fbb030656bcc6c2ec074e8ec86c258b1a6e1995d67887f08a3",
+      "tasks.md": "5d02563f05195bc22abdeadaf3511c40e56759c588e0b4779c89cc60c9aabfd2",
+      "checklist.md": "37aba11c11883015cdfedf8877aa5c4b6713cef11bd52c300e90c3a8a7ecf97c"
     },
     "last_active_child_id": null,
     "last_active_at": null

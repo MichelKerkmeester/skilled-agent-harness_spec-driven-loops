@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep Review resume adapter (013 phase 002/005)"
+title: "Checklist: Deep Review resume adapter"
 description: "Blocking verification checklist for the planned Deep Review resume adapter: sealed-frontier folding, continuity-ladder recovery, idempotent re-entry, and fail-closed replay behavior."
 trigger_phrases:
   - "deep review resume adapter checklist"
@@ -38,8 +38,8 @@ frontier, duplicate logical transition, missing event, unsafe unknown-effect ret
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-009 shared review-loop contract is frozen with sealed-frontier and reducer bindings
-- [ ] CHK-002 [P0] Phase-012 mode interface and write-set conflict graph are pinned for the Deep Review lineage
+- [ ] CHK-001 [P0] Phase-012 shared review-loop contract is frozen with sealed-frontier and reducer bindings
+- [ ] CHK-002 [P0] Phase-015 mode interface and write-set conflict graph are pinned for the Deep Review lineage
 - [ ] CHK-003 [P1] Interruption boundary matrix covers scope, dimension pass, candidate, proof, convergence, and report states
 - [ ] CHK-004 [P1] Continuity-ladder state table identifies one owning logical ID and next safe action for every fixture
 <!-- /ANCHOR:pre-impl -->
@@ -102,7 +102,7 @@ frontier, duplicate logical transition, missing event, unsafe unknown-effect ret
 
 The phase is complete when every P0 verifier check passes, deterministic folding agrees across all interruption fixtures,
 duplicate and unsafe re-entry cases fail closed, report projection is idempotent, and the adapter is proven to consume the
-phase-009 shared loop contract and phase-012 write-set graph without authority movement.
+phase-012 shared loop contract and phase-012 write-set graph without authority movement.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

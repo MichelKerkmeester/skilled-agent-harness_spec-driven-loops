@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-001 ADR and manifest invariants, bind the design to the phase-003 envelope/fingerprint contract, and inventory identity-bearing and position-bearing fields
+- [ ] T001 Confirm the phase-004 ADR and manifest invariants, bind the design to the phase-006 envelope/fingerprint contract, and inventory identity-bearing and position-bearing fields
 - [ ] T002 Freeze the `AdjudicationRequest`, event vocabulary, counterfactual policy, stable/unstable/inconclusive semantics, and five mode-adapter boundaries
 <!-- /ANCHOR:phase-1 -->
 

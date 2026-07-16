@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | First child of the phase-005 compatibility, shadow, and rollback bridge |
+| **Origin** | First child of the phase-008 compatibility, shadow, and rollback bridge |
 | **Dependencies** | None; `depends_on: []` in the approved child definition |
 | **Authority posture** | Legacy remains canonical; the dark ledger is parallel, observable, and non-authoritative |
 <!-- /ANCHOR:metadata -->
@@ -49,11 +49,11 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Phase 003 plans the canonical versioned envelope and typed append-only ledger, but the shipped runtime still reads and writes producer-native JSON snapshots and JSONL rows. The current atomic persistence layer accepts `unknown`, serializes caller-owned shapes, performs replace-style atomic writes, and offers diff-gated JSONL appends without imposing a domain schema or per-record compatibility contract (`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts`). New code therefore cannot safely consume historical events or state merely by switching readers: older records may have a supported schema, a missing version edge, an ambiguous unversioned shape, or a future version that current code must refuse.
+Phase 006 plans the canonical versioned envelope and typed append-only ledger, but the shipped runtime still reads and writes producer-native JSON snapshots and JSONL rows. The current atomic persistence layer accepts `unknown`, serializes caller-owned shapes, performs replace-style atomic writes, and offers diff-gated JSONL appends without imposing a domain schema or per-record compatibility contract (`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts`). New code therefore cannot safely consume historical events or state merely by switching readers: older records may have a supported schema, a missing version edge, an ambiguous unversioned shape, or a future version that current code must refuse.
 
-The phase-001 transition policy fixes the compatibility rules: writers emit only the current registered event version; readers transform supported historical versions through pure adjacent `type@N -> type@N+1` upcasters; stored bytes and immutable identity remain available; and unknown types, future versions, missing links, lossy transforms, or ambiguous defaults fail closed (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`). Phase 003 then defines the canonical envelope read boundary and dark ledger, including stored/effective versions and a verified typed stream (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope/spec.md`; `.opencode/specs/system-deep-loop/065-deep-loop-innovation/006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`).
+The phase-004 transition policy fixes the compatibility rules: writers emit only the current registered event version; readers transform supported historical versions through pure adjacent `type@N -> type@N+1` upcasters; stored bytes and immutable identity remain available; and unknown types, future versions, missing links, lossy transforms, or ambiguous defaults fail closed (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`). Phase 006 then defines the canonical envelope read boundary and dark ledger, including stored/effective versions and a verified typed stream (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/006-transition-authorized-ledger-core/001-versioned-event-envelope/spec.md`; `.opencode/specs/system-deep-loop/065-deep-loop-innovation/006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md`).
 
-This phase plans the compatibility seam that makes those contracts usable during shadowing. It registers and chains event and state-record upcasters, reads comparable legacy and dark representations, normalizes both to a current read model, and reconciles them without moving authority. “Single-write” means one authoritative mutation: the command reaches the legacy writer exactly once, and the accepted transition may also produce one non-authoritative dark-ledger mirror. The adapter never treats the dark append as operational success, never falls back to dark state when legacy fails, and never writes reconciled data back to either store. That distinction preserves the parent program's additive-dark migration model and its rule that phase 005 performs no authority cutover (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`; `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`).
+This phase plans the compatibility seam that makes those contracts usable during shadowing. It registers and chains event and state-record upcasters, reads comparable legacy and dark representations, normalizes both to a current read model, and reconciles them without moving authority. “Single-write” means one authoritative mutation: the command reaches the legacy writer exactly once, and the accepted transition may also produce one non-authoritative dark-ledger mirror. The adapter never treats the dark append as operational success, never falls back to dark state when legacy fails, and never writes reconciled data back to either store. That distinction preserves the parent program's additive-dark migration model and its rule that phase 008 performs no authority cutover (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/spec.md`; `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`).
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -61,7 +61,7 @@ This phase plans the compatibility seam that makes those contracts usable during
 
 ### In Scope
 - A deterministic upcaster registry keyed by record family and stable type discriminator, with one declared current version, every supported historical version, and exactly one adjacent transform for each supported non-current version.
-- Pure event upcasters that preserve immutable stored envelope fields and source bytes while producing the current effective `event_version` and payload expected by phase-003 readers.
+- Pure event upcasters that preserve immutable stored envelope fields and source bytes while producing the current effective `event_version` and payload expected by phase-006 readers.
 - Pure state-record upcasters for explicitly versioned legacy snapshot/JSONL families, producing a current normalized read model with source kind, source version, effective version, and ordered hop trace.
 - Startup validation that rejects duplicate registrations, non-adjacent edges, gaps, cycles, multiple current versions, unsupported outer-envelope versions, and registry ordering that is not deterministic.
 - A dual-read adapter that obtains legacy and dark observations for the same logical run/stream and comparison point, validates and upcasts each independently, and emits a typed reconciliation result.
@@ -71,12 +71,12 @@ This phase plans the compatibility seam that makes those contracts usable during
 - Fixtures covering supported multi-hop versions, current versions, unversioned/ambiguous legacy shapes, future versions, missing edges, non-comparable snapshots, dark lag, dark corruption, and mirror-append failure.
 
 ### Out of Scope
-- Defining the canonical envelope, ledger frame, authorization proof, replay-fingerprint algorithm, or ledger durability rules owned by phase 003.
-- Implementing legacy projections owned by successor `002-legacy-projections` or the shadow-parity harness, state classification, and rollback drills owned by later phase-005 siblings.
+- Defining the canonical envelope, ledger frame, authorization proof, replay-fingerprint algorithm, or ledger durability rules owned by phase 006.
+- Implementing legacy projections owned by successor `002-legacy-projections` or the shadow-parity harness, state classification, and rollback drills owned by later phase-008 siblings.
 - Rewriting historical JSONL rows, snapshots, checkpoints, or committed ledger bytes into a new version.
 - Treating an unversioned legacy shape as a supported version without an explicit, fixture-backed discriminator and lossless mapping.
 - Returning a dark value when the legacy read fails, allowing a dark append to change legacy success/failure semantics, or promoting dark state to canonical authority.
-- Moving authority, issuing a cutover certificate, retiring a legacy writer, or weakening the phase-001 rollback-window policy; those actions remain in phases 011 and 012.
+- Moving authority, issuing a cutover certificate, retiring a legacy writer, or weakening the phase-004 rollback-window policy; those actions remain in phases 011 and 012.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -94,14 +94,14 @@ This phase plans the compatibility seam that makes those contracts usable during
 | REQ-008 | Dark failures are observable without becoming authority | Mirror append, verification, or read failures emit bounded typed evidence and block parity/cutover claims while preserving the authoritative legacy result and its error semantics |
 | REQ-009 | The adapter performs no read-repair or reverse synchronization | No reconciliation outcome writes an upcast result, dark value, synthesized default, or divergence resolution back to legacy or committed ledger storage |
 | REQ-010 | Adapter disablement is reversible and behavior-preserving | Disabling dual read and dark mirroring routes directly to the unchanged legacy reader/writer contracts; retained dark records remain audit-only and require no rollback migration |
-| REQ-011 | The compatibility seam composes with phase-003 contracts | Event reads enter through the canonical envelope registry; dark reads consume verified ledger events; dark writes use current-version envelopes and authorized append; adapters do not bypass validation or authorization |
+| REQ-011 | The compatibility seam composes with phase-006 contracts | Event reads enter through the canonical envelope registry; dark reads consume verified ledger events; dark writes use current-version envelopes and authorized append; adapters do not bypass validation or authorization |
 | REQ-012 | Current atomic persistence semantics remain explicit | Integration inventories `writeStateAtomic`, `writeStateIfChangedAtomic`, `appendJsonlIfChangedAtomic`, and deferred writers; adapters add codecs at call boundaries rather than treating generic serialization as a schema |
 
 ### Upcaster registration and chaining contract
 
 | Contract element | Required behavior |
 |------------------|-------------------|
-| Registry key | Exact stable record family plus event/state type; case-sensitive and namespaced where the phase-003 envelope requires it. |
+| Registry key | Exact stable record family plus event/state type; case-sensitive and namespaced where the phase-006 envelope requires it. |
 | Version edge | One adjacent transform from `N` to `N+1`; no skips, reverse edges, or runtime-selected alternatives. |
 | Current write | Only the registered current event version may enter the dark append boundary; historical caller-selected writes are rejected. |
 | Historical read | Validate stored form, resolve the exact chain, validate every hop, then validate the current effective form before exposing it. |
@@ -110,7 +110,7 @@ This phase plans the compatibility seam that makes those contracts usable during
 
 ### Dual-read reconciliation rule
 
-The adapter samples both sources under one comparison token. The token identifies the same mode/run/stream, authority epoch, legacy checkpoint or record position, and verified dark-ledger head. Each source is decoded and upcast independently before semantic comparison. A comparable pair uses the phase-003 replay/canonicalization contract rather than raw JSON key order; a pair that represents different causal points is `not_comparable` or `dark_lagging`, not a semantic divergence.
+The adapter samples both sources under one comparison token. The token identifies the same mode/run/stream, authority epoch, legacy checkpoint or record position, and verified dark-ledger head. Each source is decoded and upcast independently before semantic comparison. A comparable pair uses the phase-006 replay/canonicalization contract rather than raw JSON key order; a pair that represents different causal points is `not_comparable` or `dark_lagging`, not a semantic divergence.
 
 | Legacy observation | Dark observation | Operational result during shadowing | Evidence outcome |
 |--------------------|------------------|------------------------------------|------------------|
@@ -123,7 +123,7 @@ The adapter samples both sources under one comparison token. The token identifie
 
 ### Single-authoritative-write invariant
 
-The legacy mutation remains the only operation allowed to determine accepted state, returned value, retry semantics, or domain failure. After a legacy transition is accepted, the dark path receives the current-version canonical envelope under the phase-003 authorization and idempotency contracts. The adapter may record a mirror failure, but it cannot retry the legacy mutation, infer success from the dark append, project dark data back into legacy, or expose a mode switch that changes authority. This is one authoritative write with a parallel shadow record, not dual authority.
+The legacy mutation remains the only operation allowed to determine accepted state, returned value, retry semantics, or domain failure. After a legacy transition is accepted, the dark path receives the current-version canonical envelope under the phase-006 authorization and idempotency contracts. The adapter may record a mirror failure, but it cannot retry the legacy mutation, infer success from the dark append, project dark data back into legacy, or expose a mode switch that changes authority. This is one authoritative write with a parallel shadow record, not dual authority.
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -153,11 +153,11 @@ The legacy mutation remains the only operation allowed to determine accepted sta
 - **Upcasters invent history** — defaults or skipped versions could fabricate evidence. Mitigation: adjacent fixture-backed transforms, per-hop validation, immutable source evidence, and fail-closed ambiguous/lossy mappings.
 - **Generic persistence mistaken for a schema** — `atomic-state.ts` accepts arbitrary serializable data and its integrity check is warning-only. Mitigation: explicit codecs and version discriminators at adapter call boundaries; no shape inference from serialization utilities.
 - **Dark fallback leaks authority** — a dark success after a legacy failure could tempt availability-oriented fallback. Mitigation: preserve the legacy error as primary in every matrix row and treat dark-only success as diagnostic evidence.
-- **Dependencies**: the child declares `depends_on: []`, but implementation consumes the frozen phase-001 transition/versioning policy and the phase-003 envelope, verified ledger, authorization, and replay contracts. Successor `002-legacy-projections` and later phase-005 parity/rollback children consume this adapter contract. The program manifest remains the ordering and outcome source.
+- **Dependencies**: the child declares `depends_on: []`, but implementation consumes the frozen phase-004 transition/versioning policy and the phase-006 envelope, verified ledger, authorization, and replay contracts. Successor `002-legacy-projections` and later phase-008 parity/rollback children consume this adapter contract. The program manifest remains the ordering and outcome source.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Execution must freeze the exact inventory of legacy state families, their version discriminators, comparison-token fields, and divergence reason codes against the pinned phase-000 state census. A legacy family without a lossless fixture-backed discriminator remains unsupported and must be classified by the later in-flight-state phase rather than admitted through a guessed upcaster.
+None blocking for planning. Execution must freeze the exact inventory of legacy state families, their version discriminators, comparison-token fields, and divergence reason codes against the pinned phase-003 state census. A legacy family without a lossless fixture-backed discriminator remains unsupported and must be classified by the later in-flight-state phase rather than admitted through a guessed upcaster.
 <!-- /ANCHOR:questions -->

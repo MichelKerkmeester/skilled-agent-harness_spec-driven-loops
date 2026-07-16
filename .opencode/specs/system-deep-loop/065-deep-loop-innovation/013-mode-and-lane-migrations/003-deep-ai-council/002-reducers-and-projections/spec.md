@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep AI Council - Reducers & Projections (013 phase 002)"
+title: "Feature Specification: Deep AI Council - Reducers & Projections"
 description: "Plan the pure deterministic reducers and live projections for the Deep AI Council migration: replay the typed deliberation ledger into iteration/convergence state, an immutable artifact index, and per-mode status while preserving independent-seat evidence, minority lineage, and protocol-specific outcomes."
 trigger_phrases:
   - "Deep AI Council reducers and projections"
@@ -42,7 +42,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep AI Council mode migration) |
-| **Origin** | Phase 002 of the 013 per-mode migration program; reducers and projections concern |
+| **Origin** | Phase 005 of the 013 per-mode migration program; reducers and projections concern |
 | **Depends on** | `[]` in `manifest/phase-tree.json`; sibling references are navigation only |
 <!-- /ANCHOR:metadata -->
 
@@ -120,7 +120,7 @@ before calibration support exists, pairwise or counterfactual results are treate
 agreement signal silently becomes the convergence authority.
 
 The reducer consumes the typed ledger contract from `001-typed-ledger-schema`, shared fan-out/fan-in and mode contracts
-from the 013 parent and phase 012, shared adjudication, budget, convergence, and health events, the 013 write-set
+from the 013 parent and phase 015, shared adjudication, budget, convergence, and health events, the 013 write-set
 conflict graph, and legacy Deep AI Council replay fixtures. `003-sealed-artifacts` supplies the later sealing boundary but
 is an adjacency reference, not a runtime dependency of this planning contract. No authority cutover is permitted from
 this phase.

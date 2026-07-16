@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Decomposed receipt, effect, adapter, recovery, and verification work"
-    next_safe_action: "Start setup against the frozen phase 003 contracts and runtime inventory"
+    next_safe_action: "Start setup against the frozen phase 006 contracts and runtime inventory"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the candidate SHA plus phase-003 envelope, ledger, fingerprint, authorization-policy, and registry digests
+- [ ] T001 Pin the candidate SHA plus phase-006 envelope, ledger, fingerprint, authorization-policy, and registry digests
 - [ ] T002 Inventory every phase/mode boundary and shipped runtime effect/recovery surface; classify authoritative, dark, and fixture-only paths
 - [ ] T003 Freeze receipt facts, event schemas, certification profiles, stable error codes, idempotency-key grammar, and recovery verdicts in contract fixtures
 - [ ] T004 Build hermetic subprocess, filesystem, and API targets with deterministic crash and response-loss injection
@@ -71,8 +71,8 @@ _memory:
 - [ ] T020 Race same-key retries and conflicting requests; prove one mutation or a typed conflict for every replay-safe adapter
 - [ ] T021 Exercise all recovery verdicts for subprocess, file, and API adapters; prove `in_doubt` never auto-replays
 - [ ] T022 Verify ledger records exclude credentials/raw secret payloads and carry bounded reason, evidence, retry, and claimant metadata
-- [ ] T023 Run phase-003/004 composition, deterministic replay, shipped runtime regression, and strict spec validation gates
-- [ ] T024 Verify legacy outputs, production external-effect selection, and runtime authority remain unchanged before phase 011
+- [ ] T023 Run phase-006/004 composition, deterministic replay, shipped runtime regression, and strict spec validation gates
+- [ ] T024 Verify legacy outputs, production external-effect selection, and runtime authority remain unchanged before phase 014
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

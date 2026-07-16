@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Fourth child of the phase-004 shared evidence and control services parent |
+| **Origin** | Fourth child of the phase-007 shared evidence and control services parent |
 | **Depends on** | None (`[]`) |
 <!-- /ANCHOR:metadata -->
 
@@ -65,7 +65,7 @@ reserved capacity is released under explicit settlement rules, and every transit
 Missing, stale, ambiguous, exhausted, or unreconciled budget state denies new work instead of treating the budget as
 unlimited or zero-cost.
 
-The service is the shared control contract consumed by program phase 006 durable fan-out/fan-in and program phase 008
+The service is the shared control contract consumed by program phase 009 durable fan-out/fan-in and program phase 011
 value-of-computation allocation. Run-2 calls for budgeted research-plan branches, query-limited evaluator oracles,
 cost-aware active-seat selection, real usage propagation, successive halving, and budgeted attribution; these require
 one composable authority rather than mode-local counters. The parent program and manifest require the service to land
@@ -95,8 +95,8 @@ Sources: `.opencode/skills/system-deep-loop/runtime/lib/council/cost-guards.cjs`
 - Shadow-parity fixtures that compare current fan-out/council decisions with the new service without changing legacy authority before the program's compatibility and cutover gates.
 
 ### Out of Scope
-- Implementing program phase 006 fan-out/fan-in scheduling, wave policy, partial-failure reduction, or program phase 008 convergence/value-of-computation algorithms.
-- The phase-003 event envelope, transition-authorization gateway, replay-fingerprint implementation, or ledger storage engine.
+- Implementing program phase 009 fan-out/fan-in scheduling, wave policy, partial-failure reduction, or program phase 011 convergence/value-of-computation algorithms.
+- The phase-006 event envelope, transition-authorization gateway, replay-fingerprint implementation, or ledger storage engine.
 - Executor-specific token parsing, provider billing ingestion, exchange-rate sourcing, or price-catalog ownership; this service requires normalized receipt inputs and a pinned pricing digest.
 - Receipt creation/effect recovery owned by `001-receipts-and-effect-recovery`, stream-fold gauge implementation owned by `005-stream-fold-gauges`, or lock/fencing primitives owned by `006-locks-and-fencing`.
 - Moving authority from the legacy runtime, migrating in-flight packets, or removing existing cost guards; those belong to later compatibility, cutover, and retirement phases.
@@ -117,9 +117,9 @@ Sources: `.opencode/skills/system-deep-loop/runtime/lib/council/cost-guards.cjs`
 | REQ-007 | Charge retries and failures | Every authorized attempt consumes an iteration unit and reserves the other dimensions; failure never erases incurred token, cost, or time spend |
 | REQ-008 | Fail closed on exhaustion or uncertain accounting | Exhausted, missing, stale, invalid, unreconciled, or non-replayable state returns a typed denial before executor spawn or convergence sampling |
 | REQ-009 | Record the complete budget lifecycle on the ledger | Creation, allocation, reservation, denial, commit, release, expiry, exhaustion, reconciliation, and anomaly events reconstruct balances without mutable side state |
-| REQ-010 | Bind spend to evidence and transition authority | Every commit references the dispatch/effect receipt and replay fingerprint; every mutation passes the phase-003 authorization gateway |
-| REQ-011 | Support budget-aware fan-out without overbooking | Program phase 006 can reserve per wave or lineage under the program/mode remainder and cannot dispatch a child that lacks a complete reservation |
-| REQ-012 | Support value-of-computation allocation without redefining exhaustion | Program phase 008 can compare eligible work against remaining typed budgets, but an exhausted stop is reported as incomplete/budget-exhausted rather than converged |
+| REQ-010 | Bind spend to evidence and transition authority | Every commit references the dispatch/effect receipt and replay fingerprint; every mutation passes the phase-006 authorization gateway |
+| REQ-011 | Support budget-aware fan-out without overbooking | Program phase 009 can reserve per wave or lineage under the program/mode remainder and cannot dispatch a child that lacks a complete reservation |
+| REQ-012 | Support value-of-computation allocation without redefining exhaustion | Program phase 011 can compare eligible work against remaining typed budgets, but an exhausted stop is reported as incomplete/budget-exhausted rather than converged |
 | REQ-013 | Preserve additive-dark migration discipline | Before authority cutover, the service emits shadow decisions and parity evidence while legacy stays authoritative; authoritative use is gated by later program phases |
 | REQ-014 | Preserve source traceability and compatibility baselines | The implementation contract cites the current council/fan-out guards, run-2 findings, parent program spec, and phase manifest; parity fixtures pin their baseline behavior |
 <!-- /ANCHOR:requirements -->
@@ -171,7 +171,7 @@ value-of-computation requests more work, **Then** admission fails closed and no 
 ## 6. RISKS & DEPENDENCIES
 
 This child has `depends_on: []` as an independently authored sibling planning contract. Integration consumes the
-phase-003 authorized event envelope and replay fingerprint, receipt-normalization output from sibling 001, and atomic
+phase-006 authorized event envelope and replay fingerprint, receipt-normalization output from sibling 001, and atomic
 write/fencing behavior from sibling 006. Program phases 006 and 008 are downstream consumers. These contract inputs do
 not make predecessor `003-blinded-adjudication-service` or successor `005-stream-fold-gauges` runtime dependencies;
 their adjacency is navigation only, as required by the shared-services parent.
@@ -189,7 +189,7 @@ exhaustion taxonomy checks.
 ## 7. OPEN QUESTIONS
 
 None blocking for the planning contract. Implementation may choose the fixed-precision cost scale, reservation lease
-duration, batch-vs-per-dispatch reservation granularity, and exact event names after the phase-003 envelope and sibling
+duration, batch-vs-per-dispatch reservation granularity, and exact event names after the phase-006 envelope and sibling
 receipt/fencing interfaces are frozen. Those choices may not merge budget types, permit negative or implicit unlimited
 balances, release unproven capacity, bypass ancestor checks, or dispatch under uncertain accounting.
 <!-- /ANCHOR:questions -->

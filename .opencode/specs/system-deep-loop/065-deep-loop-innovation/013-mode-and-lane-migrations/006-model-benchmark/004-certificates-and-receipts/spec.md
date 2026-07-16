@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Model Benchmark - certificates and receipts (013 phase 006)"
+title: "Feature Specification: Model Benchmark - certificates and receipts"
 description: "Plan the model-benchmark variant certificate and receipt contract over the typed event-ledger substrate: per-run multi-model benchmark attestations, per-transition receipts, scoring-matrix replay fingerprints, and independent offline verification while reusing deep-improvement-common evaluator, canary, and promotion services."
 trigger_phrases:
   - "model benchmark certificates and receipts"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (model-benchmark variant over the deep-improvement-common backbone) |
-| **Origin** | Phase 004 of the model-benchmark mode migration: per-run certificates, per-transition receipts, replay fingerprints, and offline verification |
+| **Origin** | Phase 007 of the model-benchmark mode migration: per-run certificates, per-transition receipts, replay fingerprints, and offline verification |
 | **Manifest dependency** | `depends_on: []`; sibling adjacency is navigation and ordering, not a hard runtime dependency |
 | **Shared inputs** | `003-sealed-artifacts`, deep-improvement-common evaluator/canary/promotion services, typed ledger and reducer contracts |
 <!-- /ANCHOR:metadata -->
@@ -190,7 +190,7 @@ audits can identify verifier drift.
 - **Contamination or protocol drift invalidates selection** - A recent or named fixture is not proof of non-exposure, and formatting or system-prompt variants can reorder models. Mitigation: retain item lineage, visibility, rotation and retirement state, fresh-case comparisons, and model-by-task protocol strata.
 - **Cost-aware scoring favors the wrong model** - Quality-per-dollar hides hard quality floors, tail latency, abstention, and switching loss. Mitigation: keep operational terms separate, require quality constraints, and expose Pareto or utility sensitivity instead of an unqualified ratio.
 - **Shared-service fork** - Variant code may copy evaluator, canary, promotion, or receipt logic. Mitigation: one adapter boundary, shared fixtures, common hard-veto ordering, and a negative test against variant-local semantics.
-- **Unknown external outcome** - A model or measurement effect can complete before its receipt is durable. Mitigation: consume phase-003 effect/receipt recovery, preserve `uncertain`, and require explicit resolution before retry or selection.
+- **Unknown external outcome** - A model or measurement effect can complete before its receipt is durable. Mitigation: consume phase-006 effect/receipt recovery, preserve `uncertain`, and require explicit resolution before retry or selection.
 - **Dependencies**: `003-sealed-artifacts` primitives; typed ledger and reducer siblings; deep-improvement-common evaluator/canary/promotion services; phase 012 shared mode contracts and write-set conflict graph; model-benchmark runtime paths and research registries; the successor `005-resume-adapter`; and the spec-kit validator.
 <!-- /ANCHOR:risks -->
 

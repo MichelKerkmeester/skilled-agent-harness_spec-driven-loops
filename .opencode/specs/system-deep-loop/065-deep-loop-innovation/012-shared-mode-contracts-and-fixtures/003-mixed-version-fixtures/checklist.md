@@ -30,7 +30,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking verifier contract for the mixed-version fixture corpus. The verifier derives required
-workstream rows from `manifest/phase-tree.json`, binds each case to the fixture, interface, phase-004 seal, and phase-005
+workstream rows from `manifest/phase-tree.json`, binds each case to the fixture, interface, phase-007 seal, and phase-008
 compatibility identities, and records scenario counts, digest references, version/hop traces, reducer outcomes, resume
 classifications, replay components, projection results, parity divergences, and rerun stability. A missing scenario,
 unsealed input, unsupported version, guessed upcaster, incomplete observation, duplicate effect, nondeterministic rerun,
@@ -40,8 +40,8 @@ or authority mutation fails the gate. No mixed-version evidence means no parity 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The parent outcome, adjacency, and phase-009 sequencing rules are pinned to `../../manifest/phase-tree.json`
-- [ ] CHK-002 [P0] Phase-004 sealed-reference-artifact rules and phase-005 upcaster/dual-read and shadow-parity rules are reconciled into the fixture matrix
+- [ ] CHK-001 [P0] The parent outcome, adjacency, and phase-012 sequencing rules are pinned to `../../manifest/phase-tree.json`
+- [ ] CHK-002 [P0] Phase-007 sealed-reference-artifact rules and phase-008 upcaster/dual-read and shadow-parity rules are reconciled into the fixture matrix
 - [ ] CHK-003 [P0] The four required scenarios are named: `pure-old`, `pure-new`, `mid-upgrade`, and `interrupted-migration`
 - [ ] CHK-004 [P0] Event and state version inventories, supported adjacent hops, causal-boundary fields, and comparable pairs are explicit
 - [ ] CHK-005 [P1] The fixture envelope, expected-outcome schema, failure vocabulary, and stable namespace reject unknown required versions
@@ -66,8 +66,8 @@ or authority mutation fails the gate. No mixed-version evidence means no parity 
 - [ ] CHK-014 [P0] Interrupted-migration fixtures seal the stop point, pending effects, receipts, lease/fencing state, continuity identity, and restart outcome
 - [ ] CHK-015 [P0] All eight manifest rows are covered: `001-deep-research`, `002-deep-review`, `003-deep-ai-council`, `004-deep-improvement-common`, `005-agent-improvement`, `006-model-benchmark`, `007-skill-benchmark`, and `008-deep-alignment`
 - [ ] CHK-016 [P0] Deep-improvement-common is ordered before `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` in fixture and handoff outputs
-- [ ] CHK-017 [P0] Every replay-affecting input is a phase-004 verified digest reference; altered bytes, missing descriptors, aliases, mutable paths, and wrong order block execution
-- [ ] CHK-018 [P0] Supported cases apply only exact phase-005 adjacent upcaster chains and reject gaps, cycles, future versions, ambiguous shapes, lossy output, and identity mutation
+- [ ] CHK-017 [P0] Every replay-affecting input is a phase-007 verified digest reference; altered bytes, missing descriptors, aliases, mutable paths, and wrong order block execution
+- [ ] CHK-018 [P0] Supported cases apply only exact phase-008 adjacent upcaster chains and reject gaps, cycles, future versions, ambiguous shapes, lossy output, and identity mutation
 - [ ] CHK-019 [P0] Reducer fixtures verify accepted/rejected events, state transitions, terminal result, pending effects, receipts, and artifacts against authored expectations
 - [ ] CHK-020 [P0] Resume fixtures produce deterministic `upcast`, `pin-legacy`, `fork`, `migrate`, or `block` outcomes from sealed restart inputs
 - [ ] CHK-021 [P0] Legacy and dark runs consume one identical sealed capsule in isolated roots and preserve legacy authority and shadow-only effects
@@ -96,7 +96,7 @@ or authority mutation fails the gate. No mixed-version evidence means no parity 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-032 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist cross-reference the parent, manifest, phase-004 sealed artifacts, phase-005 upcasters, and phase-005 shadow parity
+- [ ] CHK-032 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist cross-reference the parent, manifest, phase-007 sealed artifacts, phase-008 upcasters, and phase-008 shadow parity
 - [ ] CHK-033 [P1] The fixture matrix records scenario family, event/state versions, causal boundary, seal identities, expected outcomes, and downstream parity use
 - [ ] CHK-034 [P2] Operator diagnostics name the case, first failing version/hop or boundary, expected/actual classification, owner, and rerun command without suggesting a waiver
 <!-- /ANCHOR:docs -->
@@ -113,7 +113,7 @@ or authority mutation fails the gate. No mixed-version evidence means no parity 
 ## Verification Summary
 
 The phase passes only when the manifest-derived corpus covers every required workstream and all four scenario families,
-every case starts from verified phase-004 sealed inputs, phase-005 compatibility behavior is exercised without guessed
+every case starts from verified phase-007 sealed inputs, phase-008 compatibility behavior is exercised without guessed
 transforms, reducers and resumes match authored expectations, shadow parity uses one isolated capsule, and deterministic
 reruns remain stable. Unsupported versions, seal drift, causal mismatch, incomplete observations, duplicate effects,
 open divergences, or authority mutation keep the phase Planned and block downstream evidence.

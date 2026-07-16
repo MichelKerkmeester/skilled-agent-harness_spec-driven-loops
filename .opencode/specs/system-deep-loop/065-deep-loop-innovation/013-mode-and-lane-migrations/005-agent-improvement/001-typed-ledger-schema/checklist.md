@@ -30,7 +30,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking planning verifier contract for the Agent Improvement event vocabulary. The
-implementation verifier must bind its report to the phase-003, phase-009, and mode-004 contract revisions, record the
+implementation verifier must bind its report to the phase-006, phase-012, and mode-004 contract revisions, record the
 event-catalog and AgentIR schema versions, list schema and replay-fixture results, and fail on untyped fields, missing
 variant event families, duplicated common-service events, reducer/projection scope leakage, or any promotion path that
 can self-authorize.
@@ -39,8 +39,8 @@ can self-authorize.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-003 transition-authorized ledger core is identified with its envelope, authorization, receipt, sequence, and replay obligations
-- [ ] CHK-002 [P0] The phase-009 shared event contracts are identified with their naming, identity, causation, sequence, and versioning obligations
+- [ ] CHK-001 [P0] The phase-006 transition-authorized ledger core is identified with its envelope, authorization, receipt, sequence, and replay obligations
+- [ ] CHK-002 [P0] The phase-012 shared event contracts are identified with their naming, identity, causation, sequence, and versioning obligations
 - [ ] CHK-003 [P0] Mode 004 common evaluator, canary, promotion, receipt, and authorization ownership is mapped without variant reimplementation
 - [ ] CHK-004 [P1] The child adjacency is recorded: predecessor none (first sibling) and successor `002-reducers-and-projections`
 <!-- /ANCHOR:pre-impl -->
@@ -102,7 +102,7 @@ can self-authorize.
 ## Verification Summary
 
 The phase is complete when every P0 contract check passes, the typed Agent Improvement envelope and event catalog are
-reviewed against the imported phase-003, phase-009, and mode-004 contracts, raw evidence and causal uncertainty are
+reviewed against the imported phase-006, phase-012, and mode-004 contracts, raw evidence and causal uncertainty are
 preserved, upcaster behavior is deterministic and fail-closed, common services are reused without duplication, and
 strict validation reports no blocking error. Reducer and projection behavior is intentionally verified by the next
 sibling rather than this child.

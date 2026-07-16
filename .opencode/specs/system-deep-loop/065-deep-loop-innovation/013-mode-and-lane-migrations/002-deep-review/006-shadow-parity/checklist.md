@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep Review shadow parity (013 phase 006)"
+title: "Checklist: Deep Review shadow parity"
 description: "Blocking Level 2 verifier checklist for Deep Review shadow parity: event-for-event ledger comparison, projection parity, replay/resume parity, and fail-closed pre-cutover evidence."
 trigger_phrases:
   - "Deep Review shadow parity checklist"
@@ -29,7 +29,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking SOL verifier contract for Deep Review shadow parity. Every item is checked against a
-candidate SHA, the pinned baseline, the phase-009 and phase-011 contract fingerprints, the comparator version, and the
+candidate SHA, the pinned baseline, the phase-012 and phase-014 contract fingerprints, the comparator version, and the
 fixture-corpus digest. The verifier records commands, exit codes, event counts, projection hashes, discrepancy classes,
 and authority assertions. A missing fixture, zero-event result, unexplained diff, non-deterministic certificate, or
 unexpected publication mutation fails the phase.
@@ -38,7 +38,7 @@ unexpected publication mutation fails the phase.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-009 shared review-loop contract and phase-011 shadow framework are frozen and their fingerprints are recorded
+- [ ] CHK-001 [P0] The phase-012 shared review-loop contract and phase-014 shadow framework are frozen and their fingerprints are recorded
 - [ ] CHK-002 [P0] The pinned legacy Deep Review lifecycle and all scope, dimension, finding, convergence, and report boundaries are inventoried
 - [ ] CHK-003 [P1] The paired-run envelope records identical source, scope, dimensions, execution, budget, replay, and contract fingerprints
 - [ ] CHK-004 [P1] The normalization allowlist is explicit and excludes event identity, causal order, lineage, evidence, severity, disposition, receipts, and report order
@@ -62,7 +62,7 @@ unexpected publication mutation fails the phase.
 - [ ] CHK-012 [P0] Duplicate-candidate and cross-pass fixtures preserve one stable finding identity without losing source evidence or validation history
 - [ ] CHK-013 [P0] Moved, renamed, updated, fixed, and pre-existing finding fixtures use versioned semantic fingerprints rather than absolute lines alone
 - [ ] CHK-014 [P0] Replay and every supported checkpoint-resume fixture reproduce the original normalized event stream, projection, and replay fingerprint
-- [ ] CHK-015 [P0] Invalid-transition, stale-receipt, incomplete-validation, and phase-011 fault fixtures fail closed with typed discrepancy evidence
+- [ ] CHK-015 [P0] Invalid-transition, stale-receipt, incomplete-validation, and phase-014 fault fixtures fail closed with typed discrepancy evidence
 - [ ] CHK-016 [P0] The legacy path remains the only publication authority in every fixture; a shadow mismatch cannot publish or authorize
 - [ ] CHK-017 [P1] Repeated execution with identical inputs produces identical event comparison output, projection hashes, discrepancy ordering, and certificate bytes
 - [ ] CHK-018 [P1] The fixture corpus includes normal, duplicate, update, resume, replay, invalid-transition, and fault-injection cases with no missing class

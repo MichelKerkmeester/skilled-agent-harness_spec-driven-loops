@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-003 transition-authorized ledger core and phase-009 shared event contracts are the authoritative inputs
+- [ ] T001 Confirm the phase-006 transition-authorized ledger core and phase-012 shared event contracts are the authoritative inputs
 - [ ] T002 Inventory the shared evaluator, canary, and promotion service boundaries and the common fields reused by all three downstream variants
 - [ ] T003 Record the hard scope fence: event vocabulary only; reducers and projections remain with `002-reducers-and-projections`
 <!-- /ANCHOR:phase-1 -->

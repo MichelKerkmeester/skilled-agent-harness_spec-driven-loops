@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Health & Degeneration Harness (008 phase 005)"
-description: "Tasks for phase 005 of the convergence-termination-and-health program: a generic health and degeneration harness for cross-mode safety signals and bounded response requests."
+title: "Tasks: Health & Degeneration Harness"
+description: "Tasks for phase 008 of the convergence-termination-and-health program: a generic health and degeneration harness for cross-mode safety signals and bounded response requests."
 trigger_phrases:
   - "health and degeneration harness tasks"
   - "deep-loop health signal tasks"
@@ -41,7 +41,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm the pinned baseline, clean worktree, and path scope for the additive-dark health surface
-- [ ] T002 Inventory and pin the authorized ledger/projection watermark, phase-007 gauge schemas, reducer versions, and replay digests
+- [ ] T002 Inventory and pin the authorized ledger/projection watermark, phase-010 gauge schemas, reducer versions, and replay digests
 - [ ] T003 Register sibling `002-cycle-detection` event kinds and preserve its fingerprints, periods, progress verdicts, and clearing semantics
 - [ ] T004 Build the eight-workstream mode-adapter matrix for novelty, independent evidence, coverage, quality, frontier eligibility, and typed cost/yield
 - [ ] T005 Freeze the initial health-policy schema, threshold defaults, severity mapping, hysteresis, cooldown, dedupe identity, and bounded retention rules
@@ -84,7 +84,7 @@ _memory:
 - [ ] T032 Verify: Insufficient or inconsistent inputs fail closed - gaps, stale watermarks, conflicts, and missing baselines never return `healthy`
 - [ ] T033 Verify: Simultaneous signals have deterministic aggregation - input ordering does not change individual evidence or aggregate state
 - [ ] T034 Verify: The harness is bounded and idempotent - retention limits hold and duplicate delivery creates no duplicate records
-- [ ] T035 Verify: Source traceability is preserved - the report cites sibling 002, phase-007 gauges, `research-modes.md`, and `manifest/phase-tree.json`
+- [ ] T035 Verify: Source traceability is preserved - the report cites sibling 002, phase-010 gauges, `research-modes.md`, and `manifest/phase-tree.json`
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

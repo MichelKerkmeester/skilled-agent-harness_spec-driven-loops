@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the phase-003 verified-ledger interface, canonical event fixtures, ledger identity/head semantics, and replay cutoffs used by every gauge test
+- [ ] T001 Pin the phase-006 verified-ledger interface, canonical event fixtures, ledger identity/head semantics, and replay cutoffs used by every gauge test
 - [ ] T002 Inventory shipped gauge behavior in `fanout-pool.cjs`, `convergence.cjs`, `coverage-graph-signals.ts`, coverage snapshots, and `observability-events.cjs`; record protected behavior versus known drift
 - [ ] T003 Freeze the standard gauge manifest for progress, novelty, cost, and health inputs, including source events, typed units, missing-value semantics, and downstream owners
 - [ ] T004 Freeze the gauge definition schema, version/digest rules, exact arithmetic policy, canonical serialization, unsupported-input behavior, and acyclic publication graph

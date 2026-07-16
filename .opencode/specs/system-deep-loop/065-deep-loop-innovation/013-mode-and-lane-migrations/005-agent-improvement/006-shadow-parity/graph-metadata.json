@@ -17,10 +17,10 @@
       "mode 005 shadow harness",
       "Agent Improvement shadow parity implementation plan",
       "agent proposal event parity implementation",
-      "agent-improvement phase 006 implementation plan",
+      "agent-improvement phase 009 implementation plan",
       "Agent Improvement shadow parity tasks",
       "agent proposal event parity tasks",
-      "agent-improvement phase 006 tasks",
+      "agent-improvement phase 009 tasks",
       "Agent Improvement shadow parity checklist",
       "agent-improvement parity gate"
     ],
@@ -168,9 +168,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-011 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them.",
-    "created_at": "2026-07-15T21:44:48.589Z",
-    "last_save_at": "2026-07-15T21:44:48.589Z",
+    "causal_summary": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-014 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them.",
+    "created_at": "2026-07-16T03:43:38.788Z",
+    "last_save_at": "2026-07-16T03:43:38.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,12 +179,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7f293d0f40d4766aa6b7604df2ddeb471292a2ff381ba550c4eecea46997e52a",
+    "source_fingerprint": "sha256:969ba55933e9f47cbcff4f1ced1b999ff0401f922032ee715543ebe59791442b",
     "source_doc_hashes": {
-      "spec.md": "4ff7a7a9817c5a444740e6afe0009fd9f0a7bb25e1aae502241591a75507e68b",
-      "plan.md": "5316f98578dad4d5f0e30535fede874220209e9fb06f123602865237317f7bfd",
-      "tasks.md": "5536671e414cf5faac1c85422df50d2d1a30f2de1c9094be0ca3659efa3497f4",
-      "checklist.md": "0725a343a71ebaf4d00c3a0a31f35b0a314541f44bf7af289ac216b6c4d1d046"
+      "spec.md": "116e67e30d78c6ab08d5b03bf4f2ffcd0295749d13c31ebf44108c0fee18acf4",
+      "plan.md": "e80e6c06a400c5924267802728d0e8abfba9145d3722fd14a229801ecf3d03d8",
+      "tasks.md": "746c6f5332dcd3df02c73233f5ead812b47a75d49a59bb9c64da13b9e20da990",
+      "checklist.md": "a18ee2d5c05755b3ec4c27af9105dcdd7528f982f00597b4a9d921667c728149"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -35,7 +35,7 @@ _memory:
 | **Execution** | Versioned registry and pure reducers first; incremental cache second; dark adapters and parity gate last |
 
 ### Overview
-Replace ad-hoc mutable gauge state with a registry of pure, versioned folds over the phase-003 verified ledger stream.
+Replace ad-hoc mutable gauge state with a registry of pure, versioned folds over the phase-006 verified ledger stream.
 Implement the standard progress, novelty, cost, and health-input families; bind every output to a ledger cutoff and
 definition digest; allow incremental continuation only from a verified prefix checkpoint; and continuously prove that
 incremental output is byte-identical to full replay. Integrate in shadow mode beside
@@ -48,7 +48,7 @@ changing legacy control decisions.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-003 envelope and typed-ledger reader expose verified sequence, canonical event bytes, ledger identity, record hash, and typed schema/version information
+- [ ] The phase-006 envelope and typed-ledger reader expose verified sequence, canonical event bytes, ledger identity, record hash, and typed schema/version information
 - [ ] The standard gauge manifest maps progress, novelty, cost, and health outputs to owned typed event contracts without inventing sibling-domain transitions
 - [ ] Gauge versioning, configuration digests, exact numeric units, unknown-event policy, and canonical serialization are frozen before reducer implementation
 - [ ] Shipped fan-out, convergence, coverage-signal, metrics-snapshot, and observability-event behaviors have pinned dark-comparison fixtures
@@ -66,7 +66,7 @@ changing legacy control decisions.
 ## 3. ARCHITECTURE
 
 - **Gauge registry**: immutable `GaugeDefinition` entries keyed by `(gauge_id, gauge_version)` with accepted event types/versions, reducer/configuration digest, accumulator/output schemas, initial state, transition, finalizer, canonicalizer, and unsupported-input policy.
-- **Verified stream adapter**: consumes only phase-003 reader output in authoritative sequence order. It exposes ledger identity, record sequence/hash, canonical event bytes, authorization linkage, and the inclusive replay cutoff; it never reads producer files directly.
+- **Verified stream adapter**: consumes only phase-006 reader output in authoritative sequence order. It exposes ledger identity, record sequence/hash, canonical event bytes, authorization linkage, and the inclusive replay cutoff; it never reads producer files directly.
 - **Pure reducer kernel**: applies one event at a time to immutable logical accumulator state. Reducers receive no clock, RNG, filesystem, network, mutable singleton, prior published value, or unordered host collection.
 - **Standard gauge bundle**: progress reducers count explicit lifecycle/evidence transitions; novelty reducers preserve novel/reused/contradicted/superseded dispositions; cost reducers use typed integer or fixed-point units and scope; health reducers expose event-backed lag/failure/retry/stall/integrity inputs without embedding policy thresholds.
 - **Canonical result envelope**: binds the output to ledger ID, cutoff sequence/hash, gauge ID/version, reducer/configuration digest, accumulator hash, output hash, computation mode, and optional checkpoint provenance.
@@ -79,7 +79,7 @@ changing legacy control decisions.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the phase-003 ledger interfaces and source-event fixtures; inventory current fan-out, convergence, coverage, and observability gauge semantics against the frozen baseline.
+- Pin the phase-006 ledger interfaces and source-event fixtures; inventory current fan-out, convergence, coverage, and observability gauge semantics against the frozen baseline.
 - Freeze the gauge manifest, definition schema, exact-unit policy, canonical serialization, replay cutoff semantics, and additive-dark comparison contract.
 
 ### Phase 2: Implementation
@@ -119,11 +119,11 @@ changing legacy control decisions.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Runtime implementation depends on the phase-003 versioned envelope, typed verified reader, sequence/hash integrity, and
+Runtime implementation depends on the phase-006 versioned envelope, typed verified reader, sequence/hash integrity, and
 replay-fingerprint contracts, even though this planning leaf has `depends_on: []` in the phase manifest. Budget inputs
 compose with sibling `004-hierarchical-typed-budgets`; lock/fencing mechanics remain owned by successor
 `006-locks-and-fencing`; later novelty, continuity, convergence, and mode phases supply domain events and consume the
-derived gauges. Phase 005 owns shadow-parity orchestration and rollback, so this phase emits comparison evidence but
+derived gauges. Phase 008 owns shadow-parity orchestration and rollback, so this phase emits comparison evidence but
 does not adjudicate or authorize a cutover.
 <!-- /ANCHOR:dependencies -->
 

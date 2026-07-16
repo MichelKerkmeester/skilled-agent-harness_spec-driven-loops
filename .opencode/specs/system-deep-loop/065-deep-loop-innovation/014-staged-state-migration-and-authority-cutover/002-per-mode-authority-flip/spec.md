@@ -42,7 +42,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Child 002 of the staged state migration and authority cutover phase |
-| **Depends on** | None (`[]`); independent sibling planning contract within phase 011 |
+| **Depends on** | None (`[]`); independent sibling planning contract within phase 014 |
 | **Cutover role** | Makes the dark spine canonical for exactly one mode after parity and rollback evidence pass |
 | **Authority posture** | Legacy remains authoritative for every non-selected mode and for the selected mode until the atomic flip |
 <!-- /ANCHOR:metadata -->
@@ -52,21 +52,21 @@ _memory:
 
 The [parent program spec](../../spec.md) requires an additive-dark migration: the typed ledger and dark spine may
 record and project in parallel, but legacy remains authoritative until compatibility, shadow parity, in-flight-state
-handling, and rollback evidence are proven. Its sequencing invariants reserve authority changes for phase 011 and
+handling, and rollback evidence are proven. Its sequencing invariants reserve authority changes for phase 014 and
 require one mode at a time. The [phase-tree manifest](../../manifest/phase-tree.json) names the eight mode workstreams,
-requires `013-mode-and-lane-migrations` to complete them, and gives phase 011 the outcome of classifying eligible state
+requires `013-mode-and-lane-migrations` to complete them, and gives phase 014 the outcome of classifying eligible state
 and flipping authority behind a rollback window and cutover certificate.
 
 This phase plans the authority switch itself. The runtime needs one durable, mode-keyed authority selector that makes an
 unambiguous route decision at the mode write boundary: legacy before the flip and the dark spine after the flip. A
 global flag, a process-local default, or a flag-only change is insufficient. A selector read must bind the mode,
-authority epoch, selected writer, contract identities, and current state; the transition must pass the phase-001
+authority epoch, selected writer, contract identities, and current state; the transition must pass the phase-004
 [transition, versioning, and rollback policy](../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md)
 and record an authorized ledger event.
 
 Every mode flip is gated independently. The mode must have a current, complete, zero-divergence parity certificate from
-the phase-005 [shadow-parity harness](../../008-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness/spec.md),
-a current passing mode-scoped rollback certificate from the phase-005 [rollback drills](../../008-compatibility-shadow-and-rollback-bridge/005-rollback-drills/spec.md),
+the phase-008 [shadow-parity harness](../../008-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness/spec.md),
+a current passing mode-scoped rollback certificate from the phase-008 [rollback drills](../../008-compatibility-shadow-and-rollback-bridge/005-rollback-drills/spec.md),
 and a resolved in-flight-state classification and migration result. A failed or stale gate leaves that mode on legacy and
 does not prevent the other modes from being assessed independently. The flip is a recorded authority transition, not an
 untracked configuration mutation.
@@ -80,8 +80,8 @@ untracked configuration mutation.
   epoch, selected writer route, candidate identity, certificate identities, rollback-window state, and last transition.
 - A single runtime authority selector used by each mode adapter at the canonical write boundary. Valid states select one
   route only; missing, malformed, stale, or cross-mode state fails closed rather than silently defaulting to a route.
-- A fail-closed pre-flip gate that verifies the exact mode's phase-010 mode gate, current phase-005 parity certificate,
-  current phase-005 rollback-drill certificate, in-flight-state classification, migration result, phase-001 policy
+- A fail-closed pre-flip gate that verifies the exact mode's phase-013 mode gate, current phase-008 parity certificate,
+  current phase-008 rollback-drill certificate, in-flight-state classification, migration result, phase-004 policy
   version, candidate identity, and required rollback assets.
 - An atomic cutover coordinator that obtains a transition-authorization decision, compare-and-swaps the expected
   authority epoch, appends a canonical authority-transition ledger event, and publishes the new selector state as one
@@ -95,13 +95,13 @@ untracked configuration mutation.
   cutover certificate and rollback-window contract.
 
 ### Out of Scope
-- Implementing the phase-005 shadow-parity harness, its divergence taxonomy, parity certificate, or rollback-drill
+- Implementing the phase-008 shadow-parity harness, its divergence taxonomy, parity certificate, or rollback-drill
   runner. This phase consumes their current evidence and rechecks freshness.
 - Defining the event envelope, transition vocabulary, authority state machine, or rollback duration. Those rules belong to
-  the phase-001 transition policy and may not be weakened here.
-- Reclassifying an in-flight packet or inventing a new migration disposition. Phase 011's state-migration sibling owns
+  the phase-004 transition policy and may not be weakened here.
+- Reclassifying an in-flight packet or inventing a new migration disposition. Phase 014's state-migration sibling owns
   classification and migration evidence; this phase consumes the result at the gate.
-- Retiring legacy writers, removing archival readers, or closing the rollback window. Phase 012 and the phase-011
+- Retiring legacy writers, removing archival readers, or closing the rollback window. Phase 015 and the phase-014
   successor own those later actions.
 - Flipping more than one mode in one transaction, using a global authority switch, or treating a successful dry run as a
   production authority change.
@@ -116,14 +116,14 @@ untracked configuration mutation.
 | REQ-002 | Selector failure is fail closed | Missing, malformed, stale-epoch, unknown-state, wrong-mode, or contract-incompatible selector data blocks the write and emits bounded diagnostic evidence without choosing legacy or dark implicitly. |
 | REQ-003 | Legacy remains authoritative before the flip | `legacy_authoritative`, `shadowing`, and `cutover_ready` states route canonical writes to legacy; dark observations remain shadow-only and cannot change authority. |
 | REQ-004 | Dark becomes canonical only in the reversible state | `new_authoritative_reversible` and `new_authoritative_final` route canonical writes to the dark spine, while legacy remains available only through the declared projection and rollback path. |
-| REQ-005 | Parity is a hard precondition | The selected mode has a complete, current, mode-bound phase-005 parity certificate with zero open divergences and matching BASE, candidate, contract, input, comparator, and projection identities. |
-| REQ-006 | Rollback rehearsal is a hard precondition | The selected mode has a current passing phase-005 rollback-drill certificate proving forward detection, admission freeze, writer fencing, state reconciliation, legacy restoration, stale-writer denial, and integrity checks. |
+| REQ-005 | Parity is a hard precondition | The selected mode has a complete, current, mode-bound phase-008 parity certificate with zero open divergences and matching BASE, candidate, contract, input, comparator, and projection identities. |
+| REQ-006 | Rollback rehearsal is a hard precondition | The selected mode has a current passing phase-008 rollback-drill certificate proving forward detection, admission freeze, writer fencing, state reconciliation, legacy restoration, stale-writer denial, and integrity checks. |
 | REQ-007 | In-flight state is eligible for authority change | The mode's state census, classification, and migration evidence are complete, current, and bound to the candidate and rollback assets; unresolved or blocked state denies the flip. |
 | REQ-008 | The flip is authorized and atomic | One transition-authorization decision, expected authority epoch, selector update, and canonical authority-transition ledger event commit atomically; a compare-and-swap conflict leaves legacy authority unchanged. |
 | REQ-009 | Every flip is recorded in the ledger | The event binds mode, previous and next authority states, previous and next epochs, candidate identity, policy version, parity and drill certificate IDs, state-migration identity, rollback-window policy, actor, request digest, and timestamp. |
 | REQ-010 | The blast radius is one mode | A cutover changes only the selected mode's authority record, writer route, mode streams, projections, and telemetry; every other mode remains legacy-authoritative with its previous epoch and writer. |
 | REQ-011 | Flips follow the manifest order | The coordinator processes the eight modes in the manifest order, never flips a benchmark variant before `004-deep-improvement-common`, and rejects a batch request containing multiple modes. |
-| REQ-012 | Rollback remains available after the flip | The reversible state preserves the legacy adapter, rollback anchor, classified state policy, and phase-001 minimum window of 14 calendar days and five successful authoritative executions, whichever completes later. |
+| REQ-012 | Rollback remains available after the flip | The reversible state preserves the legacy adapter, rollback anchor, classified state policy, and phase-004 minimum window of 14 calendar days and five successful authoritative executions, whichever completes later. |
 | REQ-013 | Drift blocks authority | A changed BASE, code/build, mode contract, parity case set, sealed input, state classification, rollback asset, selector policy, or certificate identity invalidates readiness and leaves the mode on legacy or triggers the declared rollback path. |
 | REQ-014 | Cutover evidence is handoff-ready | The phase emits an immutable transition record and mode-scoped evidence bundle sufficient for phase `003-cutover-certificate-and-rollback-window` to issue or reject the cutover certificate without reconstructing hidden selector state. |
 <!-- /ANCHOR:requirements -->
@@ -212,12 +212,12 @@ coordinator evaluates the request, **Then** it rejects the batch or CAS conflict
   Mitigation: per-mode authority records, mode-tagged ledger events, explicit write sets, and the manifest order that
   flips common services before their variants.
 - **Unsafe rollback window** - A timer could close before five authoritative executions or while reconciliation is open.
-  Mitigation: consume the phase-001 later-of-14-days-and-five-runs rule and retain rollback assets until successor evidence
+  Mitigation: consume the phase-004 later-of-14-days-and-five-runs rule and retain rollback assets until successor evidence
   proves closure.
 - **In-flight inconsistency** - A selected mode could contain state that was not safely upcast, pinned, forked, migrated,
-  or blocked. Mitigation: phase-011 state-migration evidence is a hard precondition, not an operator override.
-- **Dependencies**: the normative sources are the parent program spec, `manifest/phase-tree.json`, the phase-001
-  transition policy, the phase-005 shadow-parity and rollback-drill specs, and the phase-010 mode gates. The child
+  or blocked. Mitigation: phase-014 state-migration evidence is a hard precondition, not an operator override.
+- **Dependencies**: the normative sources are the parent program spec, `manifest/phase-tree.json`, the phase-004
+  transition policy, the phase-008 shadow-parity and rollback-drill specs, and the phase-013 mode gates. The child
   declares `depends_on: []` as an independent planning contract; these are consumed evidence and ownership boundaries.
 <!-- /ANCHOR:risks -->
 
@@ -227,6 +227,6 @@ coordinator evaluates the request, **Then** it rejects the batch or CAS conflict
 None blocking for planning. Implementation must resolve the concrete authority-record storage, the registered
 authority-transition event name, the selector cache invalidation mechanism, the operational policy for overlapping
 reversible windows, the exact post-flip health thresholds, and the evidence destination. Those choices may not weaken
-per-mode isolation, fail-closed gates, the manifest order, the phase-001 rollback minimum, or the requirement that the
+per-mode isolation, fail-closed gates, the manifest order, the phase-004 rollback minimum, or the requirement that the
 flip is a ledger-recorded atomic transition.
 <!-- /ANCHOR:questions -->

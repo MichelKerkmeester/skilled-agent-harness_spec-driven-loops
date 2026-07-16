@@ -42,9 +42,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-research mode migration) |
-| **Origin** | Fifth Deep Research child in the phase-010 mode migration fan-out |
+| **Origin** | Fifth Deep Research child in the phase-013 mode migration fan-out |
 | **Depends on** | `[]` in `manifest/phase-tree.json`; sibling adjacency is navigation only |
-| **Consumes** | Shared phase-009 mode/replay contracts, typed ledger events, reducers, sealed references, and certificate/receipt outputs |
+| **Consumes** | Shared phase-012 mode/replay contracts, typed ledger events, reducers, sealed references, and certificate/receipt outputs |
 | **Output** | A ratifiable resume-adapter contract, continuity-ladder mapping, recovery decision algebra, and idempotent re-entry fixture plan |
 <!-- /ANCHOR:metadata -->
 
@@ -73,7 +73,7 @@ The research inputs make this boundary concrete. Deep Research requires a versio
 ### Out of Scope
 - Defining the shared event envelope, transition vocabulary, ledger storage, replay fingerprint primitive, seal descriptor, receipt schema, or reducer algebra; those are owned by earlier shared or sibling phases.
 - Re-implementing Deep Research reducers, projections, claim admission, semantic clustering, convergence policy, synthesis generation, source refresh, or memory persistence; the adapter consumes their typed outputs and handoff contracts.
-- Creating or validating sealed artifacts, certificates, boundary receipts, shadow-parity comparisons, rollback drills, the independent mode gate, or the phase-011 authority cutover.
+- Creating or validating sealed artifacts, certificates, boundary receipts, shadow-parity comparisons, rollback drills, the independent mode gate, or the phase-014 authority cutover.
 - Rewriting legacy JSONL, migrating arbitrary in-flight packets, deleting legacy readers, or treating a mutable iteration file, report, URL, or cache entry as resume authority.
 - Adding new Deep Research behavior beyond the recommendations assigned to this mode and the shared resume/replay contracts.
 <!-- /ANCHOR:scope -->
@@ -139,13 +139,13 @@ The research inputs make this boundary concrete. Deep Research requires a versio
 - **Continuity mapping loses semantic state** - A shortcut from the latest iteration number can omit open contradictions, invalidated claims, or unresolved synthesis obligations. Mitigation: map each ladder step to reducer-owned fields and require dependency-aware fixtures.
 - **Duplicate re-entry races** - Two processes can both observe a resumable branch before either decision is committed. Mitigation: use the shared authorization/idempotency boundary, stable decision keys, and append-before-dispatch ordering.
 - **Dark-path leakage** - A reconstructed dark projection could be mistaken for a production completion or mutate legacy state. Mitigation: preserve explicit dark/non-authoritative status and leave cutover and shadow parity to later phases.
-- **Dependencies**: phase-009 shared mode/replay contracts and conflict graph; Deep Research siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`, and `004-certificates-and-receipts`; the shared phase-003 ledger/effect primitives; and the research registries under `002-deep-loop-effectiveness-and-fanout`. The manifest declares `depends_on: []`; adjacency references remain navigation only.
+- **Dependencies**: phase-012 shared mode/replay contracts and conflict graph; Deep Research siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`, and `004-certificates-and-receipts`; the shared phase-006 ledger/effect primitives; and the research registries under `002-deep-loop-effectiveness-and-fanout`. The manifest declares `depends_on: []`; adjacency references remain navigation only.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-009 idempotency key and append-before-dispatch contract does the adapter use for resume decisions and handoff retries?
+- Which exact phase-012 idempotency key and append-before-dispatch contract does the adapter use for resume decisions and handoff retries?
 - Which reducer checkpoint fields are sufficient for bounded replay, and which cursor or projection changes require a full rebuild before re-entry?
 - Which adapter capability combinations permit effect reuse, receipt lookup, compensation, or safe re-execution for each Deep Research side effect?
 - Does a changed research manifest always fork a new lineage, or may a registered compatible migration preserve the original lineage with an explicit revision event?

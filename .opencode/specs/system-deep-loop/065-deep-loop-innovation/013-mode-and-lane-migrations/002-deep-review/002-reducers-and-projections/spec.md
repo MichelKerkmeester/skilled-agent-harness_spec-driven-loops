@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Review - Reducers & Projections (013 phase 002)"
+title: "Feature Specification: Deep Review - Reducers & Projections"
 description: "Plan the pure deterministic reducers and live projections for the Deep Review migration: replay the typed event ledger into iteration/convergence state, an artifact index, and per-mode status while preserving factored finding evidence and the shared review-loop contract used by Deep Alignment."
 trigger_phrases:
   - "Deep Review reducers and projections"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Review mode migration) |
-| **Origin** | Phase 002 of the 013 per-mode migration program; reducers and projections concern |
+| **Origin** | Phase 005 of the 013 per-mode migration program; reducers and projections concern |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -63,7 +63,7 @@ This phase plans the reducers that consume the typed event log defined by `001-t
 - The per-mode status projection: Deep Review lifecycle state, active contract versions, last applied sequence, projection health, blocking obligations, shadow-parity state, and terminal status.
 - A derived presentation projection that computes P0/P1/P2 from factored finding fields without discarding raw evidence or treating repeated agreement as proof.
 - Differential replay fixtures and a shadow-parity plan that compare the new projections with the legacy Deep Review state without changing authority.
-- Reuse of the shared review-loop contract frozen in phase 009 and structural parity with Deep Alignment mode 008; no local fork of scope, pass, convergence, or report semantics.
+- Reuse of the shared review-loop contract frozen in phase 012 and structural parity with Deep Alignment mode 008; no local fork of scope, pass, convergence, or report semantics.
 
 ### Out of Scope
 - Defining or changing the typed event envelope, transition authorization, event namespace, or schema owned by `001-typed-ledger-schema` and the shared substrate.
@@ -83,7 +83,7 @@ This phase plans the reducers that consume the typed event log defined by `001-t
 | REQ-003 | The artifact index preserves immutable evidence references | Each indexed artifact records stable logical identity, artifact kind, producer event, reviewed SHA or input identity where applicable, content digest, availability, and supersession lineage without mutating the original evidence |
 | REQ-004 | Per-mode status is derived from typed transitions and projection health | Deep Review status, contract versions, replay position, blocking reason, shadow-parity state, and terminal status are deterministic and reject impossible transitions rather than guessing a status |
 | REQ-005 | P0/P1/P2 is a derived presentation projection | Impact is retained separately from confidence, reachability, exploitability, evidence strength, evidence scope, and lifecycle; a weighted aggregate cannot override hard schema, build, security, or regression vetoes |
-| REQ-006 | Shared review-loop semantics are reused by Deep Alignment | Deep Review and Deep Alignment consume the phase-009 shared contract with mode configuration and typed event mappings, not two divergent reducer implementations |
+| REQ-006 | Shared review-loop semantics are reused by Deep Alignment | Deep Review and Deep Alignment consume the phase-012 shared contract with mode configuration and typed event mappings, not two divergent reducer implementations |
 | REQ-007 | Replay incompatibility fails closed | Unknown event versions, missing sequence links, invalid fingerprints, impossible transitions, and projection-version mismatches produce an explicit blocked/error result with no partial-success claim |
 | REQ-008 | The migration can prove parity before authority changes | A shadow replay compares projection fields, terminal decisions, coverage, artifact references, and status transitions against the legacy path on frozen fixtures; discrepancies remain observable and non-authoritative |
 <!-- /ANCHOR:requirements -->
@@ -93,7 +93,7 @@ This phase plans the reducers that consume the typed event log defined by `001-t
 
 - **SC-001**: The phase plan defines a pure Deep Review fold whose identical typed event sequence produces an identical semantic projection and fingerprint.
 - **SC-002**: The iteration/convergence, artifact index, per-mode status, and derived P0/P1/P2 projections have explicit ownership, inputs, invariants, and failure behavior.
-- **SC-003**: Deep Review consumes the shared phase-009 review-loop contract and demonstrates reducer-shape parity with Deep Alignment without copying a mode-specific fork.
+- **SC-003**: Deep Review consumes the shared phase-012 review-loop contract and demonstrates reducer-shape parity with Deep Alignment without copying a mode-specific fork.
 - **SC-004**: Replay fixtures cover normal completion, unresolved coverage, duplicate events, late evidence, invalid transitions, schema mismatch, and projection drift; all invalid cases fail closed.
 - **SC-005**: Shadow parity is measurable against the legacy Deep Review path while the ledger remains additive, dark, and non-authoritative.
 <!-- /ANCHOR:success-criteria -->
@@ -103,7 +103,7 @@ This phase plans the reducers that consume the typed event log defined by `001-t
 
 The phase inherits the 065 program risks: live in-flight state, additive-dark migration, replay compatibility, shared write-set ownership, and staged authority cutover. Phase-specific risks are that event order or object serialization leaks into state, duplicate or late evidence changes terminal status, the artifact index accidentally mutates immutable evidence, P0/P1/P2 becomes a hidden source of truth, or Deep Review diverges from Deep Alignment's shared loop contract.
 
-The reducer consumes the typed ledger contract from `001-typed-ledger-schema`, the shared review-loop contract frozen in phase 009, the write-set conflict graph from the 013 parent, and the legacy Deep Review replay fixtures. `003-sealed-artifacts` supplies the later sealing boundary but is an adjacency reference, not a runtime dependency of this planning contract. No authority cutover is permitted from this phase.
+The reducer consumes the typed ledger contract from `001-typed-ledger-schema`, the shared review-loop contract frozen in phase 012, the write-set conflict graph from the 013 parent, and the legacy Deep Review replay fixtures. `003-sealed-artifacts` supplies the later sealing boundary but is an adjacency reference, not a runtime dependency of this planning contract. No authority cutover is permitted from this phase.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

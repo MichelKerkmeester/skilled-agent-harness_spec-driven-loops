@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: path-covering termination (006 phase 008 child 001)"
+title: "Feature Specification: path-covering termination"
 description: "Plan replay-stable termination on proven, mode-specific search-space coverage: every major path or semantic community is addressed, required contradictions are resolved, and partial coverage remains explicit instead of being hidden by an iteration cap."
 trigger_phrases:
   - "path-covering termination"
   - "coverage-based deep-loop stopping"
-  - "deep-loop phase 008 child 001"
+  - "deep-loop phase 011 child 001"
 importance_tier: "high"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/011-convergence-termination-and-health"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | First child of phase 008; the program manifest assigns path-covering termination to convergence, termination, and health |
+| **Origin** | First child of phase 011; the program manifest assigns path-covering termination to convergence, termination, and health |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -59,7 +59,7 @@ signals without touching another required region.
 Run-2 makes the distinction explicit: raw `newInfoRatio` must give way to trusted evidence yield plus STOP blockers, and
 max-iteration exhaustion is incomplete rather than converged
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md:67`
-and `:72`). Phase 007 supplies the concept boundary this proof needs: deterministic semantic communities distinguish a genuinely
+and `:72`). Phase 010 supplies the concept boundary this proof needs: deterministic semantic communities distinguish a genuinely
 new concept from a paraphrase while preserving evidence novelty
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities/spec.md:50`
 and `:112`). The program consequently places convergence after durable fan-in and novelty/claims projections
@@ -91,7 +91,7 @@ does not relabel resource exhaustion as convergence.
 - Independent stopping-clock arbitration across budget, novelty decay, wall time, and coverage; owned by `003-stopping-clocks`.
 - Value-of-computation ranking or adaptive compute allocation beyond exposing ranked uncovered paths; owned by `004-value-of-computation-allocation`.
 - Generic degeneration or mode-collapse health policy; owned by `005-health-and-degeneration-harness`.
-- Rebuilding phase-007 semantic communities, contradiction/supersession events, claim continuity, or transactional projections; this phase consumes their committed versions.
+- Rebuilding phase-010 semantic communities, contradiction/supersession events, claim continuity, or transactional projections; this phase consumes their committed versions.
 - Calibrating production thresholds, changing runtime authority, migrating in-flight packets, or removing iteration limits. Limits remain safety clocks and produce `INCOMPLETE_LIMIT` when coverage is not proven.
 <!-- /ANCHOR:scope -->
 
@@ -117,7 +117,7 @@ Coverage is a proof over a declared universe, not a scalar sampled after an arbi
 derives deterministic path IDs from mode-owned dimensions and freezes version 1 before authoritative evaluation. Reducer events
 move paths through the state machine while retaining evidence locators. A newly discovered major region creates a successor
 universe version, invalidates any older stop candidate, and requires evaluation against the expanded denominator. Community
-membership is read only from the committed phase-007 projection; ambiguous communities remain open and projection-version drift
+membership is read only from the committed phase-010 projection; ambiguous communities remain open and projection-version drift
 forces recomputation before a stop decision.
 
 The evaluator returns `STOP_ALLOWED` only when `universe.valid && universe.frozen && projection.fresh`, every major path is
@@ -148,7 +148,7 @@ a provisional stop. Mitigations are versioned mode profiles, mandatory-region fi
 exclusion provenance, universe supersession, projection freshness checks, and certificate replay.
 
 This child declares no sibling `depends_on`. It still consumes program prerequisites from phases 003, 004, 006, and 007 through
-the phase-008 parent; the manifest explicitly sequences fan-in and novelty before convergence
+the phase-011 parent; the manifest explicitly sequences fan-in and novelty before convergence
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json:17`).
 <!-- /ANCHOR:risks -->
 

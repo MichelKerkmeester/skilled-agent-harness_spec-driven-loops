@@ -40,10 +40,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Extract the phase-001 certificate preconditions and 14-day/five-run rollback-window rule
-- [ ] T002 Extract phase-004 receipt, certification, and effect-recovery fields that become certificate evidence
+- [ ] T001 Extract the phase-004 certificate preconditions and 14-day/five-run rollback-window rule
+- [ ] T002 Extract phase-007 receipt, certification, and effect-recovery fields that become certificate evidence
 - [ ] T003 Extract sibling `002-per-mode-authority-flip` CAS inputs and preserve its flip ownership boundary
-- [ ] T004 Confirm the manifest outcome, `depends_on: []`, Level 2 structure, and phase-012 retirement handoff
+- [ ] T004 Confirm the manifest outcome, `depends_on: []`, Level 2 structure, and phase-015 retirement handoff
 - [ ] T005 [P] Freeze certificate, window, signal, trigger, rollback, and closure vocabulary
 - [ ] T006 [P] Identify the per-mode event identities, evidence digests, policy digest, authority epochs, and retained rollback assets
 <!-- /ANCHOR:phase-1 -->
@@ -59,8 +59,8 @@ _memory:
 - [ ] T012 Define health, parity-drift, replay, authorization, receipt, budget, and state-reconciliation signal contracts
 - [ ] T013 Define threshold, extension, operator-stop, and revert semantics for every monitored signal family
 - [ ] T014 Define admission freeze, spine fencing, in-flight reconciliation, new-epoch legacy restoration, and event-preserving rollback steps
-- [ ] T015 Define rollback certificate contents and phase-004 receipt composition for rollback and reconciliation outcomes
-- [ ] T016 Define clean closure evidence, retained assets, and the phase-012 handoff without granting retirement authority
+- [ ] T015 Define rollback certificate contents and phase-007 receipt composition for rollback and reconciliation outcomes
+- [ ] T016 Define clean closure evidence, retained assets, and the phase-015 handoff without granting retirement authority
 - [ ] T017 [P] Map each certificate and window requirement to one verifier fixture and one durable evidence output
 <!-- /ANCHOR:phase-2 -->
 
@@ -74,7 +74,7 @@ _memory:
 - [ ] T022 Verify low traffic, unresolved parity, health regression, replay mismatch, authorization failure, receipt gap, budget breach, and reconciliation failure extend or trigger rollback
 - [ ] T023 Tabletop rollback and verify admission freeze, spine fence, reconciliation, new epoch, event preservation, and rollback certificate emission
 - [ ] T024 Verify stale monitor decisions, duplicate conflicting certificates, multi-mode flips, and stale writers cannot advance authority
-- [ ] T025 Verify phase 005, sibling 002, this child, phase 004, and phase 012 retain their declared ownership boundaries
+- [ ] T025 Verify phase 008, sibling 002, this child, phase 007, and phase 015 retain their declared ownership boundaries
 - [ ] T026 Run strict spec-kit validation and confirm only expected `description.json` and `graph-metadata.json` omissions remain
 <!-- /ANCHOR:phase-3 -->
 
@@ -83,7 +83,7 @@ _memory:
 
 - [ ] All certificate, monitoring, rollback, and closure tasks complete
 - [ ] All requirements in spec.md are ratified with traceable evidence fixtures or review records
-- [ ] The phase-011 handoff records each mode's certificate and window outcome before phase 012 retirement work begins
+- [ ] The phase-014 handoff records each mode's certificate and window outcome before phase 015 retirement work begins
 - [ ] Strict validation has no error except expected missing `description.json` and `graph-metadata.json`
 <!-- /ANCHOR:completion -->
 

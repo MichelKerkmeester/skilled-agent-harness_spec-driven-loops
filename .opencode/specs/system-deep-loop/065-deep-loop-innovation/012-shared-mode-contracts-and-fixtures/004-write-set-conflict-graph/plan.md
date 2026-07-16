@@ -1,9 +1,9 @@
 ---
 title: "Implementation Plan: Write-Set Conflict Graph"
-description: "Implementation Plan for phase 004 of the phase-009 shared mode contracts and fixtures parent: derive, validate, and publish the phase-010 dependency and write-set conflict graph contract."
+description: "Implementation Plan for phase 007 of the phase-012 shared mode contracts and fixtures parent: derive, validate, and publish the phase-013 dependency and write-set conflict graph contract."
 trigger_phrases:
   - "write-set conflict graph implementation plan"
-  - "phase-010 dependency graph plan"
+  - "phase-013 dependency graph plan"
   - "deep-loop lane scheduling plan"
 importance_tier: "critical"
 contextType: "planning"
@@ -31,12 +31,12 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop phase-009 / phase-010 orchestration contract |
+| **Surface** | system-deep-loop phase-012 / phase-013 orchestration contract |
 | **Change class** | Planning artifact and executable scheduling contract |
 | **Execution** | Isolated worktree pinned to the program BASE; graph derivation remains serial-single-writer until verified |
 
 ### Overview
-Phase 010 cannot safely use unconditional eight-way parallelism. This plan turns the phase-009 write-set decision into
+Phase 013 cannot safely use unconditional eight-way parallelism. This plan turns the phase-012 write-set decision into
 a versioned graph contract whose nodes are the eight manifest-defined mode migrations and whose edges identify resource
 conflicts, hard ordering, and review-loop fences. The graph is derived from canonical read/write declarations and source
 digests, validated against the phase tree and child contracts, and consumed by the orchestrator as a deterministic lane
@@ -55,7 +55,7 @@ plan. The default remains `serial-single-writer` until the graph is complete and
 - [ ] The required common-before-variants, review/alignment fence, and research/council independence assertions are explicit
 
 ### Definition of Done
-- [ ] A graph schema and deterministic derivation procedure are documented for phase-010 implementation
+- [ ] A graph schema and deterministic derivation procedure are documented for phase-013 implementation
 - [ ] The orchestrator contract consumes graph evidence and refuses stale or incomplete widened parallelism
 - [ ] Verification cases prove node coverage, edge derivation, hard constraints, independence, determinism, and drift detection
 <!-- /ANCHOR:quality-gates -->
@@ -87,9 +87,9 @@ plan. The default remains `serial-single-writer` until the graph is complete and
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-009 parent source set and phase-tree manifest are available; record their content digests and the
-  exact eight phase-010 workstream slugs.
-- Collect the phase-010 child contract/resource declarations and identify shared packet roots, state stores, backends,
+- Confirm the phase-012 parent source set and phase-tree manifest are available; record their content digests and the
+  exact eight phase-013 workstream slugs.
+- Collect the phase-013 child contract/resource declarations and identify shared packet roots, state stores, backends,
   locks, fixtures, generated outputs, and review-loop handles.
 - Confirm the child manifest's `depends_on: []` remains intact; treat the required predecessor slug only as navigation,
   not as an execution dependency.
@@ -108,7 +108,7 @@ plan. The default remains `serial-single-writer` until the graph is complete and
 
 ### Phase 3: Verification
 - Verify exact node coverage and canonical read/write declarations against `manifest/phase-tree.json` and every reviewed
-  phase-010 resource manifest.
+  phase-013 resource manifest.
 - Verify derived edge examples for write-write, write-read, shared backend, hard-order, and review-loop fence cases.
 - Verify that deep-improvement-common precedes all three variants, deep-review and alignment cannot overlap on the shared
   review loop, and research/council remain parallel-safe only under disjoint resource evidence.
@@ -116,7 +116,7 @@ plan. The default remains `serial-single-writer` until the graph is complete and
   evidence for determinism.
 - Simulate stale, missing, ambiguous, aliased, contradictory, and changed write-set inputs; confirm serial fallback or
   blocking behavior and no widened parallelism.
-- Exercise the phase-010 orchestrator adapter against the graph fixture and record every lane, fence, predecessor, and
+- Exercise the phase-013 orchestrator adapter against the graph fixture and record every lane, fence, predecessor, and
   refusal decision for the phase handoff.
 <!-- /ANCHOR:phases -->
 
@@ -126,7 +126,7 @@ plan. The default remains `serial-single-writer` until the graph is complete and
 | Requirement | Verification |
 |-------------|--------------|
 | REQ-001 | Compare graph node IDs with `mode_workstreams_phase_010`; fail on missing, duplicate, renamed, or extra nodes |
-| REQ-002 | Validate every node's canonical read/write/shared-state records against reviewed phase-010 resource manifests |
+| REQ-002 | Validate every node's canonical read/write/shared-state records against reviewed phase-013 resource manifests |
 | REQ-003 | Run path, symlink, generated-output, backend-alias, and state-store normalization fixtures; unresolved aliases become conflicts |
 | REQ-004 | Derive conflict fixtures for write-write, write-read, shared-backend, and fence overlap and compare resource evidence |
 | REQ-005 | Assert common-before-variants hard-order edges and review/alignment fence decisions in the schedule output |
@@ -140,11 +140,11 @@ plan. The default remains `serial-single-writer` until the graph is complete and
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The authoritative planning inputs are the phase-009 parent `spec.md`, `execution-sequencing-strategy.md`, and
-`manifest/phase-tree.json`. The graph also consumes the eight phase-010 child contracts and the shared mode, compatibility,
+The authoritative planning inputs are the phase-012 parent `spec.md`, `execution-sequencing-strategy.md`, and
+`manifest/phase-tree.json`. The graph also consumes the eight phase-013 child contracts and the shared mode, compatibility,
 fan-in, novelty, and convergence contracts established by the preceding program phases. The manifest declares this child
 with `depends_on: []`; the adjacency line naming `003-mixed-version-fixtures` is navigation only and must not be turned
-into a hard runtime dependency. Phase 010 consumes the graph as a preflight scheduling input, and phase 011 consumes its
+into a hard runtime dependency. Phase 013 consumes the graph as a preflight scheduling input, and phase 014 consumes its
 mode-gate evidence without delegating authority-cutover decisions to this phase.
 <!-- /ANCHOR:dependencies -->
 

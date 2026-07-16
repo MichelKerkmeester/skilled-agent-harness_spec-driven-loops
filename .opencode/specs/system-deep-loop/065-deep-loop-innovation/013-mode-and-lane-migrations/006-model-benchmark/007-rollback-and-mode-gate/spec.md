@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Model Benchmark - Rollback & Mode Gate"
-description: "Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant: multi-model runs, scoring matrices, sealed evidence, certificates, and phase-011 readiness over the shared Deep Improvement Common Services backbone."
+description: "Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant: multi-model runs, scoring matrices, sealed evidence, certificates, and phase-014 readiness over the shared Deep Improvement Common Services backbone."
 trigger_phrases:
   - "model benchmark rollback and mode gate"
   - "model benchmark authority rollback switch"
   - "model benchmark migration gate"
-  - "model benchmark phase 011 readiness certificate"
+  - "model benchmark phase 014 readiness certificate"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate"
@@ -97,11 +97,11 @@ selection claim.
   rehearsal, with zero unexplained semantic divergence.
 - A mode-migration certificate bound to the exact candidate SHA, BASE, shared-contract and write-set digests, Model Benchmark
   event and reducer versions, evaluator and canary epochs, matrix and artifact manifests, rollback anchor, window state,
-  verifier identity, gate dispositions, and the phase-011 readiness handoff.
+  verifier identity, gate dispositions, and the phase-014 readiness handoff.
 - Adapter-only use of the Deep Improvement Common Services evaluator, canary, calibration, promotion, receipt, certificate,
   fingerprint, hard-veto, budget, lock, and effect-recovery contracts. Model Benchmark owns namespaced run and scoring logic
   only; it must not create a competing shared service or gate.
-- The phase-011 handoff and the planning boundary for the 010 per-mode fan-out, which lands only after phase 009 freezes the
+- The phase-014 handoff and the planning boundary for the 010 per-mode fan-out, which lands only after phase 012 freezes the
   shared contracts and emits the executable write-set conflict graph.
 
 ### Out of Scope
@@ -113,8 +113,8 @@ selection claim.
   shadow-parity harness owned by siblings `001` through `006`; this phase consumes their immutable evidence boundaries.
 - Flipping live authority, migrating arbitrary in-flight packets, closing the global rollback window, dispatching model
   trials, changing scoring policy, selecting a deployment model, or retiring legacy writers.
-- Changing the parent 178-recommendation disposition, the phase 009 shared-contract freeze, the phase 010 per-mode fan-out,
-  or the phase-011 authority-cutover contract.
+- Changing the parent 178-recommendation disposition, the phase 012 shared-contract freeze, the phase 013 per-mode fan-out,
+  or the phase-014 authority-cutover contract.
 - Treating a leaderboard, terminal score, mutable report, process exit, public ranking, or this phase's readiness certificate
   as proof that a model is globally best or that legacy authority may be retired.
 <!-- /ANCHOR:scope -->
@@ -134,8 +134,8 @@ selection claim.
 | REQ-008 | Uncertainty never becomes migration readiness | Missing, stale, contradictory, malformed, unsupported, contaminated, `UNKNOWN`, `INCONCLUSIVE`, `INSUFFICIENT_EVIDENCE`, telemetry-gap, or underpowered inputs produce `blocked`, `incomplete`, `not_ready`, or `rollback_required`, never a green gate |
 | REQ-009 | The certificate is exact-SHA and matrix bound | The certificate names this mode, BASE, candidate SHA, shared contract versions, event and reducer versions, evaluator and canary epochs, matrix and artifact digests, fixture IDs, rollback anchor, window state, verifier, gate predicates, and dispositions |
 | REQ-010 | Shared services have one source of truth | Model Benchmark consumes Deep Improvement Common Services evaluator, canary, calibration, promotion, receipt, certificate, veto, budget, and recovery semantics through adapters and cannot weaken or copy them |
-| REQ-011 | The gate is independent of authority | An offline verifier evaluates immutable evidence and uses the shared authorization boundary; a pass emits phase-011 readiness only and cannot mutate authority, dispatch a model, alter a baseline, promote a candidate, or retire a writer |
-| REQ-012 | The handoff is deterministic and sequencing-safe | Re-evaluating the same sealed matrix frontier and contract fingerprints yields the same gate result and certificate body digest; the handoff remains blocked until phase 009 freezes shared contracts and emits the write-set conflict graph |
+| REQ-011 | The gate is independent of authority | An offline verifier evaluates immutable evidence and uses the shared authorization boundary; a pass emits phase-014 readiness only and cannot mutate authority, dispatch a model, alter a baseline, promote a candidate, or retire a writer |
+| REQ-012 | The handoff is deterministic and sequencing-safe | Re-evaluating the same sealed matrix frontier and contract fingerprints yields the same gate result and certificate body digest; the handoff remains blocked until phase 012 freezes shared contracts and emits the write-set conflict graph |
 
 ### Model Benchmark rollback and mode-gate acceptance contract
 
@@ -169,7 +169,7 @@ evidence, unknown effect, and selection disposition. A final score match is neve
 | Shared-service reuse | Common evaluator, canary, promotion, receipt, certificate, veto, and recovery fixtures pass through the Model Benchmark adapter | `blocked` on copied service policy, weakened veto, divergent receipt, or private gate semantics |
 
 The emitted result is `gate_passed`, `gate_blocked`, `gate_incomplete`, or `rollback_required`. `gate_passed` means this
-Model Benchmark migration is ready for the phase-011 handoff; it does not state that live authority moved, that the rollback
+Model Benchmark migration is ready for the phase-014 handoff; it does not state that live authority moved, that the rollback
 window closed, that a model won deployment, or that a legacy writer may be removed.
 <!-- /ANCHOR:requirements -->
 
@@ -188,8 +188,8 @@ window closed, that a model won deployment, or that a legacy writer may be remov
   task-family uncertainty, candidate-specific calibration, contamination lineage, and workload-shaped operational evidence.
 - **SC-006**: The phase consumes Deep Improvement Common Services through adapters without copying evaluator, canary,
   calibration, promotion, receipt, certificate, veto, or recovery semantics.
-- **SC-007**: The exact-SHA mode certificate hands phase-011 readiness while explicitly excluding authority cutover and
-  legacy-writer retirement, and remains sequenced behind the phase 009 contract freeze and write-set graph.
+- **SC-007**: The exact-SHA mode certificate hands phase-014 readiness while explicitly excluding authority cutover and
+  legacy-writer retirement, and remains sequenced behind the phase 012 contract freeze and write-set graph.
 
 **Given** a sealed multi-model matrix with raw trials, score observations, calibration, contamination, workload, and receipt
 evidence, **When** the independent gate verifies it, **Then** the gate checks the complete evidence graph and refuses a
@@ -231,18 +231,18 @@ admission freezes, stale writers are fenced, legacy resumes at a new epoch, and 
 - **Shared-service fork** - Model Benchmark could copy evaluator, canary, promotion, or rollback behavior. Mitigation: one
   adapter boundary, shared fixtures, common hard-veto ordering, and a negative test for variant-local semantics.
 - **Sequencing drift** - The mode gate could be treated as authority or run before shared contracts are frozen. Mitigation:
-  keep the phase-011 handoff separate from cutover, require the phase 009 contract and write-set digests, and preserve the
+  keep the phase-014 handoff separate from cutover, require the phase 012 contract and write-set digests, and preserve the
   010 fan-out ordering stated by the parent program.
 - **Dependencies**: the parent 065 additive-dark migration model; shared transition/versioning/rollback policy; Model
-  Benchmark siblings `001` through `006`; Deep Improvement Common Services mode 004; phase 009 shared contract freeze and
-  write-set conflict graph; phase-011 handoff; 065/002 findings registries; the model-benchmark runtime paths; and the
+  Benchmark siblings `001` through `006`; Deep Improvement Common Services mode 004; phase 012 shared contract freeze and
+  write-set conflict graph; phase-014 handoff; 065/002 findings registries; the model-benchmark runtime paths; and the
   spec-kit validator.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What exact shared authority-record fields and transition token does the phase-011 consumer expose for the Model Benchmark
+- What exact shared authority-record fields and transition token does the phase-014 consumer expose for the Model Benchmark
   switch without creating a mode-local authority source?
 - Which Model Benchmark artifacts are mandatory in the mode-migration certificate when a matrix is valid but incomplete, and
   which are referenced from the sibling certificate contract rather than reissued?
@@ -254,7 +254,7 @@ admission freezes, stale writers are fenced, legacy resumes at a new epoch, and 
   outcomes must remain `UNKNOWN` until an operator decision?
 - Which common anchors, adaptive diagnostic cases, task-family quotas, and multiplicity rules are frozen by the shared mode
   contract before the gate can assess statistical sufficiency?
-- What exact certificate schema and acceptance endpoint does phase-011 consume for this mode gate while preserving the later
+- What exact certificate schema and acceptance endpoint does phase-014 consume for this mode gate while preserving the later
   authority-cutover boundary?
 
 These questions are resolved against the frozen shared contracts before implementation. They do not authorize a local

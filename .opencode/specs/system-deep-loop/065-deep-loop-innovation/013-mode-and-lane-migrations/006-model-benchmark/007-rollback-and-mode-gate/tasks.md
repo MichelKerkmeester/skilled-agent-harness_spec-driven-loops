@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Model Benchmark - Rollback & Mode Gate"
-description: "Tasks for planning and verifying the Model Benchmark fail-closed rollback switch, bounded rollback window, independent scoring-matrix mode gate, shared-service reuse, and phase-011 readiness certificate."
+description: "Tasks for planning and verifying the Model Benchmark fail-closed rollback switch, bounded rollback window, independent scoring-matrix mode gate, shared-service reuse, and phase-014 readiness certificate."
 trigger_phrases:
   - "model benchmark rollback and mode gate tasks"
   - "model benchmark rollback switch tasks"
@@ -42,7 +42,7 @@ _memory:
 
 - [ ] T001 Confirm the phase remains planning-only, legacy authority remains selected, and the gate has no direct cutover capability
 - [ ] T002 Pin BASE and the shared transition/versioning/rollback policy, including deny-by-default authorization, monotonic epochs, and the 14-day/five-successful-authoritative-execution minimum
-- [ ] T003 [P] Record phase 009 shared mode-contract and write-set graph fingerprints and the phase-011 handoff version
+- [ ] T003 [P] Record phase 012 shared mode-contract and write-set graph fingerprints and the phase-014 handoff version
 - [ ] T004 Inventory Model Benchmark siblings `001` through `006`: event, reducer, seal, certificate, receipt, replay, resume, and shadow-parity boundaries
 - [ ] T005 [P] Inventory Model Benchmark run, matrix, scoring, validity, contamination, workload, and authority-sensitive effects
 - [ ] T006 Build the gate input manifest and matrix evidence matrix for common anchors, adaptive diagnostics, model/executor crossings, and task-family coverage
@@ -62,7 +62,7 @@ _memory:
 - [ ] T015 Define anchor, adaptive-tail, task-family, model/path, contamination, workload, cost, latency, abstention, and switching evidence rules without allowing a score-only pass
 - [ ] T016 Define Model Benchmark validity and promotion handoff rules for candidate-specific calibration, rubric integrity, common-service vetoes, contamination, unknown effects, and insufficient evidence
 - [ ] T017 Define the shared-service reuse contract and reject variant-local evaluator, canary, calibration, promotion, receipt, certificate, fingerprint, veto, budget, or rollback semantics
-- [ ] T018 Define the exact-SHA-bound mode-migration certificate, verifier receipt, failed-predicate list, matrix frontier, unresolved obligations, rollback anchor, window state, and phase-011 handoff
+- [ ] T018 Define the exact-SHA-bound mode-migration certificate, verifier receipt, failed-predicate list, matrix frontier, unresolved obligations, rollback anchor, window state, and phase-014 handoff
 - [ ] T019 [P] Define deterministic `gate_passed`, `gate_blocked`, `gate_incomplete`, and `rollback_required` result semantics without implicit fallback to pass
 <!-- /ANCHOR:phase-2 -->
 
@@ -80,7 +80,7 @@ _memory:
 - [ ] T028 Verify complete and checkpointed replay, matrix-order permutations, duplicate delivery, crash-before-receipt, changed-manifest, and resume fixtures are deterministic or fail closed
 - [ ] T029 Verify Model Benchmark consumes identical shared evaluator, canary, calibration, promotion, certificate, receipt, fingerprint, veto, budget, and rollback fixtures through adapters
 - [ ] T030 Verify repeated evaluation of one sealed matrix frontier produces the same gate disposition and certificate body digest; mutate semantic inputs and require invalidation
-- [ ] T031 Verify phase-011 receives readiness evidence only and rejects any certificate claiming authority moved, the rollback window closed, a model was globally selected, or legacy writers retired
+- [ ] T031 Verify phase-014 receives readiness evidence only and rejects any certificate claiming authority moved, the rollback window closed, a model was globally selected, or legacy writers retired
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
@@ -88,7 +88,7 @@ _memory:
 
 - [ ] All tasks complete
 - [ ] All requirements in spec.md met with evidence
-- [ ] Independent Model Benchmark mode gate green and phase-011 handoff certificate emitted
+- [ ] Independent Model Benchmark mode gate green and phase-014 handoff certificate emitted
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->
@@ -100,5 +100,5 @@ _memory:
 - **Shared rollback policy**: `../../../../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`
 - **Shared Deep Improvement Common Services**: `../../004-deep-improvement-common/007-rollback-and-mode-gate`
 - **Model Benchmark inputs**: `../001-typed-ledger-schema`, `../002-reducers-and-projections`, `../003-sealed-artifacts`, `../004-certificates-and-receipts`, and `../005-resume-adapter`
-- **Phase-011 handoff**: See the staged cutover and authority handoff contract
+- **Phase-014 handoff**: See the staged cutover and authority handoff contract
 <!-- /ANCHOR:cross-refs -->

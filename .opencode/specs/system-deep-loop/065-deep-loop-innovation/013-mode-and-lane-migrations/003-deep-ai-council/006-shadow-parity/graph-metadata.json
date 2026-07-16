@@ -16,13 +16,13 @@
       "deep-ai-council event parity",
       "deep ai council shadow parity implementation plan",
       "council ledger projection diff plan",
-      "phase 006 council parity harness",
+      "phase 009 council parity harness",
       "deep ai council shadow parity tasks",
       "council ledger parity tasks",
-      "phase 006 council shadow tasks",
+      "phase 009 council shadow tasks",
       "deep ai council shadow parity checklist",
       "council projection parity gate",
-      "phase 006 council parity verifier"
+      "phase 009 council parity verifier"
     ],
     "key_topics": [
       "deep",
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the dark shadow-parity harness for the Deep AI Council migration. The harness runs the typed event-ledger path beside the legacy council emitter against the same frozen execution, compares canonical behavior projections event-for-event, and blocks authority cutover on any unexplained mismatch. It consumes the phase-011 shadow framework while keeping this phase limited to parity evidence for the council mode.",
-    "created_at": "2026-07-15T21:44:06.483Z",
-    "last_save_at": "2026-07-15T21:44:06.483Z",
+    "causal_summary": "Plan the dark shadow-parity harness for the Deep AI Council migration. The harness runs the typed event-ledger path beside the legacy council emitter against the same frozen execution, compares canonical behavior projections event-for-event, and blocks authority cutover on any unexplained mismatch. It consumes the phase-014 shadow framework while keeping this phase limited to parity evidence for the council mode.",
+    "created_at": "2026-07-16T03:43:35.238Z",
+    "last_save_at": "2026-07-16T03:43:35.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:724fca32910873c52975d8602a927ebdb3b2f5f1a365bfe64b9b4fcbadef9241",
+    "source_fingerprint": "sha256:ef6f2fa355a9416addcc21b4b1b0bae4778e7369f70db8b51b15ec7b77d5fb9c",
     "source_doc_hashes": {
-      "spec.md": "2dcb75444a809dcbbac5b60c8620bfd02a327252be8a41f35508cb30a7d50bb4",
-      "plan.md": "0f7ce5abb67e1514019f58fb282a5ae7e6877b770d49e444bd0bbf7af644bad0",
-      "tasks.md": "1a3bc84973ece909078930d196f38e670487ac46f54c1f925514748e0940470a",
-      "checklist.md": "9eb6f71de2c89abf4725ab282bf320bb46ac2ffe3aa4dd980b591bbd37a23519"
+      "spec.md": "fb041dc0b57f3630386eaa712b4f9a63a581b2344df581a25099029d261c70a1",
+      "plan.md": "4c7530f90fde9b11dc29a2b0850be6d37628dec0efff4eccd3a90e2131622c11",
+      "tasks.md": "d0d8e6bbf4579cc0ca37fe92d7367048d7aea0c6411343c11d87b21b5bf21ac9",
+      "checklist.md": "d30bf775512b28bc8a16cee6edc5f47b2cfe8016761e17ad90af31ea697f3828"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,9 +1,9 @@
 ---
-title: "Checklist: baseline, taxonomy, and state census (006 phase 000)"
-description: "Blocking verifier checklist for phase 000: prove the immutable BASE, 5/7/8 taxonomy, closed runtime/state census, semantic behavior baseline, deterministic replay, and executable rollback anchors."
+title: "Checklist: baseline, taxonomy, and state census"
+description: "Blocking verifier checklist for phase 003: prove the immutable BASE, 5/7/8 taxonomy, closed runtime/state census, semantic behavior baseline, deterministic replay, and executable rollback anchors."
 trigger_phrases:
   - "baseline taxonomy and state census checklist"
-  - "deep-loop recommendations phase 000 checklist"
+  - "deep-loop recommendations phase 003 checklist"
 importance_tier: "critical"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-deep-loop/065-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Authored the phase-000 verifier contract"
+    recent_action: "Authored the phase-003 verifier contract"
     next_safe_action: "Pin BASE before collecting census or benchmark evidence"
     blockers: []
     key_files: []
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for phase 000. Every item is a check the paired verify agent runs
+This checklist is the blocking SOL verifier contract for phase 003. Every item is a check the paired verify agent runs
 before the candidate commit lands. The report pins candidate SHA and the immutable program BASE, records commands,
 exit codes, discovery counts, scenario IDs, semantic diffs, fixture and artifact digests, and fails on zero tests,
 unclassified census rows, live-state mutation, or a BASE mismatch.
@@ -66,7 +66,7 @@ unclassified census rows, live-state mutation, or a BASE mismatch.
 
 - [ ] CHK-013 [P0] Every observed behavior is exactly one of `protected_contract` or `known_defect`; no unknown row remains
 - [ ] CHK-014 [P1] Every protected contract links to a scenario or fixture, and every defect links to one later owning phase without being fixed here
-- [ ] CHK-015 [P1] The phase-001 handoff manifest enumerates and hashes every baseline, census, fixture, benchmark, and rollback artifact
+- [ ] CHK-015 [P1] The phase-004 handoff manifest enumerates and hashes every baseline, census, fixture, benchmark, and rollback artifact
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->

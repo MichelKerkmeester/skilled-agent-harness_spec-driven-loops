@@ -4,7 +4,7 @@ description: "Tasks for the Agent Improvement shadow-parity phase: map proposal 
 trigger_phrases:
   - "Agent Improvement shadow parity tasks"
   - "agent proposal event parity tasks"
-  - "agent-improvement phase 006 tasks"
+  - "agent-improvement phase 009 tasks"
 importance_tier: "high"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the phase-012 shared-contract digest, phase-011 shadow-framework interface, parent compatibility-bridge contract, mode 004 common-service contract, and the fact that this phase has no authority-cutover responsibility
+- [ ] T001 Record the phase-015 shared-contract digest, phase-014 shadow-framework interface, parent compatibility-bridge contract, mode 004 common-service contract, and the fact that this phase has no authority-cutover responsibility
 - [ ] T002 Inventory the legacy Agent Improvement boundaries for AgentIR/package compilation, proposal and mutation, lineage, scoring, raw trials, family stability, frontier selection, resume, and promotion preparation
 - [ ] T003 Freeze the fixture manifest with BASE, candidate and baseline digests, inheritance graph, evaluator capsule and epoch, fixture rings, executor/environment descriptors, tool receipts, budget lease, expected terminal classes, and output locations
 - [ ] T004 Define the parity receipt schema, canonical event tuple, protected AgentIR and projection fields, diff classifications, common-service references, and versioned volatility allowlist before running acceptance comparisons

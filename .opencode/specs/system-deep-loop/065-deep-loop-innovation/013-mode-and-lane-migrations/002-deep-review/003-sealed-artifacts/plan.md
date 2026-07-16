@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Review - Sealed Reference Artifacts (013 phase 002 child 003)"
+title: "Implementation Plan: Deep Review - Sealed Reference Artifacts"
 description: "Implementation plan for binding Deep Review scope, per-dimension evidence, convergence witnesses, review-report outputs, and resume references to the shared seal-on-write and tamper-evident read contract."
 trigger_phrases:
   - "deep review sealed artifacts implementation plan"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined Deep Review seal boundaries and verified-read gates"
-    next_safe_action: "Inventory Deep Review artifacts against the phase-009 shared contract"
+    next_safe_action: "Inventory Deep Review artifacts against the phase-012 shared contract"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -30,14 +30,14 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / deep-review (mode 002, child 003) |
+| **Surface** | system-deep-loop / deep-review |
 | **Change class** | Mode-specific artifact registration and seal/read integration |
 | **Execution** | Seal-on-write references across scope, dimension passes, adjudication, convergence, synthesis, resume, and save; additive-dark |
 
 ### Overview
-Plan one Deep Review adapter over the shared phase-003 sealing primitives. The adapter maps the existing review lifecycle to
+Plan one Deep Review adapter over the shared phase-006 sealing primitives. The adapter maps the existing review lifecycle to
 registered artifact kinds, seals exact canonical bytes at each boundary, binds ordered digest references into the shared
-phase-009 review-loop contract, typed events, predecessor reducers, replay fingerprints, convergence evidence, and report
+phase-012 review-loop contract, typed events, predecessor reducers, replay fingerprints, convergence evidence, and report
 views, and verifies every reference before release to a consumer. The plan preserves candidate-first review, four configured
 dimensions, required traceability protocols, nine legal-stop gates, orthogonal severity and evidential fields, and the
 materialized `review-report.md` output. It consumes the shared sealed-reference contract and does not implement shared
@@ -48,7 +48,7 @@ storage, a second digest scheme, reducers, certificates, resume decisions, shado
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-009 shared review-loop contracts and the executable write-set conflict graph are frozen for the Deep Review lane
+- [ ] Phase-012 shared review-loop contracts and the executable write-set conflict graph are frozen for the Deep Review lane
 - [ ] The mode artifact matrix names every scope/init, dimension-pass, candidate/adjudication, convergence, synthesis, resume, and save input/output
 - [ ] Each matrix row identifies a shared artifact kind, canonicalization version, media type, and ordered reference role
 - [ ] Shared seal-on-write and verified-read seams are available without changing the legacy authoritative loop
@@ -64,7 +64,7 @@ storage, a second digest scheme, reducers, certificates, resume decisions, shado
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Shared seal adapter**: accepts a typed Deep Review artifact request, delegates canonicalization, atomic publication, digest derivation, lifecycle handling, and verified reads to the phase-003 primitive, and exposes no alternate hash or blob identity.
+- **Shared seal adapter**: accepts a typed Deep Review artifact request, delegates canonicalization, atomic publication, digest derivation, lifecycle handling, and verified reads to the phase-006 primitive, and exposes no alternate hash or blob identity.
 - **Mode artifact registry**: registers the scope/reference set, dimension-pass evidence, candidate/adjudication packet, convergence witness, synthesis view, and resume/save handoff as Deep Review specializations of the shared descriptor.
 - **Scope reference binder**: seals the target bytes or immutable target references, base/head or file set, review contract, dimensions, traceability protocols, context snapshot, capabilities, prompts, rubrics, and policy before the first pass.
 - **Pass seal boundaries**: seal selected targets, depth/search ledger, deterministic diagnostics, raw analyzer/test/runtime observations, graph events, iteration markdown, JSONL delta, and candidate evidence before reducer or convergence consumption.
@@ -78,9 +78,9 @@ storage, a second digest scheme, reducers, certificates, resume decisions, shado
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm the phase-009 shared review-loop contract and write-set conflict graph; verify predecessor `002-reducers-and-projections` owns findings, dashboard, strategy, and report projections.
+- Confirm the phase-012 shared review-loop contract and write-set conflict graph; verify predecessor `002-reducers-and-projections` owns findings, dashboard, strategy, and report projections.
 - Inventory current Deep Review scope/config, target and diff references, context snapshot, dimension inputs, iteration files, JSONL records, graph events, findings registry, convergence gates, report sections, resource-map coverage, resume state, and continuity-save handoffs against the pinned baseline.
-- Freeze the mode artifact-kind matrix, reference roles, canonicalization profiles, media types, stable session/generation/iteration identities, and ordered reference-set rules using the shared phase-003 primitive.
+- Freeze the mode artifact-kind matrix, reference roles, canonicalization profiles, media types, stable session/generation/iteration identities, and ordered reference-set rules using the shared phase-006 primitive.
 - Define typed seal/read failures, mutable-target and descriptor-drift dispositions, append-only supersession, changed-input handling, report/handoff refusal, and the additive-dark rollback switch.
 
 ### Phase 2: Implementation
@@ -91,7 +91,7 @@ storage, a second digest scheme, reducers, certificates, resume decisions, shado
 - Add a convergence witness binding one verified state and findings snapshot, dimension/protocol coverage, graph-convergence result, nine legal-stop gate results, and blocked-stop or recovery decision without redefining shared convergence policy.
 - Seal the findings/dashboard materialized view, optional resource-map coverage, unresolved obligations, verdict metadata, `review-report.md`, and ordered input digest set after projection.
 - Add resume-facing changed-input comparison and save/handoff references that preserve prior seals, identify affected finding/report views, and refuse trusted handoff evidence on failed reads.
-- Bind mode references into existing typed events, predecessor reducers and projections, replay fingerprints, compatibility adapters, shadow parity, and rollback handling without changing shared primitive ownership or phase-009 review-loop semantics.
+- Bind mode references into existing typed events, predecessor reducers and projections, replay fingerprints, compatibility adapters, shadow parity, and rollback handling without changing shared primitive ownership or phase-012 review-loop semantics.
 
 ### Phase 3: Verification
 - Prove equivalent scope, target, contract, prompt, rubric, and capability representations produce identical shared canonical bytes and algorithm-qualified digest references for each mode artifact kind.
@@ -126,9 +126,9 @@ storage, a second digest scheme, reducers, certificates, resume decisions, shado
 ## 6. DEPENDENCIES
 
 This child declares `depends_on: []` as an independent planning contract, while its implementation composes with the
-phase-009 shared review-loop interfaces and write-set conflict graph. The shared phase-003 sealing primitive owns the
+phase-012 shared review-loop interfaces and write-set conflict graph. The shared phase-006 sealing primitive owns the
 descriptor, canonicalization, content addressing, atomic publication, verified reads, lifecycle retention, and corruption
-handling. The phase-003 event and replay contracts own outer envelopes and fingerprint derivation. Phase 009 owns the
+handling. The phase-006 event and replay contracts own outer envelopes and fingerprint derivation. Phase 012 owns the
 shared review-loop target, dimension, lineage, convergence, report, and cross-mode compatibility semantics. Predecessor
 `002-reducers-and-projections` owns findings, dashboard, strategy, and report projections. The compatibility and shadow
 bridge supplies the parity boundary. Successor `004-certificates-and-receipts` consumes the verified reference set for

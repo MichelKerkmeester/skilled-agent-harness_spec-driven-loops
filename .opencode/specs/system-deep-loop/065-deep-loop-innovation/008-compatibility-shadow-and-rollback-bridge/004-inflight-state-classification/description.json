@@ -1,13 +1,13 @@
 {
   "specFolder": "system-deep-loop/065-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification",
-  "description": "Plan a total, fail-closed classification of every phase-000 in-flight state row into upcast, pin, fork, migrate, or block before any phase-011",
+  "description": "Plan a total, fail-closed classification of every phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014",
   "keywords": [
     "plan",
     "total",
     "fail-closed",
     "classification",
     "every",
-    "phase-000",
+    "phase-003",
     "in-flight",
     "state",
     "row",
@@ -16,9 +16,9 @@
     "fork",
     "migrate",
     "block",
-    "phase-011"
+    "phase-014"
   ],
-  "lastUpdated": "2026-07-15T18:52:48.783Z",
+  "lastUpdated": "2026-07-16T03:26:42.449Z",
   "specId": "004",
   "folderSlug": "inflight-state-classification",
   "parentChain": [

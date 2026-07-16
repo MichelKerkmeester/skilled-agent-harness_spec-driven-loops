@@ -29,7 +29,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking shadow-parity verifier contract for Model Benchmark phase 006. Every item is a check the paired
+This checklist is the blocking shadow-parity verifier contract for Model Benchmark phase 009. Every item is a check the paired
 verifier runs before parity evidence can be handed to `007-rollback-and-mode-gate`; each report pins BASE, mode and common-service
 versions, benchmark recipe and matrix digests, evaluator and judge versions, fixture IDs, both stream digests, projection
 fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-authority-write evidence. `MISMATCH`,
@@ -39,7 +39,7 @@ fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-a
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-009 shared-contract digest, phase-012 mode-interface and write-set graph, phase-011 shadow-framework interface, parent compatibility bridge, and mode 004 common-service contract are pinned in the candidate report
+- [ ] CHK-001 [P0] The phase-012 shared-contract digest, phase-015 mode-interface and write-set graph, phase-014 shadow-framework interface, parent compatibility bridge, and mode 004 common-service contract are pinned in the candidate report
 - [ ] CHK-002 [P0] Legacy Model Benchmark boundaries are inventoried for recipe, run, model/executor expansion, cell admission, trial, score, calibration, contamination, workload, resume, and terminal behavior
 - [ ] CHK-003 [P1] BASE, recipe, matrix, model/executor descriptors, task/family digests, anchors, diagnostic policy, evaluator and judge epochs, workload, contamination visibility, seeds, baseline, budget, fixture IDs, and output paths are frozen before dual execution
 - [ ] CHK-004 [P1] The canonical event tuple, protected matrix and projection fields, diff taxonomy, common-service references, receipt schema, and volatility allowlist are reviewed before any difference is classified as tolerated
@@ -68,8 +68,8 @@ fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-a
 - [ ] CHK-017 [P0] Contamination and exposure fixtures preserve source date, visibility, first exposure, disclosure, detector evidence, retirement, replacement, fresh-case status, and blocked or uncertain dispositions
 - [ ] CHK-018 [P0] Workload fixtures compare context, concurrency, traffic shape, output length, prefix reuse, multi-turn behavior, TTFT, inter-token and tail latency, throughput, SLO, cost, error, abstention, and switching evidence; missing usage is not zero
 - [ ] CHK-019 [P0] Partial, failed, unknown, invalid, abstained, inconclusive, stale, and missing cells remain explicit; an absent observation cannot become a zero score or successful matrix completion
-- [ ] CHK-020 [P0] Phase-011 healthy, degeneration, recovery, stale, missing, and unsupported observations preserve one coherent cursor and watermark; data gaps never count as healthy
-- [ ] CHK-021 [P0] Phase-011 pause, re-seed, quarantine, repair, and stop requests remain observations and do not stop, dispatch, cancel, spend budget, mutate a baseline, promote a selection, or change authority
+- [ ] CHK-020 [P0] Phase-014 healthy, degeneration, recovery, stale, missing, and unsupported observations preserve one coherent cursor and watermark; data gaps never count as healthy
+- [ ] CHK-021 [P0] Phase-014 pause, re-seed, quarantine, repair, and stop requests remain observations and do not stop, dispatch, cancel, spend budget, mutate a baseline, promote a selection, or change authority
 - [ ] CHK-022 [P0] Complete replay, checkpoint replay, matrix-order permutation, resume, late completion, and duplicate delivery produce identical match identities, projection fingerprints, mismatch classes, and verdicts
 - [ ] CHK-023 [P0] The accepted corpus has zero unexplained protected projection differences, zero blocking evidence gaps, and zero authority writes from the typed shadow path
 - [ ] CHK-024 [P0] `MISMATCH`, `INCONCLUSIVE`, `TELEMETRY_GAP`, `INSUFFICIENT_EVIDENCE`, stale evaluator, unsupported adapter, missing usage, or empty eligible corpus cannot produce `PASS`

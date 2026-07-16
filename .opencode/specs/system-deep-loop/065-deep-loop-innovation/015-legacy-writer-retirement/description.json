@@ -1,6 +1,6 @@
 {
   "specFolder": "system-deep-loop/065-deep-loop-innovation/015-legacy-writer-retirement",
-  "description": "Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-011 cutover certificate, a closed",
+  "description": "Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed",
   "keywords": [
     "remove",
     "old",
@@ -14,12 +14,12 @@
     "every",
     "mode",
     "clean",
-    "phase-011",
+    "phase-014",
     "cutover",
     "certificate",
     "closed"
   ],
-  "lastUpdated": "2026-07-15T18:52:48.791Z",
+  "lastUpdated": "2026-07-16T03:26:42.532Z",
   "specId": "015",
   "folderSlug": "legacy-writer-retirement",
   "parentChain": [

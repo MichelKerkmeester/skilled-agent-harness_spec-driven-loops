@@ -31,7 +31,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / Model Benchmark mode (013 mode 006, phase 006) |
+| **Surface** | system-deep-loop / Model Benchmark mode |
 | **Change class** | Shadow verification harness and model-benchmark parity contract |
 | **Execution** | Planning-only child; legacy emitter remains authoritative and shared services are reused |
 
@@ -49,8 +49,8 @@ receipt is the handoff artifact, not a cutover certificate.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-009 shared contracts and phase-012 mode interfaces, fixture rules, and write-set conflict graph are pinned inputs
-- [ ] Phase-011 health and degeneration shadow inputs, cursors, policy digests, telemetry-gap states, and non-authoritative action semantics are available
+- [ ] Phase-012 shared contracts and phase-015 mode interfaces, fixture rules, and write-set conflict graph are pinned inputs
+- [ ] Phase-014 health and degeneration shadow inputs, cursors, policy digests, telemetry-gap states, and non-authoritative action semantics are available
 - [ ] Mode 004 exposes evaluator, canary, promotion, receipt, budget, health, and generic parity ports without a variant-local reimplementation
 - [ ] Model Benchmark legacy boundaries are inventoried for run, trial, scoring, calibration, contamination, workload, resume, and terminal behavior
 - [ ] The canonical event tuple, protected matrix fields, normalization manifest, mismatch taxonomy, and parity receipt schema are frozen
@@ -62,7 +62,7 @@ receipt is the handoff artifact, not a cutover certificate.
 - [ ] Event-for-event parity has zero unexplained semantic differences across run, cell, score, validity, contamination, workload, and terminal behavior
 - [ ] Matrix permutations, complete replay, checkpoint replay, resume, late completion, and duplicate delivery are deterministic
 - [ ] Common anchors, adaptive diagnostic evidence, family coverage, missing evidence, and operational usage remain explicit
-- [ ] Phase-011 health observations remain shadow-only and fail closed on telemetry gaps or stale watermarks
+- [ ] Phase-014 health observations remain shadow-only and fail closed on telemetry gaps or stale watermarks
 - [ ] Mode 004 common services are consumed through shared contracts without duplicate evaluator, canary, or promotion semantics
 - [ ] A green parity report blocks later cutover but cannot authorize cutover, dispatch, promotion, or legacy-writer retirement
 <!-- /ANCHOR:quality-gates -->
@@ -84,7 +84,7 @@ receipt is the handoff artifact, not a cutover certificate.
   in canonical order; classify missing, extra, duplicate, reorder, identity, score, validity, workload, and projection differences.
 - **Projection oracle**: fold both streams into run state, matrix cells, raw observations, score vectors, uncertainty, coverage,
   anchor and diagnostic status, judge/calibration, contamination, workload, cost/latency, shared-service, resume, and terminal views.
-- **Health shadow adapter**: consume phase-011 observations at one ledger cursor and projection watermark; record health,
+- **Health shadow adapter**: consume phase-014 observations at one ledger cursor and projection watermark; record health,
   degeneration, `telemetry_gap`, `not_evaluable`, recovery, and action-request parity without invoking any requested action.
 - **Fixture and receipt store**: retain frozen inputs, both streams, canonical streams, matrix snapshots, projection fingerprints,
   mismatch records, shared-service references, and parity receipts in isolated non-authoritative output.
@@ -110,7 +110,7 @@ receipt is the handoff artifact, not a cutover certificate.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm phase-009 shared contracts, phase-012 mode interfaces and write-set boundary, phase-011 shadow framework, parent
+- Confirm phase-012 shared contracts, phase-015 mode interfaces and write-set boundary, phase-014 shadow framework, parent
   compatibility bridge, mode 004 common-service ports, and Model Benchmark sibling ownership boundaries.
 - Inventory actual legacy Model Benchmark boundaries for benchmark recipe and run setup, model/executor expansion, cell admission,
   trial dispatch and result capture, score and matrix reduction, calibration, contamination, workload measurement, resume, and
@@ -128,7 +128,7 @@ receipt is the handoff artifact, not a cutover certificate.
   diagnostic status, family coverage, score vectors, uncertainty, validity, contamination, and operational evidence.
 - Define projection folds and deterministic replay oracles for run lifecycle, matrix progress, raw trials, score state,
   calibration, coverage, adaptive selection, contamination, workload, cost/latency, resume, and terminal status.
-- Define the phase-011 health adapter, coherent watermark checks, `telemetry_gap` and `not_evaluable` handling, recovery
+- Define the phase-014 health adapter, coherent watermark checks, `telemetry_gap` and `not_evaluable` handling, recovery
   comparison, and observation-only action requests.
 - Build the fixture matrix for healthy runs, partial cells, task-family reversals, adaptive tails, missing usage, judge/rubric
   perturbations, contamination, workload profiles, score-policy changes, replay, resume, duplicate delivery, late completion,
@@ -144,7 +144,7 @@ receipt is the handoff artifact, not a cutover certificate.
   and underpowered states without inferring absent trials.
 - Verify raw observations, score versions, uncertainty, calibration, contamination lineage, usage, latency, workload, and
   selection-policy evidence remain addressable across replay and reduction-policy changes.
-- Verify phase-011 healthy, degeneration, recovery, stale, missing, and unsupported observations remain non-authoritative.
+- Verify phase-014 healthy, degeneration, recovery, stale, missing, and unsupported observations remain non-authoritative.
 - Verify complete replay, checkpoint replay, matrix-order permutations, resume, late completion, and duplicate delivery produce
   stable matches, fingerprints, mismatch classes, and verdicts.
 - Run common fixtures through mode 004 service contracts and reject any variant-local evaluator, canary, promotion, veto, or health
@@ -165,15 +165,15 @@ receipt is the handoff artifact, not a cutover certificate.
 | REQ-006 | Replay score-policy, calibration, contamination, workload, and ranking changes while retaining raw item/family observations, judge evidence, usage, latency, and exposure references |
 | REQ-007 | Common-anchor, adaptive-tail, family-quota, propensity, partial-matrix, and underpowered fixtures prove omitted diagnostics cannot become superiority evidence |
 | REQ-008 | Invoke mode 004 evaluator, canary, promotion, health, receipt, budget, veto, and mismatch contracts; reject any variant-local common-service fork |
-| REQ-009 | Phase-011 healthy, degeneration, recovery, stale, missing, and unsupported fixtures preserve one cursor and watermark; action requests never stop, dispatch, cancel, spend, or mutate authority |
+| REQ-009 | Phase-014 healthy, degeneration, recovery, stale, missing, and unsupported fixtures preserve one cursor and watermark; action requests never stop, dispatch, cancel, spend, or mutate authority |
 | REQ-010 | Validate every parity receipt against BASE, mode, common-service, schema, reducer, comparator, fixture, stream, projection, and diff metadata; reject all non-green outcomes as cutover evidence |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The direct inputs are the phase-011 health and degeneration shadow framework, phase-012 shared mode contracts and write-set
-conflict graph, phase-009 shared contract freeze, the parent compatibility bridge, and the Model Benchmark siblings
+The direct inputs are the phase-014 health and degeneration shadow framework, phase-012 shared mode contracts and write-set
+conflict graph, phase-012 shared contract freeze, the parent compatibility bridge, and the Model Benchmark siblings
 `001-typed-ledger-schema` through `005-resume-adapter`. Mode 004 Deep Improvement Common Services supplies evaluator, canary,
 promotion, health, budget, receipt, veto, and generic parity contracts. `007-rollback-and-mode-gate` consumes the passing report
 without inheriting authority from this child.
@@ -182,7 +182,7 @@ The 065/002 findings require task-conditioned rather than global model strength,
 testable judge/rubric configuration, sealed counterfactual task lineage, private and fresh evaluation data, workload-shaped
 operational metrics, paired and clustered inference, contamination evidence, adaptive allocation with retained coverage, and
 versioned benchmark signatures. Those findings shape parity fields and fixtures; they do not authorize a new scoring policy or
-production cutover. The per-mode 010 migrations remain downstream of phase 009 contract freeze and the emitted write-set conflict
+production cutover. The per-mode 010 migrations remain downstream of phase 012 contract freeze and the emitted write-set conflict
 graph.
 <!-- /ANCHOR:dependencies -->
 

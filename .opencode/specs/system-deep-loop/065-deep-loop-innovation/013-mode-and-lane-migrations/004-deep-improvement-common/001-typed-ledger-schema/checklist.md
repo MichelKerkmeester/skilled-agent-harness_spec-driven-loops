@@ -30,7 +30,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking planning verifier contract for the typed Deep Improvement Common Services event
-vocabulary. The implementation verifier must bind its report to the phase-003 and phase-009 contract revisions,
+vocabulary. The implementation verifier must bind its report to the phase-006 and phase-012 contract revisions,
 record the event-catalog version, list schema and replay-fixture results, and fail on untyped fields, missing event
 families, reducer/projection scope leakage, or any promotion path that can self-authorize.
 <!-- /ANCHOR:protocol -->
@@ -38,8 +38,8 @@ families, reducer/projection scope leakage, or any promotion path that can self-
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-003 transition-authorized ledger core is identified with its envelope, authorization, receipt, and replay obligations
-- [ ] CHK-002 [P0] The phase-009 shared event contracts are identified with their naming, identity, causation, sequence, and versioning obligations
+- [ ] CHK-001 [P0] The phase-006 transition-authorized ledger core is identified with its envelope, authorization, receipt, and replay obligations
+- [ ] CHK-002 [P0] The phase-012 shared event contracts are identified with their naming, identity, causation, sequence, and versioning obligations
 - [ ] CHK-003 [P1] The common evaluator, canary, and promotion service boundaries are mapped to all three downstream variants
 - [ ] CHK-004 [P1] The child adjacency is recorded: predecessor none (first sibling) and successor `002-reducers-and-projections`
 <!-- /ANCHOR:pre-impl -->
@@ -99,7 +99,7 @@ families, reducer/projection scope leakage, or any promotion path that can self-
 ## Verification Summary
 
 The phase is complete when every P0 contract check passes, the typed envelope and event catalog are reviewed against
-the imported phase-003 and phase-009 contracts, upcaster behavior is deterministic and fail-closed, all three variants
+the imported phase-006 and phase-012 contracts, upcaster behavior is deterministic and fail-closed, all three variants
 reuse the shared service vocabulary, and strict validation reports no blocking error. Reducer and projection behavior
 is intentionally verified by the next sibling rather than this child.
 <!-- /ANCHOR:summary -->

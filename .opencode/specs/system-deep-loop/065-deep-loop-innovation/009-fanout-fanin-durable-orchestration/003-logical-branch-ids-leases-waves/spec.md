@@ -41,17 +41,17 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Third child of the phase-006 fan-out / fan-in durable-orchestration parent |
-| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-006 parent gate |
+| **Origin** | Third child of the phase-009 fan-out / fan-in durable-orchestration parent |
+| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-009 parent gate |
 | **Authority posture** | Additive-dark; legacy execution remains authoritative until staged cutover |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Phase 002 plans deterministic manifest expansion across `models[] × branches[] × replicas`, including stable directory-safe logical branch IDs, but deliberately leaves canonical persistence to phase 006. The shipped `.opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs` then accepts a flat ordered item array, keeps at most `K` workers active, requeues retryable failures, preserves result order by input index, and records local JSONL status. That pool is already work-conserving, but its wave-planner interface is explicitly dormant, labels are not a durable branch registry, and status rows do not prove which worker epoch was entitled to process a branch.
+Phase 005 plans deterministic manifest expansion across `models[] × branches[] × replicas`, including stable directory-safe logical branch IDs, but deliberately leaves canonical persistence to phase 009. The shipped `.opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs` then accepts a flat ordered item array, keeps at most `K` workers active, requeues retryable failures, preserves result order by input index, and records local JSONL status. That pool is already work-conserving, but its wave-planner interface is explicitly dormant, labels are not a durable branch registry, and status rows do not prove which worker epoch was entitled to process a branch.
 
-Resume makes those gaps unsafe. Reordering a manifest, restarting after a partially completed wave, or reclaiming an expired worker must not remap a result to another branch, rerun a completed branch, or let the displaced worker append a second accepted result. The phase-004 locks-and-fencing contract supplies the missing safety primitive: a lease is only a liveness claim, while the durable monotonically increasing fencing token must be checked atomically at every protected mutation. This phase applies that primitive per logical branch and places deterministic ordered waves above the existing capped pool rather than replacing its concurrency, retry, stall, or settlement behavior.
+Resume makes those gaps unsafe. Reordering a manifest, restarting after a partially completed wave, or reclaiming an expired worker must not remap a result to another branch, rerun a completed branch, or let the displaced worker append a second accepted result. The phase-007 locks-and-fencing contract supplies the missing safety primitive: a lease is only a liveness claim, while the durable monotonically increasing fencing token must be checked atomically at every protected mutation. This phase applies that primitive per logical branch and places deterministic ordered waves above the existing capped pool rather than replacing its concurrency, retry, stall, or settlement behavior.
 
 The resulting ledger fold must answer four questions without inspecting process-local state: which canonical branches exist, which wave each belongs to, which wave is currently eligible, and which lease epoch may mutate each branch. The program outcome and sequencing are fixed by `.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`: durable orchestration consumes the dispatch, ledger, control-service, and compatibility contracts, then hands stable identities and recoverable results to later fan-in and novelty work.
 <!-- /ANCHOR:problem -->
@@ -60,19 +60,19 @@ The resulting ledger fold must answer four questions without inspecting process-
 ## 3. SCOPE
 
 ### In Scope
-- A versioned logical-branch identity contract that consumes phase 002's explicit model ID, branch ID, and replica ordinal; produces one canonical directory-safe ID; rejects collisions and aliases; and is independent of array position, dispatch time, process identity, retry count, wave admission, or resume order.
+- A versioned logical-branch identity contract that consumes phase 005's explicit model ID, branch ID, and replica ordinal; produces one canonical directory-safe ID; rejects collisions and aliases; and is independent of array position, dispatch time, process identity, retry count, wave admission, or resume order.
 - A canonical branch registry record containing the logical branch ID, derivation version, source manifest fingerprint, normalized expansion coordinates, wave identity and ordinal, invocation/dispatch linkage, and immutable branch-registration idempotency key.
-- Resume validation that re-expands the manifest, matches branches by canonical logical ID, rejects derivation-version or manifest-coordinate drift, and maps phase-002 result envelopes and salvage records back to exactly one registered branch.
-- A per-run/per-branch protected resource key compatible with the phase-004 locks-and-fencing registry; branch aliases, traversal variants, and duplicate coordinates must resolve to one key or fail closed before dispatch.
-- Worker lease acquire, renew, expire, release, takeover, and rejection using the phase-004 lease service. Every grant carries lease ID, owner/attempt identity, fencing token, acquired/renewed/expiry timestamps, and declared atomicity domain.
+- Resume validation that re-expands the manifest, matches branches by canonical logical ID, rejects derivation-version or manifest-coordinate drift, and maps phase-005 result envelopes and salvage records back to exactly one registered branch.
+- A per-run/per-branch protected resource key compatible with the phase-007 locks-and-fencing registry; branch aliases, traversal variants, and duplicate coordinates must resolve to one key or fail closed before dispatch.
+- Worker lease acquire, renew, expire, release, takeover, and rejection using the phase-007 lease service. Every grant carries lease ID, owner/attempt identity, fencing token, acquired/renewed/expiry timestamps, and declared atomicity domain.
 - Mutation-side fencing for branch dispatch state, status, result-envelope acceptance, salvage merge, retry ownership, and terminal transition. A stale or duplicate worker may finish locally but cannot commit protected branch state.
 - A deterministic wave plan with stable wave IDs, ordered wave ordinals, immutable branch membership, explicit prerequisite references, and a plan fingerprint. The scheduler admits only the current authorized wave to `runCappedPool`.
 - Work-conserving execution within an admitted wave: the existing pool retains its concurrency cap, retry classification, stall detection, post-exit orphan handling, ordered result envelope, and never-throw per-item settlement semantics.
-- Canonical ledger events for branch registration, wave planning/admission/closure, lease lifecycle and takeover, stale-fence rejection, branch attempt/terminal state, and resume reconstruction, using the phase-001 event vocabulary and phase-003 transition gateway.
+- Canonical ledger events for branch registration, wave planning/admission/closure, lease lifecycle and takeover, stale-fence rejection, branch attempt/terminal state, and resume reconstruction, using the phase-004 event vocabulary and phase-006 transition gateway.
 - Deterministic replay, reorder, duplicate-worker, expiry, crash, partial-wave, and resume fixtures proving that the ledger fold reconstructs the same branch-to-wave-to-result mapping.
 
 ### Out of Scope
-- Redefining phase 002's manifest inputs, executor adapters, capability matrix, invocation fingerprint, or Cartesian expansion semantics.
+- Redefining phase 005's manifest inputs, executor adapters, capability matrix, invocation fingerprint, or Cartesian expansion semantics.
 - Replacing or embedding a second concurrency pool. `runCappedPool` remains the execution engine; this phase supplies durable admission and ownership around it.
 - Designing the shared lease coordinator or fencing-token store. Phase `007-shared-evidence-and-control-services/006-locks-and-fencing` owns those primitives; this phase consumes and specializes them.
 - Result-envelope schema and salvage policy owned by predecessor `002-result-envelopes-and-resume-salvage`.
@@ -88,7 +88,7 @@ The resulting ledger fold must answer four questions without inspecting process-
 | REQ-001 | Logical branch IDs are stable and directory-safe | Equal normalized model ID, branch ID, replica ordinal, and derivation version produce the same ID across reorder, restart, host, and time; unsafe segments and collisions fail before registration |
 | REQ-002 | Branch registration is canonical and idempotent | Replaying the same expansion emits no duplicate branch; conflicting coordinates, manifest fingerprints, or derivation versions for an existing ID fail closed |
 | REQ-003 | Every result maps to exactly one registered branch | Dispatch receipts, attempts, result envelopes, salvage records, and terminal events carry the same logical branch ID and validate their immutable registration linkage |
-| REQ-004 | Each branch has one canonical fenced resource key | Alias and traversal variants cannot create parallel ownership domains; duplicate claims serialize on the phase-004 lease resource |
+| REQ-004 | Each branch has one canonical fenced resource key | Alias and traversal variants cannot create parallel ownership domains; duplicate claims serialize on the phase-007 lease resource |
 | REQ-005 | Lease lifecycle is bounded, renewable, and takeover-safe | Acquire/renew/expire/release records are ledger-visible; expiry permits a higher token; displaced holders cannot renew or release the successor's lease |
 | REQ-006 | Every protected branch mutation validates the current fence atomically | Old-token dispatch, status, retry, salvage, result, and terminal writes return typed stale-lease rejection and cannot alter the accepted branch fold |
 | REQ-007 | Wave plans and membership are deterministic | Equal normalized manifest plus wave policy yields the same ordered wave IDs, ordinals, membership, prerequisites, and plan fingerprint; membership cannot change after admission |
@@ -111,13 +111,13 @@ The minimal durable fold is keyed by run ID and logical branch ID. Registration 
 - **SC-003**: A worker pauses past lease expiry, a successor obtains a higher fence, and every later old-fence status, result, salvage, retry, or terminal mutation is rejected.
 - **SC-004**: Wave membership and ordering replay identically; only the current authorized wave is submitted to the existing capped pool, while pool concurrency remains fully utilized inside that wave.
 - **SC-005**: Ledger replay alone reconstructs the registered branches, current lease owners, terminal results, current/next wave, and blocked prerequisites with no directory scan or PID inference.
-- **SC-006**: Phase-002 manifest expansion, phase-004 fencing, predecessor result envelopes, and successor advance/stop policies compose through explicit IDs and events without duplicating ownership.
+- **SC-006**: Phase-005 manifest expansion, phase-007 fencing, predecessor result envelopes, and successor advance/stop policies compose through explicit IDs and events without duplicating ownership.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-This child has `depends_on: []` as an independent planning contract, while implementation consumes four established interfaces: phase 002's deterministic manifest expansion and invocation fingerprint; phase 003's transition-authorized ledger; phase 004's lease/fencing service; and predecessor result envelopes plus salvage. The program-level dependency and outcome are recorded in `manifest/phase-tree.json`. These are contract dependencies, not sibling-planning prerequisites.
+This child has `depends_on: []` as an independent planning contract, while implementation consumes four established interfaces: phase 005's deterministic manifest expansion and invocation fingerprint; phase 006's transition-authorized ledger; phase 007's lease/fencing service; and predecessor result envelopes plus salvage. The program-level dependency and outcome are recorded in `manifest/phase-tree.json`. These are contract dependencies, not sibling-planning prerequisites.
 
 The highest safety risk is treating a directory name, process-local pool label, lease timestamp, or successful pre-write check as ownership. Branch IDs must come from versioned normalized coordinates, and fencing must be checked inside the same atomic boundary as every accepted mutation. A second risk is implementing waves by pausing pool slots or adding a competing scheduler inside `fanout-pool.cjs`; the intended composition filters eligible items before each pool invocation, preserving the proven capped work-conserving core.
 
@@ -127,5 +127,5 @@ Resume can also drift if a changed manifest silently reuses an existing run. The
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Implementation must pin the logical-ID encoder and digest length, lease duration/renewal margin, canonical per-branch resource-key format, wave-policy version, and exact event names against the phase-001 vocabulary before writing production state. The defaults must preserve the contracts above: IDs are coordinate-derived rather than index-derived, token checks are mutation-atomic, and later policy phases authorize wave advance without rewriting wave history.
+None blocking for planning. Implementation must pin the logical-ID encoder and digest length, lease duration/renewal margin, canonical per-branch resource-key format, wave-policy version, and exact event names against the phase-004 vocabulary before writing production state. The defaults must preserve the contracts above: IDs are coordinate-derived rather than index-derived, token checks are mutation-atomic, and later policy phases authorize wave advance without rewriting wave history.
 <!-- /ANCHOR:questions -->

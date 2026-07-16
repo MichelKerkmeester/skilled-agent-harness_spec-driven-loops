@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Model Benchmark - Sealed Reference Artifacts"
-description: "Blocking verification checklist for the model-benchmark phase-003-backed sealed benchmark recipe, multi-model matrix, raw cell evidence, scoring references, validity and contamination lineage, workload evidence, and common-service handoff."
+description: "Blocking verification checklist for the model-benchmark phase-006-backed sealed benchmark recipe, multi-model matrix, raw cell evidence, scoring references, validity and contamination lineage, workload evidence, and common-service handoff."
 trigger_phrases:
   - "model benchmark sealed artifacts checklist"
   - "model benchmark tamper evident scoring verification"
@@ -29,7 +29,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for the model-benchmark sealed reference-artifacts phase. Every item is a check the paired verifier runs before the candidate implementation lands; each report pins the candidate SHA, common phase-003 sealing fingerprint, predecessor reducer fingerprint, recipe and matrix fixture digests, commands, exit codes, artifact counts, completeness states, and scoring outcomes. Any alternate sealing scheme, mutable overwrite, accepted tampered read, hidden-evidence leak, incomplete anchor set, invalid calibration, contaminated case, fabricated usage, workload mismatch, or shared-service fork fails the gate.
+This checklist is the blocking verifier contract for the model-benchmark sealed reference-artifacts phase. Every item is a check the paired verifier runs before the candidate implementation lands; each report pins the candidate SHA, common phase-006 sealing fingerprint, predecessor reducer fingerprint, recipe and matrix fixture digests, commands, exit codes, artifact counts, completeness states, and scoring outcomes. Any alternate sealing scheme, mutable overwrite, accepted tampered read, hidden-evidence leak, incomplete anchor set, invalid calibration, contaminated case, fabricated usage, workload mismatch, or shared-service fork fails the gate.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
@@ -45,7 +45,7 @@ This checklist is the blocking verifier contract for the model-benchmark sealed 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-006 [P0] Every model-benchmark artifact uses the phase-003 sealing adapter; no second digest, signature, chain, manifest, storage, or verification scheme exists
+- [ ] CHK-006 [P0] Every model-benchmark artifact uses the phase-006 sealing adapter; no second digest, signature, chain, manifest, storage, or verification scheme exists
 - [ ] CHK-007 [P0] Recipe and cell digest coverage includes canonical bytes, artifact kind, schema version, matrix ordering, model/executor identity, workload, and ordered dependency closure
 - [ ] CHK-008 [P0] Sealed recipe, matrix, cell, observation, and scoring bytes are immutable, writes are atomic, incomplete cells are unreadable, and every semantic change requires a new identity
 - [ ] CHK-009 [P1] Scope is limited to model-benchmark run/scoring artifacts, validity, contamination, workload evidence, fixtures, shared-service adapters, and verification; no authority cutover or adjacent cleanup is included
@@ -95,7 +95,7 @@ This checklist is the blocking verifier contract for the model-benchmark sealed 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-031 [P1] Implementation and fixture changes land in dependency-closed, path-scoped commits after the common reducer and phase-003 sealing contracts are pinned
+- [ ] CHK-031 [P1] Implementation and fixture changes land in dependency-closed, path-scoped commits after the common reducer and phase-006 sealing contracts are pinned
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

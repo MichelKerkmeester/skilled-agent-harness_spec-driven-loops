@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep Improvement Common Services - certificates and receipts (013 phase 004)"
+title: "Implementation Plan: Deep Improvement Common Services - certificates and receipts"
 description: "Implementation Plan for the Deep Improvement Common Services certificates and receipts phase: freeze shared attestations, replay fingerprints, offline verification, and evaluator/canary/promotion service boundaries."
 trigger_phrases:
   - "deep improvement certificates and receipts implementation plan"
@@ -158,7 +158,7 @@ reuse them after 009 freezes shared contracts and emits the write-set conflict g
 
 The phase consumes the sealed-artifact primitives from `003-sealed-artifacts`, typed ledger interfaces from
 `001-typed-ledger-schema`, and reducer/projection interfaces from `002-reducers-and-projections`. It also depends on
-the parent mode contract and the phase-009 shared-contract freeze plus write-set conflict graph before the later 010
+the parent mode contract and the phase-012 shared-contract freeze plus write-set conflict graph before the later 010
 fan-out. The successor `005-resume-adapter` consumes the receipt-chain, fingerprint, uncertain-effect, and verifier
 receipt rules defined here. The three downstream variant folders consume the evaluator, canary, and promotion
 services as adapters, not as independent implementations. The packet validator and the frozen parent success criteria

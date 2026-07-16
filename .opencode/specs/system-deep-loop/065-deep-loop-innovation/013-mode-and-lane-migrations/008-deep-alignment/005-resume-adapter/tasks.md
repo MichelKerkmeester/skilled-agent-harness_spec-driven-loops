@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-009 shared review-loop contract is frozen and record its seal, frontier, reducer, replay, and terminal interfaces
+- [ ] T001 Confirm the phase-012 shared review-loop contract is frozen and record its seal, frontier, reducer, replay, and terminal interfaces
 - [ ] T002 Confirm the shared mode contract and emitted write-set conflict graph are available for same-lineage and independent-lineage resume
 - [ ] T003 Inventory authority, lane, applicability, observation, proof, adjudication, deviation, convergence, and handoff interruption boundaries
 - [ ] T004 Define the continuity-ladder state table and invariants for authority epochs, lanes, evidence, findings, proofs, deviations, and terminal handoff
@@ -73,7 +73,7 @@ _memory:
 - [ ] T021 Verify logical lane successes and evidence receipts survive partial-lane recovery without replaying completed branches
 - [ ] T022 Verify authority-invalid, not-applicable, unresolved, inconclusive, untested, blocked, expired-deviation, and reactivation cases remain explicit
 - [ ] T023 Verify raw observations, candidates, proof witnesses, verifier results, conformance assessments, and deviations remain immutable and independently replayable
-- [ ] T024 Verify phase-009 transitions and the write-set graph govern same-lineage and independent-lineage resumes without a Deep Alignment lifecycle fork
+- [ ] T024 Verify phase-012 transitions and the write-set graph govern same-lineage and independent-lineage resumes without a Deep Alignment lifecycle fork
 - [ ] T025 Verify the adapter is ready for successor shadow parity and the mode gate without authority cutover, legacy-writer changes, or mutable-summary fallback
 <!-- /ANCHOR:phase-3 -->
 
@@ -90,7 +90,7 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Shared loop authority**: Phase 009 shared review-loop contract
+- **Shared loop authority**: Phase 012 shared review-loop contract
 - **Mode and write-set authority**: Shared mode contract and emitted write-set conflict graph
 - **Sibling navigation**: predecessor `004-certificates-and-receipts`; successor `006-shadow-parity`
 <!-- /ANCHOR:cross-refs -->

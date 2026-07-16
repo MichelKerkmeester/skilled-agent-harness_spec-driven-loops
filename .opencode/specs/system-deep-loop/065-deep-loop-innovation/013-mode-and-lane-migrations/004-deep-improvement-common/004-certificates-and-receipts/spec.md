@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Improvement Common Services - certificates and receipts (013 phase 004)"
+title: "Feature Specification: Deep Improvement Common Services - certificates and receipts"
 description: "Plan the shared Deep Improvement Common Services certificate and receipt contract over the typed event-ledger substrate: per-run certificates, per-transition receipts, replay fingerprints, independent offline verification, and the evaluator, canary, and promotion services reused by agent-improvement, model-benchmark, and skill-benchmark."
 trigger_phrases:
   - "deep improvement certificates and receipts"
@@ -41,7 +41,7 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (owns the shared deep-improvement backbone and its typed event-ledger contracts) |
-| **Origin** | Phase 004 of the deep-improvement-common mode migration: certificates, receipts, replay fingerprints, and offline verification |
+| **Origin** | Phase 007 of the deep-improvement-common mode migration: certificates, receipts, replay fingerprints, and offline verification |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -174,9 +174,9 @@ verifier version, ruleset digest, and evidence digests, allowing later audits to
 - **Shared services drift across variants** - Three benchmark variants may add incompatible fields or thresholds. Mitigation: one service owner, versioned shared contracts, adapter-only variant extensions, and a reuse matrix in the plan.
 - **Offline replay is falsely deterministic** - Stable sorting alone does not stabilize admission, retry, deadline, environment, or partial-failure decisions. Mitigation: include those decisions and all declared nondeterministic inputs in the fingerprint and retain their receipts.
 - **Promotion is rescued by a soft judge** - A strong aggregate can mask schema, security, regression, or integrity failure. Mitigation: hard vetoes are evaluated before soft scoring and cannot be overturned by adjudication.
-- **Unknown effect outcome is mistaken for success** - A crash after an external effect but before its receipt creates an uncertain state. Mitigation: use the phase-003 effect/receipt primitive and require explicit recovery policy before another promotion transition.
-- **Ordering mismatch** - The manifest records no dependency for this child while the content consumes phase-003 primitives. Mitigation: preserve the required sibling adjacency as navigation/ordering and fail closed during implementation if the phase-003 contract is unavailable.
-- **Dependencies**: `003-sealed-artifacts` primitives; the typed ledger and reducers in sibling phases 001-002; the parent shared-mode contract and write-set conflict graph; the phase-009 contract freeze before later 010 migrations; and the spec-kit validator for this planning packet.
+- **Unknown effect outcome is mistaken for success** - A crash after an external effect but before its receipt creates an uncertain state. Mitigation: use the phase-006 effect/receipt primitive and require explicit recovery policy before another promotion transition.
+- **Ordering mismatch** - The manifest records no dependency for this child while the content consumes phase-006 primitives. Mitigation: preserve the required sibling adjacency as navigation/ordering and fail closed during implementation if the phase-006 contract is unavailable.
+- **Dependencies**: `003-sealed-artifacts` primitives; the typed ledger and reducers in sibling phases 001-002; the parent shared-mode contract and write-set conflict graph; the phase-012 contract freeze before later 010 migrations; and the spec-kit validator for this planning packet.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Model Benchmark typed ledger schema (013 mode migration, 006 child)"
+title: "Implementation Plan: Model Benchmark typed ledger schema"
 description: "Implementation Plan for the Model Benchmark typed ledger schema phase: freeze the mode envelope specialization and append-only event vocabulary over the shared deep-improvement-common and transition-authorized ledger contracts, with field-level types, lineage, validity, and upcaster hooks."
 trigger_phrases:
   - "Model Benchmark typed ledger schema implementation plan"
   - "model-benchmark event schema plan"
-  - "typed ledger phase 006 model benchmark"
+  - "typed ledger phase 009 model benchmark"
 importance_tier: "high"
 contextType: "planning"
 parent: "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema"
@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / deep-improvement / model-benchmark child phase |
 | **Change class** | Planning contract: typed append-only event vocabulary |
-| **Execution** | Plan against phase-003 and phase-009 frozen contracts; no runtime authority or reducer implementation in this phase |
+| **Execution** | Plan against phase-006 and phase-012 frozen contracts; no runtime authority or reducer implementation in this phase |
 
 ### Overview
 The plan turns the Model Benchmark research findings into a closed event vocabulary over the shared ledger. It starts from the transition-authorized envelope, adds a mode-specific payload union for multi-model runs and scoring matrices, and preserves task lineage, contamination evidence, judge calibration, validity, usage, latency, and raw observations as immutable facts. The plan explicitly builds on deep-improvement-common services from mode 004 and hands its evidence to `002-reducers-and-projections`; it does not duplicate evaluator, canary, promotion, or reducer behavior.
@@ -43,7 +43,7 @@ The plan turns the Model Benchmark research findings into a closed event vocabul
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-003 transition-authorization and phase-009 shared event contracts are available with stable field names and version references
+- [ ] Phase-006 transition-authorization and phase-012 shared event contracts are available with stable field names and version references
 - [ ] The mode-004 deep-improvement-common ownership boundary is listed for evaluator, canary, calibration, and promotion services
 - [ ] Current Model Benchmark evidence paths and research findings are mapped to event families without treating research prose as an implementation contract
 - [ ] The next sibling `002-reducers-and-projections` input boundary is agreed before any derived selection state is named
@@ -60,7 +60,7 @@ The plan turns the Model Benchmark research findings into a closed event vocabul
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Shared envelope first**: inherit event identity, stream sequence, authorization receipt, causation/correlation, hash chain, schema version, and replay fingerprint from phase-003 and phase-009. Model Benchmark cannot omit or reinterpret these fields.
+- **Shared envelope first**: inherit event identity, stream sequence, authorization receipt, causation/correlation, hash chain, schema version, and replay fingerprint from phase-006 and phase-012. Model Benchmark cannot omit or reinterpret these fields.
 - **Mode specialization**: use a `deep-improvement.model-benchmark.*` discriminant and a `ModelBenchmarkEventEnvelope<T>` payload union. The mode layer owns run, design, trial, scoring evidence, validity, and reduction-handoff facts.
 - **Stable matrix identity**: represent candidate, model/build, execution path, task instance/family, paired block, protocol variant, seed, perturbation, workload profile, and recipe fingerprints as typed dimensions rather than array positions.
 - **Evidence preservation**: keep raw output digests, raw score vectors, judge observations, oracle attestations, contamination/exposure lineage, normalized usage, and latency as append-only observations. Derived totals and selection decisions are not source events in this phase.
@@ -74,7 +74,7 @@ The plan turns the Model Benchmark research findings into a closed event vocabul
 
 ### Phase 1: Setup
 - Reconcile the parent program invariants, the phase-tree outcome for the Model Benchmark child, and the research model-benchmark findings.
-- Pin the source contract references for the phase-003 transition-authorized ledger core, phase-009 shared event contracts, and mode-004 common services.
+- Pin the source contract references for the phase-006 transition-authorized ledger core, phase-012 shared event contracts, and mode-004 common services.
 - Inventory current run and sweep facts named by the research evidence, including dispatch usage, trial identity, failure states, and existing scoring-matrix dimensions.
 - Write the explicit non-goal and ownership table for reducers, projections, evaluator/canary/promotion services, authority cutover, and legacy writers.
 
@@ -100,7 +100,7 @@ The plan turns the Model Benchmark research findings into a closed event vocabul
 
 | Requirement | Verification |
 |-------------|--------------|
-| REQ-001 | Field matrix compares the Model Benchmark envelope with the phase-003 and phase-009 shared required fields; missing authorization, hash, sequence, or replay fields are rejected |
+| REQ-001 | Field matrix compares the Model Benchmark envelope with the phase-006 and phase-012 shared required fields; missing authorization, hash, sequence, or replay fields are rejected |
 | REQ-002 | Event-union review exercises run declaration, capsule/workload sealing, design, trial lifecycle, observations, validity, and reduction handoff |
 | REQ-003 | Matrix fixtures vary model, endpoint/build, route, task family, task instance, paired block, protocol, seed, and workload without changing identity semantics |
 | REQ-004 | Trial examples retain raw output digest, raw score vector, usage receipt, latency profile, judge reference, and failed/unknown outcome without a reducer-owned aggregate |
@@ -115,7 +115,7 @@ The plan turns the Model Benchmark research findings into a closed event vocabul
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The plan depends on the phase-003 transition-authorized ledger core for authorization, stream identity, hash chaining, and compatibility decisions, and on phase-009 shared event contracts for common causal, receipt, budget, and orchestration references. It consumes the mode-004 deep-improvement-common evaluator/canary/promotion interfaces and must align its event references with the next sibling `002-reducers-and-projections`. Later authority cutover and legacy retirement phases consume the completed mode gate; they do not participate in this schema planning boundary.
+The plan depends on the phase-006 transition-authorized ledger core for authorization, stream identity, hash chaining, and compatibility decisions, and on phase-012 shared event contracts for common causal, receipt, budget, and orchestration references. It consumes the mode-004 deep-improvement-common evaluator/canary/promotion interfaces and must align its event references with the next sibling `002-reducers-and-projections`. Later authority cutover and legacy retirement phases consume the completed mode gate; they do not participate in this schema planning boundary.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

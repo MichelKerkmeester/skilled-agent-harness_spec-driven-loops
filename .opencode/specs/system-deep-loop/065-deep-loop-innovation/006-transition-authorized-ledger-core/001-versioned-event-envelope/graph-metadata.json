@@ -197,8 +197,8 @@
       }
     ],
     "causal_summary": "Define the canonical wire envelope, type/version registry, per-type required-field contracts, and deterministic read-time upcaster entry points that every future deep-loop ledger event uses while the new substrate remains additive, dark, and non-authoritative.",
-    "created_at": "2026-07-15T19:00:34.084Z",
-    "last_save_at": "2026-07-15T19:00:34.084Z",
+    "created_at": "2026-07-16T03:43:45.370Z",
+    "last_save_at": "2026-07-16T03:43:45.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:6943b9e7bdf14531e94b6a8d5af335b24195357df4790e0682279ea206c9adf6",
+    "source_fingerprint": "sha256:ee8c8c5377d2c86aea74942e2c730cb16cde496f814a8590849c2874f3217f34",
     "source_doc_hashes": {
-      "spec.md": "5ec9a98fc5cd982bb4736f74d0f1957ca3c28b497ddbe4d1b899de4661129c0f",
-      "plan.md": "9005bcc6f1569747a01fc527cc510987c8b760ac2f7cfb4f9c7c3e7fc404f241",
-      "tasks.md": "35a204d71756dda0c9ac80b1b53acc64dfee263acc7cb17f05e1085079345696",
-      "checklist.md": "9d94f9317ca7404d7c924cef56d4840854dd19d48d01bf7d3998ffa695f79dbf"
+      "spec.md": "9fa62077c2dc1018e0bf797cb42e45702915c877a06f2ae22093d8d573454a45",
+      "plan.md": "79828e0b27e9891483cd09937be05bc93cca92e37cddda0390322dd6807b151b",
+      "tasks.md": "ca6a4a709513d4615657865466734c3f5efb79c64401a1c4907c7d9aabe055e0",
+      "checklist.md": "e9860321501422eb92ab3972d7d1e35b2bffbbe60fde969d5b0b9855b8085421"
     },
     "last_active_child_id": null,
     "last_active_at": null

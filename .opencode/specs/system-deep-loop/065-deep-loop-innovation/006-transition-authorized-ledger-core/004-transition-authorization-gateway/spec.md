@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Transition-Authorization Gateway"
-description: "Define the fail-closed gateway that authorizes every typed state transition before ledger append, records allow and deny verdicts as auditable non-domain ledger events, and remains dark until phase 011."
+description: "Define the fail-closed gateway that authorizes every typed state transition before ledger append, records allow and deny verdicts as auditable non-domain ledger events, and remains dark until phase 014."
 trigger_phrases:
   - "transition authorization gateway"
   - "default deny ledger append"
@@ -41,19 +41,19 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Fourth child of the phase-003 transition-authorized ledger-core parent |
-| **Depends on** | None (`[]`); sibling contracts compose at the phase-003 parent gate |
-| **Authority posture** | Enforces only dark-ledger appends through phase 010; legacy remains authoritative until phase 011 |
+| **Origin** | Fourth child of the phase-006 transition-authorized ledger-core parent |
+| **Depends on** | None (`[]`); sibling contracts compose at the phase-006 parent gate |
+| **Authority posture** | Enforces only dark-ledger appends through phase 013; legacy remains authoritative until phase 014 |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The shared spine cannot treat a structurally valid event as proof that a requested state transition is legal. The phase-001 spine ADR therefore requires explicit authorization for every state transition and makes missing, unknown, malformed, stale, unsupported, or failed evaluation default to denial. The transition policy further fixes the decision inputs, the one-writer authority epoch, and the rule that a denial must never advance domain state (`../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`, `../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`).
+The shared spine cannot treat a structurally valid event as proof that a requested state transition is legal. The phase-004 spine ADR therefore requires explicit authorization for every state transition and makes missing, unknown, malformed, stale, unsupported, or failed evaluation default to denial. The transition policy further fixes the decision inputs, the one-writer authority epoch, and the rule that a denial must never advance domain state (`../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`, `../../004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`).
 
 This phase defines the checkpoint between a validated transition request and the typed ledger append boundary. The gateway binds the exact canonical request, current verified state, actor capability, authority epoch, evidence, and immutable policy version into one decision. It records both allow and deny verdicts as typed first-class events in a dedicated non-domain authorization-audit stream, then permits the requested domain event only when a durable allow event matches the exact request digest and current head. A denied request records audit evidence but advances no domain sequence, projection, idempotency success, receipt, or side effect.
 
-The gateway and sibling ledger must co-land as one dark unit: the ledger rejects every direct or unproved domain append, while authorization-decision events have one narrow gateway-owned emission path that cannot trigger domain reducers. Until phase 011, a dark denial or gateway failure blocks only the parallel typed append and cannot change the authoritative legacy outcome. This preserves the additive-dark migration model in the program parent and `manifest/phase-tree.json` while making unauthorized typed history impossible from the first writer onward (`../../spec.md`, `../../manifest/phase-tree.json`, `../002-typed-append-only-ledger/spec.md`).
+The gateway and sibling ledger must co-land as one dark unit: the ledger rejects every direct or unproved domain append, while authorization-decision events have one narrow gateway-owned emission path that cannot trigger domain reducers. Until phase 014, a dark denial or gateway failure blocks only the parallel typed append and cannot change the authoritative legacy outcome. This preserves the additive-dark migration model in the program parent and `manifest/phase-tree.json` while making unauthorized typed history impossible from the first writer onward (`../../spec.md`, `../../manifest/phase-tree.json`, `../002-typed-append-only-ledger/spec.md`).
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -68,7 +68,7 @@ The gateway and sibling ledger must co-land as one dark unit: the ledger rejects
 - Denial behavior that records bounded audit metadata without copying sensitive payload content and returns a typed rejection without appending the domain event.
 - Replay and audit that re-evaluate deterministic policy inputs where the registered policy is available and always verify stored decision, request, policy, authority, and ledger linkage.
 - Crash and partial-write semantics: an allow event without its target event remains visibly unapplied; inability to durably record the decision prevents the domain append.
-- Additive-dark integration in which authorization gates only the new typed ledger and cannot alter legacy authority before phase 011.
+- Additive-dark integration in which authorization gates only the new typed ledger and cannot alter legacy authority before phase 014.
 
 ### Out of Scope
 - Event-envelope fields and registry/upcast mechanics owned by `001-versioned-event-envelope`.
@@ -76,7 +76,7 @@ The gateway and sibling ledger must co-land as one dark unit: the ledger rejects
 - Replay-fingerprint composition owned by predecessor `003-replay-fingerprints`; this phase supplies decision inputs and linkage for that fingerprint.
 - Domain-specific transition policies for later orchestration, projection, convergence, or mode schemas; this phase defines the common evaluator and policy contract.
 - Compatibility adapters, shadow-parity decisions, rollback rehearsal, authority cutover, or legacy-writer retirement owned by program phases 005, 011, and 012.
-- Treating an authorization verdict, dark ledger, or audit projection as runtime authority before phase 011.
+- Treating an authorization verdict, dark ledger, or audit projection as runtime authority before phase 014.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -94,8 +94,8 @@ The gateway and sibling ledger must co-land as one dark unit: the ledger rejects
 | REQ-008 | Allow linkage is single-use and request-exact | The domain append verifies decision ID/digest, verdict, request digest, prior head, authority epoch, policy digest, event identity, and freshness, then consumes the proof for that exact append only |
 | REQ-009 | Replay and audit detect authorization drift | Replay reconstructs decision order, verifies every domain event has an earlier matching allow event, verifies denied requests have no linked domain event, and reports policy or verdict divergence without rewriting history |
 | REQ-010 | Partial failure is explicit and fail closed | Decision-audit append failure prevents domain append; a durable allow with no target append remains an auditable unapplied authorization and may be retried only through exact idempotency rules |
-| REQ-011 | Dark operation preserves legacy authority | Through phase 010, gateway outcomes govern only the dark typed ledger and never change legacy JSONL state, mode control flow, user-visible result, or effect execution |
-| REQ-012 | The gateway co-lands with the ledger core | The phase-003 parent gate rejects any composition where a typed writer can land before the gateway or where the gateway cannot durably emit both verdict classes |
+| REQ-011 | Dark operation preserves legacy authority | Through phase 013, gateway outcomes govern only the dark typed ledger and never change legacy JSONL state, mode control flow, user-visible result, or effect execution |
+| REQ-012 | The gateway co-lands with the ledger core | The phase-006 parent gate rejects any composition where a typed writer can land before the gateway or where the gateway cannot durably emit both verdict classes |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -105,7 +105,7 @@ The gateway and sibling ledger must co-land as one dark unit: the ledger rejects
 - **SC-002**: Every evaluated denial is durably auditable without a corresponding domain append or domain-state mutation.
 - **SC-003**: Direct, stale, malformed, mismatched, unknown-policy, evaluator-failure, and decision-storage-failure paths all fail closed before domain sequence allocation.
 - **SC-004**: Deterministic replay verifies allow linkage, deny absence, policy identity, and verdict parity while preserving original history.
-- **SC-005**: Dark gateway failures are observable but do not change the authoritative legacy result before phase 011.
+- **SC-005**: Dark gateway failures are observable but do not change the authoritative legacy result before phase 014.
 - **SC-006**: The ledger, gateway, envelope, and replay-fingerprint contracts pass one co-landing gate with no authorization bypass.
 
 **Given** a complete request whose deterministic policy evaluation allows the transition, **When** the gateway runs, **Then** it durably records an allow event before the exact domain event and the ledger receipt links both.
@@ -118,7 +118,7 @@ The gateway and sibling ledger must co-land as one dark unit: the ledger rejects
 
 **Given** a durable allow event followed by a crash before domain append, **When** replay runs, **Then** it reports an unapplied authorization without inventing, deleting, or applying a domain transition.
 
-**Given** the legacy path and dark typed path disagree before phase 011, **When** runtime behavior is selected, **Then** legacy remains authoritative and the disagreement becomes shadow evidence only.
+**Given** the legacy path and dark typed path disagree before phase 014, **When** runtime behavior is selected, **Then** legacy remains authoritative and the disagreement becomes shadow evidence only.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -128,11 +128,11 @@ The main security risk is an accidental bypass: a convenience append API, permis
 
 Audit ordering creates a deliberate partial-failure state: an allow event can exist without an applied domain event, but the inverse can never exist. Replay treats that state as unapplied authorization, and exact idempotency may retry the target append without minting a conflicting decision. Decision records also risk leaking sensitive payloads; only canonical request and evidence digests plus bounded reason metadata are retained.
 
-This child declares `depends_on: []`, matching the independent sibling planning contract. Implementation co-lands with the sibling envelope, ledger, and replay-fingerprint work at the phase-003 parent gate. Normative inputs are the phase-001 spine ADR and transition policy, the program invariants, `manifest/phase-tree.json`, and `../002-typed-append-only-ledger/spec.md`. Phase 005 later proves shadow parity, and phase 011 alone may make these decisions authoritative for runtime state.
+This child declares `depends_on: []`, matching the independent sibling planning contract. Implementation co-lands with the sibling envelope, ledger, and replay-fingerprint work at the phase-006 parent gate. Normative inputs are the phase-004 spine ADR and transition policy, the program invariants, `manifest/phase-tree.json`, and `../002-typed-append-only-ledger/spec.md`. Phase 008 later proves shadow parity, and phase 014 alone may make these decisions authoritative for runtime state.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Implementation may select module names, policy expression format, audit-stream partitioning, and decision-retention indexes, but it may not weaken default-deny behavior, exact request/policy/state binding, durable audit of both verdicts, non-domain denial semantics, single-use allow linkage, deterministic replay, or dark non-authority before phase 011.
+None blocking for planning. Implementation may select module names, policy expression format, audit-stream partitioning, and decision-retention indexes, but it may not weaken default-deny behavior, exact request/policy/state binding, durable audit of both verdicts, non-domain denial semantics, single-use allow linkage, deterministic replay, or dark non-authority before phase 014.
 <!-- /ANCHOR:questions -->

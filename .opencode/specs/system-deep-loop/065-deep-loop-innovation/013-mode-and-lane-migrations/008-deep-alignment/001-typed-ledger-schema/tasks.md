@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-15T21:30:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped Deep Alignment event ownership and shared review-loop handoff"
-    next_safe_action: "Freeze authority, lane, and finding events against phase-009 contracts"
+    next_safe_action: "Freeze authority, lane, and finding events against phase-012 contracts"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -39,13 +39,13 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-003 core, phase-009 shared review-loop contracts, and Deep Review shared-backbone boundary are authoritative inputs; freeze this child as planning-only
+- [ ] T001 Confirm the phase-006 core, phase-012 shared review-loop contracts, and Deep Review shared-backbone boundary are authoritative inputs; freeze this child as planning-only
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Define `DeepAlignmentEventEnvelope` over the phase-009 envelope, including typed scope, inherited-field comparison, payload hash, authorization reference, and replay-fingerprint inputs
+- [ ] T002 Define `DeepAlignmentEventEnvelope` over the phase-012 envelope, including typed scope, inherited-field comparison, payload hash, authorization reference, and replay-fingerprint inputs
 - [ ] T003 Define authority, capsule, epoch, rule-IR, profile, signature, expiry, rollback, and compatibility field types plus validation event payloads
 - [ ] T004 Define lane, subject snapshot, applicability predicate, obligation kind, budget, verifier, and execution field types with explicit applicable/not-applicable/unresolved/blocked outcomes
 - [ ] T005 Define raw observation, evidence receipt, freshness, detector, candidate, impact, confidence, and source-fingerprint event payloads without verdict mutation
@@ -63,7 +63,7 @@ _memory:
 - [ ] T012 Verify: Authority invalidity cannot emit conformance PASS, and not-applicable/unresolved/inconclusive/untested/blocked states remain explicit
 - [ ] T013 Verify: Raw observations, candidates, verifier results, proof witnesses, deviations, and conformance decisions are separately addressable append-only facts
 - [ ] T014 Verify: Every verified finding binds authority epoch, subject snapshot digest, applicability decision, evidence receipts, verifier identity, proof references, and verification mode
-- [ ] T015 Verify: Shared phase-009 review-loop events are reused by Deep Review and Deep Alignment without mode-local lifecycle duplication
+- [ ] T015 Verify: Shared phase-012 review-loop events are reused by Deep Review and Deep Alignment without mode-local lifecycle duplication
 - [ ] T016 Verify: The compatibility matrix covers exact, compatible, migrate, pin-old-runtime, degraded, blocked, unknown, expired, mixed, ambiguous, and lossy cases
 - [ ] T017 Verify: The schema scope excludes reducers, projections, sealed artifacts, certificates, resume, shadow parity, rollback, authority cutover, and mode-gate behavior
 <!-- /ANCHOR:phase-3 -->

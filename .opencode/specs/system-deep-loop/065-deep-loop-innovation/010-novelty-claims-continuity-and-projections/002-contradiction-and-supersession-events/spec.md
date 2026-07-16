@@ -41,9 +41,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Second child of the phase-007 novelty, claims, continuity, and projections parent |
-| **Depends on** | None (`[]`); sibling contracts compose at the phase-007 parent gate |
-| **Authority posture** | Additive-dark; legacy state remains authoritative until the staged phase-011 cutover |
+| **Origin** | Second child of the phase-010 novelty, claims, continuity, and projections parent |
+| **Depends on** | None (`[]`); sibling contracts compose at the phase-010 parent gate |
+| **Authority posture** | Additive-dark; legacy state remains authoritative until the staged phase-014 cutover |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -57,7 +57,7 @@ calls for a longitudinal `ClaimRecord` ledger with support/refute/qualify edges,
 contradiction blockers, and explicit supersession links
 (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md`).
 
-This phase plans two first-class relationship events over the phase-003 typed append-only ledger. A
+This phase plans two first-class relationship events over the phase-006 typed append-only ledger. A
 `CONTRADICTION` event records that two identified claims cannot both hold under a stated scope and evidence set. A
 `SUPERSESSION` event records that a newer, stronger claim replaces an earlier claim under an evidence-backed rationale.
 Assertions and withdrawals are appended as new events; no claim, relationship, evidence locator, or earlier event is
@@ -82,7 +82,7 @@ program placement and phase outcome are fixed by
 - Candidate-detection inputs from semantic communities and evidence edges, with a strict boundary between a proposed relation and an authorized ledger event.
 - Authorization invariants: no self-relations, no missing claims/evidence, canonical contradiction pairs, no supersession cycles, and no competing active replacement without an explicit withdrawal or chain.
 - A deterministic reducer that derives each claim's effective `active`, `contested`, or `superseded` status from the verified event sequence while retaining all active and historical relationship detail.
-- Audit and replay requirements binding relationship events to phase-003 ledger ordering, integrity, authorization linkage, and replay fingerprints.
+- Audit and replay requirements binding relationship events to phase-006 ledger ordering, integrity, authorization linkage, and replay fingerprints.
 - Fixtures for assertion, withdrawal, duplicate append, contradictory evidence, supersession chains, invalid cycles, replay, and corruption/mismatch behavior.
 
 ### Out of Scope
@@ -90,7 +90,7 @@ program placement and phase outcome are fixed by
 - Stable claim identity creation and the broader claim lifecycle owned by `003-claim-continuity`.
 - Next-focus selection and convergence/termination decisions; these events provide inputs but do not decide where to search or when to stop.
 - Transactional projection storage and gauge updates owned by `005-transactional-projections-and-gauges`.
-- Redefining the phase-003 versioned envelope, append-only writer, authorization gateway, or replay-fingerprint format.
+- Redefining the phase-006 versioned envelope, append-only writer, authorization gateway, or replay-fingerprint format.
 - Deleting or mutating a claim, evidence record, or prior relationship event; correction is append-only.
 - Treating semantic similarity, source count, timestamps, or detector confidence alone as sufficient evidence for contradiction or supersession.
 <!-- /ANCHOR:scope -->
@@ -113,7 +113,7 @@ program placement and phase outcome are fixed by
 
 ### Canonical event shapes
 
-Both shapes ride the phase-003 versioned envelope and inherit its `event_id`, schema/type versions, run/ledger identity,
+Both shapes ride the phase-006 versioned envelope and inherit its `event_id`, schema/type versions, run/ledger identity,
 authorization linkage, canonical bytes, sequence, and append receipt. Ledger sequence is ordering authority; timestamps are
 audit metadata only.
 
@@ -129,7 +129,7 @@ changes require a new event with a new evidence snapshot, not mutation of the ol
 
 ### Effective-status fold
 
-The reducer consumes only the phase-003 reader's verified sequence. It first folds assertion/withdrawal actions into
+The reducer consumes only the phase-006 reader's verified sequence. It first folds assertion/withdrawal actions into
 the active relation set, rejecting an ambiguous or impossible withdrawal. It then resolves acyclic supersession chains
 to their terminal successor. A claim with an active incoming supersession is `superseded`; otherwise a claim incident
 to any active contradiction is `contested`; otherwise it is `active`. A superseded claim may still expose active or
@@ -152,9 +152,9 @@ unresolved claim references, cycles, or fingerprint mismatch produce no trusted 
 ## 6. RISKS & DEPENDENCIES
 
 The planning leaf declares `depends_on: []`, matching the phase tree's independent child-contract model. Its
-implementation nevertheless composes with the planned semantic-community output, the phase-003 envelope/ledger/
+implementation nevertheless composes with the planned semantic-community output, the phase-006 envelope/ledger/
 authorization/fingerprint contracts, shared evidence receipts, and the successor claim-continuity reducer at the
-phase-007 parent gate. The sibling `001-semantic-communities/spec.md` is a prospective contract; this phase consumes
+phase-010 parent gate. The sibling `001-semantic-communities/spec.md` is a prospective contract; this phase consumes
 only its documented community identities and does not assume an implementation shape beyond the parent phase outcome.
 
 The highest semantic risk is turning a detector guess into claim authority. Similar claims may qualify one another
@@ -172,7 +172,7 @@ preserve the additive-dark migration posture and the later convergence phase's n
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Execution may choose concrete module names and serialization details after the phase-003
+None blocking for planning. Execution may choose concrete module names and serialization details after the phase-006
 registry and sibling claim/community contracts are materialized. It must retain exactly two relationship event types,
 append-only assertion/withdrawal semantics, canonical symmetric contradiction pairs, directional acyclic supersession,
 evidence-backed authorization, deterministic status precedence, and fail-closed replay. Any alternative that mutates

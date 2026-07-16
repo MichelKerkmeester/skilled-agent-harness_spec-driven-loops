@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin phase-002 adapter/fingerprint fixtures and phase-003/004 interface versions
+- [ ] T001 Pin phase-005 adapter/fingerprint fixtures and phase-006/004 interface versions
 - [ ] T002 Inventory manifest resolution, pool-worker invocation, and subprocess spawn boundaries
 - [ ] T003 Define the `lineage_dispatch_resolved` registry entry, field allowlist, identity derivation, and typed errors
 - [ ] T004 Capture legacy command, manifest, pool, retry, budget, checkpoint, and artifact baselines
@@ -49,11 +49,11 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T005 Implement the canonical dispatch-receipt schema and post-validation event builder
-- [ ] T006 Persist the exact phase-002 `invocationFingerprint` with version/algorithm metadata and normalized-fact checks
+- [ ] T006 Persist the exact phase-005 `invocationFingerprint` with version/algorithm metadata and normalized-fact checks
 - [ ] T007 Add stable receipt, dispatch, run, leaf/logical-branch, attempt, causality, and idempotency identities
 - [ ] T008 Add safe prompt/input/config digests and reject raw prompts, credentials, environment values, and run-master secrets
 - [ ] T009 Integrate `receipt-crypto.ts` canonicalization and MAC primitives with explicit advisory/durable verifier labeling
-- [ ] T010 Require transition authorization and a durable phase-003 append receipt before crossing the pool/spawn boundary
+- [ ] T010 Require transition authorization and a durable phase-006 append receipt before crossing the pool/spawn boundary
 - [ ] T011 Implement exact-repeat append reuse and same-identity/different-facts conflict rejection
 - [ ] T012 Build the verified dispatch-receipt projection and resume state classifier
 - [ ] T013 Emit unresolved handoff data for receipt-without-result cases without implementing successor result/salvage logic
@@ -72,7 +72,7 @@ _memory:
 - [ ] T021 Verify: Resume rebuilds never-dispatched, already-resolved, result-recorded, unresolved, conflict, and corrupt states from ledger evidence
 - [ ] T022 Verify: Receipt-only leaves enter recovery/salvage coordination and are neither completed nor blindly respawned
 - [ ] T023 Verify: Crash cuts before append, after append/before spawn, during spawn, and after exit/before result are deterministic and duplicate-safe
-- [ ] T024 Verify: Legacy phase-002 command, manifest, pool, retry, budget, checkpoint, and persisted-artifact baselines remain unchanged
+- [ ] T024 Verify: Legacy phase-005 command, manifest, pool, retry, budget, checkpoint, and persisted-artifact baselines remain unchanged
 - [ ] T025 Run strict spec validation and the targeted runtime build/typecheck/unit suite with non-zero discovery assertions
 <!-- /ANCHOR:phase-3 -->
 

@@ -132,7 +132,7 @@
         "source": "derived"
       },
       {
-        "name": "phase-011",
+        "name": "phase-014",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-011 cutover certificate, a closed rollback window, and zero-use telemetry. Retain archival readers required for historical legacy packets.",
-    "created_at": "2026-07-15T19:00:50.233Z",
-    "last_save_at": "2026-07-15T19:00:50.233Z",
+    "causal_summary": "Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed rollback window, and zero-use telemetry. Retain archival readers required for historical legacy packets.",
+    "created_at": "2026-07-16T03:44:00.951Z",
+    "last_save_at": "2026-07-16T03:44:00.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7215298f0791aabfae3f8d7f84e9a03a5907ccc678932eb91bc5cfd225023aff",
+    "source_fingerprint": "sha256:2d1f2309b487c6fa98c6cf02c8e587ef4d8072cf2f7c731651bab447b6810fa8",
     "source_doc_hashes": {
-      "spec.md": "78b27c8f1a7f9406f6713666dd5c66ecc40b5f541ab314a5a94aeda8ef93753b",
-      "plan.md": "a002ecd83136fd00d547ce303418fb91ff706b00e21d8715620f957e7f1015eb",
-      "tasks.md": "cd276a8a1c5a182150e770c44384df2939837598f25f3659b2defb3f23a7ac47",
-      "checklist.md": "ea69b6c7afd9a7dc965a6e5d86c31ac5e056de7d948049ec2a7693a5e737490a"
+      "spec.md": "eb1703baf85f56e5d94c4ff02cabe398c75aca6be2f88fdf7c4085646f8fff6f",
+      "plan.md": "618fd6de2fe607f80de5e08eae01e4781bd9e168f014d93807141e72f25ab2b4",
+      "tasks.md": "e1a132b3b5daf51edef81b0dd25512ae98c8eefc0b3f09166dcb48364ce57f98",
+      "checklist.md": "b4edb40699959f7df07613fdd9d2d002d22a1d85659a9e7635cf09024f49ef4e"
     },
     "last_active_child_id": null,
     "last_active_at": null

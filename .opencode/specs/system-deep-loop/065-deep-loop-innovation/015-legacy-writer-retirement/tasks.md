@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Legacy Writer Retirement (006 phase 012)"
-description: "Tasks for phase 012 of the 006 recommendations-implementation program: gated legacy live-emitter deletion with archival readers retained."
+title: "Tasks: Legacy Writer Retirement"
+description: "Tasks for phase 015 of the 006 recommendations-implementation program: gated legacy live-emitter deletion with archival readers retained."
 trigger_phrases:
   - "legacy writer retirement tasks"
   - "deep-loop legacy emitter deletion tasks"
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the phase-000 BASE and clean isolated worktree before inspecting the deletion candidate
-- [ ] T002 Reconcile the phase-000 reader/writer, schema, state, backend, dynamic-path, and archival-read census with the exact candidate
-- [ ] T003 Collect each phase-011 mode cutover certificate, final authority epoch, clean rollback-window closure, and retained rollback asset
+- [ ] T001 Pin the phase-003 BASE and clean isolated worktree before inspecting the deletion candidate
+- [ ] T002 Reconcile the phase-003 reader/writer, schema, state, backend, dynamic-path, and archival-read census with the exact candidate
+- [ ] T003 Collect each phase-014 mode cutover certificate, final authority epoch, clean rollback-window closure, and retained rollback asset
 - [ ] T004 Freeze the delete/retain manifest with one row for every censused legacy producer, consumer, schema, projection, and fixture
 - [ ] T005 Ratify the zero-use telemetry schema, positive controls, coverage report, observation window, archival-read classification, and unknown-path blocker
 - [ ] T006 Record the pre-delete restoration anchor and review the candidate scope and runtime comment-hygiene rule
@@ -68,13 +68,13 @@ _memory:
 ## Phase 3: Verification
 
 - [ ] T019 Verify the static inventory, telemetry coverage, positive controls, observation window, zero live-use result, and zero unknown paths
-- [ ] T020 Verify every phase-011 certificate and clean window closure remains bound to the exact candidate and final mode epoch
+- [ ] T020 Verify every phase-014 certificate and clean window closure remains bound to the exact candidate and final mode epoch
 - [ ] T021 Verify the deletion log enforces mode order, writers-before-helpers, and shared-last retirement
 - [ ] T022 Verify historical completed packets for every retained legacy schema family, including recorded restart/resume and repair cases
 - [ ] T023 Inject live-use, stale-window, missing-coverage, unknown-path, candidate-drift, and archival-read failures; verify each blocks deletion or fails closed
 - [ ] T024 Verify rollback evidence, rollback anchors, telemetry reports, and the pre-delete restoration record remain retained after deletion
 - [ ] T025 Compare the candidate diff with the delete/retain manifest and run scoped runtime checks plus strict spec validation
-- [ ] T026 Package the phase-013 handoff with candidate SHA, evidence hashes, deletion diff, retention manifest, archival-read results, and verification commands
+- [ ] T026 Package the phase-016 handoff with candidate SHA, evidence hashes, deletion diff, retention manifest, archival-read results, and verification commands
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

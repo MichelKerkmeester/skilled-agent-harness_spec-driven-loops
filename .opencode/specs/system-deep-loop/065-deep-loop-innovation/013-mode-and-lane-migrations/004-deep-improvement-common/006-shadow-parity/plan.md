@@ -39,7 +39,7 @@ _memory:
 The phase defines one shared shadow harness for the evaluator-first loop: run candidate generation, evaluation, scoring,
 canary analysis, and guarded-promotion observations through the legacy emitter and the typed ledger path from the same frozen
 context. Match events one-for-one, compare projections after every boundary, retain raw evidence, and classify every divergence
-with a blocking receipt. The phase-011 health and degeneration framework supplies coherent shadow observations and data-gap
+with a blocking receipt. The phase-014 health and degeneration framework supplies coherent shadow observations and data-gap
 semantics. The resulting parity report is the single cutover prerequisite consumed by the common mode gate and the three
 downstream variants; it is not itself an authority certificate.
 <!-- /ANCHOR:summary -->
@@ -49,7 +49,7 @@ downstream variants; it is not itself an authority certificate.
 
 ### Definition of Ready
 - [ ] The typed event, reducer, sealed-artifact, certificate, and resume boundaries from siblings `001` through `005` are available for alignment
-- [ ] The phase-011 health and degeneration shadow inputs, cursors, policy digests, and non-authoritative action semantics are available
+- [ ] The phase-014 health and degeneration shadow inputs, cursors, policy digests, and non-authoritative action semantics are available
 - [ ] The legacy emitter and typed ledger path can receive the same run context without changing legacy authority
 - [ ] Event pairing keys, protected fields, permitted normalization rules, and mismatch classes are frozen
 - [ ] Projection checkpoints expose evaluator, candidate, score, canary, promotion, receipt, budget, rollback, and terminal state
@@ -60,7 +60,7 @@ downstream variants; it is not itself an authority certificate.
 - [ ] A reviewed event-for-event shadow comparison contract is specified
 - [ ] Projection parity is checked at every event boundary rather than only at run completion
 - [ ] Raw evaluator and canary evidence survives normalization and reduction-policy changes
-- [ ] Phase-011 health observations remain shadow-only and fail closed on telemetry gaps
+- [ ] Phase-014 health observations remain shadow-only and fail closed on telemetry gaps
 - [ ] The parity report has explicit PASS, MISMATCH, INCONCLUSIVE, and TELEMETRY_GAP outcomes
 - [ ] A green report is a hard prerequisite for later cutover but cannot authorize cutover itself
 <!-- /ANCHOR:quality-gates -->
@@ -80,7 +80,7 @@ downstream variants; it is not itself an authority certificate.
 - **Common service probes**: evaluator probes compare raw observations before normalization; canary probes compare sealed epoch,
   leak/drift/invariant findings, order-swapped judging, and veto outcomes; promotion probes compare shadow/canary/ship state,
   external authorization, pause/abort/restore, and stable-baseline references.
-- **Health shadow adapter**: consume phase-011 observations at the same ledger cursor and projection watermark. Record health,
+- **Health shadow adapter**: consume phase-014 observations at the same ledger cursor and projection watermark. Record health,
   degeneration, `telemetry_gap`, `not_evaluable`, recovery, and action-request parity without invoking the requested action.
 - **Evidence and verdict store**: append pair receipts, event-match records, projection snapshots, mismatch records, raw
   references, policy digests, and a final parity report. The store is diagnostic and cannot update production authority.
@@ -105,7 +105,7 @@ downstream variants; it is not itself an authority certificate.
 
 ### Phase 1: Setup
 - Confirm the shared event, reducer, sealed-artifact, certificate, and resume contracts and record their version and ownership boundaries.
-- Import the phase-011 health shadow contract and define the common observation cursor, projection watermark, policy digest, and adapter digest.
+- Import the phase-014 health shadow contract and define the common observation cursor, projection watermark, policy digest, and adapter digest.
 - Inventory legacy emitter boundaries and typed-path boundaries for candidate generation, raw evaluation, normalization, canary, promotion, rollback, and terminal events.
 - Freeze the parity corpus shape, protected-field manifest, normalization manifest, mismatch taxonomy, report states, and zero-authority-write assertion.
 
@@ -114,7 +114,7 @@ downstream variants; it is not itself an authority certificate.
 - Define the legacy-to-typed event adapter, one-to-one matcher, event comparison result, and fail-closed ambiguity behavior.
 - Define projection snapshots and boundary comparison for candidate lineage, evaluator epoch, raw trials, score state, canary state, promotion state, receipts, budget, rollback, and terminal status.
 - Define evaluator, canary, and promotion probes that preserve raw evidence and compare guarded outcomes without mutating protected assets or production state.
-- Define phase-011 health observation ingestion, data-gap handling, recovery comparison, and non-authoritative action-request records.
+- Define phase-014 health observation ingestion, data-gap handling, recovery comparison, and non-authoritative action-request records.
 - Define mismatch evidence receipts, parity verdicts, replay fingerprints, idempotency keys, retention limits, and the cutover-consumer report.
 - Define common fixture interfaces for `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` with namespaced variant data.
 
@@ -124,7 +124,7 @@ downstream variants; it is not itself an authority certificate.
 - Compare projection hashes after each boundary and prove final-only equality cannot pass a divergent intermediate state.
 - Replay captured pairs, duplicate boundary deliveries, and resume from checkpoints; compare match IDs, projection fingerprints, mismatch classes, and verdicts.
 - Exercise evaluator epoch changes, score-policy changes, canary leakage/drift, evaluator-integrity failures, promotion vetoes, inconclusive evidence, and rollback-target preservation.
-- Exercise phase-011 healthy, degeneration, recovery, stale, missing, and unsupported-input observations; confirm no action authority changes.
+- Exercise phase-014 healthy, degeneration, recovery, stale, missing, and unsupported-input observations; confirm no action authority changes.
 - Run the common fixtures against all three downstream variants and reject any variant-local fork of shared parity semantics.
 - Produce a cutover-blocking report and verify that no green result invokes authority, dispatch, cancellation, baseline mutation, or legacy-writer retirement.
 <!-- /ANCHOR:phases -->
@@ -140,16 +140,16 @@ downstream variants; it is not itself an authority certificate.
 | REQ-004 | Raw-trial fixtures retain candidate, evaluator, fixture, seed, judge, scale, rationale digest, normalization, cost, and latency across score-policy replay |
 | REQ-005 | Canary/promotion fixtures cover sealed epochs, leak, drift, invariant failure, veto, pause, abort, restore, authorization denial, and shadow non-authority |
 | REQ-006 | Negative fixtures produce typed mismatch, `INCONCLUSIVE`, or `TELEMETRY_GAP` verdicts for stale, missing, malformed, unauthorized, or incomparable input |
-| REQ-007 | Phase-011 fixtures prove coherent cursors, recovery hysteresis, and action-request observation without stop, dispatch, cancel, budget, or authority mutation |
+| REQ-007 | Phase-014 fixtures prove coherent cursors, recovery hysteresis, and action-request observation without stop, dispatch, cancel, budget, or authority mutation |
 | REQ-008 | Replay, resume, duplicate-delivery, and all three variant fixtures produce stable match IDs, projection fingerprints, mismatch classifications, and verdicts |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The direct inputs are the phase-011 health and degeneration shadow framework and the shared Deep Improvement Common
+The direct inputs are the phase-014 health and degeneration shadow framework and the shared Deep Improvement Common
 Services siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`, `004-certificates-and-receipts`,
-and `005-resume-adapter`. The parent program supplies the additive-dark migration invariant, phase-012 supplies the shared mode
+and `005-resume-adapter`. The parent program supplies the additive-dark migration invariant, phase-015 supplies the shared mode
 interface and write-set conflict boundary, and `007-rollback-and-mode-gate` consumes the passing report without inheriting
 authority from this child.
 

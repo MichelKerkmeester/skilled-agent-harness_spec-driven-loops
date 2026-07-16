@@ -18,7 +18,7 @@
   "derived": {
     "trigger_phrases": [
       "novelty claims continuity projections",
-      "deep-loop intelligence layer phase 007",
+      "deep-loop intelligence layer phase 010",
       "semantic communities and claim continuity"
     ],
     "key_topics": [
@@ -100,16 +100,16 @@
       }
     ],
     "causal_summary": "This phase defines the intelligence layer over the durable deep-loop substrate: concept-level novelty, typed contradiction and supersession, stable claim continuity, next-focus semantics, and deterministic transactional projections and gauges for convergence to consume.",
-    "created_at": "2026-07-15T19:00:48.750Z",
-    "last_save_at": "2026-07-15T19:00:48.750Z",
+    "created_at": "2026-07-16T03:43:59.653Z",
+    "last_save_at": "2026-07-16T03:43:59.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e3dd2f1af57c2ac67b4f9de24f9f5aa25984d59fcbacaf0173cbc378ac74ba06",
+    "source_fingerprint": "sha256:224a75bf9d95fbf94397f1f3b4ba8b4bc4112742b9eba0baa526c3759b086bec",
     "source_doc_hashes": {
-      "spec.md": "0adf9abf18767dcbe3574274ba472e0d940ae67c54170026821154af2495cf55"
+      "spec.md": "f59d281d9ede9d5b9e3fc9f9f40f1afe1dfacc39bb3253ee582444721c128797"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Skill Benchmark - Rollback & Mode Gate (013 phase 007)"
-description: "Plan the Skill Benchmark mode's rollback switch and independent mode gate for migration to the typed event-ledger substrate. The mode owns skill scenario runs and scoring over the deep-improvement-common backbone, with fail-closed authority-cutover controls, a bounded rollback window, sealed artifacts, and a certificate that permits the mode to exit into phase 011."
+title: "Feature Specification: Skill Benchmark - Rollback & Mode Gate"
+description: "Plan the Skill Benchmark mode's rollback switch and independent mode gate for migration to the typed event-ledger substrate. The mode owns skill scenario runs and scoring over the deep-improvement-common backbone, with fail-closed authority-cutover controls, a bounded rollback window, sealed artifacts, and a certificate that permits the mode to exit into phase 014."
 trigger_phrases:
   - "skill benchmark rollback mode gate"
   - "skill-benchmark authority cutover rollback"
@@ -58,7 +58,7 @@ leaderboard row. Those measurements must remain reproducible when the mode moves
 This phase plans the mode-specific safety boundary after `006-shadow-parity`: a fail-closed ROLLBACK SWITCH for the
 authority-cutover path, a bounded rollback window with explicit evidence and expiry, and an independent Skill Benchmark
 GATE. The gate certifies that shadow parity is green, scenario and scoring artifacts are sealed, and a mode certificate is
-emitted before this mode exits into phase 011. The phase is planning only; it does not authorize a live cutover.
+emitted before this mode exits into phase 014. The phase is planning only; it does not authorize a live cutover.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -71,13 +71,13 @@ emitted before this mode exits into phase 011. The phase is planning only; it do
 - Skill-specific reducers that preserve raw observations, compute intention-to-treat lift and diagnostic mediation metrics, and reject invalid or unsupported comparisons.
 - A content-addressed Skill Benchmark effect certificate containing the benchmark signature, validity domain, paired evidence, scoring-policy fingerprint, coverage evidence, and unresolved limitations.
 - The Skill Benchmark ROLLBACK SWITCH: a fail-closed authority-cutover toggle, immutable decision record, bounded rollback deadline, stable legacy target, and recovery evidence requirements.
-- The independent Skill Benchmark GATE: shadow-parity result, sealed artifact manifest, certificate verification, rollback readiness, scope checks, and phase-011 handoff evidence.
+- The independent Skill Benchmark GATE: shadow-parity result, sealed artifact manifest, certificate verification, rollback readiness, scope checks, and phase-014 handoff evidence.
 - Tests and verifier fixtures for stale fingerprints, missing artifacts, partial scoring, incompatible environments, failed parity, expired windows, and rollback restoration.
 
 ### Out of Scope
 - Re-implementing receipts, sealed-artifact storage, adjudication, typed budgets, gauges, locks, continuity identities, or other shared services owned by deep-improvement-common and phases 006-012.
 - Replacing the shared fan-out/fan-in, event ledger, transition-authorization gateway, upcasters, or shadow-parity harness.
-- Flipping production authority or removing legacy writers; authority cutover belongs to phase 014 after all mode gates pass.
+- Flipping production authority or removing legacy writers; authority cutover belongs to phase 017 after all mode gates pass.
 - Defining the six sibling concerns in this mode workstream; this packet covers only Skill Benchmark rollback and mode-gate planning.
 - Re-running the 065 research or inventing a new leaderboard metric outside the frozen mode contracts.
 <!-- /ANCHOR:scope -->
@@ -95,7 +95,7 @@ emitted before this mode exits into phase 011. The phase is planning only; it do
 | REQ-006 | ROLLBACK SWITCH fails closed | An absent, stale, conflicting, unauthorized, expired, or unverifiable cutover decision selects the stable legacy path and records a typed refusal; it never silently selects the ledger authority |
 | REQ-007 | Rollback is bounded and evidence-driven | The switch records window start, expiry, stable target, cutover fingerprint, triggering evidence, recovery action, and verification result; unknown effects remain quarantined rather than retried blindly |
 | REQ-008 | Skill Benchmark has an independent mode gate | The gate requires green shadow parity, sealed scenario/scoring artifacts, a valid effect certificate, rollback readiness, and no scope or fingerprint conflict before emitting the mode certificate |
-| REQ-009 | The gate hands off to phase 011 without hidden authority movement | The phase-011 handoff contains the certificate, artifact manifest, parity receipt, rollback decision record, and residual-risk disposition; production authority remains governed by phase 014 |
+| REQ-009 | The gate hands off to phase 014 without hidden authority movement | The phase-014 handoff contains the certificate, artifact manifest, parity receipt, rollback decision record, and residual-risk disposition; production authority remains governed by phase 017 |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -107,7 +107,7 @@ emitted before this mode exits into phase 011. The phase is planning only; it do
 - **SC-004**: A content-addressed Skill Benchmark effect certificate is sealed with validity-domain, coverage, uplift, uncertainty, provenance, and limitation fields.
 - **SC-005**: The ROLLBACK SWITCH has a fail-closed default, bounded rollback window, stable legacy target, explicit expiry, and auditable recovery evidence.
 - **SC-006**: The independent Skill Benchmark GATE refuses missing, stale, partial, conflicting, or unsealed evidence and emits a certificate only on green shadow parity.
-- **SC-007**: The phase-011 handoff is complete while phase-014 remains the sole authority-cutover owner.
+- **SC-007**: The phase-014 handoff is complete while phase-017 remains the sole authority-cutover owner.
 - **SC-008**: The phase checklist's P0 verifier rows pass on the exact candidate commit without unexpected tracked mutation.
 <!-- /ANCHOR:success-criteria -->
 
@@ -118,11 +118,11 @@ The primary risk is treating absolute assisted-task score as skill value. The mo
 stage-level mediation so executor strength, retrieval success, loading, adherence, and outcome are not conflated. A second
 risk is allowing stale skills, environments, graders, or treatment recipes to share a certificate; every such component
 belongs in the benchmark and replay fingerprints. A third risk is allowing a benchmark gate to authorize itself: the
-mode gate may certify migration readiness, but the shared transition-authorization gateway and phase 014 control live
+mode gate may certify migration readiness, but the shared transition-authorization gateway and phase 017 control live
 authority.
 
-Dependencies are the frozen shared mode contracts from phase 012; deep-improvement-common mode 004; the typed ledger and
-transition gateway from phases 006-007; compatibility, shadow parity, and rollback services from phase 008; durable
+Dependencies are the frozen shared mode contracts from phase 015; deep-improvement-common mode 004; the typed ledger and
+transition gateway from phases 006-007; compatibility, shadow parity, and rollback services from phase 011; durable
 fan-out/fan-in and projections from phases 009-011; predecessor `006-shadow-parity`; the phase-013 write-set conflict
 graph; and the existing packet-033 behavior benchmark harness extended for skill treatments. The parent program's
 ordering invariant requires deep-improvement-common before this mode's variant-specific work.
@@ -135,7 +135,7 @@ ordering invariant requires deep-improvement-common before this mode's variant-s
 - What minimum paired sample and effective coverage thresholds make the Skill Benchmark certificate decision-grade for each validity domain?
 - Which rollback triggers are hard vetoes, which are advisory, and which require an explicit transition-authorized recovery event?
 - How is the bounded rollback window measured across paused runs, crashed workers, expired leases, and mixed-version replay?
-- Which phase-011 consumer contract names the required handoff fields while preserving phase 014 as the only production authority owner?
+- Which phase-014 consumer contract names the required handoff fields while preserving phase 017 as the only production authority owner?
 
 These questions are planning inputs for execution against the pinned shared contracts. No question permits a permissive
 fallback, an unbounded rollback window, or a duplicated deep-improvement-common service.

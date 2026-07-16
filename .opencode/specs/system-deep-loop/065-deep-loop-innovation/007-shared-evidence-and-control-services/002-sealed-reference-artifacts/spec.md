@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Sealed Reference Artifacts (004 phase 002)"
+title: "Feature Specification: Sealed Reference Artifacts"
 description: "Plan immutable, content-addressed reference artifacts whose bytes are sealed, verified on every read, retained by explicit lifecycle policy, and pinned into replay evidence."
 trigger_phrases:
   - "sealed reference artifacts"
@@ -41,9 +41,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Second child of the phase-004 shared evidence and control services parent |
-| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-004 parent gate |
-| **Consumers** | Phase 003 replay fingerprints, phase 005 shadow parity, and phase 010 mode migrations |
+| **Origin** | Second child of the phase-007 shared evidence and control services parent |
+| **Depends on** | None (`[]`); sibling planning contracts compose at the phase-007 parent gate |
+| **Consumers** | Phase 006 replay fingerprints, phase 008 shadow parity, and phase 013 mode migrations |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -55,9 +55,9 @@ canaries whose path or logical name stays stable while the underlying bytes chan
 different inputs without an observable contract violation, and shadow parity can compare two paths that only appear
 equivalent because their reference inputs were never pinned.
 
-The phase-001 spine ADR ratifies sealed reference artifacts addressed by digest as one of the shared primitives and
+The phase-004 spine ADR ratifies sealed reference artifacts addressed by digest as one of the shared primitives and
 requires mutable or unversioned inputs to fail the replay contract
-(`../../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`). The phase-003
+(`../../../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`). The phase-006
 replay-fingerprint contract requires every replay-affecting artifact or configuration value to be ledger-addressable
 by immutable digest and refuses trusted output when an input cannot be reconstructed
 (`../../../006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md`). The parent program and phase
@@ -67,7 +67,7 @@ manifest place this mechanism in the additive-dark shared-services layer before 
 This phase plans one mechanism that canonicalizes an input, computes and records its content digest, freezes the exact
 bytes, references the artifact only by that digest, recomputes the commitment on every read, and fails closed on
 absence or mismatch. Lifecycle metadata may evolve append-only, but sealed bytes and their identity never do. Given
-the same verified sealed-artifact set and the same registered phase-003 replay contract, a run must reproduce the same
+the same verified sealed-artifact set and the same registered phase-006 replay contract, a run must reproduce the same
 effective events and projection bytes; a difference is a typed verification failure, never an implicit rebaseline.
 <!-- /ANCHOR:problem -->
 
@@ -83,13 +83,13 @@ effective events and projection bytes; a difference is a typed verification fail
 - Idempotent sealing of identical canonical bytes, explicit collision/conflict handling, corruption quarantine, and bounded diagnostics that never substitute a nearby artifact.
 - Append-only lifecycle records for creation, reachability, retention class, audit or rollback holds, quarantine, garbage-collection eligibility, deletion receipts, and restoration of byte-identical content under the same digest.
 - Fail-closed mark-and-sweep retention rooted in open or retained runs, replay attestations, receipts/certificates, rollback windows, archival-reader requirements, and explicit holds; deletion requires proof that no protected reference remains.
-- Integration with phase-003 replay fingerprints and phase-005 shadow parity: ordered artifact-reference sets and verification results become fingerprint inputs and parity evidence.
+- Integration with phase-006 replay fingerprints and phase-008 shadow parity: ordered artifact-reference sets and verification results become fingerprint inputs and parity evidence.
 
 ### Out of Scope
 - Choosing the concrete hash primitive, storage backend, compression format, encryption scheme, or access-control provider before runtime constraints are measured; implementations must register these choices without weakening content identity.
-- Defining the replay descriptor, ledger frame, event envelope, or transition-authorization vocabulary owned by phase 003.
+- Defining the replay descriptor, ledger frame, event envelope, or transition-authorization vocabulary owned by phase 006.
 - Implementing shadow comparison, upcasters, compatibility adapters, rollback orchestration, or authority cutover owned by phases 005 and 011.
-- Defining mode-specific artifact schemas or certificate semantics; phase 010 mode children specialize the shared descriptor without replacing its seal and verified-read invariants.
+- Defining mode-specific artifact schemas or certificate semantics; phase 013 mode children specialize the shared descriptor without replacing its seal and verified-read invariants.
 - Treating a signature, filename, object-store version, database row ID, timestamp, or access-control decision as a substitute for the canonical content digest.
 - Mutating, overwriting, auto-repairing, or silently re-sealing bytes under an existing digest after publication.
 <!-- /ANCHOR:scope -->
@@ -104,13 +104,13 @@ effective events and projection bytes; a difference is a typed verification fail
 | REQ-003 | Every consumable reference is content-addressed | Run and ledger records carry an algorithm-qualified content digest and artifact kind; a mutable path, alias, tag, or `latest` selector alone is rejected before execution |
 | REQ-004 | Every read verifies before release | The reader recomputes byte length and digest, validates descriptor and artifact-kind compatibility, and returns no consumable bytes on missing data, corruption, mismatch, unsupported algorithm, or unsupported canonicalization version |
 | REQ-005 | Duplicate and conflicting seals are explicit | Identical canonical bytes are idempotent; an existing digest with different bytes or incompatible identity metadata is quarantined and reported as a typed collision/conflict |
-| REQ-006 | Replay fingerprints bind the exact artifact set | The ordered algorithm-qualified artifact digests, descriptor versions, and verified-read results are committed as phase-003 replay inputs; an unsealed or unverifiable input blocks a trusted fingerprint |
+| REQ-006 | Replay fingerprints bind the exact artifact set | The ordered algorithm-qualified artifact digests, descriptor versions, and verified-read results are committed as phase-006 replay inputs; an unsealed or unverifiable input blocks a trusted fingerprint |
 | REQ-007 | Shadow parity compares equivalent sealed inputs | Legacy and dark executions must cite the same verified artifact-reference set before parity is evaluated; differing, missing, or unverifiable seals produce an input-equivalence failure rather than a behavior comparison |
 | REQ-008 | Lifecycle changes never rewrite artifact identity | Retention, holds, quarantine, deletion eligibility, and restoration are append-only lifecycle records separate from the immutable blob and seal descriptor |
 | REQ-009 | Retention preserves every protected replay root | Garbage collection marks references from live runs, replay attestations, receipts/certificates, rollback windows, archival requirements, and explicit holds; any reachable or indeterminate digest is retained |
 | REQ-010 | Deletion is fail closed and auditable | Sweep requires a complete reachability pass, elapsed retention horizon, no hold, and a deletion receipt; interrupted or incomplete analysis deletes nothing, and later reads return a typed tombstone/missing-artifact failure |
 | REQ-011 | Restoration cannot change history | A deleted artifact may be restored under its original digest only when recomputed canonical bytes match exactly; different bytes require a new digest and new reference |
-| REQ-012 | The service remains additive and non-authoritative | Seal, read-verification, or retention failure is observable and blocks dark replay/parity evidence, but does not mutate legacy state or transfer runtime authority before phase 011 |
+| REQ-012 | The service remains additive and non-authoritative | Seal, read-verification, or retention failure is observable and blocks dark replay/parity evidence, but does not mutate legacy state or transfer runtime authority before phase 014 |
 
 ### Verification model
 
@@ -123,7 +123,7 @@ descriptor, **When** the artifact is read, **Then** verification fails before an
 parity, receipt, or certificate can treat the input as trusted.
 
 **Given** legacy and dark executions cite the same verified artifact-reference set and the same registered replay
-contract, **When** phase 005 evaluates shadow parity, **Then** the executions must reproduce the same effective events
+contract, **When** phase 008 evaluates shadow parity, **Then** the executions must reproduce the same effective events
 and projection bytes or surface a deterministic mismatch bound to the sealed inputs.
 
 **Given** a digest remains reachable from a protected run, fingerprint attestation, receipt, rollback window, archival
@@ -137,7 +137,7 @@ retains it.
 - **SC-001**: One registered seal descriptor identifies canonical artifact bytes by algorithm-qualified digest, kind, size, media type, and canonicalization version.
 - **SC-002**: Atomic sealing publishes no partial artifact and never changes bytes under an existing digest.
 - **SC-003**: Every consumer receives bytes only through verified read; corruption, absence, collision, or incompatible versions fail closed with typed diagnostics.
-- **SC-004**: Phase-003 fingerprints and phase-005 parity evidence bind the same ordered sealed-artifact references and reject mutable or unverifiable input.
+- **SC-004**: Phase-006 fingerprints and phase-008 parity evidence bind the same ordered sealed-artifact references and reject mutable or unverifiable input.
 - **SC-005**: Lifecycle and retention records preserve replay, audit, rollback, and archival roots without mutating the sealed object or descriptor.
 - **SC-006**: Garbage collection deletes only proven-unreachable, horizon-expired, unheld artifacts and emits a durable deletion receipt; uncertainty retains data.
 - **SC-007**: The service stays additive-dark and does not move authority from the legacy runtime.
@@ -146,7 +146,7 @@ retains it.
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The phase declares `depends_on: []`, but its contract composes with the phase-003 replay fingerprint and ledger
+The phase declares `depends_on: []`, but its contract composes with the phase-006 replay fingerprint and ledger
 contracts at the integrated program gate. Canonicalization is the highest identity risk: platform-dependent newlines,
 object-key order, locale, archive metadata, filesystem traversal order, or implicit decoding can make equivalent
 inputs hash differently. Each artifact kind therefore requires a registered, versioned canonicalizer, and unknown
@@ -168,7 +168,7 @@ weaken immutable content identity, verified reads, replay binding, or additive-d
 ## 7. OPEN QUESTIONS
 
 None blocking for planning. Execution must select the registered digest algorithm, canonicalization profiles, storage
-backend, retention horizons, and access-control integration after checking runtime support and the phase-000 state
+backend, retention horizons, and access-control integration after checking runtime support and the phase-003 state
 census. Those choices must preserve algorithm-qualified references, deterministic canonical bytes, atomic
 publication, verification before release, append-only lifecycle evidence, conservative retention, and restoration
 only from byte-identical content.

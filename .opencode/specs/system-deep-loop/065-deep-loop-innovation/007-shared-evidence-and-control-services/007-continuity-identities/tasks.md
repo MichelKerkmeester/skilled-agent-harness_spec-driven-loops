@@ -1,5 +1,5 @@
 ---
-title: "Tasks: continuity identities (065/006 phase 004/007)"
+title: "Tasks: continuity identities"
 description: "Tasks for stable continuity identity minting, ledger persistence, resume and handover restoration, cross-mode references, and replay verification."
 trigger_phrases:
   - "continuity identities tasks"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the phase-003 envelope, transition gate, event version, append idempotency, and replay cursor contracts on the candidate BASE
+- [ ] T001 Pin the phase-006 envelope, transition gate, event version, append idempotency, and replay cursor contracts on the candidate BASE
 - [ ] T002 Inventory every shipped lineage, claim/finding, candidate, mode-session, resume, handover, fan-out, and graph identifier producer/consumer under `runtime/`
 - [ ] T003 Freeze legacy fixtures and a lifecycle matrix for new, retry, resume, handover, restart, fork, and cross-mode reference semantics
 - [ ] T004 Confirm the local child contract remains `depends_on: []` and document the inherited parent integration boundary without converting adjacency into dependency
@@ -56,7 +56,7 @@ _memory:
 - [ ] T010 Add explicit `continues_from` and `forked_from` relationships for true restarts/forks while keeping retry/resume on the original logical identity
 - [ ] T011 Add cross-mode typed-reference validation and boundary events that preserve the original entity ID and source provenance
 - [ ] T012 Add a dark legacy alias observer for current session IDs, lineage labels/run IDs, graph IDs, finding fallbacks, candidate IDs, and text-derived continuity keys
-- [ ] T013 Publish stable identity fixtures and consumer contracts for program phase 007 claim continuity and phase 011 per-mode authority cutover
+- [ ] T013 Publish stable identity fixtures and consumer contracts for program phase 010 claim continuity and phase 014 per-mode authority cutover
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->

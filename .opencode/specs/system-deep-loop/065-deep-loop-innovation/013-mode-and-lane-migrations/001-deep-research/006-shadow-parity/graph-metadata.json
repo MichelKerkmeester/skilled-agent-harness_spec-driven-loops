@@ -17,10 +17,10 @@
       "mode 010 shadow harness",
       "Deep Research shadow parity implementation plan",
       "deep-research event parity implementation",
-      "mode 010 phase 006 implementation plan",
+      "mode 010 phase 009 implementation plan",
       "Deep Research shadow parity tasks",
       "deep-research event parity tasks",
-      "mode 010 phase 006 tasks",
+      "mode 010 phase 009 tasks",
       "Deep Research shadow parity checklist",
       "deep-research parity gate"
     ],
@@ -181,8 +181,8 @@
       }
     ],
     "causal_summary": "Plan the Deep Research mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy emitter for init, iterative gather/analyze, convergence detection, synthesis, resume, and memory-save handoff; canonicalizes only declared transport volatility; diffs the mode projection event-for-event; and blocks authority cutover on any unexplained semantic difference. This is planning only and does not authorize a ledger cutover or remove the legacy writer.",
-    "created_at": "2026-07-15T19:00:32.587Z",
-    "last_save_at": "2026-07-15T19:00:32.587Z",
+    "created_at": "2026-07-16T03:43:31.690Z",
+    "last_save_at": "2026-07-16T03:43:31.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:542b70e626e7d2f203d877b50a8607338e423225ce7282ae45bc8c33dde9c1fb",
+    "source_fingerprint": "sha256:4a6979f631e7e53af412556ceaeeabdb15be9204b62dec012c2f7c6262f1ced4",
     "source_doc_hashes": {
-      "spec.md": "331f3c1d98084ee625b85c5e1bfdb07d7ee07241fe2dbe1b02da672805afa43b",
-      "plan.md": "16370b05a801539d0c7cc1b396505c5368332f9bf8619ddcf265c537f4babb85",
-      "tasks.md": "531b3909c9d8187ee933493d44d7397c7bb03ddc052caca7a3fdaf566f622806",
-      "checklist.md": "f14c8f7a9d47fd7c2a51783bb317616ebcc8cbd8ccf1c2c570ac2f9f68142e73"
+      "spec.md": "8fcd9f6f7fd12e8302c3ad18e4e0868054f73ddead007001992879012557108b",
+      "plan.md": "f5709b8641508038c626969e18dae81e7ca999c0d0ed39e50db2efa5e62c0305",
+      "tasks.md": "1bc85f5a71af0c77687e70dbd42184f85152c45064f8e7d3ba073d944b92de23",
+      "checklist.md": "553641c8d3abe9ace9fbb1c3444a88c8a635e8c66b548f2446aea0e2db5c21d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -31,7 +31,7 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop / Deep Review mode (013 mode migration, child 007) |
+| **Surface** | system-deep-loop / Deep Review mode |
 | **Change class** | Planning-only safety contract; mode gate and rollback evidence design |
 | **Execution** | Isolated candidate run pinned to BASE; legacy remains authoritative |
 
@@ -44,7 +44,7 @@ all required references verify, and the run certificate and receipt chain close.
 
 The authority control is separate from the gate. A missing or invalid cutover arm stays on legacy authority. A later authorized
 ledger transition opens a rollback window with a sealed healthy ledger frontier and matching legacy checkpoint; any declared
-integrity, parity, replay, receipt, effect, fence, or health failure returns to legacy or blocks. The phase-009 shared review-loop
+integrity, parity, replay, receipt, effect, fence, or health failure returns to legacy or blocks. The phase-012 shared review-loop
 contract and deep-alignment fence are consumed as pinned inputs rather than reimplemented.
 <!-- /ANCHOR:summary -->
 
@@ -52,13 +52,13 @@ contract and deep-alignment fence are consumed as pinned inputs rather than reim
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent 065 invariant, phase tree, phase-009 shared review-loop contract, and write-set conflict graph are pinned by digest
+- [ ] The parent 065 invariant, phase tree, phase-012 shared review-loop contract, and write-set conflict graph are pinned by digest
 - [ ] The six Deep Review sibling contracts expose their event, projection, seal, certificate, resume, and parity evidence boundaries
 - [ ] The legacy lifecycle is inventoried for scope, every dimension, candidate and adjudication, convergence, report, resume, and handoff
 - [ ] The authority-control record, fail-closed resolver, rollback trigger matrix, and dual-bound window are reviewed
 - [ ] The mode-gate evidence matrix distinguishes required, optional, blocked, and indeterminate evidence without implicit waivers
 - [ ] Gate fixtures freeze BASE, contract versions, target references, input digests, event tails, and expected authority posture
-- [ ] The phase-011 handoff consumer and certificate expiry expectation are named without moving authority in this phase
+- [ ] The phase-014 handoff consumer and certificate expiry expectation are named without moving authority in this phase
 
 ### Definition of Done
 - [ ] Invalid or stale authority control always resolves to legacy authority with a typed refusal
@@ -72,7 +72,7 @@ contract and deep-alignment fence are consumed as pinned inputs rather than reim
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-- **Pinned contract bundle**: capture BASE, phase-009 shared review-loop and write-set digests, mode contract revision, event and
+- **Pinned contract bundle**: capture BASE, phase-012 shared review-loop and write-set digests, mode contract revision, event and
   reducer versions, and the six sibling output references before gate evaluation.
 - **Authority-control resolver**: evaluate requested posture, `cutoverEnabled`, mode-gate certificate, authority epoch, contract
   digests, health witness, and window state. Missing, stale, malformed, or unauthorized inputs resolve to `legacy_authoritative`.
@@ -91,14 +91,14 @@ contract and deep-alignment fence are consumed as pinned inputs rather than reim
 - **Evidence closure**: consume verified shared seals for targets, pass observations, candidate/adjudication inputs, convergence,
   synthesis, report, and resume; consume the run certificate and transition receipt root from `004-certificates-and-receipts`.
 - **Handoff artifact**: emit a mode-gate certificate with `PASS` plus `MIGRATED_SHADOW_READY`, all evidence digests, rollback drill
-  result, and phase-011 handoff reference. The certificate is readiness evidence, not a cutover certificate.
+  result, and phase-014 handoff reference. The certificate is readiness evidence, not a cutover certificate.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the parent, manifest, phase-009 shared mode contracts, write-set fence, phase-003 authorization boundary, and BASE inputs.
+- Pin the parent, manifest, phase-012 shared mode contracts, write-set fence, phase-006 authorization boundary, and BASE inputs.
 - Read the six Deep Review sibling contracts and build the evidence ownership matrix; reject duplicate local definitions.
 - Inventory the existing Deep Review workflow, reducer, blocked-stop path, report synthesis, resume path, and legacy authority selector.
 - Freeze control vocabulary, rollback-window bounds, trigger classes, gate result states, certificate fields, and fixture identifiers.
@@ -108,7 +108,7 @@ contract and deep-alignment fence are consumed as pinned inputs rather than reim
 - Define the rollback switch transition, healthy anchor, legacy checkpoint, dual bounds, trigger evaluator, expiry policy, and restoration receipt.
 - Define the independent Deep Review gate matrix for every lifecycle boundary, required P0 evidence, blocked and indeterminate states,
   tolerated-difference handling, and the `MIGRATED_SHADOW_READY` output.
-- Connect the gate to shared phase-009 scope, dimension, lineage, convergence, report, and write-set contracts and record their digests.
+- Connect the gate to shared phase-012 scope, dimension, lineage, convergence, report, and write-set contracts and record their digests.
 - Connect shadow-parity receipts, seal manifests and verified reads, run certificates, receipt closure, replay fingerprints, resume
   outcomes, and rollback-drill results into one certificate-bound evidence bundle.
 - Build fixtures for a clean gate, each missing or stale input, each rollback trigger, each crash boundary, expired window, malformed
@@ -120,7 +120,7 @@ contract and deep-alignment fence are consumed as pinned inputs rather than reim
 - Verify every referenced artifact, receipt, event range, replay fingerprint, certificate, and rollback anchor independently.
 - Inject malformed, missing, stale, unauthorized, drifted, corrupted, and expired control evidence; require legacy fallback or block.
 - Execute rollback at each declared boundary and verify no duplicate report, finding, effect, or authority transition is introduced.
-- Confirm the gate emits `PASS` only as `MIGRATED_SHADOW_READY`, retains legacy authority, and hands evidence to phase 011.
+- Confirm the gate emits `PASS` only as `MIGRATED_SHADOW_READY`, retains legacy authority, and hands evidence to phase 014.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -134,7 +134,7 @@ contract and deep-alignment fence are consumed as pinned inputs rather than reim
 | REQ-004 | Inject parity drift, replay mismatch, seal or receipt failure, unknown effect, fence loss, contract drift, health alarm, and canonical-write leakage; verify rollback or block classification |
 | REQ-005 | Replay a failed tail and restoration receipt; verify no truncation, mutation, or evidence loss and deterministic failure identity |
 | REQ-006 | Run scope, every dimension, candidate, evidence, adjudication, convergence, blocked-stop, synthesis, report, resume, and handoff fixtures through the gate matrix |
-| REQ-007 | Compare legacy and ledger streams plus projections using the phase-006 comparator; require zero unexplained semantic differences and recorded volatility reasons |
+| REQ-007 | Compare legacy and ledger streams plus projections using the phase-009 comparator; require zero unexplained semantic differences and recorded volatility reasons |
 | REQ-008 | Tamper, truncate, substitute, and descriptor-drift every lifecycle artifact class; require verified-read failure before gate consumption |
 | REQ-009 | Verify the certificate-pinned event range, receipt-set root, replay fingerprint, seal manifest, and independent verifier outcome without live execution |
 | REQ-010 | Compare the Deep Review gate's inherited shared fields and transitions with deep-alignment; reject a local scope, convergence, lineage, report, or fence fork |
@@ -145,8 +145,8 @@ contract and deep-alignment fence are consumed as pinned inputs rather than reim
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The phase consumes the parent program's additive-dark migration rule, the phase-009 shared mode interfaces and write-set conflict
-graph, the phase-003 ledger and authorization spine, and the Deep Review sibling contracts for typed events, reducers, sealed
+The phase consumes the parent program's additive-dark migration rule, the phase-012 shared mode interfaces and write-set conflict
+graph, the phase-006 ledger and authorization spine, and the Deep Review sibling contracts for typed events, reducers, sealed
 artifacts, certificates, resume, and shadow parity. It also consumes the existing Deep Review workflow and blocked-stop fixtures,
 the mode research registries, and the spec-kit validator. The predecessor `006-shadow-parity` and all earlier sibling names are
 navigation and contract inputs; this planning document does not infer a runtime dependency from adjacency. The later staged

@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin the phase-000 BASE and inventory budget, retry, concurrency, stop, and timeout behavior in `cost-guards.cjs` and `fanout-run.cjs`
+- [ ] T001 Pin the phase-003 BASE and inventory budget, retry, concurrency, stop, and timeout behavior in `cost-guards.cjs` and `fanout-run.cjs`
 - [ ] T002 Capture baseline fixtures for council upper bounds, lineage and aggregate caps, token aliases, retry multiplication, pre-spawn denial, and lineage lifetime ceilings
-- [ ] T003 Freeze the phase-003 event/replay interface and sibling receipt/fencing inputs; amend this packet if the implemented contracts contradict its assumptions
+- [ ] T003 Freeze the phase-006 event/replay interface and sibling receipt/fencing inputs; amend this packet if the implemented contracts contradict its assumptions
 - [ ] T004 Define stable program, mode, lineage, iteration, reservation, dispatch, receipt, pricing, and replay identities
 <!-- /ANCHOR:phase-1 -->
 
@@ -56,8 +56,8 @@ _memory:
 - [ ] T010 Implement reservation lease, renewal, cancellation, expiry, and crash-resume reconciliation without erasing incurred spend
 - [ ] T011 Implement receipt-backed settlement for actual tokens, monetary cost, attempts, and elapsed time; retain retry and failure spend
 - [ ] T012 Implement fail-closed admission for exhaustion, missing parent, invalid unit, stale pricing, unknown usage, replay mismatch, reducer divergence, fencing conflict, and append failure
-- [ ] T013 Add the program-phase-006 fan-out adapter for per-wave/per-lineage reservation under mode and program ceilings
-- [ ] T014 Add the program-phase-008 value-of-computation adapter without granting it authority to mint, borrow, or reinterpret budget
+- [ ] T013 Add the program-phase-009 fan-out adapter for per-wave/per-lineage reservation under mode and program ceilings
+- [ ] T014 Add the program-phase-011 value-of-computation adapter without granting it authority to mint, borrow, or reinterpret budget
 - [ ] T015 Add read-only balance, settlement-lag, reservation-age, and denial projections for sibling stream-fold gauges
 - [ ] T016 Preserve current council/fan-out guards as shadow comparators until compatibility, parity, and per-mode cutover gates authorize enforcement
 <!-- /ANCHOR:phase-2 -->

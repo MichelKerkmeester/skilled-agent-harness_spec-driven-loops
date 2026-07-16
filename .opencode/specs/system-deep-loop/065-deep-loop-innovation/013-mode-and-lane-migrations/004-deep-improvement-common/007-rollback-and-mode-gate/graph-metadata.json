@@ -14,7 +14,7 @@
       "deep improvement common rollback and mode gate",
       "deep improvement authority rollback switch",
       "shared evaluator canary promotion migration gate",
-      "deep improvement phase 011 readiness certificate",
+      "deep improvement phase 014 readiness certificate",
       "deep improvement common rollback and mode gate implementation plan",
       "shared evaluator promotion authority switch plan",
       "deep improvement migration certificate plan",
@@ -180,9 +180,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. The gate consumes shadow parity, sealed artifacts, certificates, receipts, replay, and resume evidence, then emits a mode-bound readiness certificate for the phase-011 handoff without moving authority.",
-    "created_at": "2026-07-15T21:44:30.573Z",
-    "last_save_at": "2026-07-15T21:44:30.573Z",
+    "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. The gate consumes shadow parity, sealed artifacts, certificates, receipts, replay, and resume evidence, then emits a mode-bound readiness certificate for the phase-014 handoff without moving authority.",
+    "created_at": "2026-07-16T03:43:37.283Z",
+    "last_save_at": "2026-07-16T03:43:37.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:75a6c39427cde4633a18158a26d4f4b578e9aac9b32f2ec855cd367e77bc4084",
+    "source_fingerprint": "sha256:59168a3e60f93d84e00d4710159e060c3abb786d1f404a6db373521ca194a4ad",
     "source_doc_hashes": {
-      "spec.md": "1e64b6983f801c433c4873ff5123f7a4b30757fe6d4fd55651c30290d264c934",
-      "plan.md": "e4751fb7178199a533448517a64a4e2269ac3f8c5f03d8cee860e286a849529b",
-      "tasks.md": "bea9b51b4e19fc53e8b77bafac185f31cc0682229b8c12418fb0c38781b91004",
-      "checklist.md": "cccbaaa921535875755025d550fc96099d6a7232bee4b08caaaf240d41f83291"
+      "spec.md": "9e4e5be235bd934264535dac6bc7dcfb9ff48550a3d14818a1ebfacf6eded67a",
+      "plan.md": "740c17d03ebe5bcfff79bc6c7d9dd4c2eead493745e38198b815f6db5e14e126",
+      "tasks.md": "4b171277c677824bb46b7cf6475ab53de220a86c30a4dc24adcf825da8a4dc3d",
+      "checklist.md": "df0fb11b1fbccbcdd5fcd522f3164114b522103c0d7c43219dfe91cc50049b22"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,13 +28,13 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for locks and fencing. Every item is executed against a candidate SHA pinned to phase-000 BASE; the report records the protected-resource manifest hash, atomicity domain, coordinator state generation, commands, exit codes, barrier/fault point, winning and rejected tokens, committed heads/versions, and unexpected tracked mutation. Zero discovered writers, zero exercised stale-writer barriers, an unbounded wait, or a protected backend without atomic fence-plus-mutation support fails the phase.
+This checklist is the blocking SOL verifier contract for locks and fencing. Every item is executed against a candidate SHA pinned to phase-003 BASE; the report records the protected-resource manifest hash, atomicity domain, coordinator state generation, commands, exit codes, barrier/fault point, winning and rejected tokens, committed heads/versions, and unexpected tracked mutation. Zero discovered writers, zero exercised stale-writer barriers, an unbounded wait, or a protected backend without atomic fence-plus-mutation support fails the phase.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-003 ledger append/head/receipt boundary and phase-004 additive-dark authority posture are pinned to exact packet revisions
+- [ ] CHK-001 [P0] The phase-006 ledger append/head/receipt boundary and phase-007 additive-dark authority posture are pinned to exact packet revisions
 - [ ] CHK-002 [P0] A reviewed manifest maps every shipped ledger, projection, council, fan-out, repair, pause/resume, checkpoint, and lineage writer to one canonical resource key
 - [ ] CHK-003 [P1] The atomicity domain, resource hierarchy/order, lease TTL/renewal cadence, acquisition timeout, retry policy, token width, and overflow behavior are recorded
 - [ ] CHK-004 [P1] Unsupported multi-host or storage semantics are enumerated and configured to fail closed
@@ -65,7 +65,7 @@ This checklist is the blocking SOL verifier contract for locks and fencing. Ever
 - [ ] CHK-019 [P0] PID reuse, dead/live PID probes, clock skew, heartbeat delay, and lease expiry affect takeover liveness only; they never authorize an old token
 - [ ] CHK-020 [P0] Fault injection at acquire, renew, pre-commit, append/CAS, fsync, expiry, takeover, and release leaves one valid current epoch and deterministic recovery evidence
 - [ ] CHK-021 [P1] Acquisition, renewal, expiry, takeover, rejection, timeout, and release events carry resource digest, token, lease/correlation identity, owner, reason, and latency with required redaction
-- [ ] CHK-022 [P1] Shipped loop-lock, CLI writer-lock, council round-state, JSONL repair, fan-out, lifecycle, and phase-003 ledger suites pass alongside the new concurrency matrix
+- [ ] CHK-022 [P1] Shipped loop-lock, CLI writer-lock, council round-state, JSONL repair, fan-out, lifecycle, and phase-006 ledger suites pass alongside the new concurrency matrix
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

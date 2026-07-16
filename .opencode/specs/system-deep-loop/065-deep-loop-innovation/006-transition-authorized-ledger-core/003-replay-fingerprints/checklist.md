@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Replay Fingerprints (003 phase 003)"
+title: "Checklist: Replay Fingerprints"
 description: "Blocking verification checklist for deterministic replay-fingerprint derivation, immutable attestations, fail-closed mismatch handling, and shared downstream consumption."
 trigger_phrases:
   - "replay fingerprints checklist"
@@ -60,7 +60,7 @@ This checklist is the blocking verifier contract for the replay-fingerprint phas
 - [ ] CHK-014 [P0] Exact duplicate attestations are idempotent; conflicting attestations for the same run/range/version are rejected without replacement
 - [ ] CHK-015 [P0] Stored, effective, and projection component mismatches return typed non-zero failures and no trusted projection, parity certificate, cutover evidence, or gate pass
 - [ ] CHK-016 [P0] Diagnostics report bounded expected/actual digests and the earliest determinable sequence or replay stage without mutating protected history
-- [ ] CHK-017 [P0] Phase 005 shadow-parity and phase 013 whole-system fixtures call the same verifier and cannot compute an alternate expected digest
+- [ ] CHK-017 [P0] Phase 008 shadow-parity and phase 016 whole-system fixtures call the same verifier and cannot compute an alternate expected digest
 - [ ] CHK-018 [P0] A mismatch never promotes the actual digest, rewrites the attestation, or accepts a regenerated baseline in the verification path
 - [ ] CHK-019 [P1] Fingerprint generation and verification failures leave legacy output, state, schema, error semantics, and authority unchanged
 <!-- /ANCHOR:testing -->
@@ -84,7 +84,7 @@ This checklist is the blocking verifier contract for the replay-fingerprint phas
 ## Documentation
 
 - [ ] CHK-025 [P1] The fingerprint descriptor, version evolution, covered-range rule, storage authority, mismatch contract, and rebaseline prohibition are documented with executable examples
-- [ ] CHK-026 [P1] Phase 005 and phase 013 integration docs identify this verifier as the sole replay-fingerprint authority
+- [ ] CHK-026 [P1] Phase 008 and phase 016 integration docs identify this verifier as the sole replay-fingerprint authority
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

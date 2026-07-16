@@ -14,12 +14,12 @@ _memory:
     last_updated_at: "2026-07-15T17:20:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped the Deep Research event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-009 shared contracts"
+    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
     blockers: []
     key_files: []
     completion_pct: 0
     open_questions:
-      - "Which exact shared envelope field names and transition tokens does phase 009 freeze?"
+      - "Which exact shared envelope field names and transition tokens does phase 012 freeze?"
     answered_questions:
       - "This planned phase defines vocabulary and compatibility hooks only"
 ---
@@ -32,7 +32,7 @@ _memory:
 ## Verification Protocol
 
 This checklist is the blocking SOL verifier contract for the planned Deep Research schema phase. The verifier pins the
-candidate SHA, phase-003 and phase-009 contract revisions, event-vocabulary revision, fixture manifest hash, commands, and
+candidate SHA, phase-006 and phase-012 contract revisions, event-vocabulary revision, fixture manifest hash, commands, and
 exit codes. It fails on an unauthorized append, an unknown event/version that does not block, mutable evidence replacement,
 missing raw observations, reducer-owned scope, or unexpected tracked mutation.
 <!-- /ANCHOR:protocol -->
@@ -40,10 +40,10 @@ missing raw observations, reducer-owned scope, or unexpected tracked mutation.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 003 publishes the transition-authorized envelope and append boundary; phase 009 publishes the shared event and replay contracts
+- [ ] CHK-001 [P0] Phase 006 publishes the transition-authorized envelope and append boundary; phase 012 publishes the shared event and replay contracts
 - [ ] CHK-002 [P0] Current Deep Research lifecycle and JSONL obligations are inventoried from `SKILL.md:261-323`
 - [ ] CHK-003 [P1] The event ownership matrix names one owner for every shared, mode, reducer, projection, artifact, and certificate concern
-- [ ] CHK-004 [P2] The candidate report records the phase-003 and phase-009 contract revisions plus the event-vocabulary manifest hash
+- [ ] CHK-004 [P2] The candidate report records the phase-006 and phase-012 contract revisions plus the event-vocabulary manifest hash
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -67,7 +67,7 @@ missing raw observations, reducer-owned scope, or unexpected tracked mutation.
 - [ ] CHK-015 [P0] Synthesis fixtures retain selected claim-version digests, citation event references, unresolved claims, and synthesis receipts
 - [ ] CHK-016 [P0] Memory-save fixtures distinguish requested, completed, and failed handoffs with continuity fingerprints and retryability
 - [ ] CHK-017 [P0] Compatibility fixtures pass exact, compatible, migrate, pin-old-runtime, and blocked outcomes; unknown event types and versions fail closed
-- [ ] CHK-018 [P0] Every event append is rejected when phase-003 authorization metadata is absent, stale, or inconsistent with the transition
+- [ ] CHK-018 [P0] Every event append is rejected when phase-006 authorization metadata is absent, stale, or inconsistent with the transition
 - [ ] CHK-019 [P1] A replay fixture produces stable event identities and fingerprints after resume, restart, retry, source mutation, and late judgment attachment
 <!-- /ANCHOR:testing -->
 
@@ -110,7 +110,7 @@ contract revisions are pinned, the event manifest and fixture hashes are recorde
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the SOL verifier confirms the typed Deep Research event vocabulary, phase-003 authorization coverage,
-phase-009 contract alignment, fail-closed upcaster behavior, and `git diff-index --quiet HEAD --` shows no unexpected
+Signed off when the SOL verifier confirms the typed Deep Research event vocabulary, phase-006 authorization coverage,
+phase-012 contract alignment, fail-closed upcaster behavior, and `git diff-index --quiet HEAD --` shows no unexpected
 tracked mutation after verification.
 <!-- /ANCHOR:sign-off -->

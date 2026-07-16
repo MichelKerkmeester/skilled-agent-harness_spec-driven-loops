@@ -41,35 +41,35 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Second child of the phase-006 durable fan-out/fan-in parent |
+| **Origin** | Second child of the phase-009 durable fan-out/fan-in parent |
 | **Depends on** | None (`[]`); sibling planning contracts are independent |
-| **Program substrate** | Phase-003 versioned envelope + typed ledger; phase-004 receipts/effect recovery; phase-005 compatibility boundary |
-| **Authority posture** | Additive-dark; legacy fan-out remains authoritative until the staged phase-011 cutover |
+| **Program substrate** | Phase-006 versioned envelope + typed ledger; phase-007 receipts/effect recovery; phase-008 compatibility boundary |
+| **Authority posture** | Additive-dark; legacy fan-out remains authoritative until the staged phase-014 cutover |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The program phase tree assigns phase 006 a durable orchestration contract over the canonical event ledger: dispatch receipts, result envelopes, resume/salvage, stable branch scheduling, conditional fan-in, partial-failure policy, and provenance-balanced reduction (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`). The phase-006 parent narrows this child to two linked responsibilities: record a typed outcome for every dispatched leaf, then reconstruct interrupted fan-out progress from those durable facts without re-running leaves whose successful outcomes are already committed (`../spec.md`).
+The program phase tree assigns phase 009 a durable orchestration contract over the canonical event ledger: dispatch receipts, result envelopes, resume/salvage, stable branch scheduling, conditional fan-in, partial-failure policy, and provenance-balanced reduction (`.opencode/specs/system-deep-loop/065-deep-loop-innovation/manifest/phase-tree.json`). The phase-009 parent narrows this child to two linked responsibilities: record a typed outcome for every dispatched leaf, then reconstruct interrupted fan-out progress from those durable facts without re-running leaves whose successful outcomes are already committed (`../spec.md`).
 
 The shipped runtime already contains narrower recovery behavior worth preserving. `runtime/scripts/fanout-run.cjs` resumes a persisted pre-dispatch wait, marks ledger rows with unmatched `started` events as orphaned and requeues them, writes a partial summary on signals, saves each subprocess stdout stream, invokes a salvage sweep before classifying the attempt, and rejects an exit-zero lineage when required artifacts or iteration evidence remain unrecoverable. `runtime/scripts/fanout-salvage.cjs` scans the lineage state log, recreates missing iteration markdown from captured stdout, appends `salvaged_from_stdout`, and writes an explicit failure marker when recovery has no substantive text. `runtime/scripts/fanout-merge.cjs` further reconstructs minimal research or review registries from state logs when the canonical registry file is absent, preserving otherwise lost findings and lineage attribution (`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs`, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs`).
 
 Those mechanisms are artifact-local and depend on mutable directories, best-effort JSONL status rows, combined stdout, and process-exit observations. They do not yet provide a canonical typed outcome paired to a durable dispatch receipt, a verified ledger fold that distinguishes completed from interrupted work, or a general salvage record that binds every recovered fragment to its source and digest. This phase generalizes the shipped behavior into ledger-native result and recovery semantics while retaining the existing salvage path behind the compatibility bridge.
 
-Each dispatch attempt receives exactly one canonical terminal result envelope paired to the sibling-001 dispatch receipt. The envelope captures parsed outcome data or a typed reference, terminal status, evidence, measured usage and cost, timing, error/salvage detail, and integrity/provenance bindings. Resume verifies and folds the phase-003 ledger, excludes durably successful pairs from scheduling, reconciles dispatched-but-unsettled attempts through the phase-004 effect-recovery contract, and salvages any trustworthy partial fragments before the applicable retry or partial-failure policy decides what remains eligible. Corrupt, conflicting, or ambiguous state fails closed; completion is never inferred from a process exit or a file's mere presence.
+Each dispatch attempt receives exactly one canonical terminal result envelope paired to the sibling-001 dispatch receipt. The envelope captures parsed outcome data or a typed reference, terminal status, evidence, measured usage and cost, timing, error/salvage detail, and integrity/provenance bindings. Resume verifies and folds the phase-006 ledger, excludes durably successful pairs from scheduling, reconciles dispatched-but-unsettled attempts through the phase-007 effect-recovery contract, and salvages any trustworthy partial fragments before the applicable retry or partial-failure policy decides what remains eligible. Corrupt, conflicting, or ambiguous state fails closed; completion is never inferred from a process exit or a file's mere presence.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- A versioned `orchestration.leaf_result_recorded` payload registered on the phase-003 event envelope and appended through the typed, transition-authorized ledger.
+- A versioned `orchestration.leaf_result_recorded` payload registered on the phase-006 event envelope and appended through the typed, transition-authorized ledger.
 - One result envelope per dispatch-receipt attempt, with `result_envelope_id`, `dispatch_receipt_id`, leaf/attempt identity, event and result schema versions, terminal status, parsed-result reference or inline bounded value, evidence references, artifact digests, error classification, timing, usage, cost, salvage summary, producer, and replay/authority bindings.
 - Exact receipt-to-envelope pairing: the result causally references the dispatch event and receipt; an exact repeat returns the existing append receipt, while the same pair with different canonical facts conflicts.
 - Explicit outcome states `succeeded`, `partial`, `failed`, `cancelled`, and `timed_out`; salvage is a separately recorded disposition and cannot silently convert a partial or failed result into success.
-- A deterministic resume reducer over the verified phase-003 ledger that classifies each expected leaf/attempt as not-dispatched, dispatched-in-flight, succeeded, partial, failed, cancelled, timed-out, salvaged, conflicted, or unreadable.
+- A deterministic resume reducer over the verified phase-006 ledger that classifies each expected leaf/attempt as not-dispatched, dispatched-in-flight, succeeded, partial, failed, cancelled, timed-out, salvaged, conflicted, or unreadable.
 - A no-rerun invariant for completed leaves: a leaf is complete only when its dispatch receipt and successful result envelope pair validate, required evidence/artifact digests resolve, and the ledger head is trusted.
-- Recovery of dispatched-but-unsettled attempts by consulting effect intent/confirmation and adapter reconciliation before any re-dispatch, following phase-004 `001-receipts-and-effect-recovery`.
+- Recovery of dispatched-but-unsettled attempts by consulting effect intent/confirmation and adapter reconciliation before any re-dispatch, following phase-007 `001-receipts-and-effect-recovery`.
 - Partial-output salvage from bounded stdout, state events, iteration artifacts, registries, and future typed fragments, with source kind, source event/artifact, byte/content digest, parser/schema version, recovered range, confidence/completeness, and failure reason.
 - Append-only salvage events and a deterministic derived effective result; no recovery step rewrites the original dispatch receipt, result envelope, or committed artifact evidence.
 - Crash-injection, duplicate-resume, corruption, stale-artifact, conflicting-pair, and mixed legacy/new-path fixtures proving deterministic reconstruction and no duplicate completed work.
@@ -80,8 +80,8 @@ Each dispatch attempt receives exactly one canonical terminal result envelope pa
 - Logical branch-ID semantics, worker leases/fences, or wave scheduling, owned by successor `003-logical-branch-ids-leases-waves`.
 - Deciding quorum/deadline/progressive fan-in or tolerated failure counts, owned by siblings 004 and 005; this phase supplies typed inputs to those policies.
 - Provenance-balanced cross-leaf reduction, owned by sibling 006; this phase preserves provenance but does not merge leaf claims/findings.
-- Replacing the phase-003 envelope, ledger append, hash chain, authorization proof, replay fingerprint, or verified reader.
-- Replacing phase-004 effect reconciliation, inventing exactly-once guarantees for opaque executors, or re-dispatching an `in_doubt` external effect.
+- Replacing the phase-006 envelope, ledger append, hash chain, authorization proof, replay fingerprint, or verified reader.
+- Replacing phase-007 effect reconciliation, inventing exactly-once guarantees for opaque executors, or re-dispatching an `in_doubt` external effect.
 - Treating recovered stdout as equivalent to independently persisted iteration content without a typed parser, digest, source record, and explicit completeness status.
 - Authority cutover, per-mode migration, or legacy-writer retirement, owned by phases 010, 011, and 012.
 <!-- /ANCHOR:scope -->
@@ -97,7 +97,7 @@ Each dispatch attempt receives exactly one canonical terminal result envelope pa
 | REQ-004 | Completion is evidence-based rather than exit-based | `succeeded` requires a valid parsed result and every required evidence/artifact reference; exit zero, a summary file, or a `completed` status row alone cannot mark a leaf complete |
 | REQ-005 | Resume reconstruction is deterministic from the verified ledger | The same verified stream, expected leaf set, registry versions, and reducer version yield byte-identical progress state and scheduling exclusions |
 | REQ-006 | Resume never re-runs a durably completed leaf | Every leaf with a valid successful receipt/result pair and resolvable required evidence is excluded from the eligible dispatch set across repeated resumes and process restarts |
-| REQ-007 | Interrupted dispatches reconcile before any retry | A dispatch receipt without a terminal result is classified through phase-004 effect recovery as not-applied, applied, in-doubt, or conflict; only a proved not-applied/retry-eligible case may dispatch again under the governing retry policy |
+| REQ-007 | Interrupted dispatches reconcile before any retry | A dispatch receipt without a terminal result is classified through phase-007 effect recovery as not-applied, applied, in-doubt, or conflict; only a proved not-applied/retry-eligible case may dispatch again under the governing retry policy |
 | REQ-008 | Partial output is salvaged with provenance and without rewriting history | Every recovered fragment records source kind/reference, digest, parser/schema version, recovered scope, completeness, and recovery verdict in a new ledger event; original events and artifacts remain immutable |
 | REQ-009 | Salvage preserves partial value without manufacturing success | Recovered fragments may produce an effective `partial` result or complete missing evidence only when all required contracts validate; failed/ambiguous fragments remain explicit and cannot satisfy success gates |
 | REQ-010 | Corruption and ambiguity fail closed | Hash/sequence failure, unknown schema, missing receipt, conflicting result, stale or mismatched artifact digest, unknown cost provenance, and `in_doubt` effect state yield no automatic re-dispatch or success classification |
@@ -133,15 +133,15 @@ Each dispatch attempt receives exactly one canonical terminal result envelope pa
 
 The highest risk is equating process completion with durable semantic completion. The current runtime can observe exit zero and top-level artifacts while iteration evidence remains unrecoverable; its explicit rejection of `salvage.failed > 0` is the behavior to preserve. The generalized contract therefore marks success only from a verified receipt/result pair plus required evidence, and it records partial salvage separately from terminal success.
 
-A second risk is duplicate work after restart. The existing status ledger can mark a `started` row orphaned and requeue it, but that heuristic cannot prove whether an external executor applied an effect or produced a durable result immediately before the crash. Resume must join the sibling-001 dispatch receipt, phase-003 ledger head, and phase-004 effect-recovery verdict before scheduling. An `applied` result is reconciled into a result envelope; `not_applied` may become retry-eligible; `in_doubt` or conflict stops automatically.
+A second risk is duplicate work after restart. The existing status ledger can mark a `started` row orphaned and requeue it, but that heuristic cannot prove whether an external executor applied an effect or produced a durable result immediately before the crash. Resume must join the sibling-001 dispatch receipt, phase-006 ledger head, and phase-007 effect-recovery verdict before scheduling. An `applied` result is reconciled into a result envelope; `not_applied` may become retry-eligible; `in_doubt` or conflict stops automatically.
 
 Salvage can also overstate provenance. The shipped sweep may write one recovered stdout body to multiple missing iteration files, and the merge path may synthesize a minimal registry from state-log narratives. The typed design keeps those useful fallbacks but labels source, parser, scope, completeness, and confidence, stores large raw material outside the ledger by digest, and never presents reconstructed content as byte-identical original evidence.
 
-This child declares `depends_on: []` because sibling phase documents are independent planning contracts. Program implementation still consumes phase-003 envelope/ledger integrity, phase-004 receipts and effect recovery, and the phase-005 compatibility bridge as required by `manifest/phase-tree.json`. Sibling 001 defines the dispatch receipt being paired; siblings 003-006 consume reconstructed result state. Authority remains with the legacy path until phase 011.
+This child declares `depends_on: []` because sibling phase documents are independent planning contracts. Program implementation still consumes phase-006 envelope/ledger integrity, phase-007 receipts and effect recovery, and the phase-008 compatibility bridge as required by `manifest/phase-tree.json`. Sibling 001 defines the dispatch receipt being paired; siblings 003-006 consume reconstructed result state. Authority remains with the legacy path until phase 014.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None blocking for planning. Implementation may choose exact event-type names, module boundaries, bounded inline-result limits, and parser identifiers after the sibling-001 receipt schema and phase-003 registry APIs materialize. It may not weaken one-pair-per-attempt identity, evidence-based completion, deterministic ledger folding, no-rerun of completed leaves, effect reconciliation before retry, append-only salvage provenance, explicit unknown cost, or fail-closed ambiguity.
+None blocking for planning. Implementation may choose exact event-type names, module boundaries, bounded inline-result limits, and parser identifiers after the sibling-001 receipt schema and phase-006 registry APIs materialize. It may not weaken one-pair-per-attempt identity, evidence-based completion, deterministic ledger folding, no-rerun of completed leaves, effect reconciliation before retry, append-only salvage provenance, explicit unknown cost, or fail-closed ambiguity.
 <!-- /ANCHOR:questions -->

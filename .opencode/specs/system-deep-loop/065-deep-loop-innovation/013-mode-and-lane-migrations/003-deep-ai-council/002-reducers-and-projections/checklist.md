@@ -1,5 +1,5 @@
 ---
-title: "Checklist: Deep AI Council - Reducers & Projections (013 phase 002)"
+title: "Checklist: Deep AI Council - Reducers & Projections"
 description: "Checklist for the Deep AI Council reducers and projections phase: deterministic deliberation replay, evidence-conditioned independence and stance state, plural outcomes, immutable artifact indexing, status projection, and dark shadow verification."
 trigger_phrases:
   - "Deep AI Council reducers and projections checklist"
@@ -28,7 +28,7 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for phase 002. The verifier replays the exact typed council event
+This checklist is the blocking verifier contract for phase 005. The verifier replays the exact typed council event
 sequence from a pinned fixture, records the schema and projection versions, compares canonical projection fingerprints,
 checks independence and stance lineage, and reports field-level parity against the legacy Deep AI Council path. It must
 fail on hidden side effects, invalid transitions, unsupported calibration, erased minority evidence, unstable

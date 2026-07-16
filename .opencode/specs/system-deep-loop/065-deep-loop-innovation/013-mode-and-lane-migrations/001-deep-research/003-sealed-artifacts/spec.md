@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Research - Sealed Reference Artifacts (010 phase 001 child 003)"
+title: "Feature Specification: Deep Research - Sealed Reference Artifacts"
 description: "Plan the Deep Research mode binding for immutable, content-addressed reference artifacts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme."
 trigger_phrases:
   - "deep research sealed artifacts"
@@ -41,9 +41,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
-| **Origin** | Third Deep Research child in the phase-010 mode migration fan-out |
+| **Origin** | Third Deep Research child in the phase-013 mode migration fan-out |
 | **Depends on** | None (`[]`); sibling planning contracts compose at the Deep Research mode gate |
-| **Consumes** | Shared phase-003 sealing primitives, typed replay references, and the phase-009 mode contracts |
+| **Consumes** | Shared phase-006 sealing primitives, typed replay references, and the phase-012 mode contracts |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -65,7 +65,7 @@ digest-bound typed statements for source captures and synthesis checkpoints, whi
 alone replays only the control plane and cannot reconstruct web results, page contents, prompts, models, or stochastic
 reasoning.
 
-This phase plans the Deep Research binding to the shared phase-003 sealing primitives. It registers mode artifact kinds,
+This phase plans the Deep Research binding to the shared phase-006 sealing primitives. It registers mode artifact kinds,
 seals the exact bytes at each lifecycle boundary, carries only shared algorithm-qualified digest references through the
 typed event and replay paths, and verifies every read before gather, analyze, convergence, synthesis, resume, or memory
 save consumes it. It does not invent a mode-local hash, blob store, descriptor, or tamper check. Sealing failures block
@@ -86,7 +86,7 @@ new dark evidence and remain observable without changing legacy authority.
 
 ### Out of Scope
 - Defining or replacing the shared seal descriptor, canonicalization registry, digest algorithm, immutable store, atomic publisher, verified-read implementation, lifecycle ledger, retention collector, or corruption policy.
-- Defining the phase-003 event envelope, typed append-only ledger, transition-authorization gateway, or generic replay-fingerprint descriptor; this phase supplies mode references to those contracts.
+- Defining the phase-006 event envelope, typed append-only ledger, transition-authorization gateway, or generic replay-fingerprint descriptor; this phase supplies mode references to those contracts.
 - Replacing the reducers and projections owned by predecessor `002-reducers-and-projections`; a synthesis artifact is a sealed output of those projections, not a second reducer.
 - Defining certificate, receipt, promotion, or boundary-attestation semantics owned by successor `004-certificates-and-receipts`.
 - Changing the generic convergence, termination, health, budget, fan-out, memory database, source-refresh, or authority-cutover policies outside the Deep Research reference bindings.
@@ -137,8 +137,8 @@ new dark evidence and remain observable without changing legacy authority.
 ## 6. RISKS & DEPENDENCIES
 
 The highest risk is a second mode-local sealing scheme that hashes a path, report, or JSONL control record differently from
-the shared primitive. The mode adapter must consume the phase-003 sealing interface, use its descriptor and verified-read
-errors, and expose only digest references to the ledger and replay layers. The phase-009 mode contract and write-set
+the shared primitive. The mode adapter must consume the phase-006 sealing interface, use its descriptor and verified-read
+errors, and expose only digest references to the ledger and replay layers. The phase-012 mode contract and write-set
 conflict graph are required before parallel lane execution so source capture, claim updates, convergence snapshots, and
 synthesis cannot race on an unowned reference set.
 
@@ -153,7 +153,7 @@ ordering must use the shared canonical ordering and stable logical branch/sequen
 completion order. A failed or corrupted read must block dark evidence and handoff without changing the legacy path; the
 rollback switch disables new mode binding while preserving already sealed data for audit and later replay.
 
-Dependencies are the shared phase-003 sealing, event, and replay contracts, the phase-009 mode interfaces and conflict
+Dependencies are the shared phase-006 sealing, event, and replay contracts, the phase-012 mode interfaces and conflict
 graph, predecessor `002-reducers-and-projections`, and the existing compatibility/shadow bridge. Successor
 `004-certificates-and-receipts` consumes the sealed reference set for boundary evidence; it does not change this phase's
 seal identity.
@@ -163,8 +163,8 @@ seal identity.
 ## 7. OPEN QUESTIONS
 
 None blocking for planning. Execution must freeze the final artifact-kind names, canonicalization profiles, media types,
-source-capture boundary, maximum object sizes, and exact reference-set ordering against the phase-000 census and the
-phase-009 shared contract. It must also decide whether the memory-save handoff stores a sealed portable package or a
+source-capture boundary, maximum object sizes, and exact reference-set ordering against the phase-003 census and the
+phase-012 shared contract. It must also decide whether the memory-save handoff stores a sealed portable package or a
 sealed manifest of separately addressed artifacts, without weakening verified reads, append-only supersession, or the
 shared retention roots. The concrete choices may narrow the mode contract but may not introduce a second sealing scheme.
 <!-- /ANCHOR:questions -->

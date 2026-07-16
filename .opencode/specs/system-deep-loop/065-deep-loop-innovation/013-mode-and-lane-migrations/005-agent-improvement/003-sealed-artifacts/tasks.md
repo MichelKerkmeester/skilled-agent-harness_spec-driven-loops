@@ -40,7 +40,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm `002-reducers-and-projections` publishes the artifact-reference, evaluator-epoch, canary-status, promotion-status, and projection-fingerprint inputs
-- [ ] T002 Read the shared phase-003 sealing primitive and deep-improvement-common adapter contract; record canonicalization, dependency, seal-on-write, publication, verification, lifecycle, and failure semantics
+- [ ] T002 Read the shared phase-006 sealing primitive and deep-improvement-common adapter contract; record canonicalization, dependency, seal-on-write, publication, verification, lifecycle, and failure semantics
 - [ ] T003 Build the AgentIR, inheritance, change-contract, improver, causal-evidence, candidate, trajectory, behavior-family, executor, four-ring, canary, and successor-binding field matrix
 - [ ] T004 Define ownership boundaries with `004-deep-improvement-common/003-sealed-artifacts`, `004-certificates-and-receipts`, the reducer sibling, and the typed-ledger, shadow, rollback, and mode-gate siblings
 - [ ] T005 Pin valid, mutated, partial-write, missing-dependency, stale-epoch, hidden-leak, executor-mismatch, insufficient-evidence, and mixed-version fixtures

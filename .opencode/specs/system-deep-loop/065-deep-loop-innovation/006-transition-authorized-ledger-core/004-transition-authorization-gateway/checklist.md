@@ -28,13 +28,13 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking verifier contract for the transition-authorization gateway. Each implementation receipt must bind the exact candidate SHA, policy-registry digest, event-registry digest, replay-fingerprint version, and fixture manifest. Verification fails on zero discovered cases, any proof-free typed append, any non-allow result that mutates domain state, any missing verdict event, or any dark-path influence on authoritative legacy behavior before phase 011.
+This checklist is the blocking verifier contract for the transition-authorization gateway. Each implementation receipt must bind the exact candidate SHA, policy-registry digest, event-registry digest, replay-fingerprint version, and fixture manifest. Verification fails on zero discovered cases, any proof-free typed append, any non-allow result that mutates domain state, any missing verdict event, or any dark-path influence on authoritative legacy behavior before phase 014.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-001 spine ADR and transition/versioning/rollback policy are frozen and their authorization fields map to the implementation contract
+- [ ] CHK-001 [P0] The phase-004 spine ADR and transition/versioning/rollback policy are frozen and their authorization fields map to the implementation contract
 - [ ] CHK-002 [P0] The envelope, ledger, replay-fingerprint, and gateway interfaces compose without a proof-free domain append seam
 - [ ] CHK-003 [P0] Every dark state-transition boundary and its unchanged authoritative legacy behavior are inventoried
 - [ ] CHK-004 [P1] The candidate report pins the exact SHA, policy-registry digest, event-registry digest, fingerprint version, and fixture manifest
@@ -64,8 +64,8 @@ This checklist is the blocking verifier contract for the transition-authorizatio
 - [ ] CHK-018 [P0] Concurrent head or authority-epoch change after evaluation invalidates the allow under the ledger lock
 - [ ] CHK-019 [P0] Replay verifies every domain event has an earlier exact allow, every deny has no linked domain event, and audit/domain ordering remains distinct
 - [ ] CHK-020 [P0] Replay detects request, policy, evaluator, verdict, decision-digest, head, epoch, target-event, and linkage mutation without rewriting history
-- [ ] CHK-021 [P0] Gateway allow, deny, evaluator failure, and ledger failure fixtures leave authoritative legacy state, output, control flow, and effects unchanged through phase 010
-- [ ] CHK-022 [P0] The phase-003 parent gate fails if the ledger, envelope, fingerprints, and gateway do not co-land as one dark unit
+- [ ] CHK-021 [P0] Gateway allow, deny, evaluator failure, and ledger failure fixtures leave authoritative legacy state, output, control flow, and effects unchanged through phase 013
+- [ ] CHK-022 [P0] The phase-006 parent gate fails if the ledger, envelope, fingerprints, and gateway do not co-land as one dark unit
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -89,24 +89,24 @@ This checklist is the blocking verifier contract for the transition-authorizatio
 ## Documentation
 
 - [ ] CHK-030 [P1] The implemented decision schema, policy contract, reason codes, proof lifecycle, replay semantics, and dark authority posture match `spec.md` and `plan.md`
-- [ ] CHK-031 [P1] Source traceability covers the phase-001 ADR, transition policy, program parent, phase-tree manifest, and typed-ledger sibling
+- [ ] CHK-031 [P1] Source traceability covers the phase-004 ADR, transition policy, program parent, phase-tree manifest, and typed-ledger sibling
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
 - [ ] CHK-032 [P1] Gateway, policy registry, decision schema, ledger proof seam, replay verifier, and fixtures have explicit ownership with no duplicate authorization implementation
-- [ ] CHK-033 [P1] Changes stay inside the approved phase-003 implementation write set and preserve legacy runtime files as authoritative inputs until phase 011
+- [ ] CHK-033 [P1] Changes stay inside the approved phase-006 implementation write set and preserve legacy runtime files as authoritative inputs until phase 014
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete when every P0 check has exact-SHA evidence, both verdict classes are durably auditable, all uncertain or failed evaluations deny, only an earlier exact allow unlocks one domain append, replay detects every authorization/linkage drift class, and dark gateway behavior cannot influence the authoritative legacy path before phase 011.
+The phase is complete when every P0 check has exact-SHA evidence, both verdict classes are durably auditable, all uncertain or failed evaluations deny, only an earlier exact allow unlocks one domain append, replay detects every authorization/linkage drift class, and dark gateway behavior cannot influence the authoritative legacy path before phase 014.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the independent verifier confirms the full default-deny and proof-linkage matrix, the phase-003 co-landing gate is green, strict spec validation passes apart from intentionally absent generated metadata, and verification leaves no unexpected tracked mutation.
+Signed off when the independent verifier confirms the full default-deny and proof-linkage matrix, the phase-006 co-landing gate is green, strict spec validation passes apart from intentionally absent generated metadata, and verification leaves no unexpected tracked mutation.
 <!-- /ANCHOR:sign-off -->

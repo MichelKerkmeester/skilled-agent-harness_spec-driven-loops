@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Locks & Fencing"
-description: "Implementation plan for the phase-004 shared concurrency-safety service: canonical resource locks, leased ownership, monotonic fencing tokens, guarded writes, and bounded recovery under legacy/dark coexistence."
+description: "Implementation plan for the phase-007 shared concurrency-safety service: canonical resource locks, leased ownership, monotonic fencing tokens, guarded writes, and bounded recovery under legacy/dark coexistence."
 trigger_phrases:
   - "locks and fencing implementation plan"
   - "deep-loop fenced writer plan"
@@ -30,9 +30,9 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Surface** | system-deep-loop runtime + phase-003 ledger integration |
+| **Surface** | system-deep-loop runtime + phase-006 ledger integration |
 | **Change class** | Concurrency safety, durability, and recovery control |
-| **Execution** | Additive-dark in an isolated worktree pinned to the phase-000 BASE |
+| **Execution** | Additive-dark in an isolated worktree pinned to the phase-003 BASE |
 
 ### Overview
 Build one fenced-lease contract for every shared mutable deep-loop resource. Start with a reviewed manifest of current writer and recovery paths, normalize each to a canonical resource key, then implement durable monotonic token allocation and mutation-side enforcement before adapting any writer. The ledger append path validates token plus expected head; projections validate token plus version; per-lineage state, fan-out status/merge, and wait/pause/resume paths validate token plus continuity identity. Compatibility adapters preserve the shipped loop-lock and nonce protections while legacy and dark emissions share one guarded epoch and legacy remains authoritative.
@@ -43,7 +43,7 @@ Build one fenced-lease contract for every shared mutable deep-loop resource. Sta
 
 ### Definition of Ready
 - [ ] Every protected writer/recovery surface has one canonical resource key and declared atomicity domain
-- [ ] The phase-003 append/head/receipt interfaces needed for fence enforcement are pinned
+- [ ] The phase-006 append/head/receipt interfaces needed for fence enforcement are pinned
 - [ ] Lease metadata, token allocation, typed errors, timeout values, and lock-order rules are specified
 - [ ] Legacy and dark write entry points that must share one epoch are identified
 - [ ] Fault-injection points cover acquire, renew, pre-commit, commit, fsync, release, expiry, and stale resume
@@ -75,8 +75,8 @@ Build one fenced-lease contract for every shared mutable deep-loop resource. Sta
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the implementation worktree to phase-000 BASE and freeze the protected write-surface manifest from `loop-lock.ts`, `cli-guards.cjs`, `round-state-jsonl.cjs`, `jsonl-repair.ts`, `fanout-pool.cjs`, `fanout-run.cjs`, lifecycle pause/recovery events, phase-003 ledger append, projections, and per-lineage state.
-- Ratify canonical resource keys, atomicity domains, lock order, timeout/renewal defaults, fault-injection points, and the exact phase-003 interfaces the service consumes.
+- Pin the implementation worktree to phase-003 BASE and freeze the protected write-surface manifest from `loop-lock.ts`, `cli-guards.cjs`, `round-state-jsonl.cjs`, `jsonl-repair.ts`, `fanout-pool.cjs`, `fanout-run.cjs`, lifecycle pause/recovery events, phase-006 ledger append, projections, and per-lineage state.
+- Ratify canonical resource keys, atomicity domains, lock order, timeout/renewal defaults, fault-injection points, and the exact phase-006 interfaces the service consumes.
 
 ### Phase 2: Implementation
 - Implement lease/fence types, canonical resource encoding, durable atomic token advancement, owner-safe renew/release, and typed contention/timeout/stale-fence errors.
@@ -90,7 +90,7 @@ Build one fenced-lease contract for every shared mutable deep-loop resource. Sta
 - Pause an old holder at every pre-commit fault point, grant a successor, then resume the old process and prove all old-token ledger/projection/lineage writes are rejected.
 - Exercise legacy-only, dark-only, combined shadow, duplicate fan-out, same-kind replicas, checkpoint resume, salvage merge, council append, and projection races.
 - Verify canonical lock order, bounded timeout, renewal loss, malformed coordinator state, token overflow, PID reuse, clock skew, and unsupported atomicity domains fail closed without deadlock or committed corruption.
-- Re-run shipped lock, JSONL repair, fan-out, council, lifecycle, and phase-003 ledger tests plus the new cross-surface concurrency matrix.
+- Re-run shipped lock, JSONL repair, fan-out, council, lifecycle, and phase-006 ledger tests plus the new cross-surface concurrency matrix.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -115,11 +115,11 @@ Build one fenced-lease contract for every shared mutable deep-loop resource. Sta
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-This planning leaf has `depends_on: []`; `005-stream-fold-gauges` and `007-continuity-identities` are adjacency references only. Implementation consumes the phase-003 typed ledger's canonical resource identity, expected-head, append receipt, and immutable-recovery contracts, while the phase-004 parent supplies the additive-dark authority posture. Phase 005 later consumes these locks in compatibility/shadow adapters, phase 006 consumes them for durable fan-out/fan-in, and phase 011 alone may use their evidence to authorize authority cutover. Source boundaries are the program `spec.md`, `manifest/phase-tree.json`, the phase-003 ledger spec, and shipped runtime lock/recovery modules.
+This planning leaf has `depends_on: []`; `005-stream-fold-gauges` and `007-continuity-identities` are adjacency references only. Implementation consumes the phase-006 typed ledger's canonical resource identity, expected-head, append receipt, and immutable-recovery contracts, while the phase-007 parent supplies the additive-dark authority posture. Phase 008 later consumes these locks in compatibility/shadow adapters, phase 009 consumes them for durable fan-out/fan-in, and phase 014 alone may use their evidence to authorize authority cutover. Source boundaries are the program `spec.md`, `manifest/phase-tree.json`, the phase-006 ledger spec, and shipped runtime lock/recovery modules.
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-The implementation lands additively behind the dark-path and compatibility boundaries, so path-scoped `git revert` restores the prior call graph and leaves legacy authority unchanged. Rollback must not delete or decrement the durable fencing registry: resource epochs are retained or advanced/tombstoned, because reusing a pre-rollback token could re-authorize a stale process. If fenced integration fails, disable new acquisitions and dark writes, drain current holders, preserve coordinator evidence, verify the legacy path still matches BASE, and revert adapters only after no protected writer can resume with an old token. No rollback path may truncate the phase-003 ledger or force-remove a successor lease.
+The implementation lands additively behind the dark-path and compatibility boundaries, so path-scoped `git revert` restores the prior call graph and leaves legacy authority unchanged. Rollback must not delete or decrement the durable fencing registry: resource epochs are retained or advanced/tombstoned, because reusing a pre-rollback token could re-authorize a stale process. If fenced integration fails, disable new acquisitions and dark writes, drain current holders, preserve coordinator evidence, verify the legacy path still matches BASE, and revert adapters only after no protected writer can resume with an old token. No rollback path may truncate the phase-006 ledger or force-remove a successor lease.
 <!-- /ANCHOR:rollback -->

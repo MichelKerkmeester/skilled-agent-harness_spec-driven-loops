@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep AI Council resume adapter (013 phase 005)"
+title: "Tasks: Deep AI Council resume adapter"
 description: "Tasks for the Deep AI Council resume adapter: sealed-ledger reduction, continuity-ladder projection, crash recovery, and idempotent re-entry."
 trigger_phrases:
   - "Deep AI Council resume adapter tasks"
