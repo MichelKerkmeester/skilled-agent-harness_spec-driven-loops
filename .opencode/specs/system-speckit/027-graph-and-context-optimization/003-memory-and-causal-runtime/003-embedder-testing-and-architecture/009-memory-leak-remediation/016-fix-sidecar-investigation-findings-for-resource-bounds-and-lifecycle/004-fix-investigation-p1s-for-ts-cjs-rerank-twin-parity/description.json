@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity",
+  "description": "The registry's P1 `drift|python|cjs|parity` selection contains nine findings where TypeScript, CJS, and Python sidecar contracts disagree or their",
+  "keywords": [
+    "registry",
+    "drift",
+    "python",
+    "cjs",
+    "parity",
+    "selection",
+    "contains",
+    "nine",
+    "findings",
+    "typescript",
+    "sidecar",
+    "contracts",
+    "disagree"
+  ],
+  "lastUpdated": "2026-07-10T06:22:20.695Z",
+  "specId": "004",
+  "folderSlug": "fix-investigation-p1s-for-ts-cjs-rerank-twin-parity",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

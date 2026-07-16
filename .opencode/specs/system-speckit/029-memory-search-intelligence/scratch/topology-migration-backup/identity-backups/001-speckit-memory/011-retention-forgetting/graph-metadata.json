@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory/011-retention-forgetting",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/011-retention-forgetting",
+  "parent_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory retention forgetting impl",
+      "forget allowlist dominance cap",
+      "spare only forget eligibility",
+      "trust gated quarantine",
+      "erasure cascade namespace authorize writer signing",
+      "memory retention forgetting plan",
+      "c7-a dominance cap plan",
+      "spare only eligibility sequencing",
+      "trust gated quarantine plan",
+      "erasure surface deferral",
+      "memory retention forgetting tasks",
+      "c7-a dominance cap tasks"
+    ],
+    "key_topics": [
+      "memory",
+      "retention",
+      "forgetting",
+      "impl",
+      "forget",
+      "allowlist",
+      "dominance",
+      "cap",
+      "spare",
+      "only",
+      "eligibility",
+      "trust"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "mcp_server/lib/feedback/feedback-retention-reducer.ts",
+      "mcp_server/lib/governance/memory-retention-sweep.ts",
+      "mcp_server/lib/search/vector-index-schema.ts",
+      "mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "tools/memory-tools.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-retention-reducer.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/feedback-retention-reducer.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-retention-reducer.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/feedback-retention-reducer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage4-filter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-queries.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reconsolidation-bridge.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-tools.ts",
+        "kind": "code",
+        "path": "tools/memory-tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-retention-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/feedback-retention-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Retention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diversity Result",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary",
+    "created_at": "2026-06-19T05:40:37.446Z",
+    "last_save_at": "2026-07-09T10:02:56.134Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f741dfaaf6083ea8adbc8c995e3cf24c96d05da519718208d9d47f2bcebe3db5",
+    "source_doc_hashes": {
+      "spec.md": "7087b6e88766277a68dbd5626d4918e16a3dc78b82dd7cc46f88f74bb9540157",
+      "plan.md": "e8dc02eac9c720d328d10d977dc19654d6ee419322bf6de3a878e1cbe9c1114e",
+      "tasks.md": "28255a5cc6bdf4613bc7956f2d826842805b28901aed9cac120070ec654be09b",
+      "checklist.md": "6155a8e1c9f25ccbbb2fc81b48111aff60f81dc206b257579f3c70bb6075ea20",
+      "implementation-summary.md": "8caa03bbedb9d2cf49da547366252f10a2defbf42d4d2ab6327bdc81cd9fa2f6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

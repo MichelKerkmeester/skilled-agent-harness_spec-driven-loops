@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test",
+  "spec_folder": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test",
+  "parent_id": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sandbox mutation test",
+      "mutation validation test doc"
+    ],
+    "key_topics": [
+      "sandbox",
+      "mutation",
+      "test",
+      "validation",
+      "doc"
+    ],
+    "importance_tier": "temporary",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sandbox Mutation Test Doc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sandbox Mutation Test Doc This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sandbox mutation test",
+        "kind": "quoted",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutation validation test doc",
+        "kind": "quoted",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Sandbox Mutation Test Doc",
+    "created_at": "2026-06-22T18:55:03.515Z",
+    "last_save_at": "2026-07-09T10:02:55.816Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1d93aa3ac551d27e8318c2dd77accb855d6f5270a099d1d2e8c0e4e895e58282",
+    "source_doc_hashes": {
+      "spec.md": "1f75d32ca69078903f14d86164552085bc3f3f29ffc8fd9fc7ef0bdf5e980cfb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

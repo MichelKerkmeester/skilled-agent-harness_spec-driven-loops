@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
+  "description": "Runtime hook coverage drifted across Claude, Codex, Copilot, and the OpenCode plugin loader",
+  "keywords": [
+    "runtime",
+    "hook",
+    "coverage",
+    "drifted",
+    "across",
+    "claude",
+    "codex",
+    "copilot",
+    "opencode",
+    "plugin",
+    "loader"
+  ],
+  "lastUpdated": "2026-07-10T06:23:02.012Z",
+  "specId": "001",
+  "folderSlug": "hook-parity",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

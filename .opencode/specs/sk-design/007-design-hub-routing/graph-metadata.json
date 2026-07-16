@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/007-design-hub-routing",
+  "spec_folder": "sk-design/007-design-hub-routing",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design hub routing reconstruction",
+      "design mode registry routing",
+      "hub router signals vocabulary",
+      "single advisor identity",
+      "hub routing reconstruction plan",
+      "sk-design mode registry plan",
+      "design router signal plan",
+      "single advisor identity plan",
+      "hub routing reconstruction tasks",
+      "mode registry routing tasks",
+      "router vocabulary task breakdown",
+      "sk-design hub source traceability tasks"
+    ],
+    "key_topics": [
+      "sk-design",
+      "hub",
+      "routing",
+      "reconstruction",
+      "design",
+      "mode",
+      "registry",
+      "router",
+      "signals",
+      "vocabulary",
+      "single",
+      "advisor"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/shared/anti_slop_principles.md",
+      ".opencode/skills/sk-design/shared/cognitive_laws.md",
+      ".opencode/skills/sk-design/shared/design_token_vocabulary.md",
+      ".opencode/skills/sk-design/shared/design_proof_token.md",
+      ".opencode/skills/sk-design/shared/register.md",
+      ".opencode/skills/sk-design/shared/context_loading_contract.md",
+      ".opencode/skills/sk-design/shared/assets/context_loaded_card.md",
+      ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+      ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
+      ".opencode/skills/sk-design/design-interface/references/design_process/brief_to_dials.md",
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/design-foundations/SKILL.md",
+      ".opencode/skills/sk-design/design-motion/SKILL.md",
+      ".opencode/skills/sk-design/design-audit/SKILL.md",
+      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+      ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "anti_slop_principles.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/anti_slop_principles.md",
+        "source": "derived"
+      },
+      {
+        "name": "cognitive_laws.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/cognitive_laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_token_vocabulary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/design_token_vocabulary.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_proof_token.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/design_proof_token.md",
+        "source": "derived"
+      },
+      {
+        "name": "register.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/register.md",
+        "source": "derived"
+      },
+      {
+        "name": "context_loading_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context_loading_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "context_loaded_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/context_loaded_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "proof_of_application_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface_preflight_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief_to_dials.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/references/design_process/brief_to_dials.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconstruct",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped sk-design hub is the public advisor-routable home for the design family, but its hub-level routing contract was absent from git and memory as a spec packet",
+    "created_at": "2026-07-16T09:11:02.038Z",
+    "last_save_at": "2026-07-16T09:11:02.038Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:f2372de3ef46679a7a21cb824a2896df47ca15af0df28e340046f3d55d3ae79e",
+    "source_doc_hashes": {
+      "spec.md": "0e7d2299fb68531014ea1f80332c1edb067bf9f491c8c906e5eccb86e95f3165",
+      "plan.md": "bbb93d0a1efb8517bda24c1a913598856e23bacdb62d9ce1cdaf03bb807f1ddd",
+      "tasks.md": "e65a0a835c3d261a0e347e9a886efae2a6764efb695363b769e87ba4163bf610",
+      "checklist.md": "49291aba51f3084db05e732f11291d2fa51142550995a24663b97b809fa12cb7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

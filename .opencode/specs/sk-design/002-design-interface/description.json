@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-design/002-design-interface",
+  "description": "The shipped interface mode defines the overall direction for distinctive UI, including visual voice, information architecture, component direction,",
+  "keywords": [
+    "shipped",
+    "interface",
+    "mode",
+    "defines",
+    "overall",
+    "direction",
+    "distinctive",
+    "including",
+    "visual",
+    "voice",
+    "information",
+    "architecture",
+    "component"
+  ],
+  "lastUpdated": "2026-07-16T08:49:37.836Z",
+  "specId": "002",
+  "folderSlug": "design-interface",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/002-spec-data-quality/048-create-sh-parent-corruption-fix",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/002-spec-data-quality/048-create-sh-parent-corruption-fix",
+  "parent_id": "system-speckit/029-memory-search-intelligence/002-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create.sh parent packet corruption fix",
+      "append to existing parent description.json",
+      "phase scaffolding overwrites parent metadata",
+      "create.sh parent corruption fix plan",
+      "create.sh parent corruption fix tasks",
+      "create.sh parent corruption fix summary"
+    ],
+    "key_topics": [
+      "parent",
+      "packet",
+      "corruption",
+      "append",
+      "existing",
+      "description",
+      "json",
+      "phase",
+      "scaffolding",
+      "overwrites",
+      "metadata",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/specs/system-speckit/029-memory-search-intelligence/001-speckit-memory/description.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh",
+      "spec.md",
+      "specs/system-speckit/029-memory-search-intelligence/001-speckit-memory/description.json",
+      ".opencode/specs/system-speckit/029-memory-search-intelligence/002-spec-data-quality/047-generated-metadata-status-integrity/review/review-report.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-speckit/029-memory-search-intelligence/001-speckit-memory/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-system.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/029-memory-search-intelligence/002-spec-data-quality/047-generated-metadata-status-integrity/review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`create.sh --phase --phase-parent <existing-packet> --phase-names <name> ...` rebinds `FEATUREDIR` to the existing parent (`create.sh:1046-1062`) but still calls the parent description generator with the append request's own feature description (`create.sh:1310-1317`)",
+    "created_at": "2026-07-02T15:04:28.155Z",
+    "last_save_at": "2026-07-09T10:02:56.559Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fa39fa554e3c7f97ed8b2009017b5f878fa6f81471b921c8de83f7dd32410596",
+    "source_doc_hashes": {
+      "spec.md": "d7367f4bc1f2edc1700512ce646d0ef15b59a78c743972fda1292044e36545e9",
+      "plan.md": "da7dafb54dc7efdfc617c7da6931a25fbc66adea0cfe3a7d59b5b18c93402a2d",
+      "tasks.md": "f37b8d8fb296d8304bf5c43fa4dc53ad92cd674f0eba5d2940ffbf5402391be2",
+      "implementation-summary.md": "079946ccf94b96d2978514aa36ddf2ce2967b37aa2cb0f06454636fecb01592b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

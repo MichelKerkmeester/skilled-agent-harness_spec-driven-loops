@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/001-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation",
+  "description": "The 2026-06-27 drift audit converged 44 findings in this phase covering agent MCP grants across .claude/.opencode/.codex and command allowed-tools",
+  "keywords": [
+    "drift",
+    "audit",
+    "converged",
+    "findings",
+    "phase",
+    "covering",
+    "agent",
+    "mcp",
+    "grants",
+    "across",
+    "claude",
+    "opencode",
+    "codex",
+    "command",
+    "allowed-tools"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.566Z",
+  "specId": "004",
+  "folderSlug": "tool-grant-reconciliation",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "001-release-cleanup",
+    "013-drift-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

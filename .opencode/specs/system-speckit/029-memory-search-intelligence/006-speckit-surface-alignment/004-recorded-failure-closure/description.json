@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/006-speckit-surface-alignment/004-recorded-failure-closure",
+  "description": "Several audit findings were about detectors that fired and were recorded, but nobody acted",
+  "keywords": [
+    "several",
+    "audit",
+    "findings",
+    "about",
+    "detectors",
+    "fired",
+    "recorded",
+    "nobody",
+    "acted"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.628Z",
+  "specId": "004",
+  "folderSlug": "recorded-failure-closure",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "006-speckit-surface-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,37 @@
+{
+  "title": "llama-cpp retrieval quality probe",
+  "level": "1",
+  "status": "complete",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "created_at": "2026-05-13T10:23:12Z",
+  "last_updated_at": "2026-05-13T10:23:12Z",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
+  "description": "Packet 015 showed `llama-cpp` is much faster than `hf-local`, but vector-to-vector parity failed with mean cosine `0.9677582325103543` against a",
+  "keywords": [
+    "packet",
+    "showed",
+    "llama-cpp",
+    "much",
+    "faster",
+    "hf-local",
+    "vector-to-vector",
+    "parity",
+    "failed",
+    "mean",
+    "cosine",
+    "against"
+  ],
+  "lastUpdated": "2026-07-10T06:23:10.786Z",
+  "specId": "016",
+  "folderSlug": "llama-cpp-retrieval-quality-probe",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/007-intent-classifier-stability-telemetry",
+  "description": "005/REQ-016 captured paraphrase instability: `\"Semantic Search\"` → `fixbug` (0.098) but `\"Find stuff related to semantic search\"` → `understand`",
+  "keywords": [
+    "req-016",
+    "captured",
+    "paraphrase",
+    "instability",
+    "semantic",
+    "search",
+    "fixbug",
+    "find",
+    "stuff",
+    "related",
+    "understand"
+  ],
+  "lastUpdated": "2026-07-10T06:24:49.287Z",
+  "specId": "007",
+  "folderSlug": "intent-classifier-stability-telemetry",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "005-stress-test",
+    "003-fix-mcp-runtime-stress-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

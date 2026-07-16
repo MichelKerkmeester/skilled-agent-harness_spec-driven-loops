@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-design/007-design-hub-routing",
+  "description": "The shipped sk-design hub is the public advisor-routable home for the design family, but its hub-level routing contract was absent from git and memory",
+  "keywords": [
+    "shipped",
+    "sk-design",
+    "hub",
+    "public",
+    "advisor-routable",
+    "home",
+    "design",
+    "family",
+    "hub-level",
+    "routing",
+    "contract",
+    "absent",
+    "git",
+    "memory"
+  ],
+  "lastUpdated": "2026-07-16T09:00:50.685Z",
+  "specId": "007",
+  "folderSlug": "design-hub-routing",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

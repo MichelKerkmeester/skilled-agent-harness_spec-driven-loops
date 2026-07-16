@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/004-fix-investigation-p1s-for-launcher-and-reindex-deadcode",
+  "description": "The rerank sidecar launcher still had two P1 process-boundary risks: F15 owner-token publication could leave a partially written or race-observed",
+  "keywords": [
+    "rerank",
+    "sidecar",
+    "launcher",
+    "still",
+    "two",
+    "process-boundary",
+    "risks",
+    "f15",
+    "owner-token",
+    "publication",
+    "leave",
+    "partially",
+    "written",
+    "race-observed"
+  ],
+  "lastUpdated": "2026-07-10T06:23:44.767Z",
+  "specId": "004",
+  "folderSlug": "fix-investigation-p1s-for-launcher-and-reindex-deadcode",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

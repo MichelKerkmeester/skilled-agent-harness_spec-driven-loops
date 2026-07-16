@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-design/003-design-motion",
+  "description": "The shipped motion mode defines the temporal layer for the sk-design family, but its packet was absent from git and memory",
+  "keywords": [
+    "shipped",
+    "motion",
+    "mode",
+    "defines",
+    "temporal",
+    "layer",
+    "sk-design",
+    "family",
+    "packet",
+    "absent",
+    "git",
+    "memory"
+  ],
+  "lastUpdated": "2026-07-16T08:49:21.908Z",
+  "specId": "003",
+  "folderSlug": "design-motion",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

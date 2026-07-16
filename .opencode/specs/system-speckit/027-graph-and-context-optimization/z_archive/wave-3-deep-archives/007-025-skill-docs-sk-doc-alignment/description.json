@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-025-skill-docs-sk-doc-alignment",
+  "description": "The system-code-graph skill docs had drift from current sk-doc expectations",
+  "keywords": [
+    "system-code-graph",
+    "skill",
+    "docs",
+    "drift",
+    "current",
+    "sk-doc",
+    "expectations"
+  ],
+  "lastUpdated": "2026-07-10T06:21:52.585Z",
+  "specId": "007",
+  "folderSlug": "025-skill-docs-sk-doc-alignment",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "z_archive",
+    "wave-3-deep-archives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

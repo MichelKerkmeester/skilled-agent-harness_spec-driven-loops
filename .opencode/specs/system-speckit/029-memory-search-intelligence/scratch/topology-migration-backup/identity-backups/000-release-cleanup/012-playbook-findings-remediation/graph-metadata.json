@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
+  "parent_id": "system-speckit/029-memory-search-intelligence/000-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook findings remediation",
+      "028 remediation cluster fixes",
+      "memory-search advisor code-graph remediation",
+      "playbook findings remediation plan",
+      "028 remediation cluster approach",
+      "gpt-5.5-high cluster verification",
+      "playbook findings remediation tasks",
+      "028 remediation task list",
+      "remediation cluster task list",
+      "playbook findings remediation checklist",
+      "028 remediation verification",
+      "remediation cluster QA"
+    ],
+    "key_topics": [
+      "playbook",
+      "findings",
+      "remediation",
+      "cluster",
+      "memory-search",
+      "advisor",
+      "code-graph",
+      "plan",
+      "approach",
+      "gpt-5",
+      "5-high",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "lib/storage/lineage-state.ts",
+      "lib/scoring/composite-scoring.ts",
+      "handlers/memory-search.ts",
+      "lib/search/graph-lifecycle.ts",
+      "lib/search/pipeline/stage1-candidate-gen.ts",
+      "formatters/search-results.ts",
+      "schemas/tool-input-schemas.ts",
+      "lib/search/folder-relevance.ts",
+      "lib/search/channel-enforcement.ts",
+      "core/db-state.ts",
+      "core/config.ts",
+      "lib/providers/retry-manager.ts",
+      "lib/search/vector-index-store.ts",
+      "lib/utils/scope-normalization.ts",
+      "lib/extraction/entity-extractor.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "lineage-state.ts",
+        "kind": "code",
+        "path": "lib/storage/lineage-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "composite-scoring.ts",
+        "kind": "code",
+        "path": "lib/scoring/composite-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-lifecycle.ts",
+        "kind": "code",
+        "path": "lib/search/graph-lifecycle.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage1-candidate-gen.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/stage1-candidate-gen.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-relevance.ts",
+        "kind": "code",
+        "path": "lib/search/folder-relevance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "channel-enforcement.ts",
+        "kind": "code",
+        "path": "lib/search/channel-enforcement.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-state.ts",
+        "kind": "code",
+        "path": "core/db-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scope-normalization.ts",
+        "kind": "code",
+        "path": "lib/utils/scope-normalization.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-extractor.ts",
+        "kind": "code",
+        "path": "lib/extraction/entity-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Findings Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The daemon-skills playbook validation (packet 011) plus the core memory-search-intelligence re-run surfaced about twenty-two real product findings across the four subsystems",
+    "created_at": "2026-06-25T18:18:49.997Z",
+    "last_save_at": "2026-07-09T10:02:55.993Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:adc3565e4e069c4e189f1763dccda3020720272b408c7561a4546bb26bf7d1c7",
+    "source_doc_hashes": {
+      "spec.md": "5804fb2a494414dbfbe8e9b5dc904579e37ae1186bf650aeaff86bd31779b69e",
+      "plan.md": "780bd2c361f3296bbbeedbf23b85956872aabd22404af6b6f9903efb0d0bbbe2",
+      "tasks.md": "3d90ccb341981ef4135414f6d8e97f880b87ca7e72e1a33251626a819e43c739",
+      "checklist.md": "1bc0006fba305e66b72f4b9f0a0224ce7886b583006cd6b3763dcdcb80b7e3a6",
+      "implementation-summary.md": "aa0e652ce7a669c29693d8c3de05e6bf557ca596eff947bfad23f37712251822"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

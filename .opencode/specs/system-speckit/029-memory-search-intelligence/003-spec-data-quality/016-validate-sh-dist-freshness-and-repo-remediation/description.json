@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/016-validate-sh-dist-freshness-and-repo-remediation",
+  "description": "While closing packet `030-agent-loops-improved` phase 011's child 006 (a `validate.sh` registry bridge), a rebuild of `system-spec-kit/mcpserver`'s",
+  "keywords": [
+    "while",
+    "closing",
+    "packet",
+    "030-agent-loops-improved",
+    "phase",
+    "child",
+    "validate",
+    "registry",
+    "bridge",
+    "rebuild",
+    "system-spec-kit",
+    "mcpserver"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.681Z",
+  "specId": "016",
+  "folderSlug": "validate-sh-dist-freshness-and-repo-remediation",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "003-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

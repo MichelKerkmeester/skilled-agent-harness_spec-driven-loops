@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/029-memory-search-intelligence/005-dark-flag-graduation/009-cross-package-flag-governance",
+  "description": "F5 — RESOLVED: two different homes for new feature flags, with opposite default-polarity",
+  "keywords": [
+    "resolved",
+    "two",
+    "different",
+    "homes",
+    "new",
+    "feature",
+    "flags",
+    "opposite",
+    "default-polarity"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.593Z",
+  "specId": "009",
+  "folderSlug": "cross-package-flag-governance",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "005-dark-flag-graduation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

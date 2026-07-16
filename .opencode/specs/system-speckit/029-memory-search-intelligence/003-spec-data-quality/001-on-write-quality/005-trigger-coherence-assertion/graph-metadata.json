@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+  "parent_id": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/001-on-write-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger phrases coherence",
+      "cross-surface assertion",
+      "subset coherence",
+      "description.json triggers",
+      "graph-metadata derived"
+    ],
+    "key_topics": [
+      "trigger",
+      "phrases",
+      "coherence",
+      "cross-surface",
+      "assertion",
+      "subset",
+      "description",
+      "json",
+      "triggers",
+      "graph-metadata",
+      "derived",
+      "spec"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec-folder-extractor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-description-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coherence Assertion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Coherence Assertion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern New",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
+    "created_at": "2026-06-27T17:15:33.865Z",
+    "last_save_at": "2026-07-11T18:40:36.095Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:97a16f2b17eb2f1d3987b818bcfb6fe03d1ef1cb675f5dcf0607226133596f73",
+    "source_doc_hashes": {
+      "spec.md": "5d4cace407ae716686f61668f131c5459bd082090ebbde3ba1c008922bbe8ccb",
+      "plan.md": "e9c54248629c833c263f3db98d36c8689b9e0c01925c8dc0b3fe19cfae1493bb",
+      "tasks.md": "f86a7268f6f9abfb95b7ef48c9dbb25bf645667fc9b8722a5b251ae5ae44622e",
+      "checklist.md": "668bcf2175ae9bf69390315a3667b4b49fc02955f9007003de97ce9cc67a5806",
+      "implementation-summary.md": "c2155f7aeef573250699a910890220b0de82ef0399f0c8d00d63dda2e0b5fefa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

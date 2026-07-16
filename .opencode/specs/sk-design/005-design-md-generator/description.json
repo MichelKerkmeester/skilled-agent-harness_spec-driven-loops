@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-design/005-design-md-generator",
+  "description": "Design references generated from a live site need to preserve measured CSS values and clearly separate observed facts from interpretation",
+  "keywords": [
+    "design",
+    "references",
+    "live",
+    "site",
+    "need",
+    "preserve",
+    "measured",
+    "css",
+    "values",
+    "clearly",
+    "separate",
+    "observed",
+    "facts",
+    "interpretation"
+  ],
+  "lastUpdated": "2026-07-16T09:26:38.228Z",
+  "specId": "005",
+  "folderSlug": "design-md-generator",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

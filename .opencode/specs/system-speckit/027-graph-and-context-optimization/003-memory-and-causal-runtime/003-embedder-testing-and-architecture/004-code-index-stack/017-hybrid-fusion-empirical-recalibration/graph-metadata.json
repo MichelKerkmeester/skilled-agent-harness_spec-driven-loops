@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/004/017 hybrid recalibration",
+      "RRF parameter sweep",
+      "vec_weight fts_weight tuning",
+      "cocoindex hybrid fusion",
+      "COCOINDEX_HYBRID_RRF_K",
+      "016/004/017 plan",
+      "RRF sweep plan",
+      "hybrid fusion recalibration plan",
+      "016/004/017 tasks",
+      "RRF sweep tasks",
+      "hybrid fusion tasks",
+      "016/004/017 checklist"
+    ],
+    "key_topics": [
+      "hybrid",
+      "recalibration",
+      "rrf",
+      "parameter",
+      "sweep",
+      "tuning",
+      "cocoindex",
+      "fusion",
+      "plan",
+      "tasks",
+      "checklist",
+      "re-grounds"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "evidence/sweep-results.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "evidence/phase2-comparison-017-recalibrated.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "sweep-results.md",
+        "kind": "doc",
+        "path": "evidence/sweep-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-017-recalibrated.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-017-recalibrated.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hybrid Fusion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reciprocal Rank Fusion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Emit Table",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ADR",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "different",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hybrid Fusion Empirical Recalibration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sweep Harness",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Analyzer And Tests",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Sweep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lock Defaults And Final Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "JSON-list",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "top",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "default",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Re-grounds CocoIndex's hybrid (dense + FTS5) RRF fusion parameters (k, vec_weight, fts_weight) on EMPIRICAL evidence from the post-013/014/015/016 corrected pipeline instead of inherited defaults. Sweeps the small parameter grid against the 18-probe corrected fixture under bge-code-v1, picks the best-on-fixture config, freezes it as the new default, and documents the tradeoff (recall, precision, latency) per config. Embedder-agnostic, reranker-agnostic, future-proof: the grid+harness can be re-run any time the corpus, embedder, or reranker changes.",
+    "created_at": "2026-05-19T14:26:30.924Z",
+    "last_save_at": "2026-07-10T06:23:27.300Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:884e2f227c5fa8ae0e5e1534d59d178de47e32d4b5f4bf04aa9833812702f1e1",
+    "source_doc_hashes": {
+      "spec.md": "f0af03a9a50fd922e2cf9b5f46779bc7441f83938dedb9f85068a8dbd7d4d3d1",
+      "plan.md": "ecbcc8e35c8cb1135acbab22eab18991570b5616a03bee74343f3843949ecdb5",
+      "tasks.md": "11ab55e9e36312e2ff6f7bb5af39300730af10ed780272beebe15b16d2dd6a0c",
+      "checklist.md": "3e39fb354feb495a23b6c5c30bcd43eacf3a630201a77b4890ceca0a249ef600",
+      "implementation-summary.md": "79c36bcda5fbc1e0a2af9c2ad1c3bb4f8f2fe2fe279f59ea5316f90afb86ae5d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring",
+  "description": "The architecture only pays off if mk-spec-memory and skill-advisor consume the same resident model server",
+  "keywords": [
+    "architecture",
+    "only",
+    "pays",
+    "mk-spec-memory",
+    "skill-advisor",
+    "consume",
+    "same",
+    "resident",
+    "model",
+    "server"
+  ],
+  "lastUpdated": "2026-07-10T06:22:10.773Z",
+  "specId": "006",
+  "folderSlug": "skill-advisor-shared-wiring",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "010-embedding-consolidation-hf-local-server"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

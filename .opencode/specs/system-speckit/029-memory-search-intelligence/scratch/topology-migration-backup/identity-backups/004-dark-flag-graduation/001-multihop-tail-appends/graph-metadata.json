@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/004-dark-flag-graduation/001-multihop-tail-appends",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/004-dark-flag-graduation/001-multihop-tail-appends",
+  "parent_id": "system-speckit/029-memory-search-intelligence/004-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "multihop tail appends benchmark",
+      "deterministic multihop recall",
+      "lane champion backfill recall",
+      "three result floor blocker",
+      "tail append prod path reach",
+      "completeRecall at K append flags",
+      "prod path vs legacy enrichFusedResults",
+      "token budget truncation floor",
+      "tail append harness plan",
+      "tail append harness tasks",
+      "prod path byte identity check",
+      "tail append verification"
+    ],
+    "key_topics": [
+      "multihop",
+      "tail",
+      "appends",
+      "benchmark",
+      "deterministic",
+      "recall",
+      "lane",
+      "champion",
+      "backfill",
+      "three",
+      "result",
+      "floor"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/multihop-tail-appends-benchmark.mjs",
+      "results/metrics.json",
+      "lib/search/deterministic-multihop.ts",
+      "lib/search/lane-champion-backfill.ts",
+      "lib/search/hybrid-search.ts",
+      "handlers/memory-search.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "multihop-tail-appends-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/multihop-tail-appends-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic-multihop.ts",
+        "kind": "code",
+        "path": "lib/search/deterministic-multihop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lane-champion-backfill.ts",
+        "kind": "code",
+        "path": "lib/search/lane-champion-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hop Tail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Appends Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Measure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two finished search features ship dark behind default-off flags with no measured verdict",
+    "created_at": "2026-06-24T04:55:43.757Z",
+    "last_save_at": "2026-07-10T06:23:31.683Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c88697a5279882916b09ad2a63733f916129c4075afcdbce9d69491048f603b9",
+    "source_doc_hashes": {
+      "spec.md": "7b6014ae862245fc421c21f4730c6061304fd81e1d0332569cd048007bf2b10c",
+      "plan.md": "33619fa6dd8d5589705c4f85fa168b0f4022cecf9d2d154fd984735b518bda20",
+      "tasks.md": "a92d2c26bae098069c258438587dd3ae029e6c12129c2e9924ace8a2bd8feb78",
+      "checklist.md": "5b42ee6a515400f8ea331408f53a6af3f29eb68cb739a0395141f82137ea3b71",
+      "implementation-summary.md": "fb8e8b20d6ed7cc2b3559a05a54e2b0c7382738aa83a04c6bd311cd402e40fa0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/001-fix-memory-indexer-storage-boundary",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/001-fix-memory-indexer-storage-boundary",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "001-fix-memory-indexer-storage-boundary",
+      "constitutional readme storage gap",
+      "P1-001 advisor remediation",
+      "isIndexableConstitutionalMemoryPath",
+      "memory indexer review remediation",
+      "validator hygiene",
+      "001-fix-memory-indexer-storage-boundary implementation",
+      "constitutional README storage-boundary fixed",
+      "E_MEMORY_INDEX_SCOPE_EXCLUDED"
+    ],
+    "key_topics": [
+      "001-fix-memory-indexer-storage-boundary",
+      "constitutional",
+      "readme",
+      "storage",
+      "gap",
+      "p1-001",
+      "advisor",
+      "remediation",
+      "isindexableconstitutionalmemorypath",
+      "memory",
+      "indexer",
+      "review"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "tests/fixtures/memory-index-db.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/memory-index-db.ts",
+      "tests/checkpoint-restore-readme-poisoning.vitest.ts",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "mcp_server/lib/utils/index-scope.ts",
+      "mcp_server/lib/storage/checkpoints.ts",
+      "mcp_server/lib/search/vector-index-mutations.ts",
+      "mcp_server/lib/storage/post-insert-metadata.ts"
+    ],
+    "entities": [
+      {
+        "name": "memory-index-db.ts",
+        "kind": "code",
+        "path": "tests/fixtures/memory-index-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-mutations.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-insert-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "chunking-orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cleanup-index-scope-violations.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoint-restore-readme-poisoning.vitest.ts",
+        "kind": "test",
+        "path": "tests/checkpoint-restore-readme-poisoning.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Indexer Storage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Boundary Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Promote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 005-memory-indexer-invariants deep review surfaced one release-blocker correctness gap (P1-001) and 13 advisory cleanup items (P2-001..P2-013)",
+    "created_at": "2026-04-28T15:15:00.000Z",
+    "last_save_at": "2026-07-02T05:31:10.538Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5f63c0cb8bf2919f1118d9543196eea1b99cb0d2ac73bfaef3d1c351d13a86c9",
+    "source_doc_hashes": {
+      "spec.md": "ef9a67dde68b611c8f1438c6973f93a85ab2b9e270fbf20aceaa5e248d51cbc1",
+      "plan.md": "dee4424aa1c4d28c1801489e4e1c5f167f23814a392037526c85809296c15175",
+      "tasks.md": "5356929ab845866dbb57763f5588bea6a0b28f44c94dd8fc1e608701875c3624",
+      "checklist.md": "c190c102e0cbb3399b9bb4550370cda0a74361018c196b86477fcc54a951af55",
+      "implementation-summary.md": "19e64290b24b24c7ad12ac92909b0179d05f9d953096bb0a6b64b56799cdf0d6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

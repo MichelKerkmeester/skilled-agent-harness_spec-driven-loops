@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates",
+  "description": "Document the default + alternatives + swap runbook in INSTALL_GUIDE and README",
+  "keywords": [
+    "document",
+    "default",
+    "alternatives",
+    "swap",
+    "runbook",
+    "readme"
+  ],
+  "lastUpdated": "2026-07-10T06:23:07.760Z",
+  "specId": "006",
+  "folderSlug": "install-guide-updates",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

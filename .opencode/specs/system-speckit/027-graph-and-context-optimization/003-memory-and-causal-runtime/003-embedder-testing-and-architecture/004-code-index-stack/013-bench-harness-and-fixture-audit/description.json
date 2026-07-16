@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
+  "description": "Measurement-quality prerequisite for the cocoindex-retrieval-pipeline future-proofing arc (013→018).",
+  "keywords": [
+    "measurement-quality",
+    "prerequisite",
+    "cocoindex-retrieval-pipeline",
+    "future-proofing",
+    "arc"
+  ],
+  "lastUpdated": "2026-07-10T06:23:11.926Z",
+  "specId": "013",
+  "folderSlug": "bench-harness-and-fixture-audit",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

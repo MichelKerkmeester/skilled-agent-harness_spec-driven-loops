@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research",
+  "description": "10-iter deep-research dispatch via cli-opencode + deepseek-v4-pro auditing all subsystems for the same hardcoded-default anti-pattern that 020 just",
+  "keywords": [
+    "10-iter",
+    "deep-research",
+    "dispatch",
+    "via",
+    "cli-opencode",
+    "deepseek-v4-pro",
+    "auditing",
+    "subsystems",
+    "same",
+    "hardcoded-default",
+    "anti-pattern",
+    "just"
+  ],
+  "lastUpdated": "2026-07-10T06:23:58.390Z",
+  "specId": "021",
+  "folderSlug": "hardcoded-default-audit-deep-research",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

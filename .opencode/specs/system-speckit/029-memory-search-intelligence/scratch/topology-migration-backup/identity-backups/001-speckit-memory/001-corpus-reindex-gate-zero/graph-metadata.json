@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
+  "parent_id": "system-speckit/029-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "corpus reindex gate zero",
+      "deferred reindex embedding coverage",
+      "memory recall benchmark precondition",
+      "assert embedding coverage ablation",
+      "028 speckit memory impl reindex",
+      "corpus reindex plan gate zero",
+      "embedding reconcile sequencing",
+      "ablation coverage guard plan",
+      "corpus reindex tasks gate zero",
+      "embedding coverage guard tasks",
+      "reindex reconcile breakdown",
+      "corpus reindex checklist gate zero"
+    ],
+    "key_topics": [
+      "corpus",
+      "reindex",
+      "gate",
+      "zero",
+      "deferred",
+      "embedding",
+      "coverage",
+      "memory",
+      "recall",
+      "benchmark",
+      "precondition",
+      "assert"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "lib/eval/ablation-framework.ts",
+      "lib/eval/data/ground-truth.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "ablation-framework.ts",
+        "kind": "code",
+        "path": "lib/eval/ablation-framework.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth.json",
+        "kind": "config",
+        "path": "lib/eval/data/ground-truth.json",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Reindex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recall Benchmarking",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Wave",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded",
+    "created_at": "2026-06-19T05:40:37.442Z",
+    "last_save_at": "2026-07-09T10:02:56.088Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:64b2afb76de31beeb863768d0957fe5c18917c3ee35eb55f0baa575ddb2ccfb3",
+    "source_doc_hashes": {
+      "spec.md": "f8a7666f1cdf74044b41c652462c8f8e701de892a33a3c0be23087d8c12ce372",
+      "plan.md": "5d985188efa124bb0eac3edcfe351638a43cfaf7b20a0d3b92a633f93db051d7",
+      "tasks.md": "fcc7eaf5bd965699cbcfdb48b6010389fdfaf270cdd3680824c58ee1a2ddf063",
+      "checklist.md": "028d8c24721a69de04ff029049f7abc027715c016e9658cf0953b9b3889527d8",
+      "implementation-summary.md": "afe4d4e34878a013076da2b4ed8752456dade80ccf7ef763f2f1ca2400aa9d74"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

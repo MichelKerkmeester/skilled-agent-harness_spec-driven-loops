@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research",
+  "description": "012's 7-iteration deep research produced a 50-row automation reality map (14 auto / 14 half / 18 manual / 4 P1 aspirational) but stopped on",
+  "keywords": [
+    "7-iteration",
+    "deep",
+    "research",
+    "produced",
+    "50-row",
+    "automation",
+    "reality",
+    "map",
+    "auto",
+    "half",
+    "manual",
+    "aspirational",
+    "stopped"
+  ],
+  "lastUpdated": "2026-07-10T06:23:15.011Z",
+  "specId": "002",
+  "folderSlug": "automation-reality-supplemental-research",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "006-research"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "29-04-26_14-20__supplemental-automation-reality-deep-research-5.md",
+    "29-04-26_19-35__resource-map-authored-and-memory-finalization.md"
+  ]
+}

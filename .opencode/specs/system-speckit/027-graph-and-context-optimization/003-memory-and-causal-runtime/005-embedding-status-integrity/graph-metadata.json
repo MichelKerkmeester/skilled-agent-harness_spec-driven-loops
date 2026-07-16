@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedding status integrity fixes",
+      "reindex status commit prevention",
+      "retry retention non-destructive call-time config",
+      "embedding status integrity plan",
+      "reindex status commit plan",
+      "retry retention non-destructive plan",
+      "embedding status integrity tasks",
+      "reindex status commit tasks",
+      "retry retention non-destructive tasks",
+      "embedding status integrity summary",
+      "reindex status commit implementation",
+      "retry retention non-destructive implementation"
+    ],
+    "key_topics": [
+      "embedding",
+      "status",
+      "integrity",
+      "reindex",
+      "commit",
+      "prevention",
+      "retry",
+      "retention",
+      "non-destructive",
+      "call-time",
+      "config",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "mcp_server/lib/embedders/reindex.ts",
+      "mcp_server/lib/providers/retry-manager.ts",
+      "mcp_server/tests/embedder-reindex.vitest.ts",
+      "mcp_server/tests/providers/retry-retention.vitest.ts",
+      "tests/embedder-reindex.vitest.ts",
+      "tests/providers/retry-retention.vitest.ts",
+      "lib/embedders/reindex.ts",
+      "lib/providers/retry-manager.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-reindex.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedder-reindex.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-retention.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/providers/retry-retention.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 004 deep-research investigation proved a bulk re-embed of the mk-spec-memory store cannot reach `0 failed / 0 pending` because of three durable defects: (1) the `embedderset`/reindex completion transaction writes vectors but never commits `memoryindex.embeddingstatus`, so a completed re-embed leaves rows stale; (2) `enforceRetryRetentionLimits()` parks clean never-attempted `pending` rows as `failed` before the drain can embed them; (3) retry-retention config is read once at module load, so tuned env never applies to a long-lived daemon without a precise restart",
+    "created_at": "2026-05-27T03:52:02.042Z",
+    "last_save_at": "2026-07-10T06:23:30.610Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:97446610d2c4156dfb6a1df5b68fd11463a5ffca2e7cf8c8174492f0fffac4bb",
+    "source_doc_hashes": {
+      "spec.md": "8cf915f9a70881ad26e63cc5cf12f66ec07cae5d40cdb68adfaceb14e3b3333e",
+      "plan.md": "53c2b937beb6d8ee69992ec132816df9ce1ff62ca71689f699e3a783c95795e5",
+      "tasks.md": "6d0d768601595cd132aee508bbb1c0f68faa3e965a363dbf5d98fd2f48a0cb29",
+      "implementation-summary.md": "8276e26026e108fc76ed4e7341ab28afd50da5b723cdb00509011c3260e5985d",
+      "handover.md": "f643eaa4a95e1caef6d79c5b8e373fb80810a84cc8a888f4f394c843d6837a51"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

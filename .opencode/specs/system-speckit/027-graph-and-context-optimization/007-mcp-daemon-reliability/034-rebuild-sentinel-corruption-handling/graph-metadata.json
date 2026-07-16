@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/034-rebuild-sentinel-corruption-handling",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/034-rebuild-sentinel-corruption-handling",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix",
+        "reason": "Sibling packet opened from the same test pass, independent root cause",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rebuild sentinel corruption handling",
+      "needs-rebuild sentinel corruption class",
+      "post_crash_integrity_probe sentinel",
+      "repairNeedsRebuildSentinel corruption",
+      "quick_check failure unreachable repair",
+      "rebuild sentinel corruption handling plan",
+      "needs-rebuild sentinel source constant plan",
+      "repairNeedsRebuildSentinel corruption skip plan",
+      "rebuild sentinel corruption handling tasks",
+      "needs-rebuild sentinel source constant tasks",
+      "rebuild sentinel corruption handling checklist",
+      "needs-rebuild sentinel source constant verification"
+    ],
+    "key_topics": [
+      "rebuild",
+      "sentinel",
+      "corruption",
+      "handling",
+      "needs-rebuild",
+      "class",
+      "repairneedsrebuildsentinel",
+      "failure",
+      "unreachable",
+      "repair",
+      "plan",
+      "source"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/database/checkpoints/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-needs-rebuild-sentinel.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-durability.vitest.ts",
+      "dist/lib/search/vector-index-types.js",
+      "dist/lib/search/vector-index-store.js",
+      "dist/lib/storage/checkpoints.js",
+      "dist/context-server.js",
+      "database/checkpoints/README.md",
+      "scripts/migrations/restore-checkpoint.ts",
+      "mcp_server/tests/checkpoint-needs-rebuild-sentinel.vitest.ts",
+      "mcp_server/tests/vector-index-store-durability.vitest.ts",
+      "mcp_server/database/checkpoints/README.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "mcp_server/context-server.ts"
+    ],
+    "entities": [
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/checkpoints/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoint-needs-rebuild-sentinel.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-needs-rebuild-sentinel.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store-durability.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-durability.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-types.js",
+        "kind": "code",
+        "path": "dist/lib/search/vector-index-types.js",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.js",
+        "kind": "code",
+        "path": "dist/lib/search/vector-index-store.js",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.js",
+        "kind": "code",
+        "path": "dist/lib/storage/checkpoints.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "restore-checkpoint.ts",
+        "kind": "code",
+        "path": "scripts/migrations/restore-checkpoint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rebuild Sentinel Corruption",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Class Mishandling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The needs-rebuild sentinel file conflates two failure classes: half-finished checkpoint restores, safely auto-repaired, and physical page corruption, which its one consumer was never built to handle and cannot even reach",
+    "created_at": "2026-07-08T16:02:23Z",
+    "last_save_at": "2026-07-08T17:09:28.302Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d82d19a177dac4bfe79f40afca2fa99cae84e94a00ab6b9a1fc3aeddff3e44a",
+    "source_doc_hashes": {
+      "spec.md": "709265708977b7e1c14f5084ab349b50281b4e6c585cb201e1817faf197b8818",
+      "plan.md": "e37c5266f0eb92619f20cc912fd1b5bbc145515b07c2b060ecc7ea298bdea6e9",
+      "tasks.md": "f9897095823b6681bcc3fd40775cf0233a4aa35ca27480220c396e0877a7960b",
+      "checklist.md": "7fe4be2582b532d591e291ff3ebc0589839c1cea533aa0b08e2655904337fc9f",
+      "implementation-summary.md": "4f487ee91177fae80def3e185364b37800153366fdd262ee45e17940dec3df7e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
