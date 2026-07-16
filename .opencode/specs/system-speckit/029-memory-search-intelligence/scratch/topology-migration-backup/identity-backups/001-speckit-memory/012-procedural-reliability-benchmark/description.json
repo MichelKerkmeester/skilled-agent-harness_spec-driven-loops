@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark",
+  "description": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED:",
+  "keywords": [
+    "spec-kit",
+    "memory",
+    "mcp",
+    "treats",
+    "procedural",
+    "decay-only",
+    "classification",
+    "label",
+    "track-record",
+    "machinery",
+    "stored",
+    "procedure",
+    "confirmed"
+  ],
+  "lastUpdated": "2026-07-07T04:34:47.351Z",
+  "specId": "012",
+  "folderSlug": "procedural-reliability-benchmark",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

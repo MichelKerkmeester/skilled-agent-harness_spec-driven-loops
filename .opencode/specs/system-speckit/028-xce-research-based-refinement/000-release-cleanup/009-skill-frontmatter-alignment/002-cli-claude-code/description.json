@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code",
+  "description": "cli-claude-code reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 4 references and 0 of 2 assets carry the detailed",
+  "keywords": [
+    "cli-claude-code",
+    "reference",
+    "asset",
+    "frontmatter",
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed"
+  ],
+  "lastUpdated": "2026-07-10T06:23:01.430Z",
+  "specId": "002",
+  "folderSlug": "cli-claude-code",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "000-release-cleanup",
+    "009-skill-frontmatter-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

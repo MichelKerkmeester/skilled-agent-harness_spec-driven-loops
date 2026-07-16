@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template consolidation",
+      "template generator",
+      "spec-kit templates",
+      "core addendum",
+      "level templates",
+      "templates folder",
+      "compose.sh",
+      "template levels",
+      "template consolidation plan",
+      "template generator plan",
+      "spec-kit refactor plan",
+      "compose.sh refactor"
+    ],
+    "key_topics": [
+      "template",
+      "consolidation",
+      "generator",
+      "spec-kit",
+      "templates",
+      "core",
+      "addendum",
+      "level",
+      "folder",
+      "compose",
+      "levels",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/template-utils.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/resource-map.md",
+      "research/iterations/iteration-001.md",
+      "decision-record.md",
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "research/deep-research-config.json",
+      "scripts/lib/template-utils.sh",
+      "scripts/spec/create.sh",
+      "scripts/utils/template-structure.js",
+      "scripts/spec/check-template-staleness.sh",
+      "implementation-summary.md",
+      "scripts/rules/check-files.sh",
+      ".opencode/skills/system-spec-kit/templates/README.md"
+    ],
+    "entities": [
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-utils.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/template-utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-files.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-staleness.sh",
+        "kind": "script",
+        "path": "scripts/spec/check-template-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/templates/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template System Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated 83 .md template files (~13K LOC) across `core/`, `addendum/{level2-verify,level3-arch,level3-plus-govern,phase}/`, and four materialized output directories (`level1/`, `level2/`, `level3/`, `level3+/`)",
+    "created_at": "2026-05-01T07:40:58Z",
+    "last_save_at": "2026-07-02T05:31:11.394Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:8453bbefc8ef9e6261c7e5df90d971d3b42d3dcec47679dd2fb5174fc27b4c21",
+    "source_doc_hashes": {
+      "spec.md": "36a842cffdd430ca54d03b894b7d40b52ba71166946922e0b3d2e3a8152a5a68",
+      "plan.md": "092332fb26e873cf8bc5bac913d52c870a5b3b7c0624d1dd32f762b62278d8b9",
+      "tasks.md": "f6c9d434070c3483584a40056bf8cdfd117de441a13b823bff59bd5cd2f86aac",
+      "checklist.md": "97be3784a7f02965a4a485bc11137ad3efeb5defaf6e1cbf8dbc90fb4bf18399",
+      "decision-record.md": "d5d1a44f2b96e6ccb85191cf9ae0ee29fd0fdddeb10ba25d10cc1899a3b70772",
+      "implementation-summary.md": "76cb3b092affe82f43f6c73c74ceaaa47d952f60c9bc64e56d3ffd889186b005",
+      "research/research.md": "3d9493148238e10d65d5d74221a8c110eee94ffc37bd89e76f58ebbe31294ec5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

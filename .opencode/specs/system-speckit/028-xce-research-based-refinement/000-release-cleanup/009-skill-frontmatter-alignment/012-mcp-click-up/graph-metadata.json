@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up",
+  "spec_folder": "system-speckit/028-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up",
+  "parent_id": "system-speckit/028-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-click-up frontmatter alignment",
+      "mcp-click-up reference frontmatter",
+      "skill frontmatter standardization",
+      "mcp-click-up frontmatter plan",
+      "clickup skill doc contract",
+      "cupt reference frontmatter",
+      "mcp-click-up frontmatter tasks",
+      "clickup doc contract tasks",
+      "cupt reference normalization tasks",
+      "mcp-click-up frontmatter summary",
+      "clickup doc contract evidence",
+      "cupt reference contract complete"
+    ],
+    "key_topics": [
+      "mcp-click-up",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "clickup",
+      "doc",
+      "contract",
+      "cupt",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-click-up/references/cupt_commands.md",
+      ".opencode/skills/mcp-click-up/references/mcp_tools.md",
+      ".opencode/skills/mcp-click-up/references/troubleshooting.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "cupt_commands.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-click-up/references/cupt_commands.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-click-up/references/mcp_tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-click-up/references/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "mcp-click-up reference/asset frontmatter is inconsistent with the repo-wide contract: 3 of 3 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
+    "created_at": "2026-06-11T05:47:30Z",
+    "last_save_at": "2026-07-02T05:31:13.502Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e3c21ed6f2d8f105363682c64507a778c2024e5762d175443c55c2c7ccd67939",
+    "source_doc_hashes": {
+      "spec.md": "7a62c3dc5bfc536f0514194333e3d5794e75f76004de53a1389da85a1477578f",
+      "plan.md": "c7c1464746c67efcb07da239bb88329c4d277dc71a3fce8ed683105dd3f1ed8f",
+      "tasks.md": "85a17da52bcd3c4549649279b596eb6ae206fdbae669303f1f5eb1389287688e",
+      "implementation-summary.md": "fa86e91cc832f36c39380f3c119180a7ab93fedc49268b483c87afeaed04cf3e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

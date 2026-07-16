@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/015-docs-drift-review",
+  "description": "This session shipped packets 013 (comprehensive-audit-remediation), 014/015 (launcher-overlap fix), 016 (mk-spec-memory launcher-ownership hardening),",
+  "keywords": [
+    "session",
+    "shipped",
+    "packets",
+    "comprehensive-audit-remediation",
+    "launcher-overlap",
+    "mk-spec-memory",
+    "launcher-ownership",
+    "hardening"
+  ],
+  "lastUpdated": "2026-07-10T06:24:49.116Z",
+  "specId": "015",
+  "folderSlug": "docs-drift-review",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

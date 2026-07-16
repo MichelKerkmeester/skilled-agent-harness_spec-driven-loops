@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-search-quality-tuning",
+  "description": "Five tuning findings sit in the search subsystem",
+  "keywords": [
+    "five",
+    "tuning",
+    "findings",
+    "sit",
+    "search",
+    "subsystem"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.258Z",
+  "specId": "007",
+  "folderSlug": "fix-search-quality-tuning",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "006-research",
+    "004-fix-deep-research-findings"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "01-05-26_07-19__five-surgical-search-quality-fixes-close-findings.md"
+  ]
+}

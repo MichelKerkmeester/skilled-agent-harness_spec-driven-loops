@@ -1,0 +1,59 @@
+{
+  "title": "027 Release Cleanup",
+  "trigger_phrases": [
+    "027",
+    "release",
+    "cleanup",
+    "phase",
+    "parent"
+  ],
+  "level": "phase",
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "status": "phase-parent",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "importance_tier": "important",
+  "is_phase_parent": true,
+  "children": [
+    "000-spec-tree-consolidation",
+    "001-public-root-readme",
+    "002-skill-docs-alignment",
+    "003-skill-feature-catalog",
+    "004-skill-manual-playbook",
+    "005-mcp-cli-stress-tests",
+    "006-command-alignment",
+    "007-agent-alignment",
+    "008-agents-md-alignment",
+    "009-skill-frontmatter-alignment"
+  ],
+  "specFolder": "system-speckit/028-xce-research-based-refinement/000-release-cleanup",
+  "description": "The shipped 027 reality spans schema v37, default-off feature flags, new CLI front doors, constitutional rules, memory behaviors, and doctrine from",
+  "keywords": [
+    "shipped",
+    "reality",
+    "spans",
+    "schema",
+    "v37",
+    "default-off",
+    "feature",
+    "flags",
+    "new",
+    "cli",
+    "front",
+    "doors",
+    "constitutional",
+    "rules",
+    "memory",
+    "behaviors",
+    "doctrine"
+  ],
+  "lastUpdated": "2026-07-10T06:22:52.824Z",
+  "specId": "000",
+  "folderSlug": "release-cleanup",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

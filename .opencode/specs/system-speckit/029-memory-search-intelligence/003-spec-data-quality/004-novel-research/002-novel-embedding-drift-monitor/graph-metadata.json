@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/004-novel-research/002-novel-embedding-drift-monitor",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/004-novel-research/002-novel-embedding-drift-monitor",
+  "parent_id": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/004-novel-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedding drift monitor",
+      "mixed vector guard",
+      "embedding context version",
+      "normalizer fingerprint",
+      "embedding regime alert",
+      "embedding drift monitor plan",
+      "mixed vector guard plan",
+      "embedding regime fingerprint plan",
+      "embedding context version seam",
+      "embedding drift detector plan",
+      "embedding drift monitor tasks",
+      "mixed vector guard tasks"
+    ],
+    "key_topics": [
+      "embedding",
+      "drift",
+      "monitor",
+      "mixed",
+      "vector",
+      "guard",
+      "context",
+      "version",
+      "normalizer",
+      "fingerprint",
+      "regime",
+      "alert"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "spec.md",
+      "plan.md",
+      "shared/embeddings.ts",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "embedding-cache.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Stamp",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Embedding",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Monitoring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The re-index path has no mixed-vector guard and never specified one",
+    "created_at": "2026-06-27T17:15:37.922Z",
+    "last_save_at": "2026-07-11T18:40:36.141Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8514483bdb4f49beecb5b68edd2ceaeff54dc82cc679dc36c4e13ffc1757a649",
+    "source_doc_hashes": {
+      "spec.md": "80cd1321a79bf3db7cc76a484fe0807110130f8dcf5fff82d4b58314fb5a876c",
+      "plan.md": "7cb419593ae5c63ce0ad91fcef57f35318378275fa8a5d0540e07f319c9d15b6",
+      "tasks.md": "7d6e6f048ec1d4e0a71188b1b4dbdb99f3dc9c2ecd0e1791bd3de387fb96bb75",
+      "checklist.md": "0d76ce2a278a8f163504d602b2ca94241417ad1eea59d96c6f67b7420b93a117",
+      "implementation-summary.md": "46de1411ac8f20385043fac63382e25fc0fa52032fe19355b90c7e16cc5f836e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

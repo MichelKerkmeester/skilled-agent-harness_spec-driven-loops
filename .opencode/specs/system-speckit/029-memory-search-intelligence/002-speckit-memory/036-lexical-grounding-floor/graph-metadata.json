@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/029-memory-search-intelligence/002-speckit-memory/036-lexical-grounding-floor",
+  "spec_folder": "system-speckit/029-memory-search-intelligence/002-speckit-memory/036-lexical-grounding-floor",
+  "parent_id": "system-speckit/029-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lexical grounding floor",
+      "single hit corroboration",
+      "off corpus false relevance",
+      "citation grounding floor",
+      "assess request quality corroboration"
+    ],
+    "key_topics": [
+      "lexical",
+      "grounding",
+      "floor",
+      "single",
+      "hit",
+      "corroboration",
+      "corpus",
+      "false",
+      "relevance",
+      "citation",
+      "assess",
+      "request"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/lexical-grounding-floor.vitest.ts",
+      "tests/lexical-grounding-floor.vitest.ts",
+      "tests/request-quality-aggregation.vitest.ts",
+      "tests/scoring-opt-in.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lexical-grounding-floor.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/lexical-grounding-floor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-quality-aggregation.vitest.ts",
+        "kind": "test",
+        "path": "tests/request-quality-aggregation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-opt-in.vitest.ts",
+        "kind": "test",
+        "path": "tests/scoring-opt-in.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Grounding Floor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hit Corroboration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Require",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guarded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `/memory:search` verdict cites an off-corpus term with confidence",
+    "created_at": "2026-06-22T00:00:00Z",
+    "last_save_at": "2026-07-11T18:40:35.983Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d6ff827c649511bd1667e6d24e16b30a7c43cd39d75370c2ee39eb505e833478",
+    "source_doc_hashes": {
+      "spec.md": "95b15c00f803cdaa977d13cea86693f07314195f4f07654ed0df381cfa4f1117",
+      "plan.md": "9009f4def5e87da61e336420d8fe0f895b97d2709b436d11cf76ea7881b3defd",
+      "tasks.md": "6dc2740fcaa34b13b958cb67ae73333fd5e873e9a53df20e3b28247ad7c9da67",
+      "checklist.md": "eb6b1f03ed06fb524a35e405145555e80a736d623cd387e73d17a1f912066a2f",
+      "implementation-summary.md": "e518823b9615f7ea16641cf88988c4660d022b3582862952662b7dba51b85a75"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

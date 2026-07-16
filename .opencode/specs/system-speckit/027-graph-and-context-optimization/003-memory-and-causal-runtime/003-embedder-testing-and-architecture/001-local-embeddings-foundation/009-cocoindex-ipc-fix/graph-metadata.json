@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009 cocoindex IPC fix",
+      "msgspec truncation cocoindex search",
+      "Input data was truncated",
+      "cocoindex daemon stall markdown only",
+      "cocoindex Rust Python IPC bug",
+      "009 plan cocoindex IPC",
+      "msgspec truncation diagnosis plan",
+      "cocoindex daemon stall plan",
+      "009 tasks cocoindex IPC",
+      "T001 T012 cocoindex IPC fix",
+      "014/009 cocoindex IPC fix done",
+      "msgspec truncation resolved"
+    ],
+    "key_topics": [
+      "cocoindex",
+      "ipc",
+      "msgspec",
+      "truncation",
+      "search",
+      "input",
+      "data",
+      "truncated",
+      "daemon",
+      "stall",
+      "markdown",
+      "only"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "scratch/verify-direct.py",
+      "scratch/blocker.md",
+      "scratch/repro-temp-project-after-patch.txt",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-direct.py",
+        "kind": "file",
+        "path": "scratch/verify-direct.py",
+        "source": "derived"
+      },
+      {
+        "name": "blocker.md",
+        "kind": "doc",
+        "path": "scratch/blocker.md",
+        "source": "derived"
+      },
+      {
+        "name": "repro-temp-project-after-patch.txt",
+        "kind": "file",
+        "path": "scratch/repro-temp-project-after-patch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Diagnostic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Patch Rust",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `targetsqlite.db` (proven via direct sqlite-vec KNN returning relevant results at distance 0.97-1.03 on packet-local queries), but every search call through cocoindex's own MCP/CLI path returns `msgspec.DecodeError: Input data was truncated`",
+    "created_at": "2026-05-12T21:35:00Z",
+    "last_save_at": "2026-07-10T06:24:26.595Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c64ec57d1c351949910a0a93948eb41c8c12006b77720a2a6d6cbccf37cfb859",
+    "source_doc_hashes": {
+      "spec.md": "0a9f9d5474ff755dbf80a2ba2942e0c7cedbbac7f70411e2935951f814607931",
+      "plan.md": "5ed8bdde8a94c89dc2dd65e852524bbcb847997e91b6311dccff5c6a3a9255b4",
+      "tasks.md": "12c03a88753dec535508f74cc1214a7f58a478614170a13198f77b6f4faf97b4",
+      "implementation-summary.md": "13355175d5135761d37a6f82ab58fed3b1903b373bbd8709871a43432cae4fc5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

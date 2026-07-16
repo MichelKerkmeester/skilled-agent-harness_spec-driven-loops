@@ -1,0 +1,228 @@
+{
+  "mergedFrom": [
+    "luna",
+    "sol"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "state-finding-2-1-bc459414fafb",
+      "title": "Active topology and migration residue",
+      "summary": "Active topology and migration residue",
+      "text": "Active topology and migration residue",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-54d403358ad8",
+      "title": "Bounded prevalence and evidence-surface scan",
+      "summary": "Bounded prevalence and evidence-surface scan",
+      "text": "Bounded prevalence and evidence-surface scan",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-ccb56d2bc98a",
+      "title": "Completion and metadata drift",
+      "summary": "Completion and metadata drift",
+      "text": "Completion and metadata drift",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-2acc3fdcdae9",
+      "title": "Context optimization and migration packet comparison",
+      "summary": "Context optimization and migration packet comparison",
+      "text": "Context optimization and migration packet comparison",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-9-1-0733ec04c641",
+      "title": "Contradiction check",
+      "summary": "Contradiction check",
+      "text": "Contradiction check",
+      "addedAtIteration": 9,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-8-1-48f1b259e562",
+      "title": "Current optimization-surface verification",
+      "summary": "Current optimization-surface verification",
+      "text": "Current optimization-surface verification",
+      "addedAtIteration": 8,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-7-1-4b7eb69b6b82",
+      "title": "False positives and correction quality",
+      "summary": "False positives and correction quality",
+      "text": "False positives and correction quality",
+      "addedAtIteration": 7,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-9-1-27aaed2e511f",
+      "title": "Final negative-knowledge check",
+      "summary": "Final negative-knowledge check",
+      "text": "Final negative-knowledge check",
+      "addedAtIteration": 9,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-10-1-daf018451ae9",
+      "title": "Final negative-knowledge pass",
+      "summary": "Final negative-knowledge pass",
+      "text": "Final negative-knowledge pass",
+      "addedAtIteration": 10,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-6-1-8ae260f88a91",
+      "title": "Global drift and migration-residue taxonomy",
+      "summary": "Global drift and migration-residue taxonomy",
+      "text": "Global drift and migration-residue taxonomy",
+      "addedAtIteration": 6,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-7-1-4e290e51fb4c",
+      "title": "Independent exact-path verification",
+      "summary": "Independent exact-path verification",
+      "text": "Independent exact-path verification",
+      "addedAtIteration": 7,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-8556f9946bef",
+      "title": "Memory-database teardown implications",
+      "summary": "Memory-database teardown implications",
+      "text": "Memory-database teardown implications",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-6-1-d489f7044927",
+      "title": "Metadata authority and derivation boundaries",
+      "summary": "Metadata authority and derivation boundaries",
+      "text": "Metadata authority and derivation boundaries",
+      "addedAtIteration": 6,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-8-1-f21fa7f27150",
+      "title": "Minimum evidence bundle",
+      "summary": "Minimum evidence bundle",
+      "text": "Minimum evidence bundle",
+      "addedAtIteration": 8,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-223b80e3967b",
+      "title": "Packet topology and recurring drift signals",
+      "summary": "Packet topology and recurring drift signals",
+      "text": "Packet topology and recurring drift signals",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-f53e364e34c3",
+      "title": "Prior context-optimization programs",
+      "summary": "Prior context-optimization programs",
+      "text": "Prior context-optimization programs",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-78b8b7899ec7",
+      "title": "Quantitative full-tree inventory",
+      "summary": "Quantitative full-tree inventory",
+      "text": "Quantitative full-tree inventory",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-0dc22fed1a95",
+      "title": "Remediation controls and correction loops",
+      "summary": "Remediation controls and correction loops",
+      "text": "Remediation controls and correction loops",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-c05b354b140b",
+      "title": "Status claims against implementation evidence",
+      "summary": "Status claims against implementation evidence",
+      "text": "Status claims against implementation evidence",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 19,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 19,
+    "convergenceScore": 0.515,
+    "coverageBySources": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/000-release-cleanup/008-agents-md",
+  "description": "The root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract before any document edits begin",
+  "keywords": [
+    "root",
+    "agents",
+    "plus",
+    "claude",
+    "runtime-routing",
+    "mirrors",
+    "needs",
+    "release-readiness",
+    "cleanup",
+    "contract",
+    "document",
+    "edits",
+    "begin"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.650Z",
+  "specId": "008",
+  "folderSlug": "agents-md",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

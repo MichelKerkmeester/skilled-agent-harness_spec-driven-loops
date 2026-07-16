@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-speckit/028-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-background-embedding",
+  "description": "019 made a reindex's scan survive launcher re-election, but its maintenance marker was scoped to the scan job",
+  "keywords": [
+    "reindex",
+    "scan",
+    "survive",
+    "launcher",
+    "re-election",
+    "maintenance",
+    "marker",
+    "scoped",
+    "job"
+  ],
+  "lastUpdated": "2026-07-10T06:23:04.605Z",
+  "specId": "019",
+  "folderSlug": "maintenance-grace-background-embedding",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-06-26_14-56__extend-the-maintenance-grace-marker-to-the-post.md"
+  ]
+}

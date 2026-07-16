@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
+  "spec_folder": "system-speckit/028-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
+  "parent_id": "system-speckit/028-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "tombstone soft-delete idempotent deleted_at",
+      "causal edge promotion skip manual created_by",
+      "active purgeable partial index split",
+      "entity co-occurrence not causal truth invariant",
+      "natural-key edge upsert preserve manual provenance",
+      "SPECKIT_SOFT_DELETE_TOMBSTONES default off",
+      "tombstones edge promotion plan",
+      "tombstone soft-delete idempotent deleted_at tasks",
+      "tombstones edge promotion phase tasks",
+      "tombstone idempotence checklist",
+      "skip-manual edge promotion acceptance",
+      "active purgeable partial index verification"
+    ],
+    "key_topics": [
+      "tombstone",
+      "soft-delete",
+      "idempotent",
+      "causal",
+      "edge",
+      "promotion",
+      "skip",
+      "manual",
+      "active",
+      "purgeable",
+      "partial",
+      "index"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/constitutional/entity-cooccurrence-is-not-causal.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts",
+      "handlers/memory-crud-delete.ts",
+      "handlers/memory-bulk-delete.ts",
+      "lib/storage/causal-edges.ts",
+      "lib/search/vector-index-schema.ts",
+      "handlers/causal-graph.ts",
+      "handlers/causal-links-processor.ts",
+      "lib/governance/memory-retention-sweep.ts",
+      "constitutional/entity-cooccurrence-is-not-causal.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-write-safety.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "memory-crud-delete.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-bulk-delete.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edge-tombstones.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-cooccurrence-is-not-causal.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/entity-cooccurrence-is-not-causal.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-links-processor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges-write-safety.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-write-safety.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review found the prior soft-delete premise was false: delete was a hard delete via `vectorIndex.deleteMemory`, not a soft-delete writer",
+    "created_at": "2026-06-06T10:10:48Z",
+    "last_save_at": "2026-07-02T05:31:13.673Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cc32a47dfcf0f34f916858666234cdee8fd4e4f59e71162998d30780e463b4df",
+    "source_doc_hashes": {
+      "spec.md": "b145d6324565f6ac47f1d286845e9be2025bef0ee5b353fc5d17abfe56ae1ae9",
+      "plan.md": "1d172540c69d31d66b7977c01656114f05df08cbead45310421fdbbd77226865",
+      "tasks.md": "c0ae316957cb01b5658edcde709c38eeddbbee4499d9e20d302e2d9e48955499",
+      "checklist.md": "92f3d26bc1742191100d3908a9220114c08be7ede5e8a929cc2eeb28eff3331c",
+      "implementation-summary.md": "d4b67a713653a8ba860216305e87455e82a814da34e6d94bff510f185cd7f80f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-10T14:30:00.000Z"
+  }
+}

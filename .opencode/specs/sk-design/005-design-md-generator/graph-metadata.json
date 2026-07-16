@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/005-design-md-generator",
+  "spec_folder": "sk-design/005-design-md-generator",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design md-generator reconstruction",
+      "design token extraction specification",
+      "measured DESIGN.md generation",
+      "live site design system extraction",
+      "md-generator reconstruction plan",
+      "design extraction implementation plan",
+      "DESIGN.md token pipeline plan",
+      "Playwright design token workflow",
+      "md-generator reconstruction tasks",
+      "design extraction task list",
+      "DESIGN.md pipeline tasks",
+      "source faithful token extraction tasks"
+    ],
+    "key_topics": [
+      "sk-design",
+      "md-generator",
+      "reconstruction",
+      "design",
+      "token",
+      "extraction",
+      "specification",
+      "measured",
+      "generation",
+      "live",
+      "site",
+      "system"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+      ".opencode/specs/sk-design/005-design-md-generator/spec.md",
+      ".opencode/specs/sk-design/005-design-md-generator/plan.md",
+      ".opencode/specs/sk-design/005-design-md-generator/tasks.md",
+      ".opencode/specs/sk-design/005-design-md-generator/checklist.md",
+      ".opencode/skills/sk-design/design-md-generator/procedures/design_system_extraction.md",
+      ".opencode/skills/sk-design/design-md-generator/references/design_md_format.md",
+      ".opencode/skills/sk-design/design-md-generator/references/writing_style_guide.md",
+      ".opencode/skills/sk-design/design-md-generator/references/extraction_workflow.md",
+      ".opencode/skills/sk-design/design-md-generator/references/guided_run.md",
+      ".opencode/skills/sk-design/design-md-generator/references/troubleshooting.md",
+      ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
+      ".opencode/skills/sk-design/design-md-generator/references/color_role_taxonomy.md",
+      ".opencode/skills/sk-design/design-md-generator/references/component_taxonomy.md",
+      ".opencode/skills/sk-design/design-md-generator/references/anti_patterns.md",
+      ".opencode/skills/sk-design/design-md-generator/references/quality_checklist.md",
+      ".opencode/skills/sk-design/design-md-generator/references/examples/editorial_exemplar.md",
+      ".opencode/skills/sk-design/design-md-generator/references/examples/linear/DESIGN.md",
+      ".opencode/skills/sk-design/design-md-generator/references/examples/linear/tokens.json",
+      ".opencode/skills/sk-design/design-md-generator/references/examples/linear/writing-notes.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/005-design-md-generator/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/005-design-md-generator/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/005-design-md-generator/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/005-design-md-generator/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_system_extraction.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/procedures/design_system_extraction.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_md_format.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/design_md_format.md",
+        "source": "derived"
+      },
+      {
+        "name": "writing_style_guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/writing_style_guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "extraction_workflow.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/extraction_workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "guided_run.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/guided_run.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "authoring_boundary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "color_role_taxonomy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/color_role_taxonomy.md",
+        "source": "derived"
+      },
+      {
+        "name": "component_taxonomy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/component_taxonomy.md",
+        "source": "derived"
+      },
+      {
+        "name": "anti_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/anti_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality_checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/quality_checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "editorial_exemplar.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/examples/editorial_exemplar.md",
+        "source": "derived"
+      },
+      {
+        "name": "DESIGN.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/examples/linear/DESIGN.md",
+        "source": "derived"
+      },
+      {
+        "name": "tokens.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/examples/linear/tokens.json",
+        "source": "derived"
+      },
+      {
+        "name": "writing-notes.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/examples/linear/writing-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Design references generated from a live site need to preserve measured CSS values and clearly separate observed facts from interpretation",
+    "created_at": "2026-07-16T09:27:32.433Z",
+    "last_save_at": "2026-07-16T09:27:32.433Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:f30c016f5e14dd002e90e70e06eb08b5448b79c1c2a7d5905ab3a4f4bccddec1",
+    "source_doc_hashes": {
+      "spec.md": "e65394161614f6410fc54b179ad4e6a2fa732b796317a75b2b1f19c4e607d17a",
+      "plan.md": "4e37e412bf1eddfb7b8077452636c0fc37447712c1b97cc7a2aacb2bf085eeb2",
+      "tasks.md": "ceda0ca16eb21d4c13c387ad0f448b31537d6e7ea17e1ea5a92dbf741a18a505",
+      "checklist.md": "67fbe515abcab1ea7b3eec22bd46e5526adeba71bdea6c22d741229f5bd2534a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

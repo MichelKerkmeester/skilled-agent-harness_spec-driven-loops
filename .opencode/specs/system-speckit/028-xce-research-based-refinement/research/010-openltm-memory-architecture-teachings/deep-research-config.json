@@ -1,0 +1,83 @@
+{
+  "topic": "Mine OpenLTM (open-source long-term-memory plugin for AI coding agents; Bun/TypeScript/SQLite/FTS5; MIT) for design teachings transferable to the LOCAL single-user system-spec-kit Memory system. Find what OpenLTM does DIFFERENTLY than us and what we could copy/learn from to improve system-spec-kit memory (or related systems). Per-teaching adopt/adapt/reject/defer verdict with risk, mapped to a system-spec-kit surface or a proposed new sub-packet. Negative knowledge (what NOT to copy given arch/scale/design mismatch) is first-class.",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 20,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement",
+  "artifactDir": "research/010-openltm-memory-architecture-teachings",
+  "createdAt": "2026-06-08T13:15:56Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "orchestration": {
+    "mode": "orchestrator-driven-parallel-fanout",
+    "rationale": "Executors run READ-ONLY analysis only; orchestrator writes all iteration/delta/state artifacts. Sidesteps the project Gate-3 executor-write HARD BLOCK, is compaction-safe, and honors the operator's standing parallel-fanout preference. 10 iterations = 10 independent OpenLTM subsystems analyzed in concurrent batches, then a synthesis + adversarial-verify pass.",
+    "fanoutWidth": 5,
+    "killOrphansBetweenRounds": true
+  },
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "variant": "xhigh",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "read-only",
+    "format": "json",
+    "dir": "<repo-root>",
+    "timeoutSeconds": 1200,
+    "stdinGuard": "</dev/null",
+    "dispatchPattern": "read-only-analysis; orchestrator-writes-state (Gate-3-safe, race-safe); narrow per-subsystem scope to fit the xhigh timeout"
+  },
+  "researchTarget": {
+    "name": "OpenLTM",
+    "path": "specs/system-spec-kit/027-xce-research-based-refinement/external/OpenLtm-main",
+    "kind": "open-source long-term-memory plugin for AI coding agents (Claude Code / OpenCode / Pi); Bun + TypeScript; SQLite (WAL) + FTS5(BM25) + optional sqlite-vec; pluggable embedding providers; 4 lifecycle hooks; janitor maintenance; typed knowledge graph; Next.js graph visualizer; ~29K LOC; v2.x",
+    "license": "MIT (design inspiration only — no code copying)"
+  },
+  "consumer": {
+    "name": "system-spec-kit Memory",
+    "kind": "LOCAL single-user / single-tenant continuity store (SQLite index + separate vector store; ollama nomic 768d); semantic+lexical trigger matching; importance tiers; causal edges; FSRS decay/co-activation; self-maintaining incremental index; shadow-first learning-feedback reducers; spec-folder continuity ladder; 37-tool MCP surface",
+    "refinementPacket": "028-xce-research-based-refinement"
+  },
+  "lineage": {
+    "sessionId": "2026-06-08-010-openltm-teachings",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "newRunStart": 1
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "continuation": {
+    "addedIterations": "011-015",
+    "focus": "spec-documentation-based vs row-based architectural-fit re-examination",
+    "rationale": "Operator flagged that our memory is spec-doc-based while OpenLTM is row-based; several round-1 teachings assumed a row-write model. Re-test transferability under the corrected architecture.",
+    "addedAt": "2026-06-08T14:16:31Z"
+  }
+}

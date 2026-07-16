@@ -1,0 +1,24 @@
+{
+  "reviewTarget": "Hunt residue from the local-LLM/embedding-default migration (packet 027-graph-and-context-optimization/014-local-embeddings-setup-a + its 18 sub-phases). Treat post-014 defaults as canonical: EmbeddingGemma-300m hf-local q8 dtype 768d (Memory MCP), google/embeddinggemma-300m sentence-transformers bf16 768d (CocoIndex), llama-cpp opt-in with auto-migrate. Flag any code, doc, asset, or config (including JSONs) claiming a different default.",
+  "reviewTargetType": "files",
+  "reviewDimensions": ["correctness", "traceability", "maintainability"],
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/021-local-llm-legacy-review",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/021-local-llm-legacy-review/review",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.05,
+  "executionMode": "auto",
+  "resource_map": { "emit": true },
+  "config": {
+    "executor": {
+      "type": "cli-codex",
+      "kind": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "high",
+      "serviceTier": "fast",
+      "timeoutSeconds": 900
+    }
+  },
+  "recoveryAnchor": "5e7095d3336510b5756ba5cac383a8e08d1d79db",
+  "startedAt": "2026-05-13T13:15:00Z",
+  "lineageMode": "auto"
+}

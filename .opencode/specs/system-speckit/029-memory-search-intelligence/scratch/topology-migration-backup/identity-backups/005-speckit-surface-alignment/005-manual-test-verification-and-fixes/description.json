@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/005-speckit-surface-alignment/005-manual-test-verification-and-fixes",
+  "description": "The Fable-5-refined surface-alignment features needed a manual verification pass after documentation remediation and automated stress coverage",
+  "keywords": [
+    "fable-5-refined",
+    "surface-alignment",
+    "features",
+    "needed",
+    "manual",
+    "verification",
+    "pass",
+    "documentation",
+    "remediation",
+    "automated",
+    "stress",
+    "coverage"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.822Z",
+  "specId": "005",
+  "folderSlug": "manual-test-verification-and-fixes",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "005-speckit-surface-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

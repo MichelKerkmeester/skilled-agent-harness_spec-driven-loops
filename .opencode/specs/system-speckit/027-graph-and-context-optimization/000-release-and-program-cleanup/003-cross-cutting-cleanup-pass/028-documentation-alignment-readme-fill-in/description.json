@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in",
+  "description": "Five doc-quality drift items have accumulated under `.opencode/skills/system-spec-kit/`: (1) the `references/multi-ai-council/` directory has 6 files",
+  "keywords": [
+    "five",
+    "doc-quality",
+    "drift",
+    "items",
+    "accumulated",
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "references",
+    "multi-ai-council",
+    "directory",
+    "files"
+  ],
+  "lastUpdated": "2026-07-10T06:24:16.302Z",
+  "specId": "028",
+  "folderSlug": "documentation-alignment-readme-fill-in",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

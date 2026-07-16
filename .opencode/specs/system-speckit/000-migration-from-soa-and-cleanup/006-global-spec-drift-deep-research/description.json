@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-speckit/000-migration-from-soa-and-cleanup/006-global-spec-drift-deep-research",
+  "description": "The parent packet (`000-migration-from-soa-and-cleanup`) diagnosed numbering drift in exactly five tracks and scoped phases 001-005 to fix only that",
+  "keywords": [
+    "parent",
+    "packet",
+    "000-migration-from-soa-and-cleanup",
+    "diagnosed",
+    "numbering",
+    "drift",
+    "exactly",
+    "five",
+    "tracks",
+    "scoped",
+    "phases",
+    "only"
+  ],
+  "lastUpdated": "2026-07-16T14:22:27.585Z",
+  "specId": "006",
+  "folderSlug": "global-spec-drift-deep-research",
+  "parentChain": [
+    "system-speckit",
+    "000-migration-from-soa-and-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

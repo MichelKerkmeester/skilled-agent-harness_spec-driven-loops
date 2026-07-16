@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2",
+  "description": "The 8-agent scout that fed batch 1 surfaced 20 high-risk deep-research targets; batch 1 fixed the top 5, leaving 15 latent code defects untriaged",
+  "keywords": [
+    "8-agent",
+    "scout",
+    "fed",
+    "batch",
+    "surfaced",
+    "high-risk",
+    "deep-research",
+    "targets",
+    "top",
+    "leaving",
+    "latent",
+    "code",
+    "defects",
+    "untriaged"
+  ],
+  "lastUpdated": "2026-07-10T06:23:57.494Z",
+  "specId": "002",
+  "folderSlug": "scouted-bugfix-batch-2",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "010-scouted-bugfix-train"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

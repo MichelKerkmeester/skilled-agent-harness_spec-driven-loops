@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/002-speckit-memory/034-reranker-research",
+  "description": "The new-feature arc closed with a hard architectural finding",
+  "keywords": [
+    "new-feature",
+    "arc",
+    "closed",
+    "hard",
+    "architectural",
+    "finding"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.544Z",
+  "specId": "034",
+  "folderSlug": "reranker-research",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

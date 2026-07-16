@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
+  "description": "The 027/002 phases 017-021 shipped working, tested code, but the 50-pass review surfaced a set of confirmed residual issues: one bounded",
+  "keywords": [
+    "phases",
+    "shipped",
+    "working",
+    "tested",
+    "code",
+    "50-pass",
+    "review",
+    "surfaced",
+    "set",
+    "confirmed",
+    "residual",
+    "issues",
+    "one",
+    "bounded"
+  ],
+  "lastUpdated": "2026-07-10T06:23:43.836Z",
+  "specId": "006",
+  "folderSlug": "deep-review-017-021-remediation",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "005-verification-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

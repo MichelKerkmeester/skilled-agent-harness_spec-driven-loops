@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/000-migration-from-soa-and-cleanup",
+  "description": "Five spec-kit tracks — `system-speckit`, `system-deep-loop`, `system-code-graph`, `sk-doc`, and `sk-design` — have active packet numbering that",
+  "keywords": [
+    "five",
+    "spec-kit",
+    "tracks",
+    "system-speckit",
+    "system-deep-loop",
+    "system-code-graph",
+    "sk-doc",
+    "sk-design",
+    "active",
+    "packet",
+    "numbering"
+  ],
+  "lastUpdated": "2026-07-16T12:29:06.047Z",
+  "specId": "000",
+  "folderSlug": "migration-from-soa-and-cleanup",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

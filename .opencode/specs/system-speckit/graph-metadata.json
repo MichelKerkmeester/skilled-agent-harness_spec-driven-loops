@@ -4,22 +4,22 @@
   "spec_folder": "system-speckit",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/001-cmd-memory-output",
-    "system-speckit/002-graph-and-context-optimization",
-    "system-speckit/003-xce-research-based-refinement",
-    "system-speckit/004-memory-search-intelligence",
-    "system-speckit/005-rust-backend-rewrite-research",
-    "system-speckit/006-spec-gate-enforce-readiness",
-    "system-speckit/007-phased-spec-preference",
-    "system-speckit/008-vitest-invariance-maintenance",
-    "system-speckit/009-cmd-merge-spec-kit-phase",
-    "system-speckit/010-cmd-spec-kit-ux-upgrade",
-    "system-speckit/011-spec-kit-ux-adoptions",
-    "system-speckit/012-spec-kit-coco-sk-code-research",
-    "system-speckit/013-spec-kit-auto-mode-noninteractive-contract",
-    "system-speckit/014-subphase-recatalog-and-archive",
-    "system-speckit/015-base-files-renumbering-name-cleanup",
-    "system-speckit/016-cmd-speckit-family-rename",
+    "system-speckit/026-cmd-memory-output",
+    "system-speckit/027-graph-and-context-optimization",
+    "system-speckit/028-xce-research-based-refinement",
+    "system-speckit/029-memory-search-intelligence",
+    "system-speckit/030-rust-backend-rewrite-research",
+    "system-speckit/031-spec-gate-enforce-readiness",
+    "system-speckit/032-phased-spec-preference",
+    "system-speckit/033-vitest-invariance-maintenance",
+    "system-speckit/034-cmd-merge-spec-kit-phase",
+    "system-speckit/035-cmd-spec-kit-ux-upgrade",
+    "system-speckit/036-spec-kit-ux-adoptions",
+    "system-speckit/037-spec-kit-coco-sk-code-research",
+    "system-speckit/038-spec-kit-auto-mode-noninteractive-contract",
+    "system-speckit/039-subphase-recatalog-and-archive",
+    "system-speckit/040-base-files-renumbering-name-cleanup",
+    "system-speckit/041-cmd-speckit-family-rename",
     "system-speckit/z_archive"
   ],
   "manual": {
@@ -64,7 +64,7 @@
     "source_doc_hashes": {
       "spec.md": "cc72330c4923eba5a256235dbdde15f9de1783ce1e4aa1eda31ad22876b3ec7f"
     },
-    "last_active_child_id": "system-speckit/016-cmd-speckit-family-rename",
+    "last_active_child_id": "system-speckit/041-cmd-speckit-family-rename",
     "last_active_at": "2026-07-15T00:00:00.000Z"
   }
 }

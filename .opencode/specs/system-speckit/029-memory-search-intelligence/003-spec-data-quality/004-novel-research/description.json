@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/004-novel-research",
+  "description": "Novel Research subgroup of the spec-data-quality track: novel data-quality research ideas.",
+  "keywords": [
+    "novel",
+    "research",
+    "subgroup",
+    "spec-data-quality",
+    "track",
+    "data-quality",
+    "ideas"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.695Z",
+  "specId": "004",
+  "folderSlug": "novel-research",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "003-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

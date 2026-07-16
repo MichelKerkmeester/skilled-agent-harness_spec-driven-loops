@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "003-memory-context-truncation-telemetry-contract",
+      "memory context truncation contract",
+      "preEnforcementTokens returnedTokens",
+      "droppedAllResultsReason",
+      "token telemetry split",
+      "memory_context payload count invariant",
+      "memory context truncation plan",
+      "token telemetry implementation",
+      "preEnforcementTokens implementation",
+      "memory context truncation tasks",
+      "token telemetry tasks",
+      "memory context truncation impl summary"
+    ],
+    "key_topics": [
+      "003-memory-context-truncation-telemetry-contract",
+      "memory",
+      "context",
+      "truncation",
+      "contract",
+      "preenforcementtokens",
+      "returnedtokens",
+      "droppedallresultsreason",
+      "token",
+      "telemetry",
+      "split",
+      "payload"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/_support/token-budget-assertions.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js",
+      "mcp_server/handlers/memory-context.ts",
+      "mcp_server/tests/token-budget-enforcement.vitest.ts",
+      "mcp_server/tests/memory-context.vitest.ts",
+      "mcp_server/dist/handlers/memory-context.js",
+      "dist/handlers/memory-context.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "token-budget-assertions.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/_support/token-budget-assertions.ts",
+        "source": "derived"
+      },
+      {
+        "name": "token-budget-enforcement.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Search",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Cause",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 005 post-remediation verification (2026-04-26 18:49) showed that the Cluster 1 truncation fix is NOT live in the daemon: `memorycontext({input:\"Semantic Search\"})` still returns `meta.tokenBudgetEnforcement.{enforced:true, truncated:true, returnedResultCount:3, originalResultCount:5}` while `actualTokens=65 / budgetTokens=3500` (1.9% utilization) and `data.content[0].text` still contains `{\"count\":0,\"results\":[]}`",
+    "created_at": "2026-04-27T07:29:35.265Z",
+    "last_save_at": "2026-07-02T05:31:10.736Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d719d44ccf5a090a672701657a1c0dc3f1ba7451b88b2bc4675018db6217754",
+    "source_doc_hashes": {
+      "spec.md": "aa5ceb744d9fab9014f5ccf38c1673ee274acde2df2f8a4d592889abcfe3ea67",
+      "plan.md": "f0369330d8485a58107fc6685ad5e5664b38bd191910561a4b3ef54805462ba6",
+      "tasks.md": "3387b75351572aa23022723bd8cdd3d445c2fa7a84ac78d0e247d87a70004eb6",
+      "implementation-summary.md": "ac8ae65e6ebd58b3f8a4e6e26a8173b3520ed003a6c1b1efa05d58ee67a443b5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

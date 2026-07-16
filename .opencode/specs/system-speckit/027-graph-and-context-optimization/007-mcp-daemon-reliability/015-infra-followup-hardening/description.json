@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening",
+  "description": "Control file coordinating the three deferred follow-ups from the 032/035 daemon-lifecycle + worktree session: live two-launcher integration test,",
+  "keywords": [
+    "control",
+    "file",
+    "coordinating",
+    "three",
+    "deferred",
+    "follow-ups",
+    "daemon-lifecycle",
+    "worktree",
+    "session",
+    "live",
+    "two-launcher",
+    "integration",
+    "test"
+  ],
+  "lastUpdated": "2026-07-10T06:23:47.570Z",
+  "specId": "015",
+  "folderSlug": "infra-followup-hardening",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

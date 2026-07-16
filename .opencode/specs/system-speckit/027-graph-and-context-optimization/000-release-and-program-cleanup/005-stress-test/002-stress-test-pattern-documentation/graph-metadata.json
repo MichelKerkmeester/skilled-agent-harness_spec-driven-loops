@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/002-stress-test-pattern-documentation",
+  "spec_folder": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/002-stress-test-pattern-documentation",
+  "parent_id": "system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "002-stress-test-pattern-documentation",
+      "stress test feature catalog",
+      "stress test manual playbook",
+      "stress test rubric template",
+      "stress test pattern documentation plan",
+      "002-stress-test-pattern-documentation plan",
+      "stress test cycle authoring",
+      "stress test pattern documentation tasks",
+      "002-stress-test-pattern-documentation tasks",
+      "stress test pattern documentation checklist",
+      "002-stress-test-pattern-documentation checklist",
+      "stress test pattern documentation summary"
+    ],
+    "key_topics": [
+      "002-stress-test-pattern-documentation",
+      "stress",
+      "test",
+      "feature",
+      "catalog",
+      "manual",
+      "playbook",
+      "rubric",
+      "template",
+      "pattern",
+      "documentation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stress Test Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "REQ",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The stress test cycle format has been authored ad-hoc three times now (v1.0.1, v1.0.2, v1.0.3)",
+    "created_at": "2026-04-29T07:00:00.000Z",
+    "last_save_at": "2026-07-10T06:24:23.496Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:942e1e26671ecb2c3ca5bdc1927104ef057c1a7c6281eec43b618410d9c11c18",
+    "source_doc_hashes": {
+      "spec.md": "9d1ffbff414098d96c5cdf82187ce4469cbf9980ddb4d4a8ebeb2549161c7385",
+      "plan.md": "56d9c9086932af80087496be9cc731ca06f7db2faeff4be0283d0d96ffd14c1d",
+      "tasks.md": "7bb6167322fce348bed03cb388a6de72cb1f865601f54dca3a23757b3e38c5f1",
+      "checklist.md": "747e3e40cf104cf2d5740e3cf9f1c66aaa3032f327d654fc72b02108bac2f938",
+      "implementation-summary.md": "0e343cc385acd72a19d0f9b6d66e180600f287e999100328a7fdc262e05c41bf",
+      "resource-map.md": "17c8fcf2a93440a397e61c51684241de365e85853b926ac338a6b9f57cd49241"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

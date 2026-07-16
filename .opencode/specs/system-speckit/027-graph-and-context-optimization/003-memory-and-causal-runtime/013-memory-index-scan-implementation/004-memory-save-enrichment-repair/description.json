@@ -1,0 +1,34 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair",
+  "description": "`memorysave` commits the primary row inside `writeTransaction.immediate()`, then runs secondary enrichment (FTS, vector, entity/summary, causal/graph",
+  "keywords": [
+    "memorysave",
+    "commits",
+    "primary",
+    "row",
+    "inside",
+    "writetransaction",
+    "immediate",
+    "runs",
+    "secondary",
+    "enrichment",
+    "fts",
+    "vector",
+    "entity",
+    "summary",
+    "causal",
+    "graph"
+  ],
+  "lastUpdated": "2026-07-10T06:22:22.459Z",
+  "specId": "004",
+  "folderSlug": "memory-save-enrichment-repair",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "013-memory-index-scan-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

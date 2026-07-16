@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/005-vague-query-improvement-research",
+  "description": "The original 005 research decided which data-quality levers were worth building",
+  "keywords": [
+    "original",
+    "research",
+    "decided",
+    "data-quality",
+    "levers",
+    "worth"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.687Z",
+  "specId": "005",
+  "folderSlug": "vague-query-improvement-research",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "003-spec-data-quality",
+    "005-shared-engine-and-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

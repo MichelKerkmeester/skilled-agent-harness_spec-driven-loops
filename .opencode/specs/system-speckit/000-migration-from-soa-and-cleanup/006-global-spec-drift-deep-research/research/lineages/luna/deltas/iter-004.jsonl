@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":4,"run":4,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","status":"complete","focus":"Remediation controls and correction loops","findingsCount":4,"newInfoRatio":0.58,"noveltyJustification":"Consolidated four recurring controls: real re-verification, explicit migration authority, second-pass correction, and layered freshness checks.","keyQuestions":[],"answeredQuestions":["Which remediation or governance patterns were already attempted, with what outcomes?"],"ruledOut":["One final validation pass as sufficient control"],"graphEvents":[]}
+{"type":"finding","id":"f-004-001","label":"Real corpus re-verification","iteration":4}
+{"type":"finding","id":"f-004-002","label":"Manifest-backed migration authority","iteration":4}
+{"type":"finding","id":"f-004-003","label":"Second-pass correction loop","iteration":4}
+{"type":"finding","id":"f-004-004","label":"Layered freshness controls","iteration":4}

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/029-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
+  "description": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted",
+  "keywords": [
+    "live-measured",
+    "deep-dive",
+    "report",
+    "ledger",
+    "5-result",
+    "memorysearch",
+    "returns",
+    "6kb",
+    "envelope",
+    "because",
+    "every",
+    "telemetry",
+    "block",
+    "double-emitted"
+  ],
+  "lastUpdated": "2026-07-07T04:34:47.371Z",
+  "specId": "012",
+  "folderSlug": "envelope-presentation-and-command-doc-alignment",
+  "parentChain": [
+    "system-speckit",
+    "029-memory-search-intelligence",
+    "001-speckit-memory",
+    "031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

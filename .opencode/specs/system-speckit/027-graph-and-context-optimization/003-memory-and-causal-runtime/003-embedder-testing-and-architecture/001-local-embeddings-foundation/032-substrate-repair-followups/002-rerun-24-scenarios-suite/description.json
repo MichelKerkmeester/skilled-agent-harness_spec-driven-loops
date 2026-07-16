@@ -1,0 +1,40 @@
+{
+  "title": "002 rerun-24-scenarios-suite (validate post-fix substrate)",
+  "schema_version": 1,
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
+  "summary": "Re-run 15 scenarios in 24--local-llm-query-intelligence/ via cli-opencode + kimi-k2.6 against the post-fix substrate. Goal: at least 8/15 PASS-or-PARTIAL.",
+  "tags": [
+    "validation",
+    "24--",
+    "playbook",
+    "kimi-k2.6",
+    "post-fix-rerun"
+  ],
+  "created_at": "2026-05-14T11:10:00Z",
+  "updated_at": "2026-05-14T11:10:00Z",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
+  "description": "Re-run the full 15-scenario suite in `manual_testing_playbook/24--local-llm-query-intelligence/` after Wave 1 lands.",
+  "keywords": [
+    "re-run",
+    "full",
+    "15-scenario",
+    "suite",
+    "24-local-llm-query-intelligence",
+    "wave",
+    "lands"
+  ],
+  "lastUpdated": "2026-07-10T06:22:18.223Z",
+  "specId": "002",
+  "folderSlug": "rerun-24-scenarios-suite",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation",
+    "032-substrate-repair-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

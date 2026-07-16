@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/004-retrieval-and-fixture-audit",
+  "description": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced identical retrieval metrics to three sig figs:",
+  "keywords": [
+    "phase",
+    "baseline",
+    "bge-reranker-v2-m3",
+    "produced",
+    "identical",
+    "retrieval",
+    "metrics",
+    "three",
+    "sig",
+    "figs"
+  ],
+  "lastUpdated": "2026-07-10T06:24:08.324Z",
+  "specId": "004",
+  "folderSlug": "retrieval-and-fixture-audit",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc",
+    "011-spec-memory-rerank-decision-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

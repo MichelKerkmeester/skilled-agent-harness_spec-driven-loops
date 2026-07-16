@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/001-inventory-extract",
+  "description": "Create Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and",
+  "keywords": [
+    "commands",
+    "needs",
+    "scoped",
+    "inventory",
+    "extract",
+    "phase",
+    "presentation",
+    "extraction",
+    "proceed",
+    "without",
+    "mixing",
+    "implementation",
+    "routing"
+  ],
+  "lastUpdated": "2026-07-10T06:22:15.811Z",
+  "specId": "001",
+  "folderSlug": "inventory-extract",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "002-command-presentation-workflow-separation",
+    "003-create-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

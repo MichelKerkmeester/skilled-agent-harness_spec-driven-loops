@@ -1,0 +1,33 @@
+{
+  "level": "phase",
+  "specFolder": "system-speckit/027-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit",
+  "description": "Phase parent for auditing manual_testing_playbook fairness, mapping mk-spec-memory MCP tool coverage, and authoring deterministic scenarios for",
+  "keywords": [
+    "phase",
+    "parent",
+    "auditing",
+    "fairness",
+    "mapping",
+    "mk-spec-memory",
+    "mcp",
+    "tool",
+    "coverage",
+    "authoring",
+    "deterministic",
+    "scenarios"
+  ],
+  "lastUpdated": "2026-07-10T06:24:43.448Z",
+  "specId": "001",
+  "folderSlug": "playbook-quality-audit",
+  "parentChain": [
+    "system-speckit",
+    "027-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "005-cross-cutting-quality"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-05-26_14-05__audited-345-pre-expansion-manual-testing-playbook.md"
+  ]
+}

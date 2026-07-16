@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands",
+  "description": "The deep command routers own presentation instructions inline with routing and workflow-reference instructions",
+  "keywords": [
+    "deep",
+    "command",
+    "routers",
+    "own",
+    "presentation",
+    "instructions",
+    "inline",
+    "routing",
+    "workflow-reference"
+  ],
+  "lastUpdated": "2026-07-10T06:23:58.618Z",
+  "specId": "005",
+  "folderSlug": "deep-commands",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "002-command-presentation-workflow-separation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

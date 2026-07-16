@@ -1,0 +1,57 @@
+{
+  "title": "Phase 004 — Semantic Trigger Fallback (Hybrid)",
+  "trigger_phrases": [
+    "027 phase 004",
+    "memory semantic triggers",
+    "hybrid trigger matching",
+    "semantic trigger fallback",
+    "memory backend semantic trigger matching"
+  ],
+  "level": 3,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "complete",
+  "priority": "P0",
+  "createdAt": "2026-05-09T11:00:00Z",
+  "branch": "main",
+  "parent_track": "028-xce-research-based-refinement",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "manual": {
+    "depends_on": []
+  },
+  "soft_depends_on": [
+    "006-code-graph-adoption-eval"
+  ],
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-speckit/028-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "description": "Phase-parent control packet for the hybrid lexical+semantic trigger fallback: schema + backfill, semantic matcher, hybrid handler integration, and",
+  "keywords": [
+    "phase-parent",
+    "control",
+    "packet",
+    "hybrid",
+    "lexical",
+    "semantic",
+    "trigger",
+    "fallback",
+    "schema",
+    "backfill",
+    "matcher",
+    "handler",
+    "integration"
+  ],
+  "lastUpdated": "2026-07-10T06:22:44.969Z",
+  "specId": "003",
+  "folderSlug": "semantic-trigger-fallback",
+  "parentChain": [
+    "system-speckit",
+    "028-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
