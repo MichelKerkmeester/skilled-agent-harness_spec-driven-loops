@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`system-deep-loop`'s spec-folder numbering has two separate discontinuities:",
     "created_at": "2026-07-16T06:17:12.585Z",
-    "last_save_at": "2026-07-16T08:21:26.411Z",
+    "last_save_at": "2026-07-16T09:33:16.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0b2a7aeea28ac47666d8d0f7b8f9500de406c28afbe6f4e06be617badc23486",
+    "source_fingerprint": "sha256:101229b302d3434b2be1439ad8052a394e459dd3251aaa454ddc7f64361bf97f",
     "source_doc_hashes": {
       "spec.md": "75ef5efdc306b996278a2c8f3f07c6254cdead7b256310b6c7e54c36cbaeaa05",
       "plan.md": "6dcb034f4269d6a84292f5ac34388644e5df446932483917bbccb7beede7e993",
       "tasks.md": "a5ad98ef635d013a10ada6a0ebe3da434addf96ae48e6ae6a5f8fba4af323195",
       "checklist.md": "6e3c5b1a02ee03127ce53cb2c82973b908a45841170f9d37dbfe4e09837933a1",
-      "implementation-summary.md": "b7b33c0475b5cdbfdeff84a85e183ec61cd6863f0c3411de17f5f49f23de3d09"
+      "implementation-summary.md": "150d15647b6e939fbbe52e60721eafaa88e2a300fbdc32622f715d7eb5642f22"
     },
     "last_active_child_id": null,
     "last_active_at": null

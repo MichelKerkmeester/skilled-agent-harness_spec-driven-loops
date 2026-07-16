@@ -13,10 +13,10 @@ _memory:
     packet_pointer: "system-speckit/000-migration-from-soa-and-cleanup/002-system-deep-loop-renumber"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Completed gap investigation recommended Option A"
-    next_safe_action: "Await operator Option A or B pick"
+    recent_action: "Operator selected Option B execution deferred"
+    next_safe_action: "Execute Option B when deep-loop clean"
     blockers:
-      - "Awaiting operator decision: Option A (document gaps, no active renumber) vs Option B (full active renumber, very-high-blast). No git-mv may run until answered."
+      - "Option B (full active renumber 029-068 -> 024-038, order-preserving) SELECTED by operator, execution DEFERRED: 065+066 have live uncommitted work and the ref surface is 5436 tracked files / 2832 ref files including 114 cross-track (96 skills). Execute only when system-deep-loop is clean."
     key_files:
       - ".opencode/specs/system-deep-loop/z_archive/"
       - ".opencode/specs/system-deep-loop/graph-metadata.json"
@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-system-deep-loop-renumber |
-| **Completed** | Deliverable complete (evidence-based decision gate); awaiting operator A/B |
+| **Completed** | Investigation complete; **Option B selected** by operator; git-mv execution **deferred** (deep-loop concurrency) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -107,7 +107,7 @@ Read-only git-history investigation (`git log --all --full-history`, `git log --
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Hard-blocked on operator decision.** No `git mv`/`rm` may run under system-deep-loop until the operator picks Option A or Option B.
+1. **Option B selected; execution deferred on concurrency.** The operator chose the full active renumber. Execution is ready but blocked: `065` + `066` currently hold live uncommitted work, so a git-mv would orphan it. Run only when `system-deep-loop` is clean. **Ready plan:** order-preserving map `029->024, 030->025, 031->026, 032->027, 033->028, 035->029, 038->030, 052->031, 054->032, 059->033, 063->034, 065->035, 066->036, 067->037, 068->038`; execute in ascending-target order (collision-free, no temp namespace needed); repair the full old-basename token across the tree (2,832 ref files) **including the 114 cross-track files** (96 skills, 17 specs, 1 command) — NOT self-contained like the speckit renumber; regen the 15 packets' metadata + the track-root `children_ids`; validate error-delta <= baseline.
 2. **Active-gap sampling is partial.** 5 internal gaps were traced; the remaining internal gaps and the `024`-`028` pre-start range are documented as UNKNOWN, not exhaustively audited.
 3. **Stale `graph-metadata.json` `children_ids`.** Lists several nested-away paths plus one untraceable entry (`system-deep-loop/133-runtime-remediation-from-dogfood-findings`); flagged as a related follow-up for whichever future packet regenerates deep-loop graph metadata, not actioned here.
 <!-- /ANCHOR:limitations -->
