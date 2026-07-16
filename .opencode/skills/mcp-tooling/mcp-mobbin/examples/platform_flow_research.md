@@ -1,12 +1,12 @@
 ---
 title: "Example: Platform-Filtered Flow-Pattern Research"
-description: "A worked mcp-mobbin flow-research walkthrough: tool_info confirmation of the INFERRED callable, a journey-shaped query on platform web at limit 5, sequence reconstruction labeled as inference, and mobbin_url citations throughout."
-version: 1.1.0.0
+description: "A worked mcp-mobbin flow-research walkthrough: tool_info re-confirmation of the discovery-confirmed callables, a journey-shaped query through the live search_flows tool (search_screens fallback) on platform web, returned-ordering discipline, and mobbin_url citations throughout."
+version: 1.1.1.0
 ---
 
 # Example: Platform-Filtered Flow-Pattern Research
 
-Research how real products run a **forgot-password recovery on the web** — the flow-intent workflow from [`../references/tool_surface.md`](../references/tool_surface.md) §2 (workflow 3), with the platform filter applied per §1's hard constraints. The contract returns screens, never an ordered flow object, so every sequence claim in the output is labeled inference.
+Research how real products run a **forgot-password recovery on the web** — the flow-intent workflow from [`../references/tool_surface.md`](../references/tool_surface.md) §2 (workflow 3), with the platform filter applied per §1's hard constraints. Since 2026-07-16, live discovery lists a dedicated `search_flows` tool returning ordered flow objects; this walkthrough uses it first, with `search_screens` as the screens-level fallback. Any sequence claim beyond the tool's returned ordering is labeled inference.
 
 ---
 
@@ -22,13 +22,13 @@ Research how real products run a **forgot-password recovery on the web** — the
 ```typescript
 call_tool_chain({
   code: `
-    const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
+    const info = await tool_info({ tool_name: "mobbin.mobbin_search_flows" });
     return { success: true, data: info, errors: [], timestamp: new Date().toISOString() };
   `
 });
 ```
 
-The name is **INFERRED**; the live answer supersedes it. Fail closed on drift (see the smoke example for the drift protocol).
+The name is **CONFIRMED** (2026-07-16 fixture: registry `mobbin.mobbin.search_flows`); this session's live answer still supersedes it. Fail closed on drift (see the smoke example for the drift protocol).
 
 ---
 
@@ -39,29 +39,29 @@ The journey and the target step become the `query`; the platform is `web` becaus
 ```typescript
 call_tool_chain({
   code: `
-    const result = await mobbin.mobbin_search_screens({
-      query: "forgot password recovery flow",
+    const result = await mobbin.mobbin_search_flows({
+      query: "forgot password recovery",
       platform: "web",
-      limit: 5
+      limit: 3
     });
     return { success: true, data: result, errors: [], timestamp: new Date().toISOString() };
   `
 });
 ```
 
-There is no `search_flows` tool to reach for — flow research is a query intent over `search_screens`, full stop.
+`search_flows` is live-discovered (2026-07-16) and returns flow objects — `name`, `actions[]`, `screen_count`, and per-screen previews ordered by `position`, plus `page`/`has_next_page` pagination (`page` max 20). For screens-level pattern research, `search_screens` with a journey-shaped query remains available.
 
 ---
 
-## 4. STEP 3 — RECONSTRUCT, LABELED AS INFERENCE
+## 4. STEP 3 — USE THE RETURNED ORDERING; LABEL ANYTHING BEYOND IT
 
-Inspect the returned `screens[]` and inline images (correlated by `index`):
+Inspect the returned flows and their per-screen preview images:
 
-1. Group screens by `app_name` — sequence can only be inferred **within** one app's screens, never across apps.
-2. Where one app contributes multiple screens with a coherent progression (request form -> email-sent confirmation -> reset form), order them — and write the ordering as `inference from visual evidence`, never as retrieved fact.
-3. Where evidence does not support an order, present the screens as unordered pattern examples.
+1. The `screens[].position` ordering within each flow is retrieved fact — present it as such, per flow and per `app_name`.
+2. Anything you interpolate beyond the returned previews (states between screens, skipped steps, cross-app generalizations) is written as `inference from visual evidence`, never as retrieved fact.
+3. Where evidence does not support a claim, present the screens as unordered pattern examples.
 
-**Output discipline:** every screen used is cited by its `mobbin_url`; `failed[]` entries and missing images are reported as partial success; the inference label appears on every sequence claim.
+**Output discipline:** every flow and screen used is cited by its `mobbin_url`; missing images are reported as partial success; the inference label appears on every claim beyond the returned ordering.
 
 ---
 

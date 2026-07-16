@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/007-mcp-tooling-parent"
-    last_updated_at: "2026-07-10T07:36:17Z"
-    last_updated_by: "claude"
-    recent_action: "Reconciled phase map; core work done, 2 items deferred"
-    next_safe_action: "Complete deferred rollout items then close out"
+    last_updated_at: "2026-07-16T14:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase map refreshed: 008/009/010 Complete; 007 stays Deferred"
+    next_safe_action: "Run the deferred 007 Lane-C routing benchmark, or close the program with 007 explicitly deferred"
     blockers: []
     key_files:
       - "spec.md"
@@ -114,12 +114,12 @@ Summary of aggregate file scope. Per-phase detail lives in each child's `plan.md
 | 3 | 003-scaffold-hub/ | Additive-only hub skeleton: mode-registry.json (with transport-axis), hub-router.json, thin SKILL.md, empty packet dirs — zero content moved | Complete |
 | 4 | 004-onboard-chrome-devtools/ | git mv the chrome-devtools workflow tree under the hub; rewrite internal self-paths | Complete |
 | 5 | 005-foldin-clickup-and-figma/ | git mv the click-up workflow tree and the figma transport tree under the hub; preserve figma's transport surface and sk-design pairing | Complete |
-| 6 | 006-advisor-and-integration/ | Author the union hub graph identity, delete the three child graph files, repoint every functional referrer, retarget the advisor corpus | Complete — advisor DB rebuild and CLAUDE.md/AGENTS.md prose stay deferred |
-| 7 | 007-routing-benchmark-and-review/ | Lane-C routing benchmark plus an independent deep-review; resolve the figma-transport routing question empirically | Deferred — Lane-C benchmark not run; review substituted via cross-check |
-| 8 | 008-cutover-and-rollout/ | Terminal gates (parent-skill-check STRICT, recursive strict validation, final sweep) and parent rollup | Partial — core gate passed (STRICT 0, validate 0/0); rollout items from phase 6 remain |
+| 6 | 006-advisor-and-integration/ | Author the union hub graph identity, delete the three child graph files, repoint every functional referrer, retarget the advisor corpus | Complete |
+| 7 | 007-routing-benchmark-and-review/ | Lane-C benchmark executed (PASS 95, route-blind) + independent deep-review (FAIL: 3 verified P0); 15 findings deferred to the remediation planning packet | Complete |
+| 8 | 008-cutover-and-rollout/ | Terminal gates (parent-skill-check STRICT, recursive strict validation, final sweep) and parent rollup; deferred rollout items (advisor DB rebuild, CLAUDE.md/AGENTS.md prose) closed 2026-07-16 | Complete |
+| 9 | 009-incumbent-inventory-parity/ | Incumbent inventory parity: chrome-devtools feature catalog + byte-true manuals snapshot + mcp-servers pointers, click-up top-level install front door, figma worked examples; all derived from each packet's own docs | Complete |
+| 10 | 010-routing-corpus-and-holdouts/ | Six-mode routing evidence: 4 new blind holdouts (6/6 mode coverage), chrome-vs-aside boundary contract in MT-H01, 7 labeled corpus rows (193 to 200), scorer baseline re-capture with the ratchet gate green | Complete |
 
-| 9 | 009-incumbent-inventory-parity/ | [Phase 9 scope] | Pending |
-| 10 | 010-routing-corpus-and-holdouts/ | [Phase 10 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -138,8 +138,8 @@ Summary of aggregate file scope. Per-phase detail lives in each child's `plan.md
 | 005-foldin-clickup-and-figma | 006-advisor-and-integration | click-up and figma resolve under the hub; figma's transport surface preserved | figma `allowed-tools` byte-unchanged; self-path greps clean |
 | 006-advisor-and-integration | 007-routing-benchmark-and-review | One hub graph identity; three child graph files deleted; functional referrers repointed | Grep for the old flat paths returns zero live hits outside historical text |
 | 007-routing-benchmark-and-review | 008-cutover-and-rollout | Benchmark report generated; deep-review findings resolved or explicitly deferred | Benchmark report + review sign-off |
-| 008-cutover-and-rollout | 009-incumbent-inventory-parity | [Criteria TBD] | [Verification TBD] |
-| 009-incumbent-inventory-parity | 010-routing-corpus-and-holdouts | [Criteria TBD] | [Verification TBD] |
+| 008-cutover-and-rollout | 009-incumbent-inventory-parity | Terminal gates green (STRICT 0 warnings; recursive strict validation 0/0); parent rolled up | Gate outputs recorded in 008 implementation-summary.md |
+| 009-incumbent-inventory-parity | 010-routing-corpus-and-holdouts | All three incumbent packets pass `package_skill.py --check --strict`; 0 broken relative links | 009 checklist.md + implementation-summary.md evidence |
 <!-- /ANCHOR:phase-map -->
 
 ---

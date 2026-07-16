@@ -46,10 +46,11 @@ Live handshake observed 2026-07-16 against installed version `1.26.626.1517`:
 }
 ```
 
-Live `tools/list` returned exactly **one tool: `repl`**:
+Live `tools/list` returned exactly **one tool: `repl`** — re-confirmed through Code Mode discovery on 2026-07-16 as the single `aside.*` registry entry `aside.aside.repl` ([`discovery_fixture_2026-07-16.json`](./discovery_fixture_2026-07-16.json)):
 - Required inputs: `title` (string) + `code` (string); `execution.taskSupport: forbidden`.
-- Persistent sandboxed ES2023+ REPL with Playwright APIs; 120-second call timeout; no default/external modules; no `import`/`require`.
-- Advertised helpers include `page`, `tabs`, `listBrowserTabs`, `attachBrowserTab(targetId)`, `attachActiveBrowserTab`, `getTabByTargetId`, `openTab(url)`, `closeTab`, `snapshot(page, options?)`, `page.screenshot(options)`, locator screenshots, `page.pdf`, `annotatedScreenshot`, `console.log`, `display`, `fetch`, `sleep`, `fs`, `pwd`, `path`, `Buffer`.
+- Persistent sandboxed ES2023+ REPL with Playwright APIs; 120-second call timeout; no default/external modules; no `import`/`require`; all calls share one persistent scope (`const`/`let` persist across calls).
+- Full helper surface from the 2026-07-16 fixture (supersedes the earlier version-pinned "advertised helpers" description): `console.log`, `display(input)`, `page`, `tabs`, `listBrowserTabs()`, `attachBrowserTab(targetId)`, `attachActiveBrowserTab()`, `getTabByTargetId(targetId)`, `openTab(url)`, `closeTab(tab)`, `snapshot(page, options?)` (primary read method), `page.screenshot(options?)`, `locator.screenshot(options?)` (default type `webp`, `margin` default 8), `page.pdf(options?)`, `annotatedScreenshot(page)`, `fs` (`node:fs/promises`), `pwd`, `path`, `Buffer`, `sleep(ms)`, `fetch(url)` (user's cookies).
+- Fixture-documented rules: `console.log` is the only way to return data (no last-expression return); the REPL starts as a neutral session — call `listBrowserTabs()` first and prefer `attachActiveBrowserTab()`/`attachBrowserTab(targetId)` over `openTab()` when a relevant tab may already be open.
 
 There are **no** first-class `navigate`, `dom`, `screenshot`, `console`, or `network` MCP tools in this version.
 
@@ -79,7 +80,7 @@ Starting the MCP server does not grant control of an arbitrary browser; a task/p
 
 ## 4. CODE MODE REGISTRATION (REGISTERED)
 
-> **Registration status: REGISTERED** (2026-07-16). The `aside` manual below is present in `.utcp_config.json` `manual_call_templates[]` — verify with jq, do not re-add it. The canonical byte-true snapshot lives in [`../assets/utcp_aside_manual.md`](../assets/utcp_aside_manual.md). Callable discovery is still pending: it needs a fresh Code Mode session (manuals load at startup), and `aside.aside_repl` remains unconfirmed until `tool_info()` returns it.
+> **Registration status: REGISTERED** (2026-07-16). The `aside` manual below is present in `.utcp_config.json` `manual_call_templates[]` — verify with jq, do not re-add it. The canonical byte-true snapshot lives in [`../assets/utcp_aside_manual.md`](../assets/utcp_aside_manual.md). **Callable discovery: DONE (2026-07-16)** via a direct stdio MCP probe of CodeMode-MCP (`initialize`, `tools/call`: `list_tools`/`search_tools`/`tool_info`; fixture: [`discovery_fixture_2026-07-16.json`](./discovery_fixture_2026-07-16.json)). Discovery lists the registry name **`aside.aside.repl`** (dot-separated `{manual}.{server}.{tool}` — not the previously predicted `aside.aside_repl` registry form); the TypeScript callable inside `call_tool_chain` is **`aside.aside_repl(args)`** per the fixture's `Access as:` line.
 
 The registered entry in `.utcp_config.json` `manual_call_templates[]`:
 
@@ -104,7 +105,7 @@ Registration notes:
 - `command: "aside"` assumes PATH; resolve the absolute path via `command -v aside` under the Code Mode server's environment and substitute if needed.
 - `env: {}` is correct — auth is account/session-based, not env-var.
 - Post-registration validation: `jq empty .utcp_config.json` → Code Mode `search_tools({ task_description: "Aside browser automation", limit: 20 })` → `tool_info()` on every intended callable → invoke only discovered `aside.aside_<tool>()` inside `call_tool_chain()` → return structured `{ success, data, errors, timestamp }` → preserve stderr/timeout details without leaking browser data.
-- Expected callable per the repository convention `{manual_name}.{manual_name}_{tool_name}`: `aside.aside_repl`. **UNKNOWN until confirmed** by post-registration discovery.
+- Callable naming, **CONFIRMED by live discovery 2026-07-16** ([`discovery_fixture_2026-07-16.json`](./discovery_fixture_2026-07-16.json)): the registry/discovery name returned by `list_tools`/`search_tools` is **`aside.aside.repl`** (dot-separated `{manual}.{server}.{tool}`); the TypeScript call surface inside `call_tool_chain` is **`aside.aside_repl(args)`** per the repository convention `{manual_name}.{manual_name}_{tool_name}` (`mcp-code-mode/references/naming_convention.md`) and the fixture's `Access as:` line. The two forms are different by design — use the dotted form when querying discovery, the underscore form when writing the TS call.
 
 ### UNRESOLVED: Single vs Dual Manual
 

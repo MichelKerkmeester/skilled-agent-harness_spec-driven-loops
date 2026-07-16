@@ -31,7 +31,7 @@ const tools = await list_tools();
 const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 ```
 
-Expected result: `list_tools()` includes the `mobbin` manual's tools, and `tool_info()` returns a concrete schema (requires completed operator OAuth on a paid account). The predicted callable form is **Inferred** — the live answer supersedes it. Fail closed if tools are missing, renamed, or expanded beyond the documented `search_screens` baseline, and refuse any mutation-capable tool.
+Expected result: `list_tools()` includes the `mobbin` manual's tools, and `tool_info()` returns a concrete schema — both work pre-auth (confirmed 2026-07-16: three tools listed, `mobbin.mobbin.{search_screens,search_flows,search_sections}`; fixture `references/discovery_fixture_2026-07-16.json`). Authenticated CALLS still require completed operator OAuth on a paid account. Fail closed if tools are missing, renamed, or expanded beyond the fixture three-tool baseline, and refuse any mutation-capable tool.
 
 ---
 
@@ -42,7 +42,7 @@ Expected result: `list_tools()` includes the `mobbin` manual's tools, and `tool_
 | Manual name | `mobbin` | REGISTERED in `.utcp_config.json` (2026-07-16); discovery pends a fresh Code Mode session; OAuth pends the operator |
 | Transport | stdio, `npx -y mcp-remote https://api.mobbin.com/mcp` | Local bridge to the hosted Streamable HTTP provider; HTTP-first, SSE fallback only after a 404; `mcp-remote` unpinned/experimental; Node 18+ |
 | Auth | Browser OAuth only (DCR RFC 7591, PKCE S256, `openid`) | Operator-only; **no API key or auth env var exists**; `env` stays empty; state in `~/.mcp-auth`; end-to-end OAuth Inferred |
-| Call syntax | `mobbin.mobbin_search_screens` | INFERRED from the `{manual}.{manual}_{tool}` convention; confirm via `tool_info` |
+| Call syntax | `mobbin.mobbin_search_screens` (also `_search_flows`, `_search_sections`) | CONFIRMED 2026-07-16 (registry names dotted `mobbin.mobbin.<tool>`; fixture `references/discovery_fixture_2026-07-16.json`); re-confirm via `tool_info` per session |
 | Plan | Mobbin Pro, Team, or Enterprise | Free has no MCP access; rate limit 60 req/60 s/user |
 
 ---
@@ -53,7 +53,7 @@ Expected result: `list_tools()` includes the `mobbin` manual's tools, and `tool_
 |---|---|---|
 | No `mobbin.*` tools in Code Mode | Session predates the registration (manuals load at startup), OAuth incomplete, or the registration broke | Reconnect Code Mode in a fresh session, then re-run discovery; a missing manual is escalated to the operator |
 | HTTP 401 on every call | Not authenticated; the empty `env` is correct, not the problem | Operator completes browser OAuth on a paid account. Never add an API key — none exists |
-| Callable name differs from the prediction | The predicted form is Inferred, never observed | Use the name `tool_info` returns; fail closed and update the packet docs |
+| Callable name differs from the fixture baseline | Provider surface drift since the 2026-07-16 discovery | Use the name `tool_info` returns; fail closed, save a fresh dated fixture, and update the packet docs |
 | HTTP 429 | 60 requests / 60 seconds / user exceeded | Honor `Retry-After`, then exponential backoff with jitter |
 
 ---

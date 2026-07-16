@@ -1,7 +1,7 @@
 ---
 title: "Example: Element-Intent Query Compared Across Apps"
-description: "A worked mcp-mobbin element-research walkthrough: tool_info confirmation of the INFERRED callable, a component-plus-context query at limit 5, behavior analyzed within returned screens and compared across app_name values, with the no-invented-tools boundary held."
-version: 1.1.0.0
+description: "A worked mcp-mobbin element-research walkthrough: tool_info re-confirmation of the discovery-confirmed callable, a component-plus-context query at limit 5, behavior analyzed within returned screens and compared across app_name values, with the no-invented-tools boundary held."
+version: 1.1.1.0
 ---
 
 # Example: Element-Intent Query Compared Across Apps
@@ -28,7 +28,7 @@ call_tool_chain({
 });
 ```
 
-The name is **INFERRED** and confirmed here or corrected by the live answer; drift fails closed.
+The name is **CONFIRMED** (2026-07-16 fixture: registry `mobbin.mobbin.search_screens`) and re-confirmed here per session; drift from the fixture baseline fails closed.
 
 ---
 

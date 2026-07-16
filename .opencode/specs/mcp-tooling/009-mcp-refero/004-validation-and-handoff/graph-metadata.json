@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After phases 001-003 the packet, hub, and spec documentation exist but nothing has proven them consistent end to end: strict gates have not run, checklists are unmarked, and no completion state is recorded",
     "created_at": "2026-07-16T09:39:30Z",
-    "last_save_at": "2026-07-16T12:04:49.305Z",
+    "last_save_at": "2026-07-16T14:38:45.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5407830a51112f6c60e804aebde2e67b4b4b7f4a123e93d0a235b3a4c9a8efa",
+    "source_fingerprint": "sha256:455c9a0c83301d41af088ca7e0b8498cdb3e3ec1bc3b8047326efea7d252c7c9",
     "source_doc_hashes": {
-      "spec.md": "2d0070ef29690eb276d88c7eb6452550b330e5dd95707e55fbd8f497c4380bb9",
+      "spec.md": "ea1abf372c57415c34e72cac4382b7ff8d2250aacaeb81d58bb15bbf71395722",
       "plan.md": "72f2bdc8197361ee4b13c4b58f4624b67d2d61a956ce74b3694120d847b306c9",
       "tasks.md": "562718df57396b75976d3856283786e28084ed24bdad1049200a1dd9cea6b470",
       "implementation-summary.md": "6bbe9575863401d63c215aaf7a0f5cd0a982b4c8c04e92e5677d8276cbb3b44c"

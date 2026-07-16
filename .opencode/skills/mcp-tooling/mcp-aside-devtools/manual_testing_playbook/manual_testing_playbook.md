@@ -70,7 +70,7 @@ This playbook provides 15 deterministic scenarios across 6 categories (plus the 
 
 - CLI commands are shown as `aside <subcommand/args>` (e.g., `aside repl "openTab('https://example.com')"`).
 - MCP requests are shown as JSON-RPC method names (`initialize`, `tools/list`, `tools/call(repl)`).
-- Code Mode calls are shown as `aside.aside_repl({ ... })` (post-registration expectation — confirm via discovery).
+- Code Mode calls are shown as `aside.aside_repl({ ... })` (the TS call surface, confirmed by live discovery 2026-07-16; the registry/discovery name is `aside.aside.repl` — see `references/discovery_fixture_2026-07-16.json`).
 - Bash steps are shown as `bash: <command>`.
 - `->` separates sequential steps.
 
@@ -252,12 +252,12 @@ Expected signals: Step 1: `tools/call(repl)` with `listBrowserTabs()` returns th
 ### ASD-011 | Code Mode discovery
 
 #### Description
-Verify post-registration Code Mode discovery exposes the expected `aside.aside_repl` callable.
+Verify post-registration Code Mode discovery exposes the Aside callable. First satisfied 2026-07-16 (fixture: `references/discovery_fixture_2026-07-16.json`): registry name `aside.aside.repl`, TS callable `aside.aside_repl(args)`.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, discover Aside callables through Code Mode against the registered `aside` manual. Verify search_tools/tool_info surface the repl callable under the `{manual_name}.{manual_name}_{tool_name}` convention. Return a concise user-facing pass/fail verdict with the main reason. SKIP only with the documented blocker "no Code Mode session available".
+Prompt summary: As a manual-testing orchestrator, discover Aside callables through Code Mode against the registered `aside` manual. Verify search_tools/tool_info surface the repl callable. Return a concise user-facing pass/fail verdict with the main reason. SKIP only with the documented blocker "no Code Mode session available".
 
-Expected signals: Step 1: `.utcp_config.json` contains the `aside` manual (registered; empty jq output is a FAIL — registration regressed); Step 2: Code Mode `search_tools()` finds Aside tools; Step 3: `tool_info()` confirms the exact callable name (expected `aside.aside_repl` — record the actual).
+Expected signals: Step 1: `.utcp_config.json` contains the `aside` manual (registered; empty jq output is a FAIL — registration regressed); Step 2: Code Mode `search_tools()` finds Aside tools; Step 3: `tool_info()` confirms the exact callable name (baseline from the 2026-07-16 fixture: registry `aside.aside.repl`, TS callable `aside.aside_repl(args)` — record the actual and diff against the fixture).
 
 #### Test Execution
 > **Feature File:** [ASD-011](mcp_transport/code_mode_discovery.md)

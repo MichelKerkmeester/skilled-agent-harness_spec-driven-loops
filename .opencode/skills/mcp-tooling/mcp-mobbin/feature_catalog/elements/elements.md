@@ -38,7 +38,7 @@ Compose the query from the component plus its context and state — for example 
 - **Rate limit** (§3): 60 requests per 60 seconds per user; on 429 honor `Retry-After`, then exponential backoff with jitter.
 - **Plan gating** (§3): MCP requires Pro, Team, or Enterprise (Free excluded); no per-tool tier gates may be invented.
 - **No detail tool** (§1 completeness boundary): `search_elements` and element-detail tools do not exist; behavior is observed in returned screens only.
-- **Schema honesty** (§1): the `deep` conflict stays open; unknown response fields are preserved untouched.
+- **Schema honesty** (§1): the `deep` conflict is resolved (a `mode` input on `search_screens`, 2026-07-16 fixture); unknown response fields are preserved untouched.
 
 ---
 

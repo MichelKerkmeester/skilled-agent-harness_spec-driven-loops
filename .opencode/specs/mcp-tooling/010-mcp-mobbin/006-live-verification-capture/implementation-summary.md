@@ -1,135 +1,125 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Phase 6: live-verification-capture (mcp-mobbin)"
+description: "Live discovery on 2026-07-16 listed THREE Mobbin tools pre-auth, superseding the one-tool research baseline and resolving the deep-search conflict as a client-settable mode input; 22 packet files now cite the dated fixture."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "mobbin discovery summary"
+  - "mobbin fixture summary"
+  - "mobbin three tools summary"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-live-verification-capture"
-    last_updated_at: "2026-07-16T12:58:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "mcp-tooling/010-mcp-mobbin/006-live-verification-capture"
+    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_by: "claude-agent"
+    recent_action: "Phase complete; gates green"
+    next_safe_action: "Operator handoff: browser OAuth and first authenticated smoke search"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery_fixture_2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool_surface.md"
+      - ".opencode/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-live-verification-capture"
+      session_id: "agent-006-live-verification-capture-mobbin"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
 <!-- ANCHOR:metadata -->
-## Metadata
+## 1. METADATA
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-live-verification-capture |
 | **Completed** | 2026-07-16 |
-| **Level** | 1 |
+| **Level** | 2 |
+| **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The fixture did not just confirm the packet - it corrected it. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) listed **three** Mobbin tools pre-auth on 2026-07-16, where the packet's entire doctrine assumed one. The dated fixture `references/discovery_fixture_2026-07-16.json` is now ground truth, and 22 packet files flipped to match it.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### The supersession
 
-### [Feature Name]
+You can now call `search_flows` and `search_sections` - two tools the packet previously forbade an agent to even imagine. The live registry lists `mobbin.mobbin.{search_screens,search_flows,search_sections}` (TS callables `mobbin.mobbin_search_screens(args)` etc., exactly the convention-predicted forms), all read-only search tools; the mutation-refusal check passed. The one-public-tool record stays visible as a dated historical baseline in `tool_surface.md`, and every operating claim now tracks the live inventory. Flow research rebuilt around the real tool: `search_flows` returns flow objects with `actions[]`, `screen_count`, and per-screen previews ordered by `position`, so returned ordering is retrieved fact and only interpolation beyond it stays labeled inference.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### The resolutions
+
+The `deep` conflict is closed: the fixture schema shows `mode?: "deep" | "standard" | "fast"` as a client-settable `search_screens` input (`"deep"` = AI-powered relevance pipeline for nuanced queries; `"fast"` = deprecated alias for `"standard"`), alongside newly-declared `exclude_screen_ids` and `image_format` parameters. Discovery is pre-auth - the probe needed no OAuth - so the docs that gated callable confirmation on operator OAuth were corrected; authenticated CALLS remain operator-gated. One honest caveat landed with the wins: the declared `search_screens` output is `{ query, screens[{id, image_url, mobbin_url, app_name, platform}] }`, and the research-documented `index`/`failed[]` fields do not appear in it - flagged for verification on the first authenticated call rather than asserted either way.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `references/discovery_fixture_2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads (3 tools, full schemas) |
+| `SKILL.md` | Modified | Three-tool surface, resolved deep, workflows, rules, quick ref, version 1.1.1.0 |
+| `references/tool_surface.md` | Modified | Rebuilt on fixture schemas; open questions 1/3/4/10 resolved |
+| `references/mcp_wiring.md`, `references/troubleshooting.md` | Modified | Naming CONFIRMED; drift rows diff against the fixture |
+| `README.md`, `INSTALL_GUIDE.md`, `mcp-servers/mobbin-mcp/README.md` | Modified | Three tools + pre-auth discovery in all consumer mirrors |
+| `feature_catalog/` (root + flows/screens/apps/elements) | Modified | Inventory, areas, count; flows leaf rebuilt on search_flows |
+| `examples/` (README + 3 walkthroughs) | Modified | Confirmed names; flow example calls search_flows |
+| `manual_testing_playbook/` (root + 3 scenarios) | Modified | Grading re-anchored on the fixture baseline |
+| `assets/utcp_mobbin_manual.md` | Modified | Checklist items flipped with fixture evidence |
+| `scripts/doctor.sh`, `scripts/install.sh` | Modified | Hints state the confirmed three-tool baseline |
+| `changelog/v1.1.1.0.md` | Created | Release record |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
-## How It Was Delivered
+## 3. HOW IT WAS DELIVERED
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The fixture was read end to end first, and a packet-wide grep of INFERRED, one-tool, and deep-conflict wording built the 22-file flip set so mirrors (catalog leaves, examples, playbook scenarios, scripts) could not drift from the contract docs. The supersession is stated as a dated reviewed update, never as silent drift-acceptance, and the old boundary survives as historical context with its original reasoning. The packet closed through `package_skill.py --check --strict` (PASS), `bash -n` on both scripts, residual sweeps (0 non-changelog stale claims), and `validate.sh --strict --no-recursive` on this spec child.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
-## Key Decisions
-
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
+## 4. KEY DECISIONS
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Record the supersession as dated fact, keep the old baseline as history | The one-tool record was correct about the public documentation; deleting it would hide why the packet once forbade `search_flows`, and dating the change makes the epistemic chain auditable |
+| Flag the `index`/`failed[]` absence instead of rewriting the response shape | The declared schema is discovery output, not an exercised response; asserting either shape as live behavior would trade one overclaim for another |
+| Treat `search_flows` returned ordering as fact, keep inference labels beyond it | The tool now provides what reconstruction used to approximate; the honesty rule survives where the tool's contract ends |
+| Update both scripts (unlike refero) | Grep showed both hardcoded the INFERRED status, meeting the update-only-if-stale bar |
+| Defer the `search_sections` catalog leaf | The capture phase records the live surface; authoring a new capability leaf is follow-up work, noted in the areas table |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
-## Verification
-
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
+## 5. VERIFICATION
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-mobbin --check --strict` | PASS ("Skill is valid!"; 2 warnings: SKILL.md word count, .json fixture in references/, both accepted) |
+| `bash -n scripts/doctor.sh` and `bash -n scripts/install.sh` | PASS (exit 0, 2/2) |
+| Fixture cross-check: 3 `discoveredCallableNames` vs flipped claims | PASS (3/3 dotted names and the `Access as:` TS forms match every flipped claim) |
+| Residual sweep (`INFERRED` callable claims, one-tool boundary, open deep conflict) | PASS (0 hits outside changelog history) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this folder> --strict --no-recursive` | PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
-## Known Limitations
+## 6. KNOWN LIMITATIONS
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Authenticated calls remain unexercised, by design.** The capture phase is complete; browser OAuth on a paid plan, the first `limit: 1` smoke search, inline-image fidelity through `call_tool_chain`, rate-limit observation, and Free-denial semantics are documented operator handoff items (SKIP-valid with exact commands in the packet), not unfinished work in this phase.
+2. **Declared output vs live response is unverified.** The fixture's declared `search_screens` output lacks the research-documented `index`/`failed[]` fields; which description matches actual authenticated responses is a first-call check, and the docs deliberately assert neither.
+3. **`search_sections` has no dedicated feature-catalog leaf yet.** The live tool is documented in the contract docs and the catalog areas table; a per-feature leaf is follow-up authoring.
+4. **The fixture is a dated snapshot.** Provider surface drift after 2026-07-16 reopens the claims; the fail-closed drift protocol now diffs against the three-tool fixture baseline.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

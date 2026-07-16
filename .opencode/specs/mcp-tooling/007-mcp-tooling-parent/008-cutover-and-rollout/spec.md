@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout"
-    last_updated_at: "2026-07-10T07:36:17Z"
-    last_updated_by: "claude"
-    recent_action: "Confirmed core cutover gate passed; rollout items remain"
-    next_safe_action: "Complete deferred rollout items then close out"
+    last_updated_at: "2026-07-16T14:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Closed both deferred rollout items; phase complete"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files:
       - ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-008-cutover-and-rollout"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "mcp-tooling becomes the sixth canon-clean parent hub after sk-code, sk-design, system-deep-loop, sk-doc, sk-prompt"
@@ -51,15 +51,15 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Partial |
+| **Status** | Complete |
 | **Created** | 2026-07-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 8 |
+| **Phase** | 8 of 10 |
 | **Predecessor** | 007-routing-benchmark-and-review |
-| **Successor** | None (a follow-on canon-hardening tail may follow, per the sk-code/sk-doc/sk-prompt precedent, but is not pre-scoped here) |
+| **Successor** | 009-incumbent-inventory-parity |
 | **Handoff Criteria** | `parent-skill-check.cjs .opencode/skills/mcp-tooling` passes STRICT (0 warnings); `validate.sh --recursive --strict` passes on this track; the final stale-reference grep sweep returns zero live hits; the parent packet is rolled up |
-| **Execution Note** | Core gate satisfied: `parent-skill-check.cjs` STRICT passes 0 warnings and `validate.sh --recursive --strict` is 0/0. Predecessor phase 007 did not formally complete (Lane-C benchmark deferred) — this phase proceeded on the core gates regardless, per operator direction. Two rollout items carried over from phase 006 remain open: the advisor skill-graph DB rebuild and the CLAUDE.md/AGENTS.md figma-transport prose restatement — see `implementation-summary.md` Known Limitations |
+| **Execution Note** | Core gate satisfied: `parent-skill-check.cjs` STRICT passes 0 warnings and `validate.sh --recursive --strict` is 0/0. Predecessor phase 007 did not formally complete (Lane-C benchmark deferred) — this phase proceeded on the core gates regardless, per operator direction; that documented deviation stands. The two rollout items carried over from phase 006 were CLOSED on 2026-07-16: advisor skill-graph DB rebuilt (forced `advisor_rebuild`, 18 skills, generation 11997 to 11998, heavy validation ok at overallAccuracy 0.77) and CLAUDE.md/AGENTS.md figma-transport prose repointed to the `mcp-tooling` hub (lines 65 and 459 in each file). Status is Complete because every P0/P1 requirement (REQ-001..REQ-004) is verified and no unchecked P0 remains — see `implementation-summary.md` Rollout closure and `tasks.md` Phase 4 |
 <!-- /ANCHOR:metadata -->
 
 ---

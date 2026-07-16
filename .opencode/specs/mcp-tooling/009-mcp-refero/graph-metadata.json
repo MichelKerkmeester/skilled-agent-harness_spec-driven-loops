@@ -7,7 +7,9 @@
     "mcp-tooling/009-mcp-refero/001-research",
     "mcp-tooling/009-mcp-refero/002-skill-authoring",
     "mcp-tooling/009-mcp-refero/003-hub-integration",
-    "mcp-tooling/009-mcp-refero/004-validation-and-handoff"
+    "mcp-tooling/009-mcp-refero/004-validation-and-handoff",
+    "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth",
+    "mcp-tooling/009-mcp-refero/006-live-verification-capture"
   ],
   "manual": {
     "depends_on": [],
@@ -87,15 +89,15 @@
     ],
     "causal_summary": "The `mcp-tooling` hub has no design-reference research transport: when UI work needs real-world design examples (screens, flows, patterns from shipping products), there is no routed skill surface for Refero, even though a `refero` manual already exists in `.utcpconfig.json` (`npx -y mcp-remote https://api.refero.design/mcp`) and is reachable through Code Mode",
     "created_at": "2026-07-16T09:39:27Z",
-    "last_save_at": "2026-07-16T12:07:27.216Z",
+    "last_save_at": "2026-07-16T14:35:56.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:fd33a4268ade3651be9a9b22231972e987de488ca6967380eaa87a69cd2a8812",
+    "source_fingerprint": "sha256:3f6652a966d2d5b0c0b4e1a398317ccda27e556c039a81041c4629214bd5d60b",
     "source_doc_hashes": {
-      "spec.md": "8e5f15fe69b63e496d7ba870e7cddaee5adcdb018cdf971aff1802366a9ec7d7"
+      "spec.md": "3a78893e6fb41efbcedb72e2512db8021b9d321cac88d9b1d6c489d80a5f6343"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-16T12:07:27.216Z"

@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 This document is the canonical capability inventory for the `mcp-aside-devtools` skill. The root catalog acts as the system-level directory: it maps the five Smart Router intent domains (TASK, REPL, MCP, INSTALL, TROUBLESHOOT from SKILL.md §2) onto the three lanes the skill routes between — the natural-language agent-task CLI, the deterministic Playwright-compatible REPL, and the Aside MCP server via Code Mode. Every capability below traces to the packet's references, examples, playbook scenarios, or the completed fan-out research; nothing is invented beyond that verified surface.
 
-> **Registration status (read first).** The `aside` UTCP manual **is registered** in `.utcp_config.json` (2026-07-16; snapshot in [`../assets/utcp_aside_manual.md`](../assets/utcp_aside_manual.md)). The Code Mode callable is still **UNCONFIRMED**: convention predicts `aside.aside_repl`, but discovery (`search_tools()`/`tool_info()`) needs a fresh Code Mode session and must precede first invocation.
+> **Registration status (read first).** The `aside` UTCP manual **is registered** in `.utcp_config.json` (2026-07-16; snapshot in [`../assets/utcp_aside_manual.md`](../assets/utcp_aside_manual.md)), and the Code Mode callable is **CONFIRMED by live discovery 2026-07-16** ([`../references/discovery_fixture_2026-07-16.json`](../references/discovery_fixture_2026-07-16.json)): registry/discovery name `aside.aside.repl` (dot-separated), TypeScript callable `aside.aside_repl(args)` inside `call_tool_chain`. Per-session rediscovery still precedes first invocation (`tools.listChanged: true`).
 
 > **Verification note.** The CLI command surface and the one-`repl`-tool MCP inventory are version-pinned evidence against `1.26.626.1517` (observed 2026-07-16). Re-capture `aside --help` and re-run `tools/list` before relying on any flag or tool name; `tools.listChanged: true` makes hardcoding a defect.
 
@@ -37,7 +37,7 @@ Browser lanes act on live web pages under the signed-in Aside account, so agent-
 |---|---|---|
 | Task | Outcome-oriented, multi-step browser-agent goals | Approval/MFA/CAPTCHA pauses are human-only boundaries |
 | Repl | Deterministic, evidence-friendly browser steps | Artifacts verified independently (PNG magic bytes) |
-| Mcp | Code Mode composition through the registered `aside` manual | Callable unconfirmed until discovery in a fresh session |
+| Mcp | Code Mode composition through the registered `aside` manual | Callable confirmed 2026-07-16 (`aside.aside.repl` registry / `aside.aside_repl(args)` TS); re-verify per session |
 | Install | Operator-invoked install, verification, diagnostics | Never install or update implicitly |
 | Troubleshoot | Failure classification and recovery | PROFILE_UNBOUND is binding state, never auth failure |
 
@@ -78,7 +78,7 @@ Code Mode composition: `aside mcp` (local stdio, no credential field) exposes on
 | Feature | One-line description | Class | Canonical invocation |
 |---|---|---|---|
 | Stdio handshake + discovery | `initialize` then `tools/list`; one `repl` tool on `1.26.626.1517` | READ-ONLY | `bash examples/mcp-handshake-probe.sh` |
-| Code Mode composition | Chain browser work with other Code Mode tools via the registered manual | MUTATING (browser-side) | `aside.aside_repl({ title, code })` — UNCONFIRMED until `tool_info()` |
+| Code Mode composition | Chain browser work with other Code Mode tools via the registered manual | MUTATING (browser-side) | `aside.aside_repl({ title, code })` — CONFIRMED 2026-07-16 (registry name `aside.aside.repl`; fixture `references/discovery_fixture_2026-07-16.json`) |
 
 See [`mcp/mcp_transport_and_code_mode.md`](mcp/mcp_transport_and_code_mode.md) for the registered-manual state, rediscovery mandate, and binding constraint.
 

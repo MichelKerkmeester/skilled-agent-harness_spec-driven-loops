@@ -1,11 +1,26 @@
 {
+  "level": "1",
   "specFolder": "mcp-tooling/008-mcp-aside/006-live-verification-capture",
-  "description": "Phase 2: live-verification-capture",
+  "description": "The packet predicted `aside.asiderepl` as THE Code Mode callable and marked it UNCONFIRMED/UNKNOWN in 12 files, because live discovery had never run",
   "keywords": [
-    "phase",
-    "live-verification-capture"
+    "packet",
+    "predicted",
+    "aside",
+    "asiderepl",
+    "code",
+    "mode",
+    "callable",
+    "marked",
+    "unconfirmed",
+    "unknown",
+    "files",
+    "because",
+    "live",
+    "discovery",
+    "never",
+    "run"
   ],
-  "lastUpdated": "2026-07-16T12:58:32.313Z",
+  "lastUpdated": "2026-07-16T14:21:22.528Z",
   "specId": "006",
   "folderSlug": "live-verification-capture",
   "parentChain": [
@@ -13,6 +28,5 @@
     "008-mcp-aside"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -16,7 +16,7 @@ This scenario validates discovery for `DISCOVER-001`. It focuses on confirming t
 
 ### Why This Matters
 
-The doubled prefix is the packet's preserved naming conflict: the live-verified local evidence says `refero.refero_refero_<tool>`, a plausible-looking single-prefix derivation also circulates, and the research record resolves the conflict toward live evidence while making post-registration confirmation mandatory. An agent that hard-codes either form without `tool_info` is running on an assumption the packet explicitly forbids.
+The doubled prefix was the packet's preserved naming conflict; live registry evidence closed it on 2026-07-16 (`../../references/discovery_fixture_2026-07-16.json`): `list_tools` returned all eight dotted doubled names `refero.refero.refero_<tool>` pre-auth, and the TS callable is `refero.refero_refero_<tool>(...)`. The single-prefix derivation is refuted. Per-session confirmation stays mandatory — an agent that hard-codes any form without `tool_info` is running on an assumption the packet explicitly forbids.
 
 ---
 

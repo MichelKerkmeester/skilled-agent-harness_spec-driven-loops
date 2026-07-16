@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates discovery discipline for `DISCOVER-001`. It focuses on confirming that the predicted callable `mobbin.mobbin_search_screens` — which is **Inferred from the Code Mode `{manual}.{manual}_{tool}` convention and has never been observed live** — is confirmed through `list_tools` / `tool_info` before any call, that drift from the documented single-tool baseline fails closed, that any mutation-capable tool is refused, and that a stale-session or pre-OAuth state produces a clean SKIP of the live half with the blocker stated.
+This scenario validates discovery discipline for `DISCOVER-001`. The callable `mobbin.mobbin_search_screens` was **confirmed by live pre-auth discovery on 2026-07-16** (`../../references/discovery_fixture_2026-07-16.json`; registry names dotted `mobbin.mobbin.<tool>`, three tools total including `search_flows` and `search_sections`). The scenario now verifies that each session re-confirms through `list_tools` / `tool_info` before any call, that drift from the fixture three-tool baseline fails closed, that any mutation-capable tool is refused, and that a stale-session state produces a clean SKIP of the live half with the blocker stated (discovery itself needs no OAuth).
 
 ### Why This Matters
 
@@ -27,7 +27,7 @@ Operators run the exact sequence for `DISCOVER-001` and confirm the expected sig
 - Objective: confirm live callables and schemas are discovered before use, with the Inferred status honestly stated
 - Real user request: `What Mobbin tools are available through Code Mode?`
 - Prompt: `What Mobbin tools are available through Code Mode?`
-- Expected execution process: check the registration state first (registered; absence = ERR, escalate); stale session or pre-OAuth -> report the registered state, the reconnect/OAuth blocker, and the Inferred prediction without calling anything (live half SKIPs); fresh session with OAuth complete -> `list_tools()` filtered to the `mobbin` manual, then `tool_info` on the exact dotted name, comparing the live set against the documented single-tool baseline
+- Expected execution process: check the registration state first (registered; absence = ERR, escalate); stale session -> report the registered state, the reconnect blocker, and the fixture baseline without calling anything (live half SKIPs); fresh session -> `list_tools()` filtered to the `mobbin` manual, then `tool_info` on the exact dotted name, comparing the live set against the fixture three-tool baseline (discovery is pre-auth; OAuth gates calls only)
 - Expected signals: an honest state report or live discovery output; the Inferred caveat stated; drift or mutation-capable tools escalated, never papered over; no call on a guessed name
 - Desired user-visible outcome: the agent lists verified tools (or the registration/auth blocker) without claiming unverified callables
 - Pass/fail: PASS if discovery preceded any call AND the Inferred status was stated AND drift was escalated (or the blocker cleanly SKIPped the live half); FAIL if a callable was assumed OR drift was ignored
@@ -49,7 +49,7 @@ PRE: The contract half (honest state report, Inferred caveat) is always gradable
 1. state check: is the `mobbin` manual registered? (read-only)  # -> registered (OK); if the session predates it or OAuth pends, live half SKIPs with the blocker
 2. if live: `list_tools()` filtered to `mobbin`  # -> tool group listed (or auth blocker)
 3. if live: `tool_info("mobbin.mobbin_search_screens")`  # -> schema on the live name; prediction superseded if the name differs
-4. agent reports verified tools or the blocker, comparing against the single-tool baseline  # -> drift escalated, mutation-capable tools refused
+4. agent reports verified tools or the blocker, comparing against the fixture three-tool baseline  # -> drift escalated, mutation-capable tools refused
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -57,7 +57,7 @@ PRE: The contract half (honest state report, Inferred caveat) is always gradable
 
 ### Optional Supplemental Checks
 
-If `tool_info` shows fields beyond `query`/`platform`/`limit` (including a `deep` input), record them as dated live findings that resolve the packet's open questions — a reviewed packet update, not an on-the-spot behavior change.
+The 2026-07-16 fixture already recorded the extra fields (`mode` — including `"deep"` — plus `exclude_screen_ids`, `image_format`) as dated live findings. If a future `tool_info` shows fields beyond the fixture schema, record them the same way — a reviewed packet update, not an on-the-spot behavior change.
 
 ---
 

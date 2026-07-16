@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phases 004-005 need a hub skeleton to move content INTO, but that skeleton does not exist yet",
     "created_at": "2026-07-09T20:18:23Z",
-    "last_save_at": "2026-07-15T07:48:15.955Z",
+    "last_save_at": "2026-07-16T14:35:54.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
     ],
     "source_fingerprint": "sha256:02e31daabe320902c55be8e7856c31610c6f3cb379dd745342675d1b7686ed89",
     "source_doc_hashes": {
-      "spec.md": "5da53944b7a6d10e84f9d0191278a1ccb7b02ef204266435d005551af207345b",
-      "plan.md": "acb2db6245df79d65c7715e32e34c38ca23cc7d10ab0169ebff577ec21d0c8f6",
-      "tasks.md": "31293cfb74d379c27c8d30b264575bb5213ed5cccafbe956b41e30b5d957326e",
-      "implementation-summary.md": "26458ad4ee62bdf5b9b986b72df19d0fc7e5bb45d13cd91553c425bba2491308"
+      "spec.md": "1983502e548e081998f2bc8fa50906ce0b8fe65a2f5704ec64f327ed2cb05b6c",
+      "plan.md": "dddc3e7169d6a937b436db4d0bb90f95b7e09291c79c993dd67354e5b20777cb",
+      "tasks.md": "b26dc7755693707056956c224011fd9796fb69685506c7672483ceab90c70eac",
+      "implementation-summary.md": "4d30d8971dd308762d0cd865abfa979f758849b9081e4175634240c4e394cad3"
     },
     "last_active_child_id": null,
     "last_active_at": null

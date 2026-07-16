@@ -1,6 +1,6 @@
 ---
 title: "FLOWS-001 -- Flow Intent With Labeled Reconstruction"
-description: "This scenario validates flow-intent research for `FLOWS-001`. It focuses on running journey research as a screen search (no search_flows tool exists), reconstructing sequence only from supporting visual evidence, and labeling every reconstruction as inference."
+description: "This scenario validates flow-intent research for `FLOWS-001`. Since the 2026-07-16 discovery, a live search_flows tool exists: journey research uses its returned ordering as fact and labels anything beyond it as inference; screens-level fallback keeps the old reconstruction discipline."
 version: 1.1.0.0
 ---
 
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates flow-intent research for `FLOWS-001`. It focuses on a journey request running as a query over the single documented `search_screens` tool (no `search_flows` tool exists and none may be invented), on any step sequence being reconstructed **only when the visual evidence supports it**, and on that reconstruction being explicitly labeled inference, never presented as retrieved fact.
+This scenario validates flow-intent research for `FLOWS-001`. **Updated 2026-07-16**: live discovery lists a dedicated `search_flows` tool (`../../references/discovery_fixture_2026-07-16.json`), so journey research now prefers `mobbin.mobbin_search_flows` and treats its returned `screens[].position` ordering as retrieved fact. Anything beyond the returned ordering — interpolated states, skipped steps, cross-app generalizations — is reconstructed **only when the visual evidence supports it** and explicitly labeled inference. The screens-level fallback (`search_screens` with a journey-shaped query) keeps the full reconstruction-as-inference discipline.
 
 ### Why This Matters
 
@@ -30,7 +30,7 @@ Operators run the exact sequence for `FLOWS-001` and confirm the expected signal
 - Expected execution process: confirmed callable -> `search_screens` with a journey-shaped query and `platform: "web"`, `limit: 5` -> inspect returned screens -> reconstruct sequence only where matching app, coherent progression, and consistent state transitions support it, labeled inference -> evidence-backed narrative with `mobbin_url` citations
 - Expected signals: no invented flow tool or ordered-flow claim; the inference label present wherever sequence is asserted; citations per screen used; `failed[]` reported
 - Desired user-visible outcome: an evidence-backed journey narrative (or a session/auth SKIP), with inference never presented as retrieved fact
-- Pass/fail: PASS if no flow tool was invented AND reconstruction was labeled inference AND citations held; FAIL if an ordered flow was claimed as retrieved fact OR a `search_flows` tool was fabricated; SKIP with the session/auth blocker documented
+- Pass/fail: PASS if the live `search_flows` tool (or the screens fallback) was used within its contract AND anything beyond returned ordering was labeled inference AND citations held; FAIL if sequence beyond the returned ordering was claimed as retrieved fact OR a tool outside the fixture inventory was fabricated; SKIP with the session/auth blocker documented
 
 ---
 

@@ -1,0 +1,787 @@
+{
+  "sessionId": "fanout-sol-review-1784209544620-5f3v0s",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-07-16T14:08:27Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P0",
+      "title": "Explicit Figma render/export scenario produces no Figma intent",
+      "file": ".opencode/skills/mcp-tooling/hub-router.json",
+      "line": 141,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P0",
+      "title": "Chrome packet is unconditionally loaded on every non-Chrome route",
+      "file": ".opencode/skills/mcp-tooling/hub-router.json:5,20-22",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P0",
+      "title": "Baseline benchmark passes seven route-contract violations",
+      "file": ".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Shared hub-identity vocabulary defeats the defer contract",
+      "file": ".opencode/skills/mcp-tooling/hub-router.json",
+      "line": 25,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "Five of six blind hub holdouts have zero lexical recall",
+      "file": ".opencode/skills/mcp-tooling/hub-router.json",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Generic screen-examples phrase loads both Refero and Mobbin",
+      "file": ".opencode/skills/mcp-tooling/hub-router.json",
+      "line": 192,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "title": "Figma transport is marked workspace-read-only despite local export writes",
+      "file": ".opencode/skills/mcp-tooling/mode-registry.json",
+      "line": 139,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "Figma authoring path lacks mandatory sk-design pairing",
+      "file": ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+      "line": 24,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P1",
+      "title": "Derived graph intent projection omits three added modes",
+      "file": ".opencode/skills/mcp-tooling/graph-metadata.json",
+      "line": 196,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P1",
+      "title": "Phase acceptance package remains scoped to three modes",
+      "file": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F012",
+      "severity": "P1",
+      "title": "Four packet blind holdouts miss their declared intent",
+      "file": ".opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/intra_routing_recall/holdout_daily.md",
+      "line": 13,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F013",
+      "severity": "P1",
+      "title": "All six runtime fallbacks violate negative no-resource gold",
+      "file": ".opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/intra_routing_recall/negative.md",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F014",
+      "severity": "P1",
+      "title": "Deterministic replay omits runtime no-match behavior",
+      "file": ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
+      "line": 155,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "title": "Hub playbook index omits three modes and nine scenarios",
+      "file": ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "title": "Eleven positive packet scenarios omit always-loaded base gold",
+      "file": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/intra_routing_recall/install.md",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 3,
+    "P1": 10,
+    "P2": 2
+  },
+  "openFindingsCount": 15,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "ambiguous-defer",
+      "benchmark-gate-fidelity",
+      "blind-holdout-recall",
+      "cross-transport-overdispatch",
+      "default-resource-isolation",
+      "design-judgment-pairing",
+      "metadata-projection-drift",
+      "negative-suppression",
+      "packet-holdout-recall",
+      "phase-acceptance-drift",
+      "playbook-inventory-drift",
+      "positive-route-recall",
+      "replay-runtime-parity",
+      "resource-gold-alignment",
+      "workspace-mutation-boundary"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "positive-route-recall": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "default-resource-isolation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "ambiguous-defer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "blind-holdout-recall": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross-transport-overdispatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "workspace-mutation-boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "design-judgment-pairing": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "benchmark-gate-fidelity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "metadata-projection-drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "phase-acceptance-drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook-inventory-drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "packet-holdout-recall": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "negative-suppression": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "replay-runtime-parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "resource-gold-alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "packet-holdout-recall",
+      "negative-suppression",
+      "replay-runtime-parity",
+      "resource-gold-alignment"
+    ],
+    "covered": [
+      "packet-holdout-recall",
+      "negative-suppression",
+      "replay-runtime-parity",
+      "resource-gold-alignment"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 0,
+      "partial": 1,
+      "fail": 3,
+      "blocked": 0,
+      "notApplicable": 2,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1
+        },
+        "evidence": [
+          ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md:61-148",
+          ".opencode/skills/mcp-tooling/hub-router.json:24-90"
+        ],
+        "findingRefs": [
+          "F010"
+        ],
+        "summary": "Phase requirements cover three modes while the shipped router exposes six."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1
+        },
+        "evidence": [
+          ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/tasks.md:53-88",
+          ".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:11-126"
+        ],
+        "findingRefs": [
+          "F008",
+          "F010"
+        ],
+        "summary": "Tasks are unchecked and the committed benchmark passes unscored route expectations."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "not_applicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "The target is a spec folder, not a skill-agent pair."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "not_applicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "The target is not an agent runtime surface."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0
+        },
+        "evidence": [
+          ".opencode/skills/mcp-tooling/mode-registry.json:31-250",
+          ".opencode/skills/mcp-tooling/graph-metadata.json:196-218"
+        ],
+        "findingRefs": [
+          "F009"
+        ],
+        "summary": "Registry-router keys and aliases align, but the graph derived projection does not."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1
+        },
+        "evidence": [
+          ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md:3-49",
+          ".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:89-126"
+        ],
+        "findingRefs": [
+          "F008",
+          "F011",
+          "F012",
+          "F013",
+          "F015"
+        ],
+        "summary": "The index is stale, hub route gold is unscored, and packet recall contracts drift."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

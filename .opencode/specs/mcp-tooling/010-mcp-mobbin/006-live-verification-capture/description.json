@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "mcp-tooling/010-mcp-mobbin/006-live-verification-capture",
-  "description": "Phase 2: live-verification-capture",
+  "description": "The whole packet was built on the official one-public-tool record: `searchscreens` only, `searchflows` explicitly listed as a tool that must never be",
   "keywords": [
-    "phase",
-    "live-verification-capture"
+    "whole",
+    "packet",
+    "official",
+    "one-public-tool",
+    "record",
+    "searchscreens",
+    "only",
+    "searchflows",
+    "explicitly",
+    "listed",
+    "tool",
+    "must",
+    "never"
   ],
-  "lastUpdated": "2026-07-16T12:58:35.757Z",
+  "lastUpdated": "2026-07-16T14:28:23.512Z",
   "specId": "006",
   "folderSlug": "live-verification-capture",
   "parentChain": [
@@ -13,6 +25,5 @@
     "010-mcp-mobbin"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

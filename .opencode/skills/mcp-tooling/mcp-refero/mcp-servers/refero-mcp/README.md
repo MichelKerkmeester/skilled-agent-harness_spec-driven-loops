@@ -31,7 +31,7 @@ const tools = await list_tools();
 const info = await tool_info({ tool_name: "refero.refero_refero_search_styles" });
 ```
 
-Expected result: `list_tools()` includes the `refero` manual's tools, and `tool_info()` returns a concrete schema for the doubled-prefix callable (requires completed operator auth). Fail closed if the eight documented tools are missing, renamed, or expanded.
+Expected result: `list_tools()` includes the `refero` manual's tools, and `tool_info()` returns a concrete schema for the doubled-prefix callable — both work pre-auth (confirmed 2026-07-16: all eight tools listed as `refero.refero.refero_<tool>`; fixture `references/discovery_fixture_2026-07-16.json`). Fail closed if the eight documented tools are missing, renamed, or expanded.
 
 ---
 

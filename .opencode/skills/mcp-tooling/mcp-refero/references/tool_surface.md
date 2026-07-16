@@ -102,8 +102,8 @@ Documented entitlements (official plans and MCP getting-started pages):
 
 These stay UNKNOWN until live evidence exists; none can be resolved by authoring:
 
-1. Does authenticated `tools/list` exactly match the eight documented tools, and does Code Mode expose the doubled `refero.refero_refero_<tool>` names? (Confirm at install/first use.)
-2. Which tools actually expose `response_format` through this Code Mode client? (Live `tool_info` per tool.)
+1. **RESOLVED 2026-07-16** ([`discovery_fixture_2026-07-16.json`](./discovery_fixture_2026-07-16.json)): `tools/list` through Code Mode exactly matches the eight documented tools under the dotted doubled registry names `refero.refero.refero_<tool>`, and it listed them **pre-auth** (no OAuth needed for discovery). The TS callable is the doubled `refero.refero_refero_<tool>(...)` form (fixture `Access as:` line). Per-session re-confirmation remains the rule.
+2. **PARTIALLY RESOLVED 2026-07-16**: the fixture's live schemas confirm `response_format?: "json" | "md"` (default `"md"`) on `refero_search_styles` and `refero_search_screens`, and `platform: "ios" | "web"` required on `refero_search_screens`. The remaining six tools' `response_format` exposure through this client stays a live `tool_info` check per tool.
 3. What search page size applies, and can it vary by layer or plan?
 4. What per-second, burst, concurrency, 429, and `Retry-After` behavior applies?
 5. Does the existing bridge complete OAuth authorization, refresh, and dynamic registration end to end? (Operator browser OAuth required; currently **Inferred**.)

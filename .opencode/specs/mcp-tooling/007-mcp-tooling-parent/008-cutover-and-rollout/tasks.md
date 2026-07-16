@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout"
-    last_updated_at: "2026-07-10T07:36:17Z"
-    last_updated_by: "claude"
-    recent_action: "Checked off terminal-gate tasks; added T011 visibility check"
-    next_safe_action: "Complete deferred rollout items then close out"
+    last_updated_at: "2026-07-16T14:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Closed both deferred rollout items with evidence (T012-T016)"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files:
       - ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-008-cutover-and-rollout"
       parent_session_id: null
-    completion_pct: 91
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -82,12 +82,27 @@ _memory:
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Deferred rollout closure (2026-07-16)
+
+The two rollout items carried over from phase 006 (tracked as still-deferred by T011) are now done; the ClickUp drift deferral is re-evidenced as still tracked.
+
+- [x] T012 Advisor skill-graph DB rebuild [evidence: `node .opencode/bin/skill-advisor.cjs advisor_rebuild --json '{"force":true}' --trusted` returned `rebuilt: true`, 18 skills, generation 11997 to 11998; corroborated by `skill-graph.sqlite` metadata `last_scan_timestamp: 2026-07-16T13:42:43.336Z` with `scannedFiles: 18`. Note: the first un-forced run skipped with reason `status-live` (advisor_status reported live), so the rebuild was forced]
+- [x] T013 Advisor heavy validation [evidence: `advisor_validate --json '{"confirmHeavyRun":true}' --trusted` returned status ok, overallAccuracy 0.77, no failures listed]
+- [x] T014 Post-rebuild routing probes for the three new transport phrasings (warm daemon) [evidence: aside phrasing resolved mcp-tooling at 0.726 (confidence 0.91); refero at 0.783 (confidence 0.941); mobbin at 0.682 (confidence 0.887); 3-of-3 top-1]
+- [x] T015 CLAUDE.md + AGENTS.md figma-transport prose repointed to the hub [evidence: `CLAUDE.md:65` and `AGENTS.md:65` (Open Design dispatch rule) plus `CLAUDE.md:459` and `AGENTS.md:459` (UI/design-work quick-reference row) now name the `mcp-tooling` hub and its three design transports (mcp-figma, mcp-refero, mcp-mobbin); CLAUDE.md change committed in `c471ec7fcaf`, AGENTS.md modified in the working tree]
+- [x] T016 Re-confirm the ClickUp auth/config drift is still tracked, not resolved and not dropped [evidence: `005-foldin-clickup-and-figma/spec.md:114` keeps it Out of Scope as "pre-existing, not caused by this move, deferred as a follow-up" and `spec.md:143` REQ-005 requires it documented-not-fixed; no resolution shipped anywhere]
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` — T001 stays open (phase 007 precondition not literally met, proceeded per operator direction)
+- [ ] All tasks marked `[x]` — T001 stays open (phase 007 precondition not literally met, proceeded per operator direction; documented deviation, not a blocker for this phase's own requirements)
 - [x] No `[B]` blocked tasks remaining
 - [x] STRICT parent-hub check 0 warnings; recursive validation 0/0; stale-reference sweep clean; parent rolled up; known-deferred ClickUp drift confirmed still-deferred
+- [x] Deferred rollout items closed [evidence: T012-T015 above; advisor DB rebuilt and validated, CLAUDE.md/AGENTS.md prose repointed]
 <!-- /ANCHOR:completion -->
 
 ---

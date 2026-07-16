@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After phase 003 the mcp-mobbin mode is wired but unproven at strict level: no strict packaging gate has run on the new packet, the hub has not been re-validated as a four-mode unit, the spec packet's checklists carry no evidence, and no continuity has been saved",
     "created_at": "2026-07-16T09:39:34Z",
-    "last_save_at": "2026-07-16T12:06:13.227Z",
+    "last_save_at": "2026-07-16T14:39:10.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59eb2dc422f9545d503d869aa445b87b84ba4d46e474d4f7c07ff199c4deb42c",
+    "source_fingerprint": "sha256:a4ad3b079020adb948627c9ae99c96a102bc43c4617e0dfc0aa4931a99fc4597",
     "source_doc_hashes": {
-      "spec.md": "41b14e4ffbd89994e87e604b47ab2418aa7be449d362b9afa932c8f5221043d7",
+      "spec.md": "f6a3f3f3eaee447b02298b56ce830de6c77c11cb6ad785ff57e15bcf939d62ca",
       "plan.md": "a70e9c9a826fe55fe013b4415b1a5d4f4c3e79892fcf533cd4523ede7818904e",
       "tasks.md": "f61ced531524a4ac5b19cf600c13a59e5ebd6c17013b78ebb0a4ae4d53e5db55",
       "implementation-summary.md": "a056242a22f6e64c6f41b100d072371ad22062c1f437c4b00d21b4a3b1dadb28"

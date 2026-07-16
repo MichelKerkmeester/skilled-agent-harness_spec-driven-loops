@@ -8,7 +8,7 @@ version: 1.1.0.0
 
 End-to-end manual testing reference for the mcp-mobbin skill. Every scenario validates a capability of the skill against its defined behavior, and the whole set is deliberately SAFE: the documented provider surface is read-only, the packet is a `mutatesWorkspace: false` transport, and no scenario writes to this repo, to `.utcp_config.json`, or to auth state. The `mobbin` manual **is registered** (2026-07-16); live-call scenarios still depend on a **fresh Code Mode session** (manuals load at startup) plus an authenticated **paid** Mobbin account (Pro, Team, or Enterprise; Free has no MCP access) and completed **operator-only browser OAuth** — there is no API key — so **SKIP with a documented blocker is a first-class verdict** for them. Skill version 1.1.0.0.
 
-> **Naming caveat (locked decision, read first).** The Code Mode callable is **INFERRED**: convention predicts `mobbin.mobbin_search_screens(...)`; the `mobbin` manual is registered, but no live discovery has run. Every scenario that would call a tool MUST first confirm the exact callable with `tool_info` and fail closed on drift. Never grade a scenario on an assumed name.
+> **Naming status (locked decision, read first).** The Code Mode callables are **CONFIRMED by live pre-auth discovery 2026-07-16** (`references/discovery_fixture_2026-07-16.json`): `mobbin.mobbin_search_screens(...)`, `mobbin.mobbin_search_flows(...)`, `mobbin.mobbin_search_sections(...)` (registry names dotted `mobbin.mobbin.<tool>`). Every scenario that would call a tool MUST still re-confirm the exact callable with `tool_info` in its own session and fail closed on drift from the fixture baseline. Never grade a scenario on an assumed name.
 
 ---
 
@@ -55,7 +55,7 @@ All scenarios share these preconditions. Verify before starting any wave.
 5. `sk-design` is loadable for PAIR-001 (the pairing scenario needs the judgment owner present).
 6. No scenario runs Write, Edit, or Task; no scenario opens `~/.mcp-auth`; no evidence may contain tokens, OAuth URLs with codes, or auth-state contents.
 
-> **Do-not-run note for this playbook author and executors:** Call examples are illustrative; the exact callable name and live schema are confirmed with `tool_info` on the live account before grading — the predicted `mobbin.mobbin_search_screens` form has never been observed. Never grade against an invented parameter (including the disputed `deep`), an invented tool family, or a rate contract finer than the documented 60 requests / 60 seconds.
+> **Do-not-run note for this playbook author and executors:** Call examples are illustrative; the exact callable name and live schema are re-confirmed with `tool_info` in the grading session — the fixture baseline (2026-07-16) is `mobbin.mobbin_search_screens` plus `search_flows` and `search_sections`, with `mode` (`deep`/`standard`) a confirmed `search_screens` input. Never grade against an undeclared parameter, an invented tool family, or a rate contract finer than the documented 60 requests / 60 seconds.
 
 ---
 
@@ -159,20 +159,20 @@ Prompt: `"Check whether the Mobbin MCP is wired into this project."`
 ### DISCOVER-001 | Discovery-First Callable Confirmation
 
 #### Description
-Verify that no Mobbin tool is ever called on an assumed name: the predicted `mobbin.mobbin_search_screens` form is Inferred, so discovery (`list_tools` / `tool_info`) must confirm the live callable and schema first, drift from the documented single-tool baseline fails closed, and any mutation-capable tool is refused. In a stale session or pre-OAuth, the live half SKIPs cleanly with the blocker stated.
+Verify that no Mobbin tool is ever called on an assumed name: the callables are confirmed by the 2026-07-16 fixture (`mobbin.mobbin_search_screens` + `search_flows` + `search_sections`), but each session still re-confirms via discovery (`list_tools` / `tool_info`) first; drift from the fixture three-tool baseline fails closed, and any mutation-capable tool is refused. In a stale session, the live half SKIPs cleanly with the blocker stated (discovery itself is pre-auth).
 
 #### Scenario Contract
 Prompt: `"What Mobbin tools are available through Code Mode?"`
 
 - Objective: confirm live callables and schemas are discovered before use, with the Inferred status honestly stated
 - Expected execution process: stale session or pre-OAuth -> the agent reports the registered state, the reconnect/OAuth blocker, and the Inferred prediction without calling anything; fresh session with OAuth complete -> `list_tools()` filtered to the `mobbin` manual, then `tool_info` on the exact dotted name; drift or a mutation-capable tool is escalated, never papered over
-- Expected signals: an honest state report (or live discovery output); the Inferred status of the predicted name stated; single-tool baseline comparison; no call on a guessed name
+- Expected signals: an honest state report (or live discovery output); the fixture-confirmed baseline cited; three-tool baseline comparison; no call on a guessed name
 - Desired user-visible outcome: the agent lists verified tools (or the session/auth blocker) without claiming unverified callables
 
 #### Test Execution
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DISCOVER-001 | Discovery-first confirmation | Verify the Inferred callable is confirmed live before any invocation | `What Mobbin tools are available through Code Mode?` | 1. state check (registered?) -> 2. if live: `list_tools()` filtered to `mobbin` -> 3. `tool_info("mobbin.mobbin_search_screens")` -> 4. agent reports verified tools or the blocker | Step 1: honest state. Steps 2-3: schema confirmed on the live name (or clean SKIP). Step 4: single-tool baseline compared; drift/mutation-capable tools escalated | Discovery transcript including the `tool_info` output (or the blocker evidence) | PASS if discovery preceded any call AND the Inferred status was stated AND drift was escalated (or the blocker cleanly SKIPped the live half) AND no guessed name was invoked. FAIL if a callable was assumed OR drift was ignored | 1. Confirm `list_tools`/`tool_info` ran first. 2. Confirm the Inferred caveat was stated. 3. Confirm any mismatch with the single-tool baseline was escalated. |
+| DISCOVER-001 | Discovery-first confirmation | Verify the fixture-confirmed callables are re-confirmed live before any invocation | `What Mobbin tools are available through Code Mode?` | 1. state check (registered?) -> 2. if live: `list_tools()` filtered to `mobbin` -> 3. `tool_info("mobbin.mobbin_search_screens")` -> 4. agent reports verified tools or the blocker | Step 1: honest state. Steps 2-3: schema confirmed on the live name (or clean SKIP). Step 4: fixture three-tool baseline compared; drift/mutation-capable tools escalated | Discovery transcript including the `tool_info` output (or the blocker evidence) | PASS if discovery preceded any call AND the fixture baseline was cited AND drift was escalated (or the blocker cleanly SKIPped the live half) AND no guessed name was invoked. FAIL if a callable was assumed OR drift was ignored | 1. Confirm `list_tools`/`tool_info` ran first. 2. Confirm the fixture baseline was cited. 3. Confirm any mismatch with the three-tool baseline was escalated. |
 
 > **Feature File:** [discovery_setup/discovery_first.md](discovery_setup/discovery_first.md)
 > **Catalog:** [feature_catalog.md](../feature_catalog/feature_catalog.md)

@@ -12,13 +12,13 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario confirms that Code Mode discovery surfaces the Aside callables from the registered `aside` manual in `.utcp_config.json` — expected `aside.aside_repl` per the `{manual_name}.{manual_name}_{tool_name}` convention.
+This scenario confirms that Code Mode discovery surfaces the Aside callables from the registered `aside` manual in `.utcp_config.json`. **First satisfied 2026-07-16** via a direct stdio MCP probe of CodeMode-MCP (fixture: `../../references/discovery_fixture_2026-07-16.json`): the registry/discovery name is `aside.aside.repl` (dot-separated); the TypeScript callable inside `call_tool_chain` is `aside.aside_repl(args)` per the `{manual_name}.{manual_name}_{tool_name}` convention.
 
 > **PRECONDITION**: A session with the code_mode MCP loaded. The `aside` manual **is registered** in `.utcp_config.json` (2026-07-16), and Code Mode loads manuals at startup — so discovery needs a session started after registration. Without a Code Mode session, the correct outcome is SKIP with the blocker "no Code Mode session available".
 
 ### Why This Matters
 
-`aside.aside_repl` is a naming-convention expectation, not an observed fact — the research explicitly classifies it as a post-registration discovery result to confirm. This scenario is the confirmation, and it closes (or reopens) the packet's expected-callable claim.
+The callable name was originally a naming-convention expectation; the 2026-07-16 discovery run turned it into an observed fact and exposed a subtlety: the pre-discovery prediction `aside.aside_repl` was wrong as a REGISTRY name (discovery returns `aside.aside.repl`, dot-separated) but right as the TS call surface (`aside.aside_repl(args)`, the fixture's `Access as:` line). Re-running this scenario diffs future discovery output against the fixture baseline and reopens the claim on drift.
 
 ---
 
@@ -26,7 +26,7 @@ This scenario confirms that Code Mode discovery surfaces the Aside callables fro
 
 Operators run the exact prompt and command sequence for `ASD-011` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify Code Mode `search_tools()` finds Aside tools and `tool_info()` confirms the exact callable name; record the actual name whether or not it matches `aside.aside_repl`.
+- Objective: Verify Code Mode `search_tools()` finds Aside tools and `tool_info()` confirms the exact callable name; record the actual name and diff it against the 2026-07-16 fixture baseline (registry `aside.aside.repl`, TS callable `aside.aside_repl(args)`).
 - Real user request: `"Can I call Aside from a Code Mode tool chain now?"`
 - Prompt: `Discover the registered Aside callables through Code Mode and confirm their exact names.`
 - Expected execution process: registration check, search, per-callable info, name confirmation.
@@ -52,7 +52,7 @@ Operators run the exact prompt and command sequence for `ASD-011` and confirm th
 
 - Step 1: the manual object (stdio, `command: "aside"`, `args: ["mcp"]`, `env: {}`)
 - Step 2: at least one Aside tool discovered
-- Step 3: exact callable names — expected `aside.aside_repl`, actual recorded either way
+- Step 3: exact callable names — baseline (2026-07-16 fixture): registry `aside.aside.repl`, TS callable `aside.aside_repl(args)`; actual recorded either way
 
 ### Evidence
 
@@ -67,7 +67,7 @@ The registration object, the discovery output, and the confirmed callable names 
 ### Failure Triage
 
 1. Registered but undiscovered: verify `jq empty .utcp_config.json`, confirm the Code Mode session started after registration (manuals load at startup — reconnect if not), then check whether the Code Mode server's PATH resolves `aside` (absolute-path substitution may be needed), then re-run discovery.
-2. Callable name differs from `aside.aside_repl`: update the packet's MCP reference with the confirmed name — the convention-based expectation was wrong for this environment.
+2. Callable name differs from the fixture baseline (`aside.aside.repl` registry / `aside.aside_repl(args)` TS): save a fresh dated fixture and update the packet's MCP reference with the confirmed name — a reviewed packet update, not an improvised call. This already happened once: the pre-discovery registry prediction lacked the dot separator.
 
 ---
 

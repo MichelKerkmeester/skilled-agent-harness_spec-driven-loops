@@ -75,17 +75,19 @@ aside repl "openTab('https://example.com')"
 
 **Step 4: MCP path with Code Mode.**
 
-The `aside` manual **is registered** in `.utcp_config.json` (registered 2026-07-16; snapshot in [`assets/utcp_aside_manual.md`](./assets/utcp_aside_manual.md)). Discovery pends a fresh Code Mode session — manuals load at startup — and the callable name must be discovery-confirmed before first use. The expected shape is:
+The `aside` manual **is registered** in `.utcp_config.json` (registered 2026-07-16; snapshot in [`assets/utcp_aside_manual.md`](./assets/utcp_aside_manual.md)), and **live discovery confirmed the callable on 2026-07-16** (fixture: [`references/discovery_fixture_2026-07-16.json`](./references/discovery_fixture_2026-07-16.json)): discovery lists the registry name `aside.aside.repl` (dot-separated); the TypeScript call inside `call_tool_chain` is `aside.aside_repl(args)`:
 
 ```typescript
 call_tool_chain(`
   const result = await aside.aside_repl({
     title: "Open example.com",
-    code: "await openTab('https://example.com'); return await snapshot(page);"
+    code: "await openTab('https://example.com'); console.log(await snapshot(page));"
   });
   return result;
 `)
-// Confirm the aside.aside_repl callable via search_tools()/tool_info() first — never assume it.
+// Discovery name (list_tools/search_tools): "aside.aside.repl" — dot-separated.
+// TS callable (per the fixture's "Access as:" line): aside.aside_repl(args).
+// Re-verify per session: tools.listChanged is true.
 ```
 
 ---
@@ -147,7 +149,7 @@ A: Use `aside "<prompt>"` when the outcome matters more than the steps (multi-si
 
 **Q: Can I use the MCP path today?**
 
-A: Yes, with one step left. The transport works (`aside mcp` over stdio) and the `aside` UTCP manual is registered in `.utcp_config.json` (2026-07-16). What remains is discovery confirmation: run `search_tools()`/`tool_info()` in a fresh Code Mode session and record the actual callable (expected `aside.aside_repl`) before invoking. The CLI lanes need no such step.
+A: Yes. The transport works (`aside mcp` over stdio), the `aside` UTCP manual is registered in `.utcp_config.json` (2026-07-16), and live discovery confirmed the surface the same day (fixture: `references/discovery_fixture_2026-07-16.json`): registry name `aside.aside.repl`, TS callable `aside.aside_repl(args)`, one `repl` tool only. Per-session rediscovery stays mandatory (`tools.listChanged: true`); actual browser work still needs a profile binding.
 
 **Q: Does Aside capture console logs or network traffic like `bdg`?**
 

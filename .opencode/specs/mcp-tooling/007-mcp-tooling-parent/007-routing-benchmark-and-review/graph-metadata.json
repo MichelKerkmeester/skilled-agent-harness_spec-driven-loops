@@ -39,15 +39,16 @@
       "carve-out"
     ],
     "importance_tier": "normal",
-    "status": "deferred",
+    "status": "complete",
     "key_files": [
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/plan.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/tasks.md",
-      ".opencode/skills/mcp-tooling/hub-router.json",
+      "tasks.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,6 +73,12 @@
         "name": "hub-router.json",
         "kind": "config",
         "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -171,33 +178,41 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "rationale",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The fold-in is functionally complete after phase 006, but two things are unverified: whether the advisor actually routes the three tools correctly through the single hub identity (especially the figma transport, whose routing carve-out was deferred here), and whether the full diff is free of correctness regressions",
     "created_at": "2026-07-09T20:18:25Z",
-    "last_save_at": "2026-07-15T07:48:17.259Z",
+    "last_save_at": "2026-07-16T14:35:55.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:420362b0622b2a21be8dc36735886c51f2332cf0d7c209cbc5277d6b343bc65f",
+    "source_fingerprint": "sha256:3fb85702112cbf8e1efa397900b148cfdae3b900d661b9ba70c48906dfedf7f6",
     "source_doc_hashes": {
-      "spec.md": "ed28c9708572cc87e63b18ac27e24d244c9404c1a84055b46186a2bccc64ac0d",
-      "plan.md": "7b6bdc1e952f12fc790dcf7674bf45ec1e83947dbc9d46b9fd91663a0e7ef39c",
-      "tasks.md": "c11cc5f3bdb73e1fef6a2dd8d69d16c03bed8330c9941e86727b6f956ab5082b"
+      "spec.md": "a20abff2724ded4ff880cebe92a743660a4767bcbc89e8fd2d5c95976d6ff0fb",
+      "plan.md": "4c223cb478ec86602d59f7bd6905161877b2e65c5f0761c35698e199b2a0b67c",
+      "tasks.md": "129b2ea9764374b0038a3ae5a38bc5589d8b4f43b4d3d87aae3b2aec3aa70736",
+      "implementation-summary.md": "6a30fea823c268c6678b56a53458cf2381deb696b18dbef717cd83bf8e58dc0b"
     },
     "last_active_child_id": null,
     "last_active_at": null

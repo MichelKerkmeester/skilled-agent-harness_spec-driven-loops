@@ -100,27 +100,27 @@ The protected-resource document names resource `https://api.mobbin.com/mcp`, the
 
 ---
 
-## 5. CALLABLE NAMING (INFERRED) AND DISCOVERY
+## 5. CALLABLE NAMING (CONFIRMED 2026-07-16) AND DISCOVERY
 
-Code Mode's naming convention is `{manual}.{manual}_{tool}`. Applied to a manual named `mobbin` and the tool `search_screens`, convention predicts:
+Code Mode's naming convention is `{manual}.{manual}_{tool}`. Live discovery on 2026-07-16 ([`discovery_fixture_2026-07-16.json`](./discovery_fixture_2026-07-16.json)) confirmed the convention held exactly, for all three live tools:
 
-| Form | Predicted shape | Status |
+| Form | Observed shape | Status |
 |---|---|---|
-| Discovery name (dotted) | `mobbin.mobbin.search_screens` | **[INFERRED]** — never observed live |
-| Callable name | `mobbin.mobbin_search_screens(...)` | **[INFERRED]** — never observed live |
+| Discovery name (dotted) | `mobbin.mobbin.search_screens` · `mobbin.mobbin.search_flows` · `mobbin.mobbin.search_sections` | **[CONFIRMED: fixture `list_tools`]** |
+| Callable name | `mobbin.mobbin_search_screens(...)` etc. | **[CONFIRMED: fixture `Access as:` lines]** |
 
-Both forms mirror the existing `clickup.clickup_*` pattern, but **no live discovery has run**: the manual was registered without a fresh Code Mode session since (manuals load at startup), and the endpoint is auth-protected pending operator OAuth. The operating rule:
+Notably, discovery ran **pre-auth** — `tools/list` and full schemas needed no OAuth (the endpoint gates calls, not listing). The operating rule stands:
 
-> **Confirm actual callable names via `list_tools` / `tool_info` at install and first use, and fail closed on drift.** Never hard-code a predicted name as ground truth.
+> **Confirm actual callable names via `list_tools` / `tool_info` at install and first use, and fail closed on drift.** Never hard-code a name as ground truth — the fixture is a dated baseline, not a permanent contract.
 
-Mandatory discovery-first sequence once a fresh Code Mode session has loaded the registered manual and the operator has authenticated:
+Mandatory discovery-first sequence per session (authentication is needed for calls, not for discovery):
 
 1. `list_tools()` or `search_tools({ task_description: "Mobbin screen design research", limit: 10 })`
 2. Filter to the `mobbin` manual.
 3. `tool_info()` on the exact dotted name.
 4. Only then `call_tool_chain({ code })`.
 
-Illustrative call (schema unconfirmed until `tool_info`):
+Illustrative call (input schema confirmed by the 2026-07-16 fixture; the live response is unexercised pending operator OAuth):
 
 ```typescript
 call_tool_chain({

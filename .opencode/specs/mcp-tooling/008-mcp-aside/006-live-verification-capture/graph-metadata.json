@@ -2,25 +2,233 @@
   "schema_version": 1,
   "packet_id": "mcp-tooling/008-mcp-aside/006-live-verification-capture",
   "spec_folder": "mcp-tooling/008-mcp-aside/006-live-verification-capture",
-  "parent_id": null,
+  "parent_id": "mcp-tooling/008-mcp-aside",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 2: live-verification-capture",
+  "derived": {
+    "trigger_phrases": [
+      "aside live verification",
+      "aside discovery fixture",
+      "aside callable confirmed",
+      "aside discovery capture",
+      "aside discovery flip plan",
+      "aside fixture plan",
+      "aside live verification plan",
+      "aside discovery tasks",
+      "aside fixture tasks",
+      "aside live verification tasks",
+      "verification",
+      "checklist"
+    ],
+    "key_topics": [
+      "aside",
+      "live",
+      "verification",
+      "discovery",
+      "fixture",
+      "callable",
+      "confirmed",
+      "capture",
+      "flip",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery_fixture_2026-07-16.json",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp_wiring.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "scripts/doctor.sh",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside_cli_reference.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp_aside_manual.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/feature_catalog.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp_transport_and_code_mode.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp_transport/code_mode_discovery.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.1.0.md",
+      ".opencode/skills/mcp-code-mode/references/naming_convention.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "discovery_fixture_2026-07-16.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery_fixture_2026-07-16.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_wiring.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp_wiring.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "aside_cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside_cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "utcp_aside_manual.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp_aside_manual.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_transport_and_code_mode.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp_transport_and_code_mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "code_mode_discovery.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp_transport/code_mode_discovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "naming_convention.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/references/naming_convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet predicted `aside.asiderepl` as THE Code Mode callable and marked it UNCONFIRMED/UNKNOWN in 12 files, because live discovery had never run against the registered manual",
     "created_at": "2026-07-16T12:58:31Z",
-    "last_save_at": "2026-07-16T12:58:31Z",
+    "last_save_at": "2026-07-16T14:21:25.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0fdce6f6c22bac9b50162d9d13ff6daea16a087811a3fc66c3a9143699462aec",
+    "source_doc_hashes": {
+      "spec.md": "eb16ee8abf15daa1aed7e1ffa66627cbce162a6225fe19e44f15031bb5645745",
+      "plan.md": "cad755692fca79823b4167d0e9c986396e7cbb56004cf0ec67615d49e18a5e37",
+      "tasks.md": "82f30d0e64e98aca621fe5a6def9bdbabcaadbf2363d83a5434ae7f2391dbeea",
+      "checklist.md": "f7177fe8688d9be4835326e37fefc7e7372c806a797eee691fe943d8e2d3ed80",
+      "implementation-summary.md": "2c87e4dfbfc79ff9b829b32636f5374d05666c56e30d2e3467f260fef93da926"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

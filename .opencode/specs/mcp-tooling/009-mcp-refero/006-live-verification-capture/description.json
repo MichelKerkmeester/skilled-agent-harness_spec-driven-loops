@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "mcp-tooling/009-mcp-refero/006-live-verification-capture",
-  "description": "Phase 2: live-verification-capture",
+  "description": "The packet carried a preserved cross-lineage naming conflict: the doubled-prefix callable `refero.referorefero<tool>` was live-verified only",
   "keywords": [
-    "phase",
-    "live-verification-capture"
+    "packet",
+    "carried",
+    "preserved",
+    "cross-lineage",
+    "naming",
+    "conflict",
+    "doubled-prefix",
+    "callable",
+    "refero",
+    "referorefero",
+    "tool",
+    "live-verified",
+    "only"
   ],
-  "lastUpdated": "2026-07-16T12:58:34.103Z",
+  "lastUpdated": "2026-07-16T14:24:38.124Z",
   "specId": "006",
   "folderSlug": "live-verification-capture",
   "parentChain": [
@@ -13,6 +25,5 @@
     "009-mcp-refero"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -38,7 +38,7 @@ Compose the query from the app/company/category and the comparison goal — for 
 - **Rate limit** (§3): 60 requests per 60 seconds per user — comparison sweeps across many categories consume the window fast; on 429 honor `Retry-After`, then exponential backoff with jitter.
 - **Plan gating** (§3): MCP requires Pro, Team, or Enterprise (Free excluded); per-plan usage caps within eligible tiers are undocumented — never claim a caps matrix.
 - **Auth** (§3, via `mcp_wiring.md` §4): browser OAuth only; no API key exists to wire.
-- **Schema honesty** (§1): never hardcode the disputed `deep` parameter; preserve unknown response fields.
+- **Schema honesty** (§1): the `deep` question is resolved (2026-07-16) — `mode: "deep" | "standard"` is a real `search_screens` input; preserve unknown response fields and never invent undeclared parameters.
 
 ---
 

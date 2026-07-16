@@ -7,7 +7,9 @@
     "mcp-tooling/010-mcp-mobbin/001-research",
     "mcp-tooling/010-mcp-mobbin/002-skill-authoring",
     "mcp-tooling/010-mcp-mobbin/003-hub-integration",
-    "mcp-tooling/010-mcp-mobbin/004-validation-and-handoff"
+    "mcp-tooling/010-mcp-mobbin/004-validation-and-handoff",
+    "mcp-tooling/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
+    "mcp-tooling/010-mcp-mobbin/006-live-verification-capture"
   ],
   "manual": {
     "depends_on": [],
@@ -88,15 +90,15 @@
     ],
     "causal_summary": "The `mcp-tooling` hub has two workflow bridges (`mcp-chrome-devtools`, `mcp-click-up`) and one transport (`mcp-figma`), but no app-design-research transport: there is no routed way to query Mobbin's library of real-world app screens, flows, and UI patterns from this repository",
     "created_at": "2026-07-16T09:39:32Z",
-    "last_save_at": "2026-07-16T12:07:36.933Z",
+    "last_save_at": "2026-07-16T14:35:56.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:74ad0800f06fd617d9c55f49ebe3a8b8f46e3bb3889d03b2d2b784eeb450413f",
+    "source_fingerprint": "sha256:bfe6d29cf59f33e5f2777d4474745badd779ed52ff78a6cebf6d9ed520aee3b8",
     "source_doc_hashes": {
-      "spec.md": "b15235d4cf9e4841e6ca8b512e5864f03023f6f655f386688d3a7f0e9de6cf5f"
+      "spec.md": "91d68782c42c0503549095a3b724130714c026c71a29189adfab6c41f216ccf7"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-16T12:07:36.933Z"

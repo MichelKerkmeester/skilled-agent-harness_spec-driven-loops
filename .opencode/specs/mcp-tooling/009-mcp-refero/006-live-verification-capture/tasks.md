@@ -1,34 +1,33 @@
 ---
-title: "Tasks: Phase 2: live-verification-capture [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 6: live-verification-capture (mcp-refero)"
+description: "Task list for recording the 2026-07-16 refero discovery fixture, closing the doubled-prefix naming conflict, and correcting the pre-auth discovery preconditions."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "refero discovery tasks"
+  - "refero fixture tasks"
+  - "refero live verification tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-live-verification-capture"
-    last_updated_at: "2026-07-16T12:58:34Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "mcp-tooling/009-mcp-refero/006-live-verification-capture"
+    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_by: "claude-agent"
+    recent_action: "All tasks complete with evidence"
+    next_safe_action: "Close phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-live-verification-capture"
+      session_id: "agent-006-live-verification-capture-refero"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: live-verification-capture
+# Tasks: Phase 6: live-verification-capture
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -50,9 +49,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the discovery fixture end to end and extract the observed facts (`references/discovery_fixture_2026-07-16.json`) [evidence: 8/8 names in `discoveredCallableNames` (`refero.refero.refero_search_styles` through `refero.refero.refero_get_flow`); `Access as: refero.refero_refero_search_styles(args)`; `response_format?: "json" | "md"` in `tool_info_first`]
+- [x] T002 Grep the packet for conflict and OAuth-gated-discovery wording (`mcp-refero/**`) [evidence: `rg -n "doubled|conflict|confirm" README.md INSTALL_GUIDE.md mcp-servers examples assets` produced the 7-file flip set]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +58,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Flip SKILL.md: naming trap, discovery paragraph, quick-ref callable row, version 1.1.1.0 (`mcp-refero/SKILL.md`) [evidence: 4 edits; frontmatter `version: 1.1.1.0`]
+- [x] T004 [P] Flip README.md naming paragraph, FAQ, and callable-confirmation verification row (`mcp-refero/README.md`) [evidence: 3 edits; verification row now reads "works pre-auth"]
+- [x] T005 [P] Flip INSTALL_GUIDE.md preconditions and the tool_info checklist item (`mcp-refero/INSTALL_GUIDE.md`) [evidence: 3 edits; checklist item `[x]` with `tool_info_first` cited]
+- [x] T006 [P] Flip references: mcp_wiring.md banner + naming section; tool_surface.md open questions 1 and 2 (`references/mcp_wiring.md`, `references/tool_surface.md`) [evidence: Q1 marked RESOLVED with 8/8 names; Q2 PARTIALLY RESOLVED with the 2 confirmed schemas]
+- [x] T007 [P] Flip the server README and the DISCOVER-001 playbook rationale (`mcp-servers/refero-mcp/README.md`, `manual_testing_playbook/discovery_setup/discovery_first.md`) [evidence: 2 edits; both cite the fixture path]
+- [x] T008 Add `changelog/v1.1.1.0.md` (`mcp-refero/changelog/v1.1.1.0.md`) [evidence: need/change/why sections + 9 file rows]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 Run the packet gate and residual sweeps (`package_skill.py`, `rg`) [evidence: `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-refero --check --strict` printed "Result: PASS"; scripts confirmed already-correct via grep (0 stale names), left untouched]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` [evidence: T001-T009 above, 9/9]
+- [x] No `[B]` blocked tasks remaining [evidence: zero `[B]` rows in this file]
+- [x] Manual verification passed [evidence: checklist.md 100% verified with per-item evidence]
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,14 +91,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Checklist**: See `checklist.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

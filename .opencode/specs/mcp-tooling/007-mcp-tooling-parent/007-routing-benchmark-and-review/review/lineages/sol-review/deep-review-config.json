@@ -1,0 +1,112 @@
+{
+  "topic": "Independent review of the mcp-tooling hub routing surfaces after the six-mode expansion",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".opencode/skills/mcp-tooling/mode-registry.json",
+    ".opencode/skills/mcp-tooling/hub-router.json",
+    ".opencode/skills/mcp-tooling/SKILL.md",
+    ".opencode/skills/mcp-tooling/description.json",
+    ".opencode/skills/mcp-tooling/graph-metadata.json",
+    ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/*.md",
+    ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/intra_routing_recall/*.md",
+    ".opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/intra_routing_recall/*.md",
+    ".opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/intra_routing_recall/*.md",
+    ".opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/intra_routing_recall/*.md",
+    ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/intra_routing_recall/*.md",
+    ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/intra_routing_recall/*.md",
+    ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
+    ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md",
+    ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/plan.md",
+    ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/tasks.md"
+  ],
+  "sessionId": "fanout-sol-review-1784209544620-5f3v0s",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "release-blocking",
+  "specFolder": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review",
+  "createdAt": "2026-07-16T13:48:40Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

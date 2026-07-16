@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After phases 001-003 the mode is authored and registered, but nothing yet proves the whole program holds together under strict gates: the packet has only passed non-strict `--check`, the hub has not been re-validated as a four-mode unit, and this spec packet's own docs carry no completion evidence",
     "created_at": "2026-07-16T09:39:17Z",
-    "last_save_at": "2026-07-16T12:04:31.777Z",
+    "last_save_at": "2026-07-16T14:38:21.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e842338e8d7c7d28ce57b6d41b6c54866957e8f2dc9f090197cc3e2f65ba876",
+    "source_fingerprint": "sha256:256dfd695a36957991fc5fbf691aa4162392f3a04f7c4666c6e7e2401315840c",
     "source_doc_hashes": {
-      "spec.md": "f66ca287d9a10984bd44c525bc40ae8b3ab548fd95d117308cafc0b1aa3dbad4",
+      "spec.md": "775478adb104716d3076cdb5c10cfae793eaf1d864cfc75d94098bdd1661393a",
       "plan.md": "51d3a2acbf5c5fbf77057d086ce71266fc1764b5e72135634b3126a3af91854d",
       "tasks.md": "94b0e0c18226b336aa71beb73b25c65d9243a12ef532717192de7eeff197f648",
       "implementation-summary.md": "446737803672cb6a51b739b6c317f0722e65438300c42579f44a278e3814d03c"

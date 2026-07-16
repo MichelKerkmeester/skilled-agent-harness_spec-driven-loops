@@ -9,7 +9,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools"
-    last_updated_at: "2026-07-10T07:20:00Z"
+    last_updated_at: "2026-07-16T16:55:00Z"
     last_updated_by: "claude"
     recent_action: "Documented the executed chrome-devtools move"
     next_safe_action: "No further action required"

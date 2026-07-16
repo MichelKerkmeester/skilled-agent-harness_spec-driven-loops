@@ -56,7 +56,7 @@ FAILURE MODES:
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 4 |
 | **Predecessor** | 003-hub-integration |
-| **Successor** | None |
+| **Successor** | 005-inventory-parity-and-doc-truth |
 | **Handoff Criteria** | All gates exit 0 — `package_skill.py --check --strict` on the packet, `validate_skill_package.py` on the hub, `validate.sh --strict --recursive` on this spec packet — with checklists marked with evidence, implementation summaries written, and memory saved |
 <!-- /ANCHOR:metadata -->
 

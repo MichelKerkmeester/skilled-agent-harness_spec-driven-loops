@@ -3,7 +3,7 @@ name: mcp-refero
 description: "Refero MCP transport: read-only UI design-reference search (styles, screens, flows) via Code Mode; sk-design owns the judgment."
 compatibility: Requires a Refero Pro plan (Free has no MCP access), the npx mcp-remote bridge, and Node.js >=18; this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.0.0
+version: 1.1.1.0
 user-invocable: true
 ---
 
@@ -13,7 +13,7 @@ user-invocable: true
 
 Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ user flows per the official repo) from an agent through the **Refero MCP via Code Mode**: styles for visual direction, screens for concrete UI patterns, flows for multi-step journeys. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every read and "write" happens against the external Refero service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design` first. Deep operational detail lives in [`references/tool_surface.md`](references/tool_surface.md) and [`references/mcp_wiring.md`](references/mcp_wiring.md).
 
-> **Naming trap (read first).** Inside `call_tool_chain`, Refero tools resolve with a **DOUBLED prefix**: the callable form is `refero.refero_refero_<tool>(...)` (for example `refero.refero_refero_search_styles`), because Code Mode's `{manual}.{manual}_{tool}` rule applies to tools whose own names already begin with `refero_`. This form is live-verified locally, but a **post-registration `tool_info` confirmation is MANDATORY** before relying on any callable name: confirm, then call, and fail closed on drift.
+> **Naming trap (read first).** Inside `call_tool_chain`, Refero tools resolve with a **DOUBLED prefix**: the callable form is `refero.refero_refero_<tool>(...)` (for example `refero.refero_refero_search_styles`), because Code Mode's `{manual}.{manual}_{tool}` rule applies to tools whose own names already begin with `refero_`. **CONFIRMED by live discovery 2026-07-16** (`references/discovery_fixture_2026-07-16.json`): `list_tools` returned all eight registry names in the dotted doubled form `refero.refero.refero_<tool>` — pre-auth, no OAuth needed for discovery — and the fixture's `Access as:` line shows the TS callable `refero.refero_refero_search_styles(args)`. Per-session `tool_info` re-confirmation stays mandatory: confirm, then call, and fail closed on drift.
 >
 > **Access trap.** Live MCP access is paid and authenticated. The Free plan has **no MCP access at all** (denial, not a reduced tool set). Pro is the first tier with MCP and carries a published quota of **8,000 tool calls per month**. Unauthenticated calls return HTTP 401.
 
@@ -219,7 +219,7 @@ const all = await list_tools();
 const info = await tool_info({ tool_name: "refero.refero_refero_search_styles" });
 ```
 
-The doubled-prefix callable form (`refero.refero_refero_<tool>`) is live-verified in this repo's design-reference catalog, but conflicting derivations exist in the research record, so the `tool_info` confirmation step is not optional. If discovery shows the eight tools missing, renamed, or expanded, **fail closed**: report the drift; a changed provider surface requires a reviewed packet update, not an improvised call.
+The doubled-prefix callable form (`refero.refero_refero_<tool>`) is **confirmed by live registry evidence** (2026-07-16 discovery fixture, `references/discovery_fixture_2026-07-16.json`): all eight tools were live-listed pre-auth as `refero.refero.refero_{search_styles,search_screens,get_style,get_similar_screens,get_screen_image,get_screen,search_flows,get_flow}`, resolving the research record's conflicting derivations — the single-prefix derivation is dead. Discovery is pre-auth; authenticated CALLS remain operator-gated. The per-session `tool_info` confirmation step is still not optional. If discovery shows the eight tools missing, renamed, or expanded, **fail closed**: report the drift; a changed provider surface requires a reviewed packet update, not an improvised call.
 
 ### The 8-tool surface (three layers)
 
@@ -374,7 +374,7 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 |---|---|
 | Endpoint | `https://api.refero.design/mcp` (remote HTTP; bridged by `npx -y mcp-remote`) |
 | Manual | `refero` in `.utcp_config.json` (already registered; verify, never edit) |
-| Callable form | `refero.refero_refero_<tool>(...)` (doubled prefix; confirm via `tool_info` first) |
+| Callable form | `refero.refero_refero_<tool>(...)` (doubled prefix — confirmed by 2026-07-16 discovery fixture; registry names are dotted `refero.refero.refero_<tool>`; re-confirm via `tool_info` per session) |
 | Layers | Styles (2 tools) · Screens (4 tools) · Flows (2 tools) |
 | ID typing | Styles/screens: UUID strings · Flows: numeric IDs |
 | `response_format` | Seven text tools only; never on `refero_get_screen_image` |

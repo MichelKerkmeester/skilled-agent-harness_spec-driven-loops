@@ -7,7 +7,9 @@
     "mcp-tooling/008-mcp-aside/001-research",
     "mcp-tooling/008-mcp-aside/002-skill-authoring",
     "mcp-tooling/008-mcp-aside/003-hub-integration",
-    "mcp-tooling/008-mcp-aside/004-validation-and-handoff"
+    "mcp-tooling/008-mcp-aside/004-validation-and-handoff",
+    "mcp-tooling/008-mcp-aside/005-inventory-parity-and-doc-truth",
+    "mcp-tooling/008-mcp-aside/006-live-verification-capture"
   ],
   "manual": {
     "depends_on": [],
@@ -87,15 +89,15 @@
     ],
     "causal_summary": "The `mcp-tooling` parent hub bridges Chrome DevTools debugging (`mcp-chrome-devtools`), ClickUp orchestration (`mcp-click-up`), and a Figma Desktop transport (`mcp-figma`) — but it has no AI-browser-automation bridge",
     "created_at": "2026-07-16T09:39:13Z",
-    "last_save_at": "2026-07-16T12:06:57.221Z",
+    "last_save_at": "2026-07-16T14:35:55.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:94a46d309e46a26c50962d5858e09ebe8cb00d01aa42e29873d29b7f1f4c9491",
+    "source_fingerprint": "sha256:69a67f16b74a4c6176c3aeb6d7cefe9ea29998d7ccf1de1198ab614ab8de8327",
     "source_doc_hashes": {
-      "spec.md": "ef22eefd1312d3f6a97f120ef19944b19035dc6c6de11c3f446766bc0e615f3b"
+      "spec.md": "d63e9cb9dafff6e024ee32fb671709ca98cac18e49a46bbe98a35ac6b49d403b"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-16T12:06:57.221Z"

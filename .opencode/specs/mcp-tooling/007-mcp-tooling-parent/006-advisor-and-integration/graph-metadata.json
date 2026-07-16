@@ -204,7 +204,7 @@
     ],
     "causal_summary": "After phases 004-005 the content lives under the hub, but the advisor still sees three graph identities and every external referrer still points at the old flat skill-folder paths",
     "created_at": "2026-07-09T20:18:25Z",
-    "last_save_at": "2026-07-15T07:48:16.933Z",
+    "last_save_at": "2026-07-16T14:35:55.266Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,11 +216,11 @@
     ],
     "source_fingerprint": "sha256:9972ef9f6463d27a386e34b19bf87097bd086ed42f6e09dec15edae70e731c59",
     "source_doc_hashes": {
-      "spec.md": "f2a7c017fffba12803377cc3776b822ad1c9f26d4de9fc282a49e91a12ee5eaf",
-      "plan.md": "b43092e6ec17dd0301a52d24f0964a240bc6aeaff3e93bab11a221a5ce39b0f2",
-      "tasks.md": "3002f8088ede1842a8695cd426e9d998a833489dd386e7e0e73ecfe414dad84d",
-      "checklist.md": "0d99ca0abb7231cdab7f536a2ee2cddee8b70f4453cedb73c2ef14af43dafa61",
-      "implementation-summary.md": "7583efb21657db46b2ba1a30b60bd3da6e0e58fb5a3c913063ac8412833a50e5"
+      "spec.md": "84226826c6a65d56fd892fdf6afe42828241d7c1b00ec7225a960d360823e354",
+      "plan.md": "60e20a0c7428cf631eb699bd6bd9acce3fdd5c7625699a6d3de9b679f0066566",
+      "tasks.md": "355ff90f4d4fade1e5732912421353ee687f2d1d2bee373f0edd9a868916a6b4",
+      "checklist.md": "2b6c67d0d625f56ee3a14e8e9ceef0403553ca73f889aff7cbb675d8706f1972",
+      "implementation-summary.md": "2b3917281c2a4afadcbb4a1623dd5327774e40f659d240f4a7520e75b9dca061"
     },
     "last_active_child_id": null,
     "last_active_at": null

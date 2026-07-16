@@ -1,14 +1,14 @@
 ---
 title: "mcp-mobbin Examples"
-description: "Worked Code Mode walkthroughs for the mcp-mobbin transport: a limit-1 smoke search, a platform-filtered flow-pattern research pass, and an element-intent query, each opening with the mandatory tool_info confirmation of the INFERRED callable and keeping the OAuth steps SKIP-valid with exact commands."
-version: 1.1.0.0
+description: "Worked Code Mode walkthroughs for the mcp-mobbin transport: a limit-1 smoke search, a platform-filtered flow-pattern research pass, and an element-intent query, each opening with the mandatory tool_info confirmation of the discovery-confirmed callables (2026-07-16 fixture) and keeping the OAuth steps SKIP-valid with exact commands."
+version: 1.1.1.0
 ---
 
 # mcp-mobbin Examples
 
-Worked, end-to-end Code Mode walkthroughs for the `mcp-mobbin` transport. Every example targets the single documented tool contract in [`../references/tool_surface.md`](../references/tool_surface.md) — the only tool-surface authority these examples trace to.
+Worked, end-to-end Code Mode walkthroughs for the `mcp-mobbin` transport. Every example targets the live tool contract in [`../references/tool_surface.md`](../references/tool_surface.md) — the only tool-surface authority these examples trace to.
 
-> **Read before running.** The `mobbin` manual is registered in `.utcp_config.json`, but the Code Mode callable `mobbin.mobbin_search_screens` is **INFERRED** from the `{manual}.{manual}_{tool}` convention and has never been observed live. Every walkthrough therefore opens with the **mandatory `tool_info` confirmation** and fails closed on drift. Live calls additionally require a fresh Code Mode session (manuals load at startup) and operator-completed browser OAuth on a paid Mobbin plan (Pro, Team, or Enterprise) — until then, the OAuth-gated steps in each walkthrough are **SKIP-valid** with the exact commands recorded for later.
+> **Read before running.** The `mobbin` manual is registered in `.utcp_config.json`, and the Code Mode callables are **CONFIRMED by live pre-auth discovery 2026-07-16** ([`../references/discovery_fixture_2026-07-16.json`](../references/discovery_fixture_2026-07-16.json)): `mobbin.mobbin_search_screens`, `mobbin.mobbin_search_flows`, and `mobbin.mobbin_search_sections` (registry names dotted `mobbin.mobbin.<tool>`). Every walkthrough still opens with the **mandatory per-session `tool_info` confirmation** and fails closed on drift from the fixture baseline. Live CALLS additionally require operator-completed browser OAuth on a paid Mobbin plan (Pro, Team, or Enterprise) — until then, the OAuth-gated steps in each walkthrough are **SKIP-valid** with the exact commands recorded for later.
 
 ---
 
@@ -39,10 +39,10 @@ There is no agent-side command. The operator triggers any first `mobbin.*` call 
 **Step C — callable confirmation (inside Code Mode; MANDATORY before any call):**
 
 ```typescript
-// The INFERRED prediction. Whatever tool_info returns supersedes it.
+// Confirmed 2026-07-16 (fixture). Whatever tool_info returns this session supersedes it.
 const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
-// Fail closed if the name, schema, or tool set differs from the single-tool
-// baseline in references/tool_surface.md - never improvise a call on drift.
+// Fail closed if the name, schema, or tool set differs from the three-tool
+// fixture baseline in references/tool_surface.md - never improvise a call on drift.
 ```
 
 ---
@@ -51,7 +51,7 @@ const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 
 - `query` comes from the user's actual words; `platform` is exactly `ios` or `web` (infer or ask); `limit` starts at 5 (`1` for smoke) and never exceeds ~15 without asking.
 - Cite every used reference by its `mobbin_url`; report `failed[]` and missing images as partial success.
-- Never hardcode the disputed `deep` parameter; preserve unknown response fields.
+- The `deep` question is resolved: `mode: "deep" | "standard"` is a real `search_screens` input (2026-07-16 fixture) — use it deliberately for nuanced queries; preserve unknown response fields.
 - Budget the documented rate limit (60 requests per 60 seconds per user); on 429 honor `Retry-After`, then exponential backoff with jitter.
 - Anything design-affecting loads `sk-design` first; these examples produce evidence, never verdicts.
 

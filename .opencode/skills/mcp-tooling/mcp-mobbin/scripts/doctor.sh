@@ -92,7 +92,9 @@ fi
 log "-- Callable confirmation (run inside Code Mode) --"
 info "The mandatory tool_info confirmation cannot run from a shell. In a fresh Code Mode session (manuals load at startup), run:"
 info '  tool_info({ tool_name: "mobbin.mobbin_search_screens" })'
-info "That callable form is INFERRED from convention, never observed live. Confirm first; fail closed on drift."
+info "Callables CONFIRMED by live discovery 2026-07-16 (references/discovery_fixture_2026-07-16.json):"
+info "  registry names mobbin.mobbin.{search_screens,search_flows,search_sections} (dotted)."
+info "Re-confirm per session; fail closed on drift from the fixture baseline."
 info "Discovery has not yet run against the registered manual; OAuth (operator-only) has not been completed."
 
 log ""

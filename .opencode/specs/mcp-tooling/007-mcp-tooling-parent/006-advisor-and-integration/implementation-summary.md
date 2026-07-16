@@ -9,7 +9,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration"
-    last_updated_at: "2026-07-10T07:36:17Z"
+    last_updated_at: "2026-07-16T16:55:00Z"
     last_updated_by: "claude"
     recent_action: "Documented the executed integration sweep and its 2 deferrals"
     next_safe_action: "Rebuild advisor skill-graph DB when scheduled"

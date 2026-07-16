@@ -150,7 +150,7 @@ Post-registration validation sequence:
 
 1. `jq empty .utcp_config.json` — syntax gate.
 2. Code Mode `search_tools({ task_description: "Aside browser automation", limit: 20 })`.
-3. `tool_info()` on every intended callable; expect `aside.aside_repl` per the `{manual_name}.{manual_name}_{tool_name}` convention — confirm, never assume.
+3. `tool_info()` on every intended callable. Confirmed 2026-07-16 (fixture: `references/discovery_fixture_2026-07-16.json`): discovery lists registry name `aside.aside.repl` (dot-separated); the TS callable is `aside.aside_repl(args)` per the `{manual_name}.{manual_name}_{tool_name}` convention. Re-verify per session, never assume.
 4. Invoke only discovered callables inside `call_tool_chain()` with try/catch, explicit timeouts (the `repl` tool advertises 120 s), and cleanup in `finally`.
 
 Notes: `env: {}` is correct (auth is account/session-based, no transport credential exists); resolve `command: "aside"` to an absolute path if the Code Mode server's PATH differs. Exactly **one** manual is registered — the dual-manual layout used by Chrome DevTools is not supported by any Aside isolation guarantee and remains an open research question; never add a second `aside` manual without that isolation evidence.

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The hub skeleton exists but has no packet content",
     "created_at": "2026-07-09T20:18:23Z",
-    "last_save_at": "2026-07-15T07:48:16.277Z",
+    "last_save_at": "2026-07-16T14:35:54.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
     ],
     "source_fingerprint": "sha256:5a67bae2c6c04c19a35245e6f576d25d3eea1e3ac3523f00d10d4c5ad383dc61",
     "source_doc_hashes": {
-      "spec.md": "587b51272fecca904836ab90c3d31fd8ec2222d4adf3c5c664b185d0a5b967e2",
-      "plan.md": "0fcfdfef6241cf8407e845be1c3de7a2ad953abe9d92749fbd11ae0c52b0c58b",
-      "tasks.md": "1fdfd4784d4c8b5650c34b1d897c05303fddc6a5d4ee323f711d37fc2fa0828d",
-      "implementation-summary.md": "aa7538b3aab7b9b6da8cbfc5cbc5885e9feb244d3312821305cb2cb91c008b3d"
+      "spec.md": "da64f094f338d9cee9092b739525c3981ee952b5dd3d9531f571ffa83b09b591",
+      "plan.md": "849bbb76b2038979ab444346ec3a46a3056ff697b135ceb51ea7adb6fbcbbfd1",
+      "tasks.md": "b649db91b2f196bb4cdb72df1fec088f162f597de767aec561851f8dde7000af",
+      "implementation-summary.md": "3a19043be7c08877d6ec2d64a6cb9816426a7228007fd73ca813128d63c68b82"
     },
     "last_active_child_id": null,
     "last_active_at": null

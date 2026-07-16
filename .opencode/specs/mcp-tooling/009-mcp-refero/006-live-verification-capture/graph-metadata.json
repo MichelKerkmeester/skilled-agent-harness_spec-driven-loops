@@ -2,25 +2,228 @@
   "schema_version": 1,
   "packet_id": "mcp-tooling/009-mcp-refero/006-live-verification-capture",
   "spec_folder": "mcp-tooling/009-mcp-refero/006-live-verification-capture",
-  "parent_id": null,
+  "parent_id": "mcp-tooling/009-mcp-refero",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 2: live-verification-capture",
+  "derived": {
+    "trigger_phrases": [
+      "refero live verification",
+      "refero discovery fixture",
+      "refero doubled prefix confirmed",
+      "refero discovery capture",
+      "refero discovery flip plan",
+      "refero fixture plan",
+      "refero live verification plan",
+      "refero discovery tasks",
+      "refero fixture tasks",
+      "refero live verification tasks",
+      "verification",
+      "checklist"
+    ],
+    "key_topics": [
+      "refero",
+      "live",
+      "verification",
+      "discovery",
+      "fixture",
+      "doubled",
+      "prefix",
+      "confirmed",
+      "capture",
+      "flip",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-tooling/mcp-refero/references/discovery_fixture_2026-07-16.json",
+      ".opencode/skills/mcp-tooling/mcp-refero/references/mcp_wiring.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
+      "scripts/doctor.sh",
+      ".opencode/skills/mcp-tooling/mcp-refero/README.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/references/tool_surface.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery_setup/discovery_first.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "discovery_fixture_2026-07-16.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/references/discovery_fixture_2026-07-16.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_wiring.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/references/mcp_wiring.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool_surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/references/tool_surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "discovery_first.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery_setup/discovery_first.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet carried a preserved cross-lineage naming conflict: the doubled-prefix callable `refero.referorefero<tool>` was live-verified only indirectly, a single-prefix derivation still circulated, and several docs gated callable confirmation on completed operator OAuth",
     "created_at": "2026-07-16T12:58:33Z",
-    "last_save_at": "2026-07-16T12:58:33Z",
+    "last_save_at": "2026-07-16T14:24:48.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f71aadda03472b44ab258d83b750261529693d6d582993138bc9b766ec7a3af3",
+    "source_doc_hashes": {
+      "spec.md": "50f3e4718426fd33a4aeaf51307c80224f02ea474064be275f2903be8d4779d4",
+      "plan.md": "5f7e39bc44693e92ffc1319d19788f0e2830e68eaa75966b62d09db7a22ba7bd",
+      "tasks.md": "7fa4a04493f45b853c6a1e71fcbe93f5a266fe5866aa83b64060d55b1a922859",
+      "checklist.md": "67cc8e0f46ee4ac8190826a536bab3d8a201946ff424d3595ded089bad5df3a0",
+      "implementation-summary.md": "4f9770417a30aa4ca9bd20896b5b0fa66a4065e0a87fc1916be2f8557466bf0f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

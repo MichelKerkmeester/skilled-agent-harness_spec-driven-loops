@@ -2,7 +2,7 @@
 name: mcp-aside-devtools
 description: "Aside AI-browser orchestrator: routes between the aside CLI (agent tasks + deterministic REPL) and Aside MCP via Code Mode."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 <!-- Keywords: aside, ai-browser, browser-agent, aside-cli, aside-repl, aside-mcp, playwright-repl, browser-automation, mcp-code-mode, orchestrator -->
@@ -237,9 +237,9 @@ Boundary rules: `--account` is documented for direct tasks and `exec` only — n
 
 ### MCP Approach (Fallback) - Aside MCP via Code Mode
 
-`aside mcp` is a client-spawned local **stdio** process with no URL, port, token, or credential field; it inherits the logged-in CLI account/provider context. The Code Mode manual is named `aside` and **is registered in `.utcp_config.json`** (registered 2026-07-16; snapshot in `assets/utcp_aside_manual.md`). The expected callable `aside.aside_repl` must still be confirmed by discovery (`search_tools()`/`tool_info()`) in a fresh Code Mode session, never assumed — manuals load at Code Mode startup, so discovery pends a session that loaded the registered manual.
+`aside mcp` is a client-spawned local **stdio** process with no URL, port, token, or credential field; it inherits the logged-in CLI account/provider context. The Code Mode manual is named `aside` and **is registered in `.utcp_config.json`** (registered 2026-07-16; snapshot in `assets/utcp_aside_manual.md`). **Live discovery ran 2026-07-16** (direct stdio MCP probe of CodeMode-MCP; fixture `references/discovery_fixture_2026-07-16.json`): the registry/discovery name is **`aside.aside.repl`** (dot-separated — NOT the previously predicted `aside.aside_repl` registry form), and the TypeScript callable inside `call_tool_chain` is **`aside.aside_repl(args)`** (fixture `Access as:` line, matching mcp-code-mode's `{manual_name}.{manual_name}_{tool_name}` convention). Rediscovery before invocation remains mandatory (`tools.listChanged: true`).
 
-**Version-pinned tool inventory**: against version `1.26.626.1517` (protocol `2024-11-05`, `tools.listChanged: true`), `tools/list` returned exactly **one tool, `repl`** (required inputs `title` + `code`; persistent sandboxed ES2023+/Playwright REPL; 120-second call timeout; no `import`/`require`). This is evidence, not a contract: always rediscover at runtime (`initialize` → `tools/list`, then Code Mode `search_tools()`/`list_tools()`/`tool_info()`) before invocation. There are no first-class `navigate`, `dom`, `screenshot`, `console`, or `network` MCP tools.
+**Version-pinned tool inventory**: against version `1.26.626.1517` (protocol `2024-11-05`, `tools.listChanged: true`), `tools/list` returned exactly **one tool, `repl`** (required inputs `title` + `code`; persistent sandboxed ES2023+/Playwright REPL; 120-second call timeout; no `import`/`require`). The one-`repl`-tool inventory was **re-confirmed live through Code Mode discovery on 2026-07-16** (`references/discovery_fixture_2026-07-16.json`). This is evidence, not a contract: always rediscover at runtime (`initialize` → `tools/list`, then Code Mode `search_tools()`/`list_tools()`/`tool_info()`) before invocation. There are no first-class `navigate`, `dom`, `screenshot`, `console`, or `network` MCP tools.
 
 **Browser-profile binding**: a fresh `aside mcp` process is transport-healthy but browser-unbound — `listBrowserTabs()` fails with "This task is not bound to a browser profile." This is a binding failure, not an auth failure. The supported binding procedure is **UNKNOWN** (undocumented); report it distinctly and stop.
 
@@ -272,7 +272,7 @@ No public isolation guarantee exists for concurrent mutating clients on one prof
 ### ⛔ NEVER Rules
 
 1. Invent typed subcommands (`aside navigate/dom/screenshot/console/network`) or MCP tools beyond the discovered inventory.
-2. Hardcode the MCP tool list or the `aside.aside_repl` callable without discovery confirmation.
+2. Hardcode the MCP tool list or the callable without discovery confirmation (confirmed 2026-07-16: registry `aside.aside.repl`, TS callable `aside.aside_repl(args)` — fixture `references/discovery_fixture_2026-07-16.json`; still re-verify per session).
 3. Run the installer or `aside --update` implicitly; installation is operator-invoked only.
 4. Pass `--account` to `aside mcp` or `aside repl`; it is documented for direct tasks and `exec` only.
 5. Register a second parallel `aside` manual without a controlled multi-client isolation test — the strategy is unresolved.

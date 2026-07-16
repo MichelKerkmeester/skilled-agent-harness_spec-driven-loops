@@ -92,7 +92,7 @@ Refero exposes eight read-only tools across three layers. Styles (`refero_search
 
 ### The Doubled-Prefix Callable
 
-Code Mode names calls `{manual}.{manual}_{tool}`. Because every Refero tool is already named `refero_*`, the callable form doubles the prefix: `refero.refero_refero_search_styles(...)`. This form is live-verified in this repo, but the research record preserves a conflicting single-prefix derivation, so the rule is discovery-first: confirm the exact callable with `tool_info` after registration and before first use, and fail closed on drift. Calls run synchronously inside the `call_tool_chain` body, with no top-level `await`.
+Code Mode names calls `{manual}.{manual}_{tool}`. Because every Refero tool is already named `refero_*`, the callable form doubles the prefix: `refero.refero_refero_search_styles(...)`. Live discovery on 2026-07-16 (`references/discovery_fixture_2026-07-16.json`) settled the research record's naming conflict: all eight tools listed pre-auth under the dotted doubled registry names `refero.refero.refero_<tool>`, and the fixture's `Access as:` line confirms the doubled TS callable. The rule stays discovery-first: re-confirm the exact callable with `tool_info` per session, and fail closed on drift. Calls run synchronously inside the `call_tool_chain` body, with no top-level `await`.
 
 ### Wiring And Authentication
 
@@ -146,7 +146,7 @@ A: Yes, for any live call. The Free plan has no MCP access at all, which is an a
 
 **Q: Why is the callable prefix doubled?**
 
-A: Code Mode names calls `{manual}.{manual}_{tool}`. The manual is named `refero` and every Refero tool is already named `refero_*`, so the callable becomes `refero.refero_refero_<tool>`. This is live-verified locally, and the packet still requires a `tool_info` confirmation before first use because conflicting derivations exist in the research record.
+A: Code Mode names calls `{manual}.{manual}_{tool}`. The manual is named `refero` and every Refero tool is already named `refero_*`, so the callable becomes `refero.refero_refero_<tool>`. Live registry evidence confirmed this on 2026-07-16 (`references/discovery_fixture_2026-07-16.json`): discovery lists the dotted `refero.refero.refero_<tool>` names, and the doubled TS callable is real. The packet still requires a per-session `tool_info` confirmation before first use because provider surfaces drift.
 
 **Q: Does OAuth work end to end?**
 
@@ -173,7 +173,7 @@ A: `sk-design` owns the design judgment and is loaded first for any design-affec
 | Install posture | `bash .opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh` exits 0 (verify-only; nothing installed or modified) |
 | Wiring presence | `bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports the `refero` manual registered (read-only grep) |
 | Endpoint reachability | `REFERO_DOCTOR_LIVE=1 bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports HTTP 401 (auth required, as documented) |
-| Callable confirmation | Inside Code Mode: `tool_info({ tool_name: "refero.refero_refero_search_styles" })` returns a schema (requires completed operator auth) |
+| Callable confirmation | Inside Code Mode: `tool_info({ tool_name: "refero.refero_refero_search_styles" })` returns a schema — works pre-auth (confirmed 2026-07-16, `references/discovery_fixture_2026-07-16.json`); authenticated CALLS still need operator OAuth |
 
 ---
 

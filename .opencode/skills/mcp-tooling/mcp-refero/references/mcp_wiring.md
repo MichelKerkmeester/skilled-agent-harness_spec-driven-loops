@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 # Refero MCP Wiring (via Code Mode)
 
-> **IMPORTANT:** The `refero` manual is **already registered** in `.utcp_config.json` and is **validated as-is: verify it, never re-add it, never edit it**. Before invoking any Refero tool, always **discover first** (`list_tools` / `tool_info`) and confirm the exact doubled-prefix callable names. Never claim OAuth works end-to-end; it is **Inferred** pending an operator-completed authorization.
+> **IMPORTANT:** The `refero` manual is **already registered** in `.utcp_config.json` and is **validated as-is: verify it, never re-add it, never edit it**. Live discovery ran 2026-07-16 ([`discovery_fixture_2026-07-16.json`](./discovery_fixture_2026-07-16.json)): all eight tools listed pre-auth under the dotted doubled registry names `refero.refero.refero_<tool>`. Before invoking any Refero tool, still **discover first** (`list_tools` / `tool_info`) per session and confirm the exact doubled-prefix callable names. Never claim OAuth works end-to-end; it is **Inferred** pending an operator-completed authorization (discovery is pre-auth; calls are not).
 
 ---
 
@@ -93,7 +93,7 @@ Code Mode's naming convention is `{manual}.{manual}_{tool}`. Because every Refer
 | Discovery name (dotted) | `refero.refero.refero_<tool>` | `refero.refero.refero_search_styles` |
 | Callable name | `refero.refero_refero_<tool>(...)` | `refero.refero_refero_search_styles({...})` |
 
-The doubled callable form is **live-verified** in this repo's design-reference catalog, and it carries the strongest sourcing in the research record. A single-prefix derivation (`refero.refero_<tool>`) also circulates; it is a **misapplication of the convention** (it collapses the tool's own `refero_` prefix into the manual prefix). Regardless of which form a document asserts, the operating rule is:
+The doubled form is **CONFIRMED by live registry evidence, 2026-07-16** ([`discovery_fixture_2026-07-16.json`](./discovery_fixture_2026-07-16.json)): `list_tools` through CodeMode-MCP returned all eight dotted registry names `refero.refero.refero_{search_styles,search_screens,get_style,get_similar_screens,get_screen_image,get_screen,search_flows,get_flow}`, and the fixture's `Access as:` line shows the TS callable `refero.refero_refero_search_styles(args)`. Notably, **discovery worked pre-auth** — `tools/list` needed no OAuth; authenticated CALLS remain operator-gated. The single-prefix derivation (`refero.refero_<tool>`) that circulated in the research record is a **misapplication of the convention** (it collapses the tool's own `refero_` prefix into the manual prefix) and is now refuted by the live registry. Regardless of which form a document asserts, the operating rule is:
 
 > **Confirm actual callable names via `list_tools` / `tool_info` at install and first use, and fail closed on drift.** Never hard-code a callable name as ground truth.
 

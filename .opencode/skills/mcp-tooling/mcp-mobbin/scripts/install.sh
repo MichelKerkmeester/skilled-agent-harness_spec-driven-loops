@@ -71,7 +71,7 @@ info "Mobbin MCP auth is a browser OAuth round-trip on first use — operator-on
 info "There is NO API key or auth env var for Mobbin MCP; the manual env stays empty and no credential is ever added"
 info "Requires a paid plan (Pro, Team, or Enterprise); the Free plan has no MCP access"
 info "To authenticate: open a FRESH Code Mode session (manuals load at startup), trigger any first mobbin.* call, and complete the browser authorization; auth state persists under ~/.mcp-auth"
-info "Then confirm the callable inside Code Mode: tool_info({ tool_name: \"mobbin.mobbin_search_screens\" }) — the name is INFERRED until confirmed"
+info "Then confirm the callables inside Code Mode: tool_info({ tool_name: \"mobbin.mobbin_search_screens\" }) — confirmed 2026-07-16 (plus search_flows, search_sections; see references/discovery_fixture_2026-07-16.json); re-confirm per session"
 
 log ""
 if [ "$FAILURES" -eq 0 ]; then

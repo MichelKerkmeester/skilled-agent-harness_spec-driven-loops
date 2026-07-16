@@ -11,7 +11,9 @@
     "mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
     "mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration",
     "mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review",
-    "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout"
+    "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout",
+    "mcp-tooling/007-mcp-tooling-parent/009-incumbent-inventory-parity",
+    "mcp-tooling/007-mcp-tooling-parent/010-routing-corpus-and-holdouts"
   ],
   "manual": {
     "depends_on": [],
@@ -98,15 +100,15 @@
     ],
     "causal_summary": "`mcp-chrome-devtools`, `mcp-click-up`, and `mcp-figma` are three flat, independently advisor-routable MCP tool-bridge skills, all `family: mcp`, that already share a router-and-gating pattern and reach external tools through the shared Code Mode substrate — but have no structural relationship: no shared registry, no single advisor identity, no hub",
     "created_at": "2026-07-09T20:18:21Z",
-    "last_save_at": "2026-07-15T07:48:15.061Z",
+    "last_save_at": "2026-07-16T14:13:52.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0fe887d42f2a932509cca618b27981aae1acee65481df84f9a2d56e0f59960ed",
+    "source_fingerprint": "sha256:dc2ffbbad9bfb3892d334448c44172c89baf9c6743ad5162a1890aec13d86c52",
     "source_doc_hashes": {
-      "spec.md": "aab50e3cc44e43624ab465d48942c056130dc56b82e10fa0f0768b71e11aaa4d"
+      "spec.md": "676ab2dc70a0e69e03258d47548066039e71d32d4c5166bd44c5fb80953d95e3"
     },
     "last_active_child_id": "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout",
     "last_active_at": "2026-07-10T07:36:17Z"

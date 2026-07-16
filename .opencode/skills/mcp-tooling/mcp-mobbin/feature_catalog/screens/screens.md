@@ -17,7 +17,7 @@ version: 1.1.0.0
 
 Carries concrete UI-pattern research from real shipped apps: screen types, states, and jobs ("iOS subscription cancellation confirmation", "web empty-state dashboard"), for both `ios` and `web` platforms. This is the home domain of the **single documented tool** — every other intent (apps, flows, elements) is a query design over it.
 
-The capability is READ-ONLY. The documented result is ordered `screens[]` metadata plus `failed[]` plus inline image blocks; no detail or image-download tool exists, and the live schema (including the disputed `deep` parameter) is unconfirmed until post-registration `tool_info`.
+The capability is READ-ONLY. The live-declared result schema (2026-07-16 fixture) is `{ query, screens[{id, app_name, mobbin_url, image_url, platform}] }`; no detail or image-download tool exists. The formerly disputed `deep` parameter is confirmed as the client-settable `mode` input (`"deep" | "standard" | "fast"`), alongside `limit`, `exclude_screen_ids`, and `image_format`; the actual authenticated response shape is unexercised until a live call.
 
 ---
 
@@ -38,7 +38,7 @@ The inferred callable `mobbin.mobbin_search_screens({ query, platform, limit? })
 - **Rate limit** (§3): 60 requests per 60 seconds per user; on 429 honor `Retry-After`, then exponential backoff with jitter — never invent finer burst contracts.
 - **Plan gating** (§3): MCP requires Pro, Team, or Enterprise (Free excluded; exact denial semantics UNVERIFIED — relay the provider's message verbatim).
 - **Context pressure** (§1 hard constraints): each screen carries an inline image; keep `limit` at 5 and widen only after asking.
-- **Schema honesty** (§1): the `deep` conflict stays open; no invented parameters, no stripped unknown fields.
+- **Schema honesty** (§1): the `deep` conflict is resolved (a `mode` input, 2026-07-16 fixture); no invented parameters, no stripped unknown fields.
 
 ---
 
@@ -48,7 +48,7 @@ The inferred callable `mobbin.mobbin_search_screens({ query, platform, limit? })
 
 | File | Layer | Role |
 |---|---|---|
-| `references/tool_surface.md` | Shared | Inputs, response shape, inline-image ordering, and the `deep` conflict |
+| `references/tool_surface.md` | Shared | Inputs, response shape, inline-image ordering, and the resolved `deep` mode |
 | `references/mcp_wiring.md` | Shared | Inferred callable naming and the discovery-first contract |
 
 ### Validation And Tests

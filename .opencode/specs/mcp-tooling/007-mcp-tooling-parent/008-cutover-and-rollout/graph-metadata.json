@@ -45,10 +45,10 @@
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/plan.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/tasks.md",
       "implementation-summary.md",
+      "tasks.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/graph-metadata.json",
       "spec.md",
-      "plan.md",
-      "tasks.md"
+      "plan.md"
     ],
     "entities": [
       {
@@ -106,13 +106,13 @@
         "source": "derived"
       },
       {
-        "name": "Known Limitations",
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -131,6 +131,12 @@
       },
       {
         "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,8 +166,20 @@
         "source": "derived"
       },
       {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -172,25 +190,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The fold-in is functionally complete and benchmarked, but it is not canon-clean until the strict parent-hub check passes with zero warnings, the whole track validates recursively, and a final sweep confirms no stale reference survived",
     "created_at": "2026-07-09T20:18:26Z",
-    "last_save_at": "2026-07-15T07:48:17.583Z",
+    "last_save_at": "2026-07-16T13:56:41.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:479ddd1af4779410bcee6e86fd8bb9934aaaa2705bca7510671b89f9f102245b",
+    "source_fingerprint": "sha256:38d3f94fe59db4bcac965ba1377c2ea2357084bcfbd98d138c3b4c52cf2d4ce6",
     "source_doc_hashes": {
-      "spec.md": "a75b6c545aa75771fac0fa9c50b34edbe7cc9860194b4b11b462417323a2d8b6",
+      "spec.md": "8d1e1f56a1f49aa6e51b4a6830119da3cfc1ed540be07545296d434b7530d2e7",
       "plan.md": "69e92630b99e9ddb6dba592f4c558f54abf844ad0e315ef8f05ca11721d89fbe",
-      "tasks.md": "44e131ddd91dcfc7fb1d1581b9089bf988cdb7efc7e41035ea54b1a73234e4f4",
-      "implementation-summary.md": "0ec12af20ea24320fa2c5a1d971d61567a1f718ccb414ae276f86de5b4372802"
+      "tasks.md": "0812204cbe8922eb6ba214008e67b8632ec5ec2537142d2c2af00ff09fd02546",
+      "implementation-summary.md": "872b9f64a65a834cb13a33e1a9e6d44c4dbcee7d433ecd964305049708b67f81"
     },
     "last_active_child_id": null,
     "last_active_at": null

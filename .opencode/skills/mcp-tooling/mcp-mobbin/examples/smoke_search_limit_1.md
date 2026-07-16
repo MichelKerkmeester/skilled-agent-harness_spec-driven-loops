@@ -1,7 +1,7 @@
 ---
 title: "Example: limit-1 Smoke Search"
-description: "The smallest useful mcp-mobbin walkthrough: confirm the INFERRED callable with tool_info, run one screen search at limit 1, and verify the documented response shape (screens[], failed[], one inline image) without widening anything."
-version: 1.1.0.0
+description: "The smallest useful mcp-mobbin walkthrough: re-confirm the discovery-confirmed callable with tool_info, run one screen search at limit 1, and verify the response shape against the fixture-declared schema without widening anything."
+version: 1.1.1.0
 ---
 
 # Example: limit-1 Smoke Search
@@ -20,7 +20,7 @@ The minimum end-to-end verification of the Mobbin transport: one confirmed calla
 
 ## 2. STEP 1 — MANDATORY CALLABLE CONFIRMATION
 
-The callable below is **INFERRED** (`{manual}.{manual}_{tool}` convention); it has never been observed live. Confirm first, fail closed on drift.
+The callable below is **CONFIRMED by live discovery 2026-07-16** (`../references/discovery_fixture_2026-07-16.json`; registry name `mobbin.mobbin.search_screens`). Re-confirm per session, fail closed on drift.
 
 ```typescript
 call_tool_chain({
@@ -31,7 +31,7 @@ call_tool_chain({
 });
 ```
 
-**Expected:** a JSON Schema for `search_screens` under the `mobbin` manual. **On drift** (different name, extra tools, a mutation-capable tool, or a `deep` input appearing): stop, record the dated finding, and route it to a reviewed packet update — do not improvise a call.
+**Expected:** the fixture-matching schema for `search_screens` under the `mobbin` manual (`query`, `platform`, and the optional `mode`/`limit`/`exclude_screen_ids`/`image_format` — the `deep` mode is a known, confirmed input). **On drift** from the three-tool fixture baseline (different names, extra tools, a mutation-capable tool): stop, record the dated finding, and route it to a reviewed packet update — do not improvise a call.
 
 ---
 

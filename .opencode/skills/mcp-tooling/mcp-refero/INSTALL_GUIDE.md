@@ -21,7 +21,7 @@ Please help me:
 2. Run the skill's scripts/doctor.sh (read-only) and confirm the 'refero' manual is registered in .utcp_config.json
 3. Explain the plan requirement (Refero Pro or higher; Free has no MCP access)
 4. Tell me exactly which authentication step is mine to do (browser OAuth, operator-only) and STOP there
-5. After I authenticate, confirm the callables inside Code Mode with tool_info (doubled prefix: refero.refero_refero_<tool>)
+5. Confirm the callables inside Code Mode with tool_info (doubled prefix: refero.refero_refero_<tool>; discovery works pre-auth — confirmed 2026-07-16)
 
 Do NOT edit .utcp_config.json, do NOT touch ~/.mcp-auth, and never handle my credentials.
 ```
@@ -31,7 +31,7 @@ The AI will:
 - Run `scripts/doctor.sh`, which verifies only and never edits configuration or auth state
 - Confirm the `refero` manual is present (read-only grep) rather than re-adding it
 - Surface the operator-only OAuth step and wait for you to complete it
-- Confirm the doubled-prefix callables through Code Mode discovery after you authenticate
+- Confirm the doubled-prefix callables through Code Mode discovery (pre-auth; first satisfied 2026-07-16 — see `references/discovery_fixture_2026-07-16.json`)
 
 **Expected setup time:** 2 to 5 minutes, plus the operator OAuth step
 
@@ -159,7 +159,7 @@ Expected: the eight documented tools resolve with the **doubled prefix** (`refer
 
 ### Validation: `phase_4_complete`
 
-- [ ] `tool_info` returned a schema for at least one doubled-prefix callable
+- [x] `tool_info` returned a schema for at least one doubled-prefix callable [evidence: `references/discovery_fixture_2026-07-16.json` `tool_info_first` — full `refero_refero_search_stylesInput` interface with `response_format?: "json" | "md"`]
 - [ ] The live tool set matches the eight documented tools (or the drift was reported and work stopped)
 
 A first read-only search (`refero_refero_search_styles`) that returns a `{ pagination, records }` object confirms the system is operational end to end.

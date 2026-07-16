@@ -1,0 +1,22 @@
+{
+  "run_id": "1784209544620-5f3v0s",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review",
+  "base_artifact_dir": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

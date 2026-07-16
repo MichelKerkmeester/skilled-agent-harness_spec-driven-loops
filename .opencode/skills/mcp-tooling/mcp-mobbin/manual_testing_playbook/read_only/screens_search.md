@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the read-only search contract for `SCREENS-001`. It focuses on one screen-intent `search_screens` call honoring the documented inputs (`query` from the user's words, `platform` inferred or asked, `limit` starting at 5 and never exceeding ~15 without asking), on every used reference being cited by its `mobbin_url`, on `failed[]` entries and missing images being reported as partial success, on unknown response fields being preserved, and on no invented tool or parameter (including the disputed `deep`) appearing anywhere.
+This scenario validates the read-only search contract for `SCREENS-001`. It focuses on one screen-intent `search_screens` call honoring the fixture-confirmed inputs (`query` from the user's words, `platform` inferred or asked, `limit` starting at 5 and never exceeding ~15 without asking; `mode`/`exclude_screen_ids`/`image_format` only when deliberate — all confirmed 2026-07-16), on every used reference being cited by its `mobbin_url`, on missing images or partial results being reported as partial success, on unknown response fields being preserved, and on no invented tool or undeclared parameter appearing anywhere.
 
 ### Why This Matters
 
-The single-tool surface invites over-reach: an agent that fabricates `search_apps` or hardcodes `deep` has left the documented record. And citation discipline is what makes transport output usable as evidence downstream — an uncited screen cannot anchor an `sk-design` critique.
+The bounded surface invites over-reach: an agent that fabricates `search_apps` or an undeclared parameter has left the fixture record (the `deep` mode, by contrast, is now a confirmed input to use deliberately). And citation discipline is what makes transport output usable as evidence downstream — an uncited screen cannot anchor an `sk-design` critique.
 
 ---
 
@@ -28,9 +28,9 @@ Operators run the exact sequence for `SCREENS-001` and confirm the expected sign
 - Real user request: `Find real iOS banking onboarding screens with identity verification.`
 - Prompt: `Find real iOS banking onboarding screens with identity verification.`
 - Expected execution process: confirmed callable (DISCOVER-001 live PASS) -> one `search_screens` call with `query`, `platform: "ios"`, `limit: 5` -> visual inspection of the returned references (content, structure, styling, interaction) -> evidence returned with `mobbin_url` citations and the `failed[]` report; if design-affecting, routed onward through `sk-design`
-- Expected signals: `screens[]` records with the documented fields; inline images correlated by `index`; no `deep` parameter; no widening beyond ~15 without asking; unknown fields preserved
+- Expected signals: `screens[]` records with the fixture-declared fields (`id`, `app_name`, `mobbin_url`, `image_url`, `platform`); inline images examined; only declared parameters used (`mode` allowed, deliberately); no widening beyond ~15 without asking; unknown fields preserved
 - Desired user-visible outcome: cited screen evidence (or a session/auth SKIP), never a design decision
-- Pass/fail: PASS if the input contract held AND all evidence was cited AND partial success was reported honestly AND nothing was invented; FAIL if `deep` was hardcoded, a tool was invented, or a design verdict came from the transport; SKIP with the session/auth blocker documented
+- Pass/fail: PASS if the input contract held AND all evidence was cited AND partial success was reported honestly AND nothing was invented; FAIL if an undeclared parameter was used, a tool was invented, or a design verdict came from the transport; SKIP with the session/auth blocker documented
 
 ---
 
@@ -53,7 +53,7 @@ PRE: Requires DISCOVER-001's live branch PASS (registered manual, operator OAuth
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SCREENS-001 | Screen search contract | Verify query/platform/limit discipline, citations, and honest partial success | `Find real iOS banking onboarding screens with identity verification.` | 1. `tool_info` -> 2. search call (documented inputs) -> 3. visual inspection -> 4. cited evidence + failed[] | Step 2: documented inputs only. Step 3: images correlated by index. Step 4: every claim cites a `mobbin_url` | Call transcript, citation list, failed[] report, account plan | PASS if the contract held AND citations complete AND nothing invented. FAIL if `deep` hardcoded, a tool invented, or a verdict issued. SKIP with the blocker documented | 1. Confirm the inputs used. 2. Confirm citations + failed[]. 3. Confirm no invented parameter or verdict. |
+| SCREENS-001 | Screen search contract | Verify query/platform/limit discipline, citations, and honest partial success | `Find real iOS banking onboarding screens with identity verification.` | 1. `tool_info` -> 2. search call (declared inputs) -> 3. visual inspection -> 4. cited evidence + partial-success report | Step 2: fixture-declared inputs only. Step 3: returned images examined. Step 4: every claim cites a `mobbin_url` | Call transcript, citation list, partial-success report, account plan | PASS if the contract held AND citations complete AND nothing invented. FAIL if an undeclared parameter was used, a tool invented, or a verdict issued. SKIP with the blocker documented | 1. Confirm the inputs used. 2. Confirm citations + partial-success report. 3. Confirm no invented parameter or verdict. |
 
 ### Optional Supplemental Checks
 
@@ -74,7 +74,7 @@ If inline images do not arrive through `call_tool_chain`, that is a dated live f
 
 | File | Role |
 |---|---|
-| `../../references/tool_surface.md` | Inputs, response shape, context discipline, and the `deep` conflict |
+| `../../references/tool_surface.md` | Inputs, response shape, context discipline, and the resolved `deep` mode |
 | `../../references/mcp_wiring.md` | The discovery-first contract this scenario depends on |
 
 ---

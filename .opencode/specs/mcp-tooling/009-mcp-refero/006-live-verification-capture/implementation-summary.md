@@ -1,135 +1,121 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Phase 6: live-verification-capture (mcp-refero)"
+description: "The refero doubled-prefix naming conflict is closed with live registry evidence: all eight tools listed pre-auth on 2026-07-16 as refero.refero.refero_<tool>, and 7 packet files now cite the dated fixture instead of hedging."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "refero discovery summary"
+  - "refero fixture summary"
+  - "refero doubled prefix summary"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-live-verification-capture"
-    last_updated_at: "2026-07-16T12:58:34Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "mcp-tooling/009-mcp-refero/006-live-verification-capture"
+    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_by: "claude-agent"
+    recent_action: "Phase complete; gates green"
+    next_safe_action: "Operator handoff: OAuth completion and first authenticated search"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/discovery_fixture_2026-07-16.json"
+      - ".opencode/skills/mcp-tooling/mcp-refero/references/mcp_wiring.md"
+      - ".opencode/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-live-verification-capture"
+      session_id: "agent-006-live-verification-capture-refero"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
 <!-- ANCHOR:metadata -->
-## Metadata
+## 1. METADATA
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-live-verification-capture |
 | **Completed** | 2026-07-16 |
-| **Level** | 1 |
+| **Level** | 2 |
+| **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The packet's central naming hedge is gone. A direct stdio MCP probe of CodeMode-MCP (initialize, then `tools/call` on `list_tools`, `search_tools`, `tool_info`, with `UTCP_CONFIG_FILE=.utcp_config.json`) listed all eight Refero tools on 2026-07-16 and wrote the dated fixture `references/discovery_fixture_2026-07-16.json`; seven packet files now cite it instead of preserving a two-lineage dispute.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### The captured facts
 
-### [Feature Name]
+You can now state the naming rule as observation, not derivation. The registry carries the dotted doubled names `refero.refero.refero_{search_styles,search_screens,get_style,get_similar_screens,get_screen_image,get_screen,search_flows,get_flow}` - all eight, exactly the documented surface - and the TS callable inside `call_tool_chain` is the doubled `refero.refero_refero_<tool>(...)` form per the fixture's `Access as:` line. The circulating single-prefix derivation is refuted and recorded as negative knowledge. Two schema details landed as well: `response_format?: "json" | "md"` (default `"md"`) is confirmed on both search tools shown in full by the fixture, and `refero_search_screens` requires `platform: "ios" | "web"`.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### The pre-auth correction
+
+The probe worked WITHOUT OAuth, which disproved a precondition several docs asserted: discovery is pre-auth; only authenticated CALLS are operator-gated. README, INSTALL_GUIDE, and the server README now say so precisely, and the OAuth-gated live-call items keep their SKIP-valid status with exact commands.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `references/discovery_fixture_2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads (8 registry names) |
+| `SKILL.md` | Modified | Naming trap flipped to confirmed; version 1.1.1.0 |
+| `README.md`, `INSTALL_GUIDE.md` | Modified | Resolved conflict + pre-auth preconditions |
+| `references/mcp_wiring.md` | Modified | Naming section confirmed; single-prefix derivation refuted |
+| `references/tool_surface.md` | Modified | Open question 1 resolved; question 2 partially resolved |
+| `mcp-servers/refero-mcp/README.md` | Modified | Discovery expectation corrected to pre-auth |
+| `manual_testing_playbook/discovery_setup/discovery_first.md` | Modified | DISCOVER-001 rationale records the closed conflict |
+| `changelog/v1.1.1.0.md` | Created | Release record |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
-## How It Was Delivered
+## 3. HOW IT WAS DELIVERED
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The fixture was read before any edit and the flip set came from a packet-wide grep of conflict and OAuth-gated-discovery wording. `scripts/doctor.sh` and `scripts/install.sh` were grepped first and left untouched - they already stated the correct doubled-prefix forms, and the phase rule was update-only-if-stale. The packet closed through `package_skill.py --check --strict` (PASS), a residual conflict-wording grep (0 non-changelog hits), and `validate.sh --strict --no-recursive` on this spec child.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
-## Key Decisions
-
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
+## 4. KEY DECISIONS
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Record the single-prefix derivation as refuted, not deleted | Negative knowledge prevents the next research pass from re-deriving the same plausible-looking mistake |
+| State the pre-auth boundary in both halves everywhere | "Discovery needs no OAuth" without "calls still do" invites unauthorized-call attempts; the pair travels together |
+| Record `response_format` only for the two fixture-shown schemas | The `search_tools` payload truncates after two full tool schemas; claiming the other six would be inference dressed as observation |
+| Leave doctor.sh and install.sh untouched | Grep proved they already carry the winning form; editing correct scripts adds churn without truth |
+| Keep per-session `tool_info` re-confirmation mandatory | Confirmation moves the baseline; provider drift discipline stays |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
-## Verification
-
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
+## 5. VERIFICATION
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-refero --check --strict` | PASS ("Skill is valid!"; 2 warnings: SKILL.md word count, .json fixture in references/, both accepted) |
+| Fixture cross-check: 8 `discoveredCallableNames` vs flipped claims | PASS (8/8 dotted names match; `Access as:` line matches every TS claim) |
+| Residual conflict-wording grep (`conflicting derivations exist`, OAuth-gated discovery phrasing) | PASS (0 hits outside changelog history) |
+| Script staleness grep (`rg -n "refero_refero" scripts/`) | PASS (correct doubled form only; 0 edits needed) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this folder> --strict --no-recursive` | PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
-## Known Limitations
+## 6. KNOWN LIMITATIONS
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Authenticated calls remain unexercised, by design.** The capture phase is complete; OAuth completion, the first authenticated search, rate-limit observation, and the Bearer-token acquisition path are documented operator handoff items (SKIP-valid with exact commands in the packet), not unfinished work in this phase.
+2. **Six tools' `response_format` exposure is still a runtime check.** The fixture shows full schemas for the two search tools only; per-tool `tool_info` remains the rule for the rest.
+3. **The fixture is a dated snapshot.** Provider surface drift after 2026-07-16 reopens the claims; the fail-closed drift protocol in SKILL.md and mcp_wiring.md is the guard.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

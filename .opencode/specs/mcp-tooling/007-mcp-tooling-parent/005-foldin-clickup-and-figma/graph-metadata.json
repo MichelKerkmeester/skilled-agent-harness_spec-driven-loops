@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The hub has one workflow packet (chrome-devtools) but still needs its second workflow bridge (click-up) and its transport (figma)",
     "created_at": "2026-07-09T20:18:24Z",
-    "last_save_at": "2026-07-15T07:48:16.587Z",
+    "last_save_at": "2026-07-16T14:35:54.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +210,11 @@
     ],
     "source_fingerprint": "sha256:b94205ae1603c7e04072b622a64c90e1bcbfee37c5bee8874ef4a3303bc0c186",
     "source_doc_hashes": {
-      "spec.md": "2073f230b35bd9d3a229c98ab0a98742253c115cec8bc0717debc87de4b97b68",
-      "plan.md": "55011404dc8365d7567baccda4c8ee3778ab7ffa9f5f28d67c06269b4db742f4",
-      "tasks.md": "e2ff0f47aed2b1090038ca73ea1be9e3a646f16f60fa103a070b3016e6bf4719",
-      "checklist.md": "b4ce80760032fdb0da3828cf04337cef66badc0b4aa9bb279265f44e44cc5891",
-      "implementation-summary.md": "78750304043be0143767a746e59bef6aa6290756dfafcefc19e72ab33d673988"
+      "spec.md": "26dea8e6412a25a530d492b625e33bf33a9aafc1aa863e2969fa2e92fb2ba644",
+      "plan.md": "292da9aa381dc783749c973e2472b4667ea4947734d5e48cef1d5646590412cc",
+      "tasks.md": "005283a88a5c86c0b166c5493e56975f7a340821d51b8970393013fa92e1801d",
+      "checklist.md": "f6eb8e4d7857414fe2af0a14c774be4328a5e4fc06d12359d6b47d44210375ea",
+      "implementation-summary.md": "4aa1b95aee5c994f18b98a435e0e166477a177b73d2bf6da451446f09d75d9b7"
     },
     "last_active_child_id": null,
     "last_active_at": null

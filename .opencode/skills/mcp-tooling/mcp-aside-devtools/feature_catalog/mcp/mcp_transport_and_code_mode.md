@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 Carries the composition lane: browser work chained with other Code Mode tools through the Aside MCP server. `aside mcp` is a client-spawned local **stdio** process with no URL, port, token, or credential field; it inherits the logged-in CLI account/provider context. On `1.26.626.1517` (protocol `2024-11-05`) the live inventory is exactly **one tool, `repl`** (`title` + `code` inputs, persistent sandboxed ES2023+/Playwright REPL, 120-second call timeout) — version-pinned evidence, never a permanent contract.
 
-The `aside` UTCP manual **is registered** in `.utcp_config.json` (2026-07-16; byte-true snapshot in [`../../assets/utcp_aside_manual.md`](../../assets/utcp_aside_manual.md)). The Code Mode callable remains **UNCONFIRMED**: convention predicts `aside.aside_repl`, and `tool_info()` in a fresh Code Mode session must confirm it before first invocation.
+The `aside` UTCP manual **is registered** in `.utcp_config.json` (2026-07-16; byte-true snapshot in [`../../assets/utcp_aside_manual.md`](../../assets/utcp_aside_manual.md)), and the Code Mode callable is **CONFIRMED by live discovery 2026-07-16** ([`../../references/discovery_fixture_2026-07-16.json`](../../references/discovery_fixture_2026-07-16.json)): the registry/discovery name is `aside.aside.repl` (dot-separated — not the previously predicted `aside.aside_repl` registry form); the TypeScript callable inside `call_tool_chain` is `aside.aside_repl(args)`. Per-session rediscovery still precedes first invocation.
 
 ---
 

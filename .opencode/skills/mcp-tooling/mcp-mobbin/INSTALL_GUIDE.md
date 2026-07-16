@@ -23,8 +23,9 @@ Please help me:
 3. Explain the plan requirement (Mobbin Pro, Team, or Enterprise; Free has no MCP access)
 4. Explain the auth model (browser OAuth only - there is NO API key or auth env var) and tell me exactly
    which steps are mine to do (Code Mode reconnect + browser OAuth), then STOP there
-5. After my OAuth, confirm the callable inside a fresh Code Mode session with tool_info
-   (predicted form mobbin.mobbin_search_screens - it is INFERRED until confirmed)
+5. Confirm the callables inside Code Mode with tool_info (discovery works pre-auth; confirmed
+   2026-07-16: mobbin.mobbin_search_screens plus search_flows and search_sections -
+   see references/discovery_fixture_2026-07-16.json)
 
 Do NOT edit .utcp_config.json, do NOT invent a MOBBIN_API_KEY, do NOT touch ~/.mcp-auth,
 and never handle my credentials.
@@ -165,7 +166,7 @@ Expected: `search_screens` resolves under the `mobbin` manual. The predicted cal
 ### Validation: `phase_4_complete`
 
 - [ ] `tool_info` returned a schema for the live callable (predicted or corrected)
-- [ ] The live tool set was compared against the documented single-tool baseline (drift reported, work stopped on mismatch)
+- [x] The live tool set was compared against the documented baseline: pre-auth discovery 2026-07-16 lists THREE tools (`search_screens`, `search_flows`, `search_sections`), superseding the one-tool baseline — recorded as a reviewed packet update, not drift-improvisation [evidence: `references/discovery_fixture_2026-07-16.json` `list_tools` payload]
 - [ ] A first `limit: 1` smoke search returned `screens[]` + `failed[]`, and inline-image arrival through `call_tool_chain` was observed (its fidelity is UNKNOWN until this step)
 
 ---
@@ -179,7 +180,7 @@ Expected: `search_screens` resolves under the `mobbin` manual. The predicted cal
 | OAuth callback fails or times out | Headless session or blocked localhost callback | Retry in a browser-capable session; there is no token-paste or API-key alternative for MCP |
 | Access denied despite auth | The account is on the Free plan (no MCP access; exact denial semantics unverified) | Upgrade the plan; relay the provider's message verbatim; do not guess semantics |
 | HTTP 429 | The 60 requests / 60 seconds / user window was exceeded | Honor `Retry-After`, then exponential backoff with jitter |
-| Callable name differs from the prediction | The `mobbin.mobbin_search_screens` form is Inferred, never observed | Use the name `tool_info` returns; update the packet docs; never hard-code the prediction |
+| Callable name differs from the fixture baseline | Provider or adapter drift since the 2026-07-16 discovery (`mobbin.mobbin_search_screens` et al. are confirmed, not permanent) | Use the name `tool_info` returns; save a fresh dated fixture; update the packet docs |
 | Images missing or garbled in results | `failed[]` partial success, or inline-image fidelity through `call_tool_chain` (UNKNOWN until observed) | Report partial success; verify fidelity at this install step; plan a side-channel if needed |
 | Auth lost after a machine/runtime move | Auth state under `~/.mcp-auth` did not survive | Re-authenticate (operator). Never delete or repair the directory as an agent action |
 
@@ -243,7 +244,7 @@ tool_info({ tool_name: "mobbin.mobbin_search_screens" })  // Inferred prediction
 | `phase_1_complete` | Node 18+/npx present; plan known |
 | `phase_2_complete` | Wiring state verified read-only (manual registered = OK); probe returns 401 |
 | `phase_3_complete` | Operator Code Mode reconnect + browser OAuth completed; env still empty |
-| `phase_4_complete` | Live callable confirmed via `tool_info`; single-tool baseline checked; smoke search observed |
+| `phase_4_complete` | Live callables confirmed via `tool_info` (done 2026-07-16, pre-auth; three-tool baseline recorded); smoke search observed (still pends operator OAuth) |
 
 ---
 

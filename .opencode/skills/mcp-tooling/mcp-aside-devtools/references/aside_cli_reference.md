@@ -69,9 +69,9 @@ Use `aside "<prompt>"` or `aside exec` for goal-driven, multi-step, approval-gat
 
 Use `aside repl "<JavaScript>"` for direct inspection, screenshots, downloads, and repeatable evidence-producing steps. The documented example pattern is `openTab(...)`. The REPL keeps a persistent JavaScript context while its process is alive.
 
-Helpers advertised by the MCP `repl` tool description (version-pinned to `1.26.626.1517`; the CLI REPL is documented as the same deterministic lane): `page`, `tabs`, `listBrowserTabs`, `attachBrowserTab(targetId)`, `attachActiveBrowserTab`, `getTabByTargetId`, `openTab(url)`, `closeTab`, `snapshot(page, options?)`, `page.screenshot(options)`, locator screenshots, `page.pdf`, `annotatedScreenshot`, `console.log`, `display`, `fetch`, `sleep`, `fs` (from `node:fs/promises`), `pwd`, `path`, `Buffer`. A non-mutating probe confirmed `page`, `tabs`, `fs`, `pwd` as values and `openTab`, `snapshot`, `annotatedScreenshot`, `fetch` as functions.
+Helper surface of the MCP `repl` tool, confirmed by live Code Mode discovery 2026-07-16 ([`discovery_fixture_2026-07-16.json`](./discovery_fixture_2026-07-16.json); supersedes the earlier version-pinned advertised list; the CLI REPL is documented as the same deterministic lane): `console.log`, `display(input)`, `page`, `tabs`, `listBrowserTabs()`, `attachBrowserTab(targetId)`, `attachActiveBrowserTab()`, `getTabByTargetId(targetId)`, `openTab(url)`, `closeTab(tab)`, `snapshot(page, options?)`, `page.screenshot(options?)`, `locator.screenshot(options?)`, `page.pdf(options?)`, `annotatedScreenshot(page)`, `fs` (`node:fs/promises`), `pwd`, `path`, `Buffer`, `sleep(ms)`, `fetch(url)`. A non-mutating probe had earlier confirmed `page`, `tabs`, `fs`, `pwd` as values and `openTab`, `snapshot`, `annotatedScreenshot`, `fetch` as functions.
 
-**UNKNOWN**: the exact output shapes of `snapshot` and screenshots on a *bound* page are untested; the full helper surface beyond the advertised/probed list is unconfirmed. Treat every helper call's result shape as probe-required until exercised.
+**UNKNOWN**: the exact output shapes of `snapshot` and screenshots on a *bound* page are untested (discovery lists the surface; it does not exercise calls). Treat every helper call's result shape as probe-required until exercised.
 
 ---
 
