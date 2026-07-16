@@ -1,8 +1,0 @@
-{"type":"iteration","iteration":6,"run":6,"newInfoRatio":0.04,"status":"complete","focus":"Validate convergence, document runtime caveats, and finalize synthesis.","findingsCount":5}
-{"type":"finding","id":"f-iter006-001","label":"Coverage convergence is legal: all key questions answered before maxIterations.","iteration":6,"source":".opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md:3"}
-{"type":"finding","id":"f-iter006-002","label":"Requested cli-codex process provenance is not actual process provenance due self-invocation guard.","iteration":6,"source":".opencode/skills/cli-codex/SKILL.md:17"}
-{"type":"finding","id":"f-iter006-003","label":"fanout_lineage_artifact_dir override was bound directly, bypassing resolveArtifactRoot command execution.","iteration":6,"source":".opencode/commands/deep/assets/deep_research_auto.yaml:82"}
-{"type":"finding","id":"f-iter006-004","label":"Spec write-back and memory save would escape lineage artifact_dir and were deferred.","iteration":6,"source":".opencode/commands/deep/assets/deep_research_auto.yaml:906"}
-{"type":"finding","id":"f-iter006-005","label":"Merge should treat this lineage as content-complete but process-degraded.","iteration":6,"source":".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/research/research.md:1"}
-{"type":"ruled_out","direction":"Claim nested cli-codex gpt-5.5 provenance","reason":"Forbidden by self-invocation guard in this runtime.","iteration":6}
-{"type":"ruled_out","direction":"Run spec write-back or memory save from fan-out leaf","reason":"Would write outside the lineage artifact_dir.","iteration":6}

@@ -1,7 +1,0 @@
-{"type":"iteration","iteration":1,"run":1,"newInfoRatio":0.92,"status":"complete","focus":"Initialize the charter and dedupe against round-1 shipped doctrine.","findingsCount":5}
-{"type":"finding","id":"f-iter001-001","label":"Round 2 requires extract, surface map, and optimize pillars; implementation is out of scope.","iteration":1,"source":".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/002-fable-mode-efficiency-research/spec.md:77"}
-{"type":"finding","id":"f-iter001-002","label":"Round 1 already shipped root AGENTS/CLAUDE, constitutional, direct-push, and sk-code doctrine surfaces.","iteration":1,"source":".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/001-initial-refinement/before-vs-after.md:17"}
-{"type":"finding","id":"f-iter001-003","label":"Fable5.md baseline is evidence-and-operations doctrine, not voice-only behavior.","iteration":1,"source":".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/external/Fable5.md:7"}
-{"type":"finding","id":"f-iter001-004","label":"Root AGENTS currently carries the round-1 operating discipline.","iteration":1,"source":"AGENTS.md:59"}
-{"type":"finding","id":"f-iter001-005","label":"cli-codex self-invocation guard blocks nested Codex dispatch.","iteration":1,"source":".opencode/skills/cli-codex/SKILL.md:17"}
-{"type":"ruled_out","direction":"Re-recommend round-1 shipped surfaces","reason":"Already deployed; round 2 must dedupe.","iteration":1}

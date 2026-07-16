@@ -1,1 +1,0 @@
-{"type":"iteration","run":3,"status":"complete","focus":"system-deep-loop, mcp-code-mode, cli-external, underused surfaces","findingsCount":5,"newInfoRatio":0.7,"noveltyJustification":"5 net-new candidates plus surface-gap analysis; tool.execute.after and tool.register gap is genuinely new","timestamp":"2026-07-11T06:50:00Z","durationMs":480000}

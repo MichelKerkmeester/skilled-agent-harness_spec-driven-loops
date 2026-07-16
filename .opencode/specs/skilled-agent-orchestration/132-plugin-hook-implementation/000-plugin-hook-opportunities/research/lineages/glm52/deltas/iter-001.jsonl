@@ -1,1 +1,0 @@
-{"type":"iteration","run":1,"status":"complete","focus":"sk-git, sk-code, system-spec-git hook/plugin candidates","findingsCount":4,"newInfoRatio":1.0,"noveltyJustification":"First pass; all 4 candidates are new to this packet","keyQuestions":["KQ-1","KQ-2","KQ-4","KQ-5"],"answeredQuestions":["KQ-1","KQ-2"],"ruledOut":[],"timestamp":"2026-07-11T06:35:00Z","durationMs":420000}
