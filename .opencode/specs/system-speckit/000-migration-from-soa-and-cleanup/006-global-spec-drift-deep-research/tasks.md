@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Global spec-drift and prior-context-optimization deep-research sweep"
-description: "Task breakdown for launching the /deep:research :auto 3-executor (GLM/SOL/LUNA) divergent-mode fan-out over ALL of .opencode/specs/*, and verifying the committed research/research.md before phase 007."
+description: "Task breakdown for launching the /deep:research :auto 3-executor (GLM/SOL/LUNA) normal-convergence fan-out over ALL of .opencode/specs/*, and verifying the committed research/research.md before phase 007."
 trigger_phrases:
   - "global spec drift research tasks"
   - "deep research fan-out tasks"
@@ -66,10 +66,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Launch `opencode run --command deep/research :auto ...` bound to this spec folder with `--convergence-mode=divergent --stop-policy=max-iterations`, the assembled `--executors` JSON, and `--concurrency=3` (`plan.md` §4 Phase 2)
-- [ ] T006 Monitor the GLM lineage (`research/lineages/glm/`) to ~10 iterations
-- [ ] T007 [P] Monitor the SOL lineage (`research/lineages/sol/`) to ~10 iterations
-- [ ] T008 [P] Monitor the LUNA lineage (`research/lineages/luna/`) to ~10 iterations
+- [ ] T005 Launch `opencode run --command deep/research :auto ...` bound to this spec folder with `--max-iterations=10`, the assembled `--executors` JSON, and `--concurrency=3` (forced-depth flags omitted — unsupported on research fan-out; `plan.md` §4 Phase 2)
+- [ ] T006 Monitor the GLM lineage (`research/lineages/glm/`) up to 10 iterations (fewer if converged early)
+- [ ] T007 [P] Monitor the SOL lineage (`research/lineages/sol/`) up to 10 iterations (fewer if converged early)
+- [ ] T008 [P] Monitor the LUNA lineage (`research/lineages/luna/`) up to 10 iterations (fewer if converged early)
 - [ ] T009 Confirm `fanout-merge.cjs` consolidates all 3 lineage `findings-registry.json` files into one merged registry
 - [ ] T010 Confirm `step_compile_research` synthesizes `research/research.md`
 <!-- /ANCHOR:phase-2 -->

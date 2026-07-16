@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Global spec-drift and prior-context-optimization deep-research sweep"
-description: "Verification checklist for the 30-iteration divergent 3-executor (GLM/SOL/LUNA) deep-research sweep across ALL of .opencode/specs/*, gating phase 007's teardown on a committed research/research.md and triaged findings."
+description: "Verification checklist for the up-to-30-iteration normal-convergence 3-executor (GLM/SOL/LUNA) deep-research sweep across ALL of .opencode/specs/*, gating phase 007's teardown on a committed research/research.md and triaged findings."
 trigger_phrases:
   - "global spec drift research checklist"
   - "deep research fan-out verification"
@@ -62,7 +62,7 @@ _memory:
 
 - [ ] CHK-010 [P0] `research/deep-research-config.json` parses as valid JSON and matches the assembled `--executors` payload; not yet launched.
 - [ ] CHK-011 [P0] No executor spawn errors (e.g., SOL throwing on a stray `--service-tier`); not yet launched.
-- [ ] CHK-012 [P1] Divergent-mode pivot handling behaves per contract (only `composite_converged`/`all_questions_answered` pivot; `error`/`blockedStop`/etc. do not); not yet observed.
+- [ ] CHK-012 [P1] Divergent-mode pivot handling — N/A for this run: divergent mode is unavailable on the research fan-out path and is not used (normal convergence), so there is no pivot behavior to verify.
 - [ ] CHK-013 [P1] Comment hygiene: no spec-path or packet/phase IDs embedded in any generated code comments (only markdown prose); N/A until execution produces artifacts to check.
 <!-- /ANCHOR:code-quality -->
 
@@ -72,7 +72,7 @@ _memory:
 ## Testing
 
 - [ ] CHK-020 [P0] All P0 acceptance criteria in `spec.md` are met (REQ-001..005); not yet launched.
-- [ ] CHK-021 [P0] Total iteration count across the 3 lineages equals 30 (10 GLM + 10 SOL + 10 LUNA), or documented variance; not yet launched.
+- [ ] CHK-021 [P0] Total iteration count across the 3 lineages is up to 30 (up to 10 GLM + 10 SOL + 10 LUNA); fewer under normal convergence is acceptable provided the actual per-lineage counts are recorded; not yet launched.
 - [ ] CHK-022 [P1] `research/research.md` names the full `.opencode/specs/*` sweep scope explicitly, not a narrowed subset; not yet synthesized.
 - [ ] CHK-023 [P1] Findings triage table exists with each item remediated (evidence) or explicitly deferred (reason); not yet triaged.
 <!-- /ANCHOR:testing -->

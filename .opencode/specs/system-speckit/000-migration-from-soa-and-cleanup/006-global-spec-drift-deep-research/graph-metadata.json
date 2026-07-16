@@ -17,7 +17,7 @@
       "006 global spec drift",
       "global spec drift research plan",
       "deep research fan-out plan",
-      "divergent convergence mode launch",
+      "normal convergence deep research launch",
       "006 research plan",
       "global spec drift research tasks",
       "deep research fan-out tasks",
@@ -36,7 +36,7 @@
       "optimization",
       "plan",
       "fan-out",
-      "divergent"
+      "normal"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The parent packet (`000-migration-from-soa-and-cleanup`) diagnosed numbering drift in exactly five tracks and scoped phases 001-005 to fix only that drift",
     "created_at": "2026-07-16T06:17:13.608Z",
-    "last_save_at": "2026-07-16T12:29:32.462Z",
+    "last_save_at": "2026-07-16T12:54:34.678Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9483054579616ee64aca4992b19621fdb36064aa9f40ef141fe1ebea9596b6a",
+    "source_fingerprint": "sha256:50f514c08af8bff9db167acc5754c116d0b4bc4d44dd361480d643827c113415",
     "source_doc_hashes": {
-      "spec.md": "c264c912069f78382805842f59e0fcd92ba87d2559c196727b0f114357f052d3",
-      "plan.md": "c3ac5cad4719e846c0588a59d12d6680036e0ad467c822936837220a1949158c",
-      "tasks.md": "fdfbf8321f0e1f8b8ded0b8ed630509f1fce22ad6b631e2ab75ecaad68940324",
-      "checklist.md": "b83425ed9b82466ce4e617843e07a0d7d21e3caa225908611a8aa143b3c22d96",
+      "spec.md": "b2529690497b37831d0585eb17a59cbf4d4186a8041d0295af2ec0fef5a3d080",
+      "plan.md": "123043f83d89f96fa1ac4e06def55ecee94815c6eebde1b1b47b054789f20d70",
+      "tasks.md": "5bbcfee50386c8fa94b9688bc5a4b473316c60cc66ebcd85eb2d471d3278fc13",
+      "checklist.md": "d46974333197ec77c683d892570f9e5db69dec64e33893a275beb5946dc97ef5",
       "implementation-summary.md": "950b7966d3dd4730e069910749222424be07bfa94fb622d5d6b0e15403337421"
     },
     "last_active_child_id": null,

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Global spec-drift and prior-context-optimization deep-research sweep"
-description: "30-iteration divergent-mode deep-research sweep, fanned out across 3 executor lineages (GLM, SOL, LUNA), across ALL of .opencode/specs/* to surface residual spec drift and document prior context-optimization efforts, producing a committed research/research.md before phase 007's gated memory-DB teardown."
+description: "Up-to-30-iteration (normal-convergence) deep-research sweep, fanned out across 3 executor lineages (GLM, SOL, LUNA), across ALL of .opencode/specs/* to surface residual spec drift and document prior context-optimization efforts, producing a committed research/research.md before phase 007's gated memory-DB teardown. Forced-depth is unavailable on the research fan-out path; runs with normal convergence per operator decision 2026-07-16."
 trigger_phrases:
   - "global spec drift research"
   - "spec drift deep research sweep"
@@ -41,11 +41,13 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This packet runs one `/deep:research :auto` sweep, fanned out across 3 independent executor lineages (GLM, SOL, LUNA; ~10 iterations each, 30 total), in `divergent` convergence-mode with `stop-policy=max-iterations`, over ALL of `.opencode/specs/*` to surface residual spec drift and document prior context-optimization efforts that the five numbering/reconstruction phases (001-005) did not directly target. The durable output, `research/research.md`, must exist and be committed before phase 007's gated, destructive memory-database teardown is authorized.
+This packet runs one `/deep:research :auto` sweep, fanned out across 3 independent executor lineages (GLM, SOL, LUNA; up to 10 iterations each, up to 30 total), under NORMAL convergence (each lineage capped at 10 iterations but allowed to converge earlier), over ALL of `.opencode/specs/*` to surface residual spec drift and document prior context-optimization efforts that the five numbering/reconstruction phases (001-005) did not directly target. The durable output, `research/research.md`, must exist and be committed before phase 007's gated, destructive memory-database teardown is authorized.
 
-**Key Decisions**: use the plan-named `/deep:research` workflow exactly as specified (no hand-rolled loop, no direct `@deep-research` Task dispatch); force full 30-iteration depth via `divergent` + `max-iterations` rather than allowing early convergence, because the sweep target is the entire specs tree.
+**Key Decisions**: use the plan-named `/deep:research` workflow exactly as specified (no hand-rolled loop, no direct `@deep-research` Task dispatch); run with NORMAL convergence and a 10-iteration/lineage cap because forced-depth (`divergent` + `stop-policy=max-iterations`) is not wired through the research fan-out path (only deep-review enforces it). On a tree this large early convergence is unlikely, so the run approaches full depth in practice (operator-accepted deviation 2026-07-16).
 
 **Critical Dependencies**: phases 001-005 must each be RESOLVED before this phase begins — either completed (001 renumber, 003 code-graph cleanup, 005 sk-design reconstruct — all shipped) or intentionally skipped by operator directive (002 deep-loop renumber and 004 sk-doc alignment, both tracks under active concurrent authoring at decision time). The operator's 2026-07-16 skip decision relaxed the original "all five complete" gate; the sweep runs against the current, partially-un-renumbered tree, which is a valid drift-research input. **GATE STATUS: SATISFIED** — 001/003/005 complete, 002/004 operator-skipped, worktree clean → phase 006 is cleared to launch. Phase 007 remains blocked until this phase converges and its findings are triaged.
+
+> **EXECUTION DEVIATION (2026-07-16):** Forced-depth (`--convergence-mode=divergent` / `--stop-policy=max-iterations`) is UNAVAILABLE on the deep-research fan-out runtime — it is wired only for deep-review (`fanout-run.cjs:611`; `deep_research_auto.yaml:165` invokes the fan-out without `--stop-policy`). Per operator decision this sweep runs with NORMAL convergence and a 10-iteration/lineage cap (up to 30 total; a lineage may converge earlier). On a tree this large early convergence is unlikely, so the run approaches full depth in practice. **All forced-depth phrasing elsewhere in this packet is SUPERSEDED by this note.**
 
 ---
 <!-- ANCHOR:metadata -->
@@ -75,7 +77,7 @@ This packet runs one `/deep:research :auto` sweep, fanned out across 3 independe
 The parent packet (`000-migration-from-soa-and-cleanup`) diagnosed numbering drift in exactly five tracks and scoped phases 001-005 to fix only that drift. Those five phases do not cover the rest of `.opencode/specs/*` (`cli-external-orchestration`, `sk-code`, `sk-git`, `sk-prompt`, `system-skill-advisor`, `ai-systems`, `mcp-tooling`, `z_future`, and any others), nor do they produce any consolidated record of prior context-optimization efforts already attempted across packets (compaction, pruning, summarization, or continuity-shrinking patterns) that a downstream destructive memory-database teardown (phase 007) could use as evidence. Left unresearched, phase 007 would run its gated teardown without a documented picture of residual drift or precedent for what "context optimization" has already been tried and how it fared.
 
 ### Purpose
-Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 independent executor lineages for coverage breadth, in `divergent` mode with `stop-policy=max-iterations` so the loop does not converge early on a tree this large — over ALL of `.opencode/specs/*`, and synthesize a committed `research/research.md` that phase 007 can use as its pre-teardown evidence gate.
+Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 independent executor lineages for coverage breadth, under normal convergence with a 10-iteration/lineage cap (forced-depth is not wired for the research fan-out path; operator-accepted 2026-07-16) — over ALL of `.opencode/specs/*`, and synthesize a committed `research/research.md` that phase 007 can use as its pre-teardown evidence gate.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -84,7 +86,7 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 ## 3. SCOPE
 
 ### In Scope
-- Configure and launch exactly one `/deep:research :auto` run bound to this spec folder, using `--convergence-mode=divergent`, `--stop-policy=max-iterations`, and a 3-lineage `--executors` fan-out (GLM, SOL, LUNA) totaling 30 iterations (~10 per lineage), per the LAUNCH command in `plan.md`.
+- Configure and launch exactly one `/deep:research :auto` run bound to this spec folder, using a 3-lineage `--executors` fan-out (GLM, SOL, LUNA) with `--max-iterations=10` per lineage (up to 30 total) under normal convergence, per the LAUNCH command in `plan.md`. Forced-depth flags (`--convergence-mode=divergent`, `--stop-policy=max-iterations`) are NOT wired for the research fan-out path and are omitted per operator decision 2026-07-16.
 - Sweep target: ALL of `.opencode/specs/*` (every track, not only the five phases 001-005 tracks) for (1) residual spec drift and (2) documented prior context-optimization efforts.
 - Produce `research/research.md` as the durable synthesis output and commit it before phase 007 begins.
 - Triage findings (remediate trivial in-scope items inline, or explicitly defer with a recorded reason) to satisfy the parent's 006→007 Phase Handoff Criteria ("findings triaged and either remediated or explicitly deferred with a recorded reason").
@@ -100,7 +102,7 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `research/research.md` (this packet, created at execution time) | Create | Durable synthesis output of the 30-iteration sweep; not authored by this scaffolding pass. |
+| `research/research.md` (this packet, created at execution time) | Create | Durable synthesis output of the up-to-30-iteration (normal-convergence) sweep; not authored by this scaffolding pass. |
 | `research/deep-research-config.json`, `research/deep-research-state.jsonl`, `research/lineages/{glm,sol,luna}/**` (created at execution time) | Create | Standard deep-research state packet for a fresh, root-spec research target. |
 | `implementation-summary.md` (this packet, created at execution time) | Create | Records iteration counts, lineage completion evidence, and the findings triage table. |
 <!-- /ANCHOR:scope -->
@@ -114,8 +116,8 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Launch the plan-named `/deep:research :auto` workflow bound to this spec folder, not a hand-rolled substitute | `research/deep-research-config.json` records `spec_folder` pointing at this packet, `convergence-mode: divergent`, and `stop-policy: max-iterations`. |
-| REQ-002 | Complete 30 total iterations across exactly 3 lineages (~10 each: GLM, SOL, LUNA) | Per-lineage state under `research/lineages/{label}/` shows 10 iterations (or a documented reason for variance) for each of the three lineages; the merged findings registry reflects all three. |
+| REQ-001 | Launch the plan-named `/deep:research :auto` workflow bound to this spec folder, not a hand-rolled substitute | `research/deep-research-config.json` records `spec_folder` pointing at this packet and the 3-lineage fan-out; forced-depth flags are omitted (unsupported on research fan-out, operator-accepted 2026-07-16). |
+| REQ-002 | Run up to 30 total iterations across exactly 3 lineages (up to 10 each: GLM, SOL, LUNA), allowing normal convergence | Per-lineage state under `research/lineages/{label}/` shows up to 10 iterations for each of the three lineages (fewer if a lineage converges early is ACCEPTABLE under normal convergence); the merged findings registry reflects all three. |
 | REQ-003 | Sweep target is ALL of `.opencode/specs/*`, not a narrowed subset | `research/deep-research-strategy.md` or `research/research.md` names the full-tree scope explicitly and does not silently narrow to only the five phases 001-005 tracks. |
 | REQ-004 | Durable output `research/research.md` written and committed BEFORE phase 007 begins | `git log -- research/research.md` shows a commit under this packet's path that predates any phase 007 destructive action. |
 | REQ-005 | Use the exact verified executor slugs and flags | `research/deep-research-config.json` fanout executor entries match: GLM = `zai-coding-plan/glm-5.2` effort `max` via `cli-opencode`; SOL = `openai/gpt-5.6-sol-fast` effort `high` via `cli-opencode` with NO `--service-tier` flag; LUNA = `cli-codex` `gpt-5.6-luna` effort `max` `service_tier: fast`. |
@@ -149,7 +151,7 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 | Dependency | Phases 001-005 must each be RESOLVED before this phase begins — completed OR operator-skipped (002/004 skipped 2026-07-16 per operator directive; 001/003/005 shipped) | High if launched before phases resolve | RESOLVED: 001/003/005 complete, 002/004 operator-skipped, worktree clean; gate satisfied. |
 | Risk | The brief's literal `--executors=[glm,sol,luna]` shorthand is not valid JSON for the command's documented `--executors=<json>` schema (verified: real usage is an array of `{kind, model, label, count, reasoning_effort, service_tier}` objects) | Medium — a malformed flag would fail setup or silently fall back to single-executor | Assemble the exact JSON payload from the three EXECUTORS definitions before launch (Phase 1, Task T004); do not paste the brief's shorthand literally. |
 | Risk | SOL executor (`openai/gpt-5.6-sol-fast`) throws when `--service-tier` is passed | High if triggered — aborts that lineage | Never include `--service-tier` in the SOL lineage's executor group, per explicit brief callout. |
-| Risk | `divergent` + `stop-policy=max-iterations` forces the loop to run the full iteration budget even after legal convergence is reached, by design | Low (intentional) but increases wall-clock/cost | Accept as intentional per the brief ("don't converge early"); no mitigation needed beyond awareness. |
+| Constraint | Forced-depth (`divergent` + `stop-policy=max-iterations`) is NOT wired through the research fan-out path (only deep-review enforces it); the sweep therefore runs with normal convergence and may stop a lineage before 10 iterations | Medium — could yield fewer than 30 total iterations | Operator-accepted 2026-07-16; the broad full-tree topic makes early convergence unlikely, and actual per-lineage counts are recorded in `research/research.md`. |
 | Risk | Sweeping literally all of `.opencode/specs/*` is a very large surface and may produce broad, low-signal findings | Medium | The mandatory synthesis/triage step (REQ-006) is the control point for signal quality, not narrowing scope. |
 | Dependency | The brief's `--dir <clean worktree>` execution detail implies an isolated workspace, but CLAUDE.md's Git Workspace Safety rule requires an explicit ask-first A) worktree / B) current-branch choice | Medium | This scaffold does not make that choice; it is recorded as an Open Question for whoever executes this phase. |
 <!-- /ANCHOR:risks -->
@@ -161,7 +163,7 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: No explicit new runtime performance target; the default 4h per-lineage wall-clock timeout applies unless raised via `--lineage-timeout-hours` for this forced-depth, 3-lineage, 30-iteration run.
+- **NFR-P01**: No explicit new runtime performance target; the default 4h per-lineage wall-clock timeout applies (the runtime hard-caps at 4h and rejects `--lineage-timeout-hours` above 4) for this 3-lineage, up-to-30-iteration normal-convergence run.
 
 ### Security
 - **NFR-S01**: No new credentials or secrets are introduced; executor CLI dispatch reuses existing verified cli-opencode/cli-codex authentication.
@@ -174,8 +176,8 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- One lineage errors or stops partway through its ~10 iterations: the merged registry and `research/research.md` must document actual per-lineage completion counts rather than assuming a uniform 10/10/10 split.
-- Legal convergence (`composite_converged` or `all_questions_answered`) is reached before iteration 30 in an individual lineage: under `stop-policy=max-iterations` that lineage continues to its bound iteration count regardless, per the command's documented contract (convergence becomes telemetry only).
+- One lineage errors or stops partway through its up-to-10 iterations: the merged registry and `research/research.md` must document actual per-lineage completion counts rather than assuming a uniform split.
+- Legal convergence (`composite_converged` or `all_questions_answered`) is reached before iteration 10 in an individual lineage: under normal convergence that lineage stops at convergence (forced-depth is unavailable on the research fan-out path); `research/research.md` records the actual per-lineage iteration count.
 
 ### Error Scenarios
 - Malformed `--executors` JSON at launch: setup resolution should fail fast rather than silently falling back to a single-executor run.
@@ -190,7 +192,7 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 | Scope | 18/25 | Single command launch, but sweep target is the entire `.opencode/specs/*` tree across every track. |
 | Risk | 18/25 | Three heterogeneous CLI executors, gated ordering (must run after 001-005, must precede 007), executor-slug misconfiguration risk. |
 | Research | 12/20 | This packet is itself a deep-research packet; setup requires confirming the real command contract and fan-out/state-file conventions (done during scaffolding). |
-| Multi-Agent | 13/15 | 3 executor lineages x ~10 iterations = 30 dispatches, each a fresh-context `@deep-research` agent run. |
+| Multi-Agent | 13/15 | 3 executor lineages x up to 10 iterations = up to 30 dispatches, each a fresh-context `@deep-research` agent run. |
 | Coordination | 12/15 | Depends on 5 sibling phases completing first; gates the next phase (007) on its own convergence. |
 | **Total** | **73/100** | **Level 3** |
 

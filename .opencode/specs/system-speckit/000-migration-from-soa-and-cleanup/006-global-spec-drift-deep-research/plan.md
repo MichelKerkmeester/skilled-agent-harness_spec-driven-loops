@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: Global spec-drift and prior-context-optimization deep-research sweep"
-description: "Launch a single /deep:research :auto run bound to this spec folder, fanned out across 3 executor lineages (GLM, SOL, LUNA; ~10 iterations each, 30 total), divergent convergence-mode, stop-policy=max-iterations, sweeping ALL of .opencode/specs/* for spec drift and prior context-optimization efforts, synthesizing a committed research/research.md before phase 007."
+description: "Launch a single /deep:research :auto run bound to this spec folder, fanned out across 3 executor lineages (GLM, SOL, LUNA; up to 10 iterations each, up to 30 total), normal convergence (forced-depth unavailable on the research fan-out path), sweeping ALL of .opencode/specs/* for spec drift and prior context-optimization efforts, synthesizing a committed research/research.md before phase 007."
 trigger_phrases:
   - "global spec drift research plan"
   - "deep research fan-out plan"
-  - "divergent convergence mode launch"
+  - "normal convergence deep research launch"
   - "006 research plan"
 importance_tier: "important"
 contextType: "planning"
@@ -52,15 +52,15 @@ _memory:
 | **Testing** | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict`; per-lineage iteration/state evidence; `git log`/`git show` proof that `research/research.md` is committed |
 
 ### Overview
-Launch exactly one `/deep:research :auto` run bound to this spec folder. The command's owned YAML workflow (not this plan, and not a hand-rolled substitute) resolves setup, spawns 3 independent executor lineages under `research/lineages/{glm,sol,luna}/`, runs each to ~10 iterations in `divergent` convergence-mode with `stop-policy=max-iterations`, merges all three lineage registries via `fanout-merge.cjs`, and synthesizes the durable `research/research.md`. This plan's job is to get the launch inputs right (executor schema, ordering gate, workspace choice) and to verify the durable output before phase 007 is authorized.
+Launch exactly one `/deep:research :auto` run bound to this spec folder. The command's owned YAML workflow (not this plan, and not a hand-rolled substitute) resolves setup, spawns 3 independent executor lineages under `research/lineages/{glm,sol,luna}/`, runs each up to 10 iterations under normal convergence (forced-depth is not wired for the research fan-out path; operator-accepted 2026-07-16), merges all three lineage registries via `fanout-merge.cjs`, and synthesizes the durable `research/research.md`. This plan's job is to get the launch inputs right (executor schema, ordering gate, workspace choice) and to verify the durable output before phase 007 is authorized.
 
 ### Planning Evidence
 
 | Evidence | Result |
 |----------|--------|
-| `.opencode/commands/deep/research.md` (read) | Confirms `:auto` suffix resolves setup from flags/PRE-BOUND markers, then loads `deep_research_auto.yaml`; confirms `--stop-policy`, `--convergence-mode`, `--executors`, `--concurrency` are documented workflow-input flags, not execution modes. |
+| `.opencode/commands/deep/research.md` (read) | Confirms `:auto` suffix resolves setup from flags/PRE-BOUND markers, then loads `deep_research_auto.yaml`; confirms `--executors` and `--concurrency` are documented workflow-input flags. NOTE: `--convergence-mode`/`--stop-policy` are documented but NOT wired through the research fan-out path (only deep-review), so they are omitted here per operator decision 2026-07-16. |
 | `.opencode/skills/system-deep-loop/deep-research/feature_catalog/loop_lifecycle/fanout_dispatch.md` (read) | Confirms `--executors <json>` is an escape-hatch flag whose value is an array of executor-group objects, and that 2+ executors triggers `config.fanout`; each lineage writes to an isolated `{artifact_dir}/lineages/{label}/` directory. |
-| `.opencode/skills/system-deep-loop/deep-research/feature_catalog/convergence/divergent_convergence_mode.md` (read) | Confirms `divergent` only changes handling of an eligible legal STOP (`composite_converged`/`all_questions_answered`) into a bounded native Council pivot that picks a new focus and continues; `maxIterationsReached`/`error`/`blockedStop`/etc. do not pivot. |
+| `.opencode/skills/system-deep-loop/deep-research/feature_catalog/convergence/divergent_convergence_mode.md` (read) | Documents what `divergent` mode would do (turn an eligible legal STOP into a bounded native Council pivot); NOTE: this mode is NOT propagated by the research fan-out per-lineage builder (`fanout-run.cjs`), so it is unavailable for this run and omitted — normal convergence is used instead. |
 | `.opencode/skills/system-deep-loop/deep-research/SKILL.md:307` (read) | Confirms the research state packet lives at `{spec_folder}/research/` directly for a root-spec target on a first run with an empty `research/` directory -- this packet qualifies, since it has no prior `research/` content. |
 | `.opencode/commands/deep/assets/deep_research_presentation.txt:333` (grep) | Confirms the real `--executors` JSON shape: `--executors='[{"kind":"cli-opencode","model":"...","label":"...","count":N}, ...]'` -- the brief's `[glm,sol,luna]` shorthand is NOT this shape and must be translated (see §3 FIX ADDENDUM). |
 | Parent `../spec.md` Phase Documentation Map (read) | Confirms phase 006 is gated behind phases 001-005 and gates phase 007; all five numbering phases show Draft status at scaffold time. |
@@ -78,7 +78,7 @@ Launch exactly one `/deep:research :auto` run bound to this spec folder. The com
 
 ### Definition of Done
 - [ ] `/deep:research :auto` launched with the exact flag set in §4 Phase 2 below.
-- [ ] 30 total iterations complete across exactly 3 lineages (GLM, SOL, LUNA).
+- [ ] Up to 30 total iterations across exactly 3 lineages (GLM, SOL, LUNA); a lineage converging before 10 iterations under normal convergence is acceptable.
 - [ ] `research/research.md` synthesized and committed.
 - [ ] Findings triaged (remediated or explicitly deferred) per the parent's 006→007 handoff criteria.
 - [ ] `validate.sh --strict` passes for this packet.
@@ -93,13 +93,13 @@ Launch exactly one `/deep:research :auto` run bound to this spec folder. The com
 Command-driven fan-out research loop. This plan does not implement loop mechanics; it configures and launches the existing `/deep:research :auto` workflow and verifies its output.
 
 ### Key Components
-- **`/deep:research :auto` command**: owns setup resolution, YAML dispatch, per-iteration `@deep-research` agent spawns, convergence checks, divergent pivots, and synthesis. This plan never dispatches `@deep-research` directly.
-- **3 executor lineages** (`glm`, `sol`, `luna`): each an independent, fully isolated research loop under `research/lineages/{label}/`, converging (or running to `max-iterations`) on its own.
+- **`/deep:research :auto` command**: owns setup resolution, YAML dispatch, per-iteration `@deep-research` agent spawns, convergence checks, and synthesis. This plan never dispatches `@deep-research` directly.
+- **3 executor lineages** (`glm`, `sol`, `luna`): each an independent, fully isolated research loop under `research/lineages/{label}/`, running up to its 10-iteration cap and converging on its own under normal convergence.
 - **`fanout-merge.cjs`**: consolidates all 3 lineage `findings-registry.json` files into one merged `deep-research-findings-registry.json` before synthesis.
 - **`step_compile_research`**: synthesizes the merged registry plus per-lineage iteration artifacts into the durable `research/research.md`.
 
 ### Data Flow
-Setup resolves `deep-research-config.json` with `convergenceMode: divergent`, `stopPolicy: max-iterations`, and `fanout.executors` = the 3-entry array below → `step_fanout_spawn` spawns the 3 CLI lineages concurrently (pool-capped at `--concurrency=3`) → each lineage runs ~10 iterations of dispatch → convergence-check → divergent-pivot-if-eligible → on all 3 lineages reaching completion, control jumps to `phase_synthesis` → `fanout-merge.cjs` merges the 3 registries → `step_compile_research` writes `research/research.md` → continuity refresh through this packet's canonical docs.
+Setup resolves `deep-research-config.json` with normal convergence (no `convergenceMode: divergent`, no `stopPolicy: max-iterations` — unavailable on the research fan-out path) and `fanout.executors` = the 3-entry array below → `step_fanout_spawn` spawns the 3 CLI lineages concurrently (pool-capped at `--concurrency=3`) → each lineage runs up to 10 iterations of dispatch → convergence-check → on all 3 lineages reaching completion, control jumps to `phase_synthesis` → `fanout-merge.cjs` merges the 3 registries → `step_compile_research` writes `research/research.md` → continuity refresh through this packet's canonical docs.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -139,11 +139,11 @@ Required inventories:
   opencode run --command deep/research \
     ":auto 'spec drift + prior context-optimization efforts across all .opencode/specs/*' \
      --spec-folder=.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/006-global-spec-drift-deep-research \
-     --convergence-mode=divergent --stop-policy=max-iterations \
+     --max-iterations=10 \
      --executors='<assembled JSON from Phase 1>' --concurrency=3" \
     --dir <resolved workspace from Phase 1> </dev/null
   ```
-- [ ] Confirm all 3 lineages (`glm`, `sol`, `luna`) reach ~10 iterations each (30 total), or capture a documented reason for variance.
+- [ ] Confirm all 3 lineages (`glm`, `sol`, `luna`) run up to 10 iterations each (up to 30 total); record actual per-lineage counts (fewer under normal convergence is acceptable).
 - [ ] Confirm `fanout-merge.cjs` consolidates the 3 lineage `findings-registry.json` files into one merged registry.
 - [ ] Confirm `step_compile_research` synthesizes `research/research.md`.
 
@@ -162,8 +162,8 @@ Required inventories:
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Spec validation | This packet | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
-| Research state integrity | `research/` state files | Spot-check `deep-research-state.jsonl` and per-lineage `findings-registry.json` for the expected 10/10/10 iteration split and route-proof fields (`target_agent: "deep-research"`, `resolved_route`, `agent_definition_loaded: true`) |
-| Executor smoke | GLM/SOL/LUNA | `--dry-run` (confirm flow) or a single-iteration check before committing to the full 30-iteration launch, if available for the fan-out path |
+| Research state integrity | `research/` state files | Spot-check `deep-research-state.jsonl` and per-lineage `findings-registry.json` for actual per-lineage iteration counts (up to 10 each; fewer if converged early) and route-proof fields (`target_agent: "deep-research"`, `resolved_route`, `agent_definition_loaded: true`) |
+| Executor smoke | GLM/SOL/LUNA | `--dry-run` (confirm flow) or a single-iteration check before committing to the full up-to-30-iteration launch, if available for the fan-out path |
 | Durable-output proof | `research/research.md` | `git log`/`git show` confirming the commit predates any phase 007 action |
 <!-- /ANCHOR:testing -->
 
@@ -214,7 +214,7 @@ Phase 1 (Setup) -> Phase 2 (Launch + 3-lineage loop) -> Phase 3 (Verify + triage
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
 | Setup | Low (gate confirmation + JSON assembly) | 1-2 hours |
-| Core Implementation | High (30 agent-autonomous iterations across 3 lineages; wall-clock dominated by lineage timeouts, not active operator effort) | 4-8 hours active / longer elapsed |
+| Core Implementation | High (up to 30 agent-autonomous iterations across 3 lineages; wall-clock dominated by lineage timeouts, not active operator effort) | 4-8 hours active / longer elapsed |
 | Verification | Medium (commit proof, triage, strict validation) | 1-2 hours |
 | **Total** | | **6-12 hours active effort** |
 <!-- /ANCHOR:effort -->
@@ -292,7 +292,7 @@ Phases 001-005 (sibling, must ALL complete)
 
 1. **Confirm phases 001-005 reach the parent's Phase Handoff Criteria** - CRITICAL
 2. **Launch the 3-lineage fan-out with the correct executor JSON** - CRITICAL
-3. **All 30 iterations complete (10 per lineage)** - CRITICAL
+3. **Up to 30 iterations complete (up to 10 per lineage; fewer if converged early)** - CRITICAL
 4. **`research/research.md` synthesized, committed, and findings triaged** - CRITICAL
 
 **Total Critical Path**: One coordinated launch plus autonomous fan-out execution plus a verification/triage pass.
@@ -311,7 +311,7 @@ Phases 001-005 (sibling, must ALL complete)
 |-----------|-------------|------------------|--------|
 | M1 | Setup complete | Sibling-phase gate confirmed, executor JSON assembled, workspace choice resolved | Phase 1 |
 | M2 | Fan-out running | 3 lineages launched under `research/lineages/{glm,sol,luna}/` | Phase 2 |
-| M3 | Research converged | 30 total iterations complete, `research/research.md` committed, findings triaged, `validate.sh --strict` passes | Phase 3 |
+| M3 | Research converged | up to 30 total iterations complete, `research/research.md` committed, findings triaged, `validate.sh --strict` passes | Phase 3 |
 <!-- /ANCHOR:milestones -->
 
 ---
@@ -324,7 +324,7 @@ Phases 001-005 (sibling, must ALL complete)
 
 **Context**: The brief explicitly names `/deep:research :auto` with specific flags as the required launch mechanism, and CLAUDE.md's PLAN-WORKFLOW LOCK forbids silently hand-rolling a substitute for a plan-named, purpose-built workflow.
 
-**Decision**: Launch via `opencode run --command deep/research` with the `:auto` suffix and the documented `--convergence-mode`, `--stop-policy`, `--executors`, and `--concurrency` flags, exactly as the command's own contract (`.opencode/commands/deep/research.md`) defines them — never a manual shell loop, custom `/tmp` state, or direct Task-tool dispatch of `@deep-research`.
+**Decision**: Launch via `opencode run --command deep/research` with the `:auto` suffix and the documented `--executors`, `--concurrency`, and `--max-iterations` flags, exactly as the command's own contract (`.opencode/commands/deep/research.md`) defines them — never a manual shell loop, custom `/tmp` state, or direct Task-tool dispatch of `@deep-research`. The `--convergence-mode`/`--stop-policy` forced-depth flags are omitted because the research fan-out path does not propagate them (operator-accepted 2026-07-16).
 
 **Consequences**:
 - Positive: results are structurally consistent with every other deep-research packet in this repo (same state-file layout, same continuity integration, same convergence semantics).
@@ -332,4 +332,4 @@ Phases 001-005 (sibling, must ALL complete)
 
 **Alternatives Rejected**:
 - Single-executor sequential run: rejected — the brief explicitly requires 3-lineage fan-out for coverage breadth across the entire specs tree.
-- Default convergence-mode: rejected — the brief explicitly wants `divergent` mode with `stop-policy=max-iterations` so the loop does not converge early on a tree this large.
+- Forced-depth (`divergent` + `stop-policy=max-iterations`): the brief wanted it, but the research fan-out runtime does not propagate these flags (they are wired only for deep-review); accepted normal convergence instead (operator decision 2026-07-16). On a tree this large early convergence is unlikely, so the run approaches full depth in practice.
