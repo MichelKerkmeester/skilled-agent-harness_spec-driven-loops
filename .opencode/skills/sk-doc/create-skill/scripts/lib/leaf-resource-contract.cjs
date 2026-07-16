@@ -334,7 +334,7 @@ function buildManifest({ resourceContractVersion = CONTRACT_VERSION, modeEntries
       packet: entry.packet,
       leaves: [...new Set((entry.leaves || []).map((leaf) => normalizeLeafResourceId(leaf)))].sort(),
     }))
-    .sort((a, b) => a.workflowMode.localeCompare(b.workflowMode));
+    .sort((a, b) => (a.workflowMode < b.workflowMode ? -1 : a.workflowMode > b.workflowMode ? 1 : 0));
   return { resourceContractVersion, modes };
 }
 
