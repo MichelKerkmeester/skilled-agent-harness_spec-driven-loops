@@ -125,8 +125,12 @@
       "leaves": [
         "assets/llmstxt_templates.md",
         "references/README.md",
+        "references/core_standards.md",
+        "references/evergreen_packet_id_rule.md",
+        "references/hvr_rules.md",
         "references/optimization.md",
         "references/transformation_patterns.md",
+        "references/validation.md",
         "references/validation_and_enforcement.md",
         "references/workflow_examples.md",
         "references/workflows.md"

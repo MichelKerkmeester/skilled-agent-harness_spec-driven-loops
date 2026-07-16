@@ -8,6 +8,16 @@ expected_resources:
   - references/core_standards.md
   - assets/flowcharts/simple_workflow.md
   - assets/flowcharts/decision_tree_flow.md
+expected_workflow_mode: create-quality-control+create-flowchart
+expected_leaf_resources:
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/validation.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/core_standards.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/simple_workflow.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/decision_tree_flow.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 1500-3000
 created: 2026-05-05

@@ -6,6 +6,12 @@ expected_intent: FLOWCHART
 expected_resources:
   - assets/flowcharts/simple_workflow.md
   - assets/flowcharts/decision_tree_flow.md
+expected_workflow_mode: create-flowchart
+expected_leaf_resources:
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/simple_workflow.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/decision_tree_flow.md
 expected_token_range_input: 1000-2000
 expected_token_range_output: 800-2500
 created: 2026-05-05

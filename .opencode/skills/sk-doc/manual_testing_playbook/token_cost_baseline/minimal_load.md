@@ -5,6 +5,10 @@ title: 'Floor token cost: minimal-keyword query, 1 reference load'
 expected_intent: HVR
 expected_resources:
   - references/hvr_rules.md
+expected_workflow_mode: create-quality-control
+expected_leaf_resources:
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/hvr_rules.md
 expected_token_range_input: 500-1000
 expected_token_range_output: 500-1500
 created: 2026-05-05

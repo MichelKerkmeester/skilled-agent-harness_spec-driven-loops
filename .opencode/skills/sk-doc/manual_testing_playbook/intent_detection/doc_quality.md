@@ -8,6 +8,16 @@ expected_resources:
   - create-quality-control/references/workflows.md
   - references/core_standards.md
   - references/evergreen_packet_id_rule.md
+expected_workflow_mode: create-quality-control
+expected_leaf_resources:
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/validation.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/workflows.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/core_standards.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/evergreen_packet_id_rule.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 800-2500
 created: 2026-05-05

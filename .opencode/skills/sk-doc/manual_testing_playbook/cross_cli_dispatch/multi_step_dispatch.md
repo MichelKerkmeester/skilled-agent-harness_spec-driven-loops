@@ -10,6 +10,20 @@ expected_resources:
   - references/validation.md
   - references/core_standards.md
   - assets/changelog_template.md
+expected_workflow_mode: create-skill→create-quality-control→create-changelog
+expected_leaf_resources:
+  - workflow_mode: create-skill
+    leaf_resource_id: references/skill/creation_workflow.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_md_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_readme_template.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/validation.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/core_standards.md
+  - workflow_mode: create-changelog
+    leaf_resource_id: assets/changelog_template.md
 expected_token_range_input: 2000-5000
 expected_token_range_output: 3000-6000
 created: 2026-05-05

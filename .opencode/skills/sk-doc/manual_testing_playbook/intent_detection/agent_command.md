@@ -7,6 +7,16 @@ expected_resources:
   - references/README.md
   - assets/agent_template.md
   - assets/command/command_template.md
+expected_workflow_mode: create-agent+create-command
+expected_leaf_resources:
+  - workflow_mode: create-agent
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-agent
+    leaf_resource_id: assets/agent_template.md
+  - workflow_mode: create-command
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-command
+    leaf_resource_id: assets/command_template.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 1500-3000
 created: 2026-05-05

@@ -25,6 +25,275 @@ expected_resources:
   - assets/changelog_template.md
   - assets/flowcharts/simple_workflow.md
   - assets/flowcharts/decision_tree_flow.md
+expected_workflow_mode: create-agent+create-benchmark+create-changelog+create-command+create-diff+create-feature-catalog+create-flowchart+create-manual-testing-playbook+create-quality-control+create-readme+create-skill+create-skill-parent
+full_inventory_intent: true
+expected_leaf_resources:
+  - workflow_mode: create-agent
+    leaf_resource_id: assets/agent_template.md
+  - workflow_mode: create-agent
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-agent
+    leaf_resource_id: references/agent-vs-skill-vs-command.md
+  - workflow_mode: create-agent
+    leaf_resource_id: references/common_pitfalls.md
+  - workflow_mode: create-agent
+    leaf_resource_id: references/permission_design.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/behavior_benchmark/behavior_benchmark_baseline_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/behavior_benchmark/behavior_benchmark_index_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/behavior_benchmark/behavior_benchmark_scenario_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/conformance_benchmark/conformance_benchmark_contract_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/conformance_benchmark/conformance_benchmark_fixture_manifest_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/conformance_benchmark/conformance_benchmark_lane_config_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/conformance_benchmark/conformance_benchmark_readme_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/model_benchmark/model_benchmark_code_task_fixture_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/model_benchmark/model_benchmark_pattern_fixture_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/model_benchmark/model_benchmark_profile_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/shared/benchmark_report_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/shared/source_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: assets/skill_benchmark/skill_benchmark_readme_template.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/agent_improvement/agent_improvement_authoring_guide.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/behavior_benchmark/behavior_benchmark_guide.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/conformance_benchmark/conformance_benchmark_authoring_guide.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/model_benchmark/model_benchmark_fixture_guide.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/shared/README.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/shared/case_studies.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/shared/command_benchmark_composition.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/shared/pitfalls.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/shared/worked_example.md
+  - workflow_mode: create-benchmark
+    leaf_resource_id: references/skill_benchmark/skill_benchmark_storage_guide.md
+  - workflow_mode: create-changelog
+    leaf_resource_id: assets/changelog_template.md
+  - workflow_mode: create-changelog
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-changelog
+    leaf_resource_id: references/topology_edge_cases.md
+  - workflow_mode: create-changelog
+    leaf_resource_id: references/version_bump_rules.md
+  - workflow_mode: create-changelog
+    leaf_resource_id: references/worked_examples.md
+  - workflow_mode: create-command
+    leaf_resource_id: assets/command_contract.json
+  - workflow_mode: create-command
+    leaf_resource_id: assets/command_contract.schema.json
+  - workflow_mode: create-command
+    leaf_resource_id: assets/command_presentation_template.md
+  - workflow_mode: create-command
+    leaf_resource_id: assets/command_router_template.md
+  - workflow_mode: create-command
+    leaf_resource_id: assets/command_template.md
+  - workflow_mode: create-command
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-command
+    leaf_resource_id: references/argument_hints_and_modes.md
+  - workflow_mode: create-command
+    leaf_resource_id: references/common_pitfalls.md
+  - workflow_mode: create-command
+    leaf_resource_id: references/router_presentation_split.md
+  - workflow_mode: create-command
+    leaf_resource_id: references/worked_example.md
+  - workflow_mode: create-diff
+    leaf_resource_id: assets/fixtures/README.md
+  - workflow_mode: create-diff
+    leaf_resource_id: assets/fixtures/onboarding-after.md
+  - workflow_mode: create-diff
+    leaf_resource_id: assets/fixtures/onboarding-before.md
+  - workflow_mode: create-diff
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-diff
+    leaf_resource_id: references/accessibility-contract.md
+  - workflow_mode: create-diff
+    leaf_resource_id: references/capabilities-and-fidelity.md
+  - workflow_mode: create-diff
+    leaf_resource_id: references/cli-reference.md
+  - workflow_mode: create-diff
+    leaf_resource_id: references/worked-example.md
+  - workflow_mode: create-diff
+    leaf_resource_id: references/workflow.md
+  - workflow_mode: create-feature-catalog
+    leaf_resource_id: assets/feature_catalog_snippet_template.md
+  - workflow_mode: create-feature-catalog
+    leaf_resource_id: assets/feature_catalog_template.md
+  - workflow_mode: create-feature-catalog
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-feature-catalog
+    leaf_resource_id: references/common_pitfalls.md
+  - workflow_mode: create-feature-catalog
+    leaf_resource_id: references/examples.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/approval_workflow_loops.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/decision_tree_flow.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/parallel_execution.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/simple_workflow.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/system_architecture_swimlane.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: assets/user_onboarding.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: references/notation_and_validator.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: references/pattern_selection.md
+  - workflow_mode: create-flowchart
+    leaf_resource_id: references/worked_example.md
+  - workflow_mode: create-manual-testing-playbook
+    leaf_resource_id: assets/manual_testing_playbook_snippet_template.md
+  - workflow_mode: create-manual-testing-playbook
+    leaf_resource_id: assets/manual_testing_playbook_template.md
+  - workflow_mode: create-manual-testing-playbook
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-manual-testing-playbook
+    leaf_resource_id: references/common_pitfalls.md
+  - workflow_mode: create-manual-testing-playbook
+    leaf_resource_id: references/examples.md
+  - workflow_mode: create-manual-testing-playbook
+    leaf_resource_id: references/prompt_voice.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: assets/llmstxt_templates.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/optimization.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/transformation_patterns.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/validation_and_enforcement.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/workflow_examples.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/workflows.md
+  - workflow_mode: create-readme
+    leaf_resource_id: assets/install_guide_template.md
+  - workflow_mode: create-readme
+    leaf_resource_id: assets/readme_code_template.md
+  - workflow_mode: create-readme
+    leaf_resource_id: assets/readme_template.md
+  - workflow_mode: create-readme
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-readme
+    leaf_resource_id: references/install_guide/quality_and_standards.md
+  - workflow_mode: create-readme
+    leaf_resource_id: references/install_guide/section_examples.md
+  - workflow_mode: create-readme
+    leaf_resource_id: references/readme/quality_and_checklist.md
+  - workflow_mode: create-readme
+    leaf_resource_id: references/readme/types_and_voice.md
+  - workflow_mode: create-readme
+    leaf_resource_id: references/readme/writing_patterns.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/parent_skill/parent_skill_description_template.json
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/parent_skill/parent_skill_graph_metadata_template.json
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/parent_skill/parent_skill_hub_router_template.json
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/parent_skill/parent_skill_hub_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/parent_skill/parent_skill_registry_template.json
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/parent_skill/scaffold/hub_skill_scaffold.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/parent_skill/scaffold/packet_skill_scaffold.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_asset_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_md_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_procedure_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_readme_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_reference_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_scaffold_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_smart_router.md
+  - workflow_mode: create-skill
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-skill
+    leaf_resource_id: references/parent_skill/parent_hub_router_schema.md
+  - workflow_mode: create-skill
+    leaf_resource_id: references/parent_skill/parent_skills_nested_packets.md
+  - workflow_mode: create-skill
+    leaf_resource_id: references/shared/common_pitfalls.md
+  - workflow_mode: create-skill
+    leaf_resource_id: references/shared/overview.md
+  - workflow_mode: create-skill
+    leaf_resource_id: references/shared/validation_and_packaging.md
+  - workflow_mode: create-skill
+    leaf_resource_id: references/skill/creation_workflow.md
+  - workflow_mode: create-skill
+    leaf_resource_id: references/skill/examples_and_maintenance.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/parent_skill/parent_skill_description_template.json
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/parent_skill/parent_skill_graph_metadata_template.json
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/parent_skill/parent_skill_hub_router_template.json
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/parent_skill/parent_skill_hub_template.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/parent_skill/parent_skill_registry_template.json
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/parent_skill/scaffold/hub_skill_scaffold.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/parent_skill/scaffold/packet_skill_scaffold.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/skill/skill_asset_template.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/skill/skill_md_template.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/skill/skill_procedure_template.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/skill/skill_readme_template.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/skill/skill_reference_template.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/skill/skill_scaffold_template.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: assets/skill/skill_smart_router.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: references/parent_skill/parent_hub_router_schema.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: references/parent_skill/parent_skills_nested_packets.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: references/shared/common_pitfalls.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: references/shared/overview.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: references/shared/validation_and_packaging.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: references/skill/creation_workflow.md
+  - workflow_mode: create-skill-parent
+    leaf_resource_id: references/skill/examples_and_maintenance.md
 expected_token_range_input: 5000-10000
 expected_token_range_output: 2000-3000
 created: 2026-05-05

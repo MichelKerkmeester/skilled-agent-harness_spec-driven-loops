@@ -6,6 +6,12 @@ expected_intent: INSTALL_GUIDE
 expected_resources:
   - assets/readme/install_guide_template.md
   - references/README.md
+expected_workflow_mode: create-readme
+expected_leaf_resources:
+  - workflow_mode: create-readme
+    leaf_resource_id: assets/install_guide_template.md
+  - workflow_mode: create-readme
+    leaf_resource_id: references/README.md
 expected_token_range_input: 800-2500
 expected_token_range_output: 1500-3500
 created: 2026-05-05

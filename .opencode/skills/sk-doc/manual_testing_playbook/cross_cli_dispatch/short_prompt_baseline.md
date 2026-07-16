@@ -5,6 +5,10 @@ title: 'Short-prompt baseline: CHANGELOG intent across all 3 CLIs'
 expected_intent: CHANGELOG
 expected_resources:
   - assets/changelog_template.md
+expected_workflow_mode: create-changelog
+expected_leaf_resources:
+  - workflow_mode: create-changelog
+    leaf_resource_id: assets/changelog_template.md
 expected_token_range_input: 200-800
 expected_token_range_output: 800-2000
 created: 2026-05-05

@@ -6,6 +6,12 @@ expected_intent: OPTIMIZATION
 expected_resources:
   - create-quality-control/references/optimization.md
   - assets/llmstxt_templates.md
+expected_workflow_mode: create-quality-control
+expected_leaf_resources:
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/optimization.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: assets/llmstxt_templates.md
 expected_token_range_input: 800-2500
 expected_token_range_output: 800-2500
 created: 2026-05-05

@@ -5,6 +5,10 @@ title: 'HVR intent loads only references/hvr_rules.md'
 expected_intent: HVR
 expected_resources:
   - references/hvr_rules.md
+expected_workflow_mode: create-quality-control
+expected_leaf_resources:
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/hvr_rules.md
 expected_token_range_input: 1000-2000
 expected_token_range_output: 800-2000
 created: 2026-05-05

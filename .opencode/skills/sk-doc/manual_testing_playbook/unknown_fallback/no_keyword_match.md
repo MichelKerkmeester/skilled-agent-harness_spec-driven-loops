@@ -4,6 +4,8 @@ category: unknown_fallback
 title: 'No-keyword prompt triggers UNKNOWN_FALLBACK_CHECKLIST'
 expected_intent: UNKNOWN
 expected_resources: []
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 expected_token_range_input: 500-1500
 expected_token_range_output: 500-1500
 created: 2026-05-05

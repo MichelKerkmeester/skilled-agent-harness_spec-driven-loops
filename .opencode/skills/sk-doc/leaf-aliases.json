@@ -8,5 +8,25 @@
     "workflowMode": "create-quality-control",
     "leafResourceId": "assets/llmstxt_templates.md",
     "diskPath": "shared/assets/llmstxt_templates.md"
+  },
+  {
+    "workflowMode": "create-quality-control",
+    "leafResourceId": "references/validation.md",
+    "diskPath": "shared/references/validation.md"
+  },
+  {
+    "workflowMode": "create-quality-control",
+    "leafResourceId": "references/core_standards.md",
+    "diskPath": "shared/references/core_standards.md"
+  },
+  {
+    "workflowMode": "create-quality-control",
+    "leafResourceId": "references/hvr_rules.md",
+    "diskPath": "shared/references/hvr_rules.md"
+  },
+  {
+    "workflowMode": "create-quality-control",
+    "leafResourceId": "references/evergreen_packet_id_rule.md",
+    "diskPath": "shared/references/evergreen_packet_id_rule.md"
   }
 ]

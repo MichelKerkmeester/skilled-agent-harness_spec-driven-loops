@@ -6,6 +6,12 @@ expected_intent: FEATURE_CATALOG+PLAYBOOK
 expected_resources:
   - references/README.md
   - references/README.md
+expected_workflow_mode: create-feature-catalog+create-manual-testing-playbook
+expected_leaf_resources:
+  - workflow_mode: create-feature-catalog
+    leaf_resource_id: references/README.md
+  - workflow_mode: create-manual-testing-playbook
+    leaf_resource_id: references/README.md
 expected_token_range_input: 1000-2000
 expected_token_range_output: 1000-2500
 created: 2026-05-05

@@ -8,6 +8,16 @@ expected_resources:
   - assets/skill/skill_md_template.md
   - assets/skill/skill_readme_template.md
   - assets/skill/skill_reference_template.md
+expected_workflow_mode: create-skill
+expected_leaf_resources:
+  - workflow_mode: create-skill
+    leaf_resource_id: references/skill/creation_workflow.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_md_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_readme_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_reference_template.md
 expected_token_range_input: 1500-3000
 expected_token_range_output: 2000-4000
 created: 2026-05-05
