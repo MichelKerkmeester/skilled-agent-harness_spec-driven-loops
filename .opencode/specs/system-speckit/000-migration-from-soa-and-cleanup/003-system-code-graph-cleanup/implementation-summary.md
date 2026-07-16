@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Remove untracked stub packets below the system-code-graph archive ceiling"
-description: "Planning-only scaffold for deleting the 007/009 untracked system-code-graph stub directories. No deletion has run."
+description: "Deleted the two untracked system-code-graph stub directories (007/009); their tracked content had already migrated to 031/033. Number-line is now archive max 024 immediately followed by active min 025, no gap-filler between."
 trigger_phrases:
   - "system-code-graph stub cleanup"
   - "remove untracked spec stubs"
@@ -13,21 +13,20 @@ _memory:
     packet_pointer: "system-speckit/000-migration-from-soa-and-cleanup/003-system-code-graph-cleanup"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored planning-stub implementation-summary"
-    next_safe_action: "Re-verify zero tracked files, then run verify-then-rm-rf sequence"
+    recent_action: "Removed 007 009 untracked stubs"
+    next_safe_action: "Phase complete return to parent"
     blockers: []
     key_files:
-      - ".opencode/specs/system-code-graph/007-code-graph-buildout/"
-      - ".opencode/specs/system-code-graph/009-advisor-codegraph-shared-features/"
+      - ".opencode/specs/system-code-graph/z_archive/"
       - ".opencode/specs/system-code-graph/context-index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "003-system-code-graph-cleanup-impl-summary-scaffold"
+      session_id: "003-system-code-graph-cleanup-executed"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Should the 152 stale descriptions.json specFolder entries pointing at the old 007-/009- basenames be reindexed in a follow-up packet?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "descriptions.json 152 stale specFolder entries: deferred to a separate reindex follow-up (search-index staleness, not a live reference; does not block this deletion)."
 ---
 # Implementation Summary
 
@@ -43,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-system-code-graph-cleanup |
-| **Completed** | Pending (scaffold only, not executed) |
+| **Completed** | Yes — both stub directories removed; number-line verified |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,17 +51,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet plans the deletion of two untracked, zero-tracked-file stub directories (`007-code-graph-buildout`, `009-advisor-codegraph-shared-features`) that squat below the system-code-graph archive ceiling even though their real content already migrated to `031`/`033`. No deletion has executed yet; the plan defines the verify-then-`rm -rf` sequence and the classification of every remaining basename reference.
+The two untracked, zero-tracked-file stub directories (`007-code-graph-buildout`, `009-advisor-codegraph-shared-features`) that squatted below the `system-code-graph` archive ceiling were removed. Their real content had already migrated to `031`/`033` in a prior renumber; what remained was stray untracked scratch/log residue. No tracked file was touched.
 
-### Stub Directory Cleanup Plan
+### Stub Directory Cleanup (executed)
 
-The plan requires a fresh `git ls-files` confirmation of zero tracked files in both stub directories immediately before deletion, and a repo-wide grep classifying every remaining reference to the two basenames as either historical/audit (the `context-index.md` rename-mapping table) or stale search-index staleness (152 `descriptions.json` entries), never a live pointer that would break.
+Both stub paths are now absent (`ls` reports no such directory). The `system-code-graph` number-line is verified as archive max `024` immediately followed by active min `025`, with no gap-filler directory between the archive and the compliant active range (`025`-`035`). The `context-index.md` rename-mapping table (`007->031`, `009->033`) is preserved as historical migration record.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| (none yet) | Planned | Delete `007-code-graph-buildout` and `009-advisor-codegraph-shared-features` (untracked stub dirs), re-verify packet number line |
+| `.opencode/specs/system-code-graph/007-code-graph-buildout/` | `rm -rf` (untracked) | Remove stray scratch/log residue occupying a below-ceiling number |
+| `.opencode/specs/system-code-graph/009-advisor-codegraph-shared-features/` | `rm -rf` (untracked) | Remove stray review-lineage log residue occupying a below-ceiling number |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -70,7 +70,7 @@ The plan requires a fresh `git ls-files` confirmation of zero tracked files in b
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. Execution is pending per plan.md / checklist.md.
+Filesystem-only deletion of untracked scratch (no git operation, no commit needed for the deletion itself since nothing was tracked). Confirmed via `git ls-files` (empty for both paths, so no tracked content lost) and a post-deletion number-line check. This implementation-summary update is the only committed artifact for the phase.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -80,9 +80,9 @@ Not yet delivered. Execution is pending per plan.md / checklist.md.
 
 | Decision | Why |
 |----------|-----|
-| Classify remaining references before deleting, not after | Completing the classification pass first means a genuinely live reference is never silently broken by the delete. |
-| Leave the 152 stale `descriptions.json` entries out of scope | Search-index staleness is a separate reindex follow-up, not a reason to block this low-risk, untracked-only cleanup. |
-| Treat `context-index.md`'s rename-mapping table as historical record, not a live pointer | The table intentionally documents `007->031` and `009->033` as completed migration history and is preserved as-is. |
+| Classify remaining references before deleting | The classification pass (context-index.md = historical, descriptions.json = stale index) confirmed no live reference would break on deletion. |
+| Leave the 152 stale `descriptions.json` entries out of scope | Search-index staleness is a separate reindex follow-up, not a reason to block this low-risk untracked-only cleanup. |
+| Treat `context-index.md`'s rename-mapping table as historical record | The table intentionally documents `007->031` and `009->033` as completed migration history and is preserved as-is. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -92,7 +92,9 @@ Not yet delivered. Execution is pending per plan.md / checklist.md.
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --recursive --strict` | Not yet run (acceptance criteria in checklist.md) |
+| `git ls-files` on both stub paths | Empty (0 tracked files) — no tracked content lost |
+| Both stub directories absent | `ls` reports no such directory for both |
+| Number-line invariant | archive max `024` immediately followed by active min `025`; no gap-filler |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -100,9 +102,8 @@ Not yet delivered. Execution is pending per plan.md / checklist.md.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Scaffold only.** No `rm -rf` has run against either stub directory; this document only plans the sequence.
-2. **Low blast radius but still gated.** Deletion still requires a fresh `git ls-files` re-check immediately before execution, not reuse of this scaffold's snapshot.
-3. **Reindex follow-up not covered.** The 152 stale `descriptions.json` `specFolder` entries are explicitly deferred to a separate packet.
+1. **Reindex follow-up not covered.** The 152 stale `descriptions.json` `specFolder` entries still reading `007-`/`009-` basenames are search-index staleness, deferred to a separate reindex packet.
+2. **Deletion is not git-reversible.** The removed content was untracked scratch/log residue; it was git-unrecoverable to begin with (0 tracked files), so no rollback path exists or is needed.
 <!-- /ANCHOR:limitations -->
 
 ---
