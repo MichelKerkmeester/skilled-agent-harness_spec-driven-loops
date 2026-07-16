@@ -21,6 +21,8 @@ INTENT_SIGNALS = {
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog"]},
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog"]},
+    "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "conformance benchmark", "model benchmark", "skill benchmark"]},
+    "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff"]},
     "FULL_INVENTORY": {"weight": 4, "keywords": ["full sk-doc toolkit", "all templates", "show the full", "entire toolkit", "everything sk-doc offers"]},
 }
 
@@ -70,6 +72,16 @@ RESOURCE_MAP = {
     ],
     "CHANGELOG": [
         "shared/assets/changelog_template.md"
+    ],
+    "BENCHMARK": [
+        "create-benchmark/references/shared/README.md",
+        "create-benchmark/references/shared/worked_example.md",
+        "create-benchmark/assets/shared/benchmark_report_template.md"
+    ],
+    "DIFF": [
+        "create-diff/references/README.md",
+        "create-diff/references/workflow.md",
+        "create-diff/references/worked-example.md"
     ],
     "FULL_INVENTORY": [
         "create-agent/assets/agent_template.md",
