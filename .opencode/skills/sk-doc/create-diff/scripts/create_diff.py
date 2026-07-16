@@ -72,6 +72,7 @@ GENERATOR = "sk-doc create-diff"
 STATE_DIR_NAME = ".create-diff"
 CONTEXT_LINES = 3           # lines of unchanged context kept around each change
 COLLAPSE_THRESHOLD = 7      # runs of equal lines longer than this get collapsed
+_MD_HEADING_RE = re.compile(r"#{1,6} \S")  # ATX heading at line start (needs "# " + text)
 
 
 class CapabilityError(Exception):
@@ -478,7 +479,9 @@ class Row:
     new_no: Optional[int]
     old_html: str = ""        # escaped, may contain inline <mark> spans
     new_html: str = ""
-    note: str = ""            # for 'collapse'
+    note: str = ""            # for 'collapse': hidden-count text
+    sec: bool = False         # document section heading — rendered as a divider band
+    section: str = ""         # name of the document section this row falls in
 
 
 @dataclass
@@ -559,12 +562,17 @@ def _logical_lines(text: str) -> List[str]:
     return lines
 
 
-def diff_lines(a_text: str, b_text: str) -> DiffResult:
+def diff_lines(a_text: str, b_text: str,
+               section_re: Optional[re.Pattern] = None) -> DiffResult:
     """Compute a line-level diff with inline word highlighting and move detection.
 
     Args:
         a_text: Normalized "before" text.
         b_text: Normalized "after" text.
+        section_re: Optional pattern marking document section headings. Matching
+            lines are flagged as section rows, every row is stamped with the
+            section it falls in, and each collapsed run surfaces the nearest
+            heading above the following change as a navigable divider.
 
     Returns:
         A DiffResult with rendered rows and aggregate add/remove/change counts.
@@ -577,6 +585,14 @@ def diff_lines(a_text: str, b_text: str) -> DiffResult:
     added = removed = changed = unchanged = 0
     removed_idx: List[int] = []
     added_idx: List[int] = []
+    cur_section = ""
+
+    def _is_sec(line: str) -> bool:
+        return bool(section_re and section_re.match(line))
+
+    def _gap(n: int) -> None:
+        rows.append(Row("collapse", None, None,
+                        note=f"{n} unchanged line{'s' if n != 1 else ''}"))
 
     opcodes = sm.get_opcodes()
     for op_pos, (tag, i1, i2, j1, j2) in enumerate(opcodes):
@@ -585,54 +601,97 @@ def diff_lines(a_text: str, b_text: str) -> DiffResult:
             unchanged += length
             first = op_pos == 0
             last = op_pos == len(opcodes) - 1
+
+            def _ctx(k: int, _i1=i1, _j1=j1) -> Row:
+                nonlocal cur_section
+                line = b_lines[_j1 + k]
+                s = _is_sec(line)
+                if s:
+                    cur_section = _section_label(line)
+                return Row("context", _i1 + k + 1, _j1 + k + 1,
+                           html.escape(a_lines[_i1 + k]), html.escape(line),
+                           sec=s, section=cur_section)
+
             if length > COLLAPSE_THRESHOLD and not (first and last):
                 head = 0 if first else CONTEXT_LINES
                 tail = 0 if last else CONTEXT_LINES
                 for k in range(head):
-                    rows.append(Row("context", i1 + k + 1, j1 + k + 1,
-                                    html.escape(a_lines[i1 + k]),
-                                    html.escape(b_lines[j1 + k])))
-                hidden = length - head - tail
+                    rows.append(_ctx(k))
+                hidden_lo, hidden_hi = head, length - tail
+                hidden = hidden_hi - hidden_lo
                 if hidden > 0:
-                    rows.append(Row("collapse", None, None,
-                                    note=f"{hidden} unchanged line{'s' if hidden != 1 else ''}"))
+                    sec_ks = ([k for k in range(hidden_lo, hidden_hi)
+                               if _is_sec(b_lines[j1 + k])] if section_re else [])
+                    # Surface only the nearest heading above the following change:
+                    # it names the section the next hunk lives in. Headings deep in
+                    # fully-unchanged territory stay collapsed — outline chrome with
+                    # no nearby change is noise, not navigation.
+                    show = sec_ks[-1] if (sec_ks and not last) else None
+                    if show is None:
+                        if sec_ks:
+                            cur_section = _section_label(b_lines[j1 + sec_ks[-1]])
+                        _gap(hidden)
+                    else:
+                        if show > hidden_lo:
+                            _gap(show - hidden_lo)
+                        rows.append(_ctx(show))
+                        rest = hidden_hi - show - 1
+                        if rest:
+                            _gap(rest)
                 for k in range(length - tail, length):
-                    rows.append(Row("context", i1 + k + 1, j1 + k + 1,
-                                    html.escape(a_lines[i1 + k]),
-                                    html.escape(b_lines[j1 + k])))
+                    rows.append(_ctx(k))
             else:
                 for k in range(length):
-                    rows.append(Row("context", i1 + k + 1, j1 + k + 1,
-                                    html.escape(a_lines[i1 + k]),
-                                    html.escape(b_lines[j1 + k])))
+                    rows.append(_ctx(k))
         elif tag == "delete":
             for k in range(i1, i2):
                 removed += 1
                 removed_idx.append(k)
-                rows.append(Row("remove", k + 1, None, html.escape(a_lines[k]), ""))
+                line = a_lines[k]
+                # Removed headings get band styling but never set the section
+                # context — the outline that survives is the after-document's.
+                rows.append(Row("remove", k + 1, None, html.escape(line), "",
+                                sec=_is_sec(line), section=cur_section))
         elif tag == "insert":
             for k in range(j1, j2):
                 added += 1
                 added_idx.append(k)
-                rows.append(Row("add", None, k + 1, "", html.escape(b_lines[k])))
+                line = b_lines[k]
+                s = _is_sec(line)
+                if s:
+                    cur_section = _section_label(line)
+                rows.append(Row("add", None, k + 1, "", html.escape(line),
+                                sec=s, section=cur_section))
         elif tag == "replace":
             la, lb = i2 - i1, j2 - j1
             pairs = min(la, lb)
             for k in range(pairs):
                 changed += 1
                 old_html, new_html = _inline_diff(a_lines[i1 + k], b_lines[j1 + k])
-                rows.append(Row("remove", i1 + k + 1, None, old_html, ""))
-                rows.append(Row("add", None, j1 + k + 1, "", new_html))
+                sa, sb = _is_sec(a_lines[i1 + k]), _is_sec(b_lines[j1 + k])
+                rows.append(Row("remove", i1 + k + 1, None, old_html, "",
+                                sec=sa, section=cur_section))
+                if sb:
+                    cur_section = _section_label(b_lines[j1 + k])
+                rows.append(Row("add", None, j1 + k + 1, "", new_html,
+                                sec=sb, section=cur_section))
             for k in range(pairs, la):
                 removed += 1
                 removed_idx.append(i1 + k)
+                line = a_lines[i1 + k]
                 rows.append(Row("remove", i1 + k + 1, None,
-                                html.escape(a_lines[i1 + k]), ""))
+                                html.escape(line), "",
+                                sec=_is_sec(line), section=cur_section))
             for k in range(pairs, lb):
                 added += 1
                 added_idx.append(j1 + k)
+                line = b_lines[j1 + k]
+                s = _is_sec(line)
+                if s:
+                    cur_section = _section_label(line)
                 rows.append(Row("add", None, j1 + k + 1, "",
-                                html.escape(b_lines[j1 + k])))
+                                html.escape(line),
+                                sec=s, section=cur_section))
 
     moves = _detect_moves(a_lines, b_lines, removed_idx, added_idx)
     return DiffResult(rows=rows, added=added, removed=removed, changed=changed,
@@ -649,14 +708,14 @@ def diff_lines(a_text: str, b_text: str) -> DiffResult:
 # ───────────────────────────────────────────────────────────────
 
 _CSS = """
-:root{color-scheme:light dark;
---canvas:#fff;--surface:#f6f8fa;--surface-raised:#fff;
---text:#1f2328;--text-muted:#59636e;--border:#d0d7de;--border-strong:#afb8c1;
---gutter-bg:#f6f8fa;--gutter-text:#57606a;--empty-bg:#f6f8fa;
---hunk-bg:#ddf4ff;--hunk-text:#0550ae;--hunk-border:#b6e3ff;
---add-bg:#dafbe1;--add-inline:#aceebb;--add-marker:#116329;
---del-bg:#ffebe9;--del-inline:#ffcecb;--del-marker:#a40e26;
---warn-bg:#fff8c5;--warn-border:#d4a72c;--warn-text:#4d2d00;--focus:#0969da;
+:root{color-scheme:light;
+--canvas:#f7f7f4;--surface:#f2f1ed;--surface-raised:#f7f7f4;
+--text:#26251e;--text-muted:#6d6c63;--border:#cdcdc9;--border-strong:#a1a19f;
+--gutter-bg:#f2f1ed;--gutter-text:#6b6960;--empty-bg:#f2f1ed;
+--hunk-bg:#e6e5e0;--hunk-text:#5e5d55;--hunk-border:#cdcdc9;
+--add-bg:#e4efe7;--add-inline:#bfe0cb;--add-marker:#2f6d4f;
+--del-bg:#f7e6e3;--del-inline:#f3c9cd;--del-marker:#b02a48;
+--warn-bg:#f6ecd4;--warn-border:#c08532;--warn-text:#574011;--focus:#f54e00;
 --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-6:24px;--sp-8:32px;
 --fs-0:clamp(.875rem,calc(.766rem + .3125cqi),1rem);
 --fs-h1:calc(var(--fs-0) * 1.5);
@@ -666,43 +725,35 @@ _CSS = """
 --rhythm:clamp(16px,calc(8px + 2cqi),24px);
 --measure:min(72rem, 84ch);
 --text-caption:clamp(12px,calc(.6625rem + .2cqi),13px);
---font-ui:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
---font-code:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
-@media(prefers-color-scheme:dark){:root{
---canvas:#0d1117;--surface:#161b22;--surface-raised:#1c2128;
---text:#e6edf3;--text-muted:#9da7b3;--border:#30363d;--border-strong:#484f58;
---gutter-bg:#161b22;--gutter-text:#9da7b3;--empty-bg:#161b22;
---hunk-bg:#13233a;--hunk-text:#a5d6ff;--hunk-border:#1f6feb;
---add-bg:#12261e;--add-inline:#1f6f43;--add-marker:#7ee787;
---del-bg:#2d1718;--del-inline:#7d252c;--del-marker:#ff7b72;
---warn-bg:#2b2111;--warn-border:#9e6a03;--warn-text:#f0c36a;--focus:#58a6ff}}
+--font-ui:"CursorGothic",Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--font-code:"berkeleyMono",ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
 *{box-sizing:border-box}
 body{margin:0;background:var(--canvas);color:var(--text);font:1rem/1.5 var(--font-ui)}
 main{container-type:inline-size;container-name:report;
-max-width:100rem;margin:0 auto;padding:var(--sp-6) var(--sp-4) var(--sp-8)}
+max-width:100rem;margin:0 auto;padding:2rem}
 main>*{font-size:var(--fs-0)}
 .report-header,.warn,footer{max-width:var(--measure)}
 .summary-sec{max-width:72rem}
-h1{font-size:var(--fs-h1);line-height:1.25;font-weight:600;letter-spacing:-.01em;margin:0 0 var(--sp-1)}
-h2{font-size:var(--fs-h2);line-height:1.3;font-weight:650;margin:var(--rhythm) 0 var(--sp-3)}
+h1{font-size:var(--fs-h1);line-height:1.25;font-weight:400;letter-spacing:-.005em;margin:0 0 var(--sp-1)}
+h2{font-size:var(--fs-h2);line-height:1.3;font-weight:500;margin:var(--rhythm) 0 var(--sp-3)}
 .skip{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
 clip:rect(0 0 0 0);white-space:nowrap;border:0}
 a.skip:focus{position:static;width:auto;height:auto;margin:0;clip:auto;
 display:inline-block;background:var(--surface);padding:var(--sp-2);
-border:2px solid var(--focus);border-radius:6px}
+border:2px solid var(--focus);border-radius:4px}
 .meta{color:var(--text-muted);font-size:var(--text-caption);margin:0}
 .warn{border:1px solid var(--warn-border);background:var(--warn-bg);color:var(--warn-text);
-padding:var(--sp-3) var(--sp-4);border-radius:6px;margin:var(--sp-4) 0}
+padding:var(--sp-3) var(--sp-4);border-radius:4px;margin:var(--sp-4) 0}
 .warn h2{margin:0 0 var(--sp-1);font-size:var(--fs-0);color:var(--warn-text)}
 .warn ul{margin:0;padding-left:1.2rem}
 .stat-strip{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin:var(--sp-3) 0;padding:0}
 .stat{font:600 var(--text-caption)/1.4 var(--font-code);font-variant-numeric:tabular-nums;
-padding:var(--sp-1) var(--sp-2);border-radius:2rem;border:1px solid var(--border)}
+padding:var(--sp-1) var(--sp-2);border-radius:4px;border:1px solid var(--border)}
 .stat-add{color:var(--add-marker);background:var(--add-bg);border-color:var(--add-inline)}
 .stat-del{color:var(--del-marker);background:var(--del-bg);border-color:var(--del-inline)}
 .stat-chg,.stat-move,.stat-eq{color:var(--text-muted);background:var(--surface)}
 .summary{border-collapse:separate;border-spacing:0;border:1px solid var(--border);
-border-radius:6px;overflow:hidden;font-size:var(--fs-sm);margin:var(--sp-3) 0}
+border-radius:4px;overflow:hidden;font-size:var(--fs-sm);margin:var(--sp-3) 0}
 .summary th,.summary td{padding:var(--sp-2) var(--sp-3);text-align:left;
 border-bottom:1px solid var(--border)}
 .summary tr:last-child th,.summary tr:last-child td{border-bottom:0}
@@ -710,10 +761,10 @@ border-bottom:1px solid var(--border)}
 .legend{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-4);list-style:none;padding:0;
 margin:var(--sp-3) 0;font-size:var(--text-caption);color:var(--text-muted)}
 .legend li{display:flex;align-items:center;gap:var(--sp-2)}
-.key{font:700 var(--text-caption)/1.4 var(--font-code);min-width:1.4rem;text-align:center;border-radius:3px}
+.key{font:700 var(--text-caption)/1.4 var(--font-code);min-width:1.4rem;text-align:center;border-radius:4px}
 .key-add{color:var(--add-marker);background:var(--add-bg)}
 .key-del{color:var(--del-marker);background:var(--del-bg)}
-.diff-frame{border:1px solid var(--border);border-radius:6px;background:var(--surface-raised)}
+.diff-frame{border:1px solid var(--border);border-radius:4px;background:var(--surface-raised)}
 .diff-scroll{overflow-x:auto}
 .diff-scroll:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
 table.diff{border-collapse:collapse;width:100%;
@@ -741,6 +792,10 @@ font-family:var(--font-code);font-weight:600;padding:var(--sp-1) var(--sp-2);
 border-block:1px solid var(--hunk-border)}
 tr.collapse td{text-align:center;color:var(--text-muted);background:var(--surface);
 padding:var(--sp-1) var(--sp-2);border-block:1px solid var(--border)}
+tr.sec td{padding-block:4px}
+tr.sec td.txt{font-family:var(--font-ui);font-weight:600;font-size:calc(var(--fs-code) * 1.15)}
+tr.context.sec td{background:var(--surface);border-block:1px solid var(--border)}
+tr.context.sec td.no{background:var(--surface)}
 mark.wd{padding:0 1px;border-radius:2px;color:inherit}
 mark.wd.add{background:var(--add-inline);text-decoration:underline}
 mark.wd.del{background:var(--del-inline);text-decoration:line-through}
@@ -881,36 +936,46 @@ def _num(n: Optional[int]) -> str:
     return "" if n is None else str(n)
 
 
+def _section_label(raw: str) -> str:
+    # Human-facing section name: heading text without ATX markers or emphasis noise.
+    return re.sub(r"\*+", "", raw.lstrip("#")).strip()
+
+
 def _hunks(rows: List[Row]) -> List[Tuple[str, object]]:
     """Split diff rows into contiguous change hunks separated by collapsed-context gaps.
 
-    Returns a list of ('hunk', [rows]) and ('gap', note) segments, so each hunk can carry
-    its own @@ header and the omitted-context markers read as real section breaks rather
-    than a run of generic status rows.
+    Returns ('hunk', (rows, section_label)) and ('gap', note) segments, so each hunk can
+    carry its own @@ header annotated with the document section it falls in, and the
+    omitted-context markers read as real breaks rather than generic status rows.
     """
     segments = []
     current: List[Row] = []
+    hunk_label = ""
     for r in rows:
         if r.kind == "collapse":
             if current:
-                segments.append(("hunk", current))
+                segments.append(("hunk", (current, hunk_label)))
                 current = []
             segments.append(("gap", r.note))
         else:
+            if not current:
+                hunk_label = r.section
             current.append(r)
     if current:
-        segments.append(("hunk", current))
+        segments.append(("hunk", (current, hunk_label)))
     return segments
 
 
-def _hunk_header(hunk: List[Row]) -> str:
+def _hunk_header(hunk: List[Row], label: str = "") -> str:
     # A human-facing @@ range derived from the visible line numbers — a scan anchor, not a
-    # machine-applicable patch header.
+    # machine-applicable patch header. The section suffix says WHERE in the document the
+    # hunk sits, which line numbers alone cannot.
     olds = [r.old_no for r in hunk if r.old_no is not None]
     news = [r.new_no for r in hunk if r.new_no is not None]
     o_start = olds[0] if olds else 0
     n_start = news[0] if news else 0
-    return f"@@ -{o_start},{len(olds)} +{n_start},{len(news)} @@"
+    base = f"@@ -{o_start},{len(olds)} +{n_start},{len(news)} @@"
+    return f"{base} · § {label}" if label else base
 
 
 def _render_unified(diff: DiffResult) -> str:
@@ -928,23 +993,28 @@ def _render_unified(diff: DiffResult) -> str:
             out.append('<tbody class="gap"><tr class="collapse">'
                        f'<td colspan="4">⋯ {_esc(payload)} ⋯</td></tr></tbody>')
             continue
-        out.append('<tbody class="hunk">'
-                   '<tr class="hunk-head"><th scope="rowgroup" colspan="4">'
-                   f'{_esc(_hunk_header(payload))}</th></tr>')
-        for r in payload:
+        hunk_rows, label = payload
+        out.append('<tbody class="hunk">')
+        # A hunk that is only surfaced section headings carries no changes; the
+        # band itself is the divider, so an @@ header there would be pure noise.
+        if any(r.kind in ("add", "remove") for r in hunk_rows):
+            out.append('<tr class="hunk-head"><th scope="rowgroup" colspan="4">'
+                       f'{_esc(_hunk_header(hunk_rows, label))}</th></tr>')
+        for r in hunk_rows:
             old, new = _num(r.old_no), _num(r.new_no)
+            sec = " sec" if r.sec else ""
             if r.kind == "add":
-                out.append('<tr class="add"><td class="no is-add"></td>'
+                out.append(f'<tr class="add{sec}"><td class="no is-add"></td>'
                            f'<td class="no is-add">{new}</td>'
                            '<td class="mark is-add" aria-label="added">+</td>'
                            f'<td class="txt is-add">{r.new_html}</td></tr>')
             elif r.kind == "remove":
-                out.append(f'<tr class="remove"><td class="no is-remove">{old}</td>'
+                out.append(f'<tr class="remove{sec}"><td class="no is-remove">{old}</td>'
                            '<td class="no is-remove"></td>'
                            '<td class="mark is-remove" aria-label="removed">−</td>'
                            f'<td class="txt is-remove">{r.old_html}</td></tr>')
             else:
-                out.append(f'<tr class="context"><td class="no">{old}</td>'
+                out.append(f'<tr class="context{sec}"><td class="no">{old}</td>'
                            f'<td class="no">{new}</td><td class="mark"></td>'
                            f'<td class="txt">{r.old_html}</td></tr>')
         out.append("</tbody>")
@@ -953,7 +1023,8 @@ def _render_unified(diff: DiffResult) -> str:
 
 
 def _sxs_change(rm: Row, ad: Row) -> str:
-    return ('<tr class="change">'
+    sec = " sec" if (rm.sec or ad.sec) else ""
+    return (f'<tr class="change{sec}">'
             f'<td class="no is-remove">{_num(rm.old_no)}</td>'
             '<td class="mark is-remove" aria-label="removed">−</td>'
             f'<td class="txt is-remove">{rm.old_html}</td>'
@@ -963,8 +1034,9 @@ def _sxs_change(rm: Row, ad: Row) -> str:
 
 
 def _sxs_single(r: Row) -> str:
+    sec = " sec" if r.sec else ""
     if r.kind == "remove":
-        return ('<tr class="remove">'
+        return (f'<tr class="remove{sec}">'
                 f'<td class="no is-remove">{_num(r.old_no)}</td>'
                 '<td class="mark is-remove" aria-label="removed">−</td>'
                 f'<td class="txt is-remove">{r.old_html}</td>'
@@ -972,14 +1044,14 @@ def _sxs_single(r: Row) -> str:
                 '<td class="txt is-empty"><span class="skip">'
                 'No corresponding line in the after version.</span></td></tr>')
     if r.kind == "add":
-        return ('<tr class="add">'
+        return (f'<tr class="add{sec}">'
                 '<td class="no is-empty"></td><td class="mark is-empty"></td>'
                 '<td class="txt is-empty"><span class="skip">'
                 'No corresponding line in the before version.</span></td>'
                 f'<td class="no is-add">{_num(r.new_no)}</td>'
                 '<td class="mark is-add" aria-label="added">+</td>'
                 f'<td class="txt is-add">{r.new_html}</td></tr>')
-    return ('<tr class="context">'
+    return (f'<tr class="context{sec}">'
             f'<td class="no">{_num(r.old_no)}</td><td class="mark"></td>'
             f'<td class="txt">{r.old_html}</td>'
             f'<td class="no">{_num(r.new_no)}</td><td class="mark"></td>'
@@ -1004,13 +1076,16 @@ def _render_side_by_side(diff: DiffResult, label_before: str, label_after: str) 
             out.append('<tbody class="gap"><tr class="collapse">'
                        f'<td colspan="6">⋯ {_esc(payload)} ⋯</td></tr></tbody>')
             continue
-        out.append('<tbody class="hunk">'
-                   '<tr class="hunk-head"><th scope="rowgroup" colspan="6">'
-                   f'{_esc(_hunk_header(payload))}</th></tr>')
+        hunk_rows, label = payload
+        out.append('<tbody class="hunk">')
+        # Suppress the @@ header for change-free hunks (surfaced heading bands).
+        if any(r.kind in ("add", "remove") for r in hunk_rows):
+            out.append('<tr class="hunk-head"><th scope="rowgroup" colspan="6">'
+                       f'{_esc(_hunk_header(hunk_rows, label))}</th></tr>')
         i = 0
-        while i < len(payload):
-            r = payload[i]
-            nxt = payload[i + 1] if i + 1 < len(payload) else None
+        while i < len(hunk_rows):
+            r = hunk_rows[i]
+            nxt = hunk_rows[i + 1] if i + 1 < len(hunk_rows) else None
             # difflib emits a replace opcode's paired old/new lines adjacently (remove then
             # add); pairing them here is what makes a changed line one aligned row.
             if r.kind == "remove" and nxt is not None and nxt.kind == "add":
@@ -1218,7 +1293,10 @@ def _compare_and_report(ext_a: Extraction, ext_b: Extraction, *, label_before: s
                         default_stem: str, as_json: bool, title: str) -> int:
     a_norm = normalize(ext_a.text)
     b_norm = normalize(ext_b.text)
-    diff = diff_lines(a_norm, b_norm)
+    # Markdown documents get heading-aware sectioning: the diff is divided by the
+    # document's own outline, so long reports stay scannable by structure.
+    section_re = _MD_HEADING_RE if ext_b.fmt == "markdown" else None
+    diff = diff_lines(a_norm, b_norm, section_re=section_re)
     report_html = render_report(diff, label_before=label_before, label_after=label_after,
                                 extraction_before=ext_a, extraction_after=ext_b,
                                 view=view, title=title)

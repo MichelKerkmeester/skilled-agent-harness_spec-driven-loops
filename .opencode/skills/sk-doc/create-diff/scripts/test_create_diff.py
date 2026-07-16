@@ -331,6 +331,47 @@ class ReportInvariants(unittest.TestCase):
         self.assertIn("@container report", html)
         self.assertIn("cqi", html)
 
+    def test_page_gutter_has_two_rem_minimum(self):
+        # The report content must never sit flush against the pane edge; a >=2rem
+        # page gutter keeps the diff readable in a narrow docked IDE preview.
+        with tempfile.TemporaryDirectory() as d:
+            html = _report(Path(d), "a", "b")
+        self.assertRegex(html, r"main\{[^}]*padding:2rem\}")
+
+    def test_markdown_headings_divide_sections(self):
+        # Markdown diffs are navigable by document structure: headings hidden in
+        # collapsed runs surface as visible section bands, and hunk headers name
+        # the section they fall in — line numbers alone can't say WHERE you are.
+        body = "\n".join(f"filler {i}" for i in range(12))
+        a = f"# Title\nintro\n\n## Alpha\n{body}\n\n## Beta\nold line\n"
+        b = f"# Title\nintro\n\n## Alpha\n{body}\n\n## Beta\nnew line\n"
+        with tempfile.TemporaryDirectory() as d:
+            fa = _write(Path(d), "a.md", a)
+            fb = _write(Path(d), "b.md", b)
+            rep = Path(d) / "o.html"
+            rc, _ = _run_cli("compare-pair", "--before", str(fa), "--after", str(fb),
+                             "--report", str(rep))
+            self.assertEqual(rc, cd.EXIT_OK)
+            html_out = rep.read_text(encoding="utf-8")
+            self.assertEqual(vr.validate(rep), [])
+        self.assertIn('class="context sec"', html_out)
+        self.assertIn("· § ", html_out)
+
+    def test_plain_text_gets_no_section_rows(self):
+        # Sectioning keys off markdown structure; a plain-text diff must not
+        # misread "# comment"-style lines as document headings.
+        body = "\n".join(f"# note {i}" for i in range(12))
+        with tempfile.TemporaryDirectory() as d:
+            fa = _write(Path(d), "a.txt", f"{body}\nold\n")
+            fb = _write(Path(d), "b.txt", f"{body}\nnew\n")
+            rep = Path(d) / "o.html"
+            rc, _ = _run_cli("compare-pair", "--before", str(fa), "--after", str(fb),
+                             "--report", str(rep))
+            self.assertEqual(rc, cd.EXIT_OK)
+            html_out = rep.read_text(encoding="utf-8")
+        self.assertNotIn('class="context sec"', html_out)
+        self.assertNotIn("· § ", html_out)
+
     def test_collapsed_context_accounting(self):
         middle = "\n".join(f"line{i}" for i in range(20))
         d = _diff(f"HEAD\n{middle}\nTAIL", f"head\n{middle}\ntail")
@@ -354,8 +395,11 @@ class LegendContrast(unittest.TestCase):
     def test_legend_swatch_contrast_light(self):
         self._assert_pairs(dark=False)
 
-    def test_legend_swatch_contrast_dark(self):
-        self._assert_pairs(dark=True)
+    def test_report_is_light_mode_only(self):
+        # The report ships the Cursor parchment reference, a light-only design
+        # language; a dark override would fork the palette away from the source.
+        self.assertIn("color-scheme:light", cd._CSS)
+        self.assertNotIn("prefers-color-scheme:dark", cd._CSS)
 
     def test_legend_uses_full_strength_text(self):
         self.assertIn(".legend mark.wd{color:var(--text)}", cd._CSS)
