@@ -49,6 +49,8 @@ This packet runs one `/deep:research :auto` sweep, fanned out across 3 independe
 
 > **EXECUTION DEVIATION (2026-07-16):** Forced-depth (`--convergence-mode=divergent` / `--stop-policy=max-iterations`) is UNAVAILABLE on the deep-research fan-out runtime — it is wired only for deep-review (`fanout-run.cjs:611`; `deep_research_auto.yaml:165` invokes the fan-out without `--stop-policy`). Per operator decision this sweep runs with NORMAL convergence and a 10-iteration/lineage cap (up to 30 total; a lineage may converge earlier). On a tree this large early convergence is unlikely, so the run approaches full depth in practice. **All forced-depth phrasing elsewhere in this packet is SUPERSEDED by this note.**
 
+> **EXECUTION DEVIATION #2 — GLM lineage demoted to supplementary (2026-07-16):** The 3-lineage fan-out DID run (GLM, SOL, LUNA). SOL (9 iterations) and LUNA (10) satisfied the workflow's mandatory per-iteration route-proof contract (`mode` / `target_agent` / `agent_definition_loaded` / `resolved_route`); **GLM (`glm-5.2`) did not** — it emitted a reduced record schema carrying 0 route-proof fields and 0 delta files, a structural model-adherence gap (a same-model rerun would re-fail). Per operator decision, synthesis proceeds from the **2 route-proof-compliant lineages (SOL + LUNA)**; the GLM lineage is archived to `research/_archived-lineages/glm/` and its `research.md` is carried as a **supplementary, unverified-provenance** input, NOT part of the gated set. **REQ-002 and SC-002 below are amended accordingly.** Rollback: move `research/_archived-lineages/glm/` back to `research/lineages/glm/`.
+
 ---
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -117,7 +119,7 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Launch the plan-named `/deep:research :auto` workflow bound to this spec folder, not a hand-rolled substitute | `research/deep-research-config.json` records `spec_folder` pointing at this packet and the 3-lineage fan-out; forced-depth flags are omitted (unsupported on research fan-out, operator-accepted 2026-07-16). |
-| REQ-002 | Run up to 30 total iterations across exactly 3 lineages (up to 10 each: GLM, SOL, LUNA), allowing normal convergence | Per-lineage state under `research/lineages/{label}/` shows up to 10 iterations for each of the three lineages (fewer if a lineage converges early is ACCEPTABLE under normal convergence); the merged findings registry reflects all three. |
+| REQ-002 | Fan out across 3 lineages (GLM, SOL, LUNA); synthesize from the route-proof-compliant lineages under normal convergence (see EXECUTION DEVIATION #2) | The 3-lineage fan-out ran; SOL (9 iterations) and LUNA (10) passed the route-proof gate and form the synthesis set; GLM (`glm-5.2`) failed route-proof and is archived as supplementary. Per-lineage state under `research/lineages/{label}/` shows the compliant lineages' iterations; the merged findings registry reflects SOL+LUNA (GLM carried supplementary). |
 | REQ-003 | Sweep target is ALL of `.opencode/specs/*`, not a narrowed subset | `research/deep-research-strategy.md` or `research/research.md` names the full-tree scope explicitly and does not silently narrow to only the five phases 001-005 tracks. |
 | REQ-004 | Durable output `research/research.md` written and committed BEFORE phase 007 begins | `git log -- research/research.md` shows a commit under this packet's path that predates any phase 007 destructive action. |
 | REQ-005 | Use the exact verified executor slugs and flags | `research/deep-research-config.json` fanout executor entries match: GLM = `zai-coding-plan/glm-5.2` effort `max` via `cli-opencode`; SOL = `openai/gpt-5.6-sol-fast` effort `high` via `cli-opencode` with NO `--service-tier` flag; LUNA = `cli-codex` `gpt-5.6-luna` effort `max` `service_tier: fast`. |
@@ -136,7 +138,7 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `research/research.md` exists, is non-empty, and is committed to git before phase 007 begins.
-- **SC-002**: Total iteration count across `research/` lineage state equals 30, split across exactly 3 lineages (GLM, SOL, LUNA).
+- **SC-002**: The fan-out ran 3 lineages; the route-proof-compliant synthesis set is SOL (9) + LUNA (10) = 19 iterations. GLM's 9 iterations failed the route-proof gate and are retained as supplementary (unverified provenance), not counted toward the gated total (see EXECUTION DEVIATION #2).
 - **SC-003**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/006-global-spec-drift-deep-research --strict` exits 0.
 - **SC-004**: Every finding surfaced by the sweep is either remediated with evidence or explicitly deferred with a recorded reason, before phase 007 is authorized to run.
 <!-- /ANCHOR:success-criteria -->

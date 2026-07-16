@@ -44,11 +44,20 @@
       "spec.md",
       "plan.md",
       ".opencode/commands/deep/research.md",
+      "research/research.md",
+      "research/deep-research-findings-registry.json",
+      "research/fanout-attribution.md",
+      "research/deep-research-config.json",
+      "research/orchestration-summary.json",
       "implementation-summary.md",
       "tasks.md",
       "checklist.md",
       ".opencode/skills/system-deep-loop/deep-research/feature_catalog/loop_lifecycle/fanout_dispatch.md",
-      ".opencode/skills/system-deep-loop/deep-research/feature_catalog/convergence/divergent_convergence_mode.md"
+      ".opencode/skills/system-deep-loop/deep-research/feature_catalog/convergence/divergent_convergence_mode.md",
+      "research/lineages/sol/research.md",
+      "research/lineages/luna/research.md",
+      "research/_archived-lineages/glm/research.md",
+      ".opencode/specs/system-code-graph/029-code-graph-doc-audit/review-report.md"
     ],
     "entities": [
       {
@@ -61,6 +70,36 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
         "source": "derived"
       },
       {
@@ -91,6 +130,12 @@
         "name": "divergent_convergence_mode.md",
         "kind": "doc",
         "path": ".opencode/skills/system-deep-loop/deep-research/feature_catalog/convergence/divergent_convergence_mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-code-graph/029-code-graph-doc-audit/review-report.md",
         "source": "derived"
       },
       {
@@ -158,47 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Git Workspace Safety",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parent packet (`000-migration-from-soa-and-cleanup`) diagnosed numbering drift in exactly five tracks and scoped phases 001-005 to fix only that drift",
     "created_at": "2026-07-16T06:17:13.608Z",
-    "last_save_at": "2026-07-16T12:54:34.678Z",
+    "last_save_at": "2026-07-16T14:22:54.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,15 +215,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:50f514c08af8bff9db167acc5754c116d0b4bc4d44dd361480d643827c113415",
+    "source_fingerprint": "sha256:bd9935acb28c46abe21cdbf160e1ab712445621928fa8cef79a663c917896b5d",
     "source_doc_hashes": {
-      "spec.md": "b2529690497b37831d0585eb17a59cbf4d4186a8041d0295af2ec0fef5a3d080",
+      "spec.md": "87638b4b1b9b01fea0acc6bacb93969e9952ad88f8c1a87a1e32cbb1f26d4e35",
       "plan.md": "123043f83d89f96fa1ac4e06def55ecee94815c6eebde1b1b47b054789f20d70",
       "tasks.md": "5bbcfee50386c8fa94b9688bc5a4b473316c60cc66ebcd85eb2d471d3278fc13",
       "checklist.md": "d46974333197ec77c683d892570f9e5db69dec64e33893a275beb5946dc97ef5",
-      "implementation-summary.md": "950b7966d3dd4730e069910749222424be07bfa94fb622d5d6b0e15403337421"
+      "implementation-summary.md": "be51345522a9cf490a5a3df92a17a4232f210d3f26b2552405227802ce83f15b",
+      "research/research.md": "9d8bc5a369ca72c8551f3933713133c3e2209a95538cc77d3328dbf32977bbf1"
     },
     "last_active_child_id": null,
     "last_active_at": null

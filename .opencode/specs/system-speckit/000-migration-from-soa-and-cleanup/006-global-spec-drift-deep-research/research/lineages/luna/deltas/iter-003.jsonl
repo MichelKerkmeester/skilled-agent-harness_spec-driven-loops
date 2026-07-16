@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":3,"run":3,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","status":"insight","focus":"Status claims against implementation evidence","findingsCount":4,"newInfoRatio":0.71,"noveltyJustification":"Confirmed that status, validator semantics, generated metadata, and evidence counts can drift independently, including after remediation.","keyQuestions":[],"answeredQuestions":["Which drift is systemic versus packet-local, and what evidence supports that distinction?"],"ruledOut":["Completion status as sufficient proof of current truth"],"graphEvents":[]}
+{"type":"finding","id":"f-003-001","label":"Audit baseline with direct source checks","iteration":3}
+{"type":"finding","id":"f-003-002","label":"Status classifier blind spot and collision","iteration":3}
+{"type":"finding","id":"f-003-003","label":"Evidence-count drift after remediation","iteration":3}
+{"type":"finding","id":"f-003-004","label":"Cross-surface parent metadata drift","iteration":3}

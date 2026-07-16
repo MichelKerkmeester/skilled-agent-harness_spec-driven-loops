@@ -1,0 +1,61 @@
+{
+  "topic": "spec drift and prior context-optimization efforts across all .opencode/specs/*",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "convergence",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "specFolder": ".opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/006-global-spec-drift-deep-research",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-16T12:59:19Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "dryRun": false,
+  "_amendment": "2026-07-16: The 3-lineage fan-out (glm, sol, luna) ran to completion; glm (glm-5.2) failed the mandatory route-proof contract (reduced record schema, 0 route-proof fields, 0 delta files, timestamp-anomalous) and was archived to research/_archived-lineages/glm/ as a supplementary, unverified-provenance input per operator decision. The active gated fan-out set is now sol + luna (both route-proof-compliant). See spec.md EXECUTION DEVIATION #2.",
+  "lineage": {
+    "sessionId": "dr-20260716T125919Z-global-spec-drift",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-opencode",
+        "model": "openai/gpt-5.6-sol-fast",
+        "reasoningEffort": "high",
+        "label": "sol",
+        "iterations": 10
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-5.6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "label": "luna",
+        "iterations": 10
+      }
+    ],
+    "archivedExecutors": [
+      {
+        "kind": "cli-opencode",
+        "model": "zai-coding-plan/glm-5.2",
+        "reasoningEffort": "max",
+        "label": "glm",
+        "iterations": 10,
+        "archivedReason": "route-proof non-compliant (see _amendment); supplementary only"
+      }
+    ],
+    "concurrency": 2
+  }
+}

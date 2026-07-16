@@ -1,0 +1,95 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id":"Q1","text":"What is the current global inventory and where do structural, naming, numbering, or ownership conventions drift across spec tracks?","resolvedAtIteration":6,"evidence":["f-sol-001-001","f-sol-001-002","f-sol-002-001","f-sol-002-002","f-sol-002-003","f-sol-002-004","f-sol-002-005","f-sol-006-001","f-sol-006-002","f-sol-006-003","f-sol-006-004","f-sol-006-005","f-sol-006-006","f-sol-006-007"]},
+    {"id":"Q2","text":"What residual migration residue remains, including stale paths, legacy names, archive placement, and parent/child topology mismatches?","resolvedAtIteration":6,"evidence":["f-sol-002-002","f-sol-002-003","f-sol-002-004","f-sol-002-005","f-sol-006-002","f-sol-006-003","f-sol-006-004","f-sol-006-005","f-sol-006-006"]},
+    {"id":"Q3","text":"Where do status, completion, checklist, continuity, description, and graph metadata disagree or provide unreliable completion evidence?","resolvedAtIteration":3,"evidence":["f-sol-003-001","f-sol-003-002","f-sol-003-003","f-sol-003-004","f-sol-003-005","f-sol-003-006","f-sol-003-007"]},
+    {"id":"Q4","text":"Which prior context-optimization efforts were attempted, what mechanisms did they use, and what evidence exists about their outcomes or limitations?","resolvedAtIteration":4,"evidence":["f-sol-004-001","f-sol-004-002","f-sol-004-003","f-sol-004-004","f-sol-004-005","f-sol-004-006","f-sol-004-007","f-sol-004-008"]},
+    {"id":"Q5","text":"What findings materially affect the planned memory-database teardown, and how should each finding be triaged without performing remediation in this research lineage?","resolvedAtIteration":5,"evidence":["f-sol-005-001","f-sol-005-002","f-sol-005-003","f-sol-005-004","f-sol-005-005","f-sol-005-006","f-sol-005-007"]}
+  ],
+  "keyFindings": [
+    {"id":"f-sol-001-001","iteration":1,"summary":"The tree has 3,015 spec candidates across 12 tracks, dominated by system-speckit, system-deep-loop, and sk-doc."},
+    {"id":"f-sol-001-002","iteration":1,"summary":"Packet topology reaches depth 10 and includes 657 archived candidates."},
+    {"id":"f-sol-001-003","iteration":1,"summary":"Raw missing-file counts are contaminated by fixtures, backups, scratch templates, and documentation-level differences."},
+    {"id":"f-sol-001-004","iteration":1,"summary":"Active sk-doc parent children reuse numeric prefixes 010 through 015."},
+    {"id":"f-sol-001-005","iteration":1,"summary":"323 phase-parent candidates require lifecycle-aware conformance checks."},
+    {"id":"f-sol-001-006","iteration":1,"summary":"Context-optimization vocabulary is too common for raw keyword counts to identify distinct interventions."}
+    ,{"id":"f-sol-002-001","iteration":2,"summary":"Active-only classification leaves 2,168 packet candidates after excluding 847 historical/test copies."}
+    ,{"id":"f-sol-002-002","iteration":2,"summary":"Completed archive-first migrations are structurally clean in system-speckit, system-code-graph, sk-design, sk-code, and sk-git."}
+    ,{"id":"f-sol-002-003","iteration":2,"summary":"sk-doc retains archive overlap and six live sibling-number collisions after its alignment phase was operator-skipped."}
+    ,{"id":"f-sol-002-004","iteration":2,"summary":"deep-loop discontinuity is decision-backed and operator-skipped, but stale children_ids remain an explicit follow-up."}
+    ,{"id":"f-sol-002-005","iteration":2,"summary":"Fifteen active phase-parent candidates retain heavy docs under the current lean-trio policy."}
+    ,{"id":"f-sol-003-001","iteration":3,"summary":"All 2,168 active packet candidates have present, parseable description and graph metadata."}
+    ,{"id":"f-sol-003-002","iteration":3,"summary":"There are 212 terminal-spec/nonterminal-graph conflicts and 19 inverse conflicts."}
+    ,{"id":"f-sol-003-003","iteration":3,"summary":"Checklist and graph completion disagree in both directions."}
+    ,{"id":"f-sol-003-004","iteration":3,"summary":"1,093 active specs use all-zero continuity fingerprints; 164 claim 100% with nonterminal graph status."}
+    ,{"id":"f-sol-003-005","iteration":3,"summary":"Thirteen active specs retain literal status template placeholders."}
+    ,{"id":"f-sol-003-006","iteration":3,"summary":"Sixty direct phase-parent candidates have contradictory parent/child graph statuses."}
+    ,{"id":"f-sol-003-007","iteration":3,"summary":"Concrete conflicts are verified in both spec-terminal/graph-planned and spec-draft/graph-complete directions."}
+    ,{"id":"f-sol-004-001","iteration":4,"summary":"Compaction recovery used bounded PreCompact cache generation and SessionStart injection."}
+    ,{"id":"f-sol-004-002","iteration":4,"summary":"Session priming became source-aware across startup, resume, clear, and compact with pressure-sensitive budgets."}
+    ,{"id":"f-sol-004-003","iteration":4,"summary":"Standalone deep-context was deprecated in favor of bounded pointer snapshots inside research and review."}
+    ,{"id":"f-sol-004-004","iteration":4,"summary":"Context metrics remained aggregate and in-memory while legacy traffic-light heuristics remained authoritative."}
+    ,{"id":"f-sol-004-005","iteration":4,"summary":"Hookless bootstrap added read-only snapshots, minimal resume, composite bootstrap, and telemetry."}
+    ,{"id":"f-sol-004-006","iteration":4,"summary":"Continuity latency and token-saving figures are research claims rather than longitudinal measurements."}
+    ,{"id":"f-sol-004-007","iteration":4,"summary":"Automatic narrative compaction was explicitly deferred in favor of growth instrumentation."}
+    ,{"id":"f-sol-004-008","iteration":4,"summary":"Continuity gate evidence combined broad execution with many initially failing or unautomatable scenarios."}
+    ,{"id":"f-sol-005-001","iteration":5,"summary":"Merged durable research and complete triage, not one lineage, authorize phase 007."}
+    ,{"id":"f-sol-005-002","iteration":5,"summary":"Phase 007 correctly requires fresh confirmation, daemon stop, an explicit allowlist, and exclusion proof."}
+    ,{"id":"f-sol-005-003","iteration":5,"summary":"Doctor update can restore search function but not history, audit trails, or learned-rule provenance."}
+    ,{"id":"f-sol-005-004","iteration":5,"summary":"Source metadata contradictions survive a clean database rebuild."}
+    ,{"id":"f-sol-005-005","iteration":5,"summary":"Known rename and track-root residue includes rebuildable derived-index staleness."}
+    ,{"id":"f-sol-005-006","iteration":5,"summary":"Operator-skipped topology residue is an accepted handoff state but must remain explicit."}
+    ,{"id":"f-sol-005-007","iteration":5,"summary":"Manifest-only checkpoint directories are not teardown rollback snapshots."}
+    ,{"id":"f-sol-006-001","iteration":6,"summary":"Completion and continuity contradictions are the broadest P1 source-semantic drift class."}
+    ,{"id":"f-sol-006-002","iteration":6,"summary":"sk-doc and deep-loop retain accepted but owner-required numbering and topology debt."}
+    ,{"id":"f-sol-006-003","iteration":6,"summary":"One system-speckit packet pointer targets a deleted archived path and needs an ownership decision."}
+    ,{"id":"f-sol-006-004","iteration":6,"summary":"Fifteen phase parents need a grandfather policy before heavy root docs can move or disappear."}
+    ,{"id":"f-sol-006-005","iteration":6,"summary":"Known derived-index residue is partially rebuildable but distinct from source drift."}
+    ,{"id":"f-sol-006-006","iteration":6,"summary":"Documented gaps, sentinels, reconstruction banners, and migration maps are informational history."}
+    ,{"id":"f-sol-006-007","iteration":6,"summary":"Fleet drift measurement requires the 2,168 active denominator and provenance-aware classification."}
+    ,{"id":"f-sol-007-001","iteration":7,"summary":"All six sk-doc duplicate prefixes are independently confirmed by current paths."}
+    ,{"id":"f-sol-007-002","iteration":7,"summary":"The deleted ownership target is repeated across four canonical packet documents."}
+    ,{"id":"f-sol-007-003","iteration":7,"summary":"Both directions of sampled spec/graph status contradiction remain in current files."}
+    ,{"id":"f-sol-007-004","iteration":7,"summary":"The current teardown contract confirms a functional but historyless rebuild boundary."}
+    ,{"id":"f-sol-008-001","iteration":8,"summary":"Current source retains bounded compaction cache generation and injection."}
+    ,{"id":"f-sol-008-002","iteration":8,"summary":"Current session priming retains four-way lifecycle routing."}
+    ,{"id":"f-sol-008-003","iteration":8,"summary":"Current hookless bootstrap retains composition, structural hints, and telemetry."}
+    ,{"id":"f-sol-008-004","iteration":8,"summary":"Context metrics remain in-memory and separate from final traffic-light status."}
+    ,{"id":"f-sol-008-005","iteration":8,"summary":"The archived graph-threshold mismatch is corrected in current source to 24 hours."}
+    ,{"id":"f-sol-008-006","iteration":8,"summary":"Structural caller verification was blocked because the code graph has zero nodes."}
+    ,{"id":"f-sol-009-001","iteration":9,"summary":"Standalone deep-context progressed from a transitional redirect to active command removal."}
+    ,{"id":"f-sol-009-002","iteration":9,"summary":"Remaining current deep-context strings are historical compatibility evidence, not active dispatch."}
+    ,{"id":"f-sol-009-003","iteration":9,"summary":"Automatic narrative compaction remains absent from supported system-spec-kit surfaces."}
+  ],
+  "ruledOutDirections": [
+    {"approach":"Detached init spec.md mutation","reason":"Explicit lineage-only write boundary"},
+    {"approach":"Nested cli-opencode self-dispatch","reason":"Current process is already the detached cli-opencode lineage"},
+    {"approach":"Infer optimization outcomes from completion labels or projections","reason":"Evidence is strongest for mechanisms and bounded verification, not longitudinal effects"},
+    {"approach":"Treat teardown or rebuild as source-tree remediation","reason":"Rebuild reindexes canonical files and cannot repair semantic contradictions or restore history"},
+    {"approach":"Use a flat defect list without provenance or ownership","reason":"Source failures, accepted deferrals, derived residue, and historical artifacts require different handling"},
+    {"approach":"Repeat exact-path verification of the same high-impact claims","reason":"Current files independently reproduced all selected findings"},
+    {"approach":"Carry archived implementation limitations forward without current-source verification","reason":"Current source fixed one threshold mismatch while retaining broader limitations"},
+    {"approach":"Freeze current-state synthesis at intermediate migration states","reason":"Current command inventory and later cleanup evidence supersede the transitional redirect state"}
+  ],
+  "blockedStops": [
+    {"run":7,"stopReason":"blockedStop","blockedBy":["convergenceGate"],"recoveryStrategy":"independent_verification"},
+    {"run":8,"stopReason":"blockedStop","blockedBy":["convergenceGate"],"recoveryStrategy":"implementation_surface_verification"},
+    {"run":9,"stopReason":"blockedStop","blockedBy":["convergenceGate"],"recoveryStrategy":"negative_knowledge_check"}
+  ],
+  "metrics": {
+    "iterationsCompleted": 9,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 53,
+    "convergenceScore": 1,
+    "coverageBySources": {"repository-inventory":27,"spec-docs":46,"governance":8,"migration-evidence":16,"graph-metadata":10,"checklists":3,"continuity":16,"implementation-evidence":21,"teardown-contract":8,"current-path-verification":13,"code-graph":0}
+  },
+  "synthesis": {
+    "status": "complete",
+    "stopReason": "converged",
+    "researchPath": "research.md",
+    "resourceMapPath": "resource-map.md",
+    "triagedFindingClasses": 12
+  }
+}

@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":7,"run":7,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","status":"insight","focus":"False positives and correction quality","findingsCount":2,"newInfoRatio":0.18,"noveltyJustification":"Confirmed that negative-knowledge and false-positive handling are explicit in some audits but lack a shared confidence rubric.","keyQuestions":[],"answeredQuestions":[],"ruledOut":["All prior drift findings as equally reliable"],"graphEvents":[]}
+{"type":"finding","id":"f-007-001","label":"Explicit current-surface exclusions","iteration":7}
+{"type":"finding","id":"f-007-002","label":"False-positive and concurrency correction records","iteration":7}

@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":6,"run":6,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","status":"complete","focus":"Metadata authority and derivation boundaries","findingsCount":2,"newInfoRatio":0.29,"noveltyJustification":"Confirmed that authority is family-specific and generated metadata surfaces can disagree independently.","keyQuestions":[],"answeredQuestions":[],"ruledOut":["Any single generated metadata file as canonical"],"graphEvents":[]}
+{"type":"finding","id":"f-006-001","label":"Family-specific authority boundaries","iteration":6}
+{"type":"finding","id":"f-006-002","label":"Independent generated-surface drift","iteration":6}

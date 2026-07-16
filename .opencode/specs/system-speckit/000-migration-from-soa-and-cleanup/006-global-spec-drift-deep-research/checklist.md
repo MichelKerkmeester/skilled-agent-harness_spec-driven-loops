@@ -60,8 +60,8 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `research/deep-research-config.json` parses as valid JSON and matches the assembled `--executors` payload; not yet launched.
-- [ ] CHK-011 [P0] No executor spawn errors (e.g., SOL throwing on a stray `--service-tier`); not yet launched.
+- [x] CHK-010 [P0] `research/deep-research-config.json` parses as valid JSON and matches the active `--executors` payload; evidence: config parses; `fanout.executors` = SOL+LUNA (GLM in `archivedExecutors`), SOL carries no `serviceTier`.
+- [x] CHK-011 [P0] No executor spawn errors; evidence: SOL (`gpt-5.6-sol-fast`, no `--service-tier`) and LUNA (`cli-codex`) both completed their lineages; `orchestration-summary.json` records 0 failures.
 - [ ] CHK-012 [P1] Divergent-mode pivot handling — N/A for this run: divergent mode is unavailable on the research fan-out path and is not used (normal convergence), so there is no pivot behavior to verify.
 - [ ] CHK-013 [P1] Comment hygiene: no spec-path or packet/phase IDs embedded in any generated code comments (only markdown prose); N/A until execution produces artifacts to check.
 <!-- /ANCHOR:code-quality -->
@@ -71,10 +71,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All P0 acceptance criteria in `spec.md` are met (REQ-001..005); not yet launched.
-- [ ] CHK-021 [P0] Total iteration count across the 3 lineages is up to 30 (up to 10 GLM + 10 SOL + 10 LUNA); fewer under normal convergence is acceptable provided the actual per-lineage counts are recorded; not yet launched.
-- [ ] CHK-022 [P1] `research/research.md` names the full `.opencode/specs/*` sweep scope explicitly, not a narrowed subset; not yet synthesized.
-- [ ] CHK-023 [P1] Findings triage table exists with each item remediated (evidence) or explicitly deferred (reason); not yet triaged.
+- [x] CHK-020 [P0] All P0 acceptance criteria in `spec.md` are met (REQ-001..005, REQ-002 amended per EXECUTION DEVIATION #2); evidence: `research/research.md` written; `research/deep-research-config.json` records the spec-folder-bound fan-out; SOL/LUNA route-proof-compliant.
+- [x] CHK-021 [P0] Per-lineage iteration counts recorded (amended to the route-proof-compliant set per EXECUTION DEVIATION #2); evidence: SOL 9 + LUNA 10 = 19 gated iterations; GLM 5 archived supplementary. Recorded in `spec.md` SC-002 and `implementation-summary.md`.
+- [x] CHK-022 [P1] `research/research.md` names the full `.opencode/specs/*` sweep scope explicitly; evidence: `research/research.md` §2 Research Topic + §4 (2,168 active candidates across 12 tracks), not a narrowed subset.
+- [x] CHK-023 [P1] Findings triage table exists with each item remediated/deferred/accepted; evidence: `research/research.md` §10 Findings Triage + `implementation-summary.md` verification table.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -127,11 +127,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 15 | 7/15 |
-| P1 Items | 23 | 2/23 |
+| P0 Items | 15 | 11/15 |
+| P1 Items | 23 | 6/23 |
 | P2 Items | 9 | 0/9 |
 
-**Verification Date**: Not yet run — this checklist was scaffolded 2026-07-16 for a Draft-status packet; no execution (launch, lineage completion, or synthesis) has occurred yet.
+**Verification Date**: 2026-07-16 — fan-out executed (SOL 9 + LUNA 10 route-proof-compliant; GLM 5 archived supplementary per EXECUTION DEVIATION #2); `research/research.md` synthesized and validated (packet `validate.sh --strict` Errors: 0). Remaining unchecked items are launch-artifact/N-A scaffold rows and P2 polish; phase 007 gate remains on a fresh operator confirmation.
 <!-- /ANCHOR:summary -->
 
 ---

@@ -1,0 +1,36 @@
+{
+  "openQuestions": [
+    {"id": "Q1-status-drift", "text": "Where does residual completion-state drift remain (graph-metadata.json status vs spec.md/implementation-summary.md narrative) across ALL tracks?"},
+    {"id": "Q2-numbering-drift", "text": "What numbering drift persists in tracks NOT covered by phases 001-005?"},
+    {"id": "Q3-naming", "text": "How widespread are naming-convention violations relative to sk-doc/017+032 hyphen-case program?"},
+    {"id": "Q4-context-opt", "text": "What prior context-optimization efforts are documented across packets and what precedents do they set for phase 007?"},
+    {"id": "Q5-structural", "text": "What structural artifacts stray from packet conventions (stray root descriptions.json, z_archive status, phase-parent drift)?"}
+  ],
+  "resolvedQuestions": [
+    {"id": "Q2-numbering-drift", "text": "Numbering drift is a dual-scheme inconsistency (local per-track counters vs global-offset ranges) plus uncompacted gaps in global-offset tracks (sk-code, sk-git, system-deep-loop); cross-track collisions are namespaced, not drift.", "resolvedAt": "iteration-002"},
+    {"id": "Q3-naming", "text": "61 snake_case dirs in 4 clusters (z_archive×11, z_future×9, sk-doc/013 scratch/fixtures ~30, misc); 032 kebab program unenforced (planned); convention flip-flopped 027↔032; primary numbered slugs clean.", "resolvedAt": "iteration-003"},
+    {"id": "Q4-context-opt", "text": "6 context-optimization mechanisms documented (compaction, memory-continuity substrate, lean-root retrieval opt, deprecation-driven pruning, continuity dedup, context-budgeting); cyclical build→compact→archive→refine lifecycle; deprecation-pruning is direct precedent for phase 007.", "resolvedAt": "iteration-004"},
+    {"id": "Q1-status-drift", "text": "Status drift systemic (~45 raw/~23 semantic mismatches). Splits into (a) intentional draft-pending-verification (sk-design family: work shipped but packets held at draft by design) and (b) genuine drift: spec.md over-states complete/blocked while graph says in_progress/planned with no draft caveat (dominant actionable pattern).", "resolvedAt": "iteration-005"},
+    {"id": "Q5-structural", "text": "Structural artifacts mostly intended design: root descriptions.json is a generated aggregate index; changelog/ is a deliberate phase-parent namespace; only genuine signals are z_archive=planned (7/8) status gap and 999/changelog convention deviations.", "resolvedAt": "iteration-005"}
+  ],
+  "keyFindings": [
+    {"id": "F1.1", "text": "Completion-state drift systemic: 45 raw / ~23 semantic spec-vs-graph status mismatches across 121 packets (~37% raw). Dominant: spec claims complete while graph says in_progress/planned.", "source": "iteration-001.md", "questions": ["Q1-status-drift"]},
+    {"id": "F2.1", "text": "Two numbering schemes coexist (local per-track vs global-offset); phases 001-005 did not unify the tree.", "source": "iteration-002.md", "questions": ["Q2-numbering-drift"]},
+    {"id": "F3.1", "text": "Kebab-case program (sk-doc/032) is unenforced (planned); 61 snake_case dirs in 4 clusters; convention flip-flopped 027↔032.", "source": "iteration-003.md", "questions": ["Q3-naming"]},
+    {"id": "F4.3", "text": "6 context-optimization mechanisms documented; cyclical lifecycle; deprecation-pruning precedes phase 007.", "source": "iteration-004.md", "questions": ["Q4-context-opt"]},
+    {"id": "F5.1", "text": "sk-design phase 005 work shipped but packets held at draft BY DESIGN (reconstruction drafts pending verification) — intentional status-semantics mismatch, not a defect.", "source": "iteration-005.md", "questions": ["Q1-status-drift"]},
+    {"id": "F5.3", "text": "Parent 000 causal_summary documents root cause: untracked stub/duplicate dirs from partial migrations (system-speckit 002/003/004/007 shadowed by 0-file copies at 026-029).", "source": "iteration-005.md", "questions": ["Q2-numbering-drift", "Q5-structural"]},
+    {"id": "F5.4", "text": "Structural artifacts mostly intended design (descriptions.json=generated index; changelog=phase-parent); genuine anomaly only z_archive=planned (7/8).", "source": "iteration-005.md", "questions": ["Q5-structural"]}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Cross-track number collision as a drift category", "reason": "Track path prefix disambiguates identical numbers; not a real collision", "evidence": "iteration-002.md:F2.2", "iteration": 2},
+    {"approach": "Primary numbered packets have snake_case slugs", "reason": "Numbered slugs are clean kebab-case; deviations confined to z_archive/z_future/changelog/scratch", "evidence": "iteration-003.md:F3.4", "iteration": 3},
+    {"approach": "9834 keyword hits = 9834 efforts", "reason": "Most are research-iteration summarize noise; real efforts are ~6 mechanisms across ~10 packets", "evidence": "iteration-004.md:F4.4", "iteration": 4},
+    {"approach": "Root descriptions.json is drift", "reason": "It is a generated aggregate index {version,generated,folders}", "evidence": "iteration-005.md:F5.4", "iteration": 5}
+  ],
+  "promotedIdeas": [],
+  "rejectedPatterns": [],
+  "blockedStopHistory": [],
+  "sources": ["graph-metadata.json (full-tree)", "spec.md Status rows (full-tree)", "006/spec.md:48", "per-track slug enumeration", "005/implementation-summary.md", "parent 000/graph-metadata.json causal_summary", "root descriptions.json", "skills/sk-design tree"],
+  "coverage": {"answered": 5, "total": 5}
+}
