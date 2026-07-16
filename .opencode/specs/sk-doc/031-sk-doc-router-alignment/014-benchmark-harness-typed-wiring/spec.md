@@ -285,6 +285,7 @@ Make the typed routing contract flow through the real dispatch path (not just re
 ## RELATED DOCUMENTS
 
 - **Evidence Source**: The verified SOL-redirect ledger (this session)
+- **Preceding phase (map order)**: `../013-skill-advisor-routing-fixes/spec.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

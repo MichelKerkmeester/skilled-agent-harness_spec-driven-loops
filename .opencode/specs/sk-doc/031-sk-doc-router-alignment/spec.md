@@ -122,6 +122,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 11 | 011-skill-advisor-routing-research/ | Deep-research on system-skill-advisor (10 iterations): confidence-floor saturation, three P0 defects, and the metadata-hub discovery boundary shared with sk-doc | Complete (research) |
 | 12 | 012-sk-doc-routing-fixes/ | Implement the sk-doc path-contract fixes from the 010 research, coordinating the shared advisor-discovery boundary with 013 | Planned |
 | 13 | 013-skill-advisor-routing-fixes/ | Implement the advisor P0 through P2 fixes from the 011 research, with the shared metadata-hub discovery deliverable owned jointly with 012 | Planned |
+| 14 | 014-benchmark-harness-typed-wiring/ | Fix the two-classifier decoupling behind the dispatcher's zero-emission, wire the skill-benchmark loader/runner/live/scorer to typed gold, relocate the contract library out of sk-doc, and build a sealed independently-authored holdout corpus behind offline and live gates before Wave-2 propagation | Planned |
 
 ### Phase Transition Rules
 
