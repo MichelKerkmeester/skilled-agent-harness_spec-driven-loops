@@ -89,6 +89,12 @@ except Exception:  # pragma: no cover - defensive fallback if the sibling is una
                 yield token
 
 
+# An argument-hint should summarize the invocation shape; the router body's
+# EXECUTION TARGETS section is where the full flag surface is enumerated. This
+# is a soft budget — over-budget hints warn, they never block registration.
+_HINT_SOFT_BUDGET = 140
+
+
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
@@ -859,6 +865,23 @@ def validate_command_frontmatter(
                     'message': 'Command description contains a TODO placeholder — please complete it',
                     'fix_hint': 'Replace the TODO with the real description',
                 })
+
+    # argument-hint budget: the hint summarizes the invocation shape, EXECUTION
+    # TARGETS enumerates the full flag surface. An over-budget hint is a soft
+    # signal to move detail into the router body, never a hard failure.
+    hint_match = re.search(r'^argument-hint:\s*(.+)$', frontmatter, re.MULTILINE)
+    if hint_match:
+        hint_value = _strip_matching_quotes(hint_match.group(1))
+        if len(hint_value) > _HINT_SOFT_BUDGET:
+            errors.append({
+                'type': 'command_argument_hint_over_budget',
+                'severity': 'warning',
+                'message': (
+                    f'argument-hint is {len(hint_value)} chars, over the soft budget of '
+                    f'{_HINT_SOFT_BUDGET} — the hint should summarize; EXECUTION TARGETS enumerates'
+                ),
+                'fix_hint': 'Summarize the invocation in the hint; move the full flag list into the router body',
+            })
 
     # allowed-tools: any token in the mcp_ namespace must be a fully-qualified
     # mcp__<server>__<tool> reference; a bare or server-only token is an

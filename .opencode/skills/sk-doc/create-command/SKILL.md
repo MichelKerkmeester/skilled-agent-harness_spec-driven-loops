@@ -211,6 +211,7 @@ Rules:
 - Use `argument-hint` whenever the command expects user input.
 - Use `<angle-brackets>` only for required arguments.
 - Use `[square-brackets]` for optional arguments.
+- Keep `argument-hint` at or under 140 characters: the hint **summarizes** the invocation shape while the router's **EXECUTION TARGETS** section **enumerates** the full flag surface. Over-budget hints warn (never block); move the exhaustive flag list into the router body.
 - List every tool the command actually uses in `allowed-tools`.
 - Do not add broad tools just in case.
 - For MCP tools in `allowed-tools`, use fully qualified names such as `mcp__<server>__<tool>`.
