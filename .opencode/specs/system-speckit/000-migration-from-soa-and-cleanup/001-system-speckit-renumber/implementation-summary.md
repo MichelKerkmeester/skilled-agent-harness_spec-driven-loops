@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-system-speckit-renumber |
-| **Completed** | Executed in worktree; pending commit + FF-push |
+| **Completed** | Yes — renumber executed, committed + FF-pushed (a0991d173a) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

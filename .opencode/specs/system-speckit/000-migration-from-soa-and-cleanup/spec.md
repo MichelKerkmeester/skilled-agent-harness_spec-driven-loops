@@ -59,7 +59,7 @@ _memory:
 | **Parent Packet** | system-speckit/000-migration-from-soa-and-cleanup |
 | **Predecessor** | None identified — first cross-track renumbering-and-teardown coordinator packet in this repo; the concurrent `sk-doc/017-hyphen-naming-convention` effort is an analogous but separate program this packet's phase 004 coordinates against, not a direct lineage predecessor |
 | **Successor** | None pre-scoped (each numbering phase and the teardown phase may spawn independent follow-on packets under their own tracks; this parent stays numbered 000 as a temporary coordinator, an accepted exception to the archive-first numbering convention it enforces on others) |
-| **Handoff Criteria** | All five numbering/reconstruction phases (001-005) pass `validate.sh` independently AND the phase 006 spec-drift research sweep converges with findings triaged, before phase 007's gated destructive teardown is authorized to run |
+| **Handoff Criteria** | All five numbering/reconstruction phases (001-005) are RESOLVED — completed OR intentionally operator-skipped (002/004 skipped 2026-07-16) — AND the phase 006 spec-drift research sweep converges with findings triaged, before phase 007's gated destructive teardown is authorized to run |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -121,20 +121,20 @@ Summary of aggregate file scope; per-phase detail lives in each child's `plan.md
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-system-speckit-renumber/ | Renumber active `001-016` above archive ceiling `025`; reconcile the untracked `026-029` duplicate directories found during verification | Draft |
-| 2 | 002-system-deep-loop-renumber/ | Resolve the archive gap at `012` (between archived `011` and `013`) plus the active-range discontinuity across `029-068`; decision-gated and high-blast because active numbers are already referenced elsewhere in the repo | Draft |
-| 3 | 003-system-code-graph-cleanup/ | Remove the 2 untracked, near-empty stub directories (`007-code-graph-buildout`, `009-advisor-codegraph-shared-features`) sitting below archive ceiling `024` | Draft |
-| 4 | 004-sk-doc-alignment/ | Coordinate and verify alignment with the LIVE concurrent sk-doc migration rather than an independent renumber; deferred pending that migration's state | Draft |
-| 5 | 005-sk-design-reconstruct/ | Reconstruct packets `001-008` as real numbered spec packets, resolve the duplicate `003` folder collision, and clean scratch/vendored `external/` and `review/` content, landing on a clean `001-009` range | Draft |
-| 6 | 006-global-spec-drift-deep-research/ | 30-iteration divergent, 3-executor deep-research sweep across the whole spec tree for residual drift, run only after phases 001-005 complete | Draft |
-| 7 | 007-memory-db-teardown/ | Gated, human-confirmed destructive teardown of the memory database, vector store, and eval database — runs LAST, only after phase 006 converges | Draft |
+| 1 | 001-system-speckit-renumber/ | Renumber active `001-016` above archive ceiling `025`; reconcile the untracked `026-029` duplicate directories found during verification | Complete (a0991d173a) |
+| 2 | 002-system-deep-loop-renumber/ | Resolve the archive gap at `012` (between archived `011` and `013`) plus the active-range discontinuity across `029-068`; decision-gated and high-blast because active numbers are already referenced elsewhere in the repo | Skipped (operator 2026-07-16) |
+| 3 | 003-system-code-graph-cleanup/ | Remove the 2 untracked, near-empty stub directories (`007-code-graph-buildout`, `009-advisor-codegraph-shared-features`) sitting below archive ceiling `024` | Complete |
+| 4 | 004-sk-doc-alignment/ | Coordinate and verify alignment with the LIVE concurrent sk-doc migration rather than an independent renumber; deferred pending that migration's state | Skipped (operator 2026-07-16) |
+| 5 | 005-sk-design-reconstruct/ | Reconstruct packets `001-008` as real numbered spec packets, resolve the duplicate `003` folder collision, and clean scratch/vendored `external/` and `review/` content, landing on a clean `001-009` range | Complete (3eba33b020) |
+| 6 | 006-global-spec-drift-deep-research/ | 30-iteration divergent, 3-executor deep-research sweep across the whole spec tree for residual drift, run after phases 001-005 are resolved (complete or operator-skipped) | Running |
+| 7 | 007-memory-db-teardown/ | Gated, human-confirmed destructive teardown of the memory database, vector store, and eval database — runs LAST, only after phase 006 converges | Gated (destructive; needs fresh operator yes) |
 
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
-- Phases 001-005 (numbering and reconstruction) are independently executable in any relative order, but ALL five MUST complete before phase 006 begins
+- Phases 001-005 (numbering and reconstruction) are independently executable in any relative order, and ALL five MUST be RESOLVED (completed or intentionally operator-skipped) before phase 006 begins; 002/004 were operator-skipped 2026-07-16
 - Phase 006 (research) MUST converge before phase 007 (teardown) is authorized
-- Phase 007 is destructive and MUST NOT begin until phases 001-006 are all complete — no exceptions
+- Phase 007 is destructive and MUST NOT begin until phases 001-005 are resolved AND phase 006 has converged — no exceptions
 - Parent spec tracks aggregate progress via this map
 - Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit

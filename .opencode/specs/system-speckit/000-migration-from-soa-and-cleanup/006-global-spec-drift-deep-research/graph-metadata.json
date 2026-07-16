@@ -118,13 +118,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Handoff Criteria",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -160,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -188,17 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parent packet (`000-migration-from-soa-and-cleanup`) diagnosed numbering drift in exactly five tracks and scoped phases 001-005 to fix only that drift",
     "created_at": "2026-07-16T06:17:13.608Z",
-    "last_save_at": "2026-07-16T06:29:49.160Z",
+    "last_save_at": "2026-07-16T12:29:32.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f222341b94e0e419e1a3de164699ce8d4062988ff8467b5ff351d0a030dae75",
+    "source_fingerprint": "sha256:b9483054579616ee64aca4992b19621fdb36064aa9f40ef141fe1ebea9596b6a",
     "source_doc_hashes": {
-      "spec.md": "ffad65bd32a6291045cd1c26cedc8910b4ae7c6e2d7b4e786c9318e514f33aa0",
+      "spec.md": "c264c912069f78382805842f59e0fcd92ba87d2559c196727b0f114357f052d3",
       "plan.md": "c3ac5cad4719e846c0588a59d12d6680036e0ad467c822936837220a1949158c",
       "tasks.md": "fdfbf8321f0e1f8b8ded0b8ed630509f1fce22ad6b631e2ab75ecaad68940324",
       "checklist.md": "b83425ed9b82466ce4e617843e07a0d7d21e3caa225908611a8aa143b3c22d96",

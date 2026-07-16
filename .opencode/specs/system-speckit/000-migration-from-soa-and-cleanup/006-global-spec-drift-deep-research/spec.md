@@ -45,7 +45,7 @@ This packet runs one `/deep:research :auto` sweep, fanned out across 3 independe
 
 **Key Decisions**: use the plan-named `/deep:research` workflow exactly as specified (no hand-rolled loop, no direct `@deep-research` Task dispatch); force full 30-iteration depth via `divergent` + `max-iterations` rather than allowing early convergence, because the sweep target is the entire specs tree.
 
-**Critical Dependencies**: all five phases 001-005 must reach the parent's Phase Handoff Criteria (independent `validate.sh --recursive --strict` pass and clean `git status` per track) before this phase begins; phase 007 is blocked until this phase converges and its findings are triaged.
+**Critical Dependencies**: phases 001-005 must each be RESOLVED before this phase begins — either completed (001 renumber, 003 code-graph cleanup, 005 sk-design reconstruct — all shipped) or intentionally skipped by operator directive (002 deep-loop renumber and 004 sk-doc alignment, both tracks under active concurrent authoring at decision time). The operator's 2026-07-16 skip decision relaxed the original "all five complete" gate; the sweep runs against the current, partially-un-renumbered tree, which is a valid drift-research input. **GATE STATUS: SATISFIED** — 001/003/005 complete, 002/004 operator-skipped, worktree clean → phase 006 is cleared to launch. Phase 007 remains blocked until this phase converges and its findings are triaged.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -146,7 +146,7 @@ Run a single, plan-named `/deep:research :auto` sweep — fanned out across 3 in
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phases 001-005 must ALL independently pass `validate.sh --recursive --strict` and have clean `git status` (per the parent's Phase Handoff Criteria) before this phase begins; all five show Draft at scaffold time | High if launched too early | Confirm each phase's status against `graph-metadata.json`/`implementation-summary.md` before launch (Phase 1, Task T001). |
+| Dependency | Phases 001-005 must each be RESOLVED before this phase begins — completed OR operator-skipped (002/004 skipped 2026-07-16 per operator directive; 001/003/005 shipped) | High if launched before phases resolve | RESOLVED: 001/003/005 complete, 002/004 operator-skipped, worktree clean; gate satisfied. |
 | Risk | The brief's literal `--executors=[glm,sol,luna]` shorthand is not valid JSON for the command's documented `--executors=<json>` schema (verified: real usage is an array of `{kind, model, label, count, reasoning_effort, service_tier}` objects) | Medium — a malformed flag would fail setup or silently fall back to single-executor | Assemble the exact JSON payload from the three EXECUTORS definitions before launch (Phase 1, Task T004); do not paste the brief's shorthand literally. |
 | Risk | SOL executor (`openai/gpt-5.6-sol-fast`) throws when `--service-tier` is passed | High if triggered — aborts that lineage | Never include `--service-tier` in the SOL lineage's executor group, per explicit brief callout. |
 | Risk | `divergent` + `stop-policy=max-iterations` forces the loop to run the full iteration budget even after legal convergence is reached, by design | Low (intentional) but increases wall-clock/cost | Accept as intentional per the brief ("don't converge early"); no mitigation needed beyond awareness. |

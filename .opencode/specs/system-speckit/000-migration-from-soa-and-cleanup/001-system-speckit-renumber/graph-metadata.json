@@ -42,8 +42,8 @@
     "status": "draft",
     "key_files": [
       "plan.md",
-      "tasks.md",
       "spec.md",
+      "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
@@ -55,15 +55,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`.opencode/specs/system-speckit/zarchive/` is contiguous `001`-`025` (confirmed: 25 sequentially numbered archive folders, no gaps)",
     "created_at": "2026-07-16T06:17:12.321Z",
-    "last_save_at": "2026-07-16T06:25:14.871Z",
+    "last_save_at": "2026-07-16T12:29:32.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4a03771e42cf74ea4d15a1b4392997b73128ac6fa4ea1d82b93ed5f66c5d062",
+    "source_fingerprint": "sha256:69d5b58f10ced68f48b9155d97b0cdbac7fcc653305bf7cbc43032e8ac1f1827",
     "source_doc_hashes": {
       "spec.md": "aa5173b0f76d07027a65a094cd0b8e2728aefdccba3321050911146a7a00a1f1",
       "plan.md": "1ce2a918b9d6c7ec30b61a98390110d66fbbd0372355465372d7e1c4c6212744",
       "tasks.md": "456aa1516d08a6890b3e731847f8f83ffa04db91af1bfbff3877b6820e30818e",
       "checklist.md": "22c9f52cf7218a16b5b715c0a8d96c335804cccdf4b6733b2ff33a140b1d76ff",
-      "implementation-summary.md": "fc4cf1949dd7d7225a7d2317909fae55fb123f105ee9bd4545a7944d837cdd10"
+      "implementation-summary.md": "e5eb88a25b3f6e8a18531de030ee2106c610cba0d9c594546f10fe4e950f10e4"
     },
     "last_active_child_id": null,
     "last_active_at": null
