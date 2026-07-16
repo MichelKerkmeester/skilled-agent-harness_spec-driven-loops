@@ -5,15 +5,16 @@ trigger_phrases:
   - "codex transport implementation summary"
   - "068 closeout"
   - "skill-benchmark codex executor summary"
+  - "tier-2 luna routing benchmark analysis"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/068-skill-benchmark-codex-executor"
-    last_updated_at: "2026-07-15T15:15:00Z"
+    last_updated_at: "2026-07-16T02:57:29Z"
     last_updated_by: "claude"
-    recent_action: "Adapter verified; Tier-1 both-transport batch complete and compared"
-    next_safe_action: "Commit packet 068; Tier-2 breadth is a deferred operator decision"
+    recent_action: "Tier-2 luna breadth + SOL-ULTRA deep-review landed; 12 recs reconciled"
+    next_safe_action: "Commit the Tier-2 extension (068 paths only)"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs"
@@ -23,11 +24,11 @@ _memory:
       session_id: "scaffold-scaffold/068-skill-benchmark-codex-executor"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "How far to scale the live benchmark breadth (Tier-2) is an operator decision."
+    open_questions: []
     answered_questions:
       - "Does the codex transport produce comparable measurements? Yes: luna-codex 85 vs luna-opencode 86, 7/9 scenarios identical."
       - "Did the SKILL.md changes move deterministic routing? No: Mode-A now vs baseline is delta 0 on all 9 scenarios."
+      - "How far to scale the live benchmark breadth (Tier-2)? The operator ran 3 skills (mcp-tooling, sk-doc, sk-code) with gpt-5.6-luna xhigh/fast via cli-opencode; a fresh SOL-xhigh agent analyzed and a SOL-ULTRA 5-iteration deep-review reconciled 12 adjusted recommendations."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -45,7 +46,7 @@ _memory:
 | **Spec Folder** | 068-skill-benchmark-codex-executor |
 | **Completed** | 2026-07-15 |
 | **Level** | 2 |
-| **Status** | Complete (adapter + Tier-1 comparison; Tier-2 breadth deferred as an operator decision) |
+| **Status** | Complete (adapter + Tier-1 comparison; Tier-2 luna breadth + SOL-ULTRA deep-review landed as an extension) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -121,6 +122,36 @@ The work ran on the shared `skilled/v4.0.0.0` branch alongside a concurrent sess
 
 The full comparison lives in `transport-comparison.md`; the headline: the two transports agree within 1 aggregate point (opencode 86, codex 85), with 7 of 9 scenarios scoring identically. The entire gap is one scenario (DI-R03) where codex-luna recalled 5 of 6 expected resources against opencode's 6 of 6, at N=1 per cell. The dimensions that would expose a real routing difference, D3 (efficiency) and D5 (connectivity), are identical across transports (56 and 97). Codex's missing `tool_use` stream did not distort the comparison because activation is not among the scored dimensions for this skill. Separately, deterministic Mode-A now matches the frozen baseline exactly (delta 0 on every scenario), so this session's SKILL.md changes did not move deep-improvement's routing score.
 <!-- /ANCHOR:results -->
+
+---
+
+<!-- ANCHOR:tier2-extension -->
+## Tier-2 Extension: luna routing breadth + SOL deep-review
+
+After the adapter and Tier-1 comparison shipped, the operator scaled the live benchmark to a Tier-2 breadth sweep. Three runnable skills ran with gpt-5.6-luna at xhigh/fast over the cli-opencode transport. A fresh GPT-5.6-SOL xhigh/fast agent then analyzed the raw reports and drafted recommendations, and a GPT-5.6-SOL ULTRA/fast deep-review ran five iterations over those findings to reconcile the final adjusted recommendations.
+
+### What the sweep measured
+
+| Skill | Routing gold | luna result | Reading |
+|-------|--------------|-------------|---------|
+| `mcp-tooling` (hub) | none | PASS, 100/100 | No routing gold, so the aggregate collapses to a deterministic pass and measures nothing about luna's routing. |
+| `sk-doc` (hub) | present | FAIL, 20/100 (gold-only resource recall 19.4%) | luna recalls few of the expected resources on the doc hub's fitted suite. |
+| `sk-code` (hub) | present | CONDITIONAL, 65/100 (surface 18/18, gold-only resource recall 49.8%) | Strong hub-surface routing, weak leaf-resource recall (5 of 15 full, 6 of 15 zero). |
+
+Every gold-bearing suite carries `holdoutScore: null` with zero holdout scenarios, so all scores are fitted, not held-out generalization. mcp-tooling reports a four-plus-two fitted/holdout split but has no routing gold, so that split is a harness control, not routing evidence. Conclusions are scoped to "gpt-5.6-luna xhigh/fast under the tested cli-opencode executor configuration," not to luna in general.
+
+### Deep-review outcome
+
+The SOL-ULTRA review re-derived every headline figure against the raw reports and reproduced them exactly (verdict CONDITIONAL; P0=0, P1=2, P2=4). The defects it found were evidence-scoping and citation, not arithmetic: the draft over-generalized fitted-suite results as if they were held-out (P1), and left several claims uncited (P1). It reconciled to 12 adjusted recommendations, each now scoped to the fitted-suite / single-config caveat and cited to a specific report line.
+
+### Deliverables
+
+| Artifact | Path |
+|----------|------|
+| Analysis + 12 adjusted recommendations | `tier2-luna-routing-analysis.md` |
+| Raw benchmark reports (3 skills) | `artifacts/tier2-{mcp-tooling,sk-doc,sk-code}-luna-opencode.report.{json,md}` |
+| Deep-review packet (report + 5 iterations) | `review/` |
+<!-- /ANCHOR:tier2-extension -->
 
 ---
 

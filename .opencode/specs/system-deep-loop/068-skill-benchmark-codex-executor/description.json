@@ -18,12 +18,15 @@
     "flag",
     "threaded"
   ],
-  "lastUpdated": "2026-07-15T15:15:00.374Z",
+  "lastUpdated": "2026-07-16T03:04:59.448Z",
   "specId": "068",
   "folderSlug": "skill-benchmark-codex-executor",
   "parentChain": [
     "system-deep-loop"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-07-26_04-02__benchmarked-gpt-5-6-luna-xhigh-fast-over-the-cli.md",
+    "16-07-26_04-04__benchmarked-gpt-5-6-luna-xhigh-fast-over-the-cli.md"
+  ]
 }
