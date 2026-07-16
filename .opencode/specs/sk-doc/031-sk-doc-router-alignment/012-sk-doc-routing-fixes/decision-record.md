@@ -383,6 +383,21 @@ sk-doc's router lives in two layers. The hub layer selects a `workflowMode` and 
 - `generate-leaf-manifest.cjs`: merges the authored table into the generated manifest.
 
 **How to roll back**: delete `leaf-aliases.json` and revert the generator's merge step. The underlying shared files are untouched.
+
+---
+
+### Addendum (2026-07-16): four ratified create-quality-control shared-standard aliases
+
+Implementing the fixtures surfaced a Logic-Sync: the doc-quality routing answer includes sk-doc's house standards — `validation`, `core_standards`, `hvr_rules`, and `evergreen_packet_id_rule` — but those four live under `shared/references/` and belong to no packet, so no packet-qualified path can reach them. Under this ADR an authored alias is the only mechanism for a shared-tier file, so the operator ratified adding four aliases mapping `create-quality-control` to each:
+
+| workflowMode | leafResourceId | diskPath |
+|---|---|---|
+| create-quality-control | references/validation.md | shared/references/validation.md |
+| create-quality-control | references/core_standards.md | shared/references/core_standards.md |
+| create-quality-control | references/hvr_rules.md | shared/references/hvr_rules.md |
+| create-quality-control | references/evergreen_packet_id_rule.md | shared/references/evergreen_packet_id_rule.md |
+
+These joined the two original aliases (`create-changelog` → `assets/changelog_template.md`; `create-quality-control` → `assets/llmstxt_templates.md`), bringing `leaf-aliases.json` to six entries and `create-quality-control` to eleven manifest leaves. Evidence: topology validator 19/19 valid; `parent-skill-check` STRICT all four leaf guards PASS. Scope note: these four are the reason `create-quality-control`'s manifest leaf set is a superset of the SD-015 full-inventory gold, which was authored before the aliases existed — an intended divergence, not a manifest defect.
 <!-- /ANCHOR:adr-004 -->
 
 ---
