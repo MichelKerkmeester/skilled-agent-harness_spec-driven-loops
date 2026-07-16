@@ -1,0 +1,208 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "assets/agent_template.md",
+        "references/README.md",
+        "references/agent-vs-skill-vs-command.md",
+        "references/common_pitfalls.md",
+        "references/permission_design.md"
+      ],
+      "packet": "create-agent",
+      "workflowMode": "create-agent"
+    },
+    {
+      "leaves": [
+        "assets/behavior_benchmark/behavior_benchmark_baseline_template.md",
+        "assets/behavior_benchmark/behavior_benchmark_index_template.md",
+        "assets/behavior_benchmark/behavior_benchmark_scenario_template.md",
+        "assets/conformance_benchmark/conformance_benchmark_contract_template.md",
+        "assets/conformance_benchmark/conformance_benchmark_fixture_manifest_template.md",
+        "assets/conformance_benchmark/conformance_benchmark_lane_config_template.md",
+        "assets/conformance_benchmark/conformance_benchmark_readme_template.md",
+        "assets/model_benchmark/model_benchmark_code_task_fixture_template.md",
+        "assets/model_benchmark/model_benchmark_pattern_fixture_template.md",
+        "assets/model_benchmark/model_benchmark_profile_template.md",
+        "assets/shared/benchmark_report_template.md",
+        "assets/shared/source_template.md",
+        "assets/skill_benchmark/skill_benchmark_readme_template.md",
+        "references/agent_improvement/agent_improvement_authoring_guide.md",
+        "references/behavior_benchmark/behavior_benchmark_guide.md",
+        "references/conformance_benchmark/conformance_benchmark_authoring_guide.md",
+        "references/model_benchmark/model_benchmark_fixture_guide.md",
+        "references/shared/README.md",
+        "references/shared/case_studies.md",
+        "references/shared/command_benchmark_composition.md",
+        "references/shared/pitfalls.md",
+        "references/shared/worked_example.md",
+        "references/skill_benchmark/skill_benchmark_storage_guide.md"
+      ],
+      "packet": "create-benchmark",
+      "workflowMode": "create-benchmark"
+    },
+    {
+      "leaves": [
+        "assets/changelog_template.md",
+        "references/README.md",
+        "references/topology_edge_cases.md",
+        "references/version_bump_rules.md",
+        "references/worked_examples.md"
+      ],
+      "packet": "create-changelog",
+      "workflowMode": "create-changelog"
+    },
+    {
+      "leaves": [
+        "assets/command_presentation_template.md",
+        "assets/command_router_template.md",
+        "assets/command_template.md",
+        "references/README.md",
+        "references/argument_hints_and_modes.md",
+        "references/common_pitfalls.md",
+        "references/router_presentation_split.md",
+        "references/worked_example.md"
+      ],
+      "packet": "create-command",
+      "workflowMode": "create-command"
+    },
+    {
+      "leaves": [
+        "assets/fixtures/README.md",
+        "assets/fixtures/onboarding-after.md",
+        "assets/fixtures/onboarding-before.md",
+        "references/README.md",
+        "references/accessibility-contract.md",
+        "references/capabilities-and-fidelity.md",
+        "references/cli-reference.md",
+        "references/worked-example.md",
+        "references/workflow.md"
+      ],
+      "packet": "create-diff",
+      "workflowMode": "create-diff"
+    },
+    {
+      "leaves": [
+        "assets/feature_catalog_snippet_template.md",
+        "assets/feature_catalog_template.md",
+        "references/README.md",
+        "references/common_pitfalls.md",
+        "references/examples.md"
+      ],
+      "packet": "create-feature-catalog",
+      "workflowMode": "create-feature-catalog"
+    },
+    {
+      "leaves": [
+        "assets/approval_workflow_loops.md",
+        "assets/decision_tree_flow.md",
+        "assets/parallel_execution.md",
+        "assets/simple_workflow.md",
+        "assets/system_architecture_swimlane.md",
+        "assets/user_onboarding.md",
+        "references/README.md",
+        "references/notation_and_validator.md",
+        "references/pattern_selection.md",
+        "references/worked_example.md"
+      ],
+      "packet": "create-flowchart",
+      "workflowMode": "create-flowchart"
+    },
+    {
+      "leaves": [
+        "assets/manual_testing_playbook_snippet_template.md",
+        "assets/manual_testing_playbook_template.md",
+        "references/README.md",
+        "references/common_pitfalls.md",
+        "references/examples.md",
+        "references/prompt_voice.md"
+      ],
+      "packet": "create-manual-testing-playbook",
+      "workflowMode": "create-manual-testing-playbook"
+    },
+    {
+      "leaves": [
+        "assets/llmstxt_templates.md",
+        "references/README.md",
+        "references/optimization.md",
+        "references/transformation_patterns.md",
+        "references/validation_and_enforcement.md",
+        "references/workflow_examples.md",
+        "references/workflows.md"
+      ],
+      "packet": "create-quality-control",
+      "workflowMode": "create-quality-control"
+    },
+    {
+      "leaves": [
+        "assets/install_guide_template.md",
+        "assets/readme_code_template.md",
+        "assets/readme_template.md",
+        "references/README.md",
+        "references/install_guide/quality_and_standards.md",
+        "references/install_guide/section_examples.md",
+        "references/readme/quality_and_checklist.md",
+        "references/readme/types_and_voice.md",
+        "references/readme/writing_patterns.md"
+      ],
+      "packet": "create-readme",
+      "workflowMode": "create-readme"
+    },
+    {
+      "leaves": [
+        "assets/parent_skill/parent_skill_description_template.json",
+        "assets/parent_skill/parent_skill_graph_metadata_template.json",
+        "assets/parent_skill/parent_skill_hub_router_template.json",
+        "assets/parent_skill/parent_skill_hub_template.md",
+        "assets/parent_skill/parent_skill_registry_template.json",
+        "assets/parent_skill/scaffold/hub_skill_scaffold.md",
+        "assets/parent_skill/scaffold/packet_skill_scaffold.md",
+        "assets/skill/skill_asset_template.md",
+        "assets/skill/skill_md_template.md",
+        "assets/skill/skill_procedure_template.md",
+        "assets/skill/skill_readme_template.md",
+        "assets/skill/skill_reference_template.md",
+        "assets/skill/skill_scaffold_template.md",
+        "assets/skill/skill_smart_router.md",
+        "references/README.md",
+        "references/parent_skill/parent_hub_router_schema.md",
+        "references/parent_skill/parent_skills_nested_packets.md",
+        "references/shared/common_pitfalls.md",
+        "references/shared/overview.md",
+        "references/shared/validation_and_packaging.md",
+        "references/skill/creation_workflow.md",
+        "references/skill/examples_and_maintenance.md"
+      ],
+      "packet": "create-skill",
+      "workflowMode": "create-skill"
+    },
+    {
+      "leaves": [
+        "assets/parent_skill/parent_skill_description_template.json",
+        "assets/parent_skill/parent_skill_graph_metadata_template.json",
+        "assets/parent_skill/parent_skill_hub_router_template.json",
+        "assets/parent_skill/parent_skill_hub_template.md",
+        "assets/parent_skill/parent_skill_registry_template.json",
+        "assets/parent_skill/scaffold/hub_skill_scaffold.md",
+        "assets/parent_skill/scaffold/packet_skill_scaffold.md",
+        "assets/skill/skill_asset_template.md",
+        "assets/skill/skill_md_template.md",
+        "assets/skill/skill_procedure_template.md",
+        "assets/skill/skill_readme_template.md",
+        "assets/skill/skill_reference_template.md",
+        "assets/skill/skill_scaffold_template.md",
+        "assets/skill/skill_smart_router.md",
+        "references/README.md",
+        "references/parent_skill/parent_hub_router_schema.md",
+        "references/parent_skill/parent_skills_nested_packets.md",
+        "references/shared/common_pitfalls.md",
+        "references/shared/overview.md",
+        "references/shared/validation_and_packaging.md",
+        "references/skill/creation_workflow.md",
+        "references/skill/examples_and_maintenance.md"
+      ],
+      "packet": "create-skill",
+      "workflowMode": "create-skill-parent"
+    }
+  ],
+  "resourceContractVersion": 1
+}

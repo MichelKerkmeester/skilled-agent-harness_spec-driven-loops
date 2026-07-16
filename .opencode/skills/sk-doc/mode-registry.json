@@ -1,6 +1,7 @@
 {
   "skill": "sk-doc",
   "version": "2.0.0.0",
+  "resourceContractVersion": 1,
   "description": "Declarative packet registry for the sk-doc parent hub: workflowMode + packetKind + backendKind + toolSurface + advisorRouting for each documentation-authoring workflow packet. The advisor routes the single sk-doc identity; the hub selects the workflow packet. Workflow-only hub (no surface axis), zero named extensions.",
   "discriminator": {
     "workflowMode": "Public hub/mode key; stable identity used by the hub router and this registry.",

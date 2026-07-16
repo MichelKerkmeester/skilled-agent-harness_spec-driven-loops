@@ -1,0 +1,12 @@
+[
+  {
+    "workflowMode": "create-changelog",
+    "leafResourceId": "assets/changelog_template.md",
+    "diskPath": "shared/assets/changelog_template.md"
+  },
+  {
+    "workflowMode": "create-quality-control",
+    "leafResourceId": "assets/llmstxt_templates.md",
+    "diskPath": "shared/assets/llmstxt_templates.md"
+  }
+]
