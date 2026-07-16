@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup",
+  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/000-migration-from-soa-and-cleanup/001-system-speckit-renumber",
+    "system-speckit/000-migration-from-soa-and-cleanup/002-system-deep-loop-renumber",
+    "system-speckit/000-migration-from-soa-and-cleanup/003-system-code-graph-cleanup",
+    "system-speckit/000-migration-from-soa-and-cleanup/004-sk-doc-alignment",
+    "system-speckit/000-migration-from-soa-and-cleanup/005-sk-design-reconstruct",
+    "system-speckit/000-migration-from-soa-and-cleanup/006-global-spec-drift-deep-research",
+    "system-speckit/000-migration-from-soa-and-cleanup/007-memory-db-teardown"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "000-migration-from-soa-and-cleanup",
+      "phase parent",
+      "archive-first renumbering",
+      "spec folder renumbering cleanup",
+      "gated memory database teardown"
+    ],
+    "key_topics": [
+      "000-migration-from-soa-and-cleanup",
+      "phase",
+      "parent",
+      "archive-first",
+      "renumbering",
+      "spec",
+      "folder",
+      "cleanup",
+      "gated",
+      "memory",
+      "database",
+      "teardown"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "First Spec Renumbering",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Global Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gated Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five spec-kit tracks — `system-speckit`, `system-deep-loop`, `system-code-graph`, `sk-doc`, and `sk-design` — have active packet numbering that collides with or sits below their own `zarchive/` ceilings, plus assorted untracked stub/duplicate directories left behind by prior partial migrations (verified: `system-speckit` active packets `001-016` sit below archive ceiling `025`, with four of them — `002`, `003`, `004`, `007` — already shadowed by untracked, 0-file duplicate copies at `026-029`; `system-deep-loop`'s archive has a gap at `012` between `011` and `013`, and its active range",
+    "created_at": "2026-07-16T06:17:14.089Z",
+    "last_save_at": "2026-07-16T06:25:06.549Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:bf595713d8c602788927163dc896e3a64873c9bbc68e7f4562990d7ea286f655",
+    "source_doc_hashes": {
+      "spec.md": "6e0f0879b054dd91d2df4b49fc9d7a795a8297c9d20abb99afe58612c3e07b80"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

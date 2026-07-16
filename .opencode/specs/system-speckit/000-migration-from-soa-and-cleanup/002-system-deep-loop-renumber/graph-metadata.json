@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/002-system-deep-loop-renumber",
+  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/002-system-deep-loop-renumber",
+  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop archive gap",
+      "z_archive 012 missing",
+      "deep-loop active packet renumber",
+      "contiguous numbering decision",
+      "system-deep-loop renumber plan",
+      "archive gap investigation plan",
+      "decision gate git mv",
+      "z_archive 012 root cause",
+      "system-deep-loop renumber tasks",
+      "archive gap tasks",
+      "decision gate tasks",
+      "system-deep-loop renumber checklist"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "archive",
+      "gap",
+      "missing",
+      "deep-loop",
+      "active",
+      "packet",
+      "renumber",
+      "contiguous",
+      "numbering",
+      "decision",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/graph-metadata.json",
+      ".opencode/specs/system-deep-loop/description.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Present Option",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "If Option",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Verify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Investigation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cause Investigation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`system-deep-loop`'s spec-folder numbering has two separate discontinuities:",
+    "created_at": "2026-07-16T06:17:12.585Z",
+    "last_save_at": "2026-07-16T06:26:17.523Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b205b44e55ab0938f58a013a5f8a8a8447a8a17ac113e21317328950a8fc6f39",
+    "source_doc_hashes": {
+      "spec.md": "75ef5efdc306b996278a2c8f3f07c6254cdead7b256310b6c7e54c36cbaeaa05",
+      "plan.md": "6dcb034f4269d6a84292f5ac34388644e5df446932483917bbccb7beede7e993",
+      "tasks.md": "a5ad98ef635d013a10ada6a0ebe3da434addf96ae48e6ae6a5f8fba4af323195",
+      "checklist.md": "6e3c5b1a02ee03127ce53cb2c82973b908a45841170f9d37dbfe4e09837933a1",
+      "implementation-summary.md": "059378fccbf45806047b1dc36877973546e85f9febb2ccc18df01a4652f1a49f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

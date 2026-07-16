@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/003-system-code-graph-cleanup",
+  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/003-system-code-graph-cleanup",
+  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph stub cleanup",
+      "remove untracked spec stubs",
+      "archive ceiling packet cleanup",
+      "007 009 stub directory removal",
+      "system-code-graph stub cleanup plan",
+      "remove untracked spec stubs plan",
+      "archive ceiling packet cleanup plan",
+      "007 009 stub directory removal plan",
+      "system-code-graph stub cleanup tasks",
+      "remove untracked spec stubs tasks",
+      "007 009 stub directory removal tasks",
+      "system-code-graph stub cleanup checklist"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "stub",
+      "cleanup",
+      "remove",
+      "untracked",
+      "spec",
+      "stubs",
+      "archive",
+      "ceiling",
+      "packet",
+      "directory",
+      "removal"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/specs/system-code-graph/context-index.md",
+      ".opencode/specs/descriptions.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "context-index.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-code-graph/context-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "none",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/specs/system-code-graph/zarchive/` is contiguous `001`-`024`, and the active tracked packets (`025-code-graph-core` through `035-rust-backend-rewrite-research`) are already correctly numbered above that ceiling",
+    "created_at": "2026-07-16T06:17:12.853Z",
+    "last_save_at": "2026-07-16T06:24:47.508Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f27bbebd7c673f45b4863836f8daedc618659168bf34c6b543c7dcc11052a4c4",
+    "source_doc_hashes": {
+      "spec.md": "74a31a8cb603ef76c0592c011bd3710cec8f490d57fd2e2f3e090607351b973c",
+      "plan.md": "6a30e41ebc81c9f9db32fd73f9b8f68e4b559d824d2f378503fe63414e0f2799",
+      "tasks.md": "1cc1aaff363136158996e02262e1372e55189e24e333dde5a3d915c4179fc215",
+      "checklist.md": "76b2adca6e9d1ad40b8e21dd56a53402300317dc0be901980266dc7c7663753e",
+      "implementation-summary.md": "29d799dc4549417b51ffac1afcda96d4661108ce9d806e23d81e174169dfed69"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

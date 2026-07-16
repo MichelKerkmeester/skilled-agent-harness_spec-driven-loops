@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/004-sk-doc-alignment",
+  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/004-sk-doc-alignment",
+  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc numbering alignment",
+      "sk-doc archive gap 014",
+      "sk-doc concurrent migration coordination",
+      "sk-doc working tree clean gate",
+      "sk-doc numbering alignment plan",
+      "sk-doc concurrent migration gate",
+      "sk-doc working tree clean verification",
+      "sk-doc archive gap coordination",
+      "sk-doc numbering alignment tasks",
+      "sk-doc concurrent migration tasks",
+      "sk-doc working tree clean tasks",
+      "sk-doc numbering alignment checklist"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "numbering",
+      "alignment",
+      "archive",
+      "gap",
+      "concurrent",
+      "migration",
+      "coordination",
+      "working",
+      "tree",
+      "clean",
+      "gate"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "scripts/spec/validate.sh",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Document",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "archive",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "command",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/specs/sk-doc/zarchive/` holds a contiguous run of retired packets, `001-cmd-create-emoji-enforcement` through `013-sk-doc-readme` (verified: `ls .opencode/specs/sk-doc/zarchive` lists exactly `001`-`013`)",
+    "created_at": "2026-07-16T06:17:13.123Z",
+    "last_save_at": "2026-07-16T06:17:13.123Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6351b9a6b4913d37c60a690470bc2000bbae80ce26b1eeca6416784eff0b32fb",
+    "source_doc_hashes": {
+      "spec.md": "bbfb217333d92c449269748950b6cb46b476c411ea3e4ef0596abd6e1a415469",
+      "plan.md": "68ce97f3b293eda1781d453dfe99e00c18f62b16153c4274e8507bc403a8917c",
+      "tasks.md": "14ae280b4e01650321c19e255d12eb6f8b150a304ced7e59e56fabcb1ecd70a8",
+      "checklist.md": "7fcbc3c354e723922363eb5b649965f857b3cd94d3f3fcc1e07905e370dccbe7",
+      "implementation-summary.md": "596a2480d2eed3c31da804a02f43f4b622b416b93b3cab7ac71a082fe79dfc95"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
