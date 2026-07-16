@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and official MCP (docs, goals, bulk). Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- keywords: clickup cupt task-management work-queue time-tracking mcp -->
@@ -461,6 +461,8 @@ const result = await call_tool_chain({
 - `references/mcp_tools.md` — 46 official MCP tools, priority table, invocation
 - `references/troubleshooting.md` — Auth, status, team-filter, MCP failures
 - `references/install_guide.md` — Step-by-step install with validation checkpoints
+
+Install guide (front door): [INSTALL_GUIDE.md](INSTALL_GUIDE.md) — condensed top-level install doc; the phase-validation reference above stays the router's INSTALL-intent target.
 
 **Scripts:**
 - `scripts/install.sh` — Installs cupt + prints MCP config snippet

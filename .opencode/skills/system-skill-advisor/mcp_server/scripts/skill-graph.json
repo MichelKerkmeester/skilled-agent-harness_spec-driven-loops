@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-11T06:23:03.224095+00:00",
+  "generated_at": "2026-07-16T11:56:17.678247+00:00",
   "skill_count": 12,
   "families": {
     "cli": [
@@ -92,7 +92,7 @@
     },
     "sk-prompt": {
       "enhances": {
-        "cli-external-orchestration": 0.8
+        "cli-external-orchestration": 0.7
       },
       "siblings": {
         "system-deep-loop": 0.4
@@ -158,7 +158,12 @@
       "spec kit runtime",
       "claude code",
       "claude cli",
-      "delegate to claude"
+      "delegate to claude",
+      "codex cli",
+      "codex exec",
+      "delegate to codex",
+      "openai cli second opinion",
+      "cli-codex"
     ],
     "mcp-code-mode": [
       "code mode",
@@ -198,7 +203,24 @@
       "export from figma",
       "connect to figma",
       "figma daemon",
-      "figma mcp"
+      "figma mcp",
+      "aside",
+      "aside browser",
+      "aside cli",
+      "aside mcp",
+      "aside repl",
+      "ai browser automation",
+      "agentic browser",
+      "refero",
+      "refero mcp",
+      "design reference search",
+      "ui reference",
+      "real app screens",
+      "mobbin",
+      "mobbin mcp",
+      "app design research",
+      "screen examples",
+      "ux flow references"
     ],
     "sk-code": [
       "code work",
@@ -307,6 +329,10 @@
       "promote benchmark folder",
       "create ascii flowchart",
       "create changelog",
+      "create diff report",
+      "document before after review",
+      "before after document diff",
+      "document change report",
       "validate document",
       "score document quality",
       "optimize documentation"
@@ -328,7 +354,11 @@
       "gitkraken",
       "gitlens",
       "cross-platform pr",
-      "multi-provider issue"
+      "multi-provider issue",
+      "owner-first branch",
+      "skill-scoped worktree",
+      "worktree naming allocator",
+      "skilled branch"
     ],
     "sk-prompt": [
       "improve prompt",
@@ -358,6 +388,10 @@
       "deep-review",
       "deep-ai-council",
       "deep-improvement",
+      "deep-alignment",
+      "alignment conformance audit",
+      "conformance review",
+      "standard authority check",
       "research loop",
       "iterative review loop",
       "deep-review wave",
@@ -386,9 +420,5 @@
     "system-deep-loop",
     "system-spec-kit"
   ],
-  "topology_warnings": {
-    "weight_band": [
-      "WEIGHT-BAND: sk-prompt edges.enhances[0] weight 0.8 outside recommended band [0.3, 0.7]"
-    ]
-  }
+  "topology_warnings": {}
 }

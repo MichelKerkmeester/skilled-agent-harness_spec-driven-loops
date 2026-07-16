@@ -438,3 +438,7 @@ VALIDATION:
   phase_4_complete: cupt list --today --json → valid JSON
   phase_5_complete: (MCP) clickup_official.clickup_official_get_workspace → workspace data
 ```
+
+---
+
+> **Front door:** the packet's top-level [`../INSTALL_GUIDE.md`](../INSTALL_GUIDE.md) is the condensed install front door (parity with the sibling mcp-tooling packets). This file remains the full phase-by-phase validation reference and stays the smart router's INSTALL-intent target.

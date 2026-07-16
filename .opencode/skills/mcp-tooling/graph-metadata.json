@@ -34,8 +34,13 @@
     "prerequisite_for": []
   },
   "manual": {
-    "depends_on": ["mcp-code-mode"],
-    "related_to": ["sk-design", "sk-code"]
+    "depends_on": [
+      "mcp-code-mode"
+    ],
+    "related_to": [
+      "sk-design",
+      "sk-code"
+    ]
   },
   "domains": [
     "devtools",
@@ -51,7 +56,13 @@
     "figma",
     "design-to-code",
     "design-systems",
-    "figma-desktop"
+    "figma-desktop",
+    "agentic-browser",
+    "browser-automation",
+    "design-reference-research",
+    "ui-research",
+    "app-design-research",
+    "mobile-ux"
   ],
   "intent_signals": [
     "chrome devtools",
@@ -86,7 +97,24 @@
     "export from figma",
     "connect to figma",
     "figma daemon",
-    "figma mcp"
+    "figma mcp",
+    "aside",
+    "aside browser",
+    "aside cli",
+    "aside mcp",
+    "aside repl",
+    "ai browser automation",
+    "agentic browser",
+    "refero",
+    "refero mcp",
+    "design reference search",
+    "ui reference",
+    "real app screens",
+    "mobbin",
+    "mobbin mcp",
+    "app design research",
+    "screen examples",
+    "ux flow references"
   ],
   "derived": {
     "trigger_phrases": [
@@ -123,7 +151,14 @@
       "figma tokens",
       "extract design.md",
       "connect to figma",
-      "figma mcp"
+      "figma mcp",
+      "aside browser task",
+      "aside repl evidence",
+      "agentic browser automation",
+      "refero design reference",
+      "real app screen search",
+      "mobbin app research",
+      "real app ux patterns"
     ],
     "key_topics": [
       "devtools",
@@ -150,7 +185,13 @@
       "design-system extract (DESIGN.md) and import",
       "tokens, variables, var:name binding",
       "optional Framelink figma MCP via Code Mode",
-      "sk-design handoff for design judgment"
+      "sk-design handoff for design judgment",
+      "aside",
+      "agentic-browser",
+      "refero",
+      "design-reference",
+      "mobbin",
+      "app-design-research"
     ],
     "intent_signals": [
       "browser debug",
@@ -185,7 +226,10 @@
       ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-click-up/references/cupt_commands.md",
       ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
-      ".opencode/skills/mcp-tooling/mcp-figma/references/figma_cli_reference.md"
+      ".opencode/skills/mcp-tooling/mcp-figma/references/figma_cli_reference.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md"
     ],
     "entities": [
       {
@@ -211,6 +255,24 @@
         "kind": "skill",
         "path": ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
         "source": "derived"
+      },
+      {
+        "name": "mcp-aside-devtools",
+        "kind": "skill",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-refero",
+        "kind": "skill",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-mobbin",
+        "kind": "skill",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "mcp-tooling is the single public advisor identity for three MCP tool bridges, folded into one parent hub (packet 126-mcp-tooling-parent). mcp-chrome-devtools routes browser-debugging work between the bdg CLI and Code Mode MCP, prioritizing the cheapest effective interface. mcp-click-up routes ClickUp task management between the cupt CLI (daily ops) and the official ClickUp MCP (documents, goals, bulk operations), with agent-safety invariants (dry-run before batch completion, per-list status resolution). mcp-figma drives Figma Desktop from the terminal through figma-ds-cli, gated read-only/mutating/destructive, paired with sk-design for design judgment before any design-affecting operation -- it never decides taste itself. It matters because it gives three previously-flat, independently advisor-routable MCP bridges one coherent identity while preserving each mode's own contract, and mcp-code-mode -- the shared execution substrate all three reach through Code Mode -- stays external infrastructure rather than a dissolved hub member.",
@@ -223,9 +285,16 @@
       "mcp-click-up/SKILL.md",
       "mcp-click-up/README.md",
       "mcp-figma/SKILL.md",
-      "mcp-figma/README.md"
+      "mcp-figma/README.md",
+      "mcp-aside-devtools/SKILL.md",
+      "mcp-aside-devtools/README.md",
+      "mcp-refero/SKILL.md",
+      "mcp-refero/README.md",
+      "mcp-mobbin/SKILL.md",
+      "mcp-mobbin/README.md"
     ],
     "created_at": "2026-07-10T06:16:00Z",
-    "last_updated_at": "2026-07-10T06:16:00Z"
+    "last_updated_at": "2026-07-10T06:16:00Z",
+    "last_save_at": "2026-07-16T15:55:00Z"
   }
 }

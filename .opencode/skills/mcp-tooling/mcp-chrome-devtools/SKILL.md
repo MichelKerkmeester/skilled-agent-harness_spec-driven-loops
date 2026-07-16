@@ -2,7 +2,7 @@
 name: mcp-chrome-devtools
 description: "Chrome DevTools orchestrator: routes between bdg CLI (fast, token-efficient) and Code Mode MCP (multi-tool integration)."
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 <!-- Keywords: chrome-devtools, cdp, browser-debugger-cli, bdg, browser-automation, terminal-debugging, screenshot-capture, network-monitoring, mcp-code-mode, orchestrator -->
@@ -332,11 +332,15 @@ Use `bdg cdp --list`, `bdg cdp --describe <domain>`, `bdg cdp --search <term>`, 
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill currently routes over the flat reference set: `references/cdp_patterns.md`, `references/session_management.md`, and `references/troubleshooting.md`.
+The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill currently routes over the flat reference set: `references/cdp_patterns.md`, `references/session_management.md`, and `references/troubleshooting.md`. Assets: [`assets/utcp_chrome_devtools_manuals.md`](assets/utcp_chrome_devtools_manuals.md) — the registered-state snapshot of the `chrome_devtools_1` / `chrome_devtools_2` Code Mode manuals (verify, don't re-add).
 
 Scripts: `scripts/install.sh`.
 
 Examples: [`examples/README.md`](examples/README.md) — automation example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
+
+Feature catalog: [`feature_catalog/feature_catalog.md`](feature_catalog/feature_catalog.md) — the full CLI + MCP capability inventory (29 features across 7 domains), with per-feature files per domain.
+
+Server pointers: [`mcp-servers/bdg-cli/README.md`](mcp-servers/bdg-cli/README.md) (CLI install pointer) and [`mcp-servers/chrome-devtools-mcp/README.md`](mcp-servers/chrome-devtools-mcp/README.md) (the Code Mode server behind the manuals) — nothing vendored.
 
 Related skills: `mcp-code-mode` for MCP fallback and `sk-code` for browser verification in application-code workflows.
 

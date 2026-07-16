@@ -221,8 +221,8 @@
       ".opencode/skills/sk-code/code-webflow/assets/animation/install_card.md",
       ".opencode/skills/sk-code/code-webflow/assets/animation/playbook_entries.md",
       ".opencode/skills/sk-code/code-webflow/assets/patterns/wait_patterns.js",
-      ".opencode/skills/sk-code/code-webflow/references/implementation/implementation_workflows.md",
-      ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns.md",
+      ".opencode/skills/sk-code/code-webflow/references/implementation/implementation_workflows/condition_based_waiting.md",
+      ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/naming_and_commenting.md",
       ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
       ".opencode/skills/sk-code/code-webflow/SKILL.md",
       ".opencode/skills/sk-code/code-opencode/SKILL.md"

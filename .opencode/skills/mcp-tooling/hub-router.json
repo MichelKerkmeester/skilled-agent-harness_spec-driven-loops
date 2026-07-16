@@ -4,52 +4,220 @@
   "routerPolicy": {
     "defaultMode": "mcp-chrome-devtools",
     "ambiguityDelta": 1,
-    "tieBreak": ["mcp-chrome-devtools", "mcp-click-up", "mcp-figma"],
+    "tieBreak": [
+      "mcp-chrome-devtools",
+      "mcp-click-up",
+      "mcp-aside-devtools",
+      "mcp-figma",
+      "mcp-refero",
+      "mcp-mobbin"
+    ],
     "outcomes": {
       "single": "one dominant tool signal routes to one mode",
       "orderedBundle": "multiple explicitly requested tools route in tie-break order",
       "defer": "unclear or contradictory tool intent asks for disambiguation"
     },
-    "defaultResource": ["mcp-chrome-devtools/SKILL.md"]
+    "defaultResource": [
+      "mcp-chrome-devtools/SKILL.md"
+    ]
   },
   "routerSignals": {
     "mcp-chrome-devtools": {
       "weight": 4,
-      "classes": ["chrome-devtools-aliases", "browser-debug", "hub-identity"],
-      "resources": ["mcp-chrome-devtools/SKILL.md"]
+      "classes": [
+        "chrome-devtools-aliases",
+        "browser-debug",
+        "hub-identity"
+      ],
+      "resources": [
+        "mcp-chrome-devtools/SKILL.md"
+      ]
     },
     "mcp-click-up": {
       "weight": 4,
-      "classes": ["clickup-aliases", "task-management", "hub-identity"],
-      "resources": ["mcp-click-up/SKILL.md"]
+      "classes": [
+        "clickup-aliases",
+        "task-management",
+        "hub-identity"
+      ],
+      "resources": [
+        "mcp-click-up/SKILL.md"
+      ]
+    },
+    "mcp-aside-devtools": {
+      "weight": 4,
+      "classes": [
+        "aside-devtools-aliases",
+        "agentic-browser",
+        "hub-identity"
+      ],
+      "resources": [
+        "mcp-aside-devtools/SKILL.md"
+      ]
     },
     "mcp-figma": {
       "weight": 4,
-      "classes": ["figma-aliases", "design-transport", "hub-identity"],
-      "resources": ["mcp-figma/SKILL.md"]
+      "classes": [
+        "figma-aliases",
+        "design-transport",
+        "hub-identity"
+      ],
+      "resources": [
+        "mcp-figma/SKILL.md"
+      ]
+    },
+    "mcp-refero": {
+      "weight": 4,
+      "classes": [
+        "refero-aliases",
+        "design-reference-research",
+        "hub-identity"
+      ],
+      "resources": [
+        "mcp-refero/SKILL.md"
+      ]
+    },
+    "mcp-mobbin": {
+      "weight": 4,
+      "classes": [
+        "mobbin-aliases",
+        "app-design-research",
+        "hub-identity"
+      ],
+      "resources": [
+        "mcp-mobbin/SKILL.md"
+      ]
     }
   },
   "vocabularyClasses": {
     "hub-identity": {
-      "keywords": ["mcp-tooling", "mcp tool bridge", "mode-registry", "hub-router"]
+      "keywords": [
+        "mcp-tooling",
+        "mcp tool bridge",
+        "mode-registry",
+        "hub-router"
+      ]
     },
     "chrome-devtools-aliases": {
-      "keywords": ["chrome devtools", "browser debug", "dom inspect", "lighthouse", "bdg", "cdp"]
+      "keywords": [
+        "chrome devtools",
+        "browser debug",
+        "dom inspect",
+        "lighthouse",
+        "bdg",
+        "cdp"
+      ]
     },
     "browser-debug": {
-      "keywords": ["screenshot capture", "console errors", "network requests", "har export", "performance trace", "cdp domain"]
+      "keywords": [
+        "screenshot capture",
+        "console errors",
+        "network requests",
+        "har export",
+        "performance trace",
+        "cdp domain"
+      ]
     },
     "clickup-aliases": {
-      "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking"]
+      "keywords": [
+        "clickup",
+        "cupt",
+        "task management",
+        "work queue",
+        "mark done",
+        "time tracking"
+      ]
     },
     "task-management": {
-      "keywords": ["log time", "process queue", "clickup documents", "clickup goals", "bulk tasks", "clickup task"]
+      "keywords": [
+        "log time",
+        "process queue",
+        "clickup documents",
+        "clickup goals",
+        "bulk tasks",
+        "clickup task"
+      ]
     },
     "figma-aliases": {
-      "keywords": ["figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp"]
+      "keywords": [
+        "figma cli",
+        "figma-ds-cli",
+        "figma desktop",
+        "render in figma",
+        "figma tokens",
+        "extract design.md",
+        "figma mcp"
+      ]
     },
     "design-transport": {
-      "keywords": ["figma daemon", "connect to figma", "figma variables", "export from figma", "figma export"]
+      "keywords": [
+        "figma daemon",
+        "connect to figma",
+        "figma variables",
+        "export from figma",
+        "figma export"
+      ]
+    },
+    "aside-devtools-aliases": {
+      "keywords": [
+        "aside",
+        "aside browser",
+        "aside cli",
+        "aside mcp",
+        "aside repl",
+        "ai browser automation",
+        "agentic browser"
+      ]
+    },
+    "agentic-browser": {
+      "keywords": [
+        "agentic browser task",
+        "natural language browser",
+        "browser agent",
+        "aside daemon",
+        "aside account",
+        "repl evidence capture"
+      ]
+    },
+    "refero-aliases": {
+      "keywords": [
+        "refero",
+        "refero mcp",
+        "design reference search",
+        "ui reference",
+        "real app screens",
+        "refero.design"
+      ]
+    },
+    "design-reference-research": {
+      "keywords": [
+        "design reference",
+        "ui screens from real apps",
+        "screen examples",
+        "design inspiration search",
+        "reference styles",
+        "user flow references"
+      ]
+    },
+    "mobbin-aliases": {
+      "keywords": [
+        "mobbin",
+        "mobbin mcp",
+        "app design research",
+        "screen examples",
+        "ux flow references",
+        "mobile design patterns"
+      ]
+    },
+    "app-design-research": {
+      "keywords": [
+        "real app screenshots",
+        "mobile ux research",
+        "onboarding flow examples",
+        "app screen gallery",
+        "design pattern research",
+        "ios app examples"
+      ]
     }
   }
 }

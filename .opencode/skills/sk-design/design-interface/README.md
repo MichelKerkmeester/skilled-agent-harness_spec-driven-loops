@@ -122,7 +122,7 @@ Reach for it whenever a task has a visual surface and the look should feel inten
 | `sk-code` | Owns implementation. This skill sets the look, and sk-code builds it to the detected web surface's standards and verifies it. |
 | `sk-code` (code-review mode) | Audits the built UI against the standards sk-code enforces. |
 | `mcp-chrome-devtools` | Drives a real browser to screenshot the build for the self-critique step. |
-| `mcp-code-mode` | Transport for the optional Mobbin/Refero real-world reference lookups (`mobbin.*` / `refero.*`). Co-load it before any lookup; this skill does not call Code Mode directly. |
+| `mcp-code-mode` | Transport substrate for the optional Mobbin/Refero real-world reference lookups (`mobbin.*` / `refero.*`); Refero runs as the `mcp-refero` transport over `mcp-code-mode`. Co-load it before any lookup; this skill does not call Code Mode directly. |
 
 ---
 
@@ -184,7 +184,7 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 | [`references/design_process/real_ui_loop.md`](./references/design_process/real_ui_loop.md) | The real-UI loop: ground in a system, reuse before generating, fidelity check, handoff |
 | [`references/design_process/variation_diversity.md`](./references/design_process/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
 | [`references/design_grounding/design_inventory.md`](./references/design_grounding/design_inventory.md) | A real design system you own, read live, as either reuse-ground or the named default to critique against. One system, never a chooser |
-| [`references/design_grounding/design_references_mcp.md`](./references/design_grounding/design_references_mcp.md) | Real-world critique-against references (Mobbin, Refero via Code Mode through `mcp-code-mode`): name the category's real-world default, then deviate. One reference, read live, never copied. Tool catalogs in `references/mcp_tooling/` |
+| [`references/design_grounding/design_references_mcp.md`](./references/design_grounding/design_references_mcp.md) | Real-world critique-against references (Mobbin, Refero via Code Mode through `mcp-code-mode`; Refero as the `mcp-refero` transport): name the category's real-world default, then deviate. One reference, read live, never copied. Mobbin catalog and the Refero canonical-home pointer in `references/mcp_tooling/` |
 | [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |
 | [`mcp-figma`](../../mcp-tooling/mcp-figma/README.md) | Sibling transport (Figma Desktop). This skill judges the design decisions its reads and exports feed |

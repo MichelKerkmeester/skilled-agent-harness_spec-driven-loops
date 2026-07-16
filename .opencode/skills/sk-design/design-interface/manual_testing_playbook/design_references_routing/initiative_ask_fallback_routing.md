@@ -80,7 +80,7 @@ If the primary run passes, repeat the routing for a web product page (Refero, st
 |---|---|
 | `../../references/design_grounding/design_references_mcp.md` | Section 3 owns the initiative/ask/fall-back decision gate and the Mobbin-vs-Refero source pick; Section 4 owns the no-chooser, read-live, never-copied hard rules |
 | `../../references/mcp_tooling/mobbin_tools.md` | Mobbin MCP tool catalog (search_screens, search_flows): arguments, the Code Mode call convention, result shape, and the citable mobbin_url |
-| `../../references/mcp_tooling/refero_tools.md` | Refero MCP tool catalog (8 tools across styles, screens, flows): the styles-first model, the Code Mode call convention, and result shape |
+| `../../references/mcp_tooling/refero_tools.md` | Pointer to the canonical Refero tool surface in the `mcp-refero` transport packet, plus the judgment-side styles-first framing kept in this skill |
 | `../../SKILL.md` | Section 2 (the INITIATIVE / ASK resource row) and the Section 4 ALWAYS rule 7 requiring initiative-or-ask, one reference, read live, never a chooser, never copied |
 
 ---

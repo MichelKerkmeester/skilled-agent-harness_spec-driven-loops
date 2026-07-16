@@ -1,0 +1,109 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#f7f7f4",
+      "$type": "color",
+      "$description": "Parchment — Page background, primary canvas — warm cream that softens contrast and makes ink feel printed rather than digital"
+    },
+    "bone": {
+      "$value": "#f2f1ed",
+      "$type": "color",
+      "$description": "Bone — Card surfaces and elevated containers — one step darker than canvas, creates paper-on-paper layering without borders"
+    },
+    "linen": {
+      "$value": "#e6e5e0",
+      "$type": "color",
+      "$description": "Linen — Light neutral action fill for buttons on dark surfaces."
+    },
+    "stone": {
+      "$value": "#cdcdc9",
+      "$type": "color",
+      "$description": "Stone — Hairline borders, dividers, subtle separators — warm-tinted 1px rules"
+    },
+    "mist": {
+      "$value": "#a1a19f",
+      "$type": "color",
+      "$description": "Mist — Tertiary helper text, captions — between muted and secondary"
+    },
+    "driftwood": {
+      "$value": "#84847e",
+      "$type": "color",
+      "$description": "Driftwood — Secondary body text, table content — quieter than primary ink"
+    },
+    "ash": {
+      "$value": "#7a7974",
+      "$type": "color",
+      "$description": "Ash — Icon fills, tertiary body text, subdued UI labels — the workhorse muted tone"
+    },
+    "ink": {
+      "$value": "#26251e",
+      "$type": "color",
+      "$description": "Ink — Primary text, primary action button background, nav text — warm-tinted near-black, never pure #000"
+    },
+    "ember": {
+      "$value": "#f54e00",
+      "$type": "color",
+      "$description": "Ember — Orange text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "amber": {
+      "$value": "#c08532",
+      "$type": "color",
+      "$description": "Amber — Warm action button fill (Build, Continue) and accent icon strokes — earthy companion to ember, used in product UI chrome"
+    },
+    "forest": {
+      "$value": "#34785c",
+      "$type": "color",
+      "$description": "Forest — Green action color for filled buttons, selected navigation states, and focused conversion moments. Use as a supporting accent, not as a status color"
+    },
+    "verdant": {
+      "$value": "#1f8a65",
+      "$type": "color",
+      "$description": "Verdant — Green text accent for links, tags, and emphasized short phrases. Use as a supporting accent, not as a status color"
+    },
+    "crimson": {
+      "$value": "#cf2d56",
+      "$type": "color",
+      "$description": "Crimson — Red text accent for links, tags, and emphasized short phrases. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "cursorgothic": {
+      "$value": "CursorGothic",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for UI, headings, navigation, body, and product surfaces. Weight 400 headlines with progressively tighter letter-spacing (-0.005em at 22px → -0.03em at 72px) is the signature — headlines never bold. Font features ss08, ss09, tnum activate stylistic alternates and tabular numerals."
+    },
+    "eb-garamond": {
+      "$value": "EB Garamond",
+      "$type": "fontFamily",
+      "$description": "Editorial serif for select subheadings, prose body, and table data — adds literary texture against the CursorGothic UI shell"
+    },
+    "berkeleymono": {
+      "$value": "berkeleyMono",
+      "$type": "fontFamily",
+      "$description": "Monospace for code blocks, CLI snippets, metadata tags, file paths, and developer-facing labels — the technical voice"
+    },
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "Secondary system text for small meta labels and supplementary UI where a custom font is overkill"
+    },
+    "lato": {
+      "$value": "Lato",
+      "$type": "fontFamily",
+      "$description": "Lato — detected in extracted data but not described by AI"
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "-apple-system — detected in extracted data but not described by AI"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://cursor.com",
+      "siteName": "Cursor",
+      "extractedAt": "2026-07-03T02:51:37.292Z",
+      "variant": "compact"
+    }
+  }
+}

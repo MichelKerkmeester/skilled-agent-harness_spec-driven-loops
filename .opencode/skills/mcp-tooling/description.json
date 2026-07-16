@@ -1,7 +1,7 @@
 {
   "name": "mcp-tooling",
-  "description": "Parent hub for MCP tool bridges: routes to two workflow modes (mcp-chrome-devtools for browser inspection and debugging, mcp-click-up for ClickUp task management) plus one figma transport (mcp-figma, bridging to Figma Desktop) through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. mcp-code-mode is the shared MCP execution substrate all three modes reach through the unchanged code_mode registration key — it is external infrastructure, not a hub member, and stays a flat standalone skill.",
-  "version": "1.0.0.0",
+  "description": "Parent hub for MCP tool bridges: routes to three workflow modes (mcp-chrome-devtools for browser inspection and debugging, mcp-click-up for ClickUp task management, mcp-aside-devtools for AI-browser automation via the Aside browser) plus three design transports (mcp-figma bridging to Figma Desktop, mcp-refero searching real-app UI design references via the Refero MCP, mcp-mobbin researching app/screen/flow design patterns via the Mobbin MCP) through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. mcp-code-mode is the shared MCP execution substrate all modes reach through the unchanged code_mode registration key \u2014 it is external infrastructure, not a hub member, and stays a flat standalone skill.",
+  "version": "1.3.0.0",
   "importance_tier": "high",
   "keywords": [
     "mcp-tooling",
@@ -11,15 +11,31 @@
     "packetKind",
     "mcp-chrome-devtools",
     "mcp-click-up",
+    "mcp-aside-devtools",
+    "aside",
+    "aside browser",
+    "agentic browser",
+    "ai browser automation",
     "mcp-figma",
     "mcp tool bridge",
-    "transport-axis"
+    "transport-axis",
+    "mcp-refero",
+    "refero",
+    "design reference search",
+    "ui reference",
+    "mcp-mobbin",
+    "mobbin",
+    "app design research",
+    "screen examples"
   ],
   "trigger_examples": [
     "Use Chrome DevTools to capture a HAR for the staging dashboard",
     "Mark the ClickUp task done with a note",
     "Render this component in Figma and export the tokens",
-    "Route this MCP tool bridge request"
+    "Run an agentic Aside browser task and capture REPL evidence",
+    "Route this MCP tool bridge request",
+    "Find real-app screen references for a checkout flow on Refero",
+    "Research onboarding flow patterns from real apps on Mobbin"
   ],
-  "lastUpdated": "2026-07-10T06:16:00Z"
+  "lastUpdated": "2026-07-16T15:55:00Z"
 }

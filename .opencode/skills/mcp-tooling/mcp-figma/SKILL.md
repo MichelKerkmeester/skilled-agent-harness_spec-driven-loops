@@ -3,7 +3,7 @@ name: mcp-figma
 description: "Figma CLI orchestrator: drives figma-ds-cli for terminal Figma design work, with an optional Figma MCP via Code Mode."
 compatibility: Requires Figma Desktop (open with a file), Node.js >=18, and the silships figma-ds-cli on PATH. macOS is the supported baseline; the optional Figma MCP uses this project's Code Mode.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.0.0.0
+version: 1.0.1.0
 user-invocable: true
 ---
 
@@ -360,6 +360,8 @@ The router (Section 2) discovers reference and asset docs dynamically. Start fro
 Assets: `assets/utcp_figma_manual.md` (paste-ready Framelink `figma` `.utcp_config.json` manual + `.env` note) and `assets/env_template.md` (the prefixed `figma_FIGMA_API_KEY` line), loaded only for the optional MCP_CONTEXT path.
 
 Scripts: `scripts/install.sh` (install + verify), `scripts/doctor.sh` (report-only diagnostics), `scripts/connect-safe.sh`, `scripts/connect-yolo.sh`, `scripts/daemon.sh`, `scripts/unpatch.sh`, `scripts/print-utcp-snippets.sh`.
+
+Examples: [`examples/README.md`](examples/README.md) - safe worked walkthroughs mirroring the playbook scenarios (safe connect + daemon health, read-only inspect/export, optional MCP context pull). They live outside the `references/`/`assets/` discovery roots, so they are linked here rather than auto-loaded by the router.
 
 Related skills: `sk-design` (the design judgment, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `design-mcp-open-design` (Open Design's terminal-driven transport, nested inside `sk-design`), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies.
 
