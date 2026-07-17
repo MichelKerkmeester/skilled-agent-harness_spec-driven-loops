@@ -6,6 +6,11 @@ trigger_phrases:
   - "cli-codex hooks"
   - "codex guard adapters"
   - "codex-hook-parity"
+id: CE-P02
+stage: routing
+expected_intent: UNKNOWN
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 version: 1.0.0.0
 ---
 

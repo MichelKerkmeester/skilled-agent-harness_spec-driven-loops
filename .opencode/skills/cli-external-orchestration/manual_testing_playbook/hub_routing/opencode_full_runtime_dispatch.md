@@ -6,6 +6,12 @@ title: "Full-runtime dispatch request routes to cli-opencode"
 expected_intent: cli-opencode
 expected_resources:
   - cli-opencode/SKILL.md
+expected_workflow_mode: cli-opencode
+expected_leaf_resources:
+  - workflow_mode: cli-opencode
+    leaf_resource_id: references/cli_reference.md
+  - workflow_mode: cli-opencode
+    leaf_resource_id: references/integration_patterns.md
 created: 2026-07-10
 version: 1.0.0.0
 ---

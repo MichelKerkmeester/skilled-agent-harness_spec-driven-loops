@@ -6,6 +6,8 @@ title: "Blind holdout: full-runtime handoff routes to cli-opencode"
 expected_intent: cli-opencode
 expected_resources:
   - cli-opencode/SKILL.md
+expected_workflow_mode: cli-opencode
+expected_leaf_resources: []
 blindToRouterKeywords: true
 version: 1.0.0.0
 ---

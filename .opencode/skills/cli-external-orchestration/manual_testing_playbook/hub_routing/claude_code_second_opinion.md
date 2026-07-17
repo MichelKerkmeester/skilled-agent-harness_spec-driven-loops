@@ -6,6 +6,12 @@ title: "Anthropic-backed second-opinion request routes to cli-claude-code"
 expected_intent: cli-claude-code
 expected_resources:
   - cli-claude-code/SKILL.md
+expected_workflow_mode: cli-claude-code
+expected_leaf_resources:
+  - workflow_mode: cli-claude-code
+    leaf_resource_id: references/cli_reference.md
+  - workflow_mode: cli-claude-code
+    leaf_resource_id: references/integration_patterns.md
 created: 2026-07-10
 version: 1.0.0.0
 ---

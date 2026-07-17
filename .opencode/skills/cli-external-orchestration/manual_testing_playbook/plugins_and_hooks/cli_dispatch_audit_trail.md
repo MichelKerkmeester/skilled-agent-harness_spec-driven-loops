@@ -6,6 +6,11 @@ trigger_phrases:
   - "cli dispatch audit"
   - "dispatch audit trail"
   - "cli-dispatch-audit-trail"
+id: CE-P01
+stage: routing
+expected_intent: UNKNOWN
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 version: 1.0.0.0
 ---
 

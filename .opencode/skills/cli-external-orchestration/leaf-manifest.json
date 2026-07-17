@@ -1,0 +1,50 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "assets/prompt_quality_card.md",
+        "assets/prompt_templates.md",
+        "references/agent_delegation.md",
+        "references/claude_tools.md",
+        "references/cli_reference.md",
+        "references/integration_patterns.md"
+      ],
+      "packet": "cli-claude-code",
+      "workflowMode": "cli-claude-code"
+    },
+    {
+      "leaves": [
+        "assets/prompt_quality_card.md",
+        "assets/prompt_templates.md",
+        "references/agent_delegation.md",
+        "references/cli_reference.md",
+        "references/codex_tools.md",
+        "references/hook_contract.md",
+        "references/integration_patterns.md"
+      ],
+      "packet": "cli-codex",
+      "workflowMode": "cli-codex"
+    },
+    {
+      "leaves": [
+        "assets/permissions_matrix.example-packet-local.json",
+        "assets/permissions_matrix.example-readonly.json",
+        "assets/permissions_matrix.example-repo-wide.json",
+        "assets/permissions_matrix.schema.json",
+        "assets/prompt_quality_card.md",
+        "assets/prompt_templates.md",
+        "references/agent_delegation.md",
+        "references/cli_reference.md",
+        "references/context_budget.md",
+        "references/destructive_scope_violations.md",
+        "references/integration_patterns.md",
+        "references/opencode_tools.md",
+        "references/permissions_matrix.md",
+        "references/self_invocation_guard.md"
+      ],
+      "packet": "cli-opencode",
+      "workflowMode": "cli-opencode"
+    }
+  ],
+  "resourceContractVersion": 1
+}

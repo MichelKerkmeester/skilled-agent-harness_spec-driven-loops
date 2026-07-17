@@ -6,6 +6,8 @@ title: "Blind holdout: deep second opinion routes to cli-claude-code"
 expected_intent: cli-claude-code
 expected_resources:
   - cli-claude-code/SKILL.md
+expected_workflow_mode: cli-claude-code
+expected_leaf_resources: []
 blindToRouterKeywords: true
 version: 1.0.0.0
 ---
