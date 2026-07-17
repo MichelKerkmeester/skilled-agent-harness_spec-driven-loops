@@ -133,6 +133,37 @@ is_wrapper_branch() {
   [[ "$1" =~ ^work/[a-z0-9][a-z0-9-]*/.+$ ]]
 }
 
+# Branches exempt from the pre-push remote-push-permission gate (see
+# is_remote_push_allowlisted below). `main`/`skilled/v*` are hardcoded so a
+# missing or emptied allowlist file can only narrow exemptions back to these
+# two, never widen toward "everything" — the file is purely additive.
+_wn_remote_allowlist_file() {
+  local top
+  top="$(_wn_toplevel)" || return 1
+  echo "$top/.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt"
+}
+
+# True when a branch may reach origin without an explicit ask-first
+# confirmation for THIS push (see .opencode/scripts/git-hooks/pre-push).
+is_remote_push_allowlisted() {
+  local branch="$1" file line trimmed
+  case "$branch" in
+    main|skilled/v*) return 0 ;;
+  esac
+  file="$(_wn_remote_allowlist_file)" || return 1
+  [ -f "$file" ] || return 1
+  while IFS= read -r line || [ -n "$line" ]; do
+    trimmed="${line%%#*}"
+    trimmed="${trimmed#"${trimmed%%[![:space:]]*}"}"
+    trimmed="${trimmed%"${trimmed##*[![:space:]]}"}"
+    [ -n "$trimmed" ] || continue
+    case "$branch" in
+      $trimmed) return 0 ;;
+    esac
+  done < "$file"
+  return 1
+}
+
 # Branch OWNER/NNNN-SLUG must pair with directory NNNN-OWNER-SLUG.
 is_valid_pair() {
   local branch="$1" dir="$2" base parent branch_rc
@@ -368,6 +399,7 @@ worktree-naming.sh <command> [args]
   validate-slug   <slug>
   validate-branch <branch>
   validate-pair   <branch> <dir>
+  validate-remote-allowlist <branch>        Check the remote-push-permission allowlist.
   create          <owner> <slug> [base]     Create an owner-first worktree.
   create-detached <slug> [base]             Create a numbered detached worktree.
 USAGE
@@ -391,6 +423,9 @@ _wn_main() {
       ;;
     validate-pair)
       if is_valid_pair "${1:-}" "${2:-}"; then echo ok; else rc=$?; echo invalid >&2; exit "$rc"; fi
+      ;;
+    validate-remote-allowlist)
+      if is_remote_push_allowlisted "${1:-}"; then echo ok; else echo not-allowlisted >&2; exit 1; fi
       ;;
     create)          create_named_worktree "$@" ;;
     create-detached) create_detached_worktree "$@" ;;

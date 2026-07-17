@@ -176,10 +176,14 @@ fi
 
 #### Option 2: Push and Create PR
 
+Selecting this option is itself the operator's go-ahead for this push — see [remote-branch-policy.md](remote-branch-policy.md). No separate remote-push confirmation is needed here; the hook still needs `SPECKIT_ALLOW_REMOTE_PUSH=1` set for this invocation whenever `<feature-branch>` is not on the remote allowlist (`main`, `skilled/v*`, or `remote-branch-allowlist.txt`), since a chat-level yes has no hook-visible signal of its own.
+
 **Workflow**:
 ```bash
-# 1. Push branch to remote
-git push -u origin <feature-branch>
+# 1. Push branch to remote (SPECKIT_ALLOW_REMOTE_PUSH=1 satisfies the
+#    remote-push-permission gate — only needed when <feature-branch> isn't
+#    on the remote allowlist; see remote-branch-policy.md)
+SPECKIT_ALLOW_REMOTE_PUSH=1 git push -u origin <feature-branch>
 
 # 2. Create PR using GitHub CLI (preferred)
 gh pr create --title "<title>" --body "$(cat <<'EOF'
@@ -334,7 +338,8 @@ echo "No worktree cleanup needed."
 
 ```bash
 # 1. Rebase the worktree's own commits onto the CURRENT shared tip (avoid non-ff),
-#    then push. Never --force a shared branch.
+#    then push. Never --force a shared branch. Add SPECKIT_ALLOW_REMOTE_PUSH=1
+#    if <branch> is not on the remote allowlist — see remote-branch-policy.md.
 git fetch origin <branch>
 git rebase origin/<branch>          # replays ONLY your local worktree commits
 git push origin HEAD:<branch>

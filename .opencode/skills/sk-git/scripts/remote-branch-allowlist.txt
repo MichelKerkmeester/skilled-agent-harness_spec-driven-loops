@@ -1,0 +1,11 @@
+# Remote-push allowlist — branches listed here (plus the built-in `main` and
+# `skilled/v*` release pattern, hardcoded in is_remote_push_allowlisted() so
+# this file can never accidentally un-exempt them) may be pushed to origin
+# without an explicit ask-first confirmation. Everything else needs a fresh
+# go-ahead for every push, new branch or update — see
+# .opencode/skills/sk-git/references/remote-branch-policy.md
+#
+# One glob pattern per line (bash `case` matching, e.g. `develop` or
+# `release/*`). Blank lines and lines starting with # are ignored. Deleting
+# or emptying this file only narrows exemptions back to the two built-ins —
+# it can never widen what's allowed.

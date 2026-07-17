@@ -99,6 +99,7 @@ The autosync block composes with — it does not replace — the hook's existing
 | The primary checkout never autosyncs | The triple gate is satisfied only by wrapper-launched sessions in a linked worktree |
 | Un-committed work is never touched | The publish path only ever moves committed refs; the rebase requires clean tracked files; the follower is fast-forward-only and skips a dirty tree |
 | No `--autostash` orphan risk | The rebase runs only on a clean tracked tree, so nothing is autostashed (see [SKILL.md](../SKILL.md) ALWAYS #14) |
+| Autosync keeps publishing even when the live branch isn't on the remote allowlist | The pre-push permission gate ([remote-branch-policy.md](remote-branch-policy.md)) exempts exactly `$SPECKIT_LIVE_BRANCH` when `SPECKIT_AUTOSYNC=1` — scoped to that one branch, never a blanket bypass |
 
 ---
 
@@ -152,3 +153,4 @@ The two SessionStart guards that make the model observable — `worktree-guard.s
 - [SKILL.md](../SKILL.md) — §3 lifecycle and the ALWAYS rule for the live-branch model; §4 ALWAYS #14 (autostash) and #15 (reconcile the primary checkout).
 - [finish-workflows.md](finish-workflows.md) — Step 5b, the manual primary-checkout reconciliation for a finish that ends in a worktree push.
 - [worktree-workflows.md](worktree-workflows.md) — worktree setup and the launch-wrapper model.
+- [remote-branch-policy.md](remote-branch-policy.md) — the remote-push-permission gate autosync is scoped-exempt from, and why.

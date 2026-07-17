@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/015-remote-branch-policy",
+  "spec_folder": "sk-git/015-remote-branch-policy",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remote branch policy",
+      "ask before pushing to origin",
+      "remote push permission",
+      "remote branch allowlist",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "decision",
+      "record",
+      "summary"
+    ],
+    "key_topics": [
+      "remote",
+      "branch",
+      "policy",
+      "ask",
+      "pushing",
+      "origin",
+      "push",
+      "permission",
+      "allowlist",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+      ".opencode/skills/sk-git/SKILL.md",
+      "decision-record.md",
+      ".opencode/skills/sk-git/scripts/remote-branch-allowlist.txt",
+      ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+      ".opencode/scripts/install-git-hooks.sh",
+      ".opencode/skills/sk-git/references/remote-branch-policy.md",
+      ".opencode/skills/sk-git/references/finish-workflows.md",
+      ".opencode/skills/sk-git/references/continuous-integration.md",
+      ".opencode/skills/sk-git/feature-catalog/feature-catalog.md",
+      "research.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      ".opencode/bin/git-sync.sh"
+    ],
+    "entities": [
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "remote-branch-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-git/scripts/remote-branch-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "remote-branch-policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/remote-branch-policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "finish-workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/finish-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuous-integration.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/continuous-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remote Branch Push Permission Policy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Git Workspace Safety",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Local",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Local branch/worktree creation in this repo is cheap and unrestricted by design (numbered worktrees, owner-first naming) — but every one of those branches can currently reach `origin` with an ordinary `git push`, with nothing asking whether it should",
+    "created_at": "2026-07-17T15:57:59.140Z",
+    "last_save_at": "2026-07-17T16:02:34.035Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:133ec6a780cf2b45c26f1fbe9bddcc3f937c491c3d2260c684a66ce587335793",
+    "source_doc_hashes": {
+      "spec.md": "67ac2e80da8980bf706e4c39de8eed7fd5b20e502594f4290aeb2372929f71bd",
+      "plan.md": "bc0c23227b98729c0fc3026c26deac611373351fc093352f7438eb07c457ccc7",
+      "tasks.md": "9f433135ecd4c683f33f28bb9ef77006b96833845a4ed18fff0306422aec366c",
+      "checklist.md": "5db6ddf8ce9a6001b19281ca50d69edde576f3c7d058a261cb0e99b6fba4c898",
+      "decision-record.md": "d478d9d806c0b8927c8a6e7e215196732457a55706c1b4fa00400944ca194878",
+      "implementation-summary.md": "bfb9e934249b15671fb0d9d871e9038b430418901565131df9b27b009bd6d2fb",
+      "research.md": "4d76127fe574857e791ef6d3f382c49c2fa0167141c927f20a7af0059a7aee41"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

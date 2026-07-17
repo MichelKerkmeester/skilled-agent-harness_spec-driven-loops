@@ -6,8 +6,8 @@ trigger_phrases:
   - "git workflow capabilities"
   - "worktree naming allocator"
   - "sk-git capability inventory"
-last_updated: "2026-07-14"
-version: 1.0.0.0
+last_updated: "2026-07-17"
+version: 1.1.0.0
 ---
 
 # sk-git: Feature Catalog
@@ -40,19 +40,19 @@ See [`worktree-naming/owner-first-worktree-naming.md`](worktree-naming/owner-fir
 
 ---
 
-### Pre-push naming enforcement hook
+### Pre-push naming + remote-push-permission gates
 
 #### Description
 
-A `pre-push` git hook blocks the creation of new remote branches whose name breaks the owner-first grammar, without ever gating updates to a branch that already exists remotely.
+A `pre-push` git hook runs two independent gates: one blocks the creation of new remote branches whose name breaks the owner-first grammar; the other blocks any push (new or update) to a branch outside a small remote allowlist, so `origin` stays curated even though local branch creation is unrestricted.
 
 #### Current Reality
 
-The hook is migration-tolerant (only a brand-new remote branch is checked; existing branches of any name can still be pushed/updated), fail-open (a missing or broken naming validator produces a warning, never a blocked push), and always exempts `skilled/v*` release branches. An operator can bypass it for one push with `SPECKIT_SKIP_PREPUSH_NAMING=1`.
+The naming gate is migration-tolerant (only a brand-new remote branch is name-checked; existing branches can still be pushed/updated regardless of name). The permission gate applies to every push — new or update — unless the branch is `main`, `skilled/v*`, or listed in `remote-branch-allowlist.txt`; the continuous-integration autosync's live-branch publish gets a narrowly scoped exception. Both gates are fail-open (a missing/broken validator produces a warning, never a blocked push) and independently bypassable (`SPECKIT_SKIP_PREPUSH_NAMING=1` for naming, `SPECKIT_ALLOW_REMOTE_PUSH=1` for permission).
 
 #### Source Files
 
-See [`worktree-naming/pre-push-naming-enforcement.md`](worktree-naming/pre-push-naming-enforcement.md) for full implementation and test file listings.
+See [`worktree-naming/pre-push-naming-enforcement.md`](worktree-naming/pre-push-naming-enforcement.md) for full implementation and test file listings, and [`remote-branch-policy.md`](../references/remote-branch-policy.md) for the permission gate's full contract.
 
 ---
 

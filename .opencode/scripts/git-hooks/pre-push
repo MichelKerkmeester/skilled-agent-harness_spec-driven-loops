@@ -1,23 +1,30 @@
 #!/usr/bin/env bash
-# Pre-push hook — blocks creation of a new remote branch whose name breaks the
-# owner-first naming grammar. Updates to a branch that already exists on the
-# remote are always allowed (migration tolerance for names that predate or fall
-# outside this grammar, e.g. a legacy wt/* branch).
+# Pre-push hook — two independent gates run per ref about to reach origin:
+#
+#   1. Naming gate:      a brand-new remote branch must match the owner-first
+#                         grammar (updates to an existing remote branch are
+#                         always naming-exempt — migration tolerance for a
+#                         name that predates or falls outside the grammar).
+#   2. Permission gate:   ANY push (new branch OR update) to a branch outside
+#                         the remote allowlist needs an explicit ask-first
+#                         confirmation for THIS push specifically — a prior
+#                         approval for an earlier push does not carry forward.
+#
+# The two gates are independently bypassable; skipping one never skips the
+# other.
 #
 # Protocol: git feeds "<local ref> <local sha> <remote ref> <remote sha>"
 # lines on stdin, one per ref being pushed. A remote sha of all-zeros means
-# the push CREATES a new remote branch — only that case is gated.
+# the push CREATES a new remote branch — only the naming gate cares about
+# that distinction; the permission gate applies either way.
 #
-# Bypass: SPECKIT_SKIP_PREPUSH_NAMING=1 git push ...
+# Bypass naming only:     SPECKIT_SKIP_PREPUSH_NAMING=1 git push ...
+# Bypass permission only: SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...
+# Allowlist file:         .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt
 # Install: bash .opencode/scripts/install-git-hooks.sh
 # Uninstall: rm .git/hooks/pre-push
 
 set -euo pipefail
-
-if [[ "${SPECKIT_SKIP_PREPUSH_NAMING:-0}" = "1" ]]; then
-  echo "pre-push: SPECKIT_SKIP_PREPUSH_NAMING=1 — skipping branch-naming gate." >&2
-  exit 0
-fi
 
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 if [[ -z "$REPO_ROOT" ]]; then
@@ -27,26 +34,26 @@ fi
 # --- Fail-safe validator load — never block a push on a missing/broken validator ---
 NAMING="$REPO_ROOT/.opencode/skills/sk-git/scripts/worktree-naming.sh"
 if [[ ! -f "$NAMING" ]]; then
-  echo "⚠️  pre-push: worktree-naming.sh not found at $NAMING — skipping branch-naming gate." >&2
+  echo "⚠️  pre-push: worktree-naming.sh not found at $NAMING — skipping naming + remote-push-permission gates." >&2
   exit 0
 fi
 
 # Disable errexit around the source: a SYNTAX error in the sourced file aborts
 # the shell even inside an `if !` guard under `set -e`, which would hard-fail
 # every push if the shared validator ever picked up a parse error. Capturing the
-# status with errexit off keeps the gate fail-open on a broken validator.
+# status with errexit off keeps both gates fail-open on a broken validator.
 set +e
 # shellcheck source=/dev/null
 source "$NAMING" 2>/dev/null
 _src_rc=$?
 set -e
 if [ "$_src_rc" -ne 0 ]; then
-  echo "⚠️  pre-push: failed to source worktree-naming.sh — skipping branch-naming gate." >&2
+  echo "⚠️  pre-push: failed to source worktree-naming.sh — skipping naming + remote-push-permission gates." >&2
   exit 0
 fi
 
-if ! command -v is_valid_branch >/dev/null 2>&1 || ! command -v is_wrapper_branch >/dev/null 2>&1; then
-  echo "⚠️  pre-push: worktree-naming.sh loaded without its validators — skipping branch-naming gate." >&2
+if ! command -v is_valid_branch >/dev/null 2>&1 || ! command -v is_wrapper_branch >/dev/null 2>&1 || ! command -v is_remote_push_allowlisted >/dev/null 2>&1; then
+  echo "⚠️  pre-push: worktree-naming.sh loaded without its validators — skipping naming + remote-push-permission gates." >&2
   exit 0
 fi
 
@@ -62,6 +69,9 @@ _expected_grammar() {
 GRAMMAR
 }
 
+NAME_SKIP=0
+[[ "${SPECKIT_SKIP_PREPUSH_NAMING:-0}" = "1" ]] && NAME_SKIP=1
+
 REJECTED=0
 
 while read -r _ _ remote_ref remote_sha; do
@@ -69,10 +79,10 @@ while read -r _ _ remote_ref remote_sha; do
 
   case "$remote_ref" in
     refs/heads/*) branch_name="${remote_ref#refs/heads/}" ;;
-    *) continue ;;   # tags and other ref types sit outside the branch-naming grammar
+    *) continue ;;   # tags and other ref types sit outside both gates
   esac
 
-  # Release branches are the one namespace this hook must never gate, new or updated.
+  # Release branches are the one namespace neither gate ever touches, new or updated.
   case "$branch_name" in
     skilled/v*) continue ;;
   esac
@@ -82,46 +92,67 @@ while read -r _ _ remote_ref remote_sha; do
     is_new=1
   fi
 
-  if [[ "$is_new" -eq 0 ]]; then
-    # Migration tolerance: a branch that already exists on the remote can
-    # always be updated (or deleted), no matter what it's named.
-    if is_valid_branch "$branch_name"; then
-      continue
+  # ── Gate 1: naming (new branches only; updates keep migration tolerance) ──
+  if [[ "$NAME_SKIP" -eq 1 ]]; then
+    : # operator explicitly asked to skip naming for this push — Gate 2 still runs below
+  elif [[ "$is_new" -eq 0 ]]; then
+    if ! is_valid_branch "$branch_name"; then
+      echo "⚠️  pre-push: '$branch_name' does not match the owner-first naming grammar (update allowed — migration tolerance)." >&2
     fi
-    echo "⚠️  pre-push: '$branch_name' does not match the owner-first naming grammar (update allowed — migration tolerance)." >&2
-    continue
-  fi
-
-  # New remote branch — name must conform.
-  if is_valid_branch "$branch_name"; then
-    continue
   else
-    branch_rc=$?
+    branch_rc=0
+    is_valid_branch "$branch_name" || branch_rc=$?
+
+    if [[ "$branch_rc" -eq 2 ]]; then
+      echo "⚠️  pre-push: internal validator error for '$branch_name' — allowing push (fail-open)." >&2
+    elif [[ "$branch_rc" -ne 0 ]]; then
+      if is_wrapper_branch "$branch_name"; then
+        {
+          echo ""
+          echo "BLOCKED: '$branch_name' is a launch-wrapper ref (work/<runtime>/<slug>)."
+          echo "Wrapper branches are local-only and machine-reaped — they must never be pushed as a feature branch."
+          _expected_grammar
+          echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
+          echo ""
+        } >&2
+      else
+        {
+          echo ""
+          echo "BLOCKED: new branch '$branch_name' does not match the owner-first naming grammar."
+          _expected_grammar
+          echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
+          echo ""
+        } >&2
+      fi
+      REJECTED=1
+      continue   # already rejected on naming — skip the permission gate for this ref
+    fi
   fi
 
-  if [[ "$branch_rc" -eq 2 ]]; then
-    echo "⚠️  pre-push: internal validator error for '$branch_name' — allowing push (fail-open)." >&2
+  # ── Gate 2: remote-push permission (every push, new or update) ──
+  if [[ "${SPECKIT_ALLOW_REMOTE_PUSH:-0}" = "1" ]]; then
     continue
   fi
-
-  if is_wrapper_branch "$branch_name"; then
-    {
-      echo ""
-      echo "BLOCKED: '$branch_name' is a launch-wrapper ref (work/<runtime>/<slug>)."
-      echo "Wrapper branches are local-only and machine-reaped — they must never be pushed as a feature branch."
-      _expected_grammar
-      echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
-      echo ""
-    } >&2
-    REJECTED=1
+  if is_remote_push_allowlisted "$branch_name"; then
     continue
   fi
-
+  # Continuous-integration autosync exception, scoped to the exact live
+  # branch: git-sync.sh's own contract never asks the caller mid-hook (see
+  # references/continuous-integration.md), and the live branch was already an
+  # explicit operator choice (the primary checkout's own branch) before any
+  # session started publishing to it. Any OTHER branch still asks, even with
+  # SPECKIT_AUTOSYNC=1 set — this is not a blanket autosync bypass.
+  if [[ "${SPECKIT_AUTOSYNC:-0}" = "1" && -n "${SPECKIT_LIVE_BRANCH:-}" && "$branch_name" = "$SPECKIT_LIVE_BRANCH" ]]; then
+    continue
+  fi
   {
     echo ""
-    echo "BLOCKED: new branch '$branch_name' does not match the owner-first naming grammar."
-    _expected_grammar
-    echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
+    echo "BLOCKED: push to '$branch_name' on origin needs explicit permission for this push."
+    echo "This repo asks before every push to a branch outside the remote allowlist"
+    echo "(built in: main, skilled/v*; extend via"
+    echo "  .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt)."
+    echo "If the operator has approved THIS push, retry with:"
+    echo "  SPECKIT_ALLOW_REMOTE_PUSH=1 git push ..."
     echo ""
   } >&2
   REJECTED=1
