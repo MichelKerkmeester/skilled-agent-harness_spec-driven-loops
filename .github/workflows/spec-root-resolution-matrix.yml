@@ -1,0 +1,215 @@
+name: Spec Root Resolution Matrix
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/spec-root-resolution-matrix.yml'
+      - '.opencode/skills/system-spec-kit/scripts/core/spec-root-*.ts'
+      - '.opencode/skills/system-spec-kit/scripts/tests/spec-root-*.vitest.ts'
+      - 'specs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  l3-no-alias:
+    name: No alias / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Remove the checkout alias from the test workspace
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          let realization = 'absent';
+          try {
+            const stat = fs.lstatSync('specs');
+            realization = stat.isSymbolicLink()
+              ? 'symlink'
+              : stat.isFile()
+                ? 'plain-file'
+                : 'unsupported-entry';
+
+            if (realization === 'unsupported-entry') {
+              throw new Error('Refusing to remove a directory or special entry at specs');
+            }
+
+            fs.unlinkSync('specs');
+          } catch (error) {
+            if (error && error.code !== 'ENOENT') {
+              throw error;
+            }
+          }
+
+          fs.appendFileSync(
+            process.env.GITHUB_STEP_SUMMARY,
+            `Checkout alias realization: ${realization}. ` +
+              'A checkout with core.symlinks=false can realize the tracked link as a plain file; ' +
+              'both forms are removed before this no-alias lane.\n',
+          );
+          NODE
+
+      - name: Verify the checkout alias is absent
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          try {
+            fs.lstatSync('specs');
+            throw new Error('The specs alias still exists before the no-alias test lane');
+          } catch (error) {
+            if (!error || error.code !== 'ENOENT') {
+              throw error;
+            }
+          }
+          NODE
+
+      - name: Install spec-kit script dependencies
+        working-directory: .opencode/skills/system-spec-kit/scripts
+        run: npm ci
+
+      - name: Verify all requested matrix rows are collected
+        working-directory: .opencode/skills/system-spec-kit/scripts
+        run: |
+          test_list="$RUNNER_TEMP/spec-root-test-list.json"
+          npm exec -- vitest list tests/spec-root-*.vitest.ts \
+            --config ../mcp_server/vitest.config.ts \
+            --root . \
+            --json="$test_list"
+
+          TEST_LIST="$test_list" node <<'NODE'
+          const fs = require('node:fs');
+
+          const collected = JSON.stringify(
+            JSON.parse(fs.readFileSync(process.env.TEST_LIST, 'utf8')),
+          );
+          const requiredRows = ['R1', 'R2', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10'];
+          const missingRows = requiredRows.filter(
+            (row) => !new RegExp(`\\b${row}:`, 'u').test(collected),
+          );
+
+          if (missingRows.length > 0) {
+            throw new Error(`Vitest did not collect required rows: ${missingRows.join(', ')}`);
+          }
+          NODE
+
+      - name: Probe directory-symlink capability
+        id: symlink-probe
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const os = require('node:os');
+          const path = require('node:path');
+
+          const tempDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'spec-root-symlink-probe-'));
+          const target = path.join(tempDirectory, 'target');
+          const link = path.join(tempDirectory, 'link');
+          fs.mkdirSync(target);
+
+          let supported = false;
+          let reason = 'Directory symlink creation succeeded';
+          try {
+            fs.symlinkSync(target, link, 'dir');
+            supported = true;
+          } catch (error) {
+            const code = error && error.code ? error.code : 'UNKNOWN';
+            const message = error && error.message ? error.message : String(error);
+            reason = `${code}: ${message}`.replace(/[\r\n]+/gu, ' ');
+          } finally {
+            try {
+              fs.unlinkSync(link);
+            } catch (error) {
+              if (!error || error.code !== 'ENOENT') {
+                throw error;
+              }
+            }
+            fs.rmdirSync(target);
+            fs.rmdirSync(tempDirectory);
+          }
+
+          fs.appendFileSync(
+            process.env.GITHUB_OUTPUT,
+            `supported=${supported}\nreason=${reason}\n`,
+          );
+          NODE
+
+      - name: Run blocking no-alias rows
+        working-directory: .opencode/skills/system-spec-kit/scripts
+        run: |
+          npm exec -- vitest run tests/spec-root-*.vitest.ts \
+            --config ../mcp_server/vitest.config.ts \
+            --root . \
+            --testNamePattern 'R(1|2|4|5|6|8|9):'
+
+      - name: Run symlink-capability rows
+        if: steps.symlink-probe.outputs.supported == 'true'
+        working-directory: .opencode/skills/system-spec-kit/scripts
+        run: |
+          npm exec -- vitest run tests/spec-root-*.vitest.ts \
+            --config ../mcp_server/vitest.config.ts \
+            --root . \
+            --testNamePattern 'R(7|10):'
+
+      - name: Record allowed symlink-row skips
+        if: steps.symlink-probe.outputs.supported != 'true'
+        env:
+          SKIP_REASON: ${{ steps.symlink-probe.outputs.reason }}
+        run: |
+          echo "::notice title=Allowed symlink-row skip::R7 and R10 skipped; count=2; reason=${SKIP_REASON}"
+          {
+            echo '### Allowed symlink-capability skips'
+            echo
+            echo "- Count: 2"
+            echo "- Rows: R7, R10"
+            echo "- Reason: ${SKIP_REASON}"
+            echo '- Mandatory non-symlink rows remain blocking.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Record zero symlink-row skips
+        if: steps.symlink-probe.outputs.supported == 'true'
+        run: |
+          {
+            echo '### Allowed symlink-capability skips'
+            echo
+            echo '- Count: 0'
+            echo '- Directory symlinks are supported; R7 and R10 ran.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify tests did not re-materialize the checkout alias
+        if: always()
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          try {
+            const stat = fs.lstatSync('specs');
+            throw new Error(
+              `Tests re-materialized specs as ${stat.isSymbolicLink() ? 'a symlink' : 'a filesystem entry'}`,
+            );
+          } catch (error) {
+            if (!error || error.code !== 'ENOENT') {
+              throw error;
+            }
+          }
+          NODE
