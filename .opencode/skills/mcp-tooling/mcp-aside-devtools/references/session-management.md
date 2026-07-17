@@ -14,11 +14,21 @@ version: 1.0.0.0
 
 # Aside Session Management
 
+State, permissions, lifecycle, and concurrency reference for Aside operations.
+
+## 1. OVERVIEW
+
+### Purpose
+
 The state model behind every Aside operation: which layer holds the state, how long it lives, which permissions gate it, and what is safe to run in parallel.
+
+### Usage
+
+Use this reference to identify the active state layer, permission boundary, and safe concurrency posture before running an Aside operation.
 
 ---
 
-## 1. THREE-LAYER SESSION MODEL
+## 2. THREE-LAYER SESSION MODEL
 
 | Layer | Carrier | Lifetime | Notes |
 |---|---|---|---|
@@ -32,7 +42,7 @@ Do not mix the layers: `--session` continues an agent task; it does not select a
 
 ---
 
-## 2. TASK MODES AND PERMISSIONS
+## 3. TASK MODES AND PERMISSIONS
 
 - Task modes: `Default` (normal browser profile) or `Incognito`.
 - Permission modes: **Read only / Guard (default for new tasks) / Full access**. Full access never exposes saved password values to the agent.
@@ -45,13 +55,13 @@ Data egress: selected prompts, tool results, snapshots, screenshots, and files m
 
 ---
 
-## 3. UNATTENDED USE
+## 4. UNATTENDED USE
 
 "Unattended" is best-effort after a signed-in profile and permission policy are prepared, never a guarantee. MFA, CAPTCHA, identity verification, vault unlock, and approvals can pause a task and require the user to resume. Design workflows for **resumable waiting**, not bypasses: detect the pause, report what the task is waiting on, and hand control to the operator.
 
 ---
 
-## 4. DAEMON AND PROCESS LIFECYCLE
+## 5. DAEMON AND PROCESS LIFECYCLE
 
 The MCP child fronts a separate local daemon-backed service (idle-survival and daemon-outage fixes appear in the vendor changelog; connection failures preserve stderr and timeout details). A wrapper must distinguish:
 - a **dead stdio child** (process exited; respawn is reasonable), from
@@ -63,7 +73,7 @@ Observed idle telemetry on `1.26.626.1517`: `discoveryIdleTimeoutMs: 300000` (5 
 
 ---
 
-## 5. CONCURRENCY POSTURE
+## 6. CONCURRENCY POSTURE
 
 There is no public guarantee for concurrent mutating MCP clients on one profile. Aside routines avoid overlap, and Aside has no documented equivalent of Chrome DevTools' `--isolated=true`.
 
@@ -74,7 +84,7 @@ Default posture:
 
 ---
 
-## 6. REFERENCES AND RELATED RESOURCES
+## 7. REFERENCES AND RELATED RESOURCES
 
 - [aside-cli-reference.md](./aside-cli-reference.md) — command surface for tasks, REPL, and accounts.
 - [mcp-wiring.md](./mcp-wiring.md) — transport, handshake, binding error, registration posture.

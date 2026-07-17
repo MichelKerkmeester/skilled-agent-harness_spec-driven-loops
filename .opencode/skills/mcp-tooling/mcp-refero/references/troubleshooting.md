@@ -14,11 +14,21 @@ version: 1.0.0.0
 
 # Refero Troubleshooting
 
+Root-cause reference for diagnosing Refero transport failures.
+
+## 1. OVERVIEW
+
+### Purpose
+
 Failure modes for the `mcp-refero` transport, ordered roughly by how often they block first use. Every fix stays inside the transport's read-only boundary: no config edits, no auth-state repair, no invented retry policies.
+
+### Usage
+
+Match the observed symptom to the table, preserve the read-only boundary, and use the linked references when discovery or authentication needs confirmation.
 
 ---
 
-## 1. SYMPTOM / CAUSE / FIX
+## 2. SYMPTOM / CAUSE / FIX
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -39,7 +49,7 @@ Failure modes for the `mcp-refero` transport, ordered roughly by how often they 
 
 ---
 
-## 2. WHAT NEVER TO DO WHILE TROUBLESHOOTING
+## 3. WHAT NEVER TO DO WHILE TROUBLESHOOTING
 
 - Never edit `.utcp_config.json` (the `refero` manual is validated as-is), and never add a second Refero manual.
 - Never delete or modify `~/.mcp-auth` / `MCP_REMOTE_CONFIG_DIR`; auth state is operator-owned.
@@ -50,7 +60,7 @@ Failure modes for the `mcp-refero` transport, ordered roughly by how often they 
 
 ---
 
-## 3. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [mcp-wiring.md](mcp-wiring.md) - the bridge, OAuth/Bearer model, naming rule, and discovery contract behind these fixes.
 - [tool-surface.md](tool-surface.md) - the eight-tool contract and the deprecated legacy surface.

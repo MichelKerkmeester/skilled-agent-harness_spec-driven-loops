@@ -14,7 +14,17 @@ version: 1.1.1.0
 
 # Mobbin Tool Surface
 
+Read-only contract reference for the live-discovered Mobbin MCP tools.
+
+## 1. OVERVIEW
+
+### Purpose
+
 The live contract for the Mobbin MCP. **Live Code Mode discovery ran 2026-07-16, pre-auth** (fixture: [`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)), and it **SUPERSEDES the research's one-public-tool baseline**: `list_tools` returned **THREE read tools** — registry names `mobbin.mobbin.search_screens`, `mobbin.mobbin.search_flows`, `mobbin.mobbin.search_sections` (TS callables `mobbin.mobbin_search_screens(args)` etc., per the fixture's `Access as:` lines). All three are read-only search tools: the mutation-refusal check passed — no mutation-capable tool appeared in the live listing. Treat per-session Code Mode discovery (`list_tools` / `search_tools` / `tool_info`) as the final live schema before calling. The documented-baseline facts below still trace to the official Mobbin skills repository (`mobbin/skills`) and the official Mobbin MCP docs (docs.mobbin.com/mcp).
+
+### Usage
+
+Use the discovered schemas and workflow constraints as the baseline, then re-confirm the intended callable in the active Code Mode session.
 
 Claims below are tagged **[CONFIRMED]** (publicly documented, observed by live unauthenticated probe at research time, or read from the 2026-07-16 discovery fixture), **[INFERRED]** (supported but not exercised end-to-end), or **[UNKNOWN]** (requires an authenticated, paid, operator-authorized runtime).
 
@@ -22,7 +32,7 @@ Claims below are tagged **[CONFIRMED]** (publicly documented, observed by live u
 
 ---
 
-## 1. THE LIVE-DISCOVERED TOOLS (THREE)
+## 2. THE LIVE-DISCOVERED TOOLS (THREE)
 
 Live-listed pre-auth on 2026-07-16 ([`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)); all schemas below are the fixture's declared TypeScript interfaces. **[CONFIRMED: fixture]**
 
@@ -62,7 +72,7 @@ The research record's input-vs-server-behavior conflict is **resolved by the fix
 
 ---
 
-## 2. THE QUERY-INTENT WORKFLOWS
+## 3. THE QUERY-INTENT WORKFLOWS
 
 App, screen, and element research run over `search_screens`; flow research now has a dedicated tool:
 
@@ -84,7 +94,7 @@ This transport allows breadth while researching (multiple apps, screens, intents
 
 ---
 
-## 3. PLAN GATING AND LIMITS
+## 4. PLAN GATING AND LIMITS
 
 | Surface | Free | Pro | Team | Enterprise | Credential |
 |---------|:----:|:---:|:----:|:----------:|------------|
@@ -104,32 +114,32 @@ This transport allows breadth while researching (multiple apps, screens, intents
 
 ---
 
-## 4. THE OFFICIAL SKILLS REPOSITORY
+## 5. THE OFFICIAL SKILLS REPOSITORY
 
 `github.com/mobbin/skills` (MIT) is the official skills repository. Its `skills/` tree contains **exactly one skill: `mobbin-search`**, whose SKILL.md is the authoritative usage contract for `search_screens` (inputs, response shape, workflow, visual-analysis guidance, optional board path). The documented install path for clients that want the skill bundle is `npx skills add mobbin/skills` (plus a manual clone/copy path) — this installs **guidance only** and does not replace the MCP manual or OAuth setup. This packet references the repository and deliberately does not vendor it.
 
 ---
 
-## 5. OPEN QUESTIONS (UNKNOWN, RUNTIME-ONLY)
+## 6. OPEN QUESTIONS (UNKNOWN, RUNTIME-ONLY)
 
 These stay UNKNOWN until an operator-authorized, paid, authenticated runtime exists; none can be resolved by authoring, and none blocked this packet's authorship. Note: **auth env-var naming is NOT among them** — no MCP auth env var exists; that question is answered in the negative.
 
-1. **RESOLVED for pre-auth discovery, 2026-07-16** ([`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)): `list_tools()` and `tool_info()` work WITHOUT OAuth and return three tools with full declared schemas (Section 1). Whether an authenticated session's inventory differs remains unobserved — re-run discovery after operator OAuth.
+1. **RESOLVED for pre-auth discovery, 2026-07-16** ([`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)): `list_tools()` and `tool_info()` work WITHOUT OAuth and return three tools with full declared schemas (Section 2). Whether an authenticated session's inventory differs remains unobserved — re-run discovery after operator OAuth.
 2. **Adapter round trip** — does the current local Code Mode + `mcp-remote` version complete first-use Mobbin OAuth, token refresh, and reconnect reliably (any extra flags needed)?
 3. **RESOLVED 2026-07-16**: the registry/discovery name is `mobbin.mobbin.search_screens` (dot-separated) and the TS callable is `mobbin.mobbin_search_screens(args)` (fixture `Access as:` line) — exactly the convention-predicted pair, now observed.
-4. **RESOLVED 2026-07-16**: `deep` is a client-settable input — `mode?: "deep" | "standard" | "fast"` on `search_screens` (see Section 1).
+4. **RESOLVED 2026-07-16**: `deep` is a client-settable input — `mode?: "deep" | "standard" | "fast"` on `search_screens` (see Section 2).
 5. **Free-account denial semantics** — what precise status/payload/UX does a Free account receive during MCP authorization or tool use?
 6. **Per-plan usage caps** — do searches/day or screens-per-query caps exist within the eligible Pro/Team/Enterprise tiers (is the ~15 `limit` ceiling plan-derived)?
 7. **Finance+ coverage** — does the Finance+ add-on change the dataset returned through standard MCP search?
 8. **Inline-image fidelity through Code Mode** — does `call_tool_chain` faithfully pass the inline image content blocks, or does visual inspection need a side-channel? (Verify at install.)
 9. **Paid-gate edge cases** — are there account/workspace edge cases within the documented Pro/Team/Enterprise gate requiring more specific packet error messages?
-10. **RESOLVED 2026-07-16**: the live `search_screens` schema exposes `mode`, `exclude_screen_ids`, and `image_format` beyond `query`/`platform`/`limit` (Section 1). Remaining sub-question: whether the declared output (`{ query, screens[] }`, no `index`/`failed[]`) matches actual authenticated responses.
+10. **RESOLVED 2026-07-16**: the live `search_screens` schema exposes `mode`, `exclude_screen_ids`, and `image_format` beyond `query`/`platform`/`limit` (Section 2). Remaining sub-question: whether the declared output (`{ query, screens[] }`, no `index`/`failed[]`) matches actual authenticated responses.
 
 ---
 
-## 6. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
-- [mcp-wiring.md](mcp-wiring.md) - the draft manual, the mcp-remote bridge, OAuth/DCR/PKCE, the inferred naming rule, and the discovery-first contract.
+- [mcp-wiring.md](mcp-wiring.md) - the registered manual, mcp-remote bridge, OAuth/DCR/PKCE, fixture-observed registry/TypeScript naming, and the discovery-first contract.
 - [troubleshooting.md](troubleshooting.md) - symptom, cause, and fix for the common failure modes.
-- [utcp-mobbin-manual.md](../assets/utcp-mobbin-manual.md) - the registered manual's reference shape and the post-registration checklist (doc-side items executed; live items pending).
+- [utcp-mobbin-manual.md](../assets/utcp-mobbin-manual.md) - the registered manual's reference shape and post-registration checklist (discovery complete; authenticated OAuth and calls pending).
 - [SKILL.md](../SKILL.md) - the runtime contract this reference supports.

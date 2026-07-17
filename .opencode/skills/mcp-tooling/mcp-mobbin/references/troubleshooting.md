@@ -14,11 +14,21 @@ version: 1.1.0.0
 
 # Mobbin Troubleshooting
 
+Root-cause reference for diagnosing Mobbin transport failures.
+
+## 1. OVERVIEW
+
+### Purpose
+
 Failure modes for the `mcp-mobbin` transport, ordered roughly by how often they block first use. Every fix stays inside the transport's read-only boundary: no config edits, no auth-state repair, no invented retry policies beyond the documented rate-limit contract. Remember the packet's registered state: the `mobbin` manual **is registered** in `.utcp_config.json` (2026-07-16), so "no tools resolve" now means a stale Code Mode session (manuals load at startup), incomplete operator OAuth, or a broken registration — never an expected baseline.
+
+### Usage
+
+Match the observed symptom to the table, keep all fixes within the read-only boundary, and confirm recovery through live discovery or a call.
 
 ---
 
-## 1. SYMPTOM / CAUSE / FIX
+## 2. SYMPTOM / CAUSE / FIX
 
 | What you see | Why | Safe action |
 |---|---|---|
@@ -36,21 +46,21 @@ Failure modes for the `mcp-mobbin` transport, ordered roughly by how often they 
 
 ---
 
-## 2. WHAT NEVER TO DO WHILE TROUBLESHOOTING
+## 3. WHAT NEVER TO DO WHILE TROUBLESHOOTING
 
 - Never edit, re-draft, or re-add the `mobbin` manual in `.utcp_config.json`; the registered entry is operator-owned, and a broken or reverted registration is escalated, never repaired from this packet.
 - Never invent, request, or wire an API key or auth env var — no `MOBBIN_API_KEY` exists for MCP, and the REST workspace key belongs to a different product surface.
 - Never delete, inspect, or "repair" `~/.mcp-auth` / `MCP_REMOTE_CONFIG_DIR`; auth state is operator-owned, and reauthorization is an explicit operator action.
 - Never paste tokens, OAuth URLs with codes, Authorization headers, or auth-state contents into output or evidence.
 - Never force the SSE transport; the bridge is HTTP-first with SSE fallback only after HTTP 404, and Mobbin requires Streamable HTTP.
-- Never hardcode a `deep` parameter while the input-vs-server-behavior conflict stays open.
+- `deep` is a **[CONFIRMED] client-settable mode** on `search_screens` (`mode?: "deep" | "standard" | "fast"` in the 2026-07-16 fixture); use it only on that tool and still re-confirm the active schema with `tool_info` before calling.
 - Never claim the failure is fixed until a live discovery (`tool_info`) or call confirms it.
 
 ---
 
-## 3. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
-- [mcp-wiring.md](mcp-wiring.md) - the bridge, OAuth model, inferred naming, and discovery contract behind these fixes.
-- [tool-surface.md](tool-surface.md) - the single-tool contract, plan gating, rate limit, and the open questions.
-- [utcp-mobbin-manual.md](../assets/utcp-mobbin-manual.md) - the registered manual's reference shape and the post-registration checklist (doc-side items executed; live items pending).
+- [mcp-wiring.md](mcp-wiring.md) - the bridge, OAuth model, observed registry/TypeScript naming, and discovery contract behind these fixes.
+- [tool-surface.md](tool-surface.md) - the live three-tool contract, resolved `deep` mode, plan gating, rate limit, and authenticated-runtime open questions.
+- [utcp-mobbin-manual.md](../assets/utcp-mobbin-manual.md) - the registered manual's reference shape and post-registration checklist (discovery complete; authenticated OAuth and calls pending).
 - [SKILL.md](../SKILL.md) - the runtime contract, including the escalation rules these fixes feed.

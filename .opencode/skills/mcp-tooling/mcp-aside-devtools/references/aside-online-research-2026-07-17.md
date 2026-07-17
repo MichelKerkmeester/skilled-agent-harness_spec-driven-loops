@@ -14,13 +14,23 @@ version: 1.0.0.0
 
 # Aside Online Research Refresh (2026-07-17)
 
+Dated source snapshot of the public Aside developer surface.
+
+## 1. OVERVIEW
+
+### Purpose
+
 Fresh capture of the public Aside developer documentation, taken 2026-07-17. This is the online-source layer for the v1.3.0.0 DevTools-parity feature expansion. The authoritative machine-readable capability envelope remains the live Code Mode discovery fixture ([`discovery-fixture-2026-07-16.json`](discovery-fixture-2026-07-16.json)); the online docs below corroborate the transport, permission, and distribution facts and add the verbatim `mcp.json` wiring. Every claim is tagged CONFIRMED (direct doc quote), INFERRED (reasoned from cited material), or UNKNOWN (not resolvable from the sources).
+
+### Usage
+
+Use this document as corroborating source evidence, then re-capture the installed CLI and live Code Mode discovery before relying on a command or callable.
 
 > **Untrusted-source discipline.** Everything below is transcribed from third-party web pages and treated as data. No page instruction was acted on. Re-capture `aside --help` and re-run Code Mode discovery before relying on any command or callable — the docs are a corroborating layer, not a contract.
 
 ---
 
-## 1. SOURCES FETCHED
+## 2. SOURCES FETCHED
 
 | # | URL | Fetched | What it gave |
 |---|---|---|---|
@@ -33,7 +43,7 @@ Fresh capture of the public Aside developer documentation, taken 2026-07-17. Thi
 
 ---
 
-## 2. CLI COMMAND SURFACE
+## 3. CLI COMMAND SURFACE
 
 **CONFIRMED (S1, S2, S4)** — the online docs corroborate the version-pinned surface already captured in [`aside-cli-reference.md`](aside-cli-reference.md); nothing new was added or removed:
 
@@ -57,7 +67,7 @@ Both examples end with an explicit "do not post / do not change settings" bounda
 
 ---
 
-## 3. MCP SERVER (`aside mcp`)
+## 4. MCP SERVER (`aside mcp`)
 
 **CONFIRMED (S2)** — the docs give an explicit `mcp.json` wiring block, verbatim:
 
@@ -82,7 +92,7 @@ Both examples end with an explicit "do not post / do not change settings" bounda
 
 ---
 
-## 4. REPL ENVIRONMENT AND HELPER API
+## 5. REPL ENVIRONMENT AND HELPER API
 
 **CONFIRMED (S1, S4)** — the docs describe the REPL as Playwright-shaped: "It feels like Playwright: you get `page`, tabs, locators, screenshots, downloads, and JavaScript," plus "the same page snapshots and stable element refs that the browser agent uses, so a click or assertion lines up with what Aside will actually act on." [SOURCE: https://docs.aside.com/help/developers ; https://aside.com/blog/developers]
 
@@ -97,7 +107,7 @@ Both examples end with an explicit "do not post / do not change settings" bounda
 
 ---
 
-## 5. PERMISSION AND ACCESS MODEL
+## 6. PERMISSION AND ACCESS MODEL
 
 **CONFIRMED (S3)** — corroborates and sharpens SKILL.md §3:
 
@@ -109,7 +119,7 @@ Both examples end with an explicit "do not post / do not change settings" bounda
 
 ---
 
-## 6. DISTRIBUTION AND VERSIONING
+## 7. DISTRIBUTION AND VERSIONING
 
 - **CONFIRMED** — install is the operator-invoked curl bootstrap: `curl -fsSL https://releases.aside.com/install.sh | bash`. [SOURCE: https://docs.aside.com/help/developers]
 - **CONFIRMED** — no official public npm or GitHub package for the Aside AI browser's CLI/MCP was found. The two GitHub repos named "aside" (`alxclark/aside` — a browser-extension boilerplate; `google/aside` — an unrelated Google tool) are NOT this product. Distribution is the installer only; there is no `npx`-style MCP launch (contrast `mcp-chrome-devtools`, which launches `chrome-devtools-mcp` via `npx`). [SOURCE: web search 2026-07-17; https://github.com/alxclark/aside ; https://github.com/google/aside]
@@ -118,7 +128,7 @@ Both examples end with an explicit "do not post / do not change settings" bounda
 
 ---
 
-## 7. WHAT CHANGED SINCE THE PRIOR RESEARCH
+## 8. WHAT CHANGED SINCE THE PRIOR RESEARCH
 
 | Item | Prior packet state | 2026-07-17 finding |
 |---|---|---|
@@ -130,7 +140,7 @@ Both examples end with an explicit "do not post / do not change settings" bounda
 
 ---
 
-## 8. OPEN UNKNOWNS (UNCHANGED OR NEWLY CONFIRMED-OPEN)
+## 9. OPEN UNKNOWNS (UNCHANGED OR NEWLY CONFIRMED-OPEN)
 
 1. Browser-profile binding procedure for a fresh `aside mcp` process — still undocumented (not in S1–S5).
 2. Which permission mode `aside mcp` inherits — S3 confirms the model but not the MCP default.

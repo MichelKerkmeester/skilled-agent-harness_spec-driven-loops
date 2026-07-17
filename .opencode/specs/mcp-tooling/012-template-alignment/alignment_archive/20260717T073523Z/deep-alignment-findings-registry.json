@@ -1,0 +1,399 @@
+{
+  "alignmentTarget": "sk-doc-template-conformance",
+  "lanes": [
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/, .opencode/skills/mcp-tooling/mcp-aside-devtools/references/, .opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/",
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/",
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md"
+        ]
+      },
+      "iterationsRun": 2,
+      "artifactsChecked": 7,
+      "checkedArtifactIds": [
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md"
+      ],
+      "openFindings": [],
+      "findingsBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 0,
+      "verdict": "PASS"
+    },
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/mcp-tooling/mcp-refero/assets/, .opencode/skills/mcp-tooling/mcp-refero/references/, .opencode/skills/mcp-tooling/mcp-refero/scripts/README.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-refero/assets/",
+          ".opencode/skills/mcp-tooling/mcp-refero/references/",
+          ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+        ]
+      },
+      "iterationsRun": 1,
+      "artifactsChecked": 5,
+      "checkedArtifactIds": [
+        ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md",
+        ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md",
+        ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md",
+        ".opencode/skills/mcp-tooling/mcp-refero/references/troubleshooting.md",
+        ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+      ],
+      "openFindings": [
+        {
+          "id": "P2-001",
+          "severity": "P2",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-refero/assets/",
+              ".opencode/skills/mcp-tooling/mcp-refero/references/",
+              ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+            ]
+          },
+          "type": "filename-convention",
+          "subcheck": "template-conformance",
+          "layer": "reasoning-agent",
+          "message": "Rename the non-exempt hyphenated asset basename to lowercase snake_case and update its consumers.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md"
+          },
+          "sourceTool": "authority source re-probe (agent-performed)",
+          "detail": {
+            "claim": "The audited Markdown basename uses hyphens despite the sk-doc lowercase snake_case filename rule.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md:1 exists under the non-exempt hyphenated basename; .opencode/skills/sk-doc/shared/references/core_standards.md:37-51 retains the snake_case rule and its three exceptions.",
+            "knownDeviationCheck": "sk_doc_known_deviations.md legacy kebab-case entry applies to legacy filename references, not the audited artifact basename; no match.",
+            "matchesLiveReality": true
+          }
+        },
+        {
+          "id": "P2-002",
+          "severity": "P2",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-refero/assets/",
+              ".opencode/skills/mcp-tooling/mcp-refero/references/",
+              ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+            ]
+          },
+          "type": "filename-convention",
+          "subcheck": "template-conformance",
+          "layer": "reasoning-agent",
+          "message": "Rename the non-exempt hyphenated wiring-reference basename to lowercase snake_case and update its consumers.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md"
+          },
+          "sourceTool": "authority source re-probe (agent-performed)",
+          "detail": {
+            "claim": "The audited Markdown basename uses hyphens despite the sk-doc lowercase snake_case filename rule.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md:1 exists under the non-exempt hyphenated basename; .opencode/skills/sk-doc/shared/references/core_standards.md:37-51 retains the snake_case rule and its three exceptions.",
+            "knownDeviationCheck": "sk_doc_known_deviations.md legacy kebab-case entry applies to legacy filename references, not the audited artifact basename; no match.",
+            "matchesLiveReality": true
+          }
+        },
+        {
+          "id": "P2-003",
+          "severity": "P2",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-refero/assets/",
+              ".opencode/skills/mcp-tooling/mcp-refero/references/",
+              ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+            ]
+          },
+          "type": "filename-convention",
+          "subcheck": "template-conformance",
+          "layer": "reasoning-agent",
+          "message": "Rename the non-exempt hyphenated tool-surface basename to lowercase snake_case and update its consumers.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md"
+          },
+          "sourceTool": "authority source re-probe (agent-performed)",
+          "detail": {
+            "claim": "The audited Markdown basename uses hyphens despite the sk-doc lowercase snake_case filename rule.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md:1 exists under the non-exempt hyphenated basename; .opencode/skills/sk-doc/shared/references/core_standards.md:37-51 retains the snake_case rule and its three exceptions.",
+            "knownDeviationCheck": "sk_doc_known_deviations.md legacy kebab-case entry applies to legacy filename references, not the audited artifact basename; no match.",
+            "matchesLiveReality": true
+          }
+        }
+      ],
+      "findingsBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 3
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 3,
+      "verdict": "PASS"
+    },
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/mcp-tooling/mcp-mobbin/assets/, .opencode/skills/mcp-tooling/mcp-mobbin/references/, .opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+          ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+          ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+        ]
+      },
+      "iterationsRun": 1,
+      "artifactsChecked": 5,
+      "checkedArtifactIds": [
+        ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md",
+        ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md",
+        ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md",
+        ".opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md",
+        ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+      ],
+      "openFindings": [
+        {
+          "id": "P1-001",
+          "severity": "P1",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+            ]
+          },
+          "type": "reality-drift",
+          "subcheck": "reality-alignment",
+          "layer": "reasoning-agent",
+          "message": "Registered-manual asset says discovery has not run and naming remains inferred after the dated fixture confirmed three live tools.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md"
+          },
+          "sourceTool": "live source re-probe (agent-performed)",
+          "detail": {
+            "claim": "Discovery has NOT run yet and the callable name remains Inferred.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json:1 lists three discovered callable names and tool_info_first; the audited asset itself records completed discovery at lines 35 and 75.",
+            "knownDeviationCheck": "No reality-drift match exists in sk_doc_known_deviations.md.",
+            "matchesLiveReality": false
+          }
+        },
+        {
+          "id": "P1-002",
+          "severity": "P1",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+            ]
+          },
+          "type": "reality-drift",
+          "subcheck": "reality-alignment",
+          "layer": "reasoning-agent",
+          "message": "Wiring frontmatter and opening warning say discovery is pending and naming inferred despite the confirmed discovery section and fixture.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md"
+          },
+          "sourceTool": "live source re-probe (agent-performed)",
+          "detail": {
+            "claim": "Discovery has NOT run and mobbin.mobbin_search_screens is predicted rather than observed.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json:1 lists the three observed names; mcp-wiring.md:103-110 calls them confirmed.",
+            "knownDeviationCheck": "No reality-drift match exists in sk_doc_known_deviations.md.",
+            "matchesLiveReality": false
+          }
+        },
+        {
+          "id": "P1-003",
+          "severity": "P1",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+            ]
+          },
+          "type": "reality-drift",
+          "subcheck": "reality-alignment",
+          "layer": "reasoning-agent",
+          "message": "Troubleshooting forbids deep as unresolved after the live schema confirmed it as a client-settable mode.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md"
+          },
+          "sourceTool": "live source re-probe (agent-performed)",
+          "detail": {
+            "claim": "The deep input-vs-server-behavior conflict stays open.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json:1 tool_info_first declares mode?: \"deep\" | \"standard\" | \"fast\"; tool-surface.md:130 records the resolution.",
+            "knownDeviationCheck": "No reality-drift match exists in sk_doc_known_deviations.md.",
+            "matchesLiveReality": false
+          }
+        },
+        {
+          "id": "P2-001",
+          "severity": "P2",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+            ]
+          },
+          "type": "filename-convention",
+          "subcheck": "template-conformance",
+          "layer": "reasoning-agent",
+          "message": "Rename the non-exempt hyphenated asset basename to lowercase snake_case and update its consumers.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md"
+          },
+          "sourceTool": "authority source re-probe (agent-performed)",
+          "detail": {
+            "claim": "The audited Markdown basename uses hyphens despite the sk-doc lowercase snake_case filename rule.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md:1 exists under the non-exempt hyphenated basename; .opencode/skills/sk-doc/shared/references/core_standards.md:37-51 retains the rule and three exceptions.",
+            "knownDeviationCheck": "The legacy kebab-case entry applies to legacy references and has no active match type; no match.",
+            "matchesLiveReality": true
+          }
+        },
+        {
+          "id": "P2-002",
+          "severity": "P2",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+            ]
+          },
+          "type": "filename-convention",
+          "subcheck": "template-conformance",
+          "layer": "reasoning-agent",
+          "message": "Rename the non-exempt hyphenated wiring-reference basename to lowercase snake_case and update its consumers.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md"
+          },
+          "sourceTool": "authority source re-probe (agent-performed)",
+          "detail": {
+            "claim": "The audited Markdown basename uses hyphens despite the sk-doc lowercase snake_case filename rule.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md:1 exists under the non-exempt hyphenated basename; .opencode/skills/sk-doc/shared/references/core_standards.md:37-51 retains the rule and three exceptions.",
+            "knownDeviationCheck": "The legacy kebab-case entry applies to legacy references and has no active match type; no match.",
+            "matchesLiveReality": true
+          }
+        },
+        {
+          "id": "P2-003",
+          "severity": "P2",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+            ]
+          },
+          "type": "filename-convention",
+          "subcheck": "template-conformance",
+          "layer": "reasoning-agent",
+          "message": "Rename the non-exempt hyphenated tool-surface basename to lowercase snake_case and update its consumers.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md"
+          },
+          "sourceTool": "authority source re-probe (agent-performed)",
+          "detail": {
+            "claim": "The audited Markdown basename uses hyphens despite the sk-doc lowercase snake_case filename rule.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md:1 exists under the non-exempt hyphenated basename; .opencode/skills/sk-doc/shared/references/core_standards.md:37-51 retains the rule and three exceptions.",
+            "knownDeviationCheck": "The legacy kebab-case entry applies to legacy references and has no active match type; no match.",
+            "matchesLiveReality": true
+          }
+        },
+        {
+          "id": "P2-004",
+          "severity": "P2",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": {
+            "type": "paths",
+            "values": [
+              ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+              ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+            ]
+          },
+          "type": "reality-drift",
+          "subcheck": "reality-alignment",
+          "layer": "reasoning-agent",
+          "message": "Refresh the tool-surface related-resource description from draft/inferred naming to registered/observed naming.",
+          "artifact": {
+            "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md"
+          },
+          "sourceTool": "live source re-probe (agent-performed)",
+          "detail": {
+            "claim": "The related wiring resource is a draft manual with an inferred naming rule.",
+            "reprobeEvidence": ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md:142 conflicts with its lines 3 and 129 and with the three observed names in discovery-fixture-2026-07-16.json:1.",
+            "knownDeviationCheck": "No reality-drift match exists in sk_doc_known_deviations.md.",
+            "matchesLiveReality": false
+          }
+        }
+      ],
+      "findingsBySeverity": {
+        "P0": 0,
+        "P1": 3,
+        "P2": 4
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 19,
+      "verdict": "CONDITIONAL"
+    }
+  ],
+  "overall": {
+    "laneCount": 3,
+    "applicableLaneCount": 3,
+    "findingsBySeverity": {
+      "P0": 0,
+      "P1": 3,
+      "P2": 7
+    },
+    "compositeScore": 22,
+    "verdict": "CONDITIONAL",
+    "nothingToConverge": false,
+    "incompleteCoverage": false,
+    "integrityFault": false,
+    "invalidSeverityCount": 0
+  },
+  "corruptionWarnings": [],
+  "hasCorruption": false
+}

@@ -1,6 +1,6 @@
 ---
 title: "Mobbin MCP Wiring (via Code Mode)"
-description: "Wiring the Mobbin MCP through this project's Code Mode: the REGISTERED mobbin manual (registered 2026-07-16; discovery and OAuth pending), the mcp-remote stdio bridge to the hosted Streamable HTTP endpoint, browser OAuth with DCR and PKCE, the inferred callable naming, and the mandatory discovery-first contract."
+description: "Wiring the Mobbin MCP through this project's Code Mode: the registered manual and three fixture-confirmed callables (discovered 2026-07-16), the mcp-remote stdio bridge to the hosted Streamable HTTP endpoint, browser OAuth with DCR and PKCE, observed registry/TypeScript naming, and the mandatory discovery-first contract; authenticated OAuth and calls remain inferred."
 trigger_phrases:
   - "mobbin mcp wiring"
   - "mobbin utcp manual"
@@ -14,7 +14,7 @@ version: 1.1.0.0
 
 # Mobbin MCP Wiring (via Code Mode)
 
-> **IMPORTANT:** The `mobbin` manual **IS REGISTERED** in `.utcp_config.json` (registered 2026-07-16 by an operator; this packet never edits the config itself). The registered entry matches the reference shape in [`../assets/utcp-mobbin-manual.md`](../assets/utcp-mobbin-manual.md) byte-for-byte. Discovery has **NOT** run yet — it needs a fresh Code Mode session (manuals load at startup) — so always **discover first** (`list_tools` / `tool_info`) and confirm the exact callable names: the predicted `mobbin.mobbin_search_screens` form is **Inferred**, not observed. Never claim OAuth works end-to-end; it is **Inferred** pending an operator-completed authorization.
+> **IMPORTANT:** The `mobbin` manual **IS REGISTERED** in `.utcp_config.json` (registered 2026-07-16 by an operator; this packet never edits the config itself), and the registered entry matches the reference shape in [`../assets/utcp-mobbin-manual.md`](../assets/utcp-mobbin-manual.md) byte-for-byte. Live pre-auth discovery **RAN on 2026-07-16** ([fixture](./discovery-fixture-2026-07-16.json)) and confirmed three registry callables — `mobbin.mobbin.search_screens`, `mobbin.mobbin.search_flows`, `mobbin.mobbin.search_sections` — with TypeScript callables `mobbin.mobbin_search_screens(...)`, `mobbin.mobbin_search_flows(...)`, and `mobbin.mobbin_search_sections(...)`. Continue to discover first (`list_tools` / `tool_info`) per session and fail closed on drift. Never claim OAuth or authenticated calls work end-to-end; both remain **[INFERRED]/operator-gated** pending an operator-completed authorization and authenticated call.
 
 ---
 
@@ -33,11 +33,11 @@ Claims below are tagged **[CONFIRMED]** (read from the cited primary docs, manif
 | Server URL | `https://api.mobbin.com/mcp` | Single remote endpoint **[CONFIRMED]** |
 | Provider transport | Streamable HTTP (`server.json` `remotes:[{type:"streamable-http",...}]`) | Never describe Mobbin itself as stdio or SSE **[CONFIRMED]** |
 | Provider install | None — hosted service; the repo is metadata-only | Do not clone, build, or install a Mobbin server **[CONFIRMED]** |
-| Local adapter | `mcp-remote` launched over stdio via `npx -y` | Bridges remote HTTP/OAuth into the current Code Mode stdio manual shape **[CONFIRMED shape; end-to-end run INFERRED]** |
+| Local adapter | `mcp-remote` launched over stdio via `npx -y` | Bridges remote HTTP/OAuth into the current Code Mode stdio manual shape **[CONFIRMED shape and pre-auth discovery; authenticated OAuth/call round trip INFERRED]** |
 | Runtime | Node.js 18+ and working `npx` | `scripts/doctor.sh` checks both before any OAuth attempt |
 | Network | Outbound HTTPS plus a localhost OAuth callback | Headless sessions need operator-visible escalation |
 
-`mcp-remote` defaults to **HTTP-first with SSE fallback only on HTTP 404**; Mobbin requires Streamable HTTP, so no forced-SSE flag is needed. The adapter self-describes as experimental and is externally versioned — static compatibility does not equal a completed local OAuth/discovery run. **[CONFIRMED: mcp-remote docs; round trip INFERRED]**
+`mcp-remote` defaults to **HTTP-first with SSE fallback only on HTTP 404**; Mobbin requires Streamable HTTP, so no forced-SSE flag is needed. The adapter self-describes as experimental and is externally versioned — successful pre-auth discovery does not establish a completed local OAuth or authenticated-call round trip. **[CONFIRMED: mcp-remote docs and fixture discovery; authenticated round trip INFERRED]**
 
 The local Code Mode config surface documents `stdio`/`sse` manual shapes only (no direct streamable-http shape today), which is why the registered manual bridges through `mcp-remote`. If Code Mode later validates direct Streamable HTTP, the direct URL becomes preferable — after validating its OAuth behavior. **[CONFIRMED: local Code Mode configuration contract]**
 
@@ -157,8 +157,8 @@ Notes:
 
 ## 7. RELATED RESOURCES
 
-- [tool-surface.md](tool-surface.md) - the single-tool contract, the four query-intent workflows, plan gating, and the open questions.
+- [tool-surface.md](tool-surface.md) - the live three-tool contract, query-intent workflows, plan gating, and authenticated-runtime open questions.
 - [troubleshooting.md](troubleshooting.md) - failure modes including the expected pre-auth 401 and tools-not-resolving.
-- [utcp-mobbin-manual.md](../assets/utcp-mobbin-manual.md) - the registered manual's reference shape and the post-registration checklist (doc-side items executed; live items pending).
+- [utcp-mobbin-manual.md](../assets/utcp-mobbin-manual.md) - the registered manual's reference shape and post-registration checklist (discovery complete; authenticated OAuth and calls pending).
 - [SKILL.md](../SKILL.md) - the runtime contract these references support.
 - Code Mode mechanics (naming, discovery, manual shapes): [mcp-code-mode SKILL.md](../../../mcp-code-mode/SKILL.md).

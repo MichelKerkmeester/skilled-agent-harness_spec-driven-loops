@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/012-template-alignment",
+  "description": "The new `mcp-aside-devtools`, `mcp-refero`, and `mcp-mobbin` packet documentation had drifted from the canonical create-skill reference and asset",
+  "keywords": [
+    "new",
+    "mcp-aside-devtools",
+    "mcp-refero",
+    "mcp-mobbin",
+    "packet",
+    "documentation",
+    "drifted",
+    "canonical",
+    "create-skill",
+    "reference",
+    "asset"
+  ],
+  "lastUpdated": "2026-07-17T08:14:13.857Z",
+  "specId": "012",
+  "folderSlug": "template-alignment",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

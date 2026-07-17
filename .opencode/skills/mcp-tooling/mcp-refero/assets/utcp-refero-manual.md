@@ -13,11 +13,21 @@ version: 1.0.0.0
 
 # Refero Code Mode Manual - verified snippet
 
+Verified snapshot of the registered Refero Code Mode manual.
+
+## 1. OVERVIEW
+
+### Purpose
+
 The `refero` manual entry as it exists in this repo's `.utcp_config.json`, plus the documented Bearer-header alternative. This asset exists so the wiring can be **verified** without opening the whole config, and so the alternative is quoted from its source rather than improvised.
+
+### Usage
+
+Use the snapshot to verify the live manual read-only. Treat the Bearer-header fragment only as a documented operator-selected alternative.
 
 ---
 
-## 1. THE REGISTERED MANUAL (ALREADY REGISTERED — VERIFY, DO NOT RE-ADD)
+## 2. THE REGISTERED MANUAL (ALREADY REGISTERED — VERIFY, DO NOT RE-ADD)
 
 **Key Points**:
 - This entry is **already present** in `manual_call_templates[]` of `.utcp_config.json` and is **validated as-is**. Verify its presence read-only (grep, or `scripts/doctor.sh`); never re-add it, never edit it, never add a second Refero manual.
@@ -53,7 +63,7 @@ If this snapshot and the live `.utcp_config.json` ever disagree, **the live conf
 
 ---
 
-## 2. ALTERNATIVE: ENV-BACKED BEARER HEADER (DOCUMENTED, NEVER IN THE BASE MANUAL)
+## 3. ALTERNATIVE: ENV-BACKED BEARER HEADER (DOCUMENTED, NEVER IN THE BASE MANUAL)
 
 **Key Points**:
 - This is the **alternative** authentication path documented upstream for `mcp-remote` custom headers: a static `Authorization: Bearer` header backed by an env var. It is **not** part of the registered manual and must never replace it or be merged into it.
@@ -78,7 +88,7 @@ For clients that mishandle spaces in an argument, upstream documents the `Author
 
 ---
 
-## 3. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [mcp-wiring.md](../references/mcp-wiring.md) - the full wiring reference: bridge behavior, OAuth, auth state, naming, and discovery.
 - [tool-surface.md](../references/tool-surface.md) - the eight-tool contract the manual exposes.

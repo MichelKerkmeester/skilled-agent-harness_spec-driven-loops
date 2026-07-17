@@ -7,7 +7,7 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # mcp-refero

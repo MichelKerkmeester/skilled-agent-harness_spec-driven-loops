@@ -1,0 +1,105 @@
+{
+  "alignmentTarget": "sk-doc-template-conformance",
+  "sessionId": "2026-07-17T07:37:16.970Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "createdAt": "2026-07-17T07:37:16.971Z",
+  "status": "complete",
+  "maxIterations": 8,
+  "convergence": {
+    "coverageThreshold": 1,
+    "stabilityWindow": 2,
+    "combination": "AND"
+  },
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "alignment",
+  "lanes": [
+    {
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/",
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/",
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md"
+        ]
+      }
+    },
+    {
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-refero/assets/",
+          ".opencode/skills/mcp-tooling/mcp-refero/references/",
+          ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+        ]
+      }
+    },
+    {
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+          ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+          ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+        ]
+      }
+    }
+  ],
+  "batchSize": 5,
+  "fileProtection": {
+    "deep-alignment-config.json": "immutable",
+    "deep-alignment-corpus.json": "auto-generated",
+    "deep-alignment-state.jsonl": "append-only",
+    "deep-alignment-findings-registry.json": "auto-generated",
+    "alignment-report.md": "auto-generated",
+    ".deep-alignment.lock": "operator-controlled"
+  },
+  "reducer": {
+    "enabled": true,
+    "scriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+    "inputs": [
+      "latestJSONLDelta",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "alignmentReport"
+    ],
+    "metrics": [
+      "laneCount",
+      "applicableLaneCount",
+      "findingsBySeverity",
+      "compositeScore",
+      "verdict"
+    ]
+  },
+  "convergenceScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+  "partitionScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
+  "laneConfigPath": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/42b22aee-2ae9-495c-8f96-6afd332eb8df/scratchpad/align-lanes.json",
+  "terminal": {
+    "converged": false,
+    "reason": "workflow_repeat_limit_reached",
+    "coverageMet": true,
+    "stabilityMet": false,
+    "completedAt": "2026-07-17T07:58:52.445Z"
+  }
+}

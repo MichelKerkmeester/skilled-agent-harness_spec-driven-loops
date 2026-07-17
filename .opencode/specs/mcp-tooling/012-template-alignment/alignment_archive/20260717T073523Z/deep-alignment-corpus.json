@@ -1,0 +1,103 @@
+{
+  "lanes": [
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/, .opencode/skills/mcp-tooling/mcp-aside-devtools/references/, .opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/",
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/",
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md"
+        }
+      ]
+    },
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/mcp-tooling/mcp-refero/assets/, .opencode/skills/mcp-tooling/mcp-refero/references/, .opencode/skills/mcp-tooling/mcp-refero/scripts/README.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-refero/assets/",
+          ".opencode/skills/mcp-tooling/mcp-refero/references/",
+          ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-refero/references/troubleshooting.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+        }
+      ]
+    },
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/mcp-tooling/mcp-mobbin/assets/, .opencode/skills/mcp-tooling/mcp-mobbin/references/, .opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+          ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+          ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md"
+        },
+        {
+          "path": ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+        }
+      ]
+    }
+  ]
+}

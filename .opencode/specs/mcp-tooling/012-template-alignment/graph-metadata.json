@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/012-template-alignment",
+  "spec_folder": "mcp-tooling/012-template-alignment",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp tooling template alignment",
+      "aside refero mobbin docs",
+      "deep alignment packet",
+      "create skill template conformance",
+      "template alignment plan",
+      "audit fix reaudit",
+      "mcp packet documentation",
+      "sol high fast remediation",
+      "template alignment tasks",
+      "deep alignment audit tasks",
+      "mcp docs remediation",
+      "template alignment checklist"
+    ],
+    "key_topics": [
+      "mcp",
+      "tooling",
+      "template",
+      "alignment",
+      "aside",
+      "refero",
+      "mobbin",
+      "docs",
+      "deep",
+      "packet",
+      "skill",
+      "conformance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/mcp-tooling/012-template-alignment/alignment/alignment-report.md",
+      ".opencode/specs/mcp-tooling/012-template-alignment/implementation-summary.md",
+      "scripts/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "alignment-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/012-template-alignment/alignment/alignment-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/012-template-alignment/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "User Story",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surfaces Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lane Model",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Executor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Templates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Audit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Classify Audit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconcile Mobbin",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The new `mcp-aside-devtools`, `mcp-refero`, and `mcp-mobbin` packet documentation had drifted from the canonical create-skill reference and asset templates and from the create-readme code-folder README template",
+    "created_at": "2026-07-17T06:26:56Z",
+    "last_save_at": "2026-07-17T08:14:18.091Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:51969b9cb12a859bef49abc06300dca7df5d0fcb4cc906924c65b1493af3ff0c",
+    "source_doc_hashes": {
+      "spec.md": "61cc8e0441f76e9e5aa8dfa54f5eb778455a2c5cd1b55b674d1bdd00682d6b3a",
+      "plan.md": "dbddd0296d8e9ef5162ce8fcad0dd41d4ce89066c89d5bb09ff73af995839c01",
+      "tasks.md": "1d0925aa2578176a0c062c05b4b3fffd1920523f78cdb863dfb7f820c27805f7",
+      "checklist.md": "5cc835f0c356b0ab5cf5d3cd8d85ab16472493803d2e8ca56d559891390d77b1",
+      "implementation-summary.md": "13f23ef53008cc4d7f306048ca1342550ff29198fb19f92aa708a9e78727ffda"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

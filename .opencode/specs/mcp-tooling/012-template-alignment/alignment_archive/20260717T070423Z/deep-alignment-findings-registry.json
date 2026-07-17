@@ -1,0 +1,506 @@
+{
+  "alignmentTarget": "sk-doc-template-conformance",
+  "lanes": [
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/, .opencode/skills/mcp-tooling/mcp-aside-devtools/references/, .opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/",
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/",
+          ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md"
+        ]
+      },
+      "iterationsRun": 2,
+      "artifactsChecked": 7,
+      "checkedArtifactIds": [
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md",
+        ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md"
+      ],
+      "openFindings": [
+        {
+          "severity": "P0",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
+          "artifactDocType": "asset",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing \"overview\""
+          }
+        },
+        {
+          "severity": "P0",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md",
+          "artifactDocType": "reference",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing \"overview\""
+          }
+        },
+        {
+          "severity": "P0",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
+          "artifactDocType": "reference",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing \"overview\""
+          }
+        },
+        {
+          "severity": "P0",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md",
+          "artifactDocType": "reference",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing \"overview\""
+          }
+        },
+        {
+          "severity": "P0",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md",
+          "artifactDocType": "reference",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing \"overview\""
+          }
+        },
+        {
+          "severity": "P0",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md",
+          "artifactDocType": "readme",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing \"overview\""
+          }
+        },
+        {
+          "severity": "P2",
+          "type": "dqi-below-threshold",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "DQI 53/100 (band: needs_work) is below the 75 floor (130-packet precedent, iteration-001.md:113-117)",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/README.md",
+          "artifactDocType": "readme",
+          "sourceTool": "extract_structure.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "total": 53,
+            "band": "needs_work",
+            "band_description": "Significant improvements required",
+            "components": {
+              "structure": 16,
+              "structure_max": 40,
+              "content": 19,
+              "content_max": 30,
+              "style": 18,
+              "style_max": 30
+            },
+            "breakdown": {
+              "checklist_pass_rate": 40,
+              "word_count": 307,
+              "word_count_range": [
+                500,
+                3000
+              ],
+              "word_count_score": 6,
+              "h2_count": 3,
+              "heading_density": 4.89,
+              "heading_score": 6,
+              "code_block_count": 2,
+              "code_score": 4,
+              "has_tables": true,
+              "has_lists": true,
+              "structure_data_score": 3,
+              "internal_links": 0,
+              "external_links": 0,
+              "link_score": 0,
+              "h2_format_score": 0,
+              "divider_count": 2,
+              "expected_dividers": 2,
+              "divider_score": 6,
+              "style_issue_count": 0,
+              "style_issue_score": 8,
+              "has_intro": true,
+              "intro_score": 4
+            }
+          }
+        }
+      ],
+      "findingsBySeverity": {
+        "P0": 6,
+        "P1": 0,
+        "P2": 1
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 61,
+      "verdict": "FAIL"
+    },
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/mcp-tooling/mcp-refero/assets/, .opencode/skills/mcp-tooling/mcp-refero/references/, .opencode/skills/mcp-tooling/mcp-refero/scripts/README.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-refero/assets/",
+          ".opencode/skills/mcp-tooling/mcp-refero/references/",
+          ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+        ]
+      },
+      "iterationsRun": 1,
+      "artifactsChecked": 5,
+      "checkedArtifactIds": [
+        ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md",
+        ".opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md",
+        ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md",
+        ".opencode/skills/mcp-tooling/mcp-refero/references/troubleshooting.md",
+        ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md"
+      ],
+      "openFindings": [
+        {
+          "severity": "P0",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-refero/assets/",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md",
+          "artifactDocType": "asset",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing overview"
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md:20]"
+        },
+        {
+          "severity": "P0",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-refero/references/",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md",
+          "artifactDocType": "reference",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing overview"
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md:23]"
+        },
+        {
+          "severity": "P0",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-refero/references/",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-refero/references/troubleshooting.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-refero/references/troubleshooting.md",
+          "artifactDocType": "reference",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing overview"
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-refero/references/troubleshooting.md:21]"
+        },
+        {
+          "severity": "P0",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md",
+          "artifactDocType": "readme",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing overview"
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-refero/scripts/README.md:21]"
+        },
+        {
+          "severity": "P2",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md",
+          "type": "dqi-below-threshold",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "DQI 52/100 (band: needs_work) is below the 75 floor (130-packet precedent, iteration-001.md:113-117)",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-refero/scripts/README.md",
+          "artifactDocType": "readme",
+          "sourceTool": "extract_structure.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "total": 52,
+            "band": "needs_work"
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-refero/scripts/README.md:21] [SOURCE: live extract_structure.py re-probe]"
+        }
+      ],
+      "findingsBySeverity": {
+        "P0": 4,
+        "P1": 0,
+        "P2": 1
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 41,
+      "verdict": "FAIL"
+    },
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/mcp-tooling/mcp-mobbin/assets/, .opencode/skills/mcp-tooling/mcp-mobbin/references/, .opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+          ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+          ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+        ]
+      },
+      "iterationsRun": 1,
+      "artifactsChecked": 5,
+      "checkedArtifactIds": [
+        ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md",
+        ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md",
+        ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md",
+        ".opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md",
+        ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md"
+      ],
+      "openFindings": [
+        {
+          "severity": "P0",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md",
+          "artifactDocType": "asset",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing overview"
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md:22]"
+        },
+        {
+          "severity": "P0",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md",
+          "artifactDocType": "reference",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing overview"
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md:25]"
+        },
+        {
+          "severity": "P0",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-mobbin/references/",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md",
+          "artifactDocType": "reference",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing overview"
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md:21]"
+        },
+        {
+          "severity": "P0",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md",
+          "artifactDocType": "readme",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing overview"
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md:21]"
+        },
+        {
+          "severity": "P2",
+          "authority": "sk-doc",
+          "artifactClass": "docs",
+          "scope": ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md",
+          "type": "dqi-below-threshold",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "DQI 52/100 (band: needs_work) is below the 75 floor (130-packet precedent, iteration-001.md:113-117)",
+          "artifactId": ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md",
+          "artifactPath": ".opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md",
+          "artifactDocType": "readme",
+          "sourceTool": "extract_structure.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "total": 52,
+            "band": "needs_work",
+            "band_description": "Significant improvements required",
+            "components": {
+              "structure": 16,
+              "structure_max": 40,
+              "content": 18,
+              "content_max": 30,
+              "style": 18,
+              "style_max": 30
+            }
+          },
+          "source": "[SOURCE: .opencode/skills/mcp-tooling/mcp-mobbin/scripts/README.md:21] [SOURCE: live extract_structure.py re-probe]"
+        }
+      ],
+      "findingsBySeverity": {
+        "P0": 4,
+        "P1": 0,
+        "P2": 1
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 41,
+      "verdict": "FAIL"
+    }
+  ],
+  "overall": {
+    "laneCount": 3,
+    "applicableLaneCount": 3,
+    "findingsBySeverity": {
+      "P0": 14,
+      "P1": 0,
+      "P2": 3
+    },
+    "compositeScore": 143,
+    "verdict": "FAIL",
+    "nothingToConverge": false,
+    "incompleteCoverage": false,
+    "integrityFault": false,
+    "invalidSeverityCount": 0
+  },
+  "corruptionWarnings": [],
+  "hasCorruption": false
+}

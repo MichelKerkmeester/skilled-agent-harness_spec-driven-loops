@@ -13,13 +13,23 @@ version: 1.0.0.0
 
 # Aside Code Mode Manual - registered snapshot
 
+Reference snapshot of the registered Aside Code Mode manual.
+
+## 1. OVERVIEW
+
+### Purpose
+
 The `aside` manual entry as it stands **registered** in this repo's `.utcp_config.json` `manual_call_templates[]`. This asset exists so consumers can verify the registered shape and so any future re-registration pastes a verified object rather than improvising one.
+
+### Usage
+
+Use the snapshot and verification command below to compare the live registration without re-adding or editing it.
 
 > **REGISTERED — 2026-07-16.** This manual is live in `.utcp_config.json`. **Verify with jq, do not re-add**: `jq '.manual_call_templates[] | select(.name == "aside")' .utcp_config.json` must return exactly the object below. **Callable discovery is DONE (2026-07-16)** via a direct stdio MCP probe of CodeMode-MCP (fixture: [`../references/discovery-fixture-2026-07-16.json`](../references/discovery-fixture-2026-07-16.json)): the registry/discovery name is **`aside.aside.repl`** (dot-separated, NOT the previously predicted `aside.aside_repl` registry form); inside `call_tool_chain` TypeScript the callable is **`aside.aside_repl(args)`** per the fixture's `Access as:` line and mcp-code-mode's `{manual_name}.{manual_name}_{tool_name}` convention.
 
 ---
 
-## 1. THE REGISTERED MANUAL (SNAPSHOT, DO NOT RE-APPLY)
+## 2. THE REGISTERED MANUAL (SNAPSHOT, DO NOT RE-APPLY)
 
 **Key Points**:
 - Manual `name` is `aside`. Live discovery (2026-07-16, `../references/discovery-fixture-2026-07-16.json`) returned exactly one aside entry, registry name **`aside.aside.repl`** (dot-separated `{manual}.{server}.{tool}`); the TypeScript call surface inside `call_tool_chain` is **`aside.aside_repl(args)`** (fixture `Access as:` line; `{manual_name}.{manual_name}_{tool_name}` per `mcp-code-mode/references/naming_convention.md`).
@@ -52,7 +62,7 @@ If this snapshot and the live `.utcp_config.json` ever disagree, **the live conf
 
 ---
 
-## 2. POST-REGISTRATION CHECKLIST (REMAINING STEPS)
+## 3. POST-REGISTRATION CHECKLIST (REMAINING STEPS)
 
 Registration is done; these confirmation steps remain:
 
@@ -69,7 +79,7 @@ Exactly **one** `aside` manual is registered, deliberately. The dual-manual layo
 
 ---
 
-## 3. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [mcp-wiring.md](../references/mcp-wiring.md) - the full wiring reference: transport, handshake, rediscovery mandate, and registration notes.
 - [session-management.md](../references/session-management.md) - the binding and concurrency model behind the single-writer posture.

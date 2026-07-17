@@ -14,11 +14,21 @@ version: 1.0.0.0
 
 # Aside MCP Wiring
 
+Launch, discovery, and Code Mode wiring reference for the Aside MCP server.
+
+## 1. OVERVIEW
+
+### Purpose
+
 How the Aside MCP server is launched, what it exposed when live-probed, why the tool inventory must be rediscovered at runtime, and how the registered Code Mode manual is shaped.
+
+### Usage
+
+Use this reference to verify transport and registration, then rediscover the live tool schema before invocation.
 
 ---
 
-## 1. TRANSPORT
+## 2. TRANSPORT
 
 `aside mcp` is a client-spawned local **stdio** process. The published client configuration is:
 
@@ -34,7 +44,7 @@ No URL, port, bearer token, API-key env var, or OAuth field appears in any publi
 
 ---
 
-## 2. HANDSHAKE AND TOOL INVENTORY (VERSION-PINNED)
+## 3. HANDSHAKE AND TOOL INVENTORY (VERSION-PINNED)
 
 Live handshake observed 2026-07-16 against installed version `1.26.626.1517`:
 
@@ -64,7 +74,7 @@ Because `tools.listChanged: true` and the schema is runtime-discovered, the one-
 
 ---
 
-## 3. BROWSER-PROFILE BINDING
+## 4. BROWSER-PROFILE BINDING
 
 A fresh `aside mcp` process is transport-healthy but **not browser-capable by itself**. Live probe: `listBrowserTabs()` returned:
 
@@ -78,7 +88,7 @@ Starting the MCP server does not grant control of an arbitrary browser; a task/p
 
 ---
 
-## 4. CODE MODE REGISTRATION (REGISTERED)
+## 5. CODE MODE REGISTRATION (REGISTERED)
 
 > **Registration status: REGISTERED** (2026-07-16). The `aside` manual below is present in `.utcp_config.json` `manual_call_templates[]` — verify with jq, do not re-add it. The canonical byte-true snapshot lives in [`../assets/utcp-aside-manual.md`](../assets/utcp-aside-manual.md). **Callable discovery: DONE (2026-07-16)** via a direct stdio MCP probe of CodeMode-MCP (`initialize`, `tools/call`: `list_tools`/`search_tools`/`tool_info`; fixture: [`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)). Discovery lists the registry name **`aside.aside.repl`** (dot-separated `{manual}.{server}.{tool}` — not the previously predicted `aside.aside_repl` registry form); the TypeScript callable inside `call_tool_chain` is **`aside.aside_repl(args)`** per the fixture's `Access as:` line.
 
@@ -113,7 +123,7 @@ One lineage proposed registering `aside_1`/`aside_2` manuals (mirroring `chrome_
 
 ---
 
-## 5. INVOCATION PATTERN
+## 6. INVOCATION PATTERN
 
 Once discovery-confirmed (the manual is registered; confirmation needs a fresh Code Mode session), run MCP browser operations inside `call_tool_chain()` with explicit timeouts (the `repl` tool advertises a 120-second call timeout), try/catch around every call, and cleanup in `finally`. Verify artifacts independently of the tool response (a screenshot is a non-empty file with PNG magic bytes; structured capture must parse and contain a known marker).
 
@@ -121,7 +131,7 @@ Operational lifecycle notes: connection failures preserve stderr and timeout det
 
 ---
 
-## 6. REFERENCES AND RELATED RESOURCES
+## 7. REFERENCES AND RELATED RESOURCES
 
 - [aside-cli-reference.md](./aside-cli-reference.md) — CLI surface and REPL helpers.
 - [session-management.md](./session-management.md) — daemon, binding, and concurrency model.
