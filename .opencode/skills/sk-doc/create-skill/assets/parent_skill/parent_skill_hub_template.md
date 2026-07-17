@@ -116,7 +116,7 @@ version: 1.0.0.0
 
 Copy the block below into the hub `SKILL.md` and fill every `[bracketed]` placeholder.
 
-```markdown
+````markdown
 ---
 name: [parent-skill-name]
 description: "[Unified skill that routes workflow and surface packets through mode-registry.json; holds no packet-local logic.]"
@@ -263,7 +263,7 @@ These extensions activate in-place fields. They do not move `advisorRouting` dat
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `[workflow-packet-a]/SKILL.md`, `[workflow-packet-b]/SKILL.md`.
 - Surface packets: `[surface-name]/SKILL.md`, `[surface-name]/references/`, `[surface-name]/assets/`.
-```
+````
 
 ---
 

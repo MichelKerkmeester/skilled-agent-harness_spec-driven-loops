@@ -231,7 +231,7 @@ Atomic commits with clear intent = maintainable history.
 
 **Template**:
 
-```markdown
+````markdown
 ---
 title: Asset Title - Descriptive Subtitle
 description: One-line description of what this asset provides
@@ -298,7 +298,7 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 [Links to related files - MUST be last section if present]
 
-```
+````
 
 ---
 

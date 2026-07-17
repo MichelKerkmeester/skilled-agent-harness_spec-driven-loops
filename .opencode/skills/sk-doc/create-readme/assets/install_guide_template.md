@@ -274,7 +274,7 @@ Always use `YOUR_USERNAME` as a placeholder and remind users to replace it:
 
 Use 3-column format: Error → Cause → Fix
 
-```markdown
+````markdown
 ### Common Errors
 
 **❌ "Error message here"**
@@ -283,12 +283,12 @@ Use 3-column format: Error → Cause → Fix
   ```bash
   specific command to fix
   ```
-```
+````
 
 ### Standard Error Categories
 
 **1. Path/Binary Errors**
-```markdown
+````markdown
 **❌ "Command not found: [binary]"**
 - **Cause**: Binary not in PATH after installation.
 - **Fix**: 
@@ -296,20 +296,20 @@ Use 3-column format: Error → Cause → Fix
   source "$HOME/.local/bin/env"
   # Or add to ~/.zshrc: export PATH="$HOME/.local/bin:$PATH"
   ```
-```
+````
 
 **2. Dependency Errors**
-```markdown
+````markdown
 **❌ "Error building with [library]"**
 - **Cause**: Missing system dependencies.
 - **Fix**:
   ```bash
   brew install dependency1 dependency2
   ```
-```
+````
 
 **3. Connection Errors**
-```markdown
+````markdown
 **❌ "Cannot connect to [service]"**
 - **Cause**: Service not running.
 - **Fix**:
@@ -317,10 +317,10 @@ Use 3-column format: Error → Cause → Fix
   brew services start servicename
   service-command list  # Verify running
   ```
-```
+````
 
 **4. Configuration Errors**
-```markdown
+````markdown
 **❌ "MCP server not appearing in tools"**
 - **Cause**: Configuration file issue or path incorrect.
 - **Fix**:
@@ -333,10 +333,10 @@ Use 3-column format: Error → Cause → Fix
      ls -la /path/to/binary
      ```
   3. Restart your AI client completely.
-```
+````
 
 **5. API Errors**
-```markdown
+````markdown
 **❌ "[API] API error"**
 - **Cause**: Invalid or missing API key.
 - **Fix**:
@@ -344,7 +344,7 @@ Use 3-column format: Error → Cause → Fix
   export API_KEY_VAR="your-key"
   echo $API_KEY_VAR  # Verify it's set
   ```
-```
+````
 
 ### Troubleshooting Quality
 
@@ -596,7 +596,7 @@ If a tool is deprecated:
 
 Copy and customize this template for new install guides. Replace all `[PLACEHOLDERS]` with actual values.
 
-```markdown
+````markdown
 # [TOOL_NAME] Installation Guide
 
 Complete installation and configuration guide for [TOOL_NAME], [PRIMARY_PURPOSE - what it enables]. [KEY_FEATURES - list 3-5 specific capabilities with parenthetical explanations]. [WORKFLOW_APPROACH - how it's accessed/used]. [VALUE_PROPOSITION - why it matters].
@@ -971,6 +971,7 @@ opencode
 **Installation Complete!**
 
 You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
+````
 
 ---
 

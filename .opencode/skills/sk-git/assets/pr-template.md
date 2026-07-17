@@ -418,7 +418,7 @@ Shows complete user flow: login → notification → mark as read
 - Deprecated features removed
 
 **Format**:
-```markdown
+````markdown
 ## Breaking Changes
 
 ### API Response Format Changed
@@ -436,7 +436,7 @@ Shows complete user flow: login → notification → mark as read
 **Migration**:
 Update client code to expect new response format.
 See the migration guide at `docs/migration.md` for details.
-```
+````
 
 ---
 
