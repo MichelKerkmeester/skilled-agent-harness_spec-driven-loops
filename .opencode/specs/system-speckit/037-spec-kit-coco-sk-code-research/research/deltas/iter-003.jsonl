@@ -1,6 +1,0 @@
-{"type":"iteration","iteration":3,"newInfoRatio":0.58,"status":"insight","focus":"system-spec-kit MCP tool surface vs docs drift","findingsP0":0,"findingsP1":2,"findingsP2":1}
-{"type":"finding","id":"f-iter003-001","severity":"P1","label":"Listed CocoIndex MCP tools are exposed but not dispatched","iteration":3,"surface":"system-spec-kit","evidence":".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:975"}
-{"type":"finding","id":"f-iter003-002","severity":"P1","label":"memory_save routed continuity write path cannot request full-auto through public schema","iteration":3,"surface":"system-spec-kit","evidence":".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:245"}
-{"type":"finding","id":"f-iter003-003","severity":"P2","label":"MCP reference table is stale relative to TOOL_DEFINITIONS","iteration":3,"surface":"system-spec-kit","evidence":".opencode/skills/system-spec-kit/references/memory/memory_system.md:96"}
-{"type":"observation","id":"obs-iter003-001","packet":"077","classification":"real","iteration":3}
-{"type":"ruled_out","direction":"Treat ccc_* as only documentation drift","reason":"tool-schemas.ts registers ccc_* in TOOL_DEFINITIONS, so clients can list them, but dispatchTool has no dispatcher that handles them.","iteration":3}

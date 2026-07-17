@@ -4936,7 +4936,7 @@ The local `/goal` OpenCode plugin persists a session completion objective, injec
 
 #### How It Works
 
-`.opencode/plugins/mk-goal.js` registers OpenCode `event` and `experimental.chat.system.transform` hooks plus `mk_goal` and `mk_goal_status` tools. `.opencode/commands/goal_opencode.md` remains a state-free router. Runtime state lives under `.opencode/skills/.goal-state/`; the injected `[active_goal]` block includes a short raw `objective:` preview and an enhanced `goal_prompt:`. OpenCode must be restarted after plugin or command edits because local plugin and command files are loaded at startup.
+`.opencode/plugins/mk-goal.js` registers OpenCode `event` and `experimental.chat.system.transform` hooks plus `mk_goal` and `mk_goal_status` tools. `.opencode/commands/goal-opencode.md` remains a state-free router. Runtime state lives under `.opencode/skills/.goal-state/`; the injected `[active_goal]` block includes a short raw `objective:` preview and an enhanced `goal_prompt:`. OpenCode must be restarted after plugin or command edits because local plugin and command files are loaded at startup.
 
 #### Source Files
 

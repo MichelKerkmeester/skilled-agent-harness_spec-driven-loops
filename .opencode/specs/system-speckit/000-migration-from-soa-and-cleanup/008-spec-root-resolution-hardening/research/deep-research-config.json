@@ -1,0 +1,86 @@
+{
+  "topic": "Harden spec-folder root resolution. Enumerate every root-resolution call site with file and line and its precedence legacy-first vs canonical-first, decide whether canonical-first is the correct universal contract and whether any legacy specs-first caller would regress, determine what created and maintains the specs symlink and whether it is intentional and cross-platform-safe and whether resolution should depend on it, characterize the symlink-absent failure mode for each auto-writer, and produce a ranked regression-safe remediation with migration, rollback, and a validation strategy that passes both with and without the symlink.",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "divergent": {},
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-17T07:55:46Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "rsr-2026-07-17T07-55-46Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

@@ -1,7 +1,0 @@
-{"type":"iteration","iteration":10,"newInfoRatio":0.22,"status":"converged","focus":"final remediation synthesis prep","findingsP0":0,"findingsP1":4,"findingsP2":0}
-{"type":"finding","id":"f-iter010-001","severity":"P1","label":"Authoring-time sk-code loading is the first remediation dependency","iteration":10,"surface":"system-spec-kit","evidence":".opencode/commands/speckit/assets/speckit_implement_auto.yaml:402"}
-{"type":"finding","id":"f-iter010-002","severity":"P1","label":"Validator and graph-metadata coverage remain P1 after integration fixes","iteration":10,"surface":"system-spec-kit","evidence":"research/iterations/iteration-002.md:17"}
-{"type":"finding","id":"f-iter010-003","severity":"P1","label":"CocoIndex maintenance and refresh parity need one owner","iteration":10,"surface":"mcp-coco-index","evidence":".opencode/skills/mcp-coco-index/SKILL.md:211"}
-{"type":"finding","id":"f-iter010-004","severity":"P1","label":"sk-code needs canonical OpenCode authoring and spec-folder resources","iteration":10,"surface":"sk-code","evidence":".opencode/skills/sk-code/references/router/resource_loading.md:113"}
-{"type":"observation","id":"obs-iter010-001","packet":"077","classification":"real","iteration":10}
-{"type":"ruled_out","direction":"Run more path-existence checks before synthesis","reason":"Iterations 8 and 9 already showed the missing piece is canonical resource/rank behavior, not another filesystem inventory.","iteration":10}

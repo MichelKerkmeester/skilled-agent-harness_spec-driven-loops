@@ -1,0 +1,1522 @@
+{
+  "sessionId": "rsr-2026-07-17T07-55-46Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-17T09:27:31Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-call-sites-resolve-or-enumerate-spec-roots-what-exact-precedence-does-each",
+      "inboxId": null,
+      "text": "Which call sites resolve or enumerate spec roots, what exact precedence does each use, and which writers or readers consume each result?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-is-canonical-first-the-correct-universal-contract-and-which-legacy-first-consume",
+      "inboxId": null,
+      "text": "Is canonical-first the correct universal contract, and which legacy-first consumers or persisted paths could regress under that change?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-created-and-maintains-the-root-specs-symlink-is-it-intentional-and-is-it-sa",
+      "inboxId": null,
+      "text": "What created and maintains the root `specs` symlink, is it intentional, and is it safe across supported platforms and checkout modes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-is-each-automatic-writer-s-failure-mode-when-the-symlink-is-absent-includin",
+      "inboxId": null,
+      "text": "What is each automatic writer's failure mode when the symlink is absent, including the Claude session-stop autosave path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-ranked-remediation-migration-rollback-and-dual-environment-validation-strat",
+      "inboxId": null,
+      "text": "What ranked remediation, migration, rollback, and dual-environment validation strategy minimizes regression risk?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-call-sites-resolve-or-enumerate-spec-roots-what-exact-precedence-does-each",
+      "inboxId": null,
+      "text": "Which call sites resolve or enumerate spec roots, what exact precedence does each use, and which writers or readers consume each result?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-is-canonical-first-the-correct-universal-contract-and-which-legacy-first-consume",
+      "inboxId": null,
+      "text": "Is canonical-first the correct universal contract, and which legacy-first consumers or persisted paths could regress under that change?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-created-and-maintains-the-root-specs-symlink-is-it-intentional-and-is-it-sa",
+      "inboxId": null,
+      "text": "What created and maintains the root `specs` symlink, is it intentional, and is it safe across supported platforms and checkout modes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-what-is-each-automatic-writer-s-failure-mode-when-the-symlink-is-absent-includin",
+      "inboxId": null,
+      "text": "What is each automatic writer's failure mode when the symlink is absent, including the Claude session-stop autosave path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-ranked-remediation-migration-rollback-and-dual-environment-validation-strat",
+      "inboxId": null,
+      "text": "What ranked remediation, migration, rollback, and dual-environment validation strategy minimizes regression risk?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-5-direct-writers-utilities-form-a-third-class-and-must-not-be-treated-as-consumers",
+      "text": "**Direct writers/utilities form a third class and must not be treated as consumers of the shared resolver.** `spec/create.sh` writes tracked packets directly under `.opencode/specs/<track>` but writes untracked packets through `specs/`, explicitly assuming that path is a symlink; graph metadata migration/backfill and quality/memory maintenance scripts construct `.opencode/specs` directly; the deep-loop local-owner migration and optimizer replay list canonical before legacy. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819] [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts:151-157] [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts:597] [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:240-247] [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:319] [SOURCE: .opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs:11-13] [SOURCE: .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:60-61]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-354`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:39-149`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-204,1121-1149`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-549,785-799`",
+        "`.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1063-1093,1193-1220,1437-1469`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1043,1663-1687`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-80`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:125-137,348-418`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`"
+      ]
+    },
+    {
+      "id": "finding-1-2-every-production-consumer-of-the-shared-scripts-resolver-inherits-that-legacy-fi",
+      "text": "**Every production consumer of the shared scripts resolver inherits that legacy-first order unless it already has an explicit/matched path.** The exact inventory is:",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-354`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:39-149`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-204,1121-1149`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-549,785-799`",
+        "`.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1063-1093,1193-1220,1437-1469`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1043,1663-1687`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-80`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:125-137,348-418`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-actionable-split-is-therefore-by-behavior-not-by-language-or-subsystem-a-leg",
+      "text": "**The actionable split is therefore by behavior, not by language or subsystem:** (a) legacy-first shared scripts selection, (b) canonical-first MCP/Gate-3 selection, (c) explicit-root-preserving inputs, and (d) direct-root writers. Changing only `getSpecsDirectories()` would alter automatic writer/detector behavior but would not change MCP discovery, Gate-3 binding, `spec/create.sh`, or canonical-only maintenance tools. [INFERENCE: based on .opencode/skills/system-spec-kit/scripts/core/config.ts:321-335, .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-220, .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:136-137, and .opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-354`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:39-149`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-204,1121-1149`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-549,785-799`",
+        "`.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1063-1093,1193-1220,1437-1469`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1043,1663-1687`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-80`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:125-137,348-418`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-gate-3-write-boundary-resolver-is-also-canonical-first-its-root-constant-is-",
+      "text": "**The Gate-3 write-boundary resolver is also canonical-first.** Its root constant is `['.opencode/specs', 'specs']`; workspace discovery accepts either root; `getSpecRoots()` preserves the constant order; and recursive candidate collection traverses roots in that order. This means bare candidate binding prefers canonical while explicit rooted paths remain valid under either root. [SOURCE: .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:125-137] [SOURCE: .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:348-377] [SOURCE: .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:391-418]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-354`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:39-149`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-204,1121-1149`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-549,785-799`",
+        "`.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1063-1093,1193-1220,1437-1469`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1043,1663-1687`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-80`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:125-137,348-418`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-mcp-indexing-read-path-is-canonical-first-with-legacy-fallback-not-dual-root",
+      "text": "**The MCP indexing/read path is canonical-first with legacy fallback, not dual-root enumeration.** Both `findSpecDocuments()` and `findGraphMetadataFiles()` select only `.opencode/specs` whenever it exists and inspect `specs/` only when canonical is absent. Their consumers are the MCP context preload, index scan, API indexing, and resume ladder. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:308-382] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1703] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:763-768] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:77] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:993]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-354`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:39-149`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-204,1121-1149`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-549,785-799`",
+        "`.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1063-1093,1193-1220,1437-1469`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1043,1663-1687`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-80`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:125-137,348-418`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-scripts-side-shared-contract-is-legacy-first-getspecsdirectories-returns-pro",
+      "text": "**The scripts-side shared contract is legacy-first.** `getSpecsDirectories()` returns `PROJECT_ROOT/specs` before `PROJECT_ROOT/.opencode/specs`; `findActiveSpecsDir()` returns the first existing entry; and `getAllExistingSpecsDirs()` filters that same ordering before realpath deduplication. Consequently, when the root `specs` symlink exists, the surviving alias is normally the legacy spelling even though both aliases reach the same inode. [SOURCE: .opencode/skills/system-spec-kit/scripts/core/config.ts:321-346]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-354`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:39-149`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-204,1121-1149`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-549,785-799`",
+        "`.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1063-1093,1193-1220,1437-1469`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1043,1663-1687`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-80`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:125-137,348-418`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`"
+      ]
+    },
+    {
+      "id": "finding-2-2-a-canonical-first-reorder-has-one-material-selection-regression-ambiguous-duplic",
+      "text": "**A canonical-first reorder has one material selection regression: ambiguous duplicates switch from the legacy packet to the canonical packet.** With the current symlink, both spellings resolve to one inode and `getAllExistingSpecsDirs()` realpath-deduplicates them, so only the returned spelling changes. If only `specs/` exists, `findActiveSpecsDir()` still falls back to it. If both roots are distinct, loops that enumerate `getSpecsDirectories()` still find a unique legacy packet after checking canonical; only the same relative packet present under both roots changes winner. Converting the API to canonical-only would be different and unsafe because it would orphan legacy-only packets. [SOURCE: .opencode/skills/system-spec-kit/scripts/core/config.ts:321-360] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:309-323] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:368-380] [INFERENCE: canonical-first changes the selected object only when both distinct roots satisfy the same unqualified lookup; alias spelling and search order can change in the other cases, but the reachable object does not]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34,78-80`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-607,766-809`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1325-1345,1663-1687`",
+        "Symbol-focused production/test search for `getSpecsDirectories`, `getAllExistingSpecsDirs`, and `findActiveSpecsDir` under `.opencode/skills/system-spec-kit/scripts/`"
+      ]
+    },
+    {
+      "id": "finding-2-1-canonical-first-is-the-correct-universal-default-for-unqualified-selection-but-n",
+      "text": "**Canonical-first is the correct universal default for unqualified selection, but not a license to erase explicit-root preservation or legacy fallback.** The already-canonical MCP discovery and Gate-3 binding establish `.opencode/specs` as the authoritative default, while tracked creation and maintenance utilities also target it directly. The scripts-side order is the outlier. `generate-context` already preserves explicit `specs/...` and `.opencode/specs/...` inputs before searching roots, so changing the default order need not invalidate deliberate legacy references. The regression-safe contract is therefore: canonical wins ambiguity; an explicit qualified/absolute path wins over defaults; legacy-only packets remain readable; and write-boundary validation accepts both roots during migration. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:28-34] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-338] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:352-380]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34,78-80`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-607,766-809`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1325-1345,1663-1687`",
+        "Symbol-focused production/test search for `getSpecsDirectories`, `getAllExistingSpecsDirs`, and `findActiveSpecsDir` under `.opencode/skills/system-spec-kit/scripts/`"
+      ]
+    },
+    {
+      "id": "finding-2-3-concrete-reader-detector-regressions-are-bounded-and-classifiable-per-iteration-",
+      "text": "**Concrete reader/detector regressions are bounded and classifiable per iteration-1 consumer.** Child-folder search and the main folder detector will select the canonical duplicate for a bare child/name instead of the legacy duplicate; explicit rooted detector input remains unchanged. The session collector will likewise bind an unqualified duplicate to canonical and its related-doc reader will follow that matched root, potentially changing the `spec.md`/task context read when duplicate contents diverge. Directory setup’s containment check and nested-changelog validation are membership-only and therefore do not retarget writes; only active-root diagnostics and “did you mean” listings reorder toward canonical. Unique legacy packets remain discoverable because these selectors enumerate both roots or retain the matched explicit root. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:13-27] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/config.ts:321-360] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:766-809] [INFERENCE: the concrete user-visible regression is different content only for duplicate relative identities; membership-only consumers cannot choose a different target]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34,78-80`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-607,766-809`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1325-1345,1663-1687`",
+        "Symbol-focused production/test search for `getSpecsDirectories`, `getAllExistingSpecsDirs`, and `findActiveSpecsDir` under `.opencode/skills/system-spec-kit/scripts/`"
+      ]
+    },
+    {
+      "id": "finding-2-4-for-automatic-writes-generate-context-has-a-real-collision-regression-but-the-ca",
+      "text": "**For automatic writes, `generate-context` has a real collision regression but the canonical-save workflow adds no independent root-spelling regression.** A bare or stripped nested reference checks roots in shared order, so a duplicate will switch write target to canonical; a not-yet-existing nested reference uses the active root and will also be created canonically after the reorder. Conversely, an explicit project-scoped path is retained even when absent, and an exact existing relative path is returned before root enumeration, preserving intentional legacy writes. Downstream, the workflow receives an absolute detected folder, derives a root-relative `specFolderName`, validates that exact folder, and updates `description.json` under the same absolute target. Thus its description regeneration does not independently jump roots; any changed target originates in upstream ambiguous detection. [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-329] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:352-380] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1325-1345] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1663-1687]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34,78-80`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-607,766-809`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1325-1345,1663-1687`",
+        "Symbol-focused production/test search for `getSpecsDirectories`, `getAllExistingSpecsDirs`, and `findActiveSpecsDir` under `.opencode/skills/system-spec-kit/scripts/`"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-persisted-identities-inspected-do-not-require-a-legacy-to-canonical-rewrite-",
+      "text": "**The persisted identities inspected do not require a legacy-to-canonical rewrite.** Phase-pointer updates prefer an existing `graph-metadata.json.packet_id`; the fallback derives a root-relative ID, so equivalent packet locations under either root yield the same relative identifier rather than persisting `specs/` versus `.opencode/specs/`. The workflow similarly persists/passes `specFolderName`, calculated relative to the detected containing root, rather than the root spelling. The concrete persistence risk is instead semantic: if duplicate packets have different metadata, canonical-first reads and then updates the canonical packet’s identity/description. Existing stored IDs are not themselves made invalid by an order reversal. [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:531-549] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:590-607] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1053] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1325-1345] [INFERENCE: root-relative IDs are stable across equivalent root spellings, while divergent duplicate metadata follows whichever physical packet wins selection]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34,78-80`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-607,766-809`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1325-1345,1663-1687`",
+        "Symbol-focused production/test search for `getSpecsDirectories`, `getAllExistingSpecsDirs`, and `findActiveSpecsDir` under `.opencode/skills/system-spec-kit/scripts/`"
+      ]
+    },
+    {
+      "id": "finding-3-4-fresh-clones-and-symlink-disabled-checkout-modes-are-unsafe-in-two-distinct-ways",
+      "text": "**Fresh clones and symlink-disabled checkout modes are unsafe in two distinct ways.** With normal symlink support, a clone checks out the tracked absolute payload and therefore points back to the original developer path rather than the clone's own `.opencode/specs`; it is broken when that path is absent and can alias an unrelated checkout when it exists. With `core.symlinks=false`, Git documents that symlinks are checked out as small plain files containing link text, so root `specs` ceases to be a directory alias altogether. Repository CI evidence does not establish a supported-platform matrix: the inspected spec-kit workflow checks out only on `ubuntu-latest`, and the symlink integration test treats `EPERM` as an early successful return rather than exercising fallback behavior. [SOURCE: command `git cat-file -p HEAD:specs` => absolute developer path] [SOURCE: https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks] [SOURCE: .github/workflows/strict-pass-freshness-sweep.yml:11-23] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-217]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-3.md:1-15`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-225`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:36-40`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:11-23`",
+        "`git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log --follow ... -- specs`; commit inspections for `9512c335`, `cdabfc90`, and `2f6f6abc`",
+        "`git archive --format=tar HEAD specs | /usr/bin/tar -tvf -`",
+        "`https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks`",
+        "`https://git-scm.com/docs/git-worktree`",
+        "`https://git-scm.com/docs/git-archive`"
+      ]
+    },
+    {
+      "id": "finding-3-1-git-history-not-a-runtime-bootstrapper-is-the-recoverable-provenance-git-log-fol",
+      "text": "**Git history, not a runtime bootstrapper, is the recoverable provenance.** `git log --follow --format='COMMIT %H %aI %s' --name-status -- specs` shows the first tracked addition at `9512c335987edd1f49297c345be4a93196ac1290` (2026-02-17), deletion at `cdabfc9069ccbaf741c51fe3d9ad3aa4e3af5835` (2026-04-05), subsequent add/delete churn, and the current addition at `2f6f6abcfb97aef79e97d5fa28169c6229dca341` (2026-05-31). The first blob contained the relative target `.opencode/specs`; the current blob contains `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs`. The latest commit says it checkpoints “pre-existing uncommitted work,” so repository evidence identifies the commit that captured the current link but not the exact command or actor that created it in the working tree. [SOURCE: command `git log --follow ... -- specs`; `git cat-file -p 9512c335987edd1f49297c345be4a93196ac1290:specs`; `git cat-file -p HEAD:specs`; `git show -s 2f6f6abc...`]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-3.md:1-15`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-225`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:36-40`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:11-23`",
+        "`git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log --follow ... -- specs`; commit inspections for `9512c335`, `cdabfc90`, and `2f6f6abc`",
+        "`git archive --format=tar HEAD specs | /usr/bin/tar -tvf -`",
+        "`https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks`",
+        "`https://git-scm.com/docs/git-worktree`",
+        "`https://git-scm.com/docs/git-archive`"
+      ]
+    },
+    {
+      "id": "finding-3-6-git-tar-archives-preserve-the-unsafe-symlink-and-absolute-payload-the-read-only-",
+      "text": "**Git tar archives preserve the unsafe symlink and absolute payload.** The read-only pipeline `git archive --format=tar HEAD specs | tar -tvf -` emitted `lrwxrwxrwx ... specs -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs`; Git's archive documentation states that archives contain the named tree's structure. Extracting that tar elsewhere therefore produces the same broken or cross-checkout alias. ZIP/extractor-specific realization was not directly tested, so the defensible conclusion is that repository archives are not universally portable and tar is conclusively unsafe. [SOURCE: command `git archive --format=tar HEAD specs | /usr/bin/tar -tvf -`] [SOURCE: https://git-scm.com/docs/git-archive]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-3.md:1-15`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-225`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:36-40`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:11-23`",
+        "`git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log --follow ... -- specs`; commit inspections for `9512c335`, `cdabfc90`, and `2f6f6abc`",
+        "`git archive --format=tar HEAD specs | /usr/bin/tar -tvf -`",
+        "`https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks`",
+        "`https://git-scm.com/docs/git-worktree`",
+        "`https://git-scm.com/docs/git-archive`"
+      ]
+    },
+    {
+      "id": "finding-3-5-linked-worktrees-are-specifically-unsafe-because-the-absolute-payload-crosses-wo",
+      "text": "**Linked worktrees are specifically unsafe because the absolute payload crosses worktree boundaries.** Git documents that `git worktree add <path>` checks a commit into a new linked working tree. Since the committed `specs` blob names the main checkout's absolute canonical directory, each linked worktree at another path receives a link back to `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs`, not to that worktree's own `.opencode/specs`. Reads and writes through root `specs` can therefore leak across branches/worktrees even when the link is not broken. [SOURCE: https://git-scm.com/docs/git-worktree] [SOURCE: command `git cat-file -p HEAD:specs` => `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs`] [INFERENCE: checkout preserves the tracked link payload while only the worktree root changes]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-3.md:1-15`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-225`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:36-40`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:11-23`",
+        "`git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log --follow ... -- specs`; commit inspections for `9512c335`, `cdabfc90`, and `2f6f6abc`",
+        "`git archive --format=tar HEAD specs | /usr/bin/tar -tvf -`",
+        "`https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks`",
+        "`https://git-scm.com/docs/git-worktree`",
+        "`https://git-scm.com/docs/git-archive`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-alias-is-intentional-but-its-current-absolute-payload-does-not-implement-the",
+      "text": "**The alias is intentional, but its current absolute payload does not implement the stated portable intent.** The latest adding commit explicitly lists “root specs -> .opencode/specs symlink,” and `spec/create.sh` calls `.opencode/specs/<track>` canonical while describing root `specs` as the legacy symlink. The stated design is therefore an intentional compatibility alias; the committed developer-specific absolute target is an implementation defect, not evidence that the alias was intended to bind to one machine. [SOURCE: command `git show -s --format=... 2f6f6abcfb97aef79e97d5fa28169c6229dca341`] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-3.md:1-15`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-225`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:36-40`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:11-23`",
+        "`git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log --follow ... -- specs`; commit inspections for `9512c335`, `cdabfc90`, and `2f6f6abc`",
+        "`git archive --format=tar HEAD specs | /usr/bin/tar -tvf -`",
+        "`https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks`",
+        "`https://git-scm.com/docs/git-worktree`",
+        "`https://git-scm.com/docs/git-archive`"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-only-active-maintenance-mechanism-found-is-ordinary-git-checkout-of-a-tracke",
+      "text": "**The only active maintenance mechanism found is ordinary Git checkout of a tracked mode-`120000` entry; no production repair/recreation path was found.** `git ls-files --stage -- specs` reports mode `120000`, while targeted searches for `ln -s`, `symlinkSync`, and root-specs symlink creation under `.opencode/skills` and `.opencode/scripts` found only test-fixture creation and no `.opencode/scripts` match. Production `spec/create.sh` consumes the alias but does not create it. Thus a removed or malformed link is restored by a checkout/reset of the tracked entry, not by Spec Kit startup or maintenance code. [SOURCE: command `git ls-files --stage -- specs` => `120000 9c920659... specs`] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-217] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819] [INFERENCE: the targeted production search found no creator, while Git records the link itself]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-3.md:1-15`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-225`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:36-40`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:11-23`",
+        "`git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log --follow ... -- specs`; commit inspections for `9512c335`, `cdabfc90`, and `2f6f6abc`",
+        "`git archive --format=tar HEAD specs | /usr/bin/tar -tvf -`",
+        "`https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks`",
+        "`https://git-scm.com/docs/git-worktree`",
+        "`https://git-scm.com/docs/git-archive`"
+      ]
+    },
+    {
+      "id": "finding-4-5-a-distinct-plain-legacy-directory-is-the-only-surveyed-state-that-systematically",
+      "text": "**A distinct plain legacy directory is the only surveyed state that systematically converts writers into silent split-brain instead of fallback or hard failure.** It satisfies legacy existence checks, wins scripts-side order, and accepts direct untracked scaffolding; meanwhile MCP discovery remains on canonical whenever `.opencode/specs` exists. The symlink-disabled Git checkout case is different: `specs` is a plain file, so it cannot accept packet writes and direct untracked creation hard-fails. [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:31-41] [INFERENCE: directory and file states satisfy different filesystem operations]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-4.md:1-14`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-38,104-152,516-600,705-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,451,534-563`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-609,870-917`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,732-760`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-186,1112-1250`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-970`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:38-126,129-223`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.js:127-231`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-85`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/directory-setup.js:17-77`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:1277-1408`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts:149-170,245-298,590-598`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:31-41`"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-current-source-dist-freshness-warning-does-not-invalidate-this-matrix-s-runt",
+      "text": "**The current source/dist freshness warning does not invalidate this matrix’s runtime branches because each load-bearing path was checked in the configured compiled artifacts.** The compiled hook still emits `specs/`, compiled `generate-context` still preserves an absent explicit legacy path, compiled folder detection still falls back by basename and fails on ambiguity, and compiled workflow still writes metadata to the resolved absolute packet. The warning remains relevant to unrelated outputs and should be resolved before implementation testing, but there is no targeted source/dist contradiction here. [SOURCE: .claude/settings.json:123-137] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-24,67-102] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,732-760] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-970] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:1293-1408]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-4.md:1-14`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-38,104-152,516-600,705-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,451,534-563`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-609,870-917`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,732-760`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-186,1112-1250`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-970`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:38-126,129-223`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.js:127-231`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-85`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/directory-setup.js:17-77`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:1277-1408`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts:149-170,245-298,590-598`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:31-41`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-most-subtle-absent-alias-outcome-is-successful-child-metadata-plus-a-stale-p",
+      "text": "**The most subtle absent-alias outcome is successful child metadata plus a stale phase-parent pointer.** Runtime folder detection can recover the canonical child by unique basename, and workflow follow-ups update that recovered absolute packet, but `generate-context` subsequently rechecks its original nonexistent legacy-qualified argument and skips `updatePhaseParentPointersAfterSave()`. This is neither total failure nor root split-brain: the child is MCP-visible, while parent resume routing can remain stale. [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:929-945] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:1293-1408] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:732-760] [INFERENCE: the three cited stages use different target variables]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-4.md:1-14`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-38,104-152,516-600,705-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,451,534-563`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-609,870-917`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,732-760`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-186,1112-1250`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-970`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:38-126,129-223`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.js:127-231`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-85`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/directory-setup.js:17-77`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:1277-1408`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts:149-170,245-298,590-598`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:31-41`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-stop-hook-s-user-visible-severity-is-weaker-than-the-writer-failure-a-missin",
+      "text": "**The Stop hook’s user-visible severity is weaker than the writer failure.** A missing generator is classified `skipped`; a non-zero/timed-out generator is classified `failed` and logged as a warning; and the hook’s outer CLI always exits `0`. Therefore ambiguous-leaf and missing-target failures do not block Claude Stop and can look like a successful stop unless hook logs are inspected. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:104-152,743-749]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-4.md:1-14`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-38,104-152,516-600,705-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,451,534-563`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-609,870-917`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,732-760`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-186,1112-1250`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-970`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:38-126,129-223`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.js:127-231`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-85`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/directory-setup.js:17-77`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:1277-1408`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts:149-170,245-298,590-598`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:31-41`"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-stop-hook-failure-begins-before-the-shared-legacy-first-resolver-transcript-",
+      "text": "**The Stop-hook failure begins before the shared legacy-first resolver: transcript detection deliberately normalizes either root spelling to `specs/<relative-id>`, and the compiled hook passes that spelling as the structured `specFolder`.** `generate-context` converts it to an absolute `/repo/specs/...` path even when it does not exist, so the ordinary “legacy absent, choose canonical” behavior in `findActiveSpecsDir()` is bypassed for this entrypoint. The checked-in source and the actually configured compiled artifacts agree on this chain despite the workspace’s general stale-dist warning. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-38,104-152,705-740] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-24,67-102] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-268]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-4.md:1-14`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-38,104-152,516-600,705-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,451,534-563`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-609,870-917`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,732-760`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-186,1112-1250`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-970`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:38-126,129-223`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.js:127-231`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-85`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/directory-setup.js:17-77`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:1277-1408`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts:149-170,245-298,590-598`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:31-41`"
+      ]
+    },
+    {
+      "id": "finding-4-2-writer-by-writer-failure-matrix-visible-refers-to-the-mcp-indexing-resume-reader",
+      "text": "**Writer-by-writer failure matrix.** “Visible” refers to the MCP indexing/resume reader, which selects `.opencode/specs` whenever that root exists; scripts-side readers remain legacy-first and therefore can see a distinct plain `specs/` tree first. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-30]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-4.md:1-14`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-38,104-152,516-600,705-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,451,534-563`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:193-380,531-609,870-917`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,732-760`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:181-186,1112-1250`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-970`",
+        "`.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:38-126,129-223`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/subfolder-utils.js:127-231`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-85`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/directory-setup.js:17-77`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:1277-1408`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts:149-170,245-298,590-598`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:9-34`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:31-41`"
+      ]
+    },
+    {
+      "id": "finding-5-4-after-fallback-all-main-save-writes-stay-on-the-resolved-absolute-packet-source-",
+      "text": "**After fallback, all main save writes stay on the resolved absolute packet.** Source and dist both pass `detectSpecFolder(...)` into `ensureSpecFolderExists(...)`; description and metadata follow-ups retain that `specFolder`/validated absolute target. Thus the symlink-absent route either writes the recovered canonical packet or fails before the workflow writer; it does not silently create a distinct legacy root. [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:730-767,1290-1408] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts:22-85] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/spec-folder/directory-setup.js:17-77]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-5.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-55,104-152,516-547,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-44,67-101,372-402,483-570`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-352,755-809,876-900`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,620-662,734-759`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:1112-1220`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-944`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:730-767,1290-1408`",
+        "Mechanical `node` scan of output boundaries, exact source/dist anchors, and six checked-in source maps."
+      ]
+    },
+    {
+      "id": "finding-5-2-no-source-dist-semantic-drift-was-found-at-any-load-bearing-root-selection-step-",
+      "text": "**No source/dist semantic drift was found at any load-bearing root-selection step.** The compared pairs agree on transcript target selection, `lastSpecFolder` autosave input, generator discovery/spawn, explicit `specs/` preservation, absolute-path existence checks, basename child fallback, workflow use of the detected absolute packet, and post-save re-resolution. The checked source maps cannot provide byte-level freshness proof because all six inspected maps omit `sourcesContent`; therefore this is a targeted branch-parity conclusion, not a claim that all dist outputs are fresh. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:104-152,516-547,641-688] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:67-101,372-402,483-522] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-352,755-809,876-900] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-279,620-662,734-759] [SOURCE: command `node` source-map/parity scan of the six named source/map pairs reported `embedded=false` for every map]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-5.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-55,104-152,516-547,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-44,67-101,372-402,483-570`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-352,755-809,876-900`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,620-662,734-759`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:1112-1220`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-944`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:730-767,1290-1408`",
+        "Mechanical `node` scan of output boundaries, exact source/dist anchors, and six checked-in source maps."
+      ]
+    },
+    {
+      "id": "finding-5-1-the-configured-autosave-chain-is-exact-and-contains-two-compiled-runtime-boundar",
+      "text": "**The configured autosave chain is exact and contains two compiled-runtime boundaries.** Claude runs compiled `session-stop.js`; both hook source and dist locate and spawn compiled `scripts/dist/memory/generate-context.js`; the hook passes the persisted `lastSpecFolder` as structured `specFolder`; and the hook always exits `0`, turning a failed generator into a logged autosave failure rather than a failed Claude Stop. [SOURCE: .claude/settings.json:123-137] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-55,104-152,745-749] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-44,67-101,567-570]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-5.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-55,104-152,516-547,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-44,67-101,372-402,483-570`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-352,755-809,876-900`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,620-662,734-759`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:1112-1220`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-944`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:730-767,1290-1408`",
+        "Mechanical `node` scan of output boundaries, exact source/dist anchors, and six checked-in source maps."
+      ]
+    },
+    {
+      "id": "finding-5-5-the-remaining-autosave-chain-gap-is-narrower-than-the-main-save-post-save-phase-",
+      "text": "**The remaining autosave-chain gap is narrower than the main save: post-save phase-pointer refresh re-resolves `CONFIG.SPEC_FOLDER_ARG` instead of consuming the workflow's returned absolute packet.** Source and dist agree that `resolveExistingSpecFolderPath(CONFIG.SPEC_FOLDER_ARG)` gates `updatePhaseParentPointersAfterSave(...)`. If earlier validation rewrites the config argument to the canonical child, the pointer updates; if only the deeper async detector recovers the packet while the original legacy argument remains unresolved, the child save can succeed and pointer refresh is skipped. [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:755-809,876-900] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:620-662,734-759] [INFERENCE: the pointer outcome depends on whether the pre-workflow validation stage updates `CONFIG.SPEC_FOLDER_ARG`, whereas the main workflow consumes its independently detected absolute result]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-5.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-55,104-152,516-547,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-44,67-101,372-402,483-570`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-352,755-809,876-900`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,620-662,734-759`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:1112-1220`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-944`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:730-767,1290-1408`",
+        "Mechanical `node` scan of output boundaries, exact source/dist anchors, and six checked-in source maps."
+      ]
+    },
+    {
+      "id": "finding-5-3-with-the-root-alias-absent-the-stop-route-does-not-create-a-replacement-root-sel",
+      "text": "**With the root alias absent, the Stop route does not create a replacement root; selection happens only after the explicit legacy-qualified target fails.** The hook's detected/persisted target reaches the generator as `specs/<packet-id>`; the generator preserves that explicit project-scoped spelling; folder detection first tests `/repo/specs/<packet-id>`, then falls back to child/basename search. A unique canonical match returns the existing `.opencode/specs/...` packet, while ambiguity or no match fails; no root-level `mkdir` occurs in this route. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:641-688,705-740] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:483-522,534-563] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-352] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:1130-1220] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:863-944] [INFERENCE: the cited route contains access checks and existing-child returns but no root creation operation]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-5.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.claude/settings.json:123-137`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-55,104-152,516-547,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-44,67-101,372-402,483-570`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-352,755-809,876-900`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307,620-662,734-759`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:1112-1220`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/spec-folder/folder-detector.js:851-944`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058,1646-1802`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:730-767,1290-1408`",
+        "Mechanical `node` scan of output boundaries, exact source/dist anchors, and six checked-in source maps."
+      ]
+    },
+    {
+      "id": "finding-6-2-data-migration-is-a-prerequisite-classification-pass-not-a-bulk-rewrite-a-read-o",
+      "text": "**Data migration is a prerequisite classification pass, not a bulk rewrite.** A read-only inventory should classify every relative packet identity as (a) canonical only, (b) legacy only, (c) both spellings resolving to the same inode, or (d) divergent duplicates. Class (c) needs no data movement; class (b) remains readable through fallback and can be migrated packet-by-packet; class (d) requires an explicit winner or merge before canonical-first precedence changes; class (a) is already compliant. Existing packet IDs and workflow folder identities do not need root-spelling rewrites because inspected identities are metadata-backed or root-relative. The prerequisite is therefore an auditable collision/move manifest with packet-local validation and backup locations, not a database-wide or metadata-wide ID conversion. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:11-17,19-23] [INFERENCE: the four migration classes follow from same-inode deduplication, retained fallback, and the duplicate-winner regression]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,55-188,234-264`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-6.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:1-58`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:1-56`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`"
+      ]
+    },
+    {
+      "id": "finding-6-4-rollback-must-restore-behavior-and-data-separately-restoring-the-symlink-alone-i",
+      "text": "**Rollback must restore behavior and data separately; restoring the symlink alone is not a valid rollback.** Keep call-site changes, resolver order, and alias policy in separable changes so Stage B can revert generated target behavior and Stage D can restore legacy-first precedence without undoing unrelated fixes. Before moving any class-(b) or merging class-(d) packet, preserve a manifest and recoverable packet copy; rollback then restores the packet at its recorded root and returns precedence to legacy-first. Re-adding a relative alias can be a temporary Unix-compatible bridge, but it cannot recover symlink-disabled checkouts, where Git materializes link text as a plain file, and it must never be used to undo or mask migrated data. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:12-15,22-24] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:21-27,31-35] [INFERENCE: separable behavior rollback plus manifest-backed packet restoration is required because alias state and packet location fail independently]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,55-188,234-264`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-6.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:1-58`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:1-56`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`"
+      ]
+    },
+    {
+      "id": "finding-6-5-the-acceptance-matrix-must-cross-root-state-packet-state-and-entrypoint-and-must",
+      "text": "**The acceptance matrix must cross root state, packet state, and entrypoint, and must assert both write location and reader visibility.** Root states: valid relative alias, absent alias, dangling alias, distinct plain `specs/` directory, and symlink-disabled plain file. Packet states: canonical-only, legacy-only, same-inode alias, unique leaf, duplicate leaf, and divergent duplicate relative ID. Entrypoints: Stop autosave, bare/canonical-qualified/legacy-qualified `generate-context`, phase-child save with parent-pointer refresh, tracked and untracked `spec/create.sh`, scripts-side detection, MCP indexing/resume, and Gate-3 binding. Required assertions are: implicit writes land canonically; explicit legacy input remains explicit during the migration window; legacy-only reads remain available; divergent duplicates fail preflight rather than silently switch; child and parent metadata update the same resolved packet; MCP and scripts observe the intended packet; and every applicable case passes with and without the alias. Fresh compiled artifacts are a prerequisite because the configured Stop route executes dist, while iteration 5 established parity only for the previously inspected branches, not global dist freshness. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:9-17,50-54] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:13-15,26-30] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:19-35] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:15-23,35-40] [INFERENCE: the Cartesian matrix is the smallest test model that exposes precedence, alias, ambiguity, write-target, and visibility regressions independently]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,55-188,234-264`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-6.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:1-58`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:1-56`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-evidence-ranked-candidates-are-1-call-site-specific-automatic-writer-fixes-2",
+      "text": "**The evidence-ranked candidates are: (1) call-site-specific automatic-writer fixes; (2) canonical-first shared-resolver order with legacy fallback; (3) tracked-symlink retirement after dependency removal; (4) a relative symlink only as a temporary compatibility bridge; and (5) canonical-only cutover, rejected.** Rank 1 should canonicalize the Stop hook's generated packet target, make post-save phase-pointer refresh consume the already resolved absolute packet, and make untracked `spec/create.sh` creation canonical by default. It has the smallest behavior blast radius and closes failures that resolver reordering cannot: the Stop route preserves an explicit `specs/...` argument before shared fallback, phase-pointer refresh re-resolves that original argument, and `spec/create.sh` constructs `specs/` directly. Its known regression is only for callers relying on *implicit* legacy writes; deliberate explicit legacy paths should remain supported behind migration-only compatibility. Rank 2 aligns remaining unqualified scripts-side selection, but changes the winner for divergent duplicate relative IDs, so it requires a duplicate inventory and collision gate first. Rank 3 removes clone/worktree/plain-file dependence only after ranks 1–2 prove the alias is unnecessary. Rank 4 repairs the current absolute payload but cannot support `core.symlinks=false`, so it is a bridge, not an endpoint. Rank 5 would orphan unique legacy-only packets and is not regression-safe. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:9-23] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:10-15,22-24] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:15-35] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:15-23] [INFERENCE: ranking favors the narrow fixes that cover bypass paths before the shared-order change and alias retirement]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,55-188,234-264`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-6.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:1-58`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:1-56`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-regression-safe-rollout-is-staged-and-each-stage-must-be-independently-rever",
+      "text": "**The regression-safe rollout is staged and each stage must be independently reversible.** Stage A builds fresh source/dist artifacts and adds the dual-root fixtures before behavior changes; Stage B applies the three rank-1 call-site fixes while preserving explicit-root inputs; Stage C runs the migration inventory and resolves divergent duplicates; Stage D reorders only the shared default list to canonical-first while retaining legacy enumeration/fallback; Stage E proves all writer/reader scenarios with the alias absent; only then may Stage F remove the tracked alias or document it as unsupported local convenience. This order prevents a resolver-only patch from falsely appearing complete and prevents symlink removal from exposing known bypass paths. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:9-15] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:21-35,91-93] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:15-23] [INFERENCE: stage ordering follows dependency direction from explicit writer targets to shared defaults to alias removal]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,55-188,234-264`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-6.md:1-14`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:1-58`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:1-56`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`"
+      ]
+    },
+    {
+      "id": "finding-7-3-existing-tests-cover-canonical-mcp-preference-and-same-inode-alias-deduplication",
+      "text": "**Existing tests cover canonical MCP preference and same-inode alias deduplication, but not a divergent same-relative collision.** `T520-9a` creates different packet identities in canonical and legacy roots and proves that MCP discovery returns only canonical; `T520-9b` proves a symlinked root is deduplicated. Folder-discovery integration separately proves both distinct roots are enumerated, the alias is realpath-deduplicated, and root-relative folder identity remains stable when alias order is reversed. These are valuable precedence and alias tests, but their fixtures either use different packet IDs or one physical inode. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-555] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:160-226]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-7.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-216,267-297`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-555`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:160-226`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:1-216`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts:274-304`",
+        "`.opencode/specs/anobel.com/002-contact-form-logic/graph-metadata.json:1-6,43-112`",
+        "Read-only command inventory: Git tree/index, untracked/ignored path counts, live symlink metadata, JSON identity/path spelling counts, and targeted test-symbol searches."
+      ]
+    },
+    {
+      "id": "finding-7-2-persisted-primary-identities-are-root-spelling-neutral-but-generated-path-caches",
+      "text": "**Persisted primary identities are root-spelling-neutral, but generated path caches are not.** A read-only parse of 6,267 `graph-metadata.json` and `description.json` files found 6,297 identity fields (`packet_id`, parent/child IDs, and last-active-child IDs), all root-relative and none qualified by `specs/` or `.opencode/specs/`. The same files contained 1,039 root-spelling path references: 909 canonical-qualified, 115 legacy-qualified, and 15 other root-relative matches. The concrete legacy example keeps `packet_id` and `spec_folder` root-relative while `derived.key_files` and `derived.entities[].path` persist `specs/anobel.com/...`. A resolver-order migration therefore does not need an ID rewrite, but regeneration/canonicalization tests must account for mixed derived path spellings. [SOURCE: command result `node` recursive JSON identity/path inventory, 2026-07-17T08:51Z] [SOURCE: .opencode/specs/anobel.com/002-contact-form-logic/graph-metadata.json:1-6,43-64,91-112]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-7.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-216,267-297`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-555`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:160-226`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:1-216`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts:274-304`",
+        "`.opencode/specs/anobel.com/002-contact-form-logic/graph-metadata.json:1-6,43-112`",
+        "Read-only command inventory: Git tree/index, untracked/ignored path counts, live symlink metadata, JSON identity/path spelling counts, and targeted test-symbol searches."
+      ]
+    },
+    {
+      "id": "finding-7-1-the-current-checkout-has-no-distinct-legacy-only-packet-tree-or-divergent-root-c",
+      "text": "**The current checkout has no distinct legacy-only packet tree or divergent root collision to migrate.** Git records `specs` as one mode-`120000` entry and 45,224 tracked descendants under `.opencode/specs`, with zero tracked `specs/` descendants. The working-tree inventory likewise reported 777 untracked and 68,282 ignored canonical descendants versus zero legacy descendants. `lstat`, `realpath`, and inode comparison confirmed that live `specs` is a symlink and both spellings resolve to the same physical canonical root. Therefore content accessed through `specs/...` is not legacy-only in this checkout; a distinct-root collision manifest is empty while this alias remains intact. [SOURCE: command result `node` read-only `git ls-tree`/`git ls-files` plus `lstat`/`realpath`/inode inventory, 2026-07-17T08:51Z]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-7.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-216,267-297`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-555`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:160-226`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:1-216`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts:274-304`",
+        "`.opencode/specs/anobel.com/002-contact-form-logic/graph-metadata.json:1-6,43-112`",
+        "Read-only command inventory: Git tree/index, untracked/ignored path counts, live symlink metadata, JSON identity/path spelling counts, and targeted test-symbol searches."
+      ]
+    },
+    {
+      "id": "finding-7-5-the-remaining-root-collision-matrix-is-test-work-not-live-data-migration-work-mi",
+      "text": "**The remaining root-collision matrix is test work, not live-data migration work.** Missing focused cases are: distinct roots containing the same relative packet with identical content; the same relative packet with divergent content and metadata; canonical absent with a unique legacy-only fallback; mixed generated `derived.*.path` spellings; absent/dangling/plain-file alias behavior; and a symlink-permission path that asserts fallback instead of returning success after `EPERM`. Existing canonicalization tests prove symlink-versus-real-path identity consistency, including non-existent leaf handling, but do not model two physical spec roots. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:20-82,84-160] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-226] [INFERENCE: the missing cases are the set difference between iteration 6's acceptance matrix and the targeted root-selection fixtures found in this iteration]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-7.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-216,267-297`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-555`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:160-226`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:1-216`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts:274-304`",
+        "`.opencode/specs/anobel.com/002-contact-form-logic/graph-metadata.json:1-6,43-112`",
+        "Read-only command inventory: Git tree/index, untracked/ignored path counts, live symlink metadata, JSON identity/path spelling counts, and targeted test-symbol searches."
+      ]
+    },
+    {
+      "id": "finding-7-4-the-scripts-side-resolver-order-has-no-behavioral-regression-test-in-the-targete",
+      "text": "**The scripts-side resolver order has no behavioral regression test in the targeted test inventory.** Exact test-symbol searches for `getSpecsDirectories`, `getAllExistingSpecsDirs`, and `findActiveSpecsDir` found only an export-surface assertion that `findActiveSpecsDir` is a function; no test asserts legacy-first order, canonical-first order, unique legacy fallback, or same-relative duplicate selection. This is the highest-priority test gap because changing the shared scripts list would otherwise have no direct before/after contract. [SOURCE: targeted test-symbol grep under `.opencode/skills/system-spec-kit`, 2026-07-17] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts:274-304]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-7.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-216,267-297`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-132`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-555`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:160-226`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-canonicalization.vitest.ts:1-216`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts:274-304`",
+        "`.opencode/specs/anobel.com/002-contact-form-logic/graph-metadata.json:1-6,43-112`",
+        "Read-only command inventory: Git tree/index, untracked/ignored path counts, live symlink metadata, JSON identity/path spelling counts, and targeted test-symbol searches."
+      ]
+    },
+    {
+      "id": "finding-8-3-reader-assertions-must-distinguish-scripts-enumeration-from-mcp-authoritative-ro",
+      "text": "**Reader assertions must distinguish scripts enumeration from MCP authoritative-root selection and must inspect content, not only path counts.** Extend the existing MCP `findSpecDocuments` fixture with (a) canonical absent/legacy-only fallback, (b) the same relative ID in both independent roots with divergent sentinel content, and (c) broken/plain legacy entries while canonical exists. Assert that MCP returns the canonical sentinel whenever canonical exists and the legacy sentinel only when canonical is absent; mirror each case for `findGraphMetadataFiles`. Separately assert that scripts-side discovery retains unique legacy packets while choosing canonical for an unqualified duplicate. Existing `T520-9a` uses different packet IDs, so it proves root preference but cannot detect a same-ID content switch; `T520-9b` proves only same-inode deduplication. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-607] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:14-18]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-8.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-382,755-816`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:800-819`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:42-305`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts:1-232`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-56,104-152,516-615,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,563`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:49-67,134-227`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-607`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:108-124`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/dist-freshness.vitest.ts:61-119`"
+      ]
+    },
+    {
+      "id": "finding-8-5-run-the-contract-at-both-semantic-source-seams-and-actual-compiled-runtime-seams",
+      "text": "**Run the contract at both semantic source seams and actual compiled runtime seams; marker or mtime freshness checks alone are not behavior proof.** Source-mode Vitest should import the TypeScript resolver, MCP discovery, Stop hook, and pointer functions. Dist-mode should first build both packages, then import `scripts/dist/core/config.js`, spawn or import `scripts/dist/memory/generate-context.js` with `CONFIG.PROJECT_ROOT` rebound to the temporary workspace before workflow execution, and invoke `mcp_server/dist/hooks/claude/session-stop.js` with `SPECKIT_TEST=true` plus a capture stub. The same table-driven expected-result object should drive source and dist assertions so drift is a value mismatch, not a prose review. Existing checks only prove the compiled export exists or compare markers/mtimes; the configured Stop route and scripts package entrypoints execute dist, so the behavior matrix must run after a fresh build and then in a second alias-absent pass. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts:274-304,328-332] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/dist-freshness.vitest.ts:61-119] [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:10-19] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/package.json:18-32] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:40-56,104-152]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-8.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-382,755-816`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:800-819`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:42-305`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts:1-232`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-56,104-152,516-615,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,563`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:49-67,134-227`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-607`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:108-124`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/dist-freshness.vitest.ts:61-119`"
+      ]
+    },
+    {
+      "id": "finding-8-2-the-minimal-root-state-matrix-is-nine-pairwise-cells-it-covers-every-requested-t",
+      "text": "**The minimal root-state matrix is nine pairwise cells; it covers every requested topology without repeating every entrypoint against every state.** Direct resolver assertions belong in a dedicated scripts-side contract suite because current `getSpecsDirectories()` and compiled dist both return legacy before canonical, `findActiveSpecsDir()` accepts any existing path without checking that it is a directory, and same-inode deduplication preserves the first spelling. These assertions should initially expose the intended red cells, then become the regression contract after remediation. [SOURCE: .opencode/skills/system-spec-kit/scripts/core/config.ts:321-360] [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-8.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-382,755-816`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:800-819`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:42-305`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts:1-232`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-56,104-152,516-615,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,563`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:49-67,134-227`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-607`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:108-124`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/dist-freshness.vitest.ts:61-119`"
+      ]
+    },
+    {
+      "id": "finding-8-1-use-one-packet-local-temporary-workspace-factory-with-factorized-root-and-packet",
+      "text": "**Use one packet-local temporary-workspace factory with factorized root and packet dimensions, rather than a full Cartesian fixture set.** A future `createRootResolutionFixture({ rootMode, packetMode })` should create a realpathed `mkdtemp` root, expose `canonicalRoot=<tmp>/.opencode/specs` and `legacyRoot=<tmp>/specs`, write minimal valid `spec.md` plus schema-valid `graph-metadata.json`, and always remove the workspace in `afterEach`. Root modes should be `canonical-only`, `legacy-only`, `symlink-alias`, `independent-roots`, `broken-symlink`, `plain-directory-replacement`, and `plain-file-checkout`; packet modes should be `unique`, `same-id-identical`, `same-id-divergent`, and `phase-parent-child`. The existing harnesses already establish `mkdtemp`/recursive cleanup, valid graph-metadata construction, and symlink capability probing; the new factory should reuse those patterns and must use an explicit skipped-test result when symlink creation is unsupported instead of returning a vacuous pass. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:49-67,134-227] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts:9-78] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:108-124]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-8.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-382,755-816`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:800-819`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:42-305`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts:1-232`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-56,104-152,516-615,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,563`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:49-67,134-227`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-607`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:108-124`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/dist-freshness.vitest.ts:61-119`"
+      ]
+    },
+    {
+      "id": "finding-8-4-writer-tests-should-assert-the-selected-absolute-packet-every-touched-metadata-f",
+      "text": "**Writer tests should assert the selected absolute packet, every touched metadata file, absence of writes in the losing root, and reader visibility after the write.** Mock-only argument tests are necessary but insufficient: one source-level test should capture each writer's selected path, and one temporary-workspace integration test should inspect the filesystem afterward. The matrix below maps each assertion to an existing harness seam. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:116-205] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:42-249] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts:60-157]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-8.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:1-93`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-005.md:1-71`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/dist/core/config.js:214-250`",
+        "`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:269-382,755-816`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:800-819`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:42-305`",
+        "`.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts:1-232`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-223,308-382`",
+        "`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:31-56,104-152,516-615,641-749`",
+        "`.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:22-102,563`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:49-67,134-227`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:500-607`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:108-124`",
+        "`.opencode/skills/system-spec-kit/mcp_server/tests/dist-freshness.vitest.ts:61-119`"
+      ]
+    },
+    {
+      "id": "finding-9-5-ci-needs-four-blocking-lanes-the-existing-ubuntu-only-freshness-sweep-is-insuffi",
+      "text": "**CI needs four blocking lanes; the existing Ubuntu-only freshness sweep is insufficient and must not be treated as cross-platform root-resolution evidence.** The suite should use temporary workspaces, never mutate the checkout's live alias. [SOURCE: .github/workflows/strict-pass-freshness-sweep.yml:11-27,37-79] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:14-37,61-69]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-9.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-11`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-265`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-128`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:1-125`",
+        "`.opencode/skills/system-spec-kit/scripts/package.json:1-35`",
+        "`.opencode/skills/system-spec-kit/mcp_server/package.json:1-83`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:1-79`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:790-819`"
+      ]
+    },
+    {
+      "id": "finding-9-4-clean-rebuild-order-is-scripts-first-mcp-server-second-followed-by-behavior-not-",
+      "text": "**Clean rebuild order is scripts first, MCP server second, followed by behavior—not freshness-marker—execution against both dist surfaces.** `@spec-kit/scripts` exposes `tsc --build` but no clean script and its runtime main is `dist/memory/generate-context.js`; CI must therefore remove its candidate `dist` and TypeScript build-info in the isolated checkout, run typecheck and targeted source tests, build scripts, then run the R1–R9 and generator dist cases. Only after scripts dist is green should CI run MCP source typecheck/tests and `npm run rebuild`, whose declared sequence cleans MCP dist, prepares freshness metadata, compiles, and finalizes dist; then it must run the built Stop-hook and MCP-reader cells against the same expected-result table. Promotion hashes both rebuilt dist trees and deploys them with source as one unit. Building MCP first is unsafe because its Stop hook invokes the scripts generator runtime, and a source-only green result does not prove the configured compiled path. [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:2-19] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/package.json:18-31] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:59-69]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-9.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-11`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-265`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-128`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:1-125`",
+        "`.opencode/skills/system-spec-kit/scripts/package.json:1-35`",
+        "`.opencode/skills/system-spec-kit/mcp_server/package.json:1-83`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:1-79`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:790-819`"
+      ]
+    },
+    {
+      "id": "finding-9-3-the-point-of-no-return-is-the-first-successful-canonical-write-after-s3-unfreeze",
+      "text": "**The point of no return is the first successful canonical write after S3 unfreezes, not alias removal or reader reordering.** Before that write, S2's manifest and quarantined originals can reverse every packet move under the freeze. After it, restoring old legacy packets can discard or fork new canonical changes, so rollback must be behavior-only: refreeze, restore the previous source+dist bundle atomically, preserve canonical data, and either prove a same-inode compatibility bridge before resuming or roll forward. This separates three independent rollback domains: packet data (reversible only through frozen S2), executable behavior (reversible as a source+dist bundle), and alias metadata (reversible only as a non-universal convenience). Restoring the symlink alone never repairs stale parent pointers, divergent content, or a symlink-disabled checkout. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:18-22] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:14-18] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:53-59] [INFERENCE: the first post-migration write makes the canonical copy newer than its quarantined legacy predecessor, so blind data reversal ceases to be lossless]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-9.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-11`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-265`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-128`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:1-125`",
+        "`.opencode/skills/system-spec-kit/scripts/package.json:1-35`",
+        "`.opencode/skills/system-spec-kit/mcp_server/package.json:1-83`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:1-79`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:790-819`"
+      ]
+    },
+    {
+      "id": "finding-9-2-use-the-following-six-stage-release-transaction-every-gate-is-fail-closed-and-ea",
+      "text": "**Use the following six-stage release transaction; every gate is fail-closed and each stage has an exact rollback scope.** The 28-day compatibility duration comes from packet config, while R1–R9 and the writer/reader rows provide the behavior gates. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:16-19,76-84] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:25-69]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-9.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-11`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-265`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-128`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:1-125`",
+        "`.opencode/skills/system-spec-kit/scripts/package.json:1-35`",
+        "`.opencode/skills/system-spec-kit/mcp_server/package.json:1-83`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:1-79`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:790-819`"
+      ]
+    },
+    {
+      "id": "finding-9-1-writer-cutover-must-follow-packet-canonicalization-not-precede-it-the-earlier-ca",
+      "text": "**Writer cutover must follow packet canonicalization, not precede it; the earlier call-site-first ranking is unsafe as a deployment order unless writers remain frozen.** The current shared scripts resolver selects the first existing legacy root, and untracked `spec/create.sh` writes directly to `specs/`; iteration 8's intended writers instead target canonical. If a unique legacy-only packet still exists when an implicit writer becomes canonical-only, that writer can create or update the same relative ID under `.opencode/specs` while the old packet remains under a distinct `specs/`, producing the R6 split state that the rollout is meant to prevent. The safe order is: deploy/read-run collision preflight, freeze automatic writers, canonicalize packet ownership, verify zero in-root legacy packets, deploy canonical writers plus per-write collision guards, then unfreeze. A compatibility period may preserve explicit legacy **reads**, but ordinary or automatic legacy **writes** must be blocked; a narrowly named migration override is safe only while the global write freeze is active. [SOURCE: .opencode/skills/system-spec-kit/scripts/core/config.ts:321-360] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:27-37,51-59] [INFERENCE: canonical writer cutover before moving a unique legacy packet creates two writable physical owners for one relative identity]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-9.md:1-12`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-config.json:1-85`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-state.jsonl:1-11`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:24-44,56-265`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/findings-registry.json:8-128`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:1-69`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-007.md:1-67`",
+        "`.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:1-125`",
+        "`.opencode/skills/system-spec-kit/scripts/package.json:1-35`",
+        "`.opencode/skills/system-spec-kit/mcp_server/package.json:1-83`",
+        "`.github/workflows/strict-pass-freshness-sweep.yml:1-79`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-360`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:790-819`"
+      ]
+    },
+    {
+      "id": "finding-10-1-iteration-1-s-shared-scripts-resolver-consumer-list-survives-the-exact-symbol-au",
+      "text": "**Iteration 1's shared-scripts resolver consumer list survives the exact-symbol audit, but its broader “exhaustive root-resolution call-site inventory” claim does not.** The exact `getSpecsDirectories`/`getAllExistingSpecsDirs`/`findActiveSpecsDir` search reproduced the production consumers already listed: subfolder search, folder detection, `generate-context`, session collection, workflow, directory setup, and nested changelog. A separate direct-constructor check exposed independent production resolvers absent from that inventory, including MCP startup pending-recovery roots, generic MCP search base paths, resume/authored-continuity resolution, API indexing resolution, script affinity, and memory-quality validation. Synthesis must therefore call iteration 1 an exhaustive inventory of the **shared scripts resolver plus the specifically audited MCP/Gate-3/direct-writer paths**, not of every root resolver in Spec Kit. [SOURCE: .opencode/skills/system-spec-kit/scripts/core/config.ts:321-339] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:41,132] [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:196-226,311-375,542,789] [SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1205-1208,1439-1442] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1021-1027,1676-1678] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1602-1619] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:1363-1379]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`research/prompts/iteration-10.md:1-12`",
+        "`research/deep-research-config.json:1-85`",
+        "`research/deep-research-state.jsonl:1-12`",
+        "`research/deep-research-strategy.md:24-44,56-393`",
+        "`research/findings-registry.json:1-1366`",
+        "`research/deep-research-dashboard.md:17-155`",
+        "`research/iterations/iteration-001.md:1-80` through `research/iterations/iteration-009.md:1-92`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-339` and exact shared-resolver symbol search results",
+        "`.opencode/skills/system-spec-kit/mcp_server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1592-1627`",
+        "`.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:68-92`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:863-910`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:1363-1379`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts:50-70`",
+        "`.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:153-174`",
+        "`.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:619-651`",
+        "Read-only Git evidence: `git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log -1 --format='%H%n%B' -- specs`"
+      ]
+    },
+    {
+      "id": "finding-10-3-symlink-intent-and-tracked-capture-are-confirmed-but-exact-creation-and-exclusiv",
+      "text": "**Symlink intent and tracked capture are confirmed, but exact creation and exclusive maintenance ownership remain inferred.** Current Git evidence still records `specs` as mode `120000`, stores the developer-specific absolute target, and shows the latest adding commit describing “root specs -> .opencode/specs symlink” inside a checkpoint of pre-existing uncommitted work. That supports “intentional compatibility alias” and proves Git captures/restores the tracked entry; it does not identify the command, actor, or working-tree event that created the current link, and the negative creator search cannot prove that Git checkout is the only mechanism in every external environment. Synthesis must state: **no in-scope runtime installer/self-healer was found; Git checkout is the observed repository maintenance mechanism; exact creator and any external automation are unknown.** [SOURCE: command `git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log -1 --format='%H%n%B' -- specs`, 2026-07-17] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:10-20]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`research/prompts/iteration-10.md:1-12`",
+        "`research/deep-research-config.json:1-85`",
+        "`research/deep-research-state.jsonl:1-12`",
+        "`research/deep-research-strategy.md:24-44,56-393`",
+        "`research/findings-registry.json:1-1366`",
+        "`research/deep-research-dashboard.md:17-155`",
+        "`research/iterations/iteration-001.md:1-80` through `research/iterations/iteration-009.md:1-92`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-339` and exact shared-resolver symbol search results",
+        "`.opencode/skills/system-spec-kit/mcp_server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1592-1627`",
+        "`.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:68-92`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:863-910`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:1363-1379`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts:50-70`",
+        "`.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:153-174`",
+        "`.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:619-651`",
+        "Read-only Git evidence: `git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log -1 --format='%H%n%B' -- specs`"
+      ]
+    },
+    {
+      "id": "finding-10-4-the-final-recommendation-is-data-before-writer-deployment-with-resolver-normaliz",
+      "text": "**The final recommendation is data-before-writer deployment, with resolver normalization broadened beyond the shared scripts helper.** Ranked release order is: (1) lock the expected behavior and run a fail-closed, read-only classifier across every physical root; (2) freeze packet writers and canonicalize/quarantine legacy-only or duplicate data while rollback remains lossless; (3) deploy one source+dist writer bundle that canonicalizes Stop, bare/new saves, phase-pointer follow-up, and both create paths with per-write collision rejection; (4) normalize every unqualified reader/resolver to canonical-first while retaining legacy-only reads, including the independently implemented functions identified above rather than only `getSpecsDirectories()`; and (5) retire the alias only after the 28-day zero-hit window and complete no-alias proof. The implementation-priority ranking in iteration 6 remains useful, but its writer-before-migration stage order is superseded by iteration 9. The first successful post-unfreeze canonical write remains the lossless data-rollback boundary; later rollback is behavior-only and preserves canonical data. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:14-22] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-009.md:14-29,42-59] [INFERENCE: omitted independent resolvers must join the canonical-first reader stage or mixed precedence survives the shared-helper change]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`research/prompts/iteration-10.md:1-12`",
+        "`research/deep-research-config.json:1-85`",
+        "`research/deep-research-state.jsonl:1-12`",
+        "`research/deep-research-strategy.md:24-44,56-393`",
+        "`research/findings-registry.json:1-1366`",
+        "`research/deep-research-dashboard.md:17-155`",
+        "`research/iterations/iteration-001.md:1-80` through `research/iterations/iteration-009.md:1-92`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-339` and exact shared-resolver symbol search results",
+        "`.opencode/skills/system-spec-kit/mcp_server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1592-1627`",
+        "`.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:68-92`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:863-910`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:1363-1379`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts:50-70`",
+        "`.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:153-174`",
+        "`.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:619-651`",
+        "Read-only Git evidence: `git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log -1 --format='%H%n%B' -- specs`"
+      ]
+    },
+    {
+      "id": "finding-10-2-the-omitted-resolvers-prove-that-subsystem-wide-precedence-labels-are-unsafe-pre",
+      "text": "**The omitted resolvers prove that subsystem-wide precedence labels are unsafe; precedence must remain per function.** `resume-ladder` and authored-continuity resolution are canonical-first; API indexing preserves an existing direct path, then uses canonical-first discovery, then canonical-before-legacy fallback. In contrast, generic MCP `getSpecsBasePaths()` constructs legacy before canonical, MCP startup pending recovery scans legacy before canonical, `spec-affinity` tries direct candidates then legacy before canonical, and memory-quality validation inserts direct, legacy, then canonical candidates at each ancestor. Startup drift-marker containment is canonical-only rather than a two-root selector. Accordingly, “the MCP indexing/read path is canonical-first” remains confirmed only for `memory-index-discovery` and named consumers, while any synthesis phrasing that generalizes it to all MCP or all scripts readers must be downgraded. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:863-910] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts:50-70] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:68-92] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:1363-1379] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1602-1627] [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:153-174] [SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:619-651] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/startup-checks.ts:261-292]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`research/prompts/iteration-10.md:1-12`",
+        "`research/deep-research-config.json:1-85`",
+        "`research/deep-research-state.jsonl:1-12`",
+        "`research/deep-research-strategy.md:24-44,56-393`",
+        "`research/findings-registry.json:1-1366`",
+        "`research/deep-research-dashboard.md:17-155`",
+        "`research/iterations/iteration-001.md:1-80` through `research/iterations/iteration-009.md:1-92`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-339` and exact shared-resolver symbol search results",
+        "`.opencode/skills/system-spec-kit/mcp_server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1592-1627`",
+        "`.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:68-92`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:863-910`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:1363-1379`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts:50-70`",
+        "`.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:153-174`",
+        "`.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:619-651`",
+        "Read-only Git evidence: `git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log -1 --format='%H%n%B' -- specs`"
+      ]
+    },
+    {
+      "id": "finding-10-5-the-validation-design-is-strong-but-not-complete-it-lacks-an-explicit-misdirecte",
+      "text": "**The validation design is strong but not complete: it lacks an explicit misdirected-symlink/cross-worktree cell and does not assign all independent resolver families or Gate-3 to blocking execution lanes.** R1–R9 cover valid alias, absent, dangling, distinct-directory, and plain-file states, while S1 says a misdirected alias must fail; no R-cell proves that a valid symlink pointing outside the active workspace is rejected rather than leaking reads/writes across worktrees. Iteration 6 names Gate-3, but iteration 8's execution split and iteration 9's L1–L4 responsibilities omit an explicit Gate-3 row. Add a capability-conditioned `R10` for an external/misdirected symlink and table-driven rows for Gate-3, startup pending recovery, generic MCP folder discovery, resume/authored continuity, API indexing, spec affinity, and memory-quality validation. The no-symlink rows remain mandatory on Linux/macOS/Windows; source and freshly rebuilt dist must consume the same expectations. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:13-15] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:22] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-008.md:14-37,61-69] [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-009.md:31-40] [INFERENCE: a declared S1 rejection without a fixture/CI assignment is an unverified acceptance condition]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`research/prompts/iteration-10.md:1-12`",
+        "`research/deep-research-config.json:1-85`",
+        "`research/deep-research-state.jsonl:1-12`",
+        "`research/deep-research-strategy.md:24-44,56-393`",
+        "`research/findings-registry.json:1-1366`",
+        "`research/deep-research-dashboard.md:17-155`",
+        "`research/iterations/iteration-001.md:1-80` through `research/iterations/iteration-009.md:1-92`",
+        "`.opencode/skills/system-spec-kit/scripts/core/config.ts:321-339` and exact shared-resolver symbol search results",
+        "`.opencode/skills/system-spec-kit/mcp_server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1592-1627`",
+        "`.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:68-92`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:863-910`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:1363-1379`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts:50-70`",
+        "`.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:153-174`",
+        "`.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:619-651`",
+        "Read-only Git evidence: `git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`; `git log -1 --format='%H%n%B' -- specs`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-d07e8bfe5c0d",
+      "text": "`mcp_server/lib/config/spec-doc-paths.ts` was not counted as a root-choice call site: production search results showed it supplying document classification/identity helpers, while actual filesystem root selection occurs in `memory-index-discovery.ts`. [INFERENCE: based on .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:203-220 and .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:52-62]",
+      "contentHash": "d07e8bfe5c0d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5deeb0227355",
+      "text": "`scripts/loaders/data-loader.ts:84-91` was excluded as a spec-root resolver: it defines security bases for an input JSON file and does not choose a packet root. [SOURCE: .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:80-105]",
+      "contentHash": "5deeb0227355",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-54c62fdd44c9",
+      "text": "A repository-wide literal search for every occurrence of `.opencode/specs` was too noisy because generated packets, tests, fixtures, schema descriptions, and documentation dominate the results; the inventory was narrowed to executable root-choice functions and their production callers.",
+      "contentHash": "54c62fdd44c9",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-99f0e10168bf",
+      "text": "Generic path-literal scanning is not a productive way to establish precedence; future inventory checks should search resolver symbols and direct `path.join(..., 'specs')` assignments, then read each production context.",
+      "contentHash": "99f0e10168bf",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9f440d4b603b",
+      "text": "A bulk persisted-ID rewrite was ruled out: inspected packet IDs and workflow folder identities are stored root-relative or read from packet metadata, not persisted as the selected root alias. [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:531-549] [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1053]",
+      "contentHash": "9f440d4b603b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1ea0d194b5eb",
+      "text": "A canonical-only resolver was ruled out because `getSpecsDirectories()` consumers rely on enumeration to retain unique legacy-only packet discoverability. [SOURCE: .opencode/skills/system-spec-kit/scripts/core/config.ts:321-360]",
+      "contentHash": "1ea0d194b5eb",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e221f388053e",
+      "text": "Changing shared resolver order will not fix or regress the untracked `spec/create.sh` branch because that writer constructs `specs/` directly and does not consume the shared resolver. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:32-34]",
+      "contentHash": "e221f388053e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f648d8c5d213",
+      "text": "Treating every legacy-first call site as a write-target selector is incorrect: containment gates, diagnostics, relative-identity derivation, and description regeneration consume root lists without independently choosing a different physical packet. Reducer promotion should preserve this behavioral distinction. [INFERENCE: based on .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-001.md:13-27 and .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1016-1058]",
+      "contentHash": "f648d8c5d213",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-44e44415f5d1",
+      "text": "A production symlink installer or self-healer under `.opencode/skills` or `.opencode/scripts`: focused creator-pattern searches found only temporary test fixtures; the production script assumes the link already exists. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-217] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:811-819]",
+      "contentHash": "44e44415f5d1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-dd6979bf4f12",
+      "text": "Depending on the alias as a universal contract is eliminated even if its target is corrected to relative: Git explicitly supports checkouts that materialize symlinks as plain files. [SOURCE: https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks]",
+      "contentHash": "dd6979bf4f12",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f058470d2d56",
+      "text": "Inferring broad cross-platform safety from current tests: the inspected CI path is Ubuntu-only and the integration test skips substantive assertions after `EPERM`. [SOURCE: .github/workflows/strict-pass-freshness-sweep.yml:11-23] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:185-193,208-215]",
+      "contentHash": "f058470d2d56",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8b091452a97a",
+      "text": "Treating a tracked symlink as inherently portable is eliminated: Git tracks its payload verbatim, and this payload is absolute and developer-specific. [SOURCE: command `git ls-files --stage -- specs`; `git cat-file -p HEAD:specs`]",
+      "contentHash": "8b091452a97a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-28d1445c18ee",
+      "text": "Treating the latest commit as evidence of the exact creation command: its body explicitly labels the link as pre-existing uncommitted work, so only capture provenance is available. [SOURCE: command `git show -s --format=... 2f6f6abcfb97aef79e97d5fa28169c6229dca341`]",
+      "contentHash": "28d1445c18ee",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-51a065beca2c",
+      "text": "A destructive live test that removes or replaces repository-root `specs` was not run because this dispatch makes all investigated code/config read-only; exact source and configured-dist branches were used instead. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-4.md:10-14]",
+      "contentHash": "51a065beca2c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-d36f8c13a010",
+      "text": "Explicit graph migration/backfill defaults were not promoted into the automatic-writer set; both default directly to canonical, so their inclusion is only a completeness comparator. [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts:590-598] [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:312-319]",
+      "contentHash": "d36f8c13a010",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-cd3b90f95b0c",
+      "text": "Repeating the blocked repository-wide literal scan was unnecessary; the prior writer inventory plus narrow runtime/source reads covered each writer class. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:98-116]",
+      "contentHash": "cd3b90f95b0c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-6137c063a674",
+      "text": "Source-only reasoning was insufficient because the configured hook executes compiled artifacts and the environment reported stale dist; targeted compiled-artifact reads resolved that evidence risk. [SOURCE: .claude/settings.json:123-137] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:30-102]",
+      "contentHash": "6137c063a674",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3b9d075b17a3",
+      "text": "Treating all `generate-context` invocations as alias-dependent is ruled out: canonical-qualified and bare inputs can select canonical directly; the Stop hook and explicit `specs/...` inputs are the vulnerable route. [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:214-307]",
+      "contentHash": "3b9d075b17a3",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-6fe0ebfb50b5",
+      "text": "Remediation ranking was not investigated because iteration 5 explicitly forbids broadening into remediation. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-5.md:8-12]",
+      "contentHash": "6fe0ebfb50b5",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c6344126beed",
+      "text": "Repeating the iteration-4 writer matrix would not close the freshness question; direct source/dist pairing and the configured runtime entrypoint were the narrower evidence path. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:13-35,85-93]",
+      "contentHash": "c6344126beed",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e7d549bab15c",
+      "text": "Treating targeted parity as proof that the entire stale dist tree is current was ruled out; only the chain's load-bearing branches were compared. [INFERENCE: based on the bounded source/dist pairs listed in Finding 2]",
+      "contentHash": "e7d549bab15c",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3c96399f2f94",
+      "text": "Using source maps as byte-equivalent build provenance was ruled out because the inspected maps name the TypeScript inputs but contain no `sourcesContent`. [SOURCE: command `node` source-map/parity scan of session-stop, generate-context, folder-detector, config, subfolder-utils, and workflow maps]",
+      "contentHash": "3c96399f2f94",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-d90fe97f1e74",
+      "text": "**Bulk persisted-ID rewriting:** inspected identities are root-relative or metadata-backed, so the actual migration risk is packet collision/content, not alias text in IDs. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:17,19-23]",
+      "contentHash": "d90fe97f1e74",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e692dc67b970",
+      "text": "**Canonical-only resolution:** it would make unique legacy-only packets undiscoverable. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-002.md:11,19-23]",
+      "contentHash": "e692dc67b970",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ea41b4097a71",
+      "text": "**Relative-symlink-only remediation:** it removes the developer-specific absolute payload but remains unavailable when Git checks symlinks out as plain files. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-003.md:13-15,22-24]",
+      "contentHash": "ea41b4097a71",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ce87931fa0df",
+      "text": "**Resolver-order-only remediation:** it cannot fix the Stop hook's explicit legacy-qualified argument, post-save re-resolution, or direct `spec/create.sh` root construction. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-004.md:15-26]",
+      "contentHash": "ce87931fa0df",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-c98d18e08578",
+      "text": "No new dead end was promoted. The iteration respected prior blocks against broad literal scans, canonical-only selection, symlink dependence, and bulk ID rewriting. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/deep-research-strategy.md:76-188]",
+      "contentHash": "c98d18e08578",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-8d10be549e2f",
+      "text": "Broad test-keyword search produced unrelated uses of “legacy,” “canonical,” and “duplicate”; exact root-selector symbols and the identified root-discovery suites were used for the final inventory. [SOURCE: targeted grep results for root-selector symbols and precedence phrases under `.opencode/skills/system-spec-kit`, 2026-07-17]",
+      "contentHash": "8d10be549e2f",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-4b85c4976f2c",
+      "text": "No new research direction is exhausted. Dynamic symlink-absent and divergent-root cases belong in isolated implementation-test fixtures, not in this read-only live-checkout iteration. [INFERENCE: based on the dispatch prohibition and the missing test cells identified above]",
+      "contentHash": "4b85c4976f2c",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-9fb7481d1ad3",
+      "text": "Removing, replacing, or repointing the live symlink was ruled out by dispatch; Git tree/index reads and filesystem metadata provided the safe current-state inventory instead. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-7.md:8-10]",
+      "contentHash": "9fb7481d1ad3",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-28f74e61b2d8",
+      "text": "The first two bounded Git-tree scans exceeded Node's default `spawnSync` output buffer; the successful retry raised only the in-memory read buffer and made no filesystem or Git-state mutation. [SOURCE: command results from the three read-only `node` Git-tree inventory attempts, 2026-07-17]",
+      "contentHash": "28f74e61b2d8",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-17bc01a9d071",
+      "text": "A full root-state × packet-state × entrypoint Cartesian suite was ruled out because most combinations repeat the same selector; R1–R9 plus targeted writer/reader rows preserve every distinct decision edge with less fixture duplication. [INFERENCE: based on the factorized selector, reader, and writer branches above]",
+      "contentHash": "17bc01a9d071",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-22a656b7e38b",
+      "text": "No new research direction is exhausted. The remaining work is implementation and execution of the designed fixtures; repeating static root-behavior analysis would add less evidence than running the source/dist matrix after the staged fixes. [INFERENCE: based on the now-concrete R1–R9 and writer/reader acceptance rows]",
+      "contentHash": "22a656b7e38b",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-0cc46398e1ad",
+      "text": "Source-only testing and marker/mtime-only dist checks were ruled out because production Stop and generator routes execute compiled JavaScript. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:40-56,131-139] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/dist-freshness.vitest.ts:61-119]",
+      "contentHash": "0cc46398e1ad",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-32e2cc144efa",
+      "text": "The live repository symlink, tests, source, build outputs, and Git state were not modified; the dispatch requires fixture design only. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/prompts/iteration-8.md:8-12]",
+      "contentHash": "32e2cc144efa",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-a46a7a32b172",
+      "text": "Treating `EPERM` as a successful symlink test was ruled out because the current folder-discovery pattern can return after `expect(true).toBe(true)` without exercising assertions; capability-probed `it.skip` keeps the missing coverage visible while all no-symlink rows still run. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts:180-215] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:108-124]",
+      "contentHash": "a46a7a32b172",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-a71129afb956",
+      "text": "**A read/write legacy compatibility window:** read fallback protects legacy-only discoverability, but write fallback allows automatic or stale clients to recreate split state after migration. Compatibility is therefore read-only, with migration writes allowed only under the global freeze. [INFERENCE: based on R2 fallback and R6 divergent-duplicate behavior]",
+      "contentHash": "a71129afb956",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-11900ab669ff",
+      "text": "**MCP-first or source-only build validation:** the configured hook reaches scripts dist, while both packages declare compiled runtime entrypoints. [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:5-19] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/package.json:5-31]",
+      "contentHash": "11900ab669ff",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-58a1a8731fa6",
+      "text": "**One Ubuntu symlink lane as portability proof:** the current workflow is Ubuntu-only, and mandatory absent/plain-file behavior is distinct from optional symlink capability. [SOURCE: .github/workflows/strict-pass-freshness-sweep.yml:11-27]",
+      "contentHash": "58a1a8731fa6",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-5cd1b6d88f2a",
+      "text": "**Rolling packet data back after writer unfreeze:** the quarantine is older after the first canonical write, so restoration is potentially destructive. [INFERENCE: based on the S2/S3 write boundary]",
+      "contentHash": "5cd1b6d88f2a",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-12af3c777d3e",
+      "text": "**Writer fixes before data preflight/migration:** this can strand the old packet and create a canonical twin for the same relative ID. [INFERENCE: based on the current legacy-first/direct-legacy writers and the intended canonical writer destinations]",
+      "contentHash": "12af3c777d3e",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-6ff04355c1d7",
+      "text": "No new research direction is exhausted. The rollout model is now operationally closed; implementation must prove it through the designed temporary-workspace, migration-fault, source/dist, and OS lanes rather than another static resolver scan. [INFERENCE: based on the exact stage gates and L1–L4 assignments above]",
+      "contentHash": "6ff04355c1d7",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-9cd0033e163d",
+      "text": "Generalizing canonical-first behavior to all MCP code: generic MCP folder discovery and startup pending recovery construct legacy before canonical. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:1371-1379] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1602-1619]",
+      "contentHash": "9cd0033e163d",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-cd6be6a3a160",
+      "text": "Preserving “exhaustive every root-resolution call site” in synthesis: narrow direct-constructor verification found concrete omitted production resolvers. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:1363-1379] [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:153-174]",
+      "contentHash": "cd6be6a3a160",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-23a8cfdcd624",
+      "text": "Regex/literal scanning cannot itself certify global completeness: the narrow direct-constructor search reached its result cap and still excludes dynamically composed paths and external automation. Future implementation must maintain an explicit resolver registry or an AST-backed inventory and prove it against the blocking matrix; synthesis must not turn this bounded audit into a universal negative claim. [INFERENCE: based on the capped direct-constructor search and the concrete omitted resolvers verified above]",
+      "contentHash": "23a8cfdcd624",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-492874fed086",
+      "text": "Retaining iteration 6's writer-before-data sequence as deployment order: iteration 9 correctly shows that it can create a canonical twin beside a unique legacy packet. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-009.md:14-27]",
+      "contentHash": "492874fed086",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-a8b47fe90b45",
+      "text": "Treating relative-symlink repair or canonical-only selection as the endpoint; both remain blocked by plain-file checkouts and legacy-only discoverability respectively. [SOURCE: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/iterations/iteration-006.md:24-29]",
+      "contentHash": "a8b47fe90b45",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 53,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.9,
+    "coverageBySources": {
+      "code": 209,
+      "git-scm.com": 3,
+      "other": 7
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

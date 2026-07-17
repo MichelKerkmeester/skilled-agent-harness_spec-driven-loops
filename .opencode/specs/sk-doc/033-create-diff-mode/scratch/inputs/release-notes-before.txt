@@ -1,0 +1,8 @@
+Release 2.3.0
+
+Highlights
+- Faster cold starts on the worker pool.
+- The export job now retries on transient S3 errors.
+
+Known issues
+- Dark mode flickers on first paint.

@@ -1,0 +1,9 @@
+Release 2.3.0
+
+Highlights
+- Faster cold starts on the worker pool, now roughly 40% quicker.
+- The export job now retries on transient S3 errors with exponential backoff.
+- Added a CSV export format alongside JSON.
+
+Known issues
+- Dark mode flickers on first paint.

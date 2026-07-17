@@ -1,7 +1,0 @@
-{"type":"iteration","iteration":9,"newInfoRatio":0.36,"status":"insight","focus":"cross-surface integration trace","findingsP0":0,"findingsP1":2,"findingsP2":2}
-{"type":"finding","id":"f-iter009-001","severity":"P1","label":"system-spec-kit loads sk-code at review time, not authoring time","iteration":9,"surface":"system-spec-kit","evidence":".opencode/commands/speckit/assets/speckit_implement_auto.yaml:207"}
-{"type":"finding","id":"f-iter009-002","severity":"P1","label":"sk-code lacks first-class OpenCode SPEC_FOLDER or IMPLEMENTATION resource path","iteration":9,"surface":"sk-code","evidence":".opencode/skills/sk-code/references/router/resource_loading.md:113"}
-{"type":"finding","id":"f-iter009-003","severity":"P2","label":"CocoIndex ingests sk-code but excludes spec packet learnings","iteration":9,"surface":"mcp-coco-index","evidence":".cocoindex_code/settings.yml:14"}
-{"type":"finding","id":"f-iter009-004","severity":"P2","label":"cross-surface smoke test needs rank assertions, not only path checks","iteration":9,"surface":"sk-code","evidence":".opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh:24"}
-{"type":"observation","id":"obs-iter009-001","packet":"077","classification":"real","iteration":9}
-{"type":"ruled_out","direction":"live ccc semantic ranking smoke inside current sandbox","reason":"ccc daemon could not start because it attempted to write under ~/.cocoindex_code/daemon.log; direct SQLite evidence was used only for ingestion, not semantic rank claims","iteration":9}

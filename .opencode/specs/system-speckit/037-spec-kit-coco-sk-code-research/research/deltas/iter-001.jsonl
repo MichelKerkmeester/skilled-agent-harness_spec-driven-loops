@@ -1,8 +1,0 @@
-{"type":"iteration","iteration":1,"newInfoRatio":0.68,"status":"insight","focus":"surface map and SKILL-vs-filesystem drift","findingsP0":0,"findingsP1":2,"findingsP2":3}
-{"type":"finding","id":"f-iter001-001","severity":"P1","label":"Directory resource in markdown-only router","iteration":1,"surface":"system-spec-kit","evidence":".opencode/skills/system-spec-kit/SKILL.md:208"}
-{"type":"finding","id":"f-iter001-002","severity":"P1","label":"Default indexing likely excludes sk-code resources under .opencode","iteration":1,"surface":"mcp-coco-index","evidence":".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py:50"}
-{"type":"finding","id":"f-iter001-003","severity":"P2","label":"MCP freshness default is a performance and concurrency hotspot","iteration":1,"surface":"mcp-coco-index","evidence":".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:116"}
-{"type":"finding","id":"f-iter001-004","severity":"P2","label":"OpenCode scope lacks skills/agents/commands authoring checklists","iteration":1,"surface":"sk-code","evidence":".opencode/skills/sk-code/SKILL.md:23"}
-{"type":"finding","id":"f-iter001-005","severity":"P2","label":"OpenCode shared reference has stale checklist relative link","iteration":1,"surface":"sk-code","evidence":".opencode/skills/sk-code/references/opencode/shared/universal_patterns.md:554"}
-{"type":"observation","id":"obs-iter001-001","packet":"077","classification":"real","iteration":1}
-{"type":"ruled_out","direction":"prior-iteration-deduplication","reason":"No prior iteration markdown files existed under research/iterations, so iteration 1 had no previous findings to deduplicate against.","iteration":1}

@@ -1,8 +1,0 @@
-{"type":"iteration","iteration":8,"newInfoRatio":0.38,"status":"insight","focus":"OpenCode resource-map drift","findingsP0":0,"findingsP1":3,"findingsP2":2}
-{"type":"finding","id":"f-iter008-001","severity":"P1","label":"Live router no longer has machine-readable STACK_FOLDERS contract","iteration":8,"surface":"sk-code","evidence":".opencode/skills/sk-code/changelog/v3.0.0.0.md:7"}
-{"type":"finding","id":"f-iter008-002","severity":"P1","label":"OpenCode intent taxonomy is broader than OpenCode resource map","iteration":8,"surface":"sk-code","evidence":".opencode/skills/sk-code/SKILL.md:121"}
-{"type":"finding","id":"f-iter008-003","severity":"P2","label":"Verifier cannot catch Markdown resource-map drift","iteration":8,"surface":"sk-code","evidence":".opencode/skills/sk-code/scripts/verify_alignment_drift.py:31"}
-{"type":"finding","id":"f-iter008-004","severity":"P1","label":"Spec-folder writes are named in verification but not loaded as an OpenCode recipe","iteration":8,"surface":"system-spec-kit","evidence":".opencode/skills/sk-code/references/router/resource_loading.md:127"}
-{"type":"finding","id":"f-iter008-005","severity":"P2","label":"CocoIndex has no canonical OpenCode authoring or spec resource target to prefer","iteration":8,"surface":"mcp-coco-index","evidence":".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md:298"}
-{"type":"observation","id":"obs-iter008-001","packet":"077","classification":"real","iteration":8}
-{"type":"ruled_out","direction":"Treat old NEXTJS STACK_FOLDERS changelog as live contract","reason":"Current sk-code router files use OpenCode prose tables and wildcards; only the historical changelog mentions STACK_FOLDERS/resource_map_for.","iteration":8}

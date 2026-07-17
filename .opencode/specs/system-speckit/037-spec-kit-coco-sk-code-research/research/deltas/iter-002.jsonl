@@ -1,7 +1,0 @@
-{"type":"iteration","iteration":2,"newInfoRatio":0.62,"status":"insight","focus":"system-spec-kit validator and metadata coverage","findingsP0":0,"findingsP1":2,"findingsP2":2}
-{"type":"finding","id":"f-iter002-001","severity":"P1","label":"Default validator does not parse graph metadata shape","iteration":2,"surface":"system-spec-kit","evidence":".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:366"}
-{"type":"finding","id":"f-iter002-002","severity":"P1","label":"Default Node validator omits registry-owned phase rules","iteration":2,"surface":"system-spec-kit","evidence":".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:355"}
-{"type":"finding","id":"f-iter002-003","severity":"P2","label":"Mandatory metadata is enforced only for phase parents","iteration":2,"surface":"system-spec-kit","evidence":"AGENTS.md:282"}
-{"type":"finding","id":"f-iter002-004","severity":"P2","label":"Phase-parent active-child pointer drift is not validated","iteration":2,"surface":"system-spec-kit","evidence":".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh:38"}
-{"type":"observation","id":"obs-iter002-001","packet":"077","classification":"real","iteration":2}
-{"type":"ruled_out","direction":"shell-rule-only validator audit","reason":"The default validate.sh path exits through the Node orchestrator when dist/lib/validation/orchestrator.js exists, so shell-rule findings alone would misrepresent runtime behavior.","iteration":2}

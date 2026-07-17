@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<title>Diff — feed-ruleset-review-before.md → feed-ruleset-review-after.md</title>
+<style>
+:root{color-scheme:light;
+--canvas:#f7f7f4;--surface:#f2f1ed;--surface-raised:#f7f7f4;
+--text:#26251e;--text-muted:#6d6c63;--border:#cdcdc9;--border-strong:#a1a19f;
+--gutter-bg:#f2f1ed;--gutter-text:#6b6960;--empty-bg:#f2f1ed;
+--hunk-bg:#e6e5e0;--hunk-text:#5e5d55;--hunk-border:#cdcdc9;
+--add-bg:#e4efe7;--add-inline:#bfe0cb;--add-marker:#2f6d4f;
+--del-bg:#f7e6e3;--del-inline:#f3c9cd;--del-marker:#b02a48;
+--warn-bg:#f6ecd4;--warn-border:#c08532;--warn-text:#574011;--focus:#f54e00;
+--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-6:24px;--sp-8:32px;
+--fs-0:1rem;
+--fs-h1:calc(var(--fs-0) * 1.5);
+--fs-h2:calc(var(--fs-0) * 1.0625);
+--fs-sm:calc(var(--fs-0) * .875);
+--fs-code:13px;
+--rhythm:24px;
+--measure:min(72rem, 84ch);
+--text-caption:13px;
+--font-ui:"CursorGothic",Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--font-code:"berkeleyMono",ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+@supports (font-size:1cqi){:root{
+--fs-0:clamp(.875rem,calc(.766rem + .3125cqi),1rem);
+--fs-code:clamp(12px,calc(.6625rem + .2cqi),13px);
+--rhythm:clamp(16px,calc(8px + 2cqi),24px);
+--text-caption:clamp(12px,calc(.6625rem + .2cqi),13px)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--text);font:1rem/1.5 var(--font-ui)}
+main{container-type:inline-size;container-name:report;
+max-width:100rem;margin:0 auto;padding:2rem}
+main>*{font-size:var(--fs-0)}
+.report-header,.warn,footer{max-width:var(--measure)}
+.summary-sec{max-width:72rem}
+h1{font-size:var(--fs-h1);line-height:1.25;font-weight:400;letter-spacing:-.005em;margin:0 0 var(--sp-1)}
+h2{font-size:var(--fs-h2);line-height:1.3;font-weight:500;margin:var(--rhythm) 0 var(--sp-3)}
+.skip{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+clip:rect(0 0 0 0);white-space:nowrap;border:0}
+a.skip:focus{position:static;width:auto;height:auto;margin:0;clip:auto;
+display:inline-block;background:var(--surface);padding:var(--sp-2);
+border:2px solid var(--focus);border-radius:4px}
+.meta{color:var(--text-muted);font-size:var(--text-caption);margin:0}
+.warn{border:1px solid var(--warn-border);background:var(--warn-bg);color:var(--warn-text);
+padding:var(--sp-3) var(--sp-4);border-radius:4px;margin:var(--sp-4) 0}
+.warn h2{margin:0 0 var(--sp-1);font-size:var(--fs-0);color:var(--warn-text)}
+.warn ul{margin:0;padding-left:1.2rem}
+.stat-strip{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin:var(--sp-3) 0;padding:0}
+.stat{font:600 var(--text-caption)/1.4 var(--font-code);font-variant-numeric:tabular-nums;
+padding:var(--sp-1) var(--sp-2);border-radius:4px;border:1px solid var(--border)}
+.stat-add{color:var(--add-marker);background:var(--add-bg);border-color:var(--add-inline)}
+.stat-del{color:var(--del-marker);background:var(--del-bg);border-color:var(--del-inline)}
+.stat-chg,.stat-move,.stat-eq{color:var(--text-muted);background:var(--surface)}
+.summary{border-collapse:separate;border-spacing:0;border:1px solid var(--border);
+border-radius:4px;overflow:hidden;font-size:var(--fs-sm);margin:var(--sp-3) 0}
+.summary th,.summary td{padding:var(--sp-2) var(--sp-3);text-align:left;
+border-bottom:1px solid var(--border)}
+.summary tr:last-child th,.summary tr:last-child td{border-bottom:0}
+.summary th{background:var(--surface);color:var(--text-muted);font-weight:500;width:9rem}
+.legend{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-4);list-style:none;padding:0;
+margin:var(--sp-3) 0;font-size:var(--text-caption);color:var(--text-muted)}
+.legend li{display:flex;align-items:center;gap:var(--sp-2)}
+.key{font:700 var(--text-caption)/1.4 var(--font-code);min-width:1.4rem;text-align:center;border-radius:4px}
+.key-add{color:var(--add-marker);background:var(--add-bg)}
+.key-del{color:var(--del-marker);background:var(--del-bg)}
+.diff-frame{border:1px solid var(--border);border-radius:4px;background:var(--surface-raised)}
+.diff-scroll{overflow-x:auto}
+.diff-scroll:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+table.diff{border-collapse:collapse;width:100%;
+font-family:var(--font-code);font-size:var(--fs-code);line-height:1.5;
+table-layout:fixed;font-variant-ligatures:none;tab-size:4}
+.diff .col-no{width:calc(5ch + 1rem)}.diff .col-mark{width:1.6rem}
+.diff thead th{background:var(--surface);color:var(--text-muted);text-align:left;
+padding:var(--sp-2);border-bottom:1px solid var(--border-strong);
+font-family:var(--font-ui);font-size:var(--text-caption);font-weight:600}
+.diff td,.diff th{vertical-align:top}
+td.no{text-align:right;color:var(--gutter-text);background:var(--gutter-bg);user-select:none;
+padding:1px var(--sp-2);white-space:nowrap;font-variant-numeric:tabular-nums;
+border-right:1px solid var(--border)}
+td.mark{text-align:center;user-select:none;font-weight:700;padding:1px 0}
+td.txt{padding:1px var(--sp-2);white-space:pre-wrap;overflow-wrap:anywhere}
+td.is-add{background:var(--add-bg)}td.mark.is-add{color:var(--add-marker)}
+td.no.is-add{background:var(--add-bg);color:var(--add-marker)}
+td.is-remove{background:var(--del-bg)}td.mark.is-remove{color:var(--del-marker)}
+td.no.is-remove{background:var(--del-bg);color:var(--del-marker)}
+td.is-empty{background:var(--empty-bg)}
+.sxs{min-width:60rem}
+.sxs td:nth-child(4),.sxs th:nth-child(4){border-left:2px solid var(--border-strong)}
+tr.hunk-head th{background:var(--hunk-bg);color:var(--hunk-text);text-align:left;
+font-family:var(--font-code);font-weight:600;padding:var(--sp-1) var(--sp-2);
+border-block:1px solid var(--hunk-border)}
+tr.collapse td{text-align:center;color:var(--text-muted);background:var(--surface);
+padding:var(--sp-1) var(--sp-2);border-block:1px solid var(--border)}
+tr.sec td{padding-block:4px}
+tr.sec td.txt{font-family:var(--font-ui);font-weight:600;font-size:calc(var(--fs-code) * 1.15)}
+tr.context.sec td{background:var(--surface);border-block:1px solid var(--border)}
+tr.context.sec td.no{background:var(--surface)}
+mark.wd{padding:0 1px;border-radius:2px;color:inherit}
+mark.wd.add{background:var(--add-inline);text-decoration:underline}
+mark.wd.del{background:var(--del-inline);text-decoration:line-through}
+.legend mark.wd{color:var(--text)}
+footer{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-4);justify-content:space-between;
+margin-top:var(--sp-8);color:var(--text-muted);font-size:var(--text-caption);
+border-top:1px solid var(--border);padding-top:var(--sp-4)}
+footer p{margin:0}
+@container report (max-width:34rem){
+.summary th{width:auto}
+td.no{padding-inline:var(--sp-1)}}
+@container report (min-width:80rem){
+td.txt{padding-block:2px}}
+@media(forced-colors:active){mark.wd{outline:1px solid CanvasText}
+td.mark{color:CanvasText}}
+</style>
+</head>
+<body>
+<a class="skip" href="#diff">Skip to differences</a>
+<main>
+<header class="report-header">
+<h1>Diff — feed-ruleset-review-before.md → feed-ruleset-review-after.md</h1>
+<p class="meta">Generated 2026-07-16T14:22:50+00:00 by sk-doc create-diff · markdown · local only, no network.</p>
+</header>
+
+<section class="summary-sec" aria-labelledby="stitle">
+<h2 id="stitle">Summary</h2>
+<p class="stat-strip"><span class="stat stat-add">+4 added</span><span class="stat stat-del">−2 removed</span><span class="stat stat-chg">±5 changed</span><span class="stat stat-move">↔0 moved</span><span class="stat stat-eq">=754 unchanged</span></p>
+<table class="summary"><caption class="skip">Change summary</caption><tbody><tr><th scope="row">Before</th><td>feed-ruleset-review-before.md (761 lines)</td></tr><tr><th scope="row">After</th><td>feed-ruleset-review-after.md (763 lines)</td></tr><tr><th scope="row">Format</th><td>markdown — Full fidelity — text compared after Unicode and whitespace normalization.</td></tr></tbody></table>
+<ul class="legend" aria-label="Diff legend">
+<li><span class="key key-add" aria-hidden="true">+</span> Added line</li>
+<li><span class="key key-del" aria-hidden="true">−</span> Removed line</li>
+<li><mark class="wd add">text</mark> Inline addition</li>
+<li><mark class="wd del">text</mark> Inline removal</li>
+</ul>
+</section>
+<section aria-labelledby="dtitle" id="diff">
+<h2 id="dtitle">Differences (unified view)</h2>
+<div class="diff-frame"><table class="diff"><colgroup><col class="col-no"><col class="col-no"><col class="col-mark"><col></colgroup><caption class="skip">Unified differences</caption><thead><tr><th scope="col" class="no">Old</th><th scope="col" class="no">New</th><th scope="col" class="mark"><span class="skip">Change</span></th><th scope="col">Content</th></tr></thead><tbody class="hunk"><tr class="hunk-head"><th scope="rowgroup" colspan="4">@@ -1,4 +1,4 @@</th></tr><tr class="remove sec"><td class="no is-remove">1</td><td class="no is-remove"></td><td class="mark is-remove" aria-label="removed">−</td><td class="txt is-remove"># Feed ruleset review findings</td></tr><tr class="add sec"><td class="no is-add"></td><td class="no is-add">1</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add"># Feed ruleset review findings<mark class="wd add"> (v2)</mark></td></tr><tr class="context"><td class="no">2</td><td class="no">2</td><td class="mark"></td><td class="txt"></td></tr><tr class="context"><td class="no">3</td><td class="no">3</td><td class="mark"></td><td class="txt">* * *</td></tr><tr class="context"><td class="no">4</td><td class="no">4</td><td class="mark"></td><td class="txt"></td></tr></tbody><tbody class="gap"><tr class="collapse"><td colspan="4">⋯ 3 unchanged lines ⋯</td></tr></tbody><tbody class="hunk"><tr class="hunk-head"><th scope="rowgroup" colspan="4">@@ -8,29 +8,31 @@ · § Feed ruleset review findings (v2)</th></tr><tr class="context"><td class="no">8</td><td class="no">8</td><td class="mark"></td><td class="txt">| Template type | Doc |</td></tr><tr class="context"><td class="no">9</td><td class="no">9</td><td class="mark"></td><td class="txt">| Energy level | Deep |</td></tr><tr class="context"><td class="no">10</td><td class="no">10</td><td class="mark"></td><td class="txt">| Perspectives | User, Business, Technical, Risk and Delivery |</td></tr><tr class="remove"><td class="no is-remove">11</td><td class="no is-remove"></td><td class="mark is-remove" aria-label="removed">−</td><td class="txt is-remove">| Review date | <mark class="wd del">13</mark> July 2026 |</td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">11</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">| Review date | <mark class="wd add">18</mark> July 2026 |</td></tr><tr class="context"><td class="no">12</td><td class="no">12</td><td class="mark"></td><td class="txt">| Quality | Completeness 9, Clarity 9, Actionability 9, Accuracy 9, Relevance 9, Mechanism depth 9 |</td></tr><tr class="context"><td class="no">13</td><td class="no">13</td><td class="mark"></td><td class="txt"></td></tr><tr class="remove"><td class="no is-remove">14</td><td class="no is-remove"></td><td class="mark is-remove" aria-label="removed">−</td><td class="txt is-remove">&gt; This review is non-normative. It records contradictions, missing decisions and improvement actions. The source documents remain authoritative only for the subjects assigned to them in the authority model below.</td></tr><tr class="context"><td class="no">15</td><td class="no">14</td><td class="mark"></td><td class="txt"></td></tr><tr class="context"><td class="no">16</td><td class="no">15</td><td class="mark"></td><td class="txt">* * *</td></tr><tr class="context"><td class="no">17</td><td class="no">16</td><td class="mark"></td><td class="txt"></td></tr><tr class="context sec"><td class="no">18</td><td class="no">17</td><td class="mark"></td><td class="txt">## Verdict</td></tr><tr class="context"><td class="no">19</td><td class="no">18</td><td class="mark"></td><td class="txt"></td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">19</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">&gt; **Revision note:** this verdict was re-checked against the v2 ruleset;</td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">20</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">&gt; two previously-open items are now closed and one new gap was found.</td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">21</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add"></td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">22</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add"></td></tr><tr class="context"><td class="no">20</td><td class="no">23</td><td class="mark"></td><td class="txt">* * *</td></tr><tr class="context"><td class="no">21</td><td class="no">24</td><td class="mark"></td><td class="txt"></td></tr><tr class="context"><td class="no">22</td><td class="no">25</td><td class="mark"></td><td class="txt">The seven Feed documents do not yet form one approval-ready Product contract.</td></tr><tr class="context"><td class="no">23</td><td class="no">26</td><td class="mark"></td><td class="txt"></td></tr><tr class="remove"><td class="no is-remove">24</td><td class="no is-remove"></td><td class="mark is-remove" aria-label="removed">−</td><td class="txt is-remove">The collection identifiers, copied ruleset thresholds, weight totals and online-local alternation are mostly aligned. The main gaps sit between documents. They concern source authority, lifecycle placement, application status language, fallback order, score comparability, missing-data behavior and measurement.</td></tr><tr class="context"><td class="no">25</td><td class="no">27</td><td class="mark"></td><td class="txt"></td></tr><tr class="context"><td class="no">26</td><td class="no">28</td><td class="mark"></td><td class="txt">Implementation should wait until every blocking decision in this review has an approved outcome. Fixing the wording defects alone will not produce testable rules.</td></tr><tr class="context"><td class="no">27</td><td class="no">29</td><td class="mark"></td><td class="txt"></td></tr><tr class="context sec"><td class="no">28</td><td class="no">30</td><td class="mark"></td><td class="txt">## Scope reviewed</td></tr><tr class="context"><td class="no">29</td><td class="no">31</td><td class="mark"></td><td class="txt"></td></tr><tr class="context"><td class="no">30</td><td class="no">32</td><td class="mark"></td><td class="txt">* * *</td></tr><tr class="context"><td class="no">31</td><td class="no">33</td><td class="mark"></td><td class="txt"></td></tr><tr class="remove"><td class="no is-remove">32</td><td class="no is-remove"></td><td class="mark is-remove" aria-label="removed">−</td><td class="txt is-remove">- [Dead <mark class="wd del">Deals](./Feed%20-%20Dead%20Deals.md)</mark></td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">34</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">- [Dead <mark class="wd add">Deals](./Feed%25-%20Dead%20Deals.md)</mark></td></tr><tr class="remove"><td class="no is-remove">33</td><td class="no is-remove"></td><td class="mark is-remove" aria-label="removed">−</td><td class="txt is-remove">- [Feed <mark class="wd del">Functions](./Feed%20-%20Feed%20Functions.md)</mark></td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">35</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">- [Feed <mark class="wd add">Functions](./Feed%25-%20Feed%20Functions.md)</mark></td></tr><tr class="context"><td class="no">34</td><td class="no">36</td><td class="mark"></td><td class="txt">- [How it Works](./Feed%20-%20How%20it%20Works.md)</td></tr><tr class="context"><td class="no">35</td><td class="no">37</td><td class="mark"></td><td class="txt">- [Metrics &amp; Analytics](./Feed%20-%20Metrics%20%26%20Analytics.md)</td></tr><tr class="context"><td class="no">36</td><td class="no">38</td><td class="mark"></td><td class="txt">- [Patterns](./Feed%20-%20Patterns.md)</td></tr></tbody><tbody class="gap"><tr class="collapse"><td colspan="4">⋯ 13 unchanged lines ⋯</td></tr></tbody><tbody class="hunk"><tr class="context sec"><td class="no">50</td><td class="no">52</td><td class="mark"></td><td class="txt">## Required authority model</td></tr></tbody><tbody class="gap"><tr class="collapse"><td colspan="4">⋯ 12 unchanged lines ⋯</td></tr></tbody><tbody class="hunk"><tr class="hunk-head"><th scope="rowgroup" colspan="4">@@ -63,7 +65,7 @@ · § Required authority model</th></tr><tr class="context"><td class="no">63</td><td class="no">65</td><td class="mark"></td><td class="txt">| Weighted Ranking &amp; Intelligent Discovery | Future options and longer-term direction | Its hard-versus-soft philosophy conflicts with approved collection rules |</td></tr><tr class="context"><td class="no">64</td><td class="no">66</td><td class="mark"></td><td class="txt">| Ruleset Review Findings | Open issues, decisions and readiness | It must never become a competing requirements source |</td></tr><tr class="context"><td class="no">65</td><td class="no">67</td><td class="mark"></td><td class="txt"></td></tr><tr class="remove sec"><td class="no is-remove">66</td><td class="no is-remove"></td><td class="mark is-remove" aria-label="removed">−</td><td class="txt is-remove">### Recommended <mark class="wd del">action</mark></td></tr><tr class="add sec"><td class="no is-add"></td><td class="no is-add">68</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">### Recommended <mark class="wd add">remediation</mark></td></tr><tr class="context"><td class="no">67</td><td class="no">69</td><td class="mark"></td><td class="txt"></td></tr><tr class="context"><td class="no">68</td><td class="no">70</td><td class="mark"></td><td class="txt">* * *</td></tr><tr class="context"><td class="no">69</td><td class="no">71</td><td class="mark"></td><td class="txt"></td></tr></tbody><tbody class="gap"><tr class="collapse"><td colspan="4">⋯ 692 unchanged lines ⋯</td></tr></tbody></table></div>
+</section>
+<footer>
+<p>All processing happened on this machine.</p>
+<p>Self-contained HTML · zero JavaScript · no external requests.</p>
+</footer>
+</main>
+</body>
+</html>

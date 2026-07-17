@@ -279,7 +279,7 @@ test('retry-after deadline recovers lazily and malformed payloads stay suppresse
 }));
 
 test('goal command documentation routes new verbs and budget validation', async () => {
-  const commandDoc = await readFile(join(opencodeRoot, 'commands', 'goal_opencode.md'), 'utf8');
+  const commandDoc = await readFile(join(opencodeRoot, 'commands', 'goal-opencode.md'), 'utf8');
   assert.match(commandDoc, /set <objective> \[--budget N\]/);
   assert.match(commandDoc, /mk_goal\(\{ action: "history" \}\)/);
   assert.match(commandDoc, /mk_goal\(\{ action: "doctor" \}\)/);

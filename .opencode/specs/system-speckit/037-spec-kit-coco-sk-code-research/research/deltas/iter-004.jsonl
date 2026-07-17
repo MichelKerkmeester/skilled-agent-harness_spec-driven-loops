@@ -1,7 +1,0 @@
-{"type":"iteration","iteration":4,"newInfoRatio":0.57,"status":"insight","focus":"mcp-coco-index CLI/MCP parity and decision-tree drift","findingsP0":0,"findingsP1":2,"findingsP2":2}
-{"type":"finding","id":"f-iter004-001","severity":"P1","label":"CocoIndex maintenance has no working MCP owner","iteration":4,"surface":"mcp-coco-index","evidence":".opencode/skills/mcp-coco-index/SKILL.md:220"}
-{"type":"finding","id":"f-iter004-002","severity":"P1","label":"MCP/search telemetry docs overstate emitted fields","iteration":4,"surface":"mcp-coco-index","evidence":".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py:95"}
-{"type":"finding","id":"f-iter004-003","severity":"P2","label":"MCP startup indexing can race the default refresh path","iteration":4,"surface":"mcp-coco-index","evidence":".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:473"}
-{"type":"finding","id":"f-iter004-004","severity":"P2","label":"CLI path scoping differs from MCP and is underdocumented in the reference","iteration":4,"surface":"mcp-coco-index","evidence":".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py:367"}
-{"type":"observation","id":"obs-iter004-001","packet":"077","classification":"real","iteration":4}
-{"type":"ruled_out","direction":"Treat dedicated mcp-coco-index MCP as the maintenance owner","reason":"The dedicated MCP server intentionally exposes only search; index/status/reset remain CLI-only, and the documented Spec Kit Memory ccc_* fallback is registered but not dispatched.","iteration":4}

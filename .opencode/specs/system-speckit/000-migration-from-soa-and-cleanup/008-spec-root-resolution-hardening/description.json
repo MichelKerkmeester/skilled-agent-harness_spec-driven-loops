@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "description": "Spec Kit has at least two root-resolution implementations with different precedence",
+  "keywords": [
+    "spec",
+    "kit",
+    "least",
+    "two",
+    "root-resolution",
+    "implementations",
+    "different",
+    "precedence"
+  ],
+  "lastUpdated": "2026-07-17T09:30:14.185Z",
+  "specId": "008",
+  "folderSlug": "spec-root-resolution-hardening",
+  "parentChain": [
+    "system-speckit",
+    "000-migration-from-soa-and-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-07-26_10-30__deep-research-completed-at-the-requested-10.md"
+  ]
+}

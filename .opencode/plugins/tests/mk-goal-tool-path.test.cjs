@@ -120,7 +120,7 @@ test('terminal same-objective set reports replacement and resets counters', asyn
 }));
 
 test('goal command documentation exposes the registered command contract', async () => {
-  const commandPath = join(opencodeRoot, 'commands', 'goal_opencode.md');
+  const commandPath = join(opencodeRoot, 'commands', 'goal-opencode.md');
   const commandDoc = await readFile(commandPath, 'utf8');
   assert.match(commandDoc, /^# \/goal/m);
   assert.match(commandDoc, /allowed-tools: mk_goal, mk_goal_status/);
@@ -131,7 +131,7 @@ test('goal plugin reference links the OpenCode command document', async () => {
     join(opencodeRoot, 'skills', 'system-spec-kit', 'references', 'hooks', 'goal_plugin.md'),
     'utf8',
   );
-  assert.match(referenceDoc, /\.opencode\/commands\/goal_opencode\.md/);
+  assert.match(referenceDoc, /\.opencode\/commands\/goal-opencode\.md/);
 });
 
 test('regression graph key files exclude non-deliverable legacy basenames', async () => {

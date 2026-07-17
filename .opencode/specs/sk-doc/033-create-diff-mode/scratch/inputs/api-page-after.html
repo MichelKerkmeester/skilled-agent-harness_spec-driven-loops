@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>API Guide</title>
+  <style>.note{color:#080}</style>
+  <script>console.log("analytics v2 with tracking");</script>
+</head>
+<body>
+  <h1>Payments API</h1>
+  <p>The <code>/charge</code> endpoint accepts a card token, an amount in cents, and an optional idempotency key.</p>
+  <p class="note">Rate limit: 300 requests per minute.</p>
+  <ul>
+    <li>POST /charge</li>
+    <li>GET /charge/{id}</li>
+    <li>POST /charge/{id}/refund</li>
+  </ul>
+</body>
+</html>

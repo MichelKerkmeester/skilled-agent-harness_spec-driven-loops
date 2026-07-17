@@ -159,28 +159,28 @@ A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-par
 
 ## 8. RELATED DOCUMENTS
 
-| Document | Purpose |
-|---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the mode rules |
-| [`references/quick_reference.md`](shared/references/quick_reference.md) | One-page command and gate cheat sheet |
-| [`references/hvr_rules.md`](shared/references/hvr_rules.md) | Human Voice Rules, the writing standard all output must pass |
-| [`references/validation.md`](shared/references/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |
-| [`references/core_standards.md`](shared/references/core_standards.md) | Filename conventions, heading rules and document-type requirements |
-| [`create-quality-control/references/workflows.md`](create-quality-control/references/workflows.md) | Execution workflows by mode and task type |
-| [`create-quality-control/references/optimization.md`](create-quality-control/references/optimization.md) | AI-friendly content transforms and the llms.txt format |
-| [`references/evergreen_packet_id_rule.md`](shared/references/evergreen_packet_id_rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |
-| [`references/skill_creation.md`](create-skill/references/README.md) | The skill-creation workflow: understanding through packaging |
-| [`references/README.md`](create-agent/references/README.md) | Agent authority, permissions and the template-first workflow |
-| [`references/README.md`](create-readme/references/README.md) | README creation workflow and standards |
-| [`references/install_guide/quality_and_standards.md`](create-readme/references/install_guide/quality_and_standards.md) | Five-phase install guide standards and validation checkpoints |
-| [`references/README.md`](create-manual-testing-playbook/references/README.md) | Playbook package structure, scenario tables and cross-reference index |
-| [`references/README.md`](create-feature-catalog/references/README.md) | Feature catalog inventory standards and per-feature file structure |
-| [`create-benchmark/README.md`](create-benchmark/README.md) | Benchmark family registry, including conformance authoring triggers and package boundaries |
-| [`create-diff/README.md`](create-diff/README.md) | Git-free before/after document diff: snapshot lifecycle, comparison engine and the self-contained HTML report |
-| [`create-diff/references/workflow.md`](create-diff/references/workflow.md) | The create-diff capture/compare workflow and CLI reference |
-| [`scripts/validate_document.py`](./scripts/validate_document.py) | Fast format validator, exit 0/1/2, supports `--json` and `--fix` |
-| [`scripts/extract_structure.py`](./scripts/extract_structure.py) | Full DQI analysis with type-specific checklists and JSON output |
-| [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |
-| [`scripts/package_skill.py`](./scripts/package_skill.py) | Validate and package a skill to a zip file |
-| [`assets/skill/`](./create-skill/assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
-| [`assets/flowcharts/`](./create-flowchart/assets/) | Reusable ASCII flowchart patterns for workflows and decision trees |
+| Document                                                                                                               | Purpose                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------|
+| [`SKILL.md`](./SKILL.md)                                                                                               | Runtime instructions, the smart router and the mode rules                                                     |
+| [`references/quick_reference.md`](shared/references/quick_reference.md)                                                | One-page command and gate cheat sheet                                                                         |
+| [`references/hvr_rules.md`](shared/references/hvr_rules.md)                                                            | Human Voice Rules, the writing standard all output must pass                                                  |
+| [`references/validation.md`](shared/references/validation.md)                                                          | DQI scoring criteria, quality gates and assessment interpretation                                             |
+| [`references/core_standards.md`](shared/references/core_standards.md)                                                  | Filename conventions, heading rules and document-type requirements                                            |
+| [`create-quality-control/references/workflows.md`](create-quality-control/references/workflows.md)                     | Execution workflows by mode and task type                                                                     |
+| [`create-quality-control/references/optimization.md`](create-quality-control/references/optimization.md)               | AI-friendly content transforms and the llms.txt format                                                        |
+| [`references/evergreen_packet_id_rule.md`](shared/references/evergreen_packet_id_rule.md)                              | Why runtime-state docs must not cite mutable spec-packet numbers                                              |
+| [`references/skill_creation.md`](create-skill/references/README.md)                                                    | The skill-creation workflow: understanding through packaging                                                  |
+| [`references/README.md`](create-agent/references/README.md)                                                            | Agent authority, permissions and the template-first workflow                                                  |
+| [`references/README.md`](create-readme/references/README.md)                                                           | README creation workflow and standards                                                                        |
+| [`references/install_guide/quality_and_standards.md`](create-readme/references/install_guide/quality_and_standards.md) | Five-phase install guide standards and validation checkpoints                                                 |
+| [`references/README.md`](create-manual-testing-playbook/references/README.md)                                          | Playbook package structure, scenario tables and cross-reference index                                         |
+| [`references/README.md`](create-feature-catalog/references/README.md)                                                  | Feature catalog inventory standards and per-feature file structure                                            |
+| [`create-benchmark/README.md`](create-benchmark/README.md)                                                             | Benchmark family registry, including conformance authoring triggers and package boundaries                    |
+| [`create-diff/README.md`](create-diff/README.md)                                                                       | Git-free before/after document diff: snapshot lifecycle, comparison engine and the self-contained HTML report |
+| [`create-diff/references/workflow.md`](create-diff/references/workflow.md)                                             | The create-diff capture/compare workflow and CLI reference                                                    |
+| [`scripts/validate_document.py`](./scripts/validate_document.py)                                                       | Fast format validator, exit 0/1/2, supports `--json` and `--fix`                                              |
+| [`scripts/extract_structure.py`](./scripts/extract_structure.py)                                                       | Full DQI analysis with type-specific checklists and JSON output                                               |
+| [`scripts/init_skill.py`](./scripts/init_skill.py)                                                                     | Skill directory scaffold from the template set                                                                |
+| [`scripts/package_skill.py`](./scripts/package_skill.py)                                                               | Validate and package a skill to a zip file                                                                    |
+| [`assets/skill/`](./create-skill/assets/skill/)                                                                        | SKILL.md, README, reference and asset templates for skill creation                                            |
+| [`assets/flowcharts/`](./create-flowchart/assets/)                                                                     | Reusable ASCII flowchart patterns for workflows and decision trees                                            |

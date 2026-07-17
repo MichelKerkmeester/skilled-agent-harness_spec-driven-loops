@@ -16,12 +16,15 @@
     "router",
     "standard"
   ],
-  "lastUpdated": "2026-07-16T14:16:14.786Z",
+  "lastUpdated": "2026-07-16T16:38:51.476Z",
   "specId": "031",
   "folderSlug": "sk-doc-router-alignment",
   "parentChain": [
     "sk-doc"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-07-26_17-28__status-phase-4-phase-3-phase-5-core-landed-and.md",
+    "16-07-26_17-38__checkpoint-foundation-core-landed-and-a-finding.md"
+  ]
 }
