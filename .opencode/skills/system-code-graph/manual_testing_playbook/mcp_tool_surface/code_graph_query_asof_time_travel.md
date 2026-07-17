@@ -7,9 +7,18 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "verification"
 version: 1.3.0.0
+id: code-graph-query-asof-time-travel
+category: mcp_tool_surface
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/mcp_tool_surface/code_graph_query_asof_time_travel.md
 ---
 
 # 026 -- `code_graph_query` asOf time-travel relationship reads
+
+Prompt: Validate the as-of query parameter on code_graph_query: with the bitemporal-reads flag on, an asOf generation returns the historical edge set, and with the flag off it falls back to the current graph without erroring.
 
 ## 1. OVERVIEW
 

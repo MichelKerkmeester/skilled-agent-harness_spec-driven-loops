@@ -19,11 +19,19 @@
  *
  * Uniqueness is enforced on that pair, not on `leafResourceId` alone, because
  * the same local filename (e.g. `references/README.md`) legitimately repeats
- * across unrelated packets. A `leafResourceId` must always stay inside its
- * own packet root; a caller that hands in a hub-qualified or shared-prefixed
- * string can only resolve it through an explicitly declared mode or alias,
- * never through generic prefix stripping, so an unrecognized shape fails
- * closed instead of silently guessing a root.
+ * across unrelated packets. A `leafResourceId` must always stay inside one of
+ * its packet's routable roots; a caller that hands in a hub-qualified or
+ * shared-prefixed string can only resolve it through an explicitly declared
+ * mode or alias, never through generic prefix stripping, so an unrecognized
+ * shape fails closed instead of silently guessing a root.
+ *
+ * A packet's routable roots are `references/` and `assets/` for the parent-hub
+ * packets, plus `feature_catalog/` and `manual_testing_playbook/` for a
+ * standalone skill whose feature catalog and manual-testing playbook are the
+ * routed corpus itself (its scenario/feature docs are the leaves, not just the
+ * gold that points elsewhere). Widening the legal-root set is purely additive:
+ * every leaf already under `references/`/`assets/` validates byte-identically,
+ * so hubs that never emit the two package roots keep the exact prior behavior.
  *
  * No filesystem access happens here. Callers own reading `mode-registry.json`
  * / `leaf-aliases.json` and walking packet directories; this module only
@@ -41,10 +49,19 @@ const crypto = require('crypto');
 // ─────────────────────────────────────────────────────────────────────────────
 
 // A leafResourceId must start under one of these packet-root-relative roots.
-const LEAF_ROOTS = Object.freeze(['references/', 'assets/']);
+// `references/` and `assets/` are the parent-hub packet roots; `feature_catalog/`
+// and `manual_testing_playbook/` extend the set for a standalone skill whose
+// feature-catalog and playbook docs are themselves the routed leaves. Adding a
+// root is backward-compatible: it only ever admits more strings, never rejects a
+// previously-legal one, so no committed manifest changes bytes on this account.
+const LEAF_ROOTS = Object.freeze(['references/', 'assets/', 'feature_catalog/', 'manual_testing_playbook/']);
 
 // Bumped only when the shape of the typed pair or the manifest it feeds
-// changes in a way older consumers cannot read unmodified.
+// changes in a way older consumers cannot read unmodified. Widening LEAF_ROOTS
+// is NOT such a change: the pair shape and manifest structure are untouched, and
+// the single shared copy of this library means there is no stale consumer
+// carrying the old root set, so this stays at 1 and every existing manifest
+// re-checks byte-for-byte.
 const CONTRACT_VERSION = 1;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -69,7 +86,7 @@ function toPosix(value) {
 
 /**
  * Validate that a string is already a well-formed, contained leafResourceId:
- * relative, no `.`/`..` segments, and rooted under `references/` or `assets/`.
+ * relative, no `.`/`..` segments, and rooted under one of LEAF_ROOTS.
  * Throws a ContractError on any violation; returns the value unchanged
  * otherwise, so callers can use this as a guard on data they already trust.
  *
@@ -92,7 +109,7 @@ function assertContainment(leafResourceId) {
     throw new ContractError('MALFORMED_PATH', `leafResourceId must not contain empty or "." segments: ${leafResourceId}`);
   }
   if (!LEAF_ROOTS.some((root) => value.startsWith(root))) {
-    throw new ContractError('OUT_OF_ROOT', `leafResourceId must begin with "references/" or "assets/": ${leafResourceId}`);
+    throw new ContractError('OUT_OF_ROOT', `leafResourceId must begin with one of ${LEAF_ROOTS.map((r) => `"${r}"`).join(', ')}: ${leafResourceId}`);
   }
   return value;
 }

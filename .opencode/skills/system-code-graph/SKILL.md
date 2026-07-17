@@ -89,13 +89,13 @@ Resource domains:
 
 | Level | When to Load | Resources |
 |---|---|---|
-| ALWAYS | Every code-graph invocation | Discovered `runtime` and `readiness` reference docs matching the default path hints |
-| CONDITIONAL | Intent signals match a resource domain | Matching canonical references, feature catalog slices, or playbook scenarios |
-| ON_DEMAND | Explicit request or troubleshooting depth needed | Full reference folders, feature catalog families, and manual playbook categories |
+| FALLBACK | Request too weak to score | The two `DEFAULT_RESOURCES` references, offered with the disambiguation checklist (fallback-only: never unioned into a scored route) |
+| SELECTED | An intent scores | The exact `RESOURCE_MAP[intent]` leaf(s) for the selected intent(s), emitted as typed `(WORKFLOW_MODE, leafResourceId)` pairs |
+| NAVIGATION | Broad "list the features / playbook" browse | A `PACKAGE_INDEXES` index doc — navigation only, never a typed leaf |
 
 ### Smart Router Pseudocode
 
-This pseudocode captures the canonical documentation resource-loading contract. This skill does route over keyed documentation domains: the real `references/<key>/` keys are discovered from the current tree (`runtime`, `readiness`, `config` today), `assets/<key>/` is supported when present, and `feature_catalog/` plus `manual_testing_playbook/` are supporting documentation packages discovered by prefix. The runtime schema array, not this table, remains authoritative for executable tool registration.
+This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector: it scores the request against `INTENT_SIGNALS`, keeps the intents within the ambiguity delta of the top score (at most two), and resolves each to its exact `RESOURCE_MAP` leaf path — no directory prefixes, filename stems, or globs. Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` (the authorized 53-leaf inventory) via `leaf-aliases.json`; package indexes and fallback defaults ride their own channels and never become typed leaves. The runtime schema array, not this router, remains authoritative for executable tool registration.
 
 ```python
 from pathlib import Path
@@ -107,71 +107,120 @@ RESOURCE_BASES = (
     SKILL_ROOT / "feature_catalog",
     SKILL_ROOT / "manual_testing_playbook",
 )
-DEFAULT_REFERENCE_KEYS = ("runtime", "readiness")
-DEFAULT_PATH_HINTS = ("tool_surface", "code_graph_readiness_check")
 
-INTENT_SIGNALS = {
-    "TOOL_SURFACE": {"weight": 4, "keywords": ["tool", "schema", "tool id", "code_graph_", "detect_changes"]},
-    "READINESS": {"weight": 4, "keywords": ["readiness", "fresh", "stale", "blocked", "empty", "absent", "ensurecodegraphready"]},
-    "QUERY": {"weight": 4, "keywords": ["query", "blast radius", "caller", "import", "dependency", "symbol", "context"]},
-    "SCAN_VERIFY": {"weight": 4, "keywords": ["scan", "verify", "gold query", "rescan", "index", "refresh"]},
-    "CHANGE_DETECTION": {"weight": 3, "keywords": ["detect changes", "diff", "affected symbols", "preflight"]},
-    "CONFIG": {"weight": 3, "keywords": ["database", "sqlite", "db path", "storage", "speckit_code_graph_db_dir"]},
-    "NAMING": {"weight": 3, "keywords": ["name", "mk-code-index", "mk_code_index", "namespace", "launcher", "plugin"]},
-    "OWNERSHIP": {"weight": 3, "keywords": ["ownership", "boundary", "spec-kit", "deep-loop", "coverage graph"]},
-    "LAUNCHER": {"weight": 3, "keywords": ["launcher", "lease", "pid", "single writer", "lease_held_by"]},
-    "FEATURES": {"weight": 2, "keywords": ["feature catalog", "capability", "current feature"]},
-    "PLAYBOOK": {"weight": 2, "keywords": ["manual test", "playbook", "scenario", "evidence"]},
+# This standalone skill emits exactly one workflow mode. Every routed leaf is a
+# (WORKFLOW_MODE, leafResourceId) pair. leaf-manifest.json is the authorized
+# 53-leaf inventory; leaf-aliases.json binds each router-emitted path to its
+# typed identity so a deterministic benchmark replay recovers real pairs.
+WORKFLOW_MODE = "system-code-graph"
+
+# Always-relevant references offered when a request is too weak to score.
+# DEFAULT_RESOURCE_SEMANTICS = "fallback-only": the defaults are a defer-time
+# suggestion surfaced with the disambiguation checklist, never unioned into a
+# scored route's typed leaves, so selected-leaf precision is not diluted.
+DEFAULT_RESOURCES = [
+    "references/runtime/tool_surface.md",
+    "references/readiness/code_graph_readiness_check.md",
+]
+DEFAULT_RESOURCE_SEMANTICS = "fallback-only"
+
+# Navigation indexes: loadable for browsing, deliberately excluded from typed
+# leaves and from leaf-manifest.json. A broad "list the features / playbook"
+# request loads these; they never become a (mode, leaf) pair.
+PACKAGE_INDEXES = {
+    "FEATURES": "feature_catalog/feature_catalog.md",
+    "PLAYBOOK": "manual_testing_playbook/manual_testing_playbook.md",
 }
 
-RESOURCE_DOMAINS = {
-    "TOOL_SURFACE": {
-        "reference_keys": ["runtime"],
-        "path_hints": ["tool_surface"],
-        "support_prefixes": ["feature_catalog/mcp_tool_surface/", "manual_testing_playbook/mcp_tool_surface/"],
-    },
-    "READINESS": {
-        "reference_keys": ["readiness"],
-        "support_prefixes": [
-            "feature_catalog/read_path_freshness/",
-            "feature_catalog/manual_scan_verify_status/",
-            "manual_testing_playbook/read_path_freshness/",
-            "manual_testing_playbook/manual_scan_verify_status/",
-        ],
-    },
-    "QUERY": {
-        "reference_keys": ["runtime"],
-        "path_hints": ["tool_surface"],
-        "support_prefixes": [
-            "feature_catalog/read_path_freshness/",
-            "feature_catalog/context_retrieval/",
-            "manual_testing_playbook/read_path_freshness/",
-            "manual_testing_playbook/context_retrieval/",
-            "manual_testing_playbook/mcp_tool_surface/",
-        ],
-    },
-    "SCAN_VERIFY": {
-        "reference_keys": ["readiness"],
-        "support_prefixes": ["feature_catalog/manual_scan_verify_status/", "manual_testing_playbook/manual_scan_verify_status/"],
-    },
-    "CHANGE_DETECTION": {
-        "reference_keys": ["runtime"],
-        "path_hints": ["tool_surface"],
-        "support_prefixes": ["feature_catalog/detect_changes/", "manual_testing_playbook/detect_changes/"],
-    },
-    "CONFIG": {
-        "reference_keys": ["config"],
-        "support_prefixes": ["manual_testing_playbook/post_rename_infrastructure/"],
-    },
-    "NAMING": {"reference_keys": ["runtime"], "path_hints": ["naming_conventions"]},
-    "OWNERSHIP": {"reference_keys": ["runtime"], "path_hints": ["ownership_boundary"]},
-    "LAUNCHER": {
-        "reference_keys": ["runtime"],
-        "path_hints": ["launcher_lease"],
-        "support_prefixes": ["manual_testing_playbook/post_rename_infrastructure/"],
-    },
-    "FEATURES": {"support_prefixes": ["feature_catalog/"]},
-    "PLAYBOOK": {"support_prefixes": ["manual_testing_playbook/"]},
+# Intent -> weighted keyword signals. Generic documentation keys score at
+# weight 3 on distinctive doc phrases; exact scenario keys score at weight 5 on
+# a phrase unique to one manual-testing scenario, so an exact scenario request
+# clears the ambiguity delta over any generic key and resolves to exactly its
+# own leaf while a plain doc lookup still routes to the reference.
+INTENT_SIGNALS = {
+    "TOOL_SURFACE": {"weight": 3, "keywords": ["tool surface reference", "mcp tool inventory", "tool id map"]},
+    "READINESS": {"weight": 3, "keywords": ["readiness check reference", "ensurecodegraphready", "readiness gate doc"]},
+    "READINESS_SCOPE": {"weight": 3, "keywords": ["scope fingerprint", "readiness state machine", "scan-scope contract"]},
+    "QUERY": {"weight": 3, "keywords": ["blast radius reference", "caller lookup doc", "dependency query surface"]},
+    "SCAN_VERIFY": {"weight": 3, "keywords": ["rescan scope", "gold-query battery reference", "scan scope refresh"]},
+    "CHANGE_DETECTION": {"weight": 3, "keywords": ["detect_changes preflight feature", "affected-symbol preflight", "diff impact preflight"]},
+    "CONFIG": {"weight": 3, "keywords": ["database path policy", "db path override", "sqlite path policy"]},
+    "NAMING": {"weight": 3, "keywords": ["naming conventions map", "namespace asymmetry", "name map across layers"]},
+    "OWNERSHIP": {"weight": 3, "keywords": ["ownership boundary", "what stays in system-spec-kit", "extraction boundary"]},
+    "LAUNCHER": {"weight": 3, "keywords": ["launcher lease contract", "pid-file lease", "single-writer lease"]},
+    "CODE_INDEX_CLI": {"weight": 3, "keywords": ["code-index cli reference", "daemon-backed cli surface", "cli parity reference"]},
+    "TOOL_REGISTRATIONS": {"weight": 3, "keywords": ["tool registrations", "tool registration wiring", "server registration list"]},
+    "QUERY_SELF_HEAL": {"weight": 3, "keywords": ["query self-heal feature", "read-path self-heal design", "self-heal handler slice"]},
+    "CODE_GRAPH_CONTEXT": {"weight": 3, "keywords": ["context feature slice", "neighborhood context feature", "context handler design"]},
+    "ENSURE_READY_SELECTIVE_REINDEX": {"weight": 5, "keywords": ["repair a single stale tracked file", "selectively reindex", "unrequested full scan"]},
+    "QUERY_SELF_HEAL_STALE_FILE": {"weight": 5, "keywords": ["self-heals a single stale file", "refuses broad stale state", "blocked-scan path"]},
+    "SCAN_INCREMENTAL": {"weight": 5, "keywords": ["incremental code_graph_scan skips unchanged", "removes deleted tracked files", "deleted-file pruning"]},
+    "SCAN_FULL": {"weight": 5, "keywords": ["full code_graph_scan", "persists the edge baseline", "reparses candidates"]},
+    "VERIFY_BLOCKED_ON_STALE": {"weight": 5, "keywords": ["code_graph_verify blocks on stale", "passes through to verification after", "explicit rescan before verify"]},
+    "STATUS_READONLY": {"weight": 5, "keywords": ["code_graph_status around a stale-file fixture", "diagnostics without repairing", "read-only status diagnostics"]},
+    "DETECT_CHANGES_NO_INLINE_INDEX": {"weight": 5, "keywords": ["detect_changes refuses stale graph state", "instead of repairing inline", "no inline index"]},
+    "CONTEXT_READINESS_BLOCK": {"weight": 5, "keywords": ["code_graph_context blocks broad stale", "returns readiness metadata", "context readiness block"]},
+    "DEEP_LOOP_GRAPH_CONVERGENCE": {"weight": 5, "keywords": ["graph convergence is called before stop voting", "convergence before stop voting", "auto yaml convergence"]},
+    "DEEP_LOOP_GRAPH_UPSERT": {"weight": 5, "keywords": ["graph upsert only fires when graphevents", "conditional graph upsert", "graphevents are present"]},
+    "TOOL_CALL_SHAPE_VALIDATION": {"weight": 5, "keywords": ["malformed code_graph mcp calls", "schema validation reports the missing fields", "tool call shape validation"]},
+    "DOCTOR_APPLY_MODE_POLICY": {"weight": 5, "keywords": ["doctor-code-graph routing and yaml", "diagnostic-only despite mutating route metadata", "apply-mode policy"]},
+    "MCP_MANIFEST_POST_RENAME": {"weight": 5, "keywords": ["advertises the expected 8 tools", "tool manifest after rename", "8 tools with correct tool ids"]},
+    "LAUNCHER_STARTUP_PREFIX": {"weight": 5, "keywords": ["mk-code-index-launcher prefix on stderr", "idle-timeout guardrail", "launcher startup prefix"]},
+    "MCP_SERVER_KEY_RENAME": {"weight": 5, "keywords": ["mk_code_index server key", "no system_code_graph key", "mcp.json server key"]},
+    "DATABASE_PATH_VERIFICATION": {"weight": 5, "keywords": ["code-graph.sqlite is at the documented path", "no legacy database files", "canonical sqlite path check"]},
+    "TYPESCRIPT_ENTRY_POINT": {"weight": 5, "keywords": ["dist is built and the entry point exists", "tool-schemas module loads", "built entry point check"]},
+    "UNICODE_DIST_CLEANUP": {"weight": 5, "keywords": ["does not recreate sibling dist folders", "root dist absence", "clean build dist cleanup"]},
+    "CLI_FALLBACK_SURFACE": {"weight": 5, "keywords": ["cli enumerates 8 tools", "exits 75 warm-only against an absent daemon", "cli fallback surface"]},
+    "QUERY_ASOF_TIME_TRAVEL": {"weight": 5, "keywords": ["as-of query parameter", "bitemporal-reads flag", "historical edge set"]},
+    "QUERY_BM25_RESOLVER": {"weight": 5, "keywords": ["bm25 symbol resolver", "near-miss subject", "candidate symbols for disambiguation"]},
+    "CONTEXT_EDGE_CONFIDENCE": {"weight": 5, "keywords": ["edge_confidence_differentiation", "calls confidence tiers", "flat 0.8 default"]},
+    "CONTEXT_SEEDED_PPR": {"weight": 5, "keywords": ["seeded-ppr ranking", "multi-hop edgechain", "cut verdict"]},
+}
+
+# Intent -> exact leaf path(s). No prefixes, stems, or globs: every value is a
+# concrete markdown leaf that exists in leaf-manifest.json (package indexes are
+# intentionally absent — they live in PACKAGE_INDEXES). Two reference leaves are
+# reused by more than one intent; 18 authorized leaves (13 feature slices + the
+# 5 non-routing scenarios) stay intentionally unmapped and reachable only via
+# PACKAGE_INDEXES or a full-inventory browse.
+RESOURCE_MAP = {
+    "TOOL_SURFACE": ["references/runtime/tool_surface.md"],
+    "READINESS": ["references/readiness/code_graph_readiness_check.md"],
+    "READINESS_SCOPE": ["references/readiness/readiness_and_scope_fingerprint.md"],
+    "QUERY": ["references/runtime/tool_surface.md"],
+    "SCAN_VERIFY": ["references/readiness/readiness_and_scope_fingerprint.md"],
+    "CHANGE_DETECTION": ["feature_catalog/detect_changes/detect_changes_preflight.md"],
+    "CONFIG": ["references/config/database_path_policy.md"],
+    "NAMING": ["references/runtime/naming_conventions.md"],
+    "OWNERSHIP": ["references/runtime/ownership_boundary.md"],
+    "LAUNCHER": ["references/runtime/launcher_lease.md"],
+    "CODE_INDEX_CLI": ["feature_catalog/mcp_tool_surface/code_index_cli.md"],
+    "TOOL_REGISTRATIONS": ["feature_catalog/mcp_tool_surface/tool_registrations.md"],
+    "QUERY_SELF_HEAL": ["feature_catalog/read_path_freshness/query_self_heal.md"],
+    "CODE_GRAPH_CONTEXT": ["feature_catalog/context_retrieval/code_graph_context.md"],
+    "ENSURE_READY_SELECTIVE_REINDEX": ["manual_testing_playbook/read_path_freshness/ensure_ready_selective_reindex.md"],
+    "QUERY_SELF_HEAL_STALE_FILE": ["manual_testing_playbook/read_path_freshness/query_self_heal_stale_file.md"],
+    "SCAN_INCREMENTAL": ["manual_testing_playbook/manual_scan_verify_status/code_graph_scan_incremental.md"],
+    "SCAN_FULL": ["manual_testing_playbook/manual_scan_verify_status/code_graph_scan_full.md"],
+    "VERIFY_BLOCKED_ON_STALE": ["manual_testing_playbook/manual_scan_verify_status/code_graph_verify_blocked_on_stale.md"],
+    "STATUS_READONLY": ["manual_testing_playbook/manual_scan_verify_status/code_graph_status_readonly.md"],
+    "DETECT_CHANGES_NO_INLINE_INDEX": ["manual_testing_playbook/detect_changes/detect_changes_no_inline_index.md"],
+    "CONTEXT_READINESS_BLOCK": ["manual_testing_playbook/context_retrieval/code_graph_context_readiness_block.md"],
+    "DEEP_LOOP_GRAPH_CONVERGENCE": ["manual_testing_playbook/coverage_graph/deep_loop_graph_convergence_yaml_fire.md"],
+    "DEEP_LOOP_GRAPH_UPSERT": ["manual_testing_playbook/coverage_graph/deep_loop_graph_upsert_conditional.md"],
+    "TOOL_CALL_SHAPE_VALIDATION": ["manual_testing_playbook/mcp_tool_surface/tool_call_shape_validation.md"],
+    "DOCTOR_APPLY_MODE_POLICY": ["manual_testing_playbook/doctor_code_graph/doctor_apply_mode_policy.md"],
+    "MCP_MANIFEST_POST_RENAME": ["manual_testing_playbook/mcp_tool_surface/mcp_tool_manifest_post_rename.md"],
+    "LAUNCHER_STARTUP_PREFIX": ["manual_testing_playbook/post_rename_infrastructure/launcher_startup_prefix.md"],
+    "MCP_SERVER_KEY_RENAME": ["manual_testing_playbook/post_rename_infrastructure/mcp_json_server_key_rename.md"],
+    "DATABASE_PATH_VERIFICATION": ["manual_testing_playbook/post_rename_infrastructure/database_path_verification.md"],
+    "TYPESCRIPT_ENTRY_POINT": ["manual_testing_playbook/post_rename_infrastructure/typescript_build_and_entry_point.md"],
+    "UNICODE_DIST_CLEANUP": ["manual_testing_playbook/post_rename_infrastructure/unicode_normalization_fix_from_009.md"],
+    "CLI_FALLBACK_SURFACE": ["manual_testing_playbook/mcp_tool_surface/code_index_cli_fallback_surface.md"],
+    "QUERY_ASOF_TIME_TRAVEL": ["manual_testing_playbook/mcp_tool_surface/code_graph_query_asof_time_travel.md"],
+    "QUERY_BM25_RESOLVER": ["manual_testing_playbook/mcp_tool_surface/code_graph_query_bm25_symbol_resolver.md"],
+    "CONTEXT_EDGE_CONFIDENCE": ["manual_testing_playbook/context_retrieval/code_graph_context_edge_confidence_differentiation.md"],
+    "CONTEXT_SEEDED_PPR": ["manual_testing_playbook/context_retrieval/code_graph_context_seeded_ppr_ranking.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -190,25 +239,10 @@ def discover_markdown_resources() -> set[str]:
 
 def _guard_in_skill(relative_path: str) -> str:
     resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
+    resolved.relative_to(SKILL_ROOT)  # fail closed on any escape
     if resolved.suffix.lower() != ".md":
         raise ValueError(f"Only markdown resources are routable: {relative_path}")
     return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def _filter_paths(paths: list[str], keywords: list[str]) -> list[str]:
-    if not keywords:
-        return paths
-    lowered = [keyword.lower() for keyword in keywords]
-    return [path for path in paths if any(keyword in path.lower() for keyword in lowered)]
-
-def discovered_reference_keys(inventory: set[str]) -> set[str]:
-    keys = set()
-    for path in inventory:
-        if path.startswith("references/"):
-            tail = path.removeprefix("references/")
-            if "/" in tail:
-                keys.add(tail.split("/", 1)[0])
-    return keys
 
 def _task_text(task) -> str:
     fields = [
@@ -219,35 +253,6 @@ def _task_text(task) -> str:
     ]
     return " ".join(str(field) for field in fields if field).lower()
 
-loaded = []
-seen = set()
-inventory = discover_markdown_resources()
-reference_keys = discovered_reference_keys(inventory)
-
-def load_if_available(relative_path: str) -> None:
-    guarded = _guard_in_skill(relative_path)
-    if guarded in inventory and guarded not in seen:
-        load(guarded)
-        loaded.append(guarded)
-        seen.add(guarded)
-
-def load_keyed_resources(reference_key: str, path_hints: list[str]) -> int:
-    before = len(loaded)
-    if reference_key not in reference_keys:
-        return 0
-    prefixes = (f"references/{reference_key}/", f"assets/{reference_key}/")
-    paths = sorted(path for path in inventory if path.startswith(prefixes))
-    for path in _filter_paths(paths, path_hints):
-        load_if_available(path)
-    return len(loaded) - before
-
-def load_support_prefix(prefix: str, path_hints: list[str]) -> int:
-    before = len(loaded)
-    paths = sorted(path for path in inventory if path.startswith(prefix))
-    for path in _filter_paths(paths, path_hints):
-        load_if_available(path)
-    return len(loaded) - before
-
 def score_intents(task) -> dict[str, int]:
     text = _task_text(task)
     scores = {}
@@ -257,45 +262,65 @@ def score_intents(task) -> dict[str, int]:
             scores[intent] = hits * model["weight"]
     return scores
 
-for reference_key in DEFAULT_REFERENCE_KEYS:
-    load_keyed_resources(reference_key, list(DEFAULT_PATH_HINTS))
+def typed_leaves(paths: list[str]) -> list[dict]:
+    # Project selected leaf paths into deduped (workflowMode, leafResourceId)
+    # pairs. Package indexes are never present (they are not in RESOURCE_MAP);
+    # a path that is not a real manifest leaf is dropped, never emitted as an
+    # invented pair.
+    seen, pairs = set(), []
+    index_paths = set(PACKAGE_INDEXES.values())
+    for path in paths:
+        if path in index_paths or (WORKFLOW_MODE, path) in seen:
+            continue
+        seen.add((WORKFLOW_MODE, path))
+        pairs.append({"workflowMode": WORKFLOW_MODE, "leafResourceId": path})
+    return pairs
 
+inventory = discover_markdown_resources()
 scores = score_intents(task)
+
+# Too weak to score: offer the fallback defaults + disambiguation and assemble
+# no typed leaves. DEFAULT_RESOURCE_SEMANTICS = "fallback-only" is exactly what
+# makes the defaults a suggestion here rather than an assembled route.
 if max(scores.values() or [0]) < 3:
     return {
+        "workflowMode": WORKFLOW_MODE,
         "load_level": "UNKNOWN_FALLBACK",
         "needs_disambiguation": True,
         "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-        "resources": loaded,
+        "supportResources": [p for p in DEFAULT_RESOURCES if p in inventory],
+        "leafResources": [],
     }
 
+# Keep intents within the ambiguity delta of the top score (at most two). An
+# exact scenario key (weight 5) beats any generic doc key (weight 3) by more
+# than the delta, so a scenario request resolves to exactly its own leaf; a
+# genuine tie between equally weighted keys still surfaces both.
 ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
 top_score = ranked[0][1]
 selected = [intent for intent, score in ranked if top_score - score <= 1][:2]
 
+resources = []
 for intent in selected:
-    domain = RESOURCE_DOMAINS.get(intent)
-    if not domain:
-        return {
-            "notice": f"No knowledge base found for code-graph intent '{intent}'",
-            "resources": loaded,
-        }
-    loaded_before = len(loaded)
-    for reference_key in domain.get("reference_keys", []):
-        load_keyed_resources(reference_key, domain.get("path_hints", []))
-    for prefix in domain.get("support_prefixes", []):
-        load_support_prefix(prefix, domain.get("path_hints", []))
-    if len(loaded) == loaded_before:
-        return {
-            "notice": f"No knowledge base found for code-graph intent '{intent}'",
-            "reference_keys": domain.get("reference_keys", []),
-            "resources": loaded,
-        }
+    for path in RESOURCE_MAP.get(intent, []):
+        guarded = _guard_in_skill(path)
+        if guarded in inventory and guarded not in resources:
+            resources.append(guarded)
 
 return {
+    "workflowMode": WORKFLOW_MODE,
     "intents": selected,
     "ambiguous": len(selected) > 1,
-    "resources": loaded,
+    # Compatibility flat list: selected leaves only. Fallback defaults are NOT
+    # unioned in (fallback-only semantics), so a scored route carries exactly
+    # its intents' leaves.
+    "resources": resources,
+    # Typed projection every benchmark/replay consumer compares byte-for-byte.
+    "leafResources": typed_leaves(resources),
+    # Support defaults and navigation indexes ride their own channels so they
+    # never inflate selected-leaf precision.
+    "supportResources": DEFAULT_RESOURCES,
+    "navigationResources": PACKAGE_INDEXES,
 }
 ```
 

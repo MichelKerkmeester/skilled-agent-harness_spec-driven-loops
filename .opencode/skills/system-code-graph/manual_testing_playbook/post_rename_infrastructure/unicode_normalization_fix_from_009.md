@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.2
+id: unicode-normalization-fix-from-009
+category: post_rename_infrastructure
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/post_rename_infrastructure/unicode_normalization_fix_from_009.md
 ---
 # 021 root dist cleanup verification
+
+Prompt: Confirm the code-graph clean build does not recreate sibling dist folders and verify root dist absence.
 
 ## 1. OVERVIEW
 

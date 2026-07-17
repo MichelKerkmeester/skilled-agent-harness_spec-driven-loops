@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.3
+id: database-path-verification
+category: post_rename_infrastructure
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/post_rename_infrastructure/database_path_verification.md
 ---
 # 019 database path verification
+
+Prompt: Confirm the code-graph.sqlite is at the documented path and no legacy database files remain active.
 
 ## 1. OVERVIEW
 

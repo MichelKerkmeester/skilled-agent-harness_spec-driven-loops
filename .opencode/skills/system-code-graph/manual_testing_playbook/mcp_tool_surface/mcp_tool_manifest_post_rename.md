@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.4
+id: mcp-tool-manifest-post-rename
+category: mcp_tool_surface
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/mcp_tool_surface/mcp_tool_manifest_post_rename.md
 ---
 # 016 MCP tool manifest post-rename
+
+Prompt: Confirm that the mk-code-index MCP server advertises the expected 8 tools with correct tool IDs after renaming from system_code_graph.
 
 ## 1. OVERVIEW
 

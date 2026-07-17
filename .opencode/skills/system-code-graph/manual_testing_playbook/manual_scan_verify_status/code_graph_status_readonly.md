@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.4
+id: code-graph-status-readonly
+category: manual_scan_verify_status
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/manual_scan_verify_status/code_graph_status_readonly.md
 ---
 # 006 code_graph_status readonly
+
+Prompt: Inspect code_graph_status around a stale-file fixture and confirm it reports diagnostics without repairing the graph.
 
 ## 1. OVERVIEW
 

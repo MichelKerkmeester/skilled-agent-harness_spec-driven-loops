@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.8
+id: deep-loop-graph-convergence-yaml-fire
+category: coverage_graph
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/coverage_graph/deep_loop_graph_convergence_yaml_fire.md
 ---
 # 009 runtime/ convergence yaml fire
+
+Prompt: Review the deep-research and deep-review auto YAML to confirm graph convergence is called before stop voting.
 
 ## 1. OVERVIEW
 
