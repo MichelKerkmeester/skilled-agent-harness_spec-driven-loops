@@ -22,8 +22,6 @@ Load the presentation contract before showing startup questions, mid-run prompts
 | Presentation source of truth | `.opencode/commands/doctor/assets/doctor_update_presentation.txt` |
 | Update workflow | `.opencode/commands/doctor/assets/doctor_update.yaml` |
 
-No workflow-asset gap exists for this command.
-
 ## 3. MODE ROUTING
 
 - This command is always interactive; deleted mode suffixes are invalid.

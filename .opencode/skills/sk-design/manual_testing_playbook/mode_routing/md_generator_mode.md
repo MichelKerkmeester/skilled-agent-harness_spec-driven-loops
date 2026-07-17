@@ -1,10 +1,33 @@
 ---
-title: "MR-005: md-generator Mode Routing"
+title: "MDR-005: md-generator Mode Routing"
 description: "Verify live-site DESIGN.md extraction requests resolve to md-generator and load the design-md-generator packet."
 version: 1.0.0.0
+id: MDR-005
+expected_workflow_mode: md-generator
+expected_leaf_resources:
+  - workflow_mode: md-generator
+    leaf_resource_id: references/design_md_format.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/writing_style_guide.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/color_role_taxonomy.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/component_taxonomy.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/anti_patterns.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/extraction_workflow.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/troubleshooting.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/design_md_prompt_template.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/cardinal_rules_card.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/source_of_truth_router_card.md
 ---
 
-# MR-005: md-generator Mode Routing
+# MDR-005: md-generator Mode Routing
 
 ## 1. OVERVIEW
 
@@ -53,13 +76,13 @@ Extract the design system from https://example.com into a DESIGN.md style refere
 ### Preconditions
 
 1. `mode-registry.json` contains a mode with `workflowMode: md-generator`, `packet: design-md-generator`, and `backendKind: playwright-extract`.
-2. The scenario output path is under `/tmp/skd-MR005/` if executed beyond routing.
+2. The scenario output path is under `/tmp/skd-MDR005/` if executed beyond routing.
 
 ### Exact Command Sequence
 
-1. Run the advisor probe and save output to `/tmp/skd-MR005-advisor.txt`.
+1. Run the advisor probe and save output to `/tmp/skd-MDR005-advisor.txt`.
 2. Invoke the orchestrator with the exact prompt.
-3. Capture mode, packet, resources, tool surface, and response in `/tmp/skd-MR005-response.txt`.
+3. Capture mode, packet, resources, tool surface, and response in `/tmp/skd-MDR005-response.txt`.
 
 ### Pass/Fail Criteria
 
@@ -82,6 +105,6 @@ Extract the design system from https://example.com into a DESIGN.md style refere
 
 - **Critical path**: Yes
 - **Destructive**: Potentially writes sandbox artifacts only when executed
-- **Sandbox**: `/tmp/skd-MR005/`
+- **Sandbox**: `/tmp/skd-MDR005/`
 - **Concurrent-safe**: No
 - **Last validated**: pending manual run

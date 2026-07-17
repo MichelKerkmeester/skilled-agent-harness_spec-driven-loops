@@ -1,7 +1,15 @@
 ---
+id: IL-002
+category: improvement_lane_routing
+stage: routing
 title: "IL-002: Model Benchmark Command-Bridge Routing"
 description: "Verify /deep:model-benchmark routes to the model-benchmark improvement lane through command-bridge routing."
-version: "1.1.0.0"
+expected_intent: model-benchmark
+expected_resources:
+  - deep-improvement/SKILL.md
+expected_workflow_mode: model-benchmark
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # IL-002: Model Benchmark Command-Bridge Routing

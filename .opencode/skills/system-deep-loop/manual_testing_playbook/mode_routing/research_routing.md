@@ -1,10 +1,24 @@
 ---
-title: "MR-001: Research Mode Routing"
+id: MO-001
+category: mode_routing
+stage: routing
+title: "MO-001: Research Mode Routing"
 description: "Verify an outward iterative investigation request resolves to the research mode through the system-deep-loop hub."
-version: "1.1.0.0"
+expected_intent: research
+expected_resources:
+  - deep-research/SKILL.md
+expected_workflow_mode: research
+expected_leaf_resources:
+  - workflow_mode: research
+    leaf_resource_id: references/protocol/loop_protocol.md
+  - workflow_mode: research
+    leaf_resource_id: references/state/state_jsonl.md
+  - workflow_mode: research
+    leaf_resource_id: references/convergence/convergence.md
+version: "1.2.0.0"
 ---
 
-# MR-001: Research Mode Routing
+# MO-001: Research Mode Routing
 
 ## 1. OVERVIEW
 
@@ -47,10 +61,10 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary." --threshold 0.8 > /tmp/dlw-MR-001/advisor.txt
+   python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary." --threshold 0.8 > /tmp/dlw-MO-001/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary.")`.
-3. **Capture route**: save the AI response to `/tmp/dlw-MR-001/response.txt`.
+3. **Capture route**: save the AI response to `/tmp/dlw-MO-001/response.txt`.
 4. **Compare to registry**: confirm the response matches the `research` registry entry.
 
 ### Expected Signals
@@ -83,6 +97,6 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 
 - **Critical path**: Yes
 - **Destructive**: No
-- **Sandbox**: `/tmp/dlw-MR-001/`
+- **Sandbox**: `/tmp/dlw-MO-001/`
 - **Concurrent-safe**: Yes
 - **Last validated**: pending first manual run

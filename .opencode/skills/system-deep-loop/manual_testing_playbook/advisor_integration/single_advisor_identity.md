@@ -1,7 +1,13 @@
 ---
+id: AI-001
+category: advisor_integration
+stage: routing
 title: "AI-001: Single Advisor Identity"
 description: "Verify positive deep-loop controls surface system-deep-loop as the parent hub identity instead of separate discoverable child skills."
-version: "1.1.0.0"
+expected_intent: UNKNOWN
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # AI-001: Single Advisor Identity

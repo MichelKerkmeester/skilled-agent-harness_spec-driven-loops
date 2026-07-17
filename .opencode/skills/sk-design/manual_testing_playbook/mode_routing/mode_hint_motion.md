@@ -1,10 +1,19 @@
 ---
-title: "MR-006: Mode Hint Override to Motion"
+title: "MDR-006: Mode Hint Override to Motion"
 description: "Verify an explicit motion mode hint resolves the motion packet even when transform wording is present."
 version: 1.0.0.0
+id: MDR-006
+expected_workflow_mode: motion
+expected_leaf_resources:
+  - workflow_mode: motion
+    leaf_resource_id: references/corpus_map.md
+  - workflow_mode: motion
+    leaf_resource_id: references/animation_decision_framework.md
+  - workflow_mode: motion
+    leaf_resource_id: references/motion_strategy.md
 ---
 
-# MR-006: Mode Hint Override to Motion
+# MDR-006: Mode Hint Override to Motion
 
 ## 1. OVERVIEW
 
@@ -52,9 +61,9 @@ motion: make the menu transition feel bolder and more deliberate.
 
 ### Exact Command Sequence
 
-1. Run the advisor probe and save output to `/tmp/skd-MR006-advisor.txt`.
+1. Run the advisor probe and save output to `/tmp/skd-MDR006-advisor.txt`.
 2. Invoke the orchestrator with the exact prompt.
-3. Capture mode, packet, resources, and response in `/tmp/skd-MR006-response.txt`.
+3. Capture mode, packet, resources, and response in `/tmp/skd-MDR006-response.txt`.
 
 ### Pass/Fail Criteria
 

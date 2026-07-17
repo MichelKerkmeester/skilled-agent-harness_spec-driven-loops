@@ -2,6 +2,9 @@
 title: "HM-001: Context-First Intake"
 description: "Verify the sk-design hub gathers goal, surface, inputs, constraints, and proof expectations before route selection when missing facts affect the route or acceptance bar."
 version: 1.0.0.0
+id: HM-001
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # HM-001: Context-First Intake

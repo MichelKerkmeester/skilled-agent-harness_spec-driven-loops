@@ -2,6 +2,10 @@
 title: "AI-002: Pure Code Routes to sk-code"
 description: "Verify pure code-edit prompts route away from sk-design and into sk-code."
 version: 1.0.0.0
+id: AI-002
+expected_workflow_mode: UNKNOWN
+stage: negative
+expected_leaf_resources: []
 ---
 
 # AI-002: Pure Code Routes to sk-code

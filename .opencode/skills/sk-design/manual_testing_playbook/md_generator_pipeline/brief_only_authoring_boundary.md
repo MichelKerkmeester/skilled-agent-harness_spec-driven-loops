@@ -2,6 +2,19 @@
 title: "MG-004: Brief-Only Authoring Boundary"
 description: "Verify a brief-only DESIGN.md request with no live site to crawl stays inside md-generator's authoring-boundary contract instead of fabricating a measured token table."
 version: 1.0.0.0
+id: MG-004
+expected_workflow_mode: md-generator
+expected_leaf_resources:
+  - workflow_mode: md-generator
+    leaf_resource_id: references/design_md_format.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/writing_style_guide.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/authoring_boundary.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/cardinal_rules_card.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/source_of_truth_router_card.md
 ---
 
 # MG-004: Brief-Only Authoring Boundary

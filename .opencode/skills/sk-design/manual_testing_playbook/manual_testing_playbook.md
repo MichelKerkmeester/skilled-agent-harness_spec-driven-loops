@@ -16,14 +16,14 @@ This playbook package adopts the Feature Catalog split-document pattern. The roo
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
-- `mode-routing/`
-- `advisor-integration/`
-- `transform-verb-framing/`
-- `md-generator-pipeline/`
-- `shared-reference-base/`
-- `parity-behavior/`
-- `fallback-and-resilience/`
-- `hub-manager-intake/`
+- `mode_routing/`
+- `advisor_integration/`
+- `transform_verb_framing/`
+- `md_generator_pipeline/`
+- `shared_reference_base/`
+- `parity_behavior/`
+- `fallback_and_resilience/`
+- `hub_manager_intake/`
 
 ---
 
@@ -67,7 +67,7 @@ Coverage note: the playbook covers sk-design's parent-hub routing at the current
 2. The sk-design hub is present at `.opencode/skills/sk-design/` with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `shared/`, and all five workflow mode folders plus the `design-mcp-open-design` transport packet intact.
 3. The skill advisor is callable either through the runtime hook or through `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 4. Operators capture evidence under `/tmp/skd-<SCENARIO-ID>/` or `/tmp/skd-<SCENARIO-ID>.txt`.
-5. Scenarios outside `md-generator-pipeline/` are read-only routing tests against skill assets.
+5. Scenarios outside `md_generator_pipeline/` are read-only routing tests against skill assets.
 6. `md-generator` scenarios may write only to sandboxed output paths under `/tmp/skd-*` during execution.
 7. Concurrency cap: advisor probes can run concurrently up to 5 workers; md-generator pipeline runs MUST run serially because they use browser tooling and write output artifacts.
 
@@ -132,7 +132,7 @@ For each executed scenario, check:
 - `PARTIAL`: at least one mapped scenario is PARTIAL, none are FAIL.
 - `FAIL`: any mapped scenario is FAIL.
 
-Critical-path scenarios are MR-001, MR-002, MR-003, MR-004, MR-005, MR-007, AI-001, AI-002, TV-001, TV-002, MG-001, MG-004, SR-003, PB-001, PB-002, and PB-003.
+Critical-path scenarios are MDR-001, MDR-002, MDR-003, MDR-004, MDR-005, MDR-007, AI-001, AI-002, TV-001, TV-002, MG-001, MG-004, SR-003, PB-001, PB-002, and PB-003.
 
 Candidate additions for the next operator-confirmed critical-path policy are PB-004, PB-005, PB-006, FR-001, FR-002, HM-001, HM-002, and HM-003. They are not silently promoted by this playbook update.
 
@@ -175,17 +175,17 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 7. MODE ROUTING (`MR-001..MR-007`)
+## 7. MODE ROUTING (`MDR-001..MDR-007`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
-| `MR-001` | Interface Mode | Generic visual direction routes to `interface` | `Make this SaaS pricing page look less generic and give it a distinctive visual direction.` | `interface-aliases`: `make it look good`; `interface-taste`: `less generic`, `visual direction`; packet `design-interface` | `mode-routing/interface-mode.md` |
-| `MR-002` | Foundations Mode | Static token-system request routes to `foundations` | `Create an OKLCH color token system, typography scale, spacing rhythm, and responsive grid for this dashboard.` | `foundations-color`: `oklch`; `foundations-type`: `typography`; `foundations-layout`: `grid`; `foundations-tokens`: `design-tokens` | `mode-routing/foundations-mode.md` |
-| `MR-003` | Motion Mode | Temporal interaction request routes to `motion` | `Design the hover micro-interactions and reduced-motion fallback for this command menu.` | `motion-aliases`: `micro-interactions`, `reduced motion`; `motion-temporal`: `hover effect` | `mode-routing/motion-mode.md` |
-| `MR-004` | Audit Mode | QA request routes to `audit` | `Audit this checkout UI for WCAG contrast, keyboard focus, responsive issues, and design slop.` | `audit-aliases`: `design audit`; `audit-accessibility`: `wcag contrast`; `audit-quality`: `design-qa` | `mode-routing/audit-mode.md` |
-| `MR-005` | md-generator Mode | Live-site extraction request routes to `md-generator` | `Extract the design system from https://example.com into a DESIGN.md style reference.` | `md-generator-aliases`: `extract design system`; `md-generator-artifacts`: `design.md`; backend `playwright-extract` | `mode-routing/md-generator-mode.md` |
-| `MR-006` | Mode Hint Override | `motion:` hint resolves `motion` | `motion: make the menu transition feel bolder and more deliberate.` | Hub rule: mode hint like `motion: ...` overrides; `motion-temporal`: `transition design` | `mode-routing/mode-hint-motion.md` |
-| `MR-007` | Open Design Transport Mode | Open Design wiring request routes to the nested transport packet `design-mcp-open-design`, not a design-judgment mode or the external `mcp-figma` sibling | `Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.` | `design-mcp-open-design-aliases`: `wire open design`, `od cli`; `packetKind: "transport"` | `mode-routing/mcp-open-design-mode.md` |
+| `MDR-001` | Interface Mode | Generic visual direction routes to `interface` | `Make this SaaS pricing page look less generic and give it a distinctive visual direction.` | `interface-aliases`: `make it look good`; `interface-taste`: `less generic`, `visual direction`; packet `design-interface` | `mode_routing/interface_mode.md` |
+| `MDR-002` | Foundations Mode | Static token-system request routes to `foundations` | `Create an OKLCH color token system, typography scale, spacing rhythm, and responsive grid for this dashboard.` | `foundations-color`: `oklch`; `foundations-type`: `typography`; `foundations-layout`: `grid`; `foundations-tokens`: `design-tokens` | `mode_routing/foundations_mode.md` |
+| `MDR-003` | Motion Mode | Temporal interaction request routes to `motion` | `Design the hover micro-interactions and reduced-motion fallback for this command menu.` | `motion-aliases`: `micro-interactions`, `reduced motion`; `motion-temporal`: `hover effect` | `mode_routing/motion_mode.md` |
+| `MDR-004` | Audit Mode | QA request routes to `audit` | `Audit this checkout UI for WCAG contrast, keyboard focus, responsive issues, and design slop.` | `audit-aliases`: `design audit`; `audit-accessibility`: `wcag contrast`; `audit-quality`: `design-qa` | `mode_routing/audit_mode.md` |
+| `MDR-005` | md-generator Mode | Live-site extraction request routes to `md-generator` | `Extract the design system from https://example.com into a DESIGN.md style reference.` | `md-generator-aliases`: `extract design system`; `md-generator-artifacts`: `design.md`; backend `playwright-extract` | `mode_routing/md_generator_mode.md` |
+| `MDR-006` | Mode Hint Override | `motion:` hint resolves `motion` | `motion: make the menu transition feel bolder and more deliberate.` | Hub rule: mode hint like `motion: ...` overrides; `motion-temporal`: `transition design` | `mode_routing/mode_hint_motion.md` |
+| `MDR-007` | Open Design Transport Mode | Open Design wiring request routes to the nested transport packet `design-mcp-open-design`, not a design-judgment mode or the external `mcp-figma` sibling | `Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.` | `design-mcp-open-design-aliases`: `wire open design`, `od cli`; `packetKind: "transport"` | `mode_routing/mcp_open_design_mode.md` |
 
 ---
 
@@ -193,10 +193,10 @@ This section records wave planning and capacity guidance for the manual testing 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
-| `AI-001` | Positive Design Controls | Verify sk-design wins positive design prompts at confidence `>= 0.80` | Multi-prompt battery in file | Advisor top-1 `sk-design`; hub resolves matching mode | `advisor-integration/positive-design-controls.md` |
-| `AI-002` | Pure Code Negative | Verify pure code edit routes to sk-code, not sk-design | `Refactor the parseExecutorConfig function in a TypeScript config loader to throw when the executor type is missing.` | Advisor route elsewhere: expected `sk-code` | `advisor-integration/pure-code-routes-skcode.md` |
-| `AI-003` | Documentation Negative | Verify documentation authoring routes to sk-doc or another documentation owner | `Write a README section explaining how the sk-design hub routes its six modes.` | Advisor route elsewhere: expected `sk-doc` or another documentation owner, not `sk-design` | `advisor-integration/doc-write-routes-elsewhere.md` |
-| `AI-004` | Code-Correctness Review Negative | Verify a code-correctness review request using review/audit-adjacent wording still routes to sk-code's code-review mode, not sk-design's audit mode | `Review this checkout API handler for SQL-injection risk and missing input validation. This is a code-correctness review, not a visual or UI design review.` | Advisor route elsewhere: expected `sk-code` (code-review mode); `sk-design` must not be top-1 at confidence `>= 0.80` | `advisor-integration/code-review-routes-skcode.md` |
+| `AI-001` | Positive Design Controls | Verify sk-design wins positive design prompts at confidence `>= 0.80` | Multi-prompt battery in file | Advisor top-1 `sk-design`; hub resolves matching mode | `advisor_integration/positive_design_controls.md` |
+| `AI-002` | Pure Code Negative | Verify pure code edit routes to sk-code, not sk-design | `Refactor the parseExecutorConfig function in a TypeScript config loader to throw when the executor type is missing.` | Advisor route elsewhere: expected `sk-code` | `advisor_integration/pure_code_routes_skcode.md` |
+| `AI-003` | Documentation Negative | Verify documentation authoring routes to sk-doc or another documentation owner | `Write a README section explaining how the sk-design hub routes its six modes.` | Advisor route elsewhere: expected `sk-doc` or another documentation owner, not `sk-design` | `advisor_integration/doc_write_routes_elsewhere.md` |
+| `AI-004` | Code-Correctness Review Negative | Verify a code-correctness review request using review/audit-adjacent wording still routes to sk-code's code-review mode, not sk-design's audit mode | `Review this checkout API handler for SQL-injection risk and missing input validation. This is a code-correctness review, not a visual or UI design review.` | Advisor route elsewhere: expected `sk-code` (code-review mode); `sk-design` must not be top-1 at confidence `>= 0.80` | `advisor_integration/code_review_routes_skcode.md` |
 
 ---
 
@@ -204,11 +204,11 @@ This section records wave planning and capacity guidance for the manual testing 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
-| `TV-001` | Interface Transform Frame | `make it` plus bolder/quieter/distill/delight resolves interface | Variant set in file | `interfaceFrame`: `make it`; `interfaceAliases`: `bolder`, `quieter`, `distill`, `delight` | `transform-verb-framing/make-it-interface.md` |
-| `TV-002` | Audit Question Frame | `should it be` plus transform alias resolves audit | Variant set in file | `auditFrame`: `should it be`; `audit-transform-question` keywords | `transform-verb-framing/should-it-be-audit.md` |
-| `TV-003` | Clarify Alias Only | `clarify` is an interface alias but excluded from command projection parity | `Clarify this hero section's visual hierarchy without changing its content.` | `aliasOnly`: `clarify`; `interfaceAliases`: `clarify` | `transform-verb-framing/clarify-alias-only.md` |
-| `TV-004` | Foundations Excluded Aliases | `typeset` and `colorize` do not become foundations transform aliases | `Make it typeset and colorize, but do not create a full token system.` | `excludedAliases.foundations`: `typeset`, `colorize`; router default mode `interface` if design-family intent continues | `transform-verb-framing/foundations-excluded-aliases.md` |
-| `TV-005` | Audit Excluded Aliases | `harden` and `polish` do not become audit transform aliases | `Make this card feel polished and visually hardened without running an audit report.` | `excludedAliases.audit`: `harden`, `polish`; `interface-taste`: `polish` | `transform-verb-framing/audit-excluded-aliases.md` |
+| `TV-001` | Interface Transform Frame | `make it` plus bolder/quieter/distill/delight resolves interface | Variant set in file | `interfaceFrame`: `make it`; `interfaceAliases`: `bolder`, `quieter`, `distill`, `delight` | `transform_verb_framing/make_it_interface.md` |
+| `TV-002` | Audit Question Frame | `should it be` plus transform alias resolves audit | Variant set in file | `auditFrame`: `should it be`; `audit-transform-question` keywords | `transform_verb_framing/should_it_be_audit.md` |
+| `TV-003` | Clarify Alias Only | `clarify` is an interface alias but excluded from command projection parity | `Clarify this hero section's visual hierarchy without changing its content.` | `aliasOnly`: `clarify`; `interfaceAliases`: `clarify` | `transform_verb_framing/clarify_alias_only.md` |
+| `TV-004` | Foundations Excluded Aliases | `typeset` and `colorize` do not become foundations transform aliases | `Make it typeset and colorize, but do not create a full token system.` | `excludedAliases.foundations`: `typeset`, `colorize`; router default mode `interface` if design-family intent continues | `transform_verb_framing/foundations_excluded_aliases.md` |
+| `TV-005` | Audit Excluded Aliases | `harden` and `polish` do not become audit transform aliases | `Make this card feel polished and visually hardened without running an audit report.` | `excludedAliases.audit`: `harden`, `polish`; `interface-taste`: `polish` | `transform_verb_framing/audit_excluded_aliases.md` |
 
 ---
 
@@ -216,10 +216,10 @@ This section records wave planning and capacity guidance for the manual testing 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
-| `MG-001` | Extract Write Validate | Full URL to DESIGN.md request runs EXTRACT, WRITE, VALIDATE | `Extract the design system from https://example.com into /tmp/skd-MG001/DESIGN.md with tokens.json evidence.` | Mode `md-generator`; backend `playwright-extract`; phases EXTRACT -> WRITE -> VALIDATE | `md-generator-pipeline/extract-write-validate.md` |
-| `MG-002` | Validate Existing DESIGN.md | Validation-only request stays md-generator | `Validate /tmp/skd-MG002/DESIGN.md against /tmp/skd-MG002/tokens.json for hex accuracy and section completeness.` | `md-generator-aliases`: `validate design.md`; phase VALIDATE | `md-generator-pipeline/validate-design-md.md` |
-| `MG-003` | Design Fidelity Report | Fidelity report request stays md-generator | `Run a design fidelity check for /tmp/skd-MG003/DESIGN.md and its tokens.json, then render the preview report.` | `md-generator-aliases`: `design fidelity check`; phase REPORT or validation plus report | `md-generator-pipeline/design-fidelity-check.md` |
-| `MG-004` | Brief-Only Authoring Boundary | Brief-only request with no live site stays inside the authoring-boundary contract instead of fabricating a measured token table | `Generate a DESIGN.md style reference for our new checkout product from this brief: primary blue #1a73e8, Inter font family, 8px spacing scale, and 12px rounded cards. We do not have a live site to crawl yet -- just the brief.` | Mode `md-generator`; cites `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md`; no brief value lands in an unlabeled Tokens table | `md-generator-pipeline/brief-only-authoring-boundary.md` |
+| `MG-001` | Extract Write Validate | Full URL to DESIGN.md request runs EXTRACT, WRITE, VALIDATE | `Extract the design system from https://example.com into /tmp/skd-MG001/DESIGN.md with tokens.json evidence.` | Mode `md-generator`; backend `playwright-extract`; phases EXTRACT -> WRITE -> VALIDATE | `md_generator_pipeline/extract_write_validate.md` |
+| `MG-002` | Validate Existing DESIGN.md | Validation-only request stays md-generator | `Validate /tmp/skd-MG002/DESIGN.md against /tmp/skd-MG002/tokens.json for hex accuracy and section completeness.` | `md-generator-aliases`: `validate design.md`; phase VALIDATE | `md_generator_pipeline/validate_design_md.md` |
+| `MG-003` | Design Fidelity Report | Fidelity report request stays md-generator | `Run a design fidelity check for /tmp/skd-MG003/DESIGN.md and its tokens.json, then render the preview report.` | `md-generator-aliases`: `design fidelity check`; phase REPORT or validation plus report | `md_generator_pipeline/design_fidelity_check.md` |
+| `MG-004` | Brief-Only Authoring Boundary | Brief-only request with no live site stays inside the authoring-boundary contract instead of fabricating a measured token table | `Generate a DESIGN.md style reference for our new checkout product from this brief: primary blue #1a73e8, Inter font family, 8px spacing scale, and 12px rounded cards. We do not have a live site to crawl yet -- just the brief.` | Mode `md-generator`; cites `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md`; no brief value lands in an unlabeled Tokens table | `md_generator_pipeline/brief_only_authoring_boundary.md` |
 
 ---
 
@@ -227,10 +227,10 @@ This section records wave planning and capacity guidance for the manual testing 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
-| `SR-001` | Interface Shared References | Interface mode cites shared reference base before design choices | `Make this landing page look less generic and state the register before recommending colors.` | `interface` mode plus shared resources | `shared-reference-base/interface-shared-references.md` |
-| `SR-002` | Reference-Base Backend Modes | Foundations, motion, and audit modes use `backendKind: reference-base` | Multi-prompt set in file | Registry `backendKind: reference-base` for three modes | `shared-reference-base/reference-base-backend-modes.md` |
-| `SR-003` | Shared Base Not Workflow | Direct shared-base request must not invoke shared as a mode | `Use the shared design reference base as the workflow for this task.` | Hub has no shared workflowMode; router must defer or select a real mode | `shared-reference-base/shared-base-not-workflow.md` |
-| `SR-004` | Hub Holds No Mode Logic | Hub routes and packet owns per-mode detail | `For a design audit, show which packet owns the scoring logic and which hub file only routes.` | `audit` mode; packet `design-audit/SKILL.md`; hub remains routing-only | `shared-reference-base/hub-routing-only.md` |
+| `SR-001` | Interface Shared References | Interface mode cites shared reference base before design choices | `Make this landing page look less generic and state the register before recommending colors.` | `interface` mode plus shared resources | `shared_reference_base/interface_shared_references.md` |
+| `SR-002` | Reference-Base Backend Modes | Foundations, motion, and audit modes use `backendKind: reference-base` | Multi-prompt set in file | Registry `backendKind: reference-base` for three modes | `shared_reference_base/reference_base_backend_modes.md` |
+| `SR-003` | Shared Base Not Workflow | Direct shared-base request must not invoke shared as a mode | `Use the shared design reference base as the workflow for this task.` | Hub has no shared workflowMode; router must defer or select a real mode | `shared_reference_base/shared_base_not_workflow.md` |
+| `SR-004` | Hub Holds No Mode Logic | Hub routes and packet owns per-mode detail | `For a design audit, show which packet owns the scoring logic and which hub file only routes.` | `audit` mode; packet `design-audit/SKILL.md`; hub remains routing-only | `shared_reference_base/hub_routing_only.md` |
 
 ---
 
@@ -238,13 +238,13 @@ This section records wave planning and capacity guidance for the manual testing 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
-| `PB-001` | Procedure Selection Proof | Interface mode states the selected procedure card and why it fits | `Make this fintech dashboard feel premium and less generic. Before giving direction, state the public sk-design mode, the internal procedure card you selected, and why that card fits the available context.` | `interface-taste`: `premium ui`, `less generic`; procedure `design-interface/procedures/aesthetic_direction.md`; read-only surface | `parity-behavior/procedure-selection-proof.md` |
-| `PB-002` | Context and Proof Gates | Foundations mode separates confirmed context, inferred claims, and readiness proof gaps | `Review the supplied dashboard screenshot description for hierarchy and spacing rhythm. Before recommendations, list the context you used, what is confirmed, what is inferred, and what proof would be required before calling the design ready.` | `foundations-layout`: `hierarchy`, `spacing`; procedure `design-foundations/procedures/hierarchy_rhythm_review.md`; read-only surface | `parity-behavior/context-proof-gates.md` |
-| `PB-003` | md-generator Preservation Confirmation | Extraction stays in md-generator and confirms only that mode may write measured artifacts | `Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md, preserve measured CSS evidence, and confirm that md-generator is the only mode allowed to write the output.` | `md-generator-aliases`: `extract design system`; `md-generator-artifacts`: `design.md`; procedure `design-md-generator/procedures/design_system_extraction.md` | `parity-behavior/md-generator-preservation-confirmation.md` |
-| `PB-004` | Motion Procedure Selection Proof | Motion mode states the interaction-states procedure card and why it fits | `motion: define hover, focus, active, loading, disabled, and reduced-motion behavior for this command menu. Before giving timing guidance, state the public sk-design mode, the internal procedure card you selected, and why that card fits.` | `motion` mode; procedure `design-motion/procedures/interaction_states_pass.md`; read-only surface | `parity-behavior/motion-procedure-selection-proof.md` |
-| `PB-005` | Audit Procedure Selection Proof | Audit mode disambiguates accessibility procedure selection from AI-slop review | `audit: review this checkout screen for WCAG contrast, keyboard focus, and form accessibility. State the public sk-design mode, the internal procedure card you selected, and why it is not the AI-slop card.` | `audit` mode; procedure `design-audit/procedures/accessibility_audit.md`; negative variant `design-audit/procedures/ai_slop_check.md` | `parity-behavior/audit-procedure-selection-proof.md` |
-| `PB-006` | Shared Polish-Gate Selection Proof | Shared polish gate stays hub-level with `design-audit` as owning reviewer | `Run the final design polish gate for this nearly finished checkout UI. State the public sk-design mode, the shared internal procedure card you selected, the owning reviewer, and how findings route across audit, foundations, motion, interface, and sk-code.` | shared procedure `shared/procedures/polish_gate_orchestration.md`; owning reviewer `design-audit` | `parity-behavior/shared-polish-gate-selection-proof.md` |
-| `PB-007` | Interface Variation-Set Selection Proof | Interface mode selects `variation_set.md`, not `aesthetic_direction.md`, and applies the seed-of-thought debias for a multi-direction brief | `Give me three genuinely distinct visual directions for this fintech onboarding flow, not three safe variations of the same idea. Before giving the directions, state the public sk-design mode, the internal procedure card you selected, and why it is not the single-direction aesthetic_direction card.` | procedure `design-interface/procedures/variation_set.md` (not `aesthetic_direction.md`); seed-of-thought debias cited from `variation_diversity.md`; read-only surface | `parity-behavior/interface-variation-set-selection-proof.md` |
+| `PB-001` | Procedure Selection Proof | Interface mode states the selected procedure card and why it fits | `Make this fintech dashboard feel premium and less generic. Before giving direction, state the public sk-design mode, the internal procedure card you selected, and why that card fits the available context.` | `interface-taste`: `premium ui`, `less generic`; procedure `design-interface/procedures/aesthetic_direction.md`; read-only surface | `parity_behavior/procedure_selection_proof.md` |
+| `PB-002` | Context and Proof Gates | Foundations mode separates confirmed context, inferred claims, and readiness proof gaps | `Review the supplied dashboard screenshot description for hierarchy and spacing rhythm. Before recommendations, list the context you used, what is confirmed, what is inferred, and what proof would be required before calling the design ready.` | `foundations-layout`: `hierarchy`, `spacing`; procedure `design-foundations/procedures/hierarchy_rhythm_review.md`; read-only surface | `parity_behavior/context_proof_gates.md` |
+| `PB-003` | md-generator Preservation Confirmation | Extraction stays in md-generator and confirms only that mode may write measured artifacts | `Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md, preserve measured CSS evidence, and confirm that md-generator is the only mode allowed to write the output.` | `md-generator-aliases`: `extract design system`; `md-generator-artifacts`: `design.md`; procedure `design-md-generator/procedures/design_system_extraction.md` | `parity_behavior/md_generator_preservation_confirmation.md` |
+| `PB-004` | Motion Procedure Selection Proof | Motion mode states the interaction-states procedure card and why it fits | `motion: define hover, focus, active, loading, disabled, and reduced-motion behavior for this command menu. Before giving timing guidance, state the public sk-design mode, the internal procedure card you selected, and why that card fits.` | `motion` mode; procedure `design-motion/procedures/interaction_states_pass.md`; read-only surface | `parity_behavior/motion_procedure_selection_proof.md` |
+| `PB-005` | Audit Procedure Selection Proof | Audit mode disambiguates accessibility procedure selection from AI-slop review | `audit: review this checkout screen for WCAG contrast, keyboard focus, and form accessibility. State the public sk-design mode, the internal procedure card you selected, and why it is not the AI-slop card.` | `audit` mode; procedure `design-audit/procedures/accessibility_audit.md`; negative variant `design-audit/procedures/ai_slop_check.md` | `parity_behavior/audit_procedure_selection_proof.md` |
+| `PB-006` | Shared Polish-Gate Selection Proof | Shared polish gate stays hub-level with `design-audit` as owning reviewer | `Run the final design polish gate for this nearly finished checkout UI. State the public sk-design mode, the shared internal procedure card you selected, the owning reviewer, and how findings route across audit, foundations, motion, interface, and sk-code.` | shared procedure `shared/procedures/polish_gate_orchestration.md`; owning reviewer `design-audit` | `parity_behavior/shared_polish_gate_selection_proof.md` |
+| `PB-007` | Interface Variation-Set Selection Proof | Interface mode selects `variation_set.md`, not `aesthetic_direction.md`, and applies the seed-of-thought debias for a multi-direction brief | `Give me three genuinely distinct visual directions for this fintech onboarding flow, not three safe variations of the same idea. Before giving the directions, state the public sk-design mode, the internal procedure card you selected, and why it is not the single-direction aesthetic_direction card.` | procedure `design-interface/procedures/variation_set.md` (not `aesthetic_direction.md`); seed-of-thought debias cited from `variation_diversity.md`; read-only surface | `parity_behavior/interface_variation_set_selection_proof.md` |
 
 ---
 
@@ -252,8 +252,8 @@ This section records wave planning and capacity guidance for the manual testing 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
-| `FR-001` | No-Card-Matches Fallback | Modes state exact no-procedure fallback lines instead of inventing cards | `foundations: explain whether this existing neutral token name should be semantic or surface-level. Keep it advisory and state whether a procedure card applies before answering.` | exact fallback line per mode; md-generator uses `baseline md-generator pipeline`; no all-card loading | `fallback-and-resilience/no-card-matches-fallback.md` |
-| `FR-002` | Direct Fallback Without Subagents | Direct fallback preserves proof bar and tool boundary without subagents | `Subagents are unavailable. motion: define the feedback states and reduced-motion path for this toolbar directly in the current session, and show the procedure card, context basis, proof line, and tool boundary you used.` | read-only modes stay Read/Glob/Grep-only; md-generator keeps backend boundary | `fallback-and-resilience/direct-fallback-without-subagents.md` |
+| `FR-001` | No-Card-Matches Fallback | Modes state exact no-procedure fallback lines instead of inventing cards | `foundations: explain whether this existing neutral token name should be semantic or surface-level. Keep it advisory and state whether a procedure card applies before answering.` | exact fallback line per mode; md-generator uses `baseline md-generator pipeline`; no all-card loading | `fallback_and_resilience/no_card_matches_fallback.md` |
+| `FR-002` | Direct Fallback Without Subagents | Direct fallback preserves proof bar and tool boundary without subagents | `Subagents are unavailable. motion: define the feedback states and reduced-motion path for this toolbar directly in the current session, and show the procedure card, context basis, proof line, and tool boundary you used.` | read-only modes stay Read/Glob/Grep-only; md-generator keeps backend boundary | `fallback_and_resilience/direct_fallback_without_subagents.md` |
 
 ---
 
@@ -261,10 +261,10 @@ This section records wave planning and capacity guidance for the manual testing 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
-| `HM-001` | Context-First Intake | Hub gathers goal, surface, inputs, constraints, and proof expectations before routing when missing facts affect the route | `Make this product experience feel more premium and production-ready. I have some screenshots and a brand deck, but I am not sure whether this needs interface direction, foundations, motion, or audit.` | intake fields appear before route or a focused question is asked | `hub-manager-intake/context-first-intake.md` |
-| `HM-002` | Visible Plan Before Build | Hub shows selected mode or bundle, context, design moves, proof, and handoff target before substantial work | `Design the visual direction for a dense operations dashboard and prepare the implementation handoff. Before any design recommendation, show the selected mode or bundle, context loaded, intended design moves, proof required, and handoff target.` | visible plan appears before design recommendations | `hub-manager-intake/visible-plan-before-build.md` |
-| `HM-003` | Verifier-Cadence Pause | Hub pauses ready claims when required proof is missing or transport-only | `I only have a Figma export and no rendered responsive checks. Tell me whether this design is ready to ship, and if any proof field is missing, pause the ready claim and name the missing proof.` | readiness is paused; missing proof fields are named | `hub-manager-intake/verifier-cadence-pause.md` |
-| `HM-004` | Design-Mode Pairing Before Run | Hub pairs a design-judgment mode with `design-mcp-open-design` and names it as a hard precondition before a RUN-direction Open Design generation request | `Commission an Open Design generation run for a new settings page, grounding it in one of Open Design's local design systems, and start the run now.` | ordered bundle pairs a design-judgment mode (default `interface`) with `design-mcp-open-design`; paired mode named as hard precondition before any `start_run` call | `hub-manager-intake/design-mode-pairing-before-run.md` |
+| `HM-001` | Context-First Intake | Hub gathers goal, surface, inputs, constraints, and proof expectations before routing when missing facts affect the route | `Make this product experience feel more premium and production-ready. I have some screenshots and a brand deck, but I am not sure whether this needs interface direction, foundations, motion, or audit.` | intake fields appear before route or a focused question is asked | `hub_manager_intake/context_first_intake.md` |
+| `HM-002` | Visible Plan Before Build | Hub shows selected mode or bundle, context, design moves, proof, and handoff target before substantial work | `Design the visual direction for a dense operations dashboard and prepare the implementation handoff. Before any design recommendation, show the selected mode or bundle, context loaded, intended design moves, proof required, and handoff target.` | visible plan appears before design recommendations | `hub_manager_intake/visible_plan_before_build.md` |
+| `HM-003` | Verifier-Cadence Pause | Hub pauses ready claims when required proof is missing or transport-only | `I only have a Figma export and no rendered responsive checks. Tell me whether this design is ready to ship, and if any proof field is missing, pause the ready claim and name the missing proof.` | readiness is paused; missing proof fields are named | `hub_manager_intake/verifier_cadence_pause.md` |
+| `HM-004` | Design-Mode Pairing Before Run | Hub pairs a design-judgment mode with `design-mcp-open-design` and names it as a hard precondition before a RUN-direction Open Design generation request | `Commission an Open Design generation run for a new settings page, grounding it in one of Open Design's local design systems, and start the run now.` | ordered bundle pairs a design-judgment mode (default `interface`) with `design-mcp-open-design`; paired mode named as hard precondition before any `start_run` call | `hub_manager_intake/design_mode_pairing_before_run.md` |
 
 ---
 
@@ -276,46 +276,45 @@ No automated tests are claimed by this playbook. Manual execution is the validat
 
 ## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-| Category | Feature ID | Per-Feature File | Critical Path |
-|---|---|---|---|
-| Mode Routing | MR-001 | `mode-routing/interface-mode.md` | Yes |
-| Mode Routing | MR-002 | `mode-routing/foundations-mode.md` | Yes |
-| Mode Routing | MR-003 | `mode-routing/motion-mode.md` | Yes |
-| Mode Routing | MR-004 | `mode-routing/audit-mode.md` | Yes |
-| Mode Routing | MR-005 | `mode-routing/md-generator-mode.md` | Yes |
-| Mode Routing | MR-006 | `mode-routing/mode-hint-motion.md` | No |
-| Mode Routing | MR-007 | `mode-routing/mcp-open-design-mode.md` | Yes |
-| Advisor Integration | AI-001 | `advisor-integration/positive-design-controls.md` | Yes |
-| Advisor Integration | AI-002 | `advisor-integration/pure-code-routes-skcode.md` | Yes |
-| Advisor Integration | AI-003 | `advisor-integration/doc-write-routes-elsewhere.md` | No |
-| Advisor Integration | AI-004 | `advisor-integration/code-review-routes-skcode.md` | No |
-| Transform Verb Framing | TV-001 | `transform-verb-framing/make-it-interface.md` | Yes |
-| Transform Verb Framing | TV-002 | `transform-verb-framing/should-it-be-audit.md` | Yes |
-| Transform Verb Framing | TV-003 | `transform-verb-framing/clarify-alias-only.md` | No |
-| Transform Verb Framing | TV-004 | `transform-verb-framing/foundations-excluded-aliases.md` | No |
-| Transform Verb Framing | TV-005 | `transform-verb-framing/audit-excluded-aliases.md` | No |
-| md-generator Pipeline | MG-001 | `md-generator-pipeline/extract-write-validate.md` | Yes |
-| md-generator Pipeline | MG-002 | `md-generator-pipeline/validate-design-md.md` | No |
-| md-generator Pipeline | MG-003 | `md-generator-pipeline/design-fidelity-check.md` | No |
-| md-generator Pipeline | MG-004 | `md-generator-pipeline/brief-only-authoring-boundary.md` | Yes |
-| Shared Reference Base | SR-001 | `shared-reference-base/interface-shared-references.md` | No |
-| Shared Reference Base | SR-002 | `shared-reference-base/reference-base-backend-modes.md` | No |
-| Shared Reference Base | SR-003 | `shared-reference-base/shared-base-not-workflow.md` | Yes |
-| Shared Reference Base | SR-004 | `shared-reference-base/hub-routing-only.md` | No |
-| Parity Behavior | PB-001 | `parity-behavior/procedure-selection-proof.md` | Yes |
-| Parity Behavior | PB-002 | `parity-behavior/context-proof-gates.md` | Yes |
-| Parity Behavior | PB-003 | `parity-behavior/md-generator-preservation-confirmation.md` | Yes |
-| Parity Behavior | PB-004 | `parity-behavior/motion-procedure-selection-proof.md` | Candidate |
-| Parity Behavior | PB-005 | `parity-behavior/audit-procedure-selection-proof.md` | Candidate |
-| Parity Behavior | PB-006 | `parity-behavior/shared-polish-gate-selection-proof.md` | Candidate |
-| Parity Behavior | PB-007 | `parity-behavior/interface-variation-set-selection-proof.md` | Candidate |
-| Fallback and Resilience | FR-001 | `fallback-and-resilience/no-card-matches-fallback.md` | Candidate |
-| Fallback and Resilience | FR-002 | `fallback-and-resilience/direct-fallback-without-subagents.md` | Candidate |
-| Hub Manager Intake | HM-001 | `hub-manager-intake/context-first-intake.md` | Candidate |
-| Hub Manager Intake | HM-002 | `hub-manager-intake/visible-plan-before-build.md` | Candidate |
-| Hub Manager Intake | HM-003 | `hub-manager-intake/verifier-cadence-pause.md` | Candidate |
-| Hub Manager Intake | HM-004 | `hub-manager-intake/design-mode-pairing-before-run.md` | Candidate |
-
+| Category | Feature ID | Per-Feature File |
+|---|---|---|
+| Mode Routing | MDR-001 | `mode_routing/interface_mode.md` |
+| Mode Routing | MDR-002 | `mode_routing/foundations_mode.md` |
+| Mode Routing | MDR-003 | `mode_routing/motion_mode.md` |
+| Mode Routing | MDR-004 | `mode_routing/audit_mode.md` |
+| Mode Routing | MDR-005 | `mode_routing/md_generator_mode.md` |
+| Mode Routing | MDR-006 | `mode_routing/mode_hint_motion.md` |
+| Mode Routing | MDR-007 | `mode_routing/mcp_open_design_mode.md` |
+| Advisor Integration | AI-001 | `advisor_integration/positive_design_controls.md` |
+| Advisor Integration | AI-002 | `advisor_integration/pure_code_routes_skcode.md` |
+| Advisor Integration | AI-003 | `advisor_integration/doc_write_routes_elsewhere.md` |
+| Advisor Integration | AI-004 | `advisor_integration/code_review_routes_skcode.md` |
+| Transform Verb Framing | TV-001 | `transform_verb_framing/make_it_interface.md` |
+| Transform Verb Framing | TV-002 | `transform_verb_framing/should_it_be_audit.md` |
+| Transform Verb Framing | TV-003 | `transform_verb_framing/clarify_alias_only.md` |
+| Transform Verb Framing | TV-004 | `transform_verb_framing/foundations_excluded_aliases.md` |
+| Transform Verb Framing | TV-005 | `transform_verb_framing/audit_excluded_aliases.md` |
+| md-generator Pipeline | MG-001 | `md_generator_pipeline/extract_write_validate.md` |
+| md-generator Pipeline | MG-002 | `md_generator_pipeline/validate_design_md.md` |
+| md-generator Pipeline | MG-003 | `md_generator_pipeline/design_fidelity_check.md` |
+| md-generator Pipeline | MG-004 | `md_generator_pipeline/brief_only_authoring_boundary.md` |
+| Shared Reference Base | SR-001 | `shared_reference_base/interface_shared_references.md` |
+| Shared Reference Base | SR-002 | `shared_reference_base/reference_base_backend_modes.md` |
+| Shared Reference Base | SR-003 | `shared_reference_base/shared_base_not_workflow.md` |
+| Shared Reference Base | SR-004 | `shared_reference_base/hub_routing_only.md` |
+| Parity Behavior | PB-001 | `parity_behavior/procedure_selection_proof.md` |
+| Parity Behavior | PB-002 | `parity_behavior/context_proof_gates.md` |
+| Parity Behavior | PB-003 | `parity_behavior/md_generator_preservation_confirmation.md` |
+| Parity Behavior | PB-004 | `parity_behavior/motion_procedure_selection_proof.md` |
+| Parity Behavior | PB-005 | `parity_behavior/audit_procedure_selection_proof.md` |
+| Parity Behavior | PB-006 | `parity_behavior/shared_polish_gate_selection_proof.md` |
+| Parity Behavior | PB-007 | `parity_behavior/interface_variation_set_selection_proof.md` |
+| Fallback and Resilience | FR-001 | `fallback_and_resilience/no_card_matches_fallback.md` |
+| Fallback and Resilience | FR-002 | `fallback_and_resilience/direct_fallback_without_subagents.md` |
+| Hub Manager Intake | HM-001 | `hub_manager_intake/context_first_intake.md` |
+| Hub Manager Intake | HM-002 | `hub_manager_intake/visible_plan_before_build.md` |
+| Hub Manager Intake | HM-003 | `hub_manager_intake/verifier_cadence_pause.md` |
+| Hub Manager Intake | HM-004 | `hub_manager_intake/design_mode_pairing_before_run.md` |
 **Total scenarios**: 37
 **Critical-path scenarios**: 16
 **Critical-path candidates pending operator confirmation**: 10

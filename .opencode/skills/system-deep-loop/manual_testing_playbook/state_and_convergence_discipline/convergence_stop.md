@@ -1,7 +1,13 @@
 ---
+id: SC-003
+category: state_and_convergence_discipline
+stage: routing
 title: "SC-003: Convergence Stop Discipline"
 description: "Verify convergence detection is documented as a legal stop path owned by the selected mode packet."
-version: "1.1.0.0"
+expected_intent: research
+expected_workflow_mode: research
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # SC-003: Convergence Stop Discipline

@@ -24,8 +24,6 @@ Load the presentation contract before showing startup questions, checkpoints, da
 | Auto workflow | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` |
 | Confirm workflow | `.opencode/commands/speckit/assets/speckit_plan_confirm.yaml` |
 
-No workflow-asset gap exists for this command.
-
 ---
 
 ## 3. MODE ROUTING
@@ -41,7 +39,7 @@ No workflow-asset gap exists for this command.
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto` | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` |
 | `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit_plan_auto.yaml` with unattended task metadata required |

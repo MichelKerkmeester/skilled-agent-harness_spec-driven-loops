@@ -1,10 +1,18 @@
 ---
-title: "MR-004: Mode-Hint Override"
+id: MO-004
+category: mode_routing
+stage: routing
+title: "MO-004: Mode-Hint Override"
 description: "Verify an explicit mode hint such as research: overrides ambiguous wording and resolves through the matching registry entry."
-version: "1.1.0.0"
+expected_intent: research
+expected_resources:
+  - deep-research/SKILL.md
+expected_workflow_mode: research
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
-# MR-004: Mode-Hint Override
+# MO-004: Mode-Hint Override
 
 ## 1. OVERVIEW
 
@@ -46,7 +54,7 @@ research: Investigate whether our deep review findings are repeating because the
 ### Exact Command Sequence
 
 1. **Invoke hub with hint**: `Skill(system-deep-loop, "research: Investigate whether our deep review findings are repeating because the source context is stale, and write a research summary before any audit verdict.")`.
-2. **Capture route**: save the AI response to `/tmp/dlw-MR-004/response.txt`.
+2. **Capture route**: save the AI response to `/tmp/dlw-MO-004/response.txt`.
 3. **Compare to registry**: confirm the response matches the `research` registry entry.
 
 ### Expected Signals
@@ -79,6 +87,6 @@ research: Investigate whether our deep review findings are repeating because the
 
 - **Critical path**: No
 - **Destructive**: No
-- **Sandbox**: `/tmp/dlw-MR-004/`
+- **Sandbox**: `/tmp/dlw-MO-004/`
 - **Concurrent-safe**: Yes
 - **Last validated**: pending first manual run

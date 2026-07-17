@@ -2,6 +2,9 @@
 title: "PB-002: Context and Proof Gates"
 description: "Verify read-only advisory modes cite loaded context, distinguish confirmed from inferred evidence, and avoid completion claims when proof is missing."
 version: 1.0.0.0
+id: PB-002
+expected_workflow_mode: foundations
+expected_leaf_resources: []
 ---
 
 # PB-002: Context and Proof Gates

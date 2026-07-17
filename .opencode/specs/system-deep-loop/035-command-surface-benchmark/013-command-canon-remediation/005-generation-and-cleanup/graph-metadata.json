@@ -39,18 +39,19 @@
       "canon"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/create-command/assets/command_contract.json",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
       ".opencode/skills/sk-doc/create-command/SKILL.md",
       ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/skills/system-spec-kit/scripts/codex/generate-command-routers.cjs",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/create-command/assets/command_template.md",
       ".opencode/commands/deep/research.md",
       ".opencode/commands/memory/save.md",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
-      ".opencode/skills/sk-doc/create-command/assets/command_template.md",
       "decision-record.md",
       "plan.md",
       "tasks.md",
@@ -90,9 +91,9 @@
         "source": "derived"
       },
       {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
+        "name": "generate-command-routers.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/generate-command-routers.cjs",
         "source": "derived"
       },
       {
@@ -102,15 +103,21 @@
         "source": "derived"
       },
       {
-        "name": "sk-doc-command.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
-        "source": "derived"
-      },
-      {
         "name": "command_template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/create-command/assets/command_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-command.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
         "source": "derived"
       },
       {
@@ -156,12 +163,6 @@
         "source": "derived"
       },
       {
-        "name": "Materialized Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -174,13 +175,19 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,17 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Make",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The command contract is machine-readable and versioned, but the router surfaces that must obey it are still authored by hand-copying prose across six families",
     "created_at": "2026-07-16T14:59:02.625Z",
-    "last_save_at": "2026-07-16T16:34:19.177Z",
+    "last_save_at": "2026-07-16T18:23:36.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6b6e6964f5883d6f5e493193726e7ed7fed557bc74beef812ae8fbf26557cb1",
+    "source_fingerprint": "sha256:a04494132d5b51a73cc6ef32b4337730b81e3fe426a51e64650c4839fcd605ad",
     "source_doc_hashes": {
-      "spec.md": "1f1f5b263c26a9dc7ef3b3406ba2c413eee0e66ba278d78fdc8a588eb1bcc966",
-      "plan.md": "205c7ff9eb4d7c22293886b5334b9df3686d1df2c2836ddcbeac8054bd622c32",
-      "tasks.md": "2894480a0e3f18912d2baf04f7e3bd4c350ac3232ecdf4b7942bccc72027c3c1",
-      "checklist.md": "2a9d792e4848c58fc8b72a74f943769957f794689077c8d38c4d27fdc545f57d",
-      "decision-record.md": "ff99f6d0421882167346dc3b532551d545ea739351cc210357a62ed8dfa59500",
-      "implementation-summary.md": "52714504d8183ce80721d17215fef8c9ddba3e29c7fba84911aed65e554a3937"
+      "spec.md": "2abf86dbfca68715625d65b02fe4012908c71cfda220fd1cd9d6b965cb099cda",
+      "plan.md": "4fe805c03c539a7b5284b0fb745cb2a2ded56f0bbcd1e3ce5bdb2b128a1548a1",
+      "tasks.md": "67354ba73fbd1829384521d9b302e7a6457b501fb5a71e6562d27e893c4a7313",
+      "checklist.md": "987b822a7034c15714c1678d81cf819eb1a835bf6638cf0a0fa7900a293a878d",
+      "decision-record.md": "63f27e83f16c8725733542b5a8521a598ec446c893d146f1f32704a707a33d49",
+      "implementation-summary.md": "36d42f01ea51732aafada533a3e505cf7d30bf397cbcf9484dcc8de081d5223d"
     },
     "last_active_child_id": null,
     "last_active_at": null

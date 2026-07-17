@@ -1,7 +1,13 @@
 ---
+id: RB-004
+category: runtime_and_backend
+stage: negative
 title: "Retired Backend Scenario"
 description: "Retired runtime-and-backend scenario; no active deep-loop mode uses this backend."
-version: "1.1.0.0"
+expected_intent: UNKNOWN
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # Retired Backend Scenario

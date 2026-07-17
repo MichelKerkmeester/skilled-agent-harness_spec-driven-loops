@@ -1,10 +1,23 @@
 ---
-title: "MR-004: Audit Mode Routing"
+title: "MDR-004: Audit Mode Routing"
 description: "Verify design QA requests resolve to audit and load the design-audit packet."
 version: 1.0.0.0
+id: MDR-004
+expected_workflow_mode: audit
+expected_leaf_resources:
+  - workflow_mode: audit
+    leaf_resource_id: references/corpus_map.md
+  - workflow_mode: audit
+    leaf_resource_id: references/audit_contract.md
+  - workflow_mode: audit
+    leaf_resource_id: references/accessibility_performance.md
+  - workflow_mode: audit
+    leaf_resource_id: references/anti_patterns_production.md
+  - workflow_mode: audit
+    leaf_resource_id: assets/audit_report_template.md
 ---
 
-# MR-004: Audit Mode Routing
+# MDR-004: Audit Mode Routing
 
 ## 1. OVERVIEW
 
@@ -54,9 +67,9 @@ Audit this checkout UI for WCAG contrast, keyboard focus, responsive issues, and
 
 ### Exact Command Sequence
 
-1. Run the advisor probe and save output to `/tmp/skd-MR004-advisor.txt`.
+1. Run the advisor probe and save output to `/tmp/skd-MDR004-advisor.txt`.
 2. Invoke the orchestrator with the exact prompt.
-3. Capture mode, packet, resources, tool calls, and response in `/tmp/skd-MR004-response.txt`.
+3. Capture mode, packet, resources, tool calls, and response in `/tmp/skd-MDR004-response.txt`.
 
 ### Pass/Fail Criteria
 

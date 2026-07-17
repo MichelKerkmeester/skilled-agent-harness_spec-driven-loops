@@ -1,10 +1,23 @@
 ---
-title: "MR-003: Motion Mode Routing"
+title: "MDR-003: Motion Mode Routing"
 description: "Verify temporal interaction requests resolve to motion and load the design-motion packet."
 version: 1.0.0.0
+id: MDR-003
+expected_workflow_mode: motion
+expected_leaf_resources:
+  - workflow_mode: motion
+    leaf_resource_id: references/corpus_map.md
+  - workflow_mode: motion
+    leaf_resource_id: references/animation_decision_framework.md
+  - workflow_mode: motion
+    leaf_resource_id: references/micro_interactions.md
+  - workflow_mode: motion
+    leaf_resource_id: references/performance_reduced_motion.md
+  - workflow_mode: motion
+    leaf_resource_id: assets/motion_pattern_cards.md
 ---
 
-# MR-003: Motion Mode Routing
+# MDR-003: Motion Mode Routing
 
 ## 1. OVERVIEW
 
@@ -52,9 +65,9 @@ Design the hover micro-interactions and reduced-motion fallback for this command
 
 ### Exact Command Sequence
 
-1. Run the advisor probe and save output to `/tmp/skd-MR003-advisor.txt`.
+1. Run the advisor probe and save output to `/tmp/skd-MDR003-advisor.txt`.
 2. Invoke the orchestrator with the exact prompt.
-3. Capture mode, loaded paths, tool calls, and response in `/tmp/skd-MR003-response.txt`.
+3. Capture mode, loaded paths, tool calls, and response in `/tmp/skd-MDR003-response.txt`.
 
 ### Pass/Fail Criteria
 

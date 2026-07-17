@@ -2,6 +2,15 @@
 title: "TV-003: clarify Alias-Only Routing"
 description: "Verify clarify routes as an interface alias but is not part of command projection parity."
 version: 1.0.0.0
+id: TV-003
+expected_workflow_mode: interface
+expected_leaf_resources:
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/design_principles.md
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/brief_to_dials.md
+  - workflow_mode: interface
+    leaf_resource_id: assets/interface_preflight_card.md
 ---
 
 # TV-003: clarify Alias-Only Routing

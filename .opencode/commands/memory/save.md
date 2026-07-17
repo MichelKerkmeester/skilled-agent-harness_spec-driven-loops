@@ -28,11 +28,11 @@ Guardrails:
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation | `.opencode/commands/memory/assets/save_presentation.txt` | Startup questions, save dashboards, result envelopes, trigger-edit display, and error rendering. |
+| Purpose | Asset |
+|---------|-------|
+| Presentation | `.opencode/commands/memory/assets/save_presentation.txt` |
 
-This is a direct-dispatch command: it routes straight to the memory MCP tools and the `generate-context.js` script and owns no workflow YAML by design. There is no `_auto`/`_confirm` workflow YAML for the memory family, and none is missing — the absence of workflow YAML is intentional, not a gap.
+This is a direct-dispatch command: it routes straight to the memory MCP tools and the `generate-context.js` script and owns no workflow YAML by design.
 
 Before rendering any prompt, dashboard, or result block, read the presentation asset and follow it as the display source of truth.
 

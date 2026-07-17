@@ -10,17 +10,19 @@ intent enumerates the whole hub.
 
 ```python
 INTENT_SIGNALS = {
-    "DOC_QUALITY": {"weight": 4, "keywords": ["documentation quality", "doc quality", "validate documentation", "validation rules", "fail sk-doc standards"]},
-    "OPTIMIZATION": {"weight": 4, "keywords": ["optimize", "token efficiency", "llms.txt", "llmstxt"]},
-    "SKILL_CREATION": {"weight": 4, "keywords": ["sk-skill", "create a new sk", "create sk-", "skill.md scaffold", "skill.md and starter", "resource_map wiring"]},
+    "DOC_QUALITY": {"weight": 4, "keywords": ["documentation quality", "doc quality", "validate documentation", "validation rules", "fail sk-doc standards", "review the docs", "review the documentation", "check the docs", "check the documentation", "audit the docs", "review bar", "meet our standards", "pass review"]},
+    "OPTIMIZATION": {"weight": 4, "keywords": ["optimize", "token efficiency", "llms.txt", "llmstxt", "reduce tokens", "fewer tokens", "trim the doc", "compress the doc", "slim down", "machine-readable index"]},
+    "SKILL_CREATION": {"weight": 4, "keywords": ["sk-skill", "create a new sk", "create sk-", "skill.md scaffold", "skill.md and starter", "resource_map wiring", "new skill", "create a skill", "build a skill", "author a skill", "scaffold a skill", "reusable capability", "new capability", "capability module", "package a capability"]},
     "AGENT_COMMAND": {"weight": 4, "keywords": ["agent and paired", "paired /create", "@analyze agent"]},
-    "FLOWCHART": {"weight": 4, "keywords": ["flowchart", "ascii"]},
-    "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide"]},
+    "FLOWCHART": {"weight": 4, "keywords": ["flowchart", "ascii", "text diagram", "decision tree", "process diagram", "flow diagram", "diagram the", "as a diagram"]},
+    "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide", "installation instructions", "setup instructions", "how to install", "setup steps", "getting it running"]},
     "HVR": {"weight": 4, "keywords": ["hvr"]},
     "PLAYBOOK": {"weight": 4, "keywords": ["playbook system", "manual testing playbook", "testing playbook"]},
-    "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog"]},
-    "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme"]},
-    "CHANGELOG": {"weight": 4, "keywords": ["changelog"]},
+    "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview"]},
+    "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc"]},
+    "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped"]},
+    "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "conformance benchmark", "model benchmark", "skill benchmark"]},
+    "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff"]},
     "FULL_INVENTORY": {"weight": 4, "keywords": ["full sk-doc toolkit", "all templates", "show the full", "entire toolkit", "everything sk-doc offers"]},
 }
 
@@ -70,6 +72,16 @@ RESOURCE_MAP = {
     ],
     "CHANGELOG": [
         "shared/assets/changelog_template.md"
+    ],
+    "BENCHMARK": [
+        "create-benchmark/references/shared/README.md",
+        "create-benchmark/references/shared/worked_example.md",
+        "create-benchmark/assets/shared/benchmark_report_template.md"
+    ],
+    "DIFF": [
+        "create-diff/references/README.md",
+        "create-diff/references/workflow.md",
+        "create-diff/references/worked-example.md"
     ],
     "FULL_INVENTORY": [
         "create-agent/assets/agent_template.md",

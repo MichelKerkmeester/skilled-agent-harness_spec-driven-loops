@@ -2,6 +2,9 @@
 title: "PB-005: Audit Procedure Selection Proof"
 description: "Verify audit mode selects the correct audit procedure card and disambiguates accessibility audit from AI-slop review."
 version: 1.0.0.0
+id: PB-005
+expected_workflow_mode: audit
+expected_leaf_resources: []
 ---
 
 # PB-005: Audit Procedure Selection Proof

@@ -1,0 +1,1059 @@
+{
+  "sessionId": "rsr-2026-07-17T04-40-53Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 8,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-17T05:17:42Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-how-do-the-six-sk-design-modes-map-to-independent-workflowmode-leafresourceid-go",
+      "inboxId": null,
+      "text": "How do the six sk-design modes map to independent `(workflowMode, leafResourceId)` gold pairs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-2-can-one-byte-stable-leaf-manifest-represent-the-parent-hub-and-nested-design-mcp",
+      "inboxId": null,
+      "text": "Can one byte-stable leaf manifest represent the parent hub and nested design-mcp-open-design transport?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-benchmark-scenarios-are-genuine-routing-decisions-eligible-for-independent",
+      "inboxId": null,
+      "text": "Which benchmark scenarios are genuine routing decisions eligible for independently authored typed gold?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-scoring-dimensions-cause-the-approximately-69-conditional-baseline-and-are",
+      "inboxId": null,
+      "text": "Which scoring dimensions cause the approximately 69 CONDITIONAL baseline, and are they measurement gaps or routing faults?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-dependency-ordered-optimizations-can-an-implementation-packet-apply-without",
+      "inboxId": null,
+      "text": "What dependency-ordered optimizations can an implementation packet apply without more research?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-how-do-the-six-sk-design-modes-map-to-independent-workflowmode-leafresourceid-go",
+      "inboxId": null,
+      "text": "How do the six sk-design modes map to independent `(workflowMode, leafResourceId)` gold pairs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-2-can-one-byte-stable-leaf-manifest-represent-the-parent-hub-and-nested-design-mcp",
+      "inboxId": null,
+      "text": "Can one byte-stable leaf manifest represent the parent hub and nested design-mcp-open-design transport?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-which-benchmark-scenarios-are-genuine-routing-decisions-eligible-for-independent",
+      "inboxId": null,
+      "text": "Which benchmark scenarios are genuine routing decisions eligible for independently authored typed gold?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-which-scoring-dimensions-cause-the-approximately-69-conditional-baseline-and-are",
+      "inboxId": null,
+      "text": "Which scoring dimensions cause the approximately 69 CONDITIONAL baseline, and are they measurement gaps or routing faults?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-dependency-ordered-optimizations-can-an-implementation-packet-apply-without",
+      "inboxId": null,
+      "text": "What dependency-ordered optimizations can an implementation packet apply without more research?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-audit-audit-contract-accessibility-performance-critique-hardening-anti-patterns-",
+      "text": "`audit`: `AUDIT_CONTRACT`, `ACCESSIBILITY_PERFORMANCE`, `CRITIQUE_HARDENING`, `ANTI_PATTERNS_PRODUCTION`, `TRANSFORM_REMEDIATION`, and `EVIDENCE_CAPTURE`, mapping to audit references, report/checklist assets, a JSON fingerprint registry, and shared handoff. [SOURCE: .opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-1-9-design-mcp-open-design-is-independently-typable-as-design-mcp-open-design-leafre",
+      "text": "`design-mcp-open-design` is independently typable as `(design-mcp-open-design, leafResourceId)` with three intent families: `WIRE` loads `references/mcp_wiring.md` plus `references/od_cli_reference.md`; `READ` and `RUN` load `references/tool_surface.md` plus `references/od_cli_reference.md`. Its typed identity remains separate even though any `RUN` or design-feeding `READ` has a hard execution precondition requiring a design-judgment mode; pure wiring or inventory can remain transport-only. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96] [SOURCE: .opencode/skills/sk-design/mode-registry.json:145-162]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-1-4-foundations-color-type-layout-adaptation-data-viz-worked-examples-and-tokens-map",
+      "text": "`foundations`: `COLOR`, `TYPE`, `LAYOUT`, `ADAPTATION`, `DATA_VIZ`, `WORKED_EXAMPLES`, and `TOKENS`, mapping to the color/type/layout references, data-viz and worked-example leaves, token scaffold, and shared vocabulary/handoff leaves. [SOURCE: .opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-1-3-interface-design-principles-transform-application-register-dials-variation-diver",
+      "text": "`interface`: `DESIGN_PRINCIPLES`, `TRANSFORM_APPLICATION`, `REGISTER_DIALS`, `VARIATION_DIVERSITY`, `UX_QUALITY`, `REAL_UI_LOOP`, `MECHANICAL_PREFLIGHT`, `COPY_MOCK_DATA`, `REDESIGN_INTAKE`, `REAL_SYSTEM_GROUNDING`, `REAL_WORLD_REFERENCE`, and `AESTHETICS`, each mapping to packet-local `references/...` or `assets/...` IDs (plus sanctioned `../shared/...` inputs). [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:108-136]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-1-7-md-generator-extract-write-validate-report-run-wrapper-and-study-mapping-to-extr",
+      "text": "`md-generator`: `EXTRACT_WRITE`, `VALIDATE`, `REPORT`, `RUN_WRAPPER`, and `STUDY`, mapping to extraction/format/validation references, prompt/card assets, and example-study leaves. [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:131-166]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-1-5-motion-decision-strategy-micro-interactions-presence-performance-and-advanced-cr",
+      "text": "`motion`: `DECISION`, `STRATEGY`, `MICRO_INTERACTIONS`, `PRESENCE`, `PERFORMANCE`, and `ADVANCED_CRAFT`, mapping to six packet-local reference/asset families and a shared handoff leaf. [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:126-142]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-1-8-canonical-typed-gold-should-pair-each-selected-mode-with-the-leaf-s-packet-root-",
+      "text": "Canonical typed gold should pair each selected mode with the leaf's packet-root-relative ID, such as `(motion, references/motion_strategy.md)` or `(md-generator, assets/cardinal_rules_card.md)`. It should not prepend packet folders such as `design-motion/`, because the established contract defines `leafResourceId` as packet-root-relative and performs packet conversion only at the boundary. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:135-141] [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:149-165]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-1-10-one-root-manifest-is-structurally-capable-of-representing-all-six-mode-namespace",
+      "text": "One root manifest is structurally capable of representing all six mode namespaces, including the nested transport, because manifest uniqueness is composite on `(workflowMode, leafResourceId)` and the registry already supplies six stable mode-to-packet joins. The parent hub should not become a seventh mode: its `defaultResource` entries and packet `SKILL.md` routes are hub preamble/entrypoints, whereas leaf pairs come from each selected packet's local map. This remains a feasibility inference until the manifest generator is checked against the mixed workflow/transport registry and shared-resource aliases. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:163-174] [SOURCE: .opencode/skills/sk-design/mode-registry.json:4-14] [SOURCE: .opencode/skills/sk-design/hub-router.json:5-18] [INFERENCE: based on the composite typed-pair contract, six registry joins, and the hub/leaf separation]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-design-judgment-modes-expose-independently-addressable-local-leaves-represen",
+      "text": "The design-judgment modes expose independently addressable local leaves. Representative exhaustive intent-to-leaf families are: [INFERENCE: based on the five packet-level intent and resource maps cited below]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-public-routing-surface-has-exactly-six-registered-modes-five-packetkind-work",
+      "text": "The public routing surface has exactly six registered modes: five `packetKind: \"workflow\"` modes (`interface`, `foundations`, `motion`, `audit`, `md-generator`) and one `packetKind: \"transport\"` mode (`design-mcp-open-design`). Each registry entry names a distinct packet, while the hub router resolves the corresponding packet `SKILL.md`; therefore the six `workflowMode` values are the mode component of typed gold, not six aliases of one parent identity. [SOURCE: .opencode/skills/sk-design/mode-registry.json:38-164] [SOURCE: .opencode/skills/sk-design/hub-router.json:27-91]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-design/hub-router.json:1-120`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:108-136`",
+        "`.opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:126-142`",
+        "`.opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+      ]
+    },
+    {
+      "id": "finding-2-2-manifest-serialization-is-byte-stable-by-construction-leaves-are-deduplicated-an",
+      "text": "Manifest serialization is byte-stable by construction: leaves are deduplicated and sorted, modes are sorted by `workflowMode`, object keys are recursively sorted, formatting is fixed at two spaces, and exactly one trailing newline is added; no timestamp enters the manifest. Two consecutive non-mutating sk-design builds were byte-identical at 7,098 bytes with SHA-256 `42514c152c74220464729d7de1c07ec1ef5a3bc686595b36cd73266461a817b2`. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:281-305] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:318-338] [SOURCE: command output: non-mutating `buildManifestBytes` probe, 2026-07-17T04:49Z]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:1-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-2-3-one-root-manifest-can-represent-the-workflow-transport-mix-because-each-generate",
+      "text": "One root manifest can represent the workflow/transport mix because each generated entry preserves both the registry's `workflowMode` and packet join; the nested transport is a normal independent namespace rather than a seventh hub mode or an alias of `interface`. This confirms iteration 1's structural inference for packet-local leaves. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-108] [SOURCE: .opencode/skills/sk-design/mode-registry.json:145-162] [INFERENCE: the successful six-entry probe confirms the prior composite-namespace feasibility claim]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:1-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-2-4-shared-resource-resolution-remains-an-explicit-authoring-boundary-the-generator-",
+      "text": "Shared-resource resolution remains an explicit authoring boundary. The generator walks only each packet's local `references/` and `assets/`; shared resources enter a mode only through `leaf-aliases.json`. sk-design currently has no such file, which is valid and treated as zero aliases, but any `../shared/...` route that must become independently addressable typed gold will require an authored alias rather than automatic discovery. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-67] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:70-105] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:217-236]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:1-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-generator-iterates-every-declared-registry-mode-that-has-workflowmode-and-pa",
+      "text": "The generator iterates every declared registry mode that has `workflowMode` and `packet`; it does not filter on `packetKind`. A non-mutating build over sk-design therefore produced six manifest mode entries, including `design-mcp-open-design`, with 114 total packet-local leaves (audit 37, transport 9, foundations 12, interface 20, md-generator 26, motion 10). [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:91-108] [SOURCE: .opencode/skills/sk-design/mode-registry.json:38-164] [SOURCE: command output: non-mutating `buildManifestBytes` probe, 2026-07-17T04:49Z]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:1-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-official-check-path-cannot-prove-drift-status-before-a-manifest-is-committed",
+      "text": "The official `--check` path cannot prove drift status before a manifest is committed: it returns code 2 when `leaf-manifest.json` is absent. The exported pure builder is sufficient for feasibility and repeatability research, but implementation must first author the manifest and then run `--check` to establish committed-byte parity. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-130] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:143-161]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:1-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-165`",
+        "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
+      ]
+    },
+    {
+      "id": "finding-3-5-applied-to-the-frozen-21-scenario-benchmark-corpus-16-are-typable-as-is-mr-001-m",
+      "text": "Applied to the frozen 21-scenario benchmark corpus, 16 are typable as-is (`MR-001..MR-006`, `TV-001..TV-005`, `MG-001..MG-003`, `SR-001`, `SR-004`), two require splitting (`AI-001`, `SR-002`), and three remain untyped (`AI-002`, `AI-003`, `SR-003`). This preserves the benchmark's router/live distinction: typed pairs can improve routing/resource attribution, but cannot turn browser, advisor, or behavior gaps into measured routing faults. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:20-43] [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-263] [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:357-1646] [INFERENCE: intersecting the frozen corpus IDs with the independently derived 37-scenario partition]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-3-3-four-scenarios-represent-genuine-routing-questions-but-are-not-safe-typed-fixtur",
+      "text": "Four scenarios represent genuine routing questions but are not safe typed fixtures without decomposition or an explicit alias/bundle decision: `AI-001` is a six-prompt battery, `SR-002` is a three-mode prompt set, `PB-006` targets a hub-level shared polish procedure that is not automatically a packet-local leaf, and `HM-004` is an ordered `interface + design-mcp-open-design` bundle. Split the batteries into one fixture per prompt; type PB-006 only after an authored shared alias and route declaration; type HM-004 as a two-mode bundle only after its judgment-mode oracle is fixed rather than inferred from a prediction. [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:192-199] [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:226-247] [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:260-267] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:43-51] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:203-219]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-3-1-independent-typed-gold-must-be-authored-from-the-scenario-prompt-plus-normative-",
+      "text": "Independent typed gold must be authored from the scenario prompt plus normative mode/resource contracts before observing a router prediction. The topology gate can prove schema validity, manifest membership, and selected-mode joins, but it cannot prove oracle independence; copying the current router's output into expected fields would therefore create gold-equals-prediction circularity even if the fixture passes all three structural checks. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:165-221] [INFERENCE: structural validation cannot establish that expected values were independently derived]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-3-4-seven-scenarios-should-remain-untyped-on-the-sk-design-leaf-routing-axis-ai-002-",
+      "text": "Seven scenarios should remain untyped on the sk-design leaf-routing axis: `AI-002..AI-004` test advisor deferral to other skills, `SR-003` intentionally has no unique real-mode oracle, and `HM-001..HM-003` test intake, planning, and readiness-pause behavior before or beyond route resolution. Their deterministic expectations belong in advisor/behavior assertions, not fabricated positive sk-design leaf pairs; an empty-gold/UNKNOWN fixture is structurally supported when no positive resource oracle exists. [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:192-199] [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:226-233] [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:260-267] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:48-51]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-3-2-twenty-six-current-scenarios-are-independently-typable-as-written-because-their-",
+      "text": "Twenty-six current scenarios are independently typable as written because their prompts and stated expected signals select a bounded sk-design route: `MR-001..MR-007`, `TV-001..TV-005`, `MG-001..MG-004`, `SR-001`, `SR-004`, `PB-001..PB-005`, `PB-007`, and `FR-001..FR-002`. For MG and PB scenarios, only the routing/resource slice is typed; pipeline success, preservation, proof quality, tool use, and user-visible behavior remain separately graded. [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:178-256] [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:279-317] [INFERENCE: each listed scenario names one route and concrete packet/procedure resources independently of observed output]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-4-3-a-fresh-non-mutating-execution-of-the-checked-in-runner-returned-exit-0-but-no-s",
+      "text": "A fresh non-mutating execution of the checked-in runner returned exit 0 but `NO-SCENARIOS`, aggregate `null`, D5=100, and 27 `feature file unreadable` warnings. The warnings request hyphenated feature paths such as `mode-routing/interface-mode.md`, while discovery found the current packet at underscored paths such as `manual_testing_playbook/mode_routing/interface_mode.md`; consequently the current harness cannot supply fresh per-dimension routing evidence until playbook-index paths and on-disk feature paths agree. This is a benchmark-input/topology fault, not evidence that sk-design currently routes incorrectly. [SOURCE: command output: non-mutating in-memory `run-skill-benchmark.cjs` execution, 2026-07-17T04:58Z] [INFERENCE: based on the command’s 27 unreadable-path warnings and scoped benchmark file discovery]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:1-120`",
+        "Command output: non-mutating in-memory `run-skill-benchmark.cjs` execution, 2026-07-17T04:58Z"
+      ]
+    },
+    {
+      "id": "finding-4-2-d1-inter-and-d4-are-unavailable-measurements-not-zero-valued-losses-the-report-m",
+      "text": "D1-inter and D4 are unavailable measurements, not zero-valued losses. The report marks both `unscored-mode-a`, and the scorer includes D1-inter only when an advisor probe produces a numeric score while weighted D4 remains unscored; neither depresses the 69 aggregate. [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:29-61] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1576-1607]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:1-120`",
+        "Command output: non-mutating in-memory `run-skill-benchmark.cjs` execution, 2026-07-17T04:58Z"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-checked-in-after-d3-proxy-report-scores-100-with-d1-intra-100-d2-100-d3-null",
+      "text": "The checked-in `after_d3_proxy` report scores 100 with D1-intra=100, D2=100, D3=`null`, and D5=100. Because `modeAScore` drops null D3 from its denominator, this demonstrates a scoring-applicability change rather than evidence of better routing; it must not be used as the implementation’s routing-improvement baseline. [SOURCE: .opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:29-56] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1078]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:1-120`",
+        "Command output: non-mutating in-memory `run-skill-benchmark.cjs` execution, 2026-07-17T04:58Z"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-frozen-69-is-exactly-attributable-to-the-three-scenario-weighted-mode-a-dime",
+      "text": "The frozen 69 is exactly attributable to the three scenario-weighted Mode-A dimensions: D1-intra is 100 at 13 points, D2 is 100 at 20 points, and D3 is 0 at 15 points, so `(13 + 20 + 0) / (13 + 20 + 15) = 68.75`, rounded once to 69. D5=100 is a separate hard gate and does not enter `modeAScore`; therefore the baseline’s only scored loss is the D3 proxy, not a demonstrated routing-recall failure. [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:29-56] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1078]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:1-120`",
+        "Command output: non-mutating in-memory `run-skill-benchmark.cjs` execution, 2026-07-17T04:58Z"
+      ]
+    },
+    {
+      "id": "finding-4-4-typed-gold-plus-a-committed-leaf-manifest-would-replace-the-flat-string-resource",
+      "text": "Typed gold plus a committed leaf manifest would replace the flat-string resource proxy for D1-intra/D2 with canonical pair recall and replace D3’s flat over-routing proxy with canonical pair precision. The frozen baseline has `routeGoldRows: 0`, so it measures none of that typed-pair behavior; adding valid typed gold would improve measurement validity, but it would not by itself prove a router repair. [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:83-116] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1311-1356]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
+        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:1-120`",
+        "Command output: non-mutating in-memory `run-skill-benchmark.cjs` execution, 2026-07-17T04:58Z"
+      ]
+    },
+    {
+      "id": "finding-5-2-step-a-benchmark-topology-targets-only-the-playbook-package-index-path-declarati",
+      "text": "**Step A — benchmark topology** targets only the playbook package index/path declarations and its scenario-file/directory topology under `.opencode/skills/sk-design/manual_testing_playbook/`; it must not change scenario prompts, expected behavior, or router maps. Prerequisite: preserve the frozen baseline and scenario-ID inventory. Acceptance: the runner resolves a nonzero scenario corpus with zero `feature file unreadable` warnings, while playbook acceptance semantics remain unchanged. Rollback: revert the path-only change if IDs, prompts, or corpus membership drift; do not compensate in the runner. [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:15-26] [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:100-147] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:11-12] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:221-250]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
+        "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-230`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:180-324`"
+      ]
+    },
+    {
+      "id": "finding-5-4-step-d-measurement-acceptance-uses-a-new-output-location-and-compares-only-runs-",
+      "text": "**Step D — measurement acceptance** uses a new output location and compares only runs with the same trace mode and corpus shape; it never overwrites `benchmark/baseline/`. Acceptance requires D5 to remain 100, typed-gold rows to be nonzero, D1-intra/D2 pair recall and D3 pair precision to be applicable, zero topology exclusions, and scenario-level deltas to be reported separately from D1-inter/D4/browser gaps. The checked-in aggregate 69 and `after_d3_proxy` 100 are not valid before/after endpoints because one uses flat proxy gold and the other drops D3 from the denominator. Rollback: delete/revert only the candidate run artifact and keep the frozen baseline untouched if applicability or corpus parity fails. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:36-55] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:208-255]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
+        "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-230`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:180-324`"
+      ]
+    },
+    {
+      "id": "finding-5-5-step-e-router-quality-work-is-conditional-not-presently-justified-existing-evide",
+      "text": "**Step E — router-quality work is conditional, not presently justified.** Existing evidence shows frozen D1-intra=100 and D2=100, while the current fresh run is blocked before scoring; therefore no unconditional `INTENT_SIGNALS`, `RESOURCE_MAP`, `mode-registry.json`, or `hub-router.json` edit can be recommended. After Step D, a wrong mode selects the hub/registry route class for a narrowly scoped fix; a correct mode with wrong packet-local leaves selects only that mode packet's intent/resource map; a genuinely required shared leaf selects an explicit alias/route contract. Acceptance is targeted scenario repair plus the full same-corpus gate with D5 unchanged. Rollback is one fault-class commit at a time, reverting the narrow map/alias change without reverting measurement fixtures. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:29-39] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:9-11] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-12] [INFERENCE: source ownership follows whether the validated mismatch is mode selection, packet-local leaf selection, or explicit shared-resource identity]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
+        "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-230`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:180-324`"
+      ]
+    },
+    {
+      "id": "finding-5-3-steps-b-c-topology-contract-and-independent-oracle-target-opencode-skills-sk-des",
+      "text": "**Steps B-C — topology contract and independent oracle** target `.opencode/skills/sk-design/leaf-manifest.json` first, then typed frontmatter in eligible scenario Markdown files. Generate the manifest before using `--check`; accept it only when regeneration is byte-identical and `--check` returns success. Then author `(workflowMode, leafResourceId)` pairs from prompts and normative maps without observing predictions: type the 16 frozen scenarios already eligible, split `AI-001` and `SR-002` before typing, and leave `AI-002`, `AI-003`, and `SR-003` without positive sk-design leaf gold. Acceptance: schema, manifest membership, and selected-map joins all pass, with no excluded invalid oracle. Rollback: revert typed-gold changes independently of the manifest; if a pair lacks a manifest target, remove/block that fixture rather than inventing an alias. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:136-161] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:168-221] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:7-11]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
+        "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-230`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:180-324`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-safe-dependency-order-is-a-restore-readable-benchmark-topology-b-generate-an",
+      "text": "The safe dependency order is: **(A) restore readable benchmark topology; (B) generate and commit the six-mode leaf manifest; (C) independently author typed gold and validate its joins; (D) establish a same-mode, same-corpus typed baseline; (E) change router maps only for pair-level failures exposed by D**. A-D are measurement-enablement work; E is the only router-quality lane. This order prevents unreadable fixtures, missing manifest leaves, or untyped proxy scoring from being misreported as router defects. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:7-11] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:7-11] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13] [INFERENCE: dependency edges follow the prerequisites demonstrated across iterations 2-4]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
+        "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-230`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:180-324`"
+      ]
+    },
+    {
+      "id": "finding-6-3-leafresourceid-is-packet-root-relative-and-typed-pair-uniqueness-is-composite-va",
+      "text": "`leafResourceId` is packet-root-relative and typed-pair uniqueness is composite. Valid examples are `(motion, references/motion_strategy.md)` and `(md-generator, assets/cardinal_rules_card.md)`; packet-qualified forms such as `design-motion/references/...` are not canonical public IDs. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:138-165] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:16]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/skills/sk-design/mode-registry.json:38-164`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+      ]
+    },
+    {
+      "id": "finding-6-2-each-independent-gold-pair-uses-that-registry-mode-plus-a-leaf-selected-by-its-p",
+      "text": "Each independent gold pair uses that registry mode plus a leaf selected by its packet-local map: `interface` uses its twelve intent families; `foundations` its seven foundation families; `motion` its six motion families; `audit` its six audit families; `md-generator` its five extraction/validation families; and `design-mcp-open-design` its `WIRE`, `READ`, or `RUN` transport family. Thus the canonical mapping is `(interface, local leaf)`, `(foundations, local leaf)`, `(motion, local leaf)`, `(audit, local leaf)`, `(md-generator, local leaf)`, and `(design-mcp-open-design, local leaf)`, with the exact leaf chosen from the corresponding packet's `RESOURCE_MAP`. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:9-18] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:108-136] [SOURCE: .opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:126-142] [SOURCE: .opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43] [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:131-166] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/skills/sk-design/mode-registry.json:38-164`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+      ]
+    },
+    {
+      "id": "finding-6-4-no-substantive-contradiction-appears-in-iterations-2-5-iteration-2-confirms-six-",
+      "text": "No substantive contradiction appears in iterations 2-5: iteration 2 confirms six generated namespaces including the transport; iteration 3 preserves typed pairs as narrow independent routing oracles; iteration 4 says the frozen corpus has zero typed-gold rows rather than disputing the mapping; and iteration 5 makes manifest and independent-gold authoring prerequisites to any router edit. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:7-10] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/skills/sk-design/mode-registry.json:38-164`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+      ]
+    },
+    {
+      "id": "finding-6-5-the-apparent-state-contradiction-is-textual-not-evidentiary-iteration-1-recorded",
+      "text": "The apparent state contradiction is textual, not evidentiary: iteration 1 recorded the question as answered without backticks around `(workflowMode, leafResourceId)`, while the registry's canonical question includes backticks and therefore remained unresolved under exact-text reconciliation. Appending the exact canonical text closes that bookkeeping gap without reopening or changing the six-mode result. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl:4] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-20] [INFERENCE: the only question-text difference is the canonical backtick pair]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/skills/sk-design/mode-registry.json:38-164`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-authoritative-registry-still-defines-exactly-six-independent-mode-namespaces",
+      "text": "The authoritative registry still defines exactly six independent mode namespaces and packet joins: `interface -> design-interface`, `foundations -> design-foundations`, `motion -> design-motion`, `audit -> design-audit`, `md-generator -> design-md-generator`, and `design-mcp-open-design -> design-mcp-open-design`. The first five are workflow packets and the sixth is a transport packet, but all six carry independent `workflowMode` identities. [SOURCE: .opencode/skills/sk-design/mode-registry.json:38-164] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:7]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/skills/sk-design/mode-registry.json:38-164`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+      ]
+    },
+    {
+      "id": "finding-7-3-a-design-only-request-should-first-narrow-to-one-dominant-design-mode-then-type-",
+      "text": "A design-only request should first narrow to one dominant design mode, then type only the packet-local leaves independently required by the prompt; that may be one pair or several same-mode pairs. Merely naming several candidate modes is not evidence for multiple-mode gold: the hub requires one focused question or an explicit smallest-useful-mode assumption, and permits a small set only for clearly separate axes. [SOURCE: .opencode/skills/sk-design/SKILL.md:54-71] [SOURCE: .opencode/skills/sk-design/SKILL.md:244-247] [SOURCE: .opencode/skills/sk-design/hub-router.json:4-12]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/SKILL.md:54-75,236-267`",
+        "`.opencode/skills/sk-design/hub-router.json:1-25`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:70-96,123-133`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:20-56`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:65-97`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:178-267`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/mcp_open_design_mode.md:13-62`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/hub_manager_intake/design_mode_pairing_before_run.md:13-58`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:40-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-7-4-a-run-request-that-generates-design-through-open-design-is-not-eligible-for-domi",
+      "text": "A RUN request that generates design through Open Design is not eligible for dominant-mode narrowing to the transport alone: it requires an ordered judgment-plus-transport bundle. `HM-004` independently fixes the route as `interface + design-mcp-open-design` when no other judgment axis dominates, while the topology validator explicitly supports simultaneous `+` bundles of at most two modes. However, HM-004 fixes the two-mode route but does not name an exact interface leaf, so it is suitable for bundle gold as written but needs a separately authored judgment-leaf oracle before claiming complete multi-pair leaf gold. [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/hub_manager_intake/design_mode_pairing_before_run.md:13-33] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:70-96] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:43-51] [INFERENCE: the scenario fixes both modes but only the transport contract fixes exact packet-local resources]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/SKILL.md:54-75,236-267`",
+        "`.opencode/skills/sk-design/hub-router.json:1-25`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:70-96,123-133`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:20-56`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:65-97`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:178-267`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/mcp_open_design_mode.md:13-62`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/hub_manager_intake/design_mode_pairing_before_run.md:13-58`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:40-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-7-2-a-transport-only-wire-scenario-should-select-one-mode-design-mcp-open-design-but",
+      "text": "A transport-only WIRE scenario should select one mode, `design-mcp-open-design`, but admit two typed pairs when resource loading is part of the oracle: `references/mcp_wiring.md` and `references/od_cli_reference.md`. It must not add a design-judgment pair because WIRE is explicitly exempt; similarly, bare inventory remains transport-only, whereas design-bearing reads are guarded. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:28-47] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:65-97]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/SKILL.md:54-75,236-267`",
+        "`.opencode/skills/sk-design/hub-router.json:1-25`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:70-96,123-133`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:20-56`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:65-97`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:178-267`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/mcp_open_design_mode.md:13-62`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/hub_manager_intake/design_mode_pairing_before_run.md:13-58`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:40-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-7-1-route-mode-cardinality-and-typed-pair-cardinality-are-different-axes-one-selecte",
+      "text": "Route-mode cardinality and typed-pair cardinality are different axes: one selected `workflowMode` can legitimately carry multiple `(workflowMode, leafResourceId)` pairs, while a two-mode bundle can have an underdetermined leaf oracle for one mode. The fixture contract parses an arbitrary list of typed pairs and validates each pair against the declared selected-mode set; it does not require exactly one pair per selected mode. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:70-100] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:203-219]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/SKILL.md:54-75,236-267`",
+        "`.opencode/skills/sk-design/hub-router.json:1-25`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:70-96,123-133`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:20-56`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:65-97`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:178-267`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/mcp_open_design_mode.md:13-62`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/hub_manager_intake/design_mode_pairing_before_run.md:13-58`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:40-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-7-5-the-prose-and-scenario-contracts-require-judgment-plus-transport-composition-but",
+      "text": "The prose and scenario contracts require judgment-plus-transport composition, but the machine-readable hub router currently declares only the `interface + foundations` bundle rule. This is a real edge-contract gap, not evidence that the transport should be flattened or that all multi-intent prompts should bundle: the implementation packet should add or otherwise prove a narrow RUN/design-feeding-READ pairing rule, with WIRE and exempt inventory as negative controls. [SOURCE: .opencode/skills/sk-design/hub-router.json:4-25] [SOURCE: .opencode/skills/sk-design/SKILL.md:263-267] [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/hub_manager_intake/design_mode_pairing_before_run.md:22-33] [INFERENCE: the normative composition rule lacks a corresponding machine-readable bundle rule]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/SKILL.md:54-75,236-267`",
+        "`.opencode/skills/sk-design/hub-router.json:1-25`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:70-96,123-133`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:20-56`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:65-97`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:178-267`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/mcp_open_design_mode.md:13-62`",
+        "`.opencode/skills/sk-design/manual_testing_playbook/hub_manager_intake/design_mode_pairing_before_run.md:13-58`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:40-100,165-221`"
+      ]
+    },
+    {
+      "id": "finding-8-4-benchmark-acceptance-uses-a-new-output-location-and-a-stable-router-mode-corpus-",
+      "text": "Benchmark acceptance uses a new output location and a stable router-mode/corpus shape: `node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill .opencode/skills/sk-design --outputs-dir /tmp/skd-bench --trace-mode router --output /tmp/skd-bench/report.json`. Accept only when D5 remains 100, typed-gold rows are nonzero, D1-intra/D2 pair recall and D3 pair precision are applicable, topology exclusions are zero, and scenario-level deltas are reported; never overwrite or compare unlike applicability against `benchmark/baseline/`. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:20-23] [SOURCE: .opencode/skills/sk-design/benchmark/README.md:36-55] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:12-12]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
+      ]
+    },
+    {
+      "id": "finding-8-2-manifest-acceptance-is-two-phase-and-reproducible-implementation-first-runs-node",
+      "text": "Manifest acceptance is two-phase and reproducible: implementation first runs `node .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs --write .opencode/skills/sk-design`, then runs the same command with `--check`; acceptance requires exit 0 and byte equality between committed and freshly generated bytes. Research confirms that `--check` returns 2 when the manifest is absent, so it cannot be used as a pre-generation stability test. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:136-161] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:170-181]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
+      ]
+    },
+    {
+      "id": "finding-8-5-research-confirmed-facts-stop-at-contract-shape-deterministic-generation-feasibi",
+      "text": "Research-confirmed facts stop at contract shape, deterministic generation feasibility, and gate semantics. Implementation-only proof still includes readable corpus topology, committed manifest parity, independently authored oracle validity, actual WIRE/READ/RUN/bundle routing outcomes, and same-corpus benchmark deltas. Router-map edits remain conditional on a valid pair-level failure: wrong mode targets the narrow hub/registry route class, wrong local leaves target only that packet map, and a required shared leaf needs an explicit alias contract. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:23-27]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
+      ]
+    },
+    {
+      "id": "finding-8-1-the-final-scenario-acceptance-matrix-separates-route-mode-acceptance-from-leaf-p",
+      "text": "The final scenario acceptance matrix separates route-mode acceptance from leaf-pair completeness; it is the minimum implementation test set rather than a claim that current routing already passes. [INFERENCE: based on the transport/cardinality contract in iteration 7 and dependency gates in iteration 5]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
+      ]
+    },
+    {
+      "id": "finding-8-3-typed-gold-acceptance-must-run-the-read-only-strict-topology-gate-after-the-mani",
+      "text": "Typed-gold acceptance must run the read-only strict topology gate after the manifest exists: `node .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs --dir .opencode/skills/sk-design/manual_testing_playbook --skill-dir .opencode/skills/sk-design --strict`. Acceptance requires a nonzero valid corpus, `blocked=0`, and every fixture passing schema, manifest resolution, and selected-map join; blocked fixtures are excluded stale-oracle evidence, not routing misses. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:255-287] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:310-358]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
+        "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-0a851f7b02cf",
+      "text": "Flattening `design-mcp-open-design` into `interface`; the registry assigns it its own transport mode and backend, while its design gate composes rather than erases the judgment mode. [SOURCE: .opencode/skills/sk-design/mode-registry.json:145-162] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:40-47]",
+      "contentHash": "0a851f7b02cf",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0c4c2e0eafce",
+      "text": "Treating the hub's six packet `SKILL.md` entrypoints or four shared default resources as an independent seventh `workflowMode`; the registry defines only six modes and the hub explicitly routes to packet entrypoints. [SOURCE: .opencode/skills/sk-design/mode-registry.json:38-164] [SOURCE: .opencode/skills/sk-design/hub-router.json:13-18]",
+      "contentHash": "0c4c2e0eafce",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-eef3cd83aed4",
+      "text": "Using packet-qualified paths such as `design-motion/references/...` as `leafResourceId`; the canonical identity requires packet-root-relative resource IDs. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84]",
+      "contentHash": "eef3cd83aed4",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-05a64cd6246e",
+      "text": "Excluding the transport from generation because its `packetKind` differs: the generator consumes `workflowMode` and `packet`, not `packetKind`, and the read-only probe emitted the transport namespace. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:91-108]",
+      "contentHash": "05a64cd6246e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-53b2616f1c7e",
+      "text": "Treating absent `leaf-aliases.json` as a generation blocker: absence explicitly means zero aliases. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:17-19] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-67]",
+      "contentHash": "53b2616f1c7e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-659463819764",
+      "text": "Using `--check` against a missing committed manifest as evidence of nondeterminism: that path reports a missing prerequisite before comparing bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:143-161]",
+      "contentHash": "659463819764",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-851983bc559e",
+      "text": "Assigning one aggregate pair set to multi-prompt batteries was rejected because it obscures which prompt selected which mode and can exceed the selected-map union semantics. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:70-80] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:203-219]",
+      "contentHash": "851983bc559e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-1dd10da5da0a",
+      "text": "Automatic backfilling of typed gold from benchmark traces or router predictions is invalid oracle construction and should not be promoted as an implementation path.",
+      "contentHash": "1dd10da5da0a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6bb7620d9eef",
+      "text": "Gold-equals-prediction: deriving expected pairs from current router output was rejected because it makes the measured system its own oracle. [INFERENCE: based on Finding 1]",
+      "contentHash": "6bb7620d9eef",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a84a37845396",
+      "text": "Shared hub resources cannot be made packet-local typed leaves by generic path inference; PB-006 needs an explicit contract decision rather than a guessed pair.",
+      "contentHash": "a84a37845396",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-22208b3e3f15",
+      "text": "Treating a correct typed pair as proof of pipeline, safety, or response quality was rejected; the playbook's acceptance contract grades those independently. [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:110-127]",
+      "contentHash": "22208b3e3f15",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f45e6a397642",
+      "text": "Typing advisor-negative scenarios as positive sk-design leaf routes was rejected because their expected outcome is another skill winning. [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:197-199]",
+      "contentHash": "f45e6a397642",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-1c9e26f825f4",
+      "text": "Re-running the default current playbook through the benchmark runner cannot yield dimension evidence while its 27 feature references are unreadable. Repeating that command without first reconciling path topology is exhausted for this focus. [SOURCE: command output: non-mutating in-memory `run-skill-benchmark.cjs` execution, 2026-07-17T04:58Z]",
+      "contentHash": "1c9e26f825f4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4c7c02bb527f",
+      "text": "Treating `after_d3_proxy` aggregate 100 as proof that routing improved: D3 became inapplicable and dropped out while D1-intra and D2 stayed at their prior 100 values. [SOURCE: .opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:29-56]",
+      "contentHash": "4c7c02bb527f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-cc9a422557bf",
+      "text": "Treating D1-inter or D4 as contributors to the 31-point baseline shortfall: both are excluded from the Mode-A denominator rather than scored zero. [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:29-61]",
+      "contentHash": "cc9a422557bf",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-44a8da7d6397",
+      "text": "Treating the fresh `NO-SCENARIOS` result as a current routing score: no scenario row reached scoring, so only D5 connectivity was observed. [SOURCE: command output: non-mutating in-memory `run-skill-benchmark.cjs` execution, 2026-07-17T04:58Z]",
+      "contentHash": "44a8da7d6397",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-da8d005588c7",
+      "text": "Aggregate-only optimization is exhausted: neither 69 nor 100 identifies a router-quality change without comparable typed rows and stable dimension applicability. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13]",
+      "contentHash": "da8d005588c7",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-244f60390238",
+      "text": "Combining path repair, manifest generation, typed-gold authoring, and router-map edits in one change; this destroys causal attribution and makes rollback cross-contaminate measurement and quality lanes. [INFERENCE: based on Findings 1-5]",
+      "contentHash": "244f60390238",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3e38b8de8295",
+      "text": "Editing `INTENT_SIGNALS`, `RESOURCE_MAP`, `mode-registry.json`, or `hub-router.json` before a valid typed run identifies a pair-level failure; current evidence does not prove such a fault. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:29-39] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13]",
+      "contentHash": "3e38b8de8295",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e7a82e77e99b",
+      "text": "Inventing shared aliases to make a fixture pass; aliases require an explicit route contract and a demonstrated scenario need. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:9-10]",
+      "contentHash": "e7a82e77e99b",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-be10391a682c",
+      "text": "Overwriting the frozen baseline or comparing aggregates across different applicability/corpus shapes. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:36-55]",
+      "contentHash": "be10391a682c",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e6adc37af3cc",
+      "text": "A seventh hub mode: hub entrypoints and defaults do not create another `workflowMode`. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:20-25]",
+      "contentHash": "e6adc37af3cc",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-cb0e72b449ae",
+      "text": "Flattening `design-mcp-open-design` into `interface`: the registry and later manifest evidence preserve its independent transport namespace. [SOURCE: .opencode/skills/sk-design/mode-registry.json:145-162] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:7-10]",
+      "contentHash": "cb0e72b449ae",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-0599b22a8199",
+      "text": "Packet-qualified `leafResourceId` values: the public contract requires packet-root-relative IDs. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84]",
+      "contentHash": "0599b22a8199",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-5de7d72d32f1",
+      "text": "A universal cardinality rule such as “one selected mode equals one typed pair” is invalid because selected modes and expected leaves are independently plural. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:70-100] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:203-219]",
+      "contentHash": "5de7d72d32f1",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-473dc3fd4066",
+      "text": "Assigning multiple judgment modes or all candidate leaves to an ambiguous design prompt; candidate naming triggers clarification or a stated narrowing assumption, not hedge-everything gold. [SOURCE: .opencode/skills/sk-design/SKILL.md:54-57]",
+      "contentHash": "473dc3fd4066",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-e36a1d5da67a",
+      "text": "Treating a RUN request as transport-only because `design-mcp-open-design` is a distinct public mode; generation still has a mandatory design-judgment precondition. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96]",
+      "contentHash": "e36a1d5da67a",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-df347b99ad84",
+      "text": "Treating every Open Design mention as a two-mode bundle; WIRE and bare inventory are explicit transport-only exemptions. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:40-47]",
+      "contentHash": "df347b99ad84",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-1c68c2fed86c",
+      "text": "Aggregate-only optimization remains exhausted: the frozen 69 and proxy 100 have different applicability and cannot prove routing improvement. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:18-22]",
+      "contentHash": "1c68c2fed86c",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-92d85a642363",
+      "text": "Editing router maps before a valid typed rerun exposes a pair-level failure. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:13-19]",
+      "contentHash": "92d85a642363",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-ae2c37f72943",
+      "text": "Running manifest `--check` before authoring the manifest; the command reports a missing prerequisite, not nondeterminism. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:143-161]",
+      "contentHash": "ae2c37f72943",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-451da2572905",
+      "text": "Treating a correct two-mode route as complete multi-pair leaf gold when the judgment-leaf oracle is absent. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:12-13]",
+      "contentHash": "451da2572905",
+      "addedAtIteration": 8
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 45,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.5,
+    "coverageBySources": {
+      "code": 60,
+      "other": 41
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}
