@@ -1,18 +1,18 @@
 ---
 title: "Feature Specification: Spec Root Resolution Hardening"
-description: "Research canonical and legacy spec-root resolution before a regression-safe hardening plan."
+description: "Phase-parent for the data-before-writers hardening of spec-root resolution: unify on canonical-first, canonicalize writers, and retire the specs alias. Research is complete; implementation is decomposed into five sequential phases."
 trigger_phrases:
-  - "spec root resolution"
-  - "specs symlink"
-  - "canonical specs root"
-  - "legacy specs root"
+  - "spec root resolution hardening"
+  - "canonical-first resolver"
+  - "resolver registry"
+  - "specs symlink retirement"
 importance_tier: "important"
-contextType: "general"
+contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Spec Root Resolution Hardening
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -21,112 +21,96 @@ contextType: "general"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | P0 |
-| **Status** | Research complete |
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
 | **Created** | 2026-07-17 |
-| **Branch** | Current worktree |
-
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `system-speckit/000-migration-from-soa-and-cleanup` |
+| **Predecessor** | None |
+| **Successor** | None |
+| **Handoff Criteria** | All five phases pass `validate.sh --strict`; R1–R10 green across L1–L4; alias retired with zero re-materialization; `validate.sh --strict --recursive` on this packet exits at or below baseline |
 <!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-
-Spec Kit has at least two root-resolution implementations with different precedence. A repository-root `specs` symlink currently makes the legacy and canonical roots resolve to the same inode, potentially masking split-brain writes when the symlink is absent.
+Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no single contract. A repo-root `specs` symlink masked the disagreement by collapsing both roots to one inode; the confirmed endpoint is canonical-first with explicit-path preservation, unique legacy-only read fallback, and fail-closed handling of divergent duplicates.
 
 ### Purpose
+Deliver a regression-safe, data-before-writers rollout that unifies resolution on canonical-first, canonicalizes every automatic writer, normalizes readers, and retires the alias — proven with and without the symlink.
 
-Produce a cited, regression-safe recommendation for deterministic spec-root ownership across scripts, MCP-server code, hooks, and automatic writers.
-
-### Research Context
-
-Deep research completed at the requested ten-iteration cap. `research/research.md` is the canonical findings source.
-
-<!-- BEGIN GENERATED: deep-research/spec-findings -->
-Canonical-first is the recommended default for unqualified spec-root selection, with explicit-path preservation during migration, unique legacy-only read fallback, and fail-closed handling for divergent duplicates. The current `specs` symlink masks mixed per-function precedence and is not a safe runtime dependency: its tracked payload is machine-specific, and it is unsafe for fresh clones, linked worktrees, archives, and symlink-disabled checkouts.
-
-The regression-safe deployment order is data before writers: establish an explicit resolver/fixture contract, inventory and canonicalize packet ownership under a writer freeze, deploy canonical automatic writers and collision guards as one source+dist bundle, normalize readers to canonical-first with read-only legacy fallback, and retire the alias only after a clean compatibility window plus Linux/macOS/Windows no-alias validation. The bounded research found additional independent resolver families in its final audit, so implementation must maintain a central resolver registry rather than claim exhaustive coverage from literal search alone.
-
-See `research/research.md` for the verified per-function inventory, automatic-writer failure matrix, S0-S5 migration and rollback transaction, R1-R10 fixture model, L1-L4 blocking lanes, eliminated alternatives, confidence levels, and residual unknowns.
-<!-- END GENERATED: deep-research/spec-findings -->
-
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, and continuity live inside the phase children below. Canonical findings live in `research/research.md`.
 <!-- /ANCHOR:problem -->
+
 ---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-<!-- DR-SEED:SCOPE -->
 ### In Scope
-
-- Root-resolution definitions and every direct call site.
-- Legacy-first versus canonical-first precedence and compatibility consequences.
-- Provenance, maintenance, intent, and portability of the root `specs` symlink.
-- Symlink-absent behavior of automatic writers, especially session-stop autosave.
-- Ranked remediation, migration, rollback, and dual-environment validation.
+- Unify all unqualified resolvers on canonical-first with the five research guardrails.
+- Canonicalize the automatic writers; add divergent same-ID collision rejection.
+- Normalize readers with read-only legacy fallback; retire the `specs` alias.
+- Validate R1–R10 across L1 (source), L2 (clean dist), L3 (OS/no-symlink), L4 (fault injection).
 
 ### Out of Scope
-
-- Implementing resolver changes during research.
-- Deleting or replacing the symlink during research.
-- Unrelated Spec Kit cleanup.
+- The broader `000-migration` numbering/teardown workstreams (sibling children).
 
 ### Files to Change
 
-Research artifacts under this packet only. Implementation files will be selected by a later planning step.
-
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| resolver registry + collision classifier | Create | 001 | Single-source contract + fail-closed preflight |
+| packet data under `.opencode/specs/**` + quarantine | Migrate | 002 | Canonicalize legacy-only under a writer freeze |
+| `session-stop.ts`, `generate-context.ts`, `workflow.ts`, `create.sh` | Modify | 003 | Canonical writers as one source+dist bundle |
+| `scripts/core/config.ts` + independent constructors | Modify | 004 | Canonical-first readers with legacy read fallback |
+| `specs` symlink + R1–R10 × L1–L4 fixtures | Delete/Create | 005 | Retire alias + full validation matrix |
 <!-- /ANCHOR:scope -->
+
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-<!-- DR-SEED:REQUIREMENTS -->
-### P0 - Blockers (MUST complete)
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, continuity) live inside the phase children.
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Enumerate root-resolution call sites | Every material definition and caller has a file:line citation and precedence classification. |
-| REQ-002 | Decide the universal precedence contract | The recommendation weighs canonical-first against concrete legacy compatibility evidence. |
-| REQ-003 | Explain the symlink lifecycle | Creation, maintenance, intent, and cross-platform safety are evidenced or explicitly marked unknown. |
-| REQ-004 | Characterize symlink-absent auto-writer behavior | Each automatic writer has a traced destination or failure mode. |
-| REQ-005 | Produce a regression-safe remediation | The result includes ranked changes, migration, rollback, and validation with and without the symlink. |
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-resolver-registry-and-preflight/ | S0–S1: resolver registry (single-source contract), R1–R10 expected-result table, fail-closed collision classifier, source/dist baseline | Planned |
+| 2 | 002-data-canonicalization/ | S2: writer freeze, hashed classification manifest, resolve divergent duplicates, move legacy-only to canonical with lossless quarantine | Planned |
+| 3 | 003-writer-canonicalization/ | S3: canonicalize Stop autosave, generate-context, phase-pointer refresh, both create.sh modes; add collision rejection; ship source+dist, unfreeze | Planned |
+| 4 | 004-reader-normalization/ | S4: shared helper + independent constructors canonical-first with read-only legacy fallback; 28-day zero-hit compatibility window | Planned |
+| 5 | 005-symlink-retirement-and-validation/ | S5: prove no-alias cases, commit alias removal, run R1–R10 × L1–L4 matrix + fault injection, capture strict-validate delta | Planned |
 
-<!-- /ANCHOR:requirements -->
----
+### Phase Transition Rules
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+- Each phase MUST pass `validate.sh` independently before the next phase begins.
+- Parent spec tracks aggregate progress via this map.
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
+- Run `validate.sh --recursive` on this parent to validate all phases as an integrated unit.
 
-- **SC-001**: The final synthesis distinguishes confirmed evidence from inference.
-- **SC-002**: The proposed validation matrix catches split-root reads and writes in both symlink states.
-- **SC-003**: The recommendation names likely regressions and a reversible rollout sequence.
+### Phase Handoff Criteria
 
-<!-- /ANCHOR:success-criteria -->
----
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-resolver-registry-and-preflight | 002-data-canonicalization | Registry covers every research §4 site; classifier rejects divergent duplicates; baseline hashes recorded | Classifier fixtures pass; registry coverage audit clean |
+| 002-data-canonicalization | 003-writer-canonicalization | All divergent duplicates resolved; legacy-only moved; quarantine restore proven lossless | Byte-exact restore test; zero divergent survivors |
+| 003-writer-canonicalization | 004-reader-normalization | All writers canonical; alias-absent smoke clean; collision rejection active; source+dist shipped | Alias-absent writer smoke; collision unit tests |
+| 004-reader-normalization | 005-symlink-retirement-and-validation | Readers canonical-first with read-only legacy fallback; compatibility window zero fallback hits | Reader fixtures; window instrumentation |
+| 005-symlink-retirement-and-validation | (done) | R1–R10 × L1–L4 green; alias retired with zero re-materialization; strict-validate delta captured | Recorded matrix outputs + memory save |
+<!-- /ANCHOR:phase-map -->
 
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Risk | Symlink masks divergent write roots | Current tests may pass while clean checkouts fail | Test isolated fixtures with and without a symlink. |
-| Risk | Legacy packet consumers depend on `specs/` | Canonical-first changes could hide or strand data | Inventory readers and persisted references before migration. |
-| Dependency | Automatic hook behavior | Session-stop writes can occur outside explicit commands | Trace hook configuration through the writer entrypoint. |
-
-<!-- /ANCHOR:risks -->
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-- Which root-resolution call sites are legacy-first, canonical-first, or multi-root?
-- Which consumer behavior would change under canonical-first resolution?
-- What creates and maintains the `specs` symlink?
-- Which automatic writers misroute or fail when the symlink is absent?
-- What rollout and validation sequence is safest?
-
+- How many resolvers exist beyond the bounded research scan? (owned by phase 001; registry must be extensible)
+- What created and exclusively maintains the `specs` symlink? (owned by phase 005; research left it unknown)
+- Are Linux/macOS/Windows CI runners available for the mandatory L3 no-symlink rows? (owned by phase 005)
 <!-- /ANCHOR:questions -->

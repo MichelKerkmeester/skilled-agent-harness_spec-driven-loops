@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
+  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
+  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "resolver registry",
+      "collision classifier",
+      "root resolution preflight",
+      "resolver registry plan",
+      "collision classifier plan",
+      "resolver registry tasks",
+      "collision classifier tasks"
+    ],
+    "key_topics": [
+      "resolver",
+      "registry",
+      "collision",
+      "classifier",
+      "root",
+      "resolution",
+      "preflight",
+      "plan",
+      "tasks",
+      "implemented",
+      "times",
+      "four"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "scripts/core/config.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "scripts/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolver Registry",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Root",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Root resolution is implemented ~20 times with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no single contract",
+    "created_at": "2026-07-17T10:55:59.167Z",
+    "last_save_at": "2026-07-17T10:55:59.167Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:3d232e2e719adfdc517ac2b45f80cb577142e004f04b41e25fc2424939aa356a",
+    "source_doc_hashes": {
+      "spec.md": "5bb863ed0900b1966b390e5d97f16f9297596c0a100f0b0b11bd090fafcce136",
+      "plan.md": "92e112f740027bdb981fb641eda0381b96ab62df187f5d80ca87f0e8662fbc53",
+      "tasks.md": "9b89d703003addc7cfc090a3c9d53665dc0ed653d0ef48a2bf5cf93a9a35b632"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

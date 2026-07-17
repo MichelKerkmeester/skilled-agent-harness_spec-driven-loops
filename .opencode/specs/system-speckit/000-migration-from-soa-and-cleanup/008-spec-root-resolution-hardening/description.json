@@ -1,17 +1,21 @@
 {
   "specFolder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
-  "description": "Spec Kit has at least two root-resolution implementations with different precedence",
+  "description": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only,",
   "keywords": [
-    "spec",
-    "kit",
-    "least",
-    "two",
-    "root-resolution",
-    "implementations",
+    "spec-root",
+    "resolution",
+    "implemented",
+    "independent",
+    "call",
+    "sites",
+    "four",
     "different",
-    "precedence"
+    "precedences",
+    "canonical-first",
+    "legacy-first",
+    "canonical-only"
   ],
-  "lastUpdated": "2026-07-17T09:30:14.185Z",
+  "lastUpdated": "2026-07-17T11:00:40.514Z",
   "specId": "008",
   "folderSlug": "spec-root-resolution-hardening",
   "parentChain": [

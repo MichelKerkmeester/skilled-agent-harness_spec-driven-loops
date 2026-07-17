@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/003-writer-canonicalization",
+  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/003-writer-canonicalization",
+  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "writer canonicalization",
+      "session-stop autosave canonical",
+      "create.sh canonical",
+      "writer canonicalization plan",
+      "collision rejection plan",
+      "writer canonicalization tasks",
+      "create.sh canonical tasks"
+    ],
+    "key_topics": [
+      "writer",
+      "canonicalization",
+      "session-stop",
+      "autosave",
+      "canonical",
+      "plan",
+      "collision",
+      "rejection",
+      "tasks",
+      "automatic",
+      "writers",
+      "resolve"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec/create.sh",
+      "mcp_server/hooks/claude/session-stop.ts",
+      "scripts/memory/generate-context.ts",
+      "scripts/core/workflow.ts",
+      "scripts/spec/create.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/session-stop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writer Canonicalization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Canonicalize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The automatic writers resolve legacy-first or re-materialize `specs/`: the Stop autosave, bare/new `generate-context`, the phase-pointer refresh (which re-resolves the original argument and can silently skip), and `spec/create.sh` untracked (`mkdir -p specs/`)",
+    "created_at": "2026-07-17T11:01:02.467Z",
+    "last_save_at": "2026-07-17T11:01:02.467Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:50a752702e06c3c999cd27304ef9b0bdf5d698cb7f2aa146c9b901ecb3234902",
+    "source_doc_hashes": {
+      "spec.md": "026bab2c9d7f18d9ad337a5853dd4beb9f403eabf543f161bb7bde1171a8f858",
+      "plan.md": "e066f3609083b4808e3bf4096a0a8608c345bcb4a7efce8766a5b4ca38c72da7",
+      "tasks.md": "43af64de9c10aba9c0297a697773d50b6aab98bd27e77f9e8668b9d7904e37c9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

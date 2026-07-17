@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/002-data-canonicalization",
+  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/002-data-canonicalization",
+  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "packet canonicalization",
+      "writer freeze",
+      "divergent duplicate resolution",
+      "data canonicalization plan",
+      "writer freeze plan",
+      "data canonicalization tasks",
+      "quarantine tasks"
+    ],
+    "key_topics": [
+      "packet",
+      "canonicalization",
+      "writer",
+      "freeze",
+      "divergent",
+      "duplicate",
+      "resolution",
+      "data",
+      "plan",
+      "tasks",
+      "quarantine",
+      "writers"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Canonicalization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Before",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Under",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Freeze",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "quarantine",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before writers change, packet data itself must be canonicalized",
+    "created_at": "2026-07-17T11:01:02.229Z",
+    "last_save_at": "2026-07-17T11:01:02.229Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:29d07e9cf011090d124f7a48ce14047432b8cb711b50687a77f53e21a23f03b0",
+    "source_doc_hashes": {
+      "spec.md": "aca168d0027ff63242c4266da6840532b20eeb04adcfa2f277fc95282745b593",
+      "plan.md": "a6f50a143cb803a0c20c9d7c240bb918c649c55f4704836afbd9aa6810fddb43",
+      "tasks.md": "aeeab957210f1df84fe7a2d15bedb0e7e378848d9cca49e425c0d461e9163c1f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

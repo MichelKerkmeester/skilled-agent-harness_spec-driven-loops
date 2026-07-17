@@ -3,7 +3,13 @@
   "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
   "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
   "parent_id": "system-speckit/000-migration-from-soa-and-cleanup",
-  "children_ids": [],
+  "children_ids": [
+    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/001-resolver-registry-and-preflight",
+    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/002-data-canonicalization",
+    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/003-writer-canonicalization",
+    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/004-reader-normalization",
+    "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/005-symlink-retirement-and-validation"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,29 +17,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "spec root resolution",
-      "specs symlink",
-      "canonical specs root",
-      "legacy specs root"
+      "spec root resolution hardening",
+      "canonical-first resolver",
+      "resolver registry",
+      "specs symlink retirement"
     ],
     "key_topics": [
       "spec",
       "root",
       "resolution",
+      "hardening",
+      "canonical-first",
+      "resolver",
+      "registry",
       "specs",
       "symlink",
-      "canonical",
-      "legacy",
-      "kit",
-      "least",
-      "two",
-      "root-resolution",
-      "implementations"
+      "retirement",
+      "spec-root",
+      "implemented"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "research/research.md",
+      "scripts/core/config.ts",
       "spec/create.sh",
       "mcp_server/dist/hooks/claude/session-stop.js",
       "scripts/dist/memory/generate-context.js",
@@ -51,14 +58,19 @@
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
       ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
-      ".claude/settings.json",
-      ".github/workflows/strict-pass-freshness-sweep.yml"
+      ".claude/settings.json"
     ],
     "entities": [
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "scripts/core/config.ts",
         "source": "derived"
       },
       {
@@ -110,12 +122,6 @@
         "source": "derived"
       },
       {
-        "name": "config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/config.ts",
-        "source": "derived"
-      },
-      {
         "name": "generate-context.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
@@ -158,12 +164,6 @@
         "source": "derived"
       },
       {
-        "name": "strict-pass-freshness-sweep.yml",
-        "kind": "config",
-        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -176,42 +176,48 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Spec Kit",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Research Context Deep",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Problem Statement Spec",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary Spec Kit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Spec Kit has at least two root-resolution implementations with different precedence",
+    "causal_summary": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no single contract",
     "created_at": "2026-07-17T09:30:14.185Z",
-    "last_save_at": "2026-07-17T09:30:14.185Z",
+    "last_save_at": "2026-07-17T11:01:01.690Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:580afec195a6ada10ebdf6dacdce9df47080dd5af8d3cb6d9ade041f3a53d94e",
+    "source_fingerprint": "sha256:ab238eefdeeec2e28d576d95333dbfa0971e13b9dbdc8517f0e4278bc1e70498",
     "source_doc_hashes": {
-      "spec.md": "39c4d11dd7d027da158156a8f4ffe081e88709c146ca12e11465512f9e9628a2",
+      "spec.md": "aba1c5e39051a4056aff74391348c2654ea86245a39711878a86c4ad52e9b92f",
       "research/research.md": "ce4ec60c4a62ebeabe361cf62e2b51a3f0eda955dc7bd8863269098d065f6c1d"
     },
     "last_active_child_id": null,

@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
+  "description": "The `specs` alias was already deleted in the working tree ahead of plan",
+  "keywords": [
+    "specs",
+    "alias",
+    "already",
+    "deleted",
+    "working",
+    "tree",
+    "ahead",
+    "plan"
+  ],
+  "lastUpdated": "2026-07-17T10:59:31.877Z",
+  "specId": "005",
+  "folderSlug": "symlink-retirement-and-validation",
+  "parentChain": [
+    "system-speckit",
+    "000-migration-from-soa-and-cleanup",
+    "008-spec-root-resolution-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

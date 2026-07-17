@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/004-reader-normalization",
+  "spec_folder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/004-reader-normalization",
+  "parent_id": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reader normalization",
+      "canonical-first readers",
+      "legacy read fallback",
+      "reader normalization plan",
+      "canonical-first readers plan",
+      "reader normalization tasks",
+      "compatibility window tasks"
+    ],
+    "key_topics": [
+      "reader",
+      "normalization",
+      "canonical-first",
+      "readers",
+      "legacy",
+      "read",
+      "fallback",
+      "plan",
+      "tasks",
+      "compatibility",
+      "window",
+      "shared"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "scripts/core/config.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "scripts/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reader Normalization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Switch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview With",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Canonical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "read-only",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shared scripts helper (`getSpecsDirectories`/`findActiveSpecsDir`) and the independent constructors (startup pending recovery, generic MCP discovery, resume/authored continuity, API indexing, spec affinity, memory-quality validation) resolve with mixed precedence",
+    "created_at": "2026-07-17T11:01:02.723Z",
+    "last_save_at": "2026-07-17T11:01:02.723Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:f79c9d1dff81fd937bf56dc86f5d11a3c5b91a98f62db7b7f768d70e84014505",
+    "source_doc_hashes": {
+      "spec.md": "01b292344e19aa3f3b2c6e645e91b0ef10eaea80388d58841817690d24bad808",
+      "plan.md": "e2b13fbc0b96fe75a1862cf0cfe3df0a01af29e61e89063674fbf7c8b8092a13",
+      "tasks.md": "82f42faa8f3fa05b867ddc23be5bbc222839c2237d0c13f0abb681089b42a00d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
