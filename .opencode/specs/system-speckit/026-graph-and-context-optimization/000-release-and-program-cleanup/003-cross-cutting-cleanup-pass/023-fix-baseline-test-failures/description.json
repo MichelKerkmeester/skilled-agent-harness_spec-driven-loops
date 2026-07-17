@@ -1,0 +1,34 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
+  "description": "Five vitest unit tests in the spec-kit MCP server have been failing since packets 040 (sk-doc conformance sweep) and commit `7dfd108` (skillid rename)",
+  "keywords": [
+    "five",
+    "vitest",
+    "unit",
+    "tests",
+    "spec-kit",
+    "mcp",
+    "server",
+    "failing",
+    "since",
+    "packets",
+    "sk-doc",
+    "conformance",
+    "sweep",
+    "commit",
+    "7dfd108",
+    "skillid",
+    "rename"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.701Z",
+  "specId": "023",
+  "folderSlug": "fix-baseline-test-failures",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

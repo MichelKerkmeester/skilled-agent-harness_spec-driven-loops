@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
+  "description": "Packets 031-036 shipped a wave of remediation work (5 packets implementing 013's research findings + 035's CONDITIONAL verdict + 036's CLI matrix",
+  "keywords": [
+    "packets",
+    "shipped",
+    "wave",
+    "remediation",
+    "work",
+    "implementing",
+    "research",
+    "findings",
+    "conditional",
+    "verdict",
+    "cli",
+    "matrix"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.363Z",
+  "specId": "003",
+  "folderSlug": "post-program-quality-pass",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "004-followup-post-program"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "29-04-26_19-37__resource-map-authored-and-memory-finalization.md"
+  ]
+}

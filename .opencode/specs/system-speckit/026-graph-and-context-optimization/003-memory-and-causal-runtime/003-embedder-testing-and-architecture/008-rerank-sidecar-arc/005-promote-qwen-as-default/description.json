@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/005-promote-qwen-as-default",
+  "description": "After phases 001-003 ship, spec-memory has a working cross-encoder rerank pipeline plumbed to a shared Qwen sidecar",
+  "keywords": [
+    "phases",
+    "ship",
+    "spec-memory",
+    "working",
+    "cross-encoder",
+    "rerank",
+    "pipeline",
+    "plumbed",
+    "shared",
+    "qwen",
+    "sidecar"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.382Z",
+  "specId": "005",
+  "folderSlug": "promote-qwen-as-default",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

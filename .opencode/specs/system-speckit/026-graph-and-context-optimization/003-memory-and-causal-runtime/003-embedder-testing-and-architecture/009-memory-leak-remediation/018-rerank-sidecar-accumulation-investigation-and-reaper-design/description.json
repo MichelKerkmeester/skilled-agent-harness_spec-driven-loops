@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "status": "complete",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-deep-research-drift-and-simplification",
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/003-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
+    ],
+    "related_to": []
+  },
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design",
+  "description": "The rerank-sidecar lifecycle leaks workers",
+  "keywords": [
+    "rerank-sidecar",
+    "lifecycle",
+    "leaks",
+    "workers"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.984Z",
+  "specId": "018",
+  "folderSlug": "rerank-sidecar-accumulation-investigation-and-reaper-design",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research-synthesis-and-remediation-map",
+      "memory leak 1",
+      "phase 001 checklist",
+      "memory leak research archive validation",
+      "source research recovery checklist",
+      "phase 001 decision record",
+      "memory leak research consolidation adr",
+      "delete old research packets decision",
+      "phase 001 resource map",
+      "memory leak source research archive",
+      "research synthesis resource map"
+    ],
+    "key_topics": [
+      "research-synthesis-and-remediation-map",
+      "memory",
+      "leak",
+      "phase",
+      "checklist",
+      "research",
+      "archive",
+      "validation",
+      "source",
+      "recovery",
+      "decision",
+      "record"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "decision-record.md",
+      "resource-map.md",
+      "research/remediation-map.md",
+      "research/source-evidence-index.md",
+      "research/source-research/020-cli-process-memory-leak-deep-research/research/iterations/iteration-001.md",
+      "research/source-research/024-cli-deep-research-memory-leak-audit/research/iterations/iteration-001.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-map.md",
+        "kind": "doc",
+        "path": "research/remediation-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-evidence-index.md",
+        "kind": "doc",
+        "path": "research/source-evidence-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/source-research/020-cli-process-memory-leak-deep-research/research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Produce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The two source packets identify overlapping process, sidecar, daemon, lock, and host-memory hazards",
+    "created_at": "2026-05-22T10:20:00Z",
+    "last_save_at": "2026-07-17T17:19:27.391Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:de080d3d8831d7e25cc6d8f6d0e85b5a60c4bc566eeea8eec13ec1e908d37642",
+    "source_doc_hashes": {
+      "spec.md": "a6d6ff91e6b70784f75d6d43ba15a30d7a22ab275678095345911e9aba1fecf5",
+      "plan.md": "e722b892359a487537382ff6f70a18adedbba67e1bb1bb00090f84a390b06343",
+      "tasks.md": "05f1fa4124cce57e1431db80f9af4568a3f4e32fec0c5e2c0eef225345463087",
+      "checklist.md": "43d10ef1398001c9f545729637ed6bb2a754ef545512de7a4e56a443e65254ca",
+      "decision-record.md": "20e8328a6f89d8c7428f2a5d52207092c3dead5601a984b0d6ff6e1c6f577b0b",
+      "implementation-summary.md": "1296c225c9869f7f45ee480dae28811cb6c0b22883d2822c309f911df49475ef",
+      "resource-map.md": "ec5d843c9efefe7797a66204f59c5b68a9725b6a5b4313bfe7428d19eb694bc1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

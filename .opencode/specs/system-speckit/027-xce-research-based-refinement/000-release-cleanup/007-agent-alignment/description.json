@@ -1,0 +1,41 @@
+{
+  "title": "Agent Alignment",
+  "trigger_phrases": [
+    "agent",
+    "alignment",
+    "reconcile",
+    "opencode",
+    "claude"
+  ],
+  "level": 1,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
+  "status": "complete",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "importance_tier": "important",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
+  "description": "Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine",
+  "keywords": [
+    "reconcile",
+    "opencode",
+    "claude",
+    "codex",
+    "agent",
+    "mirror",
+    "parity",
+    "agent-io",
+    "contract",
+    "verification-discipline",
+    "doctrine"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.437Z",
+  "specId": "007",
+  "folderSlug": "agent-alignment",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

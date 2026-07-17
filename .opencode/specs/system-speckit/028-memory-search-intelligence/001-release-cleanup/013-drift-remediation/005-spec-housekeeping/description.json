@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/013-drift-remediation/005-spec-housekeeping",
+  "description": "The 2026-06-27 drift audit converged 37 findings in this phase covering graph-metadata path normalization, phase-parent migrated/level metadata, and",
+  "keywords": [
+    "drift",
+    "audit",
+    "converged",
+    "findings",
+    "phase",
+    "covering",
+    "graph-metadata",
+    "path",
+    "normalization",
+    "phase-parent",
+    "migrated",
+    "level",
+    "metadata"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.078Z",
+  "specId": "005",
+  "folderSlug": "spec-housekeeping",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup",
+    "013-drift-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,39 @@
+{
+  "title": "API Response Shape Closure for F9 F32 F39 F97 F99",
+  "trigger_phrases": [
+    "020 004 api response shape",
+    "F9 F32 F39 F97 F99 sidecar-client",
+    "sidecar response aliases"
+  ],
+  "level": 2,
+  "contextType": "implementation",
+  "importance_tier": "important",
+  "status": "complete",
+  "created_at": "2026-05-23T10:45:00Z",
+  "updated_at": "2026-05-23T11:00:00Z",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape",
+  "description": "Five deferred P2 findings remain in the `sidecar-client.ts` API and response-shape surface",
+  "keywords": [
+    "five",
+    "deferred",
+    "findings",
+    "remain",
+    "sidecar-client",
+    "api",
+    "response-shape",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.197Z",
+  "specId": "004",
+  "folderSlug": "fix-deferred-p2s-for-api-response-shape",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

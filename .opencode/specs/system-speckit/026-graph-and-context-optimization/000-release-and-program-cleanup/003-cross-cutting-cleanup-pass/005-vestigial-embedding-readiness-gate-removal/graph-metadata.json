@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "005-vestigial-embedding-readiness-gate-removal",
+      "embedding readiness gate removal",
+      "memory-search readiness gate",
+      "vestigial embedding gate",
+      "005-vestigial-embedding-readiness-gate-removal plan",
+      "005-vestigial-embedding-readiness-gate-removal tasks",
+      "005-vestigial-embedding-readiness-gate-removal complete",
+      "embedding readiness gate deleted",
+      "005-vestigial-embedding-readiness-gate-removal resource map"
+    ],
+    "key_topics": [
+      "005-vestigial-embedding-readiness-gate-removal",
+      "embedding",
+      "readiness",
+      "gate",
+      "removal",
+      "memory-search",
+      "vestigial",
+      "plan",
+      "tasks",
+      "complete",
+      "deleted",
+      "resource"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "mcp_server/tests/handler-memory-search.vitest.ts",
+      "mcp_server/tests/memory-search-integration.vitest.ts",
+      "tests/handler-memory-search.vitest.ts",
+      "tests/memory-search-integration.vitest.ts",
+      "tests/adaptive-ranking-e2e.vitest.ts",
+      "tests/memory-context.resume-gate-d.vitest.ts",
+      "tests/shadow-evaluation-runtime.vitest.ts",
+      "stress_test/memory/gate-d-benchmark-memory-search.vitest.ts",
+      "tests/graph-first-routing-nudge.vitest.ts",
+      "tests/handler-memory-crud.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-search.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/handler-memory-search.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search-integration.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/memory-search-integration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adaptive-ranking-e2e.vitest.ts",
+        "kind": "test",
+        "path": "tests/adaptive-ranking-e2e.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.resume-gate-d.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-context.resume-gate-d.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-evaluation-runtime.vitest.ts",
+        "kind": "test",
+        "path": "tests/shadow-evaluation-runtime.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate-d-benchmark-memory-search.vitest.ts",
+        "kind": "test",
+        "path": "stress_test/memory/gate-d-benchmark-memory-search.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-first-routing-nudge.vitest.ts",
+        "kind": "test",
+        "path": "tests/graph-first-routing-nudge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-crud.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-memory-crud.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delete Vestigial Embedding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v1.0.3 stress test (Phase H) failed to capture full live-handler envelopes because the direct `handleMemorySearch` probe hit `Embedding model not ready after 30s timeout` at `memory-search.ts:930`",
+    "created_at": "2026-04-29T08:30:00.000Z",
+    "last_save_at": "2026-07-17T17:19:08.853Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:ca34044e35d660c51eeef3e580ec115187a098f7a71314a52e84897f1918c997",
+    "source_doc_hashes": {
+      "spec.md": "9e69688044ecec8beac2cb04081d99f2c1bad46ba9ebefab23692b2bf63cb55a",
+      "plan.md": "22d92ad63eca1ddb139b7b46fab8c467e14f3c313897ef3bdeaa44e72d7ceb5c",
+      "tasks.md": "a7c798c9e18ccf7a1226f27908a12e4f6a6302c3c169e7a79649f61a53a1f987",
+      "implementation-summary.md": "e1e2c402278c537ab33b55b099059c7bf82a759f2369cd0f20ec7298bb377b0c",
+      "resource-map.md": "c85e3b0f2f96463c9e05027702ac2c0aeefd32292bfa35ed1adca0c37bce6e74"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

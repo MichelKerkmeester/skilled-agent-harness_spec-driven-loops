@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "migration": {
+    "moved_at": "2026-05-16T19:00:00Z",
+    "source_spec_folder": "skilled-agent-orchestration/113-z-archive-memory-indexing",
+    "new_spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/011-z-archive-memory-indexing",
+    "reason": "thematic alignment with 003/010-memory-indexer-invariants (same module, same SSOT)",
+    "aliases": [
+      "skilled-agent-orchestration/113-z-archive-memory-indexing"
+    ]
+  },
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing",
+  "description": "Un-exclude z_archive from memory index.",
+  "keywords": [
+    "un-exclude",
+    "memory",
+    "index"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.679Z",
+  "specId": "011",
+  "folderSlug": "z-archive-memory-indexing",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "001-continuity-memory-runtime"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

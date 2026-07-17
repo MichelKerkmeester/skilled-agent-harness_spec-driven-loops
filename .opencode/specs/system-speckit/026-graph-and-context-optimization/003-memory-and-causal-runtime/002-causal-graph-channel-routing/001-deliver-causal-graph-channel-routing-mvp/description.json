@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp",
+  "description": "The query complexity router (`query-router.ts:75-79`) only includes the `graph` channel for queries classified as `complex` (`>8 terms` per",
+  "keywords": [
+    "query",
+    "complexity",
+    "router",
+    "query-router",
+    "only",
+    "includes",
+    "graph",
+    "channel",
+    "queries",
+    "classified",
+    "complex",
+    "terms",
+    "per"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.797Z",
+  "specId": "001",
+  "folderSlug": "deliver-causal-graph-channel-routing-mvp",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "002-causal-graph-channel-routing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

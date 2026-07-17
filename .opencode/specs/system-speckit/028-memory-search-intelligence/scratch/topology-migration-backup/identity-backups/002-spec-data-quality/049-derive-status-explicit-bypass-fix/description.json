@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/049-derive-status-explicit-bypass-fix",
+  "description": "`deriveStatus` (`graph-metadata-parser.ts:1185-1195`) reads any doc's own explicit `status:` frontmatter field or `spec.md`'s METADATA table status,",
+  "keywords": [
+    "derivestatus",
+    "graph-metadata-parser",
+    "reads",
+    "doc",
+    "own",
+    "explicit",
+    "status",
+    "frontmatter",
+    "field",
+    "spec",
+    "metadata",
+    "table"
+  ],
+  "lastUpdated": "2026-07-09T10:02:56.567Z",
+  "specId": "049",
+  "folderSlug": "derive-status-explicit-bypass-fix",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

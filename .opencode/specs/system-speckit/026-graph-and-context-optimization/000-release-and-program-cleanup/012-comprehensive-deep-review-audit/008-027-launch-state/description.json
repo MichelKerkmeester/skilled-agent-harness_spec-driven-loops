@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
+  "description": "027 (`xce-research-based-refinement`) just launched as a phase parent with 9 child phases",
+  "keywords": [
+    "xce-research-based-refinement",
+    "just",
+    "launched",
+    "phase",
+    "parent",
+    "child",
+    "phases"
+  ],
+  "lastUpdated": "2026-07-17T16:02:56.641Z",
+  "specId": "008",
+  "folderSlug": "027-launch-state",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

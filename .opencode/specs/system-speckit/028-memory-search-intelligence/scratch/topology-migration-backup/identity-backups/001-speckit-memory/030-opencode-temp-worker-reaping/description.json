@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping",
+  "description": "Investigation found chronic accumulation of orphaned `context-server.js` (spec-memory daemon) processes - 51 live at investigation time, start times",
+  "keywords": [
+    "investigation",
+    "found",
+    "chronic",
+    "accumulation",
+    "orphaned",
+    "context-server",
+    "spec-memory",
+    "daemon",
+    "processes",
+    "live",
+    "time",
+    "start",
+    "times"
+  ],
+  "lastUpdated": "2026-07-11T08:28:52.702Z",
+  "specId": "030",
+  "folderSlug": "opencode-temp-worker-reaping",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

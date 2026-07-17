@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard",
+  "description": "Packet 035 created `worktree-guard.sh` — a detect-and-warn SessionStart guard that warns when a top-level session is running directly on the shared",
+  "keywords": [
+    "packet",
+    "worktree-guard",
+    "detect-and-warn",
+    "sessionstart",
+    "guard",
+    "warns",
+    "top-level",
+    "session",
+    "running",
+    "directly",
+    "shared"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.428Z",
+  "specId": "006",
+  "folderSlug": "sessionstart-worktree-guard",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability",
+    "015-infra-followup-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

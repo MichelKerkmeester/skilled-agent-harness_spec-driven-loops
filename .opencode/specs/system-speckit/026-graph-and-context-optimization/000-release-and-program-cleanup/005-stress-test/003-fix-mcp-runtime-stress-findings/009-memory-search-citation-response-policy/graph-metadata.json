@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009-memory-search-citation-response-policy",
+      "memory_search response policy",
+      "noCanonicalPathClaims",
+      "citationPolicy do_not_cite_results",
+      "weak retrieval refusal contract",
+      "Q4 hallucination guard",
+      "memory search response policy plan",
+      "memory search response policy tasks",
+      "memory search response policy summary"
+    ],
+    "key_topics": [
+      "009-memory-search-citation-response-policy",
+      "response",
+      "policy",
+      "nocanonicalpathclaims",
+      "citationpolicy",
+      "weak",
+      "retrieval",
+      "refusal",
+      "contract",
+      "hallucination",
+      "guard",
+      "memory"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts",
+      "tests/d5-recovery-payload.vitest.ts",
+      "tests/empty-result-recovery.vitest.ts",
+      "mcp_server/lib/search/recovery-payload.ts",
+      "mcp_server/formatters/search-results.ts",
+      "mcp_server/tests/d5-recovery-payload.vitest.ts",
+      "mcp_server/tests/empty-result-recovery.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "recovery-payload.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts",
+        "source": "derived"
+      },
+      {
+        "name": "d5-recovery-payload.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "empty-result-recovery.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Insert",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "files",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "006/I2 cli-opencode received `requestQuality:\"weak\"` plus `recovery.recommendedAction:\"askuser\"` with `suggestedQueries:[]`, yet still synthesized canonical-looking spec folder paths and file references that did not exist",
+    "created_at": "2026-04-27T07:48:04.973Z",
+    "last_save_at": "2026-07-17T17:19:11.959Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7afe8f7f1773fbaf64ff236148966cca8af854cb7822f52b560f430124515a3b",
+    "source_doc_hashes": {
+      "spec.md": "f7c54abac9234d7431f3a5cf87f19891102fa41d92b1e85b8779af5091eb99bb",
+      "plan.md": "b0808706c979c6cfae53537bdc3b12907b7d151ed1be6d8e80a88a82c6531af9",
+      "tasks.md": "c519a8d07c8133f4d1ba83aadd843fff157c7df269ed68bd287f409f7b0994b6",
+      "implementation-summary.md": "886b0483f80667bc03c90be2e185858fe481b6a8b6aa299743e8338f4694444b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

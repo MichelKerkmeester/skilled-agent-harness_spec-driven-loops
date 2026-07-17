@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory index scan implementation",
+      "memory_index_scan async scan job implementation",
+      "memory index coalescing E429 fix",
+      "memory_health index freshness surface",
+      "memory index orphan sweep move reconciliation",
+      "013 memory index implementation packet",
+      "memory index scan implementation plan",
+      "013 memory index implementation plan",
+      "memory index phased async scan job plan",
+      "memory index scan implementation tasks",
+      "013 memory index tasks",
+      "memory index scan implementation checklist"
+    ],
+    "key_topics": [
+      "memory",
+      "index",
+      "scan",
+      "implementation",
+      "async",
+      "job",
+      "coalescing",
+      "e429",
+      "freshness",
+      "surface",
+      "orphan",
+      "sweep"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "handover.md",
+      "ai-council/council-report-followups-mcp-stability.md",
+      "lib/storage/schema-downgrade.ts",
+      "implementation-summary.md",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/core/db-state.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/lib/storage/incremental-index.ts",
+      "mcp_server/lib/search/vector-index-mutations.ts",
+      "mcp_server/handlers/save/embedding-pipeline.ts",
+      "mcp_server/lib/providers/retry-manager.ts",
+      "mcp_server/lib/embedders/reindex.ts",
+      "lib/embedders/reindex.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lineage-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report-followups-mcp-stability.md",
+        "kind": "doc",
+        "path": "ai-council/council-report-followups-mcp-stability.md",
+        "source": "derived"
+      },
+      {
+        "name": "schema-downgrade.ts",
+        "kind": "code",
+        "path": "lib/storage/schema-downgrade.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "db-state.ts",
+        "kind": "code",
+        "path": "mcp_server/core/db-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/incremental-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-mutations.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-mutations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-pipeline.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/save/embedding-pipeline.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Maintaining Index Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
+    "created_at": "2026-05-31T15:00:00.000Z",
+    "last_save_at": "2026-07-17T17:19:30.883Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:0d6413b2d2ab48a392ca51167a70c4cb77e1868e7ff7a3435bfc18132a70765d",
+    "source_doc_hashes": {
+      "spec.md": "ff8eab297a9f6798fb94ea1c1f742cb2bdd8ac62ae32e84b2d47d2a81ea9ca4e",
+      "plan.md": "3b5ce684cf43b9b02fd840f8906164057b9d94d6c5b71798e1c46a6a0f528718",
+      "tasks.md": "e2fcada6919b81231edc8b8409f830b71b401b8dfd242cc22b02de0dce5c4d69",
+      "checklist.md": "3279d7d5493fe75d0fdaaa13955eb04e1b2c93c6fdb9e49921add7fe83d68eaf",
+      "decision-record.md": "d26d97aad4d5300e20dcd9d038ac2d0d6c18a0b38ddcb4ddb44385030247b243",
+      "implementation-summary.md": "fb96dc7194e4ed300e994aa345b35f4cbce7cf49bad62843de84c3784838fc92",
+      "handover.md": "d24e906daf6360c2faf60ba5a12ffc8243e22cf34cf594b00555436279c263f7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

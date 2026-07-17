@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
+  "description": "Without a goldens fixture, latency gate, and shadow telemetry, the semantic stage cannot be safely tuned or promoted from shadow to union",
+  "keywords": [
+    "without",
+    "goldens",
+    "fixture",
+    "latency",
+    "gate",
+    "shadow",
+    "telemetry",
+    "semantic",
+    "stage",
+    "cannot",
+    "safely",
+    "tuned",
+    "promoted",
+    "union"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.696Z",
+  "specId": "004",
+  "folderSlug": "tests-goldens-shadow-eval",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "003-semantic-trigger-fallback"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

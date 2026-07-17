@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
+  "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 42 findings (21 P1) in this subsystem, each carried as a task with its registry",
+  "keywords": [
+    "remediation",
+    "sub-phase",
+    "fresh",
+    "regression",
+    "deep-review",
+    "findings",
+    "subsystem",
+    "carried",
+    "task",
+    "registry"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.114Z",
+  "specId": "006",
+  "folderSlug": "doc-truth-completion-and-mirrors",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "005-fresh-regression-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "007 search rag measurement driven implementation",
+      "measurement driven implementation",
+      "rag trust tree",
+      "conditional rerank",
+      "implementation plan",
+      "w3 trust tree",
+      "tasks",
+      "verification",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "search",
+      "rag",
+      "measurement",
+      "driven",
+      "implementation",
+      "trust",
+      "tree",
+      "conditional",
+      "rerank",
+      "plan",
+      "tasks",
+      "verification"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "lib/rag/trust-tree.ts",
+      "mcp_server/stress_test/search-quality/corpus.ts",
+      "mcp_server/stress_test/search-quality/measurement-fixtures.ts",
+      "mcp_server/stress_test/search-quality/measurement-output.vitest.ts",
+      "mcp_server/lib/rag/trust-tree.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts",
+      "measurements/baseline-20260429T032525Z.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trust-tree.ts",
+        "kind": "code",
+        "path": "lib/rag/trust-tree.ts",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.ts",
+        "kind": "code",
+        "path": "mcp_server/stress_test/search-quality/corpus.ts",
+        "source": "derived"
+      },
+      {
+        "name": "measurement-fixtures.ts",
+        "kind": "code",
+        "path": "mcp_server/stress_test/search-quality/measurement-fixtures.ts",
+        "source": "derived"
+      },
+      {
+        "name": "measurement-output.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/search-quality/measurement-output.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-20260429T032525Z.json",
+        "kind": "config",
+        "path": "measurements/baseline-20260429T032525Z.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Driven Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Use",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase C identified five promising search/RAG optimization workstreams but deferred them until Phase D measurement infrastructure existed",
+    "created_at": "2026-04-29T03:35:49Z",
+    "last_save_at": "2026-07-17T17:19:08.845Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e521e03484c6c1a99caab6b0de30a61234a3de09ada20e3b46e293055b75c588",
+    "source_doc_hashes": {
+      "spec.md": "81d887a56133374785c73eef85676535805a104c0b14bde5d81d67b97bdf0abb",
+      "plan.md": "0d85dea533a35972c85653ac4daf01905333453d84c84dad70f48a6c2c2d9434",
+      "tasks.md": "5eac740ec514040951c4b6ca4c08889f2c802c0a120d2cd43994f8574c633eb5",
+      "checklist.md": "576ccffc51131d68ea4aa7da7ac9c003403451c2406d8e285c4fcea99d00c24c",
+      "implementation-summary.md": "ae6de40fd221f5f988049df3084ba62ddb7db31ddf8d3b717416406a0f5a0db4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

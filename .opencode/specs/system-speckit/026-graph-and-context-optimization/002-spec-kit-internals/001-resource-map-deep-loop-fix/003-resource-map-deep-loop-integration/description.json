@@ -1,0 +1,62 @@
+{
+  "title": "Resource Map Deep-Loop Integration",
+  "level": 2,
+  "summary": "Teach sk-deep-review and sk-deep-research to emit a filled resource-map.md at convergence, aggregated from per-iteration evidence deltas. Review maps carry P0/P1/P2 findings-per-file counts; research maps carry per-iteration citation counts. Shared extractor, no new scan cost, opt-out available.",
+  "status": "draft",
+  "priority": "P1",
+  "phase": {
+    "number": "013",
+    "of": "013",
+    "parent": "system-spec-kit/026-graph-and-context-optimization",
+    "predecessor": "002-resource-map-deep-loop-fix-creation",
+    "successor": null
+  },
+  "triggers": [
+    "026/013 resource map deep loop",
+    "resource map deep-review integration",
+    "resource map deep-research integration",
+    "convergence-time resource map",
+    "iteration evidence aggregation"
+  ],
+  "created": "2026-04-24",
+  "updated": "2026-04-24",
+  "ownership": {
+    "author": "claude-opus-4-7",
+    "executors": [
+      "TBD"
+    ]
+  },
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
+  "description": "Autonomous deep-loop runs produce rich evidence across 5–15 iterations, but the output surface is split between iteration markdown files (dense,",
+  "keywords": [
+    "autonomous",
+    "deep-loop",
+    "runs",
+    "produce",
+    "rich",
+    "evidence",
+    "across",
+    "iterations",
+    "output",
+    "surface",
+    "split",
+    "between",
+    "iteration",
+    "markdown",
+    "files",
+    "dense"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.943Z",
+  "specId": "003",
+  "folderSlug": "resource-map-deep-loop-integration",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "001-resource-map-deep-loop-fix"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-04-26_14-05__landed-canonical-resource-map-integration-for-sk.md"
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/005-orchestrator-placeholder-parity",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/005-orchestrator-placeholder-parity",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "orchestrator placeholder parity",
+      "validatePlaceholders divergence",
+      "NEEDS CLARIFICATION space variant",
+      "check-placeholders mustache removal",
+      "placeholder fenced code exclusion",
+      "placeholder parity plan",
+      "validatePlaceholders fence exclusion",
+      "check-placeholders mustache removal plan",
+      "placeholder parity tasks",
+      "validatePlaceholders tasks",
+      "placeholder parity checklist",
+      "validatePlaceholders verification"
+    ],
+    "key_topics": [
+      "orchestrator",
+      "placeholder",
+      "parity",
+      "validateplaceholders",
+      "divergence",
+      "needs",
+      "clarification",
+      "space",
+      "variant",
+      "check-placeholders",
+      "mustache",
+      "removal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-placeholders.sh",
+      "mcp_server/lib/validation/orchestrator.ts",
+      "scripts/rules/check-placeholders.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shell Placeholder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Detection Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Both",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The canonical Node validator (`mcpserver/lib/validation/orchestrator.ts` `validatePlaceholders`) and the legacy shell rule (`scripts/rules/check-placeholders.sh`) disagree on spec-doc placeholder detection",
+    "created_at": "2026-05-29T12:33:35Z",
+    "last_save_at": "2026-07-17T17:19:16.916Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:47594b73cea7a0e9865f0f49b073b7316a5af1eb7a2db4f04e1a5daf4b6a2e41",
+    "source_doc_hashes": {
+      "spec.md": "9c71853db2ff9966c5f0240be194095dbbd08b0da2a163da0151ef214d085439",
+      "plan.md": "15e64ea03d5753cc8fb2c187d6272c8bd2003130beabe7e96ba9b6d619b1ddcb",
+      "tasks.md": "374c797335c88ac6b81bfd6b659505b839c5a43df1abd9195d6f6fba9dacce13",
+      "checklist.md": "4bcea928c7de0faec5998026dac9ce4056661fd6f32c32a38506ca9bce730afb",
+      "implementation-summary.md": "6f2b6a8f5a2578888020e7d1fdd502ce9922b90c6e08027c3edf7c5833bcb8ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

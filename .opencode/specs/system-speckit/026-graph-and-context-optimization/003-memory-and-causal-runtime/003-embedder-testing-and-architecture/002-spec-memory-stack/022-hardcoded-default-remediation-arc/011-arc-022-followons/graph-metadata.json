@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/011-arc-022-followons",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/011-arc-022-followons",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/011 arc followons",
+      "mk_skill_advisor recovery",
+      "validate-doc-model-refs.js fix",
+      "opencode-persistent wrapper",
+      "reactive-EOF idle kill",
+      "022/011 plan",
+      "022/011 tasks",
+      "022/011 checklist",
+      "022/011 shipped"
+    ],
+    "key_topics": [
+      "arc",
+      "followons",
+      "recovery",
+      "validate-doc-model-refs",
+      "opencode-persistent",
+      "wrapper",
+      "reactive-eof",
+      "idle",
+      "kill",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js",
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "validate-doc-model-refs.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Arc Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validator Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kill Mitigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Vendor Defaults",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reactive Bun",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "App Nap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sequenced",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "ExitPlanMode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_IPC_SOCKET_DIR",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "vendor",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Bundle of follow-on fixes after the 022 arc shipped: mk_skill_advisor MCP -32000 recovery (build doesn't copy data/*.json), validator script 6-bug fix, opencode v1.15.10 reactive-EOF idle-kill mitigation (wrapper + memory + SKILL.md elevation), RERANKER_CANONICAL voyage/cohere vendor canonical fill. LANE_WEIGHTS_JSON structural deferred.",
+    "created_at": "2026-05-23T18:30:00.000000Z",
+    "last_save_at": "2026-07-17T17:19:22.640Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fa8013913258b3ee359d6fa3c3bf79cf20f1c53e60cf10f7065e0a69791f71d8",
+    "source_doc_hashes": {
+      "spec.md": "4ad68bdf34a3ff979e9401d82cfeb3fa1e0b63d3de2d4c16760982c0f153e1af",
+      "plan.md": "d5c70f7f8270f0835ca8024df72e54667da2af0129d6e7839e06763f26527ce7",
+      "tasks.md": "00ac40511f090a9376897150291d767694078fb34e7fcc254ec5664b5584d4b8",
+      "checklist.md": "fa0abddfe7e165e6e75a3da207a637b9f7fd35c8c3cc4de2d9c0333ccc53832d",
+      "implementation-summary.md": "dbec92a3c54fc04ef5e13c6176b908d8ac0156a7be933b99764a5e08c2605015"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

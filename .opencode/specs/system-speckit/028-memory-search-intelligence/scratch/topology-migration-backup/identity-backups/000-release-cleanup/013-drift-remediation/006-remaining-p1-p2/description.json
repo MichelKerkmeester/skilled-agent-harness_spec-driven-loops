@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2",
+  "description": "The 2026-06-27 drift audit converged 46 findings in this phase covering env-var documentation, code/doc drift, the CI drift-guard, memory commands,",
+  "keywords": [
+    "drift",
+    "audit",
+    "converged",
+    "findings",
+    "phase",
+    "covering",
+    "env-var",
+    "documentation",
+    "code",
+    "doc",
+    "drift-guard",
+    "memory",
+    "commands"
+  ],
+  "lastUpdated": "2026-07-09T10:02:56.041Z",
+  "specId": "006",
+  "folderSlug": "remaining-p1-p2",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "000-release-cleanup",
+    "013-drift-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

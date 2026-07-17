@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity",
+  "description": "The 10-iteration cli-codex deep-review of the 012-015 integrated implementation surfaced two P1 cross-cutting findings (CONDITIONAL verdict):",
+  "keywords": [
+    "10-iteration",
+    "cli-codex",
+    "deep-review",
+    "integrated",
+    "implementation",
+    "surfaced",
+    "two",
+    "cross-cutting",
+    "findings",
+    "conditional",
+    "verdict"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.999Z",
+  "specId": "016",
+  "folderSlug": "degraded-readiness-envelope-parity",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "005-stress-test",
+    "003-fix-mcp-runtime-stress-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

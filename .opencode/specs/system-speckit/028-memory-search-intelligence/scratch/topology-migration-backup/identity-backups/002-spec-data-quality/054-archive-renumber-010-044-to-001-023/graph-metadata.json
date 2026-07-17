@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023",
+  "parent_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop archive renumber",
+      "z_archive 001-023",
+      "deep-loop archive collision fix",
+      "archive historic context optimize",
+      "archive renumber plan",
+      "archive renumber tasks",
+      "archive renumber checklist",
+      "archive renumber implementation summary",
+      "z_archive 001-023 complete"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "archive",
+      "renumber",
+      "deep-loop",
+      "collision",
+      "historic",
+      "context",
+      "optimize",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/z_archive/graph-metadata.json",
+      "spec.md",
+      "review/review-report.md",
+      "checklist.md",
+      ".opencode/specs/descriptions.json",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/z_archive/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Renumber",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Archive Renumber",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Stage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Same",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/specs/system-deep-loop/zarchive/` numbers its 23 top-level archived packets `010, 012-014, 020-035, 042-044` — not the `001-023` a fresh archive would use",
+    "created_at": "2026-07-08T13:24:24.937Z",
+    "last_save_at": "2026-07-09T10:02:56.606Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:439e61f5b269c9d47dd74bce09e61a12243ef9d5e672b34692187fdadbe855f0",
+    "source_doc_hashes": {
+      "spec.md": "2b78f669049b254935df5e30cd2161d85a432b2d3b8a50d22ecdea8efcc4d458",
+      "plan.md": "880200ae317b1d8cfb956b07764f00cd42cc8bc74863e57151d464ca3291b65e",
+      "tasks.md": "2f755fff1db1d443031a5da3ae0d40ac9655a6eac6a147b1c04e8487170e9416",
+      "checklist.md": "d722e26325b792148aacae743366c59272d63ba5b3bd96e13ed0e2068cf0371b",
+      "implementation-summary.md": "9cfe33ac116406404f3cb7a1390329258a6da05398f9b2e655687679b781427c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

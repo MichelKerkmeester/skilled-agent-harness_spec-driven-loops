@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups",
+  "description": "The 003 implementation packet left ten Gate 7 items deferred after the round-3 sweep",
+  "keywords": [
+    "implementation",
+    "packet",
+    "left",
+    "ten",
+    "gate",
+    "items",
+    "deferred",
+    "round-3",
+    "sweep"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.222Z",
+  "specId": "004",
+  "folderSlug": "fix-template-deferred-followups",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-template-levels"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

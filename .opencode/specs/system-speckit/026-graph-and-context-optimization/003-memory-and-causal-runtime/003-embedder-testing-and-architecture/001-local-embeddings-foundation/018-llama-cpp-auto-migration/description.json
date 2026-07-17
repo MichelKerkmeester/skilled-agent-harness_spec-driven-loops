@@ -1,0 +1,40 @@
+{
+  "title": "llama-cpp auto-migration",
+  "level": "2",
+  "status": "complete",
+  "importance_tier": "critical",
+  "contextType": "implementation",
+  "created_at": "2026-05-13T12:01:28Z",
+  "last_updated_at": "2026-05-13T12:01:28Z",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/018-llama-cpp-auto-migration",
+  "description": "After the llama-cpp provider became the local default candidate, startup only warned when a populated `hf-local` sqlite existed while the active",
+  "keywords": [
+    "llama-cpp",
+    "provider",
+    "became",
+    "local",
+    "default",
+    "candidate",
+    "startup",
+    "only",
+    "warned",
+    "populated",
+    "hf-local",
+    "sqlite",
+    "existed",
+    "while",
+    "active"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.101Z",
+  "specId": "018",
+  "folderSlug": "llama-cpp-auto-migration",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

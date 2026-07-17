@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "independent",
+      "gpt-5",
+      "deep-review",
+      "audit",
+      "system-spec-kit",
+      "mcp",
+      "server",
+      "infrastructure",
+      "outside",
+      "search",
+      "pipeline",
+      "scope"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Server Infrastructure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Independent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notes This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code under review",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Independent gpt-5.5 deep-review audit of the system-spec-kit MCP server infrastructure OUTSIDE the search pipeline (scope A) and the store/index/lifecycle surface (scope B): the request handlers, embedding providers, daemon launcher, and server lifecycle",
+    "created_at": "2026-06-22T18:55:03.575Z",
+    "last_save_at": "2026-07-09T10:02:55.911Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:4af572fb4da4dafdbd7ba0a5ad7ed2ab85b34694ade478dd5cacc45b2df9d7c3",
+    "source_doc_hashes": {
+      "spec.md": "0ec51846968992579429819968164be96a4ebef4705a3767de6ff8599354d7e6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

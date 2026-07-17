@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "021 001 identify deferred p2",
+      "find 3 remaining sidecar p2",
+      "021 001 plan",
+      "remaining deferred p2 plan",
+      "021 001 tasks",
+      "remaining deferred p2 tasks",
+      "021 001 checklist",
+      "remaining deferred p2 checklist",
+      "021 001 ADR",
+      "remaining deferred p2 ADR",
+      "021 001 implementation summary",
+      "remaining deferred p2 implementation summary"
+    ],
+    "key_topics": [
+      "identify",
+      "deferred",
+      "find",
+      "remaining",
+      "sidecar",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr",
+      "implementation",
+      "summary",
+      "investigation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scratch/p2-closure-tally.csv",
+      "scratch/reconciliation-error.md",
+      "decision-record.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "p2-closure-tally.csv",
+        "kind": "file",
+        "path": "scratch/p2-closure-tally.csv",
+        "source": "derived"
+      },
+      {
+        "name": "reconciliation-error.md",
+        "kind": "doc",
+        "path": "scratch/reconciliation-error.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remaining Deferred",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Systematic",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "consumer",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 015 investigation found 68 P2 findings",
+    "created_at": "2026-05-26T16:49:55.587Z",
+    "last_save_at": "2026-07-17T17:19:29.286Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ccd9d2ead0f52ff7e61860017dd1ba0a4e7a1e23b115beaed9c4c4491243145",
+    "source_doc_hashes": {
+      "spec.md": "e582a1c9c535c1e6082b1219d66655ab778cd9bd267711f9756713e03f9e3edb",
+      "plan.md": "8edf6c5f22c7fd96c6e8ce856be44983134b776171ac576e334278d4845b15e3",
+      "tasks.md": "16aad843b23288971e35581a3b5d592040ca000e7bb4f262a94b0ab7ca175b61",
+      "checklist.md": "faf02fbc3e24e154b890b8b05573e585d33c32f9a4006b1b55dee97e8bda20e5",
+      "decision-record.md": "70b8e4591f4b2e27d9bee3a906ecf795c44414a70fb36e809a6bd8b7d32275b3",
+      "implementation-summary.md": "964b439510585b264b5403ee01c546b046953090c2537f55062ba3219e278ad4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

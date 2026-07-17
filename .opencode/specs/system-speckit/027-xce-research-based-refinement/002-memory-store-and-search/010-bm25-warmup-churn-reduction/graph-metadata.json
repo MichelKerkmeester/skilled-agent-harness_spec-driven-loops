@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bm25 warmup churn reduction",
+      "packed bm25 rss spike",
+      "warmup memory budget",
+      "bm25 warmup churn plan",
+      "tasks",
+      "name",
+      "template",
+      "tasks core",
+      "bm25 warmup churn reduction summary"
+    ],
+    "key_topics": [
+      "bm25",
+      "warmup",
+      "churn",
+      "reduction",
+      "packed",
+      "rss",
+      "spike",
+      "memory",
+      "budget",
+      "plan",
+      "tasks",
+      "name"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+      "mcp_server/lib/search/bm25-index.ts",
+      "mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+      "tests/bm25-packed-inmemory.vitest.ts",
+      "lib/search/bm25-index.ts",
+      "tests/hybrid-search.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "bm25-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-packed-inmemory.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.vitest.ts",
+        "kind": "test",
+        "path": "tests/hybrid-search.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Warmup Churn Reduction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On a realistic corpus the packed BM25 warmup spikes process RSS to ~687MB (4.6x over the 150MB budget) even though retained heap after GC is only ~105MB",
+    "created_at": "2026-06-11T05:11:29Z",
+    "last_save_at": "2026-07-17T17:19:40.737Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:014a7e4bef29d443ef31b1dd927de6f7a1d052842ba8f138b1b3567f73e0ba28",
+    "source_doc_hashes": {
+      "spec.md": "d0433060487e5ecd2fa89307dab06a15e2ff7dfaaae2d5c3bc0a775bc9c0dbca",
+      "plan.md": "6066ecc10aaa1bdc224bed26cb2fbc8115297cb0676c42cbe73c432f8e90e213",
+      "tasks.md": "266c198e2be2d985ce4e2fe0ca5b65e4143d398e6178c1099576d4ed31d70257",
+      "implementation-summary.md": "311f2723b6af3eab42880374d80328872b03c85b5710a86cac8d5e2e9203dd6f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

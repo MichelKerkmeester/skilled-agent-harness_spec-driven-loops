@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/002-search-query-rag-optimization",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/002-search-query-rag-optimization",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006 search query rag optimization",
+      "search quality harness",
+      "query plan telemetry",
+      "rag optimization measurement",
+      "006 search query rag optimization plan",
+      "search harness plan",
+      "query plan telemetry plan",
+      "006 search query rag optimization tasks",
+      "query plan telemetry tasks",
+      "006 search query rag optimization checklist",
+      "query plan telemetry checklist",
+      "006 search query rag optimization summary"
+    ],
+    "key_topics": [
+      "search",
+      "query",
+      "rag",
+      "optimization",
+      "quality",
+      "harness",
+      "plan",
+      "telemetry",
+      "measurement",
+      "tasks",
+      "checklist",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts",
+      "lib/query/query-plan.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/query-plan-emission.vitest.ts",
+      "implementation-summary.md",
+      "stress_test/search-quality/corpus.ts",
+      "stress_test/search-quality/harness.ts",
+      "stress_test/search-quality/metrics.ts",
+      "stress_test/search-quality/baseline.vitest.ts",
+      "tests/query-plan-emission.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "query-plan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts",
+        "source": "derived"
+      },
+      {
+        "name": "harness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "intent-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-plan-emission.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/query-plan-emission.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Query",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Finding Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase C found no surviving P0 regression and no current-runtime regression, but it did find that search optimization lacks shared outcome evidence",
+    "created_at": "2026-04-28T21:02:24Z",
+    "last_save_at": "2026-07-17T17:19:08.848Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2675fb5298d6dc77fc1f1bcfc5e8da1786fbf4f1c9464115a281a3a8a0d0167f",
+    "source_doc_hashes": {
+      "spec.md": "528d5cf578a1ab8dd38147307ef49b8a76503a957887f2ccf31be9d73ac0c540",
+      "plan.md": "97d5a2ad56fd39e548d0888d4a2010ff5f992d1f74fedc9add9f66cab4328573",
+      "tasks.md": "6eae7b02b2f7e26a768a73a7e73b6ef4f2774efb0c53df57769a2d23d8a59353",
+      "checklist.md": "be821ba14a386223f5b742d01b3d7e9cb4b95bc138d6e431e3512d70fa9682cd",
+      "implementation-summary.md": "056f07785cfb89d697ee402c631cc2c8339ffe74c300680ddfac53a729c6837e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

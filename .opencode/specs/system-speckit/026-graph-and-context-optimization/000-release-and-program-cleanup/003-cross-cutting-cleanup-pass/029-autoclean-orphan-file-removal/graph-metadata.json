@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "029-autoclean-orphan-file-removal",
+      "verify_integrity cleanFiles",
+      "memory_health autoRepair cleanFiles",
+      "orphan files autoclean",
+      "orphanedFiles drift cleanup",
+      "memory_index file_path missing",
+      "029-autoclean-orphan-file-removal plan",
+      "verify_integrity cleanFiles plan",
+      "memory_health autoRepair cleanFiles plan",
+      "029-autoclean-orphan-file-removal tasks",
+      "verify_integrity cleanFiles tasks",
+      "implementation"
+    ],
+    "key_topics": [
+      "029-autoclean-orphan-file-removal",
+      "cleanfiles",
+      "autorepair",
+      "orphan",
+      "files",
+      "autoclean",
+      "orphanedfiles",
+      "drift",
+      "cleanup",
+      "missing",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/lib/search/vector-index-queries.ts",
+      "mcp_server/lib/search/vector-index-store.ts",
+      "mcp_server/lib/search/vector-index.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/tests/vector-index-impl.vitest.ts",
+      "mcp_server/tests/memory-crud-extended.vitest.ts",
+      "lib/search/vector-index-queries.ts",
+      "handlers/memory-crud-health.ts",
+      "tests/vector-index-impl.vitest.ts",
+      "tests/memory-crud-extended.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "vector-index-queries.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-impl.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/vector-index-impl.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-extended.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/memory-crud-extended.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orphan Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`verifyintegrity({ autoClean: true })` only auto-cleans orphan vectors and orphan chunks — it never deletes memoryindex rows whose `filepath` is missing on disk",
+    "created_at": "2026-05-08T10:21:44Z",
+    "last_save_at": "2026-07-17T17:19:10.436Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bd84da27d0ec8c84a0657a7d1abbbc60021d7510e67fff5915bcceac9c1fb5da",
+    "source_doc_hashes": {
+      "spec.md": "cc1d75fb30647e260883fc6c8710068496c20acf580cf1e3294103bf5b618539",
+      "plan.md": "f9948eb0b6bffd41c6152470c80843b2d7af1e2caf98a8e73f786c5e2953727a",
+      "tasks.md": "02b38131e28301ba68edfeb98b90945af57b82b1051015a2a5f2b78531c0bbb4",
+      "implementation-summary.md": "6d199da0102f05d2d73f0346076418b0fd665ee36342cac1c8ef97b622454943"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

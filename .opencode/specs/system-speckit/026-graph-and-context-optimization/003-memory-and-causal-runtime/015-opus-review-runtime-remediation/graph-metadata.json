@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/015-opus-review-runtime-remediation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/015-opus-review-runtime-remediation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opus review runtime remediation",
+      "013 cross-review fixes",
+      "checkpoint restore data loss crash window",
+      "front-proxy utf-8 frame corruption",
+      "reconcileMoves spec_folder omission",
+      "opus review remediation plan",
+      "013 cross-review fix phases",
+      "restore crash window fix plan",
+      "front-proxy utf-8 frame fix plan",
+      "opus review remediation tasks",
+      "013 cross-review fix tasks",
+      "restore crash window tasks"
+    ],
+    "key_topics": [
+      "opus",
+      "review",
+      "runtime",
+      "remediation",
+      "cross-review",
+      "checkpoint",
+      "restore",
+      "data",
+      "loss",
+      "crash",
+      "window",
+      "front-proxy"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "lib/storage/checkpoints.ts",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "lib/storage/incremental-index.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.ts",
+        "kind": "code",
+        "path": "lib/storage/incremental-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Opus Review Runtime Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remediate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Minimal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deployed 013 runtime shipped and is live, but an independent Opus 4.8 cross-review found correctness defects that the original implementation and its review missed",
+    "created_at": "2026-06-02T16:07:14.000Z",
+    "last_save_at": "2026-07-17T17:19:31.516Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:587e5f8641f2ec0490f46b76dd0f455a66384db0cff5e3e81b3d01578b53abf5",
+    "source_doc_hashes": {
+      "spec.md": "5fee2aa3fca174cda2875b4bd7b914d17147a00d14beceb67a3b962115d8d25c",
+      "plan.md": "a3c8ebe762443d1c23fb79e24ff89ccabf18210891e02e3c530d72fb0a5fbc3a",
+      "tasks.md": "4cf442b6793b96151b65f951afaaaca6a55843b9e86aeebd4f0b9d6c69b50c4d",
+      "checklist.md": "d4121da63ce15dd4360303ff665240d0bc7156ceb53762ec0950b4a0aaeebb22",
+      "decision-record.md": "455f5b40c87e061e32952fb4a0b717513c5442d46fb2c8292b37019877ec5fbd",
+      "implementation-summary.md": "aec9538873370b666ba786be8c2807d9487029ebd3b9e053c182da538dfbf1e4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

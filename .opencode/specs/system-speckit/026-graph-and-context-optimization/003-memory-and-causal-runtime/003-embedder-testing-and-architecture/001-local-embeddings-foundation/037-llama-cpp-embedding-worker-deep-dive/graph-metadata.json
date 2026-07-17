@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
+        "reason": "032 left 002 + 004 children blocked pending embedding-worker health; 037 resolves the root cause",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
+        "reason": "022 surfaced the H4 governance-decouple but missed the embedding-worker root cause; 037 closes that gap",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "037 llama-cpp embedding worker deep-dive",
+      "post-032 embedding worker context size",
+      "llama-cpp contextSize 512 bug",
+      "embedding null return GGUF Q8",
+      "037 plan",
+      "llama-cpp embedding worker plan",
+      "embedding worker deep-dive plan",
+      "037 tasks",
+      "llama-cpp embedding worker tasks",
+      "037 checklist",
+      "llama-cpp embedding worker checklist",
+      "ADR-003"
+    ],
+    "key_topics": [
+      "llama-cpp",
+      "embedding",
+      "worker",
+      "deep-dive",
+      "post-032",
+      "context",
+      "size",
+      "contextsize",
+      "bug",
+      "null",
+      "return",
+      "gguf"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/chunking.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "shared/chunking.ts",
+      "mcp_server/lib/providers/retry-manager.ts",
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "chunking.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/chunking.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "governance-ephemeral-decouple.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedding Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reproduce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "032 surfaced a persistent root issue in the local llama-cpp embedding worker: `node-llama-cpp`'s `getEmbeddingFor()` returns `null` on substantive content",
+    "created_at": "2026-05-14T14:09:05Z",
+    "last_save_at": "2026-07-17T17:19:20.117Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:17024c66ea5b1e7a0d8659146ae0f8db5400be4b06f024572fa98149726e75aa",
+    "source_doc_hashes": {
+      "spec.md": "e981be74ced1b8851630b08beb98bec7f18faff4e35dfd4cb2d604d6ebde8fcf",
+      "plan.md": "7b94e93367cded015f274289286f2de817f14fe60dc19cf2a482e0bd71a2effc",
+      "tasks.md": "9ece92407fe29de6427a114ea44653361befba3acc91d68ed38a7b598cc65f86",
+      "checklist.md": "feac40b53a76b76cca1cdced5a75a170146516a90d6df1ccb669008c9334854c",
+      "decision-record.md": "ee071d311470af218bfaaf163aaca52bca1c10fe450d74abe9c127064d819c5f",
+      "implementation-summary.md": "886b8a1a01d76105cf8befb1fa02570cbd3d5dc9dec70f44c9ce440f5cbf7098"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

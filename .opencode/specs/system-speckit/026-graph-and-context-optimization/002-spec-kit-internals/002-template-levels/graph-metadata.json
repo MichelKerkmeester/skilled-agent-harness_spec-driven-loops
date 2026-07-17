@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/006-command-markdown-yaml-workflow-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/008-archive-fleet-marker-validation-scaffold",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/009-harden-deep-review-iteration-prompts",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/006-command-markdown-yaml-workflow-alignment",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/008-archive-fleet-marker-validation-scaffold",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/009-harden-deep-review-iteration-prompts"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 template levels",
+      "template levels phase parent",
+      "template system rework",
+      "spec-kit template phases"
+    ],
+    "key_topics": [
+      "template",
+      "levels",
+      "phase",
+      "parent",
+      "system",
+      "rework",
+      "spec-kit",
+      "phases",
+      "today",
+      "maintains",
+      "files",
+      "13k"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "002-manifest-driven-template-design/research/research.md",
+      "003-manifest-template-implementation-plan/resource-map.md",
+      "002-manifest-driven-template-design/decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Levels",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Greenfield Redesign",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit template system today maintains 86 files (~13K LOC) split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
+    "created_at": "2026-05-01T16:30:00Z",
+    "last_save_at": "2026-07-17T17:19:16.299Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b38c88160007a6aa3646e192fc15189af34d2f02ff06ba57dcbd245f1afc15c4",
+    "source_doc_hashes": {
+      "spec.md": "bf6d0f2ab31673be20caf67bb6a98691988d4c95a4c60b32541e5cb013d4a4f7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

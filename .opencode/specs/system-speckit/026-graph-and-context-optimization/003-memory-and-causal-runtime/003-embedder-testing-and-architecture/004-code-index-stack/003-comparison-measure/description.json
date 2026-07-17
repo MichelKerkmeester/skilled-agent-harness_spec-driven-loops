@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure",
+  "description": "Run gemma vs CodeRankEmbed (and optional jina-code, bge-code) on 018/002 fixture + author ADR-001 ratifying CocoIndex production embedder",
+  "keywords": [
+    "run",
+    "gemma",
+    "coderankembed",
+    "optional",
+    "jina-code",
+    "bge-code",
+    "fixture",
+    "author",
+    "adr-001",
+    "ratifying",
+    "cocoindex",
+    "production",
+    "embedder"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.338Z",
+  "specId": "003",
+  "folderSlug": "comparison-measure",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

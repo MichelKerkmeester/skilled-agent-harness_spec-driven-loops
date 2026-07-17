@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feedback event ledger shadow only",
+      "008 reducer reframe diagnostics first",
+      "reserve system feedback artifact types",
+      "asymmetric damping anti-pattern memory",
+      "constitutional immunity rare-but-correct guard",
+      "feedback ledger shadow only plan",
+      "reserve feedback type write boundary",
+      "defer active reducers ledger quality",
+      "symmetric damping invariant future reducer",
+      "008 reframe diagnostics first plan",
+      "feedback reframe tasks 005",
+      "reserve feedback types task"
+    ],
+    "key_topics": [
+      "feedback",
+      "event",
+      "ledger",
+      "shadow",
+      "only",
+      "reducer",
+      "reframe",
+      "diagnostics",
+      "first",
+      "reserve",
+      "system",
+      "artifact"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/feedback-safety-posture.vitest.ts",
+      "tests/feedback-safety-posture.vitest.ts",
+      "lib/feedback/feedback-ledger.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "lib/feedback/query-flow-tracker.ts",
+      "lib/feedback/batch-learning.ts",
+      "schemas/tool-input-schemas.ts",
+      "tests/feedback-ledger.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feedback-ledger.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-learning.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-safety-posture.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/feedback-safety-posture.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-flow-tracker.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-ledger.vitest.ts",
+        "kind": "test",
+        "path": "tests/feedback-ledger.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shadow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "caura-memclaw's self-improving feedback loop applies direct, immediate, asymmetric weight mutation (success `+0.10` / failure `-0.15`) to canonical memory weight with no shadow state, persists LLM-synthesized rules active at confidence ≥ 0.5, and lets low weight feed stale-archival",
+    "created_at": "2026-06-06T10:10:47Z",
+    "last_save_at": "2026-07-17T17:19:40.420Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:15a8a7c562a49c7789b2d3cd6e73e5820f01ab7af89b89c93837f3d3e4f1eb38",
+    "source_doc_hashes": {
+      "spec.md": "9915ba3c277999065fca8a61520f93ec64059791d8cb1768420e0eb15e952689",
+      "plan.md": "c4fc6d49ebeb71b7c65a85d26b3b5e1c6915c7997d5612d15fed94cbeb179f93",
+      "tasks.md": "0521cf342ea693be234eaceb2b845fe25c35c2e9b4bf0849721e410b71290d44",
+      "checklist.md": "9c52e50e0c5ab7d7c69e45fd35cf915a5b725785fe960714157aa39987fb8dd9",
+      "implementation-summary.md": "11da71df71c46e823f1945c10c39128f0e66b26d3df04489c3313a4aae7fabc5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

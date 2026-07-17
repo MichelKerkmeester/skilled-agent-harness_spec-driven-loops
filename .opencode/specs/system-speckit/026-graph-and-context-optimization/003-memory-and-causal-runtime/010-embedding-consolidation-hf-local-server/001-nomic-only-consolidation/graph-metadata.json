@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "nomic only embedding consolidation",
+      "local embedding model menu cleanup",
+      "graceful unknown model dimensions",
+      "embeddinggemma docs cleanup",
+      "nomic only embedding plan",
+      "unknown model dimension guard plan",
+      "nomic only embedding tasks",
+      "nomic-only local embedding consolidation implementation summary"
+    ],
+    "key_topics": [
+      "nomic",
+      "only",
+      "embedding",
+      "consolidation",
+      "local",
+      "model",
+      "menu",
+      "cleanup",
+      "graceful",
+      "unknown",
+      "dimensions",
+      "embeddinggemma"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "shared/embeddings/registry.ts",
+      "shared/embeddings/factory.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/providers/README.md",
+      "mcp_server/database/vectors/README.md",
+      "tests/local-llm-features/prefix-system.vitest.ts",
+      "shared/embeddings/providers/ollama.ts",
+      "shared/embeddings/profile.ts",
+      "shared/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/database/vectors/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": "shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/embeddings/providers/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prefix-system.vitest.ts",
+        "kind": "test",
+        "path": "tests/local-llm-features/prefix-system.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Trim",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Static",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The local embedding model menu is scattered and inconsistent: `registry.ts` MANIFESTS list seven models; `factory.ts` keeps separate hardcoded `VALIDPROVIDERDIMENSIONS` maps for `hf-local` and `ollama`; provider/profile/type files mention multiple local choices; docs still name older alternatives such as `embeddinggemma-300m`",
+    "created_at": "2026-05-29T05:06:24.627Z",
+    "last_save_at": "2026-07-17T17:19:29.942Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:76c67a81697e1c7b907782571739108d9bb45a0fb64cf90b8d0381c25f566f47",
+    "source_doc_hashes": {
+      "spec.md": "0a006f48ffb2015e6c45ef49c13fae45f012a53f1c35723f8262759a0e25ace6",
+      "plan.md": "e20c4664162f35b171cb1768551735a75636aa8472c1c755ecbdbdbcac1b6d03",
+      "tasks.md": "fba8b37cc17a82c67a7ba5cd36db1726688ced424b66dcce9fce1c5c695657d6",
+      "implementation-summary.md": "4ec286b76efba32870005e236f2e0ab991e7b564c4fb61d58d4fececcf5cfeb5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

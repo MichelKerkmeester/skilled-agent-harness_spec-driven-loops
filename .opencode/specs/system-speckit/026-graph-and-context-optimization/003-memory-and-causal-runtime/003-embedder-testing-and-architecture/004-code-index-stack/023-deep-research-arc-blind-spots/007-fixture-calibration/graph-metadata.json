@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "023B",
+      "fixture calibration",
+      "expanded retrieval fixture",
+      "023B plan",
+      "fixture calibration plan",
+      "023B tasks",
+      "023B checklist",
+      "023B ADR",
+      "fixture calibration decisions",
+      "023B complete",
+      "fixture calibration complete",
+      "023B research"
+    ],
+    "key_topics": [
+      "023b",
+      "fixture",
+      "calibration",
+      "expanded",
+      "retrieval",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr",
+      "decisions",
+      "complete",
+      "research"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "evidence/robust-verdict-gates.md",
+      "evidence/calibration-recommendation.md",
+      "evidence/runs/lane-sample-smoke-run-1.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "tasks.md",
+      "research.md"
+    ],
+    "entities": [
+      {
+        "name": "robust-verdict-gates.md",
+        "kind": "doc",
+        "path": "evidence/robust-verdict-gates.md",
+        "source": "derived"
+      },
+      {
+        "name": "calibration-recommendation.md",
+        "kind": "doc",
+        "path": "evidence/calibration-recommendation.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-sample-smoke-run-1.json",
+        "kind": "config",
+        "path": "evidence/runs/lane-sample-smoke-run-1.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Calibration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Risk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The corrected fixture proved regression behavior, but it did not measure production retrieval coverage",
+    "created_at": "2026-05-19T00:00:00Z",
+    "last_save_at": "2026-07-17T17:19:24.215Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:4b7d87828b3a0e9f7204f44499b87372839299b0e37455ea62292434e4e5716c",
+    "source_doc_hashes": {
+      "spec.md": "113669ccff36a5da7c5423ee32569c52deb6b32ff951e1acb6a1588d99dc7614",
+      "plan.md": "a3d8abe352d2e3a529aa33bafd7c693d3c877081496e29a6004cb24d66d7cb23",
+      "tasks.md": "fa6e5e63a63b5c6bdc637169d1715fecd708c74a5410140011a47b8610de1842",
+      "checklist.md": "891fa35dc0a74cd75aa0f4ab8945f6498242f4b446c5a11a429e97151032656b",
+      "decision-record.md": "0413d0ca8a2451fdc732a694b54687c4bbb2960bc4e733318c1771517dc4b1ec",
+      "implementation-summary.md": "a44c86c019b518f48b185db1f2b23e59bb4315f25750897f6ccc629ee6d2fcb9",
+      "research.md": "9352ae7f48f9ef3d97cf6093aaa7d843aec1ab0ab8a4eb51943bc50d3680f854"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

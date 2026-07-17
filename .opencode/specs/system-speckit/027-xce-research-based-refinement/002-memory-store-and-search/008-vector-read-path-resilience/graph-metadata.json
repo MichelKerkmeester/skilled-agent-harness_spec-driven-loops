@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vector shard corruption",
+      "shard auto rebuild",
+      "dimension discovery",
+      "knn benchmark",
+      "vec quick check",
+      "013-vector-read-path-resilience plan",
+      "013-vector-read-path-resilience tasks",
+      "013-vector-read-path-resilience summary"
+    ],
+    "key_topics": [
+      "vector",
+      "shard",
+      "corruption",
+      "auto",
+      "rebuild",
+      "dimension",
+      "discovery",
+      "knn",
+      "benchmark",
+      "vec",
+      "quick",
+      "check"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-dimension-source.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-knn-query-shape-benchmark.vitest.ts",
+      "tests/openltm-retrieval-observability.vitest.ts",
+      "mcp_server/lib/search/vector-index-store.ts",
+      "mcp_server/lib/embedders/reindex.ts",
+      "mcp_server/lib/search/vector-index-queries.ts",
+      "tests/vector-shard-read-path-resilience.vitest.ts",
+      "tests/vector-dimension-source.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-queries.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-observability.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-shard-read-path-resilience.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-dimension-source.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-dimension-source.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-knn-query-shape-benchmark.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-knn-query-shape-benchmark.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "openltm-retrieval-observability.vitest.ts",
+        "kind": "test",
+        "path": "tests/openltm-retrieval-observability.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Vector Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Resilience",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A live defect class was observed on 2026-06-10: the active embedder shard context-vectorsollamanomic-embed-text-v1.5768.sqlite reported database disk image is malformed and vec768 was missing from context-index.sqlite - the provider cascade silently degraded vector search with no health surface, no quarantine, and no rebuild",
+    "created_at": "2026-06-10T17:48:33Z",
+    "last_save_at": "2026-07-17T17:19:40.744Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:faf82eb8f1f7313e4c58a08caff325c2a7792efc305fc88da93480f2c8d518ab",
+    "source_doc_hashes": {
+      "spec.md": "d45d2ae8e9b5edf72af23015e355999d7837fdee50a1e5c9e58376f646575b41",
+      "plan.md": "e322107402b284207fe9d0b2fdb50e983dc06b80fd632c320a93604364eb39fd",
+      "tasks.md": "033b860b52f8f030662c6b7a88292b6e98350d530ae9e17c9e8237c250294262",
+      "implementation-summary.md": "735caf6ce0558ef2f4ba3cebd80f753d3f2f11740023d399ea62488959acb5e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

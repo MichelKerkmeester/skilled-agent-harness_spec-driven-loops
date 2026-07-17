@@ -1,0 +1,36 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/013-002-sandbox-testing-playbook",
+  "description": "Sibling packet `001-doctor-commands/` shipped 5 doctor commands (`/doctor memory`, `causal-graph`, `deep-loop`, `cocoindex`, `update`), 10 active YAML",
+  "keywords": [
+    "sibling",
+    "packet",
+    "001-doctor-commands",
+    "shipped",
+    "doctor",
+    "commands",
+    "memory",
+    "causal-graph",
+    "deep-loop",
+    "cocoindex",
+    "active",
+    "yaml"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.062Z",
+  "specId": "013",
+  "folderSlug": "002-sandbox-testing-playbook",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "09-05-26_15-45__phase-a-scaffolding-complete-spec-md-level-3-plan.md",
+    "09-05-26_16-08__yaml-in-parallel-during-phase-a-alignment-with-sk.md",
+    "09-05-26_16-32__g3-strict-validate-template-headers-anchors-valid.md",
+    "09-05-26_18-04__manual-context-save.md",
+    "09-05-26_18-17__manual-context-save.md",
+    "11-05-26_09-39__manual-context-save.md"
+  ]
+}

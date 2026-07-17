@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retroactive phase parent migration",
+      "legacy phase parent retrofit",
+      "phase parent backfill",
+      "lean trio retrofit",
+      "retroactive phase parent plan",
+      "cli-copilot worker dispatch plan",
+      "retroactive phase parent tasks",
+      "retroactive phase parent checklist",
+      "lean trio retrofit complete",
+      "004-legacy-phase-parent-migration"
+    ],
+    "key_topics": [
+      "retroactive",
+      "phase",
+      "parent",
+      "migration",
+      "legacy",
+      "retrofit",
+      "backfill",
+      "lean",
+      "trio",
+      "plan",
+      "cli-copilot",
+      "worker"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "scratch/regression-baseline-pre-004.txt",
+      "implementation-summary.md",
+      "checklist.md",
+      "scratch/migration-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "regression-baseline-pre-004.txt",
+        "kind": "file",
+        "path": "scratch/regression-baseline-pre-004.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-manifest.json",
+        "kind": "config",
+        "path": "scratch/migration-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retroactive Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Opus",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Worker Brief Authoring",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Dispatch",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The lean-trio policy is enforced for new phase parents (validator, template, generator, resume, docs)",
+    "created_at": "2026-04-27T14:00:00Z",
+    "last_save_at": "2026-07-17T17:19:09.463Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:62bb9bde7c1012dd85dc9084910865cdb62c3d290704ef1582cfbb2b322ad4bf",
+    "source_doc_hashes": {
+      "spec.md": "f97c93ca2cfb71125b6f154f0fe9027c2afebf63cd5662cde3020e48dbb628fc",
+      "plan.md": "cf475861aa84e8507fe309c231e8ef9696237afa4fecb4a1e14b2e9a2612dc32",
+      "tasks.md": "e6c63df2ddc9f31d769c217b3e1d120dc443ec49f2aa2b38593cff28cb3f446f",
+      "checklist.md": "9be95739a0b7e4b4523a71a6c51c195dfd843856e4b64c0b780c3abe8b640fdc",
+      "implementation-summary.md": "fd5eb23d2147a5702407da676b7639f118e43f7a66710fb5b4912312c4c288e7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

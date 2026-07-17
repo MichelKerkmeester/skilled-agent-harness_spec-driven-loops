@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026 changelog backfill",
+      "changelog audit 026",
+      "phase changelog coverage",
+      "nested changelog backfill",
+      "026 work audit",
+      "026 changelog backfill plan",
+      "changelog swarm plan",
+      "nested changelog enrichment",
+      "026 changelog tasks",
+      "changelog backfill tasks",
+      "tasks core",
+      "026 changelog verification"
+    ],
+    "key_topics": [
+      "changelog",
+      "backfill",
+      "audit",
+      "phase",
+      "coverage",
+      "nested",
+      "work",
+      "plan",
+      "swarm",
+      "enrichment",
+      "tasks",
+      "core"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "references/stage-b-enrichment-contract.md",
+      "references/verification-gate.md",
+      "references/recon-coverage-matrix.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage-b-enrichment-contract.md",
+        "kind": "doc",
+        "path": "references/stage-b-enrichment-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-gate.md",
+        "kind": "doc",
+        "path": "references/verification-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "recon-coverage-matrix.md",
+        "kind": "doc",
+        "path": "references/recon-coverage-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changelog Backfill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Work Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pipeline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec 026 shipped hundreds of phases across 8 tracks over months of work, but the packet-local changelog history is roughly 16 percent complete (103 of about 553 shipped phases)",
+    "created_at": "2026-05-31T19:00:00.000Z",
+    "last_save_at": "2026-07-17T17:19:13.791Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1329c8276ce71bd7daacace527ed04d9a3e7948503411e7702943ba65dc2a9d6",
+    "source_doc_hashes": {
+      "spec.md": "27ae31a9e3b2c0bbd69fae22369e800a9d4ce04fe30b009db23c1c04b021e396",
+      "plan.md": "61850d19174cbd38b93bdefe84cf1508a4c3e794e33d21b50967a86a59f29319",
+      "tasks.md": "efc318393365c01cf58d0cc28f900531c69bc5e9f799deb3f0c2798c513a572f",
+      "checklist.md": "c5be2b4cc2434f9d2d76101c58352c7186ccb44d0a4790f61767f517ceb8f837",
+      "decision-record.md": "a1c1c1b592c62163188f47693c06ce526836500dc0c42f357c3070a3197f8033",
+      "implementation-summary.md": "98ca68a2308a8eb6c405132c4faba5b49cbf42d5e11b7d5a9da97b9dde4f85a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

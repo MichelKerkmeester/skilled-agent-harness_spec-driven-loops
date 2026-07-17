@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/003 embedder mcp tools",
+      "embedder_set mcp tool",
+      "reindex orchestrator",
+      "016/003 plan",
+      "016/003 tasks",
+      "016/003 summary"
+    ],
+    "key_topics": [
+      "embedder",
+      "mcp",
+      "tools",
+      "tool",
+      "reindex",
+      "orchestrator",
+      "plan",
+      "tasks",
+      "summary",
+      "phase",
+      "expose",
+      "background"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "handlers/embedder-list.ts",
+      "handlers/embedder-set.ts",
+      "handlers/embedder-status.ts",
+      "lib/embedders/reindex.ts",
+      "mcp_server/handlers/embedder-list.ts",
+      "mcp_server/handlers/embedder-set.ts",
+      "mcp_server/handlers/embedder-status.ts",
+      "mcp_server/lib/embedders/reindex.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "embedder-list.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-set.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-status.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedder_set",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "MCP",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "new",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "progress",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "two-phase",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ts",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mocked OllamaAdapter",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "batched",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mocked",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handlers",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool registration",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 3 of 016. Expose embedder_list / embedder_set / embedder_status MCP tools + background re-index orchestrator. User-facing surface.",
+    "created_at": "2026-05-17T06:35:17.961Z",
+    "last_save_at": "2026-07-17T17:19:21.073Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6f68b7fdad14522d105a8a9844925427ea190740f57bb922e538616a5cdeed74",
+    "source_doc_hashes": {
+      "spec.md": "6d9f4a94fea527dbaba03760711b54a7064ce94d0272504c26d1bb038db97d57",
+      "plan.md": "e6706f0c10605a9f0ff61b517ef389139e689e95f99c7de4aa0d830245b26d0c",
+      "tasks.md": "c7faf8713f070bf585ed102a737d77c78bee8a7badaaf62b844b67b982da5060",
+      "implementation-summary.md": "8122d495e72d087a50b8ed37ac2076ed309a24ed69e8275d0275c62485c64285"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

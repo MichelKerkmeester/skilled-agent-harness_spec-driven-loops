@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
+  "description": "The local embedding model menu is scattered and inconsistent: `registry.ts` MANIFESTS list seven models; `factory.ts` keeps separate hardcoded",
+  "keywords": [
+    "local",
+    "embedding",
+    "model",
+    "menu",
+    "scattered",
+    "inconsistent",
+    "registry",
+    "manifests",
+    "list",
+    "seven",
+    "models",
+    "factory",
+    "keeps",
+    "separate",
+    "hardcoded"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.910Z",
+  "specId": "001",
+  "folderSlug": "nomic-only-consolidation",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "010-embedding-consolidation-hf-local-server"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

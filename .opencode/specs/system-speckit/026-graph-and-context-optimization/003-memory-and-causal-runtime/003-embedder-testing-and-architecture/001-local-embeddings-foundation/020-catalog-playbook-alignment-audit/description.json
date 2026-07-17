@@ -1,0 +1,35 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit",
+  "description": "Local embedding defaults changed, but catalog/playbook documentation can still imply API-first, Voyage-only, or stale `all-MiniLM-L6-v2` expectations",
+  "keywords": [
+    "local",
+    "embedding",
+    "defaults",
+    "changed",
+    "catalog",
+    "playbook",
+    "documentation",
+    "still",
+    "imply",
+    "api-first",
+    "voyage-only",
+    "stale",
+    "all-minilm-l6-v2",
+    "expectations"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.612Z",
+  "specId": "020",
+  "folderSlug": "catalog-playbook-alignment-audit",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 21,
+  "memoryNameHistory": [
+    "13-05-26_19-29__closed-four-code-graph-and-memory-index-follow.md"
+  ]
+}

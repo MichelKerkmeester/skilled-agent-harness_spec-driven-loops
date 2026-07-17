@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cooperative heavy phases daemon responsiveness",
+      "event loop lag instrumentation reindex scan",
+      "trigger embedding backfill chunk and yield",
+      "027 002/021",
+      "cooperative heavy phases plan",
+      "event loop lag sampler trigger backfill chunk plan",
+      "027 002/021 plan",
+      "cooperative heavy phases tasks",
+      "027 002/021 tasks",
+      "cooperative heavy phases shipped",
+      "event loop lag sampler trigger backfill chunk shipped",
+      "027 002/021 shipped"
+    ],
+    "key_topics": [
+      "cooperative",
+      "heavy",
+      "phases",
+      "daemon",
+      "responsiveness",
+      "event",
+      "loop",
+      "lag",
+      "instrumentation",
+      "reindex",
+      "scan",
+      "trigger"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/trigger-embedding-backfill.vitest.ts",
+      "handlers/memory-index.ts",
+      "lib/search/trigger-embedding-backfill.ts",
+      "tests/trigger-embedding-backfill.vitest.ts",
+      "tests/handler-memory-index-scan-jobs.vitest.ts",
+      "stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+      "lib/storage/maintenance-marker.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/lib/search/trigger-embedding-backfill.ts",
+      "mcp_server/tests/trigger-embedding-backfill.vitest.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "utils/batch-processor.ts",
+      "core/config.ts",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-embedding-backfill.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-embedding-backfill.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/trigger-embedding-backfill.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-index-scan-jobs.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-memory-index-scan-jobs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-reelection-adoption-live.vitest.ts",
+        "kind": "test",
+        "path": "stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.ts",
+        "kind": "code",
+        "path": "lib/storage/maintenance-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "batch-processor.ts",
+        "kind": "code",
+        "path": "utils/batch-processor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Uses Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "020's marker keeps a busy daemon un-reaped, but a blocked event loop is still the failure mode that breaks re-election: it cannot answer a competing launcher's bridge/probe, and it cannot fire the marker's 20s self-refresh, so a synchronous phase that blocks longer than the 180s TTL lets the marker go stale and a fresh launcher spawns a second daemon",
+    "created_at": "2026-06-17T17:15:00.000Z",
+    "last_save_at": "2026-07-17T17:19:41.995Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9722a8cc16451e033c1a49d4a96c12b0284a33a46c0d9d7423ffe5b969170453",
+    "source_doc_hashes": {
+      "spec.md": "a8712e5df08619f0acea6f8097bc3df8aff3179a1e4a25b1be8cf5f4cc74f21c",
+      "plan.md": "33097646ad6e5da0216dc81b5f7d1bcf64d26cacba34783cc3f1d1a3f67dfd33",
+      "tasks.md": "a16febc8503798ed0c0280edf206ba11ebb8d675038e317febd74435c9269ded",
+      "implementation-summary.md": "d91bbd822a448e3791de755d71b767251ed4a87b3c2ad273a49a3f3027a21884"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 002",
+      "feedback P0 correctness",
+      "auto-provenance cap broadening",
+      "manual-edge overwrite guard",
+      "retention-sweep tier basement",
+      "secret redaction"
+    ],
+    "key_topics": [
+      "phase",
+      "feedback",
+      "correctness",
+      "auto-provenance",
+      "cap",
+      "broadening",
+      "manual-edge",
+      "overwrite",
+      "guard",
+      "retention-sweep",
+      "tier",
+      "basement"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/lib/storage/consolidation.ts",
+      "mcp_server/lib/governance/memory-retention-sweep.ts",
+      "mcp_server/handlers/memory-retention-sweep.ts",
+      "mcp_server/lib/parsing/secret-scrubber.ts",
+      "mcp_server/lib/parsing/memory-parser.ts",
+      "mcp_server/handlers/memory-crud-update.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/tests/fixtures/memory-index-db.ts",
+      "mcp_server/tests/causal-edges-write-safety.vitest.ts",
+      "mcp_server/tests/memory-retention-sweep.vitest.ts",
+      "mcp_server/tests/secret-scrubber.vitest.ts",
+      "tests/secret-scrubber.vitest.ts",
+      "tests/causal-edges-unit.vitest.ts",
+      "tests/memory-retention-sweep.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/consolidation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "secret-scrubber.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/parsing/secret-scrubber.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/parsing/memory-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-update.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-update.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index-db.ts",
+        "kind": "code",
+        "path": "mcp_server/tests/fixtures/memory-index-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges-write-safety.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/causal-edges-write-safety.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "secret-scrubber.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/secret-scrubber.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges-unit.vitest.ts",
+        "kind": "test",
+        "path": "tests/causal-edges-unit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Write Safety",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`../005-learning-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes",
+    "created_at": "2026-05-11T00:00:00Z",
+    "last_save_at": "2026-07-17T17:19:39.435Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-11T00:00:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d014dd1a044bab67ddedbf8bac3d1f441f6672d3de88f0664cc0ad7e4b5b6dd1",
+    "source_doc_hashes": {
+      "spec.md": "b6430a8a5f6241dbae7ecff5f1ebb04482439ba088b2589e582b57db81e256e5",
+      "plan.md": "10f1a1ac52d03c2284fc4364d13bcb13749e69bf3c01ff4d66922affcfeb1cdc",
+      "tasks.md": "ffac9c5d9676b2d906a148f8940311aa126869f9054840f698ec3157da149727",
+      "checklist.md": "83a08527f420d1dd1a5b4279125807cbd97d7e4651a1c9707cbfb596c9e62f91",
+      "implementation-summary.md": "2ed526bbc291c555cd376b1e1ca97212a6a0cad8a9a61f61acab71fd8c619420"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

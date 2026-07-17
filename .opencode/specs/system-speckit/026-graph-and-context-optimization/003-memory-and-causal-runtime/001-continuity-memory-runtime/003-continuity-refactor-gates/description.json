@@ -1,0 +1,49 @@
+{
+  "migration": {
+    "moved_at": "2026-04-21T12:00:00Z",
+    "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-continuity-refactor-gates",
+    "new_spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates",
+    "consolidation": "026-phase-surface-29-to-9",
+    "flattened_at": "2026-04-21T13:00:00Z",
+    "layout": "phase-root-local-sequence",
+    "intermediate_spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-continuity-refactor-gates",
+    "local_phase_slug": "003-continuity-refactor-gates",
+    "original_phase_slug": "006-continuity-refactor-gates",
+    "renumbered_at": "2026-04-21T14:00:00Z",
+    "aliases": [
+      "system-spec-kit/026-graph-and-context-optimization/006-continuity-refactor-gates",
+      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-continuity-refactor-gates",
+      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates"
+    ]
+  },
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+  "description": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into",
+  "keywords": [
+    "006-continuity-refactor-gates",
+    "now",
+    "owns",
+    "only",
+    "six",
+    "execution",
+    "gates",
+    "remain",
+    "reorganization",
+    "promoted",
+    "former",
+    "follow-on",
+    "work"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.541Z",
+  "specId": "003",
+  "folderSlug": "continuity-refactor-gates",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "001-continuity-memory-runtime"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-04-26_11-34__metadata-refresh-rewrite-children-ids-in-graph.md"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "001 Aggregator — Shared Feedback Aggregation",
+  "trigger_phrases": [
+    "009 feedback aggregator",
+    "001 aggregator",
+    "feedback-aggregation.ts",
+    "shared feedback aggregation"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "complete",
+  "priority": "P0",
+  "createdAt": "2026-05-12T07:20:00.000Z",
+  "branch": "main",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator",
+  "description": "Level 2 child packet for the shared TypeScript feedback aggregation reducer used by the feedback reducer consumers.",
+  "keywords": [
+    "level",
+    "child",
+    "packet",
+    "shared",
+    "typescript",
+    "feedback",
+    "aggregation",
+    "reducer",
+    "consumers"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.763Z",
+  "specId": "001",
+  "folderSlug": "aggregator",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "004-learning-feedback-reducers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

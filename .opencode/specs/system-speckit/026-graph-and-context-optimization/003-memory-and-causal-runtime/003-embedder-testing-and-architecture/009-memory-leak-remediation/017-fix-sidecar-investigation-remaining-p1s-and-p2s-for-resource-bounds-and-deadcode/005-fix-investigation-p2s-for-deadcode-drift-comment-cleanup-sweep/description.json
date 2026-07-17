@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
+  "description": "Arc 010/001 recorded 68 P2 cleanup findings across embedder module surfaces",
+  "keywords": [
+    "arc",
+    "recorded",
+    "cleanup",
+    "findings",
+    "across",
+    "embedder",
+    "module",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.146Z",
+  "specId": "005",
+  "folderSlug": "fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

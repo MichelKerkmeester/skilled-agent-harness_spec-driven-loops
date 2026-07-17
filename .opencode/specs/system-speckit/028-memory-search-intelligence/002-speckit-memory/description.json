@@ -1,0 +1,32 @@
+{
+  "level": "phase",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory",
+  "description": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage",
+  "keywords": [
+    "spec-kit",
+    "memory",
+    "mcp",
+    "research",
+    "surfaced",
+    "candidate",
+    "work",
+    "across",
+    "recall",
+    "retrieval",
+    "deterministic",
+    "ids",
+    "currentness",
+    "reliability",
+    "eval",
+    "coverage"
+  ],
+  "lastUpdated": "2026-07-17T17:01:46.880Z",
+  "specId": "002",
+  "folderSlug": "speckit-memory",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

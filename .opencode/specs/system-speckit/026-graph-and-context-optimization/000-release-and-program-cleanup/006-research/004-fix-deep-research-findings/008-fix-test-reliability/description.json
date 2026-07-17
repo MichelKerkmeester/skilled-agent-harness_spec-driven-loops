@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/008-fix-test-reliability",
+  "description": "Six tests in the stress-test and unit-test surface have reliability defects that make them brittle on non-developer machines, in CI, or under repeated",
+  "keywords": [
+    "six",
+    "tests",
+    "stress-test",
+    "unit-test",
+    "surface",
+    "reliability",
+    "defects",
+    "them",
+    "brittle",
+    "non-developer",
+    "machines",
+    "repeated"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.847Z",
+  "specId": "008",
+  "folderSlug": "fix-test-reliability",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "006-research",
+    "004-fix-deep-research-findings"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "01-05-26_06-58__sub-phase-009-closed-six-surgical-test-only-edits.md"
+  ]
+}

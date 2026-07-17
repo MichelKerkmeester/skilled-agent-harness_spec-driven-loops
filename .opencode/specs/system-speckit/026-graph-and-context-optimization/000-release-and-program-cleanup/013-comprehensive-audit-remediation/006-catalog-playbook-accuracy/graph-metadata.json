@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "catalog playbook accuracy",
+      "feature catalog defects",
+      "playbook scenario links",
+      "tool count 37",
+      "catalog playbook remediation",
+      "catalog playbook accuracy plan",
+      "feature catalog doc fixes",
+      "playbook remediation plan",
+      "catalog playbook tasks",
+      "F-catalog-playbook tasks",
+      "catalog playbook accuracy summary",
+      "F-catalog-playbook complete"
+    ],
+    "key_topics": [
+      "catalog",
+      "playbook",
+      "accuracy",
+      "feature",
+      "defects",
+      "scenario",
+      "links",
+      "tool",
+      "count",
+      "remediation",
+      "plan",
+      "doc"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      "shared/embeddings/factory.ts",
+      "mcp_server/handlers/causal-graph.ts",
+      "feature_catalog/feature_catalog.md",
+      "mcp_server/tests/review-fixes.vitest.ts",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-fixes.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The feature catalog and manual testing playbook contain 10 verified accuracy defects: universal coverage claims that contradict the measured 69% audit result, a stale tool count (36 vs canonical 37) in five README locations and one test assertion, a release-gate script threshold 4 files short of the real count, five broken scenario-to-catalog cross-links, a garbled scenario contract in scenario 232, stale implementation paths in the local-LLM category overview, a false \"cleanup complete\" claim about phase-label removal, a wrong verifier script path in scenario 234, stale scenario numbering",
+    "created_at": "2026-06-04T20:45:44Z",
+    "last_save_at": "2026-07-17T17:19:15.058Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:be1353c53cc8ae191cb4ad69903cad5e0dd06a1ecca6deefc1be2d360b347096",
+    "source_doc_hashes": {
+      "spec.md": "3d2c3168a55ec396155efb96d50503f02840b5c244c3606ff02530c8e3d3294b",
+      "plan.md": "fd5111ff0d3bb7914799c37b97fc652f517195f9ad90e2ab4f83d76b666f40db",
+      "tasks.md": "a38602f79200d1813db46c496971084e4211fc887695e3e18f9e3f08a4e59ae7",
+      "implementation-summary.md": "52c03018c8d7aad3afeda658bebfff65a3abd8bf73b96f7072736af414ffedb1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

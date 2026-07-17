@@ -1,0 +1,37 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs",
+  "description": "Prior sessions observed CLI-orchestrated agent workflows building up many processes and consuming enough memory to threaten a 64 GB Apple Silicon",
+  "keywords": [
+    "prior",
+    "sessions",
+    "observed",
+    "cli-orchestrated",
+    "agent",
+    "workflows",
+    "many",
+    "processes",
+    "consuming",
+    "enough",
+    "memory",
+    "threaten",
+    "apple",
+    "silicon"
+  ],
+  "lastUpdated": "2026-07-09T10:02:53.479Z",
+  "specId": "",
+  "folderSlug": "packet-docs",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "001-research-synthesis-and-remediation-map",
+    "research",
+    "source-research",
+    "024-cli-deep-research-memory-leak-audit"
+  ],
+  "memorySequence": 24,
+  "memoryNameHistory": []
+}

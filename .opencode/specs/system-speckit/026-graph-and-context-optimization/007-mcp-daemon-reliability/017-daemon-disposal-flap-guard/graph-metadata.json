@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp daemon disposal flap",
+      "mk-spec-memory relaunch loop",
+      "owner session disposal sigterm relaunch",
+      "mcp transport flap fix",
+      "launcher orphan relaunch guard",
+      "daemon disposal flap plan",
+      "launcher relaunch guard plan",
+      "mcp daemon respawn fix plan",
+      "orphan gate relaunch",
+      "daemon disposal flap tasks",
+      "launcher relaunch guard tasks",
+      "mcp respawn fix tasks"
+    ],
+    "key_topics": [
+      "mcp",
+      "daemon",
+      "disposal",
+      "flap",
+      "mk-spec-memory",
+      "relaunch",
+      "loop",
+      "owner",
+      "session",
+      "sigterm",
+      "transport",
+      "launcher"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      "mcp_server/tests/launcher-watchdog.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-watchdog.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-watchdog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "v3.5.0.2 fixed the Stop-hook cross-session kill but explicitly deferred the owner-shutdown/watchdog root causes",
+    "created_at": "2026-06-07T12:55:23Z",
+    "last_save_at": "2026-07-17T17:19:34.945Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f6ef438a19c6b19e8d38f7e0079d38d56b5545a036495eba8ce3435d1941b7b",
+    "source_doc_hashes": {
+      "spec.md": "cad54ebde444578e4b003591f5ee59f0ea1998642e2117bfc74e98e00b1a7f21",
+      "plan.md": "c40752565ebec00a033cff6ad3bdf5bd117a59cce1b27accca51677cb6ac45cf",
+      "tasks.md": "f335a751565ad5ee872d2aaa4033274a8f548a5e15dbd9193aeaf380f598bd49",
+      "checklist.md": "d84fa5396d0bac8b97f1fdf0d77c9deba089d4fc23656806e7e637770d1484da",
+      "implementation-summary.md": "1a1b401b161763814724c377d6e096041b58c40fb6e33f4e1f3eaf8a76ea2c27"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

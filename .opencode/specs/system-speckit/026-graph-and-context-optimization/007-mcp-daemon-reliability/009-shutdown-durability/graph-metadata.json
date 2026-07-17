@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shutdown durability",
+      "forwarded launcher signals",
+      "SIGHUP SIGQUIT fatalShutdown",
+      "daemon WAL checkpoint before SIGKILL",
+      "026 007 009 shutdown durability",
+      "shutdown durability plan",
+      "forwarded signal grace plan",
+      "vectorIndex close ordering plan",
+      "shutdown durability tasks",
+      "forwarded signal shutdown tasks",
+      "shutdown durability checklist",
+      "forwarded signal shutdown verification"
+    ],
+    "key_topics": [
+      "shutdown",
+      "durability",
+      "forwarded",
+      "launcher",
+      "signals",
+      "sighup",
+      "sigquit",
+      "fatalshutdown",
+      "daemon",
+      "wal",
+      "checkpoint",
+      "sigkill"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shutdown Durability",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Forwarded Launcher Signals",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ensure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 008 made `closedb()` run `PRAGMA walcheckpoint(TRUNCATE)` on graceful close, but the daemon shutdown path still allowed two durability gaps",
+    "created_at": "2026-05-29T13:03:59.425Z",
+    "last_save_at": "2026-07-17T17:19:34.006Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fb61285295b67dbb712f93de7989e69dcd732a9aea07c1506f0abbb8f8fd52d6",
+    "source_doc_hashes": {
+      "spec.md": "92bb71cc2795ace6469c018e124c82fd4bce6c8594a17c226599031b5e09eb97",
+      "plan.md": "51b5ccf4ae19f9fee4517b18c05e2dd1a96500ace12f2dbd6fce44b1936d2c16",
+      "tasks.md": "c1eb65681997966b74931fc03b889d4bddec96c7ccf45d7b42fcba62a1f417c9",
+      "checklist.md": "0a54ea9987bba392155e33e0e227527e330fa8f8d70431c352eb5e5998659002",
+      "implementation-summary.md": "f905767abac30487ef87034ea9743fce0f1e0f1faf6d0451429aa12a306bb4e4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

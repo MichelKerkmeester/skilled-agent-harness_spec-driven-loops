@@ -1,0 +1,42 @@
+{
+  "title": "016 Manual Testing Verification",
+  "level": 1,
+  "id": "016-manual-testing-verification",
+  "status": "complete",
+  "parent": "013-system-code-graph-extraction",
+  "children": [],
+  "tags": [
+    "verification",
+    "manual-testing",
+    "mk-code-index",
+    "post-rename"
+  ],
+  "created": "2026-05-14",
+  "derived": {
+    "last_active_child_id": null,
+    "status": "complete"
+  },
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
+  "description": "Manual testing verification packet for the mk-code-index rename and post-014 work.",
+  "keywords": [
+    "manual",
+    "testing",
+    "verification",
+    "packet",
+    "mk-code-index",
+    "rename",
+    "post-014",
+    "work"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.986Z",
+  "specId": "007",
+  "folderSlug": "030-manual-testing-verification",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-3-deep-archives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

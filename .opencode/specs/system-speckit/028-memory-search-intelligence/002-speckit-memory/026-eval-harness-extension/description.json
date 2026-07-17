@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/026-eval-harness-extension",
+  "description": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield … honest figure ≈",
+  "keywords": [
+    "memory",
+    "mcp",
+    "ships",
+    "live",
+    "retrieval",
+    "eval",
+    "harness",
+    "already",
+    "confirmed",
+    "iter-011",
+    "extend-not-greenfield",
+    "honest",
+    "figure"
+  ],
+  "lastUpdated": "2026-07-17T17:01:46.803Z",
+  "specId": "026",
+  "folderSlug": "eval-harness-extension",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

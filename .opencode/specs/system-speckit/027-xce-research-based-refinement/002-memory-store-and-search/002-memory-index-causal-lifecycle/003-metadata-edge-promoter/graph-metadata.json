@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontmatter causal edge promoter",
+      "auto causal edges",
+      "description depends_on",
+      "graph metadata children",
+      "deterministic edge promotion",
+      "027 phase 005",
+      "metadata edge promoter",
+      "frontmatter causal edges",
+      "027 phase 005 tasks",
+      "metadata edge promoter tasks",
+      "metadata edge promoter checklist",
+      "frontmatter promoter verification"
+    ],
+    "key_topics": [
+      "frontmatter",
+      "causal",
+      "edge",
+      "promoter",
+      "auto",
+      "edges",
+      "description",
+      "graph",
+      "metadata",
+      "children",
+      "deterministic",
+      "promotion"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "lib/causal/frontmatter-promoter.ts",
+      "handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/frontmatter-promoter.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-incremental-foundation.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts",
+      "mcp_server/lib/graph/graph-metadata-parser.ts",
+      "mcp_server/lib/parsing/memory-parser.ts",
+      "mcp_server/lib/causal/frontmatter-promoter.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/lib/search/vector-index-schema.ts",
+      "spec.md",
+      "plan.md",
+      "tests/secret-scrubber.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "frontmatter-promoter.ts",
+        "kind": "code",
+        "path": "lib/causal/frontmatter-promoter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sweep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-promoter.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/frontmatter-promoter.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-compatibility.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-incremental-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-incremental-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-migration-refinements.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/parsing/memory-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "secret-scrubber.vitest.ts",
+        "kind": "test",
+        "path": "tests/secret-scrubber.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Edge Promoter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Basis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Causal edges are currently created mostly through manual `memorycausallink` flows",
+    "created_at": "2026-05-13T09:00:47Z",
+    "last_save_at": "2026-07-17T17:19:39.773Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:47febc5b59d3ebd3a5385f1b1e9b2f478ff2c829652b20359794622704f0b69c",
+    "source_doc_hashes": {
+      "spec.md": "e6b3f44a6136e54df8e0fe91b187aa77e5c5220405f8c21ba0631ae075f297a3",
+      "plan.md": "4e14516b883693d1bfcb4b298fcd8e946a95998f02e0ff972ffe66aa6bfdfa45",
+      "tasks.md": "08a26b9cf8e49de1b6922ea8ea513df6ab12384c95a2bad9e2eb931d5b91bf7c",
+      "checklist.md": "c417ef4d6e820c6ef255c422f94a99d00b44969542989423764c4bba7e257629",
+      "implementation-summary.md": "9d7dc24e9cfe3e815ad8b69100a57af46ced9ff677c743e044ae864977b01e01"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

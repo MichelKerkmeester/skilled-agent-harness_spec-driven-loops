@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
+  "description": "The canonical Vitest stress suite in `mcpserver/stresstest/` is provider-agnostic by design",
+  "keywords": [
+    "canonical",
+    "vitest",
+    "stress",
+    "suite",
+    "mcpserver",
+    "stresstest",
+    "provider-agnostic",
+    "design"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.168Z",
+  "specId": "049",
+  "folderSlug": "substrate-stress-coverage",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-05-26_07-21__closed-remaining-open-items-from-the-2026-05-14.md"
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "envelope fidelity enforcement",
+      "mandatory render slots verdict",
+      "post render envelope fidelity check",
+      "pre rendered verdict fragment",
+      "requestQuality citationPolicy render"
+    ],
+    "key_topics": [
+      "envelope",
+      "fidelity",
+      "enforcement",
+      "mandatory",
+      "render",
+      "slots",
+      "verdict",
+      "post",
+      "check",
+      "pre",
+      "rendered",
+      "fragment"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/memory/search.md",
+      ".opencode/commands/memory/assets/search_presentation.txt",
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs",
+      "formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/envelope-fidelity.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "handlers/memory-search.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "search_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/memory/assets/search_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-envelope-fidelity.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "envelope-fidelity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/envelope-fidelity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "provenance-envelope.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fidelity Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 029 model benchmark exposed soft spot B, envelope fidelity",
+    "created_at": "2026-06-22T00:00:00Z",
+    "last_save_at": "2026-07-09T10:02:56.217Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a6062cd3a4e23fd52aa2cddf1aeae9b49eaf48f6fb63a567d7d8b341c004a2bb",
+    "source_doc_hashes": {
+      "spec.md": "f852700dfe42956dc5aa7c38a8b752ee04ca658a6f9859e9be98efbe7d38da41",
+      "plan.md": "b77b6b51166e4a736587159f2cfd165c3169df971ffa893bd9384407fb402dc9",
+      "tasks.md": "69934872d3b0e34e5427fda59f092ffa3210c2e0e238b155eee9e3024705dad0",
+      "checklist.md": "535819ac8f78ca2dc99624b06037f25c5b826b86f8c463977262a917e8f704bb",
+      "implementation-summary.md": "6229eaa1b22f0fbf9b647ad053764e92afb8f151caa07632ab1b9e43f1dd5c0d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

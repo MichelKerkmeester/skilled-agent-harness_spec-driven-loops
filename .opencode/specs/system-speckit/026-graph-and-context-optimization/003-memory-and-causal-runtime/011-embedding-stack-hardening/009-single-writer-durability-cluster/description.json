@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster",
+  "description": "The deep review found a cluster of single-writer / durability defects across the embedding-stack launcher + supervision + WAL surfaces",
+  "keywords": [
+    "deep",
+    "review",
+    "found",
+    "cluster",
+    "single-writer",
+    "durability",
+    "defects",
+    "across",
+    "embedding-stack",
+    "launcher",
+    "supervision",
+    "wal",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.887Z",
+  "specId": "009",
+  "folderSlug": "single-writer-durability-cluster",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "011-embedding-stack-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

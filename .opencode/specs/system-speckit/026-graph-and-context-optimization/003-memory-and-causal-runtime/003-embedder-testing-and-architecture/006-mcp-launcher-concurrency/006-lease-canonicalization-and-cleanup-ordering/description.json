@@ -1,0 +1,39 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/006-lease-canonicalization-and-cleanup-ordering",
+  "description": "The Phase 005 council review found that the launcher arc still had two load-bearing lease gaps: lexical path identity could let symlink aliases bypass",
+  "keywords": [
+    "phase",
+    "council",
+    "review",
+    "found",
+    "launcher",
+    "arc",
+    "still",
+    "two",
+    "load-bearing",
+    "lease",
+    "gaps",
+    "lexical",
+    "path",
+    "identity",
+    "let",
+    "symlink",
+    "aliases",
+    "bypass"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.813Z",
+  "specId": "006",
+  "folderSlug": "lease-canonicalization-and-cleanup-ordering",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_16-58__phase-006-closed-6-p1-5-p2-from-ai-council-review.md"
+  ]
+}

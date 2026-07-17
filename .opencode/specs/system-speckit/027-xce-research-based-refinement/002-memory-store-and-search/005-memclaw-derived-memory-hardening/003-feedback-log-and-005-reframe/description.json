@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe",
+  "description": "caura-memclaw's self-improving feedback loop applies direct, immediate, asymmetric weight mutation (success `+0.10` / failure `-0.15`) to canonical",
+  "keywords": [
+    "caura-memclaw",
+    "self-improving",
+    "feedback",
+    "loop",
+    "applies",
+    "direct",
+    "immediate",
+    "asymmetric",
+    "weight",
+    "mutation",
+    "success",
+    "failure",
+    "canonical"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.738Z",
+  "specId": "003",
+  "folderSlug": "feedback-log-and-005-reframe",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "005-memclaw-derived-memory-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

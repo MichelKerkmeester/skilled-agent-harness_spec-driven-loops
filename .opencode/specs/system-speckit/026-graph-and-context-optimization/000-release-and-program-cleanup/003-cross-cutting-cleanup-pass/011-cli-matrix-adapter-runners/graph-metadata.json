@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "011-cli-matrix-adapter-runners",
+      "CLI matrix adapter",
+      "matrix runner adapters",
+      "cli-codex adapter",
+      "cli-copilot adapter",
+      "cli-gemini adapter",
+      "011-cli-matrix-adapter-runners resource map",
+      "cli matrix adapter runners file ledger"
+    ],
+    "key_topics": [
+      "011-cli-matrix-adapter-runners",
+      "cli",
+      "matrix",
+      "adapter",
+      "runner",
+      "adapters",
+      "cli-codex",
+      "cli-copilot",
+      "cli-gemini",
+      "resource",
+      "map",
+      "runners"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-test-utils.ts",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F1-spec-folder.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F14-search-w3-w13.md",
+      "plan.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F10-deep-loop.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F11-hooks.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F12-validators.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F13-stress-cycle.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F2-skill-advisor.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F3-memory-search.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F4-memory-context.md"
+    ],
+    "entities": [
+      {
+        "name": "adapter-common.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-matrix.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-adapter-test-utils.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-test-utils.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "F1-spec-folder.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F1-spec-folder.md",
+        "source": "derived"
+      },
+      {
+        "name": "F14-search-w3-w13.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F14-search-w3-w13.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-cli-claude-code.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-cli-opencode.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
+        "source": "derived"
+      },
+      {
+        "name": "F10-deep-loop.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F10-deep-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "F11-hooks.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F11-hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "F12-validators.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F12-validators.md",
+        "source": "derived"
+      },
+      {
+        "name": "F13-stress-cycle.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F13-stress-cycle.md",
+        "source": "derived"
+      },
+      {
+        "name": "F2-skill-advisor.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F2-skill-advisor.md",
+        "source": "derived"
+      },
+      {
+        "name": "F3-memory-search.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F3-memory-search.md",
+        "source": "derived"
+      },
+      {
+        "name": "F4-memory-context.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/F4-memory-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "Matrix Adapter Runners",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 035 signed off a CONDITIONAL baseline because the full Option C design was not executable: 42 cells were `RUNNERMISSING`, and no complete `matrix-manifest.json`, feature x executor runner tree, or packet-030 meta-aggregator existed (`006-runtime-matrix-execution-validation/findings.md:5`, `:15`, `:73`, `:75`)",
+    "created_at": "2026-04-29T17:16:00Z",
+    "last_save_at": "2026-07-17T17:19:09.466Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:2a49f7fe692a2b1d720ef3ed5a02c676bec44ee36368c593c65f735a8a9954ff",
+    "source_doc_hashes": {
+      "spec.md": "392c8ad3efe416716ac83d22f739228010a36afa5861df8efe9c1d46d04b03ef",
+      "plan.md": "15f0e829605f286b7f5e2442936cfec48daa401689812fc02708dbe97aa72341",
+      "tasks.md": "13eee90d87ad8bcbcf6c210eb9dd259cdace156ec87bc0a504e9f6c6437799fb",
+      "checklist.md": "865a6da9c0406776f1cc46cfdb6a4651a1c43b14e5a4ee1ce7efb599ff6028f7",
+      "implementation-summary.md": "a761ea30a9611da3a01b663b0e99b0ada589d9bab1ab22285558ec6710d63652",
+      "resource-map.md": "192b5f361794de12c53ffcf0dc1a3fd22ef621a7ac306614657a55b4325b0625"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/006-generated-metadata-quality-research",
+  "description": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn",
+  "keywords": [
+    "spec-kit",
+    "generators",
+    "produce",
+    "description",
+    "json",
+    "graph-metadata",
+    "over-reach",
+    "churn"
+  ],
+  "lastUpdated": "2026-07-17T17:01:46.487Z",
+  "specId": "006",
+  "folderSlug": "generated-metadata-quality-research",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-spec-data-quality",
+    "005-shared-engine-and-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

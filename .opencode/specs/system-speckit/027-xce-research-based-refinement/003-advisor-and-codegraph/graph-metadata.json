@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "parent_id": "system-speckit/027-xce-research-based-refinement",
+  "children_ids": [
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 advisor and code graph",
+      "causal traversal bfs",
+      "xce feature adoption advisor codegraph",
+      "skill advisor cross session reconnect",
+      "advisor state spec folder leak"
+    ],
+    "key_topics": [
+      "advisor",
+      "code",
+      "graph",
+      "causal",
+      "traversal",
+      "bfs",
+      "xce",
+      "feature",
+      "adoption",
+      "codegraph",
+      "skill",
+      "cross"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph carried recursive-CTE traversals that defeated its indexes and needed a shared snapshot-equivalent BFS helper",
+    "created_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-07-17T17:19:41.986Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:69d6149fd41a7a76333c4100f574f00f33768827f90b2ca71206e0a0ff433834",
+    "source_doc_hashes": {
+      "spec.md": "52c96020d3e28006451444a53968a4d1702919dcfa482ad4f32ad1685bec5982"
+    },
+    "last_active_child_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
+    "last_active_at": "2026-06-19T00:00:00Z"
+  }
+}

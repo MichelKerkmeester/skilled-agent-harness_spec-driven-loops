@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-causal-graph-relation-window-metrics",
+      "causal graph balance status",
+      "deltaByRelation dominantRelationShare",
+      "supersedes burst auto cap",
+      "REQ-005 REQ-006 REQ-010 causal stats",
+      "causal graph window metrics plan",
+      "causal graph window metrics tasks",
+      "causal graph window metrics summary"
+    ],
+    "key_topics": [
+      "006-causal-graph-relation-window-metrics",
+      "causal",
+      "graph",
+      "balance",
+      "status",
+      "deltabyrelation",
+      "dominantrelationshare",
+      "supersedes",
+      "burst",
+      "auto",
+      "cap",
+      "req-005"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
+      "handlers/memory-context.ts",
+      "mcp_server/handlers/causal-graph.ts",
+      "mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/handlers/save/create-record.ts",
+      "mcp_server/tests/handler-causal-graph.vitest.ts",
+      "handlers/causal-graph.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "integration-causal-graph.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-record.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-causal-graph.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/handler-causal-graph.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Guide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Default Cap Values",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Stats",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "005/REQ-010 captured 344 new edges in 15 minutes — 100% `supersedes`, 0% `caused`/`supports`",
+    "created_at": "2026-04-27T07:56:25.231Z",
+    "last_save_at": "2026-07-17T17:19:11.661Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0ee78e926ea0c28e825277e3fafdb47e815a23b50c95d7b68bf62a40881f0fb7",
+    "source_doc_hashes": {
+      "spec.md": "89203d86b1e760df340fd948808a8bfcf3b40243a5e79f850ddacbe418be65e5",
+      "plan.md": "e3c7a0317c21502d5b413dbbeb624b552a2c5c4a27af41daa7607a80e769466e",
+      "tasks.md": "2d0166edd5a26cfcf57f83f6ebc1b90e8b8738d1edea5094a5a59c91e8a0bd0a",
+      "implementation-summary.md": "957a77fd015c7a29385874b4409023a8dd4700e4eae702fec3f1f09b591a5bc6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

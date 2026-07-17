@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "002-automation-reality-supplemental-research",
+      "automation reality supplemental",
+      "deep-loop graph automation",
+      "CCC eval ablation reality",
+      "validator auto-fire reality",
+      "automation remediation backlog",
+      "013 automation supplemental plan",
+      "automation reality supplemental plan",
+      "deep research supplemental plan",
+      "013 automation supplemental tasks",
+      "deep research supplemental tasks",
+      "013 automation supplemental checklist"
+    ],
+    "key_topics": [
+      "002-automation-reality-supplemental-research",
+      "automation",
+      "reality",
+      "supplemental",
+      "deep-loop",
+      "graph",
+      "ccc",
+      "eval",
+      "ablation",
+      "validator",
+      "auto-fire",
+      "remediation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/deep-research-state.jsonl",
+      "research/research-report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/deep-research-config.json",
+      "research/deep-research-strategy.md",
+      "research/findings-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".codex/hooks.json",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "research-report.md",
+        "kind": "doc",
+        "path": "research/research-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Automation Reality Supplemental",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Continuation Of",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Automation Reality Supplemental Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "012's 7-iteration deep research produced a 50-row automation reality map (14 auto / 14 half / 18 manual / 4 P1 aspirational) but stopped on `maxiterations` with newInfoRatio=0.18 — STILL ABOVE the 0.10 convergence threshold",
+    "created_at": "2026-04-29T14:35:00.000Z",
+    "last_save_at": "2026-07-17T17:19:13.166Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:a32332cd471ed4f1188883e1556ba25aacb6ead21b885194201619577022e574",
+    "source_doc_hashes": {
+      "spec.md": "b06bb1f470a76a7af3f331b5ff5cb69325dbd7a7fe2d0ebfa26b98f1f80b4fc5",
+      "plan.md": "892f96f39a7eca301238247ef2b7371dbc4401d2b7c4596bbd332e92d5b6a283",
+      "tasks.md": "cac8664310f3ae11979ddf7a570a8d20e3636115f71035790275f6ce1727a77b",
+      "checklist.md": "7f4a4aae7fff936602a81c4eb17a2c968540b58715d62a84fc4b1acff4fd6af7",
+      "implementation-summary.md": "9790ddb942e2fa32b6224dae9b89763fffd2afd711f8dbd8e5e11a498f317eb2",
+      "resource-map.md": "0049cf43d82b37b44ac2932fc78d216a53f169f65919343d05e00a6341d0a889"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

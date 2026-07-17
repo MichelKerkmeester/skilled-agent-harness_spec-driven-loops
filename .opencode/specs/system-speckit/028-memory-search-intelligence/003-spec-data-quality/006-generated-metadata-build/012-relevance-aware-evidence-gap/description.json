@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/012-relevance-aware-evidence-gap",
+  "description": "The 043 benchmark proved the Z-score evidence-gap detector measures peakedness, not relevance",
+  "keywords": [
+    "benchmark",
+    "proved",
+    "z-score",
+    "evidence-gap",
+    "detector",
+    "measures",
+    "peakedness",
+    "relevance"
+  ],
+  "lastUpdated": "2026-07-17T17:01:46.522Z",
+  "specId": "012",
+  "folderSlug": "relevance-aware-evidence-gap",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-spec-data-quality",
+    "006-generated-metadata-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

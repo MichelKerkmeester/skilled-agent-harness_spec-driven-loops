@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
+  "description": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code",
+  "keywords": [
+    "packets",
+    "retention-sweep",
+    "half-auto",
+    "advisor",
+    "hook",
+    "freshness",
+    "matrix-runner",
+    "code"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.400Z",
+  "specId": "001",
+  "folderSlug": "sk-code-opencode-standards-audit",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "004-followup-post-program",
+    "003-post-program-quality-pass"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "29-04-26_19-38__resource-map-authored-and-memory-finalization.md"
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "local-llm legacy remediation",
+      "022 remediation",
+      "post-021 fixes",
+      "014/017 narrative correction",
+      "022 remediation plan",
+      "local-llm legacy remediation plan",
+      "022 tasks",
+      "local-llm legacy remediation tasks",
+      "022 checklist",
+      "022 substrate repair complete",
+      "post-014 ephemeral governance trigger root cause",
+      "E081 classified codes shipped"
+    ],
+    "key_topics": [
+      "local-llm",
+      "legacy",
+      "remediation",
+      "post-021",
+      "narrative",
+      "correction",
+      "plan",
+      "tasks",
+      "checklist",
+      "substrate",
+      "repair",
+      "complete"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
+      ".codex/config.toml",
+      ".claude/mcp.json",
+      "spec.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/skills/system-spec-kit/shared/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+      "shared/embeddings/profile.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
+      ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js"
+    ],
+    "entities": [
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "recovery-hints.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "response-builder.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedding_resilience.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
+        "source": "derived"
+      },
+      {
+        "name": "environment_variables.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-embeddings-behavioral.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
+        "source": "derived"
+      },
+      {
+        "name": "test-embeddings-factory.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
+        "source": "derived"
+      },
+      {
+        "name": "memory-pipeline-regressions.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual-playbook-fixture.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-utils.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Is Voyage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Sibling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Representative File Paths",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31)",
+    "created_at": "2026-05-13T14:30:00Z",
+    "last_save_at": "2026-07-17T17:19:19.140Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T11:00:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4ce706d6b464e3049d0474015b5a78c8e24a56449071f570ccc4a48a3ee6c294",
+    "source_doc_hashes": {
+      "spec.md": "f5930735428f3e639a25c04949a0218ccece7ac1a6c241f66976aebb889103ad",
+      "plan.md": "7490f903b2af859122958f6e538fb9caa925a73d917e03411582cdbab2642be5",
+      "tasks.md": "f926c119368040077553692fbe59c76217dffa484e80ba101a7298d19049d463",
+      "checklist.md": "f583645ea9b00e2854ded45a40d179d1d705da627747bf12dbba75f473508a3e",
+      "implementation-summary.md": "6c9b3c39a1b8029f3c978526b09e0caa622c86697b4273812c8a28cb8d57072a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

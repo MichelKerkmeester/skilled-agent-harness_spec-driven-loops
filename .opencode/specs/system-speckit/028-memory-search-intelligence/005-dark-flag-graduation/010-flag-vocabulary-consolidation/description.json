@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/010-flag-vocabulary-consolidation",
+  "description": "`.opencode/skills/system-spec-kit/mcpserver/lib/config/capability-flags.ts` and a set of consuming modules each hand-roll their own",
+  "keywords": [
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "mcpserver",
+    "lib",
+    "config",
+    "capability-flags",
+    "set",
+    "consuming",
+    "modules",
+    "hand-roll",
+    "own"
+  ],
+  "lastUpdated": "2026-07-17T17:01:46.794Z",
+  "specId": "010",
+  "folderSlug": "flag-vocabulary-consolidation",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "005-dark-flag-graduation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

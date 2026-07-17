@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "002-codesight research spec",
+      "002-codesight phase spec",
+      "codesight adopt adapt reject",
+      "codesight ast detector research",
+      "002-codesight research plan",
+      "002-codesight execution plan",
+      "deep-research loop codesight",
+      "002-codesight research tasks",
+      "002-codesight task list",
+      "codesight deep-research tasks",
+      "002-codesight checklist",
+      "002-codesight verification"
+    ],
+    "key_topics": [
+      "002-codesight",
+      "research",
+      "spec",
+      "phase",
+      "codesight",
+      "adopt",
+      "adapt",
+      "reject",
+      "ast",
+      "detector",
+      "plan",
+      "execution"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "scratch/phase-research-prompt.md",
+      "decision-record.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-research-prompt.md",
+        "kind": "doc",
+        "path": "scratch/phase-research-prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Original Charter",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "First Continuation Charter",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`CodeEnvironment/Public` already has CocoIndex semantic search, Code Graph MCP for structural queries, and Spec Kit Memory for context preservation, but it lacks Codesight-style automated `CLAUDE.md` / `.cursorrules` / `codex.md` / `AGENTS.md` generation from a single project scan, per-AI-tool profile generation, and a blast-radius command built around reverse-import BFS",
+    "created_at": "2026-04-12T09:02:53.446Z",
+    "last_save_at": "2026-07-17T17:19:15.674Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cb99f93d43e0003cc57657c0f8cd7cbcd54555d46b5d1730463f247fae6e9d5e",
+    "source_doc_hashes": {
+      "spec.md": "5d567772d9a13f1984cbbd25f7e76e5ec446c1e92e20b86ebdf16d26cbbe3c9d",
+      "plan.md": "83d2df107fd7a88fc5228fc9d99915b256cbe28a209b4facf4c5493f9999370d",
+      "tasks.md": "73e43899ca575f88bedadfc0062989f716c3e71571eba202046e5dd4c6cead55",
+      "checklist.md": "5c91963d323c019406a2afdbeeb9c026b1158c95b4f6fa4ba1d9d747e54286c6",
+      "decision-record.md": "6462175b22d1a3e3b09a7c97077c52a692618e178ca6b9ffe0a04bc5fc3c1d30",
+      "implementation-summary.md": "122bd8f88cb0b53dcdda13fba36bb79e47faffa80229811313bb918d0acab027"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

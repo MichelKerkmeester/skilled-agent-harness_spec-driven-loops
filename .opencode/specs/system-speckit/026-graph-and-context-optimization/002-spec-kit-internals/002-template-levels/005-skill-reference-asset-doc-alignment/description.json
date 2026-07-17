@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment",
+  "description": "Earlier rounds cleaned `.opencode/agents/`, `.opencode/commands/speckit/`, `AGENTS.md`, `CLAUDE.md`, and three top-level READMEs",
+  "keywords": [
+    "earlier",
+    "rounds",
+    "cleaned",
+    "opencode",
+    "agents",
+    "commands",
+    "speckit",
+    "claude",
+    "three",
+    "top-level",
+    "readmes"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.238Z",
+  "specId": "005",
+  "folderSlug": "skill-reference-asset-doc-alignment",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-template-levels"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

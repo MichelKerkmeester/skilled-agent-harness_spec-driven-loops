@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "copilot hook parity",
+      "copilot cli hooks",
+      "copilot startup context",
+      "copilot advisor brief",
+      "026/009/004",
+      "026/009/004 plan",
+      "copilot hook parity plan",
+      "026/009/004 tasks",
+      "copilot hook parity tasks",
+      "026/009/004 checklist",
+      "copilot hook parity checklist",
+      "026/009/004 adr"
+    ],
+    "key_topics": [
+      "copilot",
+      "hook",
+      "parity",
+      "cli",
+      "hooks",
+      "startup",
+      "context",
+      "advisor",
+      "brief",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+      ".github/hooks/scripts/user-prompt-submitted.sh",
+      "tests/copilot-user-prompt-submit-hook.vitest.ts",
+      "hooks/claude/user-prompt-submit.ts",
+      "implementation-summary.md",
+      "decision-record.md",
+      ".github/hooks/scripts/session-start.sh",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submitted.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/user-prompt-submitted.sh",
+        "source": "derived"
+      },
+      {
+        "name": "copilot-user-prompt-submit-hook.vitest.ts",
+        "kind": "test",
+        "path": "tests/copilot-user-prompt-submit-hook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/session-start.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Parity Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Under Copilot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Copilot",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two distinct runtime behaviors diverge across CLIs:",
+    "created_at": "2026-04-22T06:13:42.052Z",
+    "last_save_at": "2026-07-17T17:19:32.460Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:733d8a92aac8e62d5118862875f794392961744ac0484ebacdfa5b47c522e00d",
+    "source_doc_hashes": {
+      "spec.md": "c183410804ea1904d89425d83cbb231a014fa187bc208ded4ead94a0bff2333e",
+      "plan.md": "147fb651cdd5b869aed4b7ee70314e0367002a65bf675b0892a1886f69e59cfc",
+      "tasks.md": "2134ed2a3d915ced0beab57caa6aa77b9df4da229f7419d81a4da269e2fedf5a",
+      "checklist.md": "f10ec4b29e6035956a3adbc629c995fdf205d4bc55f9059525255b0111b090b2",
+      "decision-record.md": "8e6551b37211108dcf9769ee1b0a38760536fb3dde3a8ac4811b545d0fb83f12",
+      "implementation-summary.md": "aa8ec699d202d730fccaa70f53e2077c2e35f5d5991791d7dc7a209519220154"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "daemon reliability follow-ups",
+      "orphan-sweep launchagent template",
+      "re-election integration test",
+      "cli sessionId scoping",
+      "daemon reliability follow-ups plan",
+      "re-election integration test plan",
+      "daemon reliability follow-ups tasks",
+      "daemon reliability follow-ups checklist",
+      "daemon reliability follow-ups done"
+    ],
+    "key_topics": [
+      "daemon",
+      "reliability",
+      "follow-ups",
+      "orphan-sweep",
+      "launchagent",
+      "template",
+      "re-election",
+      "integration",
+      "test",
+      "cli",
+      "sessionid",
+      "scoping"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-release-integration.vitest.ts",
+      ".opencode/skills/system-spec-kit/references/cli/memory_handback.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "com.michelkerkmeester.orphan-sweep.plist",
+        "kind": "file",
+        "path": ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-reelection-release-integration.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-release-integration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory_handback.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/cli/memory_handback.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Hermetic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The anti-disconnection investigation left four follow-ups",
+    "created_at": "2026-06-07T19:23:50Z",
+    "last_save_at": "2026-07-17T17:19:35.279Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:707f6671cc79f0692669e24e6a07a69bbaaebbe664569383c1adbdc6dbd1d13f",
+    "source_doc_hashes": {
+      "spec.md": "55262c3e4ba6640746cec5d44297e7a359578ae300eaaebe2348729612ae863f",
+      "plan.md": "c9266d9388a9cf26b91362c217f1edaeb1d8e0b57013a53d58a181741d8ebe1b",
+      "tasks.md": "1bd852b6593d4620e679568605f43a6f99d2237e7dd2bf639dd41a746d3cfac5",
+      "checklist.md": "3555250dcb1ca66d33e38e720baf4f6cc2ed712da3f977a406a85269af063208",
+      "implementation-summary.md": "56c67e83f086eae78a8a603fb81f159715879a7d3e018881ba23cd4c28609796"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/009-validation-hardening-fixes",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/009-validation-hardening-fixes",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validation hardening tooling fixes",
+      "evidence substance checker loophole",
+      "status classifier implemented blind spot",
+      "duplicated status enum drift",
+      "freshness sweep first run regression",
+      "validation hardening fixes plan",
+      "evidence substance checker fix plan",
+      "status classifier implemented plan",
+      "freshness sweep baseline fix plan",
+      "validation hardening fixes tasks",
+      "evidence substance checker tasks",
+      "status classifier tasks"
+    ],
+    "key_topics": [
+      "validation",
+      "hardening",
+      "tooling",
+      "evidence",
+      "substance",
+      "checker",
+      "loophole",
+      "status",
+      "classifier",
+      "implemented",
+      "blind",
+      "spot"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/status-classifier.sh",
+      ".opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
+      "scripts/tsconfig.json",
+      "mcp_server/lib/graph/graph-metadata-parser.ts",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "scripts/rules/check-evidence.sh",
+      "scripts/lib/status-classifier.sh",
+      "scripts/sweep/strict-pass-freshness.ts",
+      ".github/workflows/strict-pass-freshness-sweep.yml"
+    ],
+    "entities": [
+      {
+        "name": "check-evidence.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+        "source": "derived"
+      },
+      {
+        "name": "status-classifier.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/status-classifier.sh",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validation-gate-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": "scripts/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness-sweep.yml",
+        "kind": "config",
+        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hardening Tooling Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Substance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Classifier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Freshness Baseline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "F6 — the evidence \"substance\" checker has two live defects, a false-negative loophole and a false-positive regression, both in `evidenceitemhassubstance()` (`check-evidence.sh:30-68`)",
+    "created_at": "2026-07-09T15:10:28.777Z",
+    "last_save_at": "2026-07-17T17:19:53.132Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8983bc86ecefa0cb22292216c3f922c7cb2bf7d7ecbcfd1710ebe0cc33976415",
+    "source_doc_hashes": {
+      "spec.md": "5105df2b7ed1459ef644939d00f26799f978d0bf3fded40ddb557c1b41f9cb40",
+      "plan.md": "44e30f7b5c876dfa429e55b4308fea23a5ad4aea50a517fa3f14d65903ef8940",
+      "tasks.md": "d81157a22f56ffbae60be2acc019aaa5faea5d42d7a871d75e1c8cebf95d79ef",
+      "implementation-summary.md": "2bb5b10954d95914ff1a0dd811da3ba6f911a59c1a58f97f03176d6b94d429ff"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

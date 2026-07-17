@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/034-scoped-backfill-boundary",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/034-scoped-backfill-boundary",
+  "parent_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scoped backfill boundary",
+      "backfill spec folder positional",
+      "collection matches writer rules",
+      "authoritative z exclusion helper",
+      "descriptions json z guard"
+    ],
+    "key_topics": [
+      "scoped",
+      "backfill",
+      "boundary",
+      "spec",
+      "folder",
+      "positional",
+      "collection",
+      "matches",
+      "writer",
+      "rules",
+      "authoritative",
+      "exclusion"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
+      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/scoped-backfill-boundary.vitest.ts",
+      "api/index.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scoped-backfill-boundary.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/scoped-backfill-boundary.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Backfill Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exclusion Unification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit generators that produce `graph-metadata.json` and `description.json` over-reach and churn, and the 031 research traced three residual defects in the backfill and exclusion paths",
+    "created_at": "2026-06-27T17:15:41.714Z",
+    "last_save_at": "2026-07-09T10:02:56.477Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:150e90a5139954371b483ad6c519a811d7bfee21d580c1ab17107816d0c34c4f",
+    "source_doc_hashes": {
+      "spec.md": "5fc7c70eaf31fa596a1ba6c8801a362d81daa8355b022ba7b71a5ad0434205e1",
+      "plan.md": "c94b48ee3915063dcb7b9ead207264f0e577955b17063e37ff96b51733d49fd8",
+      "tasks.md": "dd22e7351b7b9304890a35ff6a5c9dee2b2c6428b0f0254e287f891ff2cfc7dc",
+      "checklist.md": "8f67f0538fbf22e47b04e30a23f0aefaab6221046fbe21cb5d5cbd472365e5de",
+      "implementation-summary.md": "9d9166f81f1a864c306330b9a460c79b3f804900552ea7cb1248ebd5c209324f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

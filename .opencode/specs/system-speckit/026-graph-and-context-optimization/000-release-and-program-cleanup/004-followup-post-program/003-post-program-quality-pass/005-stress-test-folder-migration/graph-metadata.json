@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/005-stress-test-folder-migration",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/005-stress-test-folder-migration",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "037-005-stress-test-folder-migration",
+      "stress test folder",
+      "dedicated stress folder",
+      "mcp_server/stress_test",
+      "037/005-stress-test-folder-migration resource map",
+      "stress test folder migration file ledger"
+    ],
+    "key_topics": [
+      "037-005-stress-test-folder-migration",
+      "stress",
+      "test",
+      "folder",
+      "dedicated",
+      "005-stress-test-folder-migration",
+      "resource",
+      "map",
+      "migration",
+      "file",
+      "ledger",
+      "stress-test"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
+      "mcp_server/vitest.config.ts",
+      "mcp_server/package.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/prompts/iteration-001.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/README.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-manager-stress.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stress Test Folder Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Stress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Opt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Stress-test coverage for the MCP server lived inside `mcpserver/tests/`, making it harder to distinguish explicit stress, load, and matrix-cell validation from the default unit and integration suite",
+    "created_at": "2026-04-29T15:55:02.000Z",
+    "last_save_at": "2026-07-17T17:19:11.051Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:0278687297c3bc057fa491cc7c53e996e5f0147ba5f69029a6e65092a0c7f680",
+    "source_doc_hashes": {
+      "spec.md": "2ecd8c2a866c4e411fa404d61c11fadd22ec37a67cabe774c6c8b76af6d3278e",
+      "plan.md": "5d8099787526fd6450a2f87fe536cafe4d2498fbcc41121593cf396d83b0a969",
+      "tasks.md": "4c7fd5fcfda73d0b681676deab427a75390840bfd0dc6825dc6769c9fb03c45b",
+      "checklist.md": "11611765ef398d2e11dc51d1cf78f3a1842a9e3ef6210baedb96f1ac0d447f8a",
+      "implementation-summary.md": "043049bb8c999930224646ae1415f2c782eb29f71557da88e605c276cae10af6",
+      "resource-map.md": "0c8bd7ddbc46bc7fae562850975c6e19ef3133b24f1b6a083979fc2bde6f0e39"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/019-mem0-ranking-tweaks",
+  "description": "The 028 campaign's external-memory-systems child (`007-memory-systems`, 22 iterations across Mem0 / Graphiti / Letta / Cognee) surfaced a bundle of",
+  "keywords": [
+    "campaign",
+    "external-memory-systems",
+    "child",
+    "007-memory-systems",
+    "iterations",
+    "across",
+    "mem0",
+    "graphiti",
+    "letta",
+    "cognee",
+    "surfaced",
+    "bundle"
+  ],
+  "lastUpdated": "2026-07-17T17:01:46.719Z",
+  "specId": "019",
+  "folderSlug": "mem0-ranking-tweaks",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

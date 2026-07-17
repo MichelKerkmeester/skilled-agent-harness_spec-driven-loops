@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory index scan ux hardening",
+      "memory_index_scan async scan job design",
+      "memory index self-healing orphan reconciliation",
+      "012 memory index scan research packet",
+      "memory index scan ux hardening plan",
+      "012 deep research plan",
+      "memory index scan ux hardening tasks",
+      "012 deep research tasks",
+      "memory index scan ux hardening outcome",
+      "memory_index_scan async scan job recommendation",
+      "012 deep research summary",
+      "memory index scan ux hardening research"
+    ],
+    "key_topics": [
+      "memory",
+      "index",
+      "scan",
+      "hardening",
+      "async",
+      "job",
+      "design",
+      "self-healing",
+      "orphan",
+      "reconciliation",
+      "research",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "research/resource-map.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "shared/config.ts",
+      "research/deltas/iter-001.jsonl",
+      "mcp_server/handlers/memory-index.ts",
+      "core/db-state.ts",
+      "core/config.ts",
+      "lib/embedders/reindex.ts",
+      "lib/embedders/execution-router.ts",
+      "handlers/embedder-status.ts",
+      "handlers/save/embedding-pipeline.ts",
+      "handlers/save/create-record.ts",
+      "lib/search/vector-index-mutations.ts",
+      "lib/providers/retry-manager.ts"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "shared/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-state.ts",
+        "kind": "code",
+        "path": "core/db-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": "lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-status.ts",
+        "kind": "code",
+        "path": "handlers/embedder-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-pipeline.ts",
+        "kind": "code",
+        "path": "handlers/save/embedding-pipeline.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-record.ts",
+        "kind": "code",
+        "path": "handlers/save/create-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-mutations.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-mutations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Design Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
+    "created_at": "2026-05-31T14:05:03.746Z",
+    "last_save_at": "2026-07-17T17:19:30.881Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:0eb848f4aaf7109d8144c5745b338439db081677676e822a3388c11db7647f8d",
+    "source_doc_hashes": {
+      "spec.md": "3dfa53885d9109d2ebe21c7a462236e1e4068b5e90cdf64cc052f3b38e843cfb",
+      "plan.md": "97aae8a19f20102fbdae9addd24780ecf8b52e7b645f825ab26cb40f3182cde8",
+      "tasks.md": "8dc82810ce4317c3777ca9f56f5ad0ab0621d7aa02a96648a5ecac00ed9311fe",
+      "implementation-summary.md": "2620145f9b058d5ff75ff026ad95a64d078df45cb162858d0f602855cdd76e43",
+      "research/research.md": "7822a2f29bcb56d3c1a4b82215f0da88a2f3505aea548b75c6a0108899c9c343"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

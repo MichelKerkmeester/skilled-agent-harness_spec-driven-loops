@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts",
+  "description": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only",
+  "keywords": [
+    "session-lifecycle",
+    "shell",
+    "scripts",
+    "opencode",
+    "written",
+    "claude",
+    "code",
+    "only"
+  ],
+  "lastUpdated": "2026-07-17T17:01:49.036Z",
+  "specId": "004",
+  "folderSlug": "runtime-agnostic-session-lifecycle-scripts",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

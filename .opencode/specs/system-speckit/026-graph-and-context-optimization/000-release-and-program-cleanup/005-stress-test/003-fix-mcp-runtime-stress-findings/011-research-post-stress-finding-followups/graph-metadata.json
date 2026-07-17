@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "011-research-post-stress-finding-followups",
+      "v1.0.2 follow-up research",
+      "post-stress follow-up research",
+      "010 deep-research follow-up",
+      "v1.0.2 P0 P1 P2 research",
+      "intelligence system seam research",
+      "post-stress follow-up plan",
+      "v1.0.2 follow-up research plan",
+      "post-stress follow-up tasks",
+      "v1.0.2 follow-up tasks",
+      "post-stress follow-up checklist",
+      "v1.0.2 follow-up checklist"
+    ],
+    "key_topics": [
+      "011-research-post-stress-finding-followups",
+      "follow-up",
+      "research",
+      "post-stress",
+      "deep-research",
+      "intelligence",
+      "system",
+      "seam",
+      "plan",
+      "tasks",
+      "checklist",
+      "stress-test"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "research/research.md",
+      "mcp_server/lib/ops/file-watcher.ts",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/prompts/iteration-001.md",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/tests/file-watcher.vitest.ts",
+      "mcp_server/lib/search/hybrid-search.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "file-watcher.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/ops/file-watcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "file-watcher.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/file-watcher.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stress Follow",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Up Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v1.0.2 stress-test rerun closed with four follow-ups tagged in `../010-stress-test-close-loop-measurement-rerun/findings.md` Recommendations §1-5 — three concrete P0/P1/P2 bugs and one telemetry-leverage opportunity",
+    "created_at": "2026-04-27T18:45:00Z",
+    "last_save_at": "2026-07-17T17:19:11.957Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:bb8da3c157e620debcdec859f2e8e07fc898a9daf9629864dc4bc0bdad17a010",
+    "source_doc_hashes": {
+      "spec.md": "2267ef2301cf57a89e2bd9ad4a1c3f0eab4dd3015093f030b893b57955e7ba1f",
+      "plan.md": "74c8541cca9283010a6a06ff5825789e76e636558c77e9e24ada5e3e8e6eb078",
+      "tasks.md": "99eb1d18fabf26a2233f594242a9812ec85557e804aadadd8bf8a272be752e26",
+      "checklist.md": "c764fcafed3e75f22ea12f2b16456400f380c660bede3f6eda2d0e415078ed11",
+      "implementation-summary.md": "b75724c25b3521ce494ccfc3aaa10f291d97d362607254c0d1cb6382d1cafe4a",
+      "research/research.md": "3eea0c275ca3e577ce5a06e5e0b6fdf3f7f22612a72ee48ead82fba1e9357195"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

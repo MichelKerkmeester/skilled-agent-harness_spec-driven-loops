@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 autonomous dependency patching",
+      "npm audit fix",
+      "dependency security patch",
+      "lockfile vulnerability remediation",
+      "hono security fix",
+      "autonomous audit",
+      "028 autonomous dependency patching plan",
+      "npm audit remediation plan",
+      "028 autonomous dependency patching tasks",
+      "npm audit remediation tasks",
+      "028 autonomous dependency patching summary",
+      "npm audit remediation evidence"
+    ],
+    "key_topics": [
+      "autonomous",
+      "dependency",
+      "patching",
+      "npm",
+      "audit",
+      "security",
+      "patch",
+      "lockfile",
+      "vulnerability",
+      "remediation",
+      "hono",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/audit-and-fix.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-and-fix.sh",
+        "kind": "script",
+        "path": "scripts/audit-and-fix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Autonomous Dependency Patching",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Hono",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Hono",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "GitHub and npm security advisories can flag stale transitive dependencies in skill package lockfiles even when package ranges permit patched versions",
+    "created_at": "2026-06-11T06:30:00Z",
+    "last_save_at": "2026-07-17T17:19:44.536Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7e3843ef6742499c010010c8f406902b8b4f57d94a42cf32c5bd4347b95ed04b",
+    "source_doc_hashes": {
+      "spec.md": "770f133005095028d7d2bb2d7b4b7397ac79f755b2a7f1ea8282df7f9c073f8f",
+      "plan.md": "b2993d464bd752f3785cb39b6a5b15e72c9afb8c35c949e47a45e146bce56e48",
+      "tasks.md": "ec298f0d7a3a2877e0e2db960817aba32697d07350f2976298f56073f8b3d4a5",
+      "implementation-summary.md": "ec826ef8d6bfe23ebbe1a342aa58d0c5035b98d916f031d97b6a5dc32ab56248"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

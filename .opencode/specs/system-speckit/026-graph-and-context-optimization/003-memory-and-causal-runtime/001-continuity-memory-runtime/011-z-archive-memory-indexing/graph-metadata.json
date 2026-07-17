@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/003/011 spec",
+      "z_archive indexing",
+      "memory exclusion fix",
+      "026/003/011 plan",
+      "026/003/011 tasks",
+      "026/003/011 summary",
+      "026/003/011 research",
+      "z_archive propagation audit"
+    ],
+    "key_topics": [
+      "spec",
+      "indexing",
+      "memory",
+      "exclusion",
+      "plan",
+      "tasks",
+      "summary",
+      "research",
+      "propagation",
+      "audit",
+      "un-exclude",
+      "index"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+      "lib/utils/index-scope.ts",
+      "mcp_server/lib/utils/README.md",
+      "shared/scoring/folder-scoring.ts",
+      "lib/utils/README.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      ".opencode/commands/memory/manage.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/README.md",
+      ".opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/lib/utils/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder-scoring.ts",
+        "kind": "code",
+        "path": "shared/scoring/folder-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "manage.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/manage.md",
+        "source": "derived"
+      },
+      {
+        "name": "cleanup-index-scope-violations.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "multiplier",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stats",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Scan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Un-exclude z_archive from memory index. ARCHIVE_MULTIPLIERS already penalizes z_archive content with multiplier 0.1 in scoring; the redundant EXCLUDED_FOR_MEMORY block contradicts that decay design by removing archived content from the index entirely.",
+    "created_at": "2026-05-16T13:35:00Z",
+    "last_save_at": "2026-07-17T17:19:17.564Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:c86105b02126526535cafff96aa687ca3f900d27a3946a78f4a8edad46532b96",
+    "source_doc_hashes": {
+      "spec.md": "00f529b3f4da76d5e8cd75731232c833d99f1596f1eee5990ba6b45a040e7db6",
+      "plan.md": "6538eeccea18ce1b90008478e8182bd69e7d5228327c405414d30bf43aa58f62",
+      "tasks.md": "7f042ed52e75e7a303e7bd80fb2af3276d6b3214104e031e8a8c9265f883b1d0",
+      "implementation-summary.md": "a23c8ecdc6af03b9671e7ee59d7db53eb6ba08db9c91fed95194df08da86dad3",
+      "research/research.md": "38111184826104ba4941fed45ad757874c131bbc12f0835dcc2179d18bcd691f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

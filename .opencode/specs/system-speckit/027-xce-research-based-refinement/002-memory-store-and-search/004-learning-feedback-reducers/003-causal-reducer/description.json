@@ -1,0 +1,50 @@
+{
+  "title": "003 Causal Reducer — Session Trace Edges",
+  "trigger_phrases": [
+    "009 causal reducer",
+    "003 causal reducer",
+    "session-trace-causal-reducer.ts",
+    "auto-session edges"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P0",
+  "createdAt": "2026-05-12T07:20:00.000Z",
+  "branch": "main",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator"
+    ]
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer",
+  "description": "Level 2 child packet for deferred session-trace causal edge inference.",
+  "keywords": [
+    "level",
+    "child",
+    "packet",
+    "deferred",
+    "session-trace",
+    "causal",
+    "edge",
+    "inference"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.751Z",
+  "specId": "003",
+  "folderSlug": "causal-reducer",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "004-learning-feedback-reducers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

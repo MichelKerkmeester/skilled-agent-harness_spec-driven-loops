@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli list-tools compact names-only",
+      "cli shell completion generation",
+      "machine friendly cli json",
+      "cli automation manifests",
+      "005-cli-automation-compact-completion plan",
+      "005-cli-automation-compact-completion tasks",
+      "005-cli-automation-compact-completion summary"
+    ],
+    "key_topics": [
+      "cli",
+      "list-tools",
+      "compact",
+      "names-only",
+      "shell",
+      "completion",
+      "generation",
+      "machine",
+      "friendly",
+      "json",
+      "automation",
+      "manifests"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/lib/storage/canonical-fingerprint.ts",
+      "scripts/deploy-mcp.sh",
+      "mcp_server/spec-memory-cli.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "canonical-fingerprint.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/canonical-fingerprint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deploy-mcp.sh",
+        "kind": "script",
+        "path": "scripts/deploy-mcp.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli.ts",
+        "kind": "code",
+        "path": "mcp_server/spec-memory-cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compact Output",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shell Completion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `list-tools --format json` output includes the full `inputSchema` for every tool, so machine scripts must parse large payloads to get tool names: spec (`spec-memory-cli.ts:463-481`; the spec-memory JSON was over 75KB in the assessment run), code (`code-index-cli.ts:542-562`), advisor (`skill-advisor-cli.ts:705-725`)",
+    "created_at": "2026-06-10T20:46:28.787Z",
+    "last_save_at": "2026-07-17T17:19:44.224Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9973db55de90e9ae5149a24077040db45d41bb84a0cd6900ed4299f653de58bd",
+    "source_doc_hashes": {
+      "spec.md": "3615cee92c4a12262e33d8a6ab11e487a00a353ed09daa069ebdb2e60ce0f60b",
+      "plan.md": "f1f21eb261789c58cb8323eb8c06dbccbc0d8290ebb166317d03a6ff0a981429",
+      "tasks.md": "11a94515bebdb7fbe19672be7aa19129d8570e2374c4a5aa7c45239416e932ea",
+      "implementation-summary.md": "b004e135c47b805425969d6eec84e22a5722236a9f9b31baa650c3a474674aad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

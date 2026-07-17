@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "wedged but loading detection",
+      "inference liveness health fields",
+      "crash-loop cooldown ENOSPC resilient writes",
+      "server liveness supervision plan",
+      "wedged loading cooldown implementation plan",
+      "server liveness supervision tasks",
+      "server liveness supervision implementation summary"
+    ],
+    "key_topics": [
+      "wedged",
+      "loading",
+      "detection",
+      "inference",
+      "liveness",
+      "health",
+      "fields",
+      "crash-loop",
+      "cooldown",
+      "enospc",
+      "resilient",
+      "writes"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/hf-model-server.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "mcp_server/tests/embedders/hf-model-server.vitest.ts",
+      "mcp_server/tests/embedders/launcher-model-server-cross-launcher.vitest.ts",
+      "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/hf-model-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-model-server-cross-launcher.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/launcher-model-server-cross-launcher.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge-probe.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Silent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Health",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The supervision layer cannot tell a healthy server from a wedged one",
+    "created_at": "2026-05-29T11:22:57.376Z",
+    "last_save_at": "2026-07-17T17:19:30.269Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3e8ac4ca096dc0fbf42809447c82d06bde8737bb63276dbf8cf6c4d837956e17",
+    "source_doc_hashes": {
+      "spec.md": "5f7b7c238916bf9956a8f3a0335368157450c5768b9f6ced8a973e5a7f809642",
+      "plan.md": "f2a836a00dbb6335bf9a5c01d27e06000c7888711ab986563a1d69ff6c938b10",
+      "tasks.md": "897de9ecb53da9677d8f908d31d9da95ff95467c73a91972a097d5aa2bf122e3",
+      "implementation-summary.md": "5612dcfb9d12fc75afd6695959848db9be46fd089b7caf841a0f6ca9a2c9c5f7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

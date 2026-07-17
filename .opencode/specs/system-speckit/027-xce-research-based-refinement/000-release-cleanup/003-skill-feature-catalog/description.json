@@ -1,0 +1,44 @@
+{
+  "title": "Skill Feature Catalog",
+  "trigger_phrases": [
+    "skill",
+    "feature",
+    "catalog",
+    "add",
+    "one"
+  ],
+  "level": 1,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+  "status": "complete",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "importance_tier": "important",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+  "description": "Add one featurecatalog entry per new 027 feature, bump hand-maintained count self-checks, and keep SOURCE-FILES paths grep-traceable",
+  "keywords": [
+    "one",
+    "featurecatalog",
+    "entry",
+    "per",
+    "new",
+    "feature",
+    "bump",
+    "hand-maintained",
+    "count",
+    "self-checks",
+    "keep",
+    "source-files",
+    "paths",
+    "grep-traceable"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.442Z",
+  "specId": "003",
+  "folderSlug": "skill-feature-catalog",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

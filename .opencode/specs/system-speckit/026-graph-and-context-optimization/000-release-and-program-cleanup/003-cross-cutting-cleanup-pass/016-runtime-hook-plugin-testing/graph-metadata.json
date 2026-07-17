@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016-runtime-hook-plugin-testing",
+      "runtime hook tests",
+      "per-runtime hook validation",
+      "cli skill hook tests",
+      "hook live testing",
+      "resource map",
+      "016-runtime-hook-plugin-testing resource map",
+      "path catalog 016-runtime-hook-plugin-testing"
+    ],
+    "key_topics": [
+      "016-runtime-hook-plugin-testing",
+      "runtime",
+      "hook",
+      "tests",
+      "per-runtime",
+      "validation",
+      "cli",
+      "skill",
+      "live",
+      "testing",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "runners/common.ts",
+      "runners/run-all-runtime-hooks.ts",
+      "runners/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "runners/test-claude-hooks.ts",
+      "runners/test-codex-hooks.ts",
+      "runners/test-copilot-hooks.ts",
+      "runners/test-gemini-hooks.ts",
+      "runners/test-opencode-plugins.ts",
+      "results/gemini-before-agent-additional-context.jsonl",
+      "results/copilot-user-prompt-submitted-next-prompt.jsonl",
+      "research/prompts/iteration-001.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "common.ts",
+        "kind": "code",
+        "path": "runners/common.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-runtime-hooks.ts",
+        "kind": "code",
+        "path": "runners/run-all-runtime-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runners/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-claude-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-claude-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-codex-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-codex-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-copilot-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-copilot-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-gemini-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-gemini-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-opencode-plugins.ts",
+        "kind": "code",
+        "path": "runners/test-opencode-plugins.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gemini-before-agent-additional-context.jsonl",
+        "kind": "file",
+        "path": "results/gemini-before-agent-additional-context.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "copilot-user-prompt-submitted-next-prompt.jsonl",
+        "kind": "file",
+        "path": "results/copilot-user-prompt-submitted-next-prompt.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Plugin Per Runtime Testing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hook contract docs and adapter scaffolding describe how Claude Code, Codex CLI, GitHub Copilot CLI, Gemini CLI, and OpenCode should receive Spec Kit prompt and lifecycle context",
+    "created_at": "2026-04-29T19:12:00.000Z",
+    "last_save_at": "2026-07-17T17:19:09.807Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:bf1d6635a25d1d929972247cadb1ba9e17e62635bee71a4dd2bdb87897d72abc",
+    "source_doc_hashes": {
+      "spec.md": "c28086b6706bf5eb8882cdb75241d34e43821af069fd4879f8a644c603076c20",
+      "plan.md": "5e6bd4b13cbaebbf3b732aa5fe63066d9bd8c2c70ce5ac5602566ad7fa99e13a",
+      "tasks.md": "e6c28ff5ce1eb8b20e21e963a22c5590c8ca144d2fc01d58e8121cbe5fe341a7",
+      "checklist.md": "7fbbc04bec552d12baecc4c8019d91d6974823b01b029a146d75e021a3440859",
+      "implementation-summary.md": "5c41d9cda44b76555eb134379ec388708b3618f83775f9b6ea3001802d964a69",
+      "resource-map.md": "037d1b7cd8bf0a6c50832e0d7245603f9facf247860fbf8f89fcb6fbc308836b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doc alignment phase 053",
+      "multi-ai-council frontmatter",
+      "extension guide migration frontmatter",
+      "predicates folder readme",
+      "code_graph utils folder readme",
+      "operator_runbook merge manual_testing_playbook",
+      "release cleanup phase 053",
+      "phase 053 plan",
+      "wave a wave b wave c",
+      "cli-codex dispatch plan",
+      "phase 053 tasks",
+      "wave dispatch tasks"
+    ],
+    "key_topics": [
+      "doc",
+      "alignment",
+      "phase",
+      "multi-ai-council",
+      "frontmatter",
+      "extension",
+      "guide",
+      "migration",
+      "predicates",
+      "folder",
+      "readme",
+      "utils"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "templates/manifest/EXTENSION_GUIDE.md",
+      "templates/manifest/MIGRATION.md",
+      "shared/parsing/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "resource-map.md",
+      "shared/predicates/README.md",
+      ".opencode/skills/system-spec-kit/shared/predicates/README.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/system-spec-kit/shared/parsing/README.md",
+      ".opencode/skills/system-spec-kit/templates/manifest/EXTENSION_GUIDE.md",
+      ".opencode/skills/system-spec-kit/templates/manifest/MIGRATION.md",
+      ".opencode/skills/system-spec-kit/shared/predicates/boolean-expr.ts",
+      ".opencode/skills/system-spec-kit/shared/predicates/boolean-expr.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "EXTENSION_GUIDE.md",
+        "kind": "doc",
+        "path": "templates/manifest/EXTENSION_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "MIGRATION.md",
+        "kind": "doc",
+        "path": "templates/manifest/MIGRATION.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/parsing/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "boolean-expr.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/predicates/boolean-expr.ts",
+        "source": "derived"
+      },
+      {
+        "name": "boolean-expr.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/shared/predicates/boolean-expr.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Wave",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five doc-quality drift items have accumulated under `.opencode/skills/system-spec-kit/`: (1) the `references/multi-ai-council/` directory has 6 files with inconsistent frontmatter (only 1 of 6 conforms to `skillreferencetemplate.md`); (2) two manifest maintainer docs (`templates/manifest/EXTENSIONGUIDE.md`, `MIGRATION.md`) lack reference frontmatter entirely; (3) `shared/predicates/` (560 LOC, 1 source + tests) has no folder README despite all 9 sibling directories under `shared/` having one; (4) `mcpserver/codegraph/lib/utils/` (64 LOC) has no folder README; (5) `mcpserver/skilladvisor/`",
+    "created_at": "2026-05-07T10:45:30Z",
+    "last_save_at": "2026-07-17T17:19:10.445Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:fce232661fc943d32475093d6c8cb257e80cdd5d121348cfd869279a5ea49acd",
+    "source_doc_hashes": {
+      "spec.md": "262b83b56e0c0b1fc6743cfb7650c7bb4f7b4f8159d4b00fb4a9419b7fdca1d4",
+      "plan.md": "4c8169642fbe2f9dd44ca9cb9f798d5ee3346690d13665fd5e2b7ccdff230290",
+      "tasks.md": "ca423244234a6eae20a587e0a316756bb5e61314516744c5542bdee0aebf24a4",
+      "checklist.md": "7aaa5e6946e0896c01fdd67832ffab4e6c7280610b9df0f9c4320702f2bfad10",
+      "decision-record.md": "ef076100bd7cf71279f3da91ec4f4ba7e70f7dc443fd7b08df83a75c095f4f67",
+      "implementation-summary.md": "3eabb77f6f5d6493253b2f287bd099755d46ed9e420b60b29b18f4a5a7495ea8",
+      "resource-map.md": "cf63d2328b3ec8104d755337a735377fcd1096664d372cf9f2f5d5c0ae550aa6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

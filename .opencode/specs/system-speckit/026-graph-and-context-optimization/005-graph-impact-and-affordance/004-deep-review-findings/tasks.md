@@ -1,0 +1,111 @@
+---
+title: "Tasks: Review Remediation (006/007)"
+description: "Themed task list — 21 P1 + 12 actionable P2 findings"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings"
+    last_updated_at: "2026-04-29T11:10:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Backfill _memory.continuity per Tier 4 sk-doc template alignment"
+    next_safe_action: "Refresh on next packet edit"
+    blockers: []
+    completion_pct: 100
+---
+# Tasks: Review Remediation (006/007)
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+## T-A — `detect_changes` MCP Wiring Decision (P1)
+
+> Tier 2 state-hygiene note (2026-04-28): rows previously marked `pending` were stale. `implementation-summary.md` records T-A through T-F as integrated; this ledger is backfilled to match that authoritative closeout.
+
+| ID | Task | Status | Notes |
+|----|------|--------|-------|
+| R-007-2 | Decide: wire `detect_changes` as MCP tool OR mark internal-only across all docs | done | Branch decision; affects T-B |
+| R-007-14 | Sync chosen path across `code_graph/tools/code-graph-tools.ts`, `tool-schemas.ts`, `schemas/tool-input-schemas.ts`, `handlers/index.ts`, 6 umbrella docs | done | After R-007-2 |
+
+## T-B — Verification Evidence Sync (P1, after T-A)
+
+| ID | Task | Status | Notes |
+|----|------|--------|-------|
+| R-007-1 | Update 001 implementation-summary status to reflect post-scrub state (no LICENSE quote needed) | done | Trivial — minutes |
+| R-007-5 | Run vitest + tsc + validate.sh for 002; capture real output in implementation-summary | done | |
+| R-007-7 | Run vitest + tsc + validate.sh for 003; capture real output | done | |
+| R-007-15 | Run sk-doc DQI scoring + validate.sh for 006; capture real output | done | |
+| R-007-19 | Update 002 checklist to remove premature PASS marks | done | |
+| R-007-20 | Update 003 checklist to remove premature PASS marks | done | |
+| R-007-21 | Update 005 checklist to remove premature PASS marks | done | |
+
+## T-C — Public API Surface Gaps (P1, parallel with T-D/E/F)
+
+| ID | Task | Status | Notes |
+|----|------|--------|-------|
+| R-007-6 | Add `minConfidence` to `tool-input-schemas.ts` strict Zod, `tool-schemas.ts` JSON, allowed-parameter ledger; extend `tool-input-schema.vitest.ts` | done | |
+| R-007-10 | Decide: expose `affordances` via advisor-recommend input schema OR document compile-time-only; sync `advisor-tool-schemas.ts` + `advisor-recommend.ts` | done | |
+
+## T-D — Sanitization Hardening (P1+P2)
+
+| ID | Task | Status | Notes |
+|----|------|--------|-------|
+| R-007-3 | Diff-parser: canonicalize each candidate path; reject anything outside `canonicalRootDir` (`code_graph/handlers/detect-changes.ts:122-152`) | done | P1 security — explicit `parse_error` reject (no silent drop) |
+| R-007-4 | Diff-parser: track expected hunk line counts so multi-file diffs don't eat the next file's headers (`code_graph/lib/diff-parser.ts:179-190`) | done | P1 correctness — `remainingOldLines` / `remainingNewLines` per side |
+| R-007-8 | Compiler: decide `conflicts_with` affordance contract (validate-or-serialize) (`skill_graph_compiler.py:834-847`) | done | P1 — VALIDATE chosen; `AFFORDANCE_REJECTED_RELATION_FIELDS` enforces |
+| R-007-9 | Affordance-normalizer: broaden prompt-injection denylist in both TS + PY (`affordance-normalizer.ts:59`, `skill_graph_compiler.py:59`) | done | P1 — broadened with stacked-modifier support; row-for-row TS/PY parity |
+| R-007-11 | Trust-badges: reject incomplete explicit `trustBadges` (or merge per-field) (`formatters/search-results.ts:235-246, 609-613`) | done | P1 — merge-per-field; `mergeTrustBadges` overlays explicit non-null on derived |
+| R-007-P2-1 | Phase runner: reject duplicate `output` keys same as duplicate names (`code_graph/lib/phase-runner.ts:87-89, 174-186`) | done | P2 — `'duplicate-output'` PhaseRunnerError kind |
+| R-007-P2-3 | Edge metadata: allowlist `reason`/`step` on read path (`code-graph-db.ts:763`, `query.ts:614-615`, `code-graph-context.ts:545`) | done | P2 — allowlist (single-line, ≤200 chars, no control chars) at all 3 read sites |
+| R-007-P2-8 | Shared adversarial fixture for TS + PY sanitizers (`tests/affordance-normalizer.test.ts:51`, `python/test_skill_advisor.py:1457`) | done | P2 — `tests/__shared__/affordance-injection-fixtures.json` (28 injection / 11 benign / 4 privacy) |
+| R-007-P2-10 | Memory: sanitize/cap explicit `extractionAge`/`lastAccessAge` strings (`formatters/search-results.ts:239-243`) | done | P2 — `ALLOWED_AGE_LABEL` regex + `MAX_AGE_LABEL_LENGTH` cap |
+| R-007-P2-11 | Memory: trace flag `{attempted, derivedCount, failureReason}` for badge derivation (`formatters/search-results.ts:271-275, 348-350`) | done | P2 — `MemoryResultTrace.trustBadgeDerivation` populated when `includeTrace` |
+
+## T-E — Test Rig Fixes (P1, parallel)
+
+| ID | Task | Status | Notes |
+|----|------|--------|-------|
+| R-007-13 | Trust-badges: rewrite mock-resolution via DI override or real-DB fixture; unskip describe block (`tests/memory/trust-badges.test.ts:77`) | done | P1 — addresses Wave-3 known follow-up |
+
+## T-F — Doc + Label Cleanup (P1+P2)
+
+| ID | Task | Status | Notes |
+|----|------|--------|-------|
+| R-007-12 | Memory_search cache: include causal-edge generation in cache key (`handlers/memory-search.ts:880-1190`, `lib/cache/tool-cache.ts:56-58`) | done | P1 — staleness fix |
+| R-007-16 | INSTALL_GUIDE: fix Python smoke-test path (after `cd .../mcp_server`, use `skill_advisor/tests/python/test_skill_advisor.py`) (`INSTALL_GUIDE.md:521`) | done | P1 |
+| R-007-17 | Tool-count canonicalization across umbrella docs (root README, system-spec-kit/README.md) | done | P1 |
+| R-007-18 | Restore or remove `FEATURE_CATALOG_IN_SIMPLE_TERMS.md` link in root README | done | P1 |
+| R-007-P2-2 | Wrap `runPhases` in try/finally so error metrics emit (`code_graph/lib/structural-indexer.ts:1407-1516`) | done | P2 |
+| R-007-P2-4 | `computeBlastRadius`: request `limit + 1` to detect true overflow (`query.ts:859, 897`) | done | P2 |
+| R-007-P2-5 | `computeBlastRadius`: multi-subject seed preservation when sibling fails (`query.ts:1048-1058`) | done | P2 |
+| R-007-P2-6 | Failure-fallback: stable `code` + warning log/metric (`query.ts:1121-1135`) | done | P2 |
+| R-007-P2-7 | Extract shared relationship-edge mapper from 4 switch branches (`query.ts:1229, 1258, 1287, 1315`) | done | P2 |
+| R-007-P2-9 | Affordance debug counters for received/accepted/dropped-unsafe/dropped-empty/dropped-unknown (`affordance-normalizer.ts:153-157`, `skill_graph_compiler.py:407`) | done | P2 |
+| R-007-P2-12 | Add phase-naming alias note (012 → 010) in 6 sub-phase doc headers OR normalize labels | done | P2 |
+
+## Cross-cutting tasks
+
+| ID | Task | Status |
+|----|------|--------|
+| R-007-X1 | Re-run /deep:start-review-loop:auto over 006 (3 iters, verify pass): P0=0, P1≤2 | done |
+| R-007-X2 | Update phase-review-summary.md with post-remediation severity counts | done |
+| R-007-X3 | Push all 006/007 changes to main with conventional commits | done |
+
+## Dependencies
+
+```
+T-A (R-007-2) → T-A (R-007-14) → T-B (all 7 tasks)
+                                 │
+                                 ├─ T-C (R-007-6, R-007-10) ─┐
+                                 ├─ T-D (10 tasks) ─────────┤
+                                 └─ T-E (R-007-13) ─────────┤
+                                                            ▼
+                                                 T-F (11 tasks)
+                                                            │
+                                                            ▼
+                                                 R-007-X1 → X2 → X3
+```
+
+## References
+
+- spec.md, plan.md, checklist.md (this folder)
+- 006/review/phase-review-summary.md (cross-sub-phase findings)

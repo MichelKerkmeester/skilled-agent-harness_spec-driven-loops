@@ -1,0 +1,39 @@
+{
+  "trigger_phrases": [
+    "019-search-query-rag-optimization-research",
+    "search query rag optimization research",
+    "Phase C search query RAG optimization",
+    "MCP runtime search optimization",
+    "query intelligence RAG fusion"
+  ],
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
+  "description": "The v1.0.2 stress rerun showed strong remediation progress, but the next optimization frontier is cross-system search quality rather than single-cell",
+  "keywords": [
+    "stress",
+    "rerun",
+    "showed",
+    "strong",
+    "remediation",
+    "progress",
+    "next",
+    "optimization",
+    "frontier",
+    "cross-system",
+    "search",
+    "quality",
+    "rather",
+    "single-cell"
+  ],
+  "lastUpdated": "2026-07-17T17:01:49.040Z",
+  "specId": "019",
+  "folderSlug": "search-query-rag-optimization-research",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "005-stress-test",
+    "003-fix-mcp-runtime-stress-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

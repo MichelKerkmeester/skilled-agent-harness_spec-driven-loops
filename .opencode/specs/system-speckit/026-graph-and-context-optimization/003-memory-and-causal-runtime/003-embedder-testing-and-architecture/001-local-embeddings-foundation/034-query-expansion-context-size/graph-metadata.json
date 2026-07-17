@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "034 query expansion context size",
+      "combinedQuery context cap",
+      "embedding expansion synonym budget",
+      "llama-cpp query embedding budget",
+      "034 query expansion plan",
+      "combinedQuery cap plan",
+      "034 query expansion tasks",
+      "combinedQuery cap tasks",
+      "034 query expansion checklist",
+      "combinedQuery cap checklist",
+      "034 query expansion summary",
+      "combinedQuery cap summary"
+    ],
+    "key_topics": [
+      "query",
+      "expansion",
+      "context",
+      "size",
+      "combinedquery",
+      "cap",
+      "embedding",
+      "synonym",
+      "budget",
+      "llama-cpp",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion-bound.vitest.ts",
+      "tests/stage1-expansion.vitest.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "embedding-expansion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-expansion-bound.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion-bound.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage1-expansion.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage1-expansion.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Expansion Context Size",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Cap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 039 made the llama-cpp embedding worker resilient by truncating over-budget input through the model tokenizer",
+    "created_at": "2026-05-14T15:40:13Z",
+    "last_save_at": "2026-07-17T17:19:19.792Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ed195981fb1d484a5c4b26c9c11a61ea4649b4843c26da905384bed8af27f6dd",
+    "source_doc_hashes": {
+      "spec.md": "c0526ec97eaa5a3659abf62b9c9b916da65fc69cdef50dc027c6b03074ab6047",
+      "plan.md": "be628fa887d84d34d5bd20d8109d4fe9e3fceafc27dfd2a2e3b93298cbaa28a1",
+      "tasks.md": "9ec6631b3ccdfcb03020bfa5d730e53cbe54066e3643eae69d25ab5c7c9fa24f",
+      "checklist.md": "a722000dbab1d13e32cc9552dfd30eb4f63fd72d3da0a4806d44660ce672c50a",
+      "implementation-summary.md": "183e31a37f762825d18ebf17ec777be77709e838a26356c377f589cdbe917bbd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

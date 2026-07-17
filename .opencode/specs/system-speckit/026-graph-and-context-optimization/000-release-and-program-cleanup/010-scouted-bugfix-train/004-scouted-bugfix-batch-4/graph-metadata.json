@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scouted bugfix batch 4",
+      "warm-tier savings metric locked",
+      "anchor-miss returnedTokens zero",
+      "formatAgeString NaN months",
+      "shadow promotion zero-delta",
+      "adapter-common dead ternary",
+      "check-graph-metadata last-active",
+      "cli-gemini auth preflight",
+      "cli-codex auth preflight",
+      "token-budget constitutional count",
+      "scouted bugfix batch 4 plan",
+      "verify-first batch-4 fix workflow"
+    ],
+    "key_topics": [
+      "scouted",
+      "bugfix",
+      "batch",
+      "warm-tier",
+      "savings",
+      "metric",
+      "locked",
+      "anchor-miss",
+      "returnedtokens",
+      "zero",
+      "formatagestring",
+      "nan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/token-metrics.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/format-helpers.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "mcp_server/formatters/token-metrics.ts",
+      "mcp_server/handlers/memory-triggers.ts",
+      "mcp_server/tests/modularization.vitest.ts",
+      "mcp_server/formatters/search-results.ts",
+      "mcp_server/tests/anchor-prefix-matching.vitest.ts",
+      "mcp_server/lib/utils/format-helpers.ts",
+      "mcp_server/tests/search-results-format.vitest.ts",
+      "mcp_server/lib/feedback/shadow-scoring.ts",
+      "mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
+      "mcp_server/tests/shadow-scoring-holdout.vitest.ts",
+      "mcp_server/matrix_runners/adapter-common.ts",
+      "mcp_server/tests/matrix-adapter-common.vitest.ts",
+      "scripts/rules/check-graph-metadata-shape.sh"
+    ],
+    "entities": [
+      {
+        "name": "token-metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/token-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "format-helpers.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/format-helpers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-common.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "modularization.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/modularization.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "anchor-prefix-matching.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/anchor-prefix-matching.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results-format.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/search-results-format.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-evaluation-runtime.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-scoring-holdout.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/shadow-scoring-holdout.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-adapter-common.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/matrix-adapter-common.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scouted Bugfix Batch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fourth scout surfaced a new candidate pool and applied the pipeline (scout → gpt-5.5-fast confirm → implement-and-test)",
+    "created_at": "2026-06-03T09:00:00Z",
+    "last_save_at": "2026-07-17T17:19:14.098Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34323222af3ab6b5ba39e21e8fd998cde4285ac65de8caf41195147e103719ab",
+    "source_doc_hashes": {
+      "spec.md": "a2326263c1eeb15c15c07ed69bb372708c5938b7765543b4a6b01e8d4f0b509f",
+      "plan.md": "cde3d8353ca480753b6c96e74552e51d3cf1aa273fd8794b24ce2cfda4f44620",
+      "tasks.md": "b6dfbaf5ae9c784d390d7b42cd6b9e60617fa915fddff14e360eb149b648d65e",
+      "checklist.md": "94b89366a30906f3468f2ba22a46a93b91cdd0fc923c18037e98eb28b81b16e7",
+      "implementation-summary.md": "1b774aded01cea86ba23d6afb8c742263b142a04f34f0f2cefaffe6476e89337"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

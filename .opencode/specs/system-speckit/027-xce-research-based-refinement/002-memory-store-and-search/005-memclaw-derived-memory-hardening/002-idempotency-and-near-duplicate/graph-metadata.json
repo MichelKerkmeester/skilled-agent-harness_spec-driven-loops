@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory save idempotency receipt",
+      "retry-safe memory write replay",
+      "near_duplicate_of advisory hint",
+      "last_dedup_checked_at dedup marker",
+      "duplicate row on retried save",
+      "pre-mutation replay wrapper plan",
+      "memory save idempotency receipt tasks",
+      "memory save idempotency checklist",
+      "retry-safe replay verification",
+      "idempotency receipt acceptance items",
+      "memory save idempotency receipt summary"
+    ],
+    "key_topics": [
+      "memory",
+      "save",
+      "idempotency",
+      "receipt",
+      "retry-safe",
+      "write",
+      "replay",
+      "advisory",
+      "hint",
+      "dedup",
+      "marker",
+      "duplicate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "handlers/save/dedup.ts",
+      "handlers/save/response-builder.ts",
+      "lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+      "handlers/memory-save.ts",
+      "handlers/memory-crud-update.ts",
+      "handlers/memory-index.ts",
+      "handlers/save/enrichment-state.ts",
+      "handlers/save/reconsolidation-bridge.ts",
+      "handlers/mutation-hooks.ts"
+    ],
+    "entities": [
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "idempotency-receipts.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "near-duplicate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-update.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dedup.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts",
+        "source": "derived"
+      },
+      {
+        "name": "enrichment-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "response-builder.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "reconsolidation-bridge.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-hooks.ts",
+        "kind": "code",
+        "path": "handlers/mutation-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memorysave` and `memoryupdate` are retryable, but a retried save can create a duplicate row because there is no operation receipt to recognize and replay a prior result",
+    "created_at": "2026-06-06T10:10:45Z",
+    "last_save_at": "2026-07-17T17:19:40.428Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e3e1eb70cc957288854a84e365593ff8e890d40170b8eec60fb5a62bcbb9f3b9",
+    "source_doc_hashes": {
+      "spec.md": "eca695f5c9ee70d80856c141ede30a909a6974ab8b9e7edc5fbe817e9311c600",
+      "plan.md": "e78b0699d5eeac8829e1266e9d90a665be6e9f9b56614199d1068c6aeeb717d2",
+      "tasks.md": "3b43225fe9028b39d50f9ba53d2f18ea470d787f5e2d59c4898233c3b4d98796",
+      "checklist.md": "b7f0305e37fde28b5a44c704d68009398b418e8dc0cad823b60ebe508b7e9c07",
+      "implementation-summary.md": "bfcaba207adb1763396632aafa709b9fe045dd0e69455fe253ae25f8683c7f52"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

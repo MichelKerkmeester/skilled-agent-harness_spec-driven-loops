@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memoization dependency dag",
+      "chunk fingerprint",
+      "incremental memory_index_scan",
+      "canonical fingerprint",
+      "skip re-embedding unchanged chunks",
+      "027 phase 003",
+      "incremental memory index",
+      "chunk fingerprints",
+      "027 phase 003 tasks",
+      "memoization dependency dag tasks",
+      "incremental index checklist",
+      "memoization dependency dag verification"
+    ],
+    "key_topics": [
+      "memoization",
+      "dependency",
+      "dag",
+      "chunk",
+      "fingerprint",
+      "incremental",
+      "canonical",
+      "skip",
+      "re-embedding",
+      "unchanged",
+      "chunks",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "lib/search/vector-index-schema.ts",
+      "lib/storage/incremental-index.ts",
+      "handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/canonical-fingerprint.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/canonical-fingerprint.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memo-storage.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-stable-chunks.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-foundation.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-incremental-foundation.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-enrichment-v30.vitest.ts",
+      "lib/storage/canonical-fingerprint.ts",
+      "lib/storage/memo.ts",
+      "lib/parsing/memory-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      "mcp_server/lib/search/vector-index-schema.ts",
+      "mcp_server/lib/storage/memo.ts"
+    ],
+    "entities": [
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.ts",
+        "kind": "code",
+        "path": "lib/storage/incremental-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-fingerprint.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/canonical-fingerprint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memo.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-fingerprint.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/canonical-fingerprint.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memo-storage.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memo-storage.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-parser-stable-chunks.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-stable-chunks.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-incremental-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-incremental-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-enrichment-v30.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-enrichment-v30.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Incremental Index Foundation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memoryindexscan` currently reconsiders all discovered files every run, then uses file-level categorization to decide index, update, skip, or delete",
+    "created_at": "2026-05-13T09:00:45Z",
+    "last_save_at": "2026-07-17T17:19:39.438Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ee3970901a2f24daad9ed58b1b7bcdd0985f0eb57c587e329452ccd4bf603938",
+    "source_doc_hashes": {
+      "spec.md": "839de54801570d06d1e206e2fccc780c1be429b41978901a1da6427cc3ee0ff6",
+      "plan.md": "2c723fdad7dccf087b3e86d03589860f525aa3826cd91050b89611482886edcd",
+      "tasks.md": "9f5359e3bdb3e75f6390a626fb5a75454eb45dd7d3a3b0ed2382c51465737521",
+      "checklist.md": "597ec66763df63f82192e93f9e5df9a8b1ef0dfc8779e492da23e7cf559326c0",
+      "implementation-summary.md": "62bb1f5e22e4ba94fe212d066f1732796ce6564bda904336c67abc795f094734"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

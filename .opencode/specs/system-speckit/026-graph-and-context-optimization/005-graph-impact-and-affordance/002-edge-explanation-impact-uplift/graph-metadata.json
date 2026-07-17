@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "012 edge explanation",
+      "012 blast radius uplift",
+      "code graph reason step",
+      "ambiguity candidates",
+      "012/003 implementation summary"
+    ],
+    "key_topics": [
+      "edge",
+      "explanation",
+      "blast",
+      "radius",
+      "uplift",
+      "code",
+      "graph",
+      "reason",
+      "step",
+      "ambiguity",
+      "candidates",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Edge Explanation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Impact Uplift",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Explanation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "A. Edge metadata",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "B. Blast radius enrichment",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "C. Per-packet docs",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dependencies",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks: 012/003",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge explanation + blast_radius uplift.",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "important",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Discipline",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Hand",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add reason/step fields to edge metadata + display; enrich blast_radius with depth groups, risk levels, min-confidence filter, ambiguity candidates, structured failure-fallback. No SQLite migration.",
+    "created_at": "2026-04-25T10:48:07.859Z",
+    "last_save_at": "2026-07-17T17:19:32.147Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a5b80d24a365066fe782ba91107f28d2d515c58c9ee926a702260d7f3893e3a5",
+    "source_doc_hashes": {
+      "spec.md": "4e16a1601f7988f1e8e5efd846dd0f98abda5673a9f8a462fa52158545f4aec9",
+      "plan.md": "949d73481d6d97d24a94cea88afe57695f78adf7aeb2b36bdc84fa44f3661714",
+      "tasks.md": "64162e26ea9d46bb7d2bc01bbaf2adc6e588ce10541aa9dcea474f86d189d76f",
+      "checklist.md": "25c6f852920ae9eee89d550cfbac0a602d8a00eedb2f5190d5e293d565d48a48",
+      "implementation-summary.md": "f026c0326ded16972242839fa3619c21c87c501128b669c4e40d16cdfb27c570"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

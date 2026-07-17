@@ -1,0 +1,44 @@
+{
+  "title": "AGENTS.md Alignment",
+  "trigger_phrases": [
+    "agents",
+    "alignment",
+    "reconcile",
+    "root",
+    "governance"
+  ],
+  "level": 1,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment",
+  "status": "complete",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "importance_tier": "important",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment",
+  "description": "Reconcile root AGENTS.md governance so Four Laws and Gates stay byte-stable while completion-freshness, Logic-Sync, and constitutional-rule references",
+  "keywords": [
+    "reconcile",
+    "root",
+    "agents",
+    "governance",
+    "four",
+    "laws",
+    "gates",
+    "stay",
+    "byte-stable",
+    "while",
+    "completion-freshness",
+    "logic-sync",
+    "constitutional-rule",
+    "references"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.482Z",
+  "specId": "008",
+  "folderSlug": "agents-md-alignment",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

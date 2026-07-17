@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-release-cleanup",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-release-cleanup",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/001-code-readmes",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/002-skill-and-repo-readmes",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/003-skill-references-assets-and-skillmd",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/004-feature-catalogs",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/005-manual-testing-playbooks",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/006-commands",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/007-agents",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/008-agents-md",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/009-changelogs-constitutional-and-templates",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/010-catalog-playbook-coverage-audit",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/011-daemon-skills-playbook-validation",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/012-playbook-findings-remediation",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/013-drift-remediation",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/014-spec-regrouping-renumber-reindex",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 release cleanup",
+      "memory search intelligence release readiness",
+      "release cleanup phase parent"
+    ],
+    "key_topics": [
+      "release",
+      "cleanup",
+      "memory",
+      "search",
+      "intelligence",
+      "readiness",
+      "phase",
+      "parent",
+      "packet",
+      "release-cleanup",
+      "track",
+      "executed"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-code-readmes/spec.md",
+      "014-spec-regrouping-renumber-reindex/spec.md",
+      "015-manual-playbook-execution-sweep/spec.md",
+      "002-skill-and-repo-readmes/spec.md",
+      "003-skill-references-assets-and-skillmd/spec.md",
+      "004-feature-catalogs/spec.md",
+      "005-manual-testing-playbooks/spec.md",
+      "006-commands/spec.md",
+      "007-agents/spec.md",
+      "008-agents-md/spec.md",
+      "009-changelogs-constitutional-and-templates/spec.md",
+      "010-catalog-playbook-coverage-audit/spec.md",
+      "011-daemon-skills-playbook-validation/spec.md",
+      "012-playbook-findings-remediation/spec.md",
+      "013-drift-remediation/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Cleanup Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 028's release-cleanup track has executed across most documentation surfaces and follow-on validation phases",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-07-12T12:50:29.865Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:96995c7b1e2898f12a9b3a29ff933a5c439e91b7d7bf930229058e64bb812e06",
+    "source_doc_hashes": {
+      "spec.md": "5e64c1d0e53215a364fa15bb5a443dac0730da8bdc61f50527743bcba0647ad1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

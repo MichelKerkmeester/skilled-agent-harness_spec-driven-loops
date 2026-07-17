@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-019-doc-and-runtime-migration",
+  "description": "Phases 003 and 004 moved the code-graph source and rewired imports, but the authored documentation and runtime guidance still describe code graph as",
+  "keywords": [
+    "phases",
+    "moved",
+    "code-graph",
+    "source",
+    "rewired",
+    "imports",
+    "authored",
+    "documentation",
+    "runtime",
+    "guidance",
+    "still",
+    "describe",
+    "code",
+    "graph"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.175Z",
+  "specId": "007",
+  "folderSlug": "019-doc-and-runtime-migration",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

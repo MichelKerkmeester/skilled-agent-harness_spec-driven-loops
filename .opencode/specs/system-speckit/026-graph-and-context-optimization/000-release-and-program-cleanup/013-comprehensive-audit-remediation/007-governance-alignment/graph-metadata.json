@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "governance alignment",
+      "comment hygiene doc",
+      "sk-doc frontmatter spec row",
+      "tool routing fallback",
+      "verify alignment drift python sh",
+      "governance alignment plan",
+      "comment hygiene implementation",
+      "verify alignment drift plan",
+      "governance alignment tasks",
+      "comment hygiene tasks",
+      "verify alignment drift tasks",
+      "governance alignment summary"
+    ],
+    "key_topics": [
+      "governance",
+      "alignment",
+      "comment",
+      "hygiene",
+      "doc",
+      "sk-doc",
+      "frontmatter",
+      "spec",
+      "row",
+      "tool",
+      "routing",
+      "fallback"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md",
+      ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".github/workflows/comment-hygiene.yml",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "comment-hygiene.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-tool-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Ten",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Governance Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ten governance drift findings exist across sk-doc, sk-code, and system-spec-kit/constitutional: the sk-doc spec frontmatter row instructs agents to remove required frontmatter; command required-section lists diverge across three docs; the comment-hygiene checker misses half the forbidden patterns the constitutional rule lists; enforcement docs miscount enforcement gates and misstate bypass behavior; and the alignment verifier false-positives on Python scripts with .sh extensions while passing on P0 header gaps",
+    "created_at": "2026-06-04T20:45:44Z",
+    "last_save_at": "2026-07-17T17:19:15.374Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0ff3f989ce5629aa8fbc0fdc4f40c16cdfff75af2c0c30a4e41be6ec5b74ee87",
+    "source_doc_hashes": {
+      "spec.md": "8bb28d077ea74850ae7a83f6899b848852afc38b016f34d480d45f03fa62f0c4",
+      "plan.md": "3d1890cf93dc04bed787d0d3593e0be40d67015e1f1ea232f00ca43096d6b859",
+      "tasks.md": "215bb4e2aa5afc05db568151871a19979a2e16deef9736bded4f903972864acd",
+      "implementation-summary.md": "d0aa2ca30c7798bd2718f6bf88c769e63b132f0b32059277b5c4c49bd74a4f0b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

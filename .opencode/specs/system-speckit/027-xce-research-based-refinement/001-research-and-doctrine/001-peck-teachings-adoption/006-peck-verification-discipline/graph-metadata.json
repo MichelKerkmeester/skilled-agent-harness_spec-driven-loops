@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 006",
+      "peck verification discipline",
+      "completion-verdict freshness",
+      "anti-verdict-softening",
+      "reviewer read-budget",
+      "verification",
+      "checklist",
+      "006 peck verification discipline",
+      "decision",
+      "record",
+      "009 peck verification discipline",
+      "decision record"
+    ],
+    "key_topics": [
+      "phase",
+      "peck",
+      "verification",
+      "discipline",
+      "completion-verdict",
+      "freshness",
+      "anti-verdict-softening",
+      "reviewer",
+      "read-budget",
+      "checklist",
+      "decision",
+      "record"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/continuity-freshness.vitest.ts",
+      ".opencode/agents/review.md",
+      ".claude/agents/review.md",
+      ".codex/agents/review.toml",
+      ".opencode/agents/context.md",
+      ".claude/agents/context.md",
+      ".codex/agents/context.toml",
+      ".opencode/agents/deep-research.md",
+      ".claude/agents/deep-research.md",
+      ".codex/agents/deep-research.toml",
+      ".opencode/agents/deep-review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validation_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/continuity-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.toml",
+        "kind": "file",
+        "path": ".codex/agents/review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.toml",
+        "kind": "file",
+        "path": ".codex/agents/context.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Peck Verification Discipline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proposal Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Peck's source carries a coherent verification-discipline bundle in its agent prompts that the README-only analysis pass never surfaced, and live spec-kit has a real gap against each piece",
+    "created_at": "2026-06-06T10:22:05.626Z",
+    "last_save_at": "2026-07-17T17:19:39.112Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d6f6a5125bd1d0716839dc125092eb4aee64bb8c869878b9692d92675fc06f17",
+    "source_doc_hashes": {
+      "spec.md": "cf651b168d8bedbb0ac4aa06919a80b929727f5193028fedb69d0763ae217ef6",
+      "plan.md": "f1d71443ea3dbfbb73fc4cea8441a06732d418b10d052fcbc106008a0562b5e1",
+      "tasks.md": "05d2bd96d526128faf80e41c0baeee1898a00471e0398bb8b5db820428429024",
+      "checklist.md": "51cdc333e211cd415585e131d3d93b339d0086d1eaf3ac8ff23338e8905aa08b",
+      "decision-record.md": "95742876c5c46270bb1c180d22f0576fa513b3bc913f6b9f6095eca2cc6db97b",
+      "implementation-summary.md": "c4b6e47449c2693528c135d956d3dd50ed9876a9bc31a5b385405fa5ab9419f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

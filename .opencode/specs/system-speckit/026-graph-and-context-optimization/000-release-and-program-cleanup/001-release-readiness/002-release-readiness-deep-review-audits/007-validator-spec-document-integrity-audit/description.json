@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/007-validator-spec-document-integrity-audit",
+  "description": "The spec validator is a release gate for system-spec-kit packets, phase parents and deep-review output",
+  "keywords": [
+    "spec",
+    "validator",
+    "release",
+    "gate",
+    "system-spec-kit",
+    "packets",
+    "phase",
+    "parents",
+    "deep-review",
+    "output"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.874Z",
+  "specId": "007",
+  "folderSlug": "validator-spec-document-integrity-audit",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "001-release-readiness",
+    "002-release-readiness-deep-review-audits"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

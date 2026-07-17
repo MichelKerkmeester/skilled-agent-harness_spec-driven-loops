@@ -135,5 +135,5 @@ Provide the root purpose, child map, and cross-packet boundary for this packet. 
 
 - **Research children**: `001-research/` (scoring & ranking core), `002-research/` (embeddings, vector & serving)
 - **Research subject**: `../../../skills/system-skill-advisor/` (`mcp_server/`)
-- **Sibling precedent**: `../../system-speckit/030-rust-backend-rewrite-research/` (same Rust-rewrite research pattern)
+- **Sibling precedent**: `../../system-speckit/029-rust-backend-rewrite-research/` (same Rust-rewrite research pattern)
 - **Graph metadata**: `graph-metadata.json`

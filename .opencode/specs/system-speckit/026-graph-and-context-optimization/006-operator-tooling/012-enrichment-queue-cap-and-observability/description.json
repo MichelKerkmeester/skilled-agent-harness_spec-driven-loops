@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/012-enrichment-queue-cap-and-observability",
+  "description": "`scheduleBackgroundEnrichment` (`memory-save.ts`) caps concurrency but pushes overflow to an unbounded queue; a live-save flood grows it (and each",
+  "keywords": [
+    "schedulebackgroundenrichment",
+    "memory-save",
+    "caps",
+    "concurrency",
+    "pushes",
+    "overflow",
+    "unbounded",
+    "queue",
+    "live-save",
+    "flood",
+    "grows"
+  ],
+  "lastUpdated": "2026-07-17T17:01:49.013Z",
+  "specId": "012",
+  "folderSlug": "enrichment-queue-cap-and-observability",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

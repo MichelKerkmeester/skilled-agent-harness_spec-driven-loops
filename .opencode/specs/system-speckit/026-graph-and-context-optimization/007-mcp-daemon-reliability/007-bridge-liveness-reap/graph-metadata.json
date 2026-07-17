@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bridge liveness probe F3",
+      "reap before respawn dead socket",
+      "ipc bridge handshake exclusive lease",
+      "bridge liveness plan F3",
+      "reap before respawn plan",
+      "bridge liveness tasks F3",
+      "bridge liveness summary F3 implemented"
+    ],
+    "key_topics": [
+      "bridge",
+      "liveness",
+      "probe",
+      "reap",
+      "respawn",
+      "dead",
+      "socket",
+      "ipc",
+      "handshake",
+      "exclusive",
+      "lease",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "mcp_server/lib/ipc/socket-server.ts",
+      "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+      "mcp_server/tests/launcher-watchdog.vitest.ts",
+      "mcp_server/context-server.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge-probe.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-watchdog.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-watchdog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Probe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`maybeBridgeLeaseHolder` (`launcher-ipc-bridge.cjs:97`) bridges whenever `fs.existsSync(socketPath)` is true (the gate at `:122`) with NO liveness probe; `bridgeStdioToSocket` (`:57`) then `net.createConnection`s",
+    "created_at": "2026-05-28T18:43:50Z",
+    "last_save_at": "2026-07-17T17:19:34.006Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a09978050daf8e647849798d3f048d7d7e375255807ea80fddcda69f40012e70",
+    "source_doc_hashes": {
+      "spec.md": "788160ee6e2bfc1391e7571a5f3b013ca0330f61a20be032e9fb1b1dffdacca0",
+      "plan.md": "fe7795501dd63842ffdac4ba415882bd673185342d5b37b3bc21c2e472f6f74b",
+      "tasks.md": "22887ee78294f8c489b8136da6df7b4f5fe6cadca1b0a0a9e1f3b46a6585b658",
+      "implementation-summary.md": "f50e47347422372ea5c1369f5b4d3c1744233f35130ff47b54f60771b351ff99"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

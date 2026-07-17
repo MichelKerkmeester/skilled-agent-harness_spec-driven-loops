@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools",
+        "reason": "depends_on relationship preserved during phase consolidation",
+        "source": "026-phase-consolidation",
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools"
+      },
+      {
+        "packet_id": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin",
+        "reason": "depends_on relationship preserved during phase consolidation",
+        "source": "026-phase-consolidation",
+        "spec_folder": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin"
+      },
+      {
+        "packet_id": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/031-copilot-startup-hook-wiring",
+        "reason": "depends_on relationship preserved during phase consolidation",
+        "source": "026-phase-consolidation",
+        "spec_folder": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/031-copilot-startup-hook-wiring"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration",
+        "reason": "related_to relationship preserved during phase consolidation",
+        "source": "026-phase-consolidation",
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration"
+      },
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools",
+        "reason": "related_to relationship preserved during phase consolidation",
+        "source": "026-phase-consolidation",
+        "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/009/003 hook parity",
+      "opencode plugin bridge",
+      "codex advisor hook",
+      "026/009/003 plan",
+      "hook parity plan",
+      "026/009/003 tasks",
+      "hook parity tasks",
+      "029 checklist",
+      "hook parity checklist",
+      "029 decisions",
+      "hook parity adr",
+      "026/009/003 implementation summary"
+    ],
+    "key_topics": [
+      "hook",
+      "parity",
+      "opencode",
+      "plugin",
+      "bridge",
+      "codex",
+      "advisor",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "tests/session-resume.vitest.ts",
+      "tests/opencode-plugin.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
+      ".github/hooks/scripts/session-start.sh",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "session-resume.vitest.ts",
+        "kind": "test",
+        "path": "tests/session-resume.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin.vitest.ts",
+        "kind": "test",
+        "path": "tests/opencode-plugin.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/session-start.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Vitest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Hook Parity Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repair Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-04-21 hook parity review found 10 runtime-hook issues",
+    "created_at": "2026-04-21T10:15:00.000Z",
+    "last_save_at": "2026-07-17T17:19:32.456Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c2b50ed88c64ba4138b34db8c985786bb5feb7e3ee12d18b2dcbdcccac295d00",
+    "source_doc_hashes": {
+      "spec.md": "66340abf7f7422acf87f1f3ec419d3352498ecac16a4f3d35297fb61534ab913",
+      "plan.md": "dc4868c734899cb06ae8e6f119a15da0a9bee79524cad954a04370cfc98f15c4",
+      "tasks.md": "07d5ef692ab048eba108394171bb8ebd89838b321e3ca6cfef368b7e744f8495",
+      "checklist.md": "746313c50e64c68acdb2eb86cb2edb126ccce5404d552720b34d801927553a00",
+      "decision-record.md": "c986951cb76556ffa84a597911e5380982c04192054c39f6d9e831bdbb772b37",
+      "implementation-summary.md": "230a2d7e3dd783e20859db5c6d0b91ccf577aa5eaf283ea2316f6f5740c39b9c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection",
+  "description": "After 018 made the background scan cooperative, a full reindex still could not complete",
+  "keywords": [
+    "background",
+    "scan",
+    "cooperative",
+    "full",
+    "reindex",
+    "still",
+    "complete"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.747Z",
+  "specId": "018",
+  "folderSlug": "maintenance-grace-daemon-survives-reelection",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-06-26_13-47__maintenance-grace-marker-so-a-competing-launcher.md"
+  ]
+}

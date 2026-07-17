@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
+  "description": "Packet 007 found that Qwen3-Reranker-0.6B on Apple Silicon MPS OOMs in attention forwards when spec-memory's local provider sends its default",
+  "keywords": [
+    "packet",
+    "found",
+    "qwen3-reranker-0",
+    "apple",
+    "silicon",
+    "mps",
+    "ooms",
+    "attention",
+    "forwards",
+    "spec-memory",
+    "local",
+    "provider",
+    "sends",
+    "default"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.300Z",
+  "specId": "008",
+  "folderSlug": "cap-rerank-top-k",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

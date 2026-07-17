@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
+  "description": "Closes the 5 deferred findings from 018 (F001, F006/F011, F012, F017, F018) — architecture.md reconstruction, launcher kitDir-derived path, source-map",
+  "keywords": [
+    "closes",
+    "deferred",
+    "findings",
+    "f001",
+    "f006",
+    "f011",
+    "f012",
+    "f017",
+    "f018",
+    "architecture",
+    "reconstruction",
+    "launcher",
+    "kitdir-derived",
+    "path",
+    "source-map"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.029Z",
+  "specId": "007",
+  "folderSlug": "033-deferred-fix-followup",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-3-deep-archives"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

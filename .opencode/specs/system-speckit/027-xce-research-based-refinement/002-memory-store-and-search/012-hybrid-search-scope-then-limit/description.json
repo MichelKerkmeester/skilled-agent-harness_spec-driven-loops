@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/012-hybrid-search-scope-then-limit",
+  "description": "The in-memory BM25 path fetched only the caller-requested number of lexical hits before resolving `specFolder` scope and deprecated-tier exclusions",
+  "keywords": [
+    "in-memory",
+    "bm25",
+    "path",
+    "fetched",
+    "only",
+    "caller-requested",
+    "number",
+    "lexical",
+    "hits",
+    "resolving",
+    "specfolder",
+    "scope",
+    "deprecated-tier",
+    "exclusions"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.724Z",
+  "specId": "012",
+  "folderSlug": "hybrid-search-scope-then-limit",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

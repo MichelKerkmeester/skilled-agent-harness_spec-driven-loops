@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research remediation",
+      "027 remediation lanes",
+      "tri-system finding fixes",
+      "deep research remediation plan",
+      "029 remediation plan",
+      "lane remediation order",
+      "verify first remediation",
+      "029 remediation tasks",
+      "remediation lane tasks",
+      "verify first task loop",
+      "027 implementation summary",
+      "remediation program summary"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "remediation",
+      "lanes",
+      "tri-system",
+      "finding",
+      "plan",
+      "lane",
+      "order",
+      "verify",
+      "first",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "backlog/remediation-backlog.json",
+      "L1-security-safety/disposition.md",
+      "L8-command-adherence/disposition.md",
+      "final-review/deep-review-report.md",
+      "mcp_server/lib/search/db-instance-lock.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "shared/parsing/secret-scrubber.ts",
+      "scripts/core/workflow.ts",
+      "mcp_server/lib/telemetry/consumption-logger.ts",
+      "spec.md",
+      "implementation-summary.md",
+      "tests/db-instance-lock.vitest.ts",
+      "tests/launcher-db-lock-exit.vitest.ts",
+      "L8-command-adherence/probe.sh",
+      "plan.md",
+      "ai-council/council-report.md",
+      "mcp_server/package.json",
+      "tasks.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "remediation-backlog.json",
+        "kind": "config",
+        "path": "backlog/remediation-backlog.json",
+        "source": "derived"
+      },
+      {
+        "name": "disposition.md",
+        "kind": "doc",
+        "path": "L1-security-safety/disposition.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-report.md",
+        "kind": "doc",
+        "path": "final-review/deep-review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "db-instance-lock.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/db-instance-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "secret-scrubber.ts",
+        "kind": "code",
+        "path": "shared/parsing/secret-scrubber.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "consumption-logger.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/telemetry/consumption-logger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "db-instance-lock.vitest.ts",
+        "kind": "test",
+        "path": "tests/db-instance-lock.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-db-lock-exit.vitest.ts",
+        "kind": "test",
+        "path": "tests/launcher-db-lock-exit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "probe.sh",
+        "kind": "script",
+        "path": "L8-command-adherence/probe.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Continue Goal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remediate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The tri-system deep-research program (`../028-tri-system-deep-research`) and the command-adherence research (`../011-command-presentation-workflow-separation/006-presentation-adherence-research`) produced 239 findings",
+    "created_at": "2026-06-12T11:12:59.644Z",
+    "last_save_at": "2026-07-17T17:19:45.221Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:e545d1dbe6c856cc518fc6b9677df687436635b812f8f76148b9459449395607",
+    "source_doc_hashes": {
+      "spec.md": "7527c1f2ccb692087a208b1c5abb4d6a6601661810b9a72ab7ec24acdd071a07",
+      "plan.md": "a5a894d9826675a8ee5eb92e2e33b4d34aea58f846c84228c5dc80b288f47277",
+      "tasks.md": "f52d62819cbf3a7526a022b0096fe0b90180cae60d2c0127dccc829aef6a8ebf",
+      "implementation-summary.md": "3d17e74e659d1d4ff943371aeac71282501d7f1b3fe2ff3ceda66381c2cad3b6",
+      "handover.md": "bc7cb6949ebb0af92b301455b43dc6d8f3bc66041488f4a33b641c5198134b80"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

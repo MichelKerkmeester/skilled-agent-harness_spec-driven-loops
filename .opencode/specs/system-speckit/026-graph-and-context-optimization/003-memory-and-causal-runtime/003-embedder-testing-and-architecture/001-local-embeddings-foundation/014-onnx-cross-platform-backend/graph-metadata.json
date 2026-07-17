@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "014 onnx cross-platform backend",
+      "onnxruntime cocoindex backend",
+      "coreml execution provider",
+      "directml cocoindex",
+      "cross-platform embedding backend",
+      "014 onnx backend plan",
+      "onnxruntime provider selection",
+      "014 onnx backend tasks",
+      "014 onnx backend checklist",
+      "014 onnx rejection",
+      "onnx backend rejected",
+      "cocoindex onnx adr"
+    ],
+    "key_topics": [
+      "onnx",
+      "cross-platform",
+      "backend",
+      "onnxruntime",
+      "cocoindex",
+      "coreml",
+      "execution",
+      "provider",
+      "directml",
+      "embedding",
+      "plan",
+      "selection"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "scratch/parity-results.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "parity-results.txt",
+        "kind": "file",
+        "path": "scratch/parity-results.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Cocoindex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metal Performance Shaders",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Neural Engine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation Gates",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "CPU",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Cocoindex currently encodes embeddings via sentence-transformers on PyTorch",
+    "created_at": "2026-05-13T09:55:00Z",
+    "last_save_at": "2026-07-17T17:19:18.823Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-13T11:15:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cdf39d6f72a3372df59f69abc318b6697c8e61dd1e49d2c40e6b9a9cf569efa6",
+    "source_doc_hashes": {
+      "spec.md": "52a5c247b5fd8a29c4cbffeea5cb7aa0adbba2c3f7e4cf13e5771c85161b30b5",
+      "plan.md": "008bef5304900ca92cdbfb7094574fadd51106fe56377b37f264a93f23138dd8",
+      "tasks.md": "a679a987c0954413fe65c3785c50a62662359f1a6bb57b150fb5409b086d3750",
+      "checklist.md": "8e94f18c7e9201f8c8a929aaf7d594dd27a63dfdf779efa4c631bc63f78a0fcf",
+      "decision-record.md": "ced4ff21ab839afa5da60b7b60f55fb3684df908a14968d882af1c7b0b201d92",
+      "implementation-summary.md": "fcf30c2ac71592ff9bc98ef1c6d6575f96b7294950480bdca325b46e052d52f0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

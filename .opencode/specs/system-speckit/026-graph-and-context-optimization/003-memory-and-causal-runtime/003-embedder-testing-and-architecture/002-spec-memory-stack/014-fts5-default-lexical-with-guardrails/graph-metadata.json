@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fts5 default lexical guardrails",
+      "speckit bm25 engine",
+      "sqlite fts5 lexical default",
+      "golden query overlap gate",
+      "fts5 default lexical plan",
+      "speckit bm25 engine plan",
+      "fts5 lexical guardrail tasks",
+      "bm25 engine task ledger",
+      "fts5 lexical guardrail checklist",
+      "bm25 engine verification",
+      "fts5 lexical default implementation summary",
+      "speckit bm25 engine commit handoff"
+    ],
+    "key_topics": [
+      "fts5",
+      "default",
+      "lexical",
+      "guardrails",
+      "speckit",
+      "bm25",
+      "engine",
+      "sqlite",
+      "golden",
+      "query",
+      "overlap",
+      "gate"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/lexical-normalizer.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/lexical-overlap-quality-gate.vitest.ts",
+      "tests/bm25-index.vitest.ts",
+      "tests/hybrid-search.vitest.ts",
+      "lib/search/lexical-normalizer.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "lexical-normalizer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/lexical-normalizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lexical-overlap-quality-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/lexical-overlap-quality-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-index.vitest.ts",
+        "kind": "test",
+        "path": "tests/bm25-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.vitest.ts",
+        "kind": "test",
+        "path": "tests/hybrid-search.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Default Lexical With Guardrails",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Option",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guardrails",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FTS5",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implement Option B from packet 013: make SQLite FTS5 the default lexical BM25 provider while preserving legacy fallback and adding golden-query guardrails.",
+    "created_at": "2026-05-19T19:25:52.541Z",
+    "last_save_at": "2026-07-17T17:19:21.696Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d7977c0ea186edf42365a3484fb25db8cadbb09fe94e7a58d64cff0d2df37862",
+    "source_doc_hashes": {
+      "spec.md": "0e7280633dce83f844197383f4424ac85ce565ba95c87c5ea9b118823e5a1ce7",
+      "plan.md": "628603bd25db9fdc15fb7fae66d8fc33f20fce962417d69c8c19a157ad5f769e",
+      "tasks.md": "0c5f9d06e8dbed2533dcf94943bc89a667275e77a9e188670bcae976b8e965b1",
+      "checklist.md": "55631249ca4ef1439a9a5afa08b7db35a0632d2adcf3f6b89e75483106baccc4",
+      "implementation-summary.md": "816fa31683f4505489f4f9bf0407438df482040cc76ddadd90a617aa70889100"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

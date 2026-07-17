@@ -135,5 +135,5 @@ Provide the root purpose, child map, and cross-packet boundary for this packet. 
 
 - **Research children**: `001-research/` (ingestion & storage), `002-research/` (query & serving)
 - **Research subject**: `../../../skills/system-code-graph/` (`mcp_server/`, `scripts/`)
-- **Sibling precedent**: `../../system-speckit/030-rust-backend-rewrite-research/` (same Rust-rewrite research pattern)
+- **Sibling precedent**: `../../system-speckit/029-rust-backend-rewrite-research/` (same Rust-rewrite research pattern)
 - **Graph metadata**: `graph-metadata.json`

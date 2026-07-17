@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair",
+  "description": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`,",
+  "keywords": [
+    "handlers",
+    "memory-index",
+    "calls",
+    "sweeporphanindexrows",
+    "limit",
+    "cursor",
+    "function",
+    "defaults",
+    "returns",
+    "nextcursor"
+  ],
+  "lastUpdated": "2026-07-17T17:01:46.864Z",
+  "specId": "001",
+  "folderSlug": "orphan-sweep-cursor-and-corpus-identity-repair",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-speckit-memory",
+    "041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "llama-cpp",
+      "Metal",
+      "embeddings",
+      "ggml_metal_library_init_from_source",
+      "gpuLayers",
+      "research",
+      "ADR",
+      "tasks",
+      "decision",
+      "implementation",
+      "summary",
+      "tensor API"
+    ],
+    "key_topics": [
+      "llama-cpp",
+      "metal",
+      "embeddings",
+      "gpulayers",
+      "research",
+      "adr",
+      "tasks",
+      "decision",
+      "implementation",
+      "summary",
+      "tensor",
+      "api"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research.md",
+      "decision-record.md",
+      "scratch/system-probes.txt",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/probe-gpulayers-zero.mjs",
+      "scratch/probe-gpulayers-zero-auto.txt",
+      "scratch/probe-gpulayers-zero-cpu.txt"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-probes.txt",
+        "kind": "file",
+        "path": "scratch/system-probes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-gpulayers-zero.mjs",
+        "kind": "file",
+        "path": "scratch/probe-gpulayers-zero.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "probe-gpulayers-zero-auto.txt",
+        "kind": "file",
+        "path": "scratch/probe-gpulayers-zero-auto.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probe-gpulayers-zero-cpu.txt",
+        "kind": "file",
+        "path": "scratch/probe-gpulayers-zero-cpu.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metal Investigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Document",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Capture Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every observed llama-cpp embedding call emits Metal-related stderr before falling back to CPU behavior",
+    "created_at": "2026-05-14T15:18:02Z",
+    "last_save_at": "2026-07-17T17:19:36.537Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:445e7676f1735709c300d88602a488397dd0946a1cdb831184f4617924c19b4f",
+    "source_doc_hashes": {
+      "spec.md": "dcfd9c0406af155431d707506114d4eb696b895327c8367aa129981b04cb1b23",
+      "plan.md": "a5cf65b31b1ae2a4ddc8df611d46a2fa7ee112fa1cb7c40c9a525839c5931768",
+      "tasks.md": "6b2a99761e0d518a6a567cdb5a346affc9a7b33b24904f7b870d3cecaaaddbf4",
+      "decision-record.md": "cc1d055a87fa715b69d5d51bec13adb0555f7c4e5775ee9d6af01375833c7cc4",
+      "implementation-summary.md": "e5d925ddaf748978ee562b005affa0ce6508eb68e42e4147ee8f9b40674a87a7",
+      "research.md": "3dbbb6aeae361c13ea6db29fdaca922bcf1d95dd0efea4434aafb7e159603897"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

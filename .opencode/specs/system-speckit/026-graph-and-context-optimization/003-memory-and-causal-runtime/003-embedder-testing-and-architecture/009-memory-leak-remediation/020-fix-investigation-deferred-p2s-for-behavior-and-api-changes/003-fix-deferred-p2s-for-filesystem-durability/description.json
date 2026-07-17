@@ -1,0 +1,40 @@
+{
+  "title": "Filesystem Durability Closure for F22 F28 F59 F66 F67 F72 F89 F103 F104",
+  "trigger_phrases": [
+    "020 003 filesystem durability",
+    "F22 F28 F59 F66 F67 F72 F89 F103 F104 sidecar",
+    "ensure rerank sidecar durability"
+  ],
+  "level": 2,
+  "contextType": "implementation",
+  "importance_tier": "important",
+  "status": "complete",
+  "created_at": "2026-05-23T12:30:00Z",
+  "updated_at": "2026-05-23T10:31:09Z",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/003-fix-deferred-p2s-for-filesystem-durability",
+  "description": "Nine deferred P2 findings remain in the rerank sidecar launcher durability surface",
+  "keywords": [
+    "nine",
+    "deferred",
+    "findings",
+    "remain",
+    "rerank",
+    "sidecar",
+    "launcher",
+    "durability",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.229Z",
+  "specId": "003",
+  "folderSlug": "fix-deferred-p2s-for-filesystem-durability",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

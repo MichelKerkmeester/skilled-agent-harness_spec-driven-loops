@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-006-copilot-wrapper-schema-fix",
+  "description": "Eliminate the 'Neither bash nor powershell specified in hook command configuration' error that Copilot CLI 1.0.34 throws on every user prompt by",
+  "keywords": [
+    "eliminate",
+    "bash",
+    "powershell",
+    "specified",
+    "hook",
+    "command",
+    "configuration",
+    "error",
+    "copilot",
+    "cli",
+    "throws",
+    "every",
+    "user",
+    "prompt"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.048Z",
+  "specId": "009",
+  "folderSlug": "006-copilot-wrapper-schema-fix",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

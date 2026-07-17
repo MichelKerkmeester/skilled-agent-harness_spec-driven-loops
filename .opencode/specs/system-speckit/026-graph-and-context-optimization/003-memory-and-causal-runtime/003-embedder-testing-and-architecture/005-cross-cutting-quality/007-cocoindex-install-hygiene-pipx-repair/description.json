@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair",
+  "description": "The predecessor diagnosis confirmed that the pipx-installed `ccc` executable is stale/non-editable and missing newer modules, while the local venv",
+  "keywords": [
+    "predecessor",
+    "diagnosis",
+    "confirmed",
+    "pipx-installed",
+    "ccc",
+    "executable",
+    "stale",
+    "non-editable",
+    "missing",
+    "newer",
+    "modules",
+    "while",
+    "local",
+    "venv"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.015Z",
+  "specId": "007",
+  "folderSlug": "cocoindex-install-hygiene-pipx-repair",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "005-cross-cutting-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

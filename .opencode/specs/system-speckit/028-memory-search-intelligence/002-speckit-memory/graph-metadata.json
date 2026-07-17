@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/002-speckit-memory",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/002-speckit-memory",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/001-corpus-reindex-gate-zero",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/002-determinism-content-id-foundation",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/003-retrieval-class-routing",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/004-graceful-degradation",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/006-redteam-probe-gate",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/007-bitemporal-window",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/008-search-index-integrity-sweep",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/009-edge-presence-currentness",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/010-derived-id-provenance",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/011-consolidation-cursor-clock",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/012-query-channel-calibration",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/013-retention-forgetting",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/014-automatic-drift-self-healing",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/015-procedural-reliability-benchmark",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/016-orphan-sweep-scoped-scan-safety",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/017-enrichment-observability",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/018-drift-marker-pipeline-resilience",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/019-mem0-ranking-tweaks",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/020-self-healing-internals-hardening",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/021-summary-fusion-grounding",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/022-iterative-agentic-recall",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/023-semantic-edge-layer",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/024-sleeptime-consolidation",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/025-git-hooks-reinstall-and-guard",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/026-eval-harness-extension",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/027-eval-calibration-ab",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/028-query-time-filter-benchmark",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/029-residual-correctness",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/030-kept-off-flag-resolution",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/031-drift-marker-native-consolidation",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/032-new-feature-research-build",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/033-self-healing-model-consolidation",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/034-reranker-research",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/035-off-corpus-eval-fixture-gate",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/036-lexical-grounding-floor",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/037-envelope-fidelity-enforcement",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/038-scoring-hardening",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/039-substrate-sandbox-cleanup",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/040-opencode-temp-worker-reaping",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+    "system-speckit/028-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening"
+  ],
+  "migrated": true,
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 speckit memory implementation parent",
+      "memory mcp child phase map",
+      "memory search intelligence speckit memory",
+      "memory mcp implementation planning",
+      "028 memory mcp candidate tail"
+    ],
+    "key_topics": [
+      "speckit",
+      "memory",
+      "implementation",
+      "parent",
+      "mcp",
+      "child",
+      "phase",
+      "map",
+      "search",
+      "intelligence",
+      "planning",
+      "candidate"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "001-corpus-reindex-gate-zero/spec.md",
+      "029-residual-correctness/spec.md",
+      "039-substrate-sandbox-cleanup/spec.md",
+      "040-opencode-temp-worker-reaping/spec.md",
+      "042-embedder-relisten-and-reaper-hardening/spec.md",
+      "shared/algorithms/rrf-fusion.ts",
+      "mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "lib/search/query-router.ts",
+      "lib/response/envelope.ts",
+      "lib/storage/causal-edges.ts",
+      "lib/search/causal-boost.ts",
+      "lib/graph/temporal-edges.ts",
+      "lib/graph/contradiction-detection.ts",
+      "lib/search/fsrs.ts",
+      "lib/storage/idempotency-receipts.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": "lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "envelope.ts",
+        "kind": "code",
+        "path": "lib/response/envelope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-boost.ts",
+        "kind": "code",
+        "path": "lib/search/causal-boost.ts",
+        "source": "derived"
+      },
+      {
+        "name": "temporal-edges.ts",
+        "kind": "code",
+        "path": "lib/graph/temporal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "contradiction-detection.ts",
+        "kind": "code",
+        "path": "lib/graph/contradiction-detection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fsrs.ts",
+        "kind": "code",
+        "path": "lib/search/fsrs.ts",
+        "source": "derived"
+      },
+      {
+        "name": "idempotency-receipts.ts",
+        "kind": "code",
+        "path": "lib/storage/idempotency-receipts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Mining",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Baseline The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Broadening Addendum",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage",
+    "created_at": "2026-06-16T14:27:21.651Z",
+    "last_save_at": "2026-07-12T13:12:08.165Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a454da81899fbc177d33dba6d8604bdd905a540649c8ae112ac1de802cbdff84",
+    "source_doc_hashes": {
+      "spec.md": "c8485532e3ba33c76f52f5ca3b39adba6d6fdd6ff69831a32434728c76412e76",
+      "research/research.md": "1b660c1db38d7d958962be1851e6c18522db6929f4636700136c59e70fc8f604"
+    },
+    "last_active_child_id": "system-speckit/028-memory-search-intelligence/002-speckit-memory/039-substrate-sandbox-cleanup",
+    "last_active_at": "2026-06-23T00:00:00Z"
+  }
+}

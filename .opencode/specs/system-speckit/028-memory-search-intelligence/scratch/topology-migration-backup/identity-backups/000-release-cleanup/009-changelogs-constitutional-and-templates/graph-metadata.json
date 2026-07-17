@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 release cleanup changelogs",
+      "constitutional templates cleanup phase",
+      "028 release cleanup changelogs plan",
+      "changelogs-constitutional-and-templates cleanup plan",
+      "028 release cleanup changelogs tasks",
+      "changelogs-constitutional-and-templates cleanup tasks",
+      "028 release cleanup changelogs checklist",
+      "changelogs-constitutional-and-templates cleanup checklist",
+      "009-changelogs-constitutional-and-templates implementation summary",
+      "028 release cleanup 009-changelogs-constitutional-and-templates"
+    ],
+    "key_topics": [
+      "release",
+      "cleanup",
+      "changelogs",
+      "constitutional",
+      "templates",
+      "phase",
+      "plan",
+      "changelogs-constitutional-and-templates",
+      "tasks",
+      "checklist",
+      "009-changelogs-constitutional-and-templates",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "constitutional/README.md",
+      "constitutional/cli-dispatch-skill-preload.md",
+      "templates/README.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "constitutional/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-skill-preload.md",
+        "kind": "doc",
+        "path": "constitutional/cli-dispatch-skill-preload.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changelogs Constitutional And Templates Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Changelogs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The changelog directories, constitutional docs and the system-spec-kit templates package needs a release-readiness cleanup contract before any document edits begin",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-07-09T10:02:55.976Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cfb8faa53e5f47676a3cc8ac39581bc814f4028b645138a2b346016de7ebefbc",
+    "source_doc_hashes": {
+      "spec.md": "45c851b32591b04f8b490e60442df396d54db2c735289e82b74678c8e6b9de01",
+      "plan.md": "1c1b7cac3756d0f5ace5d5d0b20d15fe1563bc9fe7b6037acd91c89503cbd7f1",
+      "tasks.md": "365eea0e5377b32c4f577a6cbdeede0cb1f7dfeff7fd81ec3fe41e2fd8405037",
+      "checklist.md": "605fbea599766dce205a1ca680b7dd59b0b13dbc9a192d1475c8ffc059aec63a",
+      "implementation-summary.md": "fcf93fad44e1b4bcb9e037522abf91dac8ecb877fc506b68392ab12d7c90af4f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

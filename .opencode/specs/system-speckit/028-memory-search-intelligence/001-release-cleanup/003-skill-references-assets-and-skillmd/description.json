@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/003-skill-references-assets-and-skillmd",
+  "description": "The every skill SKILL.md plus each skill's references and assets documentation needs a release-readiness cleanup contract before any document edits",
+  "keywords": [
+    "every",
+    "skill",
+    "plus",
+    "references",
+    "assets",
+    "documentation",
+    "needs",
+    "release-readiness",
+    "cleanup",
+    "contract",
+    "document",
+    "edits"
+  ],
+  "lastUpdated": "2026-07-17T17:01:46.877Z",
+  "specId": "003",
+  "folderSlug": "skill-references-assets-and-skillmd",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

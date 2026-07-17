@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/013-launcher-lease-acquisition-reclaim",
+  "description": "Phase 011 asked for a dead-PID liveness probe, but that read-path probe already exists in `lease.ts:226-247`",
+  "keywords": [
+    "phase",
+    "asked",
+    "dead-pid",
+    "liveness",
+    "probe",
+    "read-path",
+    "already",
+    "exists",
+    "lease"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.827Z",
+  "specId": "013",
+  "folderSlug": "launcher-lease-acquisition-reclaim",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

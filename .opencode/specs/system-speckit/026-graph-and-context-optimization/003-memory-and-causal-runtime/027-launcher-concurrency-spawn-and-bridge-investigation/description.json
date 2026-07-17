@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation",
+  "description": "Under concurrent multi-session use (currently 2 Claude + 4 codex sessions sharing this repo), two runtime defects appear:",
+  "keywords": [
+    "concurrent",
+    "multi-session",
+    "currently",
+    "claude",
+    "codex",
+    "sessions",
+    "sharing",
+    "repo",
+    "two",
+    "runtime",
+    "defects",
+    "appear"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.793Z",
+  "specId": "027",
+  "folderSlug": "launcher-concurrency-spawn-and-bridge-investigation",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "04-06-26_19-16__t1-confirmed-high-hf-local-spawned-by-a-launcher.md"
+  ]
+}

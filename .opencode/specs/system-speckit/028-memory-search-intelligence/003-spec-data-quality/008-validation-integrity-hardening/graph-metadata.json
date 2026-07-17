@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/008-validation-integrity-hardening",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/008-validation-integrity-hardening",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validation gate hardening",
+      "evidence cited redesign",
+      "scaffold never touched complete match",
+      "strict pass freshness sweep",
+      "metadata disk path consistency"
+    ],
+    "key_topics": [
+      "validation",
+      "gate",
+      "hardening",
+      "evidence",
+      "cited",
+      "redesign",
+      "scaffold",
+      "never",
+      "touched",
+      "complete",
+      "match",
+      "strict"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-canonical-save-helper.cjs",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      "scripts/lib/status-classifier.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/status-classifier.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency-helper.cjs",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
+      ".opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts",
+      ".github/workflows/strict-pass-freshness-sweep.yml",
+      ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "check-canonical-save-helper.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-canonical-save-helper.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-scaffold-never-touched.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-evidence.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "status-classifier.sh",
+        "kind": "script",
+        "path": "scripts/lib/status-classifier.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-metadata-disk-consistency.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-metadata-disk-consistency-helper.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency-helper.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-status-cross-doc-consistency.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness-sweep.yml",
+        "kind": "config",
+        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
+        "source": "derived"
+      },
+      {
+        "name": "validation-gate-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-scripts-modules.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four independent gaps let bad spec-folder data pass `validate.sh` clean:",
+    "created_at": "2026-07-09T06:21:25.841Z",
+    "last_save_at": "2026-07-17T17:19:53.139Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a8d5756ab86d3bbcb20af027d36a28b5441531798603afefe97fa477a2b2fd00",
+    "source_doc_hashes": {
+      "spec.md": "d519c1775f08f65d2a18bd4460b583fd10ac309ae926643f8648564fae879954",
+      "plan.md": "d89e521065bd8cc25f4b06e501fc3cc192b8e95e1890226139a44184d51f36d7",
+      "tasks.md": "86268c8f6cb83cb6d7a3d8cd0f6389b57b2558846bb6568185bcc8801f519cf7",
+      "checklist.md": "9f968c22eec2560cbccd765fe80a2a47cb883f451ff4410a72c4a411033319c5",
+      "implementation-summary.md": "171d6767b4e09f4abaff3cf46dd975a3818f84e2044360d4ca5090d89acd452d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

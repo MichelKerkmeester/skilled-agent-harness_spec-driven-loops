@@ -1,0 +1,40 @@
+{
+  "title": "Skill Manual Playbook",
+  "trigger_phrases": [
+    "skill",
+    "manual",
+    "playbook",
+    "add",
+    "manual_testing_playbook"
+  ],
+  "level": 1,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
+  "status": "complete",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "importance_tier": "important",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
+  "description": "Add manualtestingplaybook scenarios for each 027 feature, flag, and CLI surface, then bump the drift-prone count self-check",
+  "keywords": [
+    "manualtestingplaybook",
+    "scenarios",
+    "feature",
+    "flag",
+    "cli",
+    "surface",
+    "bump",
+    "drift-prone",
+    "count",
+    "self-check"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.430Z",
+  "specId": "004",
+  "folderSlug": "skill-manual-playbook",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/003-documentation-truth-validation",
+  "description": "The 013 supplemental research found that several operator-facing docs describe automation more broadly than the implementation supports",
+  "keywords": [
+    "supplemental",
+    "research",
+    "found",
+    "several",
+    "operator-facing",
+    "docs",
+    "describe",
+    "automation",
+    "broadly",
+    "implementation",
+    "supports"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.664Z",
+  "specId": "003",
+  "folderSlug": "documentation-truth-validation",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "002-audit"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "29-04-26_19-33__resource-map-authored-packet-finalized.md",
+    "29-04-26_19-36__resource-map-authored-and-memory-finalization.md"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup",
+  "parent_id": "system-speckit/027-xce-research-based-refinement",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation",
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme",
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests",
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment",
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 release cleanup",
+      "shipped 027 surface alignment",
+      "schema v37 release docs"
+    ],
+    "key_topics": [
+      "release",
+      "cleanup",
+      "shipped",
+      "surface",
+      "alignment",
+      "schema",
+      "v37",
+      "docs",
+      "reality",
+      "spans",
+      "default-off",
+      "feature"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped 027 reality spans schema v37, default-off feature flags, new CLI front doors, constitutional rules, memory behaviors, and doctrine from peck, gem, memclaw, and openltm",
+    "created_at": "2026-06-10T00:00:00Z",
+    "last_save_at": "2026-07-17T17:19:37.253Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:28426563425c2395a4daee53a45953231b3373b9080f2039dc49c06b2c70c456",
+    "source_doc_hashes": {
+      "spec.md": "bd7a06329315a9ffdc5fd12ce3f3dbf7329e3fe71eca0992b989f79627de6945"
+    },
+    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+    "last_active_at": null
+  }
+}

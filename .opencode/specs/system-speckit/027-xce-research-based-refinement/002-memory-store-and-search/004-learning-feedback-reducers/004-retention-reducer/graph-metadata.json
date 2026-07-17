@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009 retention reducer",
+      "004 retention reducer",
+      "feedback-retention-reducer.ts",
+      "edge-tier-basement.ts",
+      "009 retention reducer plan",
+      "009 retention reducer tasks",
+      "009 retention reducer checklist",
+      "009 retention reducer implementation summary"
+    ],
+    "key_topics": [
+      "retention",
+      "reducer",
+      "feedback-retention-reducer",
+      "edge-tier-basement",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "level",
+      "child",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "mcp_server/lib/feedback/feedback-retention-reducer.ts",
+      "mcp_server/lib/feedback/edge-tier-basement.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-retention-reducer.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/feedback-retention-reducer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "edge-tier-basement.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/edge-tier-basement.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Retention Reducer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feedback Retention Learning",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feedback Retention Reducer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Modules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Model",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "unchanged",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Level 2 child packet for learned retention and edge-floor reducer logic.",
+    "created_at": "2026-05-12T07:20:00.000Z",
+    "last_save_at": "2026-07-17T17:19:40.105Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c16a405f09accca1799b4c4c575903b84945fe3f231a8032eb36b40d830e134c",
+    "source_doc_hashes": {
+      "spec.md": "b8d4f68bde91807e03840bd571392c77bdd0eadfea556d889e0f5e1b522f9f3f",
+      "plan.md": "e21a4cbd45bf02b27c960e523f35845e88379ce3c49621ec94e664e5cab6d6ea",
+      "tasks.md": "060c971e45b6008484d6094e1ba801d06c3af377217f158054f97cbc793da321",
+      "checklist.md": "4b3c3de272c54a4c5ba4ece03817be96b40270829bca1488edc5c68c8a5e612b",
+      "implementation-summary.md": "08b5bf1260f70495b2150506ba4b70fb6c45e679f8f0562293506fe57860545c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
+    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors",
+    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs",
+    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
+    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli tooling ux hardening",
+      "daemon cli front door",
+      "spec-memory stale dist gate",
+      "cli list-tools smoke",
+      "cli help aliases errors"
+    ],
+    "key_topics": [
+      "cli",
+      "tooling",
+      "hardening",
+      "daemon",
+      "front",
+      "door",
+      "spec-memory",
+      "stale",
+      "dist",
+      "gate",
+      "list-tools",
+      "smoke"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-cli-freshness-and-smoke/spec.md",
+      "002-cli-help-aliases-errors/spec.md",
+      "003-cli-reference-and-skill-docs/spec.md",
+      "004-cli-fallback-envelope-and-bridge/spec.md",
+      "005-cli-automation-compact-completion/spec.md",
+      ".opencode/bin/spec-memory.cjs",
+      ".opencode/bin/code-index.cjs",
+      ".opencode/bin/skill-advisor.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "code-index.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/code-index.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "027 phase 010 (`010-mcp-to-cli-tool-transition`) shipped three daemon-backed CLI front-doors over the existing mk- MCP daemons: spec-memory (`.opencode/bin/spec-memory.cjs` -> `system-spec-kit/mcpserver/spec-memory-cli.ts`, 37 tools), code-index (`.opencode/bin/code-index.cjs` -> `system-code-graph/mcpserver/code-index-cli.ts`, 8 tools), and skill-advisor (`.opencode/bin/skill-advisor.cjs` -> system-skill-advisor cli, 9 tools)",
+    "created_at": "2026-06-10T20:46:28.777Z",
+    "last_save_at": "2026-07-17T17:19:44.227Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2b5d95ccaed3d94d6678c4085c9d1decd4aefedc9c4fd5016c57d61b9017f6e4",
+    "source_doc_hashes": {
+      "spec.md": "4e2ea6b6b8c36143f7353836c570d6e4bf4eebd24a15b1109e62574f0f6e4f25"
+    },
+    "last_active_child_id": "005-cli-automation-compact-completion",
+    "last_active_at": "2026-06-11T03:00:00Z"
+  }
+}

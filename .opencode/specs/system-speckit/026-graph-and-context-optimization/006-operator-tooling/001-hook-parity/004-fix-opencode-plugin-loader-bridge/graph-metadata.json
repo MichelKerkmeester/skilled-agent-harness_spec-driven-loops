@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-opencode-plugin-loader-bridge",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-opencode-plugin-loader-bridge",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode plugin loader",
+      "opencode plugin crash",
+      "opencode plugin auth null",
+      "opencode bridge isolation",
+      "opencode plugin discovery",
+      "opencode tui worker plugin2",
+      "026/009/007",
+      "026/009/007 plan",
+      "opencode plugin loader plan",
+      "026/009/007 tasks",
+      "opencode plugin loader tasks",
+      "026/009/007 checklist"
+    ],
+    "key_topics": [
+      "opencode",
+      "plugin",
+      "loader",
+      "crash",
+      "auth",
+      "null",
+      "bridge",
+      "isolation",
+      "discovery",
+      "tui",
+      "worker",
+      "plugin2"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "mcp_server/tests/opencode-plugin.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
+      "decision-record.md",
+      "tests/opencode-plugins-folder-purity.vitest.ts",
+      "mcp_server/package.json",
+      "checklist.md",
+      ".opencode/plugins/README.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/opencode-plugin.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugins-folder-purity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Loader Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pass Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Layout",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Layout",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode 1.3.17 fails to start the TUI in any directory whose `.opencode/plugins/` resolves through the symlink at `/Users/michelkerkmeester/MEGA/Development/CodeEnvironment/Public/.opencode/plugins/`",
+    "created_at": "2026-04-22T13:32:00.000Z",
+    "last_save_at": "2026-07-17T17:19:32.774Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:05e1558c21318cdf6933eb027875ce5248dbaaf664a4ae17bc8f3bbd17fa19e6",
+    "source_doc_hashes": {
+      "spec.md": "eb99a857f8999326a617a02809714905ae37eedc10c18b3e50f05ee3ce73dce4",
+      "plan.md": "0c33bb47a58772f4a14531bc9d1f1de74e39449ec901a383ea8902fc4e4c9ad3",
+      "tasks.md": "ceb8b154f73ec26924a72aa5d0c44e70831c8a932e56c2552dcd4d75f02374e6",
+      "checklist.md": "bafa687a44f419f26d865ebcc10f951c821b850ef4bdc0bf787956c2fdb23964",
+      "decision-record.md": "38aed41d45a0ed6396b618800de0dcb985a7de583bc572f3da9a60283bc5aa61",
+      "implementation-summary.md": "639e7e8e61d31ed597cd9628a8a8502e0c48809c9c56ad645a7485bdf604e419"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

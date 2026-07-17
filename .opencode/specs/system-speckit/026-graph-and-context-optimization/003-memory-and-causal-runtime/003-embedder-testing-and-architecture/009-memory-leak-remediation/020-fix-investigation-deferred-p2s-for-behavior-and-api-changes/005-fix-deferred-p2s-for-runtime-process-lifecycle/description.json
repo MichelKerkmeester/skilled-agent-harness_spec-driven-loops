@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/005-fix-deferred-p2s-for-runtime-process-lifecycle",
+  "description": "Five deferred P2 findings remained in runtime/process lifecycle code",
+  "keywords": [
+    "five",
+    "deferred",
+    "findings",
+    "remained",
+    "runtime",
+    "process",
+    "lifecycle",
+    "code"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.219Z",
+  "specId": "005",
+  "folderSlug": "fix-deferred-p2s-for-runtime-process-lifecycle",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

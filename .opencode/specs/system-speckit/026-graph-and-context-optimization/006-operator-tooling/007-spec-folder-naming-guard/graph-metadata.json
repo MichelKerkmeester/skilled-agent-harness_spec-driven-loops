@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec folder naming guard",
+      "naming convention guard",
+      "mis-located spec folder",
+      "phase child naming",
+      "creation time naming enforcement",
+      "cross-runtime naming hook",
+      "naming guard plan",
+      "naming guard design",
+      "shared naming validation module",
+      "creation time gate",
+      "per runtime pre write hook",
+      "naming guard tasks"
+    ],
+    "key_topics": [
+      "spec",
+      "folder",
+      "naming",
+      "guard",
+      "convention",
+      "mis-located",
+      "phase",
+      "child",
+      "creation",
+      "time",
+      "enforcement",
+      "cross-runtime"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "references/config/hook_system.md",
+      "scratch/.gitkeep"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": "references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Folder Naming",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convention Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convention Audit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Audit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec folders can be created with names that are syntactically valid but semantically wrong or mis-located, and nothing stops this at creation time",
+    "created_at": "2026-06-06T05:55:29.189Z",
+    "last_save_at": "2026-07-17T17:19:33.378Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:1dc1f765bec3e113f52da17febabad0b8754aeab9dc69582cb143dbb59a7d5db",
+    "source_doc_hashes": {
+      "spec.md": "37ba0c3f4c4c77210ba9de172f0671ee30d05475ea7a0d0c14b0c3ecd47eec8f",
+      "plan.md": "77a2e91bbc9d0d6641e3e359b818fcce98e97ce38288ec8bd7604e40db90fca6",
+      "tasks.md": "2661fd1620ace0cfa8d0d80c5e4f429089dd990ee352e9b4aba341a130e8d974",
+      "checklist.md": "7d13f23c693c345857e826fb91492779286a1d045ac54326178d163f6e544fa1",
+      "implementation-summary.md": "6705b7a275b12342265855b6fa1e9f4fb618cb3de12d879bb0c4ec3f134491f2",
+      "research.md": "b12942598eca37ef75dc4854fdff9de63cbe8e1b050a26a6eb364c39ad6371d1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/research/iterations",
+  "description": "Research iteration artifacts for 006-continuity-refactor-gates.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "006-continuity-refactor-gates",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "iterations"
+  ],
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
+  "specId": "006",
+  "folderSlug": "continuity-refactor-gates-iterations",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "001-continuity-memory-runtime",
+    "003-continuity-refactor-gates",
+    "research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "migration": {
+    "flattened_at": "2026-04-21T13:00:00Z",
+    "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/research/006-continuity-refactor-gates/iterations",
+    "new_spec_folder": "system-spec-kit/026-graph-and-context-optimization/research/006-continuity-refactor-gates-pt-01/iterations",
+    "layout": "phase-root-children"
+  }
+}

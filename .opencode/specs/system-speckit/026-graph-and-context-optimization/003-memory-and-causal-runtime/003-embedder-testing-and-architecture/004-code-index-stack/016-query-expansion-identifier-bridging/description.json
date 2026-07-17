@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
+  "description": "Bridges the natural-language → code-identifier gap by expanding queries with camelCase / snake_case / PascalCase / kebab-case splits, common",
+  "keywords": [
+    "bridges",
+    "natural-language",
+    "code-identifier",
+    "gap",
+    "expanding",
+    "queries",
+    "camelcase",
+    "pascalcase",
+    "kebab-case",
+    "splits",
+    "common"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.013Z",
+  "specId": "016",
+  "folderSlug": "query-expansion-identifier-bridging",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

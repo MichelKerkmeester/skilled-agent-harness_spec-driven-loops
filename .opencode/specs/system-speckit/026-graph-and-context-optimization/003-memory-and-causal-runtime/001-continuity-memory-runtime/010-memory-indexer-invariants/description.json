@@ -1,0 +1,42 @@
+{
+  "title": "Memory Indexer Invariants",
+  "trigger_phrases": [
+    "026/010 memory indexer invariants",
+    "memory indexer lineage fix",
+    "constitutional tier pollution fix",
+    "index scope invariants",
+    "indexer correctness",
+    "fromScan recheck bypass",
+    "e_lineage fix",
+    "candidate_changed fix",
+    "z_future indexing exclusion",
+    "constitutional path gate"
+  ],
+  "level": 3,
+  "summary": "Level 3 packet covering the two memory-indexer invariant tracks: Track A closes the E_LINEAGE and candidate_changed save-path failures (canonical-path PE guard + fromScan recheck bypass); Track B enforces permanent index-scope exclusions (z_future, external) and constitutional-tier invariants through a shared SSOT, SQL-layer + post-insert + checkpoint-restore defense-in-depth, a transactional cleanup CLI, and Wave-2 hardening (realpath, walker DoS caps, shared governance-audit helpers). Track B fully live-verified; Track A pending live MCP rescan.",
+  "status": "code-complete-pending-track-a-live-rescan",
+  "importance_tier": "important",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants",
+  "description": "Two distinct invariant failures showed up simultaneously in the memory indexer:",
+  "keywords": [
+    "two",
+    "distinct",
+    "invariant",
+    "failures",
+    "showed",
+    "simultaneously",
+    "memory",
+    "indexer"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.647Z",
+  "specId": "010",
+  "folderSlug": "memory-indexer-invariants",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "001-continuity-memory-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

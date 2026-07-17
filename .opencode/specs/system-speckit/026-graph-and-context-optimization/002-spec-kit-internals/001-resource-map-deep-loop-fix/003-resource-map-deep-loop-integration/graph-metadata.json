@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/013 resource map deep loop",
+      "resource map deep-review integration",
+      "resource map deep-research integration",
+      "convergence-time resource map",
+      "iteration evidence aggregation",
+      "026/013 deep loop plan",
+      "deep loop resource map plan",
+      "026/013 tasks",
+      "deep loop integration tasks",
+      "026/013 checklist",
+      "deep loop checklist",
+      "resource map deep loop implementation summary"
+    ],
+    "key_topics": [
+      "resource",
+      "map",
+      "deep",
+      "loop",
+      "deep-review",
+      "integration",
+      "deep-research",
+      "convergence-time",
+      "iteration",
+      "evidence",
+      "aggregation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
+      ".opencode/skills/system-spec-kit/scripts/resource-map/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "research/research.md",
+      "mcp_server/vitest.config.ts",
+      "tasks.md",
+      "scripts/resource-map/README.md",
+      "scripts/tests/resource-map-extractor.vitest.ts",
+      "scripts/resource-map/extract-from-evidence.cjs",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "extract-from-evidence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/scripts/resource-map/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map-extractor.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map Deep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Integration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Autonomous deep-loop runs produce rich evidence across 5–15 iterations, but the output surface is split between iteration markdown files (dense, per-cycle) and `research.md` or `review-report.md` (narrative synthesis)",
+    "created_at": "2026-04-24T00:00:00.000Z",
+    "last_save_at": "2026-07-17T17:19:15.991Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:95edb6c60a99fdf9eb33de0ef31af831d3a179ea126b9bbb43b549e8acf83a8c",
+    "source_doc_hashes": {
+      "spec.md": "6a2c7be7b0bf87c093071982813ddefb28e16f4ce2327bf31cd8f063d02001f2",
+      "plan.md": "9fcfc7f98795e55b116a5515768e2e7aeadace4f3af3e9ba00cd6c569555d2e6",
+      "tasks.md": "51cd6980a05ce7cb18bca76dc5053970fd67f9edd60d730d24e4e2b5abc2a628",
+      "checklist.md": "58d17db7f7e4d6c9331c0fccc3f5b55449e0177ecc80099c9ca385824ac325e4",
+      "implementation-summary.md": "c9240b965fa5f1aeed6106b845b26d764cc1c63bd70f23c873ab932480927f7e",
+      "research/research.md": "56977e1e0299d7b53b596ac02ddd1955b6fbc3aafa8a8410ffcb2951e53d79af"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

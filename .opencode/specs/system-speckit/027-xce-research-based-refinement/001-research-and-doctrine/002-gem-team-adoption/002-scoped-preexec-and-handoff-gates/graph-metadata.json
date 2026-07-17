@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 006/002",
+      "scoped preexec gates",
+      "debug handoff schema",
+      "boundary contract-first",
+      "pre-mortem field",
+      "scoped preexec handoff gates"
+    ],
+    "key_topics": [
+      "phase",
+      "scoped",
+      "preexec",
+      "gates",
+      "debug",
+      "handoff",
+      "schema",
+      "boundary",
+      "contract-first",
+      "pre-mortem",
+      "field",
+      "spec-kit"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      ".opencode/agents/debug.md",
+      ".claude/agents/debug.md",
+      ".codex/agents/debug.toml",
+      ".opencode/agents/code.md",
+      ".claude/agents/code.md",
+      ".codex/agents/code.toml",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl",
+      ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-io-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".opencode/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.toml",
+        "kind": "file",
+        "path": ".codex/agents/debug.toml",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug-delegation.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-debug-delegation.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Pre",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit's highest-risk agent transitions are governed by prose, not machine-checkable discipline",
+    "created_at": "2026-06-06T10:11:07.809Z",
+    "last_save_at": "2026-07-17T17:19:39.119Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d37c4ca8a5a302c7c08596c52423e83775316fa975977cdd1fe4c4990def926f",
+    "source_doc_hashes": {
+      "spec.md": "b921794dfdb34aa0508500076a6b4777ed05a67388e09678e03d5b64c0e50d59",
+      "plan.md": "82c187749f22e3fd6af9a4e80a6b769b64291fb567494424ad193861bc4982ef",
+      "tasks.md": "bf0291e31b950f9db0b6e3cddb300da46039cc9fbd92730dc683234724871812",
+      "checklist.md": "3cea2801fbc7ac2fffde2935032109bf4be5279b81b049b4699703fcdc975814",
+      "implementation-summary.md": "af49a9e709c6bce7a299d355fa159b49248aa8439a9e996cffb3e23f3935d052"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

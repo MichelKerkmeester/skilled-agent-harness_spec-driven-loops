@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/002/007 auto embedder selection",
+      "llama-cpp purge",
+      "smart embedder precedence chain",
+      "auto-select bootstrap",
+      "voyage openai ollama hf-local fallback",
+      "embeddinggemma removal",
+      "016/002/007 plan",
+      "auto embedder selection plan",
+      "016/002/007 tasks",
+      "016/002/007 summary",
+      "auto embedder selection handoff",
+      "016/002/007 handover"
+    ],
+    "key_topics": [
+      "auto",
+      "embedder",
+      "selection",
+      "llama-cpp",
+      "purge",
+      "smart",
+      "precedence",
+      "chain",
+      "auto-select",
+      "bootstrap",
+      "voyage",
+      "openai"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "handover.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "shared/embeddings/auto-select.ts",
+      "mcp_server/tests/embedder-auto-selection.vitest.ts",
+      "mcp_server/lib/embedders/schema.ts",
+      "shared/embeddings/factory.ts",
+      "mcp_server/lib/embedders/registry.ts",
+      "references/memory/embedder_architecture.md",
+      ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
+      "scratch/llama-cpp-surface-inventory.md"
+    ],
+    "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": "shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-auto-selection.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedder-auto-selection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder_architecture.md",
+        "kind": "doc",
+        "path": "references/memory/embedder_architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "llama-cpp-surface-inventory.md",
+        "kind": "doc",
+        "path": "scratch/llama-cpp-surface-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedder Selection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stop Ollama",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Should Voyage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Emit Commit Handoff",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "filesystem",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "embeddinggemma",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Replace the hardcoded embeddinggemma-300m default with a smart precedence-chain auto-selection at bootstrap. Probe environment in order — Voyage API key → OpenAI API key → Ollama daemon+jina-v3 → hf-local — and persist the choice to vec_metadata. Purge all llama-cpp / embeddinggemma in-process loader code (Metal GGUF, node-llama-cpp deps, the 750 MB legacy DB), replacing the legacy fallback path. Ollama becomes the always-available local fallback when cloud APIs aren't configured.",
+    "created_at": "2026-05-19T19:25:52.542Z",
+    "last_save_at": "2026-07-17T17:19:21.381Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:bf8471d5fdb277988cbc79bf65203a28034282381e6e63347b81d263ea1bbec6",
+    "source_doc_hashes": {
+      "spec.md": "7921220c5073573ed7d53135cb4b44d6bd14f4ce49220de32aa0df46ccb14667",
+      "plan.md": "28c7f14c44081674728c291e83e0f6e5037a72e516b57ab78973a2e6e6a3bf32",
+      "tasks.md": "142c9999c01864b47d56c4c0dfc512f638659eb3789dc52a3fe0746c149e686e",
+      "implementation-summary.md": "24d06ab6d6d1e9dbb0c8d4a67073902fbc29ebf83640f4dbfec50e020a1c1729",
+      "handover.md": "1fcd5c3d0a6257dcc9602a951ad76c69b7b5844158126a78aa49e3ffb5ebad77"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

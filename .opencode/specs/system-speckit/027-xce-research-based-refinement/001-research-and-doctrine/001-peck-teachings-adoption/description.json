@@ -1,0 +1,37 @@
+{
+  "level": "phase",
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
+  "status": "phase-parent",
+  "is_phase_parent": true,
+  "children": [
+    "001-peck-teachings-for-spec-kit",
+    "002-self-check-templates",
+    "003-current-state-discipline",
+    "004-constitutional-rule-review",
+    "005-reviewer-prompt-benchmark-substrate",
+    "006-peck-verification-discipline",
+    "007-acceptance-coverage-gate"
+  ],
+  "specFolder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+  "description": "Two peck research passes inform this packet",
+  "keywords": [
+    "two",
+    "peck",
+    "research",
+    "passes",
+    "inform",
+    "packet"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.267Z",
+  "specId": "001",
+  "folderSlug": "peck-teachings-adoption",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "001-research-and-doctrine"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

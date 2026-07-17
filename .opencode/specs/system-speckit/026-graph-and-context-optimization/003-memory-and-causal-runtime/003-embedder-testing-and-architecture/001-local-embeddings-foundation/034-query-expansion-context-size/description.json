@@ -1,0 +1,44 @@
+{
+  "title": "034 Query Expansion Context Size",
+  "level": "2",
+  "schema_version": 1,
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
+  "summary": "Bound embedding expansion combinedQuery construction so low-priority synonym terms cannot silently push llama-cpp query embeddings over the practical context budget.",
+  "tags": [
+    "query-expansion",
+    "embedding-expansion",
+    "llama-cpp",
+    "context-size",
+    "retrieval-quality"
+  ],
+  "is_phase_parent": false,
+  "created_at": "2026-05-14T15:40:13Z",
+  "updated_at": "2026-05-14T15:45:00Z",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
+  "description": "Packet 039 made the llama-cpp embedding worker resilient by truncating over-budget input through the model tokenizer",
+  "keywords": [
+    "packet",
+    "llama-cpp",
+    "embedding",
+    "worker",
+    "resilient",
+    "truncating",
+    "over-budget",
+    "input",
+    "model",
+    "tokenizer"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.564Z",
+  "specId": "034",
+  "folderSlug": "query-expansion-context-size",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "001-local-embeddings-foundation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

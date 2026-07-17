@@ -1,0 +1,60 @@
+{
+  "title": "Memory search Clusters 4-7 remediation",
+  "trigger_phrases": [
+    "memory search clusters 4-7 remediation",
+    "causal-stats output hygiene fix",
+    "memory state hygiene",
+    "folder discovery weak signal",
+    "quality fallback fts5 bm25 grep",
+    "intent classifier stability corpus",
+    "cocoindex daemon health probe",
+    "026/003/006 packet"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "complete",
+  "priority": "P1",
+  "createdAt": "2026-05-08T21:00:00Z",
+  "branch": "main",
+  "parent_track": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime",
+  "parent_id": "003-continuity-memory-runtime",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs"
+    ]
+  },
+  "derived": {
+    "status": "complete",
+    "completion_pct": 100,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
+  "description": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the",
+  "keywords": [
+    "phase",
+    "audited",
+    "memory",
+    "search",
+    "against",
+    "indexed-continuity",
+    "runtime",
+    "catalogued",
+    "defects",
+    "spanning",
+    "retrieval",
+    "output",
+    "rendering"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.692Z",
+  "specId": "006",
+  "folderSlug": "fix-memory-search-health-fallback-stability",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "001-continuity-memory-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

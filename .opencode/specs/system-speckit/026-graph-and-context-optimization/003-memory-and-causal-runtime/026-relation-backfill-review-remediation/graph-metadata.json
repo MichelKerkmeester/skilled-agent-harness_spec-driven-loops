@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relation backfill review remediation",
+      "supersession contradicts caused invalidation",
+      "hasConflictingValidEdge backfill guard",
+      "backfill skippedConflicting",
+      "relation backfill honest written count",
+      "relation backfill remediation plan",
+      "conflict guard implementation",
+      "backfill honest delta counting",
+      "relation backfill remediation checklist",
+      "conflict guard verification",
+      "backfill honesty verification",
+      "relation backfill remediation decision"
+    ],
+    "key_topics": [
+      "relation",
+      "backfill",
+      "review",
+      "remediation",
+      "supersession",
+      "contradicts",
+      "caused",
+      "invalidation",
+      "hasconflictingvalidedge",
+      "guard",
+      "skippedconflicting",
+      "honest"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-conflict.vitest.ts",
+      "mcp_server/lib/causal/relation-backfill.ts",
+      "mcp_server/lib/graph/contradiction-detection.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/handlers/causal-graph.ts",
+      "mcp_server/tests/relation-backfill-conflict.vitest.ts",
+      "decision-record.md",
+      "tests/relation-backfill-conflict.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "lib/causal/relation-backfill.ts",
+      "lib/graph/contradiction-detection.ts",
+      "lib/storage/causal-edges.ts",
+      "schemas/tool-input-schemas.ts",
+      "handlers/causal-graph.ts"
+    ],
+    "entities": [
+      {
+        "name": "relation-backfill.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "contradiction-detection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relation-backfill-conflict.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-conflict.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Backfill Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Protect",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Suppress",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Defensive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Relation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`collectSupersessionEdges` emits `contradicts` for predecessor->successor, and `collectLineageEdges` emits `caused` for the SAME directed pair because lineage is reciprocal (`A.supersededby=B` AND `B.predecessor=A`)",
+    "created_at": "2026-06-04T14:30:00Z",
+    "last_save_at": "2026-07-17T17:19:32.147Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:27f09bbb5b89fa6094b5dc02143ed3020d7ddd177a61dae527b2ffb8520a7851",
+    "source_doc_hashes": {
+      "spec.md": "9bdc24c6231d41b045f5dd96e92af176f02e4e7035ce3e61923a003cb7fdbd05",
+      "plan.md": "6fc2b1aeaa77f73fa61134bac0fe1e9914b08b5e31a04f740bf7c534230f927c",
+      "tasks.md": "de1d7c93b72b73c0de118c31c3630700dc3769b945ba01a266c1bcbffdebed3f",
+      "checklist.md": "2f7cc42caf048b5f8516d3c8d9713ea4e801a29dce43dd9b65b000c90f8af028",
+      "decision-record.md": "8023dc8b0a283e8e8689dc56052575decb01a8832c321689d95d8f5eeb9dc4d9",
+      "implementation-summary.md": "6c66fe7f33e012ea8d318aa351222087ea240fc11f5c62cf2f2a70d681bfbda8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

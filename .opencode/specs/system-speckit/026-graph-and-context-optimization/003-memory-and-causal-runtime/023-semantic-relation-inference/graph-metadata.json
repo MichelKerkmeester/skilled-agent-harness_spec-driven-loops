@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "semantic relation inference",
+      "similarity supports causal edges",
+      "contradicts supersession causal edges",
+      "related_memories backfill collector",
+      "opt-in relation backfill collectors",
+      "semantic relation inference checklist",
+      "similarity contradicts collector verification",
+      "opt-in backfill collector verification",
+      "semantic relation inference decision",
+      "cached related_memories over live vec",
+      "supersession contradicts over semantic",
+      "opt-in collector posture"
+    ],
+    "key_topics": [
+      "semantic",
+      "relation",
+      "inference",
+      "similarity",
+      "supports",
+      "causal",
+      "edges",
+      "contradicts",
+      "supersession",
+      "backfill",
+      "collector",
+      "opt-in"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-similarity.vitest.ts",
+      "mcp_server/lib/causal/relation-backfill.ts",
+      "mcp_server/lib/causal/relation-coverage.ts",
+      "mcp_server/handlers/causal-graph.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/tools/types.ts",
+      "mcp_server/tests/relation-backfill-similarity.vitest.ts",
+      "decision-record.md",
+      "review/review-report.md",
+      "tools/types.ts",
+      "tests/relation-backfill-similarity.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "lib/causal/relation-backfill.ts"
+    ],
+    "entities": [
+      {
+        "name": "relation-backfill.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relation-coverage.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relation-backfill-similarity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-similarity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Relation Inference",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 021's backfill only promotes two structural signals (spec-document chains + lineage predecessor links) into typed edges",
+    "created_at": "2026-06-04T13:30:00Z",
+    "last_save_at": "2026-07-17T17:19:31.836Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:453ef8ba5a6aba913dff6bbede19c30077f0c8771d5f51b4b0c0ccd7fa181831",
+    "source_doc_hashes": {
+      "spec.md": "2eab1862a70d3082798a1d835534e71afdda12a26ebd5cd94d13a34c3513d366",
+      "plan.md": "4507d8e1fad088794aaa2db814355baeaef573639660876c7fd6925e49cd5c3b",
+      "tasks.md": "74d9a30e935e153bacdea291129c2df58ff99a9e1658b9e3dbb3e218e2d5dcb3",
+      "checklist.md": "9438d638164c9f2d0b96432a8237bc85ad6cd397fd4cb5815ed2de2c657a1971",
+      "decision-record.md": "842a7ec8cce66bbc18d396de9b6db89c4a5bdb49bd07f0de6afd88b03da5e356",
+      "implementation-summary.md": "4a91343d2650ae7c731c7e45285b802e5095525689f3accd9bacd5009bac21e6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

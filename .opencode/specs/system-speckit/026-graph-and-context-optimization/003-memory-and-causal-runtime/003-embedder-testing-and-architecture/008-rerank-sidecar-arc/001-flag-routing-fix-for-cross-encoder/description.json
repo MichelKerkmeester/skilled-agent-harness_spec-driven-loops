@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder",
+  "description": "spec-memory has two reranker entry points and the flag contract between them shadows the path we actually want to use:",
+  "keywords": [
+    "spec-memory",
+    "two",
+    "reranker",
+    "entry",
+    "points",
+    "flag",
+    "contract",
+    "between",
+    "them",
+    "shadows",
+    "path",
+    "actually",
+    "want"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.241Z",
+  "specId": "001",
+  "folderSlug": "flag-routing-fix-for-cross-encoder",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

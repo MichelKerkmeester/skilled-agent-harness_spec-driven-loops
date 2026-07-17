@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "standalone save second writer guard",
+      "Step 11.5 daemon guard",
+      "mk-spec-memory daemon live detection",
+      "memory_index_scan workaround",
+      "026 007 013 standalone save second writer",
+      "standalone save second writer plan",
+      "Step 11.5 daemon guard plan",
+      "memory_index_scan operator contract",
+      "standalone save second writer tasks",
+      "Step 11.5 daemon guard tasks",
+      "standalone save second writer checklist",
+      "Step 11.5 daemon guard verification"
+    ],
+    "key_topics": [
+      "standalone",
+      "save",
+      "second",
+      "writer",
+      "guard",
+      "step",
+      "daemon",
+      "mk-spec-memory",
+      "live",
+      "detection",
+      "workaround",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/core/daemon-detect.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/daemon-detect.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/workflow-step115-daemon-guard.vitest.ts",
+      ".opencode/commands/memory/save.md",
+      "scripts/core/daemon-detect.ts",
+      "scripts/core/workflow.ts",
+      "mcp_server/api/indexing.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-detect.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/daemon-detect.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-detect.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/daemon-detect.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-step115-daemon-guard.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/workflow-step115-daemon-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "indexing.ts",
+        "kind": "code",
+        "path": "mcp_server/api/indexing.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standalone Save Second",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writer Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Preserve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Step",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`generate-context.js` Step 11.5 unconditionally imported `@spec-kit/mcp-server/api/indexing`, called `initializeIndexingRuntime()`, and then ran `reindexSpecDocs()`",
+    "created_at": "2026-05-29T14:01:10.035Z",
+    "last_save_at": "2026-07-17T17:19:34.307Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fd237b6bb62ecd269b2678c4affc282922b60d389b749ad6334de8b839c3294e",
+    "source_doc_hashes": {
+      "spec.md": "9926940d9e66d35fec841897b7ac8e08d5c3d10f1cfb7d9f4a4c5b094ed5b443",
+      "plan.md": "344c9c38568b22e8728ffa84bdfe00b24f0827d2c3c8591235b4abaa8e184d13",
+      "tasks.md": "bba09ba385f655caa19758d22b1a8de2ea5d5652f8af83aef38fc5f84110058a",
+      "checklist.md": "514443a9cc0c8a04c238c7a2fe5bf3b9656dab7de3abe8cd5a8a17ea410c737b",
+      "implementation-summary.md": "a63b1a48d836d6acfdd8bc8ce37e0c12fc3ab58cb80fbed32f1286a5f044cea1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

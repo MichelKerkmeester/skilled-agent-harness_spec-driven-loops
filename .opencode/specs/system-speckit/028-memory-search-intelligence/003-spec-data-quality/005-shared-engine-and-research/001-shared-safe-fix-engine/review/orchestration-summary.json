@@ -1,0 +1,22 @@
+{
+  "run_id": "1782055946319-8qzc54",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/026-shared-safe-fix-engine",
+  "base_artifact_dir": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/026-shared-safe-fix-engine/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "010 review remediation",
+      "010/007 remediation",
+      "phase 010 remediation",
+      "p1 p2 follow-up",
+      "006/007 implementation summary",
+      "006 remediation summary"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "phase",
+      "follow-up",
+      "implementation",
+      "summary",
+      "sub-phases",
+      "shipped",
+      "sandbox-blocked",
+      "verification",
+      "feature",
+      "specification"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "formatters/search-results.ts",
+      "schemas/tool-input-schemas.ts",
+      "tests/memory/trust-badges.test.ts",
+      "handlers/index.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trust-badges.test.ts",
+        "kind": "test",
+        "path": "tests/memory/trust-badges.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Project",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "OPERATOR-PENDING",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-D",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wiring Decision",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Evidence Sync",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Gaps",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sanitization Hardening",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
+    "created_at": "2026-04-25T13:51:18.730Z",
+    "last_save_at": "2026-07-17T17:19:32.152Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:926d97e60f1759daf3961aff7f1cbc08d10871f5cd20e790e0651b3fbe528d30",
+    "source_doc_hashes": {
+      "spec.md": "91294c87c6afe8324c901dcd21bd4af60367ea1fe22d5217ea8190bbbc1137dd",
+      "plan.md": "040b3a53699556ecebbca0a759f96773849d781bb47dfeda80428885dae7ff49",
+      "tasks.md": "0366e528a9f744ff1768a1c56bbc42a87e91996ca444fec0774f06bae0b25c7b",
+      "checklist.md": "1fd7454ee797d968d9b0fec77343f74a7a9f4de1131e289f438c815bc3b4a846",
+      "implementation-summary.md": "77c4577e81e15e25485537aad5916ce7895a8ba25ccd5df3c74d28fa76ac5304"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

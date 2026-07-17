@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
+  "description": "Cocoindex's benchmark (2026-05-20-expanded, 73 probes on code chunks) showed Qwen3-Reranker-0.6B winning by `+1 hit / 73` over jina-v3 — a hit-rate",
+  "keywords": [
+    "cocoindex",
+    "benchmark",
+    "2026-05-20-expanded",
+    "probes",
+    "code",
+    "chunks",
+    "showed",
+    "qwen3-reranker-0",
+    "winning",
+    "hit",
+    "jina-v3",
+    "hit-rate"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.237Z",
+  "specId": "004",
+  "folderSlug": "spec-memory-rerank-benchmark",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "008-rerank-sidecar-arc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

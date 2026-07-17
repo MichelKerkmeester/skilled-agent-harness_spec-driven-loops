@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/007-ranking-filter-bypass-and-score-scale-fixes",
+  "description": "The deep-dive report (../research/deep-dive-report.md, Chain D) shows a large fraction of the ranking stack is computed, recorded in telemetry as",
+  "keywords": [
+    "deep-dive",
+    "report",
+    "research",
+    "deep-dive-report",
+    "chain",
+    "shows",
+    "large",
+    "fraction",
+    "ranking",
+    "stack",
+    "computed",
+    "recorded",
+    "telemetry"
+  ],
+  "lastUpdated": "2026-07-17T17:01:46.818Z",
+  "specId": "007",
+  "folderSlug": "ranking-filter-bypass-and-score-scale-fixes",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-speckit-memory",
+    "041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

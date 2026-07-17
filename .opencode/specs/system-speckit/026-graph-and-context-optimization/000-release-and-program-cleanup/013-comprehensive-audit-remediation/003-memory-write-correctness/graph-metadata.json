@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "entity density cache invalidation",
+      "post mutation hook",
+      "atomic save pending recovery",
+      "transaction manager orphan",
+      "memory write correctness",
+      "entity density invalidation plan",
+      "mutation hook wiring",
+      "atomic save recovery test",
+      "transaction manager regression",
+      "memory write correctness plan",
+      "memory write correctness tasks",
+      "entity density hook tasks"
+    ],
+    "key_topics": [
+      "entity",
+      "density",
+      "cache",
+      "invalidation",
+      "post",
+      "mutation",
+      "hook",
+      "atomic",
+      "save",
+      "pending",
+      "recovery",
+      "transaction"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts",
+      "mcp_server/handlers/mutation-hooks.ts",
+      "mcp_server/handlers/memory-crud-types.ts",
+      "mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts",
+      "mcp_server/tests/transaction-manager-recovery.vitest.ts",
+      "lib/search/entity-density.ts",
+      "lib/storage/transaction-manager.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mutation-hooks.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density-commit-hooks.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "transaction-manager-recovery.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density.ts",
+        "kind": "code",
+        "path": "lib/search/entity-density.ts",
+        "source": "derived"
+      },
+      {
+        "name": "transaction-manager.ts",
+        "kind": "code",
+        "path": "lib/storage/transaction-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shared post-mutation hook (`runPostMutationHooks`) clears trigger, tool, constitutional, graph-signal, degree, and co-activation caches but never invalidates the entity-density cache, so after a `memoryupdate` renames a high-degree memory or rewrites its trigger phrases, graph-channel routing keeps matching stale tokens until the 60s TTL lapses",
+    "created_at": "2026-06-04T20:45:42Z",
+    "last_save_at": "2026-07-17T17:19:15.059Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bb9cb71363fce6486e21332c3bd24e983fee2827f300c77534ffce3a032dc986",
+    "source_doc_hashes": {
+      "spec.md": "2efe6d295f202fbdab6a4f4330054f7ffe4138ea157cf1d1008f9bf22060e2dc",
+      "plan.md": "43b5b7a514134d490c4b20b23d8c3165f7574ac5e7641747fd5bd8e947541a4d",
+      "tasks.md": "e83a933f810cd244fdfa279b577f4f39588fe2f756578e87b81d4cdf074f20d2",
+      "implementation-summary.md": "73dc3587a1541f27975e7ab39d7b787220ef3c74f384bfd1e174ff5fc081b2a8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

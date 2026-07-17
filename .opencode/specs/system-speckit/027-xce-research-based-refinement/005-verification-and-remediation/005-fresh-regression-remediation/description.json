@@ -1,0 +1,37 @@
+{
+  "level": "1",
+  "childTopology": [
+    "001-memory-storage-and-search",
+    "002-daemon-launcher-lifecycle",
+    "003-code-graph-robustness",
+    "004-cli-frontdoor-safety",
+    "005-spec-folder-metadata-reconciliation",
+    "006-doc-truth-completion-and-mirrors",
+    "007-consolidation-hardening"
+  ],
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "description": "Phase parent coordinating remediation of ALL 113 findings from the 027 fresh+regression deep-review, decomposed into 6 subsystem sub-phases",
+  "keywords": [
+    "phase",
+    "parent",
+    "coordinating",
+    "remediation",
+    "findings",
+    "fresh",
+    "regression",
+    "deep-review",
+    "decomposed",
+    "subsystem",
+    "sub-phases"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.088Z",
+  "specId": "005",
+  "folderSlug": "fresh-regression-remediation",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

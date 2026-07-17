@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
+  "description": "The semantic matcher must be merged into `memorymatchtriggers` without weakening the lexical control surface",
+  "keywords": [
+    "semantic",
+    "matcher",
+    "must",
+    "merged",
+    "memorymatchtriggers",
+    "without",
+    "weakening",
+    "lexical",
+    "control",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.701Z",
+  "specId": "003",
+  "folderSlug": "hybrid-handler",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "003-semantic-trigger-fallback"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

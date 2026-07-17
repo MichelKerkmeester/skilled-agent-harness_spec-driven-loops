@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009 causal reducer",
+      "003 causal reducer",
+      "session-trace-causal-reducer.ts",
+      "auto-session edges",
+      "009 causal reducer plan",
+      "009 causal reducer tasks",
+      "009 causal reducer checklist",
+      "009 causal reducer implementation summary"
+    ],
+    "key_topics": [
+      "causal",
+      "reducer",
+      "session-trace-causal-reducer",
+      "auto-session",
+      "edges",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "level",
+      "child"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "mcp_server/lib/feedback/session-trace-causal-reducer.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-trace-causal-reducer.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/session-trace-causal-reducer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Reducer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Trace Edges",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trace Causal Reducer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Module",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Event Reader",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-edge",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Level 2 child packet for deferred session-trace causal edge inference.",
+    "created_at": "2026-05-12T07:20:00.000Z",
+    "last_save_at": "2026-07-17T17:19:40.105Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f49e2b653c1bdc394cbbc827d2f542ebf40267ec5da86fb8f063262cdbc94e52",
+    "source_doc_hashes": {
+      "spec.md": "27db90f089d54f576d3181b298df40dd214d33b6ed5e2cf01c223648d955fe83",
+      "plan.md": "1874ac77e3465ab823fbaead9a7256c264a53cbe74b379500380734a786d3c20",
+      "tasks.md": "609bdda1ede68d69f4de15c95b135f2862ce982ee8e3b445ed4c220d4fbfbbae",
+      "checklist.md": "c075df3853c243d218e8c6cbfc0cf5bd44e7a43702da74be9eb0bb8c8f2bb9f2",
+      "implementation-summary.md": "679811d82ed727607b3c54976a856c30c342236c6515d1d6ca5a6578e4690efa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

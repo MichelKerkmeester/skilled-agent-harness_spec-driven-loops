@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory_save enrichment repair",
+      "replay enrichment window",
+      "post-insert enrichment marker",
+      "schema v30 enrichment status",
+      "secondary index idempotency memory_save",
+      "memory_save enrichment repair plan",
+      "schema v30 marker migration",
+      "enrichment-state helpers",
+      "repair on replay scan lease",
+      "memory_save enrichment repair tasks",
+      "schema v30 task breakdown",
+      "enrichment marker tasks"
+    ],
+    "key_topics": [
+      "enrichment",
+      "repair",
+      "replay",
+      "window",
+      "post-insert",
+      "marker",
+      "schema",
+      "v30",
+      "status",
+      "secondary",
+      "index",
+      "idempotency"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "mcp_server/lib/search/vector-index-schema.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/handlers/save/enrichment-state.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "handlers/save/post-insert.ts",
+      "mcp_server/tests/vector-index-schema-enrichment-v30.vitest.ts",
+      "mcp_server/tests/enrichment-state.vitest.ts",
+      "mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
+      "mcp_server/tests/memory-save-dedup-order.vitest.ts",
+      "mcp_server/tests/handler-memory-index-cooldown.vitest.ts",
+      "handlers/save/enrichment-state.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "lib/search/vector-index-schema.ts",
+      "handlers/memory-save.ts",
+      "handlers/memory-index.ts",
+      "handlers/save/dedup.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "enrichment-state.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/save/enrichment-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-insert.ts",
+        "kind": "code",
+        "path": "handlers/save/post-insert.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-enrichment-v30.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/vector-index-schema-enrichment-v30.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "enrichment-state.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/enrichment-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-compatibility.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save-dedup-order.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/memory-save-dedup-order.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-index-cooldown.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/handler-memory-index-cooldown.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "dedup.ts",
+        "kind": "code",
+        "path": "handlers/save/dedup.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Replay Enrichment Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memorysave` commits the primary row inside `writeTransaction.immediate()`, then runs secondary enrichment (FTS, vector, entity/summary, causal/graph edges) afterward via `runPostInsertEnrichmentIfEnabled()`",
+    "created_at": "2026-06-02T00:00:00.000Z",
+    "last_save_at": "2026-07-17T17:19:31.198Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b174b430cf85ddefa618c60b4310918c4c5222c9cf9f0ea1362b7174fce18b4f",
+    "source_doc_hashes": {
+      "spec.md": "469e4e0fc81b1db58ea3b536e5511f40592118dddd1ee45430271fc08549becb",
+      "plan.md": "6b5c0c1aaa6f84f9463ea8a1f8886beb8291e2514ab1f2821d1b8fecc1df5d4b",
+      "tasks.md": "3501970fde4578839162d2ab6df4936014e2770091ea5b0b9dff1b0c311212b0",
+      "checklist.md": "7832def6556da1122d0bb8cfde9871e5b12927fc46fdaa7613c71b23ca4251aa",
+      "decision-record.md": "73ba5e50bfec25cf0b478c9e717b757f7b22304b279a89a56ce18145aba35b37",
+      "implementation-summary.md": "c3a76b19a0d73c524a8407d3f11d951d7b256cfb6971c5ad4cc3bd190ed46cd0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

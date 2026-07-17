@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "020 deep review P1 remediation",
+      "mcp-coco-index P1 remediation",
+      "CodeRankEmbed Jina v3 hybrid RRF defaults",
+      "020 P1 remediation plan",
+      "mcp-coco-index deep review remediation",
+      "hybrid rerank nomic defaults remediation",
+      "020 P1 remediation tasks",
+      "020 P2 remediation tasks",
+      "mcp-coco-index P1 task list",
+      "mcp-coco-index P2 task list",
+      "deep review remediation tasks",
+      "020 P1 remediation checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "remediation",
+      "mcp-coco-index",
+      "coderankembed",
+      "jina",
+      "hybrid",
+      "rrf",
+      "defaults",
+      "plan",
+      "rerank",
+      "nomic"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "benchmarks/README.md",
+      "decision-record.md",
+      "spec.md",
+      "checklist.md",
+      "evidence/query-expansion-root-cause-analysis.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmarks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "query-expansion-root-cause-analysis.md",
+        "kind": "doc",
+        "path": "evidence/query-expansion-root-cause-analysis.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Spec Kit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 019 deep-review packet found nine P1 defects across the mcp-coco-index stack: stale defaults, docs that contradicted production behavior, unsafe env parsing, misleading success reporting, benchmark evidence hazards, overpowering hybrid boosts, and missing RCA for query-expansion regression",
+    "created_at": "2026-05-19T17:59:30Z",
+    "last_save_at": "2026-07-17T17:19:23.902Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:df99b1b830c38213d7e7498b10592bb7f9d6a6d3185db8590fd87141218d6007",
+    "source_doc_hashes": {
+      "spec.md": "ad8dcdeb3505a7ba059a3a95f30df1981fd2b7f3224e543d65be91a3346b8390",
+      "plan.md": "2c0eea3c007d12e04f6ff1ab1453b24118f95b98059ee9b7c3dcf2fbf01089b4",
+      "tasks.md": "e590ca8021f3482f4649a11e66bad7e67f96cbbb35eb9909682268fc5e8f5570",
+      "checklist.md": "ae67e4d6d3be13eee86b1264433cb101eafc7a343e7f61d6011507b54caedf63",
+      "decision-record.md": "5d0f838fb43ade2a5a2a113cdb9fd953c38a68d42ebc8b1b4ed2ddd529d0e6a5",
+      "implementation-summary.md": "474c69e009f4e1a31949e12eddb023bfce4c3f26a800c5c0c3cb7f81d2ce8e20"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

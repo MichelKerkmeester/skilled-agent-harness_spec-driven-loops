@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "021-sk-doc-conformance-template-sweep",
+      "sk-doc conformance sweep",
+      "manual testing playbook conformance",
+      "feature catalog conformance",
+      "skill reference conformance",
+      "template cleanup",
+      "021-sk-doc-conformance-template-sweep plan",
+      "sk-doc conformance plan",
+      "021-sk-doc-conformance-template-sweep tasks",
+      "021-sk-doc-conformance-template-sweep checklist",
+      "021-sk-doc-conformance-template-sweep decisions",
+      "021-sk-doc-conformance-template-sweep implementation"
+    ],
+    "key_topics": [
+      "021-sk-doc-conformance-template-sweep",
+      "sk-doc",
+      "conformance",
+      "sweep",
+      "manual",
+      "testing",
+      "playbook",
+      "feature",
+      "catalog",
+      "skill",
+      "reference",
+      "template"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/plugins/README.md",
+      "templates/stress_test/README.md",
+      "templates/changelog/README.md",
+      "handover.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conformance Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Severity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation And Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quick Start",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The user spotted format drift in two cited manualtestingplaybook examples (`system-spec-kit/mcpserver/skilladvisor/` and `.../codegraph/`)",
+    "created_at": "2026-05-18T08:15:53.141Z",
+    "last_save_at": "2026-07-17T17:19:09.810Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:6c32a215cfc301c8216298bbabd0214ef2cd791ebb5e447d0c9ef1b2253e37d3",
+    "source_doc_hashes": {
+      "spec.md": "af83421db105571273a192b708950f7d2cc27ba087be9754a3e0218b258cfc8a",
+      "plan.md": "61b8a939737c66dc1805f258ad6bce29f1bbd56c715d83f233a2407b29325bf7",
+      "tasks.md": "432a66e02c9b8923e7ac0b4e05bc296f9ea6a3e4cf3c73b8b56441c51bcb04eb",
+      "checklist.md": "d42736cea81634911674355c1f8351e460ca65a548282d6ee086f24dafb10c86",
+      "decision-record.md": "228764069b5e87789035de1c208e02f252b8491fe4e2a98dd34717331a12b13c",
+      "implementation-summary.md": "710e27732c5a30766cac7f276744536bb31675e5fd75a915dd65295c5d86edd9",
+      "handover.md": "57f62a6c7fe45b1f656d3eb7594ef25aa29aa98465f6d2300699fe0d048d5322"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

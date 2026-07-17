@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-058-skill-md-realignment",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-058-skill-md-realignment",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "058 spec",
+      "skill md realignment",
+      "20 iter deep review cli-devin",
+      "058 plan",
+      "skill md realignment plan",
+      "058 tasks",
+      "058 implementation",
+      "058 resource map"
+    ],
+    "key_topics": [
+      "spec",
+      "skill",
+      "realignment",
+      "iter",
+      "deep",
+      "review",
+      "cli-devin",
+      "plan",
+      "tasks",
+      "implementation",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/README.md",
+      "research/iterations/iteration-001.md",
+      "plan.md",
+      "tasks.md",
+      "resource-map.md",
+      "research/track-seeds.md",
+      "assets/iter-template.md",
+      "research/research.md",
+      "research/delta-verified.md",
+      "spec.md",
+      "research/deep-research-state.jsonl",
+      "research/edit-evidence-A.md",
+      "research/edit-evidence-B.md",
+      "research/edit-evidence-C.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "track-seeds.md",
+        "kind": "doc",
+        "path": "research/track-seeds.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-template.md",
+        "kind": "doc",
+        "path": "assets/iter-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "delta-verified.md",
+        "kind": "doc",
+        "path": "research/delta-verified.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "edit-evidence-A.md",
+        "kind": "doc",
+        "path": "research/edit-evidence-A.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit-evidence-B.md",
+        "kind": "doc",
+        "path": "research/edit-evidence-B.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit-evidence-C.md",
+        "kind": "doc",
+        "path": "research/edit-evidence-C.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "20 cli-devin SWE 1.6 deep-review iterations identify drift + gaps",
+    "created_at": "2026-05-15T15:00:00Z",
+    "last_save_at": "2026-07-17T17:19:36.532Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:535886d0d585f5738092f91ca8d99fbfaa32673ae2383eb78b50c520da268526",
+    "source_doc_hashes": {
+      "spec.md": "2959c30e59258b3d50912d5d1cd20e31e076c8fed6267af8f7d4c60fba4935f4",
+      "plan.md": "829215443dee625481232a83b785c808ed5e8beb67cda02c99ed042e365a6fc7",
+      "tasks.md": "16e64aff0362248ce3d57176244ce9de5292e31d7f22fd635f17d6f848e48960",
+      "implementation-summary.md": "bbc3b7f7cdfb3116d55341840a22251fc08835152d45693376106a6ebc231194",
+      "research/research.md": "586be93dad1f5a28b251cdfb99b3f0d0e53f22046411708f5ebd1ec52f0b5e74",
+      "resource-map.md": "ec31c2c28996569a7c5ce017f27707f2d64c02f91c1aad2d3d4b14fead5f69ae"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

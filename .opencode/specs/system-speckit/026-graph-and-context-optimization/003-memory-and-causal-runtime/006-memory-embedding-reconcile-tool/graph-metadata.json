@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory_embedding_reconcile",
+      "embedding status reconcile",
+      "embedding backlog drain",
+      "vector present status stale",
+      "embedding maintenance tool",
+      "memory_embedding_reconcile plan",
+      "embedding reconcile implementation",
+      "embedding status convergence",
+      "reconcile handler registration",
+      "memory_embedding_reconcile tasks",
+      "embedding reconcile task breakdown",
+      "reconcile vitest tasks"
+    ],
+    "key_topics": [
+      "embedding",
+      "status",
+      "reconcile",
+      "backlog",
+      "drain",
+      "vector",
+      "present",
+      "stale",
+      "maintenance",
+      "tool",
+      "plan",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/lib/embedders/embedding-reconcile.ts",
+      "mcp_server/handlers/memory-embedding-reconcile.ts",
+      "mcp_server/tests/embedding-reconcile.vitest.ts",
+      "lib/embedders/embedding-reconcile.ts",
+      "mcp_server/tools/memory-tools.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/tool-schemas.ts",
+      "mcp_server/handlers/index.ts",
+      "mcp_server/tools/types.ts",
+      "mcp_server/context-server.ts",
+      "tests/embedding-reconcile.vitest.ts",
+      "tools/memory-tools.ts",
+      "schemas/tool-input-schemas.ts",
+      "handlers/index.ts",
+      "tools/types.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "handlers/memory-embedding-reconcile.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "embedding-reconcile.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-embedding-reconcile.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-reconcile.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedding-reconcile.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-tools.ts",
+        "kind": "code",
+        "path": "mcp_server/tools/memory-tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Run Record",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Backlog Reconcile",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The one-time backlog repair — vector-present rows whose `embeddingstatus` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` — was executed via hand-written guarded SQL (\"emergency fallback\" in 004 `research/research.md` §7-§8)",
+    "created_at": "2026-05-27T08:49:42.820Z",
+    "last_save_at": "2026-07-17T17:19:29.602Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c9589ddbc565b43902c66ccbdb7bc1d636f83cfd5a9ca70862e9057f2357a69e",
+    "source_doc_hashes": {
+      "spec.md": "8125899962345684cb1cf64296ec76c481746cb9f79bd2bc5d8d6b0b1ee9b11f",
+      "plan.md": "3015f390af48f8430bc8298259f4fb317f257358d5842d58c920e30a6256b4e2",
+      "tasks.md": "050839083f4c28d3144084138b8403284fc1327b0f2bf7c59833dbbc14726815",
+      "checklist.md": "2051212a0a07ad557c4dca6370042be14706a27ec8d597ed714f171bd0f5b820",
+      "implementation-summary.md": "ee0083d544eafc267279e6c0ac8176455c48374844d6bc42246feace849dbe47"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 010",
+      "reviewer prompt benchmark substrate",
+      "reviewer fixture",
+      "reviewer scorer lane b",
+      "SPECKIT_REVIEWER_BENCHMARKS"
+    ],
+    "key_topics": [
+      "phase",
+      "reviewer",
+      "prompt",
+      "benchmark",
+      "substrate",
+      "fixture",
+      "scorer",
+      "lane",
+      "spec-kit",
+      "ships",
+      "verification-discipline",
+      "rules"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/deep/model-benchmark.md",
+      ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+      ".opencode/commands/deep/assets/deep_model-benchmark_confirm.yaml",
+      ".github/workflows/prompt-card-sync.yml",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/model-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_model-benchmark_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_model-benchmark_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_model-benchmark_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Benchmark Substrate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Verdict",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "spec-kit ships verification-discipline rules and gates (the 009 freshness/anti-softening/read-budget rules, the 011 AC-coverage gate) onto reviewer agents and the completion gate, but it has no regression harness that answers \"does this reviewer prompt still catch this known bug class.\" The deep-improvement benchmark Lanes do not cover the reviewer-prompt-vs-expected-verdict shape: Lane B fixtures are function/code-task oracles (`code-task-scorer.cjs` returns a correctness pass-rate, zero verdict lexicon; fixtures carry `{name,args,expect}`, no `expectedVerdict`), and Lane C gold is",
+    "created_at": "2026-06-06T10:22:05.630Z",
+    "last_save_at": "2026-07-17T17:19:39.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:33e1e77b8b3b4c00c90a8fd7f193164adcd22afbf497207070983a5b0e47de77",
+    "source_doc_hashes": {
+      "spec.md": "f43c5cac3fc4da4b86342417887d9ffd097688d3b533c65b1438b10aace3256a",
+      "plan.md": "0961c5bb6a3c3926fa40007a9d155ae09834c3e389d716a79b832dfcb84dbac6",
+      "tasks.md": "8d1ac5c96cc529edeeac258778810dfb479ad365588d0a31591d661e60cb171d",
+      "checklist.md": "478e6c22d3bd2f5e742097930309531f9e8071255e432b38d0e8d4a966fb4ade",
+      "implementation-summary.md": "9bdbaf8c92e54e56d3fac4069cb4335de8d31e6993116bd5fa6c6cd7416103f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

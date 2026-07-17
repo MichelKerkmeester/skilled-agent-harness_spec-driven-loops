@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-index cli core",
+      "002 001-cli-core",
+      "code-index phase 1",
+      "code-index cli core plan",
+      "002 001-cli-core plan",
+      "code-index phase 1 plan",
+      "code-index cli core tasks",
+      "002 001-cli-core tasks",
+      "code-index phase 1 tasks",
+      "code-index cli core result",
+      "002 001-cli-core result",
+      "code-index phase 1 result"
+    ],
+    "key_topics": [
+      "code-index",
+      "cli",
+      "core",
+      "001-cli-core",
+      "phase",
+      "plan",
+      "tasks",
+      "result",
+      "mkcodeindex",
+      "daemon",
+      "front",
+      "door"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts",
+      ".opencode/skills/system-code-graph/mcp_server/code-index-cli-manifest.ts",
+      ".opencode/bin/code-index.cjs",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-index-cli.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-index-cli-manifest.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/code-index-cli-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-index.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/code-index.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implemented",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "shipped CLI",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mkcodeindex daemon has no CLI front door: 8 tools are MCP-only, so transport-down sessions, hooks, cron, and scripts cannot reach structural code search at all",
+    "created_at": "2026-06-06T14:45:13Z",
+    "last_save_at": "2026-07-17T17:19:42.632Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2124847972a25f8f2314af918f42cfbd5682eb328fcfb94f5653ef834ebc6b92",
+    "source_doc_hashes": {
+      "spec.md": "cd2beacc666b4c40f849fe7ea403652cca3ad614b889c253ddac8d4d15889d42",
+      "plan.md": "0a482248d83ec6fa7150866399964030d55218e50a3706f9ef1fe067563430de",
+      "tasks.md": "df731f5cf1f2aa6bac4b368d0114834e67aa83eab5831206e667ed62e0b4755a",
+      "implementation-summary.md": "344904ba6478637abe7ac2a512f6cb73d68c866b904c1f13f02f5d97a0a48f38"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "title": "Scenario Execution Sub-Phase",
+  "trigger_phrases": [
+    "003-search-scenario-execution",
+    "stress test execution",
+    "playbook run harness",
+    "findings synthesis",
+    "cross-AI scoring",
+    "execution scaffold",
+    "manual scoring workflow"
+  ],
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/003-search-scenario-execution",
+  "description": "001 ships the design (corpus + rubric + matrix); without an execution harness those artifacts produce no signal",
+  "keywords": [
+    "ships",
+    "design",
+    "corpus",
+    "rubric",
+    "matrix",
+    "without",
+    "execution",
+    "harness",
+    "artifacts",
+    "produce",
+    "signal"
+  ],
+  "lastUpdated": "2026-07-17T17:01:49.165Z",
+  "specId": "003",
+  "folderSlug": "search-scenario-execution",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "005-stress-test",
+    "003-fix-mcp-runtime-stress-findings",
+    "001-search-intelligence-stress-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

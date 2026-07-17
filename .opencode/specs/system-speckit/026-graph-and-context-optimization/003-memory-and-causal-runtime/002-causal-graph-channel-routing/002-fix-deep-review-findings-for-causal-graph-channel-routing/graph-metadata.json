@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "002-fix-deep-review-findings-for-causal-graph-channel-routing",
+      "012 deep-review remediation",
+      "P1-C-001 cache wiring",
+      "entity-density cache invalidation hooks",
+      "resource-map drift fix 012",
+      "012 P2 polish"
+    ],
+    "key_topics": [
+      "002-fix-deep-review-findings-for-causal-graph-channel-routing",
+      "deep-review",
+      "remediation",
+      "p1-c-001",
+      "cache",
+      "wiring",
+      "entity-density",
+      "invalidation",
+      "hooks",
+      "resource-map",
+      "drift",
+      "polish"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+      "tests/integration/entity-density-commit-hooks.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/handlers/memory-bulk-delete.ts",
+      "mcp_server/lib/search/entity-density.ts",
+      "mcp_server/lib/search/query-router.ts",
+      "mcp_server/lib/search/routing-telemetry.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/tests/entity-density.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "entity-density.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "routing-telemetry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-bulk-delete.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density-commit-hooks.vitest.ts",
+        "kind": "test",
+        "path": "tests/integration/entity-density-commit-hooks.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/entity-density.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Graph Channel Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Handling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Case",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Skills",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Status",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` produced a CONDITIONAL verdict because of two release-blocking P1s and 39 P2 polish items",
+    "created_at": "2026-05-19T15:28:02.707Z",
+    "last_save_at": "2026-07-17T17:19:17.577Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:662b766d6caf18d9487aff2cec2d02226bf9fb21fd121965711ee0cdc0e0b526",
+    "source_doc_hashes": {
+      "spec.md": "d3fd0ccb3ee197a1b9efc2d781f6759a6accafeef32607fe233dce22c762505a",
+      "plan.md": "d7225e63e5fdd8addd13b33f7ff168fa13c7a51aea1c708017abfab620882c4b",
+      "tasks.md": "93ae145ed50575af7dff912781a3432b5196a270d98d39c118317881b02e063d",
+      "checklist.md": "940eb9f8e84e9abab3576c29ca385754c5bb29bf90923d87331307017612e29b",
+      "decision-record.md": "e4b356c549b0d1a8ea89d896da4b588ccecb7abf30a7e7e2ee7b4a34497d2e16",
+      "implementation-summary.md": "a395db9daa6a0fc5109f9913208bad6bdd6a7fdd5039453d26da87347acd4b02"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

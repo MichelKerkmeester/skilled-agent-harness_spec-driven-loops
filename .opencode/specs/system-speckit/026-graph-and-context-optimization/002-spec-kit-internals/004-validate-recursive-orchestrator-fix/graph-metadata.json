@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/004-validate-recursive-orchestrator-fix",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/004-validate-recursive-orchestrator-fix",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validate recursive orchestrator",
+      "validate.sh phase children no-op",
+      "run_node_orchestrator recursion",
+      "recursive validation orchestrator path",
+      "phase children silently skipped",
+      "validate recursive orchestrator plan",
+      "run_node_orchestrator fix plan",
+      "phase child validation orchestrator",
+      "validate recursive orchestrator tasks",
+      "run_node_orchestrator task list",
+      "validate recursive orchestrator checklist",
+      "run_node_orchestrator verification"
+    ],
+    "key_topics": [
+      "validate",
+      "recursive",
+      "orchestrator",
+      "phase",
+      "children",
+      "no-op",
+      "recursion",
+      "validation",
+      "path",
+      "silently",
+      "skipped",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Inside",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "base",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In `validate.sh`, `runnodeorchestrator()` built the command with `--folder \"$FOLDERPATH\"`, ran the compiled orchestrator (`mcpserver/dist/lib/validation/orchestrator.js`), then called `exit $?`",
+    "created_at": "2026-05-29T11:47:40Z",
+    "last_save_at": "2026-07-17T17:19:16.610Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ecfbc8898fa4f20fac0cfdad336a888d4ce25f448d5b638f1843b965e28ac60e",
+    "source_doc_hashes": {
+      "spec.md": "5727162e6e44e94022beb0c178fb14b7669738c69ec9fd0da3aca7637a5d8917",
+      "plan.md": "040fbbe7caeea1a9cf2e54a3df2d604b7d1b839e18cec29dc81839bbdef74166",
+      "tasks.md": "d2049dd7e2a7d4a5797526d505a61703e1fb529426113a14fd2c5439153405dd",
+      "checklist.md": "c2cd6fdbab0f7e30677faaf410f178c3c89b670dd7d0330b26867925fb653ac5",
+      "implementation-summary.md": "3bbb1866609c3771763252eb2ed2d17a37049e140f70aed822b56350abe9a933"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

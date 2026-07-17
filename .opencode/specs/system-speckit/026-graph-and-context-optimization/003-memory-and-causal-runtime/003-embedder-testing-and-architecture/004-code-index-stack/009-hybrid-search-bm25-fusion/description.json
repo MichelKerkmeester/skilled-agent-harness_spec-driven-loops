@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
+  "description": "Implemented default-on SQLite FTS5 + RRF fusion for CocoIndex retrieval.",
+  "keywords": [
+    "implemented",
+    "default-on",
+    "sqlite",
+    "fts5",
+    "rrf",
+    "fusion",
+    "cocoindex",
+    "retrieval"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.004Z",
+  "specId": "009",
+  "folderSlug": "hybrid-search-bm25-fusion",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-05-26_06-13__scaffolded-packet-during-2026-05-18-autonomous.md"
+  ]
+}

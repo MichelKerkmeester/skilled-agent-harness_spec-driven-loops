@@ -1,0 +1,29 @@
+{
+  "level": "phase",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment",
+  "description": "This phased decomposition tracks Deep-research deep-dive + rework of install guides, scripts, and doctor commands for post-CocoIndex-deprecation",
+  "keywords": [
+    "phased",
+    "decomposition",
+    "tracks",
+    "deep-research",
+    "deep-dive",
+    "rework",
+    "install",
+    "guides",
+    "scripts",
+    "doctor",
+    "commands",
+    "post-cocoindex-deprecation"
+  ],
+  "lastUpdated": "2026-07-17T17:01:49.131Z",
+  "specId": "003",
+  "folderSlug": "install-scripts-doctor-realignment",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

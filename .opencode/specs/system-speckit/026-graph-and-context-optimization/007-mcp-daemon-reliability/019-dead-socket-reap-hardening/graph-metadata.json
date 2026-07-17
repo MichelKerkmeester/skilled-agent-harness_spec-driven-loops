@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dead-socket reap hardening",
+      "consecutive liveness probe failures",
+      "false-dead owner reap",
+      "lease probe retry",
+      "SPECKIT_LEASE_PROBE_RETRIES",
+      "dead-socket reap hardening plan",
+      "lease probe retry plan",
+      "dead-socket reap hardening tasks",
+      "lease probe retry tasks",
+      "dead-socket reap hardening checklist",
+      "lease probe retry verification",
+      "dead-socket reap hardening done"
+    ],
+    "key_topics": [
+      "dead-socket",
+      "reap",
+      "hardening",
+      "consecutive",
+      "liveness",
+      "probe",
+      "failures",
+      "false-dead",
+      "owner",
+      "lease",
+      "retry",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "mcp_server/tests/launcher-reap-hardening.vitest.ts",
+      "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-reap-hardening.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-reap-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge-probe.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`maybeBridgeLeaseHolder` ran the deep liveness probe once; a single failure returned an immediate `respawn` verdict, so the calling launcher reaped the lease owner and spawned a second daemon",
+    "created_at": "2026-06-07T16:45:00Z",
+    "last_save_at": "2026-07-17T17:19:34.945Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8dd73c9cbe458d267c9b3cdcf29c2cf261a630d339a67c0d1e2754535d9e657b",
+    "source_doc_hashes": {
+      "spec.md": "87c0a4259d6393e427e4dd709f8b64d57cfe0d0693496bd93e7f4af6af09a243",
+      "plan.md": "4c373345b80833a7befff9c4791cc735d5d8305500a7f13f6d2e9ecfa514ee19",
+      "tasks.md": "d1fd189bc69a89df930caa269d936f8b84a755533e8e33c51e7f52d55c438752",
+      "checklist.md": "f45add372e8c5eef2f56175f5ddfadbc9b89578b96355431fd8b70caa6c45174",
+      "implementation-summary.md": "5186952663146cd994e10de0029c61e09bff58fb939fec848e32e7f2df930a34"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

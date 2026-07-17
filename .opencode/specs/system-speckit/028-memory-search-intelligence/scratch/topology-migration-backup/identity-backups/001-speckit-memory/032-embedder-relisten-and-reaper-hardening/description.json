@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/032-embedder-relisten-and-reaper-hardening",
+  "description": "Packet 030 fixed the chronic orphan-daemon accumulation at its source (a test leak) and taught the orphan sweeper about the embedder sidecar, but it",
+  "keywords": [
+    "packet",
+    "chronic",
+    "orphan-daemon",
+    "accumulation",
+    "source",
+    "test",
+    "leak",
+    "taught",
+    "orphan",
+    "sweeper",
+    "about",
+    "embedder",
+    "sidecar"
+  ],
+  "lastUpdated": "2026-07-11T08:38:10.724Z",
+  "specId": "032",
+  "folderSlug": "embedder-relisten-and-reaper-hardening",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

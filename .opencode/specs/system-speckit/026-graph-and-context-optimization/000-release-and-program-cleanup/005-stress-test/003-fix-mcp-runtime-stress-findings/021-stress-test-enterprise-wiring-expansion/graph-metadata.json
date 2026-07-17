@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "021-stress-test-enterprise-wiring-expansion",
+      "v1.0.3 stress test",
+      "W3-W13 wiring active",
+      "SearchDecisionEnvelope stress run",
+      "decision audit stress run",
+      "shadow sink stress run",
+      "v1.0.3 stress test plan",
+      "W3-W13 stress plan",
+      "SearchDecisionEnvelope measurement plan",
+      "v1.0.3 stress test tasks",
+      "W3-W13 stress test tasks",
+      "v1.0.3 stress test summary"
+    ],
+    "key_topics": [
+      "021-stress-test-enterprise-wiring-expansion",
+      "stress",
+      "test",
+      "w3-w13",
+      "wiring",
+      "active",
+      "searchdecisionenvelope",
+      "run",
+      "decision",
+      "audit",
+      "shadow",
+      "sink"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "measurements/v1-0-3-summary.json",
+      "measurements/v1-0-3-envelopes.jsonl",
+      "measurements/v1-0-3-audit-log-sample.jsonl",
+      "measurements/v1-0-3-shadow-sink-sample.jsonl",
+      "measurements/phase-h-stress.test.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1-0-3-summary.json",
+        "kind": "config",
+        "path": "measurements/v1-0-3-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "v1-0-3-envelopes.jsonl",
+        "kind": "file",
+        "path": "measurements/v1-0-3-envelopes.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "v1-0-3-audit-log-sample.jsonl",
+        "kind": "file",
+        "path": "measurements/v1-0-3-audit-log-sample.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "v1-0-3-shadow-sink-sample.jsonl",
+        "kind": "file",
+        "path": "measurements/v1-0-3-shadow-sink-sample.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "phase-h-stress.test.ts",
+        "kind": "test",
+        "path": "measurements/phase-h-stress.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measurement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase G wired W8-W13 telemetry and runtime consumers after the earlier W3-W7 measurement work",
+    "created_at": "2026-04-29T05:10:00.000Z",
+    "last_save_at": "2026-07-17T17:19:12.246Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6a6270e698cf9dcd3b7ce3df5223051ca9fca7be84032ef6f99849ea0e45e09d",
+    "source_doc_hashes": {
+      "spec.md": "7d0a2a16af5658ce582334a440cfd5b5b007975747a7b00eec75ee6461db443c",
+      "plan.md": "c7d117736bab06c6d3cc1681029449ab8d87897510f9c84e186d710176efe085",
+      "tasks.md": "69d2404bde3d323f5214de8284c2b9f48e9cbd48cc8847321d273c84bbc8caa8",
+      "implementation-summary.md": "70cb377cb306889a6cef00aa60b9af80500ea8a0db1ad7d03761b90037c46b2b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

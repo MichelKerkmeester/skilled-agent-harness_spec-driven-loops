@@ -1,7 +1,0 @@
-specs/system-speckit/029-memory-search-intelligence/
-  0.55  #1  Borderline grounded retrieval result
-
-requestQuality weak
-citationPolicy cite_with_caveat
-
-STATUS=OK RESULTS=1 INTENT=understand

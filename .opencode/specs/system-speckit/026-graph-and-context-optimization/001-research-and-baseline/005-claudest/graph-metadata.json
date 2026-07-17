@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "005-claudest research spec",
+      "005-claudest phase spec",
+      "claudest claude-memory research",
+      "fts5 bm25 cascade research",
+      "005-claudest research plan",
+      "005-claudest execution plan",
+      "deep-research loop claudest",
+      "005-claudest research tasks",
+      "005-claudest task list",
+      "claudest deep-research tasks",
+      "005-claudest checklist",
+      "005-claudest verification"
+    ],
+    "key_topics": [
+      "005-claudest",
+      "research",
+      "spec",
+      "phase",
+      "claudest",
+      "claude-memory",
+      "fts5",
+      "bm25",
+      "cascade",
+      "plan",
+      "execution",
+      "deep-research"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "mcp_server/lib/search/sqlite-fts.ts",
+      "mcp_server/lib/search/hybrid-search.ts",
+      "mcp_server/lib/search/graph-search-fn.ts",
+      "implementation-summary.md",
+      "mcp_server/hooks/claude/session-stop.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "plan.md",
+      "tasks.md",
+      "scratch/phase-research-prompt.md",
+      "decision-record.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sqlite-fts.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/sqlite-fts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-search-fn.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/graph-search-fn.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/session-stop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-research-prompt.md",
+        "kind": "doc",
+        "path": "scratch/phase-research-prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Context",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`CodeEnvironment/Public` already has Spec Kit Memory MCP (semantic search, intent-aware routing, importance tiers), Code Graph for structural queries, the `024/002` SessionStart hook for source-aware routing, and the `024/003` Stop hook for token snapshots and session summaries",
+    "created_at": "2026-04-12T09:02:53.450Z",
+    "last_save_at": "2026-07-17T17:19:15.685Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9dcc00af808981210248ba89b7c8ca431c9e9061fa72830998bc581c7fd6683e",
+    "source_doc_hashes": {
+      "spec.md": "e8ee50cf6d24c78b002efff7824da15c90fd00e2297d8279377c2b72d08ef037",
+      "plan.md": "4a293b1ba3d7c4f36ee797d03bd7faea3f6db65ebfae4c3a5aa742e0b0c35c59",
+      "tasks.md": "31fe7b81663c948919e38badf11bf85e9b725648b97d556384e111b6cc29893b",
+      "checklist.md": "3a248d774444ebd267bf30d04438185e58440b0295bf8b387217e02272461d1d",
+      "decision-record.md": "3a71dc359457ded4baacdaec32aecd670dddcac34e53942392338b29d12da055",
+      "implementation-summary.md": "6d91efd5a1bb3dc416bdd0e833c953b9c0dc77ec8e3947bdcc4bdc9165990090"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

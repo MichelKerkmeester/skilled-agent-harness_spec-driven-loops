@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/012-enrichment-queue-cap-and-observability",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/012-enrichment-queue-cap-and-observability",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "enrichment queue cap",
+      "enrichment scheduler health",
+      "background enrichment observability",
+      "memory_health enrichment backlog",
+      "F-007 F-009 F-010 F-011 backlog",
+      "enrichment queue cap plan",
+      "enrichment health observability plan",
+      "enrichment queue cap tasks",
+      "enrichment queue cap checklist",
+      "enrichment queue cap decision",
+      "enrichment queue cap summary",
+      "enrichment observability summary"
+    ],
+    "key_topics": [
+      "enrichment",
+      "queue",
+      "cap",
+      "scheduler",
+      "health",
+      "background",
+      "observability",
+      "backlog",
+      "f-007",
+      "f-009",
+      "f-010",
+      "f-011"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "handlers/memory-save.ts",
+      "handlers/memory-crud-health.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/context-server.ts",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`scheduleBackgroundEnrichment` (`memory-save.ts`) caps concurrency but pushes overflow to an unbounded queue; a live-save flood grows it (and each entry's retained `parsed`) without bound (F-007)",
+    "created_at": "2026-06-15T06:00:22Z",
+    "last_save_at": "2026-07-17T17:19:33.696Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:6ba44d154a0ccfc540d85cf33b481db15f5544147f9229741f1c99d6ee13249a",
+    "source_doc_hashes": {
+      "spec.md": "4df2d9e80b9e28fb26db197360e01cbc9277e407fa3f5a436ee0721a8bf4251e",
+      "plan.md": "854672b26a01c753b3b91463ef764423033a965db5f82be3b7cb1ead19a9bb65",
+      "tasks.md": "c633051426b5009ef09b5d21db653ab9a13867d5bfd2a907181cb7cd3fe07663",
+      "checklist.md": "3013c4915a421f4ae7ad420657f9fb3f0df67321bdbbb6267ae93ed1514a1dd9",
+      "decision-record.md": "bff745ace57d38d24a8f9cdc73afe6ad101dd33a19e97d9e440e6f4654ddd762",
+      "implementation-summary.md": "eb6ac72fb6f84d8b02e76b34045085200edd737a773c467efd4db67354a930c9",
+      "handover.md": "af5c58436c494ad3b08ab0eaea5875171bc3c81bf4f84d9c02aa7379c2e1b0ad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

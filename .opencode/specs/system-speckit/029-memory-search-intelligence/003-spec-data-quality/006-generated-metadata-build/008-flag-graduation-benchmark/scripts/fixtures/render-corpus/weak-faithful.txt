@@ -1,7 +1,0 @@
-specs/system-speckit/029-memory-search-intelligence/
-  0.41  #1  Loosely related retrieval result
-
-requestQuality weak
-citationPolicy do_not_cite_results
-
-STATUS=OK RESULTS=1 INTENT=understand

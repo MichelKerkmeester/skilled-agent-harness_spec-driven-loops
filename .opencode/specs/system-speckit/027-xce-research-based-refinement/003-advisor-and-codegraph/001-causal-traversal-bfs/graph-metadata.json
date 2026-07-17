@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "causal traversal bfs",
+      "recursive cte replacement",
+      "neighbor boost traversal",
+      "memo cycle check",
+      "012-causal-traversal-bfs plan",
+      "012-causal-traversal-bfs tasks",
+      "012-causal-traversal-bfs summary"
+    ],
+    "key_topics": [
+      "causal",
+      "traversal",
+      "bfs",
+      "recursive",
+      "cte",
+      "replacement",
+      "neighbor",
+      "boost",
+      "memo",
+      "cycle",
+      "check",
+      "012-causal-traversal-bfs"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/lib/graph/bfs-traversal.ts",
+      "mcp_server/lib/search/causal-boost.ts",
+      "mcp_server/lib/storage/memo.ts",
+      "mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts",
+      "mcp_server/lib/storage/canonical-fingerprint.ts",
+      "lib/graph/bfs-traversal.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "bfs-traversal.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/graph/bfs-traversal.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-boost.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/causal-boost.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memo.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/memo.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-traversal-bfs-equivalence.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-fingerprint.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/canonical-fingerprint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Traversal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "CTE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The only two WITH RECURSIVE consumers in the memory backend are read paths with measurable inefficiencies",
+    "created_at": "2026-06-10T17:48:32Z",
+    "last_save_at": "2026-07-17T17:19:41.990Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cf0ec24fda5ec27a7be91c67b8af2812aa2b07f2713ac8db89f10083aa1adf5d",
+    "source_doc_hashes": {
+      "spec.md": "0838682072f58a926ad6c99cdd053a6f85269d2a6b611e29a99940a600604782",
+      "plan.md": "70f11a50c8306aec360a260dbe1f2ac9d9851b6d0954b326e6d94dfb8b7f02f2",
+      "tasks.md": "b24cf7436a40ec74979f2b9a939e5a9db307c9fb41680777e8cde7a35fd27b0a",
+      "implementation-summary.md": "4ed36d8a3235562d011f6a5150958660c06dae01f20bb7af6dd585b8541bf894"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

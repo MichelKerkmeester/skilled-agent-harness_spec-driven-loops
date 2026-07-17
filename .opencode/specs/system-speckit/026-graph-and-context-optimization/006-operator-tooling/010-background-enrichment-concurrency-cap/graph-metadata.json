@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/010-background-enrichment-concurrency-cap",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/010-background-enrichment-concurrency-cap",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "background enrichment cap",
+      "enrichment scheduler starvation",
+      "daemon event loop wedge",
+      "scheduleBackgroundEnrichment unbounded",
+      "memory-save concurrency cap",
+      "background enrichment cap plan",
+      "enrichment scheduler fix",
+      "startup scan yield",
+      "background enrichment cap tasks",
+      "enrichment scheduler tasks",
+      "background enrichment cap checklist",
+      "enrichment scheduler verification"
+    ],
+    "key_topics": [
+      "background",
+      "enrichment",
+      "cap",
+      "scheduler",
+      "starvation",
+      "daemon",
+      "event",
+      "loop",
+      "wedge",
+      "schedulebackgroundenrichment",
+      "unbounded",
+      "memory-save"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "review/review-report.md",
+      "handlers/memory-save.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`scheduleBackgroundEnrichment` (`handlers/memory-save.ts`) incremented `activeBackgroundEnrichments` inside the deferred `run` callback (executed later via `setImmediate`), then gated scheduling on `activeBackgroundEnrichments < MAXBACKGROUNDENRICHMENTS`",
+    "created_at": "2026-06-14T18:42:07Z",
+    "last_save_at": "2026-07-17T17:19:33.696Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:68e3f0e0ef084a9bdcd1a175e75d832d6de9deaeaa901cf6d0028f0fd338c34a",
+    "source_doc_hashes": {
+      "spec.md": "a93cbdfb143cc3dade59c86b8aad107478589caac82899b7276b093f35867d31",
+      "plan.md": "381c7ff469f6c24c06afac21fa219f1b076862196f6afa0bab453f35f10074a4",
+      "tasks.md": "649fac7d19bf0325e593cd48d278f5d288ef09a6714d832851aa403015f535fc",
+      "checklist.md": "7623e6f7cdc7fde70cf92fc96a66796354777c71fec5139ffd39fc6c02f3c909",
+      "decision-record.md": "fbbb33a816273a6a39bdd1e3804d495679e67d5b3a0449cbeb28110414ef340f",
+      "implementation-summary.md": "2dc9ee2daefb7358aff3a02fcd483e9f062354edb0ba12dc811df4d863a9bf38"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

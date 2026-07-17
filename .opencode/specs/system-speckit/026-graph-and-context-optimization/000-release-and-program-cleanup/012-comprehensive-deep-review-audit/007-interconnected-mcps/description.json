@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
+  "description": "system-spec-kit interconnects with the code-graph MCP, the skill-advisor MCP, and the deep-loop-runtime",
+  "keywords": [
+    "system-spec-kit",
+    "interconnects",
+    "code-graph",
+    "mcp",
+    "skill-advisor",
+    "deep-loop-runtime"
+  ],
+  "lastUpdated": "2026-07-17T16:02:56.624Z",
+  "specId": "007",
+  "folderSlug": "interconnected-mcps",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "012-comprehensive-deep-review-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

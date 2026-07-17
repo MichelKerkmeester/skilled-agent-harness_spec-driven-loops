@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 004 hybrid handler",
+      "memory_match_triggers stage 2",
+      "hybrid trigger union",
+      "semantic activation guard",
+      "027 phase 004 hybrid handler plan",
+      "memory_match_triggers stage 2 plan",
+      "027 phase 004 hybrid handler tasks",
+      "hybrid handler checklist",
+      "semantic trigger verification",
+      "implementation",
+      "summary",
+      "template"
+    ],
+    "key_topics": [
+      "phase",
+      "hybrid",
+      "handler",
+      "stage",
+      "trigger",
+      "union",
+      "semantic",
+      "activation",
+      "guard",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "mcp_server/handlers/memory-triggers.ts",
+      "mcp_server/tests/hybrid-trigger-handler.vitest.ts",
+      "mcp_server/tests/lexical-parity.vitest.ts",
+      "mcp_server/tests/handler-memory-triggers.vitest.ts",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-trigger-handler.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/hybrid-trigger-handler.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lexical-parity.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/lexical-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-triggers.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/handler-memory-triggers.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hybrid Handler Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wire Stage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Stage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The semantic matcher must be merged into `memorymatchtriggers` without weakening the lexical control surface",
+    "created_at": "2026-06-06T13:35:46Z",
+    "last_save_at": "2026-07-17T17:19:39.753Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9fe2b0c2ff3699ebed7d9b50d645fd48964cc917b70e900498f5ef0990e04f7d",
+    "source_doc_hashes": {
+      "spec.md": "ab371219bba1c7767f1a4b5beaa6a9faf060cacd3d44809381e7fc3039f37ccb",
+      "plan.md": "6edd4dcfe138e59ff09786b0f8d47a5a36e2d4de157b4b0731a4a57e979c66b3",
+      "tasks.md": "16d7906ca2dafcac36ee52f02a02aefe5de49975c8184e889ce2363d52b7f560",
+      "checklist.md": "51189196b01c312fc863ad6a425899f83c733f9c405622e875ef80ae75709a0c",
+      "implementation-summary.md": "6b8b87f55784acc9bfe3281baccff8c7cf18ef4ca935dc200dde7901ba002072"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

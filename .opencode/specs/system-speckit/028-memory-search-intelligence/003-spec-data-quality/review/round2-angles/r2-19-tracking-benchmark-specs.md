@@ -1,0 +1,23 @@
+# R2-19 tracking-benchmark-specs
+
+Angle summary: benchmark-and-test-status.md is mostly well-grounded and the SPECIFIED-not-run banner holds, but the Benchmark column has cross-phase metric contamination in two rows and one row invents a test filename its phase never names.
+
+## Findings
+
+### P1 - Benchmark column names the wrong phase's metric in rows 004 and 008
+- Evidence (004): `benchmark-and-test-status.md:24` gives A4 the benchmark `enum swap-precision (catch-rate 1.00, false-reject 0.00)`. A4 marks enums explicitly out of scope at `004-schema-warn-to-error/spec.md:85` ("A3 enum constraints ... A4 pairs with A3 but A3 is its own phase") and its plan declares the real metric as a dry-run census conformance-to-zero plus validate.sh --strict at `004-schema-warn-to-error/plan.md:151`. The enum swap-precision metric belongs to A3 at `003-enum-constrain-schemas/plan.md:146-147`, so the same metric is printed for two phases and 004's stated metric is not what 004 measures.
+- Evidence (008): `benchmark-and-test-status.md:28` gives A8 the benchmark `planted unlinked REQ drives count to zero and clears warn`. A8 is provenance-field surfacing plus causal_summary freshness binding (`008-surface-provenance-fields/spec.md:67,79-81`) and contains zero occurrences of "unlinked" (grep over the whole 008 folder returns nothing). The unlinked-REQ concept is A7's REQ_COVERAGE gate at `007-ears-constraints-req-coverage/spec.md:67`. In both rows the Test cell IS correct for the phase (004 test = validate.sh strict, 008 test = stale causal_summary flagged), which proves the Benchmark cell alone is contaminated, not a whole-row mislabel.
+- Type: SPEC-PREMISE (tracking doc disagrees with the phase spec and plan it summarizes). This defeats the doc's stated single-pane-honesty purpose for two of 28 rows.
+
+### P2 - Row 020 invents a test filename the phase never declares
+- Evidence: `benchmark-and-test-status.md:43` names the test file `scripts/tests/embedding-drift-detector.vitest.ts`. That string appears nowhere in `020-novel-embedding-drift-monitor/`; the phase names only a generic "vitest" at `020-novel-embedding-drift-monitor/plan.md:56,148-149` and its detector code file is `detect-embedding-drift.ts` (`020-.../spec.md:96`). Every other table row's named test file IS present in its phase docs (verified 005, 006, 009, 010, 011, 019, 021, 022, 024, 025). The table sets a no-invention discipline at `benchmark-and-test-status.md:59` and honors it correctly for the Tier-C flags (014, 016, 017, 018 confirmed to name no feature flag), then breaks that same discipline for 020's test filename.
+- Type: SPEC-PREMISE (table invents specificity not grounded in the phase).
+
+### P2 - Row 022 prints a directional metric as a declared threshold while the threshold is an open question
+- Evidence: `benchmark-and-test-status.md:18,56` define the Benchmark column as "the named metric and its declared pass-or-regress threshold", and row 022 at `benchmark-and-test-status.md:45` states `duplicate-rate reduction + token-per-relevant-row improvement` with no numeric or directional bound disclosed. The phase's own plan marks the similarity threshold and budget default as undecided at `022-novel-context-budget-assembler/plan.md:125` ("Decide the similarity threshold and the budget default, see the open questions"). Row 001 handles the same gap honestly by writing "(no numeric threshold)" at `benchmark-and-test-status.md:21`, so 022 should disclose the same rather than present an undecided bound as declared. Minor honesty gap, not a build blocker.
+- Type: SPEC-PREMISE.
+
+## Verified clean (so findings are not invented)
+- The SPECIFIED-not-run banner (`benchmark-and-test-status.md:5`) holds: all 28 phase graph-metadata.json files read status draft or pending, none claims a measured result or completion.
+- Load-bearing live-code claims are accurate: `confidence-truncation.ts:35` is `DEFAULT_MIN_RESULTS = 3`, run-eval-v2.mjs line 357 is the crash handler and line 361 exports `buildSearchLenses, meanCompleteRecallProfile, diffProfiles, MEASURABILITY_CLASSES, COMPLETE_RECALL_KS`, matching the 015 and 027 spec citations. Parent `028-memory-search-intelligence/benchmark-status.md` exists for the inherited production-truth reference at `benchmark-and-test-status.md:14`.
+- Rows verified faithful to their phase specs: 003 (enum swap-precision), 010 (the five SPECKIT_GATE_* flags at `010-.../plan.md:180`), 015 (prod-mode completeRecall@3 gate, run-spec-recall-gate.mjs assertions), 027 (floor sweep 5/8/10, env-gated override, prod column only), 028 (five inviolable edges, 18-item NO-GO, governance-rollout-manifest.vitest.ts topo-sort catch at `028-.../tasks.md:72`).

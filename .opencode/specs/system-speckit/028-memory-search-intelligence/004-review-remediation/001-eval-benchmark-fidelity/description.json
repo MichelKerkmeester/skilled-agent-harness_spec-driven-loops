@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/004-review-remediation/001-eval-benchmark-fidelity",
+  "description": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path,",
+  "keywords": [
+    "per-flag",
+    "retrieval",
+    "benchmark",
+    "feeds",
+    "criterion-4",
+    "flip",
+    "decision",
+    "driver",
+    "measures",
+    "every",
+    "flag",
+    "non-representative",
+    "all-channels",
+    "path"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.118Z",
+  "specId": "001",
+  "folderSlug": "eval-benchmark-fidelity",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "004-review-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

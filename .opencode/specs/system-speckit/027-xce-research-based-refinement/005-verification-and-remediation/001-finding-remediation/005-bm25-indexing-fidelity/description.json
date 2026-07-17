@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/005-bm25-indexing-fidelity",
+  "description": "The epic deep-review sweep left this lane with 4 unverified P1 claims and 1 P2 clusters",
+  "keywords": [
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
+    "lane",
+    "unverified",
+    "claims",
+    "clusters"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.045Z",
+  "specId": "005",
+  "folderSlug": "bm25-indexing-fidelity",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "001-finding-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

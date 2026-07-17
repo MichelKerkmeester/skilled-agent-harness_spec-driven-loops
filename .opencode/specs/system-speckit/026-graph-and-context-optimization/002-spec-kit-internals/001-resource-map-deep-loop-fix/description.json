@@ -1,0 +1,42 @@
+{
+  "title": "Resource Map Template",
+  "type": "feature",
+  "trigger_phrases": [
+    "011-resource-map-template",
+    "resource map template packet",
+    "resource map template and deep loop integration",
+    "reverse parent folders resource map",
+    "resource-map.md template",
+    "local owner deep loop artifact placement",
+    "convergence time resource map emission",
+    "extract from evidence extractor",
+    "review-research-paths rollback"
+  ],
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
+  "description": "Reviewers and successor phases had no quick way to answer \"what files did this packet touch\" without reading `implementation-summary.md` end-to-end or",
+  "keywords": [
+    "reviewers",
+    "successor",
+    "phases",
+    "quick",
+    "way",
+    "answer",
+    "files",
+    "packet",
+    "touch",
+    "without",
+    "reading",
+    "implementation-summary",
+    "end-to-end"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.963Z",
+  "specId": "001",
+  "folderSlug": "resource-map-deep-loop-fix",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups",
+  "description": "The anti-disconnection investigation left four follow-ups",
+  "keywords": [
+    "anti-disconnection",
+    "investigation",
+    "left",
+    "four",
+    "follow-ups"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.335Z",
+  "specId": "026",
+  "folderSlug": "daemon-reliability-followups",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

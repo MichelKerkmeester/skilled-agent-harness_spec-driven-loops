@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/024-launcher-lease-integration-test",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/024-launcher-lease-integration-test",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "launcher lease integration test",
+      "deflake launcher lease suite",
+      "spawned launcher socketPath test",
+      "launcher lease test plan",
+      "deflake fixture lib copy plan",
+      "spawned launcher socketPath plan",
+      "launcher lease test tasks",
+      "deflake launcher tasks",
+      "spawned launcher socketPath tasks",
+      "launcher lease test checklist",
+      "deflake launcher checklist",
+      "spawned launcher socketPath checklist"
+    ],
+    "key_topics": [
+      "launcher",
+      "lease",
+      "integration",
+      "test",
+      "deflake",
+      "suite",
+      "spawned",
+      "socketpath",
+      "plan",
+      "fixture",
+      "lib",
+      "copy"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
+      "tests/launcher-lease.vitest.ts",
+      "spec.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Launcher Lease Integration Test De",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Un",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Integration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spawned-launcher lease integration suite (`tests/launcher-lease.vitest.ts`) sat behind `describe.skip` with the comment \"known launcher process lifecycle flake.\" It is the only harness that boots a real `mk-spec-memory` launcher to exercise lease write/read end-to-end, and packet 020's `lease.socketPath` persistence was therefore verified by unit tests only, never by a real spawned launcher",
+    "created_at": "2026-06-04T11:36:31.373Z",
+    "last_save_at": "2026-07-17T17:19:31.831Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:890f9d1956c8fffbf5e277435c84c151e3f876e7fec7b3833e779a3ab56dd076",
+    "source_doc_hashes": {
+      "spec.md": "b178d4e6f58a1e3c390bee1d9a0339c430c906185d9cb687f8620f7e9fad78f6",
+      "plan.md": "47194766c0dd360008066abb8d994f458ced546c8527bb2d7c51f63f8e06ea8a",
+      "tasks.md": "40c99dc0732f1e22e09815a2059945c020cbaa18a78723f13880e09f4c3f3954",
+      "checklist.md": "b5a496fa6300786dab208c96b434e51343725e60e5257981d6c831a3ec7e90ca",
+      "implementation-summary.md": "6ae2a297442cf114062240511628a8880312c28c9cb1deb2e57eda55285b3ab0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

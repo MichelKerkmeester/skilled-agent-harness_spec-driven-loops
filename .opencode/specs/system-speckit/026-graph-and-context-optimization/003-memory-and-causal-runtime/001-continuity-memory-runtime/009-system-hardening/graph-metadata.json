@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "019 system hardening",
+      "post-consolidation hardening train",
+      "026 post-ship research wave",
+      "tier 1 research and remediation",
+      "system-spec-kit hardening charter",
+      "019 research umbrella",
+      "019 parent plan",
+      "system hardening plan",
+      "019 research wave coordination",
+      "019 tasks",
+      "system hardening tasks",
+      "019 parent checklist"
+    ],
+    "key_topics": [
+      "system",
+      "hardening",
+      "post-consolidation",
+      "train",
+      "post-ship",
+      "research",
+      "wave",
+      "tier",
+      "remediation",
+      "system-spec-kit",
+      "charter",
+      "umbrella"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "shared/unicode-normalization.ts",
+      "mcp_server/lib/description/description-schema.ts",
+      "mcp_server/lib/description/description-merge.ts",
+      "mcp_server/lib/search/folder-discovery.ts",
+      "mcp_server/lib/description/repair.ts",
+      "core/config.ts",
+      "handlers/session-resume.ts",
+      "hooks/claude/session-prime.ts",
+      "scripts/lib/validator-registry.json",
+      "rules/README.md",
+      "scripts/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "unicode-normalization.ts",
+        "kind": "code",
+        "path": "shared/unicode-normalization.ts",
+        "source": "derived"
+      },
+      {
+        "name": "description-schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/description/description-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "description-merge.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/description/description-merge.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/description/repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.ts",
+        "kind": "code",
+        "path": "handlers/session-resume.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "rules/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Consolidation Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Train",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-04-18 consolidation that shipped `016-foundational-runtime`, `017-sk-deep-cli-runtime-execution`, and `018-cli-executor-remediation` closed the 026 train's core runtime and executor work",
+    "created_at": "2026-04-18T16:46:13.781Z",
+    "last_save_at": "2026-07-17T17:19:17.246Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6d58fa40f03c966777478c676ce618c6b0e2dee9afc7feb71543ffa28228a3ef",
+    "source_doc_hashes": {
+      "spec.md": "87c024dcb8f0af5a481d096035404d35bcf103a512625a0826bc38240546df13",
+      "plan.md": "86d81a09ab886326e8bc5dc37f6f08486a4fca9481e1de5f2cccc53dd00dbb83",
+      "tasks.md": "6da30f9acad152fcab87ccc5e177a3cb294d2c5d3f724077977d8142ffc463ff",
+      "checklist.md": "6fc7a9fca16fa3325c031ebaec48c5cd07df0e20cbb066480bff5a0f11799e8d",
+      "decision-record.md": "6c7b18d576494c54a9228a8481901d73bad451ed7de20d6d0f8b8d2cac8c8849",
+      "implementation-summary.md": "4d08446b2549634511cf1cb93d49b119cbb8b40c1b427a114a5b5a6668a0c8e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

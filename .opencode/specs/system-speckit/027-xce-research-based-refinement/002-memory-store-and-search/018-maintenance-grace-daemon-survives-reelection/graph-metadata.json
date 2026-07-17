@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "maintenance grace daemon survives re-election",
+      "maintenance-active marker launcher adopt",
+      "reindex daemon reaped mid-scan re-election",
+      "027 002/019",
+      "maintenance grace daemon survives re-election plan",
+      "maintenance-active marker adopt guard plan",
+      "027 002/019 plan",
+      "maintenance grace daemon survives re-election tasks",
+      "027 002/019 tasks",
+      "maintenance grace daemon survives re-election summary",
+      "maintenance-active marker launcher adopt shipped",
+      "027 002/019 shipped"
+    ],
+    "key_topics": [
+      "maintenance",
+      "grace",
+      "daemon",
+      "survives",
+      "re-election",
+      "maintenance-active",
+      "marker",
+      "launcher",
+      "adopt",
+      "reindex",
+      "reaped",
+      "mid-scan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "lib/storage/maintenance-marker.ts",
+      "handlers/memory-index.ts",
+      "tests/launcher-maintenance-guard.vitest.ts",
+      "stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+      "lib/search/trigger-embedding-backfill.ts",
+      "mcp_server/lib/storage/maintenance-marker.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/lib/providers/retry-manager.ts",
+      "mcp_server/tests/launcher-maintenance-guard.vitest.ts",
+      "mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+      "lib/providers/retry-manager.ts",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-maintenance-guard.vitest.ts",
+        "kind": "test",
+        "path": "tests/launcher-maintenance-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-reelection-adoption-live.vitest.ts",
+        "kind": "test",
+        "path": "stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-embedding-backfill.ts",
+        "kind": "code",
+        "path": "lib/search/trigger-embedding-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Uses Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "injectable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 018 made the background scan cooperative, a full reindex still could not complete",
+    "created_at": "2026-06-17T12:47:01.644Z",
+    "last_save_at": "2026-07-17T17:19:41.686Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:49a4af8d61dcce2759de258c5157668bf40dbda459e7aa1b73ae321631f9e132",
+    "source_doc_hashes": {
+      "spec.md": "4e00e6998b5d9721f3fa89b494acb9f5358ab5a45a2979235dd93862c24211a7",
+      "plan.md": "9438fbb769b9f64965b87d7aab74b979a964f64a624d78334ec7e5b12da1ec27",
+      "tasks.md": "07f45b2ed059f4ab8e46f85a7e82e77fd9517162f684f04976e57a0b14910d3a",
+      "implementation-summary.md": "f2686d7fee33aadecbe0326287e122bda6f11e8679e88243a30a24bb74080a0d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

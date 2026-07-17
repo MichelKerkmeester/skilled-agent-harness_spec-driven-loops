@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-research-review",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-research-review",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 deep-research review",
+      "006 deep-research review",
+      "006/007 closure verification",
+      "006 review research",
+      "008 deep-research review plan",
+      "006 review research retrospective",
+      "008 deep-research review tasks",
+      "006 review research tasks",
+      "008 deep-research review checklist",
+      "006 review research checklist",
+      "008 deep-research review implementation summary",
+      "006 review research implementation summary"
+    ],
+    "key_topics": [
+      "deep-research",
+      "review",
+      "closure",
+      "verification",
+      "research",
+      "plan",
+      "retrospective",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/008-deep-research-review-pt-01/deep-research-config.json",
+      "research/008-deep-research-review-pt-01/strategy.md",
+      "research/008-deep-research-review-pt-01/deep-research-state.jsonl",
+      "research/008-deep-research-review-pt-01/iterations/iteration-010.md",
+      "research/008-deep-research-review-pt-01/prompts/iteration-010.md",
+      "research/008-deep-research-review-pt-01/deltas/iteration-010.jsonl",
+      "tests/memory/trust-badges.test.ts",
+      "mcp_server/formatters/search-results.ts",
+      "mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/lib/search/search-utils.ts",
+      "mcp_server/handlers/memory-search.ts",
+      "mcp_server/tests/causal-edges-unit.vitest.ts",
+      "mcp_server/tests/memory/trust-badges.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/008-deep-research-review-pt-01/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "strategy.md",
+        "kind": "doc",
+        "path": "research/008-deep-research-review-pt-01/strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/008-deep-research-review-pt-01/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/008-deep-research-review-pt-01/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.jsonl",
+        "kind": "file",
+        "path": "research/008-deep-research-review-pt-01/deltas/iteration-010.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "trust-badges.test.ts",
+        "kind": "test",
+        "path": "tests/memory/trust-badges.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-utils.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-utils.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges-unit.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/causal-edges-unit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Independent Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Document",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook coverage needed independent audit",
+    "created_at": "2026-04-25T23:20:00.000Z",
+    "last_save_at": "2026-07-17T17:19:32.463Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:99f37145d82d2413925361720b1802c1884b3e6d5d519d86bd29130389bd0090",
+    "source_doc_hashes": {
+      "spec.md": "51286921bf6534d2d4d25c631a433a078e36c948b8b23e73615a5ad092944523",
+      "plan.md": "7ad37695bc660b333eae6a82dcd5fc1f8cb1ae4ff7eaf691997c1cdea76f308f",
+      "tasks.md": "faf31a175a196c4a33898302ff5403c84e4e9bbbe253852ec4b592f9483bcf10",
+      "checklist.md": "e3a3d8b97eeb33af5490cbd675b8fc71b9cb79de471dcbfb7c53506fb0805123",
+      "implementation-summary.md": "504a4f5ec61479ecd192ab69326d9bde552b59e3f882a9541745cab85ecef594",
+      "research/research.md": "480fa4bafa757e62a26ada68bdc6b847de8fbe279aa048ce5ed1ce8415c0f4f2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup",
+  "children_ids": [
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model",
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/021-system-spec-kit"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill frontmatter alignment",
+      "reference frontmatter standardization",
+      "trigger phrases in skill references",
+      "frontmatter benefit investigation"
+    ],
+    "key_topics": [
+      "skill",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "standardization",
+      "trigger",
+      "phrases",
+      "references",
+      "benefit",
+      "investigation",
+      "asset",
+      "drifted"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill reference and asset frontmatter has drifted into three incompatible practices: 103 of 369 docs under `.opencode/skills//references/` and `.opencode/skills//assets/` carry a detailed memory-style block (`triggerphrases`, `importancetier`, `contextType`), roughly 255 carry `title` + `description` only, and 11 carry no frontmatter at all",
+    "created_at": "2026-06-11T05:47:09Z",
+    "last_save_at": "2026-07-17T17:19:37.866Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:14b0c177cbf6cd64cf1bf9fb27530c9ad89974c7f956bc3b41db40aa5a6b2026",
+    "source_doc_hashes": {
+      "spec.md": "54d50e88f574e2216ce16228aa0b8bfd20a04ec1f9a27532f562deca3caad0de"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

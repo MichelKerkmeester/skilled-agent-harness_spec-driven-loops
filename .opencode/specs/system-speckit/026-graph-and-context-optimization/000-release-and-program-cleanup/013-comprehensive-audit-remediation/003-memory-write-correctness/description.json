@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness",
+  "description": "The shared post-mutation hook (`runPostMutationHooks`) clears trigger, tool, constitutional, graph-signal, degree, and co-activation caches but never",
+  "keywords": [
+    "shared",
+    "post-mutation",
+    "hook",
+    "runpostmutationhooks",
+    "clears",
+    "trigger",
+    "tool",
+    "constitutional",
+    "graph-signal",
+    "degree",
+    "co-activation",
+    "caches",
+    "never"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.300Z",
+  "specId": "003",
+  "folderSlug": "memory-write-correctness",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "013-comprehensive-audit-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

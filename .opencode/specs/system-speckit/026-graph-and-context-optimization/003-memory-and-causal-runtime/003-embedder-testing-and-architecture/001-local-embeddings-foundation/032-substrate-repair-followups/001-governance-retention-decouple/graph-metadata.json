@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ADR-002 Option A implementation",
+      "retentionPolicy ephemeral decouple",
+      "DEFAULT_EPHEMERAL_TTL_MS",
+      "scope-governance.ts requiresGovernedIngest fix",
+      "governance retention decouple plan",
+      "ADR-002 Option A plan",
+      "DEFAULT_EPHEMERAL_TTL_MS plan",
+      "governance retention decouple tasks",
+      "ephemeral retention acceptance tasks",
+      "ADR-002 Option A tasks",
+      "governance retention decouple checklist",
+      "ephemeral TTL checklist"
+    ],
+    "key_topics": [
+      "adr-002",
+      "option",
+      "implementation",
+      "retentionpolicy",
+      "ephemeral",
+      "decouple",
+      "scope-governance",
+      "requiresgovernedingest",
+      "governance",
+      "retention",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts",
+      "tests/governance-ephemeral-decouple.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "scope-governance.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "governance-ephemeral-decouple.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Governance Retention Decouple",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Passing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Keep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Passing `retentionPolicy: \"ephemeral\"` to `memorysave` silently triggered governed-ingest validation and required the full audit chain",
+    "created_at": "2026-05-14T11:10:00Z",
+    "last_save_at": "2026-07-17T17:19:19.449Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T11:10:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c394e88a08d1588b9a1bb125a060e71a5370766ee22d22b7c468d2f0deae25c9",
+    "source_doc_hashes": {
+      "spec.md": "d8c78ef86c3d755fd98a185f2ed871179f1ea8871babb5f3bea87c461413dbcd",
+      "plan.md": "b2e5c67b2a0c66746abd328f867f87e6fc911a39d4553be478f434596059b053",
+      "tasks.md": "35eae16a85a6e603fec275a6c2d1a3d46c8b266f5796976208d4c4837009302a",
+      "checklist.md": "70dad5195080e302c872b2892dc7cb055a3bf91f9a06553206446f6318ec7236",
+      "implementation-summary.md": "cb81e70698e4a7e180f1ade1bf216fa98a63ac1458cef4bdb8153ade103e7f5c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

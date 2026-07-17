@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/009-fix-cli-orchestrator-doc-drift",
+  "description": "The CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files",
+  "keywords": [
+    "cli",
+    "orchestrator",
+    "skills",
+    "cli-opencode",
+    "cli-codex",
+    "cli-claude-code",
+    "cli-gemini",
+    "drifted",
+    "across",
+    "five",
+    "files"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.862Z",
+  "specId": "009",
+  "folderSlug": "fix-cli-orchestrator-doc-drift",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "006-research",
+    "004-fix-deep-research-findings"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

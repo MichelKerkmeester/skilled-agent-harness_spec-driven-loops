@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-search-quality-tuning",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/007-fix-search-quality-tuning",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "F-011-C1",
+      "search quality tuning",
+      "ndcg mrr metrics",
+      "rerank gate floor",
+      "cross-encoder candidate cap",
+      "cocoindex adaptive overfetch",
+      "learned stage2 blend",
+      "F-011-C1 plan",
+      "008 search quality plan",
+      "F-011-C1 tasks",
+      "008 search quality tasks",
+      "F-011-C1 checklist"
+    ],
+    "key_topics": [
+      "f-011-c1",
+      "search",
+      "quality",
+      "tuning",
+      "ndcg",
+      "mrr",
+      "metrics",
+      "rerank",
+      "gate",
+      "floor",
+      "cross-encoder",
+      "candidate"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "mcp_server/stress_test/search-quality/metrics.ts",
+      "mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "mcp_server/stress_test/search-quality/ndcg-mrr.vitest.ts",
+      "tests/stage3-rerank-regression.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ndcg-mrr.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/search-quality/ndcg-mrr.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank-regression.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage3-rerank-regression.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Quality Tuning",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Five",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "weak-margin",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "unit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five tuning findings sit in the search subsystem",
+    "created_at": "2026-05-01T05:18:48Z",
+    "last_save_at": "2026-07-17T17:19:13.484Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c501790c85b0ecf1c7485b1ebcf7b9cba69c69c4025f3026ce4b697854415d7",
+    "source_doc_hashes": {
+      "spec.md": "f69f678e3779dc9bfa4618d8b366afa04796ff164bfad80399b719c8b0b185b8",
+      "plan.md": "a4ab61286dc3e4ab91dbb84b2675d4e4faab3d63c9ab81efa61da281f5048624",
+      "tasks.md": "15c1ee5dd952424cc4db0edf9f418c6cef3aba2dd174beb250e6d2a41a82023b",
+      "checklist.md": "d4df5c9feb9bce4466265868a58845440e255546e729664bc5f09d9ed175cf89",
+      "implementation-summary.md": "55b42b55d8581bebb4331723d210d18aaf939bc42dfe729ff0cf59772063e7d7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

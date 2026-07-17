@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/002-root-readme-update",
+  "description": "Refresh root README.md with current embedder defaults + architecture summary + link to canonical pluggability narrative",
+  "keywords": [
+    "refresh",
+    "root",
+    "readme",
+    "current",
+    "embedder",
+    "defaults",
+    "architecture",
+    "summary",
+    "link",
+    "canonical",
+    "pluggability",
+    "narrative"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.980Z",
+  "specId": "002",
+  "folderSlug": "root-readme-update",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "005-cross-cutting-quality",
+    "003-skill-docs-alignment"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

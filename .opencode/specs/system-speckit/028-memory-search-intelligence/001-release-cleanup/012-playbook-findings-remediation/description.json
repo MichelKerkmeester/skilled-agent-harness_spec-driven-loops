@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/012-playbook-findings-remediation",
+  "description": "The daemon-skills playbook validation (packet 011) plus the core memory-search-intelligence re-run surfaced about twenty-two real product findings",
+  "keywords": [
+    "daemon-skills",
+    "playbook",
+    "validation",
+    "packet",
+    "plus",
+    "core",
+    "memory-search-intelligence",
+    "re-run",
+    "surfaced",
+    "about",
+    "twenty-two",
+    "real",
+    "product",
+    "findings"
+  ],
+  "lastUpdated": "2026-07-17T17:01:47.054Z",
+  "specId": "012",
+  "folderSlug": "playbook-findings-remediation",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

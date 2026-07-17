@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
+  "description": "Phase parent for the 8-packet follow-on arc that closes deep-research findings across mcp-coco-index retrieval hardening, observability, calibration,",
+  "keywords": [
+    "phase",
+    "parent",
+    "8-packet",
+    "follow-on",
+    "arc",
+    "closes",
+    "deep-research",
+    "findings",
+    "across",
+    "mcp-coco-index",
+    "retrieval",
+    "hardening",
+    "observability",
+    "calibration"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.156Z",
+  "specId": "023",
+  "folderSlug": "deep-research-arc-blind-spots",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "004-code-index-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

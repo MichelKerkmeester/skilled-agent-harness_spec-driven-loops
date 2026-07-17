@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hf-local HTTP client",
+      "ollama shaped hf-local",
+      "HF_EMBED_SERVER_READY_TIMEOUT_MS",
+      "hf-local HTTP client plan",
+      "hf-local HTTP client implementation plan",
+      "hf-local HTTP client tasks",
+      "hf-local HTTP client rewrite implementation summary"
+    ],
+    "key_topics": [
+      "hf-local",
+      "http",
+      "client",
+      "ollama",
+      "shaped",
+      "plan",
+      "implementation",
+      "tasks",
+      "rewrite",
+      "summary",
+      "currently",
+      "owns"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/providers/ollama.ts",
+      "mcp_server/tests/embedders/hf-local-client.vitest.ts",
+      "mcp_server/tests/embeddings.vitest.ts",
+      "mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
+      "shared/embeddings/factory.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local-client.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/hf-local-client.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embeddings.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "health-reporting.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Caller",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "hf-local.ts currently owns in-process transformers execution",
+    "created_at": "2026-05-29T05:06:24.638Z",
+    "last_save_at": "2026-07-17T17:19:29.940Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd372837861db66d6e864d03f28e39bbac8743468b79ad841a4ff0e47b08f58e",
+    "source_doc_hashes": {
+      "spec.md": "7a6ab20df9a14673cb8bff8dca719752be4e09bb62049dd961fd6cb8c9f3f006",
+      "plan.md": "7d9ff450e66ef1208fae9f502040ac48edbd670eb08dfa348ec94d1a1eb25e04",
+      "tasks.md": "4e3e73846a7e64664db9cbb74915df090803434910bf143c457565f5d993533c",
+      "implementation-summary.md": "39881c9d66546fa07cb5a41fec2d9b1164e5b918128fd4d1a4ee115c2e778802"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

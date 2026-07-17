@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hardcoded-default audit deep-research",
+      "drift sweep across subsystems",
+      "follow-on to 020 embedder default drift fix",
+      "10-iter audit cli-opencode deepseek",
+      "016/002/021 audit"
+    ],
+    "key_topics": [
+      "hardcoded-default",
+      "audit",
+      "deep-research",
+      "drift",
+      "sweep",
+      "across",
+      "subsystems",
+      "follow-on",
+      "embedder",
+      "default",
+      "10-iter",
+      "cli-opencode"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Default Audit Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Focus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stale",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "valid",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "10-iter deep-research dispatch via cli-opencode + deepseek-v4-pro auditing all subsystems for the same hardcoded-default anti-pattern that 020 just closed in the spec-memory embedder. Scope: code (TS + Python + Rust), config (JSON/YAML/TOML), READMEs, INSTALL_GUIDE.md, doctor commands, skill docs, ENV_REFERENCE.md, agent definitions, manifests. Goal: enumerate every inline default that should be registry-derived (or env-var-driven) and identify ADR-implementation drift like the BAAI / jina-embeddings-v3 leftovers that triggered the 2026-05-23 incident.",
+    "created_at": "2026-05-23T11:55:15.467Z",
+    "last_save_at": "2026-07-17T17:19:22.018Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:16e1e9ca7c53d95f3aeefe73db26a9384359e3bcff4cbb1b21b8f3fd7e44a299",
+    "source_doc_hashes": {
+      "spec.md": "da66f2dd096851aec99112de0b52d6778fdb4b76dac391da424ed995e1b54d34"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

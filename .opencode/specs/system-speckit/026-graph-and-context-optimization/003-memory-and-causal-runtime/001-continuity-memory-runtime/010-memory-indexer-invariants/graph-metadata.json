@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/010 memory indexer invariants",
+      "026/005 memory indexer invariants",
+      "memory indexer lineage fix",
+      "constitutional tier pollution fix",
+      "index scope invariants",
+      "indexer correctness",
+      "fromScan recheck bypass",
+      "e_lineage fix",
+      "candidate_changed fix",
+      "z_future indexing exclusion",
+      "constitutional path gate",
+      "026/010 plan"
+    ],
+    "key_topics": [
+      "memory",
+      "indexer",
+      "invariants",
+      "lineage",
+      "constitutional",
+      "tier",
+      "pollution",
+      "index",
+      "scope",
+      "correctness",
+      "fromscan",
+      "recheck"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "handlers/save/pe-orchestration.ts",
+      "handlers/pe-gating.ts",
+      "handlers/save/types.ts",
+      "handlers/memory-index.ts",
+      "handlers/memory-save.ts",
+      "tests/pe-orchestration.vitest.ts",
+      "tests/handler-memory-index.vitest.ts",
+      "mcp_server/lib/utils/index-scope.ts",
+      "lib/governance/scope-governance.ts",
+      "scripts/memory/cleanup-index-scope-violations.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tests/memory-governance.vitest.ts",
+      "tests/stage3-rerank-regression.vitest.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/handlers/memory-index.ts"
+    ],
+    "entities": [
+      {
+        "name": "pe-orchestration.ts",
+        "kind": "code",
+        "path": "handlers/save/pe-orchestration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pe-gating.ts",
+        "kind": "code",
+        "path": "handlers/pe-gating.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "handlers/save/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pe-orchestration.vitest.ts",
+        "kind": "test",
+        "path": "tests/pe-orchestration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-index.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-memory-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scope-governance.ts",
+        "kind": "code",
+        "path": "lib/governance/scope-governance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cleanup-index-scope-violations.ts",
+        "kind": "code",
+        "path": "scripts/memory/cleanup-index-scope-violations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-governance.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-governance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank-regression.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage3-rerank-regression.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Indexer Invariants",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Index Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Constitutional Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two distinct invariant failures showed up simultaneously in the memory indexer:",
+    "created_at": "2026-04-24T17:21:38.685Z",
+    "last_save_at": "2026-07-17T17:19:17.580Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1e7c41eb58f43133f80a12f879dd7f323a16dc5226aa42d3c931f3966393ae4d",
+    "source_doc_hashes": {
+      "spec.md": "f71f0fac84741825083a941a22996e3944110414739df75e6ce83854d20375fd",
+      "plan.md": "fe360d5b65d11713fc1a26e06062a75f6eecabf9db85d09f7d7ef5719fef9dba",
+      "tasks.md": "8d8b58877ee2677c9d094062c23a226725c6c3488a3106ced3e1fec9f9a65752",
+      "checklist.md": "53fd24f923bb568e40ff00ef3e7b89afc38ea150fb7f75cb6650f1564ab68eaf",
+      "decision-record.md": "be7b19dadd394d0cb28b639f3ce3f91fd099d462893c0333243865c4ca29b414",
+      "implementation-summary.md": "d9d3cc25788624f9b2402fbb35d93b7fd6efcd34ca7167b9625bc8c09f69e445"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

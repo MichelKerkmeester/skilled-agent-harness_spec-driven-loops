@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
+  "description": "Wire the shared embeddings factory to Ollama-backed active embedders so query-time encoding matches the re-indexed vec_<dim> table.",
+  "keywords": [
+    "wire",
+    "shared",
+    "embeddings",
+    "factory",
+    "ollama-backed",
+    "active",
+    "embedders",
+    "query-time",
+    "encoding",
+    "matches",
+    "re-indexed",
+    "dim",
+    "table"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.869Z",
+  "specId": "006",
+  "folderSlug": "ollama-encode-path-wiring",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

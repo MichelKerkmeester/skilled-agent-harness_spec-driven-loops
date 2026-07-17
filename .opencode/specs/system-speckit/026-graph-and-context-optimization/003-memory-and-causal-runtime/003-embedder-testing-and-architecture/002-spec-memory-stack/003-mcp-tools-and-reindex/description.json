@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/003-mcp-tools-and-reindex",
+  "description": "Phase 3 of 016. Expose embedder_list / embedder_set / embedder_status MCP tools + background re-index orchestrator. User-facing surface.",
+  "keywords": [
+    "phase",
+    "expose",
+    "mcp",
+    "tools",
+    "background",
+    "re-index",
+    "orchestrator",
+    "user-facing",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-17T17:01:48.922Z",
+  "specId": "003",
+  "folderSlug": "mcp-tools-and-reindex",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "002-spec-memory-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-05-26_07-35__scaffolded-013-embedder-testing-and-architecture.md"
+  ]
+}
