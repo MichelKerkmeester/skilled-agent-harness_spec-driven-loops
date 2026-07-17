@@ -34,7 +34,7 @@ Zombie debugging processes can block restart; find them with `ps aux | grep -i c
 |------|-------|------|
 | `references/session_management.md` §8 | Reference | Session error recovery function |
 | `references/troubleshooting.md` | Reference | Session won't start diagnostics |
-| `INSTALL_GUIDE.md` §9 | Guide | Error/cause/fix row for no-active-session |
+| `INSTALL-GUIDE.md` §9 | Guide | Error/cause/fix row for no-active-session |
 
 ### Validation And Tests
 

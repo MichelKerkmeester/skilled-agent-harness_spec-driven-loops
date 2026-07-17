@@ -132,7 +132,7 @@ Reach for this skill whenever a user wants to drive Figma Desktop from the termi
 
 | What you see | Why | Fix |
 |---|---|---|
-| `figma-ds-cli: command not found` | The binary is not installed, or only the unrelated `figma-cli` npm package is on PATH | Install `figma-ds-cli` from npm or the silships repo per INSTALL_GUIDE.md. Never `npm i -g figma-cli`, which is the unrelated unic/figma-cli |
+| `figma-ds-cli: command not found` | The binary is not installed, or only the unrelated `figma-cli` npm package is on PATH | Install `figma-ds-cli` from npm or the silships repo per INSTALL-GUIDE.md. Never `npm i -g figma-cli`, which is the unrelated unic/figma-cli |
 | `bare figma-cli runs but behaves strangely` | The `figma-cli` name may resolve to unic/figma-cli rather than the silships build | Confirm the silships tool with `--version` or `--help`. The `figma-cli` command is only the silships tool when installed from the silships repo |
 | Every command fails or hangs | Figma Desktop is closed, or open with no file, so there is no live session to drive | Open Figma Desktop with a file. The CLI drives the live Desktop session and has no API-key fallback |
 | `Unauthorized` from a daemon command | The daemon token is stale or the daemon is unhealthy | Run `figma-ds-cli daemon diagnose` then `daemon restart`. Never auto-delete the token at `~/.figma-ds-cli/.daemon-token` |
@@ -186,7 +186,7 @@ A: This skill is the transport that reads and writes Figma content. `sk-design` 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
-| [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Install and verify `figma-ds-cli`, the naming-trap warning, and the connect-mode setup |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Install and verify `figma-ds-cli`, the naming-trap warning, and the connect-mode setup |
 | [`references/figma_cli_reference.md`](./references/figma_cli_reference.md) | Binary identity, the Node and macOS baseline, the Figma Desktop requirement, connect modes, the daemon model, and command examples |
 | [`references/tool_surface.md`](./references/tool_surface.md) | The read-only, mutating, and destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule |
 | [`references/mcp_wiring.md`](./references/mcp_wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example |

@@ -33,7 +33,7 @@ The AI client sees only the 4 Code Mode tools rather than the 26 Chrome DevTools
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §3 | MCP | Invocation pattern and available tools |
-| `INSTALL_GUIDE.md` §4, §10 | Guide | Code Mode provider model and tools reference |
+| `INSTALL-GUIDE.md` §4, §10 | Guide | Code Mode provider model and tools reference |
 | `assets/utcp_chrome_devtools_manuals.md` | Asset | Registered-state snapshot of both manuals |
 
 ### Validation And Tests

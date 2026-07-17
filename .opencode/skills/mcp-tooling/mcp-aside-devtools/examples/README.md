@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 Each script is a working workflow and an honest capability boundary: it exercises only research-verified commands, verifies artifacts independently of tool responses, and reports UNKNOWN or version-drift states instead of papering over them.
 
-**Prerequisites for all scripts**: macOS, the `aside` CLI installed (`command -v aside`), and — for anything touching the browser — a signed-in Aside account. See [install-guide.md](../install-guide.md).
+**Prerequisites for all scripts**: macOS, the `aside` CLI installed (`command -v aside`), and — for anything touching the browser — a signed-in Aside account. See [INSTALL-GUIDE.md](../INSTALL-GUIDE.md).
 
 ---
 

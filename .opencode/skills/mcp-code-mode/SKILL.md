@@ -478,4 +478,4 @@ Scripts: `scripts/install.sh`, `scripts/update.sh`, `scripts/validate_config.py`
 
 Related skills: `mcp-chrome-devtools` for browser debugging routes that can fall back to Code Mode.
 
-Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md).
+Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).

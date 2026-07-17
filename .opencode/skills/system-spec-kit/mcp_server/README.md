@@ -179,7 +179,7 @@ mcp_server/
 | `hooks/` | Builds runtime startup and prompt payloads. |
 | `formatters/` | Shapes search and response-profile output for clients. |
 | `ENV_REFERENCE.md` | Documents runtime environment variables. |
-| `INSTALL_GUIDE.md` | Documents package setup and MCP client registration. |
+| `INSTALL-GUIDE.md` | Documents package setup and MCP client registration. |
 
 Canonical spec-document discovery includes `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, and `description.json`. `graph-metadata.json` is discovered through the graph-metadata path gate, including metadata backfilled under `<packet>/iterations/`; `research/iterations/` and `review/iterations/` markdown remain working artifacts rather than canonical spec docs.
 
@@ -303,7 +303,7 @@ Expected result: build and tests exit 0, README validation reports no blocking i
 
 ## 10. RELATED
 
-- [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md)
+- [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md)
 - [`ENV_REFERENCE.md`](./ENV_REFERENCE.md)
 - [`../../../scripts/README.md`](../../../scripts/README.md)
 - [`configs/README.md`](./configs/README.md)

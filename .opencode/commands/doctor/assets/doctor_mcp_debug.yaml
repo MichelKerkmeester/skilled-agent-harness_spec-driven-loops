@@ -41,8 +41,8 @@ upstream_assets:
     decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
   install_guides:
     mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
-    mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md"
-    mk_code_index: ".opencode/skills/system-code-graph/INSTALL_GUIDE.md"
+    mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
+    mk_code_index: ".opencode/skills/system-code-graph/INSTALL-GUIDE.md"
     code_mode: ".opencode/install_guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
   scripts:
@@ -93,8 +93,8 @@ arguments:
 # ─────────────────────────────────────────────────────────────────
 install_guides:
   mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
-  mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL_GUIDE.md
-  mk_code_index: .opencode/skills/system-code-graph/INSTALL_GUIDE.md
+  mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
+  mk_code_index: .opencode/skills/system-code-graph/INSTALL-GUIDE.md
   code_mode: .opencode/install_guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
 

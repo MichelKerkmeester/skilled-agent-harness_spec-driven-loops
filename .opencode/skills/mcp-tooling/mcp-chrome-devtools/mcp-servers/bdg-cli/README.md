@@ -29,7 +29,7 @@ version: 1.0.0.0
 
 ### Why This Package Exists
 
-mcp-chrome-devtools drives browser debugging through `bdg`, a real third-party CLI, rather than reimplementing that surface. This folder is not vendored source. It is the install pointer the parent skill's `INSTALL_GUIDE.md` and `scripts/install.sh` describe: the canonical, step-by-step install with validation checkpoints lives in [`../../INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md).
+mcp-chrome-devtools drives browser debugging through `bdg`, a real third-party CLI, rather than reimplementing that surface. This folder is not vendored source. It is the install pointer the parent skill's `INSTALL-GUIDE.md` and `scripts/install.sh` describe: the canonical, step-by-step install with validation checkpoints lives in [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md).
 
 ### What It Does
 
@@ -83,6 +83,6 @@ ls -la /tmp/verify.png
 | Document | Purpose |
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime routing between the bdg CLI and the Chrome DevTools MCP |
-| [`../../INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md) | Canonical step-by-step install with validation checkpoints |
+| [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Canonical step-by-step install with validation checkpoints |
 | [`../../references/cdp_patterns.md`](../../references/cdp_patterns.md) | CDP command patterns and Unix composability |
 | [`../chrome-devtools-mcp/README.md`](../chrome-devtools-mcp/README.md) | The MCP fallback this CLI is preferred over |

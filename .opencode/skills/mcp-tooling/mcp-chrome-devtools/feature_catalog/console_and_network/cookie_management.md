@@ -33,7 +33,7 @@ Enable the Network domain first (`bdg cdp Network.enable`). The cookie-session w
 | File | Layer | Role |
 |------|-------|------|
 | `references/cdp_patterns.md` §4-5 | Reference | Network domain patterns and cookie workflow |
-| `INSTALL_GUIDE.md` §6, §8 | Guide | Cookie manipulation and session management examples |
+| `INSTALL-GUIDE.md` §6, §8 | Guide | Cookie manipulation and session management examples |
 
 ### Validation And Tests
 

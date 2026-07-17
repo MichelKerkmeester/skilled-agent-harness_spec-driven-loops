@@ -1235,7 +1235,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 | `.opencode/skills/`                            | Installed skills directory               |
 | `.opencode/commands/`                          | Available slash commands directory       |
 | `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`    | Gate 2 compatibility shim and diagnostics |
-| `.opencode/skills/system-skill-advisor/mcp_server/INSTALL_GUIDE.md`             | Native advisor bootstrap, verification, and rollback |
+| `.opencode/skills/system-skill-advisor/mcp_server/INSTALL-GUIDE.md`             | Native advisor bootstrap, verification, and rollback |
 
 ### External Links
 

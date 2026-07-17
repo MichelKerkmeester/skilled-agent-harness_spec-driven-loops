@@ -33,7 +33,7 @@ Isolation is what makes parallel testing safe: no session conflicts between inst
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §3 | MCP | `--isolated=true` key feature and benefits |
-| `INSTALL_GUIDE.md` §4 | Guide | UTCP config with isolation flag |
+| `INSTALL-GUIDE.md` §4 | Guide | UTCP config with isolation flag |
 | `assets/utcp_chrome_devtools_manuals.md` | Asset | Registered-state snapshot showing both flags |
 
 ### Validation And Tests

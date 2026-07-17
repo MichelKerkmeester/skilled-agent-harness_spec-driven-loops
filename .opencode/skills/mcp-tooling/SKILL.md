@@ -83,32 +83,32 @@ mcp-tooling/
   mcp-chrome-devtools/
     SKILL.md
     README.md
-    INSTALL_GUIDE.md
+    INSTALL-GUIDE.md
     changelog/
   mcp-click-up/
     SKILL.md
     README.md
-    INSTALL_GUIDE.md
+    INSTALL-GUIDE.md
     changelog/
   mcp-aside-devtools/
     SKILL.md
     README.md
-    INSTALL_GUIDE.md
+    INSTALL-GUIDE.md
     changelog/
   mcp-figma/
     SKILL.md
     README.md
-    INSTALL_GUIDE.md
+    INSTALL-GUIDE.md
     changelog/
   mcp-refero/
     SKILL.md
     README.md
-    INSTALL_GUIDE.md
+    INSTALL-GUIDE.md
     changelog/
   mcp-mobbin/
     SKILL.md
     README.md
-    INSTALL_GUIDE.md
+    INSTALL-GUIDE.md
     changelog/
 ```
 

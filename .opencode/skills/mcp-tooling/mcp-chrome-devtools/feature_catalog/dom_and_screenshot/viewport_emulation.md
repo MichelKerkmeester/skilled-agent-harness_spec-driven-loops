@@ -34,7 +34,7 @@ The multi-viewport example script iterates desktop (1920x1080), laptop (1366x768
 |------|-------|------|
 | `references/cdp_patterns.md` §4 | Reference | Layout and metrics patterns |
 | `examples/multi-viewport-test.sh` | Script | Production multi-viewport workflow |
-| `INSTALL_GUIDE.md` §10 | Guide | MCP `resize_page` equivalence |
+| `INSTALL-GUIDE.md` §10 | Guide | MCP `resize_page` equivalence |
 
 ### Validation And Tests
 

@@ -34,7 +34,7 @@ The canonical lifecycle is Start, Verify, Execute, Stop. Always capture stderr w
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Essential command list (`bdg <url>`) |
 | `references/session_management.md` §4 | Reference | Start patterns, retry logic, timeout |
-| `INSTALL_GUIDE.md` §6 | Guide | Session command reference |
+| `INSTALL-GUIDE.md` §6 | Guide | Session command reference |
 
 ### Validation And Tests
 

@@ -7,7 +7,7 @@
 
 set -euo pipefail
 
-command -v aside >/dev/null 2>&1 || { echo "aside not found — see install-guide.md" >&2; exit 1; }
+command -v aside >/dev/null 2>&1 || { echo "aside not found — see INSTALL-GUIDE.md" >&2; exit 1; }
 
 OUT_DIR="${1:-/tmp/aside-mcp-probe}"
 mkdir -p "$OUT_DIR"

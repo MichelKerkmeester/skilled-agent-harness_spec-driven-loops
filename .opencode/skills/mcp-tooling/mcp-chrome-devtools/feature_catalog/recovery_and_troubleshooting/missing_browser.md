@@ -33,7 +33,7 @@ Escalation rule: if Chrome/Chromium cannot be found after the env fix, stop and 
 | File | Layer | Role |
 |------|-------|------|
 | `references/troubleshooting.md` | Reference | Error/cause/fix for Chrome not found |
-| `INSTALL_GUIDE.md` §2, §9 | Guide | Platform paths and PATH persistence |
+| `INSTALL-GUIDE.md` §2, §9 | Guide | Platform paths and PATH persistence |
 | `SKILL.md` §6 | CLI | `CHROME_PATH` runtime note |
 
 ### Validation And Tests

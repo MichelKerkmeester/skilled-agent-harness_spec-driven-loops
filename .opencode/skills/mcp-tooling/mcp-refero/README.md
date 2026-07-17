@@ -182,7 +182,7 @@ A: `sk-design` owns the design judgment and is loaded first for any design-affec
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
-| [`install-guide.md`](./install-guide.md) | Verify-only setup: the registered manual, the Pro-plan requirement, and the operator-only OAuth step |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Verify-only setup: the registered manual, the Pro-plan requirement, and the operator-only OAuth step |
 | [`references/tool-surface.md`](./references/tool-surface.md) | The eight-tool contract, ID typing, the research funnel, plan gating, and the deprecated legacy surface |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth/Bearer, the doubled-prefix rule, and discovery |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Full failure-mode table |

@@ -34,7 +34,7 @@ version: 1.0.0.0
 - **`mcp-click-up/`** — ClickUp task management: `cupt` CLI for daily ops, the official ClickUp MCP for documents/goals/bulk operations. See `mcp-click-up/README.md`.
 - **`mcp-figma/`** _(transport)_ — drives Figma Desktop from the terminal via `figma-ds-cli`. Read-only in this workspace (`mutatesWorkspace:false`); writes land only in Figma Desktop. Mandatory cross-hub pairing with `sk-design` before any design-affecting operation — the transport never decides taste. See `mcp-figma/README.md`.
 
-All three packets keep their own `SKILL.md`, `README.md`, `INSTALL_GUIDE.md`, and `changelog/`. The hub carries the single `graph-metadata.json` advisor identity for all three. `mcp-code-mode` — the shared MCP execution substrate all three reach through — is excluded and stays a flat standalone skill; it is not a hub member.
+All three packets keep their own `SKILL.md`, `README.md`, `INSTALL-GUIDE.md`, and `changelog/`. The hub carries the single `graph-metadata.json` advisor identity for all three. `mcp-code-mode` — the shared MCP execution substrate all three reach through — is excluded and stays a flat standalone skill; it is not a hub member.
 
 ---
 

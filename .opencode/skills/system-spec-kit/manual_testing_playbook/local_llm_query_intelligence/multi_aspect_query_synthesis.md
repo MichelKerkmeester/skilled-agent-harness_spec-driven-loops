@@ -69,7 +69,7 @@ For each top-5 result, tag with aspects present:
 ```
 | Rank | File                                     | A | M | E | # aspects |
 |-----:|------------------------------------------|---|---|---|----------:|
-| 1    | INSTALL_GUIDE.md (ollama section)     | Y | Y | Y | 3         |
+| 1    | INSTALL-GUIDE.md (ollama section)     | Y | Y | Y | 3         |
 | 2    | factory.ts (cascade + Metal hint)        | - | - | Y | 1         |
 | 3    | providers/README.md                      | Y | Y | Y | 3         |
 | 4    | ollama-availability.ts                | Y | - | - | 1         |

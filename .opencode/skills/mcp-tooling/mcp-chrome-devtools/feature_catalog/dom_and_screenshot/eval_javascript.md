@@ -34,7 +34,7 @@ The helper wraps the Runtime domain (`Runtime.evaluate` with `returnByValue`). P
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Helper command list (`bdg dom eval`) |
 | `references/cdp_patterns.md` §4 | Reference | Runtime domain patterns and helper alternative |
-| `INSTALL_GUIDE.md` §8 | Guide | JavaScript execution examples |
+| `INSTALL-GUIDE.md` §8 | Guide | JavaScript execution examples |
 
 ### Validation And Tests
 

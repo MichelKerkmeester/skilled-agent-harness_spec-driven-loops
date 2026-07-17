@@ -50,7 +50,7 @@ const ALLOWLIST = new Set([
   '.opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md::./references/workflow-name.md',
   '.opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md::./assets/template-name.md',
   '.opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md::./assets/checklist-name.md',
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md::INSTALL_GUIDE.md',
+  '.opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md::INSTALL-GUIDE.md',
   // skill_reference_template — use-site example paths
   '.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md::./scripts/workflow_router.py',
   '.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md::../scripts/',

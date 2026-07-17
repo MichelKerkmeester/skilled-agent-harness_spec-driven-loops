@@ -68,7 +68,7 @@ detect_app() {
   else
     warn "Open Design.app not found in /Applications or ~/Applications."
     warn "The app is required at run time because it hosts the daemon and ships the CLI."
-    info "See INSTALL_GUIDE.md for the app download."
+    info "See INSTALL-GUIDE.md for the app download."
   fi
 }
 

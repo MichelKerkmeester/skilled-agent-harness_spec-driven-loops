@@ -107,5 +107,5 @@ else
 fi
 
 log ""
-log "Doctor is read-only. It changes nothing. See $HERE/install.sh and INSTALL_GUIDE.md. The Open Design app must be open for live tool calls."
+log "Doctor is read-only. It changes nothing. See $HERE/install.sh and INSTALL-GUIDE.md. The Open Design app must be open for live tool calls."
 exit 0

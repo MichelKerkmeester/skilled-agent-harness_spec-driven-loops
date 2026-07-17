@@ -2,7 +2,7 @@
 
 > MCP Server v1.8.0 | 2026-03-15 (verification steps refreshed on 2026-04-25)
 
-Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`). Skill Advisor tools are served by the standalone `mk_skill_advisor` MCP server, registered separately in your runtime config. See `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md`.
+Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`). Skill Advisor tools are served by the standalone `mk_skill_advisor` MCP server, registered separately in your runtime config. See `.opencode/skills/system-skill-advisor/INSTALL-GUIDE.md`.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
 
@@ -496,7 +496,7 @@ Skill Advisor is a separate MCP server named `mk_skill_advisor`, registered alon
 - `advisor_status` (daemon freshness and trust-state health)
 - `advisor_validate` (measured corpus, parity, safety, and latency slices)
 
-Use [system-skill-advisor/INSTALL_GUIDE.md](../../system-skill-advisor/INSTALL_GUIDE.md) for the standalone advisor bootstrap checklist and API/tool contract while validating a new install.
+Use [system-skill-advisor/INSTALL-GUIDE.md](../../system-skill-advisor/INSTALL-GUIDE.md) for the standalone advisor bootstrap checklist and API/tool contract while validating a new install.
 
 Then verify the structural side too. Ask your AI assistant:
 

@@ -35,7 +35,7 @@ Install with `curl -fsSL https://releases.aside.com/install.sh | bash` or the pa
 
 | File | Layer | Role |
 |---|---|---|
-| `install-guide.md` | Guide | Full install, sign-in, permission tiers, registered MCP wiring |
+| `INSTALL-GUIDE.md` | Guide | Full install, sign-in, permission tiers, registered MCP wiring |
 | `scripts/install.sh` | Script | Operator-invoked installer wrapper with platform gate |
 | `scripts/doctor.sh` | Script | Read-only diagnostics including handshake probe and manual check |
 | `mcp-servers/aside-cli/README.md` | Server package | Install pointer for the binary |

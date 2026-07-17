@@ -418,4 +418,4 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.0.md`. Tool setup: `INSTALL_GUIDE.md`. The embedded `backend/scripts/` pipeline (20 TypeScript modules) is documented operationally in `references/extraction_workflow.md`.
+Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.0.md`. Tool setup: `INSTALL-GUIDE.md`. The embedded `backend/scripts/` pipeline (20 TypeScript modules) is documented operationally in `references/extraction_workflow.md`.

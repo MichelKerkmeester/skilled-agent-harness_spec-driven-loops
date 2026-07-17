@@ -35,7 +35,7 @@ All runtimes coordinate through one SQLite triplet owned by and co-located with 
 
 ### Key Sources
 
-- `INSTALL_GUIDE.md` §7 for operator-facing database configuration.
+- `INSTALL-GUIDE.md` §7 for operator-facing database configuration.
 - `.opencode/bin/mk-code-index-launcher.cjs` for the standalone-storage guard + skill-local path resolution + migration-back.
 - `mcp_server/core/config.ts` (`DATABASE_DIR`) and `mcp_server/lib/canonical-db-dir.ts` for runtime path resolution.
 
@@ -72,7 +72,7 @@ Additional runtime state lives in the same directory:
 .code-graph-readiness.json
 ```
 
-The override path `SPECKIT_CODE_GRAPH_DB_DIR` is allowed for tests and disposable CI runs only. The launcher enforces a standalone-storage guard: the override must resolve inside the workspace root. External absolute paths are rejected at startup. See `INSTALL_GUIDE.md` §7 (Database and Maintainer Mode) for the canonical configuration.
+The override path `SPECKIT_CODE_GRAPH_DB_DIR` is allowed for tests and disposable CI runs only. The launcher enforces a standalone-storage guard: the override must resolve inside the workspace root. External absolute paths are rejected at startup. See `INSTALL-GUIDE.md` §7 (Database and Maintainer Mode) for the canonical configuration.
 
 ---
 

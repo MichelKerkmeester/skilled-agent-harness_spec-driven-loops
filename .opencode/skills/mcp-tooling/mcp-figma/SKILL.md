@@ -236,7 +236,7 @@ def route_figma_resources(request: str):
 BIN=""
 command -v figma-ds-cli >/dev/null && BIN="figma-ds-cli"
 [ -z "$BIN" ] && command -v figma-cli >/dev/null && BIN="figma-cli"   # only if installed from silships repo
-[ -z "$BIN" ] && { echo "figma-ds-cli not found, see INSTALL_GUIDE.md (do NOT 'npm i -g figma-cli')"; exit 1; }
+[ -z "$BIN" ] && { echo "figma-ds-cli not found, see INSTALL-GUIDE.md (do NOT 'npm i -g figma-cli')"; exit 1; }
 "$BIN" --version; "$BIN" --help | head -1
 ```
 
@@ -351,7 +351,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ### External Tools
 
-- **figma-ds-cli** (silships, MIT): install from npm (`figma-ds-cli`) or the silships repo, and see [INSTALL_GUIDE.md](INSTALL_GUIDE.md). Requires **Figma Desktop** open. Not vendored into this repo.
+- **figma-ds-cli** (silships, MIT): install from npm (`figma-ds-cli`) or the silships repo, and see [INSTALL-GUIDE.md](INSTALL-GUIDE.md). Requires **Figma Desktop** open. Not vendored into this repo.
 - **Figma MCP (optional)**: the Framelink `figma-developer-mcp` manual already in this project's Code Mode `.utcp_config.json`, which needs `figma_FIGMA_API_KEY` in `.env`.
 
 ### Knowledge Base Dependencies
@@ -372,6 +372,6 @@ Examples: [`examples/README.md`](examples/README.md) - safe worked walkthroughs 
 
 Related skills: `sk-design` (the design judgment, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `design-mcp-open-design` (Open Design's terminal-driven transport, nested inside `sk-design`), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies.
 
-Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md).
+Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
 
 Upstream: figma-cli is [silships/figma-cli](https://github.com/silships/figma-cli) (npm `figma-ds-cli`, MIT). The optional MCP is the community Framelink `figma-developer-mcp`. This skill documents driving the installed tool from the terminal, and it does not vendor or redistribute it.

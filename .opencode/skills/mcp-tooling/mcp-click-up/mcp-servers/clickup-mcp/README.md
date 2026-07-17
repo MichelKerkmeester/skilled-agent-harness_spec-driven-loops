@@ -77,4 +77,4 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime routing between `cupt` and the official ClickUp MCP |
 | [`../../references/mcp_tools.md`](../../references/mcp_tools.md) | Last-captured tool inventory and invocation pattern |
-| [`../../references/install_guide.md`](../../references/install_guide.md) | Step-by-step install with validation checkpoints |
+| [`../../references/INSTALL-GUIDE.md`](../../references/INSTALL-GUIDE.md) | Step-by-step install with validation checkpoints |

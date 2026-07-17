@@ -201,7 +201,7 @@ The skill ships a manual testing playbook and three example scripts that double 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the two-path router and the full rule set |
-| [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Step-by-step install for the CLI and the MCP server, with an AI-first prompt |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install for the CLI and the MCP server, with an AI-first prompt |
 | [`references/cdp_patterns.md`](./references/cdp_patterns.md) | CDP domain patterns, workflows and Unix-pipe composition |
 | [`references/session_management.md`](./references/session_management.md) | Session lifecycle, retry, multi-session and cleanup |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Error reference, diagnostic sequence and platform fixes |

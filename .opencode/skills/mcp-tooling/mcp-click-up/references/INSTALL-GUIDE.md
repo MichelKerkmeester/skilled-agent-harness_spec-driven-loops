@@ -441,4 +441,4 @@ VALIDATION:
 
 ---
 
-> **Front door:** the packet's top-level [`../INSTALL_GUIDE.md`](../INSTALL_GUIDE.md) is the condensed install front door (parity with the sibling mcp-tooling packets). This file remains the full phase-by-phase validation reference and stays the smart router's INSTALL-intent target.
+> **Front door:** the packet's top-level [`../INSTALL-GUIDE.md`](../INSTALL-GUIDE.md) is the condensed install front door (parity with the sibling mcp-tooling packets). This file remains the full phase-by-phase validation reference and stays the smart router's INSTALL-intent target.

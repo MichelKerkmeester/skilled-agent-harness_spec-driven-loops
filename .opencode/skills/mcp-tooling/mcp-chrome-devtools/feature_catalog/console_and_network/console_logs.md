@@ -34,7 +34,7 @@ Enable the Runtime domain first (`bdg cdp Runtime.enable`) for full coverage, th
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Helper command list (`bdg console --list`) |
 | `references/cdp_patterns.md` §5 | Reference | Console log analysis workflow |
-| `INSTALL_GUIDE.md` §6 | Guide | Console pattern and MCP equivalent |
+| `INSTALL-GUIDE.md` §6 | Guide | Console pattern and MCP equivalent |
 
 ### Validation And Tests
 

@@ -82,5 +82,5 @@ Create an MCP-Postgres install guide with prerequisites, npm setup, env config, 
 - Group: Intent Detection
 - Playbook ID: SD-017
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `intent_detection/install_guide.md`
+- Feature file path: `intent_detection/INSTALL-GUIDE.md`
 - response mentions canonical install-guide sections (prerequisites, configuration, verification, troubleshooting) — validates intent semantics

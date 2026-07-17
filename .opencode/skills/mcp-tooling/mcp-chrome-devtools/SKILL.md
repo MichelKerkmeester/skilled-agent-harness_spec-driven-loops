@@ -345,4 +345,4 @@ Server pointers: [`mcp-servers/bdg-cli/README.md`](mcp-servers/bdg-cli/README.md
 
 Related skills: `mcp-code-mode` for MCP fallback and `sk-code` for browser verification in application-code workflows.
 
-Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md).
+Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).

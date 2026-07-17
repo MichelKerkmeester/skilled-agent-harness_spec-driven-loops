@@ -33,7 +33,7 @@ Open two pages, close the first, select the second, and verify a subsequent `tak
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §3 | MCP | Page creation/selection/close in the tool list |
-| `INSTALL_GUIDE.md` §10 | Guide | MCP tools reference |
+| `INSTALL-GUIDE.md` §10 | Guide | MCP tools reference |
 
 ### Validation And Tests
 

@@ -44,7 +44,7 @@ Use this reference when:
 - AI client restarted after config change
 - Node.js 18+ and npx available (the manual launches `@clickup/mcp-server` on demand via `npx -y`)
 
-See `install_guide.md §4` for platform-specific configuration blocks.
+See `INSTALL-GUIDE.md §4` for platform-specific configuration blocks.
 
 ---
 

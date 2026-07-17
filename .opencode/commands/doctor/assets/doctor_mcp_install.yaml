@@ -41,8 +41,8 @@ upstream_assets:
     decision_record: "decision-record.md"
   install_guides:
     mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
-    mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md"
-    mk_code_index: ".opencode/skills/system-code-graph/INSTALL_GUIDE.md"
+    mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
+    mk_code_index: ".opencode/skills/system-code-graph/INSTALL-GUIDE.md"
     code_mode: ".opencode/install_guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
   scripts:
@@ -95,8 +95,8 @@ arguments:
 # ─────────────────────────────────────────────────────────────────
 install_guides:
   mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
-  mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL_GUIDE.md
-  mk_code_index: .opencode/skills/system-code-graph/INSTALL_GUIDE.md
+  mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
+  mk_code_index: .opencode/skills/system-code-graph/INSTALL-GUIDE.md
   code_mode: .opencode/install_guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
 
@@ -202,7 +202,7 @@ cli_skill_diagnostics:
     install_script_mutation_class: mutating  # installer: npm/git install of figma-ds-cli
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no install/connect/patch
-    install_guide: ".opencode/skills/mcp-tooling/mcp-figma/INSTALL_GUIDE.md"
+    install_guide: ".opencode/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md"
   mcp-open-design:
     label: "Open Design (CLI)"
     skill_dir: ".opencode/skills/sk-design/design-mcp-open-design"
@@ -210,7 +210,7 @@ cli_skill_diagnostics:
     install_script_mutation_class: mutating  # installer: verifies app, may write state
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no daemon/MCP wiring
-    install_guide: ".opencode/skills/sk-design/design-mcp-open-design/INSTALL_GUIDE.md"
+    install_guide: ".opencode/skills/sk-design/design-mcp-open-design/INSTALL-GUIDE.md"
   mcp-chrome-devtools:
     label: "Chrome DevTools (CLI)"
     skill_dir: ".opencode/skills/mcp-tooling/mcp-chrome-devtools"
@@ -218,7 +218,7 @@ cli_skill_diagnostics:
     install_script_mutation_class: mutating  # installer: npm install + PATH/profile edits
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no install
-    install_guide: ".opencode/skills/mcp-tooling/mcp-chrome-devtools/INSTALL_GUIDE.md"
+    install_guide: ".opencode/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md"
   mcp-click-up:
     label: "ClickUp (CLI)"
     skill_dir: ".opencode/skills/mcp-tooling/mcp-click-up"
@@ -226,7 +226,7 @@ cli_skill_diagnostics:
     install_script_mutation_class: mutating  # installer: pipx/pip install of cupt
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; token presence check
-    install_guide: ".opencode/skills/mcp-tooling/mcp-click-up/references/install_guide.md"
+    install_guide: ".opencode/skills/mcp-tooling/mcp-click-up/references/INSTALL-GUIDE.md"
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: CONFIG TEMPLATES

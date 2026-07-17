@@ -72,7 +72,7 @@ ALWAYS:    SKILL.md (this file)
 ON_DEMAND: references/cupt_commands.md    (when cupt command details needed)
            references/mcp_tools.md         (when MCP tool details needed)
            references/troubleshooting.md   (when error or auth issue detected)
-           references/install_guide.md     (when setup or authentication details needed)
+           references/INSTALL-GUIDE.md     (when setup or authentication details needed)
 ```
 
 ### Operation-to-Tool Routing Table
@@ -170,7 +170,7 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "CUPT_DAILY":    ["references/cupt_commands.md"],
     "MCP_ADVANCED":  ["references/mcp_tools.md"],
-    "INSTALL":       ["references/install_guide.md", "references/troubleshooting.md"],
+    "INSTALL":       ["references/INSTALL-GUIDE.md", "references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
 }
 
@@ -466,9 +466,9 @@ const result = await call_tool_chain({
 - `references/cupt_commands.md` — Full cupt command reference with agent patterns
 - `references/mcp_tools.md` — 46 official MCP tools, priority table, invocation
 - `references/troubleshooting.md` — Auth, status, team-filter, MCP failures
-- `references/install_guide.md` — Step-by-step install with validation checkpoints
+- `references/INSTALL-GUIDE.md` — Step-by-step install with validation checkpoints
 
-Install guide (front door): [INSTALL_GUIDE.md](INSTALL_GUIDE.md) — condensed top-level install doc; the phase-validation reference above stays the router's INSTALL-intent target.
+Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc; the phase-validation reference above stays the router's INSTALL-intent target.
 
 **Scripts:**
 - `scripts/install.sh` — Installs cupt + prints MCP config snippet

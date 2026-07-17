@@ -31,7 +31,7 @@ Apply this rule whenever you author or edit any document that describes shipped 
 - Skill reference docs: `SKILL.md`, `ARCHITECTURE.md`, `references/**/*.md`
 - Folder-level READMEs: `mcp_server/README.md`, sub-folder READMEs
 - Capability catalogs: `feature_catalog/**/*.md`, `manual_testing_playbook/**/*.md`
-- Configuration references: `ENV_REFERENCE.md`, `INSTALL_GUIDE.md`
+- Configuration references: `ENV_REFERENCE.md`, `INSTALL-GUIDE.md`
 
 Skip this rule for spec-local docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `research-report.md`, `audit-findings.md`, `migration-plan.md`) — those ARE the packet record and naturally reference their own packet ID.
 
@@ -48,7 +48,7 @@ Skip this rule for spec-local docs (`spec.md`, `plan.md`, `tasks.md`, `checklist
 | Class | Examples | Packet IDs Allowed |
 | --- | --- | --- |
 | Spec-local docs | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `research-report.md`, `audit-findings.md`, `migration-plan.md` | Yes |
-| Evergreen docs | `README.md`, `INSTALL_GUIDE.md`, `ARCHITECTURE.md`, `SKILL.md`, `AGENTS.md`, `CLAUDE.md`, `references/**/*.md`, `feature_catalog/**/*.md`, `manual_testing_playbook/**/*.md`, `ENV_REFERENCE.md` | No |
+| Evergreen docs | `README.md`, `INSTALL-GUIDE.md`, `ARCHITECTURE.md`, `SKILL.md`, `AGENTS.md`, `CLAUDE.md`, `references/**/*.md`, `feature_catalog/**/*.md`, `manual_testing_playbook/**/*.md`, `ENV_REFERENCE.md` | No |
 
 Spec-local docs may reference packet numbers because they are the packet record. Evergreen docs must describe the shipped state by feature name, command, file path, and source anchor.
 

@@ -91,6 +91,6 @@ else
 fi
 
 log ""
-log "Doctor is read-only. For setup, see install.sh and INSTALL_GUIDE.md."
+log "Doctor is read-only. For setup, see install.sh and INSTALL-GUIDE.md."
 
 exit 0

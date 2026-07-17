@@ -35,7 +35,7 @@ cat .utcp_config.json | jq '.manual_call_templates[] | select(.name | startswith
 
 ### Why two manuals (dual-manual-for-parallelism)
 
-Per SKILL.md §3, MCP uses `--isolated=true` so each instance runs in its own browser process: multiple parallel browser sessions become possible with no session conflicts between instances, and registering multiple instances (`chrome_devtools_1`, `chrome_devtools_2`) enables parallel testing — e.g. comparing production and staging simultaneously (INSTALL_GUIDE.md Pattern 6). The `bdg` CLI cannot provide this: it exposes one global session lifecycle with no session selector (references/cdp_patterns.md §8), so genuine parallel browser control is exactly what the second manual exists for.
+Per SKILL.md §3, MCP uses `--isolated=true` so each instance runs in its own browser process: multiple parallel browser sessions become possible with no session conflicts between instances, and registering multiple instances (`chrome_devtools_1`, `chrome_devtools_2`) enables parallel testing — e.g. comparing production and staging simultaneously (INSTALL-GUIDE.md Pattern 6). The `bdg` CLI cannot provide this: it exposes one global session lifecycle with no session selector (references/cdp_patterns.md §8), so genuine parallel browser control is exactly what the second manual exists for.
 
 ---
 
@@ -43,7 +43,7 @@ Per SKILL.md §3, MCP uses `--isolated=true` so each instance runs in its own br
 
 **Key points:**
 - Both entries are `call_template_type: "mcp"`, transport `stdio`, launched via `npx`.
-- The npm package is pinned (`chrome-devtools-mcp@0.26.0` as of this snapshot) — note that `INSTALL_GUIDE.md` §4 shows `chrome-devtools-mcp@latest` as the generic install snippet; the live registration pins the version. The live config wins.
+- The npm package is pinned (`chrome-devtools-mcp@0.26.0` as of this snapshot) — note that `INSTALL-GUIDE.md` §4 shows `chrome-devtools-mcp@latest` as the generic install snippet; the live registration pins the version. The live config wins.
 - Both carry `--isolated=true` (the parallelism prerequisite) and an empty `env` (no credentials needed).
 - Tool naming follows `{manual_name}.{manual_name}_{tool_name}`, e.g. `chrome_devtools_1.chrome_devtools_1_navigate_page`.
 
@@ -109,13 +109,13 @@ call_tool_chain(`
 `)
 ```
 
-For the parallel pattern across both manuals, see `INSTALL_GUIDE.md` §6 Pattern 6 and the playbook scenario BDG-015.
+For the parallel pattern across both manuals, see `INSTALL-GUIDE.md` §6 Pattern 6 and the playbook scenario BDG-015.
 
 ---
 
 ## 4. RELATED RESOURCES
 
 - [../SKILL.md](../SKILL.md) - §3 MCP approach, isolated instances, invocation pattern.
-- [../INSTALL_GUIDE.md](../INSTALL_GUIDE.md) - §4 UTCP configuration steps and §10 MCP tools reference.
+- [../INSTALL-GUIDE.md](../INSTALL-GUIDE.md) - §4 UTCP configuration steps and §10 MCP tools reference.
 - [../mcp-servers/chrome-devtools-mcp/README.md](../mcp-servers/chrome-devtools-mcp/README.md) - The Code Mode server behind these manuals (nothing vendored).
 - [../feature_catalog/mcp_parallel_instances/dual_instance_parallel.md](../feature_catalog/mcp_parallel_instances/dual_instance_parallel.md) - The parallelism capability these two entries enable.

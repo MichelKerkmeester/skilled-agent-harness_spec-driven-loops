@@ -220,4 +220,4 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 
 - **Command reference:** `.opencode/commands/doctor/speckit.md`
 - **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`
-- **Operator setup + native MCP install (merged 2026-05-15):** `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md`
+- **Operator setup + native MCP install (merged 2026-05-15):** `.opencode/skills/system-skill-advisor/INSTALL-GUIDE.md`

@@ -40,7 +40,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 - **SD-002** — `intent_detection/skill_creation.md` — SKILL_CREATION: author a new sk-skill.
 - **SD-003** — `intent_detection/agent_command.md` — AGENT_COMMAND: author paired @agent and /create command.
 - **SD-016** — `intent_detection/optimization.md` — OPTIMIZATION: rewrite for token efficiency + llms.txt generation. (added in 076)
-- **SD-017** — `intent_detection/install_guide.md` — INSTALL_GUIDE: scaffold install guide for an MCP server. (added in 076)
+- **SD-017** — `intent_detection/INSTALL-GUIDE.md` — INSTALL_GUIDE: scaffold install guide for an MCP server. (added in 076)
 
 ### 02 — Resource Loading
 - **SD-004** — `resource_loading/references_global_only.md` — HVR loads only `references/hvr_rules.md`.

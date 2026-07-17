@@ -144,7 +144,7 @@
     "causal_summary": "The skill advisor is the Gate 2 routing engine that scores user requests against all 19 skill descriptions using token normalization, synonym expansion, intent boosting, graph-derived transitive boosts, and confidence calibration. It returns ranked recommendations with dual-threshold filtering so the calling AI can invoke the right skill with measured certainty.",
     "source_docs": [
       "README.md",
-      "INSTALL_GUIDE.md"
+      "INSTALL-GUIDE.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
     "last_updated_at": "2026-05-15T20:30:00Z"

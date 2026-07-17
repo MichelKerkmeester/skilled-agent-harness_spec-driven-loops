@@ -181,7 +181,7 @@ A: Unresolved. Docs examples show `-m provider/model`; the installed help shows 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the lane router, and the full rule set |
-| [`install-guide.md`](./install-guide.md) | Step-by-step install: curl installer, sign-in, permission tiers, MCP posture |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install: curl installer, sign-in, permission tiers, MCP posture |
 | [`references/aside-cli-reference.md`](./references/aside-cli-reference.md) | Verified command surface, options, boundary rules |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | MCP transport, handshake, discovery, UTCP registration posture |
 | [`references/session-management.md`](./references/session-management.md) | Three-layer session model, permissions, concurrency |

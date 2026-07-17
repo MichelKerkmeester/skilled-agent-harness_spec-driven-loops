@@ -570,7 +570,7 @@ Scripts: `scripts/[primary-helper]` when the skill ships automation; omit this l
 
 Related skills: `[related-skill]` for [relationship], `[other-skill]` for [relationship], and `system-spec-kit` when packet documentation or memory continuity applies.
 
-Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md) when the skill has installation or configuration steps.
+Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md) when the skill has installation or configuration steps.
 
 **Word Count Targets**:
 - Section 1 (WHEN TO USE): 150-200 lines

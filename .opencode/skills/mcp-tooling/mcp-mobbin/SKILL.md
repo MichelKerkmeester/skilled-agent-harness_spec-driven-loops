@@ -411,6 +411,6 @@ Examples: `examples/README.md` plus worked Code Mode walkthroughs (smoke search,
 
 Related skills: `sk-design` (the mandatory judgment pairing), `mcp-code-mode` (the substrate), `mcp-refero` (the closest sibling transport), `mcp-figma` (the hub's Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
-Install guide: [install-guide.md](install-guide.md).
+Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
 
 Upstream: the Mobbin MCP is the hosted paid service at `api.mobbin.com/mcp` (docs at docs.mobbin.com/mcp; the official `mobbin/mobbin-mcp-server` repository is registration metadata only). The official [mobbin/skills](https://github.com/mobbin/skills) repository (MIT) holds the single `mobbin-search` skill; this packet references it and deliberately does not vendor it.

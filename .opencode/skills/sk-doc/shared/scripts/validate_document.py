@@ -205,7 +205,7 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
         return 'command'
     if '/install_guides/' in path_lower or '\\install_guides\\' in path_lower:
         return 'install_guide'
-    if 'install_guide' in Path(path_lower).stem:
+    if 'install_guide' in Path(path_lower).stem or 'install-guide' in Path(path_lower).stem:
         return 'install_guide'
     # Changelog files: under .opencode/changelog/, .opencode/skills/*/changelog/,
     # or spec-folder nested changelog/ subdirectories. Files match v{VERSION}.md or changelog-*.md

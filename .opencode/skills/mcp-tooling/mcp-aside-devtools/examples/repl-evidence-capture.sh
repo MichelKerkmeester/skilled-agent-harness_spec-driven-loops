@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-command -v aside >/dev/null 2>&1 || { echo "aside not found — see install-guide.md" >&2; exit 1; }
+command -v aside >/dev/null 2>&1 || { echo "aside not found — see INSTALL-GUIDE.md" >&2; exit 1; }
 
 URL="${1:-https://example.com}"
 OUT_DIR="${2:-/tmp/aside-evidence}"

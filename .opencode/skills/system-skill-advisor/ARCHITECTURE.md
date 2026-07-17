@@ -170,7 +170,7 @@ Validation runs at two layers.
 
 - [README.md](./README.md): Human-facing package overview
 - [SKILL.md](./SKILL.md): Runtime routing and invariants
-- [INSTALL_GUIDE.md](./INSTALL_GUIDE.md): Native bootstrap and per-runtime configuration
+- [INSTALL-GUIDE.md](./INSTALL-GUIDE.md): Native bootstrap and per-runtime configuration
 - [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md): Current feature inventory and per-tool detail
 - [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): Operator validation scenarios
 - [references/](./references/): Operator references including the hook reference manual

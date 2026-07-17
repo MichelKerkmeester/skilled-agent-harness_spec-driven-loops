@@ -59,7 +59,7 @@ Expected result: a silships version string of `1.2.0` or newer, and a `--help` l
 | Operating system | macOS | The supported baseline. Linux and Windows are experimental and unverified |
 | Figma API key | None | The local daemon drives the live Desktop session instead of the REST API |
 
-Connect modes (the safe plugin bridge vs. the gated yolo patch), the daemon, and the optional Framelink MCP are covered in [`../../INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md) and [`../../references/figma_cli_reference.md`](../../references/figma_cli_reference.md).
+Connect modes (the safe plugin bridge vs. the gated yolo patch), the daemon, and the optional Framelink MCP are covered in [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) and [`../../references/figma_cli_reference.md`](../../references/figma_cli_reference.md).
 
 ---
 
@@ -67,7 +67,7 @@ Connect modes (the safe plugin bridge vs. the gated yolo patch), the daemon, and
 
 | What You See | Cause | Fix |
 |---|---|---|
-| `figma-ds-cli: command not found` | The binary is not installed, or only the unrelated `figma-cli` npm package is on PATH | Run `bash setup.sh`, or install `figma-ds-cli` per [`INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md). Never `npm i -g figma-cli` |
+| `figma-ds-cli: command not found` | The binary is not installed, or only the unrelated `figma-cli` npm package is on PATH | Run `bash setup.sh`, or install `figma-ds-cli` per [`INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md). Never `npm i -g figma-cli` |
 | A bare `figma-cli` command behaves strangely | It may resolve to unic/figma-cli rather than the silships build | Confirm the silships tool with `figma-cli --version` or `--help` before trusting it |
 | Every command fails or hangs | Figma Desktop is closed, or open with no file | Open Figma Desktop with a file. The CLI has no API-key fallback |
 
@@ -80,7 +80,7 @@ Connect modes (the safe plugin bridge vs. the gated yolo patch), the daemon, and
 | Document | Purpose |
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime contract: command-safety model, routing, and rules |
-| [`../../INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md) | Full install and connect-mode setup |
+| [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | Full install and connect-mode setup |
 | [`../../references/figma_cli_reference.md`](../../references/figma_cli_reference.md) | Binary identity, connect modes, daemon model, command examples |
 | [`../../references/tool_surface.md`](../../references/tool_surface.md) | The read-only, mutating, and destructive command taxonomy |
 | [`../figma-mcp/README.md`](../figma-mcp/README.md) | The optional Figma MCP pointer, for pulling design context the other way |

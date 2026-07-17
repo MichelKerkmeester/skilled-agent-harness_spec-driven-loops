@@ -7,7 +7,7 @@ const SHARED_ROOT = path.resolve(SERVER_ROOT, '..', 'shared');
 
 const SOURCE_ROOTS = [SERVER_ROOT, SHARED_ROOT];
 const EXCLUDED_SEGMENTS = new Set(['dist', 'node_modules', 'tests']);
-const EXCLUDED_BASENAMES = new Set(['README.md', 'INSTALL_GUIDE.md', 'cli.ts']);
+const EXCLUDED_BASENAMES = new Set(['README.md', 'INSTALL-GUIDE.md', 'cli.ts']);
 const EXCLUDED_PATH_SNIPPETS = [
   `${path.sep}scripts${path.sep}migrations${path.sep}`,
   `${path.sep}lib${path.sep}deep-loop${path.sep}executor-audit.ts`,

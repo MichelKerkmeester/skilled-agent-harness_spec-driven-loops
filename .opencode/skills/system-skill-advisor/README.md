@@ -135,7 +135,7 @@ With `SPECKIT_ADVISOR_DOC_TRIGGERS=true`, `skill_graph_scan` also harvests front
 
 ### The Embedder
 
-The `semantic_shadow` lane runs against a pluggable embedder layer shared with `mk-spec-memory`. The registry holds text-tuned embedding models and defaults through a local-first cascade to a local model when no embedder is explicitly set. For the full model registry, the cascade tier table and the swap workflow, see `INSTALL_GUIDE.md` §12.
+The `semantic_shadow` lane runs against a pluggable embedder layer shared with `mk-spec-memory`. The registry holds text-tuned embedding models and defaults through a local-first cascade to a local model when no embedder is explicitly set. For the full model registry, the cascade tier table and the swap workflow, see `INSTALL-GUIDE.md` §12.
 
 ### The Nine Tools
 
@@ -229,7 +229,7 @@ A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime routing instructions, invariants and the smart router |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | System design, MCP surface, data flow and database layout |
-| [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Setup, runtime hooks, rollback and embedder selection |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Setup, runtime hooks, rollback and embedder selection |
 | [`references/runtime/tool_ids_reference.md`](./references/runtime/tool_ids_reference.md) | All nine tool ids with inputs and output shapes |
 | [`references/scoring/advisor_scorer.md`](./references/scoring/advisor_scorer.md) | Lane attribution model and fusion rules |
 | [`references/scoring/lane_weight_tuning.md`](./references/scoring/lane_weight_tuning.md) | Evidence requirements for lane weight changes |

@@ -90,6 +90,6 @@ Healthy doctor output reports the available CLI and account state, receives MCP 
 
 ## 7. RELATED
 
-- Install narrative and platform detail: `../install-guide.md`
+- Install narrative and platform detail: `../INSTALL-GUIDE.md`
 - MCP wiring and the registered manual: `../mcp-servers/aside-mcp/README.md`
 - CLI reference: `../references/aside-cli-reference.md`

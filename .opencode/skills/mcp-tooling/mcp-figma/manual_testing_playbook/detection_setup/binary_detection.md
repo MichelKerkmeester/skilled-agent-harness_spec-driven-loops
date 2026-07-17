@@ -75,7 +75,7 @@ If `figma-ds-cli@1.0.0` resolves from npm, note the version trap: the published 
 | File | Role |
 |---|---|
 | `../../references/figma_cli_reference.md` | Binary identity, version trap, and the naming-trap warning |
-| `../../INSTALL_GUIDE.md` | Install guidance that points to the canonical `figma-ds-cli` |
+| `../../INSTALL-GUIDE.md` | Install guidance that points to the canonical `figma-ds-cli` |
 
 ---
 

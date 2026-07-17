@@ -4,7 +4,7 @@ Complete installation and configuration for ClickUp task management, providing A
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../../../install_guides/README.md) for complete setup.
 > **Package:** `cupt` (PyPI) | **Dependencies:** Python 3.8+, pipx (or pip); Node.js 18+ for the MCP path
-> **Phase-by-phase validation:** the full checkpoint reference lives in [`references/install_guide.md`](references/install_guide.md) — this front door summarizes it.
+> **Phase-by-phase validation:** the full checkpoint reference lives in [`references/INSTALL-GUIDE.md`](references/INSTALL-GUIDE.md) — this front door summarizes it.
 
 **Version:** 1.0.1.0 | **Updated:** 2026-07-16
 
@@ -160,7 +160,7 @@ The official server is launched over stdio by the `clickup_official` manual with
 }
 ```
 
-Restart your AI client after updating the config. Tool naming is `clickup_official.clickup_official_{tool_name}` — confirm every name with `tool_info()`/`list_tools()`, never guess. Configuration notes for other stdio clients: [`references/install_guide.md`](references/install_guide.md) §4 and [`mcp-servers/clickup-mcp/README.md`](mcp-servers/clickup-mcp/README.md).
+Restart your AI client after updating the config. Tool naming is `clickup_official.clickup_official_{tool_name}` — confirm every name with `tool_info()`/`list_tools()`, never guess. Configuration notes for other stdio clients: [`references/INSTALL-GUIDE.md`](references/INSTALL-GUIDE.md) §4 and [`mcp-servers/clickup-mcp/README.md`](mcp-servers/clickup-mcp/README.md).
 
 **MCP smoke test (Code Mode):**
 
@@ -184,7 +184,7 @@ cupt list --today --json              # -> [] or task array (both valid)
 cupt list --tag nonexistent --json    # -> [] (confirms empty-queue handling)
 ```
 
-The full five-phase validation ladder (`phase_1_complete` through `phase_5_complete`) with STOP conditions lives in [`references/install_guide.md`](references/install_guide.md) — run it when an install misbehaves or when validating a fresh machine end to end.
+The full five-phase validation ladder (`phase_1_complete` through `phase_5_complete`) with STOP conditions lives in [`references/INSTALL-GUIDE.md`](references/INSTALL-GUIDE.md) — run it when an install misbehaves or when validating a fresh machine end to end.
 
 ---
 
@@ -210,7 +210,7 @@ Full diagnosis and recovery: [`references/troubleshooting.md`](references/troubl
 |----------|---------|
 | [`SKILL.md`](SKILL.md) | Routing rules, agent invariants, quick-reference cheat sheet |
 | [`README.md`](README.md) | Human-facing overview with feature tables and FAQ |
-| [`references/install_guide.md`](references/install_guide.md) | Phase-by-phase install reference with validation checkpoints (loaded by the smart router on INSTALL intent) |
+| [`references/INSTALL-GUIDE.md`](references/INSTALL-GUIDE.md) | Phase-by-phase install reference with validation checkpoints (loaded by the smart router on INSTALL intent) |
 | [`references/cupt_commands.md`](references/cupt_commands.md) | Complete cupt command reference with `--json` variants |
 | [`references/mcp_tools.md`](references/mcp_tools.md) | Official MCP tool catalog: priorities + invocation |
 | [`feature_catalog/FEATURE_CATALOG.md`](feature_catalog/FEATURE_CATALOG.md) | Full cupt + MCP feature inventory |

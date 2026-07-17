@@ -5,7 +5,7 @@ stage: routing
 title: 'Install routing'
 expected_intent: INSTALL
 expected_resources:
-  - references/install_guide.md
+  - references/INSTALL-GUIDE.md
   - references/troubleshooting.md
 version: 1.0.0.0
 ---

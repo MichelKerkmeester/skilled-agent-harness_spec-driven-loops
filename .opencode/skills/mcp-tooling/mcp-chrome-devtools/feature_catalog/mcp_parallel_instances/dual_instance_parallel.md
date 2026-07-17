@@ -33,7 +33,7 @@ Each instance is launched with `--isolated=true` so there are no session conflic
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §3 | MCP | Isolated instances and parallel benefit |
-| `INSTALL_GUIDE.md` §6, §8 | Guide | Parallel instance patterns (Pattern 6, Example 5) |
+| `INSTALL-GUIDE.md` §6, §8 | Guide | Parallel instance patterns (Pattern 6, Example 5) |
 | `references/cdp_patterns.md` §8 | Reference | Sequential-only CLI boundary, MCP for parallelism |
 
 ### Validation And Tests

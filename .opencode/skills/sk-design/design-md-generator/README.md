@@ -231,7 +231,7 @@ A: This skill captures what exists on a live site. `interface` invents new direc
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
-| [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
 | [`references/design_md_format.md`](./references/design_md_format.md) | The authoritative v3 Style Reference section specification (Header + intro, Tokens — Colors / Typography / Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
 | [`references/writing_style_guide.md`](./references/writing_style_guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
 | [`references/authoring_boundary.md`](./references/authoring_boundary.md) | The line between measured, brief-provided, inferred and absent values, plus why forward-authoring from a brief stays out of scope |

@@ -34,7 +34,7 @@ The performance target is capture in under 2 seconds. The graceful-degradation p
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Helper command list (`bdg dom screenshot`) |
 | `references/cdp_patterns.md` §5 | Reference | Full screenshot workflow with fallback |
-| `INSTALL_GUIDE.md` §6 | Guide | Screenshot usage patterns and MCP equivalent |
+| `INSTALL-GUIDE.md` §6 | Guide | Screenshot usage patterns and MCP equivalent |
 
 ### Validation And Tests
 

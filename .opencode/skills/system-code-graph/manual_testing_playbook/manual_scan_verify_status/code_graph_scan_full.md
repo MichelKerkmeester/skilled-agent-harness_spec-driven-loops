@@ -97,7 +97,7 @@ The code-graph database policy confirms `persistBaseline:true` scan execution wo
 48: ```text
 49: .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite
 50: ```
-75: The override path `SPECKIT_CODE_GRAPH_DB_DIR` is allowed for tests and disposable CI runs only. The launcher enforces a standalone-storage guard: the override must resolve inside the workspace root. External absolute paths are rejected at startup. See `INSTALL_GUIDE.md` §7 (Database and Maintainer Mode) for the canonical configuration.
+75: The override path `SPECKIT_CODE_GRAPH_DB_DIR` is allowed for tests and disposable CI runs only. The launcher enforces a standalone-storage guard: the override must resolve inside the workspace root. External absolute paths are rejected at startup. See `INSTALL-GUIDE.md` §7 (Database and Maintainer Mode) for the canonical configuration.
 ````
 
 The requested execution constraints conflict with the scenario's required commands:

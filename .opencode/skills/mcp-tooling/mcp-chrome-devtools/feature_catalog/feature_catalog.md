@@ -17,7 +17,7 @@ The mcp-chrome-devtools skill routes browser debugging between two complementary
 - **bdg CLI** (`npm install -g browser-debugger-cli@alpha`) — the primary surface. Direct, fast, token-efficient terminal access to the Chrome DevTools Protocol: 300+ CDP methods across 53 domains, self-documenting via `--list` / `--describe` / `--search`, Unix-pipe composable. One global session lifecycle (`bdg <url>` / `bdg status` / `bdg stop`) with no session selector, so sessions run sequentially.
 - **Chrome DevTools MCP via Code Mode** — the fallback for multi-tool integration and parallel browsers. Two isolated manuals (`chrome_devtools_1`, `chrome_devtools_2`) are registered in `.utcp_config.json`, each launching `chrome-devtools-mcp` over stdio via `npx` with `--isolated=true`, invoked through `call_tool_chain()` with the naming `{instance}.{instance}_{tool_name}`.
 
-> **Verification note.** MCP tool names are a subset of CDP (26 exposed tools per `../INSTALL_GUIDE.md` §10) and must be confirmed with Code Mode discovery (`list_tools()` / `tool_info()`) before invocation — never guess a tool name. The registered-state snapshot of both manuals lives in `../assets/utcp_chrome_devtools_manuals.md`.
+> **Verification note.** MCP tool names are a subset of CDP (26 exposed tools per `../INSTALL-GUIDE.md` §10) and must be confirmed with Code Mode discovery (`list_tools()` / `tool_info()`) before invocation — never guess a tool name. The registered-state snapshot of both manuals lives in `../assets/utcp_chrome_devtools_manuals.md`.
 
 Routing is **capability-based**: prefer the CLI when it fits (SKILL.md Rule "Check CLI availability first"), and use MCP when browser work must chain with other Code Mode tools or run in parallel isolated instances.
 

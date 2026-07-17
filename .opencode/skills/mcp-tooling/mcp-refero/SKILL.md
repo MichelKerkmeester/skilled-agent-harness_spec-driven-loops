@@ -406,6 +406,6 @@ Examples: `examples/` carries worked Code Mode walkthroughs (the full styles -> 
 
 Related skills: `sk-design` (the mandatory judgment pairing), `mcp-code-mode` (the substrate), `mcp-figma` (the sibling Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
-Install guide: [install-guide.md](install-guide.md).
+Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
 
 Upstream: the Refero MCP is the paid service at [refero.design/mcp](https://refero.design/mcp) (docs at doc.refero.design). The official [referodesign/refero_skill](https://github.com/referodesign/refero_skill) repository (MIT, default branch `master`) is a design **methodology** skill and a peer of `sk-design`; this packet deliberately does not vendor or duplicate it.

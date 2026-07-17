@@ -87,5 +87,5 @@ Close pages in a `finally` block so no browser instance leaks.
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime routing between the bdg CLI and this MCP fallback |
 | [`../../assets/utcp_chrome_devtools_manuals.md`](../../assets/utcp_chrome_devtools_manuals.md) | Byte-true registered-state snapshot of both manuals |
-| [`../../INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md) | §4 Code Mode configuration and §10 MCP tools reference |
+| [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | §4 Code Mode configuration and §10 MCP tools reference |
 | [`../bdg-cli/README.md`](../bdg-cli/README.md) | The primary CLI this MCP is a fallback to |

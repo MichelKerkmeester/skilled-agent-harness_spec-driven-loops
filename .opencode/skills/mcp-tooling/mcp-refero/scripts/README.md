@@ -90,6 +90,6 @@ Healthy `doctor.sh` output reports Node and `npx`, the registered manual and bri
 
 ## 7. RELATED
 
-- Install narrative: `../install-guide.md`
+- Install narrative: `../INSTALL-GUIDE.md`
 - MCP wiring and the registered manual: `../mcp-servers/refero-mcp/README.md`
 - Tool surface: `../references/tool-surface.md`

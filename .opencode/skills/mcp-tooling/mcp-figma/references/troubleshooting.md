@@ -472,7 +472,7 @@ When reporting a bug upstream, include: the binary in use and version (`figma-ds
 - [figma_cli_reference.md](figma_cli_reference.md) - binary identity, Node/macOS baseline, Figma Desktop requirement, connect modes, and the daemon model.
 - [tool_surface.md](tool_surface.md) - the read-only / mutating / destructive command taxonomy and the gating rules.
 - [mcp_wiring.md](mcp_wiring.md) - the optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, and discovery.
-- [INSTALL_GUIDE.md](../INSTALL_GUIDE.md) - install steps and binary verification.
+- [INSTALL-GUIDE.md](../INSTALL-GUIDE.md) - install steps and binary verification.
 - [SKILL.md](../SKILL.md) - the skill contract this reference supports.
 - Code Mode transport for the optional MCP: [mcp-code-mode SKILL.md](../../../mcp-code-mode/SKILL.md). Browser-debugging owner for port 9222 conflicts: [mcp-chrome-devtools SKILL.md](../../mcp-chrome-devtools/SKILL.md).
 - Upstream: [silships/figma-cli](https://github.com/silships/figma-cli) (npm `figma-ds-cli`, MIT). [Node.js](https://nodejs.org/) (>=18). This skill does not vendor either.

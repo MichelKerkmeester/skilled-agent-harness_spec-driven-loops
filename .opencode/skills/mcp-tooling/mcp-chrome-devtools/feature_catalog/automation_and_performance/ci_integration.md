@@ -33,7 +33,7 @@ The scripts use configurable thresholds for automated validation and timestamped
 | File | Layer | Role |
 |------|-------|------|
 | `examples/README.md` §4 | Guide | ci-visual-tests chaining pattern |
-| `INSTALL_GUIDE.md` §4 | Guide | CI/CD security flags |
+| `INSTALL-GUIDE.md` §4 | Guide | CI/CD security flags |
 | `references/session_management.md` §9 | Reference | Trap-based cleanup the scripts rely on |
 
 ### Validation And Tests

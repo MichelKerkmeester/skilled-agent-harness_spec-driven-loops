@@ -34,7 +34,7 @@ Requires an active session and a discovered method name (never assume names with
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Raw CDP command reference |
 | `references/cdp_patterns.md` §4 | Reference | Per-domain CDP command patterns |
-| `INSTALL_GUIDE.md` §6 | Guide | Raw CDP examples |
+| `INSTALL-GUIDE.md` §6 | Guide | Raw CDP examples |
 
 ### Validation And Tests
 

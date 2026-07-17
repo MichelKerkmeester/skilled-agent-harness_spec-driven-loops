@@ -196,7 +196,7 @@ A: Every ClickUp list defines its own status schema. "Done" in one list may not 
 
 **Q: How do I set up the MCP for ClickUp documents and goals?**
 
-A: Run `bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh`. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup_official"`, launched via `npx -y @clickup/mcp-server` with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` set. Paste the snippet in, set the two env vars, and restart your AI client. Full instructions are in `references/install_guide.md`.
+A: Run `bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh`. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup_official"`, launched via `npx -y @clickup/mcp-server` with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` set. Paste the snippet in, set the two env vars, and restart your AI client. Full instructions are in `references/INSTALL-GUIDE.md`.
 
 **Q: What is the difference between `@krodak/clickup-cli` (`cu`) and cupt?**
 
@@ -226,7 +226,7 @@ The skill ships a manual testing playbook and two example scripts that double as
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the two-path operation router and the full agent safety invariants |
-| [`references/install_guide.md`](./references/install_guide.md) | Step-by-step install for cupt and the official MCP server with validation checkpoints |
+| [`references/INSTALL-GUIDE.md`](./references/INSTALL-GUIDE.md) | Step-by-step install for cupt and the official MCP server with validation checkpoints |
 | [`references/cupt_commands.md`](./references/cupt_commands.md) | Complete cupt command reference with `--json` variants and agent patterns |
 | [`references/mcp_tools.md`](./references/mcp_tools.md) | Official ClickUp MCP tool catalog with priority tiers and `call_tool_chain()` invocation |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Error reference, diagnostic sequence and recovery steps for auth, status and MCP issues |

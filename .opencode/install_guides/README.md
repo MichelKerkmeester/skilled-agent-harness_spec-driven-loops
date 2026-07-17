@@ -80,8 +80,8 @@ All `.md` guide files in this directory (5 real + 3 symlinks), grouped by type:
 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) | Symlink | Code Mode orchestration MCP |
 | [MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md) | Real | Sequential Thinking MCP server |
 | [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) | Symlink | Spec Kit Memory MCP server |
-| [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL_GUIDE.md) | Skill-local | Standalone `mk_skill_advisor` MCP server install |
-| [System Code Graph INSTALL_GUIDE](../skills/system-code-graph/INSTALL_GUIDE.md) | Skill-local | Standalone `mk_code_index` MCP server install (8 graph tools) |
+| [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Skill-local | Standalone `mk_skill_advisor` MCP server install |
+| [System Code Graph INSTALL_GUIDE](../skills/system-code-graph/INSTALL-GUIDE.md) | Skill-local | Standalone `mk_code_index` MCP server install (8 graph tools) |
 | **SET-UP Guides** | | |
 | [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Real | AGENTS.md customization and AI agent behavior |
 | [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md) | Symlink | Skill advisor configuration |
@@ -380,7 +380,7 @@ Prerequisites → Code Mode → Spec Kit Memory
 > **Note:** `mk_code_index` (System Code Graph) is NOT in the Minimal bundle.
 > Its 5 `SPECKIT_CODE_GRAPH_INDEX_*` flags default to `false` so end users get
 > a quiet, low-disk install — maintainers opt in via `SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true`
-> in `.env.local` (see the skill-level INSTALL_GUIDE.md).
+> in `.env.local` (see the skill-level INSTALL-GUIDE.md).
 
 **Custom Bundle** - Select from:
 - [ ] Code Mode (foundation for external tools)
@@ -700,7 +700,7 @@ grep -q '"sequential_thinking"' opencode.json && echo "✅ PASS" || echo "❌ FA
 
 The standalone `mk_code_index` MCP server registers 8 tools for structural AST indexing, blast-radius analysis, neighborhood context, query classification and change detection (`code_graph_scan/query/context/status/verify/apply/classify_query_intent`, `detect_changes`).
 
-> **Detailed Guide:** See [system-code-graph/INSTALL_GUIDE.md](../skills/system-code-graph/INSTALL_GUIDE.md) for full installation, configuration, verification, and troubleshooting.
+> **Detailed Guide:** See [system-code-graph/INSTALL-GUIDE.md](../skills/system-code-graph/INSTALL-GUIDE.md) for full installation, configuration, verification, and troubleshooting.
 > **Runtime Diagnostics:** See [SET-UP - Code Graph.md](./SET-UP%20-%20Code%20Graph.md) for `/doctor code-graph` post-install audit.
 
 **Location:** Bundled in this repository at `.opencode/skills/system-code-graph/`.
@@ -760,7 +760,7 @@ test -f .opencode/bin/mk-code-index-launcher.cjs && \
 
 The standalone `mk_skill_advisor` MCP server registers 8 tools (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) for prompt-time skill recommendation and skill-graph queries.
 
-> **Detailed Guide:** See [system-skill-advisor/INSTALL_GUIDE.md](../skills/system-skill-advisor/INSTALL_GUIDE.md) for full installation, configuration, rollback, and operator notes.
+> **Detailed Guide:** See [system-skill-advisor/INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) for full installation, configuration, rollback, and operator notes.
 > **Runtime Tuning:** See [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md) for post-install adjustments.
 
 **Location:** Bundled in this repository at `.opencode/skills/system-skill-advisor/`.
@@ -1582,8 +1582,8 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | [AGENTS.md](../../AGENTS.md) | AI agent behavior configuration and mandatory gates |
 | [Spec Kit Framework](../skills/system-spec-kit/README.md) | Spec folder and memory system documentation |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Document creation standards and templates |
-| [system-skill-advisor INSTALL_GUIDE.md](../skills/system-skill-advisor/INSTALL_GUIDE.md) | Standalone `mk_skill_advisor` MCP server bootstrap |
-| [system-code-graph INSTALL_GUIDE.md](../skills/system-code-graph/INSTALL_GUIDE.md) | Standalone `mk_code_index` MCP server bootstrap (8 graph tools) |
+| [system-skill-advisor INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Standalone `mk_skill_advisor` MCP server bootstrap |
+| [system-code-graph INSTALL-GUIDE.md](../skills/system-code-graph/INSTALL-GUIDE.md) | Standalone `mk_code_index` MCP server bootstrap (8 graph tools) |
 | [SET-UP - Code Graph.md](./SET-UP%20-%20Code%20Graph.md) | Runtime diagnostics for `/doctor code-graph` |
 
 ### External Resources

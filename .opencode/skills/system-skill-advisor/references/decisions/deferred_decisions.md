@@ -80,7 +80,7 @@ A complete migration of both hooks requires building `session-start.js` at the N
 ### Risks
 
 - `.devin/hooks.v1.json` is runtime config consumed by Devin. A wrong path produces silent hook failure plus the operator may not notice until skill-advisor surface stops appearing in Devin output.
-- The disable-flag interaction (per `INSTALL_GUIDE.md` §8): Devin hook checks `MK_SKILL_ADVISOR_HOOK_DISABLED` first plus falls back to `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`. Migration does not change this contract.
+- The disable-flag interaction (per `INSTALL-GUIDE.md` §8): Devin hook checks `MK_SKILL_ADVISOR_HOOK_DISABLED` first plus falls back to `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`. Migration does not change this contract.
 
 ---
 

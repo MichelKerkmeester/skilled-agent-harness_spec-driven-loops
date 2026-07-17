@@ -205,7 +205,7 @@ A: Readiness answers whether the graph reflects the current workspace. The four 
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, smart routing and invariants for agents |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | Package topology, dependency direction and subsystem boundaries |
-| [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Native bootstrap, per-runtime config and verification |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Native bootstrap, per-runtime config and verification |
 | [`references/runtime/tool_surface.md`](./references/runtime/tool_surface.md) | Per-tool contracts for all eight MCP tools |
 | [`references/readiness/readiness_and_scope_fingerprint.md`](./references/readiness/readiness_and_scope_fingerprint.md) | Readiness state machine, trust state and scope-fingerprint contract |
 | [`references/readiness/code_graph_readiness_check.md`](./references/readiness/code_graph_readiness_check.md) | Readiness contract primer |

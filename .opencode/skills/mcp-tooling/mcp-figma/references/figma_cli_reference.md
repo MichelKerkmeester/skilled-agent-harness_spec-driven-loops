@@ -31,7 +31,7 @@ figma-ds-cli drives the live Figma **Desktop** session over a local HTTP daemon,
 - [tool_surface.md](tool_surface.md) - the full read-only / mutating / destructive taxonomy and gating policy.
 - [mcp_wiring.md](mcp_wiring.md) - the optional Figma MCP (Framelink `figma`) via Code Mode.
 - [troubleshooting.md](troubleshooting.md) - failure modes and fixes.
-- [INSTALL_GUIDE.md](../INSTALL_GUIDE.md) - install steps and binary verification (installation detail lives there, not here).
+- [INSTALL-GUIDE.md](../INSTALL-GUIDE.md) - install steps and binary verification (installation detail lives there, not here).
 
 This skill is **version 1.0.0.0** and installs figma-ds-cli through the embedded `mcp-servers/figma-cli` scaffold rather than source-vendoring it.
 
@@ -67,11 +67,11 @@ There are two unrelated npm packages whose names look alike. Confusing them inst
 BIN=""
 command -v figma-ds-cli >/dev/null && BIN="figma-ds-cli"
 [ -z "$BIN" ] && command -v figma-cli >/dev/null && BIN="figma-cli"   # only if it resolves to silships
-[ -z "$BIN" ] && { echo "figma-ds-cli not found, see INSTALL_GUIDE.md (do NOT 'npm i -g figma-cli')"; exit 1; }
+[ -z "$BIN" ] && { echo "figma-ds-cli not found, see INSTALL-GUIDE.md (do NOT 'npm i -g figma-cli')"; exit 1; }
 "$BIN" --version          # illustrative; if BIN=figma-cli, confirm it is silships not unic
 ```
 
-> Installation steps (npm vs silships repo vs clone + `npm link`, and the `figma-cli` collision warning) live in [INSTALL_GUIDE.md](../INSTALL_GUIDE.md). This reference assumes the binary is already on PATH.
+> Installation steps (npm vs silships repo vs clone + `npm link`, and the `figma-cli` collision warning) live in [INSTALL-GUIDE.md](../INSTALL-GUIDE.md). This reference assumes the binary is already on PATH.
 
 ---
 
@@ -379,6 +379,6 @@ Carry these forward and close them with a live, non-mutating `--help` / `--versi
 - [tool_surface.md](tool_surface.md) - the full read-only / mutating / destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule.
 - [mcp_wiring.md](mcp_wiring.md) - the optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example.
 - [troubleshooting.md](troubleshooting.md) - failure modes and fixes (binary collision, Desktop not running, daemon Unauthorized, port conflicts).
-- [INSTALL_GUIDE.md](../INSTALL_GUIDE.md) - install steps and binary verification.
+- [INSTALL-GUIDE.md](../INSTALL-GUIDE.md) - install steps and binary verification.
 - [SKILL.md](../SKILL.md) - the skill contract this reference supports.
 - Upstream: [silships/figma-cli](https://github.com/silships/figma-cli) (npm `figma-ds-cli`, MIT). This skill documents driving the installed tool from the terminal, and it does not vendor or redistribute it.

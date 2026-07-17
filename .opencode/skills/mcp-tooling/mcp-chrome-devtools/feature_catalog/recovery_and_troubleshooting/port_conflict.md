@@ -32,7 +32,7 @@ Port 9222 grants full browser control, so it must stay localhost-bound (`--remot
 
 | File | Layer | Role |
 |------|-------|------|
-| `INSTALL_GUIDE.md` §4, §9 | Guide | Security considerations and port-conflict fixes |
+| `INSTALL-GUIDE.md` §4, §9 | Guide | Security considerations and port-conflict fixes |
 | `references/troubleshooting.md` | Reference | Diagnostic sequence for startup failures |
 
 ### Validation And Tests

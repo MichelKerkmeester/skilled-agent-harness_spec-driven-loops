@@ -32,7 +32,7 @@ The sandbox provides process isolation, so avoid disabling it unless necessary: 
 
 | File | Layer | Role |
 |------|-------|------|
-| `INSTALL_GUIDE.md` §4, §9 | Guide | Sandbox security table and ordered fixes |
+| `INSTALL-GUIDE.md` §4, §9 | Guide | Sandbox security table and ordered fixes |
 | `references/troubleshooting.md` | Reference | Platform-aware diagnostics |
 
 ### Validation And Tests

@@ -583,7 +583,7 @@ Template changes flow through the manifest source, Level contract resolver and i
 │   ├── matrix_runners/         # F1-F14 x CLI adapter manifest and runner
 │   ├── stress_test/            # Opt-in stress, load, matrix-cell, and degraded-state suites
 │   ├── tests/                  # MCP test suite
-│   ├── INSTALL_GUIDE.md        # Full installation walkthrough
+│   ├── INSTALL-GUIDE.md        # Full installation walkthrough
 │   └── README.md               # MCP server reference (tool API, pipeline, configuration)
 ├── shared/                     # Shared workspace (@spec-kit/shared)
 │   ├── algorithms/             # Fusion, reranking, and lab algorithms
@@ -605,7 +605,7 @@ Template changes flow through the manifest source, Level contract resolver and i
 | [`README.md`](./README.md)                                                   | This file: what Spec Kit does, how to use it, where to find things                                 |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                       | API boundary contract between `scripts/` and `mcp_server/`                                           |
 | [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 41-tool API reference, search pipeline, graph intelligence and configuration |
-| [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)               | Step-by-step installation with embedding providers and environment                                   |
+| [`mcp_server/INSTALL-GUIDE.md`](./mcp_server/INSTALL-GUIDE.md)               | Step-by-step installation with embedding providers and environment                                   |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh)                         | Create spec folders with level-appropriate template files                                            |
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 38-rule validation on any spec folder                                                            |
 | `scripts/dist/memory/generate-context.js`                                    | Primary workflow for updating packet continuity state from structured JSON                            |
@@ -698,7 +698,7 @@ For generic MCP clients that use `mcpServers` syntax (for example Claude Desktop
 }
 ```
 
-OpenCode, Claude Code, OpenCode and VS Code / Copilot use checked-in repo-specific config shapes, so use [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
+OpenCode, Claude Code, OpenCode and VS Code / Copilot use checked-in repo-specific config shapes, so use [`mcp_server/INSTALL-GUIDE.md`](./mcp_server/INSTALL-GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
 
 ### Feature Flags
 
@@ -1065,7 +1065,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | [`SKILL.md`](./SKILL.md)                                                                         | AI agent instructions: routing, gates, validation, template application                              |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                                           | API boundary contract between `scripts/` and `mcp_server/`                                           |
 | [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 41-tool API reference, search pipeline, graph intelligence and configuration |
-| [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)                                   | Step-by-step installation with embedding providers and environment variables                         |
+| [`mcp_server/INSTALL-GUIDE.md`](./mcp_server/INSTALL-GUIDE.md)                                   | Step-by-step installation with embedding providers and environment variables                         |
 | [`references/memory/memory_system.md`](./references/memory/memory_system.md)                     | Detailed memory system reference                                                                     |
 | [`references/memory/embedder_architecture.md`](./references/memory/embedder_architecture.md)     | Active embedder pointer, vector shard, dim-table and swap architecture                              |
 | [`references/memory/embedding_resilience.md`](./references/memory/embedding_resilience.md)       | Embedder fallback, degraded search, retry and cache-boundary behavior                               |

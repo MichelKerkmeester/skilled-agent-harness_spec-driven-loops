@@ -34,7 +34,7 @@ The SKILL.md ALWAYS rule "Check CLI availability first" makes this the entry gat
 | File | Layer | Role |
 |------|-------|------|
 | `SKILL.md` §3 | CLI | Installation and verification contract |
-| `INSTALL_GUIDE.md` §3 | Guide | Step-by-step install with validation checkpoints |
+| `INSTALL-GUIDE.md` §3 | Guide | Step-by-step install with validation checkpoints |
 | `scripts/install.sh` | Script | Embedded installer |
 
 ### Validation And Tests

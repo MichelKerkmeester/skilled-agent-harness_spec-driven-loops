@@ -366,4 +366,4 @@ Server packages: [`mcp-servers/aside-cli/README.md`](mcp-servers/aside-cli/READM
 
 Related skills: `mcp-code-mode` for the MCP transport, `mcp-chrome-devtools` for CDP-level browser debugging, and `sk-code` for the application code being verified.
 
-Install guide: [install-guide.md](install-guide.md).
+Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).

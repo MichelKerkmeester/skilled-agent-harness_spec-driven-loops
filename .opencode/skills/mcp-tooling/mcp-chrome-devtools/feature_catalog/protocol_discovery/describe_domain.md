@@ -34,7 +34,7 @@ Step two and three of progressive disclosure: after `--list` finds the domain, `
 |------|-------|------|
 | `SKILL.md` §7 | CLI | Discovery command list |
 | `references/cdp_patterns.md` §7 | Reference | Discovery pattern with validation checkpoints |
-| `INSTALL_GUIDE.md` §6 | Guide | Discovery command reference |
+| `INSTALL-GUIDE.md` §6 | Guide | Discovery command reference |
 
 ### Validation And Tests
 
