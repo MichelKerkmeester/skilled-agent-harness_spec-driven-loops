@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Agent Improvement shadow parity",
+      "agent-improvement ledger migration",
+      "agent proposal event parity",
+      "mode 005 shadow harness",
+      "Agent Improvement shadow parity implementation plan",
+      "agent proposal event parity implementation",
+      "agent-improvement phase 009 implementation plan",
+      "Agent Improvement shadow parity tasks",
+      "agent proposal event parity tasks",
+      "agent-improvement phase 009 tasks",
+      "Agent Improvement shadow parity checklist",
+      "agent-improvement parity gate"
+    ],
+    "key_topics": [
+      "agent",
+      "improvement",
+      "shadow",
+      "parity",
+      "agent-improvement",
+      "ledger",
+      "migration",
+      "proposal",
+      "event",
+      "mode",
+      "harness",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shadow Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "An Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Agent Improvement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-014 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them.",
+    "created_at": "2026-07-16T03:43:38.788Z",
+    "last_save_at": "2026-07-17T13:21:38.400Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:06c5dc34b5af9268ba2a3bd5f1ac53bd204ba7fce5ae7bfbddfc032b844c07c9",
+    "source_doc_hashes": {
+      "spec.md": "6627e5bb54a48739ef17e4c132ae1a0b39edabb3df0aa2966ef9d5d29f8e4681",
+      "plan.md": "4989cd053ee9b00fe80167a423e3f0f043a0819a9a7d9f350405d567673f1f14",
+      "tasks.md": "78442bf551879d798b63dd59bc475aeebe16fed070f7477a3c48f4263fc54da0",
+      "checklist.md": "ee390b51a361eb87b46b0173c5296d86884a2ae0d825d0097d8483bf8296bce0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

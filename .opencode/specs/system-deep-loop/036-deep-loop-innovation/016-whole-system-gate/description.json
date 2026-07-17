@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/016-whole-system-gate",
+  "description": "Plan the final whole-system acceptance gate for the 006 recommendations-implementation program: freeze an exact candidate SHA, run every mode and",
+  "keywords": [
+    "plan",
+    "final",
+    "whole-system",
+    "acceptance",
+    "gate",
+    "recommendations-implementation",
+    "program",
+    "freeze",
+    "exact",
+    "candidate",
+    "sha",
+    "run",
+    "every",
+    "mode"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.582Z",
+  "specId": "016",
+  "folderSlug": "whole-system-gate",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

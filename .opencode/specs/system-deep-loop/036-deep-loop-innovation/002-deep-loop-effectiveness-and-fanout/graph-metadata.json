@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop effectiveness research",
+      "fan-out automation research",
+      "deep loop recommendations deep dive",
+      "ai council effectiveness",
+      "automated multi-model search fanout",
+      "deep loop effectiveness plan",
+      "fan-out automation method",
+      "sol xhigh single lineage run",
+      "20 iteration deepening plan",
+      "deep loop effectiveness tasks",
+      "fan-out automation task breakdown",
+      "20 iteration deepening tasks"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "effectiveness",
+      "research",
+      "fan-out",
+      "automation",
+      "recommendations",
+      "dive",
+      "council",
+      "automated",
+      "multi-model",
+      "search"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/findings-registry.json",
+      "scratch/fanout-prototype.cjs",
+      "research/research-modes.md",
+      "research/findings-registry-modes.json",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-dashboard.md",
+      "research/deep-research-config.json",
+      "scratch/deep-loop-driver.cjs",
+      "scratch/fanout-prototype-result.json",
+      "scratch/synthesis-digest.md",
+      "research/deep-research-state-modes.jsonl",
+      "research/deep-research-dashboard-modes.md",
+      "research/deep-research-config-modes.json",
+      "scratch/deep-loop-driver-modes.cjs",
+      "scratch/angle-schedule-modes.json",
+      "scratch/build-digest-modes.cjs",
+      "scratch/synthesis-digest-modes.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-prototype.cjs",
+        "kind": "file",
+        "path": "scratch/fanout-prototype.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "research-modes.md",
+        "kind": "doc",
+        "path": "research/research-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry-modes.json",
+        "kind": "config",
+        "path": "research/findings-registry-modes.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-driver.cjs",
+        "kind": "file",
+        "path": "scratch/deep-loop-driver.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-prototype-result.json",
+        "kind": "config",
+        "path": "scratch/fanout-prototype-result.json",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-digest.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-digest.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state-modes.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state-modes.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard-modes.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config-modes.json",
+        "kind": "config",
+        "path": "research/deep-research-config-modes.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-driver-modes.cjs",
+        "kind": "file",
+        "path": "scratch/deep-loop-driver-modes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "angle-schedule-modes.json",
+        "kind": "config",
+        "path": "scratch/angle-schedule-modes.json",
+        "source": "derived"
+      },
+      {
+        "name": "build-digest-modes.cjs",
+        "kind": "file",
+        "path": "scratch/build-digest-modes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-digest-modes.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-digest-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Effectiveness",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "001 produced a broad landscape and 8 ranked recommendations, but at survey depth: one-line lessons per repo, not mechanisms or reference implementations",
+    "created_at": "2026-07-15T19:00:46.270Z",
+    "last_save_at": "2026-07-17T13:31:05.290Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:9b816458b7bb90737d13ca98a6cf0d9034ee0ebce9ae03b8f3a7d18eaa4c70d4",
+    "source_doc_hashes": {
+      "spec.md": "8324e42f293d9620340fc7117712e86d9059730fbf94a7eb20e3364951415e3e",
+      "plan.md": "8fefff7e2b7156c7d2d154dde08034304c831ade2ac1f7b53b5465ded209b2e1",
+      "tasks.md": "38e9572c11a19875612c232c5720c3d86b7ae827ba1c74198c8113ff2977d96d",
+      "checklist.md": "eceb95d0d0407c7289321d896bcbf8c884ffc589701aa72596d6b7e933172e84",
+      "decision-record.md": "387a7c5c605efe48572328e9710f05d4a36979476809738720d32c6a92db5ea5",
+      "implementation-summary.md": "0776e142374bde4588d92130f6ccbf9e9b3dc8101230fb78c7047ec748444f53",
+      "research/research.md": "b63142e8fe392350dd862612244f26561afc79351e5d67135473fc19c9c98e0b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/015-legacy-writer-retirement",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/015-legacy-writer-retirement",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "legacy writer retirement",
+      "deep-loop zero-use telemetry",
+      "retire legacy emitters",
+      "legacy writer retirement implementation plan",
+      "deep-loop legacy emitter deletion",
+      "legacy writer retirement tasks",
+      "deep-loop legacy emitter deletion tasks",
+      "legacy writer retirement checklist",
+      "deep-loop zero-use verification",
+      "archival reader retention checklist"
+    ],
+    "key_topics": [
+      "legacy",
+      "writer",
+      "retirement",
+      "deep-loop",
+      "zero-use",
+      "telemetry",
+      "retire",
+      "emitters",
+      "implementation",
+      "plan",
+      "emitter",
+      "deletion"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Writer Retirement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "positive",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "archival",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-014",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "retained",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed rollback window, and zero-use telemetry. Retain archival readers required for historical legacy packets.",
+    "created_at": "2026-07-16T03:44:00.951Z",
+    "last_save_at": "2026-07-17T13:21:48.229Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:977769c320b2c5d6764522eba111a1eb92a8f90e83a2d1d2b155fa2e3b86d08b",
+    "source_doc_hashes": {
+      "spec.md": "89f9b8155e9c2adb9b8f7586432ff25e554bfba1b26dc6c044eebe6d1a8939f6",
+      "plan.md": "998a7446853ef4ff79d44538f24ca26acbf2dc4fb4473d66a7c94bc101621495",
+      "tasks.md": "bedaad47c8690fef75b481c0249dcf7c31286bb0910b1f9a724a91bfc6421843",
+      "checklist.md": "55d513791658d5d566ce1ac8a9c63578f8ebe607803859cd37ab6971e29a9c61"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

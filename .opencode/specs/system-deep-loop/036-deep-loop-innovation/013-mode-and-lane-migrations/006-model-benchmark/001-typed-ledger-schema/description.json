@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+  "description": "Plan the Model Benchmark variant's typed append-only event vocabulary over the shared deep-improvement-common backbone.",
+  "keywords": [
+    "plan",
+    "model",
+    "benchmark",
+    "variant",
+    "typed",
+    "append-only",
+    "event",
+    "vocabulary",
+    "shared",
+    "deep-improvement-common",
+    "backbone"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.539Z",
+  "specId": "001",
+  "folderSlug": "typed-ledger-schema",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "006-model-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

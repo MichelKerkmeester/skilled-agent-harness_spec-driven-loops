@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate",
+  "description": "Plan the fail-closed Agent Improvement rollback switch and independent migration gate for the agent-loop proposal-generation and scoring variant.",
+  "keywords": [
+    "plan",
+    "fail-closed",
+    "agent",
+    "improvement",
+    "rollback",
+    "switch",
+    "independent",
+    "migration",
+    "gate",
+    "agent-loop",
+    "proposal-generation",
+    "scoring",
+    "variant"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.537Z",
+  "specId": "007",
+  "folderSlug": "rollback-and-mode-gate",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "005-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

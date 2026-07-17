@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Skill Benchmark sealed reference artifacts",
+      "skill benchmark artifact sealing",
+      "skill contribution evidence artifacts",
+      "Skill Benchmark sealed artifacts implementation plan",
+      "skill benchmark tamper evident read plan",
+      "Skill Benchmark sealed artifacts tasks",
+      "skill benchmark reference sealing tasks",
+      "Skill Benchmark sealed artifacts checklist",
+      "skill benchmark tamper evident verification"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "sealed",
+      "reference",
+      "artifacts",
+      "artifact",
+      "sealing",
+      "contribution",
+      "evidence",
+      "implementation",
+      "plan",
+      "tamper"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decomposed Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define immutable, content-addressed, seal-on-write inputs and outputs for Skill Benchmark scenario runs and scoring",
+    "created_at": "2026-07-16T03:43:41.603Z",
+    "last_save_at": "2026-07-17T13:21:43.037Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:94b8c29aab98306ef314bdbc089ff0d9b24970623496427842e4178957125e4b",
+    "source_doc_hashes": {
+      "spec.md": "df77f88a2bcdab90a79fd6fc1aec0d2e24c45427e570d33c6d2210e6810a3575",
+      "plan.md": "ba246e82db1160c4cddb6b775b91545ba44d202ec538907ccab04eda08db9f4f",
+      "tasks.md": "17c2a9d8a20fba856a5ded24b0bf3e31735d63a38ea77b2dfb72e58b1be54da9",
+      "checklist.md": "ee030606cc93dc9df98a723d0e6e6e0f7a55d4253edf887ee3d22ae1c8b2e74e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

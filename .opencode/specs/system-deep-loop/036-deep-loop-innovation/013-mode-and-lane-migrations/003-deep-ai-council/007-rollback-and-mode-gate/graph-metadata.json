@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep AI Council rollback and mode gate",
+      "deep-ai-council fail-closed cutover",
+      "deep-ai-council rollback window",
+      "deep-ai-council shadow parity certificate",
+      "Deep AI Council rollback and mode gate implementation plan",
+      "deep-ai-council authority gate plan",
+      "bounded council rollback window",
+      "Deep AI Council rollback and mode gate tasks",
+      "deep-ai-council cutover gate tasks",
+      "council shadow parity rollback tasks",
+      "Deep AI Council rollback and mode gate checklist",
+      "deep-ai-council mode gate verification"
+    ],
+    "key_topics": [
+      "deep",
+      "council",
+      "rollback",
+      "mode",
+      "gate",
+      "deep-ai-council",
+      "fail-closed",
+      "cutover",
+      "window",
+      "shadow",
+      "parity",
+      "certificate"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable IDs",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "window ID",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate. The contract keeps authority fail-closed, bounds the rollback window, proves shadow parity, verifies sealed council artifacts, and emits a mode-specific certificate before phase-014 authority cutover.",
+    "created_at": "2026-07-16T03:43:35.476Z",
+    "last_save_at": "2026-07-17T13:21:32.907Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:3fab6056b7700a8a10df1252eef39508fc065549d9bc07633f9d193e105626ed",
+    "source_doc_hashes": {
+      "spec.md": "7d78f512b53d5f8f0ac9891cfd766f67c3c2831867f0923cf8424fcdc6397919",
+      "plan.md": "0db8ceea40645e1705b9e7f3203e83fdedd4b70188bf77c753ffa3943431d645",
+      "tasks.md": "2ccc00c62b46bac43b113ebd8c552b7a36160ef045202adde233a6ffe5852342",
+      "checklist.md": "cf6e108b5b1be25cf7df663c6d81c23052662fc73ebec9d66aaf064ea6cddca9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

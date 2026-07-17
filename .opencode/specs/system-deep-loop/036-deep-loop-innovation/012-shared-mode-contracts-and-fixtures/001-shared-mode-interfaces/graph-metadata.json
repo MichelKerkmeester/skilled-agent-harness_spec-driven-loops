@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared mode interfaces",
+      "deep-loop mode contract",
+      "phase 012 mode interface",
+      "typed mode migration contract",
+      "shared mode interfaces implementation plan",
+      "deep-loop mode contract plan",
+      "phase 012 typed interface plan",
+      "shared mode interfaces tasks",
+      "deep-loop mode contract tasks",
+      "phase 012 interface fixture tasks",
+      "shared mode interfaces checklist",
+      "deep-loop mode contract verification"
+    ],
+    "key_topics": [
+      "shared",
+      "mode",
+      "interfaces",
+      "deep-loop",
+      "contract",
+      "phase",
+      "interface",
+      "typed",
+      "migration",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Mode Interfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "against",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "owner",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "input",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Freeze the typed contract that every phase-013 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence services, and resume path before any per-mode migration begins.",
+    "created_at": "2026-07-16T03:43:53.994Z",
+    "last_save_at": "2026-07-17T13:21:22.792Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:0c38d263d197a73992b8f804346b4c546f124244116d01f087d5def7d868b55e",
+    "source_doc_hashes": {
+      "spec.md": "76cd8bc2b1995f2bafb89fc387e24617804489b7068eec06282223d427969583",
+      "plan.md": "c44a22148a2089465ed17409f34f7bbeb1cd908fb236c38339d5772981fdf286",
+      "tasks.md": "2c68586b7bd2db3db779afd5d90210f3ffa038ce9a4262db40c7e380edf07dfb",
+      "checklist.md": "306223c423a471179cacdc7004724e4eff12eae476b6b9188ad2baf19671098d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

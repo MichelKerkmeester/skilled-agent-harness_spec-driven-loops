@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
+  "description": "Plan the typed append-only event vocabulary for the Agent Improvement variant: typed AgentIR and change contracts, candidate and failure lineage,",
+  "keywords": [
+    "plan",
+    "typed",
+    "append-only",
+    "event",
+    "vocabulary",
+    "agent",
+    "improvement",
+    "variant",
+    "agentir",
+    "change",
+    "contracts",
+    "candidate",
+    "failure",
+    "lineage"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.524Z",
+  "specId": "001",
+  "folderSlug": "typed-ledger-schema",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "005-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

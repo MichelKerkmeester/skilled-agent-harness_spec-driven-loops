@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research resume adapter",
+      "deep-research ledger resume",
+      "deep research idempotent re-entry",
+      "deep research continuity ladder",
+      "deep research resume adapter implementation plan",
+      "deep-research idempotent resume plan",
+      "deep research resume adapter tasks",
+      "deep-research idempotent resume tasks",
+      "deep research resume adapter checklist",
+      "deep-research replay-safe resume checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "resume",
+      "adapter",
+      "deep-research",
+      "ledger",
+      "idempotent",
+      "re-entry",
+      "continuity",
+      "ladder",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fifth Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Deep Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "expected",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "capability-driven",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Research",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Research resume adapter over the sealed typed event ledger: rebuild interrupted live state through the mode reducers, map the continuity ladder to typed lifecycle state, and re-enter idempotently without double-applying, losing, or replaying semantic events.",
+    "created_at": "2026-07-16T03:43:31.450Z",
+    "last_save_at": "2026-07-17T13:21:26.722Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:465875897e936a65b75de14fe3a1ffd9783983ad536ffe81b602af564ba4380e",
+    "source_doc_hashes": {
+      "spec.md": "46d15420c71414cb40d3033918afd63fab0034be7c18a773d80a5b0f11487805",
+      "plan.md": "2927aa36895a686489e276946a3415babf82410991cd128d090d44b8498c2046",
+      "tasks.md": "2b7abc43e8590c9cf1bdaaeb1d081ba4f3dbe5df79ee74f1041957bd78f5a654",
+      "checklist.md": "174c0dc2effe1f3b252b1a6023a68b26a1393d0511844b5d83d76fe752707ba4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

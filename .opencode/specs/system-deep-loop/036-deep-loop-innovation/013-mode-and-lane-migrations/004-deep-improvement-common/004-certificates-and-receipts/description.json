@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts",
+  "description": "Plan the shared Deep Improvement Common Services certificate and receipt contract over the typed event-ledger substrate: per-run certificates,",
+  "keywords": [
+    "plan",
+    "shared",
+    "deep",
+    "improvement",
+    "common",
+    "services",
+    "certificate",
+    "receipt",
+    "contract",
+    "typed",
+    "event-ledger",
+    "substrate",
+    "per-run",
+    "certificates"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.518Z",
+  "specId": "004",
+  "folderSlug": "certificates-and-receipts",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "004-deep-improvement-common"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

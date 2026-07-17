@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mode and lane migrations",
+      "per-mode deep-loop migration fan-out",
+      "eight mode gates event ledger"
+    ],
+    "key_topics": [
+      "mode",
+      "lane",
+      "migrations",
+      "per-mode",
+      "deep-loop",
+      "migration",
+      "fan-out",
+      "eight",
+      "gates",
+      "event",
+      "ledger",
+      "recommendations-implementation"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lane Migrations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The per-mode fan-out of the recommendations-implementation program: eight deep-loop modes each migrate their full run behavior onto the shared typed event-ledger substrate as an independent fractal parent — typed schema, reducers, sealed artifacts, certificates, resume adapter, shadow parity, and a rollback-guarded mode gate — with deep-improvement-common landing before its three benchmark variants and deep-alignment reusing the review loop.",
+    "created_at": "2026-07-16T03:44:00.418Z",
+    "last_save_at": "2026-07-17T13:21:24.415Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:246734a9999408553f91f2f6e093e6522d2e4e17082bd4b3f1c1ed19c2f8e0cb",
+    "source_doc_hashes": {
+      "spec.md": "d12017704922c4e0459c042a4c76ad38ca55344d84729b102d39e8aa86eb2caf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

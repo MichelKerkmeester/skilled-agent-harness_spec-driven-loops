@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/003-stopping-clocks",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/003-stopping-clocks",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop stopping clocks",
+      "earliest-fire termination arbitration",
+      "budget novelty coverage wall-time stop",
+      "stopping clocks implementation plan",
+      "earliest-fire clock arbiter plan",
+      "stopping clocks tasks",
+      "earliest-fire termination tasks",
+      "stopping clocks checklist",
+      "termination clock verifier"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "stopping",
+      "clocks",
+      "earliest-fire",
+      "termination",
+      "arbitration",
+      "budget",
+      "novelty",
+      "coverage",
+      "wall-time",
+      "stop",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/004-hierarchical-typed-budgets/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stopping Clocks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "run",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "fresh",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "five",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-mode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "replay",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "versioned",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan independent budget, novelty-decay, coverage, wall-time, and cycle clocks whose deterministic earliest firing terminates the loop and records a replayable, typed termination cause.",
+    "created_at": "2026-07-16T03:43:53.268Z",
+    "last_save_at": "2026-07-17T13:21:21.451Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:2856696b6313fc6adb2bc10fdab429ada3b784c7634109d3dbc6f9c351e96269",
+    "source_doc_hashes": {
+      "spec.md": "fda4553993a53cd11120b7075987e13636e483bf4a7ee335a1768bd49fc0bafc",
+      "plan.md": "5ed955ad5b5808e354f6eadb9c9d3fae615976abb59cca1f7b5561b86958626f",
+      "tasks.md": "0cbdc7434dfb4046f1fc55167aa1a79bd5ac166cb8d1f5a64b7f6a3beee498fa",
+      "checklist.md": "1fc314323e3a794b5af30ad3abcdad53b2e569e891e23a994dfa851a972ac69e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

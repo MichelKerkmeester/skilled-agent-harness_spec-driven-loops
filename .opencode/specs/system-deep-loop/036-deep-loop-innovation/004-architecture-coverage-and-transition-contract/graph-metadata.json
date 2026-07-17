@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
+    "system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
+    "system-deep-loop/065-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy",
+    "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
+    "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
+    "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "architecture coverage transition contract",
+      "deep-loop phase 004 planning gate",
+      "178 recommendation bijective ledger"
+    ],
+    "key_topics": [
+      "architecture",
+      "coverage",
+      "transition",
+      "contract",
+      "deep-loop",
+      "phase",
+      "planning",
+      "gate",
+      "recommendation",
+      "bijective",
+      "ledger",
+      "last"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transition Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The last planning gate before implementation ratifies the cross-mode spine, freezes all 178 recommendations into a bijective single-disposition ledger, and fixes the transition, versioning, compatibility, cutover, and rollback contract that governs later writers.",
+    "created_at": "2026-07-16T03:43:58.126Z",
+    "last_save_at": "2026-07-17T13:21:07.297Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:da4e93f5f0c3d7d54ba7813eceeae5921febc61ae5791ee68afaa9addc36cd4d",
+    "source_doc_hashes": {
+      "spec.md": "840ea3224fc005b45c32477aef0dd0a8350ea45a74407cd0d1ac273c35eae875"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

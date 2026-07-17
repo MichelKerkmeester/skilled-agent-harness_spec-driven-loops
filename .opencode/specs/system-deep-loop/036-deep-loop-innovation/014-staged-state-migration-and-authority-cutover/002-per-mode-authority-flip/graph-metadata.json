@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per-mode authority flip",
+      "deep-loop staged cutover",
+      "dark spine canonical authority",
+      "per-mode authority flip implementation plan",
+      "deep-loop staged cutover plan",
+      "per-mode authority flip tasks",
+      "deep-loop staged cutover tasks",
+      "per-mode authority flip checklist",
+      "deep-loop cutover verification"
+    ],
+    "key_topics": [
+      "per-mode",
+      "authority",
+      "flip",
+      "deep-loop",
+      "staged",
+      "cutover",
+      "dark",
+      "spine",
+      "canonical",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Authority Flip",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-closed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "monotonic",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "expected",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the fail-closed switch that makes the dark spine canonical for one mode at a time, after current shadow-parity and rollback-drill evidence pass, while all other modes remain legacy-authoritative.",
+    "created_at": "2026-07-16T03:43:57.391Z",
+    "last_save_at": "2026-07-17T13:21:47.704Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:80d31d1dc6dd7f307534e318d67e3bf66c7fa940b91dd7f7bba8ac890bd1356e",
+    "source_doc_hashes": {
+      "spec.md": "8ec825d02e5f00612edc68871bf113ec46ee517eaf2ae506f4055caaa0a6ca3c",
+      "plan.md": "f7260fc93d9ebf242cb71e14e6a5bd7a7b1ec89baf3fd917258b065e954d8e02",
+      "tasks.md": "dcf0c09105d37fe800f49aa432c2d59d2ba38eba1b9d9db44dd003083474e2df",
+      "checklist.md": "b80eb07470555a0d45521d8b83ffbad5ff4efaba4fcab65adc657c5fdace449e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

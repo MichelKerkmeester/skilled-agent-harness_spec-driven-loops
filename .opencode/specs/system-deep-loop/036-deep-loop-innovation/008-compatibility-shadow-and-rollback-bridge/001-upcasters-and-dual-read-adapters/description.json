@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters",
+  "description": "Plan deterministic event and state upcaster chains plus dual-read/single-authoritative-write adapters that reconcile legacy state with the dark ledger",
+  "keywords": [
+    "plan",
+    "deterministic",
+    "event",
+    "state",
+    "upcaster",
+    "chains",
+    "plus",
+    "dual-read",
+    "single-authoritative-write",
+    "adapters",
+    "reconcile",
+    "legacy",
+    "dark",
+    "ledger"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.429Z",
+  "specId": "001",
+  "folderSlug": "upcasters-and-dual-read-adapters",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "008-compatibility-shadow-and-rollback-bridge"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

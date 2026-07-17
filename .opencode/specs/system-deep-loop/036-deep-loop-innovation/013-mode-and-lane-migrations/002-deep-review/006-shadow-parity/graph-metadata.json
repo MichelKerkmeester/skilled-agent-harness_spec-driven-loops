@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Review shadow parity",
+      "deep-review event ledger migration",
+      "deep-review legacy emitter parity",
+      "Deep Review shadow parity implementation plan",
+      "deep-review ledger projection parity",
+      "Deep Review shadow parity tasks",
+      "deep-review event parity tasks",
+      "Deep Review shadow parity checklist",
+      "deep-review parity gate"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "shadow",
+      "parity",
+      "deep-review",
+      "event",
+      "ledger",
+      "migration",
+      "legacy",
+      "emitter",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Shadow Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flipping Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Outlined Deep Review",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Blocking Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Review migration from the legacy scope -> per-dimension passes -> P0/P1/P2 findings -> convergence -> review-report flow to the typed event-ledger substrate. The new path runs in shadow beside the legacy emitter, compares normalized projections event-for-event, and remains non-authoritative until every parity and fail-closed cutover criterion is green.",
+    "created_at": "2026-07-16T03:43:33.437Z",
+    "last_save_at": "2026-07-17T13:21:29.473Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:88921a025e40bca48ed1ebf3dda5893ce147627e1f80cb814a854aa00717805f",
+    "source_doc_hashes": {
+      "spec.md": "0fc9aa6bf47b6cbdead4c0d5793a98d5fb8601d8a6b22ff0c154054de9e10795",
+      "plan.md": "1f9f14b3e2148f350e82914ec61a204217617e7dfa9b69a07c164eec319c2d6a",
+      "tasks.md": "772dde3845e32fb2c6a6990e042369ce4e5be17144cc3d7d989dd274defff178",
+      "checklist.md": "dbb37b9cba3f85be184be43ad19c6fded6740057134f7392392a84f59ab98eb8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/003-sealed-artifacts",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/003-sealed-artifacts",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Model Benchmark migration",
+      "model-benchmark event ledger",
+      "model benchmark scoring matrix",
+      "model benchmark mode gate"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "migration",
+      "model-benchmark",
+      "event",
+      "ledger",
+      "scoring",
+      "matrix",
+      "mode",
+      "gate",
+      "migrate",
+      "variant"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate the model-benchmark variant's multi-model runs and scoring matrix onto the typed event-ledger substrate through seven concern children, reusing the deep-improvement-common backbone and ending in an independent mode gate.",
+    "created_at": "2026-07-16T03:43:56.321Z",
+    "last_save_at": "2026-07-17T13:21:39.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:6dc065e5137de0d18a8c1cd8726a00a0268b042217dcae0d001ae095ce9f015a",
+    "source_doc_hashes": {
+      "spec.md": "0fec5d3e2842b67bce2574a6a002cfff716248b2f0778a5069f3c4f5205004ff"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

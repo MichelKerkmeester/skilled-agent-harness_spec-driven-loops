@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health",
+  "description": "The current convergence anchor is council-specific and threshold-based.",
+  "keywords": [
+    "current",
+    "convergence",
+    "anchor",
+    "council-specific",
+    "threshold-based"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.463Z",
+  "specId": "011",
+  "folderSlug": "convergence-termination-and-health",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

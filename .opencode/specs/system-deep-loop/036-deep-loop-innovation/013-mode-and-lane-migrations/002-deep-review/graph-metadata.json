@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/005-resume-adapter",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/005-resume-adapter",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Review migration",
+      "deep-review typed event ledger",
+      "Deep Review mode gate"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "migration",
+      "deep-review",
+      "typed",
+      "event",
+      "ledger",
+      "mode",
+      "gate",
+      "migrate",
+      "legacy",
+      "scope"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migrate Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate Deep Review from its legacy scope, dimension-pass, convergence, and review-report loop to the shared typed event-ledger substrate through seven independently gated concern children.",
+    "created_at": "2026-07-16T03:43:55.261Z",
+    "last_save_at": "2026-07-17T13:21:27.620Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:289707cb5ecf9213d5de5faea92a725713888c74cd8d17ee0d39c1ff79cc44c3",
+    "source_doc_hashes": {
+      "spec.md": "dc26fe1694f510897e29d3c79903dce13c9dccba81da30c5e6203ec14c6461c7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges",
+  "description": "Plan deterministic transactional projections that apply each verified ledger event atomically across dashboards, registries, claim tables, and",
+  "keywords": [
+    "plan",
+    "deterministic",
+    "transactional",
+    "projections",
+    "apply",
+    "verified",
+    "ledger",
+    "event",
+    "atomically",
+    "across",
+    "dashboards",
+    "registries",
+    "claim",
+    "tables"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.453Z",
+  "specId": "005",
+  "folderSlug": "transactional-projections-and-gauges",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "010-novelty-claims-continuity-and-projections"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

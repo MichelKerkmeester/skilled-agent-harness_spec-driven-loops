@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/003-claim-continuity",
+  "description": "Plan one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate on the same",
+  "keywords": [
+    "plan",
+    "one",
+    "durable",
+    "claim",
+    "identity",
+    "across",
+    "iterations",
+    "support",
+    "contradiction",
+    "supersession",
+    "lifecycle",
+    "recomputed",
+    "status",
+    "accumulate",
+    "same"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.451Z",
+  "specId": "003",
+  "folderSlug": "claim-continuity",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "010-novelty-claims-continuity-and-projections"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

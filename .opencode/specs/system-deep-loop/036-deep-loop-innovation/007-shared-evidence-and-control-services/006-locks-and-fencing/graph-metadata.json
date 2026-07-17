@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "locks and fencing",
+      "deep-loop fencing tokens",
+      "safe concurrent writers and resume",
+      "locks and fencing implementation plan",
+      "deep-loop fenced writer plan",
+      "locks and fencing tasks",
+      "deep-loop fencing token tasks",
+      "locks and fencing checklist",
+      "deep-loop stale writer verification"
+    ],
+    "key_topics": [
+      "locks",
+      "fencing",
+      "deep-loop",
+      "tokens",
+      "safe",
+      "concurrent",
+      "writers",
+      "resume",
+      "implementation",
+      "plan",
+      "fenced",
+      "writer"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy JSONL",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "observable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fenced",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state: scoped leases allocate durable monotonic fencing tokens, every protected mutation rejects stale holders, and bounded timeout/deadlock policy prevents split-brain across legacy, dark, fan-out, and resumed writers.",
+    "created_at": "2026-07-16T03:43:47.704Z",
+    "last_save_at": "2026-07-17T13:21:13.145Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:e1d7f258e1f0cfb84d2a6b897d29b83b43ac48b87b4bfd65c2e438572f5019a6",
+    "source_doc_hashes": {
+      "spec.md": "fd3de037801d7f19315dd6eaf25438a49f96f02caf6ecbcf13fca1fd8b54631f",
+      "plan.md": "13e7d11abd9969e3dfea82ba0a8f3831e065f5ec457c21d6c82a726c66ebf3a7",
+      "tasks.md": "e21c8f0f230be2edc6d613ddf3f3f60512c08045704fff51b5d1a8a69052480f",
+      "checklist.md": "2a347d002fbc5396464994009a5eb5e17d4f7cf40e9608b2dac17d1440ab938f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

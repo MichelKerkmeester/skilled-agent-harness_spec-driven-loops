@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+  "description": "Plan the Deep Research mode binding for immutable, content-addressed reference artifacts across init, gather, analyze, convergence, synthesis, resume,",
+  "keywords": [
+    "plan",
+    "deep",
+    "research",
+    "mode",
+    "binding",
+    "immutable",
+    "content-addressed",
+    "reference",
+    "artifacts",
+    "across",
+    "init",
+    "gather",
+    "analyze",
+    "convergence",
+    "synthesis",
+    "resume"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.477Z",
+  "specId": "003",
+  "folderSlug": "sealed-artifacts",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "001-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

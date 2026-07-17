@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment certificates and receipts",
+      "deep-alignment run certificate",
+      "deep-alignment transition receipts",
+      "offline alignment certificate verification",
+      "deep alignment certificates implementation plan",
+      "deep-alignment receipt contract plan",
+      "offline alignment verifier plan",
+      "deep alignment certificates and receipts tasks",
+      "deep-alignment authority receipt tasks",
+      "offline alignment verifier tasks",
+      "deep alignment certificates and receipts checklist",
+      "deep-alignment authority certificate verification"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "certificates",
+      "receipts",
+      "deep-alignment",
+      "run",
+      "certificate",
+      "transition",
+      "offline",
+      "verification",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Alignment per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase defines authority and applicability attestations, verify-first finding coverage, replay-fingerprint inputs, and independent offline verification for per-lane conformance against a named authority.",
+    "created_at": "2026-07-16T03:43:43.622Z",
+    "last_save_at": "2026-07-17T13:21:46.005Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:ffc5ccd9747e9ef552c74c93ca70f4046e36c9af5830c5bc226ee9839dd23134",
+    "source_doc_hashes": {
+      "spec.md": "51353474a3809e1d1c3562d4316cd81a47b0c9f82b3553d0742de37b7d7e9f16",
+      "plan.md": "b3eb324528dc8962da7f2dea83354b87195ca5cd29e7e7a2ef897b6587851d73",
+      "tasks.md": "03b8450364bfd44e5ebeb209bc38fefa22394ce9d849dd657a152c7265a7b00a",
+      "checklist.md": "32c5d7a2655ae1b22fb22936b821ba3aea4ff3a008a81b5cd5d1f9bdc5cc619e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

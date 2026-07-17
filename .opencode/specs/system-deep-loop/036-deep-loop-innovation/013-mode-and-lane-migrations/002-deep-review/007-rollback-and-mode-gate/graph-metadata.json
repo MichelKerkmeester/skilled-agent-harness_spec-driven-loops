@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Review rollback and mode gate",
+      "deep-review authority rollback switch",
+      "deep-review migration gate",
+      "deep-review shadow parity cutover readiness",
+      "Deep Review rollback and mode gate implementation plan",
+      "deep-review authority control plan",
+      "deep-review migration certificate plan",
+      "Deep Review rollback and mode gate tasks",
+      "deep-review rollback switch tasks",
+      "deep-review mode gate tasks",
+      "Deep Review rollback and mode gate checklist",
+      "deep-review rollback readiness checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "rollback",
+      "mode",
+      "gate",
+      "deep-review",
+      "authority",
+      "switch",
+      "migration",
+      "shadow",
+      "parity",
+      "cutover"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mapped Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enumerated Deep Review",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Deep Review",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Review rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, shadow-parity acceptance, sealed artifacts, certificate evidence, and the scope-to-report handoff without moving runtime authority.",
+    "created_at": "2026-07-16T03:43:33.680Z",
+    "last_save_at": "2026-07-17T13:21:29.765Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:2d693f2c1b66ae24a205d82ed08d3a70fd272d6d18082194f4f064eb92a969c9",
+    "source_doc_hashes": {
+      "spec.md": "a8cc684fb2b0ba9f76e14d77e796cf4a5265bd2e6fa24a99d4f1e6b4f38c5566",
+      "plan.md": "a6c345e201470fb1b99382042860f99c14bad4302c42893175f656859abe02b7",
+      "tasks.md": "b6fa18eec87c0b3ec3722ebb6dd180faae91b053299b7311f9153768a7cef81a",
+      "checklist.md": "d3bd2720fc9eaeec2d86d881e1e7bc6ca822fb15fdcacba75811a4a436ffbe35"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

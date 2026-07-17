@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Model Benchmark shadow parity",
+      "model-benchmark ledger migration",
+      "multi-model scoring matrix parity",
+      "model benchmark legacy projection diff",
+      "Model Benchmark shadow parity implementation plan",
+      "model benchmark scoring matrix parity plan",
+      "typed ledger legacy benchmark comparison",
+      "Model Benchmark shadow parity tasks",
+      "model benchmark scoring matrix parity tasks",
+      "model benchmark phase 009 tasks",
+      "Model Benchmark shadow parity checklist",
+      "model benchmark parity gate"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "shadow",
+      "parity",
+      "model-benchmark",
+      "ledger",
+      "migration",
+      "multi-model",
+      "scoring",
+      "matrix",
+      "legacy",
+      "projection"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shadow Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Captured Model Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Model Benchmark",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Model Benchmark variant's shadow-parity harness over the typed event-ledger substrate: run multi-model benchmark executions and scoring-matrix reductions beside the legacy emitter, compare projections event-for-event, and block authority cutover on any unexplained semantic difference while reusing deep-improvement-common services.",
+    "created_at": "2026-07-16T03:43:40.543Z",
+    "last_save_at": "2026-07-17T13:21:41.284Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:39845aeab75f6cda0ed8d4353932fd83abf51c626114a2978fa2b5950649c4fc",
+    "source_doc_hashes": {
+      "spec.md": "80e6ccb200d17dd7b2c0d0ade9c1f25b864876942482d8538287958b46614208",
+      "plan.md": "7a341c45113ce8e259d3ebf2cd66463b41ab7b53cd76c1654614fef07b0417ae",
+      "tasks.md": "1036563e9c2e06aea67c9b78f0d051351ecd3764a179717f226a332e0a53c428",
+      "checklist.md": "913df22ddc4280c023e593be9a20ecbed9fb534b47686a0d7fd54c6500d218ef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

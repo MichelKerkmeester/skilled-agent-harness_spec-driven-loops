@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing",
+  "description": "Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state: scoped leases allocate durable monotonic fencing",
+  "keywords": [
+    "plan",
+    "shared",
+    "concurrency-safety",
+    "service",
+    "ledger",
+    "append",
+    "projections",
+    "per-lineage",
+    "state",
+    "scoped",
+    "leases",
+    "allocate",
+    "durable",
+    "monotonic",
+    "fencing"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.426Z",
+  "specId": "006",
+  "folderSlug": "locks-and-fencing",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-shared-evidence-and-control-services"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

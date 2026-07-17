@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/002-reducers-and-projections",
+  "description": "Plan the pure deterministic reducers and live projections for the Deep AI Council migration: replay the typed deliberation ledger into",
+  "keywords": [
+    "plan",
+    "pure",
+    "deterministic",
+    "reducers",
+    "live",
+    "projections",
+    "deep",
+    "council",
+    "migration",
+    "replay",
+    "typed",
+    "deliberation",
+    "ledger"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.502Z",
+  "specId": "002",
+  "folderSlug": "reducers-and-projections",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "003-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

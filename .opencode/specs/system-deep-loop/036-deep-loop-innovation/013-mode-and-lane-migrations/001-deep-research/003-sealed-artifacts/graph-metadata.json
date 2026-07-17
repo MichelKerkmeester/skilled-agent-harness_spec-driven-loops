@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research sealed artifacts",
+      "deep-research reference sealing",
+      "deep research tamper-evident read",
+      "deep research sealed artifacts implementation plan",
+      "deep-research seal-on-write plan",
+      "deep research sealed artifacts tasks",
+      "deep-research verified read tasks",
+      "deep research sealed artifacts checklist",
+      "deep-research tamper-evident artifact checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "sealed",
+      "artifacts",
+      "deep-research",
+      "reference",
+      "sealing",
+      "tamper-evident",
+      "read",
+      "implementation",
+      "plan",
+      "seal-on-write"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mapped Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Third Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Deep Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-gate",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequenced Deep Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Register Deep Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Research",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Research mode binding for immutable, content-addressed reference artifacts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
+    "created_at": "2026-07-16T03:43:30.948Z",
+    "last_save_at": "2026-07-17T13:21:25.965Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:311e5eb24f8a347e8bd36a39f407898b491c3a9014e4b53b6b1163adf71e1749",
+    "source_doc_hashes": {
+      "spec.md": "489a94f01e54e6242d075a0488203fde69bfb2a165e9d339129c22541857b080",
+      "plan.md": "0e65319240dcaf88faf642f6b04d841e96fd096572af88bcb3474a14b03ca5cf",
+      "tasks.md": "1ada08f71de86f55ec4bad415f9ae2fe67a4633f05ae2e9cc7b893179edd46fb",
+      "checklist.md": "b935b11a53c1d30c49058a3c1aac54c561d21e860314d0c4764f1a1e773becfe"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "canonical dispatch receipts",
+      "fanout pre-spawn receipt",
+      "durable invocation fingerprint",
+      "canonical dispatch receipts implementation plan",
+      "pre-spawn receipt implementation",
+      "canonical dispatch receipts tasks",
+      "pre-spawn receipt tasks",
+      "canonical dispatch receipts checklist",
+      "pre-spawn receipt verification"
+    ],
+    "key_topics": [
+      "canonical",
+      "dispatch",
+      "receipts",
+      "fanout",
+      "pre-spawn",
+      "receipt",
+      "durable",
+      "invocation",
+      "fingerprint",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "receipt-crypto.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Dispatch Receipts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "changed",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Promote",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "different",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "successor",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "version",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Promote each phase-005 resolved leaf invocation into a canonical, authorized, durable pre-spawn ledger receipt so resume can detect prior dispatch intent without duplicating work.",
+    "created_at": "2026-07-16T03:43:49.798Z",
+    "last_save_at": "2026-07-17T13:21:16.034Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:52de2a8dac52947c371548eb1887c57024e5b11d684d39077425312e2e2173b8",
+    "source_doc_hashes": {
+      "spec.md": "82067caeba2b4ea95f9c7417d910d4d5510de5d35f541aa275d21ed855787fe1",
+      "plan.md": "99961c888897658b8dea1e1614f65191a251804f7a3e4d0ed6b07057bd566c5e",
+      "tasks.md": "a82c4e52c74fe2571d5f5d416606fcd206bc95a54d8739dee62d2031c4043990",
+      "checklist.md": "5d71b97c88cfaf24cb3c3c02be9175262c3a889e20d3e4f56c38a008534f1561"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "contradiction and supersession events",
+      "typed claim relationship events",
+      "claim status replay",
+      "contradiction supersession implementation plan",
+      "claim relationship reducer plan",
+      "contradiction supersession tasks",
+      "claim relationship event tasks",
+      "contradiction supersession checklist",
+      "claim relationship verification checklist"
+    ],
+    "key_topics": [
+      "contradiction",
+      "supersession",
+      "events",
+      "typed",
+      "claim",
+      "relationship",
+      "status",
+      "replay",
+      "implementation",
+      "plan",
+      "reducer",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/002-typed-append-only-ledger/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "research-modes.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Supersession Events",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "support",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "event IDs",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan first-class contradiction and supersession ledger events that preserve evidence, history, deterministic claim status, and replayable audit trails.",
+    "created_at": "2026-07-16T03:43:51.652Z",
+    "last_save_at": "2026-07-17T13:21:18.821Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:3fafe5858338428181c9fdc2ef7118f905b0175af2d657da35e48e05b9ab2583",
+    "source_doc_hashes": {
+      "spec.md": "a5c7e770ae32033b9d902e2b6c7cc0ee10dde0251ffb02887aa13ae3c3960070",
+      "plan.md": "1a8722c582bb4e96ca2094d6be035f8c12991f51e2663015f9f4e97b3c947156",
+      "tasks.md": "55624f844fb5d8b4a2679e2d142d68d49d8d64bd739dd9908b2575abadce3c4b",
+      "checklist.md": "7b0333b34afb099c3d85968e373ad6f0c8c0a050e26a3270b19090110f85057c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/004-transition-authorization-gateway",
+  "description": "Define the fail-closed gateway that authorizes every typed state transition before ledger append, records allow and deny verdicts as auditable",
+  "keywords": [
+    "define",
+    "fail-closed",
+    "gateway",
+    "authorizes",
+    "every",
+    "typed",
+    "state",
+    "transition",
+    "ledger",
+    "append",
+    "records",
+    "allow",
+    "deny",
+    "verdicts",
+    "auditable"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.418Z",
+  "specId": "004",
+  "folderSlug": "transition-authorization-gateway",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-transition-authorized-ledger-core"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

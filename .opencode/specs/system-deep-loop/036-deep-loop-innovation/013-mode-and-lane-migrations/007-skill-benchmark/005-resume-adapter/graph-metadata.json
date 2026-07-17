@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Skill Benchmark resume adapter",
+      "skill-benchmark sealed-ledger resume",
+      "idempotent skill benchmark re-entry",
+      "skill scenario scoring resume",
+      "Skill Benchmark resume adapter implementation plan",
+      "sealed ledger skill benchmark resume plan",
+      "skill scenario idempotent re-entry plan",
+      "Skill Benchmark resume adapter tasks",
+      "sealed ledger skill benchmark resume tasks",
+      "skill scenario re-entry task set",
+      "Skill Benchmark resume adapter checklist",
+      "sealed ledger skill benchmark verification"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "resume",
+      "adapter",
+      "skill-benchmark",
+      "sealed-ledger",
+      "idempotent",
+      "re-entry",
+      "scenario",
+      "scoring",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bounded Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Contribution Certificate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Outlined Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-004",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Separated Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Define Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Skill Benchmark resume adapter over the sealed typed event ledger. The adapter rebuilds scenario-cell, skill-exposure, trajectory, and scoring state through reducers, maps the continuity ladder, and defines idempotent re-entry without double-apply, lost events, or unsafe replay. It consumes deep-improvement-common services and adds only Skill Benchmark scenario and scoring logic.",
+    "created_at": "2026-07-16T03:43:42.100Z",
+    "last_save_at": "2026-07-17T13:21:43.669Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:e6046f21c7c8219cc1e051b4c29091a91c5a0da1d4e8e29bb8b0aa74f98d63f4",
+    "source_doc_hashes": {
+      "spec.md": "61c4a86ffde6ac43d2ba9fff57cd0d924ed914fe2067cedbfa8e7a7201f7edf7",
+      "plan.md": "d9d03b7fff5dacdfae62a2c0b368d2007746bc9143cdd7c036ed08c5d5f24d2f",
+      "tasks.md": "e7f2fc6546f9caff5a62244e2e942877d5756664f628be2eadee20b131e91be5",
+      "checklist.md": "7cd24cd32ef76f28a457778efa3e6ea7a61999b8e1277495b0c427e3d6cbcdf2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

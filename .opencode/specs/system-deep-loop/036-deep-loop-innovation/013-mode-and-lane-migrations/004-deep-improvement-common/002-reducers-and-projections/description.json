@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections",
+  "description": "Define the pure reducers and projections for Deep Improvement Common Services",
+  "keywords": [
+    "define",
+    "pure",
+    "reducers",
+    "projections",
+    "deep",
+    "improvement",
+    "common",
+    "services"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.515Z",
+  "specId": "002",
+  "folderSlug": "reducers-and-projections",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "004-deep-improvement-common"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

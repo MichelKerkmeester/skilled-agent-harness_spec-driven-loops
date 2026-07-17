@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy",
+  "description": "Define the typed failure taxonomy, deterministic tolerance thresholds, degraded-result contract, and ledger verdict that decide whether durable fan-in",
+  "keywords": [
+    "define",
+    "typed",
+    "failure",
+    "taxonomy",
+    "deterministic",
+    "tolerance",
+    "thresholds",
+    "degraded-result",
+    "contract",
+    "ledger",
+    "verdict",
+    "decide",
+    "whether",
+    "durable",
+    "fan-in"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.443Z",
+  "specId": "005",
+  "folderSlug": "partial-failure-policy",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "009-fanout-fanin-durable-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

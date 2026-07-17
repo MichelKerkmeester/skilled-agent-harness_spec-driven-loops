@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent improvement typed ledger schema",
+      "agent improvement event vocabulary",
+      "typed AgentIR ledger",
+      "agent improvement append-only events",
+      "agent improvement typed ledger implementation plan",
+      "typed AgentIR event schema plan",
+      "agent improvement causal event plan",
+      "agent improvement typed ledger schema tasks",
+      "typed AgentIR event vocabulary tasks",
+      "agent improvement causal experiment tasks",
+      "agent improvement typed ledger schema checklist",
+      "typed AgentIR event contract checklist"
+    ],
+    "key_topics": [
+      "agent",
+      "improvement",
+      "typed",
+      "ledger",
+      "schema",
+      "event",
+      "vocabulary",
+      "agentir",
+      "append-only",
+      "events",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Typed Ledger Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Captured Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Agent Improvement",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the typed append-only event vocabulary for the Agent Improvement variant: typed AgentIR and change contracts, candidate and failure lineage, causal behavior experiments, evaluation manifests, transfer evidence, and versioned envelope/upcaster hooks over the shared Deep Improvement Common Services backbone. Reducers and projections belong to the next sibling.",
+    "created_at": "2026-07-16T03:43:37.523Z",
+    "last_save_at": "2026-07-17T13:21:36.474Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:394bc24358539512c6a01265df7b8739b0d681b2efbfc2d1194207cc795e50cc",
+    "source_doc_hashes": {
+      "spec.md": "be5f60bb6862f183890ae2a3ee10572fce24da8ae4535fe139d5ab320209d868",
+      "plan.md": "b77997fec5a51708e8f0c59d952d41b749ca770d2934942bd15f47a8272cc6f1",
+      "tasks.md": "31b8d936b6a688fa64d003f2beec7ed6276b87c05cfbafb06834e64bf19bbd5d",
+      "checklist.md": "af2425ced9ead8f9d60633890d21ee613c3683e45c5e020ff873b3cf8a2404b4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

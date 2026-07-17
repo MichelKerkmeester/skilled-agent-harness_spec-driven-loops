@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/007-continuity-identities",
+  "description": "Plan stable lineage, claim, candidate, and mode-session identities that persist across resume, handover, replay, and cross-mode boundaries and are",
+  "keywords": [
+    "plan",
+    "stable",
+    "lineage",
+    "claim",
+    "candidate",
+    "mode-session",
+    "identities",
+    "persist",
+    "across",
+    "resume",
+    "handover",
+    "replay",
+    "cross-mode",
+    "boundaries"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.427Z",
+  "specId": "007",
+  "folderSlug": "continuity-identities",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-shared-evidence-and-control-services"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

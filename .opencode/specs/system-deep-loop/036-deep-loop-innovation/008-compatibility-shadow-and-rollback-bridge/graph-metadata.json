@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters",
+    "system-deep-loop/065-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/002-legacy-projections",
+    "system-deep-loop/065-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness",
+    "system-deep-loop/065-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification",
+    "system-deep-loop/065-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/005-rollback-drills",
+    "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters",
+    "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/002-legacy-projections",
+    "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness",
+    "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification",
+    "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/005-rollback-drills"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compatibility shadow and rollback bridge",
+      "deep-loop recommendations phase 008",
+      "shadow parity before authority cutover"
+    ],
+    "key_topics": [
+      "compatibility",
+      "shadow",
+      "rollback",
+      "bridge",
+      "deep-loop",
+      "recommendations",
+      "phase",
+      "parity",
+      "authority",
+      "cutover",
+      "define",
+      "five"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Bridge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "replay",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define the five compatibility, shadow-parity, in-flight-state, and rollback child contracts that make the dark deep-loop substrate provably safe for a later authority cutover without moving authority in this phase.",
+    "created_at": "2026-07-16T03:43:59.162Z",
+    "last_save_at": "2026-07-17T13:21:13.796Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a53972aea2d5550fabfd21720e4a63b540c734a37020f1fc1d5ee4cf58fbb62e",
+    "source_doc_hashes": {
+      "spec.md": "2c815c0084edf3d39cb1baecbeb80981f58776cfb0c7794f5fa0e2e560624336"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

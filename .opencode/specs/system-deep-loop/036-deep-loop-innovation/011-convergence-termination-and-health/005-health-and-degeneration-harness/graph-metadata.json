@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/005-health-and-degeneration-harness",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health/005-health-and-degeneration-harness",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop health degeneration harness",
+      "mode collapse health signals",
+      "generic loop degeneration monitor",
+      "health and degeneration harness implementation plan",
+      "deep-loop health signal implementation",
+      "mode collapse detection plan",
+      "health and degeneration harness tasks",
+      "deep-loop health signal tasks",
+      "mode collapse detector tasks",
+      "health and degeneration harness checklist",
+      "deep-loop health signal checklist",
+      "mode collapse detector verification"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "health",
+      "degeneration",
+      "harness",
+      "mode",
+      "collapse",
+      "signals",
+      "generic",
+      "loop",
+      "monitor",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "research-modes.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Degeneration Harness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "calibration",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "observation",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "authorization",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "settled",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "idempotent",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "concentration",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "distinct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan a generic, mode-agnostic health and degeneration harness that turns mode collapse, repetition, novelty starvation, quality decay, budget thrash, and unusable telemetry into typed signals and bounded pause, re-seed, or stop requests without taking stop authority.",
+    "created_at": "2026-07-16T03:43:53.754Z",
+    "last_save_at": "2026-07-17T13:21:22.109Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:5b367d44308e40ccf8c4d25fdaf2588547e2595f209aba5d44f5bb4c6550faf0",
+    "source_doc_hashes": {
+      "spec.md": "fd4fe2022bbee8cd5281259022fcad3cc16e7265e30dfbd2e6e0df51238ab578",
+      "plan.md": "9adc9917d0525d4b869d50aa7b6f1a5afd6a5b8539faf678689c7935f09ce9d5",
+      "tasks.md": "3413b85adc2b5003a4ec788c02c958ab45f7ed931582313fbd9131b12d759d64",
+      "checklist.md": "0853654dc96e0adcce9d1de560b87d5ef363cfdba5054cd31b268d1abd92cc74"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

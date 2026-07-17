@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill benchmark rollback mode gate",
+      "skill-benchmark authority cutover rollback",
+      "skill benchmark migration gate",
+      "skill benchmark rollback mode gate implementation plan",
+      "skill-benchmark authority cutover implementation plan",
+      "skill benchmark migration gate plan",
+      "skill benchmark rollback mode gate tasks",
+      "skill-benchmark authority cutover tasks",
+      "skill benchmark migration gate tasks",
+      "skill benchmark rollback mode gate checklist",
+      "skill-benchmark authority cutover checklist",
+      "skill benchmark migration gate checklist"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "rollback",
+      "mode",
+      "gate",
+      "skill-benchmark",
+      "authority",
+      "cutover",
+      "migration",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bounded Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enumerated Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-closed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Skill Benchmark mode's rollback switch and independent mode gate for migration to the typed event-ledger substrate. The mode owns skill scenario runs and scoring over the deep-improvement-common backbone, with fail-closed authority-cutover controls, a bounded rollback window, sealed artifacts, and a certificate that permits the mode to exit into phase 014.",
+    "created_at": "2026-07-16T03:43:42.643Z",
+    "last_save_at": "2026-07-17T13:21:44.266Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:bf37340b916b44d01f473cbd7fe9f40454b6d8fc81787dc28404a26504fa0811",
+    "source_doc_hashes": {
+      "spec.md": "0356ce235a87a8731d2d007ab2e038a74cf34a11bb3fe503e638712c92d04c33",
+      "plan.md": "6a919b662a414e6ac8e2c758d23c8e0952eb181575111f15ddc33f15eb3e9d6d",
+      "tasks.md": "561b1ea706adf92a447a124a47ae572b18dfffcbcd59ae2c4f2bb7472d43919e",
+      "checklist.md": "56ce2bdf2e296e203e7241e7efd1b911fee9c40c5cd7688a67786a88e9cb8d25"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

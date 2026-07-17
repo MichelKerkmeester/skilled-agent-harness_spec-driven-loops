@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "in-flight state classification",
+      "deep-loop cutover state disposition",
+      "upcast pin fork migrate block",
+      "in-flight state classification implementation plan",
+      "deep-loop state disposition manifest plan",
+      "in-flight state classification tasks",
+      "deep-loop state disposition tasks",
+      "in-flight state classification checklist",
+      "deep-loop cutover state verification"
+    ],
+    "key_topics": [
+      "in-flight",
+      "state",
+      "classification",
+      "deep-loop",
+      "cutover",
+      "disposition",
+      "upcast",
+      "pin",
+      "fork",
+      "migrate",
+      "block",
+      "implementation"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flight State Classification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "freshness",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "missing-row",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan a total, fail-closed classification of every phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover.",
+    "created_at": "2026-07-16T03:43:49.300Z",
+    "last_save_at": "2026-07-17T13:21:14.985Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:e5981b113b1d4487d363f84ab60119b0918891c62c86192b4ed64f38e92785ab",
+    "source_doc_hashes": {
+      "spec.md": "5f9e708bf4dd4c199d0322dfd5e17a3e7c65426ab00a127afb9b02c797418bea",
+      "plan.md": "0d59003919c34bf2661ec6c68b4e42241f6298e17080d49410bbdea130f35d07",
+      "tasks.md": "7c6621f74c1fbb41a9ebe1b059fc2098d86f11995492ff93e322d308f2c5bf0e",
+      "checklist.md": "92c65b5854a99c21c09574171533c3188ef6a4159136ea48e5783fe82add8708"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

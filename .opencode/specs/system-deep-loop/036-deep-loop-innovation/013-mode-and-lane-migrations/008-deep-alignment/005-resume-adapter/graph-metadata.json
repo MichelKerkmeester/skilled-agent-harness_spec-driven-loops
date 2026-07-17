@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment resume adapter",
+      "deep-alignment sealed-ledger resume",
+      "verify-first alignment recovery",
+      "idempotent conformance re-entry",
+      "deep alignment resume adapter implementation plan",
+      "sealed ledger alignment recovery plan",
+      "deep-alignment idempotent re-entry",
+      "deep alignment resume adapter tasks",
+      "sealed ledger alignment recovery tasks",
+      "deep-alignment replay idempotency tasks",
+      "deep alignment resume adapter checklist",
+      "sealed frontier alignment verification"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "resume",
+      "adapter",
+      "deep-alignment",
+      "sealed-ledger",
+      "verify-first",
+      "recovery",
+      "idempotent",
+      "conformance",
+      "re-entry",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "separate",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Alignment resume adapter for interruption-safe recovery from the sealed typed event ledger. The adapter folds shared reducers, rebuilds the continuity ladder for authority-bound per-lane conformance, and defines idempotent re-entry without double-applying, losing, or replaying events.",
+    "created_at": "2026-07-16T03:43:43.893Z",
+    "last_save_at": "2026-07-17T13:21:46.337Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:0cd61ce959a4b753e92e975b04bd5e83396ef40283008af8333a93d4feb4ec7f",
+    "source_doc_hashes": {
+      "spec.md": "d2d843a975004281fe88d6f828cdcb94de44caa61a9494f1a97c24de7567d3a6",
+      "plan.md": "d1de0ce3e3912fe58331c29277be6945bcf6c4d760f6fc4fecc12d65ea189b4d",
+      "tasks.md": "f8344ebc831247ae119a745b931a5498fdcb8b82d38ff3807bcc2de92f5b0e09",
+      "checklist.md": "97fe8207c1a60117ab29eded67138884f414ae586e706c554380bd663038b473"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities",
+    "system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
+    "system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/003-claim-continuity",
+    "system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics",
+    "system-deep-loop/065-deep-loop-innovation/010-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges",
+    "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/001-semantic-communities",
+    "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
+    "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/003-claim-continuity",
+    "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics",
+    "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "novelty claims continuity projections",
+      "deep-loop intelligence layer phase 010",
+      "semantic communities and claim continuity"
+    ],
+    "key_topics": [
+      "novelty",
+      "claims",
+      "continuity",
+      "projections",
+      "deep-loop",
+      "intelligence",
+      "layer",
+      "phase",
+      "semantic",
+      "communities",
+      "claim",
+      "defines"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "research-modes.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/research-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "prior",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase defines the intelligence layer over the durable deep-loop substrate: concept-level novelty, typed contradiction and supersession, stable claim continuity, next-focus semantics, and deterministic transactional projections and gauges for convergence to consume.",
+    "created_at": "2026-07-16T03:43:59.653Z",
+    "last_save_at": "2026-07-17T13:21:18.183Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d56bf32d05687cbd1ccdb0f8ec19b35f49c02b095ff204db7e2903123303feb9",
+    "source_doc_hashes": {
+      "spec.md": "af36e512373d9bfdbef49c8a1e7962ca0bb893db5ff8c1db25b4e6eba78058f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

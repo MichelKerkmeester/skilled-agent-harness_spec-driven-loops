@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
+  "description": "Plan stable logical branch identities, fenced worker leases, and ordered wave scheduling over the existing capped pool, with canonical ledger records",
+  "keywords": [
+    "plan",
+    "stable",
+    "logical",
+    "branch",
+    "identities",
+    "fenced",
+    "worker",
+    "leases",
+    "ordered",
+    "wave",
+    "scheduling",
+    "existing",
+    "capped",
+    "pool",
+    "canonical",
+    "ledger",
+    "records"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.440Z",
+  "specId": "003",
+  "folderSlug": "logical-branch-ids-leases-waves",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "009-fanout-fanin-durable-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

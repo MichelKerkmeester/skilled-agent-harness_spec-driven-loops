@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cutover certificate rollback window",
+      "deep-loop authority flip certificate",
+      "per-mode rollback window enforcement",
+      "cutover certificate implementation plan",
+      "rollback window monitoring plan",
+      "deep-loop certificate verification",
+      "cutover certificate rollback tasks",
+      "rollback window enforcement tasks",
+      "deep-loop authority evidence tasks",
+      "cutover certificate rollback checklist",
+      "rollback window verification",
+      "authority cutover evidence checklist"
+    ],
+    "key_topics": [
+      "cutover",
+      "certificate",
+      "rollback",
+      "window",
+      "deep-loop",
+      "authority",
+      "flip",
+      "per-mode",
+      "enforcement",
+      "implementation",
+      "plan",
+      "monitoring"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover/spec.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cutover Certificate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Window",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "five",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "missing",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "traceable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the signed evidence bundle that authorizes a per-mode authority flip and the monitored rollback window that keeps the flip reversible until clean closure. The certificate is a ledger event binding parity, rollback, migration, and policy evidence.",
+    "created_at": "2026-07-16T03:43:57.641Z",
+    "last_save_at": "2026-07-17T13:21:47.960Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:b14976b7f94e2c0f05eeeac76aeaee4812e0ca4b60439626e33be7d713fe4fa2",
+    "source_doc_hashes": {
+      "spec.md": "06651e3949350e66333f3061fd0f82fc423ae893650f039b6fe4351a20790eda",
+      "plan.md": "42a592fc7c9078919c2cb6ddce9326c7095f125d01839a9d997e5c74fee2492d",
+      "tasks.md": "f5acab05fca97d6c37e6579fc28e3c5c3137abe53a8352f7f09b36e7b9cc3e78",
+      "checklist.md": "7914e6f61e37c1ad6e86aa3d1dafc578289e397bc1678c20cadd7069f5ae7dc9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

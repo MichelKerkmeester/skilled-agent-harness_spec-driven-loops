@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/004-certificates-and-receipts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/004-certificates-and-receipts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep ai council certificates and receipts",
+      "deep-ai-council run certificate",
+      "deep-ai-council transition receipts",
+      "offline council certificate verification",
+      "deep ai council certificates and receipts implementation plan",
+      "deep-ai-council transition receipt plan",
+      "deep-ai-council offline verifier plan",
+      "deep ai council certificates and receipts tasks",
+      "deep-ai-council transition receipt tasks",
+      "deep-ai-council offline verifier tasks",
+      "deep ai council certificates and receipts checklist",
+      "deep-ai-council offline verifier checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "council",
+      "certificates",
+      "receipts",
+      "deep-ai-council",
+      "run",
+      "certificate",
+      "transition",
+      "offline",
+      "verification",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Deep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Register Deep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep AI Council per-run certificate and per-transition receipt profiles over the typed event-ledger substrate: attestation boundaries, replay-fingerprint inputs, lifecycle coverage, recovery dispositions, and independent offline verification for seats, critique rounds, convergence, council artifacts, and the council test gate.",
+    "created_at": "2026-07-16T03:43:34.752Z",
+    "last_save_at": "2026-07-17T13:21:31.663Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:f69111cc866ed0da0312f455b8dc1a4657888b11ebc6515a8cc0e6adcb33b639",
+    "source_doc_hashes": {
+      "spec.md": "5154494bb01be0e7101d47da11ba570b809e8893549df83dc2793a03d006ee37",
+      "plan.md": "f699e61ce3ac0cec1a397592e205cd86b7d90b349b6caeaad4d78921f629254b",
+      "tasks.md": "1f4798eca1933c70d753453de922cb1752784b3036c68c3b9085cc8c8e60d9d0",
+      "checklist.md": "9a8b88889a010872a1a2264001ed99cd128609d0b150cdf586d443d9ad8a4ab9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

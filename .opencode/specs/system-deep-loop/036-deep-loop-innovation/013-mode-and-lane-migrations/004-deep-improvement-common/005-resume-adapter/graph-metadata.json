@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement resume adapter",
+      "deep improvement common services resume",
+      "sealed ledger resume",
+      "idempotent deep improvement re-entry",
+      "deep improvement resume adapter implementation plan",
+      "sealed ledger resume implementation plan",
+      "deep improvement common services re-entry",
+      "deep improvement resume adapter tasks",
+      "sealed ledger resume tasks",
+      "deep improvement common services tasks",
+      "deep improvement resume adapter checklist",
+      "sealed ledger resume verification"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "resume",
+      "adapter",
+      "common",
+      "services",
+      "sealed",
+      "ledger",
+      "idempotent",
+      "re-entry",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "seal",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define the Deep Improvement Common Services resume adapter over the sealed typed event ledger: deterministic reducer reconstruction, continuity-ladder mapping, idempotent re-entry, and the shared evaluator, canary, and guarded-promotion service contracts reused by the three benchmark variants.",
+    "created_at": "2026-07-16T03:43:36.808Z",
+    "last_save_at": "2026-07-17T13:21:35.012Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:46f263473e7b1473e108dd8de3927423db8d5acfe06bfe6f03d607f14fba915e",
+    "source_doc_hashes": {
+      "spec.md": "db587720dd6fff7594c5c6f1e26776ce5b2dfd17b12f506881dc10ff5f162a7f",
+      "plan.md": "4f2642f7cfa686c57a4ada61c30656f17b172962e7423d2c57becc5cae6f5673",
+      "tasks.md": "de814324f66bed0b23f4630017bad8103cd71679e0117d435bc196be00b54fcd",
+      "checklist.md": "5861dc218eedb98877e4012d708a7a2b0d5d26c5e07e3484d77e74892eec5bd4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

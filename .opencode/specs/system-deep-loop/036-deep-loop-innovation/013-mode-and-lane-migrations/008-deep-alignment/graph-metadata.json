@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity",
+    "system-deep-loop/065-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity",
+    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Alignment migration",
+      "deep-alignment typed event ledger",
+      "Deep Alignment mode gate"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "migration",
+      "deep-alignment",
+      "typed",
+      "event",
+      "ledger",
+      "mode",
+      "gate",
+      "migrate",
+      "verify-first",
+      "named-authority"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migrate Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate Deep Alignment's verify-first, named-authority conformance loop to the shared typed event-ledger substrate through seven independently gated concern children. Preserve authority and evidence provenance, replayable findings, explicit non-pass outcomes, and the rollback-guarded mode handoff.",
+    "created_at": "2026-07-16T03:43:56.850Z",
+    "last_save_at": "2026-07-17T13:21:44.551Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:fce6b330fd722afc767a8287423896042b2cd861ab59821777a939d7b6296351",
+    "source_doc_hashes": {
+      "spec.md": "ad5a99fe4cceac6a22ff83dc5a620859202085720bcaa74a6c0cf5d6af540d38"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

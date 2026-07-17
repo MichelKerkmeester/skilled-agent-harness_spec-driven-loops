@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conditional budget-aware fan-in",
+      "dynamic fan-in sufficiency",
+      "fan-in budget floor",
+      "conditional budget-aware fan-in implementation plan",
+      "dynamic fan-in implementation plan",
+      "conditional budget-aware fan-in tasks",
+      "dynamic fan-in tasks",
+      "conditional budget-aware fan-in checklist",
+      "dynamic fan-in verifier"
+    ],
+    "key_topics": [
+      "conditional",
+      "budget-aware",
+      "fan-in",
+      "dynamic",
+      "sufficiency",
+      "budget",
+      "floor",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "verifier"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conditional Budget",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Aware Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "minimum",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "replay",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "immutable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan replay-stable conditional fan-in that awaits only enough durable results, stops on typed-budget floors or evidence sufficiency, disposes outstanding leaves safely, and records the exact reducer input decision.",
+    "created_at": "2026-07-16T03:43:50.574Z",
+    "last_save_at": "2026-07-17T13:21:17.163Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:816dc40eb914df610efcc1c7d229ad137c3c928487c99e05afc75cd5f7501280",
+    "source_doc_hashes": {
+      "spec.md": "f245930901e3cd17be683f82d559c749848dcaff47b5f8897329352620037576",
+      "plan.md": "ba4030f168d2e301404f350442e0ed80a633d029f0ae1e8a1430baee9d6f3b02",
+      "tasks.md": "c79ec31167a5d1906eff3e2298e568df5a329718c43178e0dc6acd81feb6ccb8",
+      "checklist.md": "18d034243316e202df30fbe8e8a6f4d8cf0d2d1315b9aafd8bb4e15f8e90ab68"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

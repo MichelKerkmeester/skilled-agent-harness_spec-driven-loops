@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation",
+  "description": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
+  "keywords": [
+    "packet",
+    "established",
+    "across",
+    "research",
+    "iterations",
+    "shipped",
+    "system-deep-loop",
+    "runtime",
+    "solves",
+    "hard"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.588Z",
+  "specId": "036",
+  "folderSlug": "deep-loop-innovation",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

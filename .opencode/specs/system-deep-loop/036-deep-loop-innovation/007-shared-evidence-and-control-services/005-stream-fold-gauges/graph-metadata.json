@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/005-stream-fold-gauges",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/005-stream-fold-gauges",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stream-fold gauges",
+      "deterministic ledger gauge reducers",
+      "replayable deep-loop observability",
+      "stream-fold gauges implementation plan",
+      "deterministic gauge reducer plan",
+      "stream-fold gauges tasks",
+      "deterministic gauge reducer tasks",
+      "stream-fold gauges checklist",
+      "deterministic gauge replay checklist"
+    ],
+    "key_topics": [
+      "stream-fold",
+      "gauges",
+      "deterministic",
+      "ledger",
+      "gauge",
+      "reducers",
+      "replayable",
+      "deep-loop",
+      "observability",
+      "implementation",
+      "plan",
+      "reducer"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fold Gauges",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "reproducible",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "accepted",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "validated",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "ledger",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan versioned observability gauges as deterministic folds over the transition-authorized ledger, with reproducible progress, novelty, cost, and health values; disposable incremental checkpoints; and byte-identical full-replay verification.",
+    "created_at": "2026-07-16T03:43:47.442Z",
+    "last_save_at": "2026-07-17T13:21:12.708Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:1146e6b825bb35133641873b9c1bcc2da9a1569acbd3258d10d937a9b6739390",
+    "source_doc_hashes": {
+      "spec.md": "ca18033416c50e047c61310192c457bf7fc32df6ca92c9809d3348c9347f8f3d",
+      "plan.md": "ba9e2b642d870c4efcaec6754284fd3d075667f5780a093c154a65cf69bf9eb1",
+      "tasks.md": "41e59bce3e2974dcdbfb49099db567c6a8bc05e91a9d824d404a0d43e0b91bfb",
+      "checklist.md": "8fa8d967c3250afdc8a1d24ae7209514a915d374571e8e024bee91082cf2819a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

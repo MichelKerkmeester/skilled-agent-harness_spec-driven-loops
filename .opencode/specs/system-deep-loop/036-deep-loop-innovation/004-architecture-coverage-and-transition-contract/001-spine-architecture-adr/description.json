@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
+  "description": "Ratify the single six-primitive cross-mode architecture spine that governs the later 006 implementation phases.",
+  "keywords": [
+    "ratify",
+    "single",
+    "six-primitive",
+    "cross-mode",
+    "architecture",
+    "spine",
+    "governs",
+    "later",
+    "implementation",
+    "phases"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.409Z",
+  "specId": "001",
+  "folderSlug": "spine-architecture-adr",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "004-architecture-coverage-and-transition-contract"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

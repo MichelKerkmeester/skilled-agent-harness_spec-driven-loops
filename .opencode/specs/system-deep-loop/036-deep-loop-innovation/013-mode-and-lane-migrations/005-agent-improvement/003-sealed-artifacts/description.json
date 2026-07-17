@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/003-sealed-artifacts",
+  "description": "Plan the sealed reference artifacts for the agent-improvement variant: immutable AgentIR and change inputs, frozen improver and evaluator references,",
+  "keywords": [
+    "plan",
+    "sealed",
+    "reference",
+    "artifacts",
+    "agent-improvement",
+    "variant",
+    "immutable",
+    "agentir",
+    "change",
+    "inputs",
+    "frozen",
+    "improver",
+    "evaluator",
+    "references"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.527Z",
+  "specId": "003",
+  "folderSlug": "sealed-artifacts",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "013-mode-and-lane-migrations",
+    "005-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

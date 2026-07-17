@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/002-sealed-reference-artifacts",
+  "description": "Plan immutable, content-addressed reference artifacts whose bytes are sealed, verified on every read, retained by explicit lifecycle policy, and",
+  "keywords": [
+    "plan",
+    "immutable",
+    "content-addressed",
+    "reference",
+    "artifacts",
+    "whose",
+    "bytes",
+    "sealed",
+    "verified",
+    "every",
+    "read",
+    "retained",
+    "explicit",
+    "lifecycle",
+    "policy"
+  ],
+  "lastUpdated": "2026-07-17T13:19:56.421Z",
+  "specId": "002",
+  "folderSlug": "sealed-reference-artifacts",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-shared-evidence-and-control-services"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

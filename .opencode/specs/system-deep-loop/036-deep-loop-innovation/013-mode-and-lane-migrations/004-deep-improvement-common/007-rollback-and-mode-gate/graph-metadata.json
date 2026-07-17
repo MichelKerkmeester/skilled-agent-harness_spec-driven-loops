@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement common rollback and mode gate",
+      "deep improvement authority rollback switch",
+      "shared evaluator canary promotion migration gate",
+      "deep improvement phase 014 readiness certificate",
+      "deep improvement common rollback and mode gate implementation plan",
+      "shared evaluator promotion authority switch plan",
+      "deep improvement migration certificate plan",
+      "deep improvement common rollback and mode gate tasks",
+      "shared evaluator rollback switch tasks",
+      "deep improvement migration gate tasks",
+      "deep improvement common rollback and mode gate checklist",
+      "shared evaluator migration gate verification"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "common",
+      "rollback",
+      "mode",
+      "gate",
+      "authority",
+      "switch",
+      "shared",
+      "evaluator",
+      "canary",
+      "promotion"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Definition",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Integration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "window ID",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "private",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. The gate consumes shadow parity, sealed artifacts, certificates, receipts, replay, and resume evidence, then emits a mode-bound readiness certificate for the phase-014 handoff without moving authority.",
+    "created_at": "2026-07-16T03:43:37.283Z",
+    "last_save_at": "2026-07-17T13:21:35.648Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:07186c05724b2512770e379b3f0d947d69be0af72c81c5318daa2600b7aefbab",
+    "source_doc_hashes": {
+      "spec.md": "7e96ffd5ed449ffaaba0d3c053f8e766955b722a19b044f0f90b204d949ec507",
+      "plan.md": "93269005d39221d2757b75a6b5557899d54a9183d3a40ddd59558ab75d08d555",
+      "tasks.md": "0fe782f949ac20807b4049baddc31f3f498f04e7a93281b3301669207ea83b34",
+      "checklist.md": "be75af2b40df275852db1ec25c4cd991a3dbfae0d96b64a63a82062b4eb37a34"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

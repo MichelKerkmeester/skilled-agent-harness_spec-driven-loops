@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep AI Council resume adapter",
+      "council ledger resume",
+      "idempotent council re-entry",
+      "Deep AI Council resume adapter implementation plan",
+      "council reducer replay plan",
+      "ledger-backed council recovery",
+      "Deep AI Council resume adapter tasks",
+      "council reducer replay tasks",
+      "idempotent council recovery tasks",
+      "Deep AI Council resume adapter checklist",
+      "council replay verification checklist",
+      "sealed ledger council recovery checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "council",
+      "resume",
+      "adapter",
+      "ledger",
+      "idempotent",
+      "re-entry",
+      "implementation",
+      "plan",
+      "reducer",
+      "replay",
+      "ledger-backed"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "reducer-derived",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable IDs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "frozen",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary The",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep AI Council resume adapter for the typed event-ledger migration. The adapter reconstructs interrupted multi-seat deliberations from the sealed ledger through deterministic reducers, maps the continuity ladder to derived runtime state, and makes re-entry idempotent without double-applying, losing, or replaying events.",
+    "created_at": "2026-07-16T03:43:34.996Z",
+    "last_save_at": "2026-07-17T13:21:32.043Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:7b18f10f976d6c1ed9b12402bb44665d4aef625416b4d9b3d770fcd9be6f1b0e",
+    "source_doc_hashes": {
+      "spec.md": "f30e301c9adcf23026a9f3f511b8de551c3a36b914a01c384a60a9bb0f3dae6d",
+      "plan.md": "41e3946d5e5d49f56dbcd4442f2101766b7e770b2cf6c6d1dc4a524e67050545",
+      "tasks.md": "f0ae2eeffeadc6b918ca36e2875056bf50d767c7d83a90f658770aabcc15bb5b",
+      "checklist.md": "d50eaeef49b01f33bdeaa36e923eac9bc3f1b12ebdae92f018c879f50bce88b3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

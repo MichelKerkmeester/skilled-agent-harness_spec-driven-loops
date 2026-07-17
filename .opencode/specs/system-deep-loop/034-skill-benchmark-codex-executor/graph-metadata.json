@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/034-skill-benchmark-codex-executor",
+  "spec_folder": "system-deep-loop/034-skill-benchmark-codex-executor",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-benchmark codex transport",
+      "codex executor adapter",
+      "runtime codex dispatch helper",
+      "benchmark luna via codex",
+      "cli-codex single adapter benchmark",
+      "codex transport plan",
+      "runtime codex dispatch plan",
+      "skill-benchmark codex executor plan",
+      "codex transport tasks",
+      "codex executor tasks",
+      "runtime codex dispatch tasks",
+      "codex transport checklist"
+    ],
+    "key_topics": [
+      "skill-benchmark",
+      "codex",
+      "transport",
+      "executor",
+      "adapter",
+      "runtime",
+      "dispatch",
+      "helper",
+      "benchmark",
+      "luna",
+      "via",
+      "cli-codex"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "codex-dispatch.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "codex-executor.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-dispatch.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "live-executor.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Tier",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane C skill-benchmark live path (Mode B) dispatches its model \"test subject\" exclusively through cli-opencode; the `--executor` flag is threaded all the way to `runLiveScenario` but ignored there, so cli-codex is unwired",
+    "created_at": "2026-07-15T14:32:09Z",
+    "last_save_at": "2026-07-17T13:33:36.147Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8bda47a85bc0b1bfacf6cc737262bfd7ed56c2893afb48e162de17d39a2fe42f",
+    "source_doc_hashes": {
+      "spec.md": "438976d0cb2d51f6558a7513b6ae7007947ebe99f7d806cdaad07f8a2cfaa2e3",
+      "plan.md": "8eeafd3d1758258f97e451b2f0c0a81c9d675d8ee7b48897e0f7f8eb060e3574",
+      "tasks.md": "f5c78482b653c2284f2673aa23e4e6cb061e34bb7c921b358cd321da2e009417",
+      "checklist.md": "2438f214560b15b25215ef0752812189f5dd1296bf29f08f00c884f3d775cc5e",
+      "implementation-summary.md": "65818f94b5e61ce11f2d109941fb44e46a9bfb34f3c65836f074689eb653720b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
