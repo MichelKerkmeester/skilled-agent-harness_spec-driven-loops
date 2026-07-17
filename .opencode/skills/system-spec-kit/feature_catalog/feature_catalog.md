@@ -4455,6 +4455,26 @@ See [`tooling_and_scripts/dist_freshness_enforcement.md`](tooling_and_scripts/di
 
 ---
 
+### Canonical-first spec-root resolution
+
+#### Description
+
+Unqualified spec-packet names now resolve under `.opencode/specs` first, while explicit paths remain authoritative and unique legacy-only packets remain readable through a compatibility fallback. Divergent copies under both physical roots block writes instead of silently selecting a winner.
+
+#### How It Works
+
+`resolveSpecFolderCanonical()` implements canonical-first selection and explicit-path preservation. A five-state collision classifier distinguishes canonical-only, legacy-only, same-inode aliases, byte-identical duplicates, and divergent duplicates; the write guard honors the global writer freeze and rejects divergence. Verified quarantine migration, hashed manifests, fallback telemetry, and R1-R10 fixtures support the rollout.
+
+The capability is present on this implementation branch. Real-data migration and compatibility-alias retirement are still deployment-gated by the data-before-writers runbook, a 28-day zero-hit compatibility window, and complete no-alias proof; this catalog entry does not claim those production steps have run.
+
+#### Source Files
+
+See [`tooling_and_scripts/canonical_first_spec_root_resolution.md`](tooling_and_scripts/canonical_first_spec_root_resolution.md) for full implementation, test, and rollout evidence.
+
+> **Playbook:** [456](../manual_testing_playbook/tooling_and_scripts/canonical_first_spec_root_resolution.md)
+
+---
+
 ## 18. GOVERNANCE
 
 ### Feature flag governance
