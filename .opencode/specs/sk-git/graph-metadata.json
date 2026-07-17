@@ -12,7 +12,8 @@
     "sk-git/012-readme-enrichment-and-hyphen-naming",
     "sk-git/013-git-review-remediation",
     "sk-git/014-gitkraken-mcp-integration",
-    "sk-git/z_archive"
+    "sk-git/z_archive",
+    "sk-git/015-remote-branch-policy"
   ],
   "manual": {
     "depends_on": [],
@@ -34,13 +35,13 @@
     "entities": [],
     "causal_summary": "Track metadata for the sk-git skill packets.",
     "created_at": "2026-07-14T21:34:01.000Z",
-    "last_save_at": "2026-07-14T21:34:01.000Z",
+    "last_save_at": "2026-07-17T16:27:43.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "sk-git/014-gitkraken-mcp-integration",
-    "last_active_at": "2026-07-14T21:34:01.000Z"
+    "last_active_child_id": "sk-git/015-remote-branch-policy",
+    "last_active_at": "2026-07-17T16:27:43.165Z"
   }
 }
