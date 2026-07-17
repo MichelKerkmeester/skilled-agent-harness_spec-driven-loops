@@ -8,7 +8,7 @@ expected_resources:
   - references/mcp-wiring.md
   - references/session-management.md
   - assets/utcp-aside-manual.md
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 # AD-R03: MCP routing
 ## SCENARIO CONTRACT

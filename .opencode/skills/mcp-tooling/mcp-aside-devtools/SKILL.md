@@ -2,7 +2,7 @@
 name: mcp-aside-devtools
 description: "Aside AI-browser orchestrator: routes between the aside CLI (agent tasks + deterministic REPL) and Aside MCP via Code Mode."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.3.1.0
+version: 1.0.0.0
 ---
 
 <!-- Keywords: aside, ai-browser, browser-agent, aside-cli, aside-repl, aside-mcp, playwright-repl, browser-automation, mcp-code-mode, orchestrator -->

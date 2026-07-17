@@ -8,7 +8,7 @@ trigger_phrases:
   - "mobbin registered manual"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Mobbin Code Mode Manual - registered reference shape
@@ -77,7 +77,7 @@ Registration landed 2026-07-16. Items an agent can verify from the repo are mark
 - [x] Check the live schema for the open items: RESOLVED 2026-07-16 — `deep` IS a client-settable input (`mode?: "deep" | "standard" | "fast"` on `search_screens`), and the schema exposes `exclude_screen_ids` and `image_format` beyond `query`/`platform`/`limit`. [evidence: `../references/discovery-fixture-2026-07-16.json` `tool_info_first` schema]
 - [ ] Run one `limit: 1` smoke search and verify inline images actually arrive through `call_tool_chain` (their fidelity through Code Mode is UNKNOWN until observed). [SKIP-valid: `call_tool_chain` with the confirmed callable, `{ query: "onboarding", platform: "ios", limit: 1 }`, then check for the inline image block]
 - [x] Confirm no credential of any kind was added anywhere (`env` still empty; no `.env` line). [evidence: registered entry carries `"env": {}`; `.env` contains no `mobbin`/`MOBBIN_API_KEY` entry — grep clean, 2026-07-16]
-- [x] Update this packet's references with the registered and discovered-state truth; future drift means a fresh dated fixture and reviewed packet update, not an improvised call. [evidence: `../references/discovery-fixture-2026-07-16.json`; reality-drift reconciliation recorded in `../changelog/v1.3.1.0.md`]
+- [x] Update this packet's references with the registered and discovered-state truth; future drift means a fresh dated fixture and reviewed packet update, not an improvised call. [evidence: `../references/discovery-fixture-2026-07-16.json`; reality reconciliation recorded in `../changelog/v1.0.0.0.md`]
 
 ---
 

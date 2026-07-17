@@ -1,7 +1,7 @@
 ---
 title: "FUNNEL-001 -- Full Styles -> Screens -> Flows Funnel Walk"
 description: "This scenario validates the complete official research funnel for `FUNNEL-001`: styles for visual direction, screens for the concrete pattern, flows for the journey, with metadata-first ordering held at every layer and each layer's ID typing respected."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # FUNNEL-001 -- Full Styles -> Screens -> Flows Funnel Walk

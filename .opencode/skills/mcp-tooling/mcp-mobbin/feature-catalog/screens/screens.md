@@ -6,7 +6,7 @@ trigger_phrases:
   - "mobbin screen examples"
   - "mobbin search screens"
   - "mobbin ui patterns"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Screens (search_screens, the documented tool)

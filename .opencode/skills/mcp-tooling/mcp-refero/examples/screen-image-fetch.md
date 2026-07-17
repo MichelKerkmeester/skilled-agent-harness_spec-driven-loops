@@ -5,7 +5,7 @@ trigger_phrases:
   - "refero screen image example"
   - "refero screenshot fetch"
   - "refero image walkthrough"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Example: Screen Image Fetch (Image Last)

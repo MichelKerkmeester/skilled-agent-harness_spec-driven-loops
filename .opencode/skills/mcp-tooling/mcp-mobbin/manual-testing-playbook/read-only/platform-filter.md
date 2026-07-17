@@ -1,7 +1,7 @@
 ---
 title: "PLATFORM-001 -- Platform Filter Discipline (ios vs web)"
 description: "This scenario validates platform-filter behavior for `PLATFORM-001`. It focuses on the platform enum being exactly ios or web, inferred from app context or asked when unclear, never guessed silently and never invented beyond the documented enum, with cross-platform comparison run as one call per platform value."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # PLATFORM-001 -- Platform Filter Discipline (ios vs web)

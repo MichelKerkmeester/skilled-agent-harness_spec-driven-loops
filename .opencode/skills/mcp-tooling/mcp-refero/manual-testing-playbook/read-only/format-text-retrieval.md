@@ -1,7 +1,7 @@
 ---
 title: "FORMAT-001 -- response_format-Aware Text Retrieval"
 description: "This scenario validates response_format discipline for `FORMAT-001`: per-tool availability confirmed via tool_info instead of assumed, JSON vs markdown shapes handled correctly, unknown fields preserved, and the argument never passed to the image tool."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # FORMAT-001 -- response_format-Aware Text Retrieval

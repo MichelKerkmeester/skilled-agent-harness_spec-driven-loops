@@ -1,7 +1,7 @@
 ---
 title: "RATELIMIT-001 -- 429 Retry-After And Backoff Observation"
 description: "This scenario validates rate-limit handling for `RATELIMIT-001`. It focuses on the documented 60 requests per 60 seconds per user contract: on HTTP 429 the agent honors Retry-After, then applies exponential backoff with jitter, and never invents finer burst or concurrency contracts. SKIP-valid: a 429 cannot be forced deliberately."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # RATELIMIT-001 -- 429 Retry-After And Backoff Observation

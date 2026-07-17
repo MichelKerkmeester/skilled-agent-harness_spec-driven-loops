@@ -5,7 +5,7 @@ trigger_phrases:
   - "refero funnel example"
   - "styles screens flows walkthrough"
   - "refero research funnel"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Example: The Styles -> Screens -> Flows Funnel

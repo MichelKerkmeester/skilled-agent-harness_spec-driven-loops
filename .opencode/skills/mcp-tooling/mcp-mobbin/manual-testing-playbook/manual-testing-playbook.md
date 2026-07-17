@@ -1,7 +1,7 @@
 ---
 title: "mcp-mobbin: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-mobbin skill. Covers registered-state wiring reporting, discovery-first callable confirmation, the read-only single-tool research contract, platform-filter discipline, rate-limit and paid-gate handling, the config-mutation refusal gate, and the mandatory sk-design pairing."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # mcp-mobbin: Manual Testing Playbook

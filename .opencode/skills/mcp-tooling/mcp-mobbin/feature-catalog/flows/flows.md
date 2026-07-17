@@ -6,7 +6,7 @@ trigger_phrases:
   - "mobbin ux flow"
   - "mobbin user journey"
   - "mobbin flow references"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Flows (flow-intent queries over search_screens)

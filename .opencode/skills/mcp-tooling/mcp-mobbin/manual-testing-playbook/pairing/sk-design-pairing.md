@@ -1,7 +1,7 @@
 ---
 title: "PAIR-001 -- sk-design Pairing Enforced"
 description: "This scenario validates the judgment boundary for `PAIR-001`. It focuses on a design-affecting request loading sk-design first, the transport supplying only cited evidence, and no taste, accessibility, or readiness verdict being issued from transport output."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # PAIR-001 -- sk-design Pairing Enforced

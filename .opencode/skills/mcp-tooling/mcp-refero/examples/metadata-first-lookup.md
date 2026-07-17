@@ -5,7 +5,7 @@ trigger_phrases:
   - "refero metadata first example"
   - "refero single tool lookup"
   - "refero empty state lookup"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Example: Single-Tool Metadata-First Lookup

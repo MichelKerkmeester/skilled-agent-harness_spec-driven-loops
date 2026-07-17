@@ -6,7 +6,7 @@ trigger_phrases:
   - "refero search styles"
   - "refero get style"
   - "visual direction reference"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Styles (refero_search_styles / refero_get_style)

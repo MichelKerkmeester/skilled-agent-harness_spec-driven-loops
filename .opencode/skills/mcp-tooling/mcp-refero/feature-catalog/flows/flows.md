@@ -6,7 +6,7 @@ trigger_phrases:
   - "refero search flows"
   - "refero get flow"
   - "user flow reference"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Flows (refero_search_flows / refero_get_flow)

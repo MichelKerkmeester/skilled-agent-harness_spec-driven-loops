@@ -6,7 +6,7 @@ trigger_phrases:
   - "refero doctor"
   - "refero scripts"
   - "refero diagnostics"
-version: 1.2.0.0
+version: 1.0.0.0
 ---
 
 # mcp-refero scripts

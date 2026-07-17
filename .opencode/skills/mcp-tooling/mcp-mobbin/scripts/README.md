@@ -6,7 +6,7 @@ trigger_phrases:
   - "mobbin doctor"
   - "mobbin scripts"
   - "mobbin diagnostics"
-version: 1.2.0.0
+version: 1.0.0.0
 ---
 
 # mcp-mobbin scripts

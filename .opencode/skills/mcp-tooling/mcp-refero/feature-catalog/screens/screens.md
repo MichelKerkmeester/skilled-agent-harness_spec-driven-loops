@@ -6,7 +6,7 @@ trigger_phrases:
   - "refero search screens"
   - "refero similar screens"
   - "refero screen image"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Screens (refero_search_screens / refero_get_screen / refero_get_similar_screens / refero_get_screen_image)

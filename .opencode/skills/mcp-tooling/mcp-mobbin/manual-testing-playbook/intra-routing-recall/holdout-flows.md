@@ -9,7 +9,7 @@ expected_resources:
 blindToRouterKeywords: true
 blindExceptions:
   - "start to finish"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 # MB-H02: Blind holdout: recovery path evidence
 ## SCENARIO CONTRACT

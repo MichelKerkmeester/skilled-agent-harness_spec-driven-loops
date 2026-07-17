@@ -1,7 +1,7 @@
 ---
 title: "Example: Element-Intent Query Compared Across Apps"
 description: "A worked mcp-mobbin element-research walkthrough: tool_info re-confirmation of the discovery-confirmed callable, a component-plus-context query at limit 5, behavior analyzed within returned screens and compared across app_name values, with the no-invented-tools boundary held."
-version: 1.1.1.0
+version: 1.0.0.0
 ---
 
 # Example: Element-Intent Query Compared Across Apps

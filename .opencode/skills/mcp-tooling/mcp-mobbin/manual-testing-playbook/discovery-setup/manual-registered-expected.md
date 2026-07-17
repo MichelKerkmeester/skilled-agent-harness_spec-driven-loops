@@ -1,7 +1,7 @@
 ---
 title: "MANUAL-001 -- Wiring State Reported Honestly (Presence Expected)"
 description: "This scenario validates wiring-state reporting for `MANUAL-001`. It focuses on confirming the mobbin manual's state in .utcp_config.json is reported strictly read-only, with presence verified as the healthy registered state, absence escalated as a failure symptom, and the plan/auth gates surfaced, nothing edited."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # MANUAL-001 -- Wiring State Reported Honestly (Presence Expected)

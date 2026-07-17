@@ -1,7 +1,7 @@
 ---
 title: "MCP Aside Devtools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-aside-devtools skill."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # MCP Aside Devtools: Manual Testing Playbook

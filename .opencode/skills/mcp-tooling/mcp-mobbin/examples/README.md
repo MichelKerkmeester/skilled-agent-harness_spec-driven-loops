@@ -1,7 +1,7 @@
 ---
 title: "mcp-mobbin Examples"
 description: "Worked Code Mode walkthroughs for the mcp-mobbin transport: a limit-1 smoke search, a platform-filtered flow-pattern research pass, and an element-intent query, each opening with the mandatory tool_info confirmation of the discovery-confirmed callables (2026-07-16 fixture) and keeping the OAuth steps SKIP-valid with exact commands."
-version: 1.1.1.0
+version: 1.0.0.0
 ---
 
 # mcp-mobbin Examples

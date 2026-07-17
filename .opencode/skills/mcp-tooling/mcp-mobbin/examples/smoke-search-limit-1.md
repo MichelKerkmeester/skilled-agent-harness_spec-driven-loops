@@ -1,7 +1,7 @@
 ---
 title: "Example: limit-1 Smoke Search"
 description: "The smallest useful mcp-mobbin walkthrough: re-confirm the discovery-confirmed callable with tool_info, run one screen search at limit 1, and verify the response shape against the fixture-declared schema without widening anything."
-version: 1.1.1.0
+version: 1.0.0.0
 ---
 
 # Example: limit-1 Smoke Search

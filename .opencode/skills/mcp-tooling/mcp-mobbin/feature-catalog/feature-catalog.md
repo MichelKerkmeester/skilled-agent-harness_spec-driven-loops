@@ -6,7 +6,7 @@ trigger_phrases:
   - "mobbin feature catalog"
   - "mobbin capabilities"
 last_updated: "2026-07-16"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # mcp-mobbin: Feature Catalog

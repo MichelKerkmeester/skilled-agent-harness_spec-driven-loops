@@ -1,7 +1,7 @@
 ---
 title: "DISCOVER-001 -- Discovery-First Callable Confirmation"
 description: "This scenario validates discovery discipline for `DISCOVER-001`. It focuses on confirming the Inferred mobbin.mobbin_search_screens prediction is never called unconfirmed: live tool_info precedes any call, drift fails closed, and a stale-session or pre-OAuth state SKIPs the live half cleanly."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # DISCOVER-001 -- Discovery-First Callable Confirmation

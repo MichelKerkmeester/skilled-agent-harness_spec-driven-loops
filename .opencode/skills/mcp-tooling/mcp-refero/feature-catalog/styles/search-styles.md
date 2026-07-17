@@ -5,7 +5,7 @@ trigger_phrases:
   - "refero search styles tool"
   - "search styles refero"
   - "style search refero"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # refero_search_styles

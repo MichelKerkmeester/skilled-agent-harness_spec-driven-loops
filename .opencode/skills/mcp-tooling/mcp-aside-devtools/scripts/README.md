@@ -6,7 +6,7 @@ trigger_phrases:
   - "aside doctor"
   - "aside scripts"
   - "aside diagnostics"
-version: 1.2.0.0
+version: 1.0.0.0
 ---
 
 # mcp-aside-devtools scripts

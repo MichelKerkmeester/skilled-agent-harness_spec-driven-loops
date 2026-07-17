@@ -6,7 +6,7 @@ trigger_phrases:
   - "mobbin component examples"
   - "mobbin element research"
   - "mobbin ui elements"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Elements (element-intent queries over search_screens)

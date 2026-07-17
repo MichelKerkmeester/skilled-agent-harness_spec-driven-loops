@@ -66,12 +66,12 @@ If this snapshot and the live `.utcp_config.json` ever disagree, **the live conf
 
 Registration is done; these confirmation steps remain:
 
-- [x] `jq empty .utcp_config.json` — syntax gate — and the jq select above returns the snapshot object. [evidence: probe ran with `UTCP_CONFIG_FILE=.utcp_config.json`, `../references/discovery-fixture-2026-07-16.json` `utcpConfig` field]
-- [x] Run discovery in a session that loaded the registered manual. DONE 2026-07-16 via direct stdio MCP probe of CodeMode-MCP (`initialize`, `tools/call`: `list_tools`, `search_tools`, `tool_info`). Actual registry name: `aside.aside.repl`; TS callable `aside.aside_repl(args)`. [evidence: `../references/discovery-fixture-2026-07-16.json` `discoveredCallableNames` + `tool_info_first`]
-- [x] Confirm the live tool set against the version-pinned baseline (one `repl` tool on `1.26.626.1517`) — re-confirmed live 2026-07-16: `aside.aside.repl` is the only `aside.*` entry in `list_tools`. Still runtime evidence (`tools.listChanged: true`), never a permanent contract. [evidence: fixture `list_tools` payload]
+- [ ] `jq empty .utcp_config.json` — syntax gate — and the jq select above returns the snapshot object. [evidence: probe ran with `UTCP_CONFIG_FILE=.utcp_config.json`, `../references/discovery-fixture-2026-07-16.json` `utcpConfig` field]
+- [] Run discovery in a session that loaded the registered manual. DONE 2026-07-16 via direct stdio MCP probe of CodeMode-MCP (`initialize`, `tools/call`: `list_tools`, `search_tools`, `tool_info`). Actual registry name: `aside.aside.repl`; TS callable `aside.aside_repl(args)`. [evidence: `../references/discovery-fixture-2026-07-16.json` `discoveredCallableNames` + `tool_info_first`]
+- [ ] Confirm the live tool set against the version-pinned baseline (one `repl` tool on `1.26.626.1517`) — re-confirmed live 2026-07-16: `aside.aside.repl` is the only `aside.*` entry in `list_tools`. Still runtime evidence (`tools.listChanged: true`), never a permanent contract. [evidence: fixture `list_tools` payload]
 - [ ] Run one smoke invocation inside `call_tool_chain()` with try/catch, an explicit timeout (the `repl` tool advertises 120 s), and cleanup in `finally`; verify any artifact independently of the tool response.
 - [ ] Confirm no credential of any kind was added anywhere (`env` still empty; no `.env` line).
-- [x] Update this packet's references with the dated discovery results; drift means a reviewed packet update, not an improvised call. [evidence: this packet's v1.1.1.0 changelog entry records the 2026-07-16 discovery flips]
+- [ ] Update this packet's references with the dated discovery results; drift means a reviewed packet update, not an improvised call. [evidence: this packet's `../changelog/v1.0.0.0.md` initial-release entry records the 2026-07-16 discovery results]
 
 ### OPEN QUESTION: Single vs Dual Manual
 

@@ -1,7 +1,7 @@
 ---
 title: "FLOWS-001 -- Flow Intent With Labeled Reconstruction"
 description: "This scenario validates flow-intent research for `FLOWS-001`. Since the 2026-07-16 discovery, a live search_flows tool exists: journey research uses its returned ordering as fact and labels anything beyond it as inference; screens-level fallback keeps the old reconstruction discipline."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # FLOWS-001 -- Flow Intent With Labeled Reconstruction

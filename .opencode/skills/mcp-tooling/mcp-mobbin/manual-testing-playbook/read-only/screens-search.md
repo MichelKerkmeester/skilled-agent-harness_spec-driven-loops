@@ -1,7 +1,7 @@
 ---
 title: "SCREENS-001 -- Screen Search Contract And Citation Discipline"
 description: "This scenario validates the read-only search contract for `SCREENS-001`. It focuses on the documented query/platform/limit inputs, mobbin_url citation discipline, honest failed[] reporting, preserved unknown fields, and the absence of invented tools or parameters."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # SCREENS-001 -- Screen Search Contract And Citation Discipline

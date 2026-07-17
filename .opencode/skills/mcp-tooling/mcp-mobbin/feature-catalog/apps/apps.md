@@ -6,7 +6,7 @@ trigger_phrases:
   - "mobbin app research"
   - "mobbin app comparison"
   - "mobbin category research"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Apps (app-intent queries over search_screens)

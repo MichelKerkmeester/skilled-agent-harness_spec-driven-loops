@@ -5,7 +5,7 @@ trigger_phrases:
   - "refero screen image tool"
   - "get screen image refero"
   - "refero screenshot"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # refero_get_screen_image

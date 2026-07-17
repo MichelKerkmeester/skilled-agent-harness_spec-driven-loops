@@ -1,7 +1,7 @@
 ---
 title: "PAIDGATE-001 -- Paid-Gate Error Taxonomy Walk"
 description: "This scenario validates access-error classification for `PAIDGATE-001`. It focuses on distinguishing the three documented access failures — pre-authorization 401 (expected OAuth challenge), entitlement denial (Free plan; semantics UNVERIFIED, relay verbatim), and 429 (rate window) — without guessing undocumented semantics. SKIP-valid for the live halves."
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # PAIDGATE-001 -- Paid-Gate Error Taxonomy Walk

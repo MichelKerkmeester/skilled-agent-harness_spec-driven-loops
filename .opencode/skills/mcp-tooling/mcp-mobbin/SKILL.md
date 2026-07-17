@@ -3,7 +3,7 @@ name: mcp-mobbin
 description: "Mobbin MCP transport: read-only app/screen/flow design research via Code Mode; sk-design owns the judgment."
 compatibility: Requires a paid Mobbin plan for MCP (Pro, Team, or Enterprise; Free has no MCP access), the npx mcp-remote bridge, Node.js >=18, and a browser OAuth round-trip on first use.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.3.1.0
+version: 1.0.0.0
 user-invocable: true
 ---
 

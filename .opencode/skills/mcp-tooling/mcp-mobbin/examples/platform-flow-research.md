@@ -1,7 +1,7 @@
 ---
 title: "Example: Platform-Filtered Flow-Pattern Research"
 description: "A worked mcp-mobbin flow-research walkthrough: tool_info re-confirmation of the discovery-confirmed callables, a journey-shaped query through the live search_flows tool (search_screens fallback) on platform web, returned-ordering discipline, and mobbin_url citations throughout."
-version: 1.1.1.0
+version: 1.0.0.0
 ---
 
 # Example: Platform-Filtered Flow-Pattern Research

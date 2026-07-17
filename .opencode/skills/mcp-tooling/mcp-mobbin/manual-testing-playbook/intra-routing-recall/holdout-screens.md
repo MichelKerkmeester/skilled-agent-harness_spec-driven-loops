@@ -9,7 +9,7 @@ expected_resources:
 blindToRouterKeywords: true
 blindExceptions:
   - "first open"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 # MB-H01: Blind holdout: real-app pattern evidence
 ## SCENARIO CONTRACT

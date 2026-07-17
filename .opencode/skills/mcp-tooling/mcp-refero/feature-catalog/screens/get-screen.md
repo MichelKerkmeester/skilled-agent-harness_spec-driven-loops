@@ -5,7 +5,7 @@ trigger_phrases:
   - "refero get screen tool"
   - "get screen refero"
   - "screen detail refero"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # refero_get_screen

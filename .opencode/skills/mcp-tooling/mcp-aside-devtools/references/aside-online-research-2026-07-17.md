@@ -20,7 +20,7 @@ Dated source snapshot of the public Aside developer surface.
 
 ### Purpose
 
-Fresh capture of the public Aside developer documentation, taken 2026-07-17. This is the online-source layer for the v1.3.0.0 DevTools-parity feature expansion. The authoritative machine-readable capability envelope remains the live Code Mode discovery fixture ([`discovery-fixture-2026-07-16.json`](discovery-fixture-2026-07-16.json)); the online docs below corroborate the transport, permission, and distribution facts and add the verbatim `mcp.json` wiring. Every claim is tagged CONFIRMED (direct doc quote), INFERRED (reasoned from cited material), or UNKNOWN (not resolvable from the sources).
+Fresh capture of the public Aside developer documentation, taken 2026-07-17. This is the online-source layer for the initial-release DevTools-parity feature set. The authoritative machine-readable capability envelope remains the live Code Mode discovery fixture ([`discovery-fixture-2026-07-16.json`](discovery-fixture-2026-07-16.json)); the online docs below corroborate the transport, permission, and distribution facts and add the verbatim `mcp.json` wiring. Every claim is tagged CONFIRMED (direct doc quote), INFERRED (reasoned from cited material), or UNKNOWN (not resolvable from the sources).
 
 ### Usage
 

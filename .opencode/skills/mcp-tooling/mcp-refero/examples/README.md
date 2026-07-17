@@ -5,7 +5,7 @@ trigger_phrases:
   - "refero examples"
   - "refero example walkthrough"
   - "refero code mode example"
-version: 1.1.0.0
+version: 1.0.0.0
 ---
 
 # Refero - Example Walkthroughs
