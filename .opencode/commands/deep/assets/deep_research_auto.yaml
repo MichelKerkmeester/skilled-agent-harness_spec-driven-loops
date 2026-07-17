@@ -137,7 +137,7 @@ workflow:
         artifact_subfolder: null
         artifact_archive_root: "{config.fanout_lineage_artifact_dir}/_archive"
     if_absent:
-      command: "node -e \"const { resolveArtifactRoot } = require('.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'research')));\""
+      command: "node -e \"const { resolveArtifactRoot } = require('./.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'research')));\""
       outputs:
         - artifact_root_dir: "Resolved local research owner directory"
         - artifact_subfolder: "Local packet subfolder ({ownerSlug}-pt-{NN}), else null"
