@@ -93,11 +93,11 @@ Outputs:
 
 ## 2. OWNED ASSETS
 
-| Asset | Purpose |
-|---|---|
-| `assets/review_packet_presentation.txt` | User-visible startup prompt, checkpoint layout, result templates, and next-step wording |
-| `assets/review_packet_auto.yaml` | Autonomous execution path for the review workflow |
-| `assets/review_packet_confirm.yaml` | Interactive execution path with approval checkpoints |
+| Purpose | Asset |
+|---------|-------|
+| Presentation source of truth | `assets/review_packet_presentation.txt` |
+| Auto workflow | `assets/review_packet_auto.yaml` |
+| Confirm workflow | `assets/review_packet_confirm.yaml` |
 
 ## 3. MODE ROUTING
 

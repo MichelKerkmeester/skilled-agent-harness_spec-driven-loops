@@ -13,11 +13,13 @@ version: 1.8.0.2
 
 # Command Presentation Contract Template
 
+## 1. OVERVIEW
+
 Skeleton for a `assets/<ns>_<command>_presentation.txt` file. In the presentation/router split (see [`command_template.md`](command_template.md) § Mode-Based Command Template), the command `.md` is a thin router that owns mode resolution and routing, the `_auto.yaml` / `_confirm.yaml` assets own workflow execution, and this file owns everything the user sees. Copy the body below into the new asset and fill the bracketed parts. Keep all visible wording, reply formats, and templates here and nowhere else.
 
 ---
 
-## How To Use
+## 2. How To Use
 
 1. The router lists this file under its Owned Assets table and loads it before showing any prompt, dashboard, checkpoint, or result.
 2. Move every display-only block out of the command `.md` into the matching section below, verbatim in meaning.
@@ -25,7 +27,7 @@ Skeleton for a `assets/<ns>_<command>_presentation.txt` file. In the presentatio
 
 ---
 
-## Template Body (copy below this line)
+## 3. Template Body (copy below this line)
 
 ```markdown
 # <Command> Presentation Contract
