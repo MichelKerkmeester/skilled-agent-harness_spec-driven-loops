@@ -2,7 +2,7 @@
   "skill": "sk-design",
   "version": "1.4.3.0",
   "routerPolicy": {
-    "defaultMode": "interface",
+    "defaultMode": null,
     "ambiguityDelta": 1,
     "tieBreak": ["interface", "foundations", "motion", "audit", "md-generator", "design-mcp-open-design"],
     "outcomes": {
@@ -11,10 +11,8 @@
       "defer": "unclear or contradictory design intent asks for disambiguation"
     },
     "defaultResource": [
-      "shared/anti_slop_principles.md",
-      "shared/cognitive_laws.md",
-      "shared/design_token_vocabulary.md",
-      "shared/design_proof_token.md"
+      "shared/references/smart_routing.md",
+      "mode-registry.json"
     ],
     "bundleRules": [
       {
@@ -30,8 +28,7 @@
       "classes": [
         "interface-aliases",
         "interface-taste",
-        "interface-build",
-        "hub-identity"
+        "interface-build"
       ],
       "resources": ["design-interface/SKILL.md"]
     },
@@ -42,8 +39,7 @@
         "foundations-color",
         "foundations-type",
         "foundations-layout",
-        "foundations-tokens",
-        "hub-identity"
+        "foundations-tokens"
       ],
       "resources": ["design-foundations/SKILL.md"]
     },
@@ -53,8 +49,7 @@
         "motion-aliases",
         "motion-temporal",
         "motion-runtime",
-        "motion-feel",
-        "hub-identity"
+        "motion-feel"
       ],
       "resources": ["design-motion/SKILL.md"]
     },
@@ -65,8 +60,7 @@
         "audit-quality",
         "audit-transform-question",
         "audit-accessibility",
-        "audit-hardening",
-        "hub-identity"
+        "audit-hardening"
       ],
       "resources": ["design-audit/SKILL.md"]
     },
@@ -76,16 +70,14 @@
         "md-generator-aliases",
         "md-generator-extraction",
         "md-generator-artifacts",
-        "md-generator-validation",
-        "hub-identity"
+        "md-generator-validation"
       ],
       "resources": ["design-md-generator/SKILL.md"]
     },
     "design-mcp-open-design": {
       "weight": 4,
       "classes": [
-        "design-mcp-open-design-aliases",
-        "hub-identity"
+        "design-mcp-open-design-aliases"
       ],
       "resources": ["design-mcp-open-design/SKILL.md"]
     }

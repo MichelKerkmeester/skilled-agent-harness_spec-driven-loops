@@ -2,7 +2,7 @@
   "skill": "mcp-tooling",
   "version": "1.1.0.0",
   "routerPolicy": {
-    "defaultMode": "mcp-chrome-devtools",
+    "defaultMode": null,
     "ambiguityDelta": 1,
     "tieBreak": [
       "mcp-chrome-devtools",
@@ -18,7 +18,8 @@
       "defer": "unclear or contradictory tool intent asks for disambiguation"
     },
     "defaultResource": [
-      "mcp-chrome-devtools/SKILL.md"
+      "shared/references/smart_routing.md",
+      "mode-registry.json"
     ],
     "defaultResourceSemantics": "fallback-only",
     "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted ONLY when no mode scores (zero-signal branch), and then only as the defer-time suggestion offered alongside disambiguation - it is never unioned into a scored route's resource set.",

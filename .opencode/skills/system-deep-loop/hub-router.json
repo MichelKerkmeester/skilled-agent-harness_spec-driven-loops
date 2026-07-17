@@ -2,7 +2,7 @@
   "skill": "system-deep-loop",
   "version": "2.0.0.0",
   "routerPolicy": {
-    "defaultMode": "research",
+    "defaultMode": null,
     "ambiguityDelta": 1,
     "tieBreak": ["research", "review", "ai-council", "agent-improvement", "model-benchmark", "skill-benchmark", "alignment"],
     "outcomes": {
@@ -10,7 +10,7 @@
       "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
       "defer": "unclear or contradictory deep-loop intent asks for disambiguation"
     },
-    "defaultResource": ["README.md"]
+    "defaultResource": ["shared/references/smart_routing.md", "mode-registry.json"]
   },
   "routerSignals": {
     "research": {
