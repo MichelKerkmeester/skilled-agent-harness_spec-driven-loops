@@ -44,7 +44,6 @@
       ".opencode/skills/mcp-tooling/mcp-refero/examples/README.md",
       ".opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh",
       ".opencode/skills/sk-design/design-interface/references/mcp_tooling/refero_tools.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -68,12 +67,6 @@
         "name": "refero_tools.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/design-interface/references/mcp_tooling/refero_tools.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The v1.0.0.0 `mcp-refero` packet shipped structurally valid but short of hub-sibling inventory parity: no `examples/` directory, no `scripts/install.sh`, a 6-scenario playbook where the research section D supports more workflow coverage, and a feature catalog whose 8 tools share only 3 grouped domain files",
     "created_at": "2026-07-16T12:58:32Z",
-    "last_save_at": "2026-07-16T15:03:15.207Z",
+    "last_save_at": "2026-07-17T06:03:03.357Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6171831af84cdbd59b86bf505d827b5db7b07ef9d5f87462e9fc57b7b69ebf16",
+    "source_fingerprint": "sha256:7eef9fea47bedd161cbc6610b6e8a02f50bd922c9727c9a7b12e2c1fcfe178e8",
     "source_doc_hashes": {
-      "spec.md": "a84fb2d7a59d0fd547d6998bb278b3b9eea76078144e6a7ec646a85c5b2bacca",
-      "plan.md": "33b3795b86302efc222fb7396ee84c7a6d507b5765ca13f808c78a64ee70e5ab",
-      "tasks.md": "3e353d505f8ab3213db65f0cda856698dd487b6d10ce4c5a2fca416f9318b5c6",
-      "checklist.md": "ecc9b563d3229fd81a541fb8a0609a686b8f2c34119fc74b3284ffbae56f2844",
-      "implementation-summary.md": "bd39d200e94caf32c1439ebb341f1ba57c87899531c13b2380e40aeb33358c1e"
+      "spec.md": "d0f2bce477291047ec08eeefe36f3e10e3280d51287a1fad2423eb3ffdd9204b",
+      "plan.md": "c63f130696afe36750c21843fb0f03635d57e8e315110628450be455d1ae7c5e",
+      "tasks.md": "cb7abf9befe596ec0a5a0d37d50994458683c717e876ca75460d0e630c1d179c",
+      "checklist.md": "05a7569648243ade62f8091ab7ac4609ef6750830e249e9c9b3e51d051829d0e",
+      "implementation-summary.md": "968d561b9344d0177a5f9770b86c91a8de88d1085b38ef70c1694c9f5722d7d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

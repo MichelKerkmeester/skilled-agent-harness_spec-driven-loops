@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The `refero` UTCP manual is reachable through Code Mode but has no skill surface: no SKILL.md contract, no documented tool inventory, no routing recall scenarios, no troubleshooting path",
     "created_at": "2026-07-16T09:39:28Z",
-    "last_save_at": "2026-07-16T15:03:14.827Z",
+    "last_save_at": "2026-07-17T06:03:03.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:320d42c3e30de0cf73fc702a16623660527a5414bff07c27a26b59b582c1ea33",
+    "source_fingerprint": "sha256:0fe093140e4fb043a5591d05be4d50cebc35a153e00196e423422599f1f77645",
     "source_doc_hashes": {
-      "spec.md": "21a4ae9aba0799db2ed00fd47530b06930e33bbc5a22a57372bcd5fbfcf30494",
-      "plan.md": "a422ff69ab0eb47bf51078059df9db761f08f1f701b1f0d441c506d0293eace9",
-      "tasks.md": "3fa7266302e8f93543d81650168ed29d269e6228874d4f89f82ed90ea5fc367c",
-      "checklist.md": "4ebb192872c1e9027c30045ca1ba4b446641b439ac2834103a80fe7fd68981b3",
-      "implementation-summary.md": "4dc6fcfc160a696f66679f36d6005db95a82cd8dba6d05cc781734047b243a94"
+      "spec.md": "ae8575a65d7ed308d61dc1dfbfd4ee0c153e9243d42946c350e7af51af59239c",
+      "plan.md": "5a572be798841f4ad87fddadeaa44d7dbd91b8bc9db0349a784b0a8993ab394e",
+      "tasks.md": "33d8b92e667a902ede3551225b22b3b5fe5f126ff7584d67e9279f3e51290f7c",
+      "checklist.md": "6fd0fb010931abe9c10c1fb19d3fab85870304da6e0dfaad4ede6c3a667d6da3",
+      "implementation-summary.md": "030b7cec79ae106f8a5500b6c5f024606bc69329a3d145536dc722e99096db22"
     },
     "last_active_child_id": null,
     "last_active_at": null

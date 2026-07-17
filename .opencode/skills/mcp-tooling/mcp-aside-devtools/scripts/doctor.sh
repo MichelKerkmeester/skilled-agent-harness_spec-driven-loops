@@ -35,7 +35,7 @@ else
   [ -x "$HOME/.local/bin/aside" ] && info "Found ~/.local/bin/aside — add ~/.local/bin to PATH"
   info "Install (operator-invoked): curl -fsSL https://releases.aside.com/install.sh | bash"
   log ""
-  log "Doctor is read-only. For setup, see install.sh and INSTALL_GUIDE.md."
+  log "Doctor is read-only. For setup, see install.sh and install-guide.md."
   exit 0
 fi
 
@@ -119,5 +119,5 @@ else
 fi
 
 log ""
-log "Doctor is read-only. For setup, see install.sh and INSTALL_GUIDE.md."
+log "Doctor is read-only. For setup, see install.sh and install-guide.md."
 exit "$manual_missing"

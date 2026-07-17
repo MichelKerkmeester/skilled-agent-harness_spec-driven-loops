@@ -7,7 +7,7 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.1.0.0
+version: 1.3.0.0
 ---
 
 # mcp-refero
@@ -182,12 +182,12 @@ A: `sk-design` owns the design judgment and is loaded first for any design-affec
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
-| [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Verify-only setup: the registered manual, the Pro-plan requirement, and the operator-only OAuth step |
+| [`install-guide.md`](./install-guide.md) | Verify-only setup: the registered manual, the Pro-plan requirement, and the operator-only OAuth step |
 | [`references/tool-surface.md`](./references/tool-surface.md) | The eight-tool contract, ID typing, the research funnel, plan gating, and the deprecated legacy surface |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth/Bearer, the doubled-prefix rule, and discovery |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Full failure-mode table |
 | [`assets/utcp-refero-manual.md`](./assets/utcp-refero-manual.md) | The verified manual snapshot and the Bearer alternative, verbatim |
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: the full funnel, a metadata-first lookup, and a screen-image fetch |
-| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Capability inventory by layer (styles, screens, flows) with one per-tool leaf per documented tool |
-| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for paid/OAuth steps) |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory by layer (styles, screens, flows) with one per-tool leaf per documented tool |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for paid/OAuth steps) |
 | [Skills Library](../../README.md) | The skill catalog and routing front door |

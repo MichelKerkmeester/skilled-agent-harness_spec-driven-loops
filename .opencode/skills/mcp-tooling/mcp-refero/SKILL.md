@@ -3,7 +3,7 @@ name: mcp-refero
 description: "Refero MCP transport: read-only UI design-reference search (styles, screens, flows) via Code Mode; sk-design owns the judgment."
 compatibility: Requires a Refero Pro plan (Free has no MCP access), the npx mcp-remote bridge, and Node.js >=18; this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.2.0.0
+version: 1.3.0.0
 user-invocable: true
 ---
 
@@ -406,6 +406,6 @@ Examples: `examples/` carries worked Code Mode walkthroughs (the full styles -> 
 
 Related skills: `sk-design` (the mandatory judgment pairing), `mcp-code-mode` (the substrate), `mcp-figma` (the sibling Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
-Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md).
+Install guide: [install-guide.md](install-guide.md).
 
 Upstream: the Refero MCP is the paid service at [refero.design/mcp](https://refero.design/mcp) (docs at doc.refero.design). The official [referodesign/refero_skill](https://github.com/referodesign/refero_skill) repository (MIT, default branch `master`) is a design **methodology** skill and a peer of `sk-design`; this packet deliberately does not vendor or duplicate it.

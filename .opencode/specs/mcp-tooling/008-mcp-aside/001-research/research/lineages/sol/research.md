@@ -220,7 +220,7 @@ Recommended files and responsibilities:
 | `references/troubleshooting.md` | error taxonomy and daemon/account/profile/MCP recovery |
 | `assets/utcp-aside-manual.md` | exact manual object and validation instructions |
 | `scripts/doctor.sh` | read-only platform/binary/version/account/daemon/config/discovery diagnostics |
-| `manual_testing_playbook/` | positive and negative scenario contracts with concrete evidence |
+| `manual-testing-playbook/` | positive and negative scenario contracts with concrete evidence |
 
 Router order:
 

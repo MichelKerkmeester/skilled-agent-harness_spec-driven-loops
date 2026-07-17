@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/010-mcp-mobbin/002-skill-authoring"
-    last_updated_at: "2026-07-16T15:45:00Z"
+    last_updated_at: "2026-07-17T06:03:03.924Z"
     last_updated_by: "claude"
     recent_action: "Verified packet gate and marked checklist with evidence"
     next_safe_action: "Run phase 003 hub integration for mcp-mobbin (serial window open)"
@@ -56,9 +56,9 @@ _memory:
 `.opencode/skills/mcp-tooling/mcp-mobbin/` — a 31-file nested TRANSPORT packet (`packetKind: transport`, read-only, sk-design pairing), grounded exclusively in the phase-001 synthesis:
 
 - `SKILL.md` — transport contract mirroring the mcp-refero sibling: OAuth/DCR/PKCE (no API key env var — negative answer preserved), stdio `mcp-remote` bridge to `https://api.mobbin.com/mcp`, 60/60 rate limit, plan gating, callable name INFERRED pending live discovery, benchmark-parseable intent block.
-- `README.md`, `INSTALL_GUIDE.md` (verify-only; registration + OAuth fenced to later phases/operator).
+- `README.md`, `install-guide.md` (verify-only; registration + OAuth fenced to later phases/operator).
 - `assets/utcp-mobbin-manual.md` — draft byte-identical to the research (`name: "mobbin"`, empty env), marked NOT REGISTERED with a 9-item post-registration checklist.
-- `references/` (tool_surface/mcp_wiring/troubleshooting with CONFIRMED/INFERRED/UNKNOWN tags), `feature_catalog/` (4 query-intent domains over the 1 documented tool, honestly framed), `scripts/doctor.sh` (manual-absence = INFO pre-registration; env-gated 401 probe), `manual_testing_playbook/` (6 scenarios incl. REFUSE-001 — refuses to fabricate an API key; 2 holdouts + negative + troubleshoot), `changelog/`, `mcp-servers/mobbin-mcp/README.md`.
+- `references/` (tool_surface/mcp_wiring/troubleshooting with CONFIRMED/INFERRED/UNKNOWN tags), `feature-catalog/` (4 query-intent domains over the 1 documented tool, honestly framed), `scripts/doctor.sh` (manual-absence = INFO pre-registration; env-gated 401 probe), `manual-testing-playbook/` (6 scenarios incl. REFUSE-001 — refuses to fabricate an API key; 2 holdouts + negative + troubleshoot), `changelog/`, `mcp-servers/mobbin-mcp/README.md`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -74,7 +74,7 @@ Single authoring agent, contract-first, with the just-landed mcp-refero packet a
 <!-- ANCHOR:decisions -->
 ## 4. KEY DECISIONS
 
-- feature_catalog divides into apps/screens/flows/elements per the synthesis's four workflow intents — framed as query intents over a single documented tool, not invented tools.
+- feature-catalog divides into apps/screens/flows/elements per the synthesis's four workflow intents — framed as query intents over a single documented tool, not invented tools.
 - mcp-refero's Node-24/25 SIGSEGV lore deliberately NOT copied (absent from Mobbin research; only Node >=18 claimed).
 - Manual registration deferred to phase 003 (doctor.sh treats absence as INFO until then).
 <!-- /ANCHOR:decisions -->

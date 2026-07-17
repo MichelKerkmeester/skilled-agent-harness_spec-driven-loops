@@ -8,7 +8,7 @@
     {"id": "q-ai-workflows", "text": "Two-tier surface (NL agent + deterministic REPL); navigate/inspect/screenshot/download/multi-step/approval gating; console/network via REPL not named CLI commands", "resolvedAtRun": 2},
     {"id": "q-cd-contrast", "text": "Aside = agentic+REPL+account/auth/permissions vs bdg = imperative CDP+local/no-auth; shared CLI-primary+MCP-fallback architecture", "resolvedAtRun": 2},
     {"id": "q-utcp-manual", "text": "Exact JSON manual: name 'aside', call_template_type 'mcp', stdio, command 'aside', args ['mcp'], env {}; auth account-based not env-var", "resolvedAtRun": 2},
-    {"id": "q-skill-packet", "text": "Full authoring checklist: SKILL.md mirroring mcp-chrome-devtools + INSTALL_GUIDE + references + scripts/install.sh + UTCP manual + mode-registry.json entry", "resolvedAtRun": 2}
+    {"id": "q-skill-packet", "text": "Full authoring checklist: SKILL.md mirroring mcp-chrome-devtools + install-guide + references + scripts/install.sh + UTCP manual + mode-registry.json entry", "resolvedAtRun": 2}
   ],
   "keyFindings": [
     {"id": "f-cli-install", "text": "CLI installed via curl script (releases.aside.com/install.sh), not npm; binary is 'aside'", "run": 1},
@@ -26,7 +26,7 @@
     {"id": "f-arch-contrast", "text": "Shared CLI-primary+MCP-fallback pattern with mcp-chrome-devtools; Aside adds agentic tier + auth + permission modes", "run": 2},
     {"id": "f-utcp-manual", "text": "UTCP manual: {name:'aside', call_template_type:'mcp', config.mcpServers.aside:{transport:stdio, command:'aside', args:['mcp'], env:{}}}", "run": 2},
     {"id": "f-mcp-discovery", "text": "MCP tools resolve as aside.aside_<tool>; discover via search_tools/list_tools, never hardcode; wrap in try/finally", "run": 2},
-    {"id": "f-packet-checklist", "text": "Packet = SKILL.md + INSTALL_GUIDE.md + references/{aside_cli_patterns,mcp_session_management,troubleshooting}.md + scripts/install.sh + UTCP manual + mode-registry.json", "run": 2}
+    {"id": "f-packet-checklist", "text": "Packet = SKILL.md + install-guide.md + references/{aside_cli_patterns,mcp_session_management,troubleshooting}.md + scripts/install.sh + UTCP manual + mode-registry.json", "run": 2}
   ],
   "ruledOutDirections": [
     {"approach": "npm install -g aside", "reason": "Documented installer is a curl script, not npm", "evidence": "https://docs.aside.com/help/developers", "iteration": 1}

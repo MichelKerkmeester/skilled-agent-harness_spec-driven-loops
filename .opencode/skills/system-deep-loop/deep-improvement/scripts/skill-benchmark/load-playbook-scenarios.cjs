@@ -370,7 +370,8 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
       const full = path.join(cur, e.name);
       if (e.isDirectory()) { stack.push(full); continue; }
       if (!e.isFile() || !e.name.endsWith('.md')
-          || e.name === 'manual_testing_playbook.md' || e.name === 'feature_catalog.md') continue;
+          || e.name === 'manual_testing_playbook.md' || e.name === 'feature_catalog.md'
+          || e.name === 'manual-testing-playbook.md' || e.name === 'feature-catalog.md') continue;
       const text = readFileSafe(full);
       if (!text) continue;
       const fm = /^---\n([\s\S]*?)\n---/.exec(text);
@@ -444,12 +445,21 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
  * @returns {{ scenarios: Array, shape: 'sk-code'|'sk-doc'|'none', warnings: string[] }}
  */
 function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
-  const dir = playbookDir || path.join(skillRoot, 'manual_testing_playbook');
+  // Accept either the snake_case (repo standard) or kebab-case playbook dir name.
+  // Prefer whichever exists so kebab-migrated packets and snake incumbents both resolve.
+  const dir = playbookDir
+    || ['manual_testing_playbook', 'manual-testing-playbook']
+        .map((n) => path.join(skillRoot, n))
+        .find((p) => fs.existsSync(p))
+    || path.join(skillRoot, 'manual_testing_playbook');
   const warnings = [];
   if (!fs.existsSync(dir)) {
     return { scenarios: [], shape: 'none', warnings: [`no playbook at ${dir}`] };
   }
-  const rootPath = path.join(dir, 'manual_testing_playbook.md');
+  const rootPath = ['manual_testing_playbook.md', 'manual-testing-playbook.md']
+    .map((n) => path.join(dir, n))
+    .find((p) => fs.existsSync(p))
+    || path.join(dir, 'manual_testing_playbook.md');
   const rootText = readFileSafe(rootPath);
   const index = rootText ? parseRootIndex(rootText) : [];
   const rootMap = rootText ? parseRootScenarioTables(rootText) : {};

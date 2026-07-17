@@ -90,15 +90,15 @@
     ],
     "causal_summary": "The `mcp-tooling` hub has two workflow bridges (`mcp-chrome-devtools`, `mcp-click-up`) and one transport (`mcp-figma`), but no app-design-research transport: there is no routed way to query Mobbin's library of real-world app screens, flows, and UI patterns from this repository",
     "created_at": "2026-07-16T09:39:32Z",
-    "last_save_at": "2026-07-16T14:35:56.332Z",
+    "last_save_at": "2026-07-17T06:03:04.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bfe6d29cf59f33e5f2777d4474745badd779ed52ff78a6cebf6d9ed520aee3b8",
+    "source_fingerprint": "sha256:d1ceba079963871c265ed58500da1054de18b111d0f86259787954bac423bbb4",
     "source_doc_hashes": {
-      "spec.md": "91d68782c42c0503549095a3b724130714c026c71a29189adfab6c41f216ccf7"
+      "spec.md": "e9f90200a6776711417afe5abc33d754fa91305ecdd0d219855c45c6cc51e4e1"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-16T12:07:36.933Z"

@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/009-mcp-refero/006-live-verification-capture"
-    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_at: "2026-07-17T06:03:03.602Z"
     last_updated_by: "claude-agent"
     recent_action: "Phase complete; gates green"
     next_safe_action: "Operator handoff: OAuth completion and first authenticated search"
@@ -58,7 +58,7 @@ You can now state the naming rule as observation, not derivation. The registry c
 
 ### The pre-auth correction
 
-The probe worked WITHOUT OAuth, which disproved a precondition several docs asserted: discovery is pre-auth; only authenticated CALLS are operator-gated. README, INSTALL_GUIDE, and the server README now say so precisely, and the OAuth-gated live-call items keep their SKIP-valid status with exact commands.
+The probe worked WITHOUT OAuth, which disproved a precondition several docs asserted: discovery is pre-auth; only authenticated CALLS are operator-gated. README, install-guide, and the server README now say so precisely, and the OAuth-gated live-call items keep their SKIP-valid status with exact commands.
 
 ### Files Changed
 
@@ -66,11 +66,11 @@ The probe worked WITHOUT OAuth, which disproved a precondition several docs asse
 |------|--------|---------|
 | `references/discovery-fixture-2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads (8 registry names) |
 | `SKILL.md` | Modified | Naming trap flipped to confirmed; version 1.1.1.0 |
-| `README.md`, `INSTALL_GUIDE.md` | Modified | Resolved conflict + pre-auth preconditions |
+| `README.md`, `install-guide.md` | Modified | Resolved conflict + pre-auth preconditions |
 | `references/mcp-wiring.md` | Modified | Naming section confirmed; single-prefix derivation refuted |
 | `references/tool-surface.md` | Modified | Open question 1 resolved; question 2 partially resolved |
 | `mcp-servers/refero-mcp/README.md` | Modified | Discovery expectation corrected to pre-auth |
-| `manual_testing_playbook/discovery-setup/discovery-first.md` | Modified | DISCOVER-001 rationale records the closed conflict |
+| `manual-testing-playbook/discovery-setup/discovery-first.md` | Modified | DISCOVER-001 rationale records the closed conflict |
 | `changelog/v1.1.1.0.md` | Created | Release record |
 <!-- /ANCHOR:what-built -->
 

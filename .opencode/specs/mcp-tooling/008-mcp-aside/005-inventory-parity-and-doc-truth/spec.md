@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md"
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md"
-      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/feature_catalog.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "agent-005-inventory-parity"
@@ -64,11 +64,11 @@ This is **Phase 5** of the mcp-aside-devtools completion: inventory parity, doc 
 **Dependencies**:
 - The `aside` manual registered in `.utcp_config.json` (done 2026-07-16, prior to this phase)
 - The `aside` binary installed (version `1.26.626.1517` evidence carried by the packet)
-- `mcp-mobbin` as the structural exemplar for `feature_catalog/` and `assets/`
+- `mcp-mobbin` as the structural exemplar for `feature-catalog/` and `assets/`
 
 **Deliverables**:
 - Registered-state doc-truth flips across the whole packet, including the ungated ASD-011 scenario and the doctor error posture
-- New `feature_catalog/` (root + 5 intent domains) and `assets/utcp-aside-manual.md`
+- New `feature-catalog/` (root + 5 intent domains) and `assets/utcp-aside-manual.md`
 - Packet version 1.1.0.0 with `changelog/v1.1.0.0.md`
 
 **Changelog**:
@@ -81,7 +81,7 @@ This is **Phase 5** of the mcp-aside-devtools completion: inventory parity, doc 
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `aside` UTCP manual is now registered in `.utcp_config.json`, but the `mcp-aside-devtools` packet still documents registration as a "later phase" in roughly 30 places, gates its Code Mode discovery scenario on non-registration, and ships a doctor that treats manual absence as expected. The packet also lacks the `feature_catalog/` and `assets/` inventory its sibling transports (e.g. `mcp-mobbin`) carry.
+The `aside` UTCP manual is now registered in `.utcp_config.json`, but the `mcp-aside-devtools` packet still documents registration as a "later phase" in roughly 30 places, gates its Code Mode discovery scenario on non-registration, and ships a doctor that treats manual absence as expected. The packet also lacks the `feature-catalog/` and `assets/` inventory its sibling transports (e.g. `mcp-mobbin`) carry.
 
 ### Purpose
 Every registration claim in the packet states the registered truth, the discovery scenario is runnable, a registration regression is a detectable error, and the packet reaches structural inventory parity with its siblings.
@@ -96,9 +96,9 @@ Every registration claim in the packet states the registered truth, the discover
 - Flip all stale "not registered" / "later phase" / "not yet registered" claims to registered-state truth (registration done 2026-07-16; discovery pends a fresh Code Mode session; `aside.aside_repl` unconfirmed until `tool_info()`)
 - Ungate playbook scenario ASD-011 (precondition becomes a session with the code_mode MCP loaded; SKIP-valid without one; missing manual becomes FAIL)
 - `scripts/doctor.sh`: manual absence in `.utcp_config.json` becomes an error (was expected-absent info); stays read-only and `bash -n` clean
-- New `feature_catalog/` mirroring `mcp-mobbin`: root catalog plus one snake_case dir per SKILL.md INTENT_SIGNALS key (task, repl, mcp, install, troubleshoot)
+- New `feature-catalog/` mirroring `mcp-mobbin`: root catalog plus one snake_case dir per SKILL.md INTENT_SIGNALS key (task, repl, mcp, install, troubleshoot)
 - New `assets/utcp-aside-manual.md`: byte-true registered snapshot with provenance and the single-vs-dual-manual open question
-- SKILL.md/README/INSTALL_GUIDE consistency pass referencing the new inventory; packet version bump to 1.1.0.0 plus `changelog/v1.1.0.0.md`
+- SKILL.md/README/install-guide consistency pass referencing the new inventory; packet version bump to 1.1.0.0 plus `changelog/v1.1.0.0.md`
 - This spec child authored at Level 2 with metadata backfill and strict validation
 
 ### Out of Scope
@@ -113,14 +113,14 @@ Every registration claim in the packet states the registered truth, the discover
 |-----------|-------------|-------------|
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md` | Modify | Registered-state MCP posture, asset routing, version 1.1.0.0 |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md` | Modify | Quick start, FAQ, related documents flipped to registered state |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md` | Modify | MCP configuration section registered + verify-with-jq |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/install-guide.md` | Modify | MCP configuration section registered + verify-with-jq |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Modify | Registration section retitled REGISTERED |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md` | Modify | Drafted-manual framing replaced with registered truth |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md` | Modify | Cross-reference updated |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/manual_testing_playbook.md` | Modify | ASD-011 ungated; preconditions and wave plan updated |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp-transport/code-mode-discovery.md` | Modify | Gate replaced with code_mode-session precondition |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md` | Modify | ASD-011 ungated; preconditions and wave plan updated |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md` | Modify | Gate replaced with code_mode-session precondition |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` | Modify | Manual absence becomes an error (exit 1) |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/` | Create | Root catalog + 5 intent-domain files |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/` | Create | Root catalog + 5 intent-domain files |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md` | Create | Byte-true registered snapshot + checklist |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.0.0.md` | Create | Release record for this phase |
 <!-- /ANCHOR:scope -->
@@ -144,7 +144,7 @@ Every registration claim in the packet states the registered truth, the discover
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | `feature_catalog/` mirrors the sibling structure | Root `feature_catalog.md` plus one dir per INTENT_SIGNALS key (task, repl, mcp, install, troubleshoot), each with at least one leaf doc; frontmatter mirrors `mcp-mobbin` |
+| REQ-006 | `feature-catalog/` mirrors the sibling structure | Root `feature-catalog.md` plus one dir per INTENT_SIGNALS key (task, repl, mcp, install, troubleshoot), each with at least one leaf doc; frontmatter mirrors `mcp-mobbin` |
 | REQ-007 | Every catalog capability traces to existing packet docs or research | No invented surface; UNKNOWN items (binding procedure, permission inheritance, flag spelling, console/network capture, dual manual) stay flagged |
 | REQ-008 | Version and changelog updated | SKILL.md and README frontmatter read 1.1.0.0; `changelog/v1.1.0.0.md` exists and lists the changes |
 <!-- /ANCHOR:requirements -->

@@ -52,13 +52,12 @@
       "tasks.md",
       "checklist.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/README.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/install-guide.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery-setup/manual-registered-expected.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/platform-filter.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/discovery-setup/manual-registered-expected.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/read-only/platform-filter.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md",
-      "feature_catalog/feature_catalog.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -117,9 +116,9 @@
         "source": "derived"
       },
       {
-        "name": "INSTALL_GUIDE.md",
+        "name": "install-guide.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/install-guide.md",
         "source": "derived"
       },
       {
@@ -129,27 +128,21 @@
         "source": "derived"
       },
       {
-        "name": "manual_testing_playbook.md",
+        "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
         "name": "manual-registered-expected.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery-setup/manual-registered-expected.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/discovery-setup/manual-registered-expected.md",
         "source": "derived"
       },
       {
         "name": "platform-filter.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/platform-filter.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/read-only/platform-filter.md",
         "source": "derived"
       },
       {
@@ -205,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `mobbin` Code Mode manual is now registered in `.utcpconfig.json`, but the entire packet still teaches pre-registration doctrine: 98 marker lines across 15 files claim the manual is \"NOT registered\", call absence \"expected\", and fence registration to \"a later phase\"",
     "created_at": "2026-07-16T12:58:34Z",
-    "last_save_at": "2026-07-16T15:03:17.571Z",
+    "last_save_at": "2026-07-17T06:03:04.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f192e06cdc7c2af019cd2a8b9ad6c082e9c7543159ea3761bda2b9128d0e8630",
+    "source_fingerprint": "sha256:edc04145de616ace36f3ceb04e84b60685a201c17ce78f96669c21bd28d3d7aa",
     "source_doc_hashes": {
-      "spec.md": "3938909a46a06eae663a13da4bd2b2d78d91a7fa942239fc36fb45d6082f8442",
-      "plan.md": "aa7b187d04d5e59d1d3f044ffea2103eb05405813b69e83f1e7adbd91b6e0dbf",
-      "tasks.md": "38ee2a5fc71e2188f55f25a4e900a043d4ff77e20484d3cd9fa6b9adc8b5f83b",
-      "checklist.md": "dfd75e0cd18cde57e4a1563e12126b15588c0ab834e77241469a40fb01200534",
-      "implementation-summary.md": "56ffb7c85dc7147c6f4c96cf61825e4a6ab36ad9180514426ecd15934a9301a2"
+      "spec.md": "b38bfcefd45c9e953f5116a1e4f2973127d20b4b90f73470168d7df112df9495",
+      "plan.md": "3ebe1b42800eab5532a55f49e6a41841fb50bf1bb724a1979d91bdc5d08a6712",
+      "tasks.md": "0d52144589a9a303c69c82bd12691b7a2bedbc33781acc0c9e965d9ce5064f4b",
+      "checklist.md": "069e96f1113c86171a5f200d7ebdd4d34b17cd192d376f420fa322ad40127a93",
+      "implementation-summary.md": "db6f5f30ad93880a96f43cdf88a62937b56a62a703773c71e3fa9d69ba608cb1"
     },
     "last_active_child_id": null,
     "last_active_at": null

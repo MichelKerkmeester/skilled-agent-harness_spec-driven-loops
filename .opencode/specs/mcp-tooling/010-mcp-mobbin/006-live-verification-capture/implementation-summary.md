@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/010-mcp-mobbin/006-live-verification-capture"
-    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_at: "2026-07-17T06:03:04.467Z"
     last_updated_by: "claude-agent"
     recent_action: "Phase complete; gates green"
     next_safe_action: "Operator handoff: browser OAuth and first authenticated smoke search"
@@ -68,10 +68,10 @@ The `deep` conflict is closed: the fixture schema shows `mode?: "deep" | "standa
 | `SKILL.md` | Modified | Three-tool surface, resolved deep, workflows, rules, quick ref, version 1.1.1.0 |
 | `references/tool-surface.md` | Modified | Rebuilt on fixture schemas; open questions 1/3/4/10 resolved |
 | `references/mcp-wiring.md`, `references/troubleshooting.md` | Modified | Naming CONFIRMED; drift rows diff against the fixture |
-| `README.md`, `INSTALL_GUIDE.md`, `mcp-servers/mobbin-mcp/README.md` | Modified | Three tools + pre-auth discovery in all consumer mirrors |
-| `feature_catalog/` (root + flows/screens/apps/elements) | Modified | Inventory, areas, count; flows leaf rebuilt on search_flows |
+| `README.md`, `install-guide.md`, `mcp-servers/mobbin-mcp/README.md` | Modified | Three tools + pre-auth discovery in all consumer mirrors |
+| `feature-catalog/` (root + flows/screens/apps/elements) | Modified | Inventory, areas, count; flows leaf rebuilt on search_flows |
 | `examples/` (README + 3 walkthroughs) | Modified | Confirmed names; flow example calls search_flows |
-| `manual_testing_playbook/` (root + 3 scenarios) | Modified | Grading re-anchored on the fixture baseline |
+| `manual-testing-playbook/` (root + 3 scenarios) | Modified | Grading re-anchored on the fixture baseline |
 | `assets/utcp-mobbin-manual.md` | Modified | Checklist items flipped with fixture evidence |
 | `scripts/doctor.sh`, `scripts/install.sh` | Modified | Hints state the confirmed three-tool baseline |
 | `changelog/v1.1.1.0.md` | Created | Release record |

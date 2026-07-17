@@ -69,7 +69,7 @@ _memory:
 
 - [x] CHK-020 [P0] All acceptance criteria met [evidence: REQ-001 to REQ-007 verified through tasks.md T003-T010, 7/7 with command evidence]
 - [x] CHK-021 [P0] Manual verification complete [evidence: `rg -n "unconfirmed until|discovery is still pending|UNKNOWN until confirmed" .opencode/skills/mcp-tooling/mcp-aside-devtools` returns 0 hits outside changelog history]
-- [x] CHK-022 [P1] Edge cases covered [evidence: the wrong-registry-prediction case (`aside.aside_repl` vs observed `aside.aside.repl`) documented in 2/2 target docs: `references/mcp-wiring.md` section 4 and `manual_testing_playbook/mcp-transport/code-mode-discovery.md`]
+- [x] CHK-022 [P1] Edge cases covered [evidence: the wrong-registry-prediction case (`aside.aside_repl` vs observed `aside.aside.repl`) documented in 2/2 target docs: `references/mcp-wiring.md` section 4 and `manual-testing-playbook/mcp-transport/code-mode-discovery.md`]
 - [x] CHK-023 [P1] Drift scenario validated [evidence: ASD-011 failure triage step 2 in `code-mode-discovery.md` prescribes fresh-fixture + reviewed update on baseline drift, 2/2 triage branches covered]
 <!-- /ANCHOR:testing -->
 

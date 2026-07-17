@@ -46,10 +46,10 @@
       ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
       "scripts/doctor.sh",
       ".opencode/skills/mcp-tooling/mcp-refero/README.md",
-      ".opencode/skills/mcp-tooling/mcp-refero/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/install-guide.md",
       ".opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md",
       ".opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md",
-      ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery-setup/discovery-first.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/manual-testing-playbook/discovery-setup/discovery-first.md",
       ".opencode/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md",
       "spec.md",
       "plan.md",
@@ -89,9 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "INSTALL_GUIDE.md",
+        "name": "install-guide.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-refero/INSTALL_GUIDE.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/install-guide.md",
         "source": "derived"
       },
       {
@@ -103,7 +103,7 @@
       {
         "name": "discovery-first.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery-setup/discovery-first.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/manual-testing-playbook/discovery-setup/discovery-first.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The packet carried a preserved cross-lineage naming conflict: the doubled-prefix callable `refero.referorefero<tool>` was live-verified only indirectly, a single-prefix derivation still circulated, and several docs gated callable confirmation on completed operator OAuth",
     "created_at": "2026-07-16T12:58:33Z",
-    "last_save_at": "2026-07-16T15:03:15.869Z",
+    "last_save_at": "2026-07-17T06:03:03.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcb062affa693f458d3a0b3c567a3f2f9b90dd827abbbe647f2740000f68e2b2",
+    "source_fingerprint": "sha256:9f584f37824f106a4ef77bc26904273f4307e9bb6852a4115d413730735d64cd",
     "source_doc_hashes": {
-      "spec.md": "cd466aa84511710a40c67d6284df675e2f2c201b49047444b0e3056fb8ac618c",
-      "plan.md": "4812e713e22f7da8b623963db2b0258bb2f7981d38a4faa6bf8b26609967cff2",
-      "tasks.md": "4c8a7022f18a12c00514ff7210d9e16530b429162b14a0d97bf50887c308ad53",
-      "checklist.md": "cd75531b26daf65d1fa6266f3cbec161250396951bcdb6fcbc939f67c6540a38",
-      "implementation-summary.md": "4534d759f5ece5efefcbccedb1ed92c7e0fde0fef1e9034704fd8b5e24f5f8d8"
+      "spec.md": "da0504ed91e43d6ca42338bda6bd8102c5a58d2a3fdfca1e0d3a658ea5157911",
+      "plan.md": "d4d80839f00decb54f5e0609e2479f7280cc934e76e3b55d61275447340bdbf5",
+      "tasks.md": "dde67c063175e9958e154d1e2d237f27764abe90dc7361a3cbb45f6309f1239f",
+      "checklist.md": "92d2a5c6f4447c00a60c9940033ff1f7b8b9adfa861575d6bc1fb4fd013c67b5",
+      "implementation-summary.md": "473ab00048ad81fee75bbfcf8c4fbf217a48154a9251287dfea77ffdd7c7ca5d"
     },
     "last_active_child_id": null,
     "last_active_at": null

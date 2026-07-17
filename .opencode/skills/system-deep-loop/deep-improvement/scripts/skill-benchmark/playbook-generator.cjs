@@ -176,7 +176,11 @@ async function generatePlaybook({ skillRoot, createMissing = false, author, dry 
   if (!createMissing) {
     return { staged: [], proposalDir: null, coverage, promoteHint: 'pass createMissing:true to author staged scenarios' };
   }
-  const stagingDir = path.join(skillRoot, 'manual_testing_playbook', '_generated_staging');
+  // Stage under whichever playbook dir name the skill uses (snake standard or kebab-migrated).
+  const playbookName = fs.existsSync(path.join(skillRoot, 'manual-testing-playbook'))
+    ? 'manual-testing-playbook'
+    : 'manual_testing_playbook';
+  const stagingDir = path.join(skillRoot, playbookName, '_generated_staging');
   const specs = coverage.intents.map((intent, i) => ({ id: `AG-${String(i + 1).padStart(3, '0')}`, intent, negative: false, stage: 'routing' }));
   const authorFn = author || (async (spec) => ({
     prompt: `(auto stub) exercise the ${spec.intent} path for ${skillId}`,

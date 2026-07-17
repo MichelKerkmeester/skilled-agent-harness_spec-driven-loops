@@ -92,8 +92,8 @@ Probe output (fixture JSON) feeds doc claims; doc claims cite the fixture path; 
 | SKILL.md (banner, surface table, workflows, rules, quick ref, version) | Runtime contract | update | grep shows three-tool + resolved-deep wording with fixture citations |
 | references/tool-surface.md | The tool contract authority | update | Section 1 rebuilt on fixture schemas; open questions 1/3/4/10 resolved |
 | references/mcp-wiring.md + troubleshooting.md | Naming rule + drift taxonomy | update | CONFIRMED table; drift rows diff against the fixture |
-| README.md + INSTALL_GUIDE.md + mcp-servers/mobbin-mcp/README.md | Consumer-facing mirrors | update | Three tools + pre-auth discovery stated |
-| feature_catalog root + flows/screens/apps/elements leaves | Capability inventory | update | Areas table adds Sections row; flows leaf rebuilt on search_flows |
+| README.md + install-guide.md + mcp-servers/mobbin-mcp/README.md | Consumer-facing mirrors | update | Three tools + pre-auth discovery stated |
+| feature-catalog root + flows/screens/apps/elements leaves | Capability inventory | update | Areas table adds Sections row; flows leaf rebuilt on search_flows |
 | examples (README + 3 walkthroughs) | Worked invocations | update | Confirmed names; flow example calls `mobbin.mobbin_search_flows` |
 | playbook root + DISCOVER-001 + FLOWS-001 + SCREENS-001 | Grading contracts | update | Fixture-baseline re-confirmation; no grading on retired rules |
 | scripts/doctor.sh + install.sh | Hardcoded INFERRED hints (grep-confirmed) | update | `bash -n` passes; hints state the confirmed baseline |

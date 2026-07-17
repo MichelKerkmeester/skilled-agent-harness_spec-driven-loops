@@ -30,7 +30,7 @@ version: 1.0.0.0
 
 ### Why This Package Exists
 
-mcp-aside-devtools drives real Aside surfaces (`aside "<task>"`, `aside exec`, `aside repl`, `aside account`, `aside mcp`) rather than reimplementing them. This folder is not vendored source — it is the install pointer the parent packet's `INSTALL_GUIDE.md` and `scripts/install.sh` align with. Distribution is a curl-piped macOS app-bundle installer; `npm install -g aside` and GitHub-package installs were researched and ruled out.
+mcp-aside-devtools drives real Aside surfaces (`aside "<task>"`, `aside exec`, `aside repl`, `aside account`, `aside mcp`) rather than reimplementing them. This folder is not vendored source — it is the install pointer the parent packet's `install-guide.md` and `scripts/install.sh` align with. Distribution is a curl-piped macOS app-bundle installer; `npm install -g aside` and GitHub-package installs were researched and ruled out.
 
 ### What It Does
 
@@ -62,7 +62,7 @@ Or use the wrapper with platform gate and idempotency: `bash ../../scripts/insta
 
 ## 4. RELATED DOCUMENTS
 
-- [`../../INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md) — full install, sign-in, and permission-tier walkthrough
+- [`../../install-guide.md`](../../install-guide.md) — full install, sign-in, and permission-tier walkthrough
 - [`../../references/aside-cli-reference.md`](../../references/aside-cli-reference.md) — verified command surface
 - [`../aside-mcp/README.md`](../aside-mcp/README.md) — the MCP server package (the `aside` manual is registered in `.utcp_config.json`)
 - Source: https://releases.aside.com/install.sh · https://docs.aside.com/help/developers

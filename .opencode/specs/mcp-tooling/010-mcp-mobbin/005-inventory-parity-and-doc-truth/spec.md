@@ -77,7 +77,7 @@ This is **Phase 5** of the mcp-mobbin completion: inventory parity, doc truth, l
 - Sibling parity references: `mcp-click-up` and `mcp-chrome-devtools` (examples/ + install.sh inventory shape)
 
 **Deliverables**:
-- Registered-state doc truth across all packet docs (SKILL.md, README.md, INSTALL_GUIDE.md, references, asset, playbook, catalog, mcp-servers pointer)
+- Registered-state doc truth across all packet docs (SKILL.md, README.md, install-guide.md, references, asset, playbook, catalog, mcp-servers pointer)
 - `scripts/doctor.sh` behavior flip: manual absence reports ERR (was INFO)
 - New `examples/` (README plus 3 worked Code Mode walkthroughs) and new verify-only `scripts/install.sh`
 - Playbook enriched from 6 to 9 scenarios; feature-catalog leaves enriched with recipes and cross-cutting constraints
@@ -124,17 +124,17 @@ Every packet doc states the registered wiring truth (registered; discovery pends
 |-----------|-------------|-------------|
 | `.opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Modify | Registration trap becomes discovery trap; rules, routing, quick reference flipped; v1.1.0.0 |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` | Modify | Quick start, FAQ, troubleshooting, verification flipped to registered state |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md` | Modify | Section 4 becomes reconnect-and-authenticate; doctor expectations flipped; 1.1.0.0 history row |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/install-guide.md` | Modify | Section 4 becomes reconnect-and-authenticate; doctor expectations flipped; 1.1.0.0 history row |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md` | Modify | Reference shape of the registered manual; 9-item checklist executed doc-side |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/references/{mcp_wiring,tool_surface,troubleshooting}.md` | Modify | Registered-state framing; absence as failure; discovery-first kept |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` | Modify | Manual absence now ERR; callable pointer notes pending discovery/OAuth |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/install.sh` | Create | Non-interactive verify-only posture check (node/npx, manual presence, OAuth pointer) |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/examples/{README,smoke_search_limit_1,platform_flow_research,element_intent_query}.md` | Create | Worked Code Mode walkthroughs; INFERRED callable with mandatory tool_info first |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/manual_testing_playbook.md` | Modify | 9-scenario index, 5 categories, 5 waves, registered-state preconditions |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery-setup/manual-registered-expected.md` | Rename+Rewrite | Was manual_absent_expected.md; presence expected, absence escalated |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/platform-filter.md` | Create | PLATFORM-001: ios/web enum, infer-or-ask, per-platform comparison |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/limits-access/{rate_limit_backoff,paid_gate_taxonomy}.md` | Create | RATELIMIT-001 (429/backoff observation, SKIP-valid); PAIDGATE-001 (error taxonomy) |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/{feature_catalog,apps/apps,screens/screens,flows/flows,elements/elements}.md` | Modify | Registered-state framing; recipes + cross-cutting constraints traced to tool-surface.md |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md` | Modify | 9-scenario index, 5 categories, 5 waves, registered-state preconditions |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/discovery-setup/manual-registered-expected.md` | Rename+Rewrite | Was manual_absent_expected.md; presence expected, absence escalated |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/read-only/platform-filter.md` | Create | PLATFORM-001: ios/web enum, infer-or-ask, per-platform comparison |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/limits-access/{rate_limit_backoff,paid_gate_taxonomy}.md` | Create | RATELIMIT-001 (429/backoff observation, SKIP-valid); PAIDGATE-001 (error taxonomy) |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/{feature-catalog,apps/apps,screens/screens,flows/flows,elements/elements}.md` | Modify | Registered-state framing; recipes + cross-cutting constraints traced to tool-surface.md |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md` | Modify | Pointer flipped to registered state |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.0.0.md` | Create | Registered-state truth + parity additions release notes |
 <!-- /ANCHOR:scope -->

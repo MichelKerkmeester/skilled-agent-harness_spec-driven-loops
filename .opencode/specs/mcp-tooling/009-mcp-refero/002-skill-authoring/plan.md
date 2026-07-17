@@ -86,7 +86,7 @@ Exemplar-mirroring packet authoring: inventory diff (mcp-figma minus CLI) → re
 ### Key Components
 - **SKILL.md (transport contract)**: Declares `packetKind: transport` semantics for hub consumption — `mutatesWorkspace:false`, allowed-tools without Write/Edit/Task, mandatory `sk-design` cross-hub judgment pairing, all Refero calls via Code Mode `call_tool_chain()` against the existing `refero` manual.
 - **references/**: `mcp_wiring` (mcp-remote stdio bridge, manual key, Code Mode naming `refero.refero_<tool>`), `tool_surface` (verified tool inventory with parameters and tier notes from research.md), `troubleshooting` (auth failures, rate limits, remote-down, surface drift).
-- **manual_testing_playbook/**: Scenario set incl. `intra-routing-recall/` with ≥2 holdout prompts that must route to mcp-refero, `negative.md` (prompts that must NOT route here — e.g. Figma edits, local design builds), `troubleshoot.md`.
+- **manual-testing-playbook/**: Scenario set incl. `intra-routing-recall/` with ≥2 holdout prompts that must route to mcp-refero, `negative.md` (prompts that must NOT route here — e.g. Figma edits, local design builds), `troubleshoot.md`.
 - **assets/**: Ready-to-paste UTCP manual snippet mirroring the live `refero` manual shape for fresh installs.
 - **mcp-servers/refero-mcp/README.md**: Endpoint-level notes (URL, transport, auth posture) for the remote server.
 
@@ -125,9 +125,9 @@ Required inventories:
 - [ ] Confirm sk-doc create-skill-parent standards and nested-mode frontmatter requirements
 
 ### Phase 2: Core Implementation
-- [ ] Author SKILL.md, README.md, INSTALL_GUIDE.md with the transport contract and verified surface summary
+- [ ] Author SKILL.md, README.md, install-guide.md with the transport contract and verified surface summary
 - [ ] Author references/ (mcp_wiring, tool_surface, troubleshooting) and mcp-servers/refero-mcp/README.md
-- [ ] Author manual_testing_playbook/ incl. intra-routing-recall holdouts, negative.md, troubleshoot.md; seed changelog/, feature_catalog/, scripts/, assets/ (UTCP snippet)
+- [ ] Author manual-testing-playbook/ incl. intra-routing-recall holdouts, negative.md, troubleshoot.md; seed changelog/, feature-catalog/, scripts/, assets/ (UTCP snippet)
 
 ### Phase 3: Verification
 - [ ] Run `package_skill.py --check` and fix findings to exit 0

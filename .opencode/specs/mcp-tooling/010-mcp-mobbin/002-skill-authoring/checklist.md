@@ -101,7 +101,7 @@ FAILURE MODES:
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets: credential handling documented via env template only [evidence: 0/31 files contain secrets/tokens; no `MOBBIN_API_KEY` invented (negative answer preserved)]
-- [x] CHK-031 [P0] INSTALL_GUIDE.md provisions the Mobbin credential without embedding a real key anywhere in the packet [evidence: 0/31 docs instruct workspace mutation; read-only transport posture in `SKILL.md` RULES]
+- [x] CHK-031 [P0] install-guide.md provisions the Mobbin credential without embedding a real key anywhere in the packet [evidence: 0/31 docs instruct workspace mutation; read-only transport posture in `SKILL.md` RULES]
 - [x] CHK-032 [P1] Read-only posture verified: documented tool surface contains no workspace-mutating operation [evidence: OAuth/DCR/PKCE documented as mechanism in `mcp-wiring.md`; 60/60 rate limit + plan gating stated]
 <!-- /ANCHOR:security -->
 
@@ -111,7 +111,7 @@ FAILURE MODES:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized with what was actually authored [evidence: `spec.md`/`plan.md`/`tasks.md` match the delivered 31-file inventory]
-- [x] CHK-041 [P1] SKILL.md, README.md, and INSTALL_GUIDE.md agree on install steps, tool names, and pairing rules [evidence: 10/10 open questions carried verbatim in `tool-surface.md`; callable marked INFERRED]
+- [x] CHK-041 [P1] SKILL.md, README.md, and install-guide.md agree on install steps, tool names, and pairing rules [evidence: 10/10 open questions carried verbatim in `tool-surface.md`; callable marked INFERRED]
 - [x] CHK-042 [P2] changelog/v1.0.0.0 entry reflects the shipped inventory [evidence: `tool-surface.md` records the 2026-07-16 research date]
 <!-- /ANCHOR:docs -->
 

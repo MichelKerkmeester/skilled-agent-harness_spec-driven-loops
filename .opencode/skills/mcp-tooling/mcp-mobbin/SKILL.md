@@ -3,7 +3,7 @@ name: mcp-mobbin
 description: "Mobbin MCP transport: read-only app/screen/flow design research via Code Mode; sk-design owns the judgment."
 compatibility: Requires a paid Mobbin plan for MCP (Pro, Team, or Enterprise; Free has no MCP access), the npx mcp-remote bridge, Node.js >=18, and a browser OAuth round-trip on first use.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.2.0.0
+version: 1.3.0.0
 user-invocable: true
 ---
 
@@ -411,6 +411,6 @@ Examples: `examples/README.md` plus worked Code Mode walkthroughs (smoke search,
 
 Related skills: `sk-design` (the mandatory judgment pairing), `mcp-code-mode` (the substrate), `mcp-refero` (the closest sibling transport), `mcp-figma` (the hub's Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
-Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md).
+Install guide: [install-guide.md](install-guide.md).
 
 Upstream: the Mobbin MCP is the hosted paid service at `api.mobbin.com/mcp` (docs at docs.mobbin.com/mcp; the official `mobbin/mobbin-mcp-server` repository is registration metadata only). The official [mobbin/skills](https://github.com/mobbin/skills) repository (MIT) holds the single `mobbin-search` skill; this packet references it and deliberately does not vendor it.

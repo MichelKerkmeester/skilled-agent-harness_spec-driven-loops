@@ -76,7 +76,7 @@ FAILURE MODES:
 ## Testing
 
 - [x] CHK-020 [P0] Stale-marker regression grep is clean outside documented exclusions [evidence: `rg -i 'NOT REGISTERED|later phase|pre-registration|manual absent|not yet registered|unregistered'` returns only `changelog/v1.0.0.0.md` + the 1.0.0.0 history row (historical records) and 3 self-describing flip-narrative lines in `changelog/v1.1.0.0.md` / `manual-registered-expected.md`]
-- [x] CHK-021 [P0] Epistemic line held: no doc claims discovery ran, OAuth completed, or the callable was observed [evidence: every callable mention stays INFERRED with mandatory `tool_info`; OAuth described as pending/Inferred in `SKILL.md`, `README.md`, `INSTALL_GUIDE.md`, `mcp-wiring.md`, examples, and both scripts]
+- [x] CHK-021 [P0] Epistemic line held: no doc claims discovery ran, OAuth completed, or the callable was observed [evidence: every callable mention stays INFERRED with mandatory `tool_info`; OAuth described as pending/Inferred in `SKILL.md`, `README.md`, `install-guide.md`, `mcp-wiring.md`, examples, and both scripts]
 - [x] CHK-022 [P0] Playbook index integrity: 9 scenario IDs mapped to 9 per-scenario files across 5 categories [evidence: coverage table totals 9; cross-reference index lists 9 rows; new files `read-only/platform-filter.md`, `limits-access/rate-limit-backoff.md`, `limits-access/paid-gate-taxonomy.md` exist]
 - [x] CHK-023 [P1] Renamed MANUAL-001 file leaves no dangling references [evidence: `rg 'manual_absent_expected' .opencode/skills` returns 0 link references; the 1 remaining mention is the intentional rename narrative in `changelog/v1.1.0.0.md`; root playbook links point at `discovery-setup/manual-registered-expected.md`]
 - [x] CHK-024 [P1] Asset checklist executed doc-side with live items SKIP-valid [evidence: 3 of 9 items `[x]` with dated evidence (JSON match, empty env, doc update); 6 of 9 open with exact commands (reconnect, OAuth, `list_tools()`, `tool_info(...)`, schema check, `limit: 1` smoke)]
@@ -112,7 +112,7 @@ FAILURE MODES:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized with what actually shipped [evidence: `spec.md` Files-to-Change table matches the 15 modified + 8 created files; tasks 16/16 evidenced]
-- [x] CHK-041 [P1] SKILL.md, README.md, INSTALL_GUIDE.md agree on the wiring state and operator steps [evidence: 3/3 docs state registered 2026-07-16, discovery pends a fresh session, OAuth pends the operator, and the callable stays `INFERRED` until `tool_info`]
+- [x] CHK-041 [P1] SKILL.md, README.md, install-guide.md agree on the wiring state and operator steps [evidence: 3/3 docs state registered 2026-07-16, discovery pends a fresh session, OAuth pends the operator, and the callable stays `INFERRED` until `tool_info`]
 - [x] CHK-042 [P2] changelog/v1.1.0.0.md reflects the shipped inventory [evidence: release notes enumerate the doc flips, doctor change, examples/, install.sh, 6-to-9 playbook, catalog enrichment]
 <!-- /ANCHOR:docs -->
 

@@ -119,8 +119,8 @@ REQUIRED_RESOURCE_FRONTMATTER_FIELDS = [
 VERSIONED_DOC_SUBTREES = [
     'references',
     'assets',
-    'feature_catalog',
-    'manual_testing_playbook',
+    'feature_catalog', 'feature-catalog',
+    'manual_testing_playbook', 'manual-testing-playbook',
     'changelog',
 ]
 

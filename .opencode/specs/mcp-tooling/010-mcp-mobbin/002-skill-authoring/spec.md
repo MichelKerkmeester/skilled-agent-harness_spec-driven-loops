@@ -77,7 +77,7 @@ This is **Phase 2** of the mcp-mobbin nested mode: Mobbin design-research MCP tr
 - sk-doc create-skill standards and `package_skill.py --check` as the gate
 
 **Deliverables**:
-- Complete `mcp-mobbin` transport packet: SKILL.md, README.md, INSTALL_GUIDE.md, assets/ (incl. ready-to-paste UTCP `mobbin` manual snippet), changelog/, feature_catalog/, references/ (mcp_wiring, tool_surface, troubleshooting), scripts/, manual_testing_playbook/ (incl. intra-routing-recall/ with at least 2 holdouts plus negative.md and troubleshoot.md), and mcp-servers/mobbin-mcp/README.md
+- Complete `mcp-mobbin` transport packet: SKILL.md, README.md, install-guide.md, assets/ (incl. ready-to-paste UTCP `mobbin` manual snippet), changelog/, feature-catalog/, references/ (mcp_wiring, tool_surface, troubleshooting), scripts/, manual-testing-playbook/ (incl. intra-routing-recall/ with at least 2 holdouts plus negative.md and troubleshoot.md), and mcp-servers/mobbin-mcp/README.md
 - Transport rules stated in SKILL.md: `mutatesWorkspace:false`, forbids Write/Edit/Task, mandatory cross-hub judgment pairing with `sk-design`
 
 **Changelog**:
@@ -118,13 +118,13 @@ Author a complete, `package_skill.py --check`-clean `mcp-mobbin` transport packe
 |-----------|-------------|-------------|
 | `.opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Create | Transport contract: read-only design-research surface, no Write/Edit/Task, sk-design pairing |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` | Create | Packet overview and routing entry points |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md` | Create | Server install, credential provisioning, verification steps |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/install-guide.md` | Create | Server install, credential provisioning, verification steps |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/assets/` | Create | Ready-to-paste UTCP `mobbin` manual snippet + env template |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/changelog/` | Create | v1.0.0.0 changelog entry |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/` | Create | Catalog of Mobbin research capabilities (apps, screens, flows, patterns) |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/` | Create | Catalog of Mobbin research capabilities (apps, screens, flows, patterns) |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/references/{mcp-wiring.md,tool-surface.md,troubleshooting.md}` | Create | Wiring, verified tool surface, failure modes |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/` | Create | Minimal helper scripts (doctor/print-snippet class; no daemon machinery) |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/` | Create | Playbook incl. intra-routing-recall/ with 2+ holdouts, negative.md, troubleshoot.md |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/` | Create | Playbook incl. intra-routing-recall/ with 2+ holdouts, negative.md, troubleshoot.md |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md` | Create | Upstream server notes: repo pointer, version, auth requirement |
 <!-- /ANCHOR:scope -->
 
@@ -146,7 +146,7 @@ Author a complete, `package_skill.py --check`-clean `mcp-mobbin` transport packe
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Routing-recall playbook seeded | `manual_testing_playbook/intra-routing-recall/` contains at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` |
+| REQ-005 | Routing-recall playbook seeded | `manual-testing-playbook/intra-routing-recall/` contains at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` |
 | REQ-006 | UTCP snippet is paste-ready | The `assets/` manual snippet is valid JSON matching `.utcp_config.json` manual conventions (name-keyed `mobbin`), so phase 003 can apply it without rework |
 <!-- /ANCHOR:requirements -->
 
@@ -156,7 +156,7 @@ Author a complete, `package_skill.py --check`-clean `mcp-mobbin` transport packe
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `package_skill.py --check` exits 0 on the new packet with the full exemplar-derived inventory present.
-- **SC-002**: A reader can install and verify the Mobbin MCP server from INSTALL_GUIDE.md alone, including credential provisioning, without consulting sources outside the packet.
+- **SC-002**: A reader can install and verify the Mobbin MCP server from install-guide.md alone, including credential provisioning, without consulting sources outside the packet.
 - **SC-003**: Zero files outside `.opencode/skills/mcp-tooling/mcp-mobbin/` and this phase folder are modified.
 <!-- /ANCHOR:success-criteria -->
 
@@ -169,7 +169,7 @@ Author a complete, `package_skill.py --check`-clean `mcp-mobbin` transport packe
 |------|------|--------|------------|
 | Dependency | Phase 001 synthesis converged | Authoring without it re-introduces the unverified-surface problem | Hard predecessor gate; do not start until research.md is reviewed |
 | Risk | Copying mcp-figma structure imports CLI/daemon machinery Mobbin does not have | Medium | Explicit minus-list in scope; exemplar is a shape reference, not a copy source |
-| Risk | Auth/gating unknowns from phase 001 leak into the guide as facts | High | Carry UNKNOWNs as explicit INSTALL_GUIDE caveats; never present unverified claims as verified |
+| Risk | Auth/gating unknowns from phase 001 leak into the guide as facts | High | Carry UNKNOWNs as explicit install-guide caveats; never present unverified claims as verified |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -178,7 +178,7 @@ Author a complete, `package_skill.py --check`-clean `mcp-mobbin` transport packe
 ## 7. OPEN QUESTIONS
 
 - Should `scripts/` include a connectivity doctor script at authoring time, or defer scripting until the manual is live in phase 003 and testable end-to-end?
-- How much of the Mobbin official skills repo (github.com/mobbin/skills) should be mirrored into feature_catalog/ versus linked as upstream reference?
+- How much of the Mobbin official skills repo (github.com/mobbin/skills) should be mirrored into feature-catalog/ versus linked as upstream reference?
 <!-- /ANCHOR:questions -->
 
 ---

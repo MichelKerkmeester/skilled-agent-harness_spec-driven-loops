@@ -60,10 +60,10 @@ _memory:
 
 - [x] T003 Flip SKILL.md: MCP approach paragraph, inventory re-confirmation, NEVER rule 2, version 1.1.1.0 (`mcp-aside-devtools/SKILL.md`) [evidence: 4 edits; frontmatter `version: 1.1.1.0`]
 - [x] T004 [P] Flip README.md quick-start step 4 and the MCP FAQ (`mcp-aside-devtools/README.md`) [evidence: code block now shows both name forms with the fixture path]
-- [x] T005 [P] Flip INSTALL_GUIDE.md validation step 3 (`mcp-aside-devtools/INSTALL_GUIDE.md`) [evidence: step 3 quotes registry + TS forms with fixture citation]
+- [x] T005 [P] Flip install-guide.md validation step 3 (`mcp-aside-devtools/install-guide.md`) [evidence: step 3 quotes registry + TS forms with fixture citation]
 - [x] T006 [P] Flip references: mcp-wiring.md banner + naming bullet + fixture helper surface; aside-cli-reference.md helper paragraph + narrowed UNKNOWN (`references/mcp-wiring.md`, `references/aside-cli-reference.md`) [evidence: 5 edits across the two files; helper list matches the fixture's 21-entry surface]
 - [x] T007 [P] Flip asset checklist and server README (`assets/utcp-aside-manual.md`, `mcp-servers/aside-mcp/README.md`) [evidence: 3 checklist items flipped to `[x]` with fixture evidence; step 4 records confirmed naming]
-- [x] T008 [P] Flip catalog + playbook mirrors (`feature_catalog/feature_catalog.md`, `feature_catalog/mcp/mcp-transport-and-code-mode.md`, `manual_testing_playbook/manual_testing_playbook.md`, `manual_testing_playbook/mcp-transport/code-mode-discovery.md`) [evidence: 8 edits; ASD-011 records the satisfied 2026-07-16 run and the fixture drift protocol]
+- [x] T008 [P] Flip catalog + playbook mirrors (`feature-catalog/feature-catalog.md`, `feature-catalog/mcp/mcp-transport-and-code-mode.md`, `manual-testing-playbook/manual-testing-playbook.md`, `manual-testing-playbook/mcp-transport/code-mode-discovery.md`) [evidence: 8 edits; ASD-011 records the satisfied 2026-07-16 run and the fixture drift protocol]
 - [x] T009 Update doctor.sh discovery hint and add `changelog/v1.1.1.0.md` (`scripts/doctor.sh`, `changelog/v1.1.1.0.md`) [evidence: hint states both forms; changelog records need/change/why + 14 file rows]
 <!-- /ANCHOR:phase-2 -->
 

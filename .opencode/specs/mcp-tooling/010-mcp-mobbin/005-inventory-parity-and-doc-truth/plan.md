@@ -98,11 +98,11 @@ The stale pre-registration claims behave like a class-of-bug across the packet, 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| SKILL.md / README.md / INSTALL_GUIDE.md | Doctrine producers (agents read these first) | Updated to registered-state truth | Packet-wide marker grep clean outside exclusions |
+| SKILL.md / README.md / install-guide.md | Doctrine producers (agents read these first) | Updated to registered-state truth | Packet-wide marker grep clean outside exclusions |
 | references/*.md, assets/utcp-mobbin-manual.md | Contract producers | Updated; asset checklist executed doc-side | Grep + field-for-field config match |
 | scripts/doctor.sh | Status producer | Absence branch flipped INFO to ERR | `bash -n`; live run shows OK on the registered manual |
-| manual_testing_playbook/** | Test consumers of the doctrine | MANUAL-001 renamed/rewritten; index and preconditions flipped; 3 scenarios added | Index count 9 = 9 files |
-| feature_catalog/** | Capability consumers | Registered framing + constraint sections | Grep + trace links to tool-surface.md |
+| manual-testing-playbook/** | Test consumers of the doctrine | MANUAL-001 renamed/rewritten; index and preconditions flipped; 3 scenarios added | Index count 9 = 9 files |
+| feature-catalog/** | Capability consumers | Registered framing + constraint sections | Grep + trace links to tool-surface.md |
 | changelog/v1.0.0.0.md, 1.0.0.0 history row | Historical records | Unchanged (deliberate) | Excluded from the grep acceptance |
 
 Required inventories:
@@ -119,7 +119,7 @@ Required inventories:
 
 ### Phase 1: Verify state and sweep doc truth
 - [x] Parse `.utcp_config.json` read-only; confirm the `mobbin` entry matches the researched shape field-for-field
-- [x] Grep the packet for the stale marker set; flip SKILL.md, README.md, INSTALL_GUIDE.md, references, asset, catalog, playbook, mcp-servers pointer
+- [x] Grep the packet for the stale marker set; flip SKILL.md, README.md, install-guide.md, references, asset, catalog, playbook, mcp-servers pointer
 - [x] Flip doctor.sh absence to ERR; execute the asset's 9-item checklist doc-side (3 evidence-marked, 6 SKIP-valid with exact commands)
 
 ### Phase 2: Parity additions

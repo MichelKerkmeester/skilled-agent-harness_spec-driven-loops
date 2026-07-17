@@ -56,7 +56,7 @@ FAILURE MODES:
 | **Testing** | `package_skill.py --check`, placeholder grep, research.md traceability review |
 
 ### Overview
-Author the `mcp-mobbin` transport packet contract-first: SKILL.md pins the transport rules, then references (tool_surface, mcp_wiring, troubleshooting) encode the verified facts from phase 001, then user-facing docs (README, INSTALL_GUIDE), assets (UTCP snippet), feature catalog, changelog, scripts, and the manual-testing playbook. The `mcp-figma` sibling is the structural exemplar, explicitly minus its CLI/daemon machinery, because Mobbin is a plain remote MCP server reached through Code Mode.
+Author the `mcp-mobbin` transport packet contract-first: SKILL.md pins the transport rules, then references (tool_surface, mcp_wiring, troubleshooting) encode the verified facts from phase 001, then user-facing docs (README, install-guide), assets (UTCP snippet), feature catalog, changelog, scripts, and the manual-testing playbook. The `mcp-figma` sibling is the structural exemplar, explicitly minus its CLI/daemon machinery, because Mobbin is a plain remote MCP server reached through Code Mode.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -87,7 +87,7 @@ Exemplar-derived documentation packet: transport contract at the root (SKILL.md)
 - **SKILL.md (contract)**: Declares the read-only Mobbin design-research surface, `mutatesWorkspace:false`, forbidden tools (Write/Edit/Task), Code Mode as the call path, and the mandatory sk-design cross-hub pairing for design judgment.
 - **references/**: `tool-surface.md` (verified tool list with inputs/outputs and gating), `mcp-wiring.md` (Code Mode call path and manual naming), `troubleshooting.md` (auth failures, gating errors, rate limits).
 - **assets/**: Ready-to-paste UTCP `mobbin` manual snippet plus credential env template.
-- **manual_testing_playbook/**: Routing-recall holdouts (2+), negative.md, troubleshoot.md, plus surface smoke scenarios.
+- **manual-testing-playbook/**: Routing-recall holdouts (2+), negative.md, troubleshoot.md, plus surface smoke scenarios.
 - **mcp-servers/mobbin-mcp/README.md**: Upstream pin — repo URL, version verified against, credential requirement.
 
 ### Data Flow
@@ -122,9 +122,9 @@ Required inventories:
 - [ ] Load sk-doc create-skill standards and confirm the `package_skill.py --check` invocation
 
 ### Phase 2: Core Implementation
-- [ ] Author SKILL.md with the full transport contract, then README.md and INSTALL_GUIDE.md
-- [ ] Author references/ (mcp_wiring, tool_surface, troubleshooting), assets/ (UTCP snippet + env template), feature_catalog/, changelog/, scripts/, mcp-servers/mobbin-mcp/README.md
-- [ ] Author manual_testing_playbook/ including intra-routing-recall/ with 2+ holdouts, negative.md, troubleshoot.md
+- [ ] Author SKILL.md with the full transport contract, then README.md and install-guide.md
+- [ ] Author references/ (mcp_wiring, tool_surface, troubleshooting), assets/ (UTCP snippet + env template), feature-catalog/, changelog/, scripts/, mcp-servers/mobbin-mcp/README.md
+- [ ] Author manual-testing-playbook/ including intra-routing-recall/ with 2+ holdouts, negative.md, troubleshoot.md
 
 ### Phase 3: Verification
 - [ ] Run `package_skill.py --check` and iterate to exit 0

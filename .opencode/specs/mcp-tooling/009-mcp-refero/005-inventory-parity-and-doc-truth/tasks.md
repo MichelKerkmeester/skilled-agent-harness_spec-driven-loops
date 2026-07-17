@@ -62,10 +62,10 @@ _memory:
 
 - [x] T004 Author `examples/README.md` + 3 walkthroughs: funnel, metadata-first lookup, screen-image fetch (`.opencode/skills/mcp-tooling/mcp-refero/examples/`)
 - [x] T005 Author `scripts/install.sh` verify-only posture check; `bash -n` + live run (`.opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh`)
-- [x] T006 [P] Author FUNNEL-001, FORMAT-001, QUOTA-001 scenario leaves (`manual_testing_playbook/read-only/funnel-walk.md`, `read-only/format-text-retrieval.md`, `safety-gate/quota-recovery.md`)
-- [x] T007 Update playbook root: coverage table 9, waves, two new section-8 summaries + one section-9 summary, index 9/9, readiness rule, v1.1.0.0 (`manual_testing_playbook/manual_testing_playbook.md`)
-- [x] T008 [P] Author 8 per-tool catalog leaves (`feature_catalog/styles/{search_styles,get_style}.md`, `screens/{search_screens,get_screen,get_similar_screens,get_screen_image}.md`, `flows/{search_flows,get_flow}.md`)
-- [x] T009 Update domain files with leaf links + root count summary (3 domain + 8 leaves) (`feature_catalog/`)
+- [x] T006 [P] Author FUNNEL-001, FORMAT-001, QUOTA-001 scenario leaves (`manual-testing-playbook/read-only/funnel-walk.md`, `read-only/format-text-retrieval.md`, `safety-gate/quota-recovery.md`)
+- [x] T007 Update playbook root: coverage table 9, waves, two new section-8 summaries + one section-9 summary, index 9/9, readiness rule, v1.1.0.0 (`manual-testing-playbook/manual-testing-playbook.md`)
+- [x] T008 [P] Author 8 per-tool catalog leaves (`feature-catalog/styles/{search_styles,get_style}.md`, `screens/{search_screens,get_screen,get_similar_screens,get_screen_image}.md`, `flows/{search_flows,get_flow}.md`)
+- [x] T009 Update domain files with leaf links + root count summary (3 domain + 8 leaves) (`feature-catalog/`)
 - [x] T010 Bump SKILL.md/README.md to v1.1.0.0, surface examples/install.sh; author `changelog/v1.1.0.0.md`
 - [x] T011 Slim sk-design `refero_tools.md` to pointer, v1.6.0.0 (`.opencode/skills/sk-design/design-interface/references/mcp_tooling/refero_tools.md`)
 - [x] T012 Bounded transport-phrasing edits: design-interface SKILL.md (3 lines), README.md (2 lines), design_references_mcp.md (2 link lines), mobbin_tools.md (1 line), ID-010 playbook anchor row (1 line) [evidence: 6/6 `design-interface` files edited; gate diff empty]

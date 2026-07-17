@@ -44,23 +44,23 @@
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
-      "feature_catalog/feature_catalog.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
       "scripts/doctor.sh",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/install-guide.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/feature_catalog.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp-transport-and-code-mode.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp-transport/code-mode-discovery.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/mcp/mcp-transport-and-code-mode.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.1.0.md",
       ".opencode/skills/mcp-code-mode/references/naming_convention.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -82,18 +82,6 @@
         "source": "derived"
       },
       {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "doctor.sh",
         "kind": "script",
         "path": "scripts/doctor.sh",
@@ -106,9 +94,9 @@
         "source": "derived"
       },
       {
-        "name": "INSTALL_GUIDE.md",
+        "name": "install-guide.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/install-guide.md",
         "source": "derived"
       },
       {
@@ -124,15 +112,27 @@
         "source": "derived"
       },
       {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
         "name": "mcp-transport-and-code-mode.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp-transport-and-code-mode.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/mcp/mcp-transport-and-code-mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
         "name": "code-mode-discovery.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp-transport/code-mode-discovery.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md",
         "source": "derived"
       },
       {
@@ -157,6 +157,18 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The packet predicted `aside.asiderepl` as THE Code Mode callable and marked it UNCONFIRMED/UNKNOWN in 12 files, because live discovery had never run against the registered manual",
     "created_at": "2026-07-16T12:58:31Z",
-    "last_save_at": "2026-07-16T15:03:13.963Z",
+    "last_save_at": "2026-07-17T06:04:03.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79be86d10853e1aa961603295a619a40e2797271ec9ea78d0f6a33acc22ed831",
+    "source_fingerprint": "sha256:c4093290f51cb108d38110563fa2549beb5bc71eff26f4bdfefb3fca91f1243e",
     "source_doc_hashes": {
-      "spec.md": "ea6d114a364e0fe7f656fba4112b465e96559c81db4dddb175d196e061c479a0",
-      "plan.md": "8eb62a0ff0ea10eb6edeca3a2ded387b758591ebb03f74cbe11c4a97c80b7fc5",
-      "tasks.md": "2d12c80d03a01239a5a1cb5c0c20475f763ee2c2e4b4b82f111c401e1f4c52c2",
-      "checklist.md": "5741cd8445b3ff3e6fe37f68da13b3f9ffd4c51b8c325f4356f14e3303c8a2df",
-      "implementation-summary.md": "7ca6dc0345f66e747bad7f142ccd591c7e31a279463a892249851fc68bc6d351"
+      "spec.md": "36839bd5ebb9bd37e0488c19ad348ace83950aadaee445c1c31abf2c11ca4d20",
+      "plan.md": "cd5db1f482b4863b99a46e57d33e3cf3c4e8d2246e46d74b3cce8ea26c765148",
+      "tasks.md": "31cc89276610eeb3ba541800f928ec840e70cc4d6b2f453e162428731fb51bdc",
+      "checklist.md": "1490fbeaf7ab2f586c0c5d21806048514bb2b248b19a24df65124bb4b7749b14",
+      "implementation-summary.md": "194f5d617314579aad23c0f907b1fd37522bf6a7143521ea55816ab07ba87733"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/008-mcp-aside/002-skill-authoring"
-    last_updated_at: "2026-07-16T15:05:07Z"
+    last_updated_at: "2026-07-17T06:03:44Z"
     last_updated_by: "claude"
     recent_action: "Verified packet gate and marked checklist with evidence"
     next_safe_action: "Run phase 003 hub integration for mcp-aside-devtools"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md"
       - ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md"
-      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md"
+      - ".opencode/skills/mcp-tooling/mcp-aside-devtools/install-guide.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-002-aside-authoring-complete"
@@ -55,9 +55,9 @@ _memory:
 
 `.opencode/skills/mcp-tooling/mcp-aside-devtools/` — a complete 41-file nested workflow packet (`packetKind: workflow`, `backendKind: cli-plus-mcp`), grounded exclusively in the phase-001 synthesis:
 
-- `SKILL.md` (8 numbered sections, exemplar order; SMART ROUTING carries the benchmark-parseable `INTENT_SIGNALS` block: TASK/REPL/MCP/INSTALL/TROUBLESHOOT), `README.md`, `INSTALL_GUIDE.md`.
+- `SKILL.md` (8 numbered sections, exemplar order; SMART ROUTING carries the benchmark-parseable `INTENT_SIGNALS` block: TASK/REPL/MCP/INSTALL/TROUBLESHOOT), `README.md`, `install-guide.md`.
 - `references/` (aside_cli_reference, mcp_wiring, session_management, troubleshooting), `examples/` (3 worked scripts), `scripts/` (install.sh, doctor.sh — read-only diagnostics incl. a watchdog-guarded MCP handshake probe), `changelog/v1.0.0.0.md`.
-- `manual_testing_playbook/` — 15 scenarios across 6 dirs, incl. `intra-routing-recall/` with 2 blind holdouts, `negative.md`, `troubleshoot.md`; the MCP scenario explicitly GATED until manual registration.
+- `manual-testing-playbook/` — 15 scenarios across 6 dirs, incl. `intra-routing-recall/` with 2 blind holdouts, `negative.md`, `troubleshoot.md`; the MCP scenario explicitly GATED until manual registration.
 - `mcp-servers/aside-cli/` + `aside-mcp/` — backend docs; the drafted `aside` UTCP manual is embedded verbatim and marked NOT REGISTERED (phase 003 registers it).
 <!-- /ANCHOR:what-built -->
 

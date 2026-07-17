@@ -114,25 +114,25 @@ The packet's contract tracks the live-discovered three-tool inventory with the f
 | `.opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json` | Create | Dated live-discovery fixture (already written by the probe; recorded as ground truth) |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Modify | Discovery banner, three-tool surface, resolved deep, workflows, rules, quick ref, version 1.1.1.0 |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` | Modify | Why-this-packet, quick start, wiring state, troubleshooting rows |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md` | Modify | Pre-auth precondition; checklist items satisfied with fixture evidence |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/install-guide.md` | Modify | Pre-auth precondition; checklist items satisfied with fixture evidence |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md` | Modify | Rewritten to the live three-tool contract; open questions 1/3/4/10 resolved |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md` | Modify | Naming section CONFIRMED; pre-auth discovery recorded |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md` | Modify | Drift row diffs against the fixture baseline |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md` | Modify | Discovery/schema checklist items flipped with fixture evidence |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md` | Modify | Expected discovery result and call-syntax row flipped |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/feature_catalog.md` | Modify | Banner, inventory, areas table, count summary |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/flows/flows.md` | Modify | Rebuilt on the live search_flows tool |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/screens/screens.md` | Modify | Fixture-declared schema and resolved deep mode |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/apps/apps.md` | Modify | Resolved deep note |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/feature_catalog/elements/elements.md` | Modify | Resolved deep note |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/feature-catalog.md` | Modify | Banner, inventory, areas table, count summary |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/flows/flows.md` | Modify | Rebuilt on the live search_flows tool |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/screens/screens.md` | Modify | Fixture-declared schema and resolved deep mode |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/apps/apps.md` | Modify | Resolved deep note |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/elements/elements.md` | Modify | Resolved deep note |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/examples/README.md` | Modify | Confirmed callables banner, preflight, shared rules |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke-search-limit-1.md` | Modify | Confirmed callable, fixture-schema expectations |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/examples/platform-flow-research.md` | Modify | Rebuilt on search_flows |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/examples/element-intent-query.md` | Modify | Confirmed callable |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/manual_testing_playbook.md` | Modify | Naming status, do-not-run note, DISCOVER-001 row |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/discovery-setup/discovery-first.md` | Modify | Fixture-baseline re-confirmation contract |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/flow-intent.md` | Modify | search_flows-first flow research contract |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/read-only/screens-search.md` | Modify | Fixture-declared inputs/fields; deep now allowed deliberately |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md` | Modify | Naming status, do-not-run note, DISCOVER-001 row |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/discovery-setup/discovery-first.md` | Modify | Fixture-baseline re-confirmation contract |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/read-only/flow-intent.md` | Modify | search_flows-first flow research contract |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/read-only/screens-search.md` | Modify | Fixture-declared inputs/fields; deep now allowed deliberately |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` | Modify | Discovery hint states the confirmed three-tool baseline |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/scripts/install.sh` | Modify | Callable-confirmation hint flipped to confirmed |
 | `.opencode/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.1.0.md` | Create | Release record for the supersession and resolutions |

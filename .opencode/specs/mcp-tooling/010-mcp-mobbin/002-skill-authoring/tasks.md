@@ -65,11 +65,11 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T004 Author SKILL.md with the transport contract: read-only surface, `mutatesWorkspace:false`, no Write/Edit/Task, sk-design pairing (`.opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md`)
-- [x] T005 Author README.md and INSTALL_GUIDE.md incl. credential provisioning and verification steps (`.opencode/skills/mcp-tooling/mcp-mobbin/`)
+- [x] T005 Author README.md and install-guide.md incl. credential provisioning and verification steps (`.opencode/skills/mcp-tooling/mcp-mobbin/`)
 - [x] T006 [P] Author references/mcp-wiring.md, references/tool-surface.md, references/troubleshooting.md from the research findings (`.opencode/skills/mcp-tooling/mcp-mobbin/references/`)
 - [x] T007 [P] Author assets/ with the ready-to-paste UTCP `mobbin` manual snippet and env template; validate the snippet parses as JSON (`.opencode/skills/mcp-tooling/mcp-mobbin/assets/`)
-- [x] T008 [P] Author feature_catalog/, changelog/ (v1.0.0.0), scripts/, and mcp-servers/mobbin-mcp/README.md (`.opencode/skills/mcp-tooling/mcp-mobbin/`)
-- [x] T009 Author manual_testing_playbook/ incl. intra-routing-recall/ with 2+ holdouts, negative.md, troubleshoot.md (`.opencode/skills/mcp-tooling/mcp-mobbin/manual_testing_playbook/`)
+- [x] T008 [P] Author feature-catalog/, changelog/ (v1.0.0.0), scripts/, and mcp-servers/mobbin-mcp/README.md (`.opencode/skills/mcp-tooling/mcp-mobbin/`)
+- [x] T009 Author manual-testing-playbook/ incl. intra-routing-recall/ with 2+ holdouts, negative.md, troubleshoot.md (`.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

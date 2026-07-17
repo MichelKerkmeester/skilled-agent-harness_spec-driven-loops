@@ -111,15 +111,15 @@ Every discovery claim in the packet states the two observed name forms precisely
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json` | Create | Dated live-discovery fixture (already written by the probe; recorded as ground truth) |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md` | Modify | Confirmed dual naming, re-confirmed inventory, NEVER rule update, version 1.1.1.0 |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md` | Modify | Quick-start MCP step and FAQ flipped to confirmed naming |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/INSTALL_GUIDE.md` | Modify | Post-registration step 3 records the confirmed dual naming |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/install-guide.md` | Modify | Post-registration step 3 records the confirmed dual naming |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Modify | Discovery DONE banner, confirmed-naming bullet, fixture helper surface |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md` | Modify | Helper surface superseded by the fixture; UNKNOWN narrowed |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md` | Modify | Discovery checklist items flipped with fixture evidence |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md` | Modify | Checklist step 4 records confirmed naming |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/feature_catalog.md` | Modify | Registration banner and MCP row flipped to CONFIRMED |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog/mcp/mcp-transport-and-code-mode.md` | Modify | Callable paragraph flipped to observed facts |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/manual_testing_playbook.md` | Modify | Notation note and ASD-011 contract diff against the fixture baseline |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/mcp-transport/code-mode-discovery.md` | Modify | Scenario records the satisfied 2026-07-16 run and the drift protocol |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md` | Modify | Registration banner and MCP row flipped to CONFIRMED |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/mcp/mcp-transport-and-code-mode.md` | Modify | Callable paragraph flipped to observed facts |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md` | Modify | Notation note and ASD-011 contract diff against the fixture baseline |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md` | Modify | Scenario records the satisfied 2026-07-16 run and the drift protocol |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` | Modify | Discovery hint states the fixture baseline (both name forms) |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.1.0.md` | Create | Release record for the discovery flips |
 <!-- /ANCHOR:scope -->

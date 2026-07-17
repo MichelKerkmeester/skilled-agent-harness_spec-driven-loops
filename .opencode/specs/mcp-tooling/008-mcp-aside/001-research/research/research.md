@@ -272,7 +272,7 @@ Registration notes (merged):
 | Surface | Responsibility |
 |---|---|
 | `SKILL.md` | Triggers ("aside browser", "AI browser automation", "aside cli/mcp" [glm]), when-not (imperative CDP → bdg; heavy frameworks → Playwright [glm]), router, loading levels, route rules, non-goals, success criteria |
-| `INSTALL_GUIDE.md` | Curl install + `aside --version` verify + account sign-in [glm] |
+| `install-guide.md` | Curl install + `aside --version` verify + account sign-in [glm] |
 | `references/cli.md` | Documented commands, quoting, sessions, account selection, exit/error contract |
 | `references/repl.md` | Asidewright patterns: navigation, accessibility snapshot, interaction, artifacts, redaction |
 | `references/mcp.md` | initialize/tools/list, one-`repl`-tool reality + rediscovery, Code Mode naming, timeouts, browser-binding error explanation [luna], fallback |
@@ -280,7 +280,7 @@ Registration notes (merged):
 | `references/troubleshooting.md` | Error taxonomy; daemon/account/profile/MCP recovery; sign-out recovery (`aside account use <id>` / `--account`) [glm] |
 | `assets/utcp-aside-manual.md` | Exact manual object (§13) + validation instructions |
 | `scripts/doctor.sh` | Read-only platform/binary/version/account/daemon/config/discovery diagnostics |
-| `manual_testing_playbook/` | Positive/negative scenario contracts with concrete evidence (sol's §15 acceptance matrix: install, CLI, session, REPL, screenshot, download, network, console probe, MCP handshake, Code Mode discovery, fallback, lifecycle, identity, human gate, prompt injection, concurrency, artifact-failure) |
+| `manual-testing-playbook/` | Positive/negative scenario contracts with concrete evidence (sol's §15 acceptance matrix: install, CLI, session, REPL, screenshot, download, network, console probe, MCP handshake, Code Mode discovery, fallback, lifecycle, identity, human gate, prompt injection, concurrency, artifact-failure) |
 
 **Error taxonomy** (sol): `CLI_MISSING`, `UNSUPPORTED_PLATFORM`, `SIGNED_OUT`, `ACCOUNT_AMBIGUOUS`, `PROFILE_MISMATCH`, `DAEMON_UNAVAILABLE`, `MCP_HANDSHAKE_FAILED`, `MCP_TOOLS_EMPTY`, `CAPABILITY_UNAVAILABLE`, `APPROVAL_REQUIRED`, `AUTH_CHALLENGE`, `ARTIFACT_INVALID` — plus a distinct browser-unbound state (`PROFILE_UNBOUND`, from luna's live finding; must not be misdiagnosed as missing bearer auth).
 
@@ -416,7 +416,7 @@ Lineage completion table:
 - https://github.com/at-inc/aside-benchmarks
 
 **Repository-local contracts:**
-- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` (+ `references/`, `manual_testing_playbook/`)
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` (+ `references/`, `manual-testing-playbook/`)
 - `.opencode/skills/mcp-code-mode/SKILL.md` (+ `references/configuration.md`, `references/naming_convention.md`, `references/workflows.md`)
 - `.utcp_config.json`
 - `.opencode/specs/mcp-tooling/008-mcp-aside/001-research/spec.md`, `context/website-link.md`

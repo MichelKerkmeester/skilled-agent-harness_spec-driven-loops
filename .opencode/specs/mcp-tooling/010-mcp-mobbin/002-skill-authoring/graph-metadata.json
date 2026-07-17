@@ -52,7 +52,7 @@
       "plan.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/README.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/install-guide.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/mcp-servers/mobbin-mcp/README.md",
       "implementation-summary.md"
     ],
@@ -100,9 +100,9 @@
         "source": "derived"
       },
       {
-        "name": "INSTALL_GUIDE.md",
+        "name": "install-guide.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/INSTALL_GUIDE.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/install-guide.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The hub has no `mcp-mobbin` packet: there is no SKILL.md contract, no tool-surface reference, no install guide, and no UTCP manual snippet for the Mobbin MCP server",
     "created_at": "2026-07-16T09:39:33Z",
-    "last_save_at": "2026-07-16T15:03:16.781Z",
+    "last_save_at": "2026-07-17T06:03:03.924Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8f3e482d7fb5894cd6acb0f8ad2907a092a20ce23b90f32acfc2a78d47e89af",
+    "source_fingerprint": "sha256:8e4dc94d4c97542a66f951c5435077beab77284222569715b84c26f6a94fe495",
     "source_doc_hashes": {
-      "spec.md": "9c9622eaf613f84d1c72984d48112d3eeb7dea17a7c2d7509369ade9ea3ff05a",
-      "plan.md": "667593a465dcc0361553ac689c07469ec17936b8396117cdcff61b07f54ec58a",
-      "tasks.md": "5e2e5c94c1774ed706326726ad088934fd964893e6213383a197c75d0608ce8c",
-      "checklist.md": "c1974b10492c95dc3b5e5f549320118ebb5ebfe15ea44d3ebb4d926f33e697b4",
-      "implementation-summary.md": "23c16f7dd7f1e5d58d34e29c5dde6f5c49235b6462b1fa75e010dab3e499294d"
+      "spec.md": "42e67ac9f66d92b331933a35d70e17f776c165a5d992e0f79147c6163a6ff05b",
+      "plan.md": "dc87767e2bc6efb7a46528a9e5906d09134372ca689bddc84709e242f5fab4c5",
+      "tasks.md": "8cf16d4a201e1373abdf5be1bc6d20ddafed300e8f5c97646ae649db4bdf8b75",
+      "checklist.md": "e8d0da77d69a8e8da3849c2852365f5b656da302d04cc403583f9c863d978052",
+      "implementation-summary.md": "28f0836ae2cb3108637f21af98ee9688c1a783d9c9f41fe2cef2585163750334"
     },
     "last_active_child_id": null,
     "last_active_at": null

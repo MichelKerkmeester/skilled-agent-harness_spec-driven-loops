@@ -73,6 +73,7 @@ const SURFACE_FORBIDDEN_TOOLS = ['Write', 'Edit', 'Task'];
 // Directories allowed at a hub root without being a registered packet.
 const DIRECTORY_ALLOWLIST = new Set([
   'shared', 'changelog', 'benchmark', 'manual_testing_playbook', 'feature_catalog',
+  'manual-testing-playbook', 'feature-catalog',
   'references', 'assets', 'node_modules', 'scripts', 'templates', 'dist', 'runtime',
 ]);
 
@@ -910,7 +911,8 @@ function main() {
   // ───────────────────────────────────────────────────────────────
   // 9. manual_testing_playbook/ + benchmark baseline (canon: FAIL by default)
   // ───────────────────────────────────────────────────────────────
-  if (fs.existsSync(path.join(target, 'manual_testing_playbook'))) {
+  if (fs.existsSync(path.join(target, 'manual_testing_playbook'))
+      || fs.existsSync(path.join(target, 'manual-testing-playbook'))) {
     pass('9a: manual_testing_playbook/ present');
   } else {
     softFail('9a: manual_testing_playbook/ is missing');

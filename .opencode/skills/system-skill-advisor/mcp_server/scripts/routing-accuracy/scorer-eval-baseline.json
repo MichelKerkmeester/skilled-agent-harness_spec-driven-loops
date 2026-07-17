@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-07-16",
-  "capturedAtSha": "2146dee114",
+  "capturedAt": "2026-07-17",
+  "capturedAtSha": "37ebd31720",
   "corpusSha256": "sha256:529f658ffc1d8a79012dce96761ec0b4e53d7c8d4f04eb371a0fbeef514c3747",
   "holdoutSha256": "sha256:90dbee17115f58a6115224d08ece49fd9795781c5fe3ac68b9d7c1060d3c8ecb",
   "ambiguitySha256": "sha256:e07cacdf8c6f1711c92bd4a32015122e1cba375b2a7b9b49c8ccb19bcb331f0c",
@@ -12,9 +12,9 @@
   },
   "metrics": {
     "full_corpus_top1": {
-      "correct": 153,
+      "correct": 155,
       "total": 200,
-      "accuracy": 0.765
+      "accuracy": 0.775
     },
     "unknown_count": {
       "value": 13
@@ -28,9 +28,9 @@
       "accuracy": 0.7308
     },
     "ambiguity_top1": {
-      "correct": 16,
+      "correct": 18,
       "total": 25,
-      "accuracy": 0.64,
+      "accuracy": 0.72,
       "tau": 0.03
     },
     "buckets": {
@@ -40,9 +40,9 @@
         "accuracy": 0.75
       },
       "memory_save": {
-        "correct": 25,
+        "correct": 27,
         "total": 32,
-        "accuracy": 0.7813
+        "accuracy": 0.8438
       },
       "delegation": {
         "correct": 10,

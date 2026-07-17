@@ -99,7 +99,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `001-research/research/**` | Create | 001 | Workflow-owned deep-research state packet + `research.md` synthesis on the Mobbin MCP tool surface |
-| `.opencode/skills/mcp-tooling/mcp-mobbin/**` | Create | 002 | New transport packet tree (SKILL.md, README.md, INSTALL_GUIDE.md, assets, references, playbooks, mcp-servers) |
+| `.opencode/skills/mcp-tooling/mcp-mobbin/**` | Create | 002 | New transport packet tree (SKILL.md, README.md, install-guide.md, assets, references, playbooks, mcp-servers) |
 | `.opencode/skills/mcp-tooling/{mode-registry.json,hub-router.json,SKILL.md}` | Modify | 003 | Register the mode, transport-axis entry, cross-hub pairing, and router signals/vocab |
 | `.opencode/skills/mcp-tooling/{description.json,graph-metadata.json,changelog/**,manual_testing_playbook/**}` | Modify | 003 | Hub identity edge to sk-design, hub changelog, hub_routing scenario |
 | `.utcp_config.json` | Modify | 003 | Add the `mobbin` manual for Code Mode |

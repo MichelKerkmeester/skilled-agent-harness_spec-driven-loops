@@ -88,4 +88,4 @@ info '  tool_info({ tool_name: "refero.refero_refero_search_styles" })'
 info "Callables use the DOUBLED prefix: refero.refero_refero_<tool>(...). Fail closed on drift."
 
 log ""
-log "Doctor is read-only. Authentication and any config change are operator-only steps (see INSTALL_GUIDE.md)."
+log "Doctor is read-only. Authentication and any config change are operator-only steps (see install-guide.md)."

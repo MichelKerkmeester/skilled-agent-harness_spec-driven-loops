@@ -64,7 +64,7 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Packet tree matches the exemplar inventory: SKILL.md, README.md, INSTALL_GUIDE.md, changelog/, examples/, references/, scripts/, manual_testing_playbook/, mcp-servers/aside-cli/, mcp-servers/aside-mcp/ [evidence: 10/10 top-level components present; 41-file tree via `find`]
+- [x] CHK-010 [P0] Packet tree matches the exemplar inventory: SKILL.md, README.md, install-guide.md, changelog/, examples/, references/, scripts/, manual-testing-playbook/, mcp-servers/aside-cli/, mcp-servers/aside-mcp/ [evidence: 10/10 top-level components present; 41-file tree via `find`]
 - [x] CHK-011 [P0] SKILL.md dispatch doctrine is internally consistent: CLI-primary, Aside MCP via Code Mode fallback, gating rules mirror the sibling workflow modes [evidence: `SKILL.md` section 3 doctrine mirrors `mcp-chrome-devtools`]
 - [x] CHK-012 [P1] Helper scripts (if any) run clean and carry no ephemeral artifact labels in comments [evidence: `bash -n` clean on 5/5 scripts; durable-WHY comments only]
 - [x] CHK-013 [P1] Packet follows sk-doc create-skill-parent standards for nested modes [evidence: authored per `parent_skills_nested_packets.md` + `packet_skill_scaffold.md`]
@@ -94,8 +94,8 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets — auth documentation describes the mechanism without embedding tokens or credentials [evidence: 0/41 files contain tokens/credentials; auth described as mechanism in `INSTALL_GUIDE.md`]
-- [x] CHK-031 [P0] INSTALL_GUIDE auth steps match the verified research findings (no speculative auth flows) [evidence: `INSTALL_GUIDE.md` auth = account sign-in + provider tiers per synthesis section 9]
+- [x] CHK-030 [P0] No hardcoded secrets — auth documentation describes the mechanism without embedding tokens or credentials [evidence: 0/41 files contain tokens/credentials; auth described as mechanism in `install-guide.md`]
+- [x] CHK-031 [P0] install-guide auth steps match the verified research findings (no speculative auth flows) [evidence: `install-guide.md` auth = account sign-in + provider tiers per synthesis section 9]
 - [x] CHK-032 [P1] Unattended-automation caveats from research are documented, not silently dropped [evidence: unattended boundary documented in `SKILL.md` RULES + `session-management.md`]
 <!-- /ANCHOR:security -->
 

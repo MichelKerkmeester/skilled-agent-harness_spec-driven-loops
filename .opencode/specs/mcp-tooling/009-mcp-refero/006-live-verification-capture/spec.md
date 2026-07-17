@@ -111,11 +111,11 @@ Every naming claim in the packet cites the live registry evidence, the single-pr
 | `.opencode/skills/mcp-tooling/mcp-refero/references/discovery-fixture-2026-07-16.json` | Create | Dated live-discovery fixture (already written by the probe; recorded as ground truth) |
 | `.opencode/skills/mcp-tooling/mcp-refero/SKILL.md` | Modify | Naming trap flipped to confirmed, discovery paragraph, quick-ref row, version 1.1.1.0 |
 | `.opencode/skills/mcp-tooling/mcp-refero/README.md` | Modify | Naming/FAQ/verification rows record the resolved conflict and pre-auth discovery |
-| `.opencode/skills/mcp-tooling/mcp-refero/INSTALL_GUIDE.md` | Modify | Pre-auth preconditions; tool_info checklist item satisfied with fixture evidence |
+| `.opencode/skills/mcp-tooling/mcp-refero/install-guide.md` | Modify | Pre-auth preconditions; tool_info checklist item satisfied with fixture evidence |
 | `.opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md` | Modify | Naming section flipped to confirmed registry evidence; banner updated |
 | `.opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md` | Modify | Open question 1 resolved, question 2 partially resolved, fixture cited |
 | `.opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md` | Modify | Expected discovery result corrected to pre-auth confirmed |
-| `.opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/discovery-setup/discovery-first.md` | Modify | DISCOVER-001 rationale records the closed conflict and fixture baseline |
+| `.opencode/skills/mcp-tooling/mcp-refero/manual-testing-playbook/discovery-setup/discovery-first.md` | Modify | DISCOVER-001 rationale records the closed conflict and fixture baseline |
 | `.opencode/skills/mcp-tooling/mcp-refero/changelog/v1.1.1.0.md` | Create | Release record for the discovery flips |
 <!-- /ANCHOR:scope -->
 
@@ -138,7 +138,7 @@ Every naming claim in the packet cites the live registry evidence, the single-pr
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | Fixture schema details recorded without overclaiming | Only fixture-shown facts recorded: `response_format` enum and default on the two search tools, `platform` on `refero_search_screens`; remaining six tools stay per-tool `tool_info` checks |
-| REQ-006 | OAuth-gated items keep SKIP-valid status with exact commands | Live-call items remain open in INSTALL_GUIDE and examples, with commands preserved |
+| REQ-006 | OAuth-gated items keep SKIP-valid status with exact commands | Live-call items remain open in install-guide and examples, with commands preserved |
 | REQ-007 | Version and changelog updated | SKILL.md frontmatter reads 1.1.1.0; `changelog/v1.1.1.0.md` records need/change/why plus files changed |
 <!-- /ANCHOR:requirements -->
 

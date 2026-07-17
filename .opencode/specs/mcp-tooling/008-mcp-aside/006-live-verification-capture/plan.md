@@ -89,10 +89,10 @@ Probe output (fixture JSON) feeds doc claims; doc claims cite back to the fixtur
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | SKILL.md (MCP approach, NEVER rules, version) | Runtime contract naming the callable | update | grep shows dual-form presentation with fixture citation |
-| README.md + INSTALL_GUIDE.md | Consumer-facing quick start and install steps | update | Step 4 / step 3 quote both forms |
+| README.md + install-guide.md | Consumer-facing quick start and install steps | update | Step 4 / step 3 quote both forms |
 | references/mcp-wiring.md + aside-cli-reference.md | Deep wiring + helper-surface truth | update | Fixture helper list present; "UNKNOWN until confirmed" bullet replaced |
 | assets/utcp-aside-manual.md | Post-registration checklist | update | Discovery items `[x]` with `[evidence: fixture]` |
-| feature_catalog (root + mcp leaf), playbook (root + ASD-011), mcp-servers/aside-mcp/README.md | Mirrors of the naming claim | update | All mirrors quote the confirmed forms |
+| feature-catalog (root + mcp leaf), playbook (root + ASD-011), mcp-servers/aside-mcp/README.md | Mirrors of the naming claim | update | All mirrors quote the confirmed forms |
 | scripts/doctor.sh | Hardcoded old expected name (line 111 only, per grep) | update | `bash -n` passes; hint states both forms |
 | changelog/v1.0.0.0.md + v1.1.0.0.md | Immutable release history | unchanged | Historical records keep their original wording |
 

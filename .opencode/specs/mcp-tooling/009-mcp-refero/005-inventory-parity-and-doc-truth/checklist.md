@@ -68,7 +68,7 @@ FAILURE MODES:
 - [x] CHK-010 [P0] Examples: 4 files (README + 3 walkthroughs), every callable in the doubled-prefix form, `tool_info` confirmation first in every walkthrough, OAuth steps SKIP-valid with the exact command [evidence: 4/4 files in `examples/`; 0 single-prefix callables; each walkthrough Step 1 = `tool_info`]
 - [x] CHK-011 [P0] No invented tools or params: every documented callable/argument/bound matches `references/tool-surface.md`; the one unpinned field (flow-record ID key) is explicitly deferred to live `tool_info` [evidence: 8/8 tools + args traced; `funnel-styles-screens-flows.md` flow-ID comment defers the key name]
 - [x] CHK-012 [P0] `scripts/install.sh` verify-only: node>=18 + npx checks, manual presence via read-only grep (presence = OK), Node-25 SIGSEGV warning, OAuth marked operator-only; durable-WHY comments only [evidence: `bash -n` exit 0; live run all-OK with zero writes; header comment states verify-only WHY]
-- [x] CHK-013 [P1] Feature catalog: 8 per-tool leaves + 3 domain files linked both ways; root count summary matches (3 domain + 8 leaves) [evidence: 8/8 leaves exist; `feature_catalog.md` Section 5 table lists all 8]
+- [x] CHK-013 [P1] Feature catalog: 8 per-tool leaves + 3 domain files linked both ways; root count summary matches (3 domain + 8 leaves) [evidence: 8/8 leaves exist; `feature-catalog.md` Section 5 table lists all 8]
 - [x] CHK-014 [P1] Relative links resolve across all touched files [evidence: 0/29 touched files with broken relative links per Python sweep]
 <!-- /ANCHOR:code-quality -->
 
@@ -79,7 +79,7 @@ FAILURE MODES:
 
 - [x] CHK-020 [P0] `package_skill.py --check --strict` PASS after enrichment [evidence: Result: PASS, exit 0; 1 pre-existing word-count advisory (SKILL.md 3,889/3,000 rec, 5,000 cap)]
 - [x] CHK-021 [P0] sk-design gate byte-identical before/after the de-dup [evidence: `diff skdesign-before.txt skdesign-after.txt` empty - GATE OUTPUT IDENTICAL; same 1 pre-existing FAIL 6a `[styles]`]
-- [x] CHK-022 [P0] Playbook index consistency: 9 scenario IDs = 9 per-scenario files; 17 files total under the playbook tree [evidence: index table 9 rows; `find manual_testing_playbook -name '*.md' ! -name 'manual_testing_playbook.md'` = 17]
+- [x] CHK-022 [P0] Playbook index consistency: 9 scenario IDs = 9 per-scenario files; 17 files total under the playbook tree [evidence: index table 9 rows; `find manual-testing-playbook -name '*.md' ! -name 'manual-testing-playbook.md'` = 17]
 - [x] CHK-023 [P1] New scenarios grounded in research section D/C with live parts SKIP-valid [evidence: 3/3 scenarios anchor to `tool-surface.md` contracts; QUOTA-001 live 429 half marked SKIP-valid]
 - [x] CHK-024 [P1] Spec child validation [evidence: `validate.sh <child> --strict --no-recursive` Status: PASSED]
 <!-- /ANCHOR:testing -->

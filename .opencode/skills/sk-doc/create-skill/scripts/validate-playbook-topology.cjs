@@ -133,7 +133,8 @@ function walkFixtureFiles(playbookDir) {
       const full = path.join(cur, entry.name);
       if (entry.isDirectory()) { stack.push(full); continue; }
       if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
-      if (entry.name === 'manual_testing_playbook.md' || entry.name === 'feature_catalog.md') continue;
+      if (entry.name === 'manual_testing_playbook.md' || entry.name === 'feature_catalog.md'
+          || entry.name === 'manual-testing-playbook.md' || entry.name === 'feature-catalog.md') continue;
       out.push(full);
     }
   }
@@ -340,7 +341,14 @@ module.exports = {
 if (require.main === module) {
   const args = parseArgs(process.argv.slice(2));
   const skillDir = path.resolve(args.skillDir || path.resolve(__dirname, '..', '..'));
-  const playbookDir = path.resolve(args.dir || path.join(skillDir, 'manual_testing_playbook'));
+  // Accept either the snake_case (repo standard) or kebab-case playbook dir name.
+  const playbookDir = path.resolve(
+    args.dir
+    || ['manual_testing_playbook', 'manual-testing-playbook']
+        .map((n) => path.join(skillDir, n))
+        .find((p) => fs.existsSync(p))
+    || path.join(skillDir, 'manual_testing_playbook'),
+  );
 
   try {
     const report = runValidation({ playbookDir, skillDir });

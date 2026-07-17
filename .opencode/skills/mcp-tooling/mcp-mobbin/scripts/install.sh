@@ -78,6 +78,6 @@ if [ "$FAILURES" -eq 0 ]; then
   ok "Posture verified: runtime ready, manual registered. Remaining steps are operator-only (reconnect + OAuth)"
   exit 0
 else
-  err "Posture check failed ($FAILURES issue(s) above). Nothing was changed; see INSTALL_GUIDE.md"
+  err "Posture check failed ($FAILURES issue(s) above). Nothing was changed; see install-guide.md"
   exit 1
 fi

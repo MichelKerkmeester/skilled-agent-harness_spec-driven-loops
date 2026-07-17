@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/008-mcp-aside/006-live-verification-capture"
-    last_updated_at: "2026-07-16T16:30:00Z"
+    last_updated_at: "2026-07-17T06:03:44Z"
     last_updated_by: "claude-agent"
     recent_action: "Phase complete; gates green"
     next_safe_action: "Operator handoff: authenticated smoke invocation and binding probe"
@@ -58,7 +58,7 @@ You can now trust two precise, different name forms. Discovery returns the regis
 
 ### The flip sweep
 
-Twelve packet files stopped saying "unconfirmed" and started citing the fixture: SKILL.md (contract + NEVER rule + version 1.1.1.0), README, INSTALL_GUIDE, both references, the asset checklist (three items now `[x]` with fixture evidence), the server-package README, the feature catalog root and MCP leaf, the playbook root and the ASD-011 scenario (which now diffs future discovery output against the fixture baseline), and the doctor's discovery hint. The rediscovery mandate survives everywhere: the fixture is a dated baseline, not a permanent contract, because `tools.listChanged` is true.
+Twelve packet files stopped saying "unconfirmed" and started citing the fixture: SKILL.md (contract + NEVER rule + version 1.1.1.0), README, install-guide, both references, the asset checklist (three items now `[x]` with fixture evidence), the server-package README, the feature catalog root and MCP leaf, the playbook root and the ASD-011 scenario (which now diffs future discovery output against the fixture baseline), and the doctor's discovery hint. The rediscovery mandate survives everywhere: the fixture is a dated baseline, not a permanent contract, because `tools.listChanged` is true.
 
 ### Files Changed
 
@@ -66,12 +66,12 @@ Twelve packet files stopped saying "unconfirmed" and started citing the fixture:
 |------|--------|---------|
 | `references/discovery-fixture-2026-07-16.json` | Created (by the probe) | Ground-truth discovery payloads |
 | `SKILL.md` | Modified | Dual naming, re-confirmed inventory, version 1.1.1.0 |
-| `README.md`, `INSTALL_GUIDE.md` | Modified | Consumer-facing steps quote both forms |
+| `README.md`, `install-guide.md` | Modified | Consumer-facing steps quote both forms |
 | `references/mcp-wiring.md`, `references/aside-cli-reference.md` | Modified | DONE banner, naming bullet, fixture helper surface |
 | `assets/utcp-aside-manual.md` | Modified | Discovery checklist items flipped with evidence |
 | `mcp-servers/aside-mcp/README.md` | Modified | Checklist step 4 confirmed naming |
-| `feature_catalog/feature_catalog.md`, `feature_catalog/mcp/mcp-transport-and-code-mode.md` | Modified | Catalog mirrors flipped to CONFIRMED |
-| `manual_testing_playbook/manual_testing_playbook.md`, `manual_testing_playbook/mcp-transport/code-mode-discovery.md` | Modified | ASD-011 records the satisfied run + drift protocol |
+| `feature-catalog/feature-catalog.md`, `feature-catalog/mcp/mcp-transport-and-code-mode.md` | Modified | Catalog mirrors flipped to CONFIRMED |
+| `manual-testing-playbook/manual-testing-playbook.md`, `manual-testing-playbook/mcp-transport/code-mode-discovery.md` | Modified | ASD-011 records the satisfied run + drift protocol |
 | `scripts/doctor.sh` | Modified | Hint states the fixture baseline (both forms) |
 | `changelog/v1.1.1.0.md` | Created | Release record |
 <!-- /ANCHOR:what-built -->

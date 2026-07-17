@@ -64,9 +64,9 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T004 Author the mode doctrine: CLI-primary dispatch, Aside MCP via Code Mode fallback, gating rules (`.opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`)
-- [x] T005 [P] Author the user surface (`.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md`, `INSTALL_GUIDE.md`)
+- [x] T005 [P] Author the user surface (`.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md`, `install-guide.md`)
 - [x] T006 [P] Author both backend docs (`.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/`, `mcp-servers/aside-mcp/`)
-- [x] T007 Author the playbook incl. `intra-routing-recall/` with ≥2 holdouts, `negative.md`, `troubleshoot.md` (`.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/`)
+- [x] T007 Author the playbook incl. `intra-routing-recall/` with ≥2 holdouts, `negative.md`, `troubleshoot.md` (`.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/`)
 - [x] T008 [P] Author the support dirs: seed changelog entry, worked examples, references, helper scripts (`.opencode/skills/mcp-tooling/mcp-aside-devtools/{changelog,examples,references,scripts}/`)
 <!-- /ANCHOR:phase-2 -->
 

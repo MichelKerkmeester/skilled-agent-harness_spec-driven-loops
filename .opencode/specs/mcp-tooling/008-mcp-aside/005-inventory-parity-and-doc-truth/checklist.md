@@ -59,7 +59,7 @@ _memory:
 - [x] CHK-010 [P0] Code passes lint/format checks [evidence: `bash -n .opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` exited 0]
 - [x] CHK-011 [P0] No console errors or warnings [evidence: `python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-aside-devtools --check --strict` printed "Skill is valid!" with 0 errors]
 - [x] CHK-012 [P1] Error handling implemented [evidence: doctor.sh:110-115 err branch sets `manual_missing=1` and the script exits with it; file-missing branch warns at doctor.sh:117]
-- [x] CHK-013 [P1] Code follows project patterns [evidence: feature_catalog and asset mirror `mcp-mobbin/feature_catalog/feature_catalog.md` and `mcp-mobbin/assets/utcp-mobbin-manual.md` section shapes, 6/6 new doc files]
+- [x] CHK-013 [P1] Code follows project patterns [evidence: feature-catalog and asset mirror `mcp-mobbin/feature-catalog/feature-catalog.md` and `mcp-mobbin/assets/utcp-mobbin-manual.md` section shapes, 6/6 new doc files]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -92,7 +92,7 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets [evidence: registered manual `env: {}` intentionally empty; `rg -n "api[_-]?key|token|secret" .opencode/skills/mcp-tooling/mcp-aside-devtools/assets .opencode/skills/mcp-tooling/mcp-aside-devtools/feature_catalog` returns 0 credential values]
+- [x] CHK-030 [P0] No hardcoded secrets [evidence: registered manual `env: {}` intentionally empty; `rg -n "api[_-]?key|token|secret" .opencode/skills/mcp-tooling/mcp-aside-devtools/assets .opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog` returns 0 credential values]
 - [x] CHK-031 [P0] Input validation implemented [evidence: doctor.sh guards file existence before grep at doctor.sh:107; jq verify command documented in assets/utcp-aside-manual.md]
 - [x] CHK-032 [P1] Auth/authz working correctly [evidence: docs state auth is account/session-based with no transport credential, consistent across 3/3 wiring surfaces (mcp-wiring.md, aside-mcp/README.md, asset)]
 <!-- /ANCHOR:security -->

@@ -78,11 +78,11 @@ This is **Phase 2** of the mcp-refero nested mode: Refero design-reference MCP t
 - sk-doc create-skill-parent standards for nested packet authoring.
 
 **Deliverables** (the packet inventory):
-- `SKILL.md` (transport contract: `mutatesWorkspace:false`, forbids Write/Edit/Task, mandatory cross-hub judgment pairing with `sk-design`, Code Mode dispatch), `README.md`, `INSTALL_GUIDE.md`.
+- `SKILL.md` (transport contract: `mutatesWorkspace:false`, forbids Write/Edit/Task, mandatory cross-hub judgment pairing with `sk-design`, Code Mode dispatch), `README.md`, `install-guide.md`.
 - `assets/` including a ready-to-paste UTCP manual snippet matching the existing `refero` manual shape.
-- `changelog/`, `feature_catalog/`, `scripts/`.
+- `changelog/`, `feature-catalog/`, `scripts/`.
 - `references/`: `mcp_wiring`, `tool_surface`, `troubleshooting`.
-- `manual_testing_playbook/` including `intra-routing-recall/` with at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md`.
+- `manual-testing-playbook/` including `intra-routing-recall/` with at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md`.
 - `mcp-servers/refero-mcp/README.md`.
 
 **Changelog**:
@@ -123,11 +123,11 @@ Author a complete, research-grounded `mcp-refero` transport packet under the `mc
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/mcp-tooling/mcp-refero/SKILL.md` | Create | Transport contract, tool-surface summary, Code Mode dispatch, sk-design pairing |
-| `.opencode/skills/mcp-tooling/mcp-refero/{README.md,INSTALL_GUIDE.md}` | Create | Overview and install/verify path for the remote MCP |
+| `.opencode/skills/mcp-tooling/mcp-refero/{README.md,install-guide.md}` | Create | Overview and install/verify path for the remote MCP |
 | `.opencode/skills/mcp-tooling/mcp-refero/assets/**` | Create | Ready-to-paste UTCP manual snippet and supporting assets |
 | `.opencode/skills/mcp-tooling/mcp-refero/references/{mcp_wiring,tool_surface,troubleshooting}/**` | Create | Wiring, verified tool inventory, and failure-mode references |
-| `.opencode/skills/mcp-tooling/mcp-refero/manual_testing_playbook/**` | Create | Playbook incl. intra-routing-recall with ≥2 holdouts, negative.md, troubleshoot.md |
-| `.opencode/skills/mcp-tooling/mcp-refero/{changelog,feature_catalog,scripts}/**` | Create | Changelog seed, feature catalog, and (minimal) scripts area |
+| `.opencode/skills/mcp-tooling/mcp-refero/manual-testing-playbook/**` | Create | Playbook incl. intra-routing-recall with ≥2 holdouts, negative.md, troubleshoot.md |
+| `.opencode/skills/mcp-tooling/mcp-refero/{changelog,feature-catalog,scripts}/**` | Create | Changelog seed, feature catalog, and (minimal) scripts area |
 | `.opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md` | Create | Server-level notes for the remote refero-mcp endpoint |
 <!-- /ANCHOR:scope -->
 

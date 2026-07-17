@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 5: inventory-parity-and-doc-truth"
-description: "Grep-driven doc-truth flips to registered state across the mcp-aside-devtools packet, exemplar-mirrored feature_catalog/ and assets/ additions, doctor error-posture change, and a version bump gated by package_skill and validate.sh."
+description: "Grep-driven doc-truth flips to registered state across the mcp-aside-devtools packet, exemplar-mirrored feature-catalog/ and assets/ additions, doctor error-posture change, and a version bump gated by package_skill and validate.sh."
 trigger_phrases:
   - "aside parity plan"
   - "aside doc truth plan"
@@ -46,7 +46,7 @@ _memory:
 | **Testing** | `package_skill.py --check --strict`, `bash -n`, `validate.sh --strict`, programmatic byte comparison |
 
 ### Overview
-Flip every stale registration claim in `mcp-aside-devtools` to registered-state truth using a grep-driven inventory of the markers, add the `feature_catalog/` and `assets/` structures by mirroring the `mcp-mobbin` exemplar, harden `doctor.sh` so manual absence is an error, and close with the packet gate plus spec validation.
+Flip every stale registration claim in `mcp-aside-devtools` to registered-state truth using a grep-driven inventory of the markers, add the `feature-catalog/` and `assets/` structures by mirroring the `mcp-mobbin` exemplar, harden `doctor.sh` so manual absence is an error, and close with the packet gate plus spec validation.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -75,7 +75,7 @@ Documentation packet conformance: exemplar-mirrored structure (sibling parity) w
 
 ### Key Components
 - **Doc-truth flip set**: 9 modified files whose registration claims flip from later-phase to registered state
-- **feature_catalog/**: root directory page plus one leaf per router intent (task, repl, mcp, install, troubleshoot), mirroring `mcp-mobbin/feature_catalog/`
+- **feature-catalog/**: root directory page plus one leaf per router intent (task, repl, mcp, install, troubleshoot), mirroring `mcp-mobbin/feature-catalog/`
 - **assets/utcp-aside-manual.md**: byte-true snapshot of the registered manual, mirroring `mcp-mobbin/assets/utcp-mobbin-manual.md` adjusted to registered state
 - **doctor.sh error posture**: manual absence in an existing `.utcp_config.json` reports err and exits 1; healthy path still exits 0
 
@@ -90,7 +90,7 @@ Ground truth flows from `.utcp_config.json` (live registered entry) into the ass
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| Packet prose (SKILL/README/INSTALL_GUIDE/references/servers/playbook) | Carried later-phase registration claims | update | Grep for stale markers returns zero hits outside v1.0.0.0 changelog |
+| Packet prose (SKILL/README/install-guide/references/servers/playbook) | Carried later-phase registration claims | update | Grep for stale markers returns zero hits outside v1.0.0.0 changelog |
 | `scripts/doctor.sh` | Treated manual absence as expected info | update | `bash -n` clean; err+exit 1 branch on absence; ok path unchanged |
 | `changelog/v1.0.0.0.md` | Historical release record mentioning the later phase | unchanged | Release records are immutable; excluded from the flip inventory |
 | `.utcp_config.json` | Holds the registered `aside` entry | not a consumer (read-only ground truth) | Byte comparison of asset snapshot against `jq` select output |
@@ -110,14 +110,14 @@ Required inventories:
 
 ### Phase 1: Setup
 - [x] Grep inventory of every stale registration marker across the packet
-- [x] Read exemplars: `mcp-mobbin/feature_catalog/` and `mcp-mobbin/assets/utcp-mobbin-manual.md`
+- [x] Read exemplars: `mcp-mobbin/feature-catalog/` and `mcp-mobbin/assets/utcp-mobbin-manual.md`
 - [x] Capture the live `aside` entry bytes from `.utcp_config.json`
 
 ### Phase 2: Core Implementation
 - [x] Flip doc-truth claims in the 9 affected files, ungate ASD-011
 - [x] Change doctor.sh manual-absence posture from info to err with exit 1
-- [x] Create feature_catalog/ (root + 5 intent domains) and assets/utcp-aside-manual.md
-- [x] Consistency pass: SKILL.md routing and references, README related documents, INSTALL_GUIDE checklist; bump to 1.1.0.0; add changelog
+- [x] Create feature-catalog/ (root + 5 intent domains) and assets/utcp-aside-manual.md
+- [x] Consistency pass: SKILL.md routing and references, README related documents, install-guide checklist; bump to 1.1.0.0; add changelog
 
 ### Phase 3: Verification
 - [x] `bash -n doctor.sh` and residual-marker grep both clean

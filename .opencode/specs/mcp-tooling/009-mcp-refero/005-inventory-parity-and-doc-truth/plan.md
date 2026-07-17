@@ -83,8 +83,8 @@ Additive doc enrichment inside a fixed packet contract, plus a single pointer-in
 ### Key Components
 - **examples/**: 3 worked Code Mode walkthroughs + directory README, mirroring the aside-devtools examples shape (per-item purpose/enforcement, common patterns, troubleshooting, see-also).
 - **scripts/install.sh**: verify-only posture sibling of `doctor.sh` (no live probe; exit 1 only on missing runtime prerequisites).
-- **manual_testing_playbook/**: 3 new scenario leaves + root index/coverage/wave updates, keeping the sibling frontmatter and section contract.
-- **feature_catalog/**: 8 per-tool leaves under the existing 3 domain dirs; domain files gain leaf links; root count summary tracks both tiers.
+- **manual-testing-playbook/**: 3 new scenario leaves + root index/coverage/wave updates, keeping the sibling frontmatter and section contract.
+- **feature-catalog/**: 8 per-tool leaves under the existing 3 domain dirs; domain files gain leaf links; root count summary tracks both tiers.
 - **sk-design pointer**: `refero_tools.md` keeps frontmatter (v1.6.0.0), a canonical-home-moved note, and only judgment-side guidance; 8 bounded prose edits across design-interface name the transport correctly.
 
 ### Data Flow

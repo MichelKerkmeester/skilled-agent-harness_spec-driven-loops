@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/009-mcp-refero/002-skill-authoring"
-    last_updated_at: "2026-07-16T15:00:00Z"
+    last_updated_at: "2026-07-17T06:03:03.117Z"
     last_updated_by: "claude"
     recent_action: "Verified packet gate and marked checklist with evidence"
     next_safe_action: "Run phase 003 hub integration for mcp-refero (serial window open)"
@@ -56,9 +56,9 @@ _memory:
 `.opencode/skills/mcp-tooling/mcp-refero/` — a 29-file nested TRANSPORT packet (`packetKind: transport`, read-only, sk-design judgment pairing), grounded exclusively in the phase-001 synthesis:
 
 - `SKILL.md` — transport contract: doubled-prefix callable (`refero.refero_refero_<tool>`) with mandatory post-registration `tool_info` confirmation, 8-tool surface, plan gating (Pro 8,000 calls/mo, Free has no MCP), Write/Edit/Task forbidden, benchmark-parseable intent block.
-- `README.md`, `INSTALL_GUIDE.md` (verify-only posture — the `refero` manual is ALREADY registered; OAuth fenced operator-only).
+- `README.md`, `install-guide.md` (verify-only posture — the `refero` manual is ALREADY registered; OAuth fenced operator-only).
 - `assets/utcp-refero-manual.md` — byte-identical snapshot of the live manual + luna's Bearer-header alternative, both provenance-marked.
-- `references/` (tool_surface with CONFIRMED/INFERRED/UNKNOWN tagging + research date; mcp_wiring; troubleshooting with 14-row matrix), `feature_catalog/` (3 tool-domain dirs), `scripts/doctor.sh` (read-only; env-gated live probe), `manual_testing_playbook/` (6 scenarios incl. 2 holdouts, negative, troubleshoot; paid/OAuth scenarios SKIP-valid), `changelog/`, `mcp-servers/refero-mcp/README.md`.
+- `references/` (tool_surface with CONFIRMED/INFERRED/UNKNOWN tagging + research date; mcp_wiring; troubleshooting with 14-row matrix), `feature-catalog/` (3 tool-domain dirs), `scripts/doctor.sh` (read-only; env-gated live probe), `manual-testing-playbook/` (6 scenarios incl. 2 holdouts, negative, troubleshoot; paid/OAuth scenarios SKIP-valid), `changelog/`, `mcp-servers/refero-mcp/README.md`.
 <!-- /ANCHOR:what-built -->
 
 ---

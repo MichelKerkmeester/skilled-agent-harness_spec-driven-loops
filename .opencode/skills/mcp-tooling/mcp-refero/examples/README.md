@@ -18,7 +18,7 @@ version: 1.1.0.0
 
 Each walkthrough is a working sequence and an honest capability boundary: it exercises only the eight documented tools from [`references/tool-surface.md`](../references/tool-surface.md), confirms callable names live before relying on them, and marks every OAuth-gated step **SKIP-valid** with the exact command an operator (or a later authenticated run) executes. These are documents, not shell scripts, because every Refero call runs inside Code Mode (`call_tool_chain`), never in a shell.
 
-**Prerequisites for all walkthroughs**: the `refero` manual registered in `.utcp_config.json` (verify with `bash ../scripts/doctor.sh` or `bash ../scripts/install.sh`; read-only, never edited), Code Mode on Node 24, and — for live steps — a Refero **Pro (or higher)** account with operator-completed OAuth. The Free plan has no MCP access at all, so an unauthenticated environment records live steps as SKIP with the auth blocker, never as failures. See [INSTALL_GUIDE.md](../INSTALL_GUIDE.md).
+**Prerequisites for all walkthroughs**: the `refero` manual registered in `.utcp_config.json` (verify with `bash ../scripts/doctor.sh` or `bash ../scripts/install.sh`; read-only, never edited), Code Mode on Node 24, and — for live steps — a Refero **Pro (or higher)** account with operator-completed OAuth. The Free plan has no MCP access at all, so an unauthenticated environment records live steps as SKIP with the auth blocker, never as failures. See [install-guide.md](../install-guide.md).
 
 ---
 

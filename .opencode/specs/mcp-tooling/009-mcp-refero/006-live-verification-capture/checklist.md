@@ -80,7 +80,7 @@ _memory:
 
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class [evidence: two class-of-bug findings (hedged naming, OAuth-gated discovery) classified in `plan.md` affected-surfaces table, 7/7 rows]
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed [evidence: `rg -n "doubled|conflict|pending|unconfirmed"` swept the packet; 7 producer files flipped, scripts and changelogs excluded with reasons]
-- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed docs [evidence: `rg -ln "refero_refero"` cross-checked examples/ and feature_catalog/, 0 stale consumers; `package_skill.py` link check green]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed docs [evidence: `rg -ln "refero_refero"` cross-checked examples/ and feature-catalog/, 0 stale consumers; `package_skill.py` link check green]
 - [x] CHK-FIX-004 [P0] Adversarial cases for parser/security fixes [evidence: not a parser/security fix; the pre-auth boundary is stated with both halves (discovery open, calls gated) in 4/4 flipped consumer docs]
 - [x] CHK-FIX-005 [P1] Matrix axes and row count listed before completion [evidence: `plan.md` affected-surfaces names file-kind x claim-kind axes; 9 file rows (7 modified + fixture + changelog) match `git status` for the packet]
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant [evidence: docs only, 0 script or env changes; `git diff --stat` for the packet shows .md and .json files only plus the new changelog]

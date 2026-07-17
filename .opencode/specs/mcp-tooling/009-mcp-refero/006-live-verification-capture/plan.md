@@ -89,10 +89,10 @@ Probe output (fixture JSON) feeds doc claims; doc claims cite the fixture path; 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | SKILL.md (naming trap, discovery paragraph, quick ref, version) | Runtime contract | update | grep shows fixture-cited resolution |
-| README.md + INSTALL_GUIDE.md | Consumer-facing naming and preconditions | update | Pre-auth discovery stated; OAuth kept for calls |
+| README.md + install-guide.md | Consumer-facing naming and preconditions | update | Pre-auth discovery stated; OAuth kept for calls |
 | references/mcp-wiring.md + tool-surface.md | Deep naming rule + open questions | update | Conflict closed; Q1 resolved, Q2 partially resolved |
 | mcp-servers/refero-mcp/README.md | Discovery expectation mirror | update | Pre-auth confirmed wording |
-| manual_testing_playbook/discovery-setup/discovery-first.md | DISCOVER-001 rationale | update | Closed-conflict wording with fixture path |
+| manual-testing-playbook/discovery-setup/discovery-first.md | DISCOVER-001 rationale | update | Closed-conflict wording with fixture path |
 | scripts/doctor.sh + install.sh | Already state the doubled prefix | unchanged | grep shows no old assumed names; update-only-if-stale rule |
 | changelog/v1.0.0.0.md + v1.1.0.0.md | Immutable release history | unchanged | Historical records keep original wording |
 
@@ -113,7 +113,7 @@ Required inventories:
 - [x] Stale-claim grep inventory built [evidence: 7 files with conflict or OAuth-gated-discovery wording]
 
 ### Phase 2: Core Implementation
-- [x] SKILL.md, README, INSTALL_GUIDE flipped [evidence: tasks.md T003-T005]
+- [x] SKILL.md, README, install-guide flipped [evidence: tasks.md T003-T005]
 - [x] References, server README, playbook flipped [evidence: tasks.md T006-T007]
 - [x] Version 1.1.1.0 + changelog authored [evidence: tasks.md T008]
 

@@ -65,7 +65,7 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Full packet inventory authored with non-placeholder content: SKILL.md, README.md, INSTALL_GUIDE.md, references/{mcp_wiring,tool_surface,troubleshooting}, manual_testing_playbook/, assets/, changelog/, feature_catalog/, scripts/, mcp-servers/refero-mcp/README.md [evidence: 29/29 files non-placeholder across the full inventory]
+- [x] CHK-010 [P0] Full packet inventory authored with non-placeholder content: SKILL.md, README.md, install-guide.md, references/{mcp_wiring,tool_surface,troubleshooting}, manual-testing-playbook/, assets/, changelog/, feature-catalog/, scripts/, mcp-servers/refero-mcp/README.md [evidence: 29/29 files non-placeholder across the full inventory]
 - [x] CHK-011 [P0] SKILL.md enforces the transport contract: `mutatesWorkspace:false`, allowed-tools exclude Write/Edit/Task, mandatory sk-design cross-hub pairing, Code Mode dispatch only [evidence: `SKILL.md` RULES forbid Write/Edit/Task; allowed-tools = Read/Bash/Grep/Glob/`call_tool_chain`; sk-design pairing mandatory]
 - [x] CHK-012 [P1] Internal links and relative paths resolve across the packet (sweep clean) [evidence: 0/29 files with broken relative links per agent link sweep of `mcp-refero/`]
 - [x] CHK-013 [P1] Packet follows mcp-tooling nested-mode conventions (frontmatter, structure) matching the mcp-figma exemplar minus CLI machinery [evidence: frontmatter + structure mirror `mcp-figma` minus CLI machinery]
@@ -101,7 +101,7 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets, tokens, or account identifiers anywhere in the packet [evidence: 0/29 files contain secrets/tokens/account ids; OAuth fenced operator-only in `INSTALL_GUIDE.md`]
+- [x] CHK-030 [P0] No hardcoded secrets, tokens, or account identifiers anywhere in the packet [evidence: 0/29 files contain secrets/tokens/account ids; OAuth fenced operator-only in `install-guide.md`]
 - [x] CHK-031 [P0] No packet doc instructs local workspace mutation or a Refero write path (read-only surface preserved) [evidence: 0/29 docs instruct workspace mutation; transport rules in `SKILL.md` forbid Write/Edit/Task]
 - [x] CHK-032 [P1] Auth guidance documents the researched auth model without embedding credentials; rate-limit and tier caveats stated [evidence: auth documented as OAuth mechanism in `mcp-wiring.md`; Pro 8000/mo + Free-no-MCP caveats in `tool-surface.md`]
 <!-- /ANCHOR:security -->

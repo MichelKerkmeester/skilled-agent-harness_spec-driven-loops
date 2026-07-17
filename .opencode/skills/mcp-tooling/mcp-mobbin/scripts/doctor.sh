@@ -98,4 +98,4 @@ info "Re-confirm per session; fail closed on drift from the fixture baseline."
 info "Discovery has not yet run against the registered manual; OAuth (operator-only) has not been completed."
 
 log ""
-log "Doctor is read-only. Authentication and any config change are operator-only steps (see INSTALL_GUIDE.md)."
+log "Doctor is read-only. Authentication and any config change are operator-only steps (see install-guide.md)."

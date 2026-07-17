@@ -2,7 +2,7 @@
 name: mcp-aside-devtools
 description: "Aside AI-browser orchestrator: routes between the aside CLI (agent tasks + deterministic REPL) and Aside MCP via Code Mode."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: aside, ai-browser, browser-agent, aside-cli, aside-repl, aside-mcp, playwright-repl, browser-automation, mcp-code-mode, orchestrator -->
@@ -278,7 +278,7 @@ No public isolation guarantee exists for concurrent mutating clients on one prof
 4. Pass `--account` to `aside mcp` or `aside repl`; it is documented for direct tasks and `exec` only.
 5. Register a second parallel `aside` manual without a controlled multi-client isolation test — the strategy is unresolved.
 6. Misdiagnose the unbound-profile error as missing bearer auth, or silently fall back across safety boundaries (transport failure never justifies changing account, profile, permissions, or approval semantics).
-7. Promise console or network capture — no dedicated verified contract exists; guarded probes only, fail closed.
+7. Claim a *native dedicated* console/network tool, a *native HAR export*, a *Lighthouse audit*, *parallel isolated instances*, or *raw CDP passthrough* — Aside has none of these. Console/network capture IS reachable via Playwright `page.on(...)` events in the repl (fixture-confirmed API), but it is caller-assembled, not a dedicated tool: document the pattern, keep the honest gaps, and treat any live capture as needing a bound session + independent verification (see the DevTools-parity feature family).
 
 ### ⚠️ ESCALATE IF
 
@@ -322,6 +322,24 @@ Use Bash for `aside`, Read for references, Grep for logs/output, and Glob for sc
 
 `mcp-chrome-devtools` owns imperative CDP debugging (`bdg`), dedicated console/network capture, and HAR export — route those requests there. This packet copies its routing discipline, not its command names.
 
+### Chrome DevTools Parity (via the repl Playwright `page` API)
+
+Aside mirrors the Chrome DevTools capability surface through one lane — the Playwright `page` API inside `aside repl` (fixture-confirmed). Full patterns and playbook scenarios live in the DevTools-parity feature family ([`feature-catalog/devtools-parity/`](feature-catalog/devtools-parity/), scenarios ASD-016..021). Confidence: `confirmed` = fixture + online research; `skip-valid` = documented pattern, live run needs a bound authorized session; `gap` = no Aside equivalent.
+
+| DevTools capability | Aside repl pattern | Status |
+|---|---|---|
+| DOM query / eval | `page.$eval` / `page.evaluate` / `snapshot(page)` | confirmed / skip-valid |
+| Screenshot + PDF | `page.screenshot({ fullPage })` / `page.pdf` | confirmed |
+| Console capture | `page.on('console', ...)` | skip-valid |
+| Network capture | `page.on('request'\|'response', ...)` | skip-valid |
+| HAR export | assemble from events | **gap — no native HAR** |
+| Cookies + storage | `page.context().cookies()` / `page.evaluate(localStorage)` | confirmed / skip-valid |
+| Performance timing | `page.evaluate(performance.getEntriesByType(...))` | confirmed / skip-valid |
+| Lighthouse audit | — external tooling required | **gap — no Lighthouse** |
+| Navigate + multi-tab | `openTab` / `attachActiveBrowserTab` / `page.goto` / `tabs` | confirmed / skip-valid |
+| Parallel isolated instances | — single manual, single writer | **gap — no isolation** |
+| Raw CDP passthrough | — Playwright API only | **gap — no CDP** |
+
 ---
 
 ## 7. QUICK REFERENCE
@@ -334,11 +352,11 @@ Use `aside "<task>"`, `aside --session <id> "<task>"`, `aside exec`, `aside acco
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill routes over the flat reference set: `references/aside-cli-reference.md`, `references/mcp-wiring.md`, `references/session-management.md`, and `references/troubleshooting.md`.
+The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill routes over the flat reference set: `references/aside-cli-reference.md`, `references/mcp-wiring.md`, `references/session-management.md`, and `references/troubleshooting.md`. The dated online-research refresh `references/aside-online-research-2026-07-17.md` (CLI/MCP/REPL corroboration, the verbatim `mcp.json` wiring, and the permission model) is discovered dynamically but is not mapped to a specific intent — read it directly when verifying the current developer surface.
 
 Assets: [`assets/utcp-aside-manual.md`](assets/utcp-aside-manual.md) — the registered `aside` UTCP manual snapshot (registered 2026-07-16; verify with jq, do not re-add), loaded for MCP intent.
 
-Feature catalog: [`feature_catalog/feature_catalog.md`](feature_catalog/feature_catalog.md) — the capability inventory across the five intent domains. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
+Feature catalog: [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md) — the capability inventory across the five intent domains. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
 Scripts: `scripts/install.sh`, `scripts/doctor.sh`.
 
@@ -348,4 +366,4 @@ Server packages: [`mcp-servers/aside-cli/README.md`](mcp-servers/aside-cli/READM
 
 Related skills: `mcp-code-mode` for the MCP transport, `mcp-chrome-devtools` for CDP-level browser debugging, and `sk-code` for the application code being verified.
 
-Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md).
+Install guide: [install-guide.md](install-guide.md).

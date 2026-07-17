@@ -7,7 +7,7 @@ trigger_phrases:
   - "app design research"
   - "screen examples"
   - "ux flow references"
-version: 1.1.0.0
+version: 1.3.0.0
 ---
 
 # mcp-mobbin
@@ -188,12 +188,12 @@ A: No. It is a transport with `mutatesWorkspace: false`: Write, Edit, and Task a
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
-| [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Verify-only setup: the registered wiring state, the paid-plan gate, and the operator-only OAuth step |
+| [`install-guide.md`](./install-guide.md) | Verify-only setup: the registered wiring state, the paid-plan gate, and the operator-only OAuth step |
 | [`references/tool-surface.md`](./references/tool-surface.md) | The single-tool contract, the four intent workflows, plan gating, rate limit, and the open questions |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth/DCR/PKCE, inferred naming, and discovery |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Full failure-mode table |
 | [`assets/utcp-mobbin-manual.md`](./assets/utcp-mobbin-manual.md) | The registered manual's reference shape and the post-registration checklist (doc-side executed; live items pending) |
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: smoke search, platform-filtered flow research, element intent |
-| [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Capability inventory: one tool, four query-intent domains |
-| [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for registration/OAuth-gated steps) |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory: one tool, four query-intent domains |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for registration/OAuth-gated steps) |
 | [Skills Library](../../README.md) | The skill catalog and routing front door |

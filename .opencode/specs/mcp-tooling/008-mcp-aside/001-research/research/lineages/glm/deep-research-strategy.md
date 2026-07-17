@@ -43,7 +43,7 @@ Aside browser developer surface for an mcp-tooling skill mode: the Aside CLI com
 - [x] q-ai-workflows: Two-tier surface (NL agent + deterministic REPL); navigate/inspect/screenshot/download/multi-step/approval; console/network via REPL not named CLI subcommands (iteration 2)
 - [x] q-cd-contrast: Aside = agentic+REPL+account/auth/permissions vs bdg = imperative CDP+local/no-auth; shared CLI-primary+MCP-fallback architecture (iteration 2)
 - [x] q-utcp-manual: Exact JSON manual defined — name 'aside', stdio, command 'aside', args ['mcp'], env {}; auth account-based (iteration 2)
-- [x] q-skill-packet: Full authoring checklist — SKILL.md + INSTALL_GUIDE + references + scripts/install.sh + UTCP manual + mode-registry.json entry (iteration 2)
+- [x] q-skill-packet: Full authoring checklist — SKILL.md + install-guide + references + scripts/install.sh + UTCP manual + mode-registry.json entry (iteration 2)
 <!-- /ANCHOR:answered-questions -->
 
 ---

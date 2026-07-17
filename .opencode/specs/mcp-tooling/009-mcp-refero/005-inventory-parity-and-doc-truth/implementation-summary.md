@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth"
-    last_updated_at: "2026-07-16T18:00:00Z"
+    last_updated_at: "2026-07-17T06:03:03.357Z"
     last_updated_by: "claude"
     recent_action: "Shipped parity + dedup; all gates green"
     next_safe_action: "Proceed to 006-live-verification-capture when operator auth is available"
@@ -69,8 +69,8 @@ _memory:
 |------|--------|---------|
 | `mcp-refero/examples/` (4 files) | Created | Worked Code Mode walkthroughs |
 | `mcp-refero/scripts/install.sh` | Created | Verify-only posture check |
-| `mcp-refero/manual_testing_playbook/` (3 new + root) | Created/Modified | 9-scenario playbook |
-| `mcp-refero/feature_catalog/` (8 new + 4 edited) | Created/Modified | Per-tool tool homes |
+| `mcp-refero/manual-testing-playbook/` (3 new + root) | Created/Modified | 9-scenario playbook |
+| `mcp-refero/feature-catalog/` (8 new + 4 edited) | Created/Modified | Per-tool tool homes |
 | `mcp-refero/{SKILL,README}.md`, `changelog/v1.1.0.0.md` | Modified/Created | v1.1.0.0 release |
 | `sk-design/design-interface/` (6 files) | Modified | Pointer + transport phrasing |
 | This spec child (spec/plan/tasks/checklist/summary) | Created/Modified | Level 2 documentation |

@@ -124,9 +124,9 @@ One canonical home for every Refero transport fact (`mcp-refero`), full inventor
 |-----------|-------------|-------------|
 | `mcp-refero/examples/` (README + 3 walkthroughs) | Create | Worked Code Mode walkthroughs mirroring mcp-aside-devtools examples conventions |
 | `mcp-refero/scripts/install.sh` | Create | Verify-only posture check, bash -n clean |
-| `mcp-refero/manual_testing_playbook/read-only/funnel-walk.md`, `read-only/format-text-retrieval.md`, `safety-gate/quota-recovery.md` | Create | Three research-grounded scenarios, live parts SKIP-valid |
-| `mcp-refero/manual_testing_playbook/manual_testing_playbook.md` | Modify | Coverage 9 scenarios, waves, summaries, index, v1.1.0.0 |
-| `mcp-refero/feature_catalog/` (8 leaves + 3 domain files + root) | Create/Modify | Per-tool leaves; domain files link leaves; count summary updated |
+| `mcp-refero/manual-testing-playbook/read-only/funnel-walk.md`, `read-only/format-text-retrieval.md`, `safety-gate/quota-recovery.md` | Create | Three research-grounded scenarios, live parts SKIP-valid |
+| `mcp-refero/manual-testing-playbook/manual-testing-playbook.md` | Modify | Coverage 9 scenarios, waves, summaries, index, v1.1.0.0 |
+| `mcp-refero/feature-catalog/` (8 leaves + 3 domain files + root) | Create/Modify | Per-tool leaves; domain files link leaves; count summary updated |
 | `mcp-refero/SKILL.md`, `mcp-refero/README.md` | Modify | v1.1.0.0; examples/install.sh surfaced |
 | `mcp-refero/changelog/v1.1.0.0.md` | Create | Release notes |
 | `sk-design/design-interface/references/mcp_tooling/refero_tools.md` | Modify | Slimmed to pointer, v1.6.0.0, judgment-side guidance only |

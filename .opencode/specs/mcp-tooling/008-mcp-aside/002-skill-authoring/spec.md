@@ -76,7 +76,7 @@ This is **Phase 2** of the mcp-aside-devtools nested mode: Aside browser automat
 - sk-doc create-skill-parent standards for nested mode packets.
 
 **Deliverables**:
-- The complete `mcp-aside-devtools` mode tree: `SKILL.md`, `README.md`, `INSTALL_GUIDE.md`, `changelog/`, `examples/`, `references/`, `scripts/`, `manual_testing_playbook/` (including `intra-routing-recall/` with at least 2 holdouts plus `negative.md` and `troubleshoot.md` scenarios), and `mcp-servers/aside-cli/` + `mcp-servers/aside-mcp/` backend documentation.
+- The complete `mcp-aside-devtools` mode tree: `SKILL.md`, `README.md`, `install-guide.md`, `changelog/`, `examples/`, `references/`, `scripts/`, `manual-testing-playbook/` (including `intra-routing-recall/` with at least 2 holdouts plus `negative.md` and `troubleshoot.md` scenarios), and `mcp-servers/aside-cli/` + `mcp-servers/aside-mcp/` backend documentation.
 - A `package_skill.py --check` pass on the new packet.
 
 **Changelog**:
@@ -103,7 +103,7 @@ Author the full `mcp-aside-devtools` nested mode packet — the 1:1 structural a
 ### In Scope
 - Author every file in the exemplar inventory under `.opencode/skills/mcp-tooling/mcp-aside-devtools/`.
 - CLI-primary / MCP-fallback dispatch doctrine in `SKILL.md`, citing verified Aside commands and MCP tools only.
-- `manual_testing_playbook/` with `intra-routing-recall/` (≥2 holdouts, `negative.md`, `troubleshoot.md`) plus scenario docs mirroring the exemplar's playbook shape.
+- `manual-testing-playbook/` with `intra-routing-recall/` (≥2 holdouts, `negative.md`, `troubleshoot.md`) plus scenario docs mirroring the exemplar's playbook shape.
 - `mcp-servers/aside-cli/` and `mcp-servers/aside-mcp/` backend docs (install, launch, auth, tool/command surface).
 
 ### Out of Scope
@@ -117,9 +117,9 @@ Author the full `mcp-aside-devtools` nested mode packet — the 1:1 structural a
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md` | Create | Mode doctrine: CLI-primary, Aside MCP via Code Mode fallback, gating and dispatch rules |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/{README.md,INSTALL_GUIDE.md}` | Create | User-facing overview and verified install/auth/launch guide |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/{README.md,install-guide.md}` | Create | User-facing overview and verified install/auth/launch guide |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/{changelog/,examples/,references/,scripts/}` | Create | Versioned changelog, worked examples, reference docs, helper scripts |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual_testing_playbook/**` | Create | Playbook incl. `intra-routing-recall/` with ≥2 holdouts, `negative.md`, `troubleshoot.md` |
+| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/**` | Create | Playbook incl. `intra-routing-recall/` with ≥2 holdouts, `negative.md`, `troubleshoot.md` |
 | `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/{aside-cli/,aside-mcp/}` | Create | Backend docs for both dispatch paths |
 <!-- /ANCHOR:scope -->
 
@@ -132,7 +132,7 @@ Author the full `mcp-aside-devtools` nested mode packet — the 1:1 structural a
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Complete exemplar inventory exists under `.opencode/skills/mcp-tooling/mcp-aside-devtools/` | Tree contains `SKILL.md`, `README.md`, `INSTALL_GUIDE.md`, `changelog/`, `examples/`, `references/`, `scripts/`, `manual_testing_playbook/`, `mcp-servers/aside-cli/`, `mcp-servers/aside-mcp/` — verified by directory listing against the `mcp-chrome-devtools` exemplar |
+| REQ-001 | Complete exemplar inventory exists under `.opencode/skills/mcp-tooling/mcp-aside-devtools/` | Tree contains `SKILL.md`, `README.md`, `install-guide.md`, `changelog/`, `examples/`, `references/`, `scripts/`, `manual-testing-playbook/`, `mcp-servers/aside-cli/`, `mcp-servers/aside-mcp/` — verified by directory listing against the `mcp-chrome-devtools` exemplar |
 | REQ-002 | Every capability claim grounded in research | Each Aside command, MCP tool name, auth step, and install step in the packet traces to a cited finding in `../001-research/research/research.md`; no invented surface |
 | REQ-003 | Packaging gate passes | `package_skill.py --check` on the new packet exits 0 |
 
@@ -140,7 +140,7 @@ Author the full `mcp-aside-devtools` nested mode packet — the 1:1 structural a
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Routing-recall scenarios complete | `manual_testing_playbook/intra-routing-recall/` contains at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` |
+| REQ-004 | Routing-recall scenarios complete | `manual-testing-playbook/intra-routing-recall/` contains at least 2 holdout scenarios plus `negative.md` and `troubleshoot.md` |
 | REQ-005 | Backend docs cover both dispatch paths | `mcp-servers/aside-cli/` documents the CLI-primary path and `mcp-servers/aside-mcp/` documents the Code Mode MCP fallback, each with install/launch/auth and failure modes |
 <!-- /ANCHOR:requirements -->
 
