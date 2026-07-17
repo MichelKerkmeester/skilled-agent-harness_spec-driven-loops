@@ -2,10 +2,10 @@
 id: SD-005
 category: resource_loading
 title: 'FLOWCHART intent loads only assets/flowcharts/*'
-expected_intent: FLOWCHART
+expected_intent: create-flowchart
 expected_resources:
-  - assets/flowcharts/simple_workflow.md
-  - assets/flowcharts/decision_tree_flow.md
+  - create-flowchart/assets/simple_workflow.md
+  - create-flowchart/assets/decision_tree_flow.md
 expected_workflow_mode: create-flowchart
 expected_leaf_resources:
   - workflow_mode: create-flowchart

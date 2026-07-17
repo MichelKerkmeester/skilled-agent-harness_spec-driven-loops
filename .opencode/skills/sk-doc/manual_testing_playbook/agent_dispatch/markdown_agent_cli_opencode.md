@@ -3,10 +3,10 @@ id: SD-020
 category: agent_dispatch
 title: '@markdown agent dispatch via cli-opencode (DeepSeek v4 Pro direct API)'
 execution_mode: dispatch_real
-expected_intent: CHANGELOG
+expected_intent: create-changelog
 expected_agent: '@markdown'
 expected_resources:
-  - assets/changelog_template.md
+  - shared/assets/changelog_template.md
 expected_workflow_mode: create-changelog
 expected_leaf_resources:
   - workflow_mode: create-changelog

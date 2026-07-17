@@ -2,10 +2,10 @@
 id: SD-H11
 category: holdout
 title: 'Independent holdout — OPTIMIZATION (keyword-blind)'
-expected_intent: OPTIMIZATION
+expected_intent: create-quality-control
 expected_resources:
-  - references/optimization.md
-  - assets/llmstxt_templates.md
+  - create-quality-control/references/optimization.md
+  - shared/assets/llmstxt_templates.md
 expected_workflow_mode: create-quality-control
 expected_leaf_resources:
   - workflow_mode: create-quality-control

@@ -33,7 +33,7 @@ Use this workflow when the request involves:
 - Creating per-feature files such as `unified_context_retrieval.md` under category folders.
 - Linking manual testing playbooks, README summaries, or operator docs back to a stable feature reference.
 
-Keyword triggers: `feature catalog`, `feature inventory`, `catalog package`, `per-feature files`, `source anchors`, `root catalog`, `capability inventory`, `/create:feature-catalog`.
+Keyword triggers: `feature catalog`, `feature inventory`, `catalog package`, `per-feature files`, `source anchors`, `root catalog`, `capability inventory`, `capabilities`, `/create:feature-catalog`.
 
 ### When NOT to Use
 

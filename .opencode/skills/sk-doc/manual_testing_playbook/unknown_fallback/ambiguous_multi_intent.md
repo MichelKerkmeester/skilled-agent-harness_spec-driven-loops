@@ -2,18 +2,24 @@
 id: SD-007
 category: unknown_fallback
 title: 'Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta'
-expected_intent: DOC_QUALITY+FLOWCHART
+expected_intent: create-quality-control+create-flowchart
 expected_resources:
-  - references/validation.md
-  - references/core_standards.md
-  - assets/flowcharts/simple_workflow.md
-  - assets/flowcharts/decision_tree_flow.md
+  - shared/references/validation.md
+  - create-quality-control/references/workflows.md
+  - shared/references/core_standards.md
+  - shared/references/evergreen_packet_id_rule.md
+  - create-flowchart/assets/simple_workflow.md
+  - create-flowchart/assets/decision_tree_flow.md
 expected_workflow_mode: create-quality-control+create-flowchart
 expected_leaf_resources:
   - workflow_mode: create-quality-control
     leaf_resource_id: references/validation.md
   - workflow_mode: create-quality-control
+    leaf_resource_id: references/workflows.md
+  - workflow_mode: create-quality-control
     leaf_resource_id: references/core_standards.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/evergreen_packet_id_rule.md
   - workflow_mode: create-flowchart
     leaf_resource_id: assets/simple_workflow.md
   - workflow_mode: create-flowchart

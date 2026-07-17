@@ -2,10 +2,10 @@
 id: SD-017
 category: intent_detection
 title: 'INSTALL_GUIDE intent: scaffold an install guide for a new MCP server'
-expected_intent: INSTALL_GUIDE
+expected_intent: create-readme
 expected_resources:
-  - assets/readme/install_guide_template.md
-  - references/README.md
+  - create-readme/assets/install_guide_template.md
+  - create-readme/references/README.md
 expected_workflow_mode: create-readme
 expected_leaf_resources:
   - workflow_mode: create-readme

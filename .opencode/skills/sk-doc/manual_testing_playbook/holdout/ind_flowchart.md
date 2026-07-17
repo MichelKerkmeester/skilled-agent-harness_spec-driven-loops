@@ -2,10 +2,10 @@
 id: SD-H10
 category: holdout
 title: 'Independent holdout — FLOWCHART (keyword-blind)'
-expected_intent: FLOWCHART
+expected_intent: create-flowchart
 expected_resources:
-  - assets/simple_workflow.md
-  - assets/decision_tree_flow.md
+  - create-flowchart/assets/simple_workflow.md
+  - create-flowchart/assets/decision_tree_flow.md
 expected_workflow_mode: create-flowchart
 expected_leaf_resources:
   - workflow_mode: create-flowchart

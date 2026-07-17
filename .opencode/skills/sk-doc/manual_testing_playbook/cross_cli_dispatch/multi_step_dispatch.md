@@ -2,15 +2,18 @@
 id: SD-012
 category: cross_cli_dispatch
 title: 'Multi-step dispatch: 3 sequential sk-doc invocations'
-expected_intent: SKILL_CREATION → DOC_QUALITY → CHANGELOG
+expected_intent: create-skill → create-quality-control → create-changelog
 expected_resources:
-  - references/skill_creation.md
-  - assets/skill/skill_md_template.md
-  - assets/skill/skill_readme_template.md
-  - references/validation.md
-  - references/core_standards.md
-  - assets/changelog_template.md
-expected_workflow_mode: create-skill→create-quality-control→create-changelog
+  - create-skill/references/skill/creation_workflow.md
+  - create-skill/assets/skill/skill_md_template.md
+  - create-skill/assets/skill/skill_readme_template.md
+  - create-skill/assets/skill/skill_reference_template.md
+  - shared/references/validation.md
+  - create-quality-control/references/workflows.md
+  - shared/references/core_standards.md
+  - shared/references/evergreen_packet_id_rule.md
+  - shared/assets/changelog_template.md
+expected_workflow_mode: create-skill → create-quality-control → create-changelog
 expected_leaf_resources:
   - workflow_mode: create-skill
     leaf_resource_id: references/skill/creation_workflow.md
@@ -18,10 +21,16 @@ expected_leaf_resources:
     leaf_resource_id: assets/skill/skill_md_template.md
   - workflow_mode: create-skill
     leaf_resource_id: assets/skill/skill_readme_template.md
+  - workflow_mode: create-skill
+    leaf_resource_id: assets/skill/skill_reference_template.md
   - workflow_mode: create-quality-control
     leaf_resource_id: references/validation.md
   - workflow_mode: create-quality-control
+    leaf_resource_id: references/workflows.md
+  - workflow_mode: create-quality-control
     leaf_resource_id: references/core_standards.md
+  - workflow_mode: create-quality-control
+    leaf_resource_id: references/evergreen_packet_id_rule.md
   - workflow_mode: create-changelog
     leaf_resource_id: assets/changelog_template.md
 expected_token_range_input: 2000-5000

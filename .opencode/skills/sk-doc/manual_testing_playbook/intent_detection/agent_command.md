@@ -2,11 +2,12 @@
 id: SD-003
 category: intent_detection
 title: 'AGENT_COMMAND intent: author paired @agent and /create command'
-expected_intent: AGENT_COMMAND
+expected_intent: create-agent+create-command
 expected_resources:
-  - references/README.md
-  - assets/agent_template.md
-  - assets/command/command_template.md
+  - create-agent/references/README.md
+  - create-agent/assets/agent_template.md
+  - create-command/references/README.md
+  - create-command/assets/command_template.md
 expected_workflow_mode: create-agent+create-command
 expected_leaf_resources:
   - workflow_mode: create-agent

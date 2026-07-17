@@ -2,10 +2,10 @@
 id: SD-H05
 category: holdout
 title: 'Holdout — FLOWCHART via natural phrasing'
-expected_intent: FLOWCHART
+expected_intent: create-flowchart
 expected_resources:
-  - assets/simple_workflow.md
-  - assets/decision_tree_flow.md
+  - create-flowchart/assets/simple_workflow.md
+  - create-flowchart/assets/decision_tree_flow.md
 expected_workflow_mode: create-flowchart
 expected_leaf_resources:
   - workflow_mode: create-flowchart
