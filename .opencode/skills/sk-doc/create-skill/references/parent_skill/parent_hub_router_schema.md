@@ -228,6 +228,8 @@ On a **keyword-routed hub** (one with a `routerPolicy.defaultMode`), `hub-identi
 
 A **detection-routed hub** (`defaultMode: null`, mode resolved from surface/stack markers rather than keyword scoring — e.g. sk-code) is the exception: detection selects the mode, so a shared identity class across modes does not drive selection. Such a hub is scored with subset resource semantics, not exact-set intent equality, so it is not subject to the over-emission failure above.
 
+A **defer-routed hub** (`defaultMode: null`, keyword-scored — NOT detection-based) is the third pattern, for a hub whose modes are materially distinct with no dominant common case, so no child is a safe zero-signal lean. A request that scores no mode **defers** rather than guessing. Keep any catch-all class (`hub-identity`) as **discovery-only** — defined but referenced by no mode's `classes`, so it never drives selection — and point `defaultResource` at the routing helper (`shared/references/smart_routing.md` + `mode-registry.json`, the mode-map) so the deferred request is pointed at *how to choose*, never at a guessed child. This is the shape of `system-deep-loop`, `mcp-tooling`, `cli-external-orchestration`, and `sk-design` after retiring their presumptive named defaults. Choosing a named default over defer-routed is an evidence-bearing decision (one child is genuinely the dominant zero-signal case, e.g. `sk-prompt`), never the scaffold default.
+
 ---
 
 ## 6. SURFACE SIGNALS AND TWO-AXIS ROUTING
