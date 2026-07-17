@@ -25,11 +25,11 @@ Guardrails:
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation | `.opencode/commands/memory/assets/learn_presentation.txt` | Overview, list, budget, create, edit, remove, confirmation, and result displays. |
+| Purpose | Asset |
+|---------|-------|
+| Presentation | `.opencode/commands/memory/assets/learn_presentation.txt` |
 
-This is a direct-dispatch command: it routes straight to the memory MCP tools and constitutional-rule filesystem writes and owns no workflow YAML by design. There is no `_auto`/`_confirm` workflow YAML for the memory family and none is missing.
+This is a direct-dispatch command: it routes straight to the memory MCP tools and constitutional-rule filesystem writes and owns no workflow YAML by design.
 
 Before rendering any dashboard, approval prompt, or result block, read the presentation asset and use it as the display source of truth.
 

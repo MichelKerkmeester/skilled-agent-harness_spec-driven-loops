@@ -51,8 +51,6 @@ If any blocking phase was skipped, stop, report the skipped phase through the pr
 | Behavioral matrix | `.opencode/skills/system-deep-loop/deep-alignment/assets/command_benchmark/command_benchmark_matrix.json` |
 | Behavioral matrix scheduler | `.opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs` |
 
-The launcher is instrument infrastructure. It is intentionally absent from the bounded behavioral scenarios so the benchmark never measures its own dispatcher recursively; the separate hermetic launcher smoke owns that coverage.
-
 ## 3. MODE ROUTING
 
 1. `:auto` binds `execution_mode = AUTONOMOUS`; `:confirm` binds `execution_mode = INTERACTIVE`; no suffix binds `execution_mode = ASK` until the presentation contract resolves it.
@@ -62,7 +60,7 @@ The launcher is instrument infrastructure. It is intentionally absent from the b
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |---|---|
 | `:auto` | `.opencode/commands/deep/assets/deep_command-benchmark_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml` |

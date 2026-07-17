@@ -71,14 +71,26 @@ function cappedWorkflowModes({ intents, fullInventoryIntent }) {
 function buildTypedResourceContract({ router, scenario }) {
   const uncapped = router && router.resourceContract;
   if (!uncapped) return null;
-  const fullInventoryIntent = !!(scenario && scenario.fullInventoryIntent === true);
-  const workflowModes = cappedWorkflowModes({ intents: router.intents, fullInventoryIntent });
+  // The workflow mode is a projection of the surface-resolved leaves, not an
+  // independent hub pick: advertise exactly the modes the emitted pairs belong
+  // to, so a loaded contract can never diverge from what it announces. The hub
+  // intents survive only as telemetry (observedIntents), never gating leaves.
+  const surfaceModes = [...new Set((uncapped.pairs || []).map((pair) => pair.workflowMode))];
+  const fullInventoryIntent = !!(scenario && scenario.fullInventoryIntent === true)
+    || (Array.isArray(router.surfaceIntents) && router.surfaceIntents.includes('FULL_INVENTORY'));
+  const workflowModes = cappedWorkflowModes({ intents: surfaceModes, fullInventoryIntent });
   const selected = new Set(workflowModes);
+  const pairs = (uncapped.pairs || []).filter((pair) => selected.has(pair.workflowMode));
+  // Fail closed: a non-empty resolution that collapses to zero typed pairs is a
+  // routing bug, never a silent empty contract that reads as "nothing to load".
+  if (pairs.length === 0 && (uncapped.pairs || []).length > 0) {
+    throw new Error('typed resource contract collapsed to zero pairs from a non-empty leaf resolution');
+  }
   return {
     resourceContractVersion: uncapped.resourceContractVersion,
     workflowModes,
     fullInventoryIntent,
-    pairs: uncapped.pairs.filter((pair) => selected.has(pair.workflowMode)),
+    pairs,
     unresolved: uncapped.unresolved,
   };
 }

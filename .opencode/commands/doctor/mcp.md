@@ -23,8 +23,6 @@ Load the presentation contract before showing startup questions, setup dashboard
 | Install workflow | `.opencode/commands/doctor/assets/doctor_mcp_install.yaml` |
 | Debug workflow | `.opencode/commands/doctor/assets/doctor_mcp_debug.yaml` |
 
-No workflow-asset gap exists for this command.
-
 ## 3. MODE ROUTING
 
 - The sub-action is positional and must be parsed before flags.

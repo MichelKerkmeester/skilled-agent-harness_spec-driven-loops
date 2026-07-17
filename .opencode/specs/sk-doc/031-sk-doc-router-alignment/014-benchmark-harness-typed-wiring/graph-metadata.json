@@ -16,12 +16,12 @@
       "leaf selection coupled to hub modes",
       "sealed independent holdout corpus",
       "selected-map join fix",
-      "benchmark harness typed wiring plan",
-      "selection architecture fix phases",
-      "holdout corpus gate sequencing",
-      "benchmark harness typed wiring tasks",
-      "selection architecture fix task list",
-      "holdout corpus task sequence",
+      "single classifier collapse plan",
+      "unified intent leaf taxonomy phases",
+      "sealed holdout same change sequencing",
+      "single classifier collapse tasks",
+      "unified taxonomy task list",
+      "sealed holdout task sequence",
       "benchmark harness typed wiring checklist"
     ],
     "key_topics": [
@@ -54,7 +54,13 @@
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
       ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
       ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/shared/references/smart_routing.md",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/leaf-aliases.json",
+      ".opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md",
+      "reviews/sol-5.6-ultra-amendment-verdict.md",
+      "reviews/glm-5.2-max-amendment-review.md"
     ],
     "entities": [
       {
@@ -142,6 +148,42 @@
         "source": "derived"
       },
       {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-aliases.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent_hub_router_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "sol-5.6-ultra-amendment-verdict.md",
+        "kind": "doc",
+        "path": "reviews/sol-5.6-ultra-amendment-verdict.md",
+        "source": "derived"
+      },
+      {
+        "name": "glm-5.2-max-amendment-review.md",
+        "kind": "doc",
+        "path": "reviews/glm-5.2-max-amendment-review.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -164,47 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shared skill-benchmark harness and the sk-doc surface router cannot currently prove that the typed routing contract works, and in the real dispatch path it does not",
     "created_at": "2026-07-16T14:14:43.463Z",
-    "last_save_at": "2026-07-16T14:20:31.628Z",
+    "last_save_at": "2026-07-16T15:35:48.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +220,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:9f8eef586943e2df20b455069f0de392b13c6c8f7ba412f524e51db5d269d2b2",
+    "source_fingerprint": "sha256:7b6f0f50c6e081c0f2a241caaeae04b06f3d3cbf185eb36995175f2141219bfd",
     "source_doc_hashes": {
-      "spec.md": "630f04cebeda6651087f9524d8681c7040d36718112bbb818ca36f94e712af16",
-      "plan.md": "004fd2737a4aa264e42f90ef00e0f496b8593551eee60c23589b21aff1499bb8",
-      "tasks.md": "0a83f9cb20601e6e3efcf12821e8e9597eeb2494a4f3a6252999825883dbd3d8",
-      "checklist.md": "031590851c34b4f6c509e41b25a50d29e8fe3bd6d04615d7006d9412a13485e6",
-      "decision-record.md": "785d45db9644fd313cb985d9caf98e159ea5c27871ac98e4ba9147a140c1974b"
+      "spec.md": "b11d28b530a76342549cb56b4ac9d1ba796680ec774416fbed18daf1ccc22aa3",
+      "plan.md": "0142b2aa875ee8cce087f6a573ddcb8fb7f3ff4f916b1524f36f3d9109a63d20",
+      "tasks.md": "6ba5378969a87e966ec78fd815f8250e7369d3203615b8803512aa66bc1924ae",
+      "checklist.md": "e81b53cefbe3c087ecc5c5e518a1887dece832427ed82b8717fb012b8589b854",
+      "decision-record.md": "99017df5f67184744bdb79639699418396da00199268392a4be12718779dbb12"
     },
     "last_active_child_id": null,
     "last_active_at": null
