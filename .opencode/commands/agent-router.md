@@ -2,6 +2,7 @@
 description: Route requests to AI Systems with full skill-identity adoption
 argument-hint: "[system|path:<path>] <request>"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch
+version: "5.0 (Dynamic Discovery)"
 ---
 
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
@@ -35,8 +36,6 @@ IF $ARGUMENTS contains a request:
 # Agent Router
 
 Direct identity adoption architecture for routing requests to specialized AI Systems.
-
-**Version:** 5.0 (Dynamic Discovery)
 
 ---
 
