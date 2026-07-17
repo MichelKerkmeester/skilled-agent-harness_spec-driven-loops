@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Benchmark-Harness Typed-Wiring + Selection-Architecture Fix"
-description: "Four decisions from the verified SOL-redirect: staged selection fix (couple leaf to hub modes now, unify to one contract later), SD-015 option C with two gold surfaces, contract-library relocation out of the sk-doc packet, and a sealed independently-authored holdout protocol with pre-registered metrics. Each ADR folds in its eliminated alternatives."
+description: "Five decisions. ADR-001's staged couple-leaf-to-hub mechanism is superseded by ADR-005 after an empirical 19-fixture probe and three independent model reviews (SOL, GLM, Fable) refuted it as the zero-emission bug; ADR-005 collapses hub and surface into one authoritative intent->leaf taxonomy (Option 3, operator-ratified 2026-07-16). Plus SD-015 option C with two gold surfaces, contract-library relocation out of the sk-doc packet, and a sealed independently-authored holdout protocol with pre-registered metrics that lands in the same change as the collapse."
 trigger_phrases:
   - "benchmark harness typed wiring decision record"
   - "staged selection fix adr"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/031-sk-doc-router-alignment/014-benchmark-harness-typed-wiring"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored four ADRs from the verified ledger and the ratified selection-fix and SD-015 decisions"
-    next_safe_action: "Start Phase 1 under ADR-001 (couple leaf selection to the capped hub modes)"
+    recent_action: "Amended ADR-001 as superseded; ratified Option 3 collapse as ADR-005"
+    next_safe_action: "Start Phase 1: design-lock the taxonomy, freeze fixtures and router"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -26,7 +26,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions:
-      - "ADR-001 and ADR-002 were operator-ratified this session; ADR-003 and ADR-004 are Proposed under the adopted redirect"
+      - "ADR-002 operator-ratified; ADR-001 superseded by ADR-005 (mechanism refuted 2026-07-16); ADR-003/004/005 Accepted under the ratified Option 3 collapse"
 ---
 # Decision Record: Benchmark-Harness Typed-Wiring + Selection-Architecture Fix
 
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted |
+| **Status** | Superseded by ADR-005 (mechanism refuted 2026-07-16) |
 | **Date** | 2026-07-16 |
 | **Deciders** | Operator (ratified this session); verified SOL-redirect ledger |
 
@@ -126,6 +126,16 @@ The verified root cause of the dispatcher emitting zero leaves (findings F4→F1
 
 **How to roll back**: revert the two emitter commits together; the coupling is gated behind the regression test, so reverting restores the prior behaviour without touching fixtures or the corpus.
 <!-- /ANCHOR:adr-001-impl -->
+
+---
+
+### Amendment — 2026-07-16: mechanism refuted; superseded by ADR-005
+
+An empirical probe over all 19 fixtures through the real dispatcher, plus three independent senior-model reviews (GPT-5.6-SOL ultra, GLM-5.2 max, Fable-5 xhigh), refuted this ADR's core invariant. "No typed pair may carry a `workflowMode` outside the hub selection" is exactly what `buildTypedResourceContract` already does, and it **is** the zero-emission bug: the hub over-selects generic `create-*` modes (every mode shares the `authoring-actions` keyword class → parity tie → the declared `routerPolicy.tieBreak` is dead code the replay never reads → insertion order wins), so the surface classifier's correct leaves are filtered to zero on SD-003/015/016/018/020 and on core out-of-fixture prompts. The typed `resourceContract.pairs` drop to zero; the raw flat `resources` stay non-empty, which is why the legacy scorer never surfaced it.
+
+The three reviews converged: the surface classifier must be authoritative for leaves, and the two-classifier design is the root defect (Fable: scoring the hub as an independent decision is a category error — the mode is a *projection* of the selected leaves, resolvable via the manifest and registry). The operator ratified **Option 3** (collapse to one authoritative intent→leaf taxonomy now, holdout in the same change) on 2026-07-16.
+
+This ADR is therefore **superseded by ADR-005**. The staged "couple leaf→hub now" mechanism is abandoned; its "unify later" successor is promoted to the active decision. Full reviews: `reviews/sol-5.6-ultra-amendment-verdict.md`, `reviews/glm-5.2-max-amendment-review.md`, `reviews/fable-5-xhigh-parent-skill-opinion.md`.
 <!-- /ANCHOR:adr-001 -->
 
 ---
@@ -221,9 +231,9 @@ The create-skill and create-skill-parent modes share one packet directory (ADR-0
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted (under the ratified Option 3 collapse) |
 | **Date** | 2026-07-16 |
-| **Deciders** | Verified SOL-redirect ledger (finding F8, CONFIRMED); pending operator sign-off |
+| **Deciders** | Operator (ratified Option 3 this session); verified SOL-redirect ledger (finding F8, CONFIRMED) |
 
 ---
 
@@ -305,9 +315,9 @@ The shared cross-skill benchmark hard-imports the contract library from `sk-doc/
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted (lands in the same change as the ADR-005 collapse) |
 | **Date** | 2026-07-16 |
-| **Deciders** | Verified SOL-redirect ledger (overfitting protocol); pending operator sign-off |
+| **Deciders** | Operator (ratified Option 3 this session); verified SOL-redirect ledger (overfitting protocol) |
 
 ---
 
@@ -380,3 +390,95 @@ The 18/19 result was fitted: the router keyword table was hand-authored from the
 
 **How to roll back**: the corpus and tooling are additive new files; removing the directory reverts the change without affecting the frozen `stage: routing` fixtures.
 <!-- /ANCHOR:adr-004 -->
+
+---
+
+<!-- ANCHOR:adr-005 -->
+## ADR-005: Collapse hub and surface into one authoritative intent→leaf taxonomy now (supersedes ADR-001)
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-07-16 |
+| **Deciders** | Operator (ratified Option 3 this session); GPT-5.6-SOL ultra + GLM-5.2 max + Fable-5 xhigh (converged); empirical 19-fixture probe |
+
+---
+
+<!-- ANCHOR:adr-005-context -->
+### Context
+
+ADR-001 staged the fix as "couple the surface leaf classifier to the hub-selected capped modes now, unify later." An empirical probe over all 19 fixtures through the real dispatcher, corroborated by three independent senior-model reviews, refuted that mechanism: the invariant "no typed pair may carry a `workflowMode` outside the hub selection" is exactly what `buildTypedResourceContract` already does, and it is the zero-emission bug. The hub cannot discriminate authoring intents — every create-* mode shares the `authoring-actions` keyword class, so any authoring verb ties all modes at parity; the declared `routerPolicy.tieBreak` is dead code the replay never reads; insertion order wins and the surface classifier's correct leaves are filtered to zero on SD-003/015/016/018/020 and on core out-of-fixture prompts.
+
+The reviews converged on the deeper diagnosis: two independent keyword classifiers over the same prompt is the root defect. The hub "score" was never an open decision — every leaf already carries its mode through `leaf-manifest.json` and the registry, so the mode is a *projection* of the selected leaves, not a separate classification. Intersecting two noisy classifiers multiplies error and fails silently (an empty contract reads as "nothing to load").
+
+### Constraints
+
+- The one taxonomy must express intents that span modes (an agent+command request) and intents that are sub-mode slices (a single reference within a mode); a mode-shaped taxonomy cannot express either.
+- Making the surface classifier authoritative raises its blast radius; the fitted keyword table must not be trusted as generalization without a sealed holdout landing in the same change.
+- Full inventory must be a first-class intent inside the taxonomy, not a bypass keyed off a scenario flag the production path cannot set.
+<!-- /ANCHOR:adr-005-context -->
+
+---
+
+<!-- ANCHOR:adr-005-decision -->
+### Decision
+
+**We chose**: Option 3 — collapse hub and surface into one authoritative intent→leaf taxonomy now, with the sealed holdout corpus in the same change. One scored decision (intent → leaf-pairs, authored typed in `smart_routing.md`), two lookups (leaf→mode via the manifest; mode→packet entrypoint via the registry), one policy layer (`hub-router.json` shrinks to outcomes/delta/bundle/defer). The hub keyword pass is demoted to shadow telemetry: computed and exposed for the `intentRecall`/`hubRoute` dimensions, never gating the leaf contract.
+
+**How it works**: the router runs one scored pass over the typed taxonomy and emits leaf pairs. The advertised `workflowModes` is `orderedUnique(pairs[*].workflowMode)` capped at two, so advertised-mode always equals loaded-mode (the coherence invariant). Non-discriminative wins (shared authoring verbs with no mode-owned keyword margin) abstain to `UNKNOWN_FALLBACK`/DEFER rather than guess. An empty typed contract while raw resources are non-empty is a hard ERROR, never a silent zero. Full inventory is driven by a FULL_INVENTORY intent inside the taxonomy.
+<!-- /ANCHOR:adr-005-decision -->
+
+---
+
+<!-- ANCHOR:adr-005-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Collapse to one taxonomy now (Option 3) + holdout same-change** | Removes the two-classifier disagreement class entirely; coherent contract; holdout guards the raised surface blast radius | Largest blast radius, longest build, touches many framework surfaces | 9/10 |
+| Surface-authoritative cap + coherence only (Option A, staged) | Smallest change that stops zero-emission; bounded failure | Leaves the two-classifier root in place; a deferred holdout tends never to land | 7/10 |
+| Minimal: A + tripwire only | Least work | Ships the surface-overfit risk unguarded until a later holdout | 5/10 |
+| Union hub∪surface (Option B) | Stops zero-emission | Over-bundles by definition; trades zero-recall for a precision collapse | 3/10 |
+| Tune the hub keyword scorer (Option C) | Keeps classifiers independent | Cannot fix the empty-hub full-inventory case; tunes against a dead tiebreak; deepens overfitting | 2/10 |
+
+**Why this one**: the operator accepted the larger blast radius for the correct terminal architecture, and the holdout-in-same-change discipline turns the collapse into the safest path to a generalization claim rather than the riskiest.
+<!-- /ANCHOR:adr-005-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-005-consequences -->
+### Consequences
+
+**What improves**:
+- One authoritative decision; advertised mode always equals loaded mode; the previously-zero fixtures and core prompts emit non-empty mode-consistent pairs.
+- Three currently-unreachable modes (create-benchmark, create-diff, create-skill-parent) surface once every mode must be reachable by ≥1 intent.
+- Silent empty-contract failures become hard errors.
+
+**What to watch**:
+- The surface taxonomy is fitted; the sealed holdout landing in the same change is the only guardrail against rebuilding an overfitted mush with one head. Abstain-by-default raises DEFER friction; the answer is the disambiguation checklist, not fattening keywords.
+<!-- /ANCHOR:adr-005-consequences -->
+
+---
+
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The ratified ADR-001 mechanism is the zero-emission bug (probe + 3-model review, CONFIRMED) |
+| 2 | **Beyond Local Maxima?** | PASS | Options A/B/C and the staged coupling were all considered and rejected |
+| 3 | **Sufficient?** | PASS | One taxonomy + coherence invariant + abstain + tripwire + sealed holdout removes the disagreement class and guards the raised blast radius |
+| 4 | **Fits Goal?** | PASS | Perfect routing (right mode + right leaves) is exactly one authoritative intent→leaf decision |
+| 5 | **Open Horizons?** | PASS | The one-taxonomy pattern and the sealed-holdout protocol generalize to every Wave-2 hub |
+
+**Checks Summary**: 5/5 PASS
+
+---
+
+### Implementation
+
+**What changes**: `router-replay.cjs` (one scored pass, hub→telemetry), `executor-dispatch.cjs` (coherence invariant, tripwire, FULL_INVENTORY intent), `smart_routing.md` (typed intent→pairs taxonomy incl. the three unreachable modes), the loader/topology/live/scorer benchmark path, `hub-router.json` (shrunk to policy), `leaf-aliases.json` (shared-leaf multi-ownership), `parent_hub_router_schema.md` (§7 tieBreak reconciled), plus the vocab-class and coverage lints and the sealed holdout corpus with pre-registered metrics.
+
+**How to roll back**: the phases are commit-isolated and dependency-ordered; revert in reverse order. The frozen `stage: routing` fixtures and the additive holdout corpus are never overwritten, so reverting the router phases restores prior behaviour without stranding corpus data.
+<!-- /ANCHOR:adr-005 -->

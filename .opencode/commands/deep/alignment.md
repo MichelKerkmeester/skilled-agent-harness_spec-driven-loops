@@ -68,7 +68,6 @@ concrete evidence of the pasted-inline case above.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `lanes` (resolved via the structured scoping question, or `--lane-config`), `spec_folder`, `execution_mode`, `maxIterations`, `coverageThreshold`, `stabilityWindow`, `lineage_mode`
 
-
 ### AUTONOMOUS EXECUTION DIRECTIVE (:auto)
 
 > Read this first. It is an imperative to you, the executor — not background information.
@@ -93,13 +92,13 @@ Your job is to EXECUTE the auto workflow YAML's orchestration yourself — emitt
 | Auto workflow | `.opencode/commands/deep/assets/deep_alignment_auto.yaml` |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_alignment_confirm.yaml` |
 
-The presentation asset owns every dashboard, prompt, and result-template string this mode presents, mirroring `/deep:review`'s `deep_review_presentation.txt`. No workflow-asset gap exists for this command.
+The presentation asset owns every dashboard, prompt, and result-template string this mode presents.
 
 ---
 
 ## 3. MODE ROUTING
 
-1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:alignment:auto` and `/deep:alignment:confirm`; keep AGENTS, skills, and quick references synchronized to this entrypoint.
+1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:alignment:auto` and `/deep:alignment:confirm`.
 2. Treat target/authority text, `--lane-config`, `--max-iterations`, `--coverage-threshold`, `--stability-window`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, and pre-bound setup answers as workflow inputs, not execution modes.
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS`. A `--lane-config <file.json>` flag resolves lanes non-interactively (`scripts/scoping.cjs` `parseLaneConfigFile`); without it, resolve lanes through the structured three-axis scoping question (authority x artifactClass x scope) before loading YAML.
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the consolidated setup prompt (inline in the confirm workflow's own `gate_init_approval`-equivalent step) before loading YAML.
@@ -126,7 +125,7 @@ The per-iteration LEAF defaults to the native `@deep-alignment` agent on `opus` 
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_alignment_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_alignment_confirm.yaml` |

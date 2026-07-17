@@ -2,6 +2,9 @@
 title: "AI-001: Positive Design Controls"
 description: "Verify sk-design wins positive design-control prompts at confidence >= 0.80 and the hub resolves the matching mode."
 version: 1.1.0.0
+id: AI-001
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # AI-001: Positive Design Controls

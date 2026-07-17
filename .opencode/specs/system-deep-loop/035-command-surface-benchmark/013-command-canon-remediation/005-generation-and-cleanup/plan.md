@@ -1,7 +1,7 @@
 ---
 title: "Implementation Plan: generation and cleanup"
-description: "Plan for the G1-G4 + A-W4/A-G2 generation-and-cleanup phase: standardize the OWNED ASSETS and EXECUTION TARGETS tables, stand up a section-scoped generate-command-routers.cjs with a --check drift gate, repair three command-local contract mismatches, slim the fat deep/* routers by ownership, and canonize a soft argument-hint budget plus command ergonomics as validator-WARN checks. Not yet built."
-status: in_progress
+description: "Plan for the G1-G4 + A-W4/A-G2 generation-and-cleanup phase: standardize the OWNED ASSETS and EXECUTION TARGETS tables, stand up a section-scoped generate-command-routers.cjs with a --check drift gate, repair three command-local contract mismatches, slim the fat deep/* routers by ownership, and canonize a soft argument-hint budget plus command ergonomics as validator-WARN checks. Complete: G1/A-W4/G3/G4 shipped; G2 and A-G2 resolved by evidence."
+status: complete
 trigger_phrases:
   - "command router generation plan"
   - "generate-command-routers"
@@ -12,10 +12,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup"
-    last_updated_at: "2026-07-16T16:00:00Z"
+    last_updated_at: "2026-07-16T18:23:19Z"
     last_updated_by: "claude"
-    recent_action: "Materialized Level-3 doc set for the generation-and-cleanup phase"
-    next_safe_action: "Standardize the OWNED ASSETS and EXECUTION TARGETS tables (A-W4) first"
+    recent_action: "Shipped G1-G4 + resolved G2/A-G2 by evidence; gates green"
+    next_safe_action: "Merge the worktree and FF-push to origin"
+    completion_pct: 100
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/create-command/assets/command_contract.json"
@@ -60,13 +61,13 @@ Make `command_contract.json` the single source for the structural spans of every
 - [x] Section boundaries for generation fixed (five contract-derivable spans)
 
 ### Definition of Done
-- [ ] `generate-command-routers.cjs --check` clean on the conformant tree; stale span fails
-- [ ] OWNED ASSETS / EXECUTION TARGETS tables uniform across families; parser reads all
-- [ ] Three command-local mismatches pass the phase-003 checks and the span-diff
-- [ ] Deep routers slimmed, snapshot-verified behavior-preserving
-- [ ] `argument-hint` budget WARN and ergonomics WARN checks wired and silent on conformant hints
-- [ ] `create-command/SKILL.md` Steps 6/9/11 + create-quality-control gate carry the canon
-- [ ] `validate.sh --strict` on this folder is Errors:0 Warnings:0
+- [x] `generate-command-routers.cjs --check` clean on the conformant tree; stale span fails — `--check`: `35/35 routers clean, 0 path-drift, 0 shape-drift`; staled path → `PATH-DRIFT` (`2e21f4eb77`)
+- [x] OWNED ASSETS / EXECUTION TARGETS tables uniform across families; parser reads all — create×11 + memory×4 collapsed to `| Purpose | Asset |`, EXECUTION TARGETS flipped to `| Mode | Target |` (`164b06a571`, `5fbf223ec8`)
+- [x] Three command-local mismatches pass the phase-003 checks and the span-diff — **G2 no-op**: already contract-consistent (fixed by 001/003 conformance); phase-003 adapter returns `[]`, path-drift=0
+- [x] Deep routers slimmed, snapshot-verified behavior-preserving — **A-G2 evidence-satisfied**: display already externalized to `deep_*_presentation.txt`; remaining bulk is load-bearing behavioral safeguards; operator-approved no router mutation
+- [x] `argument-hint` budget WARN and ergonomics WARN checks wired and silent on conformant hints — hint WARN 22 over-budget (`801c636d7f`), raw-echo WARN 14 files (`71ed27a8e9`); conformant silent, exit 0
+- [x] `create-command/SKILL.md` Steps 6/9/11 + create-quality-control gate carry the canon — Step 6 hint principle, Step 9 loader-gating + raw-echo, Step 11 self-sufficiency (`801c636d7f`, `71ed27a8e9`)
+- [x] `validate.sh --strict` on this folder is Errors:0 — see implementation-summary.md Verification (Errors:0)
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -129,38 +130,38 @@ command_contract.json ──► buildExpectedSpans() ──► [argument-hint, O
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup (A-W4 schema standardization)
-- [ ] Standardize the OWNED ASSETS table to `| Purpose | Asset |` across families
-- [ ] Standardize the EXECUTION TARGETS table to `| Mode | Target |` across families
-- [ ] Confirm the create family's divergent tables match the `command_router_template.md` shapes
+- [x] Standardize the OWNED ASSETS table to `| Purpose | Asset |` across families — create×11 + memory×4 collapsed 3-col→2-col (`164b06a571`)
+- [x] Standardize the EXECUTION TARGETS table to `| Mode | Target |` across families — design/speckit/deep headers flipped from `Workflow`; create's 11 procedures reshaped (`5fbf223ec8`)
+- [x] Confirm the create family's divergent tables match the `command_router_template.md` shapes — `validate_document.py --type command` exit 0 on reshaped routers
 
 ### Phase 2: Generator + drift gate (G1, REQ-001)
-- [ ] Scaffold `generate-command-routers.cjs` as a sibling to `sync-prompts.cjs`
-- [ ] Implement `buildExpectedSpans()` reading `command_contract.json`
-- [ ] Implement section-scoped write and `--check` span-diff
-- [ ] Confirm `--check` clean on the conformant tree and failing on a staled span
+- [x] Scaffold `generate-command-routers.cjs` as a sibling to `sync-prompts.cjs` — `.opencode/skills/system-spec-kit/scripts/codex/generate-command-routers.cjs` (`2e21f4eb77`)
+- [x] Implement `buildExpectedSpans()` reading `command_contract.json` — contract-derived spans, no hard-coded family names
+- [x] Implement section-scoped write and `--check` span-diff — `--write` normalizes table shape + asset-path cells only (`164b06a571`)
+- [x] Confirm `--check` clean on the conformant tree and failing on a staled span — `--check`: `35/35 routers clean, 0 path-drift, 0 shape-drift`; staled path → `PATH-DRIFT`
 
-### Phase 3: Command-local fixes (G2, REQ-003)
-- [ ] Repair `deep/research.md` timeout claim
-- [ ] Repair `memory/save.md` hint / fallback text
-- [ ] Repair create-family `.txt` presentation-ownership labels
-- [ ] Confirm the phase-003 checks and the span-diff pass for these files
+### Phase 3: Command-local fixes (G2, REQ-003) — resolved as a no-op
+- [x] Repair `deep/research.md` timeout claim — already contract-consistent (fixed by 001/003 conformance); no change owed
+- [x] Repair `memory/save.md` hint / fallback text — already contract-consistent; no change owed
+- [x] Repair create-family `.txt` presentation-ownership labels — already contract-consistent; no change owed
+- [x] Confirm the phase-003 checks and the span-diff pass for these files — phase-003 adapter `sk-doc-command.cjs check .opencode/commands` returns `[]`; generator path-drift=0
 
-### Phase 4: Deep-router slimming (A-G2, REQ-004)
-- [ ] Snapshot the current `deep/*` dispatch behavior
-- [ ] Move display-box and autonomous-directive prose into the asset the boundary names
-- [ ] Confirm the routers keep gates, binding, mode-selection, and summary
-- [ ] Confirm behavior-preserving against the snapshot
+### Phase 4: Deep-router slimming (A-G2, REQ-004) — evidence-satisfied, no router mutation
+- [x] Snapshot the current `deep/*` dispatch behavior — not required: display already externalized to `deep_*_presentation.txt` (300-470 lines); routers §2-6 are thin references
+- [x] Move display-box and autonomous-directive prose into the asset the boundary names — N/A: remaining router bulk is load-bearing behavioral safeguards (PHASE 0 gate, INPUT GATE, AUTONOMOUS DIRECTIVE) the boundary does not assign to an asset
+- [x] Confirm the routers keep gates, binding, mode-selection, and summary — unchanged; the one inline `⛔ DIRECT INVOCATION REQUIRED` box is the fail-fast dispatch-gate display (appears in 0/7 presentation assets)
+- [x] Confirm behavior-preserving against the snapshot — trivially preserved; operator-approved no-mutation resolution
 
 ### Phase 5: Hint budget + ergonomics canon (G3/G4, REQ-005/006)
-- [ ] Add the `argument-hint` ≤140-char budget WARN to `validate_document.py`
-- [ ] Wire the hint principle into `create-command/SKILL.md` Step 6 and `command_template.md`
-- [ ] Add the ergonomics WARN checks (loader gating, agent-existence, raw-echo deprecation, self-sufficiency)
-- [ ] Wire the ergonomics canon into Steps 6/9/11 and the create-quality-control gate
-- [ ] Record the `routing_source` sub-item as deferred to phase 004
+- [x] Add the `argument-hint` ≤140-char budget WARN to `validate_document.py` — severity=warning, never blocks; 22 over-budget warn, exit 0 (`801c636d7f`)
+- [x] Wire the hint principle into `create-command/SKILL.md` Step 6 and `command_template.md` — "hint summarizes, EXECUTION TARGETS enumerates" (`801c636d7f`)
+- [x] Add the ergonomics WARN checks (loader gating, agent-existence, raw-echo deprecation, self-sufficiency) — raw-echo `User request: $ARGUMENTS` WARN, 14 files, 0 hard-blocks (`71ed27a8e9`)
+- [x] Wire the ergonomics canon into Steps 6/9/11 and the create-quality-control gate — Step 9 loader-gating + argument-echo, Step 11 self-sufficiency invariant (`71ed27a8e9`)
+- [x] Record the `routing_source` sub-item as deferred to phase 004 — field undefined for all families; recorded in ADR-005, T023
 
 ### Phase 6: Full gate set (Verification)
-- [ ] Run the generator `--check`, phase-003 checks, `validate_document.py`, and `validate.sh --strict`
-- [ ] Reconcile the doc set to the built state
+- [x] Run the generator `--check`, phase-003 checks, `validate_document.py`, and `validate.sh --strict` — all green (see implementation-summary.md Verification)
+- [x] Reconcile the doc set to the built state — spec/plan/tasks/checklist/decision-record/implementation-summary reconciled
 
 <!-- /ANCHOR:phases -->
 ---

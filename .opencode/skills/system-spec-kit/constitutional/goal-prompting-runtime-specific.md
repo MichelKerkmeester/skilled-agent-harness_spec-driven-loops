@@ -2,12 +2,13 @@
 title: "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode mk-goal Plugin"
 importanceTier: constitutional
 contextType: decision
-last_confirmed: "2026-07-02"
-last_confirmed_source: "deep-review-finding-D2-P2-003"
+last_confirmed: "2026-07-17"
+last_confirmed_source: "operator hyphen-naming decision"
 triggerPhrases:
   - /goal
   - /opencode_goal
   - /goal_opencode
+  - /goal-opencode
   - goal prompt
   - session goal
   - set goal
@@ -23,9 +24,10 @@ triggerPhrases:
 
 When operating as **Claude Code** and the user says "/goal" or asks to set/manage a
 session goal, use Claude Code's own **native** `/goal` goal-prompting feature. Do NOT
-route through the OpenCode `mk-goal` plugin command (currently named `/goal_opencode`,
-confirmed as the operator's final choice on 2026-07-01 — it had round-tripped through
-`/goal` in between; verify the live filename if this note predates a future change).
+route through the OpenCode `mk-goal` plugin command (named `/goal-opencode` since the
+2026-07-17 operator hyphen-naming decision; it was `/goal_opencode` from 2026-07-01 and
+had round-tripped through `/goal` before that; verify the live filename if this note
+predates a future change).
 
 ## Why
 
@@ -36,7 +38,7 @@ Claude Code always resolved to the OpenCode markdown and instructed a call to `m
 a tool that does not exist in Claude Code (confirmed dead end 2026-07-01, `ToolSearch`
 found no matching tool; no `plugin_bridges/*.mjs` exists for `mk-goal`, unlike
 `mk-spec-memory`/`mk-skill-advisor`/`mk-code-graph`). The file's real committed history
-(verified via `git log --follow -- .opencode/commands/goal_opencode.md`), corrected
+(trace with `git log --follow -- .opencode/commands/goal-opencode.md`), corrected
 2026-07-02 after a diagnostic review found an earlier draft of this note wrongly claimed
 an intermediate `opencode_goal.md` committed state that never existed: created as
 `.opencode/commands/goal.md` (2026-06-28); **first rename** to
@@ -48,10 +50,12 @@ catalogs/playbooks"); **second rename** back to `.opencode/commands/goal.md`, by
 audit-driven remediation phase (032 phase 011) reasoning from a `strings` search of the
 opencode binary confirming no built-in `/goal` command exists; **third rename**, the
 concurrent phase-009 session renamed it back to `.opencode/commands/goal_opencode.md`
-again shortly after. The operator confirmed on 2026-07-01 that `goal_opencode.md` is the
-correct, final name — this file and its referencing surfaces were swept to match. Do not
-hardcode past names, but this is no longer expected to move again absent a new operator
-decision.
+again shortly after. The operator confirmed on 2026-07-01 that `goal_opencode.md` was the
+correct name at that time; **fourth rename** to `.opencode/commands/goal-opencode.md`
+(`/goal-opencode`), an operator decision on 2026-07-17 aligning the file with the
+repo-wide hyphen naming convention — this file and its referencing surfaces were swept to
+match. Do not hardcode past names, and re-verify the live filename before invoking: it has
+moved on operator decision before and may again.
 
 ## How to apply
 

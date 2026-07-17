@@ -85,6 +85,59 @@ function walkLeafFiles(packetRoot, rootName) {
   return out;
 }
 
+// The package-index docs that name their own root directory. A standalone
+// skill routes its feature-catalog/playbook docs as leaves, but the index doc
+// itself is navigation, not a routable leaf, so it is excluded from the walk.
+const INDEX_BASENAMES = new Set([
+  'feature_catalog.md', 'manual_testing_playbook.md',
+  'feature-catalog.md', 'manual-testing-playbook.md',
+]);
+
+// A standalone (registry-less) single-mode skill declares its own manifest
+// shape in leaf-manifest.config.json: the sole workflowMode, the packet root
+// (usually "." — the skill root itself), and the leaf roots to walk. This is
+// the one-mode analogue of a mode-registry.json entry; it exists so a skill
+// whose feature-catalog and manual-testing-playbook docs are the routed corpus
+// can generate a manifest without being modeled as a parent hub. Returns null
+// when the config is absent, so a skill with neither registry nor config still
+// fails closed exactly as before.
+function readStandaloneConfig(skillDir) {
+  const cfgPath = path.join(skillDir, 'leaf-manifest.config.json');
+  if (!fs.existsSync(cfgPath)) return null;
+  const cfg = readJson(cfgPath);
+  if (!cfg || typeof cfg.workflowMode !== 'string' || cfg.workflowMode.length === 0) {
+    throw new contract.ContractError('MALFORMED_STANDALONE_CONFIG', `${cfgPath} must declare a non-empty "workflowMode"`);
+  }
+  const leafRoots = Array.isArray(cfg.leafRoots) && cfg.leafRoots.length ? cfg.leafRoots : ['references', 'assets'];
+  return {
+    workflowMode: cfg.workflowMode,
+    packet: typeof cfg.packet === 'string' && cfg.packet.length ? cfg.packet : '.',
+    leafRoots,
+    excludeIndexFiles: cfg.excludeIndexFiles !== false,
+    resourceContractVersion: cfg.resourceContractVersion != null ? cfg.resourceContractVersion : contract.CONTRACT_VERSION,
+  };
+}
+
+// Walk every declared leaf root for a standalone skill and collect its leaves,
+// dropping only the package-index doc that names its own root directory
+// (feature_catalog/feature_catalog.md, manual_testing_playbook/…). No alias
+// merge happens here: a standalone manifest is a pure function of its on-disk
+// corpus, and any resolver aliases live in their own file for router replay.
+function collectStandaloneLeaves(skillDir, cfg) {
+  const packetRoot = path.join(skillDir, cfg.packet);
+  const leaves = [];
+  for (const root of cfg.leafRoots) {
+    for (const rel of walkLeafFiles(packetRoot, root)) {
+      if (cfg.excludeIndexFiles) {
+        const base = rel.split('/').pop();
+        if (INDEX_BASENAMES.has(base) && rel === `${root}/${base}`) continue;
+      }
+      leaves.push(rel);
+    }
+  }
+  return leaves;
+}
+
 // One mode entry per declared mode (not per physical packet directory), so
 // an N-to-1 alias fan-out (two modes sharing one packet folder) keeps
 // distinct, independently addressable leaf sets.
@@ -111,6 +164,23 @@ function collectModeEntries(skillDir, registryModes, aliasEntries) {
 function buildManifestBytes(skillDir) {
   const registryPath = path.join(skillDir, 'mode-registry.json');
   if (!fs.existsSync(registryPath)) {
+    // Registry-less standalone skill: build one degenerate mode from its
+    // authored config. Parent hubs always ship a mode-registry.json, so this
+    // branch never fires for them and their generation stays byte-identical.
+    const cfg = readStandaloneConfig(skillDir);
+    if (cfg) {
+      const leaves = collectStandaloneLeaves(skillDir, cfg);
+      const rawPairs = leaves.map((leaf) => ({ workflowMode: cfg.workflowMode, leafResourceId: leaf }));
+      const dupes = contract.findDuplicateComposites(rawPairs);
+      if (dupes.length) {
+        throw new contract.ContractError('DUPLICATE_COMPOSITE', `duplicate (workflowMode, leafResourceId) pairs: ${dupes.join(', ')}`);
+      }
+      const manifest = contract.buildManifest({
+        resourceContractVersion: cfg.resourceContractVersion,
+        modeEntries: [{ workflowMode: cfg.workflowMode, packet: cfg.packet, leaves }],
+      });
+      return contract.canonicalManifestBytes(manifest);
+    }
     throw new contract.ContractError('MISSING_REGISTRY', `mode-registry.json not found under ${skillDir}`);
   }
   const registry = readJson(registryPath);

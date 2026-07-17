@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.5
+id: doctor-apply-mode-policy
+category: doctor_code_graph
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/doctor_code_graph/doctor_apply_mode_policy.md
 ---
 # 015 doctor code-graph route policy
+
+Prompt: Review doctor-code-graph routing and YAML to confirm the current workflow is diagnostic-only despite mutating route metadata.
 
 ## 1. OVERVIEW
 

@@ -2,6 +2,9 @@
 title: "PB-004: Motion Procedure Selection Proof"
 description: "Verify motion mode selects the interaction-states procedure card and preserves the read-only motion tool surface."
 version: 1.0.0.0
+id: PB-004
+expected_workflow_mode: motion
+expected_leaf_resources: []
 ---
 
 # PB-004: Motion Procedure Selection Proof

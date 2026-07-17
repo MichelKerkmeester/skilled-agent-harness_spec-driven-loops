@@ -205,6 +205,8 @@ Start Here
 | 5     | **Examples**        | Recommended      | Usage demonstrations                |
 | 6     | **Notes**           | Optional         | Caveats, requirements               |
 
+> **Frontmatter budget:** keep `argument-hint` at or under 140 characters — it **summarizes** the invocation shape while the router's **EXECUTION TARGETS** section **enumerates** the full flag surface. Over-budget hints warn, they never block registration.
+
 ### Minimal Command Structure
 
 ```markdown

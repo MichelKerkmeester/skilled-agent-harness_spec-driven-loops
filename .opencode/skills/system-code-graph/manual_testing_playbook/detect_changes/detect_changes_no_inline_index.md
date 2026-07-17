@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.3
+id: detect-changes-no-inline-index
+category: detect_changes
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/detect_changes/detect_changes_no_inline_index.md
 ---
 # 007 detect_changes no inline index
+
+Prompt: Validate that detect_changes refuses stale graph state and asks for code_graph_scan instead of repairing inline.
 
 ## 1. OVERVIEW
 

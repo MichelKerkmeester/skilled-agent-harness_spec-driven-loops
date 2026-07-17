@@ -1,7 +1,13 @@
 ---
+id: AI-004
+category: advisor_integration
+stage: negative
 title: "AI-004: No False Fire on Plain Code Edit"
 description: "Verify a plain code-edit prompt routes to sk-code and not to the system-deep-loop hub."
-version: "1.1.0.0"
+expected_intent: UNKNOWN
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # AI-004: No False Fire on Plain Code Edit

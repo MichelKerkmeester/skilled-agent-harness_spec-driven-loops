@@ -440,7 +440,7 @@ Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 ### OpenCode Goal Plugin
 
-The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/commands/goal_opencode.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.goal-state/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `mk_goal` / `mk_goal_status` plugin tools. Use [`references/hooks/goal_plugin.md`](./references/hooks/goal_plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
+The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/commands/goal-opencode.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.goal-state/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `mk_goal` / `mk_goal_status` plugin tools. Use [`references/hooks/goal_plugin.md`](./references/hooks/goal_plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
 
 ### Code Graph and Search Routing
 

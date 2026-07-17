@@ -50,8 +50,6 @@ These existing YAML assets are referenced only. The router must not modify them.
 | `skill-graph-freshness` | `.opencode/commands/doctor/assets/doctor_skill-graph-freshness.yaml` |
 | `fable-mode` | `.opencode/commands/doctor/assets/doctor_fable-mode.yaml` |
 
-No workflow-asset gap exists for this command.
-
 1. Read `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`.
 2. Read `.opencode/commands/doctor/_routes.yaml`.
 3. Parse the first positional token from `$ARGUMENTS` as `target`; support `list`, `?`, `--list`, and compatibility alias `--target=<name>`.

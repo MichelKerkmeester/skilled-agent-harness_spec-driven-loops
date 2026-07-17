@@ -2,6 +2,9 @@
 title: "SR-002: Reference-Base Backend Modes"
 description: "Verify foundations, motion, and audit modes use backendKind reference-base and cite shared resources."
 version: 1.0.0.0
+id: SR-002
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # SR-002: Reference-Base Backend Modes

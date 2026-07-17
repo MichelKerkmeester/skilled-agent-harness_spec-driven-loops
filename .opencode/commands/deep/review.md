@@ -73,7 +73,6 @@ concrete evidence of the pasted-inline case above.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`
 
-
 ### AUTONOMOUS EXECUTION DIRECTIVE (:auto)
 
 > Read this first. It is an imperative to you, the executor — not background information.
@@ -98,13 +97,11 @@ Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop ov
 | Auto workflow | `.opencode/commands/deep/assets/deep_review_auto.yaml` |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_review_confirm.yaml` |
 
-No workflow-asset gap exists for this command.
-
 ---
 
 ## 3. MODE ROUTING
 
-1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:review:auto` and `/deep:review:confirm`; keep AGENTS, skills, and quick references synchronized to this entrypoint.
+1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:review:auto` and `/deep:review:confirm`.
 2. Treat target text, `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, fan-out flags, the internal `--fanout-lineage-artifact-dir`, and pre-bound setup answers as workflow inputs, not execution modes.
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS` and resolve required setup inputs through the presentation contract's three-tier auto setup resolution before loading YAML.
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the presentation contract's consolidated setup prompt before loading YAML.
@@ -123,7 +120,7 @@ No workflow-asset gap exists for this command.
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_review_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_review_confirm.yaml` |

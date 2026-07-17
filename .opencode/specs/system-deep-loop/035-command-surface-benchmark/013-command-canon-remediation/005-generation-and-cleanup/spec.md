@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: generation and cleanup"
-description: "Backlog G1-G4 plus the A-W4/A-G2 folds from the 014 asset-layer research: make command_contract.json the single source for command routers via a section-scoped generator with a --check drift gate, standardize the OWNED ASSETS and EXECUTION TARGETS tables the generator parses, repair three command-local contract mismatches, slim the fat deep/* routers by ownership, and canonize a soft argument-hint budget plus command ergonomics as validator WARN checks. Not yet built."
-status: in_progress
+description: "Backlog G1-G4 plus the A-W4/A-G2 folds from the 014 asset-layer research: make command_contract.json the single source for command routers via a section-scoped generator with a --check drift gate, standardize the OWNED ASSETS and EXECUTION TARGETS tables the generator parses, repair three command-local contract mismatches, slim the fat deep/* routers by ownership, and canonize a soft argument-hint budget plus command ergonomics as validator WARN checks. Complete: G1/A-W4/G3/G4 shipped; G2 and A-G2 resolved by evidence; strict gates green."
+status: complete
 trigger_phrases:
   - "command router generation"
   - "command contract single source"
@@ -13,10 +13,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup"
-    last_updated_at: "2026-07-16T16:00:00Z"
+    last_updated_at: "2026-07-16T18:23:19Z"
     last_updated_by: "claude"
-    recent_action: "Materialized Level-3 doc set for the generation-and-cleanup phase"
-    next_safe_action: "Standardize the OWNED ASSETS and EXECUTION TARGETS tables (A-W4) first"
+    recent_action: "Shipped G1-G4 + resolved G2/A-G2 by evidence; gates green"
+    next_safe_action: "Merge the worktree and FF-push to origin"
+    completion_pct: 100
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/create-command/assets/command_contract.json"
@@ -55,7 +56,7 @@ This phase completes the command-canon remediation by making the versioned, mach
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-16 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Estimated LOC** | ~650 |

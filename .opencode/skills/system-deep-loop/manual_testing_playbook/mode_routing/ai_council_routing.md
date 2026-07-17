@@ -1,10 +1,24 @@
 ---
-title: "MR-003: AI Council Mode Routing"
+id: MO-003
+category: mode_routing
+stage: routing
+title: "MO-003: AI Council Mode Routing"
 description: "Verify a multi-seat planning deliberation request resolves to the ai-council mode through the system-deep-loop hub."
-version: "1.1.0.0"
+expected_intent: ai-council
+expected_resources:
+  - deep-ai-council/SKILL.md
+expected_workflow_mode: ai-council
+expected_leaf_resources:
+  - workflow_mode: ai-council
+    leaf_resource_id: references/integration/loop_protocol.md
+  - workflow_mode: ai-council
+    leaf_resource_id: references/scoring/scoring_rubric.md
+  - workflow_mode: ai-council
+    leaf_resource_id: references/structure/output_schema.md
+version: "1.2.0.0"
 ---
 
-# MR-003: AI Council Mode Routing
+# MO-003: AI Council Mode Routing
 
 ## 1. OVERVIEW
 
@@ -47,10 +61,10 @@ Run an AI council planning deliberation with multiple seats to compare implement
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "Run an AI council planning deliberation with multiple seats to compare implementation options, critique risks, converge on a recommendation, and write council artifacts." --threshold 0.8 > /tmp/dlw-MR-003/advisor.txt
+   python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "Run an AI council planning deliberation with multiple seats to compare implementation options, critique risks, converge on a recommendation, and write council artifacts." --threshold 0.8 > /tmp/dlw-MO-003/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Run an AI council planning deliberation with multiple seats to compare implementation options, critique risks, converge on a recommendation, and write council artifacts.")`.
-3. **Capture route**: save the AI response to `/tmp/dlw-MR-003/response.txt`.
+3. **Capture route**: save the AI response to `/tmp/dlw-MO-003/response.txt`.
 4. **Compare to registry**: confirm the response matches the `ai-council` registry entry.
 
 ### Expected Signals
@@ -83,6 +97,6 @@ Run an AI council planning deliberation with multiple seats to compare implement
 
 - **Critical path**: Yes
 - **Destructive**: No
-- **Sandbox**: `/tmp/dlw-MR-003/`
+- **Sandbox**: `/tmp/dlw-MO-003/`
 - **Concurrent-safe**: Yes
 - **Last validated**: pending first manual run

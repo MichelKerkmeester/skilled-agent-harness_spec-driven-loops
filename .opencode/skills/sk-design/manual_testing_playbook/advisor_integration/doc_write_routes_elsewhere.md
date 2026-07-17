@@ -2,6 +2,10 @@
 title: "AI-003: Documentation Write Routes Elsewhere"
 description: "Verify documentation authoring prompts do not false-fire sk-design just because they mention the sk-design hub."
 version: 1.0.1.0
+id: AI-003
+expected_workflow_mode: UNKNOWN
+stage: negative
+expected_leaf_resources: []
 ---
 
 # AI-003: Documentation Write Routes Elsewhere

@@ -7,9 +7,18 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "verification"
 version: 1.3.0.0
+id: code-graph-context-seeded-ppr-ranking
+category: context_retrieval
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/context_retrieval/code_graph_context_seeded_ppr_ranking.md
 ---
 
 # 029 -- `code_graph_context` seeded-PPR impact ranking (benchmark-only, CUT verdict)
+
+Prompt: Validate that code_graph_context impact mode only uses seeded-PPR ranking when the flag is enabled, surfaces a real multi-hop edgeChain, and confirm the flag ships off by default per the CUT verdict.
 
 ## 1. OVERVIEW
 

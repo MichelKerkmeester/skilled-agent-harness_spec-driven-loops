@@ -2,6 +2,9 @@
 title: "PB-006: Shared Polish-Gate Selection Proof"
 description: "Verify the shared polish-gate procedure card is selected once at hub level and remains owned by design-audit review."
 version: 1.0.0.0
+id: PB-006
+expected_workflow_mode: audit
+expected_leaf_resources: []
 ---
 
 # PB-006: Shared Polish-Gate Selection Proof

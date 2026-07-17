@@ -6,6 +6,10 @@ title: "Generic prompt-improvement request routes to prompt-improve"
 expected_intent: prompt-improve
 expected_resources:
   - prompt-improve/SKILL.md
+expected_workflow_mode: prompt-improve
+expected_leaf_resources:
+  - workflow_mode: prompt-improve
+    leaf_resource_id: references/depth_framework.md
 created: 2026-07-09
 version: 1.0.0.0
 ---

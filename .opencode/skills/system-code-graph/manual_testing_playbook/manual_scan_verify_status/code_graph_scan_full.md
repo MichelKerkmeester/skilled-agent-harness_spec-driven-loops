@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.3
+id: code-graph-scan-full
+category: manual_scan_verify_status
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/manual_scan_verify_status/code_graph_scan_full.md
 ---
 # 004 code_graph_scan full
+
+Prompt: Run a full code_graph_scan and confirm it reparses candidates, records graph counts and persists the edge baseline when requested.
 
 ## 1. OVERVIEW
 

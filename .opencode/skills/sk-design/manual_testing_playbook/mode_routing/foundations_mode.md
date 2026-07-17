@@ -1,10 +1,25 @@
 ---
-title: "MR-002: Foundations Mode Routing"
+title: "MDR-002: Foundations Mode Routing"
 description: "Verify static visual-system requests resolve to foundations and load the design-foundations packet."
 version: 1.0.0.0
+id: MDR-002
+expected_workflow_mode: foundations
+expected_leaf_resources:
+  - workflow_mode: foundations
+    leaf_resource_id: references/corpus_map.md
+  - workflow_mode: foundations
+    leaf_resource_id: references/color/oklch_workflow.md
+  - workflow_mode: foundations
+    leaf_resource_id: references/color/palette_theming.md
+  - workflow_mode: foundations
+    leaf_resource_id: references/type/typography_system.md
+  - workflow_mode: foundations
+    leaf_resource_id: references/layout/layout_responsive.md
+  - workflow_mode: foundations
+    leaf_resource_id: assets/token_starter.md
 ---
 
-# MR-002: Foundations Mode Routing
+# MDR-002: Foundations Mode Routing
 
 ## 1. OVERVIEW
 
@@ -54,9 +69,9 @@ Create an OKLCH color token system, typography scale, spacing rhythm, and respon
 
 ### Exact Command Sequence
 
-1. Run the advisor probe and save output to `/tmp/skd-MR002-advisor.txt`.
+1. Run the advisor probe and save output to `/tmp/skd-MDR002-advisor.txt`.
 2. Invoke the orchestrator with the exact prompt.
-3. Capture mode, resources, tool calls, and response in `/tmp/skd-MR002-response.txt`.
+3. Capture mode, resources, tool calls, and response in `/tmp/skd-MDR002-response.txt`.
 
 ### Pass/Fail Criteria
 

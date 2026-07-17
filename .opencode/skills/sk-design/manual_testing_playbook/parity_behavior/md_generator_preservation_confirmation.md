@@ -2,6 +2,15 @@
 title: "PB-003: md-generator Preservation Confirmation"
 description: "Verify parity behavior keeps md-generator as the only mutating mode and preserves its measured extraction procedure."
 version: 1.0.0.0
+id: PB-003
+expected_workflow_mode: md-generator
+expected_leaf_resources:
+  - workflow_mode: md-generator
+    leaf_resource_id: references/extraction_workflow.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/source_of_truth_router_card.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/cardinal_rules_card.md
 ---
 
 # PB-003: md-generator Preservation Confirmation

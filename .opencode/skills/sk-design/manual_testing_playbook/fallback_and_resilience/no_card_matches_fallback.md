@@ -2,6 +2,9 @@
 title: "FR-001: No-Card-Matches Fallback"
 description: "Verify sk-design modes state the explicit no-procedure fallback instead of loading every procedure card or inventing a card."
 version: 1.0.0.0
+id: FR-001
+expected_workflow_mode: foundations
+expected_leaf_resources: []
 ---
 
 # FR-001: No-Card-Matches Fallback

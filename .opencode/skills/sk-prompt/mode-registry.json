@@ -1,6 +1,7 @@
 {
   "skill": "sk-prompt",
   "version": "1.0.0.0",
+  "resourceContractVersion": 1,
   "description": "Declarative packet registry for the sk-prompt parent hub: workflowMode + packetKind + backendKind + toolSurface + advisorRouting for the prompt-improve and prompt-models workflow packets. The advisor routes the single sk-prompt identity; the hub selects the workflow packet. Workflow-only hub (no surface axis), zero named extensions.",
   "discriminator": {
     "workflowMode": "Public hub/mode key; stable identity used by the hub router and this registry.",

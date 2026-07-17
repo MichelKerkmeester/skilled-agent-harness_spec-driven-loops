@@ -7,9 +7,18 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "verification"
 version: 1.3.0.0
+id: code-graph-context-edge-confidence-differentiation
+category: context_retrieval
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/context_retrieval/code_graph_context_edge_confidence_differentiation.md
 ---
 
 # 028 -- `code_graph_context` CALLS edge-confidence differentiation
+
+Prompt: Validate that enabling edge_confidence_differentiation gives code_graph_context real CALLS confidence tiers instead of the flat 0.8 default, flags ambiguous resolutions as weak evidence, and restores legacy behavior when turned off.
 
 ## 1. OVERVIEW
 

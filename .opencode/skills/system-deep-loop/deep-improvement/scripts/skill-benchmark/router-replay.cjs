@@ -261,6 +261,57 @@ function buildResourceContract({ skillRoot, resources }) {
   return { resourceContractVersion: contract.CONTRACT_VERSION, pairs, unresolved };
 }
 
+/**
+ * Build the full-inventory typed contract by enumerating every pair the manifest
+ * declares, rather than dual-reading a hand-maintained resource list. The
+ * manifest is the source of truth for "the whole toolkit": a hand list drifts
+ * from it and, worse, drops a fan-out twin — packet-qualified dual-read binds
+ * every shared path to the first-declared mode, so a twin sharing all its leaves
+ * with a sibling never emits any pair of its own. Enumerating by mode keeps both
+ * twins as distinct typed identities while still deduping on the composite key.
+ *
+ * @param {Object} args - Enumeration inputs.
+ * @param {string} args.skillRoot - Skill root dir.
+ * @returns {{resourceContractVersion:number,pairs:Array<{workflowMode:string,leafResourceId:string}>,unresolved:string[]}|null} Full-inventory bundle, or null when not applicable.
+ */
+function buildFullInventoryContract({ skillRoot }) {
+  if (!hasLeafManifest(skillRoot)) return null;
+  const contract = loadContractLib();
+  if (!contract) return null;
+  const manifestLeavesByMode = loadManifestLeavesByMode(skillRoot);
+  const pairs = [];
+  const seen = new Set();
+  for (const [workflowMode, leaves] of manifestLeavesByMode) {
+    for (const leafResourceId of leaves) {
+      const pair = { workflowMode, leafResourceId };
+      const key = contract.compositeKey(pair);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      pairs.push(pair);
+    }
+  }
+  return { resourceContractVersion: contract.CONTRACT_VERSION, pairs, unresolved: [] };
+}
+
+/**
+ * Choose the typed contract for a resolved route. A full-inventory request loads
+ * the whole toolkit, whose canonical shape is the manifest itself; every other
+ * request converts only the specific leaves the surface selected.
+ *
+ * @param {Object} args - Selection inputs.
+ * @param {string} args.skillRoot - Skill root dir.
+ * @param {string[]} args.resources - Raw resource strings the router selected.
+ * @param {string[]} args.intents - Selected intents for this route.
+ * @returns {Object|null} Typed contract bundle, or null when not applicable.
+ */
+function selectResourceContract({ skillRoot, resources, intents }) {
+  if (Array.isArray(intents) && intents.includes('FULL_INVENTORY')) {
+    const full = buildFullInventoryContract({ skillRoot });
+    if (full) return full;
+  }
+  return buildResourceContract({ skillRoot, resources });
+}
+
 function buildHubRouteTelemetry({ skillRoot, intents, router, taskLower }) {
   if (!router || router.routerSource !== 'hub-router.json') {
     return { observed: false, reason: 'no-hub-router' };
@@ -622,10 +673,11 @@ function routeSkillResources({ skillRoot, taskText }) {
         router: surfaceRouter,
         extraRoots: registryPacketRoots(skillRoot),
       });
-      const resourceContract = buildResourceContract({ skillRoot, resources: asm.resources });
+      const resourceContract = selectResourceContract({ skillRoot, resources: asm.resources, intents: surfaceIntents });
       return {
         parseable: true,
         intents,
+        surfaceIntents,
         resources: asm.resources,
         missingResources: asm.missingResources,
         scores,
@@ -637,7 +689,7 @@ function routeSkillResources({ skillRoot, taskText }) {
   }
 
   const asm = assembleResources({ skillRoot, taskLower, intents, router });
-  const resourceContract = buildResourceContract({ skillRoot, resources: asm.resources });
+  const resourceContract = selectResourceContract({ skillRoot, resources: asm.resources, intents });
   return {
     parseable: true,
     intents,

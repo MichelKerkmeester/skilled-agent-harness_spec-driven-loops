@@ -1,7 +1,13 @@
 ---
+id: AI-003
+category: advisor_integration
+stage: routing
 title: "AI-003: Command-Bridge Guard"
 description: "Verify command-bridge modes require their /deep:* command surface and do not fire from bare advisor aliases."
-version: "1.1.0.0"
+expected_intent: UNKNOWN
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # AI-003: Command-Bridge Guard

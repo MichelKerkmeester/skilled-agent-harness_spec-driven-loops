@@ -2,9 +2,18 @@
 title: "025 -- code-index CLI Fallback Surface"
 description: "Operator check for the daemon-backed code-index CLI: 8-command list-tools parity, warm-only no-spawn exit 75, usage-error exit 64, dist-freshness exit 69, and suite-backed blocked-read rendering."
 version: 1.2.0.1
+id: code-index-cli-fallback-surface
+category: mcp_tool_surface
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/mcp_tool_surface/code_index_cli_fallback_surface.md
 ---
 
 # 025 -- code-index CLI Fallback Surface
+
+Prompt: Confirm the code-index CLI enumerates 8 tools, refuses bad usage with exit 64, exits 75 warm-only against an absent daemon, and renders blocked reads.
 
 ## 1. OVERVIEW
 
