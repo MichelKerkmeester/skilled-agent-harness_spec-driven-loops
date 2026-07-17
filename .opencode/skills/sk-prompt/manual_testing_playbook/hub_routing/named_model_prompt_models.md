@@ -5,7 +5,7 @@ stage: routing
 title: "Named small-model request routes to prompt-models"
 expected_intent: prompt-models
 expected_resources:
-  - prompt-models/SKILL.md
+  - prompt-models/references/models/deepseek-v4-pro.md
 expected_workflow_mode: prompt-models
 expected_leaf_resources:
   - workflow_mode: prompt-models

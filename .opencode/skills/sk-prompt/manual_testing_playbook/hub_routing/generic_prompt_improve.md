@@ -5,7 +5,7 @@ stage: routing
 title: "Generic prompt-improvement request routes to prompt-improve"
 expected_intent: prompt-improve
 expected_resources:
-  - prompt-improve/SKILL.md
+  - prompt-improve/references/depth_framework.md
 expected_workflow_mode: prompt-improve
 expected_leaf_resources:
   - workflow_mode: prompt-improve

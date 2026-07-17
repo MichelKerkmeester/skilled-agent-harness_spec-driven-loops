@@ -5,7 +5,7 @@ stage: routing
 title: "Second named model (GLM-5.2) also routes to prompt-models"
 expected_intent: prompt-models
 expected_resources:
-  - prompt-models/SKILL.md
+  - prompt-models/references/models/glm-5.2.md
 expected_workflow_mode: prompt-models
 expected_leaf_resources:
   - workflow_mode: prompt-models

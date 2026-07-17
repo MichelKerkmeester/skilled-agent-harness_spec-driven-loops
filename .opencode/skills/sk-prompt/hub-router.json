@@ -15,7 +15,7 @@
   },
   "routerSignals": {
     "prompt-improve": { "weight": 4, "classes": ["prompt-improve-aliases", "prompt-improve-actions", "hub-identity"], "resources": ["prompt-improve/SKILL.md"] },
-    "prompt-models": { "weight": 5, "classes": ["prompt-models-aliases", "prompt-models-runtime", "hub-identity"], "resources": ["prompt-models/SKILL.md"] }
+    "prompt-models": { "weight": 6, "classes": ["prompt-models-aliases", "prompt-models-runtime"], "resources": ["prompt-models/SKILL.md"] }
   },
   "vocabularyClasses": {
     "hub-identity": { "keywords": ["sk-prompt", "prompt", "mode-registry", "hub-router", "workflowmode", "packetkind"] },
