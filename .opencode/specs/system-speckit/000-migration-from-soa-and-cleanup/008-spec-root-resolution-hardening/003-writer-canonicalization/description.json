@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/003-writer-canonicalization",
+  "description": "The automatic writers resolve legacy-first or re-materialize `specs/`: the Stop autosave, bare/new `generate-context`, the phase-pointer refresh",
+  "keywords": [
+    "automatic",
+    "writers",
+    "resolve",
+    "legacy-first",
+    "re-materialize",
+    "specs",
+    "stop",
+    "autosave",
+    "bare",
+    "new",
+    "generate-context",
+    "phase-pointer",
+    "refresh"
+  ],
+  "lastUpdated": "2026-07-17T10:57:50.439Z",
+  "specId": "003",
+  "folderSlug": "writer-canonicalization",
+  "parentChain": [
+    "system-speckit",
+    "000-migration-from-soa-and-cleanup",
+    "008-spec-root-resolution-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

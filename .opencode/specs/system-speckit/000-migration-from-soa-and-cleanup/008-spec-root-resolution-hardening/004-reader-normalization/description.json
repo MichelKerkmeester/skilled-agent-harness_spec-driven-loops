@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/004-reader-normalization",
+  "description": "The shared scripts helper (`getSpecsDirectories`/`findActiveSpecsDir`) and the independent constructors (startup pending recovery, generic MCP",
+  "keywords": [
+    "shared",
+    "scripts",
+    "helper",
+    "getspecsdirectories",
+    "findactivespecsdir",
+    "independent",
+    "constructors",
+    "startup",
+    "pending",
+    "recovery",
+    "generic",
+    "mcp"
+  ],
+  "lastUpdated": "2026-07-17T10:58:47.133Z",
+  "specId": "004",
+  "folderSlug": "reader-normalization",
+  "parentChain": [
+    "system-speckit",
+    "000-migration-from-soa-and-cleanup",
+    "008-spec-root-resolution-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
