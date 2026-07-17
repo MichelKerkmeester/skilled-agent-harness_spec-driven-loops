@@ -1,7 +1,13 @@
 ---
+id: SC-004
+category: state_and_convergence_discipline
+stage: routing
 title: "SC-004: Hub Logic Boundary"
 description: "Verify the parent hub remains routing-only and does not flatten per-mode convergence, state, synthesis, or artifact contracts."
-version: "1.1.0.0"
+expected_intent: UNKNOWN
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # SC-004: Hub Logic Boundary

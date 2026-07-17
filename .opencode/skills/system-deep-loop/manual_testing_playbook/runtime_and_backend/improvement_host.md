@@ -1,7 +1,13 @@
 ---
+id: RB-003
+category: runtime_and_backend
+stage: routing
 title: "RB-003: Improvement Host Backend"
 description: "Verify agent-improvement resolves to backendKind improvement-host with runtimeLoopType null and loopHostMode agent-improvement."
-version: "1.1.0.0"
+expected_intent: agent-improvement
+expected_workflow_mode: agent-improvement
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # RB-003: Improvement Host Backend

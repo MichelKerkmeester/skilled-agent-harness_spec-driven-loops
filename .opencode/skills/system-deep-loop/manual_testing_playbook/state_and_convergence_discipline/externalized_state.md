@@ -1,7 +1,13 @@
 ---
+id: SC-001
+category: state_and_convergence_discipline
+stage: routing
 title: "SC-001: Externalized State Discipline"
 description: "Verify loop state is packet-owned and externalized, not manually simulated through ad hoc /tmp iteration prompts."
-version: "1.1.0.0"
+expected_intent: research
+expected_workflow_mode: research
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # SC-001: Externalized State Discipline

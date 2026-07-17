@@ -1,7 +1,13 @@
 ---
+id: RB-002
+category: runtime_and_backend
+stage: routing
 title: "RB-002: Runtime Loop Council Backend"
 description: "Verify the ai-council mode resolves to backendKind runtime-loop-type with runtimeLoopType council."
-version: "1.1.0.0"
+expected_intent: ai-council
+expected_workflow_mode: ai-council
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # RB-002: Runtime Loop Council Backend

@@ -1,7 +1,13 @@
 ---
+id: SC-002
+category: state_and_convergence_discipline
+stage: routing
 title: "SC-002: Artifact Root Writes"
 description: "Verify a mode reports the registry artifact root as the destination for its iteration outputs."
-version: "1.1.0.0"
+expected_intent: research
+expected_workflow_mode: research
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # SC-002: Artifact Root Writes
