@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-git/scripts/worktree-naming.sh",
       ".opencode/skills/sk-git/SKILL.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Local branch/worktree creation in this repo is cheap and unrestricted by design (numbered worktrees, owner-first naming) — but every one of those branches can currently reach `origin` with an ordinary `git push`, with nothing asking whether it should",
     "created_at": "2026-07-17T15:57:59.140Z",
-    "last_save_at": "2026-07-17T16:02:34.035Z",
+    "last_save_at": "2026-07-17T16:29:07.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:133ec6a780cf2b45c26f1fbe9bddcc3f937c491c3d2260c684a66ce587335793",
+    "source_fingerprint": "sha256:b3e9961e9409fa994edbd48d1cf1db9348735a117ff0762749a0a12864a8f89e",
     "source_doc_hashes": {
-      "spec.md": "67ac2e80da8980bf706e4c39de8eed7fd5b20e502594f4290aeb2372929f71bd",
+      "spec.md": "2fff27aac7d81291654da4acfdd0a2c26af95aa4195d8f827b5e8e05ca0db939",
       "plan.md": "bc0c23227b98729c0fc3026c26deac611373351fc093352f7438eb07c457ccc7",
       "tasks.md": "9f433135ecd4c683f33f28bb9ef77006b96833845a4ed18fff0306422aec366c",
       "checklist.md": "5db6ddf8ce9a6001b19281ca50d69edde576f3c7d058a261cb0e99b6fba4c898",
       "decision-record.md": "d478d9d806c0b8927c8a6e7e215196732457a55706c1b4fa00400944ca194878",
-      "implementation-summary.md": "bfb9e934249b15671fb0d9d871e9038b430418901565131df9b27b009bd6d2fb",
+      "implementation-summary.md": "1bf7b8e035d22f9b60aa3f0a7d864b8700d09ba1ea755ade12a5edeae1a0b258",
       "research.md": "4d76127fe574857e791ef6d3f382c49c2fa0167141c927f20a7af0059a7aee41"
     },
     "last_active_child_id": null,

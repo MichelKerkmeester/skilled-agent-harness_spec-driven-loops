@@ -1,4 +1,5 @@
 {
+  "level": 3,
   "specFolder": "sk-git/015-remote-branch-policy",
   "description": "Local branch/worktree creation in this repo is cheap and unrestricted by design (numbered worktrees, owner-first naming) — but every one of those",
   "keywords": [
@@ -17,13 +18,14 @@
     "every",
     "one"
   ],
-  "lastUpdated": "2026-07-17T15:57:15.808Z",
+  "lastUpdated": "2026-07-17T16:27:39.230Z",
   "specId": "015",
   "folderSlug": "remote-branch-policy",
   "parentChain": [
     "sk-git"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 3
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-07-26_17-27__adjust-sk-git.md"
+  ]
 }

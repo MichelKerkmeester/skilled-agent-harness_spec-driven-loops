@@ -10,11 +10,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/015-remote-branch-policy"
-    last_updated_at: "2026-07-17T16:01:41Z"
+    last_updated_at: "2026-07-17T16:27:39Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Completed Phases 1-5, tests 21/21 pass"
-    next_safe_action: "Run validate strict, reconcile checklist"
-    blockers: []
+    recent_action: "Committed 27dd49c73b; push pending"
+    next_safe_action: "Push once operator resolves the tree divergence"
+    blockers:
+      - "push to origin rejected non-fast-forward; shared tree has a concurrent session's uncommitted work"
     key_files:
       - ".opencode/scripts/git-hooks/pre-push"
       - ".opencode/skills/sk-git/scripts/worktree-naming.sh"
@@ -27,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-015"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Ask scope: every push, not just creation (operator's explicit choice)."
@@ -46,6 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 015-remote-branch-policy |
+| **Status** | Complete |
 | **Completed** | 2026-07-17 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
@@ -115,4 +117,5 @@ Built bottom-up and verified at each layer before moving on: the allowlist funct
 1. **Existing remote branches not on the allowlist need the bypass var on their next push.** `origin/skilled/0064-spec-root-resolution-impl` and similar in-flight branches will hit the new gate the next time anyone pushes to them. This is the operator's explicit "ask every push" choice, not an oversight, but worth knowing before the next push to one of those surprises anyone.
 2. **A version bump / changelog entry for `sk-git`'s `SKILL.md` was not authored.** This repo's convention pairs every SKILL.md content change with a version bump and a matching `changelog/vX.md` file via the `sk-doc/create-diff` skill; that skill was not invoked here since it wasn't the focus of this task. `SKILL.md`'s `version:` field is unchanged at `1.3.2.0` despite the new subsection and ALWAYS #18. Flagging so it isn't mistaken for stale metadata.
 3. **`.github` was investigated and deliberately left untouched.** See `decision-record.md` ADR-001. No ruleset change is recommended; ruled out with evidence (`gh api` output on the existing `main-protection` ruleset), not left unexamined.
+4. **Commit made, push pending.** Commit `27dd49c73b` is on `skilled/v4.0.0.0` locally. `git push origin skilled/v4.0.0.0` was rejected (non-fast-forward — origin is 12 commits ahead of this session's branch point). The working tree also holds ~200 unrelated uncommitted deletions that look like a concurrent session's in-progress migration work, so this session did not rebase or reset the branch to reconcile — that decision is left to the operator (see `git fetch` + `git log origin/skilled/v4.0.0.0` for the current divergence).
 <!-- /ANCHOR:limitations -->

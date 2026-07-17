@@ -11,11 +11,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/015-remote-branch-policy"
-    last_updated_at: "2026-07-17T16:01:41Z"
+    last_updated_at: "2026-07-17T16:27:39Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored spec.md, research.md, decision-record.md"
-    next_safe_action: "Author plan.md/tasks.md/checklist.md, then implement Phase 1"
-    blockers: []
+    recent_action: "Implementation complete, committed 27dd49c73b"
+    next_safe_action: "Push once operator resolves the tree divergence"
+    blockers:
+      - "push to origin rejected non-fast-forward; shared tree has a concurrent session's uncommitted work"
     key_files:
       - ".opencode/scripts/git-hooks/pre-push"
       - ".opencode/skills/sk-git/scripts/worktree-naming.sh"
@@ -24,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-015"
       parent_session_id: null
-    completion_pct: 15
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Ask scope: every push (not just branch creation) requires a fresh go-ahead — operator chose this over 'ask only at creation'."
@@ -54,7 +55,7 @@ sk-git and its git hooks currently let any locally-created branch reach `origin`
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-17 |
 | **Branch** | `skilled/v4.0.0.0` (spec authored directly on the current branch; implementation may use a worktree — operator to choose) |
 <!-- /ANCHOR:metadata -->
