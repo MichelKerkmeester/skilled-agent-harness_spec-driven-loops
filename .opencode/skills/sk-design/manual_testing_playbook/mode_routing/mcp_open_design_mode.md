@@ -1,10 +1,13 @@
 ---
-title: "MR-007: Open Design Transport Mode Routing"
+title: "MDR-007: Open Design Transport Mode Routing"
 description: "Verify Open Design wiring/CLI requests resolve to the nested design-mcp-open-design transport packet, not a design-judgment mode."
 version: 1.0.0.0
+id: MDR-007
+expected_workflow_mode: design-mcp-open-design
+expected_leaf_resources: []
 ---
 
-# MR-007: Open Design Transport Mode Routing
+# MDR-007: Open Design Transport Mode Routing
 
 ## 1. OVERVIEW
 
@@ -46,9 +49,9 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 
 ### Exact Command Sequence
 
-1. Run the advisor probe and save output to `/tmp/skd-MR007-advisor.txt`.
+1. Run the advisor probe and save output to `/tmp/skd-MDR007-advisor.txt`.
 2. Invoke the orchestrator with the exact prompt.
-3. Capture mode, packet, resources, tool calls, and response in `/tmp/skd-MR007-response.txt`.
+3. Capture mode, packet, resources, tool calls, and response in `/tmp/skd-MDR007-response.txt`.
 
 ### Pass/Fail Criteria
 

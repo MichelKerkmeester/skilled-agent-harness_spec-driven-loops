@@ -2,6 +2,9 @@
 title: "TV-001: make it Transform Frame Routes Interface"
 description: "Verify make-it transform verbs bolder, quieter, distill, and delight resolve to interface."
 version: 1.0.0.0
+id: TV-001
+expected_workflow_mode: interface
+expected_leaf_resources: []
 ---
 
 # TV-001: make it Transform Frame Routes Interface

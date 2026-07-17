@@ -2,13 +2,16 @@
 title: "HM-004: Design-Mode Pairing Before Run"
 description: "Verify the sk-design hub pairs a design-judgment mode with design-mcp-open-design and names it as a hard precondition before a RUN-direction Open Design generation request, instead of resolving the transport packet alone."
 version: 1.0.0.0
+id: HM-004
+expected_workflow_mode: interface+design-mcp-open-design
+expected_leaf_resources: []
 ---
 
 # HM-004: Design-Mode Pairing Before Run
 
 ## 1. OVERVIEW
 
-This scenario verifies the hub's `Visible Plan Before Design or Build Work` and `Transports and Consumers` contracts for a RUN-direction (generation) Open Design request specifically — the case the existing WIRE-only scenarios (`MR-007`, `AI-001` P6) do not cover, and a different layer from the packet-internal mandatory-pairing mechanism already proven by `GATE-001` in `design-mcp-open-design`'s own nested manual_testing_playbook.
+This scenario verifies the hub's `Visible Plan Before Design or Build Work` and `Transports and Consumers` contracts for a RUN-direction (generation) Open Design request specifically — the case the existing WIRE-only scenarios (`MDR-007`, `AI-001` P6) do not cover, and a different layer from the packet-internal mandatory-pairing mechanism already proven by `GATE-001` in `design-mcp-open-design`'s own nested manual_testing_playbook.
 
 ## 2. SCENARIO CONTRACT
 
@@ -28,7 +31,7 @@ Commission an Open Design generation run for a new settings page, grounding it i
 **Expected visible plan**: The paired design-judgment mode named as a hard precondition, citing hub `SKILL.md`'s `Transports and Consumers` rule ("Use them after the design mode is chosen") and `design-mcp-open-design/SKILL.md`'s own MANDATORY PAIRING banner, before any `start_run` / `od run start` call is described as already executed.
 
 **Why this scenario differs from existing coverage**:
-- `MR-007` and `AI-001` P6 both use the WIRE-direction prompt ("Wire Open Design's MCP server into opencode..."), the one case `openDesignExemption` explicitly exempts from pairing.
+- `MDR-007` and `AI-001` P6 both use the WIRE-direction prompt ("Wire Open Design's MCP server into opencode..."), the one case `openDesignExemption` explicitly exempts from pairing.
 - `hub-router.json`'s only declared `bundleRules` entry (`ui-build-bundle`) pairs `interface` + `foundations` and does not reference `design-mcp-open-design` at all — there is no machine-readable pairing rule for the transport today.
 - The packet-internal mandatory-pairing mechanism (negative/positive/exemption controls for RUN and READ) is already exhaustively proven by `GATE-001` in `design-mcp-open-design`'s own nested manual_testing_playbook (`design-gate/mandatory-design-gate.md`). This scenario tests whether the hub's own dispatch visibly surfaces the pairing plan at intake, before any transport call fires.
 

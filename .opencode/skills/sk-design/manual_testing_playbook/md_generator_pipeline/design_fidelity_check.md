@@ -2,6 +2,17 @@
 title: "MG-003: Design Fidelity Check"
 description: "Verify design fidelity report requests route to md-generator and use validation/report artifacts."
 version: 1.0.0.0
+id: MG-003
+expected_workflow_mode: md-generator
+expected_leaf_resources:
+  - workflow_mode: md-generator
+    leaf_resource_id: references/design_md_format.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/quality_checklist.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/anti_patterns.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/cardinal_rules_card.md
 ---
 
 # MG-003: Design Fidelity Check

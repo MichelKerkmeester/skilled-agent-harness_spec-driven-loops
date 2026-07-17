@@ -2,6 +2,9 @@
 title: "HM-003: Verifier-Cadence Pause"
 description: "Verify the sk-design hub pauses ready claims when a required proof field is missing or transport-only."
 version: 1.0.0.0
+id: HM-003
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # HM-003: Verifier-Cadence Pause

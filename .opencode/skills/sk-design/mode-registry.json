@@ -1,6 +1,7 @@
 {
   "skill": "sk-design",
   "version": "1.4.3.0",
+  "resourceContractVersion": 1,
   "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for sk-design. The hub reads this file to resolve a mode; the advisor routes any design query to the single identity sk-design and the hub picks the mode. All six modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",

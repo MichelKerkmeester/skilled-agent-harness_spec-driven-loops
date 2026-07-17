@@ -2,6 +2,13 @@
 title: "PB-001: Procedure Selection Proof"
 description: "Verify a public sk-design mode records which internal procedure card it selected and why without requiring mutation from a read-only mode."
 version: 1.0.0.0
+id: PB-001
+expected_workflow_mode: interface
+expected_leaf_resources:
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/brief_to_dials.md
+  - workflow_mode: interface
+    leaf_resource_id: assets/interface_preflight_card.md
 ---
 
 # PB-001: Procedure Selection Proof

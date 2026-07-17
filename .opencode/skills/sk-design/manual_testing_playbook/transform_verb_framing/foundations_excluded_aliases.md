@@ -2,6 +2,13 @@
 title: "TV-004: Foundations Excluded Transform Aliases"
 description: "Verify typeset and colorize do not route to foundations through transform-verb aliasing."
 version: 1.0.0.0
+id: TV-004
+expected_workflow_mode: interface
+expected_leaf_resources:
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/design_principles.md
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/brief_to_dials.md
 ---
 
 # TV-004: Foundations Excluded Transform Aliases

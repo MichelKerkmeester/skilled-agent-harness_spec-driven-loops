@@ -2,6 +2,10 @@
 title: "SR-003: Shared Base Is Not a Workflow"
 description: "Verify direct shared-base requests do not invoke shared/ as a user workflow."
 version: 1.0.0.0
+id: SR-003
+expected_workflow_mode: UNKNOWN
+stage: negative
+expected_leaf_resources: []
 ---
 
 # SR-003: Shared Base Is Not a Workflow
