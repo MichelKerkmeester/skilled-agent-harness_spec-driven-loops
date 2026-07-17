@@ -5,7 +5,8 @@ stage: routing
 title: "Anthropic-backed second-opinion request routes to cli-claude-code"
 expected_intent: cli-claude-code
 expected_resources:
-  - cli-claude-code/SKILL.md
+  - cli-claude-code/references/cli_reference.md
+  - cli-claude-code/references/integration_patterns.md
 expected_workflow_mode: cli-claude-code
 expected_leaf_resources:
   - workflow_mode: cli-claude-code
@@ -13,7 +14,7 @@ expected_leaf_resources:
   - workflow_mode: cli-claude-code
     leaf_resource_id: references/integration_patterns.md
 created: 2026-07-10
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CE-002: Anthropic-backed second-opinion request routes to cli-claude-code
@@ -22,7 +23,7 @@ Prompt: Get an Anthropic CLI second opinion on this refactor with extended think
 
 ## Expected Behavior
 
-Strong `cli-claude-code-aliases`/`claude-dispatch` signal (Anthropic CLI, extended thinking) resolves `workflowMode: cli-claude-code`; the hub loads `cli-claude-code/SKILL.md`, not the hub's own thin `SKILL.md` or the sibling packet.
+Strong `cli-claude-code-aliases`/`claude-dispatch` signal (Anthropic CLI, extended thinking) resolves `workflowMode: cli-claude-code`; the hub loads `cli-claude-code/SKILL.md`, not the hub's own thin `SKILL.md` or the sibling packet. The surface router loads `cli-claude-code/references/cli_reference.md` and `cli-claude-code/references/integration_patterns.md` for that second-opinion dispatch.
 
 ## Success Criteria
 
