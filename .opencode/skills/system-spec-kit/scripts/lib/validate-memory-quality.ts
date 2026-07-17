@@ -628,8 +628,8 @@ function resolveSpecFolderPath(specFolder: string): string | null {
 
   while (true) {
     candidatePaths.add(path.resolve(currentDir, trimmedSpecFolder));
-    candidatePaths.add(path.resolve(currentDir, 'specs', trimmedSpecFolder));
     candidatePaths.add(path.resolve(currentDir, '.opencode', 'specs', trimmedSpecFolder));
+    candidatePaths.add(path.resolve(currentDir, 'specs', trimmedSpecFolder));
 
     const parentDir = path.dirname(currentDir);
     if (parentDir === currentDir) {
