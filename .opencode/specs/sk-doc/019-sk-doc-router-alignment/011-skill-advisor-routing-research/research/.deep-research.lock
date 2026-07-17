@@ -3,7 +3,7 @@
   "started_at_iso": "2026-07-16T05:47:04.335Z",
   "ttl_ms": 300000,
   "last_heartbeat_iso": "2026-07-16T05:47:04.335Z",
-  "packet_id": ".opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research",
+  "packet_id": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research",
   "runtime_kind": "main",
   "phase": "running",
   "last_activity_iso": "2026-07-16T05:47:04.335Z",
