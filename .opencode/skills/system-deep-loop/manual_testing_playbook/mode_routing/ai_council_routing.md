@@ -6,7 +6,9 @@ title: "MO-003: AI Council Mode Routing"
 description: "Verify a multi-seat planning deliberation request resolves to the ai-council mode through the system-deep-loop hub."
 expected_intent: ai-council
 expected_resources:
-  - deep-ai-council/SKILL.md
+  - deep-ai-council/references/integration/loop_protocol.md
+  - deep-ai-council/references/scoring/scoring_rubric.md
+  - deep-ai-council/references/structure/output_schema.md
 expected_workflow_mode: ai-council
 expected_leaf_resources:
   - workflow_mode: ai-council

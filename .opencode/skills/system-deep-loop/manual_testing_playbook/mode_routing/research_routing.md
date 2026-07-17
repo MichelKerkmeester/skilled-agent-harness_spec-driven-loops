@@ -6,7 +6,9 @@ title: "MO-001: Research Mode Routing"
 description: "Verify an outward iterative investigation request resolves to the research mode through the system-deep-loop hub."
 expected_intent: research
 expected_resources:
-  - deep-research/SKILL.md
+  - deep-research/references/protocol/loop_protocol.md
+  - deep-research/references/state/state_jsonl.md
+  - deep-research/references/convergence/convergence.md
 expected_workflow_mode: research
 expected_leaf_resources:
   - workflow_mode: research

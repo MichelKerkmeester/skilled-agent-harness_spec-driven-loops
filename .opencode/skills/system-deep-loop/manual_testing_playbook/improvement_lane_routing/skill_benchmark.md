@@ -6,7 +6,8 @@ title: "IL-003: Skill Benchmark Command-Bridge Routing"
 description: "Verify /deep:skill-benchmark routes to the skill-benchmark improvement lane through command-bridge routing."
 expected_intent: skill-benchmark
 expected_resources:
-  - deep-improvement/SKILL.md
+  - deep-improvement/references/skill_benchmark/scoring_contract.md
+  - deep-improvement/references/skill_benchmark/routing_optimization.md
 expected_workflow_mode: skill-benchmark
 expected_leaf_resources: []
 version: "1.2.0.0"

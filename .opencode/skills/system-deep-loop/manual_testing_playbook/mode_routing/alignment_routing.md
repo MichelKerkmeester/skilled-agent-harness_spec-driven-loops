@@ -6,7 +6,9 @@ title: "MO-005: Alignment Mode Routing"
 description: "Verify a read-only conformance audit against a named standard authority resolves to the alignment mode through the system-deep-loop hub."
 expected_intent: alignment
 expected_resources:
-  - deep-alignment/SKILL.md
+  - deep-alignment/references/scoping_protocol.md
+  - deep-alignment/references/discover_contract.md
+  - deep-alignment/references/lane_config_schema.md
 expected_workflow_mode: alignment
 expected_leaf_resources:
   - workflow_mode: alignment

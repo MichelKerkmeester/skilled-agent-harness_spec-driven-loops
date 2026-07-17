@@ -6,7 +6,9 @@ title: "IL-001: Agent Improvement Lane Routing"
 description: "Verify improve/evaluate/score agent requests fold through the deep-improvement advisor identity to the agent-improvement lane."
 expected_intent: agent-improvement
 expected_resources:
-  - deep-improvement/SKILL.md
+  - deep-improvement/references/agent_improvement/candidate_proposal_format.md
+  - deep-improvement/references/agent_improvement/score_dimensions.md
+  - deep-improvement/references/shared/promotion_gate_contract.md
 expected_workflow_mode: agent-improvement
 expected_leaf_resources:
   - workflow_mode: agent-improvement

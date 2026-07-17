@@ -6,7 +6,8 @@ title: "IL-002: Model Benchmark Command-Bridge Routing"
 description: "Verify /deep:model-benchmark routes to the model-benchmark improvement lane through command-bridge routing."
 expected_intent: model-benchmark
 expected_resources:
-  - deep-improvement/SKILL.md
+  - deep-improvement/references/model_benchmark/evaluator_contract.md
+  - deep-improvement/references/model_benchmark/lane_b_mechanics.md
 expected_workflow_mode: model-benchmark
 expected_leaf_resources: []
 version: "1.2.0.0"

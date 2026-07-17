@@ -6,9 +6,17 @@ title: "MO-004: Mode-Hint Override"
 description: "Verify an explicit mode hint such as research: overrides ambiguous wording and resolves through the matching registry entry."
 expected_intent: research
 expected_resources:
-  - deep-research/SKILL.md
+  - deep-research/references/protocol/loop_protocol.md
+  - deep-research/references/state/state_jsonl.md
+  - deep-research/references/convergence/convergence.md
 expected_workflow_mode: research
-expected_leaf_resources: []
+expected_leaf_resources:
+  - workflow_mode: research
+    leaf_resource_id: references/protocol/loop_protocol.md
+  - workflow_mode: research
+    leaf_resource_id: references/state/state_jsonl.md
+  - workflow_mode: research
+    leaf_resource_id: references/convergence/convergence.md
 version: "1.2.0.0"
 ---
 
