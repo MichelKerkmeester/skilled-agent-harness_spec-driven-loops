@@ -93,13 +93,12 @@ concrete evidence of the pasted-inline case above.
 
 For `:confirm` or no suffix, the consolidated setup prompt in the presentation contract MUST be the first visible response. For `:auto`, do not emit the consolidated setup prompt by default; use the auto setup resolution rules in the presentation contract and fail fast when required fields cannot be resolved.
 
-> **Canonical mode syntax:** use attached command suffixes (`/deep:research:auto`, `/deep:research:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
+> **Canonical mode syntax:** use attached command suffixes (`/deep:research:auto`, `/deep:research:confirm`).
 
 > **Note:** Late-INIT `spec.md` detection and bounded `spec.md` mutations follow
 > `.opencode/skills/system-deep-loop/deep-research/references/protocol/spec_check_protocol.md`.
 > Acquire `{spec_folder}/research/.deep-research.lock` before `folder_state` classification and keep `research/research.md` as the source of truth for any generated findings sync.
-> Targeted strict validation after deep-research spec mutations uses the Node validation orchestrator; the current strict path is designed for fast packet checks and was measured at about 108ms for a fresh Level 3 packet on the local harness.
-
+> Targeted strict validation after deep-research spec mutations uses the Node validation orchestrator.
 
 ### AUTONOMOUS EXECUTION DIRECTIVE (:auto)
 
@@ -124,8 +123,6 @@ Your job is to DISPATCH `deep-research` to run ONE iteration of the research loo
 | Presentation source of truth | `.opencode/commands/deep/assets/deep_research_presentation.txt` |
 | Auto workflow | `.opencode/commands/deep/assets/deep_research_auto.yaml` |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_research_confirm.yaml` |
-
-No workflow-asset gap exists for this command.
 
 ---
 

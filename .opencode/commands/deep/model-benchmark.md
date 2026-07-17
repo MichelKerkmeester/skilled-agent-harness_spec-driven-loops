@@ -131,8 +131,6 @@ VERIFICATION CHECK:
 | Auto workflow | `.opencode/commands/deep/assets/deep_model-benchmark_auto.yaml` |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_model-benchmark_confirm.yaml` |
 
-No workflow-asset gap exists for this command.
-
 ---
 
 ## 3. MODE ROUTING

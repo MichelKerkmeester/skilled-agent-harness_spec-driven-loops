@@ -123,8 +123,6 @@ VERIFICATION CHECK:
 | Auto workflow | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml` |
 
-No workflow-asset gap exists for this command.
-
 ---
 
 ## 3. MODE ROUTING

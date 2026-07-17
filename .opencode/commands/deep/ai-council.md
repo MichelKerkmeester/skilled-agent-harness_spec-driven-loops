@@ -55,7 +55,7 @@ prompt, not re-run this command's full setup contract)?
 
 Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
 capability (e.g. "can I orchestrate a workflow") -- that question is unanswerable
-from the inside and is what caused the original false-positive block. Block only on
+from the inside. Block only on
 concrete evidence of the pasted-inline case above.
 ```
 
@@ -80,8 +80,7 @@ concrete evidence of the pasted-inline case above.
 - **GRAPH BOUNDARY**: derived council graph replay uses `runtime/` CLI scripts with `--loop-type council`; `ai-council/**` artifacts remain authoritative.
 - **ONE CLI PER ROUND**: all seats in a round use one executor boundary. Different CLIs are separate rounds, not mixed seats.
 
-> **Canonical mode syntax:** use attached command suffixes (`/deep:ai-council:auto`, `/deep:ai-council:confirm`) and keep AGENTS, skills, command references, and runtime mirrors synchronized to this entrypoint.
-
+> **Canonical mode syntax:** use attached command suffixes (`/deep:ai-council:auto`, `/deep:ai-council:confirm`).
 
 ### AUTONOMOUS EXECUTION DIRECTIVE (:auto)
 
@@ -106,8 +105,6 @@ Your job is to CONVENE 3+ distinct ai-council seats in-CLI over the bound topic 
 | Presentation source of truth | `.opencode/commands/deep/assets/deep_ai-council_presentation.txt` |
 | Auto workflow | `.opencode/commands/deep/assets/deep_ai-council_auto.yaml` |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_ai-council_confirm.yaml` |
-
-No workflow-asset gap exists for this command.
 
 ---
 

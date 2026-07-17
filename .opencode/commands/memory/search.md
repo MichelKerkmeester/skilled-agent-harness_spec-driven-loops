@@ -10,8 +10,6 @@ Thin router for memory retrieval and analysis.
 
 ## 1. ROUTER CONTRACT
 
-> **Contract register (COSTAR).** This contract is written objective-first for an automated-pipeline audience: a fixed response shape, no preamble, no conversational framing inside the rendered block. Weak instruction-followers tolerate this register best, so it is the contract's own wording style — not a prompt framework imposed on callers, and not a single global framework applied to every command.
-
 Argument resolution (deterministic, read this first). The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The renderer substitutes the raw query text where `$ARGUMENTS` appears as one positional argument after `--`, so the wrapper treats shell metacharacters in the query (`*`, `$(…)`, backticks, `;`, `|`) as literal query text. The wrapper then joins the provided positional argument into one string and reports whether any argument was supplied.
 
 !`bash -c 'if [ "$#" -gt 0 ]; then q="$*"; q="${q//\"/\\\"}"; printf "ARGS_PRESENT=true\nQUERY=\"%s\"\n" "$q"; else printf "ARGS_PRESENT=false\nQUERY=\"\"\n"; fi' -- '$ARGUMENTS'`
@@ -35,7 +33,7 @@ Guardrails:
 |---------|-------|
 | Presentation | `.opencode/commands/memory/assets/search_presentation.txt` |
 
-This is a direct-dispatch command: it routes straight to the memory and code-graph MCP tools and owns no workflow YAML by design. There is no `_auto`/`_confirm` workflow YAML for the memory family and none is missing.
+This is a direct-dispatch command: it routes straight to the memory and code-graph MCP tools and owns no workflow YAML by design.
 
 Before asking startup questions or displaying results, read the presentation asset and use it as the display source of truth.
 

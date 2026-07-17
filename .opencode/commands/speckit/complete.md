@@ -24,8 +24,6 @@ Load the presentation contract before showing startup questions, checkpoints, da
 | Auto workflow | `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` |
 | Confirm workflow | `.opencode/commands/speckit/assets/speckit_complete_confirm.yaml` |
 
-No workflow-asset gap exists for this command.
-
 ---
 
 ## 3. MODE ROUTING
