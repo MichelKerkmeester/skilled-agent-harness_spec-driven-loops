@@ -194,7 +194,7 @@ quality_standards:
     - thin routing-only SKILL.md (no per-mode logic)
     - "exactly one graph-metadata.json at the hub root (from parent_skill_graph_metadata_template.json) with skill_id == hub folder name and family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
     - mode-registry.json present and valid JSON
-    - "hub-router.json present and valid (routerSignals cover every workflowMode, typed vocabularyClasses, tieBreak covers all modes; surface packets get metadata routerSignals plus a surfaceBundle outcome)"
+    - "hub-router.json present and valid (routerSignals cover every workflowMode, typed vocabularyClasses, tieBreak covers all modes; any catch-all vocabulary class (hub-identity) is on the default mode only, not specialized modes (see parent_hub_router_schema.md); surface packets get metadata routerSignals plus a surfaceBundle outcome)"
     - description.json present
     - "changelog/ with real files (no symlinks) at the hub root and in every packet"
   registry_requirements:
@@ -359,7 +359,7 @@ workflow:
       - Ensure skill_root exists
       - Create or update the thin hub SKILL.md (routing only)
       - "Create or update mode-registry.json with the two-axis discriminator (workflowMode + packetKind + backendKind), toolSurface and grandfatheredFolderMismatch per mode, a top-level packet, and one advisorRouting block per mode"
-      - "Create or update hub-router.json from parent_skill_hub_router_template.json (routerSignals for every mode, typed vocabularyClasses, tieBreak covering all modes; surface packets get metadata routerSignals plus a surfaceBundle outcome)"
+      - "Create or update hub-router.json from parent_skill_hub_router_template.json (routerSignals for every mode, typed vocabularyClasses, tieBreak covering all modes; keep any catch-all class (hub-identity) on the default mode only, never specialized modes (route-gold over-emission); surface packets get metadata routerSignals plus a surfaceBundle outcome)"
       - "Create or update description.json from parent_skill_description_template.json"
       - "Create or update exactly one hub graph-metadata.json from parent_skill_graph_metadata_template.json (skill_id == hub folder, family in the allowed set)"
       - "Create or update one workflow packet dir per distinct packet value (default folder == packetSkillName == [hub-prefix]-<mode>; reuse a shared packet folder when several modes map to one), each with its own SKILL.md, README.md, and changelog/"

@@ -70,7 +70,7 @@ The generated package is:
 
 - A thin hub `SKILL.md` (routing only, no per-mode logic).
 - A declarative `mode-registry.json` where every mode carries the two-axis discriminator — `workflowMode` + `packetKind` (`workflow` | `surface`) + `backendKind` — plus `toolSurface`, `grandfatheredFolderMismatch`, and one `advisorRouting` block (`routingClass`, `legacyAdvisorId` for lexical/alias-fold modes, optional `advisorDefaultMode`, `legacyAliases`, `packetSkillName`). The registry is the single source of truth; routers and tests read it, none re-derive it.
-- A `hub-router.json` describing how a prompt selects and bundles modes (routerSignals, typed vocabularyClasses, tieBreak, and a `surfaceBundle` outcome when surfaces exist), and a `description.json`.
+- A `hub-router.json` describing how a prompt selects and bundles modes (routerSignals, typed vocabularyClasses, tieBreak, a catch-all class like `hub-identity` on the default mode only, and a `surfaceBundle` outcome when surfaces exist), and a `description.json`.
 - Exactly one hub `graph-metadata.json` — the one hard invariant.
 - N workflow mode packets, each self-contained with its own `SKILL.md`, `README.md`, and `changelog/`, where `folder == packetSkillName == [hub-prefix]-<mode>`, and with NO per-packet `graph-metadata.json`.
 - Optional read-only `surface` packets (bare-noun folders, `packetKind: surface`, `backendKind: evidence-base`, read-only `toolSurface`, advisor-invisible `metadata` routing) carrying domain evidence rather than process.
