@@ -1,0 +1,22 @@
+{
+  "specFolder": "sk-prompt/z_archive",
+  "description": "Cold-tier archive container under sk-prompt for 6 migrated sk-prompt specification packets.",
+  "keywords": [
+    "cold-tier",
+    "archive",
+    "container",
+    "sk-prompt",
+    "migrated",
+    "specification",
+    "packets"
+  ],
+  "lastUpdated": "2026-07-17T14:31:56.225Z",
+  "specId": "",
+  "folderSlug": "z-archive",
+  "parentChain": [
+    "sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "archive"
+}

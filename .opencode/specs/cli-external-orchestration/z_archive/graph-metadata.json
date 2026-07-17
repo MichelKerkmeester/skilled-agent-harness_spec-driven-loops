@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/z_archive",
+  "spec_folder": "cli-external-orchestration/z_archive",
+  "parent_id": "cli-external-orchestration",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "cli-external-orchestration/z_archive/001-cli-gemini-creation",
+    "cli-external-orchestration/z_archive/002-cli-codex-creation",
+    "cli-external-orchestration/z_archive/003-cli-claude-code-creation",
+    "cli-external-orchestration/z_archive/004-cli-copilot-creation",
+    "cli-external-orchestration/z_archive/005-cli-self-invocation-guards",
+    "cli-external-orchestration/z_archive/006-cli-skill-improved-prompting",
+    "cli-external-orchestration/z_archive/007-cli-codex-tone-of-voice",
+    "cli-external-orchestration/z_archive/008-cli-opencode-creation",
+    "cli-external-orchestration/z_archive/009-cli-testing-playbooks",
+    "cli-external-orchestration/z_archive/010-cli-opencode-providers",
+    "cli-external-orchestration/z_archive/011-cli-skill-patterns",
+    "cli-external-orchestration/z_archive/012-cli-skill-removal-mcp-clickup",
+    "cli-external-orchestration/z_archive/013-cli-copilot-hallucination-caveat",
+    "cli-external-orchestration/z_archive/014-cli-copilot-deprecation-due-to-price-hike",
+    "cli-external-orchestration/z_archive/015-cli-opencode-stdin-fix",
+    "cli-external-orchestration/z_archive/016-cli-devin-creation",
+    "cli-external-orchestration/z_archive/017-cli-devin-effectiveness-improvements",
+    "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality",
+    "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization",
+    "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization",
+    "cli-external-orchestration/z_archive/021-cli-gemini-deprecation",
+    "cli-external-orchestration/z_archive/022-cli-devin-deprecation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "packet",
+      "metadata",
+      "derived",
+      "canonical",
+      "spec",
+      "documents"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Packet metadata derived from canonical spec documents.",
+    "created_at": "2026-07-17T00:00:00.000Z",
+    "last_save_at": "2026-07-17T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "source_doc_hashes": {},
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

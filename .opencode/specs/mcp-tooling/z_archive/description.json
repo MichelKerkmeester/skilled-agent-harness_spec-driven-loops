@@ -1,0 +1,22 @@
+{
+  "specFolder": "mcp-tooling/z_archive",
+  "description": "Cold-tier archive container under mcp-tooling for 6 migrated mcp-tooling specification packets.",
+  "keywords": [
+    "cold-tier",
+    "archive",
+    "container",
+    "mcp-tooling",
+    "migrated",
+    "specification",
+    "packets"
+  ],
+  "lastUpdated": "2026-07-17T14:31:56.342Z",
+  "specId": "",
+  "folderSlug": "z-archive",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "archive"
+}

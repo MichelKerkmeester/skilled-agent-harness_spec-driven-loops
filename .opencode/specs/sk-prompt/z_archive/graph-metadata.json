@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/z_archive",
+  "spec_folder": "sk-prompt/z_archive",
+  "parent_id": "sk-prompt",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "sk-prompt/z_archive/001-sk-prompt-initial-creation",
+    "sk-prompt/z_archive/002-sk-improve-prompt-rename",
+    "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename",
+    "sk-prompt/z_archive/004-sk-prompt-small-model-optimization",
+    "sk-prompt/z_archive/005-sk-prompt-knowledge-layering",
+    "sk-prompt/z_archive/006-sk-prompt-models-rename"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "packet",
+      "metadata",
+      "derived",
+      "canonical",
+      "spec",
+      "documents"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Packet metadata derived from canonical spec documents.",
+    "created_at": "2026-07-17T00:00:00.000Z",
+    "last_save_at": "2026-07-17T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "source_doc_hashes": {},
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

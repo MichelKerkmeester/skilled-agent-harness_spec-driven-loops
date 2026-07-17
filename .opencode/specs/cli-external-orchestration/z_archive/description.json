@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-external-orchestration/z_archive",
+  "description": "Cold-tier archive container under cli-external-orchestration for 22 migrated CLI-dispatch specification packets.",
+  "keywords": [
+    "cold-tier",
+    "archive",
+    "container",
+    "cli-external-orchestration",
+    "migrated",
+    "cli-dispatch",
+    "specification",
+    "packets"
+  ],
+  "lastUpdated": "2026-07-17T14:46:00.657Z",
+  "specId": "",
+  "folderSlug": "z-archive",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "archive"
+}
