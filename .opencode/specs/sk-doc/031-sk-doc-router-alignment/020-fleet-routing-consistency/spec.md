@@ -13,19 +13,17 @@ _memory:
     packet_pointer: "sk-doc/031-sk-doc-router-alignment/020-fleet-routing-consistency"
     last_updated_at: "2026-07-17T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded 020 with the ratified 3-tier standard + converge-first sequencing"
-    next_safe_action: "Phase 1: de-skill-specific the shared harness (classifier + gold-derivation + CI freshness gate) with fleet re-verify"
+    recent_action: "Route-gold gate full-fix: 7/7 hubs PASS (91 scenarios), each SOL-agent output independently verified honest; committed + pushed to v4"
+    next_safe_action: "REQ-001 (de-skill-specific the shared harness) + REQ-002 full shape convergence, then REQ-006 fleet verification (mutation + blind holdout + live-mode)"
     blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
-      - "tasks.md"
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "020-fleet-routing-consistency-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 45
     open_questions: []
     answered_questions:
       - "Ratified 2026-07-17: adopt the 3-tier standard (universal base + minimal per-tier delta); converge all 49 units + de-skill-specific the harness FIRST, verify the whole fleet at end"
@@ -55,7 +53,7 @@ This packet makes the in-document routers and the routing JSON artifacts **consi
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress (route-gold gate: 7/7 hubs PASS; REQ-001/002-full/006/007 remain) |
 | **Created** | 2026-07-17 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/031-sk-doc-router-alignment` |
