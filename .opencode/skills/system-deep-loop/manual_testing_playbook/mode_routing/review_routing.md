@@ -6,7 +6,9 @@ title: "MO-002: Review Mode Routing"
 description: "Verify an iterative review request resolves to the review mode through the system-deep-loop hub."
 expected_intent: review
 expected_resources:
-  - deep-review/SKILL.md
+  - deep-review/references/protocol/loop_protocol.md
+  - deep-review/references/protocol/completion_criteria.md
+  - deep-review/references/convergence/convergence.md
 expected_workflow_mode: review
 expected_leaf_resources:
   - workflow_mode: review

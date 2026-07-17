@@ -2,10 +2,10 @@
 id: SD-016
 category: intent_detection
 title: 'OPTIMIZATION intent: rewrite a doc for token efficiency / llms.txt generation'
-expected_intent: OPTIMIZATION
+expected_intent: create-quality-control
 expected_resources:
   - create-quality-control/references/optimization.md
-  - assets/llmstxt_templates.md
+  - shared/assets/llmstxt_templates.md
 expected_workflow_mode: create-quality-control
 expected_leaf_resources:
   - workflow_mode: create-quality-control

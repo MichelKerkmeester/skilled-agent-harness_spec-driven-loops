@@ -29,7 +29,7 @@ Use this workflow when the request involves:
 - Converting an ad hoc release checklist into a reusable evidence-driven playbook package.
 - Aligning a manual testing playbook with a feature catalog.
 
-Keyword triggers: `manual testing playbook`, `/create:manual-testing-playbook`, `testing playbook`, `deterministic scenario`, `evidence collection`, `operator validation`, `multi-agent execution`, `release readiness`.
+Keyword triggers: `manual testing playbook`, `/create:manual-testing-playbook`, `testing playbook`, `playbook system`, `deterministic scenario`, `evidence collection`, `operator validation`, `multi-agent execution`, `release readiness`.
 
 Strong signals that a playbook is warranted:
 

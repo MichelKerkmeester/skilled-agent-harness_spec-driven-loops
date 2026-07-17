@@ -25,7 +25,7 @@ Use this packet when the request involves:
 - Creating an install guide for MCP servers, plugins, CLI tools or development dependencies.
 - Running `/create:readme`.
 
-Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `install guide`, `installation guide`, `setup guide`, `code folder readme`.
+Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `front-page overview`, `install guide`, `installation guide`, `setup guide`, `getting our project running`, `running from scratch`, `code folder readme`.
 
 ### When NOT to Use
 

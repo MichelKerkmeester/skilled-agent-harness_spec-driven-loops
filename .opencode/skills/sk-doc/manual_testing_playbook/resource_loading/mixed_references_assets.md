@@ -2,10 +2,10 @@
 id: SD-006
 category: resource_loading
 title: 'README_CREATION intent loads mixed references + assets'
-expected_intent: README_CREATION
+expected_intent: create-readme
 expected_resources:
-  - references/README.md
-  - assets/readme/readme_template.md
+  - create-readme/references/README.md
+  - create-readme/assets/readme_template.md
 expected_workflow_mode: create-readme
 expected_leaf_resources:
   - workflow_mode: create-readme

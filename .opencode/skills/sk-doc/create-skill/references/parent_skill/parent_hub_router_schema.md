@@ -222,6 +222,12 @@ Use owned class names rather than generic surface labels:
 
 Retire ad-hoc names like `surface-webflow` into owned classes such as `code-webflow-aliases` and `code-webflow-runtime`. Owned names make vocabulary sync safer because each alias has a clear home.
 
+### Catch-all class placement (route-gold safety)
+
+On a **keyword-routed hub** (one with a `routerPolicy.defaultMode`), `hub-identity` (or any catch-all shared vocabulary class) belongs on the **default mode only** — never on a specialized mode. Intent scoring is binary: a mode scores its full weight if **any** of its classes matches, else `0`, and selection keeps every intent within `routerPolicy.ambiguityDelta` of the top score. So a class shared across modes makes all of them co-fire on hub-generic words — over-emission that fails the route-gold gate. Keep each specialized mode firing on its own vocabulary; hub-generic words then resolve to the default (or defer). To make one specific signal win alone over the default, widen its weight gap beyond the ambiguity delta rather than sharing a class.
+
+A **detection-routed hub** (`defaultMode: null`, mode resolved from surface/stack markers rather than keyword scoring — e.g. sk-code) is the exception: detection selects the mode, so a shared identity class across modes does not drive selection. Such a hub is scored with subset resource semantics, not exact-set intent equality, so it is not subject to the over-emission failure above.
+
 ---
 
 ## 6. SURFACE SIGNALS AND TWO-AXIS ROUTING

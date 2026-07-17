@@ -2,10 +2,10 @@
 id: SD-009
 category: unknown_fallback
 title: 'FEATURE_CATALOG vs PLAYBOOK tie within delta=1'
-expected_intent: FEATURE_CATALOG+PLAYBOOK
+expected_intent: create-feature-catalog+create-manual-testing-playbook
 expected_resources:
-  - references/README.md
-  - references/README.md
+  - create-feature-catalog/references/README.md
+  - create-manual-testing-playbook/references/README.md
 expected_workflow_mode: create-feature-catalog+create-manual-testing-playbook
 expected_leaf_resources:
   - workflow_mode: create-feature-catalog

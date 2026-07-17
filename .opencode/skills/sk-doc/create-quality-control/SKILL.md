@@ -27,7 +27,7 @@ Use this workflow when the request involves:
 - Validating an edited markdown document before handoff.
 - Auditing or validating an existing README or markdown flowchart when no new README or flowchart is being authored.
 
-Keyword triggers: `doc quality`, `/doc:quality`, `audit documentation quality`, `document audit`, `validate a document`, `validate markdown`, `score this document`, `optimize this doc`, `DQI`, `HVR`, `human voice`, `AI-friendly documentation`, `extract structure`.
+Keyword triggers: `doc quality`, `/doc:quality`, `audit documentation quality`, `document audit`, `validate a document`, `validate markdown`, `validation rules`, `score this document`, `optimize this doc`, `DQI`, `HVR`, `human voice`, `AI-friendly documentation`, `extract structure`, `quality bar`, `flag`, `model's budget`, `trim`.
 
 ### When NOT to Use
 

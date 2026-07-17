@@ -25,7 +25,7 @@ Use this packet when the request involves:
 - Creating parent-hub router files such as `mode-registry.json`, `hub-router.json`, `description.json`, or hub-level `graph-metadata.json`.
 - Validating and packaging a skill with `scripts/package_skill.py`.
 
-Keyword triggers: `create skill`, `/create:skill`, `/create:skill-parent`, `new skill`, `skill scaffold`, `OpenCode skill`, `parent skill`, `parent hub`, `mode packet`, `nested workflow packet`, `package skill`.
+Keyword triggers: `create skill`, `/create:skill`, `/create:skill-parent`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `sk-skill`, `create sk-`, `reusable capability`, `reusable helper`, `starter reference docs`, `parent skill`, `parent hub`, `mode packet`, `nested workflow packet`, `package skill`.
 
 ### When NOT to Use
 

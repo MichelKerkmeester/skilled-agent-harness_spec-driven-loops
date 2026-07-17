@@ -69,11 +69,11 @@ DEFAULT_RESOURCE = []
 
 INTENT_SIGNALS = {
     "RESEARCH":          {"weight": 4, "keywords": ["deep research", "iterative investigation", "research loop", "research summary", "investigate why", "autoresearch", "research convergence"]},
-    "REVIEW":            {"weight": 4, "keywords": ["deep review", "review loop", "iterative review", "severity findings", "release readiness", "review convergence", "audit the diff"]},
+    "REVIEW":            {"weight": 4, "keywords": ["deep-review", "deep review of", "before running deep review", "review request", "review loop", "iterative review", "severity findings", "release readiness", "review convergence", "audit the diff"]},
     "AI_COUNCIL":        {"weight": 4, "keywords": ["ai council", "council deliberation", "multi-seat", "planning council", "council convergence", "seat diversity"]},
     "AGENT_IMPROVEMENT": {"weight": 4, "keywords": ["improve agent", "evaluate agent", "score agent", "agent candidate", "promote or roll back the agent", "agent-improvement"]},
-    "MODEL_BENCHMARK":   {"weight": 4, "keywords": ["model benchmark", "benchmark a model", "prompt framework benchmark", "benchmark the model"]},
-    "SKILL_BENCHMARK":   {"weight": 4, "keywords": ["skill benchmark", "benchmark a skill", "skill routing benchmark"]},
+    "MODEL_BENCHMARK":   {"weight": 4, "keywords": ["/deep:model-benchmark"]},
+    "SKILL_BENCHMARK":   {"weight": 4, "keywords": ["/deep:skill-benchmark"]},
     "ALIGNMENT":         {"weight": 4, "keywords": ["conformance audit", "alignment lane", "standard authority", "conformance review", "align against the standard", "named standard"]},
 }
 

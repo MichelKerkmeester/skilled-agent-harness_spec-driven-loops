@@ -2,9 +2,9 @@
 id: SD-004
 category: resource_loading
 title: 'HVR intent loads only references/hvr_rules.md'
-expected_intent: HVR
+expected_intent: create-quality-control
 expected_resources:
-  - references/hvr_rules.md
+  - shared/references/hvr_rules.md
 expected_workflow_mode: create-quality-control
 expected_leaf_resources:
   - workflow_mode: create-quality-control

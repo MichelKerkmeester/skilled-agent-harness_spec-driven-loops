@@ -31,7 +31,7 @@ Use this packet when the request involves:
 - Separating visible prompts, dashboards, result templates, or next-step wording into a presentation contract.
 - Checking whether a workflow should be a command instead of a skill, agent, or one-off task.
 
-Keyword triggers: `create command`, `/create:command`, `slash command`, `OpenCode command`, `argument-hint`, `allowed-tools`, `command template`, `router presentation split`, `thin router`, `presentation contract`, `$ARGUMENTS`.
+Keyword triggers: `create command`, `/create:command`, `slash command`, `OpenCode command`, `argument-hint`, `allowed-tools`, `command template`, `router presentation split`, `thin router`, `presentation contract`, `paired /create`, `$ARGUMENTS`.
 
 ### When NOT to Use
 

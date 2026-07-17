@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/013-skill-advisor-routing-fixes",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/013-skill-advisor-routing-fixes",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor routing fixes implementation",
+      "advisor output contract fallback budget fix",
+      "executor delegation ambiguity coherence fix",
+      "shadow floor calibration experiment",
+      "skill advisor routing fixes plan",
+      "advisor fix dependency order",
+      "executor delegation finalization boundary plan",
+      "shadow floor experiment gate plan",
+      "skill advisor routing fixes tasks",
+      "advisor fix task list",
+      "P0 correctness fix tasks",
+      "gated shadow experiment task"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "routing",
+      "implementation",
+      "output",
+      "contract",
+      "fallback",
+      "budget",
+      "executor",
+      "delegation",
+      "ambiguity",
+      "coherence"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "references/hooks/skill_advisor_hook.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+      ".opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/executor-delegation-cases.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/executor-delegation.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/bench/scorer-calibration-baseline.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/scorer-eval-baseline.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts",
+      "hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor_hook.md",
+        "kind": "doc",
+        "path": "references/hooks/skill_advisor_hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude-user-prompt-submit-hook.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback-envelope.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation-cases.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/executor-delegation-cases.json",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/executor-delegation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-calibration-baseline.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/bench/scorer-calibration-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/scorer-eval-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline-ratchet.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-constants.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor's current-source holdout accuracy is 73.08 percent (57/78) with 85.25 percent selective precision, so it routes correctly far more often than not",
+    "created_at": "2026-07-16T08:23:16.276Z",
+    "last_save_at": "2026-07-16T14:20:31.957Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:6e33402c0eccecf7148f2c06e863891006f66237e71a5eb7ed3dae2ddf69021c",
+    "source_doc_hashes": {
+      "spec.md": "7ece2732c2675579f64d4032c372127d81c5408b50b9dc5245af2217bb6294ad",
+      "plan.md": "6981f5a60c3c35fe5ebcbc52f5a7055ef56827a15acbed8a7bb1c00d8f401cbe",
+      "tasks.md": "227523c99a3a64c8aa89aa245d927d5393c53dfe58bd80a6234a64b260631795",
+      "checklist.md": "d0e52cf2b7469fa73a69eaee5ed986a40531a2b40b99efc66e3f0fdae3f2bde5",
+      "decision-record.md": "27263c3a4ab9f00a48225daff943355fa0914e760397b3ca5342c64871c5ce5e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -2,9 +2,9 @@
 id: SD-H09
 category: holdout
 title: 'Independent holdout — CHANGELOG (keyword-blind)'
-expected_intent: CHANGELOG
+expected_intent: create-changelog
 expected_resources:
-  - assets/changelog_template.md
+  - shared/assets/changelog_template.md
 expected_workflow_mode: create-changelog
 expected_leaf_resources:
   - workflow_mode: create-changelog

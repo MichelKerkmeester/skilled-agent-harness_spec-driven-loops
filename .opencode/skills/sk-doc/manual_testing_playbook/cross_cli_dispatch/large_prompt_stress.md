@@ -2,12 +2,12 @@
 id: SD-011
 category: cross_cli_dispatch
 title: 'Large-prompt stress: cli-opencode stdin-redirection mitigation'
-expected_intent: SKILL_CREATION
+expected_intent: create-skill
 expected_resources:
-  - references/skill_creation.md
-  - assets/skill/skill_md_template.md
-  - assets/skill/skill_readme_template.md
-  - assets/skill/skill_reference_template.md
+  - create-skill/references/skill/creation_workflow.md
+  - create-skill/assets/skill/skill_md_template.md
+  - create-skill/assets/skill/skill_readme_template.md
+  - create-skill/assets/skill/skill_reference_template.md
 expected_workflow_mode: create-skill
 expected_leaf_resources:
   - workflow_mode: create-skill

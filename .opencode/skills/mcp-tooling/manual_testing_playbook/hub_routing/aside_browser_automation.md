@@ -5,7 +5,8 @@ stage: routing
 title: "Agentic Aside browser task routes to mcp-aside-devtools"
 expected_intent: mcp-aside-devtools
 expected_resources:
-  - mcp-aside-devtools/SKILL.md
+  - mcp-aside-devtools/references/aside-cli-reference.md
+  - mcp-aside-devtools/references/mcp-wiring.md
 expected_workflow_mode: mcp-aside-devtools
 expected_leaf_resources:
   - workflow_mode: mcp-aside-devtools

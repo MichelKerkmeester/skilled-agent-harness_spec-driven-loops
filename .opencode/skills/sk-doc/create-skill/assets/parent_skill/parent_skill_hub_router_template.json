@@ -2,6 +2,7 @@
   "_template": "Parent-skill hub-router.json scaffold. Replace every [bracketed] placeholder. Keep routerSignals keys bidirectionally aligned with mode-registry.json modes[].workflowMode. The canonical live example is sk-code/hub-router.json.",
   "_surfaceBundleNote": "The surfaceBundle outcome and its bundleRule are surface-axis only; a pure workflow hub keeps only single, orderedBundle, and defer (checker 5f/5g).",
   "_pathContract": "Two path kinds live in a hub and must never be conflated. A hubLoadAddress is what routerSignals[].resources hold: a packet entrypoint the hub loads (e.g. [workflow-packet-a]/SKILL.md). A leafResourceId is the canonical packet-root-relative resource id (references/... or assets/...) that the second-layer surface router (shared/references/smart_routing.md, scaffolded from parent_skill_smart_routing_template.md) maps each intent to. A raw path is converted to the canonical (workflowMode, leafResourceId) pair at exactly one boundary — the leaf-resource contract library — via a packet-qualified prefix ([packet]/references|assets/...) or an authored shared alias (leaf-aliases.json). Never strip a prefix generically and never infer a shared-tier file into a mode.",
+  "_routingPrecisionNote": "Catch-all vocabulary classes (hub-identity here) belong on the DEFAULT mode only — never on specialized modes. Intent scoring is binary (a mode gets its full weight if ANY of its classes matches, else 0) and selection keeps every intent within routerPolicy.ambiguityDelta of the top score, so a class shared across modes makes them all co-fire on hub-generic words: over-emission that fails the route-gold gate. Each specialized mode must fire only on its own vocabulary; hub-generic words then route to the default (or defer). To make one specific signal win alone over the default, give it a weight gap wider than the ambiguity delta rather than a shared class.",
   "skill": "[parent-skill-name]",
   "version": "1.0.0.0",
   "routerPolicy": {
@@ -33,24 +34,25 @@
   },
   "routerSignals": {
     "[workflow-mode-a]": {
+      "_note": "This is defaultMode; it alone carries hub-identity so hub-generic words route here. Do NOT add hub-identity to the specialized modes below (see _routingPrecisionNote).",
       "weight": 4,
       "classes": ["[workflow-mode-a]-aliases", "[workflow-mode-a]-actions", "hub-identity"],
       "resources": ["[workflow-packet-a]/SKILL.md"]
     },
     "[workflow-mode-b]": {
       "weight": 4,
-      "classes": ["[workflow-mode-b]-aliases", "[workflow-mode-b]-evidence", "hub-identity"],
+      "classes": ["[workflow-mode-b]-aliases", "[workflow-mode-b]-evidence"],
       "resources": ["[workflow-packet-b]/SKILL.md"]
     },
     "[workflow-mode-c]": {
       "weight": 3,
-      "classes": ["[workflow-mode-c]-aliases", "hub-identity"],
+      "classes": ["[workflow-mode-c]-aliases"],
       "resources": ["[workflow-packet-c]/SKILL.md"]
     },
     "[surface-name]": {
       "_example": "Surface packet signal: normal router entry, read-only resources, metadata route in mode-registry.json.",
       "weight": 2,
-      "classes": ["[surface-name]-aliases", "[surface-name]-runtime", "hub-identity"],
+      "classes": ["[surface-name]-aliases", "[surface-name]-runtime"],
       "resources": ["[surface-name]/SKILL.md", "[surface-name]/references/[reference].md"]
     }
   },

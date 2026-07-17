@@ -5,7 +5,8 @@ stage: routing
 title: "Figma render/export request routes to the mcp-figma transport"
 expected_intent: mcp-figma
 expected_resources:
-  - mcp-figma/SKILL.md
+  - mcp-figma/references/figma_cli_reference.md
+  - mcp-figma/references/mcp_wiring.md
 expected_workflow_mode: mcp-figma
 expected_leaf_resources:
   - workflow_mode: mcp-figma

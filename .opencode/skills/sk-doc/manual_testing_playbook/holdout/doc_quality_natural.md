@@ -2,12 +2,12 @@
 id: SD-H02
 category: holdout
 title: 'Holdout — DOC_QUALITY via natural phrasing'
-expected_intent: DOC_QUALITY
+expected_intent: create-quality-control
 expected_resources:
-  - references/validation.md
-  - references/workflows.md
-  - references/core_standards.md
-  - references/evergreen_packet_id_rule.md
+  - shared/references/validation.md
+  - create-quality-control/references/workflows.md
+  - shared/references/core_standards.md
+  - shared/references/evergreen_packet_id_rule.md
 expected_workflow_mode: create-quality-control
 expected_leaf_resources:
   - workflow_mode: create-quality-control

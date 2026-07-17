@@ -1,0 +1,985 @@
+{
+  "sessionId": "rsr-2026-07-17T03-38-47Z",
+  "parentSessionId": "rsr-2026-07-17T03-38-47Z",
+  "lineageMode": "resume",
+  "generation": 1,
+  "continuedFromRun": 1,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-how-do-intent-signals-resource-map-and-the-always-loaded-default-resource-actual",
+      "inboxId": null,
+      "text": "How do `INTENT_SIGNALS`, `RESOURCE_MAP`, and the always-loaded `DEFAULT_RESOURCE` actually influence leaf selection and recall?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-how-does-the-skill-benchmark-compute-router-replay-d1-d5-typed-pair-recall-and-f",
+      "inboxId": null,
+      "text": "How does the skill-benchmark compute router replay, D1-D5, typed-pair recall, and fitted-versus-holdout results?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-does-packet-qualifying-the-universal-preamble-as-a-shared-manifest-mode-clear-ro",
+      "inboxId": null,
+      "text": "Does packet-qualifying the universal preamble as a shared manifest mode clear `routing_contract_error` without degrading surface routing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-which-routing-template-scoring-logic-and-json-artifact-changes-are-most-likely-t",
+      "inboxId": null,
+      "text": "Which routing template, scoring logic, and JSON artifact changes are most likely to lift leaf-file recall?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-validation-matrix-can-distinguish-fitted-gains-from-holdout-generalization-",
+      "inboxId": null,
+      "text": "What validation matrix can distinguish fitted gains from holdout generalization and prevent metric gaming?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-how-do-intent-signals-resource-map-and-the-always-loaded-default-resource-actual",
+      "inboxId": null,
+      "text": "How do `INTENT_SIGNALS`, `RESOURCE_MAP`, and the always-loaded `DEFAULT_RESOURCE` actually influence leaf selection and recall?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-does-packet-qualifying-the-universal-preamble-as-a-shared-manifest-mode-clear-ro",
+      "inboxId": null,
+      "text": "Does packet-qualifying the universal preamble as a shared manifest mode clear `routing_contract_error` without degrading surface routing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-2-how-does-the-skill-benchmark-compute-router-replay-d1-d5-typed-pair-recall-and-f",
+      "inboxId": null,
+      "text": "How does the skill-benchmark compute router replay, D1-D5, typed-pair recall, and fitted-versus-holdout results?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-which-routing-template-scoring-logic-and-json-artifact-changes-are-most-likely-t",
+      "inboxId": null,
+      "text": "Which routing template, scoring logic, and JSON artifact changes are most likely to lift leaf-file recall?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-5-what-validation-matrix-can-distinguish-fitted-gains-from-holdout-generalization-",
+      "inboxId": null,
+      "text": "What validation matrix can distinguish fitted gains from holdout generalization and prevent metric gaming?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which keyword, weighting, ambiguity, and resource-map changes improve missed expected leaves without increasing D3 waste?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What holdout and negative validation matrix prevents fitted metric gaming?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the universal preamble become a real shared manifest mode or be excluded from typed leaf recall, and what invariants distinguish those contracts?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How does the full benchmark pipeline combine router replay, D1-D5, typed-pair recall, and fitted-versus-holdout scoring?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What concrete fitted, holdout, negative, and topology-mutation matrix prevents metric gaming?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which routing-template, scoring-logic, and JSON-artifact changes best improve leaf recall without increasing D3 waste?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How do `INTENT_SIGNALS`, `RESOURCE_MAP`, and the always-loaded `DEFAULT_RESOURCE` influence recall outside the already-confirmed deterministic assembly path?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "How do `INTENT_SIGNALS`, `RESOURCE_MAP`, and the always-loaded `DEFAULT_RESOURCE` actually influence leaf selection and recall?",
+    "Does packet-qualifying the universal preamble as a shared manifest mode clear `routing_contract_error` without degrading surface routing?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-the-committed-baseline-confirms-that-leaf-recall-and-contract-validity-are-separ",
+      "text": "The committed baseline confirms that leaf recall and contract validity are separate signals. Scenario `SD-001` has flat and typed-pair recall of 3/7 (0.429), 26 observed typed pairs, and five unresolved raw resources; scenario `CS-001` has 5/8 recall (0.625), 19 observed pairs, and four unresolved resources. In both cases the unresolved preamble causes `routing_contract_error`, while the missed expected leaves remain a genuine intent/resource-selection gap. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:356-478] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1543-1667]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-670`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
+        "`.opencode/skills/sk-code/mode-registry.json:21-99`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-deterministic-replay-parses-the-retained-surface-router-scores-every-matchin",
+      "text": "The deterministic replay parses the retained surface router, scores every matching keyword at unit weight, selects every intent within one point of the top score, then seeds the route with all four `DEFAULT_RESOURCE` entries before unioning selected `RESOURCE_MAP` entries. Surface slicing subsequently retains all universal resources, the Motion overlay, and only the detected surface; OpenCode routes are further sliced by detected language, while assets are deferred. Thus `INTENT_SIGNALS` controls which map rows enter the candidate union, `RESOURCE_MAP` controls available leaf files, and `DEFAULT_RESOURCE` affects every route but cannot improve intent-specific expected-resource recall. [SOURCE: .opencode/skills/sk-code/shared/references/smart_routing.md:309-343] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:435-459] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:555-599]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-670`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
+        "`.opencode/skills/sk-code/mode-registry.json:21-99`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-present-baseline-cannot-establish-generalization-all-23-scored-scenarios-are",
+      "text": "The present baseline cannot establish generalization: all 23 scored scenarios are fitted and there are zero holdouts, so the report explicitly leaves holdout score and generalization gap null. Its aggregate is 83/100 with D1-intra 90, D2 84, and D3 66; this means the carried-forward “about 65/100” figure is not the current typed baseline and should not be used as the optimization baseline without provenance. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:68-78]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-670`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
+        "`.opencode/skills/sk-code/mode-registry.json:21-99`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-untyped-preamble-originates-exactly-in-shared-references-smart-routing-md-it",
+      "text": "The untyped preamble originates exactly in `shared/references/smart_routing.md`: its four raw values are `references/stack_detection.md`, `references/phase_detection.md`, `references/smart_routing.md`, and `references/universal/code_quality_standards.md`. `parseDefaultResource` preserves those strings and `assembleResources` injects them unconditionally, so the contract fault is deterministic rather than an executor-side anomaly. [SOURCE: .opencode/skills/sk-code/shared/references/smart_routing.md:309-318] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:99-110] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:563-568]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-670`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
+        "`.opencode/skills/sk-code/mode-registry.json:21-99`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+      ]
+    },
+    {
+      "id": "finding-1-3-typed-conversion-is-fail-closed-a-raw-resource-resolves-only-when-it-is-packet-q",
+      "text": "Typed conversion is fail-closed: a raw resource resolves only when it is packet-qualified by a packet declared in `mode-registry.json`, or when an authored `leaf-aliases.json` entry maps a shared disk path to a typed pair; the result must then exist in `leaf-manifest.json`. sk-code declares only `code-quality`, `code-review`, `code-webflow`, and `code-opencode`, its manifest has the same four modes, and no `leaf-aliases.json` exists. Therefore merely changing the preamble from `references/...` to `shared/references/...` would still be unresolved; clearing the error through a shared tier requires an actual declared shared workflow mode plus manifest leaves, or explicit authored aliases to existing modes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:187-275] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:217-243] [SOURCE: .opencode/skills/sk-code/mode-registry.json:21-99] [SOURCE: .opencode/skills/sk-code/leaf-manifest.json:1-223]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-670`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
+        "`.opencode/skills/sk-code/mode-registry.json:21-99`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+      ]
+    },
+    {
+      "id": "finding-2-4-d5-is-qualitatively-different-from-the-row-normalized-dimensions-structural-or-r",
+      "text": "D5 is qualitatively different from the row-normalized dimensions: structural or registry failure caps the verdict and returns a non-zero process status even though report artifacts are still emitted. D4 task-outcome ablation is opt-in, live-only, target-scenario-specific, and attached as an advisory signal rather than silently folded into the deterministic aggregate. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:251-265] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:275-320] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:116-149]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+      ]
+    },
+    {
+      "id": "finding-2-2-deterministic-mode-a-measures-only-available-dimensions-and-renormalizes-their-w",
+      "text": "Deterministic Mode A measures only available dimensions and renormalizes their weights per row: D1-intra is 40% intent recall plus 60% resource recall, D2 is the resource-recall proxy, and D3 is `1 - unexpected/routed` when positive resource gold and routed output both exist. D1-inter joins only when advisor evidence exists, while D4 requires live ablation; therefore a Mode A aggregate must not be read as a fixed-weight score over all D1-D5 dimensions. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:7-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-291] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1078]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+      ]
+    },
+    {
+      "id": "finding-2-5-fitted-versus-holdout-is-a-scenario-partition-summary-over-scored-rows-not-a-sec",
+      "text": "Fitted-versus-holdout is a scenario-partition summary over scored rows, not a second router replay: the renderer consumes fitted count/score, holdout count/score, negative count, and their gap from the aggregate report. The committed sk-code baseline has no declared holdouts, so it can establish fitted behavior and suppression coverage but cannot establish generalization; a non-null generalization gap requires independently declared holdout scenarios. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:89-113] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65] [INFERENCE: the renderer only reports aggregate partition fields, and the captured baseline reports zero holdouts and null holdout score/gap]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-lane-c-run-is-a-staged-join-rather-than-one-monolithic-score-it-snapshots-th",
+      "text": "The Lane C run is a staged join rather than one monolithic score: it snapshots the manifest, runs D5 connectivity and hub-registry checks first, dispatches each playbook scenario through router or live execution, passes each observation to `scoreScenario`, aggregates the rows, and writes canonical JSON before rendering Markdown from that object. A manifest digest change aborts the run instead of scoring against moving topology. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:208-247]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+      ]
+    },
+    {
+      "id": "finding-2-3-typed-pair-recall-is-an-additive-fail-closed-diagnostic-lane-gated-on-both-a-tar",
+      "text": "Typed-pair recall is an additive, fail-closed diagnostic lane gated on both a target `leaf-manifest.json` and scenario-authored typed gold. The fixture is first classified against schema, manifest, and selected-map constraints; invalid oracle rows are excluded, while a missing router `resourceContract` is a `routing_contract_error` with null typed score rather than a zero recall miss. The renderer additionally refuses gated reports lacking target-root, manifest-digest, or scenario provenance. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1093-1196] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1202-1228] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:34-62]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+      ]
+    },
+    {
+      "id": "finding-3-4-default-resource-has-three-distinct-scopes-that-should-not-be-collapsed-the-pare",
+      "text": "`DEFAULT_RESOURCE` has three distinct scopes that should not be collapsed: the parent projection seeds every deterministic parent replay with four raw preamble paths; each surface packet declares a different packet-local default set; and the hub route loads packet entrypoints (or `shared/README.md` on fallback), not those declared leaf defaults. The statement that defaults are “always loaded” is therefore confirmed for deterministic replay and declared surface contracts, but actual automatic leaf reads remain unverified without live load telemetry. [SOURCE: .opencode/skills/sk-code/shared/references/smart_routing.md:309-343] [SOURCE: .opencode/skills/sk-code/code-webflow/SKILL.md:53-85] [SOURCE: .opencode/skills/sk-code/code-opencode/SKILL.md:43-73] [SOURCE: .opencode/skills/sk-code/SKILL.md:78-120]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-code/SKILL.md:40-179`",
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:1-180,298-572`",
+        "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
+        "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
+        "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-authoritative-prose-intent-model-is-richer-than-its-machine-projection-prose",
+      "text": "The authoritative prose intent model is richer than its machine projection: prose scoring uses request text, target files, known context, and a +5 phase boost, while the benchmark projection explicitly omits phase boosts and doc-only anti-signals. Consequently, machine-signal recall is an intentionally lossy proxy for the human/runtime routing contract rather than an exact model of it. [SOURCE: .opencode/skills/sk-code/shared/references/smart_routing.md:46-89] [SOURCE: .opencode/skills/sk-code/shared/references/smart_routing.md:298-307]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-code/SKILL.md:40-179`",
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:1-180,298-572`",
+        "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
+        "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
+        "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-benchmark-corpus-itself-documents-a-concrete-blind-spot-mode-a-replays-promp",
+      "text": "The benchmark corpus itself documents a concrete blind spot: Mode A replays prompt text only, while sk-code's intended surface decision also uses CWD and target paths. The contamination-clean loadspeed scenario therefore leaves positive intent/resource gold empty and defers the expected PERFORMANCE resources to live Mode B. Prompt-only misses in this class cannot establish live leaf-file recall. [SOURCE: .opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18] [INFERENCE: the fixture's explicit non-penalizing empty gold prevents Mode A from measuring the stated live resource expectation]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-code/SKILL.md:40-179`",
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:1-180,298-572`",
+        "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
+        "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
+        "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-hub-s-route-contract-selects-a-workflow-packet-and-zero-or-more-surface-pack",
+      "text": "The hub's route contract selects a workflow packet and zero-or-more surface packets through `mode-registry.json` and `hub-router.json`, then loads only their `SKILL.md` entrypoints. That route function does not read the parent `INTENT_SIGNALS`, `RESOURCE_MAP`, or `DEFAULT_RESOURCE` projection, so those structures do not directly determine hub packet selection. [SOURCE: .opencode/skills/sk-code/SKILL.md:50-57] [SOURCE: .opencode/skills/sk-code/SKILL.md:86-120]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-code/SKILL.md:40-179`",
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:1-180,298-572`",
+        "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
+        "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
+        "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
+      ]
+    },
+    {
+      "id": "finding-4-4-default-resource-is-visibly-present-in-live-stated-routing-heads-and-several-cor",
+      "text": "`DEFAULT_RESOURCE` is visibly present in live stated-routing heads and several corresponding resource-shaped reads appear in the live evidence, but that is correlation rather than causal attribution: the report records no provenance field identifying `DEFAULT_RESOURCE`, a matched `INTENT_SIGNALS` key, or a contributing `RESOURCE_MAP` row. A causal live answer therefore requires intervention or explicit provenance telemetry, not another static trace. [SOURCE: .opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:132-145] [SOURCE: .opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:202-213] [INFERENCE: the live artifact exposes stated resources and best-effort reads but no router-input provenance channel]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-380`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs:40-174`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs:95-194`",
+        "`.opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:1-401`",
+        "`.opencode/skills/sk-code/benchmark/README.md:20-132`"
+      ]
+    },
+    {
+      "id": "finding-4-1-mode-b-does-not-evaluate-intent-signals-resource-map-or-default-resource-in-the-",
+      "text": "Mode B does not evaluate `INTENT_SIGNALS`, `RESOURCE_MAP`, or `DEFAULT_RESOURCE` in the executor. It dispatches the scenario to a model in the repository context, then derives routing from the model's response and tool events; therefore these router inputs can influence a live run only through what the model reads and applies, not through a second machine replay inside the live branch. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs:124-170] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:350-380]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-380`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs:40-174`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs:95-194`",
+        "`.opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:1-401`",
+        "`.opencode/skills/sk-code/benchmark/README.md:20-132`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-current-canonical-live-report-contains-real-activation-tool-call-and-read-pa",
+      "text": "The current canonical live report contains real activation, tool-call, and read-pattern evidence, but its D2/D3 rows still identify their measurements as router-replay/overload proxies. The captured reads include glob patterns as well as exact-looking paths and provide neither read order nor a mapping from each read to the router input that caused it, so the artifact cannot calculate actual leaf Hit@k, Recall@k, MRR, or time/calls-to-first-expected despite the report notes describing those as the intended live replacements. [SOURCE: .opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:71-146] [SOURCE: .opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:149-214] [SOURCE: .opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:317-390]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-380`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs:40-174`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs:95-194`",
+        "`.opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:1-401`",
+        "`.opencode/skills/sk-code/benchmark/README.md:20-132`"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-primary-resource-signal-scored-in-live-mode-is-the-model-s-stated-resources-",
+      "text": "The primary resource signal scored in live mode is the model's **stated** `resources` array. Actual `read`/`glob`/`grep`/`bash` events are captured separately as best-effort `raw.observedReads` corroboration and do not populate `observedResources`; on the Codex transport, activation is explicitly unobservable and read extraction is only a weak raw-log scan. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:279-327] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs:57-112]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-380`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs:40-174`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs:95-194`",
+        "`.opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:1-401`",
+        "`.opencode/skills/sk-code/benchmark/README.md:20-132`"
+      ]
+    },
+    {
+      "id": "finding-5-1-a-real-shared-mode-can-mechanically-resolve-the-preamble-but-only-as-a-coordinat",
+      "text": "A real shared mode can mechanically resolve the preamble, but only as a coordinated three-part contract change: add a registry mode whose packet is `shared`, packet-qualify each preamble path as `shared/references/...`, and regenerate the manifest so that mode owns those `references/...` leaves. Declared packet prefixes resolve to typed pairs, and the manifest generator scans every declared packet's `references/` and `assets/` trees. Merely adding a manifest row or merely rewriting the prefix is insufficient. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:190-214] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-129]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-360`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-168`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286-329`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
+        "`.opencode/skills/sk-code/mode-registry.json:1-100`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+      ]
+    },
+    {
+      "id": "finding-5-3-authored-aliasing-is-the-typed-pair-authority-s-preferred-mechanism-for-a-physic",
+      "text": "Authored aliasing is the typed-pair authority's preferred mechanism for a physical `shared/...` file that belongs logically to an existing mode. `leaf-aliases.json` maps a shared disk path to one explicit `(workflowMode, leafResourceId)` pair, and manifest generation adds that alias leaf under the named mode without introducing another routable mode. This is conformant only if each universal file has one honest mode owner; the resolver returns the first matching disk path, so duplicating one shared path across several mode aliases would create order-dependent ownership rather than a mode-neutral identity. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:217-236] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-67] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-108]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-360`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-168`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286-329`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
+        "`.opencode/skills/sk-code/mode-registry.json:1-100`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+      ]
+    },
+    {
+      "id": "finding-5-4-silent-exclusion-is-not-supported-by-the-current-identity-contract-the-authority",
+      "text": "Silent exclusion is not supported by the current identity contract. The authority permits exactly packet-qualified declared-mode paths or authored shared aliases and otherwise fails closed with `UNRECOGNIZED_LEGACY_SHAPE`. Excluding universal preamble entries from typed diagnostics would therefore require an explicit new resource category and scorer/oracle policy; simply dropping unresolved entries would conceal contract drift and is ruled out. [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298-313] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:239-275]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-360`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-168`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286-329`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
+        "`.opencode/skills/sk-code/mode-registry.json:1-100`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+      ]
+    },
+    {
+      "id": "finding-5-2-that-design-is-not-contract-only-under-the-current-hub-authority-every-registry-",
+      "text": "That design is not contract-only under the current hub authority. Every registry mode must also appear bidirectionally in `hub-router.json` signals and exactly once in its tie-break list, while sk-code currently declares only two workflow and two surface modes. A real `shared` mode therefore expands routable hub topology and can affect D5/conformance unless the hub router is also changed; static evidence cannot establish preservation of 18/18 surface routing after that expansion. [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:317-329] [SOURCE: .opencode/skills/sk-code/mode-registry.json:21-99] [INFERENCE: adding a fifth registry mode triggers the authority's bidirectional router-signal and tie-break obligations]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-360`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-168`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286-329`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
+        "`.opencode/skills/sk-code/mode-registry.json:1-100`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-contract-decision-is-do-not-model-the-universal-preamble-as-an-ordinary-rout",
+      "text": "The contract decision is: do not model the universal preamble as an ordinary routable `shared` mode under the present schema. Prefer authored aliases when a truthful single owner exists; if the files are genuinely mode-neutral, extend the typed contract with an explicit non-routable shared owner before implementation. In a genuinely identity-only experiment, surface selection, selected raw resources, flat expected-leaf hit counts, D1/D2 recall proxies, and D3 waste should remain byte-for-byte or numerically unchanged; only unresolved-resource counts, `routing_contract_error`, typed-pair eligibility/recall, manifest digest, and possibly the verdict gate should change. A declared ordinary mode does not qualify for that invariant claim because it changes registry topology. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:113-126] [INFERENCE: changing only raw-to-typed identity leaves the router's selected raw resource set unchanged, whereas adding a registry mode changes a D5-governed topology input]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-360`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-168`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286-329`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
+        "`.opencode/skills/sk-code/mode-registry.json:1-100`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+      ]
+    },
+    {
+      "id": "finding-6-5-benchmark-json-should-prove-generalization-never-manufacture-a-gain-add-independ",
+      "text": "**Benchmark JSON should prove generalization, never manufacture a gain.** Add independently authored holdout prompts, exhaustive/minimum gold semantics, forbidden-resource negatives, route-count budgets, and frozen 18/18 surface expectations to source fixtures; do not edit generated report JSON or derive gold from current output. The current committed report has zero holdouts, and the current source probe no longer reproduces its exact routed counts, so it is useful historical evidence but not a post-change oracle. **Expected benefit:** no direct recall gain, high protection against fitted gaming. **Regression risk:** low if additive and independently authored. **Validation burden:** medium-high because a clean baseline and controlled candidate run are required. **Falsifying test:** a candidate that improves fitted recall but regresses holdout recall, negative suppression, route budgets, or any surface expectation must fail. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:176-184] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:356-440] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1543-1629] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:33-59] [INFERENCE: current-source replay returned different resource counts than the committed baseline, so exact before/after claims require a freshly generated baseline from the same source revision]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/prefers_reduced_motion.md:20-79`",
+        "Current-source `node` replay probe for `SD-001`, `LS-001`, `CS-001`, `CS-003`, and `CS-007` using `router-replay.cjs`"
+      ]
+    },
+    {
+      "id": "finding-6-1-first-fix-the-d3-measurement-contract-it-is-not-currently-a-sound-guard-for-rout",
+      "text": "**First fix the D3 measurement contract; it is not currently a sound guard for router optimization.** The sk-code loader copies every path under “Expected references loaded” into `expectedResources`, with no sk-code-shape completeness flag, while D3 treats every routed path not exactly in that list as waste. Yet `SD-001` calls its list “exact” and then defines PASS as loading *at least three* implementation paths, making its gold a minimum set rather than a complete inventory. This explains why the committed row labels 23 of 26 routed pairs as waste even though the authored test does not forbid the other implementation guidance. Add an independent-gold field such as `resourceGoldCompleteness: \"minimum\" | \"exhaustive\"`; compute precision-style D3 only for `exhaustive`, and use declared forbidden prefixes/budget caps for `minimum`. **Expected benefit:** high confidence in no-waste claims, but no true recall gain. **Regression risk:** medium because aggregate D3 changes; old rows must default fail-closed or be migrated explicitly. **Validation burden:** medium. **Falsifying test:** an `SD-001` minimum-set row must no longer call all useful extras waste, while an exhaustive synthetic row must retain the current `1 - unexpected/routed` result. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:258-315] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:235-291] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:30-48] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:84-89] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:380-440]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/prefers_reduced_motion.md:20-79`",
+        "Current-source `node` replay probe for `SD-001`, `LS-001`, `CS-001`, `CS-003`, and `CS-007` using `router-replay.cjs`"
+      ]
+    },
+    {
+      "id": "finding-6-2-highest-ranked-true-router-change-replace-monolithic-intent-unions-with-a-two-ti",
+      "text": "**Highest-ranked true router change: replace monolithic intent unions with a two-tier resource-map template.** The current template selects every intent within one point of the top score and unions each selected intent's entire list before surface/language slicing. Broad rows such as `IMPLEMENTATION` contain dozens of unrelated leaves, while cross-stack prompts legitimately match several unit-weight intents. Introduce a small per-intent `required` set plus `supplemental` rules keyed by specific phrases/path facts (for example Motion.dev + in-view, CDN, reduced-motion, target language). This can add a missed expected leaf while removing unrelated supplements in the same route, lifting recall without mechanically increasing routed count. **Expected benefit:** high recall and D3 improvement. **Regression risk:** medium-high because resource selection changes, but hub mode/surface routing is a separate layer. **Validation burden:** high. **Falsifying test:** fitted positive recall must rise, current negative/forbidden cases must not regress, routed-count budgets must not rise, and all 18 surface expectations must remain unchanged. [SOURCE: .opencode/skills/sk-code/shared/references/smart_routing.md:320-458] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:435-459] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:555-599] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:629-655] [INFERENCE: current-source replay of the authored prompts returned 31 resources for SD-001 and 43 for CS-001, confirming that broad unioning—not surface selection—is the dominant candidate-set expansion]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/prefers_reduced_motion.md:20-79`",
+        "Current-source `node` replay probe for `SD-001`, `LS-001`, `CS-001`, `CS-003`, and `CS-007` using `router-replay.cjs`"
+      ]
+    },
+    {
+      "id": "finding-6-4-leaf-manifest-and-universal-preamble-qualification-remain-contract-changes-not-r",
+      "text": "**Leaf-manifest and universal-preamble qualification remain contract changes, not recall optimizations.** Typed-gold derivation filters independently authored body gold to resolvable leaves in the dominant manifest mode, while replay first chooses raw resources and only then builds typed pairs. Regenerating `leaf-manifest.json`, adding a truthful alias, or introducing a non-routable shared identity can clear unresolved-resource errors and increase typed eligibility, but cannot add a missing raw leaf. Rank this below routing changes for recall and validate it with a raw-route invariance test. **Expected benefit:** zero true raw recall; high contract accuracy. **Regression risk:** low for truthful aliases, high for a new ordinary registry mode. **Validation burden:** medium. **Falsifying test:** identity-only changes must leave selected raw resources, flat hit counts, D1/D2, D3, and all surface routes unchanged; only unresolved counts, typed eligibility, manifest digest, and contract verdict may change. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:427-475] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:486-518] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:629-655] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:423-480]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/prefers_reduced_motion.md:20-79`",
+        "Current-source `node` replay probe for `SD-001`, `LS-001`, `CS-001`, `CS-003`, and `CS-007` using `router-replay.cjs`"
+      ]
+    },
+    {
+      "id": "finding-6-3-second-ranked-true-router-change-make-signal-scoring-specificity-aware-only-afte",
+      "text": "**Second-ranked true router change: make signal scoring specificity-aware only after map tiering.** The projection gives one weight to every keyword in an intent and selects all intents within `AMBIGUITY_DELTA`; substring matching is the default except for four hard-coded boundary terms. Adding more ordinary keywords before tiering can therefore increase broad-map activation and D3 waste. A safer template supports phrase-specific weights or exact/context predicates and uses generic verbs only as weak evidence; narrow terms such as `prefers-reduced-motion`, `motion.dev`, target extensions, and path markers should dominate generic `build`, `create`, or `animation`. **Expected benefit:** medium-high recall through better conditional supplements and fewer accidental ties. **Regression risk:** high if applied to hub mode/surface signals; confine it first to the retained leaf router. **Validation burden:** high. **Falsifying test:** replay must preserve the hub's 18/18 surface outputs, improve holdout Recall@k, and not increase selected-intent count or routed-count p95 on negative prompts. [SOURCE: .opencode/skills/sk-code/shared/references/smart_routing.md:304-341] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:70-96] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:411-459] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/prefers_reduced_motion.md:33-60]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
+        "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/prefers_reduced_motion.md:20-79`",
+        "Current-source `node` replay probe for `SD-001`, `LS-001`, `CS-001`, `CS-003`, and `CS-007` using `router-replay.cjs`"
+      ]
+    },
+    {
+      "id": "finding-7-4-contract-only-and-router-changing-candidates-need-different-invariants-an-identi",
+      "text": "**Contract-only and router-changing candidates need different invariants.** An identity-only typed-contract remediation may change manifest digest, unresolved counts, typed eligibility/recall, error class, and verdict, but must preserve raw selected resources, flat expected-leaf hits, D1/D2, D3, and all 18 surface outputs exactly. A router optimization must instead demonstrate new independently authored leaf hits in both fitted and holdout partitions while passing every negative, D3, topology, typed, live, and surface invariant. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:7-14] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1202-1257] [INFERENCE: separating identity projection from raw selection prevents a contract cleanup from being advertised as a routing-quality gain]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+      ]
+    },
+    {
+      "id": "finding-7-1-the-benchmark-s-existing-stage-split-is-necessary-but-not-sufficient-for-anti-ga",
+      "text": "**The benchmark's existing stage split is necessary but not sufficient for anti-gaming.** The loader can represent `routing`, `holdout`, and `negative`, and aggregation excludes holdouts from the fitted headline while reporting fitted-minus-holdout gap. However, sk-code's index-table loader currently assigns every non-negative scenario to `routing`; the committed report therefore has 23 fitted rows, zero holdouts, and a null generalization gap. A valid optimization trial must freeze independently authored holdouts before candidate output exists; output-derived holdouts or thresholds selected after seeing results are invalid. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:293-315] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1499-1523] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1569-1575] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:11-20]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+      ]
+    },
+    {
+      "id": "finding-7-5-the-current-artifacts-cannot-yet-pass-this-matrix-the-baseline-has-no-holdout-ro",
+      "text": "**The current artifacts cannot yet pass this matrix.** The baseline has no holdout rows, live scoring treats model-stated resources as primary while unordered reads are only corroboration, and current D3 has no gold-completeness discriminator. Therefore no implementation should claim generalization or actual leaf-load improvement until independent holdouts, explicit completeness/budgets, and ordered live provenance are present; the matrix is complete as a specification, but evidence for a candidate remains intentionally absent. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:13-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:303-327] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:241-291]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-gates-must-run-as-a-fail-closed-sequence-not-as-one-weighted-score-freeze-in",
+      "text": "**The gates must run as a fail-closed sequence, not as one weighted score:** freeze independent fixtures/digests and thresholds; capture a same-revision baseline; run fitted, holdout, and negative candidate replay; enforce D3 semantics; enforce typed-contract and topology/D5 gates; enforce exact 18/18 surface equality; then run a fixed live holdout sample. Any hard-gate failure rejects the candidate even if fitted aggregate rises. This follows the existing distinction between weighted rows and structural/registry verdict blockers. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:214-255] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1633-1661] [INFERENCE: anti-gaming properties are conjunctive invariants and cannot safely be averaged away]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+      ]
+    },
+    {
+      "id": "finding-7-2-the-preregistered-validation-matrix-is",
+      "text": "**The preregistered validation matrix is:**",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
+        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+      ]
+    },
+    {
+      "id": "finding-8-3-actual-read-measurement-needs-an-ordered-evidence-stream-plus-a-separate-route-d",
+      "text": "**Actual-read measurement needs an ordered evidence stream plus a separate route-decision provenance stream.** Replace `raw.observedReads` as the metric source with append-order events carrying run/scenario identity, event index and monotonic time, tool/operation, requested input, canonical resolved path, success/outcome, manifest digest, and resolved typed identity. Count only successful exact file reads as leaf reads; preserve glob/grep discoveries and Bash-derived hints on separate diagnostic channels. Separately record each router candidate's origin (`DEFAULT_RESOURCE` or contributing intent/map row), score/tie decision, and surface/language retention. Joining these streams supports Hit@k, Recall@k, MRR, and calls/time-to-first-expected; causal attribution still requires controlled paired interventions because a path join alone proves correlation. Falsifying fixtures must show that order survives deduplication, failed reads and glob patterns do not count, aliases canonicalize deterministically, and paths outside the target skill are rejected. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:279-327] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:201-275] [INFERENCE: ordered successful-read events joined to a frozen manifest can measure actual leaf access, while causal router-input claims require an intervention beyond observational joining]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
+      ]
+    },
+    {
+      "id": "finding-8-2-choose-an-explicit-non-routable-shared-owner-for-genuinely-universal-preamble-le",
+      "text": "**Choose an explicit non-routable shared owner for genuinely universal preamble leaves; do not add an ordinary `shared` mode.** The current resolver recognizes only a declared-mode packet prefix or one authored shared alias, refuses to infer shared ownership, and fails closed otherwise. An alias is correct only when each physical file has one truthful existing-mode owner; an ordinary shared mode changes routable registry topology; silent exclusion is unsupported. The synthesis decision is therefore to extend the typed contract with a validated non-routable/shared ownership category, then regenerate identity artifacts without changing the raw selected-resource set. This decision is falsified if every universal file can be assigned one honest existing mode (use aliases instead), or if the governing typed-pair standard rejects non-routable owners (then physical ownership/topology must be redesigned and surface invariance re-proven). [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:190-275] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:420-488] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:15-17]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
+      ]
+    },
+    {
+      "id": "finding-8-4-ordered-recommendation-set-0-freeze-a-same-revision-baseline-add-ordered-live-re",
+      "text": "**Ordered recommendation set:** (0) freeze a same-revision baseline, add ordered live-read/route provenance, and correct minimum-versus-exhaustive D3 gold; (1) add the explicit non-routable shared-owner contract as identity remediation; (2) test a two-tier `RESOURCE_MAP` with small required sets and predicate-gated supplements; (3) only then test specificity-aware leaf-intent weights/tie control; (4) accept changes only through preregistered fitted, sealed holdout, negative, topology, route-budget, and live-read gates. Identity work is not a recall gain, and generated JSON is evidence output, not an optimization surface. Falsification is conjunctive: any loss of the frozen 18/18 surface routes, raw-route change in the identity-only candidate, holdout/negative regression, route-budget increase, or failure to improve ordered live-read recall rejects the relevant candidate. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:7-28] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:19] [INFERENCE: provenance and sound gold must precede optimization so candidate selection cannot redefine the metric it is judged by]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
+      ]
+    },
+    {
+      "id": "finding-8-5-research-can-stop-with-the-implementation-outcome-still-unverified-all-five-char",
+      "text": "**Research can stop with the implementation outcome still unverified.** All five charter questions now have either a source-backed answer or an explicit experimental boundary: deterministic inputs, benchmark composition, ownership choice, ranked optimization, and anti-gaming validation are synthesis-ready; actual live read gains and post-change surface invariance require implementation-time experiments forbidden in this run. Stop conditions for the next phase are: preserve exact raw routes for identity-only work, preserve 18/18 surface expectations for every candidate, require non-empty independently authored holdouts, and reject causal live-read claims without ordered provenance plus a controlled intervention. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-45] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:61-75] [INFERENCE: the remaining uncertainty is experimental rather than a missing research decision]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
+      ]
+    },
+    {
+      "id": "finding-8-1-the-broad-router-input-question-is-answered-but-at-three-distinct-boundaries-in-",
+      "text": "**The broad router-input question is answered, but at three distinct boundaries.** In deterministic replay, `INTENT_SIGNALS` selects near-top intent rows, `RESOURCE_MAP` supplies their candidate leaves, and `DEFAULT_RESOURCE` seeds every route; in hub routing, those structures do not directly select workflow/surface packet entrypoints; in live Mode B, their effect on actual reads remains unmeasured because the executor scores model-stated resources and retains only best-effort, deduplicated path extractions. The evidence gap is therefore causal live leaf use—not deterministic selection or hub topology—and another static trace cannot close it. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:185-239] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:317-418] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:279-327]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-3cd131e3eb9f",
+      "text": "**Simple path-prefix rewrite only:** replacing `references/...` with `shared/references/...` cannot resolve typed identity because `shared` is neither a declared packet/mode nor an authored alias. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:190-275] [SOURCE: .opencode/skills/sk-code/mode-registry.json:21-99]",
+      "contentHash": "3cd131e3eb9f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-865a2c4e86a1",
+      "text": "**Treating `routing_contract_error` as the cause of low recall:** unresolved preamble entries explain the error class, but baseline hit/expected counts independently show missed expected leaves. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:431-440] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1620-1629]",
+      "contentHash": "865a2c4e86a1",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-95c80f4393d7",
+      "text": "Treating a Mode A aggregate as if all D1-D5 weights were always present: unavailable dimensions are excluded and measured weights are renormalized. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1078]",
+      "contentHash": "95c80f4393d7",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f2dfa5591ad4",
+      "text": "Using the current baseline's fitted score as evidence of holdout generalization: its holdout partition is empty. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65]",
+      "contentHash": "f2dfa5591ad4",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-5a0aab82e755",
+      "text": "Assuming the parent machine-readable router directly drives hub mode/surface packet selection; the hub's documented route function uses registry and hub-router decisions instead. [SOURCE: .opencode/skills/sk-code/SKILL.md:50-57] [SOURCE: .opencode/skills/sk-code/SKILL.md:86-120]",
+      "contentHash": "5a0aab82e755",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0201b44d34a2",
+      "text": "Treating prompt-only Mode A misses as proof of live leaf-file misses when CWD/target-path evidence is intentionally absent. [SOURCE: .opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:18]",
+      "contentHash": "0201b44d34a2",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6ffb62516b8f",
+      "text": "Treating `raw.observedReads` as proof that a particular router input caused a read; this channel is path extraction from tool inputs and is diagnostic rather than scored provenance. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:286-326]",
+      "contentHash": "6ffb62516b8f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-47d92fba63c1",
+      "text": "Treating live D2/D3 labels as proof that exact observed file loads currently drive those scores; the canonical rows still declare proxy measurements. [SOURCE: .opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json:76-100]",
+      "contentHash": "47d92fba63c1",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-549117b1c26d",
+      "text": "A manifest-only hidden `shared` entry: the generator derives modes from the registry, and the hub authority requires every registry mode in router signals and tie-break policy. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-129] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:317-329]",
+      "contentHash": "549117b1c26d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ced01ff5d470",
+      "text": "Multiple aliases with the same shared disk path to simulate mode-neutral ownership: shared resolution returns the first matching alias, making ownership order-dependent. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:227-236]",
+      "contentHash": "ced01ff5d470",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-0ed313864b2c",
+      "text": "Prefix-only rewriting and silent exclusion: the former is already blocked, and the latter is fail-open behavior absent from the authority. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:239-275]",
+      "contentHash": "0ed313864b2c",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3cd47be66675",
+      "text": "Treating `shared` as a manifest-only non-routable mode under the current registry schema. It cannot simultaneously be an ordinary declared mode for leaf identity and remain absent from hub-router conformance.",
+      "contentHash": "3cd47be66675",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-d96bcf7d1e50",
+      "text": "Treating universal preamble resources as outside the typed contract without adding an explicit, validated exclusion category.",
+      "contentHash": "d96bcf7d1e50",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-8c90765f9925",
+      "text": "Broadly adding keywords to `INTENT_SIGNALS` before resource-map tiering: under unit weights and near-tie unioning this can only activate more monolithic rows, so it has an uncontrolled D3 cost. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:411-459]",
+      "contentHash": "8c90765f9925",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-29d99924669c",
+      "text": "Editing `leaf-manifest.json` or generated benchmark report JSON as a way to claim leaf recall: these alter identity/measurement artifacts after raw routing and do not select missing raw resources. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:629-655] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:427-475]",
+      "contentHash": "29d99924669c",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-62e570d71b34",
+      "text": "Generated-report editing is definitively invalid as an optimization path because it changes neither the router nor independent gold.",
+      "contentHash": "62e570d71b34",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3055fa266890",
+      "text": "Manifest-only recall optimization is definitively exhausted; retain manifest work only as typed-contract remediation.",
+      "contentHash": "3055fa266890",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-0045d52c7218",
+      "text": "Treating the committed D3 values as an exhaustive waste oracle: authored sk-code scenarios use minimum pass criteria but the scorer assumes complete equality gold. [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:84-89] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:241-291]",
+      "contentHash": "0045d52c7218",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-98f49ee16cf8",
+      "text": "A holdout created or edited after candidate inspection is contaminated and must be regenerated independently rather than relabeled.",
+      "contentHash": "98f49ee16cf8",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-0f82b3f6c442",
+      "text": "Accepting fitted-score improvement without a non-empty sealed holdout partition; the current null holdout cannot prove generalization. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:13-20]",
+      "contentHash": "0f82b3f6c442",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-e5c0f48b78d1",
+      "text": "Aggregate-only acceptance is definitively invalid: conjunctive surface, topology, suppression, and contract invariants can be averaged away.",
+      "contentHash": "e5c0f48b78d1",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-0092fdce9bee",
+      "text": "Selecting thresholds after seeing candidate output; this turns acceptance criteria into fixture fitting. [INFERENCE: a post-hoc threshold is conditional on the candidate result and therefore is not independent evidence]",
+      "contentHash": "0092fdce9bee",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-8a20a79558fa",
+      "text": "Treating generated report JSON, manifest edits, or typed-error removal as raw recall gain; those artifacts can change without selecting a missing expected leaf. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:15-17]",
+      "contentHash": "8a20a79558fa",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-c7877c82d4ed",
+      "text": "Using current `raw.observedReads` as actual ordered-load evidence; it is a deduplicated extraction from tool inputs without causal provenance or order metrics. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:279-327]",
+      "contentHash": "c7877c82d4ed",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-3cedf6a19ef9",
+      "text": "An ordinary `shared` registry mode as an identity-only fix: it changes hub topology and therefore cannot inherit the raw-route/surface-invariance claim. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:463-488]",
+      "contentHash": "3cedf6a19ef9",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-bb4a4afd5177",
+      "text": "Current `raw.observedReads` as ordered actual-load or causal evidence: it regex-extracts tool inputs and deduplicates paths without success, order metrics, or router-input provenance. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:279-327]",
+      "contentHash": "bb4a4afd5177",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-e3fdfe1ec2f0",
+      "text": "Multiple aliases for one shared disk path: the resolver returns the first match, making ownership order-dependent. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:227-236]",
+      "contentHash": "e3fdfe1ec2f0",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-c2d0115ed42b",
+      "text": "Re-running deterministic traces or editing generated manifest/report JSON to claim recall; both directions are already exhausted and do not measure live use or select a missing raw leaf. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:117-135]",
+      "contentHash": "c2d0115ed42b",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-f505e6fcbd57",
+      "text": "Silent exclusion of the preamble from the typed contract remains fail-open and unsupported; only an explicit validated category can represent a non-leaf/shared owner.",
+      "contentHash": "f505e6fcbd57",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-8ca332c83ce2",
+      "text": "Static source inspection cannot prove actual live leaf recall, read order, or post-change 18/18 invariance. Those require instrumented, same-revision experiments.",
+      "contentHash": "8ca332c83ce2",
+      "addedAtIteration": 8
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 2,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 7,
+    "keyFindings": 38,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.5,
+    "coverageBySources": {
+      "code": 105,
+      "other": 9
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

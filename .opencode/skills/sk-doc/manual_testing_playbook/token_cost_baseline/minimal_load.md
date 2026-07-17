@@ -2,9 +2,9 @@
 id: SD-013
 category: token_cost_baseline
 title: 'Floor token cost: minimal-keyword query, 1 reference load'
-expected_intent: HVR
+expected_intent: create-quality-control
 expected_resources:
-  - references/hvr_rules.md
+  - shared/references/hvr_rules.md
 expected_workflow_mode: create-quality-control
 expected_leaf_resources:
   - workflow_mode: create-quality-control

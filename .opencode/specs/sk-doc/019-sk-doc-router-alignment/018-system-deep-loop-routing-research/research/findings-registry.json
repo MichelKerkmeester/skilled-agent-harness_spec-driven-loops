@@ -1,0 +1,1437 @@
+{
+  "sessionId": "rsr-2026-07-17T04-12-43Z",
+  "parentSessionId": "rsr-2026-07-17T04-12-43Z",
+  "lineageMode": "resume",
+  "generation": 1,
+  "continuedFromRun": 5,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-17T05:10:01.997Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-how-do-the-seven-workflow-modes-currently-route-across-the-five-child-packets-an",
+      "inboxId": null,
+      "text": "How do the seven workflow modes currently route across the five child packets, and what typed pairs do they imply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-flat-child-relative-leaf-ids-collide-and-what-packet-qualified-coordinate-",
+      "inboxId": null,
+      "text": "Which flat child-relative leaf IDs collide, and what packet-qualified coordinate scheme removes ambiguity?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-does-the-skill-benchmark-discover-validate-and-score-routing-gold-and-typed-",
+      "inboxId": null,
+      "text": "How does the skill-benchmark discover, validate, and score routing gold and typed pairs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-of-the-roughly-319-scenarios-are-genuine-routing-decisions-and-which-must-",
+      "inboxId": null,
+      "text": "Which of the roughly 319 scenarios are genuine routing decisions, and which must remain outside typed-gold scoring?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-dependency-ordered-configuration-and-router-changes-can-raise-the-routing-s",
+      "inboxId": null,
+      "text": "What dependency-ordered configuration and router changes can raise the routing score without weakening fallback behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-how-do-the-seven-workflow-modes-currently-route-across-the-five-child-packets-an",
+      "inboxId": null,
+      "text": "How do the seven workflow modes currently route across the five child packets, and what typed pairs do they imply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-flat-child-relative-leaf-ids-collide-and-what-packet-qualified-coordinate-",
+      "inboxId": null,
+      "text": "Which flat child-relative leaf IDs collide, and what packet-qualified coordinate scheme removes ambiguity?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-how-does-the-skill-benchmark-discover-validate-and-score-routing-gold-and-typed-",
+      "inboxId": null,
+      "text": "How does the skill-benchmark discover, validate, and score routing gold and typed pairs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-which-of-the-roughly-319-scenarios-are-genuine-routing-decisions-and-which-must-",
+      "inboxId": null,
+      "text": "Which of the roughly 319 scenarios are genuine routing decisions, and which must remain outside typed-gold scoring?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-dependency-ordered-configuration-and-router-changes-can-raise-the-routing-s",
+      "inboxId": null,
+      "text": "What dependency-ordered configuration and router changes can raise the routing score without weakening fallback behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which complete set of flat child-relative leaf IDs collide, beyond the verified examples?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How does the skill-benchmark discover, validate, and score routing gold and typed pairs?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which of the roughly 319 scenarios are genuine routing decisions, and which must remain outside typed-gold scoring?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What dependency-ordered configuration and router changes can raise the routing score without weakening fallback behavior?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which of the 273 loader-ineligible files should be deliberately promoted into authored routing scenarios, if any? This is not inferable from filenames alone.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What dependency-ordered configuration and router changes can raise routing quality without weakening fallback behavior?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which exact subset of the 35 evidence-backed routing candidates should receive typed gold in the first implementation slice should be confirmed against scenario intent, not filenames.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which, if any, of the 273 loader-ineligible files should be deliberately promoted into authored scenarios? This remains outside inference and requires an explicit corpus-authoring decision.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which exact scenario IDs form the smallest mode-complete first typed-gold slice among the 35 routing candidates?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should any loader-ineligible file be deliberately promoted through authored corpus governance? No promotion can be inferred here.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should any existing loader-ineligible file be deliberately promoted through corpus governance? No promotion is inferred here.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should a new alignment routing scenario be authored into the loader-eligible corpus, and which explicit child-local leaf pairs should its author declare?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should any existing loader-ineligible file be deliberately promoted through corpus governance? No promotion is inferred or required by this new-fixture contract.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Governance-only: should any existing loader-ineligible file be promoted? No promotion is required by this seven-row plan.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Implementation-only: which loader-compatible authoring shape will be adopted for the indexed hub corpus? Research establishes constraints but does not modify the loader.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Governance decision: approve or adjust the 43 proposed seed pairs; no loader-ineligible promotion is required.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Implementation decision: choose the loader-compatible indexed-corpus representation and lock it with gate-1 tests.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Research questions: none.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-each-child-router-currently-emits-leaf-ids-relative-to-its-own-skill-root-such-a",
+      "text": "Each child router currently emits leaf IDs relative to its own `SKILL_ROOT`, such as `references/guides/quick_reference.md` for research, `references/protocol/quick_reference.md` for review, `references/integration/quick_reference.md` for AI Council, `references/shared/quick_reference.md` for improvement, and `references/scoping_protocol.md` for alignment. These are valid locally but omit the owning packet when compared at hub scope. [SOURCE: .opencode/skills/system-deep-loop/deep-research/SKILL.md:102-112] [SOURCE: .opencode/skills/system-deep-loop/deep-review/SKILL.md:98-104] [SOURCE: .opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:136-143] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/SKILL.md:97-103] [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md:85-90]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:22-28,36-72,78-88`",
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:95-184`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:95-209`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:110-284`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:95-219`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-221`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2`"
+      ]
+    },
+    {
+      "id": "finding-1-3-exact-child-relative-collisions-already-exist-research-and-review-both-route-ref",
+      "text": "Exact child-relative collisions already exist: research and review both route `references/protocol/loop_protocol.md`, `references/state/state_outputs.md`, and `references/convergence/convergence_signals.md`. Therefore a hub-level gold label containing only the leaf ID cannot identify the owner. [SOURCE: .opencode/skills/system-deep-loop/deep-research/SKILL.md:124-132] [SOURCE: .opencode/skills/system-deep-loop/deep-review/SKILL.md:119-148]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:22-28,36-72,78-88`",
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:95-184`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:95-209`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:110-284`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:95-219`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-221`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-authoritative-mode-to-packet-map-is-research-deep-research-review-deep-revie",
+      "text": "The authoritative mode-to-packet map is: `research → deep-research`, `review → deep-review`, `ai-council → deep-ai-council`, `agent-improvement → deep-improvement`, `model-benchmark → deep-improvement`, `skill-benchmark → deep-improvement`, and `alignment → deep-alignment`. The registry also establishes that the first three plus alignment use the runtime-loop backend, while all three improvement modes use the improvement host. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:29-197] [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:46-49]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:22-28,36-72,78-88`",
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:95-184`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:95-209`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:110-284`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:95-219`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-221`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-implied-typed-gold-coordinate-is-a-pair-of-the-public-mode-and-a-packet-qual",
+      "text": "The implied typed-gold coordinate is a pair of the public mode and a packet-qualified leaf: `(workflowMode, <packet>/<child-relative-resource>)`. Examples are `(research, deep-research/references/protocol/loop_protocol.md)`, `(review, deep-review/references/protocol/loop_protocol.md)`, and `(skill-benchmark, deep-improvement/references/skill_benchmark/scoring_contract.md)`. This preserves both collision-free resource identity and the three improvement lanes, while retaining the registry as the source of packet ownership. [INFERENCE: based on .opencode/skills/system-deep-loop/mode-registry.json:29-197 and the child router coordinates at .opencode/skills/system-deep-loop/deep-research/SKILL.md:124-132, .opencode/skills/system-deep-loop/deep-review/SKILL.md:119-148, and .opencode/skills/system-deep-loop/deep-improvement/SKILL.md:116-131]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:22-28,36-72,78-88`",
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:95-184`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:95-209`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:110-284`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:95-219`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-221`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-three-improvement-workflow-modes-create-a-second-ambiguity-dimension-because",
+      "text": "The three improvement workflow modes create a second ambiguity dimension because they share one packet. Their lane-specific surfaces separate only inside the child resource maps: agent-oriented resources occupy `references/agent_improvement/**`, model benchmarking uses `references/model_benchmark/**`, and skill benchmarking uses `references/skill_benchmark/**` plus corresponding packet-local assets. Packet qualification alone identifies `deep-improvement` but does not preserve which public workflow mode selected it. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:102-172] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/SKILL.md:104-131]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:22-28,36-72,78-88`",
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:95-184`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:95-209`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:110-284`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:95-219`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-221`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2`"
+      ]
+    },
+    {
+      "id": "finding-2-13-packet-leaf-alone-is-still-ambiguous-for-deep-improvement-because-agent-improvem",
+      "text": "`<packet>/<leaf>` alone is still ambiguous for `deep-improvement`, because `agent-improvement`, `model-benchmark`, and `skill-benchmark` declare the same packet. The legacy resolver returns the first declared matching mode, whereas explicit `{workflowMode, leafResourceId}` pairs remain distinct. The collision-free, contract-compatible identity is therefore `(workflowMode, leafResourceId)` plus the registry/manifest's `workflowMode → packet` ownership; its equivalent expanded coordinate is `(workflowMode, packet, leaf)`. This refines iteration 1's redundant `(workflowMode, packet-qualified leaf)` proposal without changing its uniqueness result. [SOURCE: `.opencode/skills/system-deep-loop/mode-registry.json:102-172`] [SOURCE: `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:133-183`] [INFERENCE: applying `resolvePacketQualified` from `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:190-215` to the registry's three `deep-improvement` declarations resolves the first declaration, while `makeTypedPair` preserves all three explicit modes]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-4-references-convergence-convergence-recovery-md-research-and-review-source-openco",
+      "text": "`references/convergence/convergence_recovery.md` — research and review. [SOURCE: `.opencode/skills/system-deep-loop/deep-research/SKILL.md:128,143`] [SOURCE: `.opencode/skills/system-deep-loop/deep-review/SKILL.md:140`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-5-references-convergence-convergence-signals-md-research-review-and-ai-council-sou",
+      "text": "`references/convergence/convergence_signals.md` — research, review, and AI Council. [SOURCE: `.opencode/skills/system-deep-loop/deep-research/SKILL.md:126-127,142`] [SOURCE: `.opencode/skills/system-deep-loop/deep-review/SKILL.md:132,136,157,165-166`] [SOURCE: `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:159,163`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-3-references-convergence-convergence-md-research-and-review-source-opencode-skills",
+      "text": "`references/convergence/convergence.md` — research and review. [SOURCE: `.opencode/skills/system-deep-loop/deep-research/SKILL.md:127,141`] [SOURCE: `.opencode/skills/system-deep-loop/deep-review/SKILL.md:131,135,156,165-166`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-6-references-protocol-loop-protocol-md-research-and-review-source-opencode-skills-",
+      "text": "`references/protocol/loop_protocol.md` — research and review. [SOURCE: `.opencode/skills/system-deep-loop/deep-research/SKILL.md:125-126,132,139`] [SOURCE: `.opencode/skills/system-deep-loop/deep-review/SKILL.md:122,130,154,164-166`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-7-references-state-state-format-md-research-and-review-source-opencode-skills-syst",
+      "text": "`references/state/state_format.md` — research and review. [SOURCE: `.opencode/skills/system-deep-loop/deep-research/SKILL.md:125,129,146`] [SOURCE: `.opencode/skills/system-deep-loop/deep-review/SKILL.md:123,143,155,164,167`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-8-references-state-state-jsonl-md-research-and-review-source-opencode-skills-syste",
+      "text": "`references/state/state_jsonl.md` — research and review. [SOURCE: `.opencode/skills/system-deep-loop/deep-research/SKILL.md:125,129,147`] [SOURCE: `.opencode/skills/system-deep-loop/deep-review/SKILL.md:127`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-9-references-state-state-outputs-md-research-and-review-source-opencode-skills-sys",
+      "text": "`references/state/state_outputs.md` — research and review. [SOURCE: `.opencode/skills/system-deep-loop/deep-research/SKILL.md:126,129-130,132,148`] [SOURCE: `.opencode/skills/system-deep-loop/deep-review/SKILL.md:124,137,144,158,164,167`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-10-references-state-state-reducer-registry-md-research-and-review-source-opencode-s",
+      "text": "`references/state/state_reducer_registry.md` — research and review. [SOURCE: `.opencode/skills/system-deep-loop/deep-research/SKILL.md:128-129,149`] [SOURCE: `.opencode/skills/system-deep-loop/deep-review/SKILL.md:125,145,159,166-167`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-12-packet-qualification-is-not-itself-the-canonical-sk-doc-typed-pair-shape-that-co",
+      "text": "Packet qualification is not itself the canonical sk-doc typed-pair shape. That contract deliberately defines `{workflowMode, leafResourceId}` with `leafResourceId` remaining packet-root-relative, stores `packet` separately in each manifest mode entry, and enforces uniqueness on the two-field composite. Packet-qualified strings are only a guarded legacy-read form. [SOURCE: `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30`] [SOURCE: `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-183`] [SOURCE: `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:190-215`] [SOURCE: `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:318-338`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-11-prefixing-every-local-id-with-its-packet-yields-88-packet-qualified-coordinates-",
+      "text": "Prefixing every local ID with its packet yields 88 packet-qualified coordinates and 88 unique values, so `<packet>/<leaf>` completely removes cross-packet flat-ID collisions. Across all seven modes, the fully expanded `(workflowMode, <packet>/<leaf>)` inventory likewise has 142 coordinates and 142 unique values. [INFERENCE: exhaustive uniqueness checks over the five router inventories and the seven mode-to-packet declarations at `.opencode/skills/system-deep-loop/mode-registry.json:29-197`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-complete-collision-set-is",
+      "text": "The complete collision set is:",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-five-routers-contain-88-distinct-packet-local-markdown-coordinates-but-only-",
+      "text": "The five routers contain 88 distinct packet-local Markdown coordinates but only 79 distinct flat leaf IDs. Exactly eight flat IDs collide; seven repeat across `deep-research` and `deep-review`, while `references/convergence/convergence_signals.md` repeats across those two packets plus `deep-ai-council`. [INFERENCE: deterministic extraction of quoted Markdown resource IDs from `.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`, `.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`, `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`, `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`, and `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-research/SKILL.md:111-150`",
+        "`.opencode/skills/system-deep-loop/deep-review/SKILL.md:103-167`",
+        "`.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:143-168`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:102-125`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`"
+      ]
+    },
+    {
+      "id": "finding-3-3-fixture-validation-separates-oracle-faults-from-routing-failures-the-scorer-enga",
+      "text": "**Fixture validation separates oracle faults from routing failures.** The scorer engages the typed taxonomy only when both scenario typed gold and a target manifest exist, then delegates schema, manifest-membership, and selected-map validation to `validate-playbook-topology.cjs`. A blocked typed fixture is returned as an excluded row before dimensions are computed, and aggregation removes excluded rows from every denominator. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1093-1196] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1287-1300,1499-1507]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-140,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-manifest-is-generated-from-declared-modes-and-packet-inventory-not-discovere",
+      "text": "**The manifest is generated from declared modes and packet inventory, not discovered heuristically during scoring.** `generate-leaf-manifest.cjs` reads `mode-registry.json`, creates one entry per declared `workflowMode`, walks that mode's packet `references/` and `assets/`, adds explicitly authored aliases, rejects duplicate `(workflowMode, leafResourceId)` composites, and emits canonical bytes. The benchmark then only reads the committed `leaf-manifest.json` and snapshots its digest before and after a run, aborting if topology changes mid-score. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-129] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,208-237]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-140,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-router-produces-the-scored-canonical-pair-bundle-and-contract-defects-outran",
+      "text": "**The router produces the scored canonical pair bundle, and contract defects outrank ordinary misses.** Router replay dual-reads raw resources through the leaf-resource contract, verifies each pair against the committed manifest, deduplicates by composite key, and records unresolved resources. Full-inventory routes enumerate the manifest by mode to preserve fan-out twins. The scorer then compares exact composite keys; unresolved resources or a selected-map cap excess yield `routing_contract_error`, while a valid but incomplete pair set yields `routing_miss`. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-243,246-294] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1215-1257]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-140,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+      ]
+    },
+    {
+      "id": "finding-3-2-typed-gold-is-opt-in-and-has-two-producer-paths-for-sk-doc-shaped-playbooks-expe",
+      "text": "**Typed gold is opt-in and has two producer paths.** For sk-doc-shaped playbooks, `expected_leaf_resources` is parsed directly from scenario frontmatter and `expected_workflow_mode` is read only when typed gold exists. For index-table playbooks, typed gold is derived only when the target ships a manifest: packet-qualified body-gold resources are split, checked against manifest membership, and restricted to the dominant mode so the oracle stays inside the selected-map cap. Scenarios without typed gold or hubs without a manifest remain on the legacy flat lane rather than receiving a zero. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-140,343-417] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:427-475,486-524]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-140,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+      ]
+    },
+    {
+      "id": "finding-3-5-typed-pairs-correct-the-existing-d1-d2-d3-resource-math-rather-than-adding-a-sep",
+      "text": "**Typed pairs correct the existing D1/D2/D3 resource math rather than adding a separately weighted dimension.** On valid typed rows, pair recall supersedes flat-string resource recall for D1-intra and D2, while pair precision replaces flat over-routing for D3; the diagnostic is also exposed as `typedPairRecall`. A scenario's Mode A score normalizes the measured D1-intra (13), D2 (20), D3 (15), and optional D1-inter (12) weights, and the headline aggregate averages fitted scenario scores while excluding holdouts and oracle-fault rows. The committed system-deep-loop baseline is `71`, with D1-intra `100`, D2 `100`, D3 `6`, and zero route-gold rows, so it is evidence of the old flat scoring state rather than evidence that typed scoring ran. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1311-1357,1414-1438] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1499-1524,1569-1575] [SOURCE: .opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:11-56,83-117]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-140,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+      ]
+    },
+    {
+      "id": "finding-4-2-a-family-wide-invocation-of-the-existing-loader-once-per-owning-root-recognizes-",
+      "text": "A family-wide invocation of the existing loader, once per owning root, recognizes only **21 scenarios**: deep-improvement 9, deep-research 8, and deep-review 4. All 21 are `classKind=routing`, `stage=routing`, and carry flat `expected_resources`; none declares `expected_leaf_resources` or `expected_workflow_mode`, so the current typed-gold row count remains zero. [INFERENCE: deterministic loader census using `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343-417,486-524` over the seven packet roots]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
+        "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-roughly-319-scenarios-are-exactly-319-markdown-artifacts-not-319-loader-scen",
+      "text": "The “roughly 319 scenarios” are exactly **319 Markdown artifacts**, not 319 loader scenarios: seven root `manual_testing_playbook.md` files plus 312 non-root Markdown files. The 312 non-root files divide by owner as hub 19, deep-ai-council 33, deep-alignment 31, deep-improvement 60, deep-research 62, deep-review 55, and runtime 52. [INFERENCE: deterministic read-only Node census over `.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md`, applying the loader's root-file exclusions at `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343-361,486-524`]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
+        "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-committed-evidence-is-contradictory-about-hub-corpus-size-the-playbook-and-b",
+      "text": "The committed evidence is contradictory about hub corpus size: the playbook and baseline report describe 18 rows (14 routing plus 4 browser), while the benchmark README says 20 and 16 routing plus 4 browser. The playbook index and machine-readable baseline agree, so **18 (14+4)** is the better-supported current count; the README's 20 is stale or refers to an uncommitted/later corpus state. [SOURCE: `.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:201-225`] [SOURCE: `.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`] [SOURCE: `.opencode/skills/system-deep-loop/benchmark/README.md:27-42`]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
+        "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-deterministic-partition-is-therefore-21-current-routing-gold-candidates-14-a",
+      "text": "The deterministic partition is therefore: **21 current routing-gold candidates**; **14 additional hub routing candidates** only after its index paths become readable; **4 explicit browser exclusions** from the hub's `MR-*` rows; **273 non-root files that the loader cannot classify** because they are neither readable indexed rows nor YAML-frontmatter scenarios with `id|expected_intent|expected_resources`; and **7 root index documents**, which are not scenarios. Thus 35 is the evidence-backed upper bound for genuine routing candidates in the present family corpus, while the other 284 artifacts must stay outside typed-gold scoring unless independently authored scenario metadata makes them eligible. [SOURCE: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:56-73,343-417,497-524`] [INFERENCE: 319 = 21 current candidates + 14 path-blocked routing candidates + 4 browser exclusions + 273 loader-ineligible files + 7 root indexes]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
+        "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-hub-index-declares-18-scenarios-but-the-loader-emits-18-unreadable-file-warn",
+      "text": "The hub index declares **18** scenarios, but the loader emits 18 unreadable-file warnings and loads zero because every indexed path uses hyphenated directories such as `mode-routing/research-routing.md`, while the checked-in directory is `mode_routing/`. This is a corpus-addressing failure before routing classification, not a router miss. [SOURCE: `.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:201-224`] [SOURCE: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:497-519`] [INFERENCE: exact-path existence check for all 18 index rows returned present=0 and missing=18]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
+        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
+        "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
+      ]
+    },
+    {
+      "id": "finding-5-4-add-hub-level-resource-selection-without-replacing-the-registry-s-mode-router-or",
+      "text": "**Add hub-level resource selection without replacing the registry's mode router or weakening fallback.** After the existing explicit-hint/dominant-intent step resolves `workflowMode`, a hub resource map may select packet-qualified disk paths for static reachability, but its public result must be formed with the already-known mode and the child-local path as `{workflowMode, leafResourceId}`. Never rely on packet-prefix inference for `deep-improvement`, because three modes share that packet. Preserve the current low-confidence `UNKNOWN_FALLBACK`, missing-registry fallback, existence checks, and containment guard exactly. [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:36-70] [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:102-172] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:190-275]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-005.md:1-87`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:36-70`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-160`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-183,190-275,318-338`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-32`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:58`"
+      ]
+    },
+    {
+      "id": "finding-5-3-generate-and-commit-leaf-manifest-json-before-authoring-typed-gold-the-existing-",
+      "text": "**Generate and commit `leaf-manifest.json` before authoring typed gold.** The existing generator already creates one entry per declared workflow mode, scans each mode's packet-local `references/` and `assets/`, retains all three `deep-improvement` mode identities, rejects duplicate composites, and emits canonical bytes. Gold should therefore use explicit `{workflow_mode, leaf_resource_id}` values whose leaf remains packet-local; packet ownership stays in the manifest rather than being embedded in `leaf_resource_id`. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-129] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-183,318-338] [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:102-172]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-005.md:1-87`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:36-70`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-160`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-183,190-275,318-338`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-32`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:58`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-hub-index-repair-is-a-narrow-addressing-prerequisite-not-a-corpus-expansion-",
+      "text": "**The hub-index repair is a narrow addressing prerequisite, not a corpus expansion.** Change the 18 indexed paths to the checked-in underscore directory names, then retain the 14 routing rows and four browser rows in their authored classes. Do not promote any of the 273 loader-ineligible files by inference; promotion remains a separate authored-scope decision. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:497-519]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-005.md:1-87`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:36-70`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-160`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-183,190-275,318-338`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-32`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:58`"
+      ]
+    },
+    {
+      "id": "finding-5-1-use-a-seven-step-dependency-chain-baseline-capture-hub-index-repair-manifest-gen",
+      "text": "**Use a seven-step dependency chain: baseline capture → hub-index repair → manifest generation → typed-gold authoring → hub resource router → contract/fallback validation → benchmark rerun.** Index repair must precede gold because the loader currently cannot read the hub's 18 indexed rows; manifest generation must precede typed gold because manifest membership is the oracle boundary; validation must precede the scored rerun so structural or oracle faults cannot be mistaken for router misses. [INFERENCE: based on .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38 and .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-129]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-005.md:1-87`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:36-70`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-160`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-183,190-275,318-338`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-32`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:58`"
+      ]
+    },
+    {
+      "id": "finding-5-5-validation-must-prove-both-the-new-typed-path-and-the-old-safety-path-before-acc",
+      "text": "**Validation must prove both the new typed path and the old safety path before accepting a score change.** Run manifest byte-check and duplicate-pair validation first; then parent-hub and advisor-registry drift guards; then topology/fixture validation; then deterministic Lane-C router-mode tests and the full system-deep-loop benchmark. Acceptance evidence must include unchanged explicit-hint precedence, low-confidence fallback, missing-mode/path fail-closed behavior, zero oracle-fault exclusions, typed-gold rows greater than zero, and before/after D1-intra/D2/D3 plus aggregate deltas. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:143-160] [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:42-44,51-70] [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:10-16] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-32] [SOURCE: .opencode/skills/system-deep-loop/benchmark/README.md:58]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-005.md:1-87`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:36-70`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-160`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-183,190-275,318-338`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-32`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:58`"
+      ]
+    },
+    {
+      "id": "finding-6-5-the-before-after-evidence-bundle-should-record-stable-machine-fields-plus-typed-",
+      "text": "**The before/after evidence bundle should record stable machine fields plus typed-path diagnostics.** Preserve `verdict`, `aggregateScore`, `topologyDigest`, `parseWarnings`, D5 connectivity/registry results, scenario count, and the rendered D1-intra/D2/D3 values from each report. Add derived counts for typed-gold-present, typed-gold-valid, typed-pair-hit, and oracle-fault-excluded rows; accept score movement only when the before/after corpus and trace mode are identical. The orchestrator explicitly snapshots the manifest digest, aborts if topology changes during a run, writes JSON before rendering Markdown, and uses exit 3 for structural or registry blockage. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-76,193-255] [SOURCE: .opencode/skills/system-deep-loop/benchmark/README.md:38-42,55-65]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-006.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md:60-179`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:48-70,106`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-57`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:27-65`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-76,185-255`"
+      ]
+    },
+    {
+      "id": "finding-6-2-the-count-gate-must-preserve-a-known-before-source-contradiction-instead-of-sile",
+      "text": "**The count gate must preserve a known before-source contradiction instead of silently normalizing it.** Iteration 4's loader-semantic census found 21 currently normalized rows, while the frozen README/report narrative says 20 total with 16 text-scorable and four browser rows. Repairing the 18 unreadable authored index rows adds 14 routing and four browser rows, yielding the implementation target of 39 total, 35 routing, and four browser rows; this is an inference from the two independently established partitions and must be checked by the loader command above. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:11-13] [SOURCE: .opencode/skills/system-deep-loop/benchmark/README.md:27-42] [INFERENCE: 21 existing normalized rows + the repaired authored partition of 14 routing and 4 browser rows described in .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:21]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-006.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md:60-179`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:48-70,106`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-57`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:27-65`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-76,185-255`"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-implementation-handoff-has-five-independently-testable-gates-and-benchmark-c",
+      "text": "**The implementation handoff has five independently testable gates, and benchmark comparison belongs last.**",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-006.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md:60-179`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:48-70,106`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-57`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:27-65`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-76,185-255`"
+      ]
+    },
+    {
+      "id": "finding-6-4-the-safety-regression-block-needs-five-named-assertions-not-a-generic-fallback-s",
+      "text": "**The safety regression block needs five named assertions, not a generic “fallback still works” check.** Tests must prove: (a) an explicit valid mode hint wins competing inferred intent; (b) ambiguous/low-confidence input returns `UNKNOWN_FALLBACK`; (c) a missing registry mode returns fallback rather than a guessed packet; (d) a missing resource path fails closed; and (e) containment rejects any path escaping the selected packet. The new positive assertion must additionally prove that three public improvement modes sharing one packet remain distinguishable by the already-resolved `workflowMode`, never by packet name or declaration order. [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:48-70,106] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:23-27]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-006.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md:60-179`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:48-70,106`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-57`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:27-65`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-76,185-255`"
+      ]
+    },
+    {
+      "id": "finding-6-3-typed-row-acceptance-has-an-exact-baseline-and-bounded-first-slice-rule-but-not-",
+      "text": "**Typed-row acceptance has an exact baseline and bounded first-slice rule, but not an evidence-backed fixed first-slice count yet.** The before report has zero typed gold. The first implementation slice must produce `K > 0` typed routing rows, with `K` exactly equal to the scenario-intent-reviewed subset of the 35 eligible routing rows and zero invalid/stale oracle exclusions. Setting `K = 35` merely from filenames would violate the authored-gold boundary; the exact scenario IDs remain an explicit corpus-authoring decision. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:21-27,33-36] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md:112-120,176-179]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-006.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md:60-179`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:48-70,106`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md:17-57`",
+        "`.opencode/skills/system-deep-loop/benchmark/README.md:27-65`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-76,185-255`"
+      ]
+    },
+    {
+      "id": "finding-7-4-ai-002-is-not-a-smaller-three-mode-typed-gold-substitute-its-authored-contract-c",
+      "text": "**`AI-002` is not a smaller three-mode typed-gold substitute.** Its authored contract contains three lexical probes, but index-table typed-gold derivation deliberately chooses one dominant mode and filters the pair set to that mode. Therefore a single normalized row cannot provide independently scored coverage for research, review, and ai-council under the current loader contract. [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/advisor_integration/lexical_mode_scoring.md:9-38] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:427-475]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:27-37,142-159`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/mode_routing/{research_routing,review_routing,ai_council_routing}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/improvement_lane_routing/{agent_improvement,model_benchmark,skill_benchmark}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/advisor_integration/lexical_mode_scoring.md:9-38`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:174-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/manual_testing_playbook/manual_testing_playbook.md:28-41`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:16-24`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:28-32,45-52,68-79`"
+      ]
+    },
+    {
+      "id": "finding-7-2-no-seven-mode-complete-authored-slice-exists-in-the-eligible-corpus-the-registry",
+      "text": "**No seven-mode-complete authored slice exists in the eligible corpus.** The registry's seventh active mode is `alignment`, but the hub playbook's own coverage note enumerates only the three lexical modes and three improvement modes, and its routing index contains no alignment row. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:174-197] [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:27-37] [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:142-159]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:27-37,142-159`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/mode_routing/{research_routing,review_routing,ai_council_routing}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/improvement_lane_routing/{agent_improvement,model_benchmark,skill_benchmark}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/advisor_integration/lexical_mode_scoring.md:9-38`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:174-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/manual_testing_playbook/manual_testing_playbook.md:28-41`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:16-24`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:28-32,45-52,68-79`"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-alignment-packet-cannot-be-silently-used-to-close-that-gap-the-established-l",
+      "text": "**The alignment packet cannot be silently used to close that gap.** The established loader census recognizes rows only from deep-improvement, deep-research, and deep-review, while unsupported files stay outside typed-gold scoring; the deep-alignment root describes 31 scenarios but uses the same narrative feature-file form without loader-recognized scenario frontmatter. Promoting one is a separate authored corpus-governance action. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:16-24] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343-417] [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/manual_testing_playbook/manual_testing_playbook.md:28-41]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:27-37,142-159`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/mode_routing/{research_routing,review_routing,ai_council_routing}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/improvement_lane_routing/{agent_improvement,model_benchmark,skill_benchmark}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/advisor_integration/lexical_mode_scoring.md:9-38`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:174-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/manual_testing_playbook/manual_testing_playbook.md:28-41`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:16-24`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:28-32,45-52,68-79`"
+      ]
+    },
+    {
+      "id": "finding-7-5-the-implementable-first-step-is-a-six-row-maximal-slice-not-a-falsely-labeled-mo",
+      "text": "**The implementable first step is a six-row maximal slice, not a falsely labeled mode-complete slice, and it remains gated by hub index repair.** `MR-001..003` plus `IL-001..003` become deterministic typed-gold candidates after the hyphen/underscore index paths are repaired; true seven-mode completion requires one new, explicitly authored loader-eligible alignment routing scenario. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:17-20] [INFERENCE: based on findings 1-4 and the seven-mode registry at .opencode/skills/system-deep-loop/mode-registry.json:174-197]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:27-37,142-159`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/mode_routing/{research_routing,review_routing,ai_council_routing}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/improvement_lane_routing/{agent_improvement,model_benchmark,skill_benchmark}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/advisor_integration/lexical_mode_scoring.md:9-38`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:174-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/manual_testing_playbook/manual_testing_playbook.md:28-41`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:16-24`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:28-32,45-52,68-79`"
+      ]
+    },
+    {
+      "id": "finding-7-1-the-smallest-evidence-backed-seed-over-the-six-modes-represented-by-eligible-dir",
+      "text": "**The smallest evidence-backed seed over the six modes represented by eligible direct-route scenarios is exactly six rows:** `MR-001 → research`, `MR-002 → review`, `MR-003 → ai-council`, `IL-001 → agent-improvement`, `IL-002 → model-benchmark`, and `IL-003 → skill-benchmark`. The root index names each objective and marks all six critical-path; each feature file independently names one expected `Mode` and its command/packet route. [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:144-159] [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/mode_routing/research_routing.md:9-36] [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/mode_routing/review_routing.md:9-36] [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/mode_routing/ai_council_routing.md:9-36] [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/improvement_lane_routing/agent_improvement.md:9-38] [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/improvement_lane_routing/model_benchmark.md:9-37] [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/improvement_lane_routing/skill_benchmark.md:9-37]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:27-37,142-159`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/mode_routing/{research_routing,review_routing,ai_council_routing}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/improvement_lane_routing/{agent_improvement,model_benchmark,skill_benchmark}.md`",
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/advisor_integration/lexical_mode_scoring.md:9-38`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:174-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-165,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-alignment/manual_testing_playbook/manual_testing_playbook.md:28-41`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:16-24`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:28-32,45-52,68-79`"
+      ]
+    },
+    {
+      "id": "finding-8-5-acceptance-requires-four-independent-checks-the-exact-prompt-must-parse-from-an-",
+      "text": "**Acceptance requires four independent checks:** the exact prompt must parse from an `**Exact prompt**` fenced block; the loader must emit one positive `routing` scenario with no `missing-exact-prompt` warning; both typed pairs must exist under manifest mode `alignment`; and router output must contain exactly those two canonical pairs with no unresolved resources. No adapter leaves belong in this minimal fixture because adapter resources are selected only from explicit dispatch-context adapter/authority keys, which the prompt intentionally omits. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:220-234] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:375-417] [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md:172-181,183-235]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-236`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:100-234,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`"
+      ]
+    },
+    {
+      "id": "finding-8-2-the-exact-prompt-should-be-run-deep-alignment-auto-and-ask-only-the-three-axis-s",
+      "text": "**The exact prompt should be:** `Run /deep:alignment:auto and ask only the three-axis scoping question for a new alignment lane before discovery.` This supplies the high-weight `alignment lane`, `scoping question`, and `:auto` signals, contains no discover/check/report override, and therefore selects `ALIGNMENT_SCOPE` with routing state `scope`; the fixture should declare `expected_intent: ALIGNMENT_SCOPE` and `expected_workflow_mode: alignment`. [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md:92-105] [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md:157-170] [INFERENCE: the prompt matches only the scope signal family and falls through `get_routing_key` to `scope`]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-236`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:100-234,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`"
+      ]
+    },
+    {
+      "id": "finding-8-4-the-fixture-must-retain-both-legacy-flat-gold-and-typed-gold-its-frontmatter-sho",
+      "text": "**The fixture must retain both legacy flat gold and typed gold.** Its frontmatter should declare `stage: routing`, `expected_resources` with the same two local paths, `expected_workflow_mode: alignment`, and an `expected_leaf_resources` YAML list whose entries put `workflow_mode` immediately before `leaf_resource_id`. The loader only engages typed scoring when that exact list parses, and only reads `expected_workflow_mode` when typed gold exists. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-165] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343-417]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-236`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:100-234,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-minimal-typed-gold-is-exactly-two-child-local-pairs-workflow-mode-alignment-",
+      "text": "**The minimal typed gold is exactly two child-local pairs:** `{workflow_mode: alignment, leaf_resource_id: references/scoping_protocol.md}` and `{workflow_mode: alignment, leaf_resource_id: references/lane_config_schema.md}`. The router always loads the first as its default, then the scope intent and scope phase select the same two resources; its `seen` set deduplicates those repeated selections. These IDs are packet-local and inventory-guarded, so they are the manifest-valid form once the hub manifest is generated. [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md:88-115] [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md:128-155] [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md:183-235]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-236`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:100-234,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`"
+      ]
+    },
+    {
+      "id": "finding-8-1-use-da-r01-as-the-new-stable-scenario-id-in-a-new-yaml-frontmatter-fixture-not-a",
+      "text": "**Use `DA-R01` as the new stable scenario ID in a new YAML-frontmatter fixture, not an existing `DAL-*` file.** It follows the loader-eligible sibling convention (`DR-Rxx`, `DV-Rxx`, `DI-Rxx`), remains distinct from the existing loader-ineligible alignment corpus, and satisfies the loader's permissive hyphenated-ID grammar. [SOURCE: .opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/loop_setup.md:2,6-7] [SOURCE: .opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/review_setup.md:2,6-7] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343-365]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-236`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:100-234,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`"
+      ]
+    },
+    {
+      "id": "finding-8-7-references-lane-config-schema-md",
+      "text": "references/lane_config_schema.md",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-236`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:100-234,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`"
+      ]
+    },
+    {
+      "id": "finding-8-6-references-scoping-protocol-md",
+      "text": "references/scoping_protocol.md",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-236`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:100-234,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`"
+      ]
+    },
+    {
+      "id": "finding-8-8-workflow-mode-alignment",
+      "text": "workflow_mode: alignment",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-236`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:100-234,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`"
+      ]
+    },
+    {
+      "id": "finding-8-9-workflow-mode-alignment",
+      "text": "workflow_mode: alignment",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-236`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:100-234,343-417,427-524`",
+        "`.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/intra_routing_recall/*.md:2,6-7`"
+      ]
+    },
+    {
+      "id": "finding-9-4-da-r01-is-also-not-yet-a-normalized-seventh-hub-row-when-a-root-index-exists-the",
+      "text": "**`DA-R01` is also not yet a normalized seventh hub row.** When a root index exists, the loader reads only indexed files through `parseFeatureFile()` and does not walk extra YAML-frontmatter fixtures. Adding the iteration-8 YAML file off-index would therefore be ignored; adding it to the hub index would parse it through the index branch, which does not consume its `expected_leaf_resources` frontmatter. The authored contract remains sound, but implementation must first choose and test one loader-supported corpus shape for it. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:258-315,343-417,486-524] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-008.md:16-39,87-93]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/{manual_testing_playbook.md,mode_routing/*.md,improvement_lane_routing/*.md}`",
+        "`.opencode/skills/system-deep-loop/{deep-research,deep-review,deep-ai-council,deep-improvement,deep-alignment}/SKILL.md`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,220-315,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1093-1300`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-274`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-007.md`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-008.md`"
+      ]
+    },
+    {
+      "id": "finding-9-2-static-candidate-matrix-typed-leaf-ids-stay-child-local",
+      "text": "**Static candidate matrix (typed leaf IDs stay child-local):**",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/{manual_testing_playbook.md,mode_routing/*.md,improvement_lane_routing/*.md}`",
+        "`.opencode/skills/system-deep-loop/{deep-research,deep-review,deep-ai-council,deep-improvement,deep-alignment}/SKILL.md`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,220-315,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1093-1300`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-274`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-007.md`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-008.md`"
+      ]
+    },
+    {
+      "id": "finding-9-5-the-failure-taxonomy-is-deterministic-once-a-row-reaches-the-typed-gate-and-a-hu",
+      "text": "**The failure taxonomy is deterministic once a row reaches the typed gate and a hub manifest exists.** Schema defects are `fixture_schema_error`; unknown modes or absent leaves are `fixture_topology_error`; mode/join or greater-than-two simultaneous-mode defects are `fixture_selection_error`. A valid oracle is then scored: missing resource contracts, unresolved outputs, or observed mode-cap excess are `routing_contract_error`, while an otherwise valid contract missing expected pairs is `routing_miss`. Without a manifest or typed gold, the row remains ungated legacy and none of those classes proves success. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:14-25,43-55,168-239] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1093-1196,1202-1257,1287-1300]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/{manual_testing_playbook.md,mode_routing/*.md,improvement_lane_routing/*.md}`",
+        "`.opencode/skills/system-deep-loop/{deep-research,deep-review,deep-ai-council,deep-improvement,deep-alignment}/SKILL.md`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,220-315,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1093-1300`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-274`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-007.md`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-008.md`"
+      ]
+    },
+    {
+      "id": "finding-9-1-the-proposed-set-is-statically-mode-complete-its-expected-modes-are-exactly-the-",
+      "text": "**The proposed set is statically mode-complete:** its expected modes are exactly the seven registry keys, one per row. Every row therefore declares one simultaneous mode, below the selected-map cap of two; leaf count does not affect that cap. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:29-197] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:43-51,203-219]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/{manual_testing_playbook.md,mode_routing/*.md,improvement_lane_routing/*.md}`",
+        "`.opencode/skills/system-deep-loop/{deep-research,deep-review,deep-ai-council,deep-improvement,deep-alignment}/SKILL.md`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,220-315,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1093-1300`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-274`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-007.md`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-008.md`"
+      ]
+    },
+    {
+      "id": "finding-9-3-the-six-indexed-hub-rows-cannot-currently-derive-typed-gold-even-after-path-repa",
+      "text": "**The six indexed hub rows cannot currently derive typed gold even after path repair.** The hub's root index forces the sk-code loader branch. That branch only derives typed pairs from `expectedResources`, but the six files contain no `**Expected references loaded**` block. More importantly, `extractPaths()` preserves only `code-*`, `references/`, `assets/`, or `../shared/` prefixes, while derivation requires the string's leading segment to equal a manifest workflow mode. Thus neither `research/references/...` nor `deep-research/references/...` survives as a mode-qualified value, and plain `references/...` is interpreted as mode `references` and discarded. This is a loader-shape implementation blocker, not a router miss. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,258-315,427-475,497-519] [SOURCE: .opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:144-159,201-211]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/manual_testing_playbook/{manual_testing_playbook.md,mode_routing/*.md,improvement_lane_routing/*.md}`",
+        "`.opencode/skills/system-deep-loop/{deep-research,deep-review,deep-ai-council,deep-improvement,deep-alignment}/SKILL.md`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:29-197`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,220-315,343-524`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1093-1300`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-274`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-007.md`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-008.md`"
+      ]
+    },
+    {
+      "id": "finding-10-5-only-two-residual-decisions-remain-and-neither-requires-more-routing-research-im",
+      "text": "**Only two residual decisions remain, and neither requires more routing research.** Implementation must choose the concrete indexed-corpus authoring representation that satisfies gate 1; fixture governance must explicitly approve the 43 candidate pairs before they become gold. Promotion of any of the 273 loader-ineligible files is optional, outside this critical path, and must not block or expand the seven-row slice. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-009.md:32-34,93-100] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:21,33-47]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-010.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:14-92`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-009.md:14-104`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,258-315,343-524`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`"
+      ]
+    },
+    {
+      "id": "finding-10-2-static-and-executable-oracle-validity-have-explicit-transition-points-the-seven-",
+      "text": "**Static and executable oracle validity have explicit transition points.** The seven rows are already statically mode-complete and cap-valid. They become loader-valid only after gates 1-2, manifest-checkable after gate 3, executable-oracle-valid after gates 4-5, observed-route-valid after gate 6, and score-comparable only after gate 7. This prevents a mode-complete table, a generated manifest, or a higher aggregate score from being misreported as end-to-end typed-routing success. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-009.md:16-36,74-91] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:20-34]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-010.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:14-92`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-009.md:14-104`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,258-315,343-524`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`"
+      ]
+    },
+    {
+      "id": "finding-10-4-the-acceptance-bundle-must-combine-structural-oracle-routing-safety-and-scoring-",
+      "text": "**The acceptance bundle must combine structural, oracle, routing, safety, and scoring evidence.** Structural evidence is manifest byte stability, seven mode identities, no duplicate composites, D5 success, and unchanged topology during each run. Oracle evidence is loader reachability, manifest membership, selected-map validity, and zero exclusions. Routing evidence is exact typed-pair recall/precision with no unresolved or cross-mode output. Safety evidence is the five named fallback assertions. Scoring evidence is a same-corpus, same-trace before/after comparison of D1-intra, D2, D3, and aggregate score; no single layer substitutes for another. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:20-34] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-009.md:36]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-010.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:14-92`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-009.md:14-104`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,258-315,343-524`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`"
+      ]
+    },
+    {
+      "id": "finding-10-1-the-implementation-packet-can-proceed-through-one-deterministic-eight-gate-dag-e",
+      "text": "**The implementation packet can proceed through one deterministic eight-gate DAG.** Each gate consumes evidence produced by the preceding gate; benchmark scoring is deliberately last.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-010.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:14-92`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-009.md:14-104`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,258-315,343-524`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`"
+      ]
+    },
+    {
+      "id": "finding-10-3-the-proposed-seed-has-exact-bounded-acceptance-numbers-seven-rows-seven-workflow",
+      "text": "**The proposed seed has exact bounded acceptance numbers: seven rows, seven workflow modes, and 43 candidate typed pairs.** The row distribution is `research/deep-research=6`, `review/deep-review=6`, `ai-council/deep-ai-council=7`, `agent-improvement/deep-improvement=10`, `model-benchmark/deep-improvement=6`, `skill-benchmark/deep-improvement=6`, and `alignment/deep-alignment=2`. These 43 router-derived candidates become gold only through the gate-4 author review; the measurable corpus gate remains 39 normalized rows = 35 routing + 4 browser, with exactly seven typed seed rows and zero typed-fixture exclusions. [INFERENCE: summing the row-level candidate sets in .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-009.md:20-30] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:20-30]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-010.md:1-88`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md:17-86`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-006.md:14-92`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-009.md:14-104`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168-191,258-315,343-524`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:1-239`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-295`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-3bff03b2af60",
+      "text": "`<packet>/<leaf>` alone is a complete routing identity; three public modes share `deep-improvement`.",
+      "contentHash": "3bff03b2af60",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3bae7e3823d7",
+      "text": "A packet prefix belongs inside canonical `leafResourceId`; the existing contract requires that field to begin with `references/` or `assets/` and treats packet-qualified values as legacy input.",
+      "contentHash": "3bae7e3823d7",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-421da047dae3",
+      "text": "Flat child-relative leaf IDs are globally unique; the eight-entry collision inventory disproves this.",
+      "contentHash": "421da047dae3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-54ad7a21acb8",
+      "text": "**A scenario without typed gold should count as a typed zero.** The typed path is deliberately dormant unless the scenario declares typed gold and the target has a manifest. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1146-1168]",
+      "contentHash": "54ad7a21acb8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8fb299f60a64",
+      "text": "**Malformed or stale typed gold is a router miss.** It is an oracle fault excluded from score denominators. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1287-1300,1499-1507]",
+      "contentHash": "8fb299f60a64",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6ca16accb108",
+      "text": "**Typed-pair recall is an additional headline weight.** It is instead the canonical resource measure feeding the existing D1-intra, D2, and D3 lanes. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1311-1357]",
+      "contentHash": "6ca16accb108",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7df1546cbb56",
+      "text": "“319 Markdown artifacts” means 319 normalized benchmark scenarios; the loader produces 21 today.",
+      "contentHash": "7df1546cbb56",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e4196e5059f3",
+      "text": "Broad behavior-benchmark scenario discovery does not answer this question: those fixtures are a different corpus from `manual_testing_playbook/` and do not pass through this loader.",
+      "contentHash": "e4196e5059f3",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-30c10f013327",
+      "text": "Metadata-ineligible behavior files can safely receive inferred typed gold; typed gold is opt-in and must remain authored.",
+      "contentHash": "30c10f013327",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-fb99de7dac6c",
+      "text": "The benchmark README's 20-scenario statement is the current source of truth; the authored index and machine report both support 18.",
+      "contentHash": "fb99de7dac6c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-fcbef1728b0d",
+      "text": "Encoding packet prefixes inside canonical `leafResourceId`: the contract requires packet-local `references/` or `assets/` IDs.",
+      "contentHash": "fcbef1728b0d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e5ee209e50f9",
+      "text": "Generating typed gold before repairing hub index paths: unreadable rows cannot be safely authored or validated.",
+      "contentHash": "e5ee209e50f9",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-2057146300f7",
+      "text": "Inferring typed gold for the 273 loader-ineligible behavior files remains blocked; no new evidence invalidated the saturated direction.",
+      "contentHash": "2057146300f7",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-11db0e5b01fe",
+      "text": "Resolving `deep-improvement` mode from packet name or declaration order: three public modes share that packet.",
+      "contentHash": "11db0e5b01fe",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-eb3360772e5d",
+      "text": "Treating fallback removal as a score optimization: UNKNOWN and missing-path behavior are acceptance invariants.",
+      "contentHash": "eb3360772e5d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-2c0701725144",
+      "text": "Accepting aggregate-score movement without the same trace mode, corpus count, D5 result, and oracle-fault count.",
+      "contentHash": "2c0701725144",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-41b8056f48ae",
+      "text": "Loader-ineligible files remain outside this matrix. No filename-based promotion or typed-gold inference was retried.",
+      "contentHash": "41b8056f48ae",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-4ad1c5af32bd",
+      "text": "Removing or weakening fallback branches to make typed recall appear higher.",
+      "contentHash": "4ad1c5af32bd",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f56b2d3f088f",
+      "text": "Requiring all 35 routing candidates to receive typed gold in the first slice without scenario-intent review.",
+      "contentHash": "f56b2d3f088f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-4dff8e7109d4",
+      "text": "Treating the frozen 20-row README statement as the post-repair loader count; direct loader output is the count authority.",
+      "contentHash": "4dff8e7109d4",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-b43e4b83bf7c",
+      "text": "`AI-002` as one row covering three independently scored modes: the index-table derivation retains one dominant mode.",
+      "contentHash": "b43e4b83bf7c",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-5e45e4d79d42",
+      "text": "Calling the six-row seed “mode-complete”: it omits the registered alignment mode.",
+      "contentHash": "5e45e4d79d42",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-16d9b7ea99cc",
+      "text": "No existing loader-eligible scenario supplies authored alignment-route intent. This is a corpus gap, not a search gap; further filename inspection cannot close it.",
+      "contentHash": "16d9b7ea99cc",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-fe39e9a9b4cf",
+      "text": "Treating any `DAL-*` feature filename or narrative as alignment typed gold: those files are loader-ineligible under the current corpus contract.",
+      "contentHash": "fe39e9a9b4cf",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-43e4c3a79605",
+      "text": "`full_inventory_intent` was excluded because this is a selected scope route, not a request to enumerate the complete alignment packet. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:375-403]",
+      "contentHash": "43e4c3a79605",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-ee7457f77132",
+      "text": "Adapter-specific leaves were excluded from the minimal gold because the proposed prompt supplies neither an authority nor adapter dispatch-context field; expecting adapter resources would make the oracle depend on context it did not author. [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md:117-126,172-181,227-228]",
+      "contentHash": "ee7457f77132",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-f76b22bba5da",
+      "text": "Existing `DAL-*` documents remain unapproved for promotion. This iteration closed the coverage gap by specifying a new authored fixture and did not retry filename-based inference.",
+      "contentHash": "f76b22bba5da",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-b0ae89424d01",
+      "text": "Packet-qualified values such as `deep-alignment/references/scoping_protocol.md` were excluded from `leaf_resource_id`; the typed parser and alignment router both operate on child-local paths. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:120-139] [SOURCE: .opencode/skills/system-deep-loop/deep-alignment/SKILL.md:143-155]",
+      "contentHash": "b0ae89424d01",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-e1ed4f2b5387",
+      "text": "Adding only `DA-R01` YAML frontmatter under the indexed hub playbook: the index branch ignores off-index files and does not parse typed frontmatter on indexed files.",
+      "contentHash": "e1ed4f2b5387",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-ee11c92e5a6c",
+      "text": "Calling the seven rows oracle-valid merely because they cover seven modes: loader reachability and authored typed gold are independent gates.",
+      "contentHash": "ee11c92e5a6c",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-50d3adfce0ee",
+      "text": "Encoding packet prefixes inside canonical `leaf_resource_id`: the canonical pair remains `{workflowMode, child-local leafResourceId}`.",
+      "contentHash": "50d3adfce0ee",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-4d121d9bdf74",
+      "text": "Further inspection of existing loader-ineligible `DAL-*` files cannot repair the hub loader-shape mismatch and was not retried.",
+      "contentHash": "4d121d9bdf74",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-0eab2157c137",
+      "text": "Treating the cap as a leaf-count limit: it is a simultaneous-workflow-mode cap of two.",
+      "contentHash": "0eab2157c137",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1979fe8b5782",
+      "text": "Aggregate-score-only acceptance remains invalid because it cannot distinguish oracle faults, routing defects, corpus drift, and fallback regression.",
+      "contentHash": "1979fe8b5782",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-101fdf6c2099",
+      "text": "Embedding packet prefixes in canonical `leafResourceId` or inferring the three improvement modes from their shared packet.",
+      "contentHash": "101fdf6c2099",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-1e8fc5b0b9f4",
+      "text": "Further corpus-wide filename inference remains saturated and cannot authorize typed gold or loader-ineligible promotion.",
+      "contentHash": "1e8fc5b0b9f4",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-a6fdd6af378a",
+      "text": "Promoting loader-ineligible files to make the first slice appear broader.",
+      "contentHash": "a6fdd6af378a",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-baeef839bf3f",
+      "text": "Running the scored benchmark before loader, manifest, topology, and fallback gates pass.",
+      "contentHash": "baeef839bf3f",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-fe797aaa533b",
+      "text": "Treating router-derived candidate leaves as author-approved fixture gold without review.",
+      "contentHash": "fe797aaa533b",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [
+    "ERR_MODULE_NOT_FOUND: better-sqlite3"
+  ],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 18,
+    "keyFindings": 62,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.8,
+    "coverageBySources": {
+      "code": 120,
+      "other": 13
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "newInfoRatio",
+      "run": 10,
+      "window": 3,
+      "value": 0.8,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-07-17T05:04:20Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 10,
+      "window": 3,
+      "value": 0.8,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-07-17T05:04:20Z"
+    }
+  ]
+}

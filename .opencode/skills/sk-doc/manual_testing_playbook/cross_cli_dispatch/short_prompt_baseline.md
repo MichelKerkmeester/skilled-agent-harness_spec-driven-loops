@@ -2,9 +2,9 @@
 id: SD-010
 category: cross_cli_dispatch
 title: 'Short-prompt baseline: CHANGELOG intent across all 3 CLIs'
-expected_intent: CHANGELOG
+expected_intent: create-changelog
 expected_resources:
-  - assets/changelog_template.md
+  - shared/assets/changelog_template.md
 expected_workflow_mode: create-changelog
 expected_leaf_resources:
   - workflow_mode: create-changelog

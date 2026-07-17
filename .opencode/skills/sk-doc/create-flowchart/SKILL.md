@@ -29,7 +29,7 @@ Use this packet when the request asks to:
 - Draw system interactions across services, layers, APIs, databases, queues, caches, or error paths.
 - Validate a flowchart created or edited in the same request for structure, connector, size, branch-label, nesting, or readability issues.
 
-Keyword triggers: `create flowchart`, `/create:flowchart`, `flowchart`, `ASCII flowchart`, `workflow diagram`, `decision tree`, `swimlane`, `parallel execution diagram`, `approval loop diagram`.
+Keyword triggers: `create flowchart`, `/create:flowchart`, `flowchart`, `ASCII flowchart`, `workflow diagram`, `text diagram`, `text characters`, `decision tree`, `decision branch`, `swimlane`, `parallel execution diagram`, `approval loop diagram`.
 
 ### When NOT to Use
 

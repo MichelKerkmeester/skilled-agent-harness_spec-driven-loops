@@ -22,7 +22,7 @@ _memory:
       - ".opencode/specs/sk-doc/015-sk-doc-parent/"
       - ".opencode/specs/sk-doc/016-hub-doc-conformance-fixes/"
       - ".opencode/specs/sk-doc/030-benchmark-authoring-centralization/"
-      - ".opencode/specs/sk-doc/031-sk-doc-router-alignment/"
+      - ".opencode/specs/sk-doc/019-sk-doc-router-alignment/"
       - ".opencode/specs/sk-doc/032-hyphen-naming-convention/"
       - ".opencode/specs/sk-doc/033-create-diff-mode/"
     session_dedup:

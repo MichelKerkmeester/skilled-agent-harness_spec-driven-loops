@@ -4,8 +4,8 @@ category: advisor_integration
 stage: routing
 title: "AI-002: Lexical Mode Scoring"
 description: "Verify research, review, and ai-council are lexically routed modes with legacy advisor ids preserved in the registry projection."
-expected_intent: UNKNOWN
-expected_workflow_mode: UNKNOWN
+expected_intent: research
+expected_workflow_mode: research
 expected_leaf_resources: []
 version: "1.2.0.0"
 ---
