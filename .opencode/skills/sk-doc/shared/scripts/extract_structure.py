@@ -120,6 +120,33 @@ def parse_frontmatter(content: str) -> Tuple[Dict[str, Any], List[str], str]:
 # 2. MARKDOWN PARSER
 # ───────────────────────────────────────────────────────────────
 
+def _fenced_line_numbers(content: str) -> set:
+    """1-based line numbers that fall inside fenced code blocks.
+
+    Tracks the opening fence's backtick length so a longer outer fence (```` )
+    keeps shorter inner fences (```) literal, and a closing fence must be at least
+    as long as its opener with no info string. A naive "any ``` opens, a bare ```
+    closes" scan mis-nests 4-backtick doc examples. Kept identical to the
+    command-doc validator's helper so both modules classify fences the same way.
+    """
+    fenced = set()
+    fence_len = 0
+    for i, line in enumerate(content.split('\n'), start=1):
+        stripped = line.strip()
+        if stripped.startswith('```'):
+            ticks = len(stripped) - len(stripped.lstrip('`'))
+            info = stripped[ticks:].strip()
+            fenced.add(i)
+            if fence_len == 0:
+                fence_len = ticks
+            elif ticks >= fence_len and info == '':
+                fence_len = 0
+            continue
+        if fence_len > 0:
+            fenced.add(i)
+    return fenced
+
+
 def extract_headings(content: str) -> List[Dict[str, Any]]:
     """Extract all headings with metadata, skipping headings inside code blocks.
 
@@ -131,22 +158,10 @@ def extract_headings(content: str) -> List[Dict[str, Any]]:
     """
     headings = []
     lines = content.split('\n')
-    in_code_block = False
+    fenced = _fenced_line_numbers(content)
 
     for i, line in enumerate(lines, start=1):
-        stripped = line.strip()
-
-        # Treat non-empty fence markers inside code blocks as literal example content.
-        # Only plain ``` closes an open code block.
-        if stripped.startswith('```'):
-            if not in_code_block:
-                in_code_block = True
-                continue
-            if stripped == '```':
-                in_code_block = False
-            continue
-
-        if in_code_block:
+        if i in fenced:
             continue
 
         match = re.match(r'^(#{1,6})\s+(.+)$', line)
@@ -324,20 +339,10 @@ def detect_placeholders(content: str) -> List[Dict[str, Any]]:
     """
     issues = []
     lines = content.split('\n')
-    in_code_block = False
+    fenced = _fenced_line_numbers(content)
 
     for i, line in enumerate(lines, start=1):
-        stripped = line.strip()
-
-        if stripped.startswith('```'):
-            if not in_code_block:
-                in_code_block = True
-                continue
-            if stripped == '```':
-                in_code_block = False
-            continue
-
-        if in_code_block:
+        if i in fenced:
             continue
 
         for pattern in PLACEHOLDER_PATTERNS:
