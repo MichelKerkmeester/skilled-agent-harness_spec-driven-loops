@@ -320,8 +320,8 @@ const CONFIG: SpecKitConfig = {
 
 function getSpecsDirectories(): string[] {
   return [
+    path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
     path.join(CONFIG.PROJECT_ROOT, 'specs'),
-    path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs')
   ];
 }
 

@@ -24,6 +24,8 @@ import {
   CATEGORY_FOLDER_PATTERN,
   findChildFolderSync,
 } from '../core/index.js';
+import { resolveSpecFolderCanonical } from '../core/spec-root-canonical-resolver.js';
+import { assertSpecWriteAllowed } from '../core/spec-root-write-guard.js';
 import { runWorkflow, releaseFilesystemLock } from '../core/workflow.js';
 import { loadCollectedData } from '../loaders/index.js';
 import { collectSessionData } from '../extractors/collect-session-data.js';
@@ -266,8 +268,20 @@ function isValidSpecFolder(folderPath: string): SpecFolderValidation {
   return { valid: true };
 }
 
+function isUnqualifiedSpecFolderReference(rawArg: string): boolean {
+  return !path.isAbsolute(rawArg)
+    && !rawArg.startsWith('specs/')
+    && !rawArg.startsWith('.opencode/specs/')
+    && !rawArg.endsWith('.json')
+    && SPEC_FOLDER_BASIC_PATTERN.test(path.basename(rawArg));
+}
+
 function resolveCliSpecFolderReference(rawArg: string): string | null {
   const folderName = path.basename(rawArg);
+  if (isUnqualifiedSpecFolderReference(rawArg)) {
+    return resolveSpecFolderCanonical(rawArg, CONFIG.PROJECT_ROOT);
+  }
+
   const explicitProjectScopedPath = !rawArg.endsWith('.json') && (
     rawArg.startsWith('specs/') ||
     rawArg.startsWith('.opencode/specs/')
@@ -336,6 +350,25 @@ function resolveCliSpecFolderReference(rawArg: string): string | null {
   ) && !rawArg.endsWith('.json');
 
   return isSpecFolderPath ? rawArg : null;
+}
+
+function getRelativePacketIdForWrite(specFolderArg: string): string {
+  const resolvedTarget = path.isAbsolute(specFolderArg)
+    ? path.resolve(specFolderArg)
+    : path.resolve(CONFIG.PROJECT_ROOT, specFolderArg);
+  const approvedRoots = [
+    path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs'),
+    path.join(CONFIG.PROJECT_ROOT, 'specs'),
+  ];
+
+  for (const root of approvedRoots) {
+    const relative = path.relative(path.resolve(root), resolvedTarget);
+    if (relative && !relative.startsWith('..') && !path.isAbsolute(relative)) {
+      return relative.replace(/\\/g, '/');
+    }
+  }
+
+  throw new Error(`Unable to derive packet identity for write target: ${specFolderArg}`);
 }
 
 function extractPayloadSpecFolder(data: Record<string, unknown>): string | null {
@@ -876,8 +909,16 @@ async function main(
   try {
     const parsed = await parseArguments(argv, stdinReader);
     CONFIG.DATA_FILE = parsed.dataFile;
-    CONFIG.SPEC_FOLDER_ARG = parsed.specFolderArg;
+    CONFIG.SPEC_FOLDER_ARG = parsed.specFolderArg && isUnqualifiedSpecFolderReference(parsed.specFolderArg)
+      ? resolveSpecFolderCanonical(parsed.specFolderArg, CONFIG.PROJECT_ROOT)
+      : parsed.specFolderArg;
     validateArguments();
+    if (CONFIG.SPEC_FOLDER_ARG) {
+      assertSpecWriteAllowed(
+        getRelativePacketIdForWrite(CONFIG.SPEC_FOLDER_ARG),
+        CONFIG.PROJECT_ROOT,
+      );
+    }
     const lockedSpecFolder = resolveExistingSpecFolderPath(CONFIG.SPEC_FOLDER_ARG);
     const canonicalSaveLock = acquireCanonicalSaveLock(lockedSpecFolder);
 

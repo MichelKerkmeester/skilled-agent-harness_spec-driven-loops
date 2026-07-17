@@ -160,8 +160,8 @@ function resolveSpecFolderPathCandidates(specFolderHint: string): string[] {
     specFolderHint,
     path.resolve(specFolderHint),
     path.join(cwd, specFolderHint),
-    path.join(cwd, 'specs', specFolderHint),
     path.join(cwd, '.opencode', 'specs', specFolderHint),
+    path.join(cwd, 'specs', specFolderHint),
   ];
 
   return uniqueStrings(rawCandidates.map((candidate) => path.resolve(candidate)))
