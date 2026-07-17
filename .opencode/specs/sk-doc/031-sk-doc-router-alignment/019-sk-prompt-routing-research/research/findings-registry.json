@@ -1,0 +1,750 @@
+{
+  "sessionId": "rsr-2026-07-17T05-19-12Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-how-do-prompt-improve-and-prompt-models-currently-route-and-what-workflowmode-le",
+      "inboxId": null,
+      "text": "How do `prompt-improve` and `prompt-models` currently route, and what `(workflowMode, leafResourceId)` pairs do they imply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-what-resources-must-a-prompt-models-resource-map-expose-and-do-all-proposed-leav",
+      "inboxId": null,
+      "text": "What resources must a `prompt-models` `RESOURCE_MAP` expose, and do all proposed leaves resolve?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-why-does-the-baseline-report-100-while-routing-dimensions-remain-null-and-what-s",
+      "inboxId": null,
+      "text": "Why does the baseline report 100 while routing dimensions remain null, and what score appears once typed routing is measured?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-which-of-the-32-playbook-scenarios-are-genuine-routing-decisions-eligible-for-in",
+      "inboxId": null,
+      "text": "Which of the 32 playbook scenarios are genuine routing decisions eligible for independently authored typed gold?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-dependency-ordered-changes-produce-a-hub-level-surface-router-and-improve-r",
+      "inboxId": null,
+      "text": "What dependency-ordered changes produce a hub-level surface router and improve routing without weakening fallback behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-how-do-prompt-improve-and-prompt-models-currently-route-and-what-workflowmode-le",
+      "inboxId": null,
+      "text": "How do `prompt-improve` and `prompt-models` currently route, and what `(workflowMode, leafResourceId)` pairs do they imply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-what-resources-must-a-prompt-models-resource-map-expose-and-do-all-proposed-leav",
+      "inboxId": null,
+      "text": "What resources must a `prompt-models` `RESOURCE_MAP` expose, and do all proposed leaves resolve?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-why-does-the-baseline-report-100-while-routing-dimensions-remain-null-and-what-s",
+      "inboxId": null,
+      "text": "Why does the baseline report 100 while routing dimensions remain null, and what score appears once typed routing is measured?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-4-which-of-the-32-playbook-scenarios-are-genuine-routing-decisions-eligible-for-in",
+      "inboxId": null,
+      "text": "Which of the 32 playbook scenarios are genuine routing decisions eligible for independently authored typed gold?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-5-what-dependency-ordered-changes-produce-a-hub-level-surface-router-and-improve-r",
+      "inboxId": null,
+      "text": "What dependency-ordered changes produce a hub-level surface router and improve routing without weakening fallback behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Reconcile the stated baseline score of 100 with the checked report, which currently records `aggregateScore: null`, D1-D4 null, and D5 16.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Classify the 32 playbook scenarios for independently authored typed gold.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Define the complete `prompt-models` `RESOURCE_MAP`, including whether shared supporting references/assets beyond the seven minimum routing leaves belong in typed gold, then recheck every proposed address.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Produce the dependency-ordered change plan without weakening unknown/ambiguous fallback behavior.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "How do `prompt-improve` and `prompt-models` currently route, and what `(workflowMode, leafResourceId)` pairs do they imply?",
+    "What resources must a `prompt-models` `RESOURCE_MAP` expose, and do all proposed leaves resolve?",
+    "Why does the baseline report 100 while routing dimensions remain null, and what score appears once typed routing is measured?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-hub-router-json-performs-only-workflow-selection-it-defaults-to-prompt-improve-a",
+      "text": "`hub-router.json` performs only workflow selection. It defaults to `prompt-improve`, assigns mode-specific vocabulary, and emits packet entrypoint addresses (`prompt-improve/SKILL.md` or `prompt-models/SKILL.md`); it has no per-intent leaf map and no bundle rules. The hub contract likewise says outcomes are `single`, `orderedBundle`, or `defer`, with no registry surface axis. [SOURCE: .opencode/skills/sk-prompt/hub-router.json:4] [SOURCE: .opencode/skills/sk-prompt/hub-router.json:13] [SOURCE: .opencode/skills/sk-prompt/hub-router.json:16] [SOURCE: .opencode/skills/sk-prompt/SKILL.md:81]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:12`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:1`",
+        "`.opencode/skills/sk-prompt/hub-router.json:1`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:53`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1`"
+      ]
+    },
+    {
+      "id": "finding-1-3-prompt-improve-declares-seven-packet-intents-but-only-six-unique-routable-markdo",
+      "text": "`prompt-improve` declares seven packet intents but only six unique routable Markdown leaves: `references/depth_framework.md`, `references/patterns_evaluation.md`, `references/design_generation_patterns.md`, and the Markdown/JSON/YAML format guides. Its implied typed surface is therefore six pairs whose mode is always `prompt-improve` and whose `leafResourceId` is each of those packet-root-relative paths. `RAW` intentionally maps to no leaf. [SOURCE: .opencode/skills/sk-prompt/prompt-improve/SKILL.md:121] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/SKILL.md:130] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/SKILL.md:137]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:12`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:1`",
+        "`.opencode/skills/sk-prompt/hub-router.json:1`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:53`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1`"
+      ]
+    },
+    {
+      "id": "finding-1-4-prompt-models-has-routing-logic-but-no-explicit-resource-map-it-always-loads-ref",
+      "text": "`prompt-models` has routing logic but no explicit `RESOURCE_MAP`: it always loads `references/models/_index.md`, resolves one of five active model ids, then loads `references/models/<id>.md` and `references/pattern_index.md`. Its minimum implied typed surface is seven pairs under `workflowMode: prompt-models`: the index, pattern index, and five active profiles (`deepseek-v4-pro`, `kimi-k2.7-code`, `minimax-m3`, `mimo-v2.5-pro`, `glm-5.2`). The index links all five active profile files, and repository inventory confirmed those seven leaves exist. [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:123] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:168] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:182] [SOURCE: .opencode/skills/sk-prompt/prompt-models/references/models/_index.md:24]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:12`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:1`",
+        "`.opencode/skills/sk-prompt/hub-router.json:1`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:53`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1`"
+      ]
+    },
+    {
+      "id": "finding-1-6-adding-a-registry-surface-packet-is-ruled-out-for-this-optimization-the-existing",
+      "text": "Adding a registry surface packet is ruled out for this optimization. The existing architecture explicitly classifies both packets as workflows because `prompt-models` is consumed by `cli-opencode` outside this hub; the compatible optimization is a hub-level second-layer leaf router while preserving both workflow modes and current fallback behavior. [SOURCE: .opencode/skills/sk-prompt/SKILL.md:36] [SOURCE: .opencode/skills/sk-prompt/SKILL.md:106] [INFERENCE: the typed-pair scaffold at `.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:3` adds leaf selection without changing registry packet kinds]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:12`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:1`",
+        "`.opencode/skills/sk-prompt/hub-router.json:1`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:53`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-first-routing-layer-is-already-deterministic-prompt-improve-maps-to-packet-p",
+      "text": "The first routing layer is already deterministic: `prompt-improve` maps to packet `prompt-improve`, backend `prompt-engine`, and a mutating tool surface; `prompt-models` maps to packet `prompt-models`, backend `profile-lookup`, and a read-only tool surface. Both are intentionally `packetKind: workflow`. [SOURCE: .opencode/skills/sk-prompt/mode-registry.json:16] [SOURCE: .opencode/skills/sk-prompt/mode-registry.json:29]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:12`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:1`",
+        "`.opencode/skills/sk-prompt/hub-router.json:1`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:53`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-typed-pair-recipe-requires-a-separate-second-layer-map-containing-hub-root-r",
+      "text": "The typed-pair recipe requires a separate second-layer map containing hub-root-relative, packet-qualified raw addresses; the leaf contract converts each raw address exactly once into `(workflowMode, leafResourceId)`. Consequently, `prompt-improve`'s current packet-root-relative `RESOURCE_MAP` is valid inside its packet but cannot be copied verbatim as hub-level typed gold; its entries need a `prompt-improve/` prefix, while the proposed model leaves need `prompt-models/`. [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:307] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:10]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:12`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:1`",
+        "`.opencode/skills/sk-prompt/hub-router.json:1`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:53`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:286`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1`"
+      ]
+    },
+    {
+      "id": "finding-2-3-fallback-preservation-needs-three-explicit-invariants-because-the-current-layers",
+      "text": "Fallback preservation needs three explicit invariants, because the current layers intentionally differ: hub ambiguity loads only `prompt-improve/SKILL.md` and asks for mode/model/format; `prompt-improve` zero-score routing loads only its default DEPTH resource and returns a checklist; `prompt-models` unknown-model routing loads only `_index.md` and returns its model checklist, while a known-but-missing profile remains index-only. The new surface router must load no leaf on no keyword match and must not turn either fallback into a guessed typed pair. [SOURCE: .opencode/skills/sk-prompt/SKILL.md:63] [SOURCE: .opencode/skills/sk-prompt/SKILL.md:70] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/SKILL.md:222] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:168] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:173] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:43]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/hub-router.json:4`",
+        "`.opencode/skills/sk-prompt/SKILL.md:63`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:222`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-doc/shared/references/smart_routing.md:3`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:10`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:165`",
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:12`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:27`"
+      ]
+    },
+    {
+      "id": "finding-2-5-lexical-optimization-belongs-after-a-typed-baseline-and-fallback-regression-fixt",
+      "text": "Lexical optimization belongs after a typed baseline and fallback regression fixtures, not before them. The hub currently uses `ambiguityDelta: 1`, deterministic tie-breaking, default mode `prompt-improve`, and an ordered bundle only for clearly separate intents; changing vocabulary or weights before typed replay would confound contract enablement with behavior tuning. Preserve the current policy first, measure typed routing, then adjust the smallest signal set and rerun unknown/no-keyword, near-tie, explicit dual-intent, and named-model cases. [SOURCE: .opencode/skills/sk-prompt/hub-router.json:4] [SOURCE: .opencode/skills/sk-prompt/hub-router.json:7] [SOURCE: .opencode/skills/sk-prompt/hub-router.json:8] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:256] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:270]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/hub-router.json:4`",
+        "`.opencode/skills/sk-prompt/SKILL.md:63`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:222`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-doc/shared/references/smart_routing.md:3`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:10`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:165`",
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:12`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:27`"
+      ]
+    },
+    {
+      "id": "finding-2-4-manifest-generation-must-follow-registry-resource-authoring-but-precede-scenario",
+      "text": "Manifest generation must follow registry/resource authoring but precede scenario gold. The generator enumerates each registered mode's on-disk `references/` and `assets/`, rejects duplicate composite pairs, and writes a canonical manifest; the topology validator then requires every scenario pair to have a workflow mode and contained leaf id, resolve in that manifest, and belong to the scenario's selected mode. Therefore the safe order is: resource/map declarations → `leaf-manifest.json` generation/check → independently authored scenario pairs → topology gate. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:120] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:165] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:187] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:203]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/hub-router.json:4`",
+        "`.opencode/skills/sk-prompt/SKILL.md:63`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:222`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-doc/shared/references/smart_routing.md:3`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:10`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:165`",
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:12`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:27`"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-existing-100-score-is-not-a-sufficient-pre-change-routing-baseline-the-canon",
+      "text": "The existing 100 score is not a sufficient pre-change routing baseline: the canonical report has D1-intra and D2 at 100 but D1-inter, D3, and D4 unscored, while the benchmark summary says the four current hub scenarios only exercise packet selection and identifies child-router conformance gaps. The change plan must therefore record both the current report and a new typed-pair baseline before claiming improvement. [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:12] [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:29] [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:43] [SOURCE: .opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:27] [SOURCE: .opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:36]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/hub-router.json:4`",
+        "`.opencode/skills/sk-prompt/SKILL.md:63`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:222`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-doc/shared/references/smart_routing.md:3`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:10`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:165`",
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:12`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:27`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-first-dependency-is-to-freeze-the-existing-first-layer-contract-not-replace-",
+      "text": "The first dependency is to freeze the existing first-layer contract, not replace it: keep both registry entries as workflow modes, keep `hub-router.json` responsible only for mode selection and packet entrypoints, and add the per-intent leaf map separately at `shared/references/smart_routing.md`. The authoritative recipe says hub resources are packet entrypoints while leaf gold belongs in the second-layer router, and the current hub explicitly keeps packet behavior unflattened. [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:307] [SOURCE: .opencode/skills/sk-prompt/SKILL.md:74] [SOURCE: .opencode/skills/sk-prompt/SKILL.md:85]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/hub-router.json:4`",
+        "`.opencode/skills/sk-prompt/SKILL.md:63`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:222`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-doc/shared/references/smart_routing.md:3`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:10`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:165`",
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:12`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:27`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-second-dependency-is-to-author-packet-qualified-intent-signals-and-resource-",
+      "text": "The second dependency is to author packet-qualified `INTENT_SIGNALS` and `RESOURCE_MAP` entries before producing typed gold. The map must use `prompt-improve/references|assets/...` and `prompt-models/references|assets/...` raw addresses, which the contract converts exactly once to packet-root-relative `leafResourceId` values; unrecognized prefixes must fail closed rather than be stripped heuristically. [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:10] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:309] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:20] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:190]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/hub-router.json:4`",
+        "`.opencode/skills/sk-prompt/SKILL.md:63`",
+        "`.opencode/skills/sk-prompt/prompt-improve/SKILL.md:222`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-doc/shared/references/smart_routing.md:3`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:10`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:165`",
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:12`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:27`"
+      ]
+    },
+    {
+      "id": "finding-3-3-aliases-are-routing-signals-not-resource-leaves-every-accepted-alias-normalizes-",
+      "text": "Aliases are routing signals, not resource leaves. Every accepted alias normalizes to one of the five canonical profile ids, so aliases must point to the same five map keys rather than create duplicate addresses or synthetic files. [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:59] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:64] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:150]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:103`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:123`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:143`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:256`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md:1`",
+        "Bounded packet inventory command output (15 files under `references/` and `assets/`; all seven candidate addresses present)"
+      ]
+    },
+    {
+      "id": "finding-3-4-eight-packet-resources-are-supporting-only-data-under-the-current-router-referen",
+      "text": "Eight packet resources are supporting-only data under the current router: `references/context_budget.md`, `references/output_verification.md`, `references/quota_fallback.md`, `references/vision-audit-benchmark.md`, `assets/per_model_budgets.json`, `assets/confidence_scoring_rubric.md`, `assets/model_profiles.json`, and `assets/cli_prompt_quality_card.md`. The router's declared load levels contain none of these; assets are explicitly shared data referenced by profiles/indexes, and the JSON files are additionally ineligible because the guard permits only Markdown. [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:103] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:117] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:136] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:256] [SOURCE: .opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:103`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:123`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:143`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:256`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md:1`",
+        "Bounded packet inventory command output (15 files under `references/` and `assets/`; all seven candidate addresses present)"
+      ]
+    },
+    {
+      "id": "finding-3-5-every-proposed-packet-qualified-route-address-resolves-on-disk-and-each-converts",
+      "text": "Every proposed packet-qualified route address resolves on disk, and each converts exactly once to a packet-root-relative typed pair. The candidate map is therefore deterministic:",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:103`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:123`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:143`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:256`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md:1`",
+        "Bounded packet inventory command output (15 files under `references/` and `assets/`; all seven candidate addresses present)"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-complete-route-load-surface-has-seven-markdown-leaves-the-always-loaded-mode",
+      "text": "The complete route-load surface has seven Markdown leaves: the always-loaded model index, the post-selection pattern index, and five active model profiles. The router names `_index.md` and `pattern_index.md` as constants, loads the index before model resolution, and loads one canonical profile plus the pattern index only after a successful model match. [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:123] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:168] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:182]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:103`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:123`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:143`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:256`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md:1`",
+        "Bounded packet inventory command output (15 files under `references/` and `assets/`; all seven candidate addresses present)"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-five-profile-leaves-are-the-only-model-selected-leaves-index-md-is-an-always",
+      "text": "The five profile leaves are the only model-selected leaves. `_index.md` is an `ALWAYS` lifecycle leaf and `pattern_index.md` is a conditional post-selection bridge, so typed-gold expectations should not pretend either identifies the requested model. The active set is exactly DeepSeek, Kimi, MiniMax, MiMo, and GLM; Haiku is explicitly optional and has no active profile. [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:103] [SOURCE: .opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22] [SOURCE: .opencode/skills/sk-prompt/prompt-models/references/models/_index.md:41]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:55`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:103`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:123`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:143`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:168`",
+        "`.opencode/skills/sk-prompt/prompt-models/SKILL.md:256`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/models/_index.md:22`",
+        "`.opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md:1`",
+        "Bounded packet inventory command output (15 files under `references/` and `assets/`; all seven candidate addresses present)"
+      ]
+    },
+    {
+      "id": "finding-4-5-after-independently-authored-manifest-valid-typed-gold-exists-the-harness-can-re",
+      "text": "After independently authored, manifest-valid typed gold exists, the harness can report per-scenario typed-pair recall and use that recall in D1-intra/D2, while D3 becomes typed-pair precision (`hit / observedCount`); the headline will then be the fitted-scenario average of resulting normalized per-row scores. No honest post-typed numeric score can be predicted now because the required gold and corresponding observed typed pairs do not exist. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:375] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1343] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1422] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1499] [INFERENCE: the numeric result depends on authored typed expectations and replay observations that are absent from the current corpus]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/benchmark/live_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:7`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:7`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md:6`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1332`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md:20`"
+      ]
+    },
+    {
+      "id": "finding-4-6-provenance-inspection-found-the-checked-in-hub-reports-unchanged-between-the-his",
+      "text": "Provenance inspection found the checked-in hub reports unchanged between the historical hyphenated run-label paths and commit `f2ba7f29dde`, which renamed them to underscore paths with zero content changes; targeted status showed no working-tree report modifications. The current generated artifacts and committed hub history therefore agree on 100, while the D5-only/null claim is separately and correctly preserved by the checked-in child report. [SOURCE: .opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:7] [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.md:3] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.md:3] [INFERENCE: based on bounded `git status`, `git log`, `git ls-tree`, and `git show` inspection of the three report paths]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/benchmark/live_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:7`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:7`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md:6`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1332`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md:20`"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-canonical-hub-router-and-live-reports-both-say-aggregate-100-but-that-headli",
+      "text": "The canonical **hub** router and live reports both say aggregate 100, but that headline is normalized over only the measured scenario dimensions: D1-intra 100 and D2 100; D1-inter, D3, and weighted D4 are null, while D5 100 is a hard gate. The contract says Mode A normalizes over measured D1-intra/D2/D3 (plus opt-in D1-inter) and computes D5 separately as the structural gate. Therefore this 100 is not 100/100 full-dimensional routing quality. [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:11] [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:29] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md:22] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md:30]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/benchmark/live_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:7`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:7`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md:6`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1332`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md:20`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-current-hub-denominator-is-four-hub-scenarios-each-reported-as-100-their-fro",
+      "text": "The current hub denominator is four hub scenarios, each reported as 100. Their frontmatter names packet `SKILL.md` paths, but the loader's resource extractor recognizes only `code-*`, `references/`, `assets/`, and `../shared/` paths, so packet `SKILL.md` entries produce no positive resource gold. The scorer then neutralizes missing resource recall to 1 for D1-intra and D2 and makes D3 not applicable. Thus the hub 100 primarily confirms intent/packet replay for four cases; it does not measure leaf-resource recall or over-routing. [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md:6] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:364] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:200] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:227] [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:193]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/benchmark/live_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:7`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:7`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md:6`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1332`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md:20`"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-d5-only-null-artifact-is-the-child-prompt-improve-report-not-the-hub-baselin",
+      "text": "The D5-only/null artifact is the **child** `prompt-improve` report, not the hub baseline: it names `targetSkill.id: prompt-improve`, has verdict `NO-SCENARIOS`, `aggregateScore: null`, D1-intra/D2/D3 null, and D5 16. Its rendered report confirms a zero-scenario denominator and seven P1 `dead_intent_key` findings. [SOURCE: .opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:7] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:11] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:29] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.md:7] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.md:35]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/benchmark/live_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:7`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:7`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md:6`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1332`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md:20`"
+      ]
+    },
+    {
+      "id": "finding-4-4-typed-routing-is-currently-unmeasurable-the-hub-report-has-routegoldrows-0-every",
+      "text": "Typed routing is currently unmeasurable: the hub report has `routeGoldRows: 0`, every route-miss denominator is 0, and scenario `expectedSurface`/`observedSurface`/`surfaceMatch` are null. The producer deliberately leaves scenarios without `expected_leaf_resources` ungated by the typed taxonomy, so untyped scenarios must not be interpreted as typed zeros or typed passes. [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:83] [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:116] [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:268] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/benchmark/live_final/skill-benchmark-report.json:11`",
+        "`.opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:7`",
+        "`.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:7`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md:6`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1332`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scoring_contract.md:20`"
+      ]
+    },
+    {
+      "id": "finding-5-2-deterministic-classification-of-all-32-is-7-genuine-leaf-routing-candidates-4-co",
+      "text": "Deterministic classification of all 32 is: **7 genuine leaf-routing candidates**, **4 command/mode cases**, **12 behavior/scoring/contract cases**, and **9 guard/failure/recovery cases**. Hub: routing candidates `hub_routing/generic_prompt_improve.md` (SP-001), `hub_routing/named_model_prompt_models.md` (SP-002), and `hub_routing/second_model_glm.md` (SP-004); guard `hub_routing/ambiguous_default.md` (SP-003). Child command/mode: `mode_detection/` SP-001..SP-004. Child leaf routing: `smart_routing/intent_model_keyword_scoring.md` (SP-005), `smart_routing/on_demand_keyword_loading.md` (SP-006), `smart_routing/ambiguity_delta_tiebreaker.md` (SP-007), and `format_modes/format_guide_on_demand.md` (SP-028). Child behavior/scoring/contract: SP-009, SP-013, SP-015, SP-018..SP-021, and SP-023..SP-027. Child guard/failure/recovery: SP-008, SP-010..SP-012, SP-014, SP-016..SP-017, and SP-022. [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:27] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:717]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/*.md`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:175`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:717`"
+      ]
+    },
+    {
+      "id": "finding-5-6-no-further-research-is-required-before-implementation-the-handoff-order-is-prese",
+      "text": "No further research is required before implementation. The handoff order is: preserve current first-layer mode/fallback policy; author packet-qualified second-layer resource maps; generate and validate the leaf manifest; add the two atomic seed rows; run topology validation; capture the first typed baseline; then expand to SP-004 and the four child routing candidates before any lexical tuning. This order keeps authored gold independent and leaves behavior/guard scenarios in their existing lanes. [INFERENCE: based on findings 1-5 and the prior dependency-order evidence recorded in `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-002.md`]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/*.md`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:175`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:717`"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-next-expansion-should-add-hub-sp-004-as-prompt-models-references-models-glm-",
+      "text": "The next expansion should add hub SP-004 as `(prompt-models, references/models/glm-5.2.md)`, then child SP-005/SP-006/SP-007/SP-028 only after each multi-input, full-inventory, bundle, or conditional-format expectation is split or explicitly represented. Hub SP-003 and child SP-008 must remain guard/fallback fixtures rather than positive leaf gold, because their authored purpose is to prevent a silent guessed route under weak or zero signals. [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/second_model_glm.md:15] [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/ambiguous_default.md:19] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:251] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:307]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/*.md`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:175`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:717`"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-smallest-useful-independently-authored-seed-is-two-atomic-hub-scenarios-one-",
+      "text": "The smallest useful independently authored seed is **two atomic hub scenarios, one per workflow mode**: (a) `.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md` / hub SP-001 expects exactly `(prompt-improve, references/depth_framework.md)`, because its authored request is generic prompt improvement and its expected behavior explicitly invokes the DEPTH/CLEAR pipeline; (b) `.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/named_model_prompt_models.md` / hub SP-002 expects exactly `(prompt-models, references/models/deepseek-v4-pro.md)`, because its authored behavior explicitly requires that profile rather than the generic framework set. This two-row seed proves packet-qualified typed scoring across both modes without deriving gold from current router output. [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md:15] [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/generic_prompt_improve.md:19] [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/named_model_prompt_models.md:15] [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/named_model_prompt_models.md:19]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/*.md`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:175`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:717`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-stated-denominator-is-exactly-32-authored-scenarios-but-it-spans-two-target-",
+      "text": "The stated denominator is exactly **32 authored scenarios**, but it spans two target-local playbooks rather than one loader invocation: the hub playbook contributes four YAML-frontmatter scenarios under `sk-prompt/manual_testing_playbook/hub_routing/`, while the child `prompt-improve` playbook contributes SP-001..SP-028 (28 scenarios). The loader recursively walks only the supplied `playbookDir`, skips root index files, and admits frontmatter-bearing scenario files, so a hub benchmark discovers 4 and a child benchmark discovers 28; neither target automatically absorbs the other's corpus. [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:30] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/*.md`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:175`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:717`"
+      ]
+    },
+    {
+      "id": "finding-5-3-typed-gold-eligibility-is-narrower-than-loader-eligibility-the-loader-accepts-a-",
+      "text": "Typed-gold eligibility is narrower than loader eligibility. The loader accepts a scenario based on frontmatter `id`, `expected_intent`, or `expected_resources`, but engages typed taxonomy scoring only when `expected_leaf_resources` is present; `expected_workflow_mode` is then parsed only for that typed case. Therefore all 32 remain useful manual scenarios, but only the seven cases above author an observable resource-selection decision suitable for positive typed pairs without inventing behavior gold. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:358] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:375] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:380]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:343`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:23`",
+        "`.opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/*.md`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:175`",
+        "`.opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:717`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-84ad1d577b4d",
+      "text": "Adding lexical carve-outs before measuring typed-pair behavior: the current hub itself requires benchmark evidence before such a carve-out. [SOURCE: .opencode/skills/sk-prompt/SKILL.md:124]",
+      "contentHash": "84ad1d577b4d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-10f81037b718",
+      "text": "No new exhausted approach category. The prior ruled-out conversions of `prompt-models` to a surface packet and packet `SKILL.md` pointers to leaf gold remain excluded.",
+      "contentHash": "10f81037b718",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-2bcfe2145ef7",
+      "text": "Replacing `hub-router.json` resources with leaf paths: this conflates `hubLoadAddress` with `leafResourceId`. [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md:298]",
+      "contentHash": "2bcfe2145ef7",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c628404dd5d7",
+      "text": "Treating UNKNOWN as the default mode's normal leaf set: the second-layer scaffold requires no resource load on a no-keyword match. [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:46]",
+      "contentHash": "c628404dd5d7",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-43ffd4520bff",
+      "text": "Adding one `RESOURCE_MAP` entry per alias: aliases normalize to canonical ids before profile construction, so duplicate alias leaves would misrepresent the router and create duplicate typed pairs. [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:150]",
+      "contentHash": "43ffd4520bff",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8206fb6dbaa7",
+      "text": "Promoting every discovered Markdown file to typed gold: discovery establishes availability, not selection; the actual router loads only the index, one profile, and the pattern index. [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:143] [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:168]",
+      "contentHash": "8206fb6dbaa7",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b5b3f5fb4b8f",
+      "text": "Treating JSON registry/budget assets as leaves: `_guard_in_skill` rejects non-Markdown resources. [SOURCE: .opencode/skills/sk-prompt/prompt-models/SKILL.md:136]",
+      "contentHash": "b5b3f5fb4b8f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0e76bb86ab80",
+      "text": "Counting untyped scenarios as typed failures or passes; absent typed gold intentionally does not engage the taxonomy scorer. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121]",
+      "contentHash": "0e76bb86ab80",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-2d0cef7875e3",
+      "text": "No new exhausted category. A read-only benchmark rerun was unnecessary because the checked-in machine reports, producer code, rendered reports, and clean targeted Git status already established provenance and denominator semantics.",
+      "contentHash": "2d0cef7875e3",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-cf591d3ae389",
+      "text": "Treating aggregate 100 as full D1-D5 coverage; three routing/usefulness dimensions remain null. [SOURCE: .opencode/skills/sk-prompt/benchmark/router_final/skill-benchmark-report.md:12]",
+      "contentHash": "cf591d3ae389",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1e6f00261580",
+      "text": "Treating the child `prompt-improve` D5=16 report as the hub baseline; its target and scenario denominator differ. [SOURCE: .opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a/skill-benchmark-report.json:7]",
+      "contentHash": "1e6f00261580",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f1a6d8c47178",
+      "text": "Starting with ambiguous, full-inventory, or bundled cases: they cannot establish a minimal cross-mode atomic baseline and would conflate contract enablement with fallback or breadth semantics. [SOURCE: .opencode/skills/sk-prompt/manual_testing_playbook/hub_routing/ambiguous_default.md:19] [SOURCE: .opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:271]",
+      "contentHash": "f1a6d8c47178",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6106684dcef7",
+      "text": "Typing all 32 scenarios: 25 scenarios assert command, behavior, scoring, contract, guard, or recovery outcomes rather than a positive leaf-selection oracle. [SOURCE: .opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md:175]",
+      "contentHash": "6106684dcef7",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-76724c04fa90",
+      "text": "Using current `expected_resources: */SKILL.md` as leaf gold: the loader's path extractor does not recognize packet `SKILL.md` paths as leaf resources. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:168]",
+      "contentHash": "76724c04fa90",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [
+    "ERR_MODULE_NOT_FOUND: better-sqlite3"
+  ],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 3,
+    "resolvedQuestions": 2,
+    "carriedForwardOpenQuestions": 4,
+    "keyFindings": 29,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.92,
+    "coverageBySources": {
+      "code": 37,
+      "other": 33
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

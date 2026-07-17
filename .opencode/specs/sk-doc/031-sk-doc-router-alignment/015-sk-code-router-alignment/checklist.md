@@ -1,6 +1,10 @@
 ---
 title: "Verification Checklist: sk-code Router — Typed-Gold Instrumentation + Live Measurement"
 description: "Verification Date: pending (Status: In Progress). QA gate for the Wave 2 sk-code pilot — map-correctness scope-lock, baseline refresh, manifest-gated typed-gold derivation, guard test, and the live-mode sample."
+trigger_phrases:
+  - "sk-code router checklist"
+  - "sk-code typed-gold verification"
+  - "sk-code pilot qa gate"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

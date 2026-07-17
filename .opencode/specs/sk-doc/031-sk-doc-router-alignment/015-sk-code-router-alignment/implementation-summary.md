@@ -1,6 +1,10 @@
 ---
 title: "Implementation Summary: sk-code Router — Typed-Gold Instrumentation + Live Measurement"
 description: "What the Wave 2 sk-code pilot actually built and found: recon bug-claims refuted, stale baseline refreshed, a manifest-gated typed-gold derivation added to the shared loader, guard-tested, and a typed-pair surface stood up (mean recall 0.729) — with the fan-out recipe for the four remaining skills."
+trigger_phrases:
+  - "sk-code router typed-gold summary"
+  - "sk-code pilot implementation"
+  - "sk-code manifest-gated derivation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research",
+  "description": "sk-prompt's routing is only half-instrumented, and its baseline of 100 is misleading",
+  "keywords": [
+    "sk-prompt",
+    "routing",
+    "only",
+    "half-instrumented",
+    "baseline",
+    "misleading"
+  ],
+  "lastUpdated": "2026-07-17T05:47:23.811Z",
+  "specId": "019",
+  "folderSlug": "sk-prompt-routing-research",
+  "parentChain": [
+    "sk-doc",
+    "031-sk-doc-router-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

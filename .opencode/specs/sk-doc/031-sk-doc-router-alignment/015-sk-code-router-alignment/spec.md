@@ -204,6 +204,20 @@ Make sk-code's routing measurable on the typed-pair surface and via live-mode, r
 
 - Whether the typed-pair contract needs shared-tier paths in `shared/references/...` form or tolerates the bare `references/...` form is verified during the pilot (REQ-006), not assumed.
 - The live-mode sample size and model/effort for REQ-004 is chosen during execution to balance signal against cost.
+- Which changes to the sk-code routing template, intent logic, and JSON artifacts can lift leaf-file recall while preserving the verified 18/18 surface routing result?
+
+### Research Context
+
+Deep research is active on the typed-pair contract, benchmark scoring, shared preamble qualification, and leaf-recall optimization. `research/research.md` remains the canonical findings source.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+- Surface routing and leaf routing are separate: the verified 18/18 surface result does not establish strong leaf-file recall.
+- The untyped universal preamble is an identity-contract defect, not the cause of missed expected leaves. A prefix-only rewrite is insufficient, and an ordinary `shared` mode would change governed hub topology.
+- Prefer truthful single-owner aliases where possible; genuinely mode-neutral preamble files need an explicit validated non-routable shared owner before typed-contract errors can be cleared without claiming a routing gain.
+- Repair measurement first: capture a same-revision baseline, declare minimum versus exhaustive gold, add sealed holdouts, and record ordered successful live reads plus route-decision provenance.
+- The leading router candidate is a two-tier `RESOURCE_MAP` with small required sets and predicate-gated supplements; test specificity-aware signal weighting only after that split.
+- Accept candidates only when fitted, holdout, negative, D3, typed-contract, topology, live-read, and exact 18/18 surface gates all pass. See `research/research.md` for canonical evidence and recommendations.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---
