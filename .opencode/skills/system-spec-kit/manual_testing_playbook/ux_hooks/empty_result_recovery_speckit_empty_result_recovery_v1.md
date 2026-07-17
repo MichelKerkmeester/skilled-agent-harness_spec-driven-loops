@@ -2,6 +2,9 @@
 title: "179 -- Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY)"
 description: "This scenario validates empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY) for `179`. It focuses on the default-on graduated rollout and verifying structured recovery payloads for empty/weak search results."
 version: 3.6.0.14
+id: ux-hooks-empty-result-recovery-speckit-empty-result-recovery-v1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 179 -- Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY)

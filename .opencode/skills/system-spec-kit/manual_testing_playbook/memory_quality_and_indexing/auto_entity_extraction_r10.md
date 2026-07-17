@@ -3,6 +3,9 @@ title: "048 -- Auto entity extraction (R10)"
 description: "This scenario validates Auto entity extraction (R10) for `048`. It focuses on Confirm entity pipeline persistence."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-auto-entity-extraction-r10
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 048 -- Auto entity extraction (R10)

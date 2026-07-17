@@ -3,6 +3,9 @@ title: "158 -- Graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE)"
 description: "This scenario validates graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE) for `158`. It focuses on enabling the flag and verifying graph weight cap at 0.05 and community scoring capped at 0.03."
 audited_post_018: true
 version: 3.6.0.14
+id: graph-signal-activation-graph-calibration-profile-speckit-graph-calibration-profile
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 158 -- Graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE)

@@ -2,6 +2,9 @@
 title: "215 -- Final token metadata recomputation"
 description: "This scenario validates Final token metadata recomputation for `215`. It focuses on Confirm token counts are recomputed from the finalized envelope after hint mutation and before budget enforcement."
 version: 3.6.0.13
+id: ux-hooks-final-token-metadata-recomputation
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 215 -- Final token metadata recomputation

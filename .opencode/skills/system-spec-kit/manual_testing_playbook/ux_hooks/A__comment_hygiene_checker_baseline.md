@@ -2,6 +2,9 @@
 title: "119-A -- Comment Hygiene — Checker Script Baseline"
 description: "This scenario validates the shared comment hygiene checker script for `119-A`. It focuses on verifying violation detection, allowed-class pass-through, escape-hatch suppression, and zero false-positives on production source — the foundation all runtime enforcement tiers depend on."
 version: 3.6.0.4
+id: ux-hooks-a-comment-hygiene-checker-baseline
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 119-A -- Comment Hygiene — Checker Script Baseline

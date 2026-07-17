@@ -3,6 +3,9 @@ title: "042 -- Spec folder description discovery (PI-B3)"
 description: "This scenario validates Spec folder description discovery (PI-B3) for `042`. It focuses on Confirm per-folder + aggregated routing."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-spec-folder-description-discovery-pi-b3
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 042 -- Spec folder description discovery (PI-B3)

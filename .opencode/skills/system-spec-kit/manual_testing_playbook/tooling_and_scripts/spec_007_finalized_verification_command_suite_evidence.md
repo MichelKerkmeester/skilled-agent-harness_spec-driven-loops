@@ -2,6 +2,9 @@
 title: "108 -- Spec 007 finalized verification command suite evidence"
 description: "This scenario validates Spec 007 finalized verification command suite evidence for `108`. It focuses on Confirm the recorded verification set matches the current Spec 007 evidence."
 version: 3.6.0.14
+id: tooling-and-scripts-spec-007-finalized-verification-command-suite-evidence
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 108 -- Spec 007 finalized verification command suite evidence

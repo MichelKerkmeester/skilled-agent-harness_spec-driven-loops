@@ -3,6 +3,9 @@ title: "109 -- Quality-aware 3-tier search fallback"
 description: "This scenario validates Quality-aware 3-tier search fallback for `109`. It focuses on confirming the multi-tier degradation chain triggers correctly via Stage 1 collectRawCandidates() and enriches only once after the final tier is chosen."
 audited_post_018: true
 version: 3.6.0.19
+id: retrieval-quality-aware-3-tier-search-fallback
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 109 -- Quality-aware 3-tier search fallback

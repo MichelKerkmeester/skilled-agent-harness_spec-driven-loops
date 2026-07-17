@@ -2,6 +2,9 @@
 title: "216 -- End-to-end success-envelope verification"
 description: "This scenario validates End-to-end success-envelope verification for `216`. It focuses on Confirm finalized success envelopes preserve appended hints, auto-surfaced context, and token metadata correctness together."
 version: 3.6.0.13
+id: ux-hooks-end-to-end-success-envelope-verification
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 216 -- End-to-end success-envelope verification

@@ -2,6 +2,9 @@
 title: "151 -- MODULE_MAP.md accuracy validation"
 description: "This scenario validates MODULE_MAP.md content accuracy by spot-checking module entries against actual code structure. It focuses on verifying listed files exist and consumers are correct."
 version: 3.6.0.16
+id: tooling-and-scripts-module-map-accuracy
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 151 -- MODULE_MAP.md accuracy validation

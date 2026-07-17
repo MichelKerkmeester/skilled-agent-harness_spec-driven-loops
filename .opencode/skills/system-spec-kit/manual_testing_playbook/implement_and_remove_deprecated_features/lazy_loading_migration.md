@@ -4,6 +4,9 @@ description: "This scenario validates Lazy-loading migration and warmup compatib
 audited_post_018: true
 phase_018_change: "Validated against phase-018 canonical continuity refactor; confirms lazy startup is canonical and warmup flags remain compatibility-only."
 version: 3.6.0.13
+id: implement-and-remove-deprecated-features-lazy-loading-migration
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 229 -- Lazy-loading migration and warmup compatibility

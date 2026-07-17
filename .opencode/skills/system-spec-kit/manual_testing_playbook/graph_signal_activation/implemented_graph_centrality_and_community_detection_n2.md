@@ -3,6 +3,9 @@ title: "091 -- Implemented: graph centrality and community detection (N2)"
 description: "This scenario validates Implemented: graph centrality and community detection (N2) for `091`. It focuses on Confirm deferred->implemented status."
 audited_post_018: true
 version: 3.6.0.18
+id: graph-signal-activation-implemented-graph-centrality-and-community-detection-n2
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 091 -- Implemented: graph centrality and community detection (N2)

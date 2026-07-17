@@ -2,6 +2,9 @@
 title: "453 -- Speckit autopilot lifecycle"
 description: "Manual validation for the branch-preserved :autopilot/:unattended SpecKit command lifecycle."
 version: 3.6.0.99
+id: lifecycle-speckit-autopilot-lifecycle
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 453 -- Speckit autopilot lifecycle

@@ -2,6 +2,9 @@
 title: "439 -- Semantic Trigger Shadow and Union Modes"
 description: "Manual check that semantic trigger matching stays inert by default, exposes shadow metadata when enabled, and only supplements weak lexical results in union mode."
 version: 3.6.0.1
+id: feature-flag-reference-semantic-trigger-shadow-and-union
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 439 -- Semantic Trigger Shadow and Union Modes

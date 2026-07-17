@@ -4,6 +4,9 @@ description: "This scenario validates Transaction wrappers on mutation handlers 
 audited_post_018: true
 phase_018_change: "Transaction wrapper scenario remains live with the post-018 atomic save commit path"
 version: 3.6.0.16
+id: mutation-transaction-wrappers-on-mutation-handlers
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 085 -- Transaction wrappers on mutation handlers

@@ -2,6 +2,9 @@
 title: "433 -- CLI Hook Transport-Down Fail-Open"
 description: "Manual check that prompt-time hooks with warm-only CLI fallback fail open fast (exit 0, no daemon spawn, no prompt blocking) when the daemon socket is absent."
 version: 3.6.0.1
+id: ux-hooks-cli-hook-transport-down-fail-open
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 433 -- CLI Hook Transport-Down Fail-Open

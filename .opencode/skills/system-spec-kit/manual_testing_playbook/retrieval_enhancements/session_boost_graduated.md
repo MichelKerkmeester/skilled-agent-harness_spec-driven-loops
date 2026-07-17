@@ -3,6 +3,9 @@ title: "146 -- Session attention boost graduated"
 description: "Validates that session attention boost amplifies recently-attended results during Stage 2 fusion and respects the combined 0.20 ceiling shared with causal boost."
 audited_post_018: true
 version: 3.6.0.5
+id: retrieval-enhancements-session-boost-graduated
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 146 -- Session attention boost graduated

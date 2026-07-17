@@ -3,6 +3,9 @@ title: "016 -- Typed-weighted degree channel (R4)"
 description: "This scenario validates Typed-weighted degree channel (R4) for `016`. It focuses on Confirm bounded typed-degree boost."
 audited_post_018: true
 version: 3.6.0.17
+id: graph-signal-activation-typed-weighted-degree-channel-r4
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 016 -- Typed-weighted degree channel (R4)

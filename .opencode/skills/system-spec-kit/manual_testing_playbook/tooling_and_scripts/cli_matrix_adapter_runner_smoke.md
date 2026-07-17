@@ -2,6 +2,9 @@
 title: "280 -- CLI matrix adapter runner smoke"
 description: "Operator validation for CLI matrix adapters: one cell per adapter, JSONL output shape, and timeout handling."
 version: 3.6.0.14
+id: tooling-and-scripts-cli-matrix-adapter-runner-smoke
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 280 -- CLI matrix adapter runner smoke

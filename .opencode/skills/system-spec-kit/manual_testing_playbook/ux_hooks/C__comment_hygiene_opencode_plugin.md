@@ -2,6 +2,9 @@
 title: "119-C -- Comment Hygiene — OpenCode Plugin Injection + Pre-Commit Gate"
 description: "This scenario validates comment hygiene enforcement for OpenCode sessions in `119-C`. OpenCode has no write-time hook (ADR-001). Enforcement relies on the comment hygiene rule injected via the spec-kit skill-advisor plugin at session start, backed by the git pre-commit gate as the blocking backstop."
 version: 3.6.0.4
+id: ux-hooks-c-comment-hygiene-opencode-plugin
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 119-C -- Comment Hygiene — OpenCode Plugin Injection + Pre-Commit Gate

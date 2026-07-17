@@ -3,6 +3,9 @@ title: "175 -- Graph channel preservation"
 description: "Validates shouldPreserveGraph intent and entity-density gates plus the SPECKIT_GRAPH_CHANNEL_PRESERVATION flag rollback path."
 audited_post_018: true
 version: 3.6.0.5
+id: query-intelligence-graph-channel-preservation
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 175 -- Graph channel preservation

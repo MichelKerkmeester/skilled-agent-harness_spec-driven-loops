@@ -4,6 +4,9 @@ description: "This scenario validates Memory metadata update (memory_update) for
 audited_post_018: true
 phase_018_change: "Metadata update scenario remains live under the post-018 save pipeline"
 version: 3.6.0.15
+id: mutation-memory-metadata-update-memory-update
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-007 -- Memory metadata update (memory_update)

@@ -3,6 +3,9 @@ title: "192 -- Correction tracking with undo"
 description: "This scenario validates Correction tracking with undo for `192`. It focuses on Confirm library-level correction recording, stability rollback, and scoped undo behavior."
 audited_post_018: true
 version: 3.6.0.13
+id: mutation-correction-tracking-with-undo
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 192 -- Correction tracking with undo

@@ -3,6 +3,9 @@ title: "M-003 -- Context Save + Index Update"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-003`."
 audited_post_018: true
 version: 3.6.0.22
+id: memory-quality-and-indexing-context-save-index-update
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # M-003 -- Context Save + Index Update

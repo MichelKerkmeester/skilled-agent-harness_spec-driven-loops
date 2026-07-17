@@ -2,6 +2,9 @@
 title: "424 -- MCP Code Index Reconnecting Proxy"
 description: "Manual check for the automated-test-backed mk-code-index launcher proxy that bridges stdio through a shared session socket and classifies frames so the code-index client can survive daemon recycles."
 version: 3.6.0.2
+id: pipeline-architecture-mcp-code-index-reconnecting-proxy
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 424 -- MCP Code Index Reconnecting Proxy

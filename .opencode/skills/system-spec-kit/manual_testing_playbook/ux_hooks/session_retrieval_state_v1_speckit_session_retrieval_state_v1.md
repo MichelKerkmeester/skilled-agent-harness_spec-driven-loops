@@ -2,6 +2,9 @@
 title: "169 -- Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE)"
 description: "This scenario validates session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE) for `169`. It focuses on running session-aware searches and verifying additive session-state metadata."
 version: 3.6.0.15
+id: ux-hooks-session-retrieval-state-v1-speckit-session-retrieval-state-v1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 169 -- Session retrieval state v1 (SPECKIT_SESSION_RETRIEVAL_STATE)

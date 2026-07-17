@@ -3,6 +3,9 @@ title: "017 -- Session health shared payload"
 description: "Validates session_health reports shared payload freshness and degraded-state recovery hints."
 audited_post_017: true
 version: 3.6.0.2
+id: discovery-session-health-shared-payload
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 017 -- Session health shared payload

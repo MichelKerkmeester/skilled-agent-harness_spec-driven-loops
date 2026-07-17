@@ -2,6 +2,9 @@
 title: "PHASE-008 -- Spec-folder literal naming (CLI-driven slug proposal)"
 description: "Verify that external CLI agents presented with an ambiguous spec task propose phase names containing specific subject tokens, not generic placeholders, per the YAML 'Generate LITERAL phase names' activity in Packet 012 REQ-001 and REQ-002."
 version: 3.6.0.6
+id: tooling-and-scripts-spec-folder-literal-naming-cli-driven-slug
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # PHASE-008 -- Spec-folder literal naming (CLI-driven slug proposal)

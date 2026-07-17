@@ -3,6 +3,9 @@ title: "417 -- Constitutional sufficiency-gate exemption"
 description: "This scenario validates that constitutional markdown files pass through memory_index_scan in warn-only sufficiency mode rather than hard-rejecting with INSUFFICIENT_CONTEXT_ABORT."
 audited_post_018: true
 version: 3.6.0.3
+id: memory-quality-and-indexing-constitutional-sufficiency-gate-exemption
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 417 -- Constitutional sufficiency-gate exemption

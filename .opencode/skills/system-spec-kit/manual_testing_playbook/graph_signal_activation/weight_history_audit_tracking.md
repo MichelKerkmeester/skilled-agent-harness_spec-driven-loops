@@ -3,6 +3,9 @@ title: "019 -- Weight history audit tracking"
 description: "This scenario validates Weight history audit tracking for `019`. It focuses on Confirm edge change logging + rollback."
 audited_post_018: true
 version: 3.6.0.16
+id: graph-signal-activation-weight-history-audit-tracking
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 019 -- Weight history audit tracking

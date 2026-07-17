@@ -2,6 +2,9 @@
 title: "DOC-345 -- Version migration 3.3.0.0 to 3.4.1.0"
 description: "Manual scenario validating /doctor:update --migrate two-hop migration from v3.3.0.0 to v3.4.1.0 with legacy files flagged but not deleted."
 version: 3.6.0.6
+id: doctor-commands-version-migration-3-3-0-0-to-3-4-1-0
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # DOC-345 -- Version migration 3.3.0.0 to 3.4.1.0

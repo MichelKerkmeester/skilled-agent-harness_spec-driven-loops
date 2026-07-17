@@ -3,6 +3,9 @@ title: "EX-023 -- Epistemic baseline capture (task_preflight)"
 description: "This scenario validates Epistemic baseline capture (task_preflight) for `EX-023`. It focuses on Pre-task baseline logging."
 audited_post_018: true
 version: 3.6.0.15
+id: analysis-epistemic-baseline-capture-task-preflight
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-023 -- Epistemic baseline capture (task_preflight)

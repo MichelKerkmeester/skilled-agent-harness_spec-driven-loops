@@ -2,6 +2,9 @@
 title: "449 -- CLI compact list-tools and completion generation"
 description: "Manual check that all three daemon-backed CLIs expose compact and names-only list-tools output without schemas, and generate parseable bash/zsh completion scripts."
 version: 3.6.0.1
+id: tooling-and-scripts-cli-compact-and-completion
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 449 -- CLI compact list-tools and completion generation

@@ -2,6 +2,9 @@
 title: "214 -- Atomic-save parity and partial-indexing hints"
 description: "This scenario validates Atomic-save parity and partial-indexing hints for `214`. It focuses on Confirm atomic-save responses match the primary save envelope, preserve partial-indexing guidance, and protect callback snapshots."
 version: 3.6.0.13
+id: ux-hooks-atomic-save-parity-and-partial-indexing-hints
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 214 -- Atomic-save parity and partial-indexing hints

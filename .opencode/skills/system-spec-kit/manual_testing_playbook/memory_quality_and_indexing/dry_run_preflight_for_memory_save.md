@@ -3,6 +3,9 @@ title: "133 -- Dry-run preflight for memory_save"
 description: "This scenario validates Dry-run preflight for memory_save for `133`. It focuses on Confirm dry-run previews preflight plus semantic insufficiency without indexing side effects."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-dry-run-preflight-for-memory-save
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 133 -- Dry-run preflight for memory_save

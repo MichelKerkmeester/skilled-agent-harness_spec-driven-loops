@@ -2,6 +2,9 @@
 title: "089 -- Code standards alignment"
 description: "This scenario validates Code standards alignment for `089`. It focuses on Confirm standards conformance."
 version: 3.6.0.15
+id: tooling-and-scripts-code-standards-alignment
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 089 -- Code standards alignment

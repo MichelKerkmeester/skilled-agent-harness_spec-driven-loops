@@ -3,6 +3,9 @@ title: "016 -- Session resume continuity ladder"
 description: "Validates session_resume follows handover, continuity frontmatter, and canonical spec docs in order."
 audited_post_017: true
 version: 3.6.0.3
+id: discovery-session-resume-continuity-ladder
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 016 -- Session resume continuity ladder

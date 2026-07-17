@@ -2,6 +2,9 @@
 title: "451 -- Constitutional Self-Edit and Compare-and-Swap Guard"
 description: "Manual check that memory_update rejects edits removing a constitutional row's own protection and rejects stale-read overwrites via expectedHash, while non-constitutional updates stay unchanged."
 version: 3.6.0.1
+id: governance-constitutional-self-edit-and-cas-guard
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 451 -- Constitutional Self-Edit and Compare-and-Swap Guard

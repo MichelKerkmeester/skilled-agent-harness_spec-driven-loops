@@ -4,6 +4,9 @@ description: "This scenario validates the bounded graph bonus diagnostics that r
 audited_post_018: true
 phase_018_replaces: graph-walk rollout-state ladder and diagnostics
 version: 3.6.0.16
+id: retrieval-bounded-graph-walk-rollout-and-diagnostics
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 143 -- Bounded graph diagnostics and ordering stability

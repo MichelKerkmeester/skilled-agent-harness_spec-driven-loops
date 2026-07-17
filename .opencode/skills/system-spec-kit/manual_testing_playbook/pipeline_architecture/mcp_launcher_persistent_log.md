@@ -2,6 +2,9 @@
 title: "422 -- MCP Launcher Persistent Log"
 description: "Manual check for the automated-test-backed launcher logging path that persists each launcher line to a durable file and rotates it once it grows past the configured size."
 version: 3.6.0.2
+id: pipeline-architecture-mcp-launcher-persistent-log
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 422 -- MCP Launcher Persistent Log

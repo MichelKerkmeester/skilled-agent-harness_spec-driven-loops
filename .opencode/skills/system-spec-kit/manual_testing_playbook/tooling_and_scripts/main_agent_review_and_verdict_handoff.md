@@ -2,6 +2,9 @@
 title: "M-004 -- Main-Agent Review and Verdict Handoff"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-004`."
 version: 3.6.0.14
+id: tooling-and-scripts-main-agent-review-and-verdict-handoff
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # M-004 -- Main-Agent Review and Verdict Handoff

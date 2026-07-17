@@ -3,6 +3,9 @@ title: "165 -- Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION)"
 description: "This scenario validates assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION) for `165`. It focuses on enabling the flag, saving a near-duplicate, and verifying advisory-note/recommend behavior."
 audited_post_018: true
 version: 3.6.0.18
+id: memory-quality-and-indexing-assistive-reconsolidation-speckit-assistive-reconsolidation
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 165 -- Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION)

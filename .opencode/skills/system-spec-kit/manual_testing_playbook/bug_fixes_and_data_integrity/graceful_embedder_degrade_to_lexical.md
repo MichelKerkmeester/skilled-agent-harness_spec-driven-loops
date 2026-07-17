@@ -2,6 +2,9 @@
 title: "450 -- Graceful Embedder-Degrade to Lexical"
 description: "Manual check that an unavailable embedder degrades search to lexical candidate generation and reports embedder_available:false, while the embedder-success path stays byte-identical."
 version: 3.6.0.1
+id: bug-fixes-and-data-integrity-graceful-embedder-degrade-to-lexical
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 450 -- Graceful Embedder-Degrade to Lexical

@@ -2,6 +2,9 @@
 title: "212 -- Mutation hook result contract expansion"
 description: "This scenario validates Mutation hook result contract expansion for `212`. It focuses on Confirm post-mutation hook results expose timing, cache invalidation booleans, and surfaced error details."
 version: 3.6.0.13
+id: ux-hooks-mutation-hook-result-contract-expansion
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 212 -- Mutation hook result contract expansion

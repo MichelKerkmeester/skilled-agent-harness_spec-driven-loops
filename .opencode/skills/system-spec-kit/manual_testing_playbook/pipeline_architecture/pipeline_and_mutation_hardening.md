@@ -3,6 +3,9 @@ title: "080 -- Pipeline and mutation hardening"
 description: "This scenario validates Pipeline and mutation hardening for `080`. It focuses on Confirm mutation hardening bundle, including chunked-save finalize rollback safety."
 audited_post_018: true
 version: 3.6.0.17
+id: pipeline-architecture-pipeline-and-mutation-hardening
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 080 -- Pipeline and mutation hardening

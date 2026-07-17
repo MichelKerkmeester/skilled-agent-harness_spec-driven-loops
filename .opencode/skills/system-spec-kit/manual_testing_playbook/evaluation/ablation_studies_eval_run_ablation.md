@@ -2,6 +2,9 @@
 title: "EX-026 -- Ablation studies (eval_run_ablation)"
 description: "This scenario validates Ablation studies (eval_run_ablation) for `EX-026`. It focuses on Channel impact experiment."
 version: 3.6.0.19
+id: evaluation-ablation-studies-eval-run-ablation
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-026 -- Ablation studies (eval_run_ablation)

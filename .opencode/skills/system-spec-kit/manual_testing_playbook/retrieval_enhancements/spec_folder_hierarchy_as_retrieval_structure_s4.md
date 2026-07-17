@@ -3,6 +3,9 @@ title: "057 -- Spec folder hierarchy as retrieval structure (S4)"
 description: "This scenario validates Spec folder hierarchy as retrieval structure (S4) for `057`. It focuses on Confirm hierarchy-aware retrieval."
 audited_post_018: true
 version: 3.6.0.16
+id: retrieval-enhancements-spec-folder-hierarchy-as-retrieval-structure-s4
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 057 -- Spec folder hierarchy as retrieval structure (S4)

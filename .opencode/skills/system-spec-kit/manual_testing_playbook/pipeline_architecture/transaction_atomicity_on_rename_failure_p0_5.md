@@ -3,6 +3,9 @@ title: "115 -- Transaction atomicity on rename failure (P0-5)"
 description: "This scenario validates Transaction atomicity on rename failure (P0-5) for `115`. It focuses on Verify that pending file is preserved (not deleted) when rename fails after DB commit, enabling recovery on next startup."
 audited_post_018: true
 version: 3.6.0.16
+id: pipeline-architecture-transaction-atomicity-on-rename-failure-p0-5
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 115 -- Transaction atomicity on rename failure (P0-5)

@@ -4,6 +4,9 @@ description: "This scenario validates Cross-runtime fallback for 252. It focuses
 audited_post_018: true
 phase_018_change: "Reframed recovery so hook-limited runtimes fall back through /speckit:resume and the canonical packet continuity ladder."
 version: 3.6.0.21
+id: context-preservation-cross-runtime-fallback
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 252 -- Runtime-aware recovery across supported runtimes

@@ -3,6 +3,9 @@ title: "063 -- Feature flag governance"
 description: "This scenario validates Feature flag governance for `063`. It focuses on Confirm governance policy conformance."
 audited_post_018: true
 version: 3.6.0.17
+id: governance-feature-flag-governance
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 063 -- Feature flag governance

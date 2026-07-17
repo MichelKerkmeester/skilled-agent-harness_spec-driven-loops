@@ -2,6 +2,9 @@
 title: "106 -- Hooks barrel + README synchronization"
 description: "This scenario validates Hooks barrel + README synchronization for `106`. It focuses on Confirm hooks index exports and docs cover the finalized modules and contract fields."
 version: 3.6.0.18
+id: ux-hooks-hooks-barrel-readme-synchronization
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 106 -- Hooks barrel + README synchronization

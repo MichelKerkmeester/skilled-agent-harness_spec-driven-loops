@@ -3,6 +3,9 @@ title: "EX-019 -- Causal edge creation (memory_causal_link)"
 description: "This scenario validates Causal edge creation (memory_causal_link) for `EX-019`. It focuses on Causal provenance linking."
 audited_post_018: true
 version: 3.6.0.17
+id: analysis-causal-edge-creation-memory-causal-link
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-019 -- Causal edge creation (memory_causal_link)

@@ -3,6 +3,9 @@ title: "067 -- Search pipeline safety"
 description: "This scenario validates Search pipeline safety for `067`. It focuses on Confirm Sprint 8 pipeline safety fixes."
 audited_post_018: true
 version: 3.6.0.16
+id: pipeline-architecture-search-pipeline-safety
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 067 -- Search pipeline safety

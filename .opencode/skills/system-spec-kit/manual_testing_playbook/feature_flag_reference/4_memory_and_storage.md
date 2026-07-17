@@ -3,6 +3,9 @@ title: "EX-031 -- 4. Memory and Storage"
 description: "This scenario validates 4. Memory and Storage for `EX-031`. It focuses on Storage precedence check."
 audited_post_018: true
 version: 3.6.0.16
+id: feature-flag-reference-4-memory-and-storage
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-031 -- 4. Memory and Storage

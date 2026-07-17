@@ -3,6 +3,9 @@ title: "174 -- Graph concept routing"
 description: "Validates the entity-linker concept routing pass and the d2-concept-routing trace metadata it writes on Stage 1 candidate generation."
 audited_post_018: true
 version: 3.6.0.5
+id: query-intelligence-graph-concept-routing
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 174 -- Graph concept routing

@@ -2,6 +2,9 @@
 title: "444 -- Authored Continuity Snapshot"
 description: "Manual check that authored continuity snapshots are disabled by default, refresh only markdown continuity artifacts when enabled, and create no memory rows or index mutations."
 version: 3.6.0.1
+id: feature-flag-reference-authored-continuity-snapshot
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 444 -- Authored Continuity Snapshot

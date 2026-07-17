@@ -3,6 +3,9 @@ title: "188 -- AST-level section retrieval tool"
 description: "This scenario validates the deferred AST-level section retrieval tool entry for `188`. It focuses on Verify the feature remains planned, unimplemented, and explicitly deferred in favor of the current anchor-aware thinning approach."
 audited_post_018: true
 version: 3.6.0.12
+id: retrieval-ast-level-section-retrieval-tool
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 188 -- AST-level section retrieval tool

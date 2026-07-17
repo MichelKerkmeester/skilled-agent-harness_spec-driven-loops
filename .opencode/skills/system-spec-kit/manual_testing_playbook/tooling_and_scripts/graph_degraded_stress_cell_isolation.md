@@ -2,6 +2,9 @@
 title: "279 -- Graph degraded stress cell with SPEC_KIT_DB_DIR isolation"
 description: "This scenario validates the deterministic isolated-DB sweep that exercises all 4 fallbackDecision matrix branches without touching the live code-graph DB. Pattern: initDb(tmpdir) + vi.spyOn(getDb) + sha256 byte-equality."
 version: 3.6.0.13
+id: tooling-and-scripts-graph-degraded-stress-cell-isolation
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 279 -- Graph degraded stress cell with SPEC_KIT_DB_DIR isolation

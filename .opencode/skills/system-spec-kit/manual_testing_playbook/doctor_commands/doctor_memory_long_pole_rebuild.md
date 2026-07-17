@@ -2,6 +2,9 @@
 title: "DOC-325 -- Doctor memory long-pole rebuild"
 description: "Manual scenario validating the /doctor memory full rebuild path with ETA prompt, snapshots, state-log duration, and gold-battery verification."
 version: 3.6.0.10
+id: doctor-commands-doctor-memory-long-pole-rebuild
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # DOC-325 -- Doctor memory long-pole rebuild

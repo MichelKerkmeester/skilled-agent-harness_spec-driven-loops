@@ -2,6 +2,11 @@
 title: "236 -- Phase-System Knowledge Node"
 description: "This scenario validates phase-system knowledge node for `236`. It focuses on confirming the documented phase workflow aligns with the executable phase creation and recursive validation surfaces."
 version: 3.6.0.13
+id: tooling-and-scripts-phase-system-knowledge-node
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/structure/phase_definitions.md
 ---
 
 # 236 -- Phase-System Knowledge Node

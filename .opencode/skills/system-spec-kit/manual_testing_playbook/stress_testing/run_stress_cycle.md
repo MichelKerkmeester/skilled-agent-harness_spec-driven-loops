@@ -3,6 +3,9 @@ title: "01 -- Run stress cycle"
 description: "This scenario guides an operator through a full stress test cycle: freeze corpus, score packet x dimension cells, author findings, emit a rubric sidecar, compare deltas, capture telemetry, validate, and update the parent phase map."
 audited_post_018: true
 version: 3.7.1.0
+id: stress-testing-run-stress-cycle
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 01 -- Run stress cycle

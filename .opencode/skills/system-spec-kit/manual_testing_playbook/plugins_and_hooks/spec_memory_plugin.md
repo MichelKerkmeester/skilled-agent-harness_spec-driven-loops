@@ -8,6 +8,9 @@ trigger_phrases:
   - "spec memory bridge"
   - "continuity injection"
 version: 1.0.0.1
+id: plugins-and-hooks-spec-memory-plugin
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # Spec Memory OpenCode Plugin

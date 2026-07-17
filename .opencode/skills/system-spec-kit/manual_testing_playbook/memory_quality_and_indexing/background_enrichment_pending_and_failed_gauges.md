@@ -2,6 +2,9 @@
 title: "452 -- Background Enrichment Pending and Failed Gauges"
 description: "Manual check that memory_health surfaces pending and failed background-enrichment gauges off the post_insert_enrichment_status backlog, as read-side counters with no new state."
 version: 3.6.0.1
+id: memory-quality-and-indexing-background-enrichment-pending-and-failed-gauges
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 452 -- Background Enrichment Pending and Failed Gauges

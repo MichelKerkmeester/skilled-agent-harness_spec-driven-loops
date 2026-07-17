@@ -3,6 +3,9 @@ title: "081 -- Graph and cognitive memory fixes"
 description: "This scenario validates Graph and cognitive memory fixes for `081`. It focuses on Confirm graph/cognitive fix bundle."
 audited_post_018: true
 version: 3.6.0.16
+id: graph-signal-activation-graph-and-cognitive-memory-fixes
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 081 -- Graph and cognitive memory fixes

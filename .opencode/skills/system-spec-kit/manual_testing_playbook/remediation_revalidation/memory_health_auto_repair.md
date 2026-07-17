@@ -4,6 +4,9 @@ description: "This scenario validates Memory health auto-repair for `226`. It fo
 audited_post_018: true
 phase_018_change: "Post-018 audit kept the scenario aligned to the confirmed `memory_health` repair path and its transparent repair bookkeeping."
 version: 3.6.0.13
+id: remediation-revalidation-memory-health-auto-repair
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 226 -- Memory health auto-repair

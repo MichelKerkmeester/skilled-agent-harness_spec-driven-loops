@@ -3,6 +3,9 @@ title: "283 -- Embedder status job and active pointer"
 description: "Validates embedder_status reports active pointer state and handles unknown job IDs cleanly."
 audited_post_017: true
 version: 3.6.0.1
+id: tooling-and-scripts-embedder-status-job-and-active-pointer
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 283 -- Embedder status job and active pointer

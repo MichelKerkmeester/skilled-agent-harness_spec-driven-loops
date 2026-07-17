@@ -3,6 +3,9 @@ title: "120 -- Unified graph rollback and explainability (Phase 3)"
 description: "This scenario validates Unified graph rollback and explainability (Phase 3) for `120`. It focuses on Confirm graph kill switch removes graph-side effects while traces still explain enabled runs."
 audited_post_018: true
 version: 3.6.0.17
+id: graph-signal-activation-unified-graph-rollback-and-explainability-phase-3
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 120 -- Unified graph rollback and explainability (Phase 3)

@@ -3,6 +3,9 @@ title: "201 -- Spec-doc structure validator and continuity frontmatter"
 description: "This scenario validates the phase 018 spec-doc structure validator for `201`. It focuses on the five fail-closed rules and the thin `_memory.continuity` block."
 audited_post_018: true
 version: 3.6.0.13
+id: memory-quality-and-indexing-spec-doc-structure-validator-and-continuity-frontmatter
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 201 -- Spec-doc structure validator and continuity frontmatter

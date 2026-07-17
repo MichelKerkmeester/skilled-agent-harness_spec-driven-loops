@@ -3,6 +3,9 @@ title: "405 — Multi-aspect query synthesis"
 description: "A compound query joining 3 distinct concepts ('Apple Silicon Metal GPU embedding default') should return top-K that spans ALL three aspects, not collapse onto the most-frequent term."
 audited_post_018: true
 version: 3.6.0.3
+id: local-llm-query-intelligence-multi-aspect-query-synthesis
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 405 — Multi-aspect query synthesis

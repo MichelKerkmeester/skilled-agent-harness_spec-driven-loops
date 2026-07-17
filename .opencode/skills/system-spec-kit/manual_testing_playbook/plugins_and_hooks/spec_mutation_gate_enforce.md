@@ -9,6 +9,9 @@ trigger_phrases:
   - "gate-3 question"
   - "MK_SPEC_GATE_ENFORCE"
 version: 1.0.0.1
+id: plugins-and-hooks-spec-mutation-gate-enforce
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # Spec Mutation Gate Enforce

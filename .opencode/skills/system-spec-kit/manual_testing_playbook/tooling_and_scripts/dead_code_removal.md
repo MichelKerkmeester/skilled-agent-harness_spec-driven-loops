@@ -2,6 +2,9 @@
 title: "070 -- Dead code removal"
 description: "This scenario validates Dead code removal for `070`. It focuses on Confirm dead path elimination."
 version: 3.6.0.16
+id: tooling-and-scripts-dead-code-removal
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 070 -- Dead code removal

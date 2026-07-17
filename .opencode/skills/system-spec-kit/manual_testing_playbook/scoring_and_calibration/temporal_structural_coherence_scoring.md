@@ -3,6 +3,9 @@ title: "198 -- Temporal-structural coherence scoring"
 description: "This scenario validates temporal-structural coherence scoring for `198`. It focuses on confirming structural penalties, bounded coherence deductions, and immediate retry behavior in the quality loop."
 audited_post_018: true
 version: 3.6.0.12
+id: scoring-and-calibration-temporal-structural-coherence-scoring
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 198 -- Temporal-structural coherence scoring

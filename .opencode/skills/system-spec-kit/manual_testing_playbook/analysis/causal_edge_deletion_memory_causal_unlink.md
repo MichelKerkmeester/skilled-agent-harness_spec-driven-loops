@@ -3,6 +3,9 @@ title: "EX-021 -- Causal edge deletion (memory_causal_unlink)"
 description: "This scenario validates Causal edge deletion (memory_causal_unlink) for `EX-021`. It focuses on Edge correction."
 audited_post_018: true
 version: 3.6.0.17
+id: analysis-causal-edge-deletion-memory-causal-unlink
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-021 -- Causal edge deletion (memory_causal_unlink)

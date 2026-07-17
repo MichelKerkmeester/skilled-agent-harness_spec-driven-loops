@@ -3,6 +3,9 @@ title: "083 -- Math.max/min stack overflow elimination"
 description: "This scenario validates Math.max/min stack overflow elimination for `083`. It focuses on Confirm large-array safety."
 audited_post_018: true
 version: 3.6.0.16
+id: bug-fixes-and-data-integrity-math-max-min-stack-overflow-elimination
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 083 -- Math.max/min stack overflow elimination

@@ -2,6 +2,9 @@
 title: "005 -- Evaluation database and schema (R13-S1)"
 description: "This scenario validates Evaluation database and schema (R13-S1) for `005`. It focuses on Confirm eval data isolation."
 version: 3.6.0.16
+id: evaluation-and-measurement-evaluation-database-and-schema-r13-s1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 005 -- Evaluation database and schema (R13-S1)

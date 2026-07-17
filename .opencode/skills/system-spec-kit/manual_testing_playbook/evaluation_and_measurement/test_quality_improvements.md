@@ -2,6 +2,9 @@
 title: "072 -- Test quality improvements"
 description: "This scenario validates Test quality improvements for `072`. It focuses on Confirm test quality remediations."
 version: 3.6.0.16
+id: evaluation-and-measurement-test-quality-improvements
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 072 -- Test quality improvements

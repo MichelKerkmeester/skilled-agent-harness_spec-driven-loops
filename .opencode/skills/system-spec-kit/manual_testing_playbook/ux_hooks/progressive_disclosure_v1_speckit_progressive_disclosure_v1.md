@@ -2,6 +2,9 @@
 title: "168 -- Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE)"
 description: "This scenario validates progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE) for `168`. It focuses on verifying the additive disclosure payload and cursor pagination in response."
 version: 3.6.0.15
+id: ux-hooks-progressive-disclosure-v1-speckit-progressive-disclosure-v1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 168 -- Progressive disclosure v1 (SPECKIT_PROGRESSIVE_DISCLOSURE)

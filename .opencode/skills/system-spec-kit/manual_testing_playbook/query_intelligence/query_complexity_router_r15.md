@@ -3,6 +3,9 @@ title: "033 -- Query complexity router (R15)"
 description: "This scenario validates Query complexity router (R15) for `033`. It focuses on Confirm query-class routing."
 audited_post_018: true
 version: 3.6.0.15
+id: query-intelligence-query-complexity-router-r15
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 033 -- Query complexity router (R15)

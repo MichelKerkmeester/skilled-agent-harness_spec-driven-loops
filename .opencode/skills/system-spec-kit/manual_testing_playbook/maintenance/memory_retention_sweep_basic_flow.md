@@ -2,6 +2,9 @@
 title: "278 -- Memory retention sweep basic flow"
 description: "Operator validation for memory_retention_sweep: expired delete_after rows, dry-run preview, deletion audit, and scheduled cleanup interval."
 version: 3.6.0.7
+id: maintenance-memory-retention-sweep-basic-flow
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 278 -- Memory retention sweep basic flow

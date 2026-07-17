@@ -2,6 +2,9 @@
 title: "EX-011 -- Memory browser (memory_list)"
 description: "This scenario validates Memory browser (memory_list) for `EX-011`. It focuses on Folder inventory audit."
 version: 3.6.0.15
+id: discovery-memory-browser-memory-list
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-011 -- Memory browser (memory_list)

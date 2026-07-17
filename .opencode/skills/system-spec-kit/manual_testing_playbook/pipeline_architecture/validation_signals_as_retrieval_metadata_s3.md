@@ -3,6 +3,9 @@ title: "053 -- Validation signals as retrieval metadata (S3)"
 description: "This scenario validates Validation signals as retrieval metadata (S3) for `053`. It focuses on Confirm bounded multiplier."
 audited_post_018: true
 version: 3.6.0.16
+id: pipeline-architecture-validation-signals-as-retrieval-metadata-s3
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 053 -- Validation signals as retrieval metadata (S3)

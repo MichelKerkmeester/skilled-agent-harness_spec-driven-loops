@@ -3,6 +3,9 @@ title: "047 -- Encoding-intent capture at index time (R16)"
 description: "This scenario validates Encoding-intent capture at index time (R16) for `047`. It focuses on Confirm persisted intent labels."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-encoding-intent-capture-at-index-time-r16
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 047 -- Encoding-intent capture at index time (R16)

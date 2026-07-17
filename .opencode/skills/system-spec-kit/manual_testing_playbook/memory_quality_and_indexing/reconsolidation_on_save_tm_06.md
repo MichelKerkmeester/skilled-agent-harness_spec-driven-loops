@@ -3,6 +3,9 @@ title: "044 -- Reconsolidation-on-save (TM-06)"
 description: "This scenario validates Reconsolidation-on-save (TM-06) for `044`. It focuses on Confirm merge/deprecate thresholds."
 audited_post_018: true
 version: 3.6.0.19
+id: memory-quality-and-indexing-reconsolidation-on-save-tm-06
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 044 -- Reconsolidation-on-save (TM-06)

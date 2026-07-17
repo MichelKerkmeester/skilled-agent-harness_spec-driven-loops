@@ -2,6 +2,9 @@
 title: "135 -- Grep traceability for feature catalog code references"
 description: "This scenario validates Grep traceability for feature catalog code references for `135`. It focuses on Verify `grep -r \"// Feature catalog: <feature>\" mcp_server/` returns handler + lib hits."
 version: 3.6.0.16
+id: tooling-and-scripts-grep-traceability-for-feature-catalog-code-references
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 135 -- Grep traceability for feature catalog code references

@@ -3,6 +3,9 @@ title: "416 -- vec_memories KNN dual-write and factory shard fallback"
 description: "This scenario validates that reindex dual-writes vec_<dim> and vec_memories per shard and that the factory resolves the active ollama embedder through the per-embedder shard when the main DB lacks the dim-tagged table."
 audited_post_018: true
 version: 3.6.0.4
+id: memory-quality-and-indexing-vec-memories-knn-and-factory-shard-fallback
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 416 -- vec_memories KNN dual-write and factory shard fallback

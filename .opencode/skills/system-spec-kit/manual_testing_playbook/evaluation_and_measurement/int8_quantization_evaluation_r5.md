@@ -2,6 +2,9 @@
 title: "090 -- INT8 quantization evaluation (R5)"
 description: "This scenario validates INT8 quantization evaluation (R5) for `090`. It focuses on confirming whether the prior no-go still holds or current data warrants re-evaluation."
 version: 3.6.0.16
+id: evaluation-and-measurement-int8-quantization-evaluation-r5
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 090 -- INT8 quantization evaluation (R5)

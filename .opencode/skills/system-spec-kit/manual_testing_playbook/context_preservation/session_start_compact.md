@@ -4,6 +4,9 @@ description: "This scenario validates SessionStart priming (compact) for 249. It
 audited_post_018: true
 phase_018_change: "Updated the fallback recovery instruction to point at /speckit:resume and the canonical packet continuity chain."
 version: 3.6.0.16
+id: context-preservation-session-start-compact
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 249 -- SessionStart injects post-compact context

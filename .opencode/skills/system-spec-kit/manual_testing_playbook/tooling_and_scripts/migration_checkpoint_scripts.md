@@ -2,6 +2,9 @@
 title: "127 -- Migration checkpoint scripts"
 description: "This scenario validates Migration checkpoint scripts for `127`. It focuses on Verify raw SQLite migration checkpoint create/restore helpers produce sidecar metadata and safe restore backups."
 version: 3.6.0.16
+id: tooling-and-scripts-migration-checkpoint-scripts
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 127 -- Migration checkpoint scripts

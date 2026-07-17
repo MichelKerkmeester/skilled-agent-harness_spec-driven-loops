@@ -2,6 +2,9 @@
 title: "268 -- Post-insert retry budget"
 description: "This scenario validates the post-insert retry budget for `268`. It focuses on proving deferred enrichment stops retrying after the documented budget is exhausted."
 version: 3.6.0.10
+id: lifecycle-post-insert-retry-budget
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 268 -- Post-insert retry budget

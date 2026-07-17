@@ -3,6 +3,9 @@ title: "218 -- MCP Server Public API Barrel"
 description: "This scenario validates MCP Server Public API Barrel for `218`. It focuses on verifying the top-level barrel re-exports the approved runtime, helper, and metadata surfaces from one stable import boundary."
 audited_post_018: true
 version: 3.6.0.12
+id: pipeline-architecture-mcp-server-public-api-barrel
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 218 -- MCP Server Public API Barrel

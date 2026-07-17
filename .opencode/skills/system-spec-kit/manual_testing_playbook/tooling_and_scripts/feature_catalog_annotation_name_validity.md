@@ -2,6 +2,9 @@
 title: "136 -- Feature catalog annotation name validity"
 description: "This scenario validates Feature catalog annotation name validity for `136`. It focuses on Verify all annotation names cross-reference against catalog H3 headings with 0 invalid."
 version: 3.6.0.18
+id: tooling-and-scripts-feature-catalog-annotation-name-validity
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 136 -- Feature catalog annotation name validity

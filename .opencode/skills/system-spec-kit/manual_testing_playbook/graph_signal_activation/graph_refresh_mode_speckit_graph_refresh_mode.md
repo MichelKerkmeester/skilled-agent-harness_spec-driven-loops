@@ -3,6 +3,9 @@ title: "156 -- Graph refresh mode (SPECKIT_GRAPH_REFRESH_MODE)"
 description: "This scenario validates graph refresh mode (SPECKIT_GRAPH_REFRESH_MODE) for `156`. It focuses on enabling write_local mode, saving a spec-doc record, and verifying dirty-node tracking fires."
 audited_post_018: true
 version: 3.6.0.15
+id: graph-signal-activation-graph-refresh-mode-speckit-graph-refresh-mode
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 156 -- Graph refresh mode (SPECKIT_GRAPH_REFRESH_MODE)

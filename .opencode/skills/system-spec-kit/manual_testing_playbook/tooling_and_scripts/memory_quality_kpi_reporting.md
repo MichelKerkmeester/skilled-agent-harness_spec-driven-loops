@@ -2,6 +2,9 @@
 title: "247 -- Memory Quality KPI Reporting"
 description: "This scenario validates memory quality KPI reporting for `247`. It focuses on confirming global and scoped scans, JSON output, and the stderr summary line."
 version: 3.6.0.13
+id: tooling-and-scripts-memory-quality-kpi-reporting
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 247 -- Memory Quality KPI Reporting

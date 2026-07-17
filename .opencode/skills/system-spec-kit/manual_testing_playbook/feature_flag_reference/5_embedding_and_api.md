@@ -3,6 +3,9 @@ title: "EX-032 -- 5. Embedding and API"
 description: "This scenario validates 5. Embedding and API for `EX-032`. It focuses on Provider selection audit."
 audited_post_018: true
 version: 3.6.0.19
+id: feature-flag-reference-5-embedding-and-api
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-032 -- 5. Embedding and API

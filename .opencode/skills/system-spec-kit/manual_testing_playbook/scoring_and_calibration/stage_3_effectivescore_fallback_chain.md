@@ -3,6 +3,9 @@ title: "074 -- Stage 3 effectiveScore fallback chain"
 description: "This scenario validates Stage 3 effectiveScore fallback chain for `074`. It focuses on Confirm fallback order correctness."
 audited_post_018: true
 version: 3.6.0.16
+id: scoring-and-calibration-stage-3-effectivescore-fallback-chain
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 074 -- Stage 3 effectiveScore fallback chain

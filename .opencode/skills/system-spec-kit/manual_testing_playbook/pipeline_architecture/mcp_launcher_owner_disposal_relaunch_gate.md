@@ -2,6 +2,9 @@
 title: "421 -- MCP Launcher Owner Disposal Relaunch Gate"
 description: "Manual check for the automated-test-backed launcher guard that aborts daemon relaunch after the owning MCP runtime exits, while preserving crash and recycle recovery."
 version: 3.6.0.2
+id: pipeline-architecture-mcp-launcher-owner-disposal-relaunch-gate
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 421 -- MCP Launcher Owner Disposal Relaunch Gate

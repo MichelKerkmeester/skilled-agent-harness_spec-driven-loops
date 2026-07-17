@@ -3,6 +3,9 @@ title: "279 -- Retention sweep dry-run no-op"
 description: "Validates memory_retention_sweep dry-run behavior when no rows are eligible for deletion."
 audited_post_017: true
 version: 3.6.0.2
+id: maintenance-retention-sweep-dry-run-no-op
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 279 -- Retention sweep dry-run no-op

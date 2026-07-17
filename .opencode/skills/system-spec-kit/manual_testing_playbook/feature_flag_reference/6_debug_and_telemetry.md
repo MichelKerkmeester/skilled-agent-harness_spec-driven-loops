@@ -3,6 +3,9 @@ title: "EX-033 -- 6. Debug and Telemetry"
 description: "This scenario validates 6. Debug and Telemetry for `EX-033`. It focuses on Observability toggle check."
 audited_post_018: true
 version: 3.6.0.15
+id: feature-flag-reference-6-debug-and-telemetry
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-033 -- 6. Debug and Telemetry

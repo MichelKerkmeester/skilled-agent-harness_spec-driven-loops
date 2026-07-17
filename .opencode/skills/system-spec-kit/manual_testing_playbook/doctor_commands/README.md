@@ -1,3 +1,9 @@
+---
+id: doctor-commands-readme
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
+---
+
 # 23 — Doctor Commands
 
 Manual testing scenarios for the spec-kit `/doctor` command surface.

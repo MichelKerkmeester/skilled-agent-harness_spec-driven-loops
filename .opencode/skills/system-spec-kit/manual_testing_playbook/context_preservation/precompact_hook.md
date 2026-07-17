@@ -3,6 +3,9 @@ title: "248 -- PreCompact hook fires and caches context"
 description: "This scenario validates PreCompact hook context caching for 248. It focuses on PreCompact hook precomputes context and caches to hook state."
 audited_post_018: true
 version: 3.6.0.14
+id: context-preservation-precompact-hook
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 248 -- PreCompact hook fires and caches context

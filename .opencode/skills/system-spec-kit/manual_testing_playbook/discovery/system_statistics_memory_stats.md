@@ -2,6 +2,9 @@
 title: "EX-012 -- System statistics (memory_stats)"
 description: "This scenario validates System statistics (memory_stats) for `EX-012`. It focuses on System baseline snapshot."
 version: 3.6.0.15
+id: discovery-system-statistics-memory-stats
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-012 -- System statistics (memory_stats)

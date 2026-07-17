@@ -2,6 +2,9 @@
 title: "103 -- UX hook module coverage (`mutation-feedback`, `response-hints`)"
 description: "This scenario validates UX hook module coverage (`mutation-feedback`, `response-hints`) for `103`. It focuses on Confirm new hook modules return the finalized metadata and hint shape."
 version: 3.6.0.17
+id: ux-hooks-ux-hook-module-coverage-mutation-feedback-response-hints
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 103 -- UX hook module coverage (`mutation-feedback`, `response-hints`)

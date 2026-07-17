@@ -2,6 +2,9 @@
 title: "217 -- Evaluation API Surface"
 description: "This scenario validates Evaluation API Surface for `217`. It focuses on verifying the stable public facade exposes ablation, BM25 baseline, ground-truth loading, and eval DB setup through one approved import path."
 version: 3.6.0.12
+id: evaluation-and-measurement-evaluation-api-surface
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 217 -- Evaluation API Surface

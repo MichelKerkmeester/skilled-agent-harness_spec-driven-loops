@@ -7,6 +7,9 @@ trigger_phrases:
   - "session.created stale dist warning"
   - "stale compiled dist"
 version: 1.0.0.0
+id: plugins-and-hooks-dist-freshness-guard
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # Dist Freshness Guard

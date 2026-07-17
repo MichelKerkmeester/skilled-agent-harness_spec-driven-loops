@@ -4,6 +4,9 @@ description: "This scenario validates Inert scoring flags and compatibility shim
 audited_post_018: true
 phase_018_change: "Validated against phase-018 canonical continuity refactor; novelty remains inert and graph-flag imports still forward through the current rollout helper."
 version: 3.6.0.13
+id: implement-and-remove-deprecated-features-inert-scoring-flags
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 231 -- Inert scoring flags and compatibility shims

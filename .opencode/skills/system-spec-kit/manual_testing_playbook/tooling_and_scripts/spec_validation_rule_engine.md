@@ -2,6 +2,11 @@
 title: "238 -- Spec Validation Rule Engine"
 description: "This scenario validates spec validation rule engine for `238`. It focuses on confirming compliant validation, warning escalation, and recursive phase validation behavior."
 version: 3.6.0.14
+id: tooling-and-scripts-spec-validation-rule-engine
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/validation/validation_rules.md
 ---
 
 # 238 -- Spec Validation Rule Engine

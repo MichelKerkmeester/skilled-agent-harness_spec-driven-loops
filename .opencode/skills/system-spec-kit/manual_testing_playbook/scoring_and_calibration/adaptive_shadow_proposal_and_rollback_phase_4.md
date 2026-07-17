@@ -3,6 +3,9 @@ title: "121 -- Adaptive shadow proposal and rollback (Phase 4)"
 description: "This scenario validates Adaptive shadow proposal and rollback (Phase 4) for `121`. It focuses on Confirm adaptive scoring runs in shadow mode only, captures bounded proposals, and can be disabled cleanly."
 audited_post_018: true
 version: 3.6.0.16
+id: scoring-and-calibration-adaptive-shadow-proposal-and-rollback-phase-4
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 121 -- Adaptive shadow proposal and rollback (Phase 4)

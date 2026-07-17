@@ -2,6 +2,9 @@
 title: "DOC-330 -- Doctor causal graph add-only"
 description: "This scenario validates /doctor causal-graph add-only enforcement for DOC-330. It focuses on proving existing causal edges are never deleted or weight-modified."
 version: 3.6.0.10
+id: doctor-commands-doctor-causal-graph-add-only
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # DOC-330 -- Doctor causal graph add-only

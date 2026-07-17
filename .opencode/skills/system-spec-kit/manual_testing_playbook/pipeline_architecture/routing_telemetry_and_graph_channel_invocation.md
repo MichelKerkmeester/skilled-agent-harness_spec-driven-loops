@@ -2,6 +2,9 @@
 title: "272 -- Routing telemetry and graph-channel invocation (012)"
 description: "Manual scenario validating that memory_health surfaces graphChannelInvocationRate and that the shouldPreserveGraph override fires for find_decision / find_spec queries."
 version: 3.6.0.7
+id: pipeline-architecture-routing-telemetry-and-graph-channel-invocation
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 272 -- Routing telemetry and graph-channel invocation (012)

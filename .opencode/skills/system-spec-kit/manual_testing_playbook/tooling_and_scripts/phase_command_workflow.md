@@ -2,6 +2,11 @@
 title: "PHASE-005 -- Phase command workflow"
 description: "This scenario validates Phase command workflow for `PHASE-005`. It focuses on Execute `/speckit:plan :with-phases` command in auto mode and verify 7-step workflow."
 version: 3.6.0.18
+id: tooling-and-scripts-phase-command-workflow
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/structure/phase_definitions.md
 ---
 
 # PHASE-005 -- Phase command workflow

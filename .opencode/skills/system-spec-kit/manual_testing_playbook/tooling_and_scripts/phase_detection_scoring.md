@@ -2,6 +2,11 @@
 title: "PHASE-001 -- Phase detection scoring"
 description: "This scenario validates Phase detection scoring for `PHASE-001`. It focuses on Run `recommend-level.sh --recommend-phases --json` on a high-complexity spec and verify scoring output."
 version: 3.6.0.17
+id: tooling-and-scripts-phase-detection-scoring
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/structure/phase_definitions.md
 ---
 
 # PHASE-001 -- Phase detection scoring

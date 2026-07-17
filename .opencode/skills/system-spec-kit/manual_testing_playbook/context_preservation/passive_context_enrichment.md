@@ -3,6 +3,9 @@ title: "288 -- Passive context enrichment"
 description: "Validates the server-side auto-enrichment pipeline that appends constitutional memories, triggered memories, and code graph status to every tool response served by system-spec-kit's own mcp_server."
 audited_post_018: true
 version: 3.6.0.5
+id: context-preservation-passive-context-enrichment
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 288 -- Passive context enrichment

@@ -3,6 +3,9 @@ title: "130 -- Lineage backfill rollback drill"
 description: "This scenario validates Lineage backfill rollback drill for `130`. It focuses on Verify dry-run planning, idempotent backfill, and checkpoint-backed rollback for Phase 2 lineage rollout."
 audited_post_018: true
 version: 3.6.0.17
+id: pipeline-architecture-lineage-backfill-rollback-drill
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 130 -- Lineage backfill rollback drill

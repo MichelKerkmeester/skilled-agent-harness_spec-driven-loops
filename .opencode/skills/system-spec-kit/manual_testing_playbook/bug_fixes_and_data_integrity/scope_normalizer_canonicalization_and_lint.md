@@ -2,6 +2,9 @@
 title: "269 -- Scope normalizer canonicalization and lint"
 description: "This scenario validates the canonical scope normalizer and duplicate-helper lint for `269`. It focuses on proving scope cleanup stays centralized and new local duplicates are rejected."
 version: 3.6.0.8
+id: bug-fixes-and-data-integrity-scope-normalizer-canonicalization-and-lint
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 269 -- Scope normalizer canonicalization and lint

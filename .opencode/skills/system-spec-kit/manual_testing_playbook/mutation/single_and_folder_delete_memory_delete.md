@@ -4,6 +4,9 @@ description: "This scenario validates Single and folder delete (memory_delete) f
 audited_post_018: true
 phase_018_change: "Delete scenario remains live with post-018 audit coverage"
 version: 3.6.0.15
+id: mutation-single-and-folder-delete-memory-delete
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-008 -- Single and folder delete (memory_delete)

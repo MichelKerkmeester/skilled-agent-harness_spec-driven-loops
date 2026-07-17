@@ -4,6 +4,9 @@ description: "Manual-testing reference for validating the live memory roadmap re
 audited_post_018: true
 phase_018_change: updated to use the dedicated roadmap-flag catalog reference and corrected the snapshot count
 version: 3.6.0.12
+id: feature-flag-reference-memory-roadmap-capability-flags
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 125: Memory roadmap flags

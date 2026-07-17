@@ -2,6 +2,9 @@
 title: "DOC-331 -- Doctor deep-loop lazy init"
 description: "Manual scenario validating /doctor deep-loop lazy initialization from existing research and review iteration folders."
 version: 3.6.0.8
+id: doctor-commands-doctor-deep-loop-lazy-init
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # DOC-331 -- Doctor deep-loop lazy init

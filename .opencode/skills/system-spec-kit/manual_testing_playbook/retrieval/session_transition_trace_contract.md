@@ -3,6 +3,9 @@ title: "142 -- Session transition trace contract"
 description: "This scenario validates Session transition trace contract for `142`. It focuses on Verify `memory_context` emits trace-only session transitions with no non-trace leakage."
 audited_post_018: true
 version: 3.6.0.17
+id: retrieval-session-transition-trace-contract
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 142 -- Session transition trace contract

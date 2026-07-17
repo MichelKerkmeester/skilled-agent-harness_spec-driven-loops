@@ -2,6 +2,9 @@
 title: "EX-016 -- Checkpoint listing (checkpoint_list)"
 description: "This scenario validates Checkpoint listing (checkpoint_list) for `EX-016`. It focuses on Recovery asset discovery."
 version: 3.6.0.15
+id: lifecycle-checkpoint-listing-checkpoint-list
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-016 -- Checkpoint listing (checkpoint_list)

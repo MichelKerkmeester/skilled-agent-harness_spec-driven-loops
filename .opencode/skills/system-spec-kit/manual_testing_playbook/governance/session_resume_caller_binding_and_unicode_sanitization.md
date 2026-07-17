@@ -2,6 +2,9 @@
 title: "273 -- Session-resume caller binding and Unicode sanitization"
 description: "This scenario validates the Phase 017 governance hardening for `273`. It focuses on strict session-resume caller binding and the NFKC plus zero-width sanitization guardrails."
 version: 3.6.0.8
+id: governance-session-resume-caller-binding-and-unicode-sanitization
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 273 -- Session-resume caller binding and Unicode sanitization

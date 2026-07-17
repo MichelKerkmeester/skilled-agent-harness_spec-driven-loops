@@ -2,6 +2,9 @@
 title: "119-B -- Comment Hygiene — Claude Code PostToolUse Hook"
 description: "This scenario validates the Claude Code PostToolUse write-time hook for `119-B`. It focuses on confirming the hook fires on Write and Edit tool calls, prints a warning when violations are found, remains fail-safe (exits 0 and never blocks), and stays silent on clean files."
 version: 3.6.0.5
+id: ux-hooks-b-comment-hygiene-claude-code-hook
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 119-B -- Comment Hygiene — Claude Code PostToolUse Hook

@@ -3,6 +3,9 @@ title: "131 -- Description.json batch backfill validation (PI-B3)"
 description: "This scenario validates Description.json batch backfill validation (PI-B3) for `131`. It focuses on Confirm batch-generated folder descriptions exist and conform to schema."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-description-json-batch-backfill-validation-pi-b3
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 131 -- Description.json batch backfill validation (PI-B3)

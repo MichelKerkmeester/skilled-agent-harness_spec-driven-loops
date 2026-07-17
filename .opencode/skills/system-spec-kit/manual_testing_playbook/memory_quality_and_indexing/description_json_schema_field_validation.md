@@ -3,6 +3,9 @@ title: "132 -- description.json schema field validation"
 description: "This scenario validates description.json schema field validation for `132`. It focuses on Confirm per-folder description metadata matches schema contract."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-description-json-schema-field-validation
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 132 -- description.json schema field validation

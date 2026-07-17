@@ -2,6 +2,9 @@
 title: "447 -- Source Kind Provenance Guard"
 description: "Manual check that write provenance is server-derived, forged source_kind inputs are rejected, and automated writes cannot overwrite protected manual or constitutional fields."
 version: 3.6.0.1
+id: governance-source-kind-provenance-guard
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 447 -- Source Kind Provenance Guard

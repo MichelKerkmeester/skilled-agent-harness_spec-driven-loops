@@ -3,6 +3,9 @@ title: "071 -- Performance improvements"
 description: "This scenario validates Performance improvements for `071`. It focuses on confirming key perf remediations active, including fallback split, token-estimate caching, and BM25 demotion behavior."
 audited_post_018: true
 version: 3.6.0.17
+id: pipeline-architecture-performance-improvements
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 071 -- Performance improvements

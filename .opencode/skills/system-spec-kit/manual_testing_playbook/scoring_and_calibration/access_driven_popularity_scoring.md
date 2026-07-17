@@ -3,6 +3,9 @@ title: "197 -- Access-driven popularity scoring"
 description: "This scenario validates access-driven popularity scoring for `197`. It focuses on confirming batched access accumulation, thresholded flushes, and popularity-driven ranking effects."
 audited_post_018: true
 version: 3.6.0.13
+id: scoring-and-calibration-access-driven-popularity-scoring
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 197 -- Access-driven popularity scoring

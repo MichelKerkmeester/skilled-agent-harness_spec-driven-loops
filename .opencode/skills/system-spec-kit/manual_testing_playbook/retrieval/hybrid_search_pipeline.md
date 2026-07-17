@@ -3,6 +3,9 @@ title: "EX-004 -- Hybrid search pipeline"
 description: "This scenario validates Hybrid search pipeline for `EX-004`. It focuses on channel fusion sanity, caller-preserving fallback, and trace consistency."
 audited_post_018: true
 version: 3.6.0.19
+id: retrieval-hybrid-search-pipeline
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-004 -- Hybrid search pipeline

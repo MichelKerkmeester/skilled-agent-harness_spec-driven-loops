@@ -2,6 +2,9 @@
 title: "M-010 -- Runtime Lineage Naming Parity"
 description: "This snippet preserves the canonical memory/spec-kit operator workflow for `M-010`."
 version: 3.6.0.16
+id: tooling-and-scripts-runtime-lineage-naming-parity
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # M-010 -- Runtime Lineage Naming Parity

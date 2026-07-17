@@ -2,6 +2,9 @@
 title: "009 -- Quality proxy formula (B7)"
 description: "This scenario validates Quality proxy formula (B7) for `009`. It focuses on Confirm proxy formula correctness."
 version: 3.6.0.16
+id: evaluation-and-measurement-quality-proxy-formula-b7
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 009 -- Quality proxy formula (B7)

@@ -2,6 +2,9 @@
 title: "DOC-324 -- Doctor memory drift detection"
 description: "Manual scenario validating /doctor memory drift reporting when markdown sources are edited after the memory index was populated."
 version: 3.6.0.11
+id: doctor-commands-doctor-memory-drift-detection
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # DOC-324 -- Doctor memory drift detection

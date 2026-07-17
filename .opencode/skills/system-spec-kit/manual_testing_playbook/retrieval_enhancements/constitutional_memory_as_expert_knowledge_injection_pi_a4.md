@@ -3,6 +3,9 @@ title: "056 -- Constitutional memory as expert knowledge injection (PI-A4)"
 description: "This scenario validates Constitutional memory as expert knowledge injection (PI-A4) for `056`. It focuses on Confirm directive enrichment."
 audited_post_018: true
 version: 3.6.0.16
+id: retrieval-enhancements-constitutional-memory-as-expert-knowledge-injection-pi-a4
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 056 -- Constitutional memory as expert knowledge injection (PI-A4)

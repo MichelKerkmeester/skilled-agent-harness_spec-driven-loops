@@ -3,6 +3,9 @@ title: "Stress Testing Manual Playbook"
 description: "Section index and ownership guide for manual stress cycles plus automated stress harness cross-references in system-spec-kit."
 audited_post_018: true
 version: 3.7.1.0
+id: stress-testing-readme
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # Stress Testing Manual Playbook

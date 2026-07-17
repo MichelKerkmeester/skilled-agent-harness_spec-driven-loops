@@ -4,6 +4,9 @@ description: "This scenario validates Feedback-driven revalidation for `227`. It
 audited_post_018: true
 phase_018_change: "Post-018 audit kept the scenario aligned to the live `memory_validate` feedback loop, guarded promotion path, and bounded learned feedback."
 version: 3.6.0.13
+id: remediation-revalidation-feedback-driven-revalidation
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 227 -- Feedback-driven revalidation

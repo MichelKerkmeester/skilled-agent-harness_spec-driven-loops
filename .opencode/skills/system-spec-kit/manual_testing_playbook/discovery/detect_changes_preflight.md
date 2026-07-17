@@ -2,6 +2,9 @@
 title: "EX-014 -- detect_changes preflight (Code Graph)"
 description: "This scenario validates detect_changes for `EX-014`. It covers the P1 safety invariant (status='blocked' on stale graph; accurate symbol attribution on fresh graph) AND two 010/007 hardening scenarios: adversarial path traversal rejection (R-007-3) and multi-file diff boundary correctness (R-007-4)."
 version: 3.6.0.14
+id: discovery-detect-changes-preflight
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-014 -- detect_changes preflight (Code Graph)

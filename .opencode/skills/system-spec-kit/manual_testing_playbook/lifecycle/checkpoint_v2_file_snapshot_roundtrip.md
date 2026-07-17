@@ -2,6 +2,9 @@
 title: "EX-037 -- Checkpoint v2 file-snapshot round-trip (checkpoint_create / checkpoint_restore)"
 description: "This scenario validates the v2 file-based full-DB checkpoint path for `EX-037`. It focuses on a VACUUM-INTO create then a restore round-trip, asserting snapshot_format/snapshot_path, restore-journal crash-safety, and the sharded active_vec case."
 version: 3.6.0.3
+id: lifecycle-checkpoint-v2-file-snapshot-roundtrip
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-037 -- Checkpoint v2 file-snapshot round-trip (checkpoint_create / checkpoint_restore)

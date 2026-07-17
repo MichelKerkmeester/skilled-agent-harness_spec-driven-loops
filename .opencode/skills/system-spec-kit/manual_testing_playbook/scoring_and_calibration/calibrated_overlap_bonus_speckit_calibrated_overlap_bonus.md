@@ -3,6 +3,9 @@ title: "171 -- Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS)"
 description: "This scenario validates calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS) for `171`. It focuses on the default-on graduated rollout and verifying the calibrated bonus replaces the flat convergence bonus in RRF fusion."
 audited_post_018: true
 version: 3.6.0.14
+id: scoring-and-calibration-calibrated-overlap-bonus-speckit-calibrated-overlap-bonus
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 171 -- Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS)

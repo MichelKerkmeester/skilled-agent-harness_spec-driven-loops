@@ -3,6 +3,9 @@ title: "159 -- Learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER)"
 description: "This scenario validates learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER) for `159`. It focuses on enabling the flag and verifying shadow scoring produces comparison output."
 audited_post_018: true
 version: 3.6.0.14
+id: scoring-and-calibration-learned-stage2-combiner-speckit-learned-stage2-combiner
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 159 -- Learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER)

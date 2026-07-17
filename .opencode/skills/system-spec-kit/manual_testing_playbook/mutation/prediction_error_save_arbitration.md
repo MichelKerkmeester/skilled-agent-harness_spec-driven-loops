@@ -4,6 +4,9 @@ description: "This scenario validates Prediction-error save arbitration for `110
 audited_post_018: true
 phase_018_change: "PE arbitration scenario remains live on the post-018 continuity save path"
 version: 3.6.0.17
+id: mutation-prediction-error-save-arbitration
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 110 -- Prediction-error save arbitration

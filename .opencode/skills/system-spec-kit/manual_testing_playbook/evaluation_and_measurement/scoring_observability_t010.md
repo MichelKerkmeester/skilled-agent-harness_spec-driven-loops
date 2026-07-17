@@ -2,6 +2,9 @@
 title: "013 -- Scoring observability (T010)"
 description: "This scenario validates Scoring observability (T010) for `013`. It focuses on Confirm sample logging + fail-safe."
 version: 3.6.0.16
+id: evaluation-and-measurement-scoring-observability-t010
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 013 -- Scoring observability (T010)

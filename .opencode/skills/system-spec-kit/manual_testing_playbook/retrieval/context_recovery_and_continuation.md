@@ -4,6 +4,11 @@ description: "This snippet preserves the canonical memory/spec-kit operator work
 audited_post_018: true
 phase_018_change: Re-centered the resume path on `/speckit:resume`, `handover.md`, `_memory.continuity`, and supporting spec docs instead of legacy CONTINUE_SESSION wording.
 version: 3.6.0.19
+id: retrieval-context-recovery-and-continuation
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/memory/memory_system.md
 ---
 
 # M-001 -- Context Recovery and Continuation

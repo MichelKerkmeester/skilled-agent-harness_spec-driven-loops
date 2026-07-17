@@ -2,6 +2,9 @@
 title: "EX-017 -- Checkpoint restore (checkpoint_restore)"
 description: "This scenario validates Checkpoint restore (checkpoint_restore) for `EX-017`. It focuses on Rollback restore drill."
 version: 3.6.0.16
+id: lifecycle-checkpoint-restore-checkpoint-restore
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-017 -- Checkpoint restore (checkpoint_restore)

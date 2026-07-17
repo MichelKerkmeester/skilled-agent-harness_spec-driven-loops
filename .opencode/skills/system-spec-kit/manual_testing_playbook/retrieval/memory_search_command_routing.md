@@ -3,6 +3,11 @@ title: "185 -- /memory:search command routing"
 description: "This scenario validates /memory:search command routing for `185`. It focuses on Verify the command's routing logic: no args prompts intent, query triggers retrieval mode, and analysis subcommands route correctly."
 audited_post_018: true
 version: 3.6.0.14
+id: retrieval-memory-search-command-routing
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/memory/memory_system.md
 ---
 
 # 185 -- /memory:search command routing

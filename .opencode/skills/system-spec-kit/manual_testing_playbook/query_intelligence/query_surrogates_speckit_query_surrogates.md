@@ -3,6 +3,9 @@ title: "163 -- Query surrogates (SPECKIT_QUERY_SURROGATES)"
 description: "This scenario validates query surrogates (SPECKIT_QUERY_SURROGATES) for `163`. It focuses on enabling the flag, saving a spec-doc record, and verifying surrogates are generated at index time."
 audited_post_018: true
 version: 3.6.0.14
+id: query-intelligence-query-surrogates-speckit-query-surrogates
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 163 -- Query surrogates (SPECKIT_QUERY_SURROGATES)

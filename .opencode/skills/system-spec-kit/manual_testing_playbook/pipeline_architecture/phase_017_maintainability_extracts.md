@@ -2,6 +2,9 @@
 title: "270 -- Phase 017 maintainability extracts"
 description: "This scenario validates the Phase 017 maintainability extracts for `270`. It focuses on proving the shared helper surfaces replaced the old inline variants without changing the contracts they serve."
 version: 3.6.0.8
+id: pipeline-architecture-phase-017-maintainability-extracts
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 270 -- Phase 017 maintainability extracts

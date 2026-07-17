@@ -2,6 +2,9 @@
 title: "213 -- Mutation response UX payload exposure"
 description: "This scenario validates Mutation response UX payload exposure for `213`. It focuses on Confirm successful save responses expose typed `postMutationHooks` payloads while no-op saves suppress false UX metadata."
 version: 3.6.0.13
+id: ux-hooks-mutation-response-ux-payload-exposure
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 213 -- Mutation response UX payload exposure

@@ -3,6 +3,9 @@ title: "087 -- DB_PATH extraction and import standardization"
 description: "This scenario validates DB_PATH extraction and import standardization for `087`. It focuses on Confirm shared DB path resolution."
 audited_post_018: true
 version: 3.6.0.16
+id: pipeline-architecture-db-path-extraction-and-import-standardization
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 087 -- DB_PATH extraction and import standardization

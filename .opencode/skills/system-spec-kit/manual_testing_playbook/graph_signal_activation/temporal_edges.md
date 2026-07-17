@@ -3,6 +3,9 @@ title: "196 -- Temporal edge validity"
 description: "Validates that valid_at/invalid_at columns on causal_edges, plus invalidateEdge() and getValidEdges(), keep stale relationships out of graph traversal."
 audited_post_018: true
 version: 3.6.0.5
+id: graph-signal-activation-temporal-edges
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 196 -- Temporal edge validity

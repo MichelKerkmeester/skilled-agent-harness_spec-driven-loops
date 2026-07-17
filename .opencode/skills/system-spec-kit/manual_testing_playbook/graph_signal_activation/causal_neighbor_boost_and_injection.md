@@ -3,6 +3,9 @@ title: "194 -- Causal neighbor boost and injection"
 description: "This scenario validates Causal neighbor boost and injection for `194`. It focuses on Confirm 2-hop causal amplification with shared ceiling enforcement."
 audited_post_018: true
 version: 3.6.0.12
+id: graph-signal-activation-causal-neighbor-boost-and-injection
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 194 -- Causal neighbor boost and injection

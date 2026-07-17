@@ -3,6 +3,9 @@ title: "093 -- Implemented: memory summary generation (R8)"
 description: "This scenario validates Implemented: memory summary generation (R8) for `093`. It focuses on Confirm deferred->implemented status."
 audited_post_018: true
 version: 3.6.0.16
+id: retrieval-enhancements-implemented-memory-summary-generation-r8
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 093 -- Implemented: memory summary generation (R8)

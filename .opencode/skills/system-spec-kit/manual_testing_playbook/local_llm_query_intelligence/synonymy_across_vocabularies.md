@@ -4,6 +4,9 @@ description: "Verifies that domain-jargon and plain-language queries surface the
 audited_post_018: true
 fixture_version: "post-surgery"
 version: 3.6.0.4
+id: local-llm-query-intelligence-synonymy-across-vocabularies
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 402 - Synonymy across vocabularies

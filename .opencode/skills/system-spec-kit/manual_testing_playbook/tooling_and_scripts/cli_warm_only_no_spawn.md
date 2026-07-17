@@ -2,6 +2,9 @@
 title: "428 -- CLI Warm-Only No-Spawn Behavior"
 description: "Manual check that --warm-only CLI calls against an absent daemon socket exit 75 with a backend-unavailable error and never cold-spawn a launcher or daemon."
 version: 3.6.0.1
+id: tooling-and-scripts-cli-warm-only-no-spawn
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 428 -- CLI Warm-Only No-Spawn Behavior

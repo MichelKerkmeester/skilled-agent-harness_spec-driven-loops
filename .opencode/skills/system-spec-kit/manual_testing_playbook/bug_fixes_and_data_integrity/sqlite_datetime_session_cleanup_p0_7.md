@@ -3,6 +3,9 @@ title: "117 -- SQLite datetime session cleanup (P0-7)"
 description: "This scenario validates SQLite datetime session cleanup (P0-7) for `117`. It focuses on Verify cleanupOldSessions() correctly identifies expired sessions using SQLite-native datetime comparison regardless of timestamp format."
 audited_post_018: true
 version: 3.6.0.16
+id: bug-fixes-and-data-integrity-sqlite-datetime-session-cleanup-p0-7
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 117 -- SQLite datetime session cleanup (P0-7)

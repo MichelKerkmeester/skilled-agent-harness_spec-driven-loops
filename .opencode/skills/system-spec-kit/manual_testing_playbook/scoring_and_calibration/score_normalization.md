@@ -3,6 +3,9 @@ title: "023 -- Score normalization"
 description: "This scenario validates Score normalization for `023`. It focuses on Confirm batch min-max behavior."
 audited_post_018: true
 version: 3.6.0.17
+id: scoring-and-calibration-score-normalization
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 023 -- Score normalization

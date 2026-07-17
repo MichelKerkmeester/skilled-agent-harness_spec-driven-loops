@@ -3,6 +3,9 @@ title: "408 — Compound concept synthesis"
 description: "Fire a query whose answer is not stated in any single document — operator must synthesize from 2-3 sources. Verify top-3 returns the constituent docs that together compose the answer."
 audited_post_018: true
 version: 3.6.0.6
+id: local-llm-query-intelligence-compound-concept-synthesis
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 408 — Compound concept synthesis

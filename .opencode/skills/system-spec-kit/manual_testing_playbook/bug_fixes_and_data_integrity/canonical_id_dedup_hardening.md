@@ -3,6 +3,9 @@ title: "075 -- Canonical ID dedup hardening"
 description: "This scenario validates Canonical ID dedup hardening for `075`. It focuses on Confirm mixed-format ID dedup."
 audited_post_018: true
 version: 3.6.0.17
+id: bug-fixes-and-data-integrity-canonical-id-dedup-hardening
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 075 -- Canonical ID dedup hardening

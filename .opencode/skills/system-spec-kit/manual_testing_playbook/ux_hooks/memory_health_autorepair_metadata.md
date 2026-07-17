@@ -2,6 +2,9 @@
 title: "210 -- Memory health autoRepair metadata"
 description: "This scenario validates Memory health autoRepair metadata for `210`. It focuses on Confirm confirmation-only autoRepair behavior and structured repair metadata with partial-success reporting."
 version: 3.6.0.13
+id: ux-hooks-memory-health-autorepair-metadata
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 210 -- Memory health autoRepair metadata

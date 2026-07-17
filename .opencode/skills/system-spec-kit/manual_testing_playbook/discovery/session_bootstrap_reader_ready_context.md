@@ -3,6 +3,9 @@ title: "015 -- Session bootstrap reader-ready context"
 description: "Validates session_bootstrap returns bounded startup context and clear graph-readiness messaging."
 audited_post_017: true
 version: 3.6.0.2
+id: discovery-session-bootstrap-reader-ready-context
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 015 -- Session bootstrap reader-ready context

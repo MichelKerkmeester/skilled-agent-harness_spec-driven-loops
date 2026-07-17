@@ -3,6 +3,9 @@ title: "411 — Causal graph link quality (does the local LLM connect related me
 description: "Save a sequence of causally-related memories (cause → effect → mitigation), then verify memory_causal_link surfaces the chain. Probes whether BGE local fallback's semantic representation gives the causal-graph builder enough signal to form correct edges."
 audited_post_018: true
 version: 3.6.0.6
+id: local-llm-query-intelligence-causal-graph-link-quality
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 411 — Causal graph link quality (does the local LLM connect related memories?)

@@ -3,6 +3,9 @@ title: "055 -- Dual-scope memory auto-surface (TM-05)"
 description: "This scenario validates Dual-scope memory auto-surface (TM-05) for `055`. It focuses on Confirm auto-surface hooks."
 audited_post_018: true
 version: 3.6.0.16
+id: retrieval-enhancements-dual-scope-memory-auto-surface-tm-05
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 055 -- Dual-scope memory auto-surface (TM-05)

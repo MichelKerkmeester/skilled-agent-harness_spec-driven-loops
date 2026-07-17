@@ -2,6 +2,9 @@
 title: "436 -- 028 CLI Stress: Large-Payload (>64KB) Pipe Integrity"
 description: "Stress scenario proving a >64KB CLI payload survives the stdout pipe byte-identically across repetitions and parses as valid JSON, with socket-frame integrity covered by the dual-client suites."
 version: 3.6.0.1
+id: tooling-and-scripts-cli-stress-large-payload-pipe-integrity
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 436 -- 028 CLI Stress: Large-Payload (>64KB) Pipe Integrity

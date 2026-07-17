@@ -4,6 +4,9 @@ description: "This snippet preserves the canonical memory/spec-kit operator work
 audited_post_018: true
 phase_018_replaces: "legacy memory-file fixture with spec-doc anchored history verification"
 version: 3.6.0.14
+id: mutation-feature-09-direct-manual-scenario-per-memory-history-log
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # M-008 -- Feature 09 Direct Manual Scenario (Per-memory History Log)

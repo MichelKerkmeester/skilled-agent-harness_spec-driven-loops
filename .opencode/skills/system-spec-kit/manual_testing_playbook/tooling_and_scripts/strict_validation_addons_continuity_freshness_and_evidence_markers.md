@@ -2,6 +2,9 @@
 title: "272 -- Strict validation add-ons: continuity freshness and evidence markers"
 description: "This scenario validates the Phase 017 strict-validation add-ons for `272`. It focuses on proving strict validation now enforces continuity freshness, evidence-marker lint, and the normalizer guardrail."
 version: 3.6.0.8
+id: tooling-and-scripts-strict-validation-addons-continuity-freshness-and-evidence-markers
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 272 -- Strict validation add-ons: continuity freshness and evidence markers

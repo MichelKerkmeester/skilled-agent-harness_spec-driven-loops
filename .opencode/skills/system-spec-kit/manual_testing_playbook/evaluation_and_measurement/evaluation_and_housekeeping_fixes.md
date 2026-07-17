@@ -2,6 +2,9 @@
 title: "082 -- Evaluation and housekeeping fixes"
 description: "This scenario validates Evaluation and housekeeping fixes for `082`. It focuses on Confirm eval/housekeeping reliability."
 version: 3.6.0.16
+id: evaluation-and-measurement-evaluation-and-housekeeping-fixes
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 082 -- Evaluation and housekeeping fixes

@@ -2,6 +2,9 @@
 title: "EX-035 -- Startup runtime compatibility guards"
 description: "This scenario validates Startup runtime compatibility guards for `EX-035`. It focuses on Startup diagnostics verification."
 version: 3.6.0.17
+id: maintenance-startup-runtime-compatibility-guards
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-035 -- Startup runtime compatibility guards

@@ -3,6 +3,9 @@ title: "217 -- Result provenance (graph evidence)"
 description: "Validates the graphEvidence envelope on Stage 2 fusion output, including contributing edge IDs, community IDs, and boost factors per result."
 audited_post_018: true
 version: 3.6.0.5
+id: ux-hooks-result-provenance
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 217 -- Result provenance (graph evidence)

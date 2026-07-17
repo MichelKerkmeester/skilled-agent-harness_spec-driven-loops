@@ -3,6 +3,9 @@ title: "020 -- Graph momentum scoring (N2a)"
 description: "This scenario validates Graph momentum scoring (N2a) for `020`. It focuses on Confirm 7-day delta bonus."
 audited_post_018: true
 version: 3.6.0.16
+id: graph-signal-activation-graph-momentum-scoring-n2a
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 020 -- Graph momentum scoring (N2a)

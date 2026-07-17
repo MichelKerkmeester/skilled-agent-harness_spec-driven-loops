@@ -3,6 +3,9 @@ title: "172 -- RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL)"
 description: "This scenario validates RRF K experimental tuning (SPECKIT_RRF_K_EXPERIMENTAL) for `172`. It focuses on the default-on graduated rollout and verifying per-intent K optimization selects the best K from a sweep grid."
 audited_post_018: true
 version: 3.6.0.14
+id: scoring-and-calibration-rrf-k-experimental-speckit-rrf-k-experimental
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 172 -- RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL)

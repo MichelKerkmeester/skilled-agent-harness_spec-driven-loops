@@ -2,6 +2,9 @@
 title: "EX-027 -- Reporting dashboard (eval_reporting_dashboard)"
 description: "This scenario validates Reporting dashboard (eval_reporting_dashboard) for `EX-027`. It focuses on Eval reporting pass."
 version: 3.6.0.17
+id: evaluation-reporting-dashboard-eval-reporting-dashboard
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-027 -- Reporting dashboard (eval_reporting_dashboard)

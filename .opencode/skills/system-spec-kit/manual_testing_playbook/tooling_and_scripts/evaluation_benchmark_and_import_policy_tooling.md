@@ -2,6 +2,9 @@
 title: "245 -- Evaluation, benchmark, and import-policy tooling"
 description: "This scenario validates evaluation, benchmark, and import-policy tooling for `245`. It focuses on confirming ablation, BM25 baseline, performance benchmarks, and policy regression coverage."
 version: 3.6.0.14
+id: tooling-and-scripts-evaluation-benchmark-and-import-policy-tooling
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 245 -- Evaluation, benchmark, and import-policy tooling

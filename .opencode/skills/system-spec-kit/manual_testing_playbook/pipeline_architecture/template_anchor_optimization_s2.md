@@ -3,6 +3,9 @@ title: "052 -- Template anchor optimization (S2)"
 description: "This scenario validates Template anchor optimization (S2) for `052`. It focuses on Confirm anchor metadata enrichment."
 audited_post_018: true
 version: 3.6.0.16
+id: pipeline-architecture-template-anchor-optimization-s2
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 052 -- Template anchor optimization (S2)

@@ -3,6 +3,9 @@ title: "050 -- MPAB chunk-to-memory aggregation (R1)"
 description: "This scenario validates MPAB chunk-to-memory aggregation (R1) for `050`. It focuses on Confirm MPAB formula."
 audited_post_018: true
 version: 3.6.0.16
+id: pipeline-architecture-mpab-chunk-to-memory-aggregation-r1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 050 -- MPAB chunk-to-memory aggregation (R1)

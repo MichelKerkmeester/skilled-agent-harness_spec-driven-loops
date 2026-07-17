@@ -2,6 +2,9 @@
 title: "180 -- Result confidence (SPECKIT_RESULT_CONFIDENCE)"
 description: "This scenario validates result confidence scoring (SPECKIT_RESULT_CONFIDENCE) for `180`. It focuses on the default-on graduated rollout and verifying per-result calibrated confidence with 3-factor weighting."
 version: 3.6.0.17
+id: ux-hooks-result-confidence-speckit-result-confidence-v1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 180 -- Result confidence (SPECKIT_RESULT_CONFIDENCE)

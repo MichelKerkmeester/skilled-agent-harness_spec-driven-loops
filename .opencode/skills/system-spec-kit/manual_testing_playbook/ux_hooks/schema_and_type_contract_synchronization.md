@@ -2,6 +2,9 @@
 title: "211 -- Schema and type contract synchronization"
 description: "This scenario validates Schema and type contract synchronization for `211`. It focuses on Confirm `checkpoint_delete.confirmName` and mutation-hook result contracts stay aligned across schema, handler, and tool boundaries."
 version: 3.6.0.13
+id: ux-hooks-schema-and-type-contract-synchronization
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 211 -- Schema and type contract synchronization

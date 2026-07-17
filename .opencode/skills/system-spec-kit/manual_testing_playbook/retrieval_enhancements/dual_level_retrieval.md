@@ -3,6 +3,9 @@ title: "149 -- Dual-level retrieval"
 description: "Validates the retrievalLevel parameter (local | global | auto) on memory_search and the auto-mode fallback to community search on weak results."
 audited_post_018: true
 version: 3.6.0.5
+id: retrieval-enhancements-dual-level-retrieval
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 149 -- Dual-level retrieval

@@ -2,6 +2,9 @@
 title: "137 -- Multi-feature annotation coverage"
 description: "This scenario validates Multi-feature annotation coverage for `137`. It focuses on Verify known multi-feature files have annotation count >= 2."
 version: 3.6.0.15
+id: tooling-and-scripts-multi-feature-annotation-coverage
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 137 -- Multi-feature annotation coverage

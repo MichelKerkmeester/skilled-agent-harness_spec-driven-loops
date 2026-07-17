@@ -4,6 +4,9 @@ description: "This scenario validates SessionStart priming (startup) for 250. It
 audited_post_018: true
 phase_018_change: "Updated startup recovery wording so the resume instruction points at /speckit:resume and the canonical packet continuity chain."
 version: 3.6.0.19
+id: context-preservation-session-start-startup
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 250 -- SessionStart primes fresh session

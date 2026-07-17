@@ -4,6 +4,9 @@ description: "This scenario validates Retired runtime shims and inert compatibil
 audited_post_018: true
 phase_018_change: "Validated against phase-018 canonical continuity refactor; keeps the compatibility-only checks for lazy warmup, shadow scoring, novelty, and adaptive fusion."
 version: 3.6.0.13
+id: implement-and-remove-deprecated-features-retired-runtime-shims
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 228 -- Retired runtime shims and inert compatibility flags

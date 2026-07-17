@@ -2,6 +2,9 @@
 title: "166 -- Result explain v1 (SPECKIT_RESULT_EXPLAIN)"
 description: "This scenario validates result explain v1 (SPECKIT_RESULT_EXPLAIN) for `166`. It focuses on enabling the flag, running a search, and verifying `why.summary` + `topSignals` in results."
 version: 3.6.0.14
+id: ux-hooks-result-explain-v1-speckit-result-explain-v1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 166 -- Result explain v1 (SPECKIT_RESULT_EXPLAIN)

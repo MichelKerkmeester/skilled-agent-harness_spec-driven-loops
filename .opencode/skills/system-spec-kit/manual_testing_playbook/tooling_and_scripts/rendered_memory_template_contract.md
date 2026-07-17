@@ -2,6 +2,9 @@
 title: "149 -- Rendered spec-doc record template contract"
 description: "This scenario validates Rendered spec-doc record template contract for `149`. It focuses on Confirm malformed rendered spec-doc records fail before write/index and active corpus stays structurally clean."
 version: 3.6.0.16
+id: tooling-and-scripts-rendered-memory-template-contract
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 149 -- Rendered spec-doc record template contract

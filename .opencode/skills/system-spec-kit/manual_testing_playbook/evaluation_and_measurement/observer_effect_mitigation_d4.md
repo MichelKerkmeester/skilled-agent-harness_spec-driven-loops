@@ -2,6 +2,9 @@
 title: "007 -- Observer effect mitigation (D4)"
 description: "This scenario validates Observer effect mitigation (D4) for `007`. It focuses on Confirm non-blocking logging failures."
 version: 3.6.0.16
+id: evaluation-and-measurement-observer-effect-mitigation-d4
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 007 -- Observer effect mitigation (D4)

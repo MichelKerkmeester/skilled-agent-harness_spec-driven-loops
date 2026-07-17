@@ -3,6 +3,9 @@ title: "111 -- Deferred lexical-only indexing"
 description: "This scenario validates Deferred lexical-only indexing for `111`. It focuses on Confirm embedding-failure fallback and BM25 searchability."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-deferred-lexical-only-indexing
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 111 -- Deferred lexical-only indexing

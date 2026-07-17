@@ -3,6 +3,9 @@ title: "EX-029 -- 2. Session and Cache"
 description: "This scenario validates 2. Session and Cache for `EX-029`. It focuses on Session policy audit."
 audited_post_018: true
 version: 3.6.0.15
+id: feature-flag-reference-2-session-and-cache
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-029 -- 2. Session and Cache

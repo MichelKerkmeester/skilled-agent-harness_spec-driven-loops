@@ -3,6 +3,9 @@ title: "058 -- Lightweight consolidation (N3-lite)"
 description: "This scenario validates Lightweight consolidation (N3-lite) for `058`. It focuses on Confirm maintenance cycle behavior."
 audited_post_018: true
 version: 3.6.0.16
+id: retrieval-enhancements-lightweight-consolidation-n3-lite
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 058 -- Lightweight consolidation (N3-lite)

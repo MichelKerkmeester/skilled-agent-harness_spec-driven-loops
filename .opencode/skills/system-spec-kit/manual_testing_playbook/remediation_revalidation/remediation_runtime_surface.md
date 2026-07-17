@@ -4,6 +4,9 @@ description: "This scenario validates Runtime remediation, revalidation, and aut
 audited_post_018: true
 phase_018_change: "Post-018 audit kept the scenario aligned to the live remediation surface, including save-time guards, confirmation-gated repair, and rollback-aware revalidation."
 version: 3.6.0.15
+id: remediation-revalidation-remediation-runtime-surface
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 225 -- Runtime remediation, revalidation, and auto-repair workflows

@@ -3,6 +3,9 @@ title: "262 -- Session health reports ok/warning/stale status"
 description: "This scenario validates Session health tool for 262. It focuses on verifying session_health returns correct status thresholds and quality score."
 audited_post_018: true
 version: 3.6.0.13
+id: context-preservation-session-health
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 262 -- Session health reports ok/warning/stale status

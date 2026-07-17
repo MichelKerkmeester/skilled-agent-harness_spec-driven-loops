@@ -2,6 +2,9 @@
 title: "099 -- Real-time filesystem watching (P1-7)"
 description: "This scenario validates Real-time filesystem watching (P1-7) for `099`. It focuses on Confirm file watcher debounce, hash seeding, and ENOENT grace."
 version: 3.6.0.15
+id: tooling-and-scripts-real-time-filesystem-watching-p1-7
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 099 -- Real-time filesystem watching (P1-7)

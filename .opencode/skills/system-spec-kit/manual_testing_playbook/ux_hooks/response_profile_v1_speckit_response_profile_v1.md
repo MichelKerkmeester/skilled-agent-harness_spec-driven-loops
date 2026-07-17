@@ -2,6 +2,9 @@
 title: "167 -- Response profile v1 (SPECKIT_RESPONSE_PROFILE)"
 description: "This scenario validates response profile v1 (SPECKIT_RESPONSE_PROFILE) for `167`. It focuses on enabling the flag, requesting the `quick` profile, and verifying reduced response shape while keeping the live context-side profile routing in view."
 version: 3.6.0.15
+id: ux-hooks-response-profile-v1-speckit-response-profile-v1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 167 -- Response profile v1 (SPECKIT_RESPONSE_PROFILE)

@@ -2,6 +2,9 @@
 title: "431 -- skill-advisor CLI Trusted-Gate Refusal"
 description: "Manual check that the skill-advisor CLI fail-closed trusted-mutation gate refuses untrusted mutation commands with exit 64 before any daemon contact, and that --trusted / MK_SKILL_ADVISOR_CLI_TRUSTED grant passage."
 version: 3.6.0.1
+id: tooling-and-scripts-cli-trusted-gate-refusal
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 431 -- skill-advisor CLI Trusted-Gate Refusal

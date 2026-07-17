@@ -2,6 +2,11 @@
 title: "208 -- Template Compliance Contract Enforcement"
 description: "This scenario validates Template Compliance Contract Enforcement for `208`. It focuses on confirming the 3-layer contract prevents non-compliant spec documents from passing strict validation."
 version: 3.6.0.12
+id: tooling-and-scripts-template-compliance-contract-enforcement-blocks-non-compliant
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/validation/template_compliance_contract.md
 ---
 
 # 208 -- Template Compliance Contract Enforcement

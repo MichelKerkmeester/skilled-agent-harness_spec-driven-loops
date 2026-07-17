@@ -2,6 +2,9 @@
 title: "126 -- Memory roadmap baseline snapshot"
 description: "This scenario validates Memory roadmap baseline snapshot for `126`. It focuses on Verify Phase 1 readiness baselines capture/persist metrics and handle missing context DBs without throwing."
 version: 3.6.0.19
+id: evaluation-and-measurement-memory-roadmap-baseline-snapshot
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 126 -- Memory roadmap baseline snapshot

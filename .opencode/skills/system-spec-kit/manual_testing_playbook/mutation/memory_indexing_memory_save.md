@@ -4,6 +4,11 @@ description: "This scenario validates Memory indexing (memory_save) for `EX-006`
 audited_post_018: true
 phase_018_replaces: "legacy memory-file ingestion scenario with spec-doc anchored continuity save validation"
 version: 3.6.0.18
+id: mutation-memory-indexing-memory-save
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/memory/save_workflow.md
 ---
 
 # EX-006 -- Memory indexing (memory_save)

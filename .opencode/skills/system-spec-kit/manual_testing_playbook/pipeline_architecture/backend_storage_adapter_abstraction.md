@@ -3,6 +3,9 @@ title: "202 -- Backend storage adapter abstraction"
 description: "This scenario validates Backend storage adapter abstraction for `202`. It focuses on verifying that the five typed storage ports exist, keep SQLite as the concrete backend, and have adapter/fake contract coverage."
 audited_post_018: true
 version: 3.6.0.13
+id: pipeline-architecture-backend-storage-adapter-abstraction
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 202 -- Backend storage adapter abstraction

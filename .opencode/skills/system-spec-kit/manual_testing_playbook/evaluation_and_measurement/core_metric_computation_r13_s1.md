@@ -2,6 +2,9 @@
 title: "006 -- Core metric computation (R13-S1)"
 description: "This scenario validates Core metric computation (R13-S1) for `006`. It focuses on Confirm metric battery outputs."
 version: 3.6.0.16
+id: evaluation-and-measurement-core-metric-computation-r13-s1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 006 -- Core metric computation (R13-S1)

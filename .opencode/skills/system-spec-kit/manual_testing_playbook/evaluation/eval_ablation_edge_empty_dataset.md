@@ -3,6 +3,9 @@ title: "028 -- Eval ablation edge empty dataset"
 description: "Validates eval_run_ablation reports a structured empty-dataset result."
 audited_post_017: true
 version: 3.6.0.1
+id: evaluation-eval-ablation-edge-empty-dataset
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 028 -- Eval ablation edge empty dataset

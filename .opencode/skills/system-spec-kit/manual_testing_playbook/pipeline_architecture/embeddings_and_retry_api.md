@@ -3,6 +3,9 @@ title: "219 -- Embeddings and Retry API"
 description: "This scenario validates Embeddings and Retry API for `219`. It focuses on verifying the public provider API stays stable while embedding generation, caching, batching, retry backoff, and recovery behavior remain wired through the documented layers."
 audited_post_018: true
 version: 3.6.0.14
+id: pipeline-architecture-embeddings-and-retry-api
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 219 -- Embeddings and Retry API

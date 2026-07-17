@@ -4,6 +4,11 @@ description: "This scenario validates interrupted-session recovery via /speckit:
 audited_post_018: true
 phase_018_change: Removed CONTINUE_SESSION from the active ladder and aligned the recovery order to `handover.md -> _memory.continuity -> spec docs`.
 version: 3.6.0.15
+id: retrieval-session-recovery-spec-kit-resume
+expected_workflow_mode: system-spec-kit
+expected_leaf_resources:
+  - workflow_mode: system-spec-kit
+    leaf_resource_id: references/memory/memory_system.md
 ---
 
 # 190 -- Session recovery via /speckit:resume

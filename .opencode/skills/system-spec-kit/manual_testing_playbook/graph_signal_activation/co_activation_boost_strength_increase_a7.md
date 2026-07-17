@@ -3,6 +3,9 @@ title: "017 -- Co-activation boost strength increase (A7)"
 description: "This scenario validates Co-activation boost strength increase (A7) for `017`. It focuses on Confirm multiplier impact."
 audited_post_018: true
 version: 3.6.0.17
+id: graph-signal-activation-co-activation-boost-strength-increase-a7
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 017 -- Co-activation boost strength increase (A7)

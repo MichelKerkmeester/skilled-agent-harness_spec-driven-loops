@@ -3,6 +3,9 @@ title: "039 -- Verify-fix-verify memory quality loop (PI-A5)"
 description: "This scenario validates Verify-fix-verify memory quality loop (PI-A5) for `039`. It focuses on Confirm retry then reject path."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-verify-fix-verify-memory-quality-loop-pi-a5
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 039 -- Verify-fix-verify memory quality loop (PI-A5)

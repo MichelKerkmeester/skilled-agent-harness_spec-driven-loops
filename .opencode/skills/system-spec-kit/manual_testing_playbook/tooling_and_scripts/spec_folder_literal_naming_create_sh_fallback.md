@@ -2,6 +2,9 @@
 title: "PHASE-006 -- Spec-folder literal naming (create.sh fallback)"
 description: "Validate that create.sh emits a PROVIDE-DESCRIPTIVE-SLUG placeholder and a stderr warning for each phase child when --phase-names is omitted, per Packet 012 REQ-003 and REQ-004."
 version: 3.6.0.4
+id: tooling-and-scripts-spec-folder-literal-naming-create-sh-fallback
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # PHASE-006 -- Spec-folder literal naming (create.sh fallback)

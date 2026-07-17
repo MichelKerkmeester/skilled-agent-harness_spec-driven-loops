@@ -3,6 +3,9 @@ title: "281 -- Embedder list registry inventory"
 description: "Validates embedder_list reports supported embedders, dimensions, provider tags, and active status."
 audited_post_017: true
 version: 3.6.0.1
+id: tooling-and-scripts-embedder-list-registry-inventory
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 281 -- Embedder list registry inventory

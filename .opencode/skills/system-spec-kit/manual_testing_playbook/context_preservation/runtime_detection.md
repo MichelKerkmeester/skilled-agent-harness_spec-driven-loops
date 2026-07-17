@@ -3,6 +3,9 @@ title: "253 -- Runtime detection outputs"
 description: "This scenario validates Runtime detection for 253. It focuses on runtime + hookPolicy for all 3 runtimes."
 audited_post_018: true
 version: 3.6.0.18
+id: context-preservation-runtime-detection
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 253 -- Runtime detection outputs

@@ -4,6 +4,9 @@ description: "This scenario validates Validation feedback (memory_validate) for 
 audited_post_018: true
 phase_018_change: "Validation feedback scenario remains live with post-018 audit coverage"
 version: 3.6.0.16
+id: mutation-validation-feedback-memory-validate
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-010 -- Validation feedback (memory_validate)

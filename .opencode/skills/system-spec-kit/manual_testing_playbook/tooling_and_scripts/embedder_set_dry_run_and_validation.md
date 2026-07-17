@@ -3,6 +3,9 @@ title: "282 -- Embedder set dry-run and validation"
 description: "Validates embedder_set dry-run planning and invalid-name error handling without starting a reindex."
 audited_post_017: true
 version: 3.6.0.1
+id: tooling-and-scripts-embedder-set-dry-run-and-validation
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 282 -- Embedder set dry-run and validation

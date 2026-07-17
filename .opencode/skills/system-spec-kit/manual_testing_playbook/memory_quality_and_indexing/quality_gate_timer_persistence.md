@@ -3,6 +3,9 @@ title: "073 -- Quality gate timer persistence"
 description: "This scenario validates Quality gate timer persistence for `073`. It focuses on Confirm restart persistence."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-quality-gate-timer-persistence
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 073 -- Quality gate timer persistence

@@ -4,6 +4,9 @@ description: "This scenario validates Tier-based bulk deletion (memory_bulk_dele
 audited_post_018: true
 phase_018_change: "Tier bulk delete scenario remains live with post-018 audit coverage"
 version: 3.6.0.16
+id: mutation-tier-based-bulk-deletion-memory-bulk-delete
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-009 -- Tier-based bulk deletion (memory_bulk_delete)

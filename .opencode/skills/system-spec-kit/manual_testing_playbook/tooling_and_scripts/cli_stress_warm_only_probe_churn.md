@@ -2,6 +2,9 @@
 title: "435 -- 028 CLI Stress: Repeated Warm-Only Probes Under Daemon Churn"
 description: "Stress scenario firing a storm of warm-only probes across all three CLIs against an empty sandbox while the lifecycle suites churn daemons, asserting every probe exits 75 fast and the no-spawn invariant holds under repetition."
 version: 3.6.0.1
+id: tooling-and-scripts-cli-stress-warm-only-probe-churn
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 435 -- 028 CLI Stress: Repeated Warm-Only Probes Under Daemon Churn

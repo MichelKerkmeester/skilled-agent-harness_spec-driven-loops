@@ -3,6 +3,9 @@ title: "146 -- Dynamic server instructions (P1-6)"
 description: "This scenario validates Dynamic server instructions (P1-6) for `146`. It focuses on Verify `setInstructions()` is called at MCP startup with memory count, spec folder count, channel list, and stale warning."
 audited_post_018: true
 version: 3.6.0.16
+id: pipeline-architecture-dynamic-server-instructions-p1-6
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 146 -- Dynamic server instructions (P1-6)

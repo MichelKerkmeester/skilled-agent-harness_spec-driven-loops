@@ -3,6 +3,9 @@ title: "027 -- Folder-level relevance scoring (PI-A1)"
 description: "This scenario validates Folder-level relevance scoring (PI-A1) for `027`. It focuses on Confirm folder-first retrieval."
 audited_post_018: true
 version: 3.6.0.16
+id: scoring-and-calibration-folder-level-relevance-scoring-pi-a1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 027 -- Folder-level relevance scoring (PI-A1)

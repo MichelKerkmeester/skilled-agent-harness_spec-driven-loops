@@ -3,6 +3,9 @@ title: "038 -- Query expansion (R12)"
 description: "This scenario validates Query expansion (R12) for `038`. It focuses on Confirm parallel expansion + dedup."
 audited_post_018: true
 version: 3.6.0.15
+id: query-intelligence-query-expansion-r12
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 038 -- Query expansion (R12)

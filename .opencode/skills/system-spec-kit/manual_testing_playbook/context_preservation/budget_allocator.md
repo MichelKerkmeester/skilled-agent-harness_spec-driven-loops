@@ -3,6 +3,9 @@ title: "256 -- Budget allocator floors and overflow"
 description: "This scenario validates Budget allocator for 256. It focuses on Floor distribution and overflow redistribution."
 audited_post_018: true
 version: 3.6.0.15
+id: context-preservation-budget-allocator
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 256 -- Budget allocator floors and overflow

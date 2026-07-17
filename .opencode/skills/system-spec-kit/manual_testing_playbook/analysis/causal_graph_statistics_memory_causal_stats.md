@@ -3,6 +3,9 @@ title: "EX-020 -- Causal graph statistics (memory_causal_stats)"
 description: "This scenario validates Causal graph statistics (memory_causal_stats) for `EX-020`. It focuses on Graph coverage review."
 audited_post_018: true
 version: 3.6.0.17
+id: analysis-causal-graph-statistics-memory-causal-stats
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-020 -- Causal graph statistics (memory_causal_stats)

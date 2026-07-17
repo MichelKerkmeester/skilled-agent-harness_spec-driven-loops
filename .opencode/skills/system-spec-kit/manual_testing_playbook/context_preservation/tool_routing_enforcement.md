@@ -3,6 +3,9 @@ title: "267 -- Tool routing enforcement"
 description: "This scenario validates tool routing enforcement for 267. It focuses on enforcing semantic, structural, and exact-search routing across MCP and runtime surfaces."
 audited_post_018: true
 version: 3.6.0.18
+id: context-preservation-tool-routing-enforcement
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 267 -- Tool routing enforcement

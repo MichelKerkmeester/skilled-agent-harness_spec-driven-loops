@@ -2,6 +2,9 @@
 title: "010 -- Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A)"
 description: "This scenario validates Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A) for `010`. It focuses on Confirm corpus coverage and hard negatives."
 version: 3.6.0.16
+id: evaluation-and-measurement-synthetic-ground-truth-corpus-g-new-1-g-new-3-phase-a
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 010 -- Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A)

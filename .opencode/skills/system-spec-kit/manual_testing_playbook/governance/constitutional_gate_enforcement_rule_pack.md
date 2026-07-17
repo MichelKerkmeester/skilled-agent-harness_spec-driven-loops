@@ -3,6 +3,9 @@ title: "220 -- Constitutional Gate-Enforcement Rule Pack"
 description: "This scenario validates Constitutional Gate-Enforcement Rule Pack for `220`. It focuses on verifying the always-surface constitutional memory preserves gate triggers, cross-references, and continuation or compaction recovery behavior."
 audited_post_018: true
 version: 3.6.0.13
+id: governance-constitutional-gate-enforcement-rule-pack
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 220 -- Constitutional Gate-Enforcement Rule Pack

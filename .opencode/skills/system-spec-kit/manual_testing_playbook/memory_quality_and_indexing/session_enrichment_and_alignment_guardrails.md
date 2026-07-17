@@ -4,6 +4,9 @@ description: "This snippet preserves the canonical memory/spec-kit operator work
 audited_post_018: true
 phase_018_replaces: "archived phase 014 quality-gate framing and external memory-continuity assumptions"
 version: 3.6.0.20
+id: memory-quality-and-indexing-session-enrichment-and-alignment-guardrails
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # M-006 -- Session Enrichment and Alignment Guardrails

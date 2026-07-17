@@ -3,6 +3,9 @@ title: "095 -- Strict Zod schema validation (P0-1)"
 description: "This scenario validates Strict Zod schema validation (P0-1) for `095`. It focuses on Confirm schema enforcement rejects hallucinated params."
 audited_post_018: true
 version: 3.6.0.16
+id: pipeline-architecture-strict-zod-schema-validation-p0-1
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 095 -- Strict Zod schema validation (P0-1)

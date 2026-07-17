@@ -3,6 +3,9 @@ title: "EX-034 -- 7. CI and Build (informational)"
 description: "This scenario validates 7. CI and Build (informational) for `EX-034`. It focuses on Branch metadata source audit."
 audited_post_018: true
 version: 3.6.0.15
+id: feature-flag-reference-7-ci-and-build-informational
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # EX-034 -- 7. CI and Build (informational)

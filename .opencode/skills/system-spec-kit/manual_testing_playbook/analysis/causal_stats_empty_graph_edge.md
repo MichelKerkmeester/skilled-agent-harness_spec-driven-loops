@@ -3,6 +3,9 @@ title: "027 -- Causal stats empty graph edge"
 description: "Validates memory_causal_stats returns a structured zero-state when no causal links match."
 audited_post_017: true
 version: 3.6.0.2
+id: analysis-causal-stats-empty-graph-edge
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 027 -- Causal stats empty graph edge

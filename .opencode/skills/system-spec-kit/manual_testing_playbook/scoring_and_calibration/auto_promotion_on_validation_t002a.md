@@ -3,6 +3,9 @@ title: "032 -- Auto-promotion on validation (T002a)"
 description: "This scenario validates Auto-promotion on validation (T002a) for `032`. It focuses on Confirm promotion thresholds/throttle."
 audited_post_018: true
 version: 3.6.0.16
+id: scoring-and-calibration-auto-promotion-on-validation-t002a
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 032 -- Auto-promotion on validation (T002a)

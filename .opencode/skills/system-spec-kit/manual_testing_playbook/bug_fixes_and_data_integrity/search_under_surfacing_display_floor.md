@@ -3,6 +3,9 @@ title: "Search under-surfacing display floor"
 description: "This scenario validates search under-surfacing display-floor behavior. It focuses on confirming populated result sets survive token-budget pressure and overflow rows render compact instead of being deleted."
 audited_post_018: true
 version: 3.6.0.17
+id: bug-fixes-and-data-integrity-search-under-surfacing-display-floor
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # Search under-surfacing display floor

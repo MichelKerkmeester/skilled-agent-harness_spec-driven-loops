@@ -9,6 +9,9 @@ trigger_phrases:
   - "startup guard warnings"
   - "session teardown sweep"
 version: 1.0.0.1
+id: plugins-and-hooks-session-cleanup-plugin
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # Session Cleanup Plugin

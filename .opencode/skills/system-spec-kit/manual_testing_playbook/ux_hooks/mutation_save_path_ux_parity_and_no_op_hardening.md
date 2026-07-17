@@ -2,6 +2,9 @@
 title: "104 -- Mutation save-path UX parity and no-op hardening"
 description: "This scenario validates Mutation save-path UX parity and no-op hardening for `104`. It focuses on Confirm duplicate-save no-op behavior and atomic-save parity/hints."
 version: 3.6.0.17
+id: ux-hooks-mutation-save-path-ux-parity-and-no-op-hardening
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 104 -- Mutation save-path UX parity and no-op hardening

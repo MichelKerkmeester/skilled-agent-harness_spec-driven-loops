@@ -4,6 +4,9 @@ description: "This scenario validates Shadow-scoring retirement for `230`. It fo
 audited_post_018: true
 phase_018_change: "Validated against phase-018 canonical continuity refactor; shadow scoring stays retired and the scenario remains read-only."
 version: 3.6.0.13
+id: implement-and-remove-deprecated-features-shadow-scoring-retirement
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 230 -- Shadow-scoring retirement

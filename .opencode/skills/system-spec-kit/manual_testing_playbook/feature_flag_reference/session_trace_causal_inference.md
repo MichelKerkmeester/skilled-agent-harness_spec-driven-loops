@@ -2,6 +2,9 @@
 title: "442 -- Session-Trace Causal Inference"
 description: "Manual check that session-trace causal inference is default-off, deferred-only when enabled, and creates only weak auto-session edges from same-session feedback traces."
 version: 3.6.0.1
+id: feature-flag-reference-session-trace-causal-inference
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 442 -- Session-Trace Causal Inference

@@ -4,6 +4,9 @@ description: "This scenario validates hybrid decay policy (SPECKIT_HYBRID_DECAY_
 audited_post_018: true
 phase_018_change: "Remove rollout framing; keep the no-decay policy validation and source checks"
 version: 3.6.0.17
+id: memory-quality-and-indexing-hybrid-decay-policy-speckit-hybrid-decay-policy
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 177 -- Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY)

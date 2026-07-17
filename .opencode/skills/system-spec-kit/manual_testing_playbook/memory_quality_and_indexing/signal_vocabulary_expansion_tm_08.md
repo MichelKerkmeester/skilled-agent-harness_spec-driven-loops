@@ -3,6 +3,9 @@ title: "040 -- Signal vocabulary expansion (TM-08)"
 description: "This scenario validates Signal vocabulary expansion (TM-08) for `040`. It focuses on Confirm signal category detection."
 audited_post_018: true
 version: 3.6.0.17
+id: memory-quality-and-indexing-signal-vocabulary-expansion-tm-08
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 040 -- Signal vocabulary expansion (TM-08)

@@ -3,6 +3,9 @@ title: "155 -- Post-save quality review"
 description: "This scenario validates the POST-SAVE QUALITY REVIEW hook that runs after every JSON mode memory save, confirming correct field propagation, issue detection, and AI patch compliance."
 audited_post_018: true
 version: 3.6.0.19
+id: memory-quality-and-indexing-post-save-quality-review
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 155 -- Post-save quality review

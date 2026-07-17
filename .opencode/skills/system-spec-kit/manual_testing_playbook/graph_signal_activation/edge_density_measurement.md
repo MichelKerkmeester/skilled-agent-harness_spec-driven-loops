@@ -3,6 +3,9 @@ title: "018 -- Edge density measurement"
 description: "This scenario validates Edge density measurement for `018`. It focuses on Confirm edges-per-node thresholding."
 audited_post_018: true
 version: 3.6.0.16
+id: graph-signal-activation-edge-density-measurement
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 018 -- Edge density measurement

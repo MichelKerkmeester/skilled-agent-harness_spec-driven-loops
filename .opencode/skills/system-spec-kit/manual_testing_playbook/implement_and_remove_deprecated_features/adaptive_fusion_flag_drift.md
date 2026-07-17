@@ -4,6 +4,9 @@ description: "This scenario validates Adaptive-fusion mode flag for `232`. It fo
 audited_post_018: true
 phase_018_change: "Validated against phase-018 canonical continuity refactor; adaptive fusion stays live and the install-guide disable switch remains aligned with the runtime flag gate."
 version: 3.6.0.14
+id: implement-and-remove-deprecated-features-adaptive-fusion-flag-drift
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 232 -- Adaptive-fusion mode flag

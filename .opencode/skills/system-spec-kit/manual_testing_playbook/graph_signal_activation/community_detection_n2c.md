@@ -3,6 +3,9 @@ title: "022 -- Community detection (N2c)"
 description: "This scenario validates Community detection (N2c) for `022`. It focuses on Confirm community boost injection."
 audited_post_018: true
 version: 3.6.0.16
+id: graph-signal-activation-community-detection-n2c
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 022 -- Community detection (N2c)

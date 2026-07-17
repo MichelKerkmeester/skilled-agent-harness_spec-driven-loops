@@ -3,6 +3,9 @@ title: "203 -- Atomic write-then-index API"
 description: "This scenario validates Atomic write-then-index API for `203`. It focuses on verifying that the handler writes to a pending path, indexes before promotion, retries transient indexing once, and only renames into place after success."
 audited_post_018: true
 version: 3.6.0.12
+id: pipeline-architecture-atomic-write-then-index-api
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 203 -- Atomic write-then-index API

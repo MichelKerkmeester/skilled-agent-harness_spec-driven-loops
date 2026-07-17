@@ -3,6 +3,9 @@ title: "021 -- Causal depth signal (N2b)"
 description: "This scenario validates Causal depth signal (N2b) for `021`. It focuses on Confirm normalized depth scoring."
 audited_post_018: true
 version: 3.6.0.16
+id: graph-signal-activation-causal-depth-signal-n2b
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 021 -- Causal depth signal (N2b)

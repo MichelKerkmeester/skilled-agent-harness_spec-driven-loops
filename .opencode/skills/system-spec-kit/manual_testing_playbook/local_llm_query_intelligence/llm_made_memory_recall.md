@@ -5,6 +5,9 @@ audited_post_018: true
 fixture_version: "post-surgery"
 fixture_file: "409-fixture.json"
 version: 3.6.0.3
+id: local-llm-query-intelligence-llm-made-memory-recall
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 409 - LLM-made memory recall (round-trip quality)

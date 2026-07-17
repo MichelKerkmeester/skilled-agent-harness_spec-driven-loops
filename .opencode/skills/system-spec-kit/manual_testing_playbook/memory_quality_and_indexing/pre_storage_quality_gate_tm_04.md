@@ -3,6 +3,9 @@ title: "043 -- Pre-storage quality gate (TM-04)"
 description: "This scenario validates Pre-storage quality gate (TM-04) for `043`. It focuses on Confirm 3-layer gate behavior."
 audited_post_018: true
 version: 3.6.0.18
+id: memory-quality-and-indexing-pre-storage-quality-gate-tm-04
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 043 -- Pre-storage quality gate (TM-04)

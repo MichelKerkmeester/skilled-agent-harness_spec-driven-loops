@@ -2,6 +2,9 @@
 title: "107 -- Checkpoint confirmName and schema enforcement"
 description: "This scenario validates Checkpoint confirmName and schema enforcement for `107`. It focuses on Confirm delete safety is required across handler and validation layers."
 version: 3.6.0.17
+id: ux-hooks-checkpoint-confirmname-and-schema-enforcement
+expected_workflow_mode: UNKNOWN
+expected_leaf_resources: []
 ---
 
 # 107 -- Checkpoint confirmName and schema enforcement
