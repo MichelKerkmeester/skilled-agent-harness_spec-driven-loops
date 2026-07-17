@@ -263,6 +263,7 @@ Use these conventions:
 - Put sub-activities in bullets under a numbered step.
 - Use dividers between major sections when they improve scanability.
 - Return structured statuses such as `STATUS=OK`, `STATUS=FAIL ERROR="<message>"`, or `STATUS=CANCELLED ACTION=cancelled`.
+- Keep the body **behavioral** — routing, gates, contracts, and executable steps only. Do NOT embed design rationale, prose-register or prompt-framework labels (e.g. "written objective-first", "(COSTAR)"), development notes (benchmark timings, spec/packet cross-references), maintainer chores ("keep AGENTS/skills synchronized to this entrypoint"), or defensive self-attestations ("no workflow-asset gap exists"). That context belongs in the decision-record, changelog, or presentation asset — never in the shipped command a user sees rendered.
 
 Approved common H2 section names include:
 
@@ -349,10 +350,11 @@ Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Executi
 
 **Ownership boundary.** The router owns: the mandatory input gate or Phase 0, the owned-assets table, mode resolution, argument routing, execution-target selection, the presentation boundary, and a short workflow summary. The presentation asset owns: startup prompts and consolidated setup questions, auto fail-fast display text, dashboard and checkpoint layouts, success and failure result templates, and next-step suggestions. The router must not contain inline startup-question wording, dashboard templates, result templates, or next-step wording when a presentation asset exists. The split is behavior-preserving: move display content, do not change routing semantics.
 
-**Variants (one type, differing only by hand-off — not by required sections):**
+**Variants (one type, differing only by hand-off — not by required sections). Each maps to the contract's `topology` field:**
 
-- Workflow-YAML-backed — routes execution into `_auto.yaml` / `_confirm.yaml` workflow assets.
-- Direct-dispatch-script — dispatches directly to tools or scripts, no workflow YAML.
+- Workflow-YAML-backed (`topology: mode-pair`) — routes execution into `_auto.yaml` / `_confirm.yaml` workflow assets; EXECUTION TARGETS is the `| Mode | Target |` table.
+- Direct-dispatch-script (`topology: direct-dispatch`) — dispatches directly to tools or scripts, no workflow YAML; the mode table is not required.
+- Subaction route-manifest (`topology: subaction-route-manifest`) — a direct-dispatch router that resolves sub-actions through an owned `_routes.yaml` manifest.
 - Compiled-stub — a generated stub carrying the `render-command-contract` marker whose contract is rendered at invocation; exempt from authored section requirements (retained variant; no command currently uses it).
 
 Which family uses which topology is defined by the machine-readable command contract (`assets/command_contract.json`, validated by `assets/command_contract.schema.json`); consult it rather than a hand-maintained family list. Use `assets/command_router_template.md` for the canonical numbered router skeleton, and `assets/command_presentation_template.md` for the full presentation asset skeleton.
