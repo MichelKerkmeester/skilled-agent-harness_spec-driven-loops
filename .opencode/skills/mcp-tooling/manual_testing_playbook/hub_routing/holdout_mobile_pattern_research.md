@@ -6,6 +6,8 @@ title: "Blind holdout: mobile app pattern research routes to mcp-mobbin"
 expected_intent: mcp-mobbin
 expected_resources:
   - mcp-mobbin/SKILL.md
+expected_workflow_mode: mcp-mobbin
+expected_leaf_resources: []
 blindToRouterKeywords: true
 blindExceptions:
   - "phone apps"

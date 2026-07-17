@@ -6,6 +6,12 @@ title: "Figma render/export request routes to the mcp-figma transport"
 expected_intent: mcp-figma
 expected_resources:
   - mcp-figma/SKILL.md
+expected_workflow_mode: mcp-figma
+expected_leaf_resources:
+  - workflow_mode: mcp-figma
+    leaf_resource_id: references/figma_cli_reference.md
+  - workflow_mode: mcp-figma
+    leaf_resource_id: references/mcp_wiring.md
 created: 2026-07-10
 version: 1.0.0.0
 ---

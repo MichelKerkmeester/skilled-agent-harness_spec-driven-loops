@@ -6,6 +6,12 @@ title: "App design research routes to mcp-mobbin"
 expected_intent: mcp-mobbin
 expected_resources:
   - mcp-mobbin/SKILL.md
+expected_workflow_mode: mcp-mobbin
+expected_leaf_resources:
+  - workflow_mode: mcp-mobbin
+    leaf_resource_id: references/tool-surface.md
+  - workflow_mode: mcp-mobbin
+    leaf_resource_id: references/mcp-wiring.md
 created: 2026-07-16
 version: 1.0.0.0
 ---

@@ -6,6 +6,8 @@ title: "Blind holdout: shipped-product UI reference search routes to mcp-refero"
 expected_intent: mcp-refero
 expected_resources:
   - mcp-refero/SKILL.md
+expected_workflow_mode: mcp-refero
+expected_leaf_resources: []
 blindToRouterKeywords: true
 blindExceptions:
   - "web products"

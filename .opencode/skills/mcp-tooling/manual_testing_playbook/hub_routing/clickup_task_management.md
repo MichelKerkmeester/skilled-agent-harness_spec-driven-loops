@@ -6,6 +6,12 @@ title: "ClickUp task request routes to mcp-click-up"
 expected_intent: mcp-click-up
 expected_resources:
   - mcp-click-up/SKILL.md
+expected_workflow_mode: mcp-click-up
+expected_leaf_resources:
+  - workflow_mode: mcp-click-up
+    leaf_resource_id: references/cupt_commands.md
+  - workflow_mode: mcp-click-up
+    leaf_resource_id: references/mcp_tools.md
 created: 2026-07-10
 version: 1.0.0.0
 ---

@@ -6,6 +6,8 @@ title: "Blind holdout: browser inspection routes to mcp-chrome-devtools"
 expected_intent: mcp-chrome-devtools
 expected_resources:
   - mcp-chrome-devtools/SKILL.md
+expected_workflow_mode: mcp-chrome-devtools
+expected_leaf_resources: []
 blindToRouterKeywords: true
 version: 1.1.0.0
 ---

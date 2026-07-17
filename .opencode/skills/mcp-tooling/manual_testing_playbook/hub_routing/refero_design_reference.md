@@ -6,6 +6,12 @@ title: "Design-reference search routes to mcp-refero"
 expected_intent: mcp-refero
 expected_resources:
   - mcp-refero/SKILL.md
+expected_workflow_mode: mcp-refero
+expected_leaf_resources:
+  - workflow_mode: mcp-refero
+    leaf_resource_id: references/tool-surface.md
+  - workflow_mode: mcp-refero
+    leaf_resource_id: references/mcp-wiring.md
 created: 2026-07-16
 version: 1.0.0.0
 ---

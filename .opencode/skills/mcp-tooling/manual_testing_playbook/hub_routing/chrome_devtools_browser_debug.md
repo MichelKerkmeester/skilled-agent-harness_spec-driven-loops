@@ -6,6 +6,12 @@ title: "Browser debugging request routes to mcp-chrome-devtools"
 expected_intent: mcp-chrome-devtools
 expected_resources:
   - mcp-chrome-devtools/SKILL.md
+expected_workflow_mode: mcp-chrome-devtools
+expected_leaf_resources:
+  - workflow_mode: mcp-chrome-devtools
+    leaf_resource_id: references/cdp_patterns.md
+  - workflow_mode: mcp-chrome-devtools
+    leaf_resource_id: references/session_management.md
 created: 2026-07-10
 version: 1.0.0.0
 ---
