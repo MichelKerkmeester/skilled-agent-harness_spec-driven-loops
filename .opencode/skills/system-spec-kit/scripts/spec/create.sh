@@ -808,13 +808,9 @@ fi
 
 cd "$REPO_ROOT"
 
-# When --track is given, root the spec folder under the canonical
-# .opencode/specs/<track>/ (with per-track numbering); otherwise keep the legacy
-# root. The legacy "$REPO_ROOT/specs" is a symlink to .opencode/specs.
+SPECS_DIR="$REPO_ROOT/.opencode/specs"
 if [[ -n "$TRACK" ]]; then
-    SPECS_DIR="$REPO_ROOT/.opencode/specs/$TRACK"
-else
-    SPECS_DIR="$REPO_ROOT/specs"
+    SPECS_DIR="$SPECS_DIR/$TRACK"
 fi
 mkdir -p "$SPECS_DIR"
 

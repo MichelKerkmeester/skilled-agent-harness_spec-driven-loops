@@ -11,6 +11,7 @@ import * as path from 'node:path';
 import * as fsSync from 'node:fs';
 // Internal modules
 import { CONFIG, findActiveSpecsDir, getSpecsDirectories } from './config.js';
+import { resolveSpecFolderCanonical } from './spec-root-canonical-resolver.js';
 import {
   extractConversations,
   extractDecisions,
@@ -328,6 +329,20 @@ function consumeWorkflowRetryManagerLoadError(): string | null {
   const loadError = workflowRetryManagerLoadError;
   workflowRetryManagerLoadError = null;
   return loadError;
+}
+
+/** Refresh phase-parent pointers from the workflow's resolved save target. */
+async function refreshPhaseParentPointersAfterSave(resolvedSpecFolderPath: string): Promise<void> {
+  const directParentGraphPath = path.join(
+    path.dirname(resolvedSpecFolderPath),
+    'graph-metadata.json',
+  );
+  if (!fsSync.existsSync(directParentGraphPath)) {
+    return;
+  }
+
+  const { updatePhaseParentPointersAfterSave } = await import('../memory/generate-context.js');
+  updatePhaseParentPointersAfterSave(resolvedSpecFolderPath);
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -905,7 +920,10 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       loadDataFn !== undefined
     );
     const activeDataFile = dataFile ?? (hasDirectDataContext ? null : CONFIG.DATA_FILE);
-    const activeSpecFolderArg = specFolderArg ?? (hasDirectDataContext ? null : CONFIG.SPEC_FOLDER_ARG);
+    const configuredSpecFolderArg = specFolderArg ?? (hasDirectDataContext ? null : CONFIG.SPEC_FOLDER_ARG);
+    const activeSpecFolderArg = configuredSpecFolderArg
+      ? resolveSpecFolderCanonical(configuredSpecFolderArg, CONFIG.PROJECT_ROOT)
+      : configuredSpecFolderArg;
 
 
     const log = silent
@@ -1778,6 +1796,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       } as const;
       const graphRefreshResult = refreshGraphMetadata(validatedSpecFolderPath, graphRefreshOptions);
       log(`   ${graphRefreshResult.created ? 'Created' : 'Refreshed'} ${path.basename(graphRefreshResult.filePath)}`);
+      await refreshPhaseParentPointersAfterSave(validatedSpecFolderPath);
     } catch (graphErr: unknown) {
       throw new Error(`[workflow] graph-metadata refresh failed: ${graphErr instanceof Error ? graphErr.message : String(graphErr)}`);
     }
@@ -1914,6 +1933,7 @@ export { stripWorkflowHtmlOutsideCodeFences } from './content-cleaner.js';
 
 export {
   filterTriggerPhrases,
+  refreshPhaseParentPointersAfterSave,
   releaseFilesystemLock,
   runStep115AutoIndex,
   runWorkflow,
