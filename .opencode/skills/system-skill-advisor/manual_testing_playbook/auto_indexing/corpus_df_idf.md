@@ -7,9 +7,17 @@ trigger_phrases:
   - "active corpus stats"
   - "idf debounce"
 version: 0.8.0.14
+id: AI-004
+category: auto_indexing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # AI-004 DF/IDF Corpus Stats Active-Only
+
+Prompt: Manual validation that DF/IDF corpus statistics in lib/corpus/df-idf.ts are computed only over the active corpus, are debounced and exclude archived or future skills.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

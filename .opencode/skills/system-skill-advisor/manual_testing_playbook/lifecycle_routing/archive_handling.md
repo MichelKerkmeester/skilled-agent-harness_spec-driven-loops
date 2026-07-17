@@ -7,9 +7,17 @@ trigger_phrases:
   - "z_future skills"
   - "indexed not routed"
 version: 0.8.0.14
+id: LC-003
+category: lifecycle_routing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # LC-003 Archive and Future Skills Indexed But Not Routed
+
+Prompt: Manual validation that skills under z_archive/ and z_future/ are indexed for visibility but are not surfaced as active routing candidates.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

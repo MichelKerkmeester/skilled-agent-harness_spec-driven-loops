@@ -7,9 +7,17 @@ trigger_phrases:
   - "age decay"
   - "lifecycle age"
 version: 0.8.0.14
+id: LC-001
+category: lifecycle_routing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # LC-001 Derived-Lane-Only Age Haircut
+
+Prompt: Manual validation that age decay is applied only to the derived lane, not to author, lexical, graph_causal or semantic_shadow lanes.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -111,7 +119,6 @@ Selected recent skill: `.opencode/skills/cli-opencode/SKILL.md` (`2026-07-01T18:
 
 ### `advisor_recommend` for older skill prompt
 
-Prompt: `ClickUp daily ops get teams route official MCP docs goals bulk cupt CLI`
 
 ```json
 {

@@ -1,0 +1,8 @@
+{
+  "workflowMode": "system-skill-advisor",
+  "packet": ".",
+  "leafRoots": ["references", "assets", "feature_catalog", "manual_testing_playbook"],
+  "excludeIndexFiles": true,
+  "resourceContractVersion": 1,
+  "_note": "Standalone single-mode manifest config. system-skill-advisor is a normal skill (no mode-registry.json); its references/feature-catalog/playbook docs are the routed leaves that the in-SKILL.md INTENT_SIGNALS + RESOURCE_MAP router selects. The mcp_server/ advisor engine (skill-graph.json, scorer/prompt-policy config, handlers) is NOT a routable leaf and is excluded because it is not under a leafRoot. Consumed by generate-leaf-manifest.cjs to emit leaf-manifest.json. Regenerate leaf-manifest.json AND leaf-aliases.json together whenever the corpus changes."
+}

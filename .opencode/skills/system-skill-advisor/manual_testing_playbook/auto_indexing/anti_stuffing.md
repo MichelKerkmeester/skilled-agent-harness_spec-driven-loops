@@ -7,9 +7,17 @@ trigger_phrases:
   - "cardinality cap"
   - "repetition density demote"
 version: 0.8.0.15
+id: AI-005
+category: auto_indexing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # AI-005 Anti-Stuffing and Cardinality Caps
+
+Prompt: Manual validation that derived lane anti-stuffing enforces cardinality caps, demotes repetition-dense tokens and rejects adversarial fixtures.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

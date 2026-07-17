@@ -6,9 +6,19 @@ trigger_phrases:
   - "unavailable daemon"
   - "unavailable"
 version: 0.8.0.13
+id: OP-003
+category: operator_h5
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/runtime/freshness_contract.md
 ---
 
 # OP-003 Unavailable Daemon
+
+Prompt: H5 operator playbook for corrupted SQLite and rebuild-from-source recovery.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

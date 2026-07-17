@@ -7,9 +7,17 @@ trigger_phrases:
   - "global disable"
   - "global"
 version: 0.8.0.13
+id: CP-003
+category: compat_and_disable
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # CP-003 Global Disable Flag
+
+Prompt: Manual validation that SPECKIT_SKILL_ADVISOR_HOOK_DISABLED disables all advisor prompt surfaces.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

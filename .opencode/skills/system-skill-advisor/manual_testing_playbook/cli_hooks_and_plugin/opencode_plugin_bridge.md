@@ -7,9 +7,19 @@ trigger_phrases:
   - "opencode plugin"
   - "opencode"
 version: 0.8.0.17
+id: CL-005
+category: cli_hooks_and_plugin
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/hooks/skill_advisor_hook.md
 ---
 
 # CL-005 OpenCode Plugin Bridge
+
+Prompt: Manual validation for the OpenCode mk-skill-advisor plugin and bridge.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

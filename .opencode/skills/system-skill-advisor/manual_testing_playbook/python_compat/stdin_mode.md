@@ -7,9 +7,17 @@ trigger_phrases:
   - "skill_advisor.py stdin"
   - "compat shim stdin"
 version: 0.8.0.13
+id: PC-001
+category: python_compat
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # PC-001 Python Shim --stdin Round-Trip
+
+Prompt: Manual validation that skill_advisor.py reads exactly one prompt from stdin, routes through native-first compatibility and returns the legacy JSON-array shape.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

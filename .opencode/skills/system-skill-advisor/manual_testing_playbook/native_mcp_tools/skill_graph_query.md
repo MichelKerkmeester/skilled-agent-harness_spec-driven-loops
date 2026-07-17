@@ -2,9 +2,19 @@
 title: "284 -- Skill graph query"
 description: "Manual scenario for validating skill_graph_query relationship reads."
 version: 0.8.0.7
+id: NC-008
+category: native_mcp_tools
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/graph/skill_graph_query_cookbook.md
 ---
 
 # 284 -- Skill graph query
+
+Prompt: Manual scenario for validating skill_graph_query relationship reads.
+
 
 **Owned by**: `mk_skill_advisor` MCP server (since `013/009/008`).
 

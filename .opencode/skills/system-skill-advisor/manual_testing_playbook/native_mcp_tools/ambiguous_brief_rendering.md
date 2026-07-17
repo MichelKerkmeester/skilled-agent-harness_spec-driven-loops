@@ -7,9 +7,19 @@ trigger_phrases:
   - "ambiguous brief"
   - "ambiguous"
 version: 0.8.0.13
+id: NC-004
+category: native_mcp_tools
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/scoring/advisor_scorer.md
 ---
 
 # NC-004 Ambiguous Brief Rendering
+
+Prompt: Manual validation of top-two ambiguity rendering when recommendations are within 0.05 confidence.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

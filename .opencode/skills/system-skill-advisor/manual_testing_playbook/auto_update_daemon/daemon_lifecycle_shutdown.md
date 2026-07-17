@@ -7,9 +7,19 @@ trigger_phrases:
   - "sigterm shutdown"
   - "daemon health"
 version: 0.8.0.14
+id: AU-003
+category: auto_update_daemon
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/runtime/daemon_lease_contract.md
 ---
 
 # AU-003 Daemon Lifecycle and SIGTERM
+
+Prompt: Manual validation that daemon boot, health reporting and SIGTERM shutdown behave as documented in lib/daemon/lifecycle.ts.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

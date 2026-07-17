@@ -7,9 +7,17 @@ trigger_phrases:
   - "trust lanes"
   - "derived provenance"
 version: 0.8.0.15
+id: AI-003
+category: auto_indexing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # AI-003 Provenance Fingerprints and Trust Lanes
+
+Prompt: Manual validation that derived entries carry provenance fingerprints and are tagged with the correct trust lane (author, frontmatter, body, examples, local_docs, derived_local).
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

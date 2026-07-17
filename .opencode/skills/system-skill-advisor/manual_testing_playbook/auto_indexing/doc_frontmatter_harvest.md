@@ -7,9 +7,17 @@ trigger_phrases:
   - "matchedDocs validation"
   - "doc trigger flag"
 version: 0.8.0.1
+id: AI-006
+category: auto_indexing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # AI-006 Doc-Frontmatter Trigger Harvest
+
+Prompt: Manual validation that the flag-gated doc harvest indexes reference/asset frontmatter, routes doc-specific prompts with matchedDocs pointers and stays inert flag-off.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

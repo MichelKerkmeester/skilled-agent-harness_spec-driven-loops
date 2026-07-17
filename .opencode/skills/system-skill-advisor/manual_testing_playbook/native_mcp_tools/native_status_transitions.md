@@ -7,9 +7,19 @@ trigger_phrases:
   - "native advisor_status"
   - "native"
 version: 0.8.0.11
+id: NC-002
+category: native_mcp_tools
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: feature_catalog/mcp_surface/advisor_status.md
 ---
 
 # NC-002 Native advisor_status Transitions
+
+Prompt: Manual validation of advisor_status freshness transitions and status fields.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

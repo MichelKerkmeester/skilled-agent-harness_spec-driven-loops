@@ -7,9 +7,19 @@ trigger_phrases:
   - "claude code"
   - "claude"
 version: 0.8.0.11
+id: CL-001
+category: cli_hooks_and_plugin
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/hooks/skill_advisor_hook.md
 ---
 
 # CL-001 Claude Code UserPromptSubmit Hook
+
+Prompt: Manual validation for the Claude Code prompt-time skill advisor hook.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

@@ -6,9 +6,19 @@ trigger_phrases:
   - "quarantined daemon"
   - "quarantined"
 version: 0.8.0.12
+id: OP-002
+category: operator_h5
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/runtime/freshness_contract.md
 ---
 
 # OP-002 Quarantined Daemon
+
+Prompt: H5 operator playbook for malformed SKILL.md quarantine detection, repair and revert.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

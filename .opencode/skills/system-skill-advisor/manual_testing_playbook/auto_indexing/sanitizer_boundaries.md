@@ -7,9 +7,17 @@ trigger_phrases:
   - "sanitizeSkillLabel"
   - "write boundary sanitization"
 version: 0.8.0.14
+id: AI-002
+category: auto_indexing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # AI-002 A7 Sanitizer at Every Write Boundary
+
+Prompt: Manual validation that the A7 sanitizer in lib/derived/sanitizer.ts runs at every write boundary (SQLite, graph-metadata derived, envelope, diagnostics) and rejects unsafe labels.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

@@ -7,9 +7,19 @@ trigger_phrases:
   - "top-2 within 0.05"
   - "ambiguous brief"
 version: 0.8.0.15
+id: SC-003
+category: scorer_fusion
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/scoring/advisor_scorer.md
 ---
 
 # SC-003 Top-2 Ambiguity Window
+
+Prompt: Manual validation that when the top two candidates are within 0.05 confidence, the advisor returns an ambiguous brief rather than a single top-1 recommendation.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

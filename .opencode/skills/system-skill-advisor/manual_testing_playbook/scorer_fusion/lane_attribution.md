@@ -8,9 +8,19 @@ trigger_phrases:
   - "laneBreakdown"
   - "why_recommended"
 version: 0.8.0.16
+id: SC-004
+category: scorer_fusion
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/scoring/advisor_scorer.md
 ---
 
 # SC-004 Lane Contribution Attribution
+
+Prompt: Manual validation that includeAttribution: true returns per-lane contribution metadata and a prompt-safe why_recommended string without leaking prompt content.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

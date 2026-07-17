@@ -7,9 +7,17 @@ trigger_phrases:
   - "force-local flag"
   - "compat force toggles"
 version: 0.8.0.13
+id: PC-002
+category: python_compat
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # PC-002 --force-native and --force-local Toggles
+
+Prompt: Manual validation that --force-native requires the native advisor and fails when unavailable and that --force-local bypasses delegation and uses Python scoring.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

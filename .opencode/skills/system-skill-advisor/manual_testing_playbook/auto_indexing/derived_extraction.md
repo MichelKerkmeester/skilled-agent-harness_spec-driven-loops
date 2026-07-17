@@ -7,9 +7,17 @@ trigger_phrases:
   - "deterministic n-gram"
   - "graph-metadata derived"
 version: 0.8.0.14
+id: AI-001
+category: auto_indexing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # AI-001 Deterministic Derived Extraction
+
+Prompt: Manual validation that derived/extract.ts produces deterministic n-gram and pattern extractions from SKILL.md frontmatter, body, examples, references, assets, intent_signals, source_docs and key_files.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

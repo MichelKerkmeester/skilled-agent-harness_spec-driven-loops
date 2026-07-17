@@ -7,9 +7,17 @@ trigger_phrases:
   - "python shim"
   - "python"
 version: 0.8.0.13
+id: CP-001
+category: compat_and_disable
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # CP-001 Python Shim --stdin Mode
+
+Prompt: Manual validation for the pre-027 Python shim stdin regression path.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

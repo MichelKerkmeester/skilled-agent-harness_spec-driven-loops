@@ -7,9 +7,17 @@ trigger_phrases:
   - "snapshot publication"
   - "reindex commit"
 version: 0.8.0.14
+id: AU-004
+category: auto_update_daemon
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # AU-004 Generation-Tagged Snapshot Publication
+
+Prompt: Manual validation that generation counters bump atomically after reindex and that post-commit publication makes fresh snapshots visible to readers.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

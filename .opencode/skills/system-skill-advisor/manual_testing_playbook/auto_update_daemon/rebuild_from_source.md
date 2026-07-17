@@ -7,9 +7,19 @@ trigger_phrases:
   - "corrupt sqlite advisor"
   - "daemon recovery rebuild"
 version: 0.8.0.15
+id: AU-005
+category: auto_update_daemon
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: feature_catalog/mcp_surface/advisor_rebuild.md
 ---
 
 # AU-005 Rebuild From Source on Corrupt SQLite
+
+Prompt: Manual validation that corruption of the skill graph SQLite database triggers a rebuild-from-source recovery path without crashing the runtime.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

@@ -7,9 +7,19 @@ trigger_phrases:
   - "lifecycle redirect"
   - "lifecycle"
 version: 0.8.0.12
+id: NC-005
+category: native_mcp_tools
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: feature_catalog/mcp_surface/advisor_recommend.md
 ---
 
 # NC-005 Lifecycle Redirect Metadata
+
+Prompt: Manual validation that superseded, archived, future and rolled-back lifecycle metadata surfaces through advisor_recommend.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

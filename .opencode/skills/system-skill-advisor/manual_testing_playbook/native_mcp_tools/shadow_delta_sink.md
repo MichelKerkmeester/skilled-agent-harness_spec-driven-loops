@@ -7,9 +7,17 @@ trigger_phrases:
   - "shadow delta opt-in"
   - "advisor shadow recording"
 version: 0.8.0.0
+id: NC-010
+category: native_mcp_tools
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # NC-010 Shadow-Delta Sink Opt-In
+
+Prompt: Manual validation that advisor_recommend writes a durable shadow-delta record only when the opt-in flag or path is set, and never echoes raw prompt text into the sink.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

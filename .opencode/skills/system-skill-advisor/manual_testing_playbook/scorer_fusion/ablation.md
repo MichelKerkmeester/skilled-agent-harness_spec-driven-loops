@@ -7,9 +7,19 @@ trigger_phrases:
   - "lane ablation"
   - "scorer ablation"
 version: 0.8.0.16
+id: SC-005
+category: scorer_fusion
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/scoring/advisor_scorer.md
 ---
 
 # SC-005 Lane-by-Lane Ablation Protocol
+
+Prompt: Manual validation that lib/scorer/ablation.ts supports lane-by-lane disable so operators can measure each lane's contribution without mutating the live weights.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

@@ -7,9 +7,17 @@ trigger_phrases:
   - "v1 to v2 backfill"
   - "additive migration"
 version: 0.8.0.15
+id: LC-004
+category: lifecycle_routing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # LC-004 Schema v1 to v2 Additive Backfill
+
+Prompt: Manual validation that schema migration from v1 to v2 is additive, preserves existing data and supports rollback without data loss.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

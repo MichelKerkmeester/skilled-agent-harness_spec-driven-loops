@@ -7,9 +7,19 @@ trigger_phrases:
   - "chokidar narrow scope"
   - "auto update daemon watcher"
 version: 0.8.0.14
+id: AU-001
+category: auto_update_daemon
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/runtime/daemon_lease_contract.md
 ---
 
 # AU-001 Chokidar Watcher Narrow Scope
+
+Prompt: Manual validation that the daemon Chokidar watcher subscribes only to SKILL.md, graph-metadata.json and derived.key_files paths and does not fire on unrelated file changes.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

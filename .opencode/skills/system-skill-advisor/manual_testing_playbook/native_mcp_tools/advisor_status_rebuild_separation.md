@@ -7,9 +7,19 @@ trigger_phrases:
   - "advisor_rebuild explicit repair"
   - "skill advisor stale rebuild"
 version: 0.8.0.9
+id: NC-006
+category: native_mcp_tools
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: feature_catalog/mcp_surface/advisor_status.md
 ---
 
 # NC-006 Advisor Status and Rebuild Separation
+
+Prompt: Manual validation that advisor_status is diagnostic-only and advisor_rebuild is the explicit repair path for stale Skill Advisor state.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

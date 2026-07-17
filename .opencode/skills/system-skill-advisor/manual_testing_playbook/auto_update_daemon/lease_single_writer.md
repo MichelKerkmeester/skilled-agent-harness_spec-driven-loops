@@ -7,9 +7,19 @@ trigger_phrases:
   - "daemon lease heartbeat"
   - "lease reclaim stale"
 version: 0.8.0.14
+id: AU-002
+category: auto_update_daemon
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/runtime/daemon_lease_contract.md
 ---
 
 # AU-002 Workspace Single-Writer Lease
+
+Prompt: Manual validation that the SQLite-backed workspace lease prevents concurrent daemon writes and reclaims stale leases through heartbeat expiry.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

@@ -7,9 +7,19 @@ trigger_phrases:
   - "native advisor_recommend"
   - "native"
 version: 0.8.0.6
+id: NC-001
+category: native_mcp_tools
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: feature_catalog/mcp_surface/advisor_recommend.md
 ---
 
 # NC-001 Native advisor_recommend Happy Path
+
+Prompt: Manual validation that advisor_recommend returns prompt-safe native recommendations for an existing skill.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

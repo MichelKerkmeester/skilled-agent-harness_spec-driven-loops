@@ -7,9 +7,17 @@ trigger_phrases:
   - "skill_advisor_bench.py"
   - "latency bench runner"
 version: 0.8.0.14
+id: PC-005
+category: python_compat
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # PC-005 Python Bench Runner
+
+Prompt: Manual validation that scripts/skill_advisor_bench.py runs the performance bench and emits latency measurements within documented limits.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

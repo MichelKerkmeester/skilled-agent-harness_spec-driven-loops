@@ -7,9 +7,17 @@ trigger_phrases:
   - "atomic rollback"
   - "lifecycle revert"
 version: 0.8.0.15
+id: LC-005
+category: lifecycle_routing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # LC-005 Lifecycle-Level Rollback
+
+Prompt: Manual validation that lib/lifecycle/rollback.ts can revert lifecycle metadata changes atomically without leaving partial state.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

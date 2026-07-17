@@ -7,9 +7,17 @@ trigger_phrases:
   - "force local"
   - "force"
 version: 0.8.0.13
+id: CP-002
+category: compat_and_disable
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # CP-002 Force Local And Force Native Toggles
+
+Prompt: Manual validation for Python shim native/local routing controls.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

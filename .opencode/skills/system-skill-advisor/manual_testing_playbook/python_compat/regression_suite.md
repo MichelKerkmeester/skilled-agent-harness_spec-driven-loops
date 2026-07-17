@@ -7,9 +7,17 @@ trigger_phrases:
   - "regression harness coverage"
   - "skill_advisor_regression.py"
 version: 0.8.0.14
+id: PC-004
+category: python_compat
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # PC-004 Python Regression Dataset
+
+Prompt: Manual validation that scripts/skill_advisor_regression.py runs the checked-in P0 regression dataset to completion and reports pass/fail totals.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

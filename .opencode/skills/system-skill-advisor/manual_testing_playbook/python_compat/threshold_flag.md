@@ -7,9 +7,17 @@ trigger_phrases:
   - "confidence cutoff shim"
   - "dual threshold shim"
 version: 0.8.0.13
+id: PC-003
+category: python_compat
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # PC-003 --threshold Confidence Flag
+
+Prompt: Manual validation that --threshold adjusts the shim's confidence cutoff for Python-path scoring and affects which skills pass the dual-threshold check.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

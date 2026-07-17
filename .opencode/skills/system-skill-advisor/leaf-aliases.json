@@ -1,0 +1,517 @@
+[
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/auto_indexing/anti_stuffing.md",
+    "diskPath": "feature_catalog/auto_indexing/anti_stuffing.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/auto_indexing/derived_extraction.md",
+    "diskPath": "feature_catalog/auto_indexing/derived_extraction.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/auto_indexing/df_idf_corpus.md",
+    "diskPath": "feature_catalog/auto_indexing/df_idf_corpus.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/auto_indexing/doc_frontmatter_harvest.md",
+    "diskPath": "feature_catalog/auto_indexing/doc_frontmatter_harvest.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/auto_indexing/provenance_and_trust_lanes.md",
+    "diskPath": "feature_catalog/auto_indexing/provenance_and_trust_lanes.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/auto_indexing/sanitizer.md",
+    "diskPath": "feature_catalog/auto_indexing/sanitizer.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/auto_indexing/sync.md",
+    "diskPath": "feature_catalog/auto_indexing/sync.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/daemon_and_freshness/cache_invalidation.md",
+    "diskPath": "feature_catalog/daemon_and_freshness/cache_invalidation.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/daemon_and_freshness/generation.md",
+    "diskPath": "feature_catalog/daemon_and_freshness/generation.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/daemon_and_freshness/lease.md",
+    "diskPath": "feature_catalog/daemon_and_freshness/lease.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/daemon_and_freshness/lifecycle.md",
+    "diskPath": "feature_catalog/daemon_and_freshness/lifecycle.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/daemon_and_freshness/rebuild_from_source.md",
+    "diskPath": "feature_catalog/daemon_and_freshness/rebuild_from_source.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/daemon_and_freshness/trust_state.md",
+    "diskPath": "feature_catalog/daemon_and_freshness/trust_state.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/daemon_and_freshness/watcher.md",
+    "diskPath": "feature_catalog/daemon_and_freshness/watcher.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/hooks_and_plugin/claude_hook.md",
+    "diskPath": "feature_catalog/hooks_and_plugin/claude_hook.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/hooks_and_plugin/goal_opencode_plugin.md",
+    "diskPath": "feature_catalog/hooks_and_plugin/goal_opencode_plugin.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/hooks_and_plugin/opencode_plugin_bridge.md",
+    "diskPath": "feature_catalog/hooks_and_plugin/opencode_plugin_bridge.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/lifecycle_routing/age_haircut.md",
+    "diskPath": "feature_catalog/lifecycle_routing/age_haircut.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/lifecycle_routing/archive_handling.md",
+    "diskPath": "feature_catalog/lifecycle_routing/archive_handling.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/lifecycle_routing/rollback.md",
+    "diskPath": "feature_catalog/lifecycle_routing/rollback.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/lifecycle_routing/schema_migration.md",
+    "diskPath": "feature_catalog/lifecycle_routing/schema_migration.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/lifecycle_routing/supersession.md",
+    "diskPath": "feature_catalog/lifecycle_routing/supersession.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/advisor_rebuild.md",
+    "diskPath": "feature_catalog/mcp_surface/advisor_rebuild.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/advisor_recommend.md",
+    "diskPath": "feature_catalog/mcp_surface/advisor_recommend.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/advisor_status.md",
+    "diskPath": "feature_catalog/mcp_surface/advisor_status.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/advisor_validate.md",
+    "diskPath": "feature_catalog/mcp_surface/advisor_validate.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/compat_entrypoint.md",
+    "diskPath": "feature_catalog/mcp_surface/compat_entrypoint.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/skill_advisor_cli.md",
+    "diskPath": "feature_catalog/mcp_surface/skill_advisor_cli.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/skill_graph_query.md",
+    "diskPath": "feature_catalog/mcp_surface/skill_graph_query.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/skill_graph_scan.md",
+    "diskPath": "feature_catalog/mcp_surface/skill_graph_scan.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/skill_graph_status.md",
+    "diskPath": "feature_catalog/mcp_surface/skill_graph_status.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/mcp_surface/skill_graph_validate.md",
+    "diskPath": "feature_catalog/mcp_surface/skill_graph_validate.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/python_compat/bench_runner.md",
+    "diskPath": "feature_catalog/python_compat/bench_runner.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/python_compat/cli_shim.md",
+    "diskPath": "feature_catalog/python_compat/cli_shim.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/python_compat/regression_suite.md",
+    "diskPath": "feature_catalog/python_compat/regression_suite.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/scorer_fusion/ablation.md",
+    "diskPath": "feature_catalog/scorer_fusion/ablation.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/scorer_fusion/ambiguity.md",
+    "diskPath": "feature_catalog/scorer_fusion/ambiguity.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/scorer_fusion/attribution.md",
+    "diskPath": "feature_catalog/scorer_fusion/attribution.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/scorer_fusion/five_lane_fusion.md",
+    "diskPath": "feature_catalog/scorer_fusion/five_lane_fusion.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/scorer_fusion/projection.md",
+    "diskPath": "feature_catalog/scorer_fusion/projection.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature_catalog/scorer_fusion/weights_config.md",
+    "diskPath": "feature_catalog/scorer_fusion/weights_config.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_indexing/anti_stuffing.md",
+    "diskPath": "manual_testing_playbook/auto_indexing/anti_stuffing.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_indexing/corpus_df_idf.md",
+    "diskPath": "manual_testing_playbook/auto_indexing/corpus_df_idf.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_indexing/derived_extraction.md",
+    "diskPath": "manual_testing_playbook/auto_indexing/derived_extraction.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_indexing/doc_frontmatter_harvest.md",
+    "diskPath": "manual_testing_playbook/auto_indexing/doc_frontmatter_harvest.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_indexing/provenance_and_trust_lanes.md",
+    "diskPath": "manual_testing_playbook/auto_indexing/provenance_and_trust_lanes.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_indexing/sanitizer_boundaries.md",
+    "diskPath": "manual_testing_playbook/auto_indexing/sanitizer_boundaries.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_update_daemon/daemon_lifecycle_shutdown.md",
+    "diskPath": "manual_testing_playbook/auto_update_daemon/daemon_lifecycle_shutdown.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_update_daemon/generation_publication.md",
+    "diskPath": "manual_testing_playbook/auto_update_daemon/generation_publication.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_update_daemon/lease_single_writer.md",
+    "diskPath": "manual_testing_playbook/auto_update_daemon/lease_single_writer.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_update_daemon/rebuild_from_source.md",
+    "diskPath": "manual_testing_playbook/auto_update_daemon/rebuild_from_source.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/auto_update_daemon/watcher_narrow_scope.md",
+    "diskPath": "manual_testing_playbook/auto_update_daemon/watcher_narrow_scope.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/cli_hooks_and_plugin/claude_user_prompt_submit.md",
+    "diskPath": "manual_testing_playbook/cli_hooks_and_plugin/claude_user_prompt_submit.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/cli_hooks_and_plugin/goal_opencode_plugin.md",
+    "diskPath": "manual_testing_playbook/cli_hooks_and_plugin/goal_opencode_plugin.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/cli_hooks_and_plugin/opencode_plugin_bridge.md",
+    "diskPath": "manual_testing_playbook/cli_hooks_and_plugin/opencode_plugin_bridge.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/cli_hooks_and_plugin/skill_advisor_cli_fallback.md",
+    "diskPath": "manual_testing_playbook/cli_hooks_and_plugin/skill_advisor_cli_fallback.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/compat_and_disable/daemon_absent_fallback.md",
+    "diskPath": "manual_testing_playbook/compat_and_disable/daemon_absent_fallback.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/compat_and_disable/force_local_force_native.md",
+    "diskPath": "manual_testing_playbook/compat_and_disable/force_local_force_native.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/compat_and_disable/global_disable_flag.md",
+    "diskPath": "manual_testing_playbook/compat_and_disable/global_disable_flag.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/compat_and_disable/python_shim_stdin.md",
+    "diskPath": "manual_testing_playbook/compat_and_disable/python_shim_stdin.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/lifecycle_routing/age_haircut.md",
+    "diskPath": "manual_testing_playbook/lifecycle_routing/age_haircut.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/lifecycle_routing/archive_handling.md",
+    "diskPath": "manual_testing_playbook/lifecycle_routing/archive_handling.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/lifecycle_routing/rollback_lifecycle.md",
+    "diskPath": "manual_testing_playbook/lifecycle_routing/rollback_lifecycle.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/lifecycle_routing/schema_migration.md",
+    "diskPath": "manual_testing_playbook/lifecycle_routing/schema_migration.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/lifecycle_routing/supersession.md",
+    "diskPath": "manual_testing_playbook/lifecycle_routing/supersession.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/advisor_status_rebuild_separation.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/advisor_status_rebuild_separation.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/ambiguous_brief_rendering.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/ambiguous_brief_rendering.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/lifecycle_redirect_metadata.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/lifecycle_redirect_metadata.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/native_recommend_happy_path.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/native_recommend_happy_path.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/native_status_transitions.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/native_status_transitions.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/native_validate_slices.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/native_validate_slices.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/shadow_delta_sink.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/shadow_delta_sink.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/skill_graph_query.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/skill_graph_query.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/skill_graph_status.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/skill_graph_status.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/native_mcp_tools/skill_graph_validate.md",
+    "diskPath": "manual_testing_playbook/native_mcp_tools/skill_graph_validate.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/operator_h5/degraded_daemon.md",
+    "diskPath": "manual_testing_playbook/operator_h5/degraded_daemon.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/operator_h5/quarantined_daemon.md",
+    "diskPath": "manual_testing_playbook/operator_h5/quarantined_daemon.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/operator_h5/unavailable_daemon.md",
+    "diskPath": "manual_testing_playbook/operator_h5/unavailable_daemon.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/python_compat/bench_runner.md",
+    "diskPath": "manual_testing_playbook/python_compat/bench_runner.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/python_compat/force_native_force_local.md",
+    "diskPath": "manual_testing_playbook/python_compat/force_native_force_local.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/python_compat/regression_suite.md",
+    "diskPath": "manual_testing_playbook/python_compat/regression_suite.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/python_compat/stdin_mode.md",
+    "diskPath": "manual_testing_playbook/python_compat/stdin_mode.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/python_compat/threshold_flag.md",
+    "diskPath": "manual_testing_playbook/python_compat/threshold_flag.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/scorer_fusion/ablation.md",
+    "diskPath": "manual_testing_playbook/scorer_fusion/ablation.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/scorer_fusion/ambiguity.md",
+    "diskPath": "manual_testing_playbook/scorer_fusion/ambiguity.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/scorer_fusion/five_lane_fusion.md",
+    "diskPath": "manual_testing_playbook/scorer_fusion/five_lane_fusion.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/scorer_fusion/lane_attribution.md",
+    "diskPath": "manual_testing_playbook/scorer_fusion/lane_attribution.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual_testing_playbook/scorer_fusion/projection.md",
+    "diskPath": "manual_testing_playbook/scorer_fusion/projection.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/config/db_path_policy.md",
+    "diskPath": "references/config/db_path_policy.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/decisions/deferred_decisions.md",
+    "diskPath": "references/decisions/deferred_decisions.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/graph/propagate_enhances.md",
+    "diskPath": "references/graph/propagate_enhances.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/graph/skill_graph_drift.md",
+    "diskPath": "references/graph/skill_graph_drift.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/graph/skill_graph_extraction_plan.md",
+    "diskPath": "references/graph/skill_graph_extraction_plan.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/graph/skill_graph_query_cookbook.md",
+    "diskPath": "references/graph/skill_graph_query_cookbook.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/hooks/skill_advisor_hook.md",
+    "diskPath": "references/hooks/skill_advisor_hook.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/runtime/daemon_lease_contract.md",
+    "diskPath": "references/runtime/daemon_lease_contract.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/runtime/freshness_contract.md",
+    "diskPath": "references/runtime/freshness_contract.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/runtime/legacy_tool_bridge.md",
+    "diskPath": "references/runtime/legacy_tool_bridge.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/runtime/standalone_mcp_shape.md",
+    "diskPath": "references/runtime/standalone_mcp_shape.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/runtime/tool_ids_reference.md",
+    "diskPath": "references/runtime/tool_ids_reference.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/scoring/advisor_scorer.md",
+    "diskPath": "references/scoring/advisor_scorer.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/scoring/lane_weight_tuning.md",
+    "diskPath": "references/scoring/lane_weight_tuning.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/scoring/validation_baselines.md",
+    "diskPath": "references/scoring/validation_baselines.md"
+  }
+]

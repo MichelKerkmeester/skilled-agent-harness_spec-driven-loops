@@ -7,9 +7,19 @@ trigger_phrases:
   - "skill_nodes skill_edges"
   - "graph projection"
 version: 0.8.0.16
+id: SC-002
+category: scorer_fusion
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/scoring/advisor_scorer.md
 ---
 
 # SC-002 Registry Projection Drift Guard and workflowMode Publication
+
+Prompt: Manual validation that scorer projection stays prompt-safe while generated deep-loop routing projection, hash freshness and workflowMode publication remain aligned.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

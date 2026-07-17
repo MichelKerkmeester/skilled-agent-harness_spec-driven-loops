@@ -7,9 +7,17 @@ trigger_phrases:
   - "redirect_from redirect_to"
   - "asymmetric routing"
 version: 0.8.0.14
+id: LC-002
+category: lifecycle_routing
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources: []
 ---
 
 # LC-002 Asymmetric Supersession Redirects
+
+Prompt: Manual validation that supersession metadata in lib/lifecycle/supersession.ts applies asymmetric routing with redirect_from and redirect_to and that superseded skills forward correctly.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

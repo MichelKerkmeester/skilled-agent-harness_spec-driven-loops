@@ -7,9 +7,19 @@ trigger_phrases:
   - "lane weights canonical"
   - "advisor fusion"
 version: 0.8.0.16
+id: SC-001
+category: scorer_fusion
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/scoring/advisor_scorer.md
 ---
 
 # SC-001 Five-Lane Analytical Fusion
+
+Prompt: Manual validation that the 5-lane fusion produces weighted scores using the canonical weights: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.05.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 

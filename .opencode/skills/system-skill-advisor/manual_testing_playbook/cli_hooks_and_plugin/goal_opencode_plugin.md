@@ -7,9 +7,19 @@ trigger_phrases:
   - "/goal command"
   - "mk_goal"
 version: 0.8.0.33
+id: CL-007
+category: cli_hooks_and_plugin
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/hooks/skill_advisor_hook.md
 ---
 
 # CL-007 Goal OpenCode Plugin
+
+Prompt: Manual validation for the /goal command, mk_goal tools, passive injection, supervisor lifecycle and default-off continuation gates.
+
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
