@@ -21,12 +21,12 @@ Pivot Lineage: none yet
 Saturated Directions: deterministic assembly and live-telemetry inventory are sufficiently covered; do not re-enter them without contradictory evidence.
 
 ## STATE FILES
-- Config: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json
-- Write iteration narrative to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md
-- Write per-iteration delta file to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deltas/iter-005.jsonl
+- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json
+- Write iteration narrative to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md
+- Write per-iteration delta file to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deltas/iter-005.jsonl
 
 ## CONSTRAINTS
 - Execute exactly one LEAF iteration; no sub-agents and no implementation.

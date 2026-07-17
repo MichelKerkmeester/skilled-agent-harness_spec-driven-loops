@@ -19,12 +19,12 @@ Last 3 Iterations Summary: run 1 mode/leaf classification (1.00); run 2 manifest
 Saturated Directions: no seventh hub mode; no transport flattening; no packet-qualified leaf IDs; missing committed manifest makes `--check` prerequisite-fail, not nondeterministic.
 
 ## STATE FILES
-- Config: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json
-- Iteration narrative: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md
-- Delta: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-003.jsonl
+- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json
+- Iteration narrative: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md
+- Delta: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-003.jsonl
 
 ## CONSTRAINTS
 - One `deep-research` LEAF iteration only; load `.opencode/agents/deep-research.md`; no sub-agents.

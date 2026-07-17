@@ -543,7 +543,7 @@
     },
     {
       "id": "finding-5-6-no-further-research-is-required-before-implementation-the-handoff-order-is-prese",
-      "text": "No further research is required before implementation. The handoff order is: preserve current first-layer mode/fallback policy; author packet-qualified second-layer resource maps; generate and validate the leaf manifest; add the two atomic seed rows; run topology validation; capture the first typed baseline; then expand to SP-004 and the four child routing candidates before any lexical tuning. This order keeps authored gold independent and leaves behavior/guard scenarios in their existing lanes. [INFERENCE: based on findings 1-5 and the prior dependency-order evidence recorded in `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-002.md`]",
+      "text": "No further research is required before implementation. The handoff order is: preserve current first-layer mode/fallback policy; author packet-qualified second-layer resource maps; generate and validate the leaf manifest; add the two atomic seed rows; run topology validation; capture the first typed baseline; then expand to SP-004 and the four child routing candidates before any lexical tuning. This order keeps authored gold independent and leaves behavior/guard scenarios in their existing lanes. [INFERENCE: based on findings 1-5 and the prior dependency-order evidence recorded in `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-002.md`]",
       "addedAtIteration": 5,
       "sources": [
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:121`",
@@ -743,7 +743,7 @@
     "pivotOverrides": 0
   },
   "corruptionWarnings": [],
-  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/inbox.jsonl",
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/inbox.jsonl",
   "inboxWarnings": [],
   "status": "INITIALIZED",
   "advisoryEvents": []

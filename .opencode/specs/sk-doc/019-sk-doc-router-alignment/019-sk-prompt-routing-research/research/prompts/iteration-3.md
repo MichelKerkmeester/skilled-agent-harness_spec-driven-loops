@@ -22,13 +22,13 @@ Saturated Directions: preserve first-layer mode routing and fallback behavior; d
 
 ## STATE FILES
 
-- Config: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-config.json`
-- State Log: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-state.jsonl`
-- Strategy: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-strategy.md`
-- Registry: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/findings-registry.json`
-- Prior iterations: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-001.md`, `iteration-002.md`
-- Write narrative: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-003.md`
-- Write delta: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deltas/iter-003.jsonl`
+- Config: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-config.json`
+- State Log: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-state.jsonl`
+- Strategy: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-strategy.md`
+- Registry: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/findings-registry.json`
+- Prior iterations: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-001.md`, `iteration-002.md`
+- Write narrative: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-003.md`
+- Write delta: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deltas/iter-003.jsonl`
 
 ## CONSTRAINTS AND OUTPUT
 

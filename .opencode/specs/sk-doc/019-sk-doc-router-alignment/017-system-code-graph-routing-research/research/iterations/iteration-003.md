@@ -3,7 +3,7 @@
 ## Route Proof
 - Resolved route: `mode=research`; `target_agent=@deep-research`; `execution=single_iteration`; `state_source=externalized_files`; `do_not_switch_mode=true`.
 - Canonical runtime agent loaded from `.opencode/agents/deep-research.md`; this run remained LEAF-only and dispatched no Task or sub-agent.
-- Packet root: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/`.
+- Packet root: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/`.
 - Allowed writes were limited to this narrative, one append to `deep-research-state.jsonl`, and the write-once `deltas/iter-003.jsonl`.
 
 ## Focus

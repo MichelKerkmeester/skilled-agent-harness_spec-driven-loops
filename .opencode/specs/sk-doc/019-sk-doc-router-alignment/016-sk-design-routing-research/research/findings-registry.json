@@ -148,7 +148,7 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
@@ -165,7 +165,7 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
@@ -182,7 +182,7 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
@@ -199,7 +199,7 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
@@ -216,7 +216,7 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
@@ -233,12 +233,12 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
       "id": "finding-1-8-canonical-typed-gold-should-pair-each-selected-mode-with-the-leaf-s-packet-root-",
-      "text": "Canonical typed gold should pair each selected mode with the leaf's packet-root-relative ID, such as `(motion, references/motion_strategy.md)` or `(md-generator, assets/cardinal_rules_card.md)`. It should not prepend packet folders such as `design-motion/`, because the established contract defines `leafResourceId` as packet-root-relative and performs packet conversion only at the boundary. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:135-141] [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:149-165]",
+      "text": "Canonical typed gold should pair each selected mode with the leaf's packet-root-relative ID, such as `(motion, references/motion_strategy.md)` or `(md-generator, assets/cardinal_rules_card.md)`. It should not prepend packet folders such as `design-motion/`, because the established contract defines `leafResourceId` as packet-root-relative and performs packet conversion only at the boundary. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:135-141] [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:149-165]",
       "addedAtIteration": 1,
       "sources": [
         "`.opencode/skills/sk-design/mode-registry.json:1-165`",
@@ -250,12 +250,12 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
       "id": "finding-1-10-one-root-manifest-is-structurally-capable-of-representing-all-six-mode-namespace",
-      "text": "One root manifest is structurally capable of representing all six mode namespaces, including the nested transport, because manifest uniqueness is composite on `(workflowMode, leafResourceId)` and the registry already supplies six stable mode-to-packet joins. The parent hub should not become a seventh mode: its `defaultResource` entries and packet `SKILL.md` routes are hub preamble/entrypoints, whereas leaf pairs come from each selected packet's local map. This remains a feasibility inference until the manifest generator is checked against the mixed workflow/transport registry and shared-resource aliases. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:163-174] [SOURCE: .opencode/skills/sk-design/mode-registry.json:4-14] [SOURCE: .opencode/skills/sk-design/hub-router.json:5-18] [INFERENCE: based on the composite typed-pair contract, six registry joins, and the hub/leaf separation]",
+      "text": "One root manifest is structurally capable of representing all six mode namespaces, including the nested transport, because manifest uniqueness is composite on `(workflowMode, leafResourceId)` and the registry already supplies six stable mode-to-packet joins. The parent hub should not become a seventh mode: its `defaultResource` entries and packet `SKILL.md` routes are hub preamble/entrypoints, whereas leaf pairs come from each selected packet's local map. This remains a feasibility inference until the manifest generator is checked against the mixed workflow/transport registry and shared-resource aliases. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:163-174] [SOURCE: .opencode/skills/sk-design/mode-registry.json:4-14] [SOURCE: .opencode/skills/sk-design/hub-router.json:5-18] [INFERENCE: based on the composite typed-pair contract, six registry joins, and the hub/leaf separation]",
       "addedAtIteration": 1,
       "sources": [
         "`.opencode/skills/sk-design/mode-registry.json:1-165`",
@@ -267,7 +267,7 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
@@ -284,7 +284,7 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
@@ -301,7 +301,7 @@
         "`.opencode/skills/sk-design/design-md-generator/SKILL.md:131-166`",
         "`.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47`",
         "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:82-96`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,163-174`"
       ]
     },
     {
@@ -313,7 +313,7 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
         "`.opencode/skills/sk-design/mode-registry.json:1-165`",
         "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
         "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
       ]
     },
@@ -326,7 +326,7 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
         "`.opencode/skills/sk-design/mode-registry.json:1-165`",
         "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
         "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
       ]
     },
@@ -339,7 +339,7 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
         "`.opencode/skills/sk-design/mode-registry.json:1-165`",
         "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
         "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
       ]
     },
@@ -352,7 +352,7 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
         "`.opencode/skills/sk-design/mode-registry.json:1-165`",
         "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
         "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
       ]
     },
@@ -365,7 +365,7 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`",
         "`.opencode/skills/sk-design/mode-registry.json:1-165`",
         "`.opencode/skills/sk-doc/leaf-manifest.json:1-120`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`",
         "Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`"
       ]
     },
@@ -501,13 +501,13 @@
     },
     {
       "id": "finding-5-2-step-a-benchmark-topology-targets-only-the-playbook-package-index-path-declarati",
-      "text": "**Step A — benchmark topology** targets only the playbook package index/path declarations and its scenario-file/directory topology under `.opencode/skills/sk-design/manual_testing_playbook/`; it must not change scenario prompts, expected behavior, or router maps. Prerequisite: preserve the frozen baseline and scenario-ID inventory. Acceptance: the runner resolves a nonzero scenario corpus with zero `feature file unreadable` warnings, while playbook acceptance semantics remain unchanged. Rollback: revert the path-only change if IDs, prompts, or corpus membership drift; do not compensate in the runner. [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:15-26] [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:100-147] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:11-12] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:221-250]",
+      "text": "**Step A — benchmark topology** targets only the playbook package index/path declarations and its scenario-file/directory topology under `.opencode/skills/sk-design/manual_testing_playbook/`; it must not change scenario prompts, expected behavior, or router maps. Prerequisite: preserve the frozen baseline and scenario-ID inventory. Acceptance: the runner resolves a nonzero scenario corpus with zero `feature file unreadable` warnings, while playbook acceptance semantics remain unchanged. Rollback: revert the path-only change if IDs, prompts, or corpus membership drift; do not compensate in the runner. [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:15-26] [SOURCE: .opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:100-147] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:11-12] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:221-250]",
       "addedAtIteration": 5,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
         "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
@@ -517,13 +517,13 @@
     },
     {
       "id": "finding-5-4-step-d-measurement-acceptance-uses-a-new-output-location-and-compares-only-runs-",
-      "text": "**Step D — measurement acceptance** uses a new output location and compares only runs with the same trace mode and corpus shape; it never overwrites `benchmark/baseline/`. Acceptance requires D5 to remain 100, typed-gold rows to be nonzero, D1-intra/D2 pair recall and D3 pair precision to be applicable, zero topology exclusions, and scenario-level deltas to be reported separately from D1-inter/D4/browser gaps. The checked-in aggregate 69 and `after_d3_proxy` 100 are not valid before/after endpoints because one uses flat proxy gold and the other drops D3 from the denominator. Rollback: delete/revert only the candidate run artifact and keep the frozen baseline untouched if applicability or corpus parity fails. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:36-55] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:208-255]",
+      "text": "**Step D — measurement acceptance** uses a new output location and compares only runs with the same trace mode and corpus shape; it never overwrites `benchmark/baseline/`. Acceptance requires D5 to remain 100, typed-gold rows to be nonzero, D1-intra/D2 pair recall and D3 pair precision to be applicable, zero topology exclusions, and scenario-level deltas to be reported separately from D1-inter/D4/browser gaps. The checked-in aggregate 69 and `after_d3_proxy` 100 are not valid before/after endpoints because one uses flat proxy gold and the other drops D3 from the denominator. Rollback: delete/revert only the candidate run artifact and keep the frozen baseline untouched if applicability or corpus parity fails. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:36-55] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:208-255]",
       "addedAtIteration": 5,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
         "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
@@ -533,13 +533,13 @@
     },
     {
       "id": "finding-5-5-step-e-router-quality-work-is-conditional-not-presently-justified-existing-evide",
-      "text": "**Step E — router-quality work is conditional, not presently justified.** Existing evidence shows frozen D1-intra=100 and D2=100, while the current fresh run is blocked before scoring; therefore no unconditional `INTENT_SIGNALS`, `RESOURCE_MAP`, `mode-registry.json`, or `hub-router.json` edit can be recommended. After Step D, a wrong mode selects the hub/registry route class for a narrowly scoped fix; a correct mode with wrong packet-local leaves selects only that mode packet's intent/resource map; a genuinely required shared leaf selects an explicit alias/route contract. Acceptance is targeted scenario repair plus the full same-corpus gate with D5 unchanged. Rollback is one fault-class commit at a time, reverting the narrow map/alias change without reverting measurement fixtures. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:29-39] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:9-11] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-12] [INFERENCE: source ownership follows whether the validated mismatch is mode selection, packet-local leaf selection, or explicit shared-resource identity]",
+      "text": "**Step E — router-quality work is conditional, not presently justified.** Existing evidence shows frozen D1-intra=100 and D2=100, while the current fresh run is blocked before scoring; therefore no unconditional `INTENT_SIGNALS`, `RESOURCE_MAP`, `mode-registry.json`, or `hub-router.json` edit can be recommended. After Step D, a wrong mode selects the hub/registry route class for a narrowly scoped fix; a correct mode with wrong packet-local leaves selects only that mode packet's intent/resource map; a genuinely required shared leaf selects an explicit alias/route contract. Acceptance is targeted scenario repair plus the full same-corpus gate with D5 unchanged. Rollback is one fault-class commit at a time, reverting the narrow map/alias change without reverting measurement fixtures. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:29-39] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:9-11] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-12] [INFERENCE: source ownership follows whether the validated mismatch is mode selection, packet-local leaf selection, or explicit shared-resource identity]",
       "addedAtIteration": 5,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
         "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
@@ -549,13 +549,13 @@
     },
     {
       "id": "finding-5-3-steps-b-c-topology-contract-and-independent-oracle-target-opencode-skills-sk-des",
-      "text": "**Steps B-C — topology contract and independent oracle** target `.opencode/skills/sk-design/leaf-manifest.json` first, then typed frontmatter in eligible scenario Markdown files. Generate the manifest before using `--check`; accept it only when regeneration is byte-identical and `--check` returns success. Then author `(workflowMode, leafResourceId)` pairs from prompts and normative maps without observing predictions: type the 16 frozen scenarios already eligible, split `AI-001` and `SR-002` before typing, and leave `AI-002`, `AI-003`, and `SR-003` without positive sk-design leaf gold. Acceptance: schema, manifest membership, and selected-map joins all pass, with no excluded invalid oracle. Rollback: revert typed-gold changes independently of the manifest; if a pair lacks a manifest target, remove/block that fixture rather than inventing an alias. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:136-161] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:168-221] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:7-11]",
+      "text": "**Steps B-C — topology contract and independent oracle** target `.opencode/skills/sk-design/leaf-manifest.json` first, then typed frontmatter in eligible scenario Markdown files. Generate the manifest before using `--check`; accept it only when regeneration is byte-identical and `--check` returns success. Then author `(workflowMode, leafResourceId)` pairs from prompts and normative maps without observing predictions: type the 16 frozen scenarios already eligible, split `AI-001` and `SR-002` before typing, and leave `AI-002`, `AI-003`, and `SR-003` without positive sk-design leaf gold. Acceptance: schema, manifest membership, and selected-map joins all pass, with no excluded invalid oracle. Rollback: revert typed-gold changes independently of the manifest; if a pair lacks a manifest target, remove/block that fixture rather than inventing an alias. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:136-161] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:168-221] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:7-11]",
       "addedAtIteration": 5,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
         "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
@@ -565,13 +565,13 @@
     },
     {
       "id": "finding-5-1-the-safe-dependency-order-is-a-restore-readable-benchmark-topology-b-generate-an",
-      "text": "The safe dependency order is: **(A) restore readable benchmark topology; (B) generate and commit the six-mode leaf manifest; (C) independently author typed gold and validate its joins; (D) establish a same-mode, same-corpus typed baseline; (E) change router maps only for pair-level failures exposed by D**. A-D are measurement-enablement work; E is the only router-quality lane. This order prevents unreadable fixtures, missing manifest leaves, or untyped proxy scoring from being misreported as router defects. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:7-11] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:7-11] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13] [INFERENCE: dependency edges follow the prerequisites demonstrated across iterations 2-4]",
+      "text": "The safe dependency order is: **(A) restore readable benchmark topology; (B) generate and commit the six-mode leaf manifest; (C) independently author typed gold and validate its joins; (D) establish a same-mode, same-corpus typed baseline; (E) change router maps only for pair-level failures exposed by D**. A-D are measurement-enablement work; E is the only router-quality lane. This order prevents unreadable fixtures, missing manifest leaves, or untyped proxy scoring from being misreported as router defects. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:7-11] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:7-11] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13] [INFERENCE: dependency edges follow the prerequisites demonstrated across iterations 2-4]",
       "addedAtIteration": 5,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-132,305-499`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:1-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:1-48`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:1-50`",
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:1-170`",
         "`.opencode/skills/sk-design/benchmark/README.md:1-55`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
@@ -581,82 +581,82 @@
     },
     {
       "id": "finding-6-3-leafresourceid-is-packet-root-relative-and-typed-pair-uniqueness-is-composite-va",
-      "text": "`leafResourceId` is packet-root-relative and typed-pair uniqueness is composite. Valid examples are `(motion, references/motion_strategy.md)` and `(md-generator, assets/cardinal_rules_card.md)`; packet-qualified forms such as `design-motion/references/...` are not canonical public IDs. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:138-165] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:16]",
+      "text": "`leafResourceId` is packet-root-relative and typed-pair uniqueness is composite. Valid examples are `(motion, references/motion_strategy.md)` and `(md-generator, assets/cardinal_rules_card.md)`; packet-qualified forms such as `design-motion/references/...` are not canonical public IDs. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:138-165] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:16]",
       "addedAtIteration": 6,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
         "`.opencode/skills/sk-design/mode-registry.json:38-164`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
       ]
     },
     {
       "id": "finding-6-2-each-independent-gold-pair-uses-that-registry-mode-plus-a-leaf-selected-by-its-p",
-      "text": "Each independent gold pair uses that registry mode plus a leaf selected by its packet-local map: `interface` uses its twelve intent families; `foundations` its seven foundation families; `motion` its six motion families; `audit` its six audit families; `md-generator` its five extraction/validation families; and `design-mcp-open-design` its `WIRE`, `READ`, or `RUN` transport family. Thus the canonical mapping is `(interface, local leaf)`, `(foundations, local leaf)`, `(motion, local leaf)`, `(audit, local leaf)`, `(md-generator, local leaf)`, and `(design-mcp-open-design, local leaf)`, with the exact leaf chosen from the corresponding packet's `RESOURCE_MAP`. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:9-18] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:108-136] [SOURCE: .opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:126-142] [SOURCE: .opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43] [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:131-166] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47]",
+      "text": "Each independent gold pair uses that registry mode plus a leaf selected by its packet-local map: `interface` uses its twelve intent families; `foundations` its seven foundation families; `motion` its six motion families; `audit` its six audit families; `md-generator` its five extraction/validation families; and `design-mcp-open-design` its `WIRE`, `READ`, or `RUN` transport family. Thus the canonical mapping is `(interface, local leaf)`, `(foundations, local leaf)`, `(motion, local leaf)`, `(audit, local leaf)`, `(md-generator, local leaf)`, and `(design-mcp-open-design, local leaf)`, with the exact leaf chosen from the corresponding packet's `RESOURCE_MAP`. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:9-18] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:108-136] [SOURCE: .opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md:24-46] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:126-142] [SOURCE: .opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md:23-43] [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:131-166] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md:23-47]",
       "addedAtIteration": 6,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
         "`.opencode/skills/sk-design/mode-registry.json:38-164`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
       ]
     },
     {
       "id": "finding-6-4-no-substantive-contradiction-appears-in-iterations-2-5-iteration-2-confirms-six-",
-      "text": "No substantive contradiction appears in iterations 2-5: iteration 2 confirms six generated namespaces including the transport; iteration 3 preserves typed pairs as narrow independent routing oracles; iteration 4 says the frozen corpus has zero typed-gold rows rather than disputing the mapping; and iteration 5 makes manifest and independent-gold authoring prerequisites to any router edit. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:7-10] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13]",
+      "text": "No substantive contradiction appears in iterations 2-5: iteration 2 confirms six generated namespaces including the transport; iteration 3 preserves typed pairs as narrow independent routing oracles; iteration 4 says the frozen corpus has zero typed-gold rows rather than disputing the mapping; and iteration 5 makes manifest and independent-gold authoring prerequisites to any router edit. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:7-10] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13]",
       "addedAtIteration": 6,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
         "`.opencode/skills/sk-design/mode-registry.json:38-164`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
       ]
     },
     {
       "id": "finding-6-5-the-apparent-state-contradiction-is-textual-not-evidentiary-iteration-1-recorded",
-      "text": "The apparent state contradiction is textual, not evidentiary: iteration 1 recorded the question as answered without backticks around `(workflowMode, leafResourceId)`, while the registry's canonical question includes backticks and therefore remained unresolved under exact-text reconciliation. Appending the exact canonical text closes that bookkeeping gap without reopening or changing the six-mode result. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl:4] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-20] [INFERENCE: the only question-text difference is the canonical backtick pair]",
+      "text": "The apparent state contradiction is textual, not evidentiary: iteration 1 recorded the question as answered without backticks around `(workflowMode, leafResourceId)`, while the registry's canonical question includes backticks and therefore remained unresolved under exact-text reconciliation. Appending the exact canonical text closes that bookkeeping gap without reopening or changing the six-mode result. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl:4] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:8-20] [INFERENCE: the only question-text difference is the canonical backtick pair]",
       "addedAtIteration": 6,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
         "`.opencode/skills/sk-design/mode-registry.json:38-164`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
       ]
     },
     {
       "id": "finding-6-1-the-authoritative-registry-still-defines-exactly-six-independent-mode-namespaces",
-      "text": "The authoritative registry still defines exactly six independent mode namespaces and packet joins: `interface -> design-interface`, `foundations -> design-foundations`, `motion -> design-motion`, `audit -> design-audit`, `md-generator -> design-md-generator`, and `design-mcp-open-design -> design-mcp-open-design`. The first five are workflow packets and the sixth is a transport packet, but all six carry independent `workflowMode` identities. [SOURCE: .opencode/skills/sk-design/mode-registry.json:38-164] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:7]",
+      "text": "The authoritative registry still defines exactly six independent mode namespaces and packet joins: `interface -> design-interface`, `foundations -> design-foundations`, `motion -> design-motion`, `audit -> design-audit`, `md-generator -> design-md-generator`, and `design-mcp-open-design -> design-mcp-open-design`. The first five are workflow packets and the sixth is a transport packet, but all six carry independent `workflowMode` identities. [SOURCE: .opencode/skills/sk-design/mode-registry.json:38-164] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:7]",
       "addedAtIteration": 6,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-006.md:1-35`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:1-60`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-003.md:4-11`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13,53`",
         "`.opencode/skills/sk-design/mode-registry.json:38-164`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84,138-165`"
       ]
     },
     {
@@ -741,13 +741,13 @@
     },
     {
       "id": "finding-8-4-benchmark-acceptance-uses-a-new-output-location-and-a-stable-router-mode-corpus-",
-      "text": "Benchmark acceptance uses a new output location and a stable router-mode/corpus shape: `node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill .opencode/skills/sk-design --outputs-dir /tmp/skd-bench --trace-mode router --output /tmp/skd-bench/report.json`. Accept only when D5 remains 100, typed-gold rows are nonzero, D1-intra/D2 pair recall and D3 pair precision are applicable, topology exclusions are zero, and scenario-level deltas are reported; never overwrite or compare unlike applicability against `benchmark/baseline/`. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:20-23] [SOURCE: .opencode/skills/sk-design/benchmark/README.md:36-55] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:12-12]",
+      "text": "Benchmark acceptance uses a new output location and a stable router-mode/corpus shape: `node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill .opencode/skills/sk-design --outputs-dir /tmp/skd-bench --trace-mode router --output /tmp/skd-bench/report.json`. Accept only when D5 remains 100, typed-gold rows are nonzero, D1-intra/D2 pair recall and D3 pair precision are applicable, topology exclusions are zero, and scenario-level deltas are reported; never overwrite or compare unlike applicability against `benchmark/baseline/`. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:20-23] [SOURCE: .opencode/skills/sk-design/benchmark/README.md:36-55] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:12-12]",
       "addedAtIteration": 8,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
@@ -759,9 +759,9 @@
       "addedAtIteration": 8,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
@@ -769,13 +769,13 @@
     },
     {
       "id": "finding-8-5-research-confirmed-facts-stop-at-contract-shape-deterministic-generation-feasibi",
-      "text": "Research-confirmed facts stop at contract shape, deterministic generation feasibility, and gate semantics. Implementation-only proof still includes readable corpus topology, committed manifest parity, independently authored oracle validity, actual WIRE/READ/RUN/bundle routing outcomes, and same-corpus benchmark deltas. Router-map edits remain conditional on a valid pair-level failure: wrong mode targets the narrow hub/registry route class, wrong local leaves target only that packet map, and a required shared leaf needs an explicit alias contract. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:23-27]",
+      "text": "Research-confirmed facts stop at contract shape, deterministic generation feasibility, and gate semantics. Implementation-only proof still includes readable corpus topology, committed manifest parity, independently authored oracle validity, actual WIRE/READ/RUN/bundle routing outcomes, and same-corpus benchmark deltas. Router-map edits remain conditional on a valid pair-level failure: wrong mode targets the narrow hub/registry route class, wrong local leaves target only that packet map, and a required shared leaf needs an explicit alias contract. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:9-13] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:23-27]",
       "addedAtIteration": 8,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
@@ -787,9 +787,9 @@
       "addedAtIteration": 8,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
@@ -801,9 +801,9 @@
       "addedAtIteration": 8,
       "sources": [
         "`.opencode/agents/deep-research.md:24-45,61-73,251-313`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/prompts/iteration-008.md:1-38`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:1-53`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:1-52`",
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-183`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,255-358`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`"
@@ -825,7 +825,7 @@
     },
     {
       "id": "ruled-out-eef3cd83aed4",
-      "text": "Using packet-qualified paths such as `design-motion/references/...` as `leafResourceId`; the canonical identity requires packet-root-relative resource IDs. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84]",
+      "text": "Using packet-qualified paths such as `design-motion/references/...` as `leafResourceId`; the canonical identity requires packet-root-relative resource IDs. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84]",
       "contentHash": "eef3cd83aed4",
       "addedAtIteration": 1
     },
@@ -909,7 +909,7 @@
     },
     {
       "id": "ruled-out-da8d005588c7",
-      "text": "Aggregate-only optimization is exhausted: neither 69 nor 100 identifies a router-quality change without comparable typed rows and stable dimension applicability. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13]",
+      "text": "Aggregate-only optimization is exhausted: neither 69 nor 100 identifies a router-quality change without comparable typed rows and stable dimension applicability. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13]",
       "contentHash": "da8d005588c7",
       "addedAtIteration": 5
     },
@@ -921,13 +921,13 @@
     },
     {
       "id": "ruled-out-3e38b8de8295",
-      "text": "Editing `INTENT_SIGNALS`, `RESOURCE_MAP`, `mode-registry.json`, or `hub-router.json` before a valid typed run identifies a pair-level failure; current evidence does not prove such a fault. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:29-39] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13]",
+      "text": "Editing `INTENT_SIGNALS`, `RESOURCE_MAP`, `mode-registry.json`, or `hub-router.json` before a valid typed run identifies a pair-level failure; current evidence does not prove such a fault. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:29-39] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-004.md:9-13]",
       "contentHash": "3e38b8de8295",
       "addedAtIteration": 5
     },
     {
       "id": "ruled-out-e7a82e77e99b",
-      "text": "Inventing shared aliases to make a fixture pass; aliases require an explicit route contract and a demonstrated scenario need. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:9-10]",
+      "text": "Inventing shared aliases to make a fixture pass; aliases require an explicit route contract and a demonstrated scenario need. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:9-10]",
       "contentHash": "e7a82e77e99b",
       "addedAtIteration": 5
     },
@@ -939,19 +939,19 @@
     },
     {
       "id": "ruled-out-e6adc37af3cc",
-      "text": "A seventh hub mode: hub entrypoints and defaults do not create another `workflowMode`. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:20-25]",
+      "text": "A seventh hub mode: hub entrypoints and defaults do not create another `workflowMode`. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md:20-25]",
       "contentHash": "e6adc37af3cc",
       "addedAtIteration": 6
     },
     {
       "id": "ruled-out-cb0e72b449ae",
-      "text": "Flattening `design-mcp-open-design` into `interface`: the registry and later manifest evidence preserve its independent transport namespace. [SOURCE: .opencode/skills/sk-design/mode-registry.json:145-162] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:7-10]",
+      "text": "Flattening `design-mcp-open-design` into `interface`: the registry and later manifest evidence preserve its independent transport namespace. [SOURCE: .opencode/skills/sk-design/mode-registry.json:145-162] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-002.md:7-10]",
       "contentHash": "cb0e72b449ae",
       "addedAtIteration": 6
     },
     {
       "id": "ruled-out-0599b22a8199",
-      "text": "Packet-qualified `leafResourceId` values: the public contract requires packet-root-relative IDs. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84]",
+      "text": "Packet-qualified `leafResourceId` values: the public contract requires packet-root-relative IDs. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md:68-84]",
       "contentHash": "0599b22a8199",
       "addedAtIteration": 6
     },
@@ -981,13 +981,13 @@
     },
     {
       "id": "ruled-out-1c68c2fed86c",
-      "text": "Aggregate-only optimization remains exhausted: the frozen 69 and proxy 100 have different applicability and cannot prove routing improvement. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:18-22]",
+      "text": "Aggregate-only optimization remains exhausted: the frozen 69 and proxy 100 have different applicability and cannot prove routing improvement. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:18-22]",
       "contentHash": "1c68c2fed86c",
       "addedAtIteration": 8
     },
     {
       "id": "ruled-out-92d85a642363",
-      "text": "Editing router maps before a valid typed rerun exposes a pair-level failure. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:13-19]",
+      "text": "Editing router maps before a valid typed rerun exposes a pair-level failure. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md:13-19]",
       "contentHash": "92d85a642363",
       "addedAtIteration": 8
     },
@@ -999,7 +999,7 @@
     },
     {
       "id": "ruled-out-451da2572905",
-      "text": "Treating a correct two-mode route as complete multi-pair leaf gold when the judgment-leaf oracle is absent. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:12-13]",
+      "text": "Treating a correct two-mode route as complete multi-pair leaf gold when the judgment-leaf oracle is absent. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md:12-13]",
       "contentHash": "451da2572905",
       "addedAtIteration": 8
     }
@@ -1052,7 +1052,7 @@
     "pivotOverrides": 0
   },
   "corruptionWarnings": [],
-  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/inbox.jsonl",
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/inbox.jsonl",
   "inboxWarnings": [],
   "status": "COMPLETE",
   "advisoryEvents": []

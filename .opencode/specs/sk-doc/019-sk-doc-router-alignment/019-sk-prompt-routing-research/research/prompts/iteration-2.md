@@ -23,13 +23,13 @@ Saturated Directions: do not convert `prompt-models` into a registry surface pac
 
 ## STATE FILES
 
-- Config: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-config.json`
-- State Log: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-state.jsonl`
-- Strategy: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-strategy.md`
-- Registry: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/findings-registry.json`
-- Prior iteration: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-001.md`
-- Write narrative: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-002.md`
-- Write delta: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deltas/iter-002.jsonl`
+- Config: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-config.json`
+- State Log: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-state.jsonl`
+- Strategy: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-strategy.md`
+- Registry: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/findings-registry.json`
+- Prior iteration: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-001.md`
+- Write narrative: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-002.md`
+- Write delta: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deltas/iter-002.jsonl`
 
 ## CONSTRAINTS AND OUTPUT
 

@@ -231,7 +231,7 @@
     },
     {
       "id": "finding-2-1-the-34-figure-is-a-stale-create-skill-canon-assertion-not-benchmark-output-the-o",
-      "text": "**The “~34” figure is a stale create-skill canon assertion, not benchmark output.** The only direct source found says that sk-doc uses a compositional vocabulary strategy that “leaves ~34” registry aliases without a literal router-vocabulary home. That sentence defines the comparison: literal `mode-registry.json > modes[].aliases[]` values versus literal `hub-router.json > vocabularyClasses.*.keywords[]` values. Iteration 1's current-file comparison found 113/113 equality, so the sentence now describes an older configuration state. It is not a count of command aliases, gold resources, normalized tokens, or a scorer snapshot. [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md:208] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md:209] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-001.md:1]",
+      "text": "**The “~34” figure is a stale create-skill canon assertion, not benchmark output.** The only direct source found says that sk-doc uses a compositional vocabulary strategy that “leaves ~34” registry aliases without a literal router-vocabulary home. That sentence defines the comparison: literal `mode-registry.json > modes[].aliases[]` values versus literal `hub-router.json > vocabularyClasses.*.keywords[]` values. Iteration 1's current-file comparison found 113/113 equality, so the sentence now describes an older configuration state. It is not a count of command aliases, gold resources, normalized tokens, or a scorer snapshot. [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md:208] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md:209] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-001.md:1]",
       "addedAtIteration": 2,
       "sources": []
     },
@@ -267,7 +267,7 @@
     },
     {
       "id": "finding-6-7-opencode-commands-doctor-scripts-parent-skill-check-cjs-add-a-guard-immediately-",
-      "text": "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`: add a guard immediately after existing resource-existence checks that validates both declared path roles and rejects packet-prefixed `leafResourceId` values or unqualified `hubLoadAddress` values. Existing checks prove existence, not coordinate semantics. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-005.md:32]",
+      "text": "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`: add a guard immediately after existing resource-existence checks that validates both declared path roles and rejects packet-prefixed `leafResourceId` values or unqualified `hubLoadAddress` values. Existing checks prove existence, not coordinate semantics. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-005.md:32]",
       "addedAtIteration": 6,
       "sources": []
     },
@@ -339,7 +339,7 @@
     },
     {
       "id": "finding-6-13-opencode-skills-system-deep-loop-deep-improvement-scripts-skill-benchmark-d5-con",
-      "text": "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs`: consume the same manifest for hub D5 instead of treating a root-only `references/`/`assets/` scan as nested coverage. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-005.md:40]",
+      "text": "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs`: consume the same manifest for hub D5 instead of treating a root-only `references/`/`assets/` scan as nested coverage. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-005.md:40]",
       "addedAtIteration": 6,
       "sources": []
     },
@@ -757,7 +757,7 @@
     },
     {
       "id": "finding-10-4-existing-callers-retain-policy-parent-skill-check-cjs-enforces-hub-validity-rout",
-      "text": "Existing callers retain policy: parent-skill-check.cjs enforces hub validity; router-replay.cjs assembles the selected typed union; run-skill-benchmark.cjs protects the immutable snapshot; score-skill-benchmark.cjs and build-report.cjs separate and report invalid topology, contract errors, and genuine misses. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:15] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:24]",
+      "text": "Existing callers retain policy: parent-skill-check.cjs enforces hub validity; router-replay.cjs assembles the selected typed union; run-skill-benchmark.cjs protects the immutable snapshot; score-skill-benchmark.cjs and build-report.cjs separate and report invalid topology, contract errors, and genuine misses. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:15] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:24]",
       "addedAtIteration": 10,
       "sources": []
     },
@@ -881,7 +881,7 @@
     "pivotOverrides": 0
   },
   "corruptionWarnings": [],
-  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/inbox.jsonl",
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/inbox.jsonl",
   "inboxWarnings": [],
   "status": "INITIALIZED",
   "advisoryEvents": []

@@ -3,7 +3,7 @@ title: "Deep Research: sk-design Typed-Pair Routing"
 description: "Eight-iteration diagnosis of sk-design routing measurement, leaf-manifest feasibility, typed-gold eligibility, benchmark attribution, and implementation-ready optimizations."
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research"
     last_updated_at: "2026-07-17T05:25:27Z"
     last_updated_by: "opencode"
     recent_action: "Completed eight-iteration routing research and synthesis"
@@ -191,5 +191,5 @@ The workflow emitted `research/resource-map.md`, covering the cited sk-design ro
 - `.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json`
 - `.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs`
 - `.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md`
 - `research/resource-map.md`

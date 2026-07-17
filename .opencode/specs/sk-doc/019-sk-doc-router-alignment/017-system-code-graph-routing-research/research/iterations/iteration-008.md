@@ -4,7 +4,7 @@
 - Resolved route: `mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true`.
 - Canonical agent definition loaded from `.opencode/agents/deep-research.md`; execution remained LEAF-only and dispatched no Task or sub-agent.
 - State source: packet-local config, state JSONL, strategy, registry, iteration-8 prompt, and iterations 1-7, all read before reconciliation.
-- Packet root: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/`.
+- Packet root: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/`.
 - Authorized writes: only this narrative, exactly one iteration-8 state-log append, and write-once `deltas/iter-008.jsonl`; `research.md`, source, spec, config, and reducer-owned files were excluded.
 
 ## Focus

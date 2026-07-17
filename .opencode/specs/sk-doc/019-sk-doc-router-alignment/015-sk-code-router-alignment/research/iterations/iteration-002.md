@@ -48,10 +48,10 @@ None added. The iteration did not retry the blocked simple path-prefix rewrite o
 
 ## Sources Consulted
 
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`
 - `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`
 - `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`
 - `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`

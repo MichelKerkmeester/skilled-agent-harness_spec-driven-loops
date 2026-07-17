@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored plan.md documenting the research approach for the bound loop"

@@ -4,7 +4,7 @@
 - Resolved route: `mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true`.
 - Agent definition loaded: `.opencode/agents/deep-research.md`; execution remained LEAF-only and dispatched no sub-agents.
 - State source: packet-local config, state JSONL, strategy, registry, and `research/prompts/iteration-7.md`, read before focus selection or research.
-- Packet root: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/`.
+- Packet root: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/`.
 - Authorized writes: this narrative, exactly one iteration-7 state-log append, and `research/deltas/iter-007.jsonl`; progressive synthesis was not touched because the dispatch narrowed the write set to these three artifacts.
 
 ## Focus

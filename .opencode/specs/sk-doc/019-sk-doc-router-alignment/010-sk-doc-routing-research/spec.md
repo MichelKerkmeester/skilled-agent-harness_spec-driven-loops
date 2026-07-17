@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research"
     last_updated_at: "2026-07-16T08:08:19Z"
     last_updated_by: "claude"
     recent_action: "Closed research packet with dependency-ordered fix plan"
@@ -51,7 +51,7 @@ _memory:
 | **Created** | 2026-07-16 |
 | **Branch** | `010-sk-doc-routing-research` |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/031-sk-doc-router-alignment` |
+| **Parent** | `sk-doc/019-sk-doc-router-alignment` |
 | **Type** | Research packet (deep-research loop, 10/10 iterations complete) |
 <!-- /ANCHOR:metadata -->
 

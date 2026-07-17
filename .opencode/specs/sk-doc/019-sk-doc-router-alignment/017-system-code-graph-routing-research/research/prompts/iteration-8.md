@@ -23,12 +23,12 @@ Saturated Directions: no implementation, no invented baseline score, no syntheti
 
 ## STATE FILES
 
-- Config: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/findings-registry.json
-- Write narrative: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-008.md
-- Write delta: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deltas/iter-008.jsonl
+- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/findings-registry.json
+- Write narrative: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-008.md
+- Write delta: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deltas/iter-008.jsonl
 
 ## CONSTRAINTS AND OUTPUT CONTRACT
 

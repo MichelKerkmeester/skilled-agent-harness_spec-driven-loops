@@ -17,7 +17,7 @@ Consolidate the complete sk-doc routing fix list into an implementation-ready ha
 
 Add a generic parent-hub resource-contract library under the sk-doc create-skill tooling, e.g. `create-skill/scripts/lib/leaf-resource-contract.cjs`. It owns pure operations only: normalize `workflowMode`; normalize and validate packet-local `leafResourceId`; form/parse composite keys; resolve a hub-contained target; canonical-sort entries; build canonical JSON bytes; compute source digests; and validate aliases, collisions, targets, and selected-pair reachability. The manifest CLI, parent checker, router replay, and benchmark preflight call this library instead of copying path rules. [SOURCE: file:.opencode/skills/sk-doc/mode-registry.json:18] [SOURCE: file:.opencode/commands/doctor/scripts/parent-skill-check.cjs:693] [SOURCE: file:.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:396]
 
-Keep orchestration outside it. A thin `generate-leaf-manifest.cjs` owns `--write`/`--check`; the parent checker owns hub enforcement; benchmark modules own fixture attribution, dispatch snapshots, scoring, and reports. Reverse physical-path lookup remains forbidden because many public pairs may legally share one target. [SOURCE: file:.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-008.md:22] [SOURCE: file:.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-008.md:59]
+Keep orchestration outside it. A thin `generate-leaf-manifest.cjs` owns `--write`/`--check`; the parent checker owns hub enforcement; benchmark modules own fixture attribution, dispatch snapshots, scoring, and reports. Reverse physical-path lookup remains forbidden because many public pairs may legally share one target. [SOURCE: file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-008.md:22] [SOURCE: file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-008.md:59]
 
 ### 2. One owner and one test layer per guard
 
@@ -75,11 +75,11 @@ Preflight belongs before the dispatch loop, not inside `scoreScenario`; the curr
 | Invalid oracle | Synthetic malformed/stale fixtures | Zero dispatch; class count increments; excluded from recall/precision/waste/fitted/aggregate denominators | Report fixture/topology/selection counts separately |
 | Reproducibility | Permuted registry and enumeration | Identical manifest bytes/digest; check accepts only canonical committed bytes | No timestamps, mtimes, locale order, absolute paths, or host separators |
 
-The group membership is the frozen 19-row classification: six wrong-root, six missing-leaf, five over-bundle, and two clean. D5 is currently 100 and must be rerun. [SOURCE: file:.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-003.md:52] [SOURCE: file:.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-003.md:85]
+The group membership is the frozen 19-row classification: six wrong-root, six missing-leaf, five over-bundle, and two clean. D5 is currently 100 and must be rerun. [SOURCE: file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-003.md:52] [SOURCE: file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-003.md:85]
 
 ### 6. Typed pairs are the sole write format
 
-Migration may dual-read legacy root-relative, packet-prefixed, and shared-prefixed strings, but manifest, replay observations, scored rows, and reports write `(workflowMode, leafResourceId)` only. A temporary legacy-read counter is allowed; bridge removal is later policy. Generic prefix stripping remains ruled out. [SOURCE: file:.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-007.md:35]
+Migration may dual-read legacy root-relative, packet-prefixed, and shared-prefixed strings, but manifest, replay observations, scored rows, and reports write `(workflowMode, leafResourceId)` only. A temporary legacy-read counter is allowed; bridge removal is later policy. Generic prefix stripping remains ruled out. [SOURCE: file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-007.md:35]
 
 ## Questions Answered
 

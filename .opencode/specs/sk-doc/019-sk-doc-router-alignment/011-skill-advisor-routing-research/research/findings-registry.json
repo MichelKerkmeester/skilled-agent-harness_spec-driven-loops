@@ -473,13 +473,13 @@
     },
     {
       "id": "finding-6-1-p0-reconcile-the-no-brief-output-contract-decide-whether-skipped-fail-open-cases",
-      "text": "**P0 — Reconcile the no-brief output contract.** Decide whether skipped/fail-open cases return `{}` or the governance fallback directive, then align implementation, tests, and reference text. This is first because the current hook suite has four known failures and the chosen contract determines the assertions for every later handoff test. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-003.md:36-42] [SOURCE: .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:228-245] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:143-178]",
+      "text": "**P0 — Reconcile the no-brief output contract.** Decide whether skipped/fail-open cases return `{}` or the governance fallback directive, then align implementation, tests, and reference text. This is first because the current hook suite has four known failures and the chosen contract determines the assertions for every later handoff test. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-003.md:36-42] [SOURCE: .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:228-245] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:143-178]",
       "addedAtIteration": 6,
       "sources": []
     },
     {
       "id": "finding-6-2-p0-reserve-fallback-time-and-add-live-handoff-timing-coverage-give-the-primary-s",
-      "text": "**P0 — Reserve fallback time and add live handoff timing coverage.** Give the primary subprocess less than the whole hook budget, reserve a bounded CLI slice, and test primary-timeout-to-warm-daemon success plus total-budget exhaustion. This repairs a confirmed resilience defect: the primary currently receives the entire hook timeout while the fallback receives only the remainder, potentially 1 ms. [SOURCE: .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:202-218] [SOURCE: .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:152-164] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-003.md:22-26]",
+      "text": "**P0 — Reserve fallback time and add live handoff timing coverage.** Give the primary subprocess less than the whole hook budget, reserve a bounded CLI slice, and test primary-timeout-to-warm-daemon success plus total-budget exhaustion. This repairs a confirmed resilience defect: the primary currently receives the entire hook timeout while the fallback receives only the remainder, potentially 1 ms. [SOURCE: .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:202-218] [SOURCE: .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:152-164] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-003.md:22-26]",
       "addedAtIteration": 6,
       "sources": []
     },
@@ -491,25 +491,25 @@
     },
     {
       "id": "finding-6-5-p1-add-advisor-threshold-surface-parity-vitest-ts-keep-the-two-layer-matrix-from",
-      "text": "**P1 — Add `advisor-threshold-surface-parity.vitest.ts`.** Keep the two-layer matrix from iteration 5: default/environment cases across MCP, shared brief, hook, and CLI; call-specific cases across MCP and the shared brief only. It is a strong preventive guard, but no numeric threshold drift was found, so it ranks behind current failures and the unguarded discovery boundary. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-004.md:16-30] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-005.md:16-24]",
+      "text": "**P1 — Add `advisor-threshold-surface-parity.vitest.ts`.** Keep the two-layer matrix from iteration 5: default/environment cases across MCP, shared brief, hook, and CLI; call-specific cases across MCP and the shared brief only. It is a strong preventive guard, but no numeric threshold drift was found, so it ranks behind current failures and the unguarded discovery boundary. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-004.md:16-30] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-005.md:16-24]",
       "addedAtIteration": 6,
       "sources": []
     },
     {
       "id": "finding-6-4-p1-add-the-metadata-hub-advisor-discovery-battery-this-closes-the-real-pre-hub-c",
-      "text": "**P1 — Add the metadata-hub advisor-discovery battery.** This closes the real pre-hub correctness boundary: hub-internal vocabulary checks can stay green while the advisor fails to discover a metadata-routed hub. Use representative public prompts and hard negatives, not a full alias mirror. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-002.md:44-60]",
+      "text": "**P1 — Add the metadata-hub advisor-discovery battery.** This closes the real pre-hub correctness boundary: hub-internal vocabulary checks can stay green while the advisor fails to discover a metadata-routed hub. Use representative public prompts and hard negatives, not a full alias mirror. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-002.md:44-60]",
       "addedAtIteration": 6,
       "sources": []
     },
     {
       "id": "finding-6-6-p1-p2-split-transport-diagnostics-and-correct-operator-documentation-emit-distin",
-      "text": "**P1/P2 — Split transport diagnostics and correct operator documentation.** Emit distinct causes for MCP-channel failure, warm-daemon absence, probe timeout, and CLI timeout, then document which are recoverable. This improves triage but does not restore routing by itself, so it follows the behavioral changes and guards. [SOURCE: .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:224-245] [SOURCE: .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:523-548] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-003.md:28-34]",
+      "text": "**P1/P2 — Split transport diagnostics and correct operator documentation.** Emit distinct causes for MCP-channel failure, warm-daemon absence, probe timeout, and CLI timeout, then document which are recoverable. This improves triage but does not restore routing by itself, so it follows the behavioral changes and guards. [SOURCE: .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:224-245] [SOURCE: .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:523-548] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-003.md:28-34]",
       "addedAtIteration": 6,
       "sources": []
     },
     {
       "id": "finding-6-7-p2-gated-change-confidence-floors-ambiguity-margins-lane-weights-or-compatibilit",
-      "text": "**P2, gated — Change confidence floors, ambiguity margins, lane weights, or compatibility thresholds only after item 3.** Static evidence already shows policy quantization and correlated-evidence uncertainty, but parameter edits without a fresh joined report would be guesswork. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-001.md:49-65]",
+      "text": "**P2, gated — Change confidence floors, ambiguity margins, lane weights, or compatibility thresholds only after item 3.** Static evidence already shows policy quantization and correlated-evidence uncertainty, but parameter edits without a fresh joined report would be guesswork. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/iterations/iteration-001.md:49-65]",
       "addedAtIteration": 6,
       "sources": []
     },
@@ -697,7 +697,7 @@
     "pivotOverrides": 0
   },
   "corruptionWarnings": [],
-  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/inbox.jsonl",
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/inbox.jsonl",
   "inboxWarnings": [],
   "status": "INITIALIZED",
   "advisoryEvents": []

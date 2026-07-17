@@ -21,7 +21,7 @@ contextType: "research"
 | Session | dr-20260716-054704-skill-advisor-routing (generation 1) |
 | Iterations | 10 of 10 (stop: maxIterationsReached, stop_policy=max-iterations) |
 | Executor | cli-codex / gpt-5.6-sol / reasoning=high / service_tier=fast |
-| Spec folder | `.opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research` |
+| Spec folder | `.opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research` |
 | Grounding | Tier-2 gpt-5.6-luna skill-benchmark finding: routing quality is strongly skill-specific; the advisor is the front-line router |
 | Key questions | 5/5 answered (Q1 i1+i8, Q4 i2, Q2 i3, Q3 i4+i5, Q5 i6; hardened i7-i10) |
 
@@ -203,8 +203,8 @@ No divergent pivots were recorded: convergence_mode was `default` and stop_polic
 - Baselines + corpora: `bench/scorer-calibration-baseline.json`, `scripts/routing-accuracy/*.jsonl`, `scripts/routing-accuracy/scorer-eval-baseline.json`
 - Hub artifacts: `.opencode/skills/sk-doc/hub-router.json`, `.opencode/skills/sk-doc/mode-registry.json`, `.opencode/skills/sk-doc/graph-metadata.json`, `.opencode/skills/cli-external-orchestration/hub-router.json`
 - Structural checker: `.opencode/commands/doctor/scripts/parent-skill-check.cjs`
-- Resource map: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/resource-map.md`
-- Sibling FOUNDATION packet: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/research.md`
+- Resource map: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/resource-map.md`
+- Sibling FOUNDATION packet: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/research.md`
 
 ## 14. Iteration Trail
 

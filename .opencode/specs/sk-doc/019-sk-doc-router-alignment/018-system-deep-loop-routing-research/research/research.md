@@ -21,7 +21,7 @@ contextType: "research"
 | Iterations | 10 of 10 |
 | Stop | `maxIterationsReached`; convergence mode `off` |
 | Executor | Native `deep-research` LEAF agent |
-| Spec folder | `.opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research` |
+| Spec folder | `.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research` |
 | Starting evidence | Aggregate about 71; seven workflow modes over five child packets; zero typed-gold rows; about 319 playbook artifacts |
 | Outcome | Five charter questions answered; implementation is separately gated |
 

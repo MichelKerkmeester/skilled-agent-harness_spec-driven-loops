@@ -20,7 +20,7 @@ contextType: "research"
 | Session | dr-20260716-052950-sk-doc-routing (generation 1) |
 | Iterations | 10 of 10 (stop: maxIterationsReached, stop_policy=max-iterations) |
 | Executor | cli-codex / gpt-5.6-sol / reasoning=high / service_tier=fast |
-| Spec folder | `.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research` |
+| Spec folder | `.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research` |
 | Benchmark ground truth | `.opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json` |
 | Key questions | 5/5 answered (Q1 i2, Q3 i3, Q2 i4, Q4 i5, Q5 i6; hardened i7–i10) |
 
@@ -144,7 +144,7 @@ sk-code validates the two-layer architecture (surface-first, intent-second, exac
 - Guards: `.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts`, `.opencode/commands/doctor/scripts/parent-skill-check.cjs`.
 - Benchmark artifact: `tier2-sk-doc-luna-opencode.report.json` (068-skill-benchmark-codex-executor).
 - Fixtures: `.opencode/skills/sk-doc/manual_testing_playbook/**` (19 scenarios).
-- Sibling packets: `031-sk-doc-router-alignment/001–009`.
+- Sibling packets: `019-sk-doc-router-alignment/001–009`.
 - Iteration narratives: `research/iterations/iteration-001.md` … `iteration-010.md` (full file:line citations live there).
 
 ## 15. Iteration Trail
@@ -180,5 +180,5 @@ sk-code validates the two-layer architecture (surface-first, intent-second, exac
 
 ## References
 
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/resource-map.md`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/resource-map.md`
 - Iteration files under `research/iterations/` carry the complete file:line evidence chains.

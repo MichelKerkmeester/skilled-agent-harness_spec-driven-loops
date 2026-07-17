@@ -712,26 +712,26 @@
     },
     {
       "id": "finding-5-4-dependency-ordered-implementation-sequence-the-safe-order-is-0-capture-the-autho",
-      "text": "**Dependency-ordered implementation sequence.** The safe order is: **(0)** capture the authorized unmodified baseline before source changes; **(1)** version the shared leaf contract and its tests to permit the two native roots; **(2)** declare singleton `WORKFLOW_MODE` and generate/check the standalone leaf inventory; **(3)** replace `RESOURCE_DOMAINS` with `RESOURCE_MAP`, `PACKAGE_INDEXES`, startup validation, exact-key specificity, compatibility `resources`, and typed `leafResources`; **(4)** add router unit fixtures for defaults, missing paths, deduplication, exact winner, two-way ambiguity, package-index exclusion, and all 23 routes; **(5)** add `expected_workflow_mode`/`expected_leaf_resources` only to the 23 eligible scenarios; **(6)** run post-change benchmark and compare dimension-by-dimension against baseline, not aggregate-only; **(7)** promote only if exact-resource accuracy improves without regressions in fallback, existence guards, or legacy resource output. Each step consumes an artifact or API established by the previous step, so reordering typed gold before steps 1-4 would encode an oracle the router cannot yet satisfy. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:7-9] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:41-78] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-48] [INFERENCE: dependency order is derived from contract acceptance -> identity/inventory -> router emission -> fixtures/gold -> measurement]",
+      "text": "**Dependency-ordered implementation sequence.** The safe order is: **(0)** capture the authorized unmodified baseline before source changes; **(1)** version the shared leaf contract and its tests to permit the two native roots; **(2)** declare singleton `WORKFLOW_MODE` and generate/check the standalone leaf inventory; **(3)** replace `RESOURCE_DOMAINS` with `RESOURCE_MAP`, `PACKAGE_INDEXES`, startup validation, exact-key specificity, compatibility `resources`, and typed `leafResources`; **(4)** add router unit fixtures for defaults, missing paths, deduplication, exact winner, two-way ambiguity, package-index exclusion, and all 23 routes; **(5)** add `expected_workflow_mode`/`expected_leaf_resources` only to the 23 eligible scenarios; **(6)** run post-change benchmark and compare dimension-by-dimension against baseline, not aggregate-only; **(7)** promote only if exact-resource accuracy improves without regressions in fallback, existence guards, or legacy resource output. Each step consumes an artifact or API established by the previous step, so reordering typed gold before steps 1-4 would encode an oracle the router cannot yet satisfy. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:7-9] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:41-78] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-48] [INFERENCE: dependency order is derived from contract acceptance -> identity/inventory -> router emission -> fixtures/gold -> measurement]",
       "addedAtIteration": 5,
       "sources": [
         "`.opencode/skills/system-code-graph/SKILL.md:45-314`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-320`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
       ]
     },
     {
       "id": "finding-5-2-explicit-target-resource-map-the-map-below-contains-no-directory-prefixes-filena",
-      "text": "**Explicit target `RESOURCE_MAP`.** The map below contains no directory prefixes, filename stems, globs, or package indexes. Generic requests resolve to canonical reference/feature leaves; exact benchmarkable requests resolve through scenario-specific keys to exactly one scenario leaf. Broad `FEATURES`/`PLAYBOOK` requests use `PACKAGE_INDEXES` for navigation, outside typed leaf output. This intentionally replaces broad sibling expansion with exact selection and makes every proposed route auditable. [SOURCE: .opencode/skills/system-code-graph/SKILL.md:79-98] [SOURCE: .opencode/skills/system-code-graph/SKILL.md:127-175] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:19-39] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:9-41] [INFERENCE: exact one-leaf scenario keys are the smallest map capable of satisfying the 23 proposed typed-gold rows]",
+      "text": "**Explicit target `RESOURCE_MAP`.** The map below contains no directory prefixes, filename stems, globs, or package indexes. Generic requests resolve to canonical reference/feature leaves; exact benchmarkable requests resolve through scenario-specific keys to exactly one scenario leaf. Broad `FEATURES`/`PLAYBOOK` requests use `PACKAGE_INDEXES` for navigation, outside typed leaf output. This intentionally replaces broad sibling expansion with exact selection and makes every proposed route auditable. [SOURCE: .opencode/skills/system-code-graph/SKILL.md:79-98] [SOURCE: .opencode/skills/system-code-graph/SKILL.md:127-175] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:19-39] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:9-41] [INFERENCE: exact one-leaf scenario keys are the smallest map capable of satisfying the 23 proposed typed-gold rows]",
       "addedAtIteration": 5,
       "sources": [
         "`.opencode/skills/system-code-graph/SKILL.md:45-314`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-320`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
       ]
     },
     {
@@ -741,9 +741,9 @@
       "sources": [
         "`.opencode/skills/system-code-graph/SKILL.md:45-314`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-320`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
       ]
     },
     {
@@ -753,21 +753,21 @@
       "sources": [
         "`.opencode/skills/system-code-graph/SKILL.md:45-314`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-320`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
       ]
     },
     {
       "id": "finding-5-5-typed-gold-and-promotion-gate-keep-022-023-024-and-both-plugin-hook-scenarios-ou",
-      "text": "**Typed-gold and promotion gate.** Keep `022`, `023`, `024`, and both plugin/hook scenarios outside positive typed gold unless separately authored user prompts are added; do not infer prompts from procedures or automatic events. Promotion requires 23/23 expected pairs to resolve to existing exact leaves, zero package-index pairs, zero duplicate composites, no missing-map notices, and separate before/after reporting for routing accuracy, resource efficiency, and fallback behavior. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:34-41] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:167-183] [INFERENCE: these gates prevent target-gold coverage from concealing corpus gaps or broad-load regressions]",
+      "text": "**Typed-gold and promotion gate.** Keep `022`, `023`, `024`, and both plugin/hook scenarios outside positive typed gold unless separately authored user prompts are added; do not infer prompts from procedures or automatic events. Promotion requires 23/23 expected pairs to resolve to existing exact leaves, zero package-index pairs, zero duplicate composites, no missing-map notices, and separate before/after reporting for routing accuracy, resource efficiency, and fallback behavior. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:34-41] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:167-183] [INFERENCE: these gates prevent target-gold coverage from concealing corpus gaps or broad-load regressions]",
       "addedAtIteration": 5,
       "sources": [
         "`.opencode/skills/system-code-graph/SKILL.md:45-314`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-320`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md:9-95`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md:4-46`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md:4-78`"
       ]
     },
     {
@@ -1567,7 +1567,7 @@
     "pivotOverrides": 0
   },
   "corruptionWarnings": [],
-  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/inbox.jsonl",
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/inbox.jsonl",
   "inboxWarnings": [],
   "status": "INITIALIZED",
   "advisoryEvents": []

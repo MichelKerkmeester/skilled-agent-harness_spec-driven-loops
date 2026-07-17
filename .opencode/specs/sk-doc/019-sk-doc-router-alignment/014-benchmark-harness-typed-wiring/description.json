@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/031-sk-doc-router-alignment/014-benchmark-harness-typed-wiring",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/014-benchmark-harness-typed-wiring",
   "description": "The shared skill-benchmark harness and the sk-doc surface router cannot currently prove that the typed routing contract works, and in the real",
   "keywords": [
     "shared",
@@ -23,7 +23,7 @@
   "folderSlug": "benchmark-harness-typed-wiring",
   "parentChain": [
     "sk-doc",
-    "031-sk-doc-router-alignment"
+    "019-sk-doc-router-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

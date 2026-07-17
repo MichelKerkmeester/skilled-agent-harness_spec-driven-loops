@@ -27,7 +27,7 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 
 ### Question Injection Surface
 
-Use `.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/inbox.jsonl` to append external questions during an active run.
+Use `.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/inbox.jsonl` to append external questions during an active run.
 
 ---
 
@@ -167,7 +167,7 @@ None for Q5. The exact JSON property names are implementation-level choices, but
 <!-- MACHINE-OWNED: END -->
 ## 12. KNOWN CONTEXT
 
-- memory_context lookup at init timed out (MCP -32001); no prior memory context loaded. Prior related packets exist under `.opencode/specs/sk-doc/031-sk-doc-router-alignment/` (001-audit-and-fix-map … 009-packet-smart-routing-conformance) and may contain relevant prior findings — iterations should consult them directly.
+- memory_context lookup at init timed out (MCP -32001); no prior memory context loaded. Prior related packets exist under `.opencode/specs/sk-doc/019-sk-doc-router-alignment/` (001-audit-and-fix-map … 009-packet-smart-routing-conformance) and may contain relevant prior findings — iterations should consult them directly.
 - resource-map.md not present; skipping coverage gate.
 
 ### Bounded Context Snapshot
@@ -177,7 +177,7 @@ None for Q5. The exact JSON property names are implementation-level choices, but
   - `.opencode/skills/sk-doc/create-skill/` (skill_smart_router.md teaching + emitted JSON config templates)
   - system-deep-loop skill-benchmark scorer: `router-replay.cjs` (projectHubRouter / buildRegistryIndex / buildHubRouteTelemetry), routing-registry-drift-guard
   - Tier-2 gpt-5.6-luna skill-benchmark results for sk-doc (20/100, ~19% exact-resource recall)
-- Reuse candidates: sibling packets 001–009 under `031-sk-doc-router-alignment/` (prior audits, conformance gap analyses, hub intent keyword coverage work).
+- Reuse candidates: sibling packets 001–009 under `019-sk-doc-router-alignment/` (prior audits, conformance gap analyses, hub intent keyword coverage work).
 - Integration points: hub-router.json, mode-registry.json, command-metadata.json, create-skill templates.
 - Constraints and risks: hub skill carries NO fenced INTENT_SIGNALS/RESOURCE_MAP block itself — routing is purely config-driven; findings must be implementable.
 

@@ -19,12 +19,12 @@ Last 3 Iterations Summary: benchmark attribution (0.90); optimization plan (0.70
 Saturated Directions: transport remains a distinct mode; do not flatten or invent a hub mode.
 
 ## STATE FILES
-- Config: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json
-- Iteration narrative: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md
-- Delta: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-007.jsonl
+- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json
+- Iteration narrative: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-007.md
+- Delta: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-007.jsonl
 
 ## CONSTRAINTS
 - One `deep-research` LEAF iteration; load agent definition/state; no sub-agents.

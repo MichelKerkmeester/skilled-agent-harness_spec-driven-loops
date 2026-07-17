@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/031-sk-doc-router-alignment",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment",
   "description": "The ten sk-doc `create-` creation packets did not present a uniform routing contract against the create-skill router standard",
   "keywords": [
     "ten",
@@ -17,7 +17,7 @@
     "standard"
   ],
   "lastUpdated": "2026-07-16T16:38:51.476Z",
-  "specId": "031",
+  "specId": "019",
   "folderSlug": "sk-doc-router-alignment",
   "parentChain": [
     "sk-doc"

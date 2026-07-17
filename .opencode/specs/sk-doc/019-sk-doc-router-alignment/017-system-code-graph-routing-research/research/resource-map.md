@@ -9,7 +9,7 @@ description: "Evidence inventory for the system-code-graph typed-pair routing di
 ## Summary
 
 - **Scope**: Current router, four-root resource inventory, typed leaf contract, benchmark pipeline, and research packet evidence.
-- **Research packet**: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/`
+- **Research packet**: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/`
 - **Current inventory**: 55 Markdown files across `references/`, `assets/`, `feature_catalog/`, and `manual_testing_playbook/`.
 - **Proposed authorized leaf inventory**: 53 files after excluding the two package indexes.
 - **Status**: All paths below were cited by the eight research iterations and resolved on disk.
@@ -18,19 +18,19 @@ description: "Evidence inventory for the system-code-graph typed-pair routing di
 
 | Path | Role |
 |------|------|
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/spec.md` | Research charter and five requirements |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-config.json` | Immutable loop configuration |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-state.jsonl` | Append-only iteration and route-proof evidence |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-strategy.md` | Reducer-owned strategy and question state |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/findings-registry.json` | Reducer-owned findings registry |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md` | Current router and 55-file inventory |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md` | Singleton identity and native leaf-root policy |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-003.md` | Baseline procedure and scoring boundary |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md` | Complete 23/5 scenario eligibility partition |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-005.md` | Explicit resource-map proposal and rollout order |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-006.md` | 53/35/18 manifest and scoring simulation |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-007.md` | Acceptance matrix and regression risks |
-| `.opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-008.md` | Final evidence reconciliation |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/spec.md` | Research charter and five requirements |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-config.json` | Immutable loop configuration |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-state.jsonl` | Append-only iteration and route-proof evidence |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-strategy.md` | Reducer-owned strategy and question state |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/findings-registry.json` | Reducer-owned findings registry |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-001.md` | Current router and 55-file inventory |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md` | Singleton identity and native leaf-root policy |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-003.md` | Baseline procedure and scoring boundary |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-004.md` | Complete 23/5 scenario eligibility partition |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-005.md` | Explicit resource-map proposal and rollout order |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-006.md` | 53/35/18 manifest and scoring simulation |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-007.md` | Acceptance matrix and regression risks |
+| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-008.md` | Final evidence reconciliation |
 
 ## Commands And Agents
 

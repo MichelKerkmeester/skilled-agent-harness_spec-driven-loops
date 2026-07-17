@@ -31,12 +31,12 @@ Saturated Directions: none yet.
 
 All paths are relative to the repo root.
 
-- Config: .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/findings-registry.json
-- Write iteration narrative to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md
-- Write per-iteration delta file to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deltas/iter-001.jsonl
+- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/findings-registry.json
+- Write iteration narrative to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md
+- Write per-iteration delta file to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deltas/iter-001.jsonl
 
 ## Constraints
 

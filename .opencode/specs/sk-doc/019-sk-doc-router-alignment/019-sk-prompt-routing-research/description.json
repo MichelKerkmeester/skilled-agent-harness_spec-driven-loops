@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research",
   "description": "sk-prompt's routing is only half-instrumented, and its baseline of 100 is misleading",
   "keywords": [
     "sk-prompt",
@@ -15,7 +15,7 @@
   "folderSlug": "sk-prompt-routing-research",
   "parentChain": [
     "sk-doc",
-    "031-sk-doc-router-alignment"
+    "019-sk-doc-router-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

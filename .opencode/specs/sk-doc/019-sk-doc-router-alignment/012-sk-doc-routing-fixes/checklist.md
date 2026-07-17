@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/012-sk-doc-routing-fixes"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored checklist from research.md Section 9 gates and Section 10 matrix"

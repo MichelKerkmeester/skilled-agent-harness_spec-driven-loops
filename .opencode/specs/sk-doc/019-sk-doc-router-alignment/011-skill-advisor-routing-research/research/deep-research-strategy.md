@@ -1,6 +1,6 @@
 ---
 title: Deep Research Strategy - system-skill-advisor usefulness and routing integration
-description: Session tracking for the skill-advisor routing research loop under sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research.
+description: Session tracking for the skill-advisor routing research loop under sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research.
 trigger_phrases:
   - "skill advisor routing research"
   - "advisor recommend confidence calibration"
@@ -14,7 +14,7 @@ version: 1.14.0.19
 
 # Deep Research Strategy - Session Tracking
 
-Runtime instance for `.opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/`.
+Runtime instance for `.opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/`.
 
 ## 1. OVERVIEW
 
@@ -239,7 +239,7 @@ Prior memory context: None loaded — Spec Kit Memory daemon transport timed out
   - `routing-registry-drift-guard` — parity checks against sk-doc `hub-router.json` / `mode-registry.json`
   - `.opencode/bin/skill-advisor.cjs` — daemon-backed CLI fallback transport
 - Grounding benchmark: Tier-2 gpt-5.6-luna skill-benchmark — routing quality is strongly skill-specific; sk-doc scored 20/100 with ~19% exact-resource recall (see sibling packet `010-sk-doc-routing-research`).
-- Related packet: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/` (parallel FOUNDATION phase on sk-doc hub routing).
+- Related packet: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/` (parallel FOUNDATION phase on sk-doc hub routing).
 - Governance anchors: CLAUDE.md Gate 2 (advisor confidence ≥0.8 must-invoke) and Gate 1 (dual-threshold ≥0.70 confidence / ≤0.35 uncertainty).
 - Constraints and risks: researched files are read-only; memory daemon currently unhealthy (evidence for Q2 transport-resilience angle); findings must be implementable.
 

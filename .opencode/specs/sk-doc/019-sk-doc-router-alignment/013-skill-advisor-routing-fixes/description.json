@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/031-sk-doc-router-alignment/013-skill-advisor-routing-fixes",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/013-skill-advisor-routing-fixes",
   "description": "The advisor's current-source holdout accuracy is 73.08 percent (57/78) with 85.25 percent selective precision, so it routes correctly far more often",
   "keywords": [
     "advisor",
@@ -20,7 +20,7 @@
   "folderSlug": "skill-advisor-routing-fixes",
   "parentChain": [
     "sk-doc",
-    "031-sk-doc-router-alignment"
+    "019-sk-doc-router-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

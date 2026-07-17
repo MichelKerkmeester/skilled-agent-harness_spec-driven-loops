@@ -34,8 +34,8 @@ None promoted. The two ruled-out interpretations are scope distinctions, not exh
 - `.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`
 - `.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`
 - `.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`
 
 ## Assessment
 

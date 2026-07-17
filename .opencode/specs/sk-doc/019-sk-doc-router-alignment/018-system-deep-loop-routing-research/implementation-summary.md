@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Created the placeholder implementation-summary for the pending research loop"

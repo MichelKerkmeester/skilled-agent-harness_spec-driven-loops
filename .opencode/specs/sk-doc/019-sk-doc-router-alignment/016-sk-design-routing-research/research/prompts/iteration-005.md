@@ -18,12 +18,12 @@ Last 3 Iterations Summary: manifest feasibility; scenario eligibility; benchmark
 Saturated Directions: no source changes in this packet; no gold copied from predictions; no aggregate-only diagnosis.
 
 ## STATE FILES
-- Config: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json
-- Iteration narrative: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md
-- Delta: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-005.jsonl
+- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json
+- Iteration narrative: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-005.md
+- Delta: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-005.jsonl
 
 ## CONSTRAINTS
 - One `deep-research` LEAF iteration only; load agent definition and state; no sub-agents.

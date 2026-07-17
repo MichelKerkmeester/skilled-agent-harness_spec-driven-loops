@@ -22,13 +22,13 @@ Saturated Directions: do not infer typed gold from filenames/router output, type
 
 ## STATE FILES
 
-- Config: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-config.json`
-- State Log: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-state.jsonl`
-- Strategy: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-strategy.md`
-- Registry: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/findings-registry.json`
-- Prior iterations: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-001.md` through `iteration-004.md`
-- Write narrative: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-005.md`
-- Write delta: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deltas/iter-005.jsonl`
+- Config: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-config.json`
+- State Log: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-state.jsonl`
+- Strategy: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deep-research-strategy.md`
+- Registry: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/findings-registry.json`
+- Prior iterations: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-001.md` through `iteration-004.md`
+- Write narrative: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/iterations/iteration-005.md`
+- Write delta: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research/research/deltas/iter-005.jsonl`
 
 ## CONSTRAINTS AND OUTPUT
 

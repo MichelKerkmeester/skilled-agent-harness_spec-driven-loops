@@ -52,8 +52,8 @@ None. Direct local extraction and the existing sk-doc contract fully resolved th
 ## Edge Cases
 
 - **Ambiguous input:** The phrase “packet-qualified coordinate scheme” could mean a display/disk coordinate or the canonical typed-gold identity. Both were tested and distinguished.
-- **Contradictory evidence:** Iteration 1 proposed `(workflowMode, packet-qualified leaf)`, while the reusable sk-doc contract canonically pairs `workflowMode` with a packet-local leaf and stores packet ownership separately. The latter is the implemented authority; the prior proposal is collision-free but redundant and not byte-compatible. [SOURCE: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`] [SOURCE: `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-126,318-338`]
-- **Missing dependencies:** Memory and code-graph accelerators remained unavailable from initialization, but deterministic local evidence covered the question. [SOURCE: `.opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2`]
+- **Contradictory evidence:** Iteration 1 proposed `(workflowMode, packet-qualified leaf)`, while the reusable sk-doc contract canonically pairs `workflowMode` with a packet-local leaf and stores packet ownership separately. The latter is the implemented authority; the prior proposal is collision-free but redundant and not byte-compatible. [SOURCE: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`] [SOURCE: `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-126,318-338`]
+- **Missing dependencies:** Memory and code-graph accelerators remained unavailable from initialization, but deterministic local evidence covered the question. [SOURCE: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2`]
 - **Partial success:** None; the collision inventory and coordinate model were both resolved.
 
 ## Sources Consulted
@@ -65,7 +65,7 @@ None. Direct local extraction and the existing sk-doc contract fully resolved th
 - `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:90-133`
 - `.opencode/skills/system-deep-loop/mode-registry.json:29-197`
 - `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:10-30,114-215,318-338`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-001.md:21`
 
 ## Assessment
 

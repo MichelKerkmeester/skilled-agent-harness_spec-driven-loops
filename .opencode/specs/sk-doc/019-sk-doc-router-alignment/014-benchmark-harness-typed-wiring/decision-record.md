@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/014-benchmark-harness-typed-wiring"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/014-benchmark-harness-typed-wiring"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Amended ADR-001 as superseded; ratified Option 3 collapse as ADR-005"

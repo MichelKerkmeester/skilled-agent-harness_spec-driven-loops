@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/014-benchmark-harness-typed-wiring"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/014-benchmark-harness-typed-wiring"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Rewrote 014 to the ratified Option 3 collapse (ADR-005)"
@@ -62,7 +62,7 @@ This packet makes the typed contract actually flow end-to-end and, critically, m
 | **Status** | Planned |
 | **Created** | 2026-07-16 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/031-sk-doc-router-alignment` |
+| **Parent** | `sk-doc/019-sk-doc-router-alignment` |
 | **Parent Spec** | ../spec.md |
 | **Evidence Source** | Verified SOL-redirect ledger (this session); `../012-sk-doc-routing-fixes/decision-record.md` |
 <!-- /ANCHOR:metadata -->

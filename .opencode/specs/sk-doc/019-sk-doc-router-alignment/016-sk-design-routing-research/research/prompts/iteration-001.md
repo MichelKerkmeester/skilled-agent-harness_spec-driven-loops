@@ -31,12 +31,12 @@ Saturated Directions: none yet
 
 All paths are relative to the repo root.
 
-- Config: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json
-- Write iteration narrative to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md
-- Write per-iteration delta file to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-001.jsonl
+- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json
+- Write iteration narrative to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md
+- Write per-iteration delta file to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-001.jsonl
 
 ## CONSTRAINTS
 
@@ -56,8 +56,8 @@ All paths are relative to the repo root.
 
 Produce all three required artifacts and verify them before returning:
 
-1. `.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md`
-2. Append exactly one canonical iteration record to `.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl`
-3. `.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-001.jsonl`, beginning with the same canonical iteration record
+1. `.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/iterations/iteration-001.md`
+2. Append exactly one canonical iteration record to `.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deep-research-state.jsonl`
+3. `.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/deltas/iter-001.jsonl`, beginning with the same canonical iteration record
 
 Return the standard iteration completion report. Do not synthesize the full loop or modify any non-research source.

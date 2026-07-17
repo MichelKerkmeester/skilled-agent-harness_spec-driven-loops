@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/013-skill-advisor-routing-fixes"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/013-skill-advisor-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the Level 3 verification checklist from research.md Sections 9-10"

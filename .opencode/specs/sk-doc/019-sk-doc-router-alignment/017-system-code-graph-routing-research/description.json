@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research",
   "description": "system-code-graph's routing cannot be measured on the canonical typed-pair surface, and unlike its sibling hubs it has no measurement scaffolding at",
   "keywords": [
     "system-code-graph",
@@ -21,7 +21,7 @@
   "folderSlug": "system-code-graph-routing-research",
   "parentChain": [
     "sk-doc",
-    "031-sk-doc-router-alignment"
+    "019-sk-doc-router-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

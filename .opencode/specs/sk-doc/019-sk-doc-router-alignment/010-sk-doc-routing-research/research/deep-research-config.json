@@ -15,7 +15,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": ".opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research",
+  "specFolder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research",
   "resource_map_present": false,
   "resource_map": {
     "emit": true

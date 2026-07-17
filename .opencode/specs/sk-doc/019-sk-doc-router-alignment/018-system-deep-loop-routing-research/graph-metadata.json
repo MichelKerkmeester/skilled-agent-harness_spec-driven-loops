@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research",
-  "spec_folder": "sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research",
-  "parent_id": "sk-doc/031-sk-doc-router-alignment",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment",
   "children_ids": [],
   "manual": {
     "depends_on": [],

@@ -59,8 +59,8 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md | Cited | OK | Citations=1; Iterations=1 |
 
 ---

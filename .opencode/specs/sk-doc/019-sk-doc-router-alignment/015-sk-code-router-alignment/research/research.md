@@ -22,7 +22,7 @@ contextType: "research"
 | Iterations | 8 of 8 |
 | Stop | `maxIterationsReached`; convergence mode `off` |
 | Executor | Native `deep-research` LEAF agent |
-| Spec folder | `.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment` |
+| Spec folder | `.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment` |
 | Starting evidence | 18/18 surface routing; about 50% leaf recall; typedPairRecall 0.729 pilot; untyped preamble contract error |
 | Charter | Five questions answered narratively; implementation outcomes remain experimental |
 

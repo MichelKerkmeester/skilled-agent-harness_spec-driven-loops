@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research",
   "description": "system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous",
   "keywords": [
     "system-deep-loop",
@@ -20,7 +20,7 @@
   "folderSlug": "system-deep-loop-routing-research",
   "parentChain": [
     "sk-doc",
-    "031-sk-doc-router-alignment"
+    "019-sk-doc-router-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

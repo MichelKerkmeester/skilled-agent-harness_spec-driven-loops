@@ -21,12 +21,12 @@ Pivot Lineage: none yet
 Saturated Directions: prefix-only rewrites, collapsing contract errors into recall misses, and re-tracing existing deterministic/live telemetry paths.
 
 ## STATE FILES
-- Config: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json
-- Write iteration narrative to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md
-- Write per-iteration delta file to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deltas/iter-006.jsonl
+- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json
+- Write iteration narrative to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md
+- Write per-iteration delta file to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deltas/iter-006.jsonl
 
 ## CONSTRAINTS
 - Execute one LEAF iteration only; no implementation or sub-dispatch.

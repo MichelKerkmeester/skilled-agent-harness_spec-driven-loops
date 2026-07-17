@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research",
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research",
   "description": "sk-design's routing cannot be measured on the canonical typed-pair surface",
   "keywords": [
     "sk-design",
@@ -16,7 +16,7 @@
   "folderSlug": "sk-design-routing-research",
   "parentChain": [
     "sk-doc",
-    "031-sk-doc-router-alignment"
+    "019-sk-doc-router-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

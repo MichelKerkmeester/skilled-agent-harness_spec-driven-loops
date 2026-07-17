@@ -29,7 +29,7 @@ The official `--check` mode is not a valid pre-implementation feasibility probe 
 - `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:1-340`
 - `.opencode/skills/sk-design/mode-registry.json:1-165`
 - `.opencode/skills/sk-doc/leaf-manifest.json:1-120`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research/research/findings-registry.json:1-380`
 - Non-mutating `node -e` probe calling `buildManifestBytes` twice against `.opencode/skills/sk-design`
 
 ## Assessment

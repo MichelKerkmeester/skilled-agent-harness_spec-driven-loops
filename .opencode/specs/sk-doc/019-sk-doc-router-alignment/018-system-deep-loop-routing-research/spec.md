@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the system-deep-loop routing-research charter for a bound /deep:research run"
@@ -47,7 +47,7 @@ _memory:
 | **Created** | 2026-07-16 |
 | **Branch** | `018-system-deep-loop-routing-research` |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/031-sk-doc-router-alignment` |
+| **Parent** | `sk-doc/019-sk-doc-router-alignment` |
 | **Type** | Research packet (deep-research loop, pending) |
 <!-- /ANCHOR:metadata -->
 

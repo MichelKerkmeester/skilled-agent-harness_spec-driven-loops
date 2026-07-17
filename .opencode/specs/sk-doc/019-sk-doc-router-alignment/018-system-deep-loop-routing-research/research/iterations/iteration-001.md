@@ -55,7 +55,7 @@ The surface summary is grounded in each child resource map. [SOURCE: .opencode/s
 
 - **Ambiguous input:** None; the strategy and rendered prompt specified the same narrow focus.
 - **Contradictory evidence:** None. The registry and hub prose agree on all seven mode-to-packet mappings.
-- **Missing dependencies:** Spec Memory and Code Graph were unavailable at initialization; the prompt explicitly directed local packet and repository evidence, which fully covered this focus. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2]
+- **Missing dependencies:** Spec Memory and Code Graph were unavailable at initialization; the prompt explicitly directed local packet and repository evidence, which fully covered this focus. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2]
 - **Partial success:** None. The mapping and implied coordinate model were established, while exhaustive collision enumeration remains intentionally deferred.
 
 ## Sources Consulted
@@ -67,7 +67,7 @@ The surface summary is grounded in each child resource map. [SOURCE: .opencode/s
 - `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:110-284`
 - `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:95-219`
 - `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md:82-221`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl:2`
 
 ## Assessment
 

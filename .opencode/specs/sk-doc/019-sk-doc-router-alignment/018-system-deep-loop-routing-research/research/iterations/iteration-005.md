@@ -4,7 +4,7 @@
 
 Derive an implementable dependency order for repairing the hub playbook index, generating a typed manifest, authoring typed gold, adding hub-level resource routing, validating contracts and fallback behavior, and rerunning the benchmark. The selected interpretation is configuration-and-router planning only; no researched source or reducer-owned file was modified.
 
-Route proof: `Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true`. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-005.md:1-3]
+Route proof: `Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true`. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-005.md:1-3]
 
 ## Actions Taken
 
@@ -16,9 +16,9 @@ Route proof: `Resolved route: mode=research; target_agent=@deep-research; execut
 
 ## Findings
 
-1. **Use a seven-step dependency chain: baseline capture → hub-index repair → manifest generation → typed-gold authoring → hub resource router → contract/fallback validation → benchmark rerun.** Index repair must precede gold because the loader currently cannot read the hub's 18 indexed rows; manifest generation must precede typed gold because manifest membership is the oracle boundary; validation must precede the scored rerun so structural or oracle faults cannot be mistaken for router misses. [INFERENCE: based on .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38 and .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-129]
+1. **Use a seven-step dependency chain: baseline capture → hub-index repair → manifest generation → typed-gold authoring → hub resource router → contract/fallback validation → benchmark rerun.** Index repair must precede gold because the loader currently cannot read the hub's 18 indexed rows; manifest generation must precede typed gold because manifest membership is the oracle boundary; validation must precede the scored rerun so structural or oracle faults cannot be mistaken for router misses. [INFERENCE: based on .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38 and .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:111-129]
 
-2. **The hub-index repair is a narrow addressing prerequisite, not a corpus expansion.** Change the 18 indexed paths to the checked-in underscore directory names, then retain the 14 routing rows and four browser rows in their authored classes. Do not promote any of the 273 loader-ineligible files by inference; promotion remains a separate authored-scope decision. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:497-519]
+2. **The hub-index repair is a narrow addressing prerequisite, not a corpus expansion.** Change the 18 indexed paths to the checked-in underscore directory names, then retain the 14 routing rows and four browser rows in their authored classes. Do not promote any of the 273 loader-ineligible files by inference; promotion remains a separate authored-scope decision. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:497-519]
 
 3. **Generate and commit `leaf-manifest.json` before authoring typed gold.** The existing generator already creates one entry per declared workflow mode, scans each mode's packet-local `references/` and `assets/`, retains all three `deep-improvement` mode identities, rejects duplicate composites, and emits canonical bytes. Gold should therefore use explicit `{workflow_mode, leaf_resource_id}` values whose leaf remains packet-local; packet ownership stays in the manifest rather than being embedded in `leaf_resource_id`. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-129] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:114-183,318-338] [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:102-172]
 
@@ -59,8 +59,8 @@ None. All would-be source changes are recorded as plan steps only.
 
 ## Sources Consulted
 
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-005.md:1-87`
-- `.opencode/specs/sk-doc/031-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/prompts/iteration-005.md:1-87`
+- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-004.md:19-38`
 - `.opencode/skills/system-deep-loop/SKILL.md:36-70`
 - `.opencode/skills/system-deep-loop/mode-registry.json:29-197`
 - `.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-160`

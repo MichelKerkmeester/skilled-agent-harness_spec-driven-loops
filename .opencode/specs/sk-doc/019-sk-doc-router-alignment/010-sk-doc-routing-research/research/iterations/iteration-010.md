@@ -20,7 +20,7 @@ The shared implementation targets are concrete:
 - .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs owns normalization, composite identity, containment, canonical ordering/bytes, digests, aliases, collisions, and reachability.
 - .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs owns only the write/check CLI around that library.
 - .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/validate-playbook-topology.cjs owns fixture schema, manifest resolution, selected-map joins, and topology snapshot creation.
-- Existing callers retain policy: parent-skill-check.cjs enforces hub validity; router-replay.cjs assembles the selected typed union; run-skill-benchmark.cjs protects the immutable snapshot; score-skill-benchmark.cjs and build-report.cjs separate and report invalid topology, contract errors, and genuine misses. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:15] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:24]
+- Existing callers retain policy: parent-skill-check.cjs enforces hub validity; router-replay.cjs assembles the selected typed union; run-skill-benchmark.cjs protects the immutable snapshot; score-skill-benchmark.cjs and build-report.cjs separate and report invalid topology, contract errors, and genuine misses. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:15] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:24]
 
 Three concrete test files remove the last implementer choice about test placement:
 
@@ -43,7 +43,7 @@ The existing documentation confirms parent-skill-check's invocation and the deep
 
 ### 2. Iteration 4 and iteration 8 do not contradict; they describe different time boundaries
 
-Iteration 4 established that the retained historical report cannot cleanly attribute SD-016 and that SD-020's then-current gold names a virtual public leaf over a shared physical target. Iteration 8 defines the prospective rule that makes both cases attributable: before dispatch, a typed gold pair must resolve through an authored alias and current manifest; after dispatch, only a valid typed pair can become a routing miss. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-004.md:41] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-004.md:48] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-008.md:75]
+Iteration 4 established that the retained historical report cannot cleanly attribute SD-016 and that SD-020's then-current gold names a virtual public leaf over a shared physical target. Iteration 8 defines the prospective rule that makes both cases attributable: before dispatch, a typed gold pair must resolve through an authored alias and current manifest; after dispatch, only a valid typed pair can become a routing miss. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-004.md:41] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-004.md:48] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-008.md:75]
 
 Therefore:
 
@@ -56,7 +56,7 @@ This preserves both the iteration-4 diagnosis and the iteration-8 fixture-gate t
 
 ### 3. Iteration 9 supersedes iteration 6 for the executable minimum; iteration 6 still supplies the authoring-doctrine layer
 
-Iteration 6 proposed a broad first draft: path-contract changes in hub-router.json, hub prose, both create-skill templates, and all eleven packet routers. Iteration 9 deliberately removed the parallel hub leaf map, kept the existing first-layer hub router, and bounded behavior changes to the nine packets implicated by failing rows. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-006.md:25] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:44]
+Iteration 6 proposed a broad first draft: path-contract changes in hub-router.json, hub prose, both create-skill templates, and all eleven packet routers. Iteration 9 deliberately removed the parallel hub leaf map, kept the existing first-layer hub router, and bounded behavior changes to the nine packets implicated by failing rows. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-006.md:25] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:44]
 
 The synthesis should express two ordered layers:
 
@@ -67,7 +67,7 @@ This resolves the apparent file-set conflict without dropping Q2's template find
 
 ### 4. The acceptance matrix is internally complete
 
-All 19 rows remain accounted for exactly once: six forward wrong-root acceptances, six missing-leaf acceptances, five over-bundle acceptances, and two clean-row regression fences. Cross-cutting rows add invalid-oracle exclusion, deterministic generation, immutable topology, and a fresh structural D5=100. The counts sum to 19, and D5 stays an unchanged structural owner rather than gaining copied manifest semantics. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:73]
+All 19 rows remain accounted for exactly once: six forward wrong-root acceptances, six missing-leaf acceptances, five over-bundle acceptances, and two clean-row regression fences. Cross-cutting rows add invalid-oracle exclusion, deterministic generation, immutable topology, and a fresh structural D5=100. The counts sum to 19, and D5 stays an unchanged structural owner rather than gaining copied manifest semantics. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:73]
 
 Every proposed fix reaches an acceptance:
 
@@ -84,7 +84,7 @@ Every proposed fix reaches an acceptance:
 
 ### 5. No implementer research remains; four choices must be treated as frozen contract names
 
-To avoid reopening implementation questions, synthesis should freeze these names from the later iterations: resourceContractVersion, leaf-aliases.json, leaf-manifest.json, and validate-playbook-topology.cjs. Their spelling is not architecturally load-bearing, but leaving them open would force unnecessary research. The manifest generator consumes registry projection, sorted packet inventories, and authored aliases; callers import the shared library rather than reimplementing normalization. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-008.md:20] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:15]
+To avoid reopening implementation questions, synthesis should freeze these names from the later iterations: resourceContractVersion, leaf-aliases.json, leaf-manifest.json, and validate-playbook-topology.cjs. Their spelling is not architecturally load-bearing, but leaving them open would force unnecessary research. The manifest generator consumes registry projection, sorted packet inventories, and authored aliases; callers import the shared library rather than reimplementing normalization. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-008.md:20] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/iterations/iteration-009.md:15]
 
 One operator action remains after implementation, not research: run the 19-scenario live benchmark and record the fresh report/config/topology digests. A green deterministic suite alone cannot prove that the model-facing Mode-B result improved.
 

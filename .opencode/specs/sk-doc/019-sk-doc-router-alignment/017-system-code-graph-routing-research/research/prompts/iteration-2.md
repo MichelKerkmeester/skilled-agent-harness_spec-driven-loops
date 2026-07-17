@@ -30,12 +30,12 @@ Saturated Directions: Do not assign an inferred current workflow mode; do not tr
 
 ## STATE FILES
 
-- Config: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/findings-registry.json
-- Write iteration narrative to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md
-- Write per-iteration delta to: .opencode/specs/sk-doc/031-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deltas/iter-002.jsonl
+- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/findings-registry.json
+- Write iteration narrative to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/iterations/iteration-002.md
+- Write per-iteration delta to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research/research/deltas/iter-002.jsonl
 
 ## CONSTRAINTS AND OUTPUT CONTRACT
 

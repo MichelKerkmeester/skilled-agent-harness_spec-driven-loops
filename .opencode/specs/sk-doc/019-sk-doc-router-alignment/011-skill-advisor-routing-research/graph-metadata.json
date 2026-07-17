@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research",
-  "spec_folder": "sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research",
-  "parent_id": "sk-doc/031-sk-doc-router-alignment",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -58,8 +58,8 @@
       ".opencode/skills/sk-doc/graph-metadata.json",
       ".opencode/skills/cli-external-orchestration/hub-router.json",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/specs/sk-doc/031-sk-doc-router-alignment/011-skill-advisor-routing-research/research/resource-map.md",
-      ".opencode/specs/sk-doc/031-sk-doc-router-alignment/010-sk-doc-routing-research/research/research.md",
+      ".opencode/specs/sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research/research/resource-map.md",
+      ".opencode/specs/sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research/research/research.md",
       "research/resource-map.md"
     ],
     "entities": [

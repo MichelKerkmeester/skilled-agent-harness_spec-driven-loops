@@ -21,7 +21,7 @@ contextType: "research"
 | Iterations | 5 of 5 |
 | Stop | `maxIterationsReached`; convergence mode `off` |
 | Executor | Native `deep-research` LEAF agent |
-| Spec folder | `.opencode/specs/sk-doc/031-sk-doc-router-alignment/019-sk-prompt-routing-research` |
+| Spec folder | `.opencode/specs/sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research` |
 | Starting evidence | Two workflow modes; one packet map; hub aggregate 100; child D5-only/null report; 32 authored scenarios; zero typed gold |
 | Outcome | All five charter questions answered; implementation is separately gated |
 

@@ -53,9 +53,9 @@ An active `.opencode/skills/sk-design/command-metadata.json` does exist, which s
 
 ### F3 — Prior packet evidence corroborates zero vocabulary drift
 
-Sibling packet 007 records the three-surface synchronization rule and reports `parent-hub-vocab-sync` at score 100 with zero orphan aliases and zero collisions. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/007-hub-intent-keyword-coverage/implementation-summary.md:55] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/007-hub-intent-keyword-coverage/implementation-summary.md:76]
+Sibling packet 007 records the three-surface synchronization rule and reports `parent-hub-vocab-sync` at score 100 with zero orphan aliases and zero collisions. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/007-hub-intent-keyword-coverage/implementation-summary.md:55] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/007-hub-intent-keyword-coverage/implementation-summary.md:76]
 
-Sibling packet 008 records a later alias swap mirrored into the registry and hub router, again with zero orphans. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/008-create-benchmark-routing/implementation-summary.md:40] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/008-create-benchmark-routing/implementation-summary.md:79]
+Sibling packet 008 records a later alias swap mirrored into the registry and hub router, again with zero orphans. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/008-create-benchmark-routing/implementation-summary.md:40] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/008-create-benchmark-routing/implementation-summary.md:79]
 
 This historical evidence agrees with the direct 113/113 comparison. It also rules out a transient drift left behind by the most recent benchmark-routing correction.
 

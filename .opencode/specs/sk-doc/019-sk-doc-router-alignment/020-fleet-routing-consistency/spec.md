@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/031-sk-doc-router-alignment/020-fleet-routing-consistency"
+    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-fleet-routing-consistency"
     last_updated_at: "2026-07-17T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Route-gold gate full-fix: 7/7 hubs PASS (91 scenarios), each SOL-agent output independently verified honest; committed + pushed to v4"
@@ -56,7 +56,7 @@ This packet makes the in-document routers and the routing JSON artifacts **consi
 | **Status** | In Progress (route-gold gate: 7/7 hubs PASS; REQ-001/002-full/006/007 remain) |
 | **Created** | 2026-07-17 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/031-sk-doc-router-alignment` |
+| **Parent** | `sk-doc/019-sk-doc-router-alignment` |
 | **Parent Spec** | ../spec.md |
 | **Evidence Source** | This session's fleet inventory scan; 3-model critical review (SOL/LUNA/Fable-5) |
 <!-- /ANCHOR:metadata -->

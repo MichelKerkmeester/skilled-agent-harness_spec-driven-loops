@@ -179,7 +179,7 @@
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
     {
@@ -193,12 +193,12 @@
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
     {
       "id": "finding-1-5-the-present-baseline-cannot-establish-generalization-all-23-scored-scenarios-are",
-      "text": "The present baseline cannot establish generalization: all 23 scored scenarios are fitted and there are zero holdouts, so the report explicitly leaves holdout score and generalization gap null. Its aggregate is 83/100 with D1-intra 90, D2 84, and D3 66; this means the carried-forward “about 65/100” figure is not the current typed baseline and should not be used as the optimization baseline without provenance. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:68-78]",
+      "text": "The present baseline cannot establish generalization: all 23 scored scenarios are fitted and there are zero holdouts, so the report explicitly leaves holdout score and generalization gap null. Its aggregate is 83/100 with D1-intra 90, D2 84, and D3 66; this means the carried-forward “about 65/100” figure is not the current typed baseline and should not be used as the optimization baseline without provenance. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:68-78]",
       "addedAtIteration": 1,
       "sources": [
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
@@ -207,7 +207,7 @@
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
     {
@@ -221,7 +221,7 @@
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
     {
@@ -235,7 +235,7 @@
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
     {
@@ -243,10 +243,10 @@
       "text": "D5 is qualitatively different from the row-normalized dimensions: structural or registry failure caps the verdict and returns a non-zero process status even though report artifacts are still emitted. D4 task-outcome ablation is opt-in, live-only, target-scenario-specific, and attached as an advisory signal rather than silently folded into the deterministic aggregate. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:251-265] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:275-320] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:116-149]",
       "addedAtIteration": 2,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
@@ -258,10 +258,10 @@
       "text": "Deterministic Mode A measures only available dimensions and renormalizes their weights per row: D1-intra is 40% intent recall plus 60% resource recall, D2 is the resource-recall proxy, and D3 is `1 - unexpected/routed` when positive resource gold and routed output both exist. D1-inter joins only when advisor evidence exists, while D4 requires live ablation; therefore a Mode A aggregate must not be read as a fixed-weight score over all D1-D5 dimensions. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:7-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-291] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1078]",
       "addedAtIteration": 2,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
@@ -273,10 +273,10 @@
       "text": "Fitted-versus-holdout is a scenario-partition summary over scored rows, not a second router replay: the renderer consumes fitted count/score, holdout count/score, negative count, and their gap from the aggregate report. The committed sk-code baseline has no declared holdouts, so it can establish fitted behavior and suppression coverage but cannot establish generalization; a non-null generalization gap requires independently declared holdout scenarios. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:89-113] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65] [INFERENCE: the renderer only reports aggregate partition fields, and the captured baseline reports zero holdouts and null holdout score/gap]",
       "addedAtIteration": 2,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
@@ -288,10 +288,10 @@
       "text": "The Lane C run is a staged join rather than one monolithic score: it snapshots the manifest, runs D5 connectivity and hub-registry checks first, dispatches each playbook scenario through router or live execution, passes each observation to `scoreScenario`, aggregates the rows, and writes canonical JSON before rendering Markdown from that object. A manifest digest change aborts the run instead of scoring against moving topology. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:208-247]",
       "addedAtIteration": 2,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
@@ -303,10 +303,10 @@
       "text": "Typed-pair recall is an additive, fail-closed diagnostic lane gated on both a target `leaf-manifest.json` and scenario-authored typed gold. The fixture is first classified against schema, manifest, and selected-map constraints; invalid oracle rows are excluded, while a missing router `resourceContract` is a `routing_contract_error` with null typed score rather than a zero recall miss. The renderer additionally refuses gated reports lacking target-root, manifest-digest, or scenario provenance. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1093-1196] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1202-1228] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:34-62]",
       "addedAtIteration": 2,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
@@ -323,8 +323,8 @@
         "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
         "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
         "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
       ]
     },
     {
@@ -337,8 +337,8 @@
         "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
         "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
         "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
       ]
     },
     {
@@ -351,8 +351,8 @@
         "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
         "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
         "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
       ]
     },
     {
@@ -365,8 +365,8 @@
         "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
         "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
         "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-396`"
       ]
     },
     {
@@ -428,7 +428,7 @@
         "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
         "`.opencode/skills/sk-code/mode-registry.json:1-100`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
       ]
     },
     {
@@ -442,7 +442,7 @@
         "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
         "`.opencode/skills/sk-code/mode-registry.json:1-100`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
       ]
     },
     {
@@ -456,7 +456,7 @@
         "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
         "`.opencode/skills/sk-code/mode-registry.json:1-100`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
       ]
     },
     {
@@ -470,12 +470,12 @@
         "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
         "`.opencode/skills/sk-code/mode-registry.json:1-100`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
       ]
     },
     {
       "id": "finding-5-5-the-contract-decision-is-do-not-model-the-universal-preamble-as-an-ordinary-rout",
-      "text": "The contract decision is: do not model the universal preamble as an ordinary routable `shared` mode under the present schema. Prefer authored aliases when a truthful single owner exists; if the files are genuinely mode-neutral, extend the typed contract with an explicit non-routable shared owner before implementation. In a genuinely identity-only experiment, surface selection, selected raw resources, flat expected-leaf hit counts, D1/D2 recall proxies, and D3 waste should remain byte-for-byte or numerically unchanged; only unresolved-resource counts, `routing_contract_error`, typed-pair eligibility/recall, manifest digest, and possibly the verdict gate should change. A declared ordinary mode does not qualify for that invariant claim because it changes registry topology. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:113-126] [INFERENCE: changing only raw-to-typed identity leaves the router's selected raw resource set unchanged, whereas adding a registry mode changes a D5-governed topology input]",
+      "text": "The contract decision is: do not model the universal preamble as an ordinary routable `shared` mode under the present schema. Prefer authored aliases when a truthful single owner exists; if the files are genuinely mode-neutral, extend the typed contract with an explicit non-routable shared owner before implementation. In a genuinely identity-only experiment, surface selection, selected raw resources, flat expected-leaf hit counts, D1/D2 recall proxies, and D3 waste should remain byte-for-byte or numerically unchanged; only unresolved-resource counts, `routing_contract_error`, typed-pair eligibility/recall, manifest digest, and possibly the verdict gate should change. A declared ordinary mode does not qualify for that invariant claim because it changes registry topology. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:113-126] [INFERENCE: changing only raw-to-typed identity leaves the router's selected raw resource set unchanged, whereas adding a registry mode changes a D5-governed topology input]",
       "addedAtIteration": 5,
       "sources": [
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-360`",
@@ -484,7 +484,7 @@
         "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md:1-52`",
         "`.opencode/skills/sk-code/mode-registry.json:1-100`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:173-240`"
       ]
     },
     {
@@ -540,7 +540,7 @@
     },
     {
       "id": "finding-6-4-leaf-manifest-and-universal-preamble-qualification-remain-contract-changes-not-r",
-      "text": "**Leaf-manifest and universal-preamble qualification remain contract changes, not recall optimizations.** Typed-gold derivation filters independently authored body gold to resolvable leaves in the dominant manifest mode, while replay first chooses raw resources and only then builds typed pairs. Regenerating `leaf-manifest.json`, adding a truthful alias, or introducing a non-routable shared identity can clear unresolved-resource errors and increase typed eligibility, but cannot add a missing raw leaf. Rank this below routing changes for recall and validate it with a raw-route invariance test. **Expected benefit:** zero true raw recall; high contract accuracy. **Regression risk:** low for truthful aliases, high for a new ordinary registry mode. **Validation burden:** medium. **Falsifying test:** identity-only changes must leave selected raw resources, flat hit counts, D1/D2, D3, and all surface routes unchanged; only unresolved counts, typed eligibility, manifest digest, and contract verdict may change. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:427-475] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:486-518] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:629-655] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:423-480]",
+      "text": "**Leaf-manifest and universal-preamble qualification remain contract changes, not recall optimizations.** Typed-gold derivation filters independently authored body gold to resolvable leaves in the dominant manifest mode, while replay first chooses raw resources and only then builds typed pairs. Regenerating `leaf-manifest.json`, adding a truthful alias, or introducing a non-routable shared identity can clear unresolved-resource errors and increase typed eligibility, but cannot add a missing raw leaf. Rank this below routing changes for recall and validate it with a raw-route invariance test. **Expected benefit:** zero true raw recall; high contract accuracy. **Regression risk:** low for truthful aliases, high for a new ordinary registry mode. **Validation burden:** medium. **Falsifying test:** identity-only changes must leave selected raw resources, flat hit counts, D1/D2, D3, and all surface routes unchanged; only unresolved counts, typed eligibility, manifest digest, and contract verdict may change. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:427-475] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:486-518] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:629-655] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:423-480]",
       "addedAtIteration": 6,
       "sources": [
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
@@ -574,22 +574,22 @@
     },
     {
       "id": "finding-7-4-contract-only-and-router-changing-candidates-need-different-invariants-an-identi",
-      "text": "**Contract-only and router-changing candidates need different invariants.** An identity-only typed-contract remediation may change manifest digest, unresolved counts, typed eligibility/recall, error class, and verdict, but must preserve raw selected resources, flat expected-leaf hits, D1/D2, D3, and all 18 surface outputs exactly. A router optimization must instead demonstrate new independently authored leaf hits in both fitted and holdout partitions while passing every negative, D3, topology, typed, live, and surface invariant. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:7-14] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1202-1257] [INFERENCE: separating identity projection from raw selection prevents a contract cleanup from being advertised as a routing-quality gain]",
+      "text": "**Contract-only and router-changing candidates need different invariants.** An identity-only typed-contract remediation may change manifest digest, unresolved counts, typed eligibility/recall, error class, and verdict, but must preserve raw selected resources, flat expected-leaf hits, D1/D2, D3, and all 18 surface outputs exactly. A router optimization must instead demonstrate new independently authored leaf hits in both fitted and holdout partitions while passing every negative, D3, topology, typed, live, and surface invariant. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:7-14] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1202-1257] [INFERENCE: separating identity projection from raw selection prevents a contract cleanup from being advertised as a routing-quality gain]",
       "addedAtIteration": 7,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
       ]
     },
     {
@@ -597,19 +597,19 @@
       "text": "**The benchmark's existing stage split is necessary but not sufficient for anti-gaming.** The loader can represent `routing`, `holdout`, and `negative`, and aggregation excludes holdouts from the fitted headline while reporting fitted-minus-holdout gap. However, sk-code's index-table loader currently assigns every non-negative scenario to `routing`; the committed report therefore has 23 fitted rows, zero holdouts, and a null generalization gap. A valid optimization trial must freeze independently authored holdouts before candidate output exists; output-derived holdouts or thresholds selected after seeing results are invalid. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:293-315] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1499-1523] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1569-1575] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:11-20]",
       "addedAtIteration": 7,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
       ]
     },
     {
@@ -617,19 +617,19 @@
       "text": "**The current artifacts cannot yet pass this matrix.** The baseline has no holdout rows, live scoring treats model-stated resources as primary while unordered reads are only corroboration, and current D3 has no gold-completeness discriminator. Therefore no implementation should claim generalization or actual leaf-load improvement until independent holdouts, explicit completeness/budgets, and ordered live provenance are present; the matrix is complete as a specification, but evidence for a candidate remains intentionally absent. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:13-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:303-327] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:241-291]",
       "addedAtIteration": 7,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
       ]
     },
     {
@@ -637,19 +637,19 @@
       "text": "**The gates must run as a fail-closed sequence, not as one weighted score:** freeze independent fixtures/digests and thresholds; capture a same-revision baseline; run fitted, holdout, and negative candidate replay; enforce D3 semantics; enforce typed-contract and topology/D5 gates; enforce exact 18/18 surface equality; then run a fixed live holdout sample. Any hard-gate failure rejects the candidate even if fitted aggregate rises. This follows the existing distinction between weighted rows and structural/registry verdict blockers. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:214-255] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1633-1661] [INFERENCE: anti-gaming properties are conjunctive invariants and cannot safely be averaged away]",
       "addedAtIteration": 7,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
       ]
     },
     {
@@ -657,19 +657,19 @@
       "text": "**The preregistered validation matrix is:**",
       "addedAtIteration": 7,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-18`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-246`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-526`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-529`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
         "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/implementation-summary.md:58-128`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
       ]
     },
     {
@@ -677,72 +677,72 @@
       "text": "**Actual-read measurement needs an ordered evidence stream plus a separate route-decision provenance stream.** Replace `raw.observedReads` as the metric source with append-order events carrying run/scenario identity, event index and monotonic time, tool/operation, requested input, canonical resolved path, success/outcome, manifest digest, and resolved typed identity. Count only successful exact file reads as leaf reads; preserve glob/grep discoveries and Bash-derived hints on separate diagnostic channels. Separately record each router candidate's origin (`DEFAULT_RESOURCE` or contributing intent/map row), score/tie decision, and surface/language retention. Joining these streams supports Hit@k, Recall@k, MRR, and calls/time-to-first-expected; causal attribution still requires controlled paired interventions because a path join alone proves correlation. Falsifying fixtures must show that order survives deduplication, failed reads and glob patterns do not count, aliases canonicalize deterministically, and paths outside the target skill are rejected. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:279-327] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:201-275] [INFERENCE: ordered successful-read events joined to a frozen manifest can measure actual leaf access, while causal router-input claims require an intervention beyond observational joining]",
       "addedAtIteration": 8,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
       ]
     },
     {
       "id": "finding-8-2-choose-an-explicit-non-routable-shared-owner-for-genuinely-universal-preamble-le",
-      "text": "**Choose an explicit non-routable shared owner for genuinely universal preamble leaves; do not add an ordinary `shared` mode.** The current resolver recognizes only a declared-mode packet prefix or one authored shared alias, refuses to infer shared ownership, and fails closed otherwise. An alias is correct only when each physical file has one truthful existing-mode owner; an ordinary shared mode changes routable registry topology; silent exclusion is unsupported. The synthesis decision is therefore to extend the typed contract with a validated non-routable/shared ownership category, then regenerate identity artifacts without changing the raw selected-resource set. This decision is falsified if every universal file can be assigned one honest existing mode (use aliases instead), or if the governing typed-pair standard rejects non-routable owners (then physical ownership/topology must be redesigned and surface invariance re-proven). [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:190-275] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:420-488] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:15-17]",
+      "text": "**Choose an explicit non-routable shared owner for genuinely universal preamble leaves; do not add an ordinary `shared` mode.** The current resolver recognizes only a declared-mode packet prefix or one authored shared alias, refuses to infer shared ownership, and fails closed otherwise. An alias is correct only when each physical file has one truthful existing-mode owner; an ordinary shared mode changes routable registry topology; silent exclusion is unsupported. The synthesis decision is therefore to extend the typed contract with a validated non-routable/shared ownership category, then regenerate identity artifacts without changing the raw selected-resource set. This decision is falsified if every universal file can be assigned one honest existing mode (use aliases instead), or if the governing typed-pair standard rejects non-routable owners (then physical ownership/topology must be redesigned and surface invariance re-proven). [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:190-275] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:420-488] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:15-17]",
       "addedAtIteration": 8,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
       ]
     },
     {
       "id": "finding-8-4-ordered-recommendation-set-0-freeze-a-same-revision-baseline-add-ordered-live-re",
-      "text": "**Ordered recommendation set:** (0) freeze a same-revision baseline, add ordered live-read/route provenance, and correct minimum-versus-exhaustive D3 gold; (1) add the explicit non-routable shared-owner contract as identity remediation; (2) test a two-tier `RESOURCE_MAP` with small required sets and predicate-gated supplements; (3) only then test specificity-aware leaf-intent weights/tie control; (4) accept changes only through preregistered fitted, sealed holdout, negative, topology, route-budget, and live-read gates. Identity work is not a recall gain, and generated JSON is evidence output, not an optimization surface. Falsification is conjunctive: any loss of the frozen 18/18 surface routes, raw-route change in the identity-only candidate, holdout/negative regression, route-budget increase, or failure to improve ordered live-read recall rejects the relevant candidate. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:7-28] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:19] [INFERENCE: provenance and sound gold must precede optimization so candidate selection cannot redefine the metric it is judged by]",
+      "text": "**Ordered recommendation set:** (0) freeze a same-revision baseline, add ordered live-read/route provenance, and correct minimum-versus-exhaustive D3 gold; (1) add the explicit non-routable shared-owner contract as identity remediation; (2) test a two-tier `RESOURCE_MAP` with small required sets and predicate-gated supplements; (3) only then test specificity-aware leaf-intent weights/tie control; (4) accept changes only through preregistered fitted, sealed holdout, negative, topology, route-budget, and live-read gates. Identity work is not a recall gain, and generated JSON is evidence output, not an optimization surface. Falsification is conjunctive: any loss of the frozen 18/18 surface routes, raw-route change in the identity-only candidate, holdout/negative regression, route-budget increase, or failure to improve ordered live-read recall rejects the relevant candidate. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:7-28] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:19] [INFERENCE: provenance and sound gold must precede optimization so candidate selection cannot redefine the metric it is judged by]",
       "addedAtIteration": 8,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
       ]
     },
     {
       "id": "finding-8-5-research-can-stop-with-the-implementation-outcome-still-unverified-all-five-char",
-      "text": "**Research can stop with the implementation outcome still unverified.** All five charter questions now have either a source-backed answer or an explicit experimental boundary: deterministic inputs, benchmark composition, ownership choice, ranked optimization, and anti-gaming validation are synthesis-ready; actual live read gains and post-change surface invariance require implementation-time experiments forbidden in this run. Stop conditions for the next phase are: preserve exact raw routes for identity-only work, preserve 18/18 surface expectations for every candidate, require non-empty independently authored holdouts, and reject causal live-read claims without ordered provenance plus a controlled intervention. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-45] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:61-75] [INFERENCE: the remaining uncertainty is experimental rather than a missing research decision]",
+      "text": "**Research can stop with the implementation outcome still unverified.** All five charter questions now have either a source-backed answer or an explicit experimental boundary: deterministic inputs, benchmark composition, ownership choice, ranked optimization, and anti-gaming validation are synthesis-ready; actual live read gains and post-change surface invariance require implementation-time experiments forbidden in this run. Stop conditions for the next phase are: preserve exact raw routes for identity-only work, preserve 18/18 surface expectations for every candidate, require non-empty independently authored holdouts, and reject causal live-read claims without ordered provenance plus a controlled intervention. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-45] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:61-75] [INFERENCE: the remaining uncertainty is experimental rather than a missing research decision]",
       "addedAtIteration": 8,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
       ]
     },
     {
       "id": "finding-8-1-the-broad-router-input-question-is-answered-but-at-three-distinct-boundaries-in-",
-      "text": "**The broad router-input question is answered, but at three distinct boundaries.** In deterministic replay, `INTENT_SIGNALS` selects near-top intent rows, `RESOURCE_MAP` supplies their candidate leaves, and `DEFAULT_RESOURCE` seeds every route; in hub routing, those structures do not directly select workflow/surface packet entrypoints; in live Mode B, their effect on actual reads remains unmeasured because the executor scores model-stated resources and retains only best-effort, deduplicated path extractions. The evidence gap is therefore causal live leaf use—not deterministic selection or hub topology—and another static trace cannot close it. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:185-239] [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:317-418] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:279-327]",
+      "text": "**The broad router-input question is answered, but at three distinct boundaries.** In deterministic replay, `INTENT_SIGNALS` selects near-top intent rows, `RESOURCE_MAP` supplies their candidate leaves, and `DEFAULT_RESOURCE` seeds every route; in hub routing, those structures do not directly select workflow/surface packet entrypoints; in live Mode B, their effect on actual reads remains unmeasured because the executor scores model-stated resources and retains only best-effort, deduplicated path extractions. The evidence gap is therefore causal live leaf use—not deterministic selection or hub topology—and another static trace cannot close it. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:185-239] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:317-418] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:279-327]",
       "addedAtIteration": 8,
       "sources": [
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
-        "`.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/prompts/iteration-8.md:1-39`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-config.json:1-77`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-state.jsonl:1-20`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:24-285`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:1-525`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`",
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:180-289`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:260-374`"
       ]
@@ -883,7 +883,7 @@
     },
     {
       "id": "ruled-out-8a20a79558fa",
-      "text": "Treating generated report JSON, manifest edits, or typed-error removal as raw recall gain; those artifacts can change without selecting a missing expected leaf. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:15-17]",
+      "text": "Treating generated report JSON, manifest edits, or typed-error removal as raw recall gain; those artifacts can change without selecting a missing expected leaf. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/iterations/iteration-006.md:15-17]",
       "contentHash": "8a20a79558fa",
       "addedAtIteration": 7
     },
@@ -895,7 +895,7 @@
     },
     {
       "id": "ruled-out-3cedf6a19ef9",
-      "text": "An ordinary `shared` registry mode as an identity-only fix: it changes hub topology and therefore cannot inherit the raw-route/surface-invariance claim. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:463-488]",
+      "text": "An ordinary `shared` registry mode as an identity-only fix: it changes hub topology and therefore cannot inherit the raw-route/surface-invariance claim. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/findings-registry.json:463-488]",
       "contentHash": "3cedf6a19ef9",
       "addedAtIteration": 8
     },
@@ -913,7 +913,7 @@
     },
     {
       "id": "ruled-out-c2d0115ed42b",
-      "text": "Re-running deterministic traces or editing generated manifest/report JSON to claim recall; both directions are already exhausted and do not measure live use or select a missing raw leaf. [SOURCE: .opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:117-135]",
+      "text": "Re-running deterministic traces or editing generated manifest/report JSON to claim recall; both directions are already exhausted and do not measure live use or select a missing raw leaf. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/deep-research-strategy.md:117-135]",
       "contentHash": "c2d0115ed42b",
       "addedAtIteration": 8
     },
@@ -978,7 +978,7 @@
     "pivotOverrides": 0
   },
   "corruptionWarnings": [],
-  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/031-sk-doc-router-alignment/015-sk-code-router-alignment/research/inbox.jsonl",
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment/research/inbox.jsonl",
   "inboxWarnings": [],
   "status": "INITIALIZED",
   "advisoryEvents": []
