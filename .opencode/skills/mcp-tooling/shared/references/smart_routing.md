@@ -78,7 +78,7 @@ DEFAULT_RESOURCE = []
 INTENT_SIGNALS = {
     "CHROME_DEVTOOLS": {"weight": 4, "keywords": ["chrome devtools", "browser debug", "dom inspect", "lighthouse", "bdg", "cdp", "cdp domain", "screenshot capture", "network requests", "har export", "performance trace"]},
     "CLICK_UP":        {"weight": 4, "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking", "project tracker", "clickup task", "log time", "clickup documents", "bulk tasks"]},
-    "ASIDE_DEVTOOLS":  {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "ai browser automation", "agentic browser", "agentic browser task", "browser agent", "aside daemon"]},
+    "ASIDE_DEVTOOLS":  {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "ai browser automation", "agentic browser", "agentic browser task", "browser agent", "aside daemon", "click through"]},
     "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design tokens", "design file"]},
     "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products"]},
     "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps"]},

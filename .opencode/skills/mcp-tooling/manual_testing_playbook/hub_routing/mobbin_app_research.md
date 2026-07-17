@@ -5,7 +5,8 @@ stage: routing
 title: "App design research routes to mcp-mobbin"
 expected_intent: mcp-mobbin
 expected_resources:
-  - mcp-mobbin/SKILL.md
+  - mcp-mobbin/references/tool-surface.md
+  - mcp-mobbin/references/mcp-wiring.md
 expected_workflow_mode: mcp-mobbin
 expected_leaf_resources:
   - workflow_mode: mcp-mobbin

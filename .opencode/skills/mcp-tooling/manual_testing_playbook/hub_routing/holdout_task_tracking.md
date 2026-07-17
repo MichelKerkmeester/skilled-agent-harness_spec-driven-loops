@@ -5,9 +5,14 @@ stage: holdout
 title: "Blind holdout: task tracking routes to mcp-click-up"
 expected_intent: mcp-click-up
 expected_resources:
-  - mcp-click-up/SKILL.md
+  - mcp-click-up/references/cupt_commands.md
+  - mcp-click-up/references/mcp_tools.md
 expected_workflow_mode: mcp-click-up
-expected_leaf_resources: []
+expected_leaf_resources:
+  - workflow_mode: mcp-click-up
+    leaf_resource_id: references/cupt_commands.md
+  - workflow_mode: mcp-click-up
+    leaf_resource_id: references/mcp_tools.md
 blindToRouterKeywords: true
 blindExceptions:
   - "project tracker"

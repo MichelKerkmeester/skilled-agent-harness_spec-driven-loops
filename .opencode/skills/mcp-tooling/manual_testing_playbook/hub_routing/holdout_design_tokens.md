@@ -5,9 +5,14 @@ stage: holdout
 title: "Blind holdout: design-token extraction routes to mcp-figma"
 expected_intent: mcp-figma
 expected_resources:
-  - mcp-figma/SKILL.md
+  - mcp-figma/references/figma_cli_reference.md
+  - mcp-figma/references/mcp_wiring.md
 expected_workflow_mode: mcp-figma
-expected_leaf_resources: []
+expected_leaf_resources:
+  - workflow_mode: mcp-figma
+    leaf_resource_id: references/figma_cli_reference.md
+  - workflow_mode: mcp-figma
+    leaf_resource_id: references/mcp_wiring.md
 blindToRouterKeywords: true
 blindExceptions:
   - "design file"

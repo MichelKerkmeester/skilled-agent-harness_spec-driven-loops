@@ -5,7 +5,8 @@ stage: routing
 title: "Browser debugging request routes to mcp-chrome-devtools"
 expected_intent: mcp-chrome-devtools
 expected_resources:
-  - mcp-chrome-devtools/SKILL.md
+  - mcp-chrome-devtools/references/cdp_patterns.md
+  - mcp-chrome-devtools/references/session_management.md
 expected_workflow_mode: mcp-chrome-devtools
 expected_leaf_resources:
   - workflow_mode: mcp-chrome-devtools

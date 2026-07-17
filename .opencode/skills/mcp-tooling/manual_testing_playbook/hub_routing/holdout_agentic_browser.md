@@ -5,9 +5,14 @@ stage: holdout
 title: "Blind holdout: autonomous browser task routes to mcp-aside-devtools"
 expected_intent: mcp-aside-devtools
 expected_resources:
-  - mcp-aside-devtools/SKILL.md
+  - mcp-aside-devtools/references/aside-cli-reference.md
+  - mcp-aside-devtools/references/mcp-wiring.md
 expected_workflow_mode: mcp-aside-devtools
-expected_leaf_resources: []
+expected_leaf_resources:
+  - workflow_mode: mcp-aside-devtools
+    leaf_resource_id: references/aside-cli-reference.md
+  - workflow_mode: mcp-aside-devtools
+    leaf_resource_id: references/mcp-wiring.md
 blindToRouterKeywords: true
 blindExceptions:
   - "click through"
