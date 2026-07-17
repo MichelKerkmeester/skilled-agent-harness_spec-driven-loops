@@ -57,7 +57,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 | DEPLOYMENT | `deploy`, `cdn`, `wrangler`, `release`, `metadata`, `skill graph` |
 | PERFORMANCE | `lighthouse`, `lcp`, `tbt`, `inp`, `cls`, `pagespeed`, `performance` |
 | ANIMATION | `animation`, `motion`, `transition`, `easing`, `stagger`, `motion principles`, `motion language`, `gsap`, `lenis`, `swiper` |
-| MOTION_DEV | `motion.dev`, `motion-dev`, `motion_dev`, `Motion API`, `Motion CDN`, `animate()`, `inView`, `in-view`, `scroll()`, `stagger`, `stagger()`, `animation principles`, `snippet`, `cross-stack animation` |
+| MOTION_DEV | `motion.dev`, `motion-dev`, `motion_dev`, `Motion API`, `Motion demo`, `Motion CDN`, `animate()`, `inView`, `in-view`, `scroll()`, `stagger`, `stagger()`, `animation principles`, `snippet`, `cross-stack animation` |
 | FORMS | `form`, `validation`, `filepond`, `schema`, `zod` |
 | VIDEO | `hls`, `video`, `stream`, `player` |
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
@@ -326,14 +326,14 @@ INTENT_SIGNALS = {
     "DEPLOYMENT":         {"weight": 1, "keywords": ["deploy", "cdn", "wrangler", "minify", "staging", "production release"]},
     "PERFORMANCE":        {"weight": 1, "keywords": ["lighthouse", "core web vitals", "web vitals", "largest contentful", "lcp", "interaction to next paint", "inp", "cumulative layout shift", "cls", "pagespeed", "jank", "frame budget"]},
     "ANIMATION":          {"weight": 1, "keywords": ["animation", "transition", "easing", "stagger", "motion principles", "motion language", "gsap", "lenis", "carousel", "parallax"]},
-    "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "animate()", "inview", "in-view", "motion cdn", "scroll()", "stagger()", "animation principles", "cross-stack animation"]},
+    "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "motion api", "motion demo", "animate()", "inview", "in-view", "motion cdn", "scroll()", "stagger()", "animation principles", "cross-stack animation"]},
     "ACCESSIBILITY":      {"weight": 1, "keywords": ["reduced motion", "reduced-motion", "prefers-reduced-motion", "a11y", "accessibility"]},
     "FORMS":              {"weight": 1, "keywords": ["form upload", "filepond", "field validation", "focus trap"]},
     "VIDEO":              {"weight": 1, "keywords": ["hls", "adaptive stream", "video player"]},
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
     "CONFIG":             {"weight": 1, "keywords": ["jsonc", ".json", ".jsonc", "descriptor", "config schema"]},
     "LANGUAGE_STANDARDS": {"weight": 1, "keywords": ["typescript", ".ts", ".tsx", "python", ".py", "shell script", "bash", ".sh", "commonjs", ".cjs", ".mjs", "docstring"]},
-    "JAVASCRIPT":         {"weight": 1, "keywords": ["javascript", ".js", "commonjs", ".cjs", ".mjs"]},
+    "JAVASCRIPT":         {"weight": 1, "keywords": ["javascript", "vanilla js", ".js", "commonjs", ".cjs", ".mjs"]},
     "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
@@ -452,6 +452,9 @@ RESOURCE_MAP = {
         "code-webflow/references/animation/integration_patterns.md",
         "code-webflow/references/animation/decision_matrix.md",
         "code-webflow/references/animation/performance_and_pitfalls.md",
+        "code-webflow/references/implementation/observer_patterns/mutation_and_intersection.md",
+        "code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md",
+        "code-webflow/references/verification/verification_workflows/gate_and_automated_options.md",
         "code-webflow/assets/animation/install_card.md",
         "code-webflow/assets/animation/snippets/principled_reveal.js",
         "code-webflow/assets/animation/snippets/README.md"
@@ -485,9 +488,13 @@ RESOURCE_MAP = {
         "code-opencode/references/config/style_guide.md",
         "code-opencode/references/config/quality_standards.md",
         "code-opencode/references/config/quick_reference.md",
+        "code-opencode/references/shared/code_organization/overview_and_module_organization.md",
+        "code-opencode/references/shared/universal_patterns/naming_and_commenting.md",
         "code-opencode/assets/checklists/config_checklist.md"
     ],
     "LANGUAGE_STANDARDS": [
+        "code-opencode/references/shared/code_organization/overview_and_module_organization.md",
+        "code-opencode/references/shared/universal_patterns/naming_and_commenting.md",
         "code-webflow/references/css/style_guide.md",
         "code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md",
         "code-webflow/references/css/quality_standards/typography_autofill_and_color.md",
@@ -511,10 +518,17 @@ RESOURCE_MAP = {
         "code-webflow/references/javascript/quick_reference.md"
     ],
     "JAVASCRIPT": [
+        "code-webflow/references/javascript/style_guide/overview_naming_and_structure.md",
+        "code-webflow/references/javascript/quality_standards/init_dom_error_and_async.md",
+        "code-webflow/references/javascript/quick_reference.md",
+        "code-webflow/references/css/style_guide.md",
+        "code-webflow/references/shared/cross_language_rules.md",
         "code-opencode/references/javascript/style_guide.md",
         "code-opencode/references/javascript/quality_standards/overview_modules_and_docs.md",
         "code-opencode/references/javascript/quality_standards/security_testing_and_exemptions.md",
-        "code-opencode/references/javascript/quick_reference.md"
+        "code-opencode/references/javascript/quick_reference.md",
+        "code-opencode/references/shared/code_organization/overview_and_module_organization.md",
+        "code-opencode/references/shared/universal_patterns/naming_and_commenting.md"
     ],
     "TYPESCRIPT": [
         "code-opencode/references/typescript/style_guide/overview_strict_and_naming.md",
@@ -539,6 +553,8 @@ RESOURCE_MAP = {
         "code-opencode/references/shell/quick_reference/functions_strings_and_checklist.md"
     ],
     "RUST": [
+        "code-opencode/references/shared/code_organization/overview_and_module_organization.md",
+        "code-opencode/references/shared/universal_patterns/naming_and_commenting.md",
         "code-opencode/references/rust/style_guide/overview_and_file_header.md",
         "code-opencode/references/rust/style_guide/toolchain_and_project_structure.md",
         "code-opencode/references/rust/style_guide/naming_conventions.md",
