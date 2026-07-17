@@ -38,6 +38,12 @@ const path = require('path');
 
 const ID_RE = /\b([A-Z]{2,4})-(\d{3})\b/;
 
+// The executor classes a scenario can resolve to. An explicit per-scenario
+// `kind:`/`scenario_kind:` frontmatter field is authoritative when it names one
+// of these; any other value (or none) falls through to the skill-agnostic
+// heuristics below.
+const VALID_SCENARIO_KINDS = new Set(['browser', 'advisor', 'routing']);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -47,17 +53,38 @@ const ID_RE = /\b([A-Z]{2,4})-(\d{3})\b/;
  * or live cli-opencode; browser scenarios need a real browser (bdg) and are routed
  * out of the text executors.
  *
- * @param {string} scenarioId - Scenario id (e.g. SD-001), used for prefix hints.
- * @param {string} category - Category label from the playbook index.
+ * Classification is skill-agnostic. The authoritative signal is an explicit
+ * per-scenario `kind`/`scenario_kind` — a scenario declares its own executor
+ * class in frontmatter, so classification never has to key off a skill-specific
+ * id prefix. Absent that, a general fallback runs off the scenario's own CATEGORY
+ * vocabulary (a browser/motion/visual concern needs a real browser), an asserted
+ * in-skill surface (a routing test), or an advisor skill-selection signal.
+ *
+ * A hardcoded `MR-`/`CB-` id prefix used to force "browser" here — an sk-code
+ * browser-suite naming convention that collided with other skills using `MR-`
+ * for "Mode Routing" and forced them to rename (sk-design → `MDR-`,
+ * system-deep-loop → `MO-`). That prefix hardcode is gone: sk-code's own browser
+ * suite still classifies as browser through its category vocabulary
+ * ("Motion.dev And Animation Regression", "Cross-Browser And Performance Gates"),
+ * and a `MR-` id in any other skill is now free to mean whatever its category /
+ * declared kind says.
+ *
+ * @param {string} scenarioId - Scenario id (e.g. SD-001).
+ * @param {string} category - Category label / directory basename for the scenario.
  * @param {string} expectedSurface - Asserted in-skill surface, if any.
  * @param {string} passCriteria - Pass/fail criteria text.
+ * @param {string} [declaredKind] - Explicit per-scenario kind from frontmatter.
  * @returns {'browser'|'advisor'|'routing'} The executor class.
  */
-function classifyKind(scenarioId, category, expectedSurface, passCriteria) {
+function classifyKind(scenarioId, category, expectedSurface, passCriteria, declaredKind) {
+  const declared = typeof declaredKind === 'string' ? declaredKind.trim().toLowerCase() : '';
+  if (VALID_SCENARIO_KINDS.has(declared)) return declared;
+
   const cat = (category || '').toLowerCase();
   const prefix = (ID_RE.exec(scenarioId || '') || [])[1] || '';
-  if (/motion|animation|browser|performance|visual|compositing|cross-browser/.test(cat)
-      || prefix === 'MR' || prefix === 'CB') {
+  // Category vocabulary is a semantic signal every skill shares, not a per-skill
+  // id convention: a browser/motion/visual/performance category needs a browser.
+  if (/motion|animation|browser|performance|visual|compositing|cross-browser/.test(cat)) {
     return 'browser';
   }
   // A scenario that asserts an in-skill SURFACE is a routing test (the advisor
@@ -231,6 +258,18 @@ function parseFrontmatterScalar(block, key) {
  * docs (the operating register, the handoff card) a nested mode loads on
  * routes, matching what the router actually returns.
  *
+ * LEGACY / index-table (sk-code) path only. This runs exclusively on the
+ * body-gold "Expected references loaded" prose of the index-table playbook shape
+ * (`parseFeatureFile`). Its leading-segment allowlist (`code-<surface>/`,
+ * `references/`, `assets/`, `../shared/`) is deliberately sk-code-shaped — it
+ * carries sk-code's two-axis surface convention and is locked by
+ * code-surface-path-parse.vitest.ts. The go-forward, fully-general gold path is
+ * the frontmatter typed shape: `parseExpectedResourcesGold` /
+ * `parseLeafResourceGold` take authored tokens verbatim with NO prefix
+ * allowlist, so any skill's packet prefix survives. New skills author frontmatter
+ * gold and never reach this extractor; it stays only to keep sk-code scoring
+ * byte-stable until sk-code itself converges to frontmatter.
+ *
  * @param {string} block - Text block to scan.
  * @returns {string[]} Deduped, order-preserving list of path tokens.
  */
@@ -346,7 +385,12 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
     || /disambiguation|must not|asks? for clarification|top-1\s*!=\s*sk-code|routes? .* to sk-doc/.test(lowerPass)
     || /\bUNKNOWN\b/.test(text.split('\n').slice(0, 30).join('\n'));
 
-  const classKind = classifyKind(id, category, expectedSurface, passCriteria);
+  // Explicit per-scenario kind (skill-agnostic) wins over any heuristic. Parsed
+  // from this feature file's own frontmatter; absent for legacy scenarios, so
+  // classification falls through to category/surface/advisor signals.
+  const fmBlock = (/^---\n([\s\S]*?)\n---/.exec(text) || [])[1] || '';
+  const declaredKind = parseFrontmatterScalar(fmBlock, 'scenario_kind') || parseFrontmatterScalar(fmBlock, 'kind');
+  const classKind = classifyKind(id, category, expectedSurface, passCriteria, declaredKind);
 
   return {
     scenarioId: id,
@@ -448,6 +492,10 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
         : undefined;
       const category = path.basename(cur);
       const prompt = parsePromptBlock(text);
+      // Explicit per-scenario kind (skill-agnostic) wins over the fallback
+      // heuristics; absent for every current fixture, so classification stays
+      // driven by category/intent signals until a scenario opts in.
+      const declaredKind = parseFrontmatterScalar(block, 'scenario_kind') || parseFrontmatterScalar(block, 'kind');
       const id = idM ? idM[1] : e.name.replace(/\.md$/, '');
       const goldParseErrors = [intentGold.parseError, resourceGold.parseError].filter(Boolean);
       for (const err of goldParseErrors) warnings.push(`${id}: gold-parse-failure — ${err}`);
@@ -460,7 +508,7 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
         category,
         prompt: prompt || null,
         stage,
-        classKind: classifyKind(id, category, null, intentGold.intent || ''),
+        classKind: classifyKind(id, category, null, intentGold.intent || '', declaredKind),
         expectedSurface: null,
         expectedSubLanguage: null,
         expectedIntent: intentGold.intent,
@@ -502,16 +550,19 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Derive typed (workflowMode, leafResourceId) gold for an index-table skill
-// whose hub carries a generated leaf-manifest.json. The body-gold "Expected
-// references loaded" block already lists packet-qualified surface resources, so
-// splitting the leading packet segment recovers the canonical typed pair; this
-// types the same independent gold the flat lane already scores, rather than
-// re-deriving it from router output. Pairs are filtered to the scenario's
-// dominant surface mode and to leaves the manifest actually registers, keeping
-// the typed-gold oracle inside its single-selected-map cap. A skill without a
-// manifest returns null and its scenarios stay byte-identical to the untyped
-// shape, so this is dormant for every hub that has not generated one.
+// LEGACY / index-table (sk-code) typed-gold derivation. Frontmatter skills
+// declare typed gold directly as `expected_leaf_resources` pairs (the general,
+// go-forward path) and never engage this branch. Derive typed (workflowMode,
+// leafResourceId) gold for an index-table skill whose hub carries a generated
+// leaf-manifest.json. The body-gold "Expected references loaded" block already
+// lists packet-qualified surface resources, so splitting the leading packet
+// segment recovers the canonical typed pair; this types the same independent
+// gold the flat lane already scores, rather than re-deriving it from router
+// output. Pairs are filtered to the scenario's dominant surface mode and to
+// leaves the manifest actually registers, keeping the typed-gold oracle inside
+// its single-selected-map cap. A skill without a manifest returns null and its
+// scenarios stay byte-identical to the untyped shape, so this is dormant for
+// every hub that has not generated one.
 function loadManifestModeLeaves(skillRoot) {
   if (!skillRoot) return null;
   try {
