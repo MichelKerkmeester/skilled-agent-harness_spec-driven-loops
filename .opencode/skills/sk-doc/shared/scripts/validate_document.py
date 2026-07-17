@@ -380,12 +380,41 @@ def validate_toc(content: str, doc_type_rules: Dict[str, Any], rules: Dict[str, 
 # 4. HEADER VALIDATION
 # ───────────────────────────────────────────────────────────────
 
+def _fenced_line_numbers(content: str) -> set:
+    """1-based line numbers that fall inside fenced code blocks.
+
+    Tracks the opening fence's backtick length so a longer outer fence (```` )
+    keeps shorter inner fences (```) literal, and a closing fence must be at least
+    as long as its opener with no info string. This is why a naive "any ``` opens,
+    a bare ``` closes" scan mis-nests 4-backtick doc examples. Used so section
+    numbering ignores numbered headers shown inside a copy-able template example —
+    they are content, not document sections.
+    """
+    fenced = set()
+    fence_len = 0
+    for i, line in enumerate(content.split('\n'), start=1):
+        stripped = line.strip()
+        if stripped.startswith('```'):
+            ticks = len(stripped) - len(stripped.lstrip('`'))
+            info = stripped[ticks:].strip()
+            fenced.add(i)
+            if fence_len == 0:
+                fence_len = ticks
+            elif ticks >= fence_len and info == '':
+                fence_len = 0
+            continue
+        if fence_len > 0:
+            fenced.add(i)
+    return fenced
+
+
 def validate_h2_headers(content: str, doc_type_rules: Dict[str, Any], rules: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Validate H2 header format and emojis."""
     errors = []
 
     h2_pattern = re.compile(r'^## (\d+)\.\s+(.+)$', re.MULTILINE)
     matches = list(h2_pattern.finditer(content))
+    fenced_lines = _fenced_line_numbers(content)
 
     if not matches:
         # No numbered H2 headers found - check if this is expected
@@ -402,14 +431,20 @@ def validate_h2_headers(content: str, doc_type_rules: Dict[str, Any], rules: Dic
         title = match.group(2).strip()
         line = match.group(0)
 
-        if num != expected_num:
-            errors.append({
-                'type': 'non_sequential_numbering',
-                'severity': 'warning',
-                'message': f'Non-sequential section number: expected {expected_num}, found {num}',
-                'line': line
-            })
-        expected_num = num + 1
+        # A numbered header inside a fenced example (a copy-able skeleton) is
+        # content, not a section, so it must not break or advance the outer
+        # document sequence. Emoji/uppercase checks below intentionally still
+        # apply to every match, keeping their behavior unchanged.
+        header_line = content.count('\n', 0, match.start()) + 1
+        if header_line not in fenced_lines:
+            if num != expected_num:
+                errors.append({
+                    'type': 'non_sequential_numbering',
+                    'severity': 'warning',
+                    'message': f'Non-sequential section number: expected {expected_num}, found {num}',
+                    'line': line
+                })
+            expected_num = num + 1
 
         if emoji_required:
             title_has_emoji = has_emoji(title)

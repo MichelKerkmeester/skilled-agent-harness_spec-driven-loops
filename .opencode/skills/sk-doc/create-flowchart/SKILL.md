@@ -172,7 +172,7 @@ Use the pattern's demonstrated features, not its content. Do not copy placeholde
 
 For a standalone flowchart file, use this shape unless the surrounding project has a stronger local convention:
 
-```markdown
+````markdown
 # <Flowchart Name>
 
 Brief purpose, audience, and scope.
@@ -183,7 +183,7 @@ Brief purpose, audience, and scope.
 
 Validation:
 - `<command>` -> `<result>`
-```
+````
 
 For an embedded flowchart, preserve the host document's heading level and style. Add only the surrounding prose needed to interpret the diagram, such as purpose, assumptions, legend, or follow-up notes.
 
