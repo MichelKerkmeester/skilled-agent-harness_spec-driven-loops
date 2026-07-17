@@ -27,7 +27,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 | Surface | Path | Role |
 |---|---|---|
 | Plugin | `.opencode/plugins/mk-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `mk_goal`, and `mk_goal_status`. |
-| Command | `.opencode/commands/goal_opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+| Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | State | `.opencode/skills/.goal-state/` | Runtime JSON state, keyed by session id, intentionally outside spec docs. |
 | Tests | `.opencode/plugins/tests/mk-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 
@@ -89,11 +89,11 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 
 ## 6. Boundaries
 
-- Keep `.opencode/commands/goal_opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
+- Keep `.opencode/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
 - Do not route `mk-goal` through Spec Kit Memory or the code-index/skill-advisor daemon CLIs. Goal state is session-local plugin state.
 - Do not store objective-derived runtime state in spec docs or memory rows unless the user explicitly asks to save continuity.
 - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
-- Restart OpenCode after changing `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md`, or this plugin's load-time configuration.
+- Restart OpenCode after changing `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
 
 ## 7. Verification
 

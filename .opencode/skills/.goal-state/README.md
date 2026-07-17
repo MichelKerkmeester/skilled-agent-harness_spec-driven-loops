@@ -41,7 +41,7 @@ The plugin encodes each session ID as hexadecimal for the JSON filename. It seri
 
 ## 3. PLUGIN WORKFLOW
 
-The [`/goal` command](../../commands/goal_opencode.md) is a state-free router. It sends `set`, `clear`, `complete`, `pause`, `resume`, `history`, `doctor` and `health` actions to the plugin's `mk_goal` tool. Empty arguments and `show` use `mk_goal_status`. The command does not read or edit this folder directly because plugin tool context supplies the current session ID.
+The [`/goal` command](../../commands/goal-opencode.md) is a state-free router. It sends `set`, `clear`, `complete`, `pause`, `resume`, `history`, `doctor` and `health` actions to the plugin's `mk_goal` tool. Empty arguments and `show` use `mk_goal_status`. The command does not read or edit this folder directly because plugin tool context supplies the current session ID.
 
 When a caller sets a goal, the plugin sanitizes the objective, creates a model-facing `goalPrompt` and stores prompt-enhancement metadata with the new active record. Setting the same active or paused objective refreshes the record. Setting a different objective, or reusing an objective from a terminal state, replaces it with a fresh goal record. Optional token budgets remain part of the per-session state.
 
@@ -109,6 +109,6 @@ Other skills can invoke the plugin tools through the command surface, but they d
 ## 7. RELATED
 
 - [`mk-goal.js`](../../plugins/mk-goal.js) reads, writes, archives and cleans this state.
-- [`/goal` command](../../commands/goal_opencode.md) routes user actions to the plugin tools without handling state.
+- [`/goal` command](../../commands/goal-opencode.md) routes user actions to the plugin tools without handling state.
 - [OpenCode Goal Plugin Contract](../system-spec-kit/references/hooks/goal_plugin.md) documents the operator contract, environment controls and verification surfaces.
 - [System Spec Kit](../system-spec-kit/) documents the wider runtime-injection and continuity system while keeping goal state outside Spec Kit Memory.

@@ -12,7 +12,7 @@
   "prompt": "show",
   "invocation": {
     "kind": "command",
-    "command": "goal_opencode"
+    "command": "goal-opencode"
   },
   "fixture": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-026-goal-show",
   "expected_interaction": "autonomous",
@@ -69,5 +69,5 @@
 
 | Marker | Source path | Source SHA-256 |
 | --- | --- | --- |
-| `STATUS=OK ACTION=` | `.opencode/commands/goal_opencode.md` | `sha256:c284abdc4be8f74b8c892552e37db5aa63e08c407457f2f3d14a4fd054fbe385` |
-| `remaining_auto_turns` | `.opencode/commands/goal_opencode.md` | `sha256:c284abdc4be8f74b8c892552e37db5aa63e08c407457f2f3d14a4fd054fbe385` |
+| `STATUS=OK ACTION=` | `.opencode/commands/goal-opencode.md` | `sha256:c284abdc4be8f74b8c892552e37db5aa63e08c407457f2f3d14a4fd054fbe385` |
+| `remaining_auto_turns` | `.opencode/commands/goal-opencode.md` | `sha256:c284abdc4be8f74b8c892552e37db5aa63e08c407457f2f3d14a4fd054fbe385` |

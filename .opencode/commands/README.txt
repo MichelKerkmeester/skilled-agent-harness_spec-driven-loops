@@ -46,9 +46,9 @@ Commands are organized into five groups plus root-level utilities:
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
-| **root** | `commands/` | 3 | Standalone `/agent_router`, `/prompt-improve`, and `/goal_opencode` utilities |
+| **root** | `commands/` | 3 | Standalone `/agent_router`, `/prompt-improve`, and `/goal-opencode` utilities |
 
-Standalone commands live at the root level: `agent_router.md` routes requests to AI systems, `prompt-improve.md` is the canonical prompt-improvement surface, and `goal_opencode.md` manages the passive session goal via the `mk-goal` plugin.
+Standalone commands live at the root level: `agent_router.md` routes requests to AI systems, `prompt-improve.md` is the canonical prompt-improvement surface, and `goal-opencode.md` manages the passive session goal via the `mk-goal` plugin.
 
 <!-- /ANCHOR:overview -->
 
@@ -72,7 +72,7 @@ This file is descriptive only. The executable contract for any workflow lives in
 command/
 ├── agent_router.md           # Route requests to AI systems
 ├── prompt-improve.md         # Canonical prompt improvement command
-├── goal_opencode.md          # Session-goal router for the mk-goal plugin (OpenCode only)
+├── goal-opencode.md          # Session-goal router for the mk-goal plugin (OpenCode only)
 ├── create/                   # Component creation commands
 │   ├── agent.md              # Create new agent
 │   ├── changelog.md          # Create changelog entry
@@ -169,7 +169,7 @@ Root commands have no group prefix.
 |---------|------------|---------|
 | Agent Router | `/agent_router <request>` | Route a request through intelligent AI system selection |
 | Prompt | `/prompt-improve <prompt_or_topic> [:auto\|:confirm]` | Create or improve prompts using frameworks, DEPTH thinking, and CLEAR scoring |
-| Goal (OpenCode) | `/goal_opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `mk-goal` plugin |
+| Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `mk-goal` plugin |
 
 ### Memory Commands
 
