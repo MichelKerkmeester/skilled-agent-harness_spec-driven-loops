@@ -1,0 +1,267 @@
+[
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/context_retrieval/code_graph_context.md",
+    "diskPath": "feature_catalog/context_retrieval/code_graph_context.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/context_retrieval/context_handler.md",
+    "diskPath": "feature_catalog/context_retrieval/context_handler.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/coverage_graph/deep_loop_graph_convergence.md",
+    "diskPath": "feature_catalog/coverage_graph/deep_loop_graph_convergence.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/coverage_graph/deep_loop_graph_query.md",
+    "diskPath": "feature_catalog/coverage_graph/deep_loop_graph_query.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/coverage_graph/deep_loop_graph_status.md",
+    "diskPath": "feature_catalog/coverage_graph/deep_loop_graph_status.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/coverage_graph/deep_loop_graph_upsert.md",
+    "diskPath": "feature_catalog/coverage_graph/deep_loop_graph_upsert.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/detect_changes/detect_changes_preflight.md",
+    "diskPath": "feature_catalog/detect_changes/detect_changes_preflight.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/doctor_code_graph/doctor_apply_mode.md",
+    "diskPath": "feature_catalog/doctor_code_graph/doctor_apply_mode.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/edge_confidence_and_provenance/edge_confidence_differentiation.md",
+    "diskPath": "feature_catalog/edge_confidence_and_provenance/edge_confidence_differentiation.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/edge_confidence_and_provenance/edge_evidence_classification.md",
+    "diskPath": "feature_catalog/edge_confidence_and_provenance/edge_evidence_classification.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/edge_confidence_and_provenance/seeded_ppr_impact_ranking.md",
+    "diskPath": "feature_catalog/edge_confidence_and_provenance/seeded_ppr_impact_ranking.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/manual_scan_verify_status/code_graph_scan.md",
+    "diskPath": "feature_catalog/manual_scan_verify_status/code_graph_scan.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/manual_scan_verify_status/code_graph_status.md",
+    "diskPath": "feature_catalog/manual_scan_verify_status/code_graph_status.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/manual_scan_verify_status/code_graph_verify.md",
+    "diskPath": "feature_catalog/manual_scan_verify_status/code_graph_verify.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/mcp_tool_surface/code_index_cli.md",
+    "diskPath": "feature_catalog/mcp_tool_surface/code_index_cli.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/mcp_tool_surface/tool_registrations.md",
+    "diskPath": "feature_catalog/mcp_tool_surface/tool_registrations.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/read_path_freshness/ensure_code_graph_ready.md",
+    "diskPath": "feature_catalog/read_path_freshness/ensure_code_graph_ready.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "feature_catalog/read_path_freshness/query_self_heal.md",
+    "diskPath": "feature_catalog/read_path_freshness/query_self_heal.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/context_retrieval/code_graph_context_edge_confidence_differentiation.md",
+    "diskPath": "manual_testing_playbook/context_retrieval/code_graph_context_edge_confidence_differentiation.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/context_retrieval/code_graph_context_readiness_block.md",
+    "diskPath": "manual_testing_playbook/context_retrieval/code_graph_context_readiness_block.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/context_retrieval/code_graph_context_seeded_ppr_ranking.md",
+    "diskPath": "manual_testing_playbook/context_retrieval/code_graph_context_seeded_ppr_ranking.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/coverage_graph/deep_loop_graph_convergence_yaml_fire.md",
+    "diskPath": "manual_testing_playbook/coverage_graph/deep_loop_graph_convergence_yaml_fire.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/coverage_graph/deep_loop_graph_upsert_conditional.md",
+    "diskPath": "manual_testing_playbook/coverage_graph/deep_loop_graph_upsert_conditional.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/detect_changes/detect_changes_multi_file_diff.md",
+    "diskPath": "manual_testing_playbook/detect_changes/detect_changes_multi_file_diff.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/detect_changes/detect_changes_no_inline_index.md",
+    "diskPath": "manual_testing_playbook/detect_changes/detect_changes_no_inline_index.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/doctor_code_graph/code_graph_apply_sub_operations.md",
+    "diskPath": "manual_testing_playbook/doctor_code_graph/code_graph_apply_sub_operations.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/doctor_code_graph/doctor_apply_mode_policy.md",
+    "diskPath": "manual_testing_playbook/doctor_code_graph/doctor_apply_mode_policy.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/manual_scan_verify_status/code_graph_scan_full.md",
+    "diskPath": "manual_testing_playbook/manual_scan_verify_status/code_graph_scan_full.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/manual_scan_verify_status/code_graph_scan_incremental.md",
+    "diskPath": "manual_testing_playbook/manual_scan_verify_status/code_graph_scan_incremental.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/manual_scan_verify_status/code_graph_status_readonly.md",
+    "diskPath": "manual_testing_playbook/manual_scan_verify_status/code_graph_status_readonly.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/manual_scan_verify_status/code_graph_verify_blocked_on_stale.md",
+    "diskPath": "manual_testing_playbook/manual_scan_verify_status/code_graph_verify_blocked_on_stale.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/mcp_tool_surface/code_graph_query_asof_time_travel.md",
+    "diskPath": "manual_testing_playbook/mcp_tool_surface/code_graph_query_asof_time_travel.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/mcp_tool_surface/code_graph_query_blast_radius.md",
+    "diskPath": "manual_testing_playbook/mcp_tool_surface/code_graph_query_blast_radius.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/mcp_tool_surface/code_graph_query_bm25_symbol_resolver.md",
+    "diskPath": "manual_testing_playbook/mcp_tool_surface/code_graph_query_bm25_symbol_resolver.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/mcp_tool_surface/code_index_cli_fallback_surface.md",
+    "diskPath": "manual_testing_playbook/mcp_tool_surface/code_index_cli_fallback_surface.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/mcp_tool_surface/mcp_tool_manifest_post_rename.md",
+    "diskPath": "manual_testing_playbook/mcp_tool_surface/mcp_tool_manifest_post_rename.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/mcp_tool_surface/tool_call_shape_validation.md",
+    "diskPath": "manual_testing_playbook/mcp_tool_surface/tool_call_shape_validation.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/plugins_and_hooks/code_graph_freshness_guard.md",
+    "diskPath": "manual_testing_playbook/plugins_and_hooks/code_graph_freshness_guard.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/plugins_and_hooks/code_graph_plugin.md",
+    "diskPath": "manual_testing_playbook/plugins_and_hooks/code_graph_plugin.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/post_rename_infrastructure/database_path_verification.md",
+    "diskPath": "manual_testing_playbook/post_rename_infrastructure/database_path_verification.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/post_rename_infrastructure/launcher_startup_prefix.md",
+    "diskPath": "manual_testing_playbook/post_rename_infrastructure/launcher_startup_prefix.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/post_rename_infrastructure/mcp_json_server_key_rename.md",
+    "diskPath": "manual_testing_playbook/post_rename_infrastructure/mcp_json_server_key_rename.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/post_rename_infrastructure/typescript_build_and_entry_point.md",
+    "diskPath": "manual_testing_playbook/post_rename_infrastructure/typescript_build_and_entry_point.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/post_rename_infrastructure/unicode_normalization_fix_from_009.md",
+    "diskPath": "manual_testing_playbook/post_rename_infrastructure/unicode_normalization_fix_from_009.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/read_path_freshness/ensure_ready_selective_reindex.md",
+    "diskPath": "manual_testing_playbook/read_path_freshness/ensure_ready_selective_reindex.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "manual_testing_playbook/read_path_freshness/query_self_heal_stale_file.md",
+    "diskPath": "manual_testing_playbook/read_path_freshness/query_self_heal_stale_file.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "references/config/database_path_policy.md",
+    "diskPath": "references/config/database_path_policy.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "references/readiness/code_graph_readiness_check.md",
+    "diskPath": "references/readiness/code_graph_readiness_check.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "references/readiness/readiness_and_scope_fingerprint.md",
+    "diskPath": "references/readiness/readiness_and_scope_fingerprint.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "references/runtime/launcher_lease.md",
+    "diskPath": "references/runtime/launcher_lease.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "references/runtime/naming_conventions.md",
+    "diskPath": "references/runtime/naming_conventions.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "references/runtime/ownership_boundary.md",
+    "diskPath": "references/runtime/ownership_boundary.md"
+  },
+  {
+    "workflowMode": "system-code-graph",
+    "leafResourceId": "references/runtime/tool_surface.md",
+    "diskPath": "references/runtime/tool_surface.md"
+  }
+]

@@ -8,6 +8,11 @@ trigger_phrases:
   - "code-graph-freshness-guard"
   - "stale code graph self-heal"
 version: 1.0.0.0
+id: code-graph-freshness-guard
+category: plugins_and_hooks
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources: []
 ---
 
 # Code Graph Freshness Guard

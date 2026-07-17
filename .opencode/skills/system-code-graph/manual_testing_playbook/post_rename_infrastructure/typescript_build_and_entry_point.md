@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.3
+id: typescript-build-and-entry-point
+category: post_rename_infrastructure
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/post_rename_infrastructure/typescript_build_and_entry_point.md
 ---
 # 020 TypeScript build and entry point
+
+Prompt: Confirm that the code-graph server dist is built and the entry point exists, and that the tool-schemas module loads.
 
 ## 1. OVERVIEW
 

@@ -2,6 +2,9 @@
 title: "FR-002: Direct Fallback Without Subagents"
 description: "Verify sk-design modes preserve their proof bar when subagents are unavailable, including the md-generator backend boundary."
 version: 1.0.0.0
+id: FR-002
+expected_workflow_mode: motion
+expected_leaf_resources: []
 ---
 
 # FR-002: Direct Fallback Without Subagents

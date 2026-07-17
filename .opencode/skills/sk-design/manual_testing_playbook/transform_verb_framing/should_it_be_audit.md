@@ -2,6 +2,9 @@
 title: "TV-002: should it be Transform Frame Routes Audit"
 description: "Verify should-it-be transform questions resolve to audit rather than interface."
 version: 1.0.0.0
+id: TV-002
+expected_workflow_mode: audit
+expected_leaf_resources: []
 ---
 
 # TV-002: should it be Transform Frame Routes Audit

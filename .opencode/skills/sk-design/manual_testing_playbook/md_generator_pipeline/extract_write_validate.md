@@ -2,6 +2,31 @@
 title: "MG-001: Extract Write Validate Pipeline"
 description: "Verify full URL-to-DESIGN.md requests route to md-generator and name the EXTRACT, WRITE, and VALIDATE stages."
 version: 1.0.0.0
+id: MG-001
+expected_workflow_mode: md-generator
+expected_leaf_resources:
+  - workflow_mode: md-generator
+    leaf_resource_id: references/design_md_format.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/writing_style_guide.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/color_role_taxonomy.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/component_taxonomy.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/anti_patterns.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/authoring_boundary.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/extraction_workflow.md
+  - workflow_mode: md-generator
+    leaf_resource_id: references/troubleshooting.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/design_md_prompt_template.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/cardinal_rules_card.md
+  - workflow_mode: md-generator
+    leaf_resource_id: assets/source_of_truth_router_card.md
 ---
 
 # MG-001: Extract Write Validate Pipeline

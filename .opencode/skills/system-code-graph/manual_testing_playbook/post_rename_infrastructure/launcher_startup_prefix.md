@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.2
+id: launcher-startup-prefix
+category: post_rename_infrastructure
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/post_rename_infrastructure/launcher_startup_prefix.md
 ---
 # 017 launcher startup prefix
+
+Prompt: Check that the mk-code-index launcher starts cleanly, prints its launcher startup prefix on stderr, and documents the idle-timeout guardrail.
 
 ## 1. OVERVIEW
 

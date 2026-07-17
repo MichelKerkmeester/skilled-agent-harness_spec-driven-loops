@@ -17,28 +17,31 @@ Route /create:readme to its presentation contract and workflow YAML for creating
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_readme_presentation.txt` | Startup questions, setup dashboard, README/install display contracts, and completion templates |
-| Auto workflow | `.opencode/commands/create/assets/create_readme_auto.yaml` | Autonomous README/install workflow execution |
-| Confirm workflow | `.opencode/commands/create/assets/create_readme_confirm.yaml` | Interactive checkpointed README/install workflow execution |
+| Purpose | Asset |
+|---------|-------|
+| Presentation contract | `.opencode/commands/create/assets/create_readme_presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create_readme_auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create_readme_confirm.yaml` |
 
 ## 3. MODE ROUTING
 
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-## 4. EXECUTION TARGETS
-
 1. Read `.opencode/commands/create/assets/create_readme_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve operation from `$ARGUMENTS` or setup: `readme` or `install`.
 4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
-5. Load exactly one workflow YAML:
-   - `:auto` -> `.opencode/commands/create/assets/create_readme_auto.yaml`
-   - `:confirm` or omitted mode -> `.opencode/commands/create/assets/create_readme_confirm.yaml`
+5. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
 6. Execute the selected YAML step by step and skip to the resolved operation section.
 7. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
+
+## 4. EXECUTION TARGETS
+
+| Mode | Target |
+|------|--------|
+| `:auto` | `.opencode/commands/create/assets/create_readme_auto.yaml` |
+| `:confirm` or omitted mode | `.opencode/commands/create/assets/create_readme_confirm.yaml` |
 
 ## 5. PRESENTATION BOUNDARY
 

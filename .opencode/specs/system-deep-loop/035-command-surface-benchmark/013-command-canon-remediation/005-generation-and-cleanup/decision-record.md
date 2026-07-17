@@ -12,10 +12,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup"
-    last_updated_at: "2026-07-16T16:00:00Z"
+    last_updated_at: "2026-07-16T18:23:19Z"
     last_updated_by: "claude"
-    recent_action: "Materialized Level-3 doc set for the generation-and-cleanup phase"
-    next_safe_action: "Standardize the OWNED ASSETS and EXECUTION TARGETS tables (A-W4) first"
+    recent_action: "Accepted ADR-001..005; recorded NFR-C02 refinement + G2/A-G2 outcomes"
+    next_safe_action: "Merge the worktree and FF-push to origin"
+    completion_pct: 100
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/create-command/assets/command_contract.json"
@@ -36,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-16 |
 | **Deciders** | Command-canon remediation lead, AI Assistant (Claude) |
 
@@ -139,7 +140,7 @@ The contract must become the single source for the routers, but a router is not 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-16 |
 | **Deciders** | Command-canon remediation lead, AI Assistant (Claude) |
 
@@ -162,6 +163,8 @@ A generator with a drift gate is new to the command surface, but three of its bu
 **Summary**: Write a greenfield `generate-command-routers.cjs` that composes the three precedents; do not extend `render-command-contract.cjs`.
 
 **Details**: The generator reuses the drift-gated skeleton of `sync-prompts.cjs` (build the expected output, then either `--check`-diff or write), the contract field-reads already proven in `sk-doc-command.cjs`, and the locked 6-section grammar of `command_router_template.md` as its section map. It lives beside `sync-prompts.cjs` under `.opencode/skills/system-spec-kit/scripts/codex/`.
+
+**NFR-C02 refinement (accepted at build, operator-approved)**: The generator owns the table SHAPE and the contract-derived asset-path cells, and it flags path/shape drift — it does NOT enforce a whole-span byte-match. The humanized Purpose/Mode label text in the tables is not encoded in `command_contract.json` (the contract is phase-001-owned), so a whole-span byte-match would falsely flag legitimate hand-authored labels. Accordingly `--check` reports `0 shape-drift` and `0 path-drift`, and a staled asset path (not a reworded label) is what fails as `PATH-DRIFT`. This refines the original NFR-C02 wording ("regenerated spans byte-match") to "shape + asset-path drift".
 
 ---
 
@@ -213,7 +216,7 @@ A generator with a drift gate is new to the command surface, but three of its bu
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-16 |
 | **Deciders** | Command-canon remediation lead, AI Assistant (Claude) |
 
@@ -234,7 +237,9 @@ G3 (hint budget) and G4 (ergonomics) add new prose-level checks. They could ship
 
 **Summary**: New G3/G4 checks live inside the existing validators; no parallel lint engine is created.
 
-**Details**: The `argument-hint` budget and the ergonomics checks are added to `validate_document.py` and `validate-command-references.cjs`, and surfaced through the `sk-doc-command.cjs` adapter. Prose-level detection stays in the lighter validator layer where the corpus is already walked.
+**Details**: The `argument-hint` budget and the ergonomics checks are added to `validate_document.py`. Prose-level detection stays in the lighter validator layer where the corpus is already walked.
+
+**T022 adapter-scoping (accepted at build)**: The G3/G4 ergonomics WARNs live in `validate_document.py` — the create-quality-control gate — and are deliberately kept OUT of the differential-tested deep-alignment conformance adapter (`sk-doc-command.cjs`). The rationale is a category separation: authoring polish (hint length, raw-echo idiom) belongs to the quality-control gate, while the conformance adapter is a differential contract gate whose oracle and fixtures would all need a coordinated change and re-freeze to admit prose-level heuristics. Scoping the WARNs to the shared validator delivers the signal without that disproportionate change.
 
 ---
 
@@ -286,7 +291,7 @@ G3 (hint budget) and G4 (ergonomics) add new prose-level checks. They could ship
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-16 |
 | **Deciders** | Command-canon remediation lead, AI Assistant (Claude) |
 
@@ -358,7 +363,7 @@ The G3 hint budget and the G4 ergonomics checks are heuristics whose false-posit
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-16 |
 | **Deciders** | Command-canon remediation lead, AI Assistant (Claude) |
 
@@ -419,5 +424,45 @@ The G4 ergonomics backlog includes a sub-item: name the subaction-dispatch route
 **Rollback**: N/A - this is a scope-boundary decision, not a code change.
 
 <!-- /ANCHOR:adr-005 -->
+
+---
+
+<!-- ANCHOR:implementation-outcomes -->
+## IMPLEMENTATION OUTCOMES (recorded at completion)
+
+Two backlog items were closed at build without a router mutation. Both are load-bearing decisions and are recorded here so the "done" state is not mistaken for skipped work.
+
+### Outcome D-01: G2 resolved as a confirmed no-op
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Relates to** | REQ-003 (G2), ADR-002 |
+
+**Decision**: The three asserted command-local mismatches (`deep/research.md` timeout, `memory/save.md` hint/fallback, create-family `*_presentation.txt` presentation-ownership labels) required no edit — they were already contract-consistent, fixed by the earlier 001/003 conformance work; the 014 research described the pre-conformance state.
+
+**Evidence**: the phase-003 adapter `sk-doc-command.cjs check .opencode/commands` returns `[]` (zero findings) across the whole tree, and the generator `--check` reports path-drift=0. A no-op verified by the shipped conformance tooling is the correct resolution, not an invented edit.
+
+### Outcome D-02: A-G2 resolved as evidence-satisfied (no slimming)
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted (operator-approved) |
+| **Relates to** | REQ-004 (A-G2), ADR-001 |
+
+**Decision**: The fat `deep/*` routers were left unmutated. The display content the PRESENTATION BOUNDARY assigns to an asset is already externalized to the 300-470-line `deep_*_presentation.txt` files (routers §2-6 are thin references). The routers' remaining bulk is load-bearing behavioral safeguards — the PHASE 0 dispatch-context gate (with a documented false-positive history), the MANDATORY INPUT GATE, and the AUTONOMOUS EXECUTION DIRECTIVE — which the boundary does not assign to an asset.
+
+**Fail-fast exception**: the single inline `⛔ DIRECT INVOCATION REQUIRED` box is the fail-fast dispatch-gate display and is intentionally inline; it appears in 0/7 presentation assets. Moving it would make a fail-fast gate depend on loading the very asset it cannot assume is loadable when mis-invoked. Forcing the safeguards into assets is high-risk regression for ~zero value, so the operator approved leaving the routers untouched.
+
+### Outcome D-03: T022 ergonomics-WARN scoping
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Relates to** | REQ-006 (G4), ADR-003 |
+
+**Decision**: The G3/G4 ergonomics WARNs live in `validate_document.py` (the create-quality-control gate) and are kept out of the differential-tested `sk-doc-command.cjs` conformance adapter — a deliberate category separation (authoring polish vs conformance gate) that also avoids a disproportionate coordinated oracle+fixtures+re-freeze change. See ADR-003 T022 adapter-scoping. The subaction-router `routing_source` naming stays deferred to phase 004 (ADR-005; field undefined for all families).
+
+<!-- /ANCHOR:implementation-outcomes -->
 
 ---

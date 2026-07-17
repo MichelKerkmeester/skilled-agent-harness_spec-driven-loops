@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.7
+id: tool-call-shape-validation
+category: mcp_tool_surface
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/mcp_tool_surface/tool_call_shape_validation.md
 ---
 # 011 tool call shape validation
+
+Prompt: Send malformed code_graph MCP calls and confirm schema validation reports the missing fields.
 
 ## 1. OVERVIEW
 

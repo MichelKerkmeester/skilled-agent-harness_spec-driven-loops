@@ -2,6 +2,15 @@
 title: "SR-001: Interface Shared References"
 description: "Verify interface mode loads shared reference-base resources before visual recommendations."
 version: 1.0.0.0
+id: SR-001
+expected_workflow_mode: interface
+expected_leaf_resources:
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/brief_to_dials.md
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/design_principles.md
+  - workflow_mode: interface
+    leaf_resource_id: assets/interface_preflight_card.md
 ---
 
 # SR-001: Interface Shared References

@@ -1,7 +1,21 @@
 ---
+id: IL-001
+category: improvement_lane_routing
+stage: routing
 title: "IL-001: Agent Improvement Lane Routing"
 description: "Verify improve/evaluate/score agent requests fold through the deep-improvement advisor identity to the agent-improvement lane."
-version: "1.1.0.0"
+expected_intent: agent-improvement
+expected_resources:
+  - deep-improvement/SKILL.md
+expected_workflow_mode: agent-improvement
+expected_leaf_resources:
+  - workflow_mode: agent-improvement
+    leaf_resource_id: references/agent_improvement/candidate_proposal_format.md
+  - workflow_mode: agent-improvement
+    leaf_resource_id: references/agent_improvement/score_dimensions.md
+  - workflow_mode: agent-improvement
+    leaf_resource_id: references/shared/promotion_gate_contract.md
+version: "1.2.0.0"
 ---
 
 # IL-001: Agent Improvement Lane Routing

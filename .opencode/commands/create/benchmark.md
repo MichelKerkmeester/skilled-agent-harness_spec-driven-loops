@@ -17,29 +17,32 @@ Route /create:benchmark to its presentation contract and workflow YAML for famil
 
 ## 2. OWNED ASSETS
 
-| Asset | Path | Purpose |
-| --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_benchmark_presentation.txt` | Startup questions, setup dashboard, operation/status display, and completion template |
-| Auto workflow | `.opencode/commands/create/assets/create_benchmark_auto.yaml` | Autonomous family-keyed benchmark authoring |
-| Confirm workflow | `.opencode/commands/create/assets/create_benchmark_confirm.yaml` | Interactive checkpointed family-keyed benchmark authoring |
+| Purpose | Asset |
+|---------|-------|
+| Presentation contract | `.opencode/commands/create/assets/create_benchmark_presentation.txt` |
+| Auto workflow | `.opencode/commands/create/assets/create_benchmark_auto.yaml` |
+| Confirm workflow | `.opencode/commands/create/assets/create_benchmark_confirm.yaml` |
 
 ## 3. MODE ROUTING
 
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-## 4. EXECUTION TARGETS
-
 1. Read `.opencode/commands/create/assets/create_benchmark_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve `benchmark_family` from `--family=<FAMILIES-key>` or the single consolidated setup prompt.
 4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 5. Resolve operation and family-specific target fields from setup.
-6. Load exactly one workflow YAML:
-   - `:auto` -> `.opencode/commands/create/assets/create_benchmark_auto.yaml`
-   - `:confirm` or omitted mode -> `.opencode/commands/create/assets/create_benchmark_confirm.yaml`
+6. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
 7. Execute the selected YAML step by step and route first by family, then by operation.
 8. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
+
+## 4. EXECUTION TARGETS
+
+| Mode | Target |
+|------|--------|
+| `:auto` | `.opencode/commands/create/assets/create_benchmark_auto.yaml` |
+| `:confirm` or omitted mode | `.opencode/commands/create/assets/create_benchmark_confirm.yaml` |
 
 ## 5. PRESENTATION BOUNDARY
 

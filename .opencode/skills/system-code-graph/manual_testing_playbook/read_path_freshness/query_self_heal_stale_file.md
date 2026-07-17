@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.3
+id: query-self-heal-stale-file
+category: read_path_freshness
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/read_path_freshness/query_self_heal_stale_file.md
 ---
 # 002 query self-heal stale file
+
+Prompt: Check that code_graph_query self-heals a single stale file but refuses broad stale state until an explicit scan runs.
 
 ## 1. OVERVIEW
 

@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.1
+id: mcp-json-server-key-rename
+category: post_rename_infrastructure
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/post_rename_infrastructure/mcp_json_server_key_rename.md
 ---
 # 018 mcp.json server key rename
+
+Prompt: Check that .claude/mcp.json has the mk_code_index server key and no system_code_graph key.
 
 ## 1. OVERVIEW
 

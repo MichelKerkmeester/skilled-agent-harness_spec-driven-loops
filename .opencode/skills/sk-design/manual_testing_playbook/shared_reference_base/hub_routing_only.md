@@ -2,6 +2,13 @@
 title: "SR-004: Hub Is Routing Only"
 description: "Verify the hub resolves modes through the registry and packet files own per-mode design logic."
 version: 1.0.0.0
+id: SR-004
+expected_workflow_mode: audit
+expected_leaf_resources:
+  - workflow_mode: audit
+    leaf_resource_id: references/audit_contract.md
+  - workflow_mode: audit
+    leaf_resource_id: assets/audit_report_template.md
 ---
 
 # SR-004: Hub Is Routing Only

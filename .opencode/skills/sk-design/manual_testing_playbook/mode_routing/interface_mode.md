@@ -1,10 +1,19 @@
 ---
-title: "MR-001: Interface Mode Routing"
+title: "MDR-001: Interface Mode Routing"
 description: "Verify generic visual-direction requests resolve to the interface mode and load the design-interface packet."
 version: 1.0.0.0
+id: MDR-001
+expected_workflow_mode: interface
+expected_leaf_resources:
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/design_principles.md
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/brief_to_dials.md
+  - workflow_mode: interface
+    leaf_resource_id: assets/interface_preflight_card.md
 ---
 
-# MR-001: Interface Mode Routing
+# MDR-001: Interface Mode Routing
 
 ## 1. OVERVIEW
 
@@ -51,9 +60,9 @@ Make this SaaS pricing page look less generic and give it a distinctive visual d
 
 ### Exact Command Sequence
 
-1. Run the advisor probe and save output to `/tmp/skd-MR001-advisor.txt`.
+1. Run the advisor probe and save output to `/tmp/skd-MDR001-advisor.txt`.
 2. Invoke the orchestrator with the exact prompt.
-3. Capture the resolved `workflowMode`, loaded packet, loaded resources, tool calls, and response in `/tmp/skd-MR001-response.txt`.
+3. Capture the resolved `workflowMode`, loaded packet, loaded resources, tool calls, and response in `/tmp/skd-MDR001-response.txt`.
 
 ### Pass/Fail Criteria
 

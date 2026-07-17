@@ -71,7 +71,7 @@ Register Ask-first question wording lives only in the presentation asset.
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto`, or no suffix with complete `$ARGUMENTS` | `.opencode/commands/design/assets/design_foundations_auto.yaml` |
 | `:confirm`, or no suffix with incomplete `$ARGUMENTS` | `.opencode/commands/design/assets/design_foundations_confirm.yaml` |

@@ -1,10 +1,24 @@
 ---
-title: "MR-002: Review Mode Routing"
+id: MO-002
+category: mode_routing
+stage: routing
+title: "MO-002: Review Mode Routing"
 description: "Verify an iterative review request resolves to the review mode through the system-deep-loop hub."
-version: "1.1.0.0"
+expected_intent: review
+expected_resources:
+  - deep-review/SKILL.md
+expected_workflow_mode: review
+expected_leaf_resources:
+  - workflow_mode: review
+    leaf_resource_id: references/protocol/loop_protocol.md
+  - workflow_mode: review
+    leaf_resource_id: references/protocol/completion_criteria.md
+  - workflow_mode: review
+    leaf_resource_id: references/convergence/convergence.md
+version: "1.2.0.0"
 ---
 
-# MR-002: Review Mode Routing
+# MO-002: Review Mode Routing
 
 ## 1. OVERVIEW
 
@@ -47,10 +61,10 @@ Run a deep review of the current routing changes, iterate until findings converg
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict." --threshold 0.8 > /tmp/dlw-MR-002/advisor.txt
+   python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict." --threshold 0.8 > /tmp/dlw-MO-002/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict.")`.
-3. **Capture route**: save the AI response to `/tmp/dlw-MR-002/response.txt`.
+3. **Capture route**: save the AI response to `/tmp/dlw-MO-002/response.txt`.
 4. **Compare to registry**: confirm the response matches the `review` registry entry.
 
 ### Expected Signals
@@ -83,6 +97,6 @@ Run a deep review of the current routing changes, iterate until findings converg
 
 - **Critical path**: Yes
 - **Destructive**: No
-- **Sandbox**: `/tmp/dlw-MR-002/`
+- **Sandbox**: `/tmp/dlw-MO-002/`
 - **Concurrent-safe**: Yes
 - **Last validated**: pending first manual run

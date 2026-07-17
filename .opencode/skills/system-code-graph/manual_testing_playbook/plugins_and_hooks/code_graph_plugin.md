@@ -8,6 +8,11 @@ trigger_phrases:
   - "code graph status tool"
   - "code graph transport bridge"
 version: 1.0.0.0
+id: code-graph-plugin
+category: plugins_and_hooks
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources: []
 ---
 
 # Code Graph OpenCode Plugin

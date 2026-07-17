@@ -60,6 +60,7 @@ Choose the component type before drafting.
 | Using bare MCP names in `allowed-tools` | Runtime tool resolution can drift from the configured namespace | Use fully qualified `mcp__<server>__<tool>` IDs |
 | Writing a multi-line description | Help output and metadata consumers expect a single-line summary | Keep `description` one line and move detail into the body |
 | Adding workflow YAML to every split command | Direct-router command families may not need YAML execution assets | Add `_auto.yaml` and `_confirm.yaml` only when the family routes to workflow assets |
+| Embedding rationale or meta-commentary in the router body | Design notes, prose-register/framework labels (e.g. "(COSTAR)"), benchmark timings, maintainer sync chores, or "no gap exists" self-attestations are noise a user sees rendered and drift from the truth | Keep the body behavioral; move rationale to the decision-record/changelog and any render-style rule to the presentation asset |
 
 ---
 

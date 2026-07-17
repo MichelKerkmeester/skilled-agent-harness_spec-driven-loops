@@ -1,0 +1,39 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "assets/format_guide_json.md",
+        "assets/format_guide_markdown.md",
+        "assets/format_guide_yaml.md",
+        "assets/framework-registry.json",
+        "references/depth_framework.md",
+        "references/design_generation_patterns.md",
+        "references/patterns_evaluation.md"
+      ],
+      "packet": "prompt-improve",
+      "workflowMode": "prompt-improve"
+    },
+    {
+      "leaves": [
+        "assets/cli_prompt_quality_card.md",
+        "assets/confidence_scoring_rubric.md",
+        "assets/model_profiles.json",
+        "assets/per_model_budgets.json",
+        "references/context_budget.md",
+        "references/models/_index.md",
+        "references/models/deepseek-v4-pro.md",
+        "references/models/glm-5.2.md",
+        "references/models/kimi-k2.7-code.md",
+        "references/models/mimo-v2.5-pro.md",
+        "references/models/minimax-m3.md",
+        "references/output_verification.md",
+        "references/pattern_index.md",
+        "references/quota_fallback.md",
+        "references/vision-audit-benchmark.md"
+      ],
+      "packet": "prompt-models",
+      "workflowMode": "prompt-models"
+    }
+  ],
+  "resourceContractVersion": 1
+}

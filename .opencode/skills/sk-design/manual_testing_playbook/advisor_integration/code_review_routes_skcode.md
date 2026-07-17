@@ -2,6 +2,10 @@
 title: "AI-004: Code-Correctness Review Routes to sk-code"
 description: "Verify a code-correctness review request using review/audit-adjacent wording still routes to sk-code's code-review mode, not sk-design's audit mode."
 version: 1.0.0.0
+id: AI-004
+expected_workflow_mode: UNKNOWN
+stage: negative
+expected_leaf_resources: []
 ---
 
 # AI-004: Code-Correctness Review Routes to sk-code

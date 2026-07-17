@@ -2,6 +2,15 @@
 title: "TV-005: Audit Excluded Transform Aliases"
 description: "Verify harden and polish do not route to audit through transform-verb aliasing."
 version: 1.0.0.0
+id: TV-005
+expected_workflow_mode: interface
+expected_leaf_resources:
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/design_principles.md
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/brief_to_dials.md
+  - workflow_mode: interface
+    leaf_resource_id: assets/interface_preflight_card.md
 ---
 
 # TV-005: Audit Excluded Transform Aliases

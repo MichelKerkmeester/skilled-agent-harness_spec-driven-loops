@@ -176,6 +176,54 @@ function parseExpectedIntentGold(block) {
 }
 
 /**
+ * Parse a scenario's typed leaf-resource gold — a YAML list of
+ * `{workflow_mode, leaf_resource_id}` objects — out of its frontmatter block.
+ * Returns undefined (not an empty array) when the block is absent, so a scenario
+ * that never declares typed gold stays completely ungated by the taxonomy scorer
+ * rather than engaging it with zero pairs.
+ *
+ * @param {string} block - Frontmatter body.
+ * @returns {Array<{workflow_mode:string,leaf_resource_id:string}>|undefined} Typed gold pairs, or undefined.
+ */
+function parseLeafResourceGold(block) {
+  const m = /(?:^|\n)[ \t]*expected_leaf_resources:[ \t]*\n((?:[ \t]*-[ \t]*workflow_mode:.*\n[ \t]*leaf_resource_id:.*\n?)+)/.exec(block);
+  if (!m) return undefined;
+  const out = [];
+  const re = /-[ \t]*workflow_mode:[ \t]*["']?([^"'\n]+?)["']?[ \t]*\n[ \t]*leaf_resource_id:[ \t]*["']?([^"'\n]+?)["']?[ \t]*(?:\n|$)/g;
+  let mm;
+  while ((mm = re.exec(m[1])) !== null) {
+    out.push({ workflow_mode: mm[1].trim(), leaf_resource_id: mm[2].trim() });
+  }
+  return out.length ? out : undefined;
+}
+
+/**
+ * Read a boolean frontmatter scalar (e.g. full_inventory_intent). Undefined when
+ * absent, so the caller can distinguish "declared false" from "not declared".
+ *
+ * @param {string} block - Frontmatter body.
+ * @param {string} key - Scalar key.
+ * @returns {boolean|undefined} Parsed boolean, or undefined when absent.
+ */
+function parseFrontmatterBool(block, key) {
+  const m = new RegExp(`(?:^|\\n)[ \\t]*${escapeRegExp(key)}:[ \\t]*["']?(true|false)["']?`, 'i').exec(block);
+  return m ? m[1].toLowerCase() === 'true' : undefined;
+}
+
+/**
+ * Read a single-line frontmatter scalar (e.g. expected_workflow_mode, whose
+ * value may be a `+`-joined mode union). Undefined when absent.
+ *
+ * @param {string} block - Frontmatter body.
+ * @param {string} key - Scalar key.
+ * @returns {string|undefined} Trimmed value, or undefined when absent.
+ */
+function parseFrontmatterScalar(block, key) {
+  const m = new RegExp(`(?:^|\\n)[ \\t]*${escapeRegExp(key)}:[ \\t]*["']?([^"'\\n]+?)["']?[ \\t]*(?:\\n|$)`).exec(block);
+  return m ? m[1].trim() : undefined;
+}
+
+/**
  * Pull every `references/...` / `assets/...` / `../shared/...` markdown-ish path
  * token out of a text block, deduped, order-preserving. Tolerates backticks,
  * bullets, and trailing parentheticals like "(when intent is X)". The sibling
@@ -390,6 +438,14 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
         'rank_below_skill_ids',
         'expected_rank_below_skill_ids',
       ]);
+      const expectedLeafResources = parseLeafResourceGold(block);
+      const fullInventoryIntent = parseFrontmatterBool(block, 'full_inventory_intent');
+      // The declared workflow mode is only needed to satisfy the typed-gold
+      // oracle gate, so parse it only when typed gold is present — a scenario
+      // with no typed gold stays byte-identical to before this field existed.
+      const expectedWorkflowMode = expectedLeafResources
+        ? parseFrontmatterScalar(block, 'expected_workflow_mode')
+        : undefined;
       const category = path.basename(cur);
       const prompt = parsePromptBlock(text);
       const id = idM ? idM[1] : e.name.replace(/\.md$/, '');
@@ -417,7 +473,17 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
         goldParseError: goldParseErrors.length ? goldParseErrors.join('; ') : null,
         expectedAssets: [],
         expectedRankBelowSkillIds,
-        expected: expectedRankBelowSkillIds.length ? { rankBelowSkillIds: expectedRankBelowSkillIds } : undefined,
+        // Typed leaf-resource gold rides on its own field so the taxonomy scorer
+        // engages only for a scenario that actually declares it; the flat-string
+        // `expectedResources` lane above is unaffected either way.
+        ...(expectedLeafResources ? { expected_leaf_resources: expectedLeafResources } : {}),
+        ...(fullInventoryIntent !== undefined ? { full_inventory_intent: fullInventoryIntent } : {}),
+        expected: (expectedRankBelowSkillIds.length || expectedWorkflowMode)
+          ? {
+            ...(expectedRankBelowSkillIds.length ? { rankBelowSkillIds: expectedRankBelowSkillIds } : {}),
+            ...(expectedWorkflowMode ? { workflowMode: expectedWorkflowMode } : {}),
+          }
+          : undefined,
         passCriteria: null,
         critical: false,
         // A stage:negative fixture is a suppression test — route it through the
@@ -435,6 +501,57 @@ function loadYamlFrontmatterScenarios(playbookDir, warnings = []) {
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
+
+// Derive typed (workflowMode, leafResourceId) gold for an index-table skill
+// whose hub carries a generated leaf-manifest.json. The body-gold "Expected
+// references loaded" block already lists packet-qualified surface resources, so
+// splitting the leading packet segment recovers the canonical typed pair; this
+// types the same independent gold the flat lane already scores, rather than
+// re-deriving it from router output. Pairs are filtered to the scenario's
+// dominant surface mode and to leaves the manifest actually registers, keeping
+// the typed-gold oracle inside its single-selected-map cap. A skill without a
+// manifest returns null and its scenarios stay byte-identical to the untyped
+// shape, so this is dormant for every hub that has not generated one.
+function loadManifestModeLeaves(skillRoot) {
+  if (!skillRoot) return null;
+  try {
+    const manifestPath = path.join(skillRoot, 'leaf-manifest.json');
+    if (!fs.existsSync(manifestPath)) return null;
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    const byMode = new Map();
+    for (const mode of manifest.modes || []) {
+      if (mode && mode.workflowMode) byMode.set(mode.workflowMode, new Set(mode.leaves || []));
+    }
+    return byMode.size ? byMode : null;
+  } catch {
+    return null;
+  }
+}
+
+function deriveTypedGoldFromBodyGold(expectedResources, byMode) {
+  const resolved = [];
+  for (const raw of expectedResources || []) {
+    const slash = raw.indexOf('/');
+    if (slash === -1) continue;
+    const workflowMode = raw.slice(0, slash);
+    const leafResourceId = raw.slice(slash + 1);
+    const leaves = byMode.get(workflowMode);
+    if (leaves && leaves.has(leafResourceId)) resolved.push({ workflowMode, leafResourceId });
+  }
+  if (!resolved.length) return null;
+  // Dominant surface mode = the mode contributing the most resolvable leaves.
+  // Restricting the gold to that one mode keeps the pair set within the oracle's
+  // simultaneous-mode cap while still measuring surface-routing recall.
+  const counts = new Map();
+  for (const pair of resolved) counts.set(pair.workflowMode, (counts.get(pair.workflowMode) || 0) + 1);
+  let dominant = null;
+  let best = -1;
+  for (const [mode, count] of counts) {
+    if (count > best) { best = count; dominant = mode; }
+  }
+  const pairs = resolved.filter((pair) => pair.workflowMode === dominant);
+  return { pairs, workflowMode: dominant };
+}
 
 /**
  * Parse a skill's manual_testing_playbook into normalized benchmark scenarios.
@@ -476,6 +593,16 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
         warnings.push(`${row.scenarioId}: feature file unreadable (${row.featureFile})`);
       }
     }
+    const byMode = loadManifestModeLeaves(skillRoot);
+    if (byMode) {
+      for (const sc of scenarios) {
+        const gold = deriveTypedGoldFromBodyGold(sc.expectedResources, byMode);
+        if (gold) {
+          sc.expected_leaf_resources = gold.pairs;
+          sc.expected = { ...(sc.expected || {}), workflowMode: gold.workflowMode };
+        }
+      }
+    }
     return { scenarios, shape: 'sk-code', warnings };
   }
 
@@ -489,8 +616,15 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
-  loadPlaybookScenarios, classifyKind, extractPaths, extractForbiddenPrefixes, parseRootIndex,
-  parseExpectedResourcesGold, parseExpectedIntentGold,
+  loadPlaybookScenarios,
+  classifyKind,
+  extractPaths,
+  extractForbiddenPrefixes,
+  parseRootIndex,
+  parseExpectedResourcesGold,
+  parseExpectedIntentGold,
+  loadManifestModeLeaves,
+  deriveTypedGoldFromBodyGold,
 };
 
 if (require.main === module) {

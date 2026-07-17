@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.3
+id: code-graph-scan-incremental
+category: manual_scan_verify_status
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/manual_scan_verify_status/code_graph_scan_incremental.md
 ---
 # 003 code_graph_scan incremental
+
+Prompt: Validate that incremental code_graph_scan skips unchanged files and removes deleted tracked files from graph results.
 
 ## 1. OVERVIEW
 

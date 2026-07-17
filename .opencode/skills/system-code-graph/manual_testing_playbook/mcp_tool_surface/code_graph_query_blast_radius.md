@@ -7,6 +7,11 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "verification"
 version: 1.2.0.4
+id: code-graph-query-blast-radius
+category: mcp_tool_surface
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources: []
 ---
 
 # Scenario 022 — `code_graph_query` blast_radius (multi-subject + transitive)

@@ -2,6 +2,13 @@
 title: "PB-007: Interface Variation-Set Selection Proof"
 description: "Verify interface mode selects the variation_set.md procedure card, not aesthetic_direction.md, and applies the seed-of-thought debias when a brief asks for two or more genuinely distinct visual directions."
 version: 1.0.0.0
+id: PB-007
+expected_workflow_mode: interface
+expected_leaf_resources:
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/variation_diversity.md
+  - workflow_mode: interface
+    leaf_resource_id: references/design_process/brief_to_dials.md
 ---
 
 # PB-007: Interface Variation-Set Selection Proof

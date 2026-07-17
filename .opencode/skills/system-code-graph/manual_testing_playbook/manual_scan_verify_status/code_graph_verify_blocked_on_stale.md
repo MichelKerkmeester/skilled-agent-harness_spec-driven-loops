@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.3
+id: code-graph-verify-blocked-on-stale
+category: manual_scan_verify_status
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/manual_scan_verify_status/code_graph_verify_blocked_on_stale.md
 ---
 # 005 code_graph_verify blocked on stale
+
+Prompt: Confirm code_graph_verify blocks on stale graph state, then passes through to verification after an explicit rescan.
 
 ## 1. OVERVIEW
 

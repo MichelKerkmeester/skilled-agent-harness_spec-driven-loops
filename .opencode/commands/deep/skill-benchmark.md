@@ -93,8 +93,6 @@ Resolve:
 | Benchmark orchestrator | `scripts/skill-benchmark/run-skill-benchmark.cjs` (D5 hard gate → per-scenario contamination-lint → router-replay → score → dual report) |
 | Methodology + operator guide | `references/skill_benchmark/operator_guide.md`, `references/skill_benchmark/routing_optimization.md`, and the target skill's SKILL.md |
 
-No workflow-asset gap exists for this command.
-
 ## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
@@ -104,7 +102,7 @@ No workflow-asset gap exists for this command.
 
 ## 4. EXECUTION TARGETS
 
-| Mode | Workflow |
+| Mode | Target |
 |------|----------|
 | `:auto` | `.opencode/commands/deep/assets/deep_skill-benchmark_auto.yaml` |
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml` |

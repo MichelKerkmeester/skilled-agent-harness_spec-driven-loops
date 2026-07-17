@@ -7,9 +7,18 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "verification"
 version: 1.3.0.0
+id: code-graph-query-bm25-symbol-resolver
+category: mcp_tool_surface
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/mcp_tool_surface/code_graph_query_bm25_symbol_resolver.md
 ---
 
 # 027 -- `code_graph_query` BM25 fallback-only symbol suggestions
+
+Prompt: Validate the BM25 symbol resolver on code_graph_query: a near-miss subject returns candidate symbols for disambiguation only, an exact subject still resolves normally, and the suggestions never execute the query on their own.
 
 ## 1. OVERVIEW
 

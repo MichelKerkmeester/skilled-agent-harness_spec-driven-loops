@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.6
+id: deep-loop-graph-upsert-conditional
+category: coverage_graph
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/coverage_graph/deep_loop_graph_upsert_conditional.md
 ---
 # 010 deep_loop_graph_upsert conditional
+
+Prompt: Inspect deep-loop graph upsert behavior and confirm the conditional graph upsert only fires when graphEvents are present.
 
 ## 1. OVERVIEW
 

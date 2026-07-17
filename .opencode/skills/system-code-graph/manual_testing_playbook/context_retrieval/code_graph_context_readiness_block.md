@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.3
+id: code-graph-context-readiness-block
+category: context_retrieval
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/context_retrieval/code_graph_context_readiness_block.md
 ---
 # 008 code_graph_context readiness block
+
+Prompt: Check that code_graph_context blocks broad stale state and returns readiness metadata instead of omitting graph-safety details.
 
 ## 1. OVERVIEW
 

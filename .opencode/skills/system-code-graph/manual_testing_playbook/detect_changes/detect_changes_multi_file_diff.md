@@ -7,6 +7,11 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "verification"
 version: 1.2.0.2
+id: detect-changes-multi-file-diff
+category: detect_changes
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources: []
 ---
 
 # Scenario 024 — `detect_changes` with multi-file diff

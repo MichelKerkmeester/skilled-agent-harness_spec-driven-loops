@@ -7,8 +7,17 @@ trigger_phrases:
   - "system-code-graph manual testing"
 importance_tier: "normal"
 version: 1.2.0.3
+id: ensure-ready-selective-reindex
+category: read_path_freshness
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources:
+  - workflow_mode: system-code-graph
+    leaf_resource_id: manual_testing_playbook/read_path_freshness/ensure_ready_selective_reindex.md
 ---
 # 001 ensure-ready selective reindex
+
+Prompt: Validate that code_graph can selectively reindex and repair a single stale tracked file without triggering an unrequested full scan.
 
 ## 1. OVERVIEW
 

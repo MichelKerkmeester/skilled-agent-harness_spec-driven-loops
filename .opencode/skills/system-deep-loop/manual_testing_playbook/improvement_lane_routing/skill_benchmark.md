@@ -1,7 +1,15 @@
 ---
+id: IL-003
+category: improvement_lane_routing
+stage: routing
 title: "IL-003: Skill Benchmark Command-Bridge Routing"
 description: "Verify /deep:skill-benchmark routes to the skill-benchmark improvement lane through command-bridge routing."
-version: "1.1.0.0"
+expected_intent: skill-benchmark
+expected_resources:
+  - deep-improvement/SKILL.md
+expected_workflow_mode: skill-benchmark
+expected_leaf_resources: []
+version: "1.2.0.0"
 ---
 
 # IL-003: Skill Benchmark Command-Bridge Routing

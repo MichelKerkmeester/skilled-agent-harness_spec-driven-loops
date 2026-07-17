@@ -7,6 +7,11 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "verification"
 version: 1.2.0.3
+id: code-graph-apply-sub-operations
+category: doctor_code_graph
+stage: routing
+expected_workflow_mode: system-code-graph
+expected_leaf_resources: []
 ---
 
 # Scenario 023 — `code_graph_apply` sub-operations
