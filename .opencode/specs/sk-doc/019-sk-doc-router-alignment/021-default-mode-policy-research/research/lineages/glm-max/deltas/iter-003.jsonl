@@ -1,0 +1,6 @@
+{"type":"iteration","run":3,"status":"complete","focus":"second-order anti-patterns of null+mode-map","newInfoRatio":0.70,"answeredQuestions":["q3-null-second-order"]}
+{"type":"graphEvent","node":{"type":"finding","id":"f3-hubidentity-on-default-is-canon","label":"Canon names hub-identity-on-default-only as the over-emission mechanism (template _routingPrecisionNote)"}}
+{"type":"graphEvent","node":{"type":"finding","id":"f3-menu-vs-scorer-split","label":"mode-registry.json is safe as a PRESENTED menu (disambiguation-card), unsafe as a SCORED resource"}}
+{"type":"graphEvent","node":{"type":"finding","id":"f3-registry-drift-user-visible","label":"null+mode-map elevates mode-registry.json freshness from internal to user-visible"}}
+{"type":"graphEvent","edge":{"from":"f3-menu-vs-scorer-split","to":"f2-archetype-is-per-axis","relation":"REFINES"}}
+{"type":"graphEvent","edge":{"from":"f3-hubidentity-on-default-is-canon","to":"q5-contrarian-steelman","relation":"ADJACENT"}}

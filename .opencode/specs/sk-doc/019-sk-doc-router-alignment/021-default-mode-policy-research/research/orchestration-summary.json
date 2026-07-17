@@ -1,0 +1,59 @@
+{
+  "run_id": "1784313510669-wn3vsj",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research",
+  "base_artifact_dir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research",
+  "total_cli_lineages": 4,
+  "orphaned_lineages": [],
+  "total": 4,
+  "succeeded": 3,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 1
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm-max",
+      "state_log": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/glm-max/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-17T18:38:30.675Z",
+        "end_at_iso": "2026-07-17T19:02:58.935Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 9
+      },
+      "sample": [
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-07-17T19:05:00Z",
+          "deltaMs": 1065
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-07-17T19:05:30Z",
+          "deltaMs": 31065
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-07-17T19:08:00Z",
+          "deltaMs": 181065
+        }
+      ]
+    }
+  ]
+}

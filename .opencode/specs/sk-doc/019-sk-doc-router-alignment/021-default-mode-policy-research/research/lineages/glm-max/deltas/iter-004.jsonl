@@ -1,0 +1,6 @@
+{"type":"iteration","run":4,"status":"complete","focus":"edge cases breaking archetype rule","newInfoRatio":0.75,"answeredQuestions":["q4-edge-cases"]}
+{"type":"graphEvent","node":{"type":"finding","id":"f4-cli-detection-defaulted","label":"cli is detection-defaulted (runtime env signal), NOT pure-defer — a distinct fourth shape; splits Run 1's uniform flip-4 into 1+3"}}
+{"type":"graphEvent","node":{"type":"finding","id":"f4-detection-targets-default-axis","label":"Detection can resolve the DEFAULT axis (not just surface bundling) when an env signal for the default exists"}}
+{"type":"graphEvent","node":{"type":"finding","id":"f4-single-mode-no-router","label":"Single-mode entity is a standalone skill, not a hub; canon threshold for routerPolicy is >=2 modes"}}
+{"type":"graphEvent","edge":{"from":"f4-cli-detection-defaulted","to":"f2-archetype-is-per-axis","relation":"REFINES"}}
+{"type":"graphEvent","edge":{"from":"f4-cli-detection-defaulted","to":"q5-contrarian-steelman","relation":"SUPPORTS"}}

@@ -1,0 +1,586 @@
+{
+  "sessionId": "fanout-terra-max-1784313510669-wn3vsj",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 3,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-17T19:34:00Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-thread-1-when-a-null-hub-defers-what-routing-helper-payload-actually-improves",
+      "inboxId": null,
+      "text": "**Q1 (thread 1):** When a null hub defers, what routing-helper payload actually improves live routing: a full mode registry, a compressed disambiguation card, or a child hint? What measurable tradeoff establishes the minimum useful payload?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-thread-3-what-controlled-experiment-would-distinguish-clean-model-disambiguat",
+      "inboxId": null,
+      "text": "**Q2 (thread 3):** What controlled experiment would distinguish clean model disambiguation from arbitrary mode picking on a null hub, including zero-signal, weak-signal, and adversarially ambiguous requests?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-thread-4-what-safe-migration-and-rollback-sequence-could-flip-proposed-defaul",
+      "inboxId": null,
+      "text": "**Q3 (thread 4):** What safe migration and rollback sequence could flip proposed defaults while detecting regressions before live routing behavior is broadly affected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-thread-8-how-should-a-hub-with-two-genuinely-co-dominant-modes-behave-ordered",
+      "inboxId": null,
+      "text": "**Q4 (thread 8):** How should a hub with two genuinely co-dominant modes behave: ordered bundle, ranked helper, contextual detector, or defer? What evidence rule prevents a false dominant default?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-thread-10-if-defaultmode-currently-anchors-hub-identity-or-catch-all-scoring-",
+      "inboxId": null,
+      "text": "**Q5 (thread 10):** If `defaultMode` currently anchors hub identity or catch-all scoring, what exact replacement contracts and benchmark assertions keep a null hub discoverable without recreating hidden auto-default bias?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-thread-1-when-a-null-hub-defers-what-routing-helper-payload-actually-improves",
+      "inboxId": null,
+      "text": "**Q1 (thread 1):** When a null hub defers, what routing-helper payload actually improves live routing: a full mode registry, a compressed disambiguation card, or a child hint? What measurable tradeoff establishes the minimum useful payload?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-thread-3-what-controlled-experiment-would-distinguish-clean-model-disambiguat",
+      "inboxId": null,
+      "text": "**Q2 (thread 3):** What controlled experiment would distinguish clean model disambiguation from arbitrary mode picking on a null hub, including zero-signal, weak-signal, and adversarially ambiguous requests?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-3-q3-thread-4-what-safe-migration-and-rollback-sequence-could-flip-proposed-defaul",
+      "inboxId": null,
+      "text": "**Q3 (thread 4):** What safe migration and rollback sequence could flip proposed defaults while detecting regressions before live routing behavior is broadly affected?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-q4-thread-8-how-should-a-hub-with-two-genuinely-co-dominant-modes-behave-ordered",
+      "inboxId": null,
+      "text": "**Q4 (thread 8):** How should a hub with two genuinely co-dominant modes behave: ordered bundle, ranked helper, contextual detector, or defer? What evidence rule prevents a false dominant default?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-q5-thread-10-if-defaultmode-currently-anchors-hub-identity-or-catch-all-scoring-",
+      "inboxId": null,
+      "text": "**Q5 (thread 10):** If `defaultMode` currently anchors hub identity or catch-all scoring, what exact replacement contracts and benchmark assertions keep a null hub discoverable without recreating hidden auto-default bias?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "**Q1 (thread 1):** When a null hub defers, what routing-helper payload actually improves live routing: a full mode registry, a compressed disambiguation card, or a child hint? What measurable tradeoff establishes the minimum useful payload?",
+    "**Q2 (thread 3):** What controlled experiment would distinguish clean model disambiguation from arbitrary mode picking on a null hub, including zero-signal, weak-signal, and adversarially ambiguous requests?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-the-committed-payload-sizes-make-indiscriminate-helper-loading-hard-to-justify-q",
+      "text": "The committed payload sizes make indiscriminate helper loading hard to justify: `quick_reference.md` is 14,132 bytes, the full registry is 10,515 bytes, `hub-router.json` is 5,937 bytes, and the two representative child route maps are 3,942 and 3,804 bytes. The minimum plausible improvement is therefore a newly generated compressed disambiguation card: defer reason; zero to two ranked candidate mode labels with one discriminating alias each; the four hub confirmation fields; and a child hint only for an already-ranked candidate. This is a proposal, not a measured token floor. [SOURCE: command output: wc -c .opencode/skills/sk-doc/{mode-registry.json,hub-router.json,shared/references/quick_reference.md,create-command/references/README.md,create-quality-control/references/README.md}] [INFERENCE: based on the source topology and payload-size comparison above]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/sk-doc/mode-registry.json:17-160",
+        ".opencode/skills/sk-doc/hub-router.json:4-50",
+        ".opencode/skills/sk-doc/SKILL.md:55-101",
+        ".opencode/skills/sk-doc/shared/references/smart_routing.md:8-9, 207-214",
+        ".opencode/skills/sk-doc/create-command/SKILL.md:56-92",
+        ".opencode/skills/sk-doc/create-quality-control/SKILL.md:51-124",
+        ".opencode/skills/sk-doc/shared/references/quick_reference.md:2-16, 64-145",
+        ".opencode/skills/sk-doc/create-command/references/README.md:15-38",
+        ".opencode/skills/sk-doc/create-quality-control/references/README.md:15-35",
+        "command output: `wc -c` payload-size comparison"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-full-mode-registry-json-is-not-a-minimal-null-state-helper-it-carries-all-12",
+      "text": "The full `mode-registry.json` is not a minimal null-state helper: it carries all 12 workflow entries, including packet identity, command, aliases, tool surfaces, and advisor metadata. The hub instead classifies with `hub-router.json`, then resolves the matching registry entry only after a mode is selected. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:17-160] [SOURCE: .opencode/skills/sk-doc/SKILL.md:80-95]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/sk-doc/mode-registry.json:17-160",
+        ".opencode/skills/sk-doc/hub-router.json:4-50",
+        ".opencode/skills/sk-doc/SKILL.md:55-101",
+        ".opencode/skills/sk-doc/shared/references/smart_routing.md:8-9, 207-214",
+        ".opencode/skills/sk-doc/create-command/SKILL.md:56-92",
+        ".opencode/skills/sk-doc/create-quality-control/SKILL.md:51-124",
+        ".opencode/skills/sk-doc/shared/references/quick_reference.md:2-16, 64-145",
+        ".opencode/skills/sk-doc/create-command/references/README.md:15-38",
+        ".opencode/skills/sk-doc/create-quality-control/references/README.md:15-35",
+        "command output: `wc -c` payload-size comparison"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-live-null-hub-behavior-already-has-a-small-semantic-contract-with-low-confid",
+      "text": "The live null-hub behavior already has a small *semantic* contract: with low confidence, contradiction, or no winning mode under `defaultMode: null`, it loads `shared/references/quick_reference.md` and asks for workflow mode, target component, inputs, and validation expectations. But the configured default resource is a quality/optimizer cheat sheet, not a cross-mode choice card. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-14] [SOURCE: .opencode/skills/sk-doc/SKILL.md:77-97] [SOURCE: .opencode/skills/sk-doc/shared/references/quick_reference.md:2-16] [SOURCE: .opencode/skills/sk-doc/shared/references/quick_reference.md:64-145]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/sk-doc/mode-registry.json:17-160",
+        ".opencode/skills/sk-doc/hub-router.json:4-50",
+        ".opencode/skills/sk-doc/SKILL.md:55-101",
+        ".opencode/skills/sk-doc/shared/references/smart_routing.md:8-9, 207-214",
+        ".opencode/skills/sk-doc/create-command/SKILL.md:56-92",
+        ".opencode/skills/sk-doc/create-quality-control/SKILL.md:51-124",
+        ".opencode/skills/sk-doc/shared/references/quick_reference.md:2-16, 64-145",
+        ".opencode/skills/sk-doc/create-command/references/README.md:15-38",
+        ".opencode/skills/sk-doc/create-quality-control/references/README.md:15-35",
+        "command output: `wc -c` payload-size comparison"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-second-layer-router-and-representative-children-favor-scoped-on-demand-loadi",
+      "text": "The second-layer router and representative children favor scoped, on-demand loading: no keyword match confirms artifact and intent before loading anything, and full inventory is explicit-only. Child fallbacks first request child-specific discriminators, then load a thin route map that points to one needed concern; this makes a child hint useful only after a candidate child is already ranked. [SOURCE: .opencode/skills/sk-doc/shared/references/smart_routing.md:8-9] [SOURCE: .opencode/skills/sk-doc/shared/references/smart_routing.md:207-214] [SOURCE: .opencode/skills/sk-doc/create-command/SKILL.md:56-92] [SOURCE: .opencode/skills/sk-doc/create-quality-control/SKILL.md:69-124] [SOURCE: .opencode/skills/sk-doc/create-command/references/README.md:21-38] [SOURCE: .opencode/skills/sk-doc/create-quality-control/references/README.md:21-35]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/sk-doc/mode-registry.json:17-160",
+        ".opencode/skills/sk-doc/hub-router.json:4-50",
+        ".opencode/skills/sk-doc/SKILL.md:55-101",
+        ".opencode/skills/sk-doc/shared/references/smart_routing.md:8-9, 207-214",
+        ".opencode/skills/sk-doc/create-command/SKILL.md:56-92",
+        ".opencode/skills/sk-doc/create-quality-control/SKILL.md:51-124",
+        ".opencode/skills/sk-doc/shared/references/quick_reference.md:2-16, 64-145",
+        ".opencode/skills/sk-doc/create-command/references/README.md:15-38",
+        ".opencode/skills/sk-doc/create-quality-control/references/README.md:15-35",
+        "command output: `wc -c` payload-size comparison"
+      ]
+    },
+    {
+      "id": "finding-2-2-a-local-three-prompt-replay-supplies-stable-controls-for-the-first-two-strata-i-",
+      "text": "A local three-prompt replay supplies stable controls for the first two strata: `I need help with some documentation.` produced no intents, `defaultApplied: false`, and `deferReason: \"no-mode-scored\"`; `Please add an argument-hint to a command.` produced only `create-command` from the `argument-hint` alias. This distinguishes correct abstention from a weak but discriminating signal without changing hub sources. [SOURCE: command output: node router-replay.cjs module invocation for the three listed prompts] [SOURCE: .opencode/skills/sk-doc/hub-router.json:27,42]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-50",
+        ".opencode/skills/sk-doc/SKILL.md:45-101",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356,456-480,538-702,709-728",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-206",
+        ".opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,47-50,73-88",
+        ".opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/README.md:18-26,50-58",
+        "command output: local `node` invocation of `routeSkillResources` for zero-signal, weak-signal, and adversarial prompts"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-adversarial-prompt-i-need-a-command-template-and-a-flowchart-but-only-one-ch",
+      "text": "The adversarial prompt `I need a command template and a flowchart, but only one; choose one.` tied `create-command` and `create-flowchart` in replay and surfaced `deferReason: \"ambiguous-multi-axis\"`, while the replay still returned candidate modes and flowchart resources. That is a useful mechanical baseline, but it cannot itself prove clean model behavior: replay selects scored keywords within the ambiguity delta and returns telemetry/resources, whereas the hub contract requires `UNKNOWN_FALLBACK` when intent is contradictory. [SOURCE: command output: node router-replay.cjs module invocation for the three listed prompts] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-480,643-702] [SOURCE: .opencode/skills/sk-doc/SKILL.md:80-97]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-50",
+        ".opencode/skills/sk-doc/SKILL.md:45-101",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356,456-480,538-702,709-728",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-206",
+        ".opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,47-50,73-88",
+        ".opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/README.md:18-26,50-58",
+        "command output: local `node` invocation of `routeSkillResources` for zero-signal, weak-signal, and adversarial prompts"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-controlled-experiment-should-use-matched-blinded-fixture-pairs-in-three-stra",
+      "text": "The controlled experiment should use matched, blinded fixture pairs in three strata: **Z** zero-signal prompts golded as `defer` with a discriminating clarification; **W** weak-signal prompts golded as one named mode; and **A** two-mode, “only one” prompts golded as `defer` retaining both candidates. Each A fixture needs an alias-order reversal and a paraphrase pair; a separate explicit-two-task prompt is the positive `orderedBundle` control. Measure exact outcome correctness (`single|orderedBundle|defer`), wrong-mode rate on Z/A, candidate-retention recall on A, clarification-discriminator adequacy, alias-order flip rate, and false-positive resource count. Run deterministic router replay as the mechanical control, then live dispatch with scorer-only gold to measure actual model behavior; the benchmark already runs replay before scoring, enables route-gold by default for hub skills, and reserves live dispatch for follow-on measurement. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-206] [SOURCE: .opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,73-88] [INFERENCE: combining the replay telemetry seam, the null-hub contract, and the existing playbook's positive multi-intent control]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-50",
+        ".opencode/skills/sk-doc/SKILL.md:45-101",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356,456-480,538-702,709-728",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-206",
+        ".opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,47-50,73-88",
+        ".opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/README.md:18-26,50-58",
+        "command output: local `node` invocation of `routeSkillResources` for zero-signal, weak-signal, and adversarial prompts"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-deterministic-replay-exposes-a-testable-null-hub-abstention-trace-it-reports",
+      "text": "The deterministic replay exposes a testable null-hub abstention trace: it reports `workflowMode`, `defaultApplied`, and `deferReason`; `defaultApplied` can only be true when no mode scored and the policy has a non-null default. The `sk-doc` policy sets `defaultMode` to `null`, so zero-signal fixtures can assert no automatic default separately from downstream response quality. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356] [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-13]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-50",
+        ".opencode/skills/sk-doc/SKILL.md:45-101",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356,456-480,538-702,709-728",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-206",
+        ".opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,47-50,73-88",
+        ".opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/README.md:18-26,50-58",
+        "command output: local `node` invocation of `routeSkillResources` for zero-signal, weak-signal, and adversarial prompts"
+      ]
+    },
+    {
+      "id": "finding-3-4-recommended-order-1-freeze-and-pass-the-baseline-corpus-2-produce-one-single-fie",
+      "text": "Recommended order: **1)** freeze and pass the baseline corpus; **2)** produce one single-field candidate and its explicit candidate fixture gold; **3)** rerun D5 plus route-gold replay; **4)** run only the bounded target scenarios in live trace mode with private/scorer-only evaluation; **5)** promote one hub at a time only when the candidate equals or improves the predeclared pass rate and cost envelope; **6)** observe the same telemetry after each promotion. Roll back immediately by restoring that one recorded `defaultMode` value and rerunning the unchanged baseline corpus if a hard benchmark block, topology drift, an invariant-fixture failure, an unplanned default application, or a live private-gold regression occurs. This applies the repository's established default-off/frozen-corpus rollout discipline without asserting that this hub already has a runtime canary switch. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:269-298] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:301-388] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:151-162] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:503-513] [INFERENCE: one-field promotion and restoration minimize affected routing surface and preserve a decisive rollback comparison]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-20",
+        ".opencode/skills/sk-doc/SKILL.md:48-97",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356, 643-702",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20, 65-89, 174-206, 246-298, 301-388",
+        ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:151-162, 503-513"
+      ]
+    },
+    {
+      "id": "finding-3-1-router-replay-supplies-necessary-observability-but-cannot-alone-prove-that-a-liv",
+      "text": "Router replay supplies necessary observability but cannot alone prove that a live route loaded a proposed default. Its hub telemetry marks `defaultApplied` only when no modes were selected and the policy value is non-null; the replay then continues to assemble resources from the unchanged selected-intent list. A candidate therefore needs a live, privately scored check after deterministic replay rather than treating `defaultApplied: true` as proof of the user-visible route. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:643-702]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-20",
+        ".opencode/skills/sk-doc/SKILL.md:48-97",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356, 643-702",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20, 65-89, 174-206, 246-298, 301-388",
+        ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:151-162, 503-513"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-minimum-deterministic-evidence-gate-before-each-candidate-change-is-a-pass-t",
+      "text": "The minimum deterministic evidence gate before **each** candidate change is: (a) pass the D5 connectivity and hub-registry scan; (b) run the frozen target-owned playbook corpus with route gold explicitly enabled; and (c) retain the generated JSON/Markdown report plus the topology digest. D5 runs before dispatch, hub skills enable route gold by default, and either a structural/registry/route-gold block or a manifest change during scoring returns a failing process signal rather than merely a warning. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-89] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:246-298]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-20",
+        ".opencode/skills/sk-doc/SKILL.md:48-97",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356, 643-702",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20, 65-89, 174-206, 246-298, 301-388",
+        ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:151-162, 503-513"
+      ]
+    },
+    {
+      "id": "finding-3-3-use-two-immutable-fixture-views-preserve-the-current-baseline-gold-unchanged-the",
+      "text": "Use two immutable fixture views: preserve the current baseline gold unchanged, then add candidate-specific private gold for the intentional zero-signal behavior while retaining weak-signal and contradictory-intent invariants. Observe every candidate by fixture stratum through `workflowMode`, `matchedAliases`, `defaultApplied`, `deferReason`, packet, and backend-kind telemetry; a non-targeted default application, changed weak-mode route, or loss of contradictory-intent defer is a regression. The hub's policy keeps default, ambiguity, tie-break, outcomes, fallback resource, and bundle rules together, while its registry and hub router are synchronized projections, so changing more than one of those controls destroys causal attribution. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-20] [SOURCE: .opencode/skills/sk-doc/SKILL.md:48-97] [INFERENCE: preserve baseline gold and isolate the candidate expectation so intentional change is distinguishable from collateral drift]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-20",
+        ".opencode/skills/sk-doc/SKILL.md:48-97",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356, 643-702",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20, 65-89, 174-206, 246-298, 301-388",
+        ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:151-162, 503-513"
+      ]
+    },
+    {
+      "id": "finding-4-2-demonstrated-contract-boundary-the-current-registry-defines-mode-identity-packet",
+      "text": "**Demonstrated contract boundary:** the current registry defines mode identity, packet/backend mapping, commands, aliases, and advisor metadata; the routing contract either defers low-confidence/contradictory/no-winner input or loads each already-resolved mode. Neither source defines a `rankedHelper`, a contextual-detector schema, or a dominance-measurement field. A ranked helper or contextual detector is consequently a proposal, not current hub behavior. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:5-15,17-163] [SOURCE: .opencode/skills/sk-doc/SKILL.md:48-97]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-20",
+        ".opencode/skills/sk-doc/mode-registry.json:5-15,17-163",
+        ".opencode/skills/sk-doc/SKILL.md:48-97",
+        ".opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,73-88",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-208,246-298,301-363"
+      ]
+    },
+    {
+      "id": "finding-4-1-demonstrated-policy-behavior-sk-doc-assigns-single-only-to-one-dominant-intent-r",
+      "text": "**Demonstrated policy behavior:** `sk-doc` assigns `single` only to one dominant intent, reserves `orderedBundle` for clearly separate authoring intents, and uses `defer` for unclear or contradictory intent. Its configured default is `null`; the `tieBreak` is an ordered list, while the only explicit bundle rule is `create-skill` plus `create-quality-control`. An ordered tie-break is therefore deterministic ordering metadata, not demonstrated evidence that one candidate is semantically dominant. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-20] [SOURCE: .opencode/skills/sk-doc/SKILL.md:80-97] [INFERENCE: the policy defines order but no evidence or outcome field that converts tie-break position into dominance]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-20",
+        ".opencode/skills/sk-doc/mode-registry.json:5-15,17-163",
+        ".opencode/skills/sk-doc/SKILL.md:48-97",
+        ".opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,73-88",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-208,246-298,301-363"
+      ]
+    },
+    {
+      "id": "finding-4-3-fixture-evidence-is-conditional-not-a-default-proof-sd-007-treats-an-explicit-tw",
+      "text": "**Fixture evidence is conditional, not a default proof:** SD-007 treats an explicit two-task request as one where both candidates must be retained; its acceptance allows a union/combined route or an explicit disambiguation and rejects silently discarding either. That supports an ordered bundle only when the request independently asks for both compatible tasks. Its `DOC_QUALITY`/`FLOWCHART` labels are not current `workflowMode` identifiers, so the fixture needs a current-ID mapping before it is executable route gold; it does not demonstrate that a generic co-dominant score should auto-bundle or select a default. [SOURCE: .opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,73-88] [SOURCE: .opencode/skills/sk-doc/mode-registry.json:17-163] [INFERENCE: fixture labels differ from the registry’s current workflow-mode keys]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-20",
+        ".opencode/skills/sk-doc/mode-registry.json:5-15,17-163",
+        ".opencode/skills/sk-doc/SKILL.md:48-97",
+        ".opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,73-88",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-208,246-298,301-363"
+      ]
+    },
+    {
+      "id": "finding-4-4-proposal-decision-ladder-and-evidence-rule-run-a-contextual-detector-first-when-",
+      "text": "**Proposal — decision ladder and evidence rule:** run a contextual detector first; when it supplies a unique, predeclared discriminator, return `single`. If the prompt independently requests both compatible tasks and an explicit bundle rule supports their order, return `orderedBundle`. If two modes remain co-dominant, or the user requires one but supplies no discriminator, `defer` and show a ranked helper as a non-binding explanation rather than dispatching a mode. Treat a candidate as a true dominant default only after a current-ID, independently private-golded corpus keeps it the unique desired outcome with `defaultMode` held null during measurement, remains invariant under paraphrase/alias-order/context variants, preserves explicit bundle and contradictory-single-choice cases, and passes the hub route-gold/D5 gates; if that counterfactual evidence is absent, the default is a presumption and the correct outcome is `defer`. The inspected benchmark supplies deterministic route-gold enforcement and an opt-in, target-owned live outcome pass, but no numeric dominance threshold or completed live result. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-208,246-298,301-363] [INFERENCE: the ladder operationalizes the current three outcomes while preventing the fallback policy from supplying its own evidence]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".opencode/skills/sk-doc/hub-router.json:4-20",
+        ".opencode/skills/sk-doc/mode-registry.json:5-15,17-163",
+        ".opencode/skills/sk-doc/SKILL.md:48-97",
+        ".opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,73-88",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20,65-89,174-208,246-298,301-363"
+      ]
+    },
+    {
+      "id": "finding-5-1-confirmed-defaultmode-does-not-enter-current-replay-scoring-or-mode-identity-sco",
+      "text": "**Confirmed — `defaultMode` does not enter current replay scoring or mode identity.** `scoreIntents()` derives scores solely from `intentSignals`, and `selectIntents()` retains only scored modes within the ambiguity delta. `buildHubRouteTelemetry()` derives `workflowMode`, `packet`, and `backendKind` from that selected-mode list before it computes `defaultApplied`; the sole `defaultMode` read is the post-selection boolean `selectedModes.length === 0 && policy.defaultMode != null`. Thus a non-null value is observed as telemetry, not inserted as a score, selected mode, packet, or backend identity. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-480] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:643-702]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356, 456-480, 538-702",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20, 65-89, 196-208, 246-298",
+        ".opencode/skills/sk-doc/hub-router.json:4-35",
+        "command output: Glob `.opencode/skills/**/*router*.cjs` (identified `router-replay.cjs` as the relevant shared replay implementation)"
+      ]
+    },
+    {
+      "id": "finding-5-2-confirmed-the-sk-doc-policy-separates-the-null-default-from-discovery-signals-it",
+      "text": "**Confirmed — the `sk-doc` policy separates the null default from discovery signals.** Its policy declares `defaultMode: null`, while mode discovery is represented by independently weighted `routerSignals`; its documented outcomes reserve `defer` for unclear or contradictory input. `defaultResource` is a separate fallback-resource field, not a workflow-mode identifier. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-35]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356, 456-480, 538-702",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20, 65-89, 196-208, 246-298",
+        ".opencode/skills/sk-doc/hub-router.json:4-35",
+        "command output: Glob `.opencode/skills/**/*router*.cjs` (identified `router-replay.cjs` as the relevant shared replay implementation)"
+      ]
+    },
+    {
+      "id": "finding-5-3-confirmed-the-current-benchmark-has-a-suitable-enforcement-seam-but-not-a-demons",
+      "text": "**Confirmed — the current benchmark has a suitable enforcement seam but not a demonstrated anti-bias schema.** Hub skills enable route gold by default, D5 executes before scenarios, every authored-gold row is sent through `evaluateRouteGold`, and enforced structural/registry/route-gold failures return a non-zero exit code. The runner therefore provides the place to enforce null-hub invariants, but these sources do not demonstrate that its existing gold schema already checks the proposed telemetry fields below. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-89] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:196-208] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:246-298]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356, 456-480, 538-702",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20, 65-89, 196-208, 246-298",
+        ".opencode/skills/sk-doc/hub-router.json:4-35",
+        "command output: Glob `.opencode/skills/**/*router*.cjs` (identified `router-replay.cjs` as the relevant shared replay implementation)"
+      ]
+    },
+    {
+      "id": "finding-5-4-proposed-replacement-contracts-and-assertions-a-define-a-hubdefer-result-with-wo",
+      "text": "**Proposed replacement contracts and assertions:** (a) define a `HubDefer` result with `workflowMode: null`, scored `candidateModes`, `matchedAliases`, and a `deferReason`; `packet` and `backendKind` remain empty until a signal-selected mode exists; (b) replace any future catch-all default with a neutral `DiscoverabilityHelper` that asks one discriminating question and may describe the hub, but carries no mode id, child packet path, synthetic alias, or score; and (c) make `defaultMode` nullable only as a policy compatibility field, with `null` required for a null hub and any non-null value rejected by a static anti-implicit-selection check. Route-gold should then assert: **Z** zero-signal gives null mode, empty aliases/packet/backend, `defaultApplied: false`, and `no-mode-scored`; **W** weak-signal gives exactly its signal-selected mode and no default; **A** ambiguous input retains candidates while deferring and loads no child mode resource; and alias-order/paraphrase variants preserve Z/A abstention. A mutation control with a non-null `defaultMode` must fail the new policy lint or these invariants, so discoverability cannot silently become auto-dispatch. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-480] [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-35] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-89] [INFERENCE: the proposal preserves the observed separation between scoring, identity, fallback, and benchmark enforcement while making a future regression fail explicitly]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356, 456-480, 538-702",
+        ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:10-20, 65-89, 196-208, 246-298",
+        ".opencode/skills/sk-doc/hub-router.json:4-35",
+        "command output: Glob `.opencode/skills/**/*router*.cjs` (identified `router-replay.cjs` as the relevant shared replay implementation)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-3b751ae37ebf",
+      "text": "An unconditional child-specific hint before ranking a candidate: each inspected child asks for information that presupposes its own domain, so it cannot resolve a genuine zero-signal hub request. [SOURCE: .opencode/skills/sk-doc/create-command/SKILL.md:81-92] [SOURCE: .opencode/skills/sk-doc/create-quality-control/SKILL.md:105-124]",
+      "contentHash": "3b751ae37ebf",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-98b360fee718",
+      "text": "Committed sources provide byte-size proxies, not a token budget or route-accuracy experiment; they cannot establish an exact numerical minimum payload.",
+      "contentHash": "98b360fee718",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-18ffba478699",
+      "text": "The existing shared quick reference is not a neutral fallback-menu specimen, so its size cannot be treated as the target card size. [SOURCE: .opencode/skills/sk-doc/shared/references/quick_reference.md:2-16] [SOURCE: .opencode/skills/sk-doc/shared/references/quick_reference.md:64-145]",
+      "contentHash": "18ffba478699",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-d3becd5e13cc",
+      "text": "Unconditional full-registry injection as the null fallback: it includes routing-adjacent metadata and all child surfaces, while the hub contract already separates classification from entry resolution. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:17-160] [SOURCE: .opencode/skills/sk-doc/SKILL.md:80-95]",
+      "contentHash": "d3becd5e13cc",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-cbb43bb0b455",
+      "text": "A single ambiguous fixture without alias-order and paraphrase counterparts cannot attribute a resulting pick to evidence rather than incidental ordering; use paired variants as the minimum adversarial unit. [INFERENCE: based on the equal-score replay result and the ordered hub tie-break policy]",
+      "contentHash": "cbb43bb0b455",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-fb9b292474e5",
+      "text": "The legacy public/private fixture directory is supported only by explicit `--fixtures-dir` and is superseded by each skill's manual-testing playbook, so it is not the default seam for this experiment. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/README.md:18-26,50-58]",
+      "contentHash": "fb9b292474e5",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9a7ec723c9cc",
+      "text": "Treating deterministic replay alone as proof of model-level clean disambiguation: it records scored candidates and telemetry but does not grade the model's clarification or semantic handling of the “only one” constraint. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-480,643-702] [SOURCE: .opencode/skills/sk-doc/SKILL.md:84-86]",
+      "contentHash": "9a7ec723c9cc",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-624efc4df3a3",
+      "text": "Treating the existing SD-007 multi-intent scenario as the adversarial fixture: its contract deliberately permits a combined route or an explicit disambiguation, so it cannot detect an arbitrary single pick where the user said only one mode is wanted. [SOURCE: .opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,73-88]",
+      "contentHash": "624efc4df3a3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-72c280c6d752",
+      "text": "A multi-hub flip combined with changes to router signals, registry projections, fallback resources, or tie-break order: the resulting outcome cannot be attributed to the `defaultMode` change and cannot be cleanly rolled back. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-20] [SOURCE: .opencode/skills/sk-doc/SKILL.md:48-97] [INFERENCE: coupled policy edits remove the single-variable comparison]",
+      "contentHash": "72c280c6d752",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7c8fa050e87f",
+      "text": "No inspected hub or benchmark contract defines a runtime `defaultMode` canary/percentage selector. Do not assume one exists; use a bounded candidate run and explicitly scoped live scenarios until such a control is authored. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:372-388] [INFERENCE: the inspected contracts expose a policy field and trace-mode selection, not a per-hub rollout selector]",
+      "contentHash": "7c8fa050e87f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-e48c64076271",
+      "text": "The inspected contracts do not set a numeric tolerance for live route-quality regression. Structural and route-gold failures are zero-tolerance gates; any live pass-rate or cost tolerance must be predeclared with the candidate rather than invented after observing results. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:289-298] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:503-513]",
+      "contentHash": "e48c64076271",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ac56d4049053",
+      "text": "Treating deterministic `defaultApplied` telemetry as proof that live dispatch selected or loaded the candidate child. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-356] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:643-702]",
+      "contentHash": "ac56d4049053",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-83c94621ef64",
+      "text": "No inspected local contract supplies a numeric dominance threshold, a recorded contextual-detector result, or a live outcome corpus. Do not invent a percentage threshold or call a ranked helper current behavior. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:18-20,301-363] [SOURCE: .opencode/skills/sk-doc/mode-registry.json:5-15]",
+      "contentHash": "83c94621ef64",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-401ab114b48a",
+      "text": "SD-007 alone cannot establish a generic co-dominance rule because its acceptance deliberately permits either a combined route or explicit disambiguation for an explicit two-task prompt. [SOURCE: .opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:73-88]",
+      "contentHash": "401ab114b48a",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-7debf328ac9d",
+      "text": "Treating `routerPolicy.tieBreak` order or an already-configured `defaultMode` as proof of semantic dominance. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-13] [INFERENCE: both are policy controls, not independently scored user outcomes]",
+      "contentHash": "7debf328ac9d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-b9220242f5b6",
+      "text": "Treating every within-delta two-mode score as an ordered bundle. The policy and SD-007 distinguish explicit separate tasks from unclear or contradictory alternatives. [SOURCE: .opencode/skills/sk-doc/hub-router.json:8-20] [SOURCE: .opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:37-42,73-88]",
+      "contentHash": "b9220242f5b6",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4f1fff99972f",
+      "text": "Using SD-007’s legacy intent labels as current executable route gold without mapping them to current registry identifiers. [SOURCE: .opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md:2-13] [SOURCE: .opencode/skills/sk-doc/mode-registry.json:17-163]",
+      "contentHash": "4f1fff99972f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3a91d327f17f",
+      "text": "`defaultApplied` alone cannot prove a mode was selected or a child was loaded: it is true only for zero selected modes with a non-null policy value, while runtime identity arrays are derived from the selected modes. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:325-355]",
+      "contentHash": "3a91d327f17f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-5efacc51b64e",
+      "text": "A neutral fallback resource must not be treated as a covert mode: the hub policy models `defaultResource` separately from `defaultMode` and `routerSignals`. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-35]",
+      "contentHash": "5efacc51b64e",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-1ded37706e16",
+      "text": "Inferring that `defaultMode` anchors runtime identity or catch-all scoring from its field name: in the inspected replay it is read only after selection to compute telemetry. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-480]",
+      "contentHash": "1ded37706e16",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-f15bd44ffcca",
+      "text": "Treating the current route-gold runner as proof that it already enforces the proposed null-hub telemetry assertions: the inspected runner invokes route gold and hard-gates its verdict, but does not itself establish those new expectation fields. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:196-208] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:289-298]",
+      "contentHash": "f15bd44ffcca",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 2,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 20,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {
+      "code": 36,
+      "other": 13
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/terra-max/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

@@ -1,0 +1,57 @@
+{
+  "topic": "Parent-hub defaultMode policy, run 2: a divergent multi-model deep dive over the Divergent Exploration Agenda in the packet spec.md.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research",
+  "fanout_lineage_artifact_dir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/terra-max",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-17T18:45:05Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.6-terra-fast",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-terra-max-1784313510669-wn3vsj",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

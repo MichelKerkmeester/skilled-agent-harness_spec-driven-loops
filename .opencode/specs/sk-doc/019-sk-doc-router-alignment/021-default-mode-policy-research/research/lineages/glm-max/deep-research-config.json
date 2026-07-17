@@ -1,0 +1,57 @@
+{
+  "topic": "Parent-hub defaultMode policy, run 2: a divergent multi-model deep dive over the Divergent Exploration Agenda in the packet spec.md.",
+  "researchTopic": "Parent-hub defaultMode policy, run 2: a divergent multi-model deep dive over the Divergent Exploration Agenda in the packet spec.md.",
+  "specFolder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research",
+  "artifactDir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/glm-max",
+  "lineageLabel": "glm-max",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "resource_map": {
+    "present": false,
+    "emit": true
+  },
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {},
+    "divergenceNote": "stopPolicy=max-iterations; convergence before cap is telemetry only, broaden angles instead of synthesizing early"
+  },
+  "stopPolicy": "max-iterations",
+  "dryRun": false,
+  "executionMode": "auto",
+  "status": "complete",
+  "createdAt": "2026-07-17T18:41:00Z",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900,
+    "label": "glm-max"
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-max-1784313510669-wn3vsj",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "lineageClass": "fanout-detached",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "findings-registry.json": "auto-generated",
+    "deep-research-dashboard.md": "auto-generated",
+    "iterations/iteration-NNN.md": "write-once",
+    "deltas/iter-NNN.jsonl": "write-once",
+    "research.md": "mutable"
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

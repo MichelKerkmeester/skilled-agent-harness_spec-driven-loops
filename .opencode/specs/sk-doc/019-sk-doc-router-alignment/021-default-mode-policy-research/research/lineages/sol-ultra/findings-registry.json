@@ -1,0 +1,59 @@
+{
+  "openQuestions": [
+    "What effects will the preregistered live policy-by-helper benchmark observe across model families?",
+    "What is the privacy-safe natural request distribution for each hub?"
+  ],
+  "resolvedQuestions": [
+    "What is the strongest evidence-backed case that named defaults remain preferable, and where does the run-1 verdict overreach?",
+    "How should named-versus-null policy and fallback-resource shape be evaluated in a runnable live benchmark without mutating shipped hubs?",
+    "What exact third-archetype schema, migration order, rollback telemetry, and benchmark contracts would make policy changes safe?",
+    "Which cross-hub edge cases break a binary named-default-versus-null policy?",
+    "What second-order anti-patterns emerge from null routing, mode-map loading, contextual defaults, or multi-dominant modes?"
+  ],
+  "keyFindings": [
+    "Zero-signal replay leaves workflowMode null while defaultApplied reports only that a named default is configured.",
+    "sk-prompt supports a bounded named recommendation, but repository fixtures do not prove an 80 percent traffic share.",
+    "CLI and MCP gold scenarios explicitly require defer despite configured named defaults.",
+    "A paired live named-versus-null benchmark is needed to distinguish harmless metadata from behavior-shaping bias.",
+    "A 2x4 policy-by-helper fixture matrix isolates named-versus-null behavior from fallback-resource shape.",
+    "A balanced ambiguity corpus, blind evidence grading, and repeated blocked sampling make live results auditable.",
+    "Full registry, compressed card, child hint, and no-helper arms test distinct routing and token-cost hypotheses.",
+    "Selection policy must be separated from optional recommendation metadata through keyword-default, defer, and detect archetypes.",
+    "defaultApplied requires dual-write compatibility as defaultConsulted, not a direct rename to defaultConfigured.",
+    "Safe rollout adds tolerant readers, telemetry, fixtures, canon, annotations, and gates before any hub policy flip.",
+    "Null routing has distinct defer and detection contracts and can still bias, starve, or fan out without validated neutral fallback behavior."
+  ],
+  "ruledOutDirections": [
+    "Treating routeTelemetry.defaultApplied as evidence that replay selected the default child.",
+    "Using deterministic replay alone to settle live-model behavior.",
+    "A simple named-versus-null A/B test with one shared helper.",
+    "Treating the full registry as the automatic control winner.",
+    "Using one live run per case.",
+    "Inferring the routing archetype from defaultMode nullability.",
+    "Replacing defaultApplied directly with defaultConfigured.",
+    "Encoding contextual or multi-dominant defaults as static recommendation metadata.",
+    "Flipping shipped hubs before compatibility readers, telemetry, fixtures, and gates exist."
+  ],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 2,
+    "resolvedQuestions": 5,
+    "keyFindings": 11,
+    "convergenceScore": 0.9067,
+    "coverageBySources": {}
+  },
+  "divergence": {
+    "saturatedDirections": [
+      "Re-deriving the run-1 per-hub verdict without new evidence",
+      "Treating deterministic replay telemetry as live child selection",
+      "Using a confounded two-arm policy experiment"
+    ],
+    "completed": [
+      "Contrarian semantics pass",
+      "Runnable live benchmark design",
+      "Third-archetype migration and edge-case pass"
+    ],
+    "failures": [],
+    "overrides": []
+  }
+}

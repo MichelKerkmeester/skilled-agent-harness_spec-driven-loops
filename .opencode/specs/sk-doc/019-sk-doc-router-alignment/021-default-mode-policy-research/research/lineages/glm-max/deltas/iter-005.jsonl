@@ -1,0 +1,7 @@
+{"type":"iteration","run":5,"status":"complete","focus":"contrarian steelman; falsifiable four-shape rule; recover cli","newInfoRatio":0.65,"answeredQuestions":["q5-contrarian-steelman"]}
+{"type":"graphEvent","node":{"type":"finding","id":"f5-four-shape-rule","label":"Falsifiable four-shape decision rule: keyword-with-default / detection-defaulted / detection-routed-surface / pure-defer — replaces Run 1's uniform third archetype"}}
+{"type":"graphEvent","node":{"type":"finding","id":"f5-cli-recovered","label":"cli recovered as detection-defaulted (NOT null) — the one real disagreement with Run 1"}}
+{"type":"graphEvent","node":{"type":"finding","id":"f5-three-nulls-downgraded","label":"Three nulls (deep-loop/mcp/sk-design) confirmed but downgraded: directional-pending-measurement, not proven (Run 1 no-corpus)"}}
+{"type":"graphEvent","edge":{"from":"f5-four-shape-rule","to":"f4-cli-detection-defaulted","relation":"INCORPORATES"}}
+{"type":"graphEvent","edge":{"from":"f5-four-shape-rule","to":"f3-menu-vs-scorer-split","relation":"INCORPORATES"}}
+{"type":"graphEvent","edge":{"from":"f5-four-shape-rule","to":"f2-archetype-is-per-axis","relation":"REFINES"}}

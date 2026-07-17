@@ -80,3 +80,24 @@ Should a parent hub's `routerPolicy.defaultMode` point at a child mode, or shoul
 - Actually flipping any shipped `defaultMode` (that is a follow-on decision per hub).
 - Layer-0 advisor (skill selection) — this is about Layer-1 mode selection only.
 <!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:divergent-agenda -->
+## 5. DIVERGENT EXPLORATION AGENDA (Run 2 — 20 iterations, non-converge)
+
+Run 1 (4 iterations, in `run1-archive/`) reached a clear answer: keep sk-prompt, flip 4 to null; a null hub's fallback should load the routing helper (`smart_routing.md` + `mode-registry.json`), not a child or filler. Run 2 must NOT re-derive this — it must **diverge, expand, and stress-test**. Each iteration should open NEW territory. Do not converge; treat any "we already know this" as a signal to push into an unexplored angle. Candidate divergent threads (extend beyond these):
+
+1. **The fallback-resource rule, stress-tested.** Does loading the mode-map actually help a live model route better, or just add tokens? Is there a case where a child hint beats the mode-map? What is the ideal *shape* of the routing-helper resource (full registry vs a compressed disambiguation card)?
+2. **Layer-0 ↔ Layer-1 interaction.** How does the advisor's skill selection interact with a hub that defers? Does a null hub push disambiguation cost up to Layer 0? Should the advisor pre-resolve more, so hubs never hit zero-signal?
+3. **Live-mode reality.** On a null hub, does a real model presented with the mode-map disambiguate cleanly, or freeze / pick arbitrarily? Design the experiment.
+4. **Migration & rollback.** Safe ordering of the 4 flips; regression surface; how to detect a bad flip; can the flips be shipped behind a benchmark gate?
+5. **The third archetype, fully specified.** Exact schema, validator rules, and the `defaultConfigured` rename ripple across replay, gold, dashboards, docs.
+6. **Cross-hub generalization.** Should ALL hubs converge on one archetype? When is detection-routed (sk-code) the better answer than defer-routed? Could sk-design be detection-routed?
+7. **Second-order effects.** Does removing defaults measurably raise disambiguation friction? What NEW anti-patterns could null + mode-map introduce (e.g. mode-map bloat, stale registries, over-deferring)?
+8. **Multi-dominant hubs & bundling.** What if a hub genuinely has 2 co-equal common modes? Ordered-bundle vs defer vs a ranked mode-map.
+9. **Edge cases & failure modes.** Empty mode-map, single-mode hubs, a mode-registry that drifts from hub-router, a hub whose "default" is contextual (cli's runtime-dependence — generalize it).
+10. **The catch-all coupling, deeper.** Fable found `defaultMode` anchors `hub-identity`. If we null the default, where does hub-identity live on a keyword hub? Is "discovery-only" fully worked out? Does sk-design's 6-way co-fire have analogues elsewhere?
+11. **Historical & evidential.** Why were defaults added (bulk commits)? What would a real zero-signal traffic corpus look like, and is it worth building vs the archetype+fixture approach?
+12. **Contrarian pass.** Argue the STRONGEST case AGAINST the run-1 verdict — where might keeping a named default actually be right? Steelman "auto-default is fine."
+<!-- /ANCHOR:divergent-agenda -->

@@ -1,0 +1,163 @@
+{
+  "mergedFrom": [
+    "glm-max",
+    "sol-ultra",
+    "terra-max"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "state-finding-1-1-20ed6ed90fb9",
+      "title": "Contrarian and live-routing pass: steelman named defaults, inspect actual replay/default semantics, and identify evidence that could falsify the run-1 recommendation.",
+      "summary": "Contrarian and live-routing pass: steelman named defaults, inspect actual replay/default semantics, and identify evidence that could falsify the run-1 recommendation.",
+      "text": "Contrarian and live-routing pass: steelman named defaults, inspect actual replay/default semantics, and identify evidence that could falsify the run-1 recommendation.",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-ultra"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-7fe576d8f7e2",
+      "title": "Contrarian steelman: is auto-default actually fine? (falsifiable four-shape rule; recover cli as detection-defaulted)",
+      "summary": "Contrarian steelman: is auto-default actually fine? (falsifiable four-shape rule; recover cli as detection-defaulted)",
+      "text": "Contrarian steelman: is auto-default actually fine? (falsifiable four-shape rule; recover cli as detection-defaulted)",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-321d14c509f3",
+      "title": "Edge cases breaking the archetype rule (single-mode, empty map, drift, contextual defaults)",
+      "summary": "Edge cases breaking the archetype rule (single-mode, empty map, drift, contextual defaults)",
+      "text": "Edge cases breaking the archetype rule (single-mode, empty map, drift, contextual defaults)",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-62f51e162058",
+      "title": "Is detection-routed the universal archetype? sk-design feasibility test",
+      "summary": "Is detection-routed the universal archetype? sk-design feasibility test",
+      "text": "Is detection-routed the universal archetype? sk-design feasibility test",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "state-finding-1-1-0b9f86b3af43",
+      "title": "Layer-0<->Layer-1 coupling under null defaultMode",
+      "summary": "Layer-0<->Layer-1 coupling under null defaultMode",
+      "text": "Layer-0<->Layer-1 coupling under null defaultMode",
+      "addedAtIteration": 1,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-71fadda9acc6",
+      "title": "Q1/thread 1 — minimum useful null-hub fallback-resource payload",
+      "summary": "Q1/thread 1 — minimum useful null-hub fallback-resource payload",
+      "text": "Q1/thread 1 — minimum useful null-hub fallback-resource payload",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "terra-max"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-2b2c276b0ddf",
+      "title": "Q2/thread 3 — controlled null-hub disambiguation experiment",
+      "summary": "Q2/thread 3 — controlled null-hub disambiguation experiment",
+      "text": "Q2/thread 3 — controlled null-hub disambiguation experiment",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "terra-max"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-73558a624e95",
+      "title": "Q3/thread 4 — safe defaultMode migration and rollback sequence",
+      "summary": "Q3/thread 4 — safe defaultMode migration and rollback sequence",
+      "text": "Q3/thread 4 — safe defaultMode migration and rollback sequence",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "terra-max"
+      ]
+    },
+    {
+      "id": "state-finding-4-1-aba8b8e2f9fa",
+      "title": "Q4/thread 8 — co-dominant mode policy and dominant-default evidence rule",
+      "summary": "Q4/thread 8 — co-dominant mode policy and dominant-default evidence rule",
+      "text": "Q4/thread 8 — co-dominant mode policy and dominant-default evidence rule",
+      "addedAtIteration": 4,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "terra-max"
+      ]
+    },
+    {
+      "id": "state-finding-5-1-272c964197de",
+      "title": "Q5/thread 10 — defaultMode identity/catch-all boundary and null-hub replacement contracts",
+      "summary": "Q5/thread 10 — defaultMode identity/catch-all boundary and null-hub replacement contracts",
+      "text": "Q5/thread 10 — defaultMode identity/catch-all boundary and null-hub replacement contracts",
+      "addedAtIteration": 5,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "terra-max"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-b6c3d6cc48dd",
+      "title": "Second-order anti-patterns of null+mode-map (does the fix recreate the disease?)",
+      "summary": "Second-order anti-patterns of null+mode-map (does the fix recreate the disease?)",
+      "text": "Second-order anti-patterns of null+mode-map (does the fix recreate the disease?)",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "glm-max"
+      ]
+    },
+    {
+      "id": "state-finding-3-1-26a267a267e4",
+      "title": "Specify migration and schema safety for a third archetype: exact field semantics, validator changes, defaultApplied rename ripple, rollout order, rollback telemetry, and cross-hub edge cases including contextual and multi-dominant defaults.",
+      "summary": "Specify migration and schema safety for a third archetype: exact field semantics, validator changes, defaultApplied rename ripple, rollout order, rollback telemetry, and cross-hub edge cases including contextual and multi-dominant defaults.",
+      "text": "Specify migration and schema safety for a third archetype: exact field semantics, validator changes, defaultApplied rename ripple, rollout order, rollback telemetry, and cross-hub edge cases including contextual and multi-dominant defaults.",
+      "addedAtIteration": 3,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-ultra"
+      ]
+    },
+    {
+      "id": "state-finding-2-1-34d14f2bac4b",
+      "title": "Specify the paired live experiment as a runnable benchmark matrix: corpus construction, named-versus-null packet variants, blind grading rubric, sample design, falsification thresholds per hub, and full-registry versus compressed-card fallback resources.",
+      "summary": "Specify the paired live experiment as a runnable benchmark matrix: corpus construction, named-versus-null packet variants, blind grading rubric, sample design, falsification thresholds per hub, and full-registry versus compressed-card fallback resources.",
+      "text": "Specify the paired live experiment as a runnable benchmark matrix: corpus construction, named-versus-null packet variants, blind grading rubric, sample design, falsification thresholds per hub, and full-registry versus compressed-card fallback resources.",
+      "addedAtIteration": 2,
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol-ultra"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 13,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 13,
+    "convergenceScore": 0.557,
+    "coverageBySources": {}
+  }
+}

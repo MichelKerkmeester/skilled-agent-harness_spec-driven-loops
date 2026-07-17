@@ -1,0 +1,116 @@
+{
+  "lineage": "glm-max",
+  "sessionId": "fanout-glm-max-1784313510669-wn3vsj",
+  "mode": "research",
+  "runType": "divergent-run2",
+  "openQuestions": [
+    {
+      "id": "q1-layer0-coupling",
+      "text": "How does the Layer-0 skill advisor interact with a hub flipped to defaultMode:null? Does defer push cost to Layer 0?",
+      "thread": 2,
+      "status": "resolved",
+      "answered": true
+    },
+    {
+      "id": "q2-detection-universal",
+      "text": "Is detection-routed a universal answer the flips could converge on? Could sk-design be detection-routed?",
+      "thread": 6,
+      "status": "resolved",
+      "answered": true
+    },
+    {
+      "id": "q3-null-second-order",
+      "text": "What NEW failure modes does null+mode-map introduce (bloat, stale registries, over-defer, mode-map-as-new-bias)?",
+      "thread": 7,
+      "status": "resolved",
+      "answered": true
+    },
+    {
+      "id": "q4-edge-cases",
+      "text": "Edge cases: empty mode-map, single-mode hubs, registry drift, generalized contextual defaults. Which break the archetype rule?",
+      "thread": 9,
+      "status": "resolved",
+      "answered": true
+    },
+    {
+      "id": "q5-contrarian-steelman",
+      "text": "Strongest case that auto-default is fine and Run 1's flip-4 is wrong. Where is a named default actually right?",
+      "thread": 12,
+      "status": "resolved",
+      "answered": true
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1-layer0-coupling",
+      "text": "How does the Layer-0 skill advisor interact with a hub flipped to defaultMode:null? Does defer push cost to Layer 0?",
+      "thread": 2,
+      "answered": true,
+      "answer": "No re-escalation: null defer terminates at the user via the hub UNKNOWN_FALLBACK_CHECKLIST, not back at Layer-0. The advisor already ships defer-with-clarification (clarifying_question) and pre-resolves modes for system-deep-loop via a bespoke _apply_deep_skill_routing_layer — but it is gated, hand-maintained, and not generalized. Flipping the four hubs moves zero work to Layer-0 unless a per-hub mode-projection layer is also built.",
+      "evidence": ["file:.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2810-2866", "file:.opencode/skills/system-skill-advisor/SKILL.md:122-126"],
+      "iteration": 1
+    },
+    {
+      "id": "q2-detection-universal",
+      "text": "Is detection-routed a universal answer the flips could converge on? Could sk-design be detection-routed?",
+      "thread": 6,
+      "answered": true,
+      "answer": "No. Detection-routed requires an environmental/machine-detectable signal (sk-code surface axis from CWD/markers). sk-design's modes have only lexical/intent discriminators. Archetype is PER-AXIS not per-hub; sk-code is already a hybrid (detect surface, null-default workflow). The four flips have no environmental signal so null+mode-map is their terminal state, not a waypoint to detection.",
+      "evidence": ["file:.opencode/skills/sk-code/SKILL.md:120-122", "file:.opencode/skills/sk-design/mode-registry.json:55-118"],
+      "iteration": 2
+    },
+    {
+      "id": "q3-null-second-order",
+      "text": "What NEW failure modes does null+mode-map introduce (bloat, stale registries, over-defer, mode-map-as-new-bias)?",
+      "thread": 7,
+      "answered": true,
+      "answer": "Four anti-patterns: (A1) the skill's own name becomes unrouteable (bounded friction, one extra turn); (A2) mode-registry.json must be a PRESENTED disambiguation-card not a SCORED resource, else hub-identity vocab recreates the bias Run 1 cured — Run 1's 'load both' is correct only with this semantics split; (A3) registry drift becomes user-visible (needs drift-validation); (A4) load a compressed card, not the raw registry. Canon already names hub-identity-on-default-only as the disease mechanism.",
+      "evidence": ["file:.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5,37,60", "file:.opencode/skills/sk-design/shared/references/smart_routing.md:72-75", "file:.opencode/skills/sk-design/mode-registry.json:55-118"],
+      "iteration": 3
+    },
+    {
+      "id": "q4-edge-cases",
+      "text": "Edge cases: empty mode-map, single-mode hubs, registry drift, generalized contextual defaults. Which break the archetype rule?",
+      "thread": 9,
+      "answered": true,
+      "answer": "cli is detection-defaulted (has runtime env signal) — a distinct fourth shape, splitting Run 1's uniform flip-4 into 1+3 distinct encodings. Detection can target the DEFAULT axis, not just surface. Single-mode entities are standalone skills (canon threshold for routerPolicy = >=2 modes). Registry drift becomes a gate not a lint under null+mode-map.",
+      "evidence": ["file:.opencode/skills/cli-external-orchestration/hub-router.json:4-14", "file:.opencode/skills/system-skill-advisor/SKILL.md:87", "file:.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:2"],
+      "iteration": 4
+    },
+    {
+      "id": "q5-contrarian-steelman",
+      "text": "Strongest case that auto-default is fine and Run 1's flip-4 is wrong. Where is a named default actually right?",
+      "thread": 12,
+      "answered": true,
+      "answer": "Strongest falsifiable steelman: a default is justified when self-correcting (env-determined) OR genuinely catch-all. This OVERTURNS one flip — cli should be detection-defaulted, not null (its in-runtime default is env-determined and self-correcting). The three pure-defer nulls (deep-loop/mcp-tooling/sk-design) SURVIVE but are downgraded to directional-pending-measurement (Run 1's no-corpus method leaves them unfalsified in the over-deferring direction). Constructive output: a falsifiable four-shape decision rule replacing Run 1's uniform third archetype.",
+      "evidence": ["iteration-001.md", "iteration-002.md", "iteration-003.md", "iteration-004.md", "file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run1-archive/research.md"],
+      "iteration": 5
+    }
+  ],
+  "keyFindings": [
+    {"id": "f1-advisor-presolves-mode", "text": "Advisor already pre-resolves system-deep-loop mode (writes recommendation[mode]/[workflowMode]) via a bespoke, regex-gated layer — precedent exists but is not general.", "iteration": 1, "confidence": 0.85},
+    {"id": "f1-defer-terminates-user", "text": "Null hub defer is a terminal branch at Layer-1 (asks the user); no infinite loop back to Layer-0.", "iteration": 1, "confidence": 0.85},
+    {"id": "f1-shared-clarification-vocab", "text": "Layer-0 and null Layer-1 share the same suggest+ask vocabulary; the extra-clarification cost is relocatable (early vs late), not additive.", "iteration": 1, "confidence": 0.75},
+    {"id": "f2-archetype-is-per-axis", "text": "Archetype is PER-AXIS (environmental signal => detect+null; intentional signal => default-if-catch-all else defer), not per-hub. sk-code is already a hybrid: detect surface, null-default workflow. Run 1's 'third archetype' is mis-leveled hub-wise but correct in spirit.", "iteration": 2, "confidence": 0.85},
+    {"id": "f2-design-not-detectable", "text": "sk-design's 5 judgment modes have only lexical/intent discriminators (no environmental signal), so detection-routed does not apply; null+mode-map is the terminal correct state, not a waypoint to detection.", "iteration": 2, "confidence": 0.85},
+    {"id": "f3-hubidentity-on-default-is-canon", "text": "Canon explicitly names hub-identity-on-default-only as the over-emission mechanism (template _routingPrecisionNote + signal note). defaultMode is the ONLY legal home for hub-generic vocab — so flipping to null evicts that home (the point, and the seed of all second-order costs).", "iteration": 3, "confidence": 0.90},
+    {"id": "f3-menu-vs-scorer-split", "text": "Run 1's 'load smart_routing.md + mode-registry.json' is correct ONLY with a semantics split: smart_routing.md is a safe scored resource (DEFAULT_RESOURCE=[]); mode-registry.json must be a PRESENTED disambiguation-card, never a scored resource (else hub-identity vocab recreates the bias).", "iteration": 3, "confidence": 0.85},
+    {"id": "f3-registry-drift-user-visible", "text": "null+mode-map elevates mode-registry.json from internal routing artifact to user-facing menu; drift becomes a user-visible lie — needs drift-validation or single-source derivation.", "iteration": 3, "confidence": 0.80},
+    {"id": "f4-cli-detection-defaulted", "text": "cli is detection-defaulted (runtime env signal), NOT pure-defer — a distinct fourth shape. Splits Run 1's uniform flip-4 into 1+3: cli=detection-defaulted (flip null + runtime-detection block); deep-loop/mcp-tooling/sk-design=pure-defer.", "iteration": 4, "confidence": 0.85},
+    {"id": "f4-detection-targets-default-axis", "text": "Detection can resolve the DEFAULT axis (not just surface bundling) when an env signal for the default exists. Canon detection is not surface-specific — it resolves any routing axis from environment.", "iteration": 4, "confidence": 0.80},
+    {"id": "f4-single-mode-no-router", "text": "Single-mode entity is a standalone skill, not a hub; canon threshold for adopting routerPolicy should be >=2 modes (a one-mode 'hub' inherits the maintenance coupling for nothing).", "iteration": 4, "confidence": 0.75},
+    {"id": "f5-four-shape-rule", "text": "Falsifiable four-shape decision rule replaces Run 1's uniform third archetype: (1) keyword-with-default [catch-all anchor], (2) detection-defaulted [default resolvable from env], (3) detection-routed-surface [axis signal env], (4) pure-defer [no env signal, no catch-all]. Each shape nominated by a testable condition, not imitation.", "iteration": 5, "confidence": 0.80},
+    {"id": "f5-cli-recovered", "text": "cli recovered as detection-defaulted (NOT null) — the one real disagreement with Run 1. Its best default is the in-runtime executor, which is environmentally determined and self-correcting; nulling throws away cli's one genuine signal.", "iteration": 5, "confidence": 0.55},
+    {"id": "f5-three-nulls-downgraded", "text": "Three nulls (deep-loop/mcp-tooling/sk-design) confirmed but epistemically downgraded: directional-pending-measurement, not proven, due to Run 1's deliberate no-corpus method.", "iteration": 5, "confidence": 0.85}
+  ],
+  "ruledOutDirections": [
+    {"approach": "null defaultMode pushes disambiguation cost to Layer-0", "reason": "Hub defer terminates at the user via UNKNOWN_FALLBACK_CHECKLIST, not the advisor; re-escalation only if a bespoke deep-routing layer is also built", "evidence": "iteration-001.md", "iteration": 1},
+    {"approach": "all flipped hubs converge on detection-routed (sk-code pattern)", "reason": "Detection requires an environmental signal; cli/deep-loop/mcp/design have only intentional discriminators with no machine-detectable handle", "evidence": "iteration-002.md", "iteration": 2},
+    {"approach": "loading smart_routing.md on null fallback recreates catch-all bias", "reason": "Its DEFAULT_RESOURCE=[]; it emits typed leaves only on a positive intent score and loads nothing on zero-signal", "evidence": "iteration-003.md", "iteration": 3},
+    {"approach": "all four flips encode identically (uniform flip-4)", "reason": "cli has an environmental signal (active runtime) the others lack; it is detection-defaulted, the other three are pure-defer — distinct encodings", "evidence": "iteration-004.md", "iteration": 4}
+  ],
+  "promotedIdeas": [],
+  "rejectedPatterns": [],
+  "blockedStops": [],
+  "lastIteration": 5
+}

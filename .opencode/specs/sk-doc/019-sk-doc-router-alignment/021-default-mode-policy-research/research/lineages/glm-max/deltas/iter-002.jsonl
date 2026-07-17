@@ -1,0 +1,5 @@
+{"type":"iteration","run":2,"status":"complete","focus":"detection-routed universal? sk-design feasibility","newInfoRatio":0.80,"answeredQuestions":["q2-detection-universal"]}
+{"type":"graphEvent","node":{"type":"finding","id":"f2-archetype-is-per-axis","label":"Archetype is per-axis (environmental=detect / intentional=defer-or-default), not per-hub; sk-code is hybrid"}}
+{"type":"graphEvent","node":{"type":"finding","id":"f2-design-not-detectable","label":"sk-design modes have no environmental signal; detection-routed not applicable"}}
+{"type":"graphEvent","edge":{"from":"f2-archetype-is-per-axis","to":"f1-advisor-presolves-mode","relation":"CONTEXT"}}
+{"type":"graphEvent","edge":{"from":"f2-archetype-is-per-axis","to":"q3-null-second-order","relation":"ADJACENT"}}

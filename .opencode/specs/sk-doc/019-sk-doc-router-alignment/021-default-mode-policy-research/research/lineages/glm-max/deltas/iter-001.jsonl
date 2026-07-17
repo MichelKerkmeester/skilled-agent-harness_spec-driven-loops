@@ -1,0 +1,4 @@
+{"type":"iteration","run":1,"status":"complete","focus":"Layer-0<->Layer-1 coupling under null defaultMode","newInfoRatio":0.85,"answeredQuestions":["q1-layer0-coupling"]}
+{"type":"graphEvent","node":{"type":"finding","id":"f1-advisor-presolves-mode","label":"Advisor already pre-resolves system-deep-loop mode via _apply_deep_skill_routing_layer"}}
+{"type":"graphEvent","node":{"type":"finding","id":"f1-defer-terminates-user","label":"Null hub defer terminates at the user, not back at Layer-0"}}
+{"type":"graphEvent","edge":{"from":"f1-advisor-presolves-mode","to":"q2-detection-universal","relation":"ADJACENT"}}
