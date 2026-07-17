@@ -1,5 +1,0 @@
-{"type":"iteration","iteration":5,"run":5,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","status":"complete","focus":"Bounded prevalence and evidence-surface scan","findingsCount":4,"newInfoRatio":0.43,"noveltyJustification":"Measured corpus scale and established that archives, backups, and fixtures contaminate naive metadata prevalence scans.","keyQuestions":[],"answeredQuestions":["What evidence gaps remain before a cleanup plan can be trusted?"],"ruledOut":["Raw file-count deltas as defect counts"],"graphEvents":[]}
-{"type":"finding","id":"f-005-001","label":"Corpus metadata counts","iteration":5}
-{"type":"finding","id":"f-005-002","label":"Naive prevalence contamination","iteration":5}
-{"type":"finding","id":"f-005-003","label":"Cross-packet drift surface","iteration":5}
-{"type":"finding","id":"f-005-004","label":"Research evidence sparsity","iteration":5}

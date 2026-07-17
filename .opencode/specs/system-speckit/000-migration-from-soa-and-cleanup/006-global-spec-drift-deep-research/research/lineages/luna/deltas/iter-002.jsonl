@@ -1,5 +1,0 @@
-{"type":"iteration","iteration":2,"run":2,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","status":"complete","focus":"Context optimization and migration packet comparison","findingsCount":4,"newInfoRatio":0.78,"noveltyJustification":"Identified four distinct governance patterns and separated scope-complete claims from broader unresolved reliability work.","keyQuestions":["What prior context-optimization efforts exist, and which patterns recur across packets?"],"answeredQuestions":["What prior context-optimization efforts exist, and which patterns recur across packets?"],"ruledOut":["Historical path mentions as live drift"],"graphEvents":[]}
-{"type":"finding","id":"f-002-001","label":"Phase-local evidence and aggregate status","iteration":2}
-{"type":"finding","id":"f-002-002","label":"Alias map as migration authority","iteration":2}
-{"type":"finding","id":"f-002-003","label":"Scope-complete versus problem-complete","iteration":2}
-{"type":"finding","id":"f-002-004","label":"Drift classification taxonomy","iteration":2}

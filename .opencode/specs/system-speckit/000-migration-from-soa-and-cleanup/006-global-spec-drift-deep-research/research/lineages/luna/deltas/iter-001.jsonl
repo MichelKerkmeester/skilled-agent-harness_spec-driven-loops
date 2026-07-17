@@ -1,4 +1,0 @@
-{"type":"iteration","iteration":1,"run":1,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","status":"complete","focus":"Packet topology and recurring drift signals","findingsCount":3,"newInfoRatio":0.92,"noveltyJustification":"Established corpus scale, dominant work clusters, and the active/archive topology that constrains drift analysis.","keyQuestions":[],"answeredQuestions":[],"ruledOut":["Directory names alone as semantic status"],"graphEvents":[]}
-{"type":"finding","id":"f-001-001","label":"Corpus-scale packet topology","iteration":1}
-{"type":"finding","id":"f-001-002","label":"Context and migration work clusters","iteration":1}
-{"type":"finding","id":"f-001-003","label":"Active/archive ambiguity","iteration":1}

@@ -1,3 +1,0 @@
-{"type":"iteration","iteration":8,"run":8,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","status":"insight","focus":"Minimum evidence bundle","findingsCount":2,"newInfoRatio":0.10,"noveltyJustification":"Converged prior evidence into four required classes for safe cleanup planning.","keyQuestions":[],"answeredQuestions":["What evidence gaps remain before a cleanup plan can be trusted?"],"ruledOut":["Status labels or filename counts alone"],"graphEvents":[]}
-{"type":"finding","id":"f-008-001","label":"Four-class evidence bundle","iteration":8}
-{"type":"finding","id":"f-008-002","label":"Manifest required for moved topology","iteration":8}
