@@ -1,0 +1,633 @@
+{
+  "sessionId": "rsr-2026-07-17T16-18-56Z",
+  "parentSessionId": "rsr-2026-07-17T16-18-56Z",
+  "lineageMode": "resume",
+  "generation": 1,
+  "continuedFromRun": 2,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-deterministic-router-replay-actually-do-when-no-intent-scores-and-defa",
+      "inboxId": null,
+      "text": "What does deterministic router replay actually do when no intent scores and `defaultMode` is a child versus `null`, including `sameSet` behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-what-evidence-backed-decision-rule-distinguishes-a-genuine-dominant-child-from-a",
+      "inboxId": null,
+      "text": "What evidence-backed decision rule distinguishes a genuine dominant child from a presumptive default?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-of-the-five-auto-defaulting-hubs-should-keep-its-child-default-and-which-s",
+      "inboxId": null,
+      "text": "Which of the five auto-defaulting hubs should keep its child default, and which should flip to `null`, based on mode mix and misroute cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-how-do-the-sk-doc-defer-model-and-sk-code-detection-model-constrain-the-fleet-po",
+      "inboxId": null,
+      "text": "How do the `sk-doc` defer model and `sk-code` detection model constrain the fleet policy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-exact-create-skill-canon-and-route-gold-benchmark-changes-encode-default-de",
+      "inboxId": null,
+      "text": "What exact create-skill canon and route-gold benchmark changes encode default, defer, and detect outcomes deliberately?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-does-deterministic-router-replay-actually-do-when-no-intent-scores-and-defa",
+      "inboxId": null,
+      "text": "What does deterministic router replay actually do when no intent scores and `defaultMode` is a child versus `null`, including `sameSet` behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-which-of-the-five-auto-defaulting-hubs-should-keep-its-child-default-and-which-s",
+      "inboxId": null,
+      "text": "Which of the five auto-defaulting hubs should keep its child default, and which should flip to `null`, based on mode mix and misroute cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-how-do-the-sk-doc-defer-model-and-sk-code-detection-model-constrain-the-fleet-po",
+      "inboxId": null,
+      "text": "How do the `sk-doc` defer model and `sk-code` detection model constrain the fleet policy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-exact-create-skill-canon-and-route-gold-benchmark-changes-encode-default-de",
+      "inboxId": null,
+      "text": "What exact create-skill canon and route-gold benchmark changes encode default, defer, and detect outcomes deliberately?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-2-what-evidence-backed-decision-rule-distinguishes-a-genuine-dominant-child-from-a",
+      "inboxId": null,
+      "text": "What evidence-backed decision rule distinguishes a genuine dominant child from a presumptive default?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What exact create-skill canon and route-gold schema should encode default, defer, and detect outcomes deliberately?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How do the `sk-doc` defer model and `sk-code` detection model constrain fleet policy?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What evidence-backed decision rule distinguishes a genuine dominant child from a presumptive default?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which of the five auto-defaulting hubs should keep its child default, and which should flip to `null`?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact create-skill canon should force authors to declare and justify `default`, `defer`, or `detect`?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact route-gold schema and assertions should make named-child, null-defer, and detect-and-bundle outcomes observable despite iteration 1's replay limitation?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should the `sk-doc` defer model and `sk-code` detect-and-bundle model be expressed as distinct fleet policy variants rather than merely controls?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What migration rule should grandfather shipped hubs whose named defaults lack the newly required corpus and cost evidence?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which validator, template, scenario parser, evaluator, report, and test files must change to implement this canon without weakening existing route-gold?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which five provisional fleet verdicts survive representative zero-signal corpus validation?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "What does deterministic router replay actually do when no intent scores and `defaultMode` is a child versus `null`, including `sameSet` behavior?",
+    "Which of the five auto-defaulting hubs should keep its child default, and which should flip to `null`, based on mode mix and misroute cost?",
+    "How do the `sk-doc` defer model and `sk-code` detection model constrain the fleet policy?",
+    "What exact create-skill canon and route-gold benchmark changes encode default, defer, and detect outcomes deliberately?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-a-child-default-neither-resolves-near-score-ambiguity-nor-participates-once-anyt",
+      "text": "**A child default neither resolves near-score ambiguity nor participates once anything scores.** Selection keeps every positive-scoring intent within the hard-coded delta of 1, while `defaultApplied` is true only when the selected set is empty. Later hub verdicts must therefore evaluate ambiguity policy independently from no-signal default policy. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-479] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-345]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-479`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:592-702`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/routing-before-after.md:146-147`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-fleet-routing-consistency/implementation-summary.md:51-52`"
+      ]
+    },
+    {
+      "id": "finding-1-1-a-configured-child-default-is-not-inserted-into-replay-s-selected-intents-routes",
+      "text": "**A configured child default is not inserted into replay's selected intents.** `routeSkillResources()` computes `intents` only as `selectIntents(scoreIntents(...))`; the subsequent hub telemetry call does not mutate that array, and the return path preserves it unchanged. Therefore a zero-score prompt produces `intents: []` for both a named child default and `null`. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:643-659] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:665-702]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-479`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:592-702`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/routing-before-after.md:146-147`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-fleet-routing-consistency/implementation-summary.md:51-52`"
+      ]
+    },
+    {
+      "id": "finding-1-3-exact-set-intent-evaluation-cannot-presently-distinguish-child-default-behavior-",
+      "text": "**Exact-set intent evaluation cannot presently distinguish child-default behavior from null behavior on a zero-score scenario.** The benchmark contract defines `sameSet(observed, expected)` as exact equality: one missing or extra mode fails. Because replay observes `[]` in both configurations, a gold expectation of the child fails and an empty expectation passes for both; only an assertion over telemetry could distinguish them. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/routing-before-after.md:146-147] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-fleet-routing-consistency/implementation-summary.md:51-52] [INFERENCE: based on Finding 1 plus the documented exact-set contract]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-479`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:592-702`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/routing-before-after.md:146-147`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-fleet-routing-consistency/implementation-summary.md:51-52`"
+      ]
+    },
+    {
+      "id": "finding-1-5-later-per-hub-verdicts-cannot-use-current-intent-sameset-success-as-proof-that-a",
+      "text": "**Later per-hub verdicts cannot use current intent `sameSet` success as proof that a named default is genuine or safe.** Each verdict must separately establish (a) the semantic/live-agent rule for a generic no-signal request, (b) whether the default child is dominant enough to justify guessing rather than deferring, and (c) an observable benchmark expectation for fallback/defer telemetry. Otherwise changing child versus null is behaviorally invisible to current intent-set gold. [INFERENCE: based on .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-356,643-702 and .opencode/specs/sk-doc/019-sk-doc-router-alignment/routing-before-after.md:146-147]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-479`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:592-702`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/routing-before-after.md:146-147`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-fleet-routing-consistency/implementation-summary.md:51-52`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-only-replay-visible-no-score-difference-is-telemetry-and-that-telemetry-expo",
+      "text": "**The only replay-visible no-score difference is telemetry, and that telemetry exposes a naming tension.** With zero selected modes, a non-null policy sets `defaultApplied: true`, while `workflowMode` remains `null` and `deferReason` is `no-mode-scored`; a null policy changes only `defaultApplied` to `false`. Thus `defaultApplied` currently means “a default is configured/applicable,” not “the child was emitted as the workflow mode.” [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356] [INFERENCE: based on the simultaneous `defaultApplied`, `workflowMode`, and `deferReason` assignments at lines 342-353]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:315-356`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:456-479`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:592-702`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/routing-before-after.md:146-147`",
+        "`.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-fleet-routing-consistency/implementation-summary.md:51-52`"
+      ]
+    },
+    {
+      "id": "finding-2-3-cli-external-orchestration-provisionally-flips-cli-opencode-to-null-all-three-pr",
+      "text": "**`cli-external-orchestration` provisionally FLIPS `cli-opencode` to `null`.** All three providers are primary, independently routable workflows with equal weight 4; the parent says genuine ambiguity must not silently default to OpenCode. Choosing a provider is a material user/runtime decision, and the OpenCode child additionally refuses ordinary self-invocation from an OpenCode runtime. The mis-default cost is therefore selecting the wrong provider/model/auth/runtime contract, consuming context on the wrong executor packet, or reaching a predictable self-invocation refusal; one clarification is cheaper. No consulted artifact supplies traffic evidence that outweighs those costs. [SOURCE: .opencode/skills/cli-external-orchestration/SKILL.md:39-64] [SOURCE: .opencode/skills/cli-external-orchestration/hub-router.json:4-30] [SOURCE: .opencode/skills/cli-external-orchestration/mode-registry.json:17-77] [SOURCE: .opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:31-53]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:66-83`",
+        "`.opencode/skills/sk-prompt/hub-router.json:4-25`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:17-41`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md:39-64`",
+        "`.opencode/skills/cli-external-orchestration/hub-router.json:4-30`",
+        "`.opencode/skills/cli-external-orchestration/mode-registry.json:17-77`",
+        "`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:31-53`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:46-72`",
+        "`.opencode/skills/system-deep-loop/hub-router.json:4-50`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:30-198`",
+        "`.opencode/skills/mcp-tooling/SKILL.md:42-65`",
+        "`.opencode/skills/mcp-tooling/hub-router.json:4-91`",
+        "`.opencode/skills/mcp-tooling/mode-registry.json:17-30,32-251`",
+        "`.opencode/skills/sk-design/SKILL.md:40-103`",
+        "`.opencode/skills/sk-design/hub-router.json:4-91`",
+        "`.opencode/skills/sk-design/mode-registry.json:5-24,39-164`",
+        "`.opencode/skills/sk-doc/SKILL.md:80-97`",
+        "`.opencode/skills/sk-doc/hub-router.json:4-34`",
+        "`.opencode/skills/sk-code/SKILL.md:50-117`",
+        "`.opencode/skills/sk-code/hub-router.json:4-15`"
+      ]
+    },
+    {
+      "id": "finding-2-5-mcp-tooling-provisionally-flips-mcp-chrome-devtools-to-null-its-authored-semanti",
+      "text": "**`mcp-tooling` provisionally FLIPS `mcp-chrome-devtools` to `null`; its authored semantics already behave like defer-plus-suggestion.** Six equal-weight modes span three workspace workflows and three external design transports. The router explicitly declares `defaultResource` fallback-only and says a zero-signal request defers while Chrome DevTools is merely suggested; the parent likewise says genuine ambiguity must not silently default to Chrome. The mis-default cost is selecting the wrong external system, permission/mutation posture, authentication path, or design transport and potentially omitting the mandatory `sk-design` pairing. Null makes the metadata match the authored behavior. [SOURCE: .opencode/skills/mcp-tooling/hub-router.json:4-30] [SOURCE: .opencode/skills/mcp-tooling/hub-router.json:31-91] [SOURCE: .opencode/skills/mcp-tooling/SKILL.md:42-65] [SOURCE: .opencode/skills/mcp-tooling/mode-registry.json:17-30] [SOURCE: .opencode/skills/mcp-tooling/mode-registry.json:32-251]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:66-83`",
+        "`.opencode/skills/sk-prompt/hub-router.json:4-25`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:17-41`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md:39-64`",
+        "`.opencode/skills/cli-external-orchestration/hub-router.json:4-30`",
+        "`.opencode/skills/cli-external-orchestration/mode-registry.json:17-77`",
+        "`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:31-53`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:46-72`",
+        "`.opencode/skills/system-deep-loop/hub-router.json:4-50`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:30-198`",
+        "`.opencode/skills/mcp-tooling/SKILL.md:42-65`",
+        "`.opencode/skills/mcp-tooling/hub-router.json:4-91`",
+        "`.opencode/skills/mcp-tooling/mode-registry.json:17-30,32-251`",
+        "`.opencode/skills/sk-design/SKILL.md:40-103`",
+        "`.opencode/skills/sk-design/hub-router.json:4-91`",
+        "`.opencode/skills/sk-design/mode-registry.json:5-24,39-164`",
+        "`.opencode/skills/sk-doc/SKILL.md:80-97`",
+        "`.opencode/skills/sk-doc/hub-router.json:4-34`",
+        "`.opencode/skills/sk-code/SKILL.md:50-117`",
+        "`.opencode/skills/sk-code/hub-router.json:4-15`"
+      ]
+    },
+    {
+      "id": "finding-2-6-sk-design-provisionally-flips-interface-to-null-the-parent-requires-manager-inta",
+      "text": "**`sk-design` provisionally FLIPS `interface` to `null`.** The parent requires manager intake before routing and a focused question whenever an unknown fact changes the route or acceptance bar. Its six modes separate interface creation, foundations, motion, audit, extraction, and transport; five design-judgment modes even have dedicated commands, while transport requires prior judgment. A no-signal interface guess can turn an audit into creation advice, flatten a token/motion/extraction request into visual direction, or route before required inputs and proof expectations are known. Those relevance and acceptance-bar costs exceed one focused intake question, and no consulted traffic evidence establishes interface dominance over the zero-signal population. [SOURCE: .opencode/skills/sk-design/SKILL.md:40-71] [SOURCE: .opencode/skills/sk-design/SKILL.md:73-103] [SOURCE: .opencode/skills/sk-design/hub-router.json:4-25] [SOURCE: .opencode/skills/sk-design/mode-registry.json:5-24] [SOURCE: .opencode/skills/sk-design/mode-registry.json:39-164]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:66-83`",
+        "`.opencode/skills/sk-prompt/hub-router.json:4-25`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:17-41`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md:39-64`",
+        "`.opencode/skills/cli-external-orchestration/hub-router.json:4-30`",
+        "`.opencode/skills/cli-external-orchestration/mode-registry.json:17-77`",
+        "`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:31-53`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:46-72`",
+        "`.opencode/skills/system-deep-loop/hub-router.json:4-50`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:30-198`",
+        "`.opencode/skills/mcp-tooling/SKILL.md:42-65`",
+        "`.opencode/skills/mcp-tooling/hub-router.json:4-91`",
+        "`.opencode/skills/mcp-tooling/mode-registry.json:17-30,32-251`",
+        "`.opencode/skills/sk-design/SKILL.md:40-103`",
+        "`.opencode/skills/sk-design/hub-router.json:4-91`",
+        "`.opencode/skills/sk-design/mode-registry.json:5-24,39-164`",
+        "`.opencode/skills/sk-doc/SKILL.md:80-97`",
+        "`.opencode/skills/sk-doc/hub-router.json:4-34`",
+        "`.opencode/skills/sk-code/SKILL.md:50-117`",
+        "`.opencode/skills/sk-code/hub-router.json:4-15`"
+      ]
+    },
+    {
+      "id": "finding-2-2-sk-prompt-provisionally-keeps-prompt-improve-but-this-is-the-only-keep-verdict-a",
+      "text": "**`sk-prompt` provisionally KEEPS `prompt-improve`, but this is the only keep verdict and still needs traffic validation.** The parent explicitly characterizes it as the higher-traffic, more general mode; a bare small-model name leans `prompt-models`; the model-profile route has a stronger weight of 6 versus 4; and the low-confidence path loads the improve packet only as context before returning `UNKNOWN_FALLBACK`. Thus recognizable model-profile requests should not reach the default branch, while a true zero-signal miss has a bounded cost: extra prompt-improvement framing/context before clarification, not silent execution of the authoring workflow. The verdict flips to `null` if a representative `Z` corpus fails the expected-loss inequality or shows model-dispatch/profile requests being biased toward prompt authoring. [SOURCE: .opencode/skills/sk-prompt/SKILL.md:66-83] [SOURCE: .opencode/skills/sk-prompt/hub-router.json:4-25] [SOURCE: .opencode/skills/sk-prompt/mode-registry.json:17-41] [INFERENCE: these contracts make prompt-improve safer and more plausibly dominant than the other named defaults, while not substituting for observed traffic]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:66-83`",
+        "`.opencode/skills/sk-prompt/hub-router.json:4-25`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:17-41`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md:39-64`",
+        "`.opencode/skills/cli-external-orchestration/hub-router.json:4-30`",
+        "`.opencode/skills/cli-external-orchestration/mode-registry.json:17-77`",
+        "`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:31-53`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:46-72`",
+        "`.opencode/skills/system-deep-loop/hub-router.json:4-50`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:30-198`",
+        "`.opencode/skills/mcp-tooling/SKILL.md:42-65`",
+        "`.opencode/skills/mcp-tooling/hub-router.json:4-91`",
+        "`.opencode/skills/mcp-tooling/mode-registry.json:17-30,32-251`",
+        "`.opencode/skills/sk-design/SKILL.md:40-103`",
+        "`.opencode/skills/sk-design/hub-router.json:4-91`",
+        "`.opencode/skills/sk-design/mode-registry.json:5-24,39-164`",
+        "`.opencode/skills/sk-doc/SKILL.md:80-97`",
+        "`.opencode/skills/sk-doc/hub-router.json:4-34`",
+        "`.opencode/skills/sk-code/SKILL.md:50-117`",
+        "`.opencode/skills/sk-code/hub-router.json:4-15`"
+      ]
+    },
+    {
+      "id": "finding-2-4-system-deep-loop-provisionally-flips-research-to-null-seven-modes-have-equal-rou",
+      "text": "**`system-deep-loop` provisionally FLIPS `research` to `null`.** Seven modes have equal router weight 4, and the parent contract already says low confidence or no dominant mode returns a checklist instead of loading a guessed packet. The modes have different convergence math, state shape, artifacts, permissions, and mutation posture, so research is not a safe umbrella. The mis-default cost is running or framing the wrong state machine, creating the wrong artifact family, applying the wrong convergence semantics, or allowing WebFetch where another lane is inward-only; these costs dominate a single mode clarification. [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:46-72] [SOURCE: .opencode/skills/system-deep-loop/hub-router.json:4-50] [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:30-53] [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:55-101] [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:103-198]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:66-83`",
+        "`.opencode/skills/sk-prompt/hub-router.json:4-25`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:17-41`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md:39-64`",
+        "`.opencode/skills/cli-external-orchestration/hub-router.json:4-30`",
+        "`.opencode/skills/cli-external-orchestration/mode-registry.json:17-77`",
+        "`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:31-53`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:46-72`",
+        "`.opencode/skills/system-deep-loop/hub-router.json:4-50`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:30-198`",
+        "`.opencode/skills/mcp-tooling/SKILL.md:42-65`",
+        "`.opencode/skills/mcp-tooling/hub-router.json:4-91`",
+        "`.opencode/skills/mcp-tooling/mode-registry.json:17-30,32-251`",
+        "`.opencode/skills/sk-design/SKILL.md:40-103`",
+        "`.opencode/skills/sk-design/hub-router.json:4-91`",
+        "`.opencode/skills/sk-design/mode-registry.json:5-24,39-164`",
+        "`.opencode/skills/sk-doc/SKILL.md:80-97`",
+        "`.opencode/skills/sk-doc/hub-router.json:4-34`",
+        "`.opencode/skills/sk-code/SKILL.md:50-117`",
+        "`.opencode/skills/sk-code/hub-router.json:4-15`"
+      ]
+    },
+    {
+      "id": "finding-2-1-a-dominant-child-is-justified-only-by-lower-expected-zero-signal-loss-not-by-arr",
+      "text": "**A dominant child is justified only by lower expected zero-signal loss, not by array order, a tie-break, mode breadth, or the fact that it is already configured.** For hub `h`, candidate child `D`, zero-signal population `Z`, true modes `i`, mis-default cost `C_wrong(D,i)`, and defer/detection cost `C_defer(i)`, keep `D` only when `sum_i P(i|Z) * C_wrong(D,i) < sum_i P(i|Z) * C_defer(i)`. The claim is falsifiable with a representative held-out corpus of `Z` requests, adjudicated true modes, and explicit cost grades. Until that evidence exists, a child can provisionally pass only when the parent contract establishes that it remains semantically safe for the plausible alternatives and requires no missing provider, workflow, target, or permission choice. This explains both null controls: `sk-doc` asks for the workflow, target, inputs, and validation expectations when intent is unclear, while `sk-code` asks for workflow/action details but can independently detect and bundle a surface. [SOURCE: .opencode/skills/sk-doc/SKILL.md:80-97] [SOURCE: .opencode/skills/sk-code/SKILL.md:86-117] [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-20] [SOURCE: .opencode/skills/sk-code/hub-router.json:4-15] [INFERENCE: the expected-loss inequality operationalizes the two control contracts and makes the dominant-child claim empirically refutable]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-prompt/SKILL.md:66-83`",
+        "`.opencode/skills/sk-prompt/hub-router.json:4-25`",
+        "`.opencode/skills/sk-prompt/mode-registry.json:17-41`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md:39-64`",
+        "`.opencode/skills/cli-external-orchestration/hub-router.json:4-30`",
+        "`.opencode/skills/cli-external-orchestration/mode-registry.json:17-77`",
+        "`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:31-53`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:46-72`",
+        "`.opencode/skills/system-deep-loop/hub-router.json:4-50`",
+        "`.opencode/skills/system-deep-loop/mode-registry.json:30-198`",
+        "`.opencode/skills/mcp-tooling/SKILL.md:42-65`",
+        "`.opencode/skills/mcp-tooling/hub-router.json:4-91`",
+        "`.opencode/skills/mcp-tooling/mode-registry.json:17-30,32-251`",
+        "`.opencode/skills/sk-design/SKILL.md:40-103`",
+        "`.opencode/skills/sk-design/hub-router.json:4-91`",
+        "`.opencode/skills/sk-design/mode-registry.json:5-24,39-164`",
+        "`.opencode/skills/sk-doc/SKILL.md:80-97`",
+        "`.opencode/skills/sk-doc/hub-router.json:4-34`",
+        "`.opencode/skills/sk-code/SKILL.md:50-117`",
+        "`.opencode/skills/sk-code/hub-router.json:4-15`"
+      ]
+    },
+    {
+      "id": "finding-3-4-sk-code-defines-a-distinct-detect-and-bundle-variant-null-prevents-a-guessed-wor",
+      "text": "**`sk-code` defines a distinct detect-and-bundle variant: null prevents a guessed workflow, but surface detection can still produce useful evidence and doctrine.** With no dominant workflow, it detects a surface and can load a pure surface bundle; only unresolved workflow/action details require disambiguation. Its positive detection gold therefore needs `workflowMode: null`, `routeOutcome: surfaceBundle`, `defaultApplied: false`, `needsDisambiguation: false`, and an exact detected-surface set; a paired detection-miss fixture must instead expect `defer`, an empty detected-surface set, and `needsDisambiguation: true`. [SOURCE: .opencode/skills/sk-code/SKILL.md:86-122] [INFERENCE: the paired assertions separate successful detection from a null policy that always defers]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5-16,37`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md:155-179,275-278`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scenario_authoring.md:34-42`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:176-178`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-352`",
+        "`.opencode/skills/sk-doc/SKILL.md:76-97`",
+        "`.opencode/skills/sk-code/SKILL.md:86-122`"
+      ]
+    },
+    {
+      "id": "finding-3-3-sk-doc-defines-the-pure-defer-variant-as-no-selected-workflow-and-a-clarificatio",
+      "text": "**`sk-doc` defines the pure defer variant as “no selected workflow and a clarification contract,” not merely `defaultMode: null`.** When confidence is low or no mode wins under a null default, it loads only a fallback reference and returns `UNKNOWN_FALLBACK` with a checklist for workflow, target, inputs, and validation expectations. Its gold outcome therefore needs `workflowMode: null`, `routeOutcome: defer`, `defaultApplied: false`, `needsDisambiguation: true`, no detected surfaces, and no forbidden guessed workflow. [SOURCE: .opencode/skills/sk-doc/SKILL.md:76-97] [INFERENCE: the listed observable tuple is the benchmark representation of that contract]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5-16,37`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md:155-179,275-278`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scenario_authoring.md:34-42`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:176-178`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-352`",
+        "`.opencode/skills/sk-doc/SKILL.md:76-97`",
+        "`.opencode/skills/sk-code/SKILL.md:86-122`"
+      ]
+    },
+    {
+      "id": "finding-3-6-route-gold-should-add-a-strict-expected-route-tuple-and-three-zero-signal-fixtur",
+      "text": "**Route gold should add a strict `expected_route` tuple and three zero-signal fixture classes, rather than overload `expected_intent`.** The exact fields should be `zeroSignalStrategy`, `workflowMode` (string or null), `routeOutcome` (including `surfaceBundle`), `selectedIntents` (exact set), `defaultApplied`, `deferReason` (string or null), `needsDisambiguation`, `detectedSurfaces` (exact set), and `forbiddenWorkflowModes` (exact absence). Named-child gold expects `single`, the named child, empty scored intents, and `defaultApplied: true`; defer gold expects null/defer/false plus clarification; detect-and-bundle gold expects null/surfaceBundle/false plus an exact surface and no clarification, with the paired detection-miss case above. Parsing any present field must be loud and every field must compare independently, so a same-set intent success cannot mask a fallback mismatch. [INFERENCE: based on the current loud hard-gate contract at .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:176-178, current scenario fields at .opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scenario_authoring.md:34-42, and replay telemetry at .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-352]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5-16,37`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md:155-179,275-278`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scenario_authoring.md:34-42`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:176-178`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-352`",
+        "`.opencode/skills/sk-doc/SKILL.md:76-97`",
+        "`.opencode/skills/sk-code/SKILL.md:86-122`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-current-create-skill-scaffold-presumes-a-named-child-default-instead-of-maki",
+      "text": "**The current create-skill scaffold presumes a named-child default instead of making zero-signal policy an authored decision.** Its template sets `routerPolicy.defaultMode` to `[workflow-mode-a]`, places catch-all hub identity only on that default, and describes that mode as the default; the broader canon names `single`, `orderedBundle`, `defer`, and optional `surfaceBundle`, but its checklist does not require an explicit zero-signal strategy or evidence burden. [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5-16] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:37] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md:155-179] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md:275-278]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5-16,37`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md:155-179,275-278`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scenario_authoring.md:34-42`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:176-178`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-352`",
+        "`.opencode/skills/sk-doc/SKILL.md:76-97`",
+        "`.opencode/skills/sk-code/SKILL.md:86-122`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-exact-create-skill-declaration-should-retain-routerpolicy-defaultmode-and-ad",
+      "text": "**The exact create-skill declaration should retain `routerPolicy.defaultMode` and add a required `routerPolicy.zeroSignalPolicy` object.** Its fields should be `strategy` (`named-child | defer | detect-and-bundle`), `outcome` (`single | defer | surfaceBundle`), `detectionAxis` (`null | surface`), `onDetectionMiss` (`defer`), and `evidence`. Validation should enforce: `named-child` has a non-null registered workflow mode, `outcome: single`, `detectionAxis: null`, plus non-placeholder `evidence.corpusRef`, `evidence.costModelRef`, and `evidence.dominanceClaim`; `defer` has `defaultMode: null`, `outcome: defer`, and `detectionAxis: null`; `detect-and-bundle` has `defaultMode: null`, `outcome: surfaceBundle`, a registered surface axis, and a deterministic detection rule with defer-on-miss. New hubs should start at `defer`; named-child is the evidence-bearing exception, never inferred from registry order or a template placeholder. [INFERENCE: based on the current named-child-presuming template at .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5-16,37, the explicit null/defer behavior at .opencode/skills/sk-doc/SKILL.md:80-97, and the null/detect behavior at .opencode/skills/sk-code/SKILL.md:86-122]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5-16,37`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md:155-179,275-278`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scenario_authoring.md:34-42`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:176-178`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-352`",
+        "`.opencode/skills/sk-doc/SKILL.md:76-97`",
+        "`.opencode/skills/sk-code/SKILL.md:86-122`"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-present-route-gold-contract-cannot-fully-encode-those-three-outcomes-scenari",
+      "text": "**The present route-gold contract cannot fully encode those three outcomes.** Scenario guidance currently limits `routeOutcome` to `single`, `orderedBundle`, or `defer` and centers `workflowMode`/`forbiddenWorkflowModes`; deterministic intent gold is exact-set, while replay leaves `workflowMode: null` on zero score and exposes only `defaultApplied` plus `deferReason`. Consequently empty expected intents pass for both named-child and null policies, and `defaultApplied` alone still cannot prove that the named child became the effective route. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scenario_authoring.md:34-42] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:176-178] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-352]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5-16,37`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md:155-179,275-278`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/references/skill_benchmark/scenario_authoring.md:34-42`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:176-178`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-352`",
+        "`.opencode/skills/sk-doc/SKILL.md:76-97`",
+        "`.opencode/skills/sk-code/SKILL.md:86-122`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-33765f88771f",
+      "text": "A dedicated `sameSet()` implementation in the skill-benchmark CJS directory was not found by the bounded source search. The exact-equality semantics are nevertheless explicit in the packet's benchmark documentation, so broadening the search would add little to this focus. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/routing-before-after.md:146-147]",
+      "contentHash": "33765f88771f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-64f58b3522d3",
+      "text": "Treating `routeTelemetry.defaultApplied: true` as evidence that the child was selected is ruled out by the simultaneous `workflowMode: null` assignment. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-353]",
+      "contentHash": "64f58b3522d3",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-51a5672671c2",
+      "text": "**Existing `defaultMode` as proof of genuine dominance.** Multiple parent contracts explicitly defer on ambiguity even while their router metadata names a child, so the configuration is the hypothesis under test, not evidence for itself. [SOURCE: .opencode/skills/cli-external-orchestration/SKILL.md:56-64] [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:51-68] [SOURCE: .opencode/skills/mcp-tooling/SKILL.md:59-65]",
+      "contentHash": "51a5672671c2",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-5941ba90f6c8",
+      "text": "**Mode count alone as the policy.** `sk-doc` has many modes and nulls, but the decisive property is unresolved choice/cost; `sk-code` also nulls despite being able to detect and bundle a surface separately. [SOURCE: .opencode/skills/sk-doc/hub-router.json:4-34] [SOURCE: .opencode/skills/sk-code/SKILL.md:50-57]",
+      "contentHash": "5941ba90f6c8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8c83e1e1cfe2",
+      "text": "**Tie-break or registry order as dominance evidence.** The peer modes in CLI, deep-loop, MCP, and design carry equal weights; ordering resolves ties but does not measure `P(mode|Z)`. [SOURCE: .opencode/skills/cli-external-orchestration/hub-router.json:4-30] [SOURCE: .opencode/skills/system-deep-loop/hub-router.json:4-50] [SOURCE: .opencode/skills/mcp-tooling/hub-router.json:4-91] [SOURCE: .opencode/skills/sk-design/hub-router.json:4-91]",
+      "contentHash": "8c83e1e1cfe2",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3f11202ebff6",
+      "text": "No consulted canonical hub artifact contains representative zero-signal traffic counts or adjudicated misroute-cost telemetry. Therefore all verdicts remain provisional; repeating policy prose cannot turn them into empirical dominance claims. The smallest decisive evidence is a labeled held-out corpus for each hub's zero-signal branch. [INFERENCE: based on the five mode registries, five hub routers, and five parent routing contracts consulted this iteration]",
+      "contentHash": "3f11202ebff6",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c3712624ba3d",
+      "text": "Reusing only `expected_intent: []` for zero-signal policy: exact-set success is identical for named-child and null under current replay. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:176-178] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:342-352]",
+      "contentHash": "c3712624ba3d",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3a74577127d8",
+      "text": "Treating the first workflow placeholder or hub-identity vocabulary owner as an implicit dominance declaration: those are scaffold mechanics, not traffic or expected-loss evidence. [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:5-16] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:37]",
+      "contentHash": "3a74577127d8",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0.58,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "type": "source_diversity_guard",
+      "count": 1,
+      "severity": "blocking"
+    },
+    {
+      "type": "evidence_depth_guard",
+      "count": 1,
+      "severity": "blocking"
+    }
+  ],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 4,
+    "resolvedQuestions": 1,
+    "carriedForwardOpenQuestions": 10,
+    "keyFindings": 17,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 62
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0063-skilled-router-collapse/.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "novelty_signal_inert",
+      "mode": "research",
+      "severity": "warning",
+      "metric": "newInfoRatio",
+      "run": 3,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
+      "timestamp": "2026-07-17T16:50:41Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 3,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-07-17T16:50:41Z"
+    }
+  ]
+}
